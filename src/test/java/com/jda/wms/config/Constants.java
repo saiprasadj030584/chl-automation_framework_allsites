@@ -10,4 +10,6 @@ public class Constants {
 
 	public static final String LOCATOR_PATH = USER_DIR + "/config/locator/";
 
+	public static final String IMAGE_PATH = USER_DIR + "/images/";
+
 }
