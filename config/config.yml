@@ -1,0 +1,345 @@
+########################################################################
+# Default settings
+########################################################################
+default:
+
+ browser-name: chrome
+ auth-username: 'siteadmin'
+ auth-password: 'ASDF!@#$asdf1234' 
+ 
+ commerce-base-url: 'https://int.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+ 
+ commerce-user-name: subburaj.s@tcs.com
+ commerce-password: 'tommyRAJ#02'
+ 
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+ commerce-user-name: 'subburaj.s@tcs.com'
+ commerce-password: 'tommyRAJ#02'
+ 
+ sp-base-url: 'https://spint.tataunistore.com' 
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+ sp-base-url-tmp: 'https://sptmppprd.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ sp-seller2-user-name: 'neeraja.1@tcs.com'
+ sp-seller2-password: '12345'
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+ sp-slave1-user-name: preethi@gmail.com
+ sp-slave1-password: '12345'
+ sp-slave2-user-name: 'slavethreenry@gmail.com'
+ sp-slave2-password: '12345'
+ back-office-base-url: 'http://10.10.73.1:9001/backoffice/login.zul' 
+ back-office-user-name: 'admin'
+ back-office-password: '12345'
+ cs-cockpit-base-url: 'http://10.10.73.1:9001/cscockpit/login.zul' 
+ cs-cockpit-user-name: 'admin'
+ cs-cockpit-password: '12345'
+ hmc-url: 'http://10.10.73.1:9001/hmc/hybris' 
+ hmc-userName: 'admin'
+ hmc-url: 'https://pcmint.tataunistore.com/hmc/hybris' 
+ hmc-userName: admin
+ hmc-password: '12345'
+ 
+ pcm-commerce-url: 'http://10.10.73.1:9001/hmc/hybris'
+ pcm-commerce-user-name: 'admin'
+ pcm-commerce-password: '12345' 
+ 
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris' 
+ auth-password: 'ASDF!@#$asdf1234'
+ commerce-base-url: 'https://int.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+ commerce-user-name: 'subburaj.s@tcs.com'
+ commerce-password: 'tommyRAJ#02'
+  
+ sp-base-url: 'https://spint.tataunistore.com'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+ sp-base-url-tmp: 'https://sptmppprd.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ sp-seller2-user-name: 'neeraja.1@tcs.com'
+ sp-seller2-password: '12345'
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+ sp-slave1-user-name: preethi@gmail.com
+ sp-slave1-password: '12345'
+ sp-slave2-user-name: 'slavethreenry@gmail.com'
+ sp-slave2-password: '12345'
+#  commerce-base-url: 'https:www.tatacliq.com'
+ commerce-base-url: 'https://int.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+# commerce-user-name: subburaj.s@tcs.com
+# commerce-password: 'tommyRAJ#02'
+ #commerce-user-name: ranjith.arumugam@tcs.com
+ #commerce-password: Ran@1234
+#  commerce-user-name: 'subburaj.s@tcs.com'
+#  commerce-password: 'tommyRAJ#02'
+  
+ sp-base-url: 'https://spint.tataunistore.com'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+ sp-base-url-tmp: 'https://sptmppprd.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ sp-seller2-user-name: 'neeraja.1@tcs.com'
+ sp-seller2-password: '12345'
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+ sp-slave1-user-name: preethi@gmail.com
+ sp-slave1-password: '12345'
+ sp-slave2-user-name: 'slavethreenry@gmail.com'
+ sp-slave2-password: '12345'
+  
+ back-office-base-url: 'http://10.10.73.1:9001/backoffice/login.zul'
+ back-office-user-name: 'admin'
+ back-office-password: '12345'
+ back-office-base-url: 'http://10.10.73.1:9001/backoffice/login.zul'
+ back-office-user-name: 'admin'
+ back-office-password: '12345'
+  
+ cs-cockpit-base-url: 'http://10.10.73.1:9001/cscockpit/login.zul'
+ cs-cockpit-user-name: 'admin'
+ cs-cockpit-password: '12345'
+
+
+ hmc-url: 'http://10.10.73.1:9001/hmc/hybris'
+ hmc-user-name: 'admin'
+ hmc-userName: admin
+ hmc-password: '12345'
+
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+  
+  
+  
+########################################################################  
+# Browser settings
+########################################################################
+chrome: &chrome
+ browser-name: chrome
+    
+ie: &ie
+ browser-name: ie
+  
+firefox: &firefox
+ browser-name: firefox
+  
+########################################################################
+# Test Envoronment settings
+########################################################################
+tmppprd: &tmppprd
+ browser-name: chrome
+ auth-username: 'siteadmin'
+ auth-password: 'ASDF!@#$asdf1234'
+  
+ commerce-base-url: 'https://tmppprd.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234 
+ 
+ sp-seller-password: '12345'
+  
+ sp-base-url: 'https://sptmppprd.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ 
+ sp-base-url-tmp: 'https://sptmppprd.tataunistore.com'
+ sp-slave-user-name: 'pslvthree@gmail.com'
+ sp-slave-password: '12345'
+ 
+ sp-seller-user-name: 'nivetha.manivannan@tcs.com'
+ sp-seller-password: '12345'
+ 
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+  
+ back-office-base-url: 'http://10.10.74.221:9001/backoffice/login.zul'
+ back-office-user-name: admin
+ back-office-password: 'nimda'
+ cs-cockpit-base-url: 'http://10.10.73.1:9001/cscockpit/login.zul'
+ cs-cockpit-user-name: admin
+ cs-cockpit-password: 'nimda'
+ 
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+  
+
+ cs-cockpit-base-url: 'http://10.10.74.221:9001/cscockpit'
+ cs-cockpit-user-name: admin
+ cs-cockpit-password: 'nimda'
+
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+ 
+ hmc-url: 'http://10.10.74.221:9001/hmc/hybris'
+ hmc-user-name: 'admin'
+ hmc-password: 'nimda'
+  
+int: &int
+ browser-name: chrome
+ auth-username: 'siteadmin'
+ auth-password: 'ASDF!@#$asdf1234'
+ commerce-base-url: 'https://int.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+ sp-base-url: 'https://spint.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+ sp-seller-user-name: 'tule12slave@gmail.com'
+ sp-seller-password: '12345'
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+ sp-slave1-user-name: preethi@gmail.com
+ sp-slave1-password: '12345'
+ sp-slave2-user-name: slavethreenry@gmail.com
+ sp-slave2-password: '12345'
+ sp-seller10-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller10-password: '12345'
+  
+ back-office-base-url: 'http://10.10.73.1:9001/backoffice/login.zul'
+ back-office-user-name: admin
+ back-office-password: '12345'
+ commerce-base-url: 'https://int.tataunistore.com/store'
+ commerce-user-name: ranjith.arumugam@tcs.com
+ commerce-password: Ran@1234
+ 
+# commerce-base-url: 'https:www.tatacliq.com'
+# commerce-user-name: subburaj.s@tcs.com
+# commerce-password: 'tommyRAJ#02'
+
+ sp-base-url-tmp: 'https://sptmppprd.tataunistore.com'
+ sp-base-url: 'https://spint.tataunistore.com'
+ sp-user-name: 'superadmin@anmsoft.com'
+ sp-password: 'superadmin'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+
+ sp-seller-user-name: 'tule12slave@gmail.com'
+ sp-seller-password: '12345'
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+ sp-seller-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller-password: '12345'
+ sp-slave4-user-name: 'nivetha.manivannan@tcs.com'
+ sp-slave4-password: '12345'
+ sp-slave1-user-name: preethi@gmail.com
+ sp-slave1-password: '12345'
+ sp-slave2-user-name: slavethreenry@gmail.com
+ sp-slave2-password: '12345'
+ sp-seller10-user-name: 'abinaya.parthiban1@tcs.com'
+ sp-seller10-password: '12345'
+ cs-cockpit-base-url: 'http://10.10.73.1:9001/cscockpit/login.zul'
+ cs-cockpit-user-name: admin
+ cs-cockpit-password: '12345'
+  
+ back-office-base-url: 'http://10.10.73.1:9001/backoffice/login.zul'
+ back-office-user-name: admin
+ back-office-password: '12345'
+ cs-cockpit-test-base-url: 'http://10.10.74.221:9001/cscockpit'
+ cs-cockpit-test-user-name: admin
+ cs-cockpit-test-password: nimda
+  
+ cs-cockpit-base-url: 'http://10.10.73.1:9001/cscockpit/login.zul'
+ cs-cockpit-user-name: admin
+ cs-cockpit-password: '12345'
+  
+ cs-cockpit-test-base-url: 'http://10.10.74.221:9001/cscockpit'
+ cs-cockpit-test-user-name: admin
+ cs-cockpit-test-password: nimda
+  
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+ 
+ pcm-commerce-url: 'http://10.10.73.1:9001/hmc/hybris'
+ pcm-commerce-user-name: 'admin'
+ pcm-commerce-password: '12345'
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+  
+e2e: &e2e
+ browser-name: chrome
+ auth-username: 'siteadmin'
+ auth-password: 'ASDF!@#$asdf1234'
+  
+ commerce-base-url: 'https://tatacliq.com'
+ commerce-user-name: automation@gmail.com
+ commerce-password: automation
+  
+ sp-base-url: 'https://spe2e.tataunistore.com'
+ sp-user-name: 'superadmin@tul.com'
+ sp-passsword: 'superadmin'
+ sp-slave-user-name: 'flamboyant.chennai@gmail.com'
+ sp-slave-password: '12345'
+  
+ back-office-base-url: 'http://10.10.64.98:9001/backoffice/login.zul'
+ back-office-user-name: admin
+ back-office-password: 'TataEtail@2015'
+  
+ cs-cockpit-base-url: 'http://10.10.64.98:9001/cscockpit/login.zul'
+ cs-cockpit-user-name: admin
+ cs-cockpit-password: 'TataEtail@2015'
+  
+ pcm-back-office-base-url: 'http://pcmint.tataunistore.com/hmc/hybris'
+ pcm-back-office-user-name: 'admin'
+ pcm-back-office-password: 'nimda'
+
+########################################################################  
+# Profile settings
+########################################################################
+dev-tmppprd-chrome:
+ <<: *tmppprd
+ <<: *chrome
+
+dev-tmppprd-ie:
+ <<: *tmppprd
+ <<: *ie
+
+dev-tmppprd-firefox:
+ <<: *tmppprd
+ <<: *firefox
+  
+dev-int-chrome:
+ <<: *int
+ <<: *chrome
+
+dev-int-ie:
+ <<: *int
+ <<: *ie
+
+dev-int-firefox:
+ <<: *int
+ <<: *firefox
+    
+dev-e2e-chrome:
+ <<: *e2e
+ <<: *chrome
+
+dev-e2e-ie:
+ <<: *e2e
+ <<: *ie
+
+dev-int-firefox:
+ <<: *int
+ <<: *firefox
+  

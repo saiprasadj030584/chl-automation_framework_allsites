@@ -1,0 +1,23 @@
+[
+	{
+		"type": "pincode",
+		"pincodes": "600091,110011,110001",
+		"state": "22,22,22",
+		"country": "IN,IN,IN",
+		"city": "CHENNAI,CHENNAI,CHENNAI",
+		"slavepriority": "123456789,123456789,123456789",
+		"sellercode": "242424,242424,242424"
+	},
+	{
+		"type": "sshipHD",
+		"productName": "soch blue saree",
+	    "pinCode": "600012,600091",
+		"stateCode": "22,22",
+		"countryName": "IN,IN",
+		"placeName": "CHENNAI,CHENNAI",
+		"slavePriority": "500100-57584##500100-659966,500100-57584##500100-659966",
+		"tatCode": "1,1",
+		"tataPriority": "1,1"
+	}
+]
+
