@@ -56,7 +56,7 @@ public class JdaLoginPage extends PageObject {
 			// 10);
 			// screen.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\PWD.png",
 			// 10);
-			// screen.type("12345");
+			// screen.ype("12345");
 			// screen.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Submit.png",
 			// 10);
 			// screen.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Submit.png",

@@ -1,0 +1,16 @@
+#locators using id
+##################
+id:
+ #Login page
+
+#locators using name
+####################
+name:
+
+#locators using css
+###################
+css:
+
+#locators using xpath
+#####################
+xpath: 
