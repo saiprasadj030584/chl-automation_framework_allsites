@@ -41,10 +41,10 @@ public class OrderHeaderStepDefs {
 	public void orderline() throws IOException {
 		try {
 			order.jdaorderline();
-			Screenshot.screenshotcapture();
+			/*Screenshot.screenshotcapture();
 			String filePath = "C:\\Users\\Santhaseelan.Shanmug\\Workspace\\JDA_Automation\\target\\TempScreenshot\\img_New.png";
 			Path path = Paths.get(filePath);
-			myScenario.embed(Files.readAllBytes(path), "image/png");
+			myScenario.embed(Files.readAllBytes(path), "image/png");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ public class OrderHeaderStepDefs {
 			order.jdaOrder();
 			order.enter_OrderNo("6600033481");
 			Thread.sleep(3000);
-			capture();
+			//capture();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class OrderHeaderStepDefs {
 
 			try {
 				order.jdaorderline();
-				capture();
+				// capture();
 				// Assert.fail();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -108,7 +108,7 @@ public class OrderHeaderStepDefs {
 		try {
 			order.allocated_product();
 			Thread.sleep(3000);
-			capture();
+			//capture();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,7 +120,7 @@ public class OrderHeaderStepDefs {
 		try {
 			order.status_changed();
 			Thread.sleep(3000);
-			capture();
+			//capture();
 
 		} catch (Exception e) {
 			e.printStackTrace();

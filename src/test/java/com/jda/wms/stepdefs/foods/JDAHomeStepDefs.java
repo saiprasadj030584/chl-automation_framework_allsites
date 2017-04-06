@@ -35,19 +35,15 @@ public class JDAHomeStepDefs {
 	@Given("^user is in JDA Dispatcher Food application$")
 	public void user_is_in_JDA_Dispatcher_Food_application() throws Throwable {
 
-		try {
-
 			jdaHomePage.login();
-			Thread.sleep(5000);
-			Screenshot.screenshotcapture();
-			String filePath = "C:\\Users\\Santhaseelan.Shanmug\\Workspace\\JDA_Automation\\target\\TempScreenshot\\img_New.png";
-			Path path = Paths.get(filePath);
-			myScenario.embed(Files.readAllBytes(path), "image/png");
-		} catch (WebDriverException WDE) {
-			myScenario.write("Embed Failed " + WDE.getMessage());
-		} catch (ClassCastException cce) {
-			cce.printStackTrace();
-		}
+//			try {
+//			Thread.sleep(5000);
+////			Screenshot.scre/d(Files.readAllBytes(path), "image/png");
+//		} catch (WebDriverException WDE) {
+//			myScenario.write("Embed Failed " + WDE.getMessage());
+//		} catch (ClassCastException cce) {
+//			cce.printStackTrace();
+//		}
 	}
 
 	// @After
