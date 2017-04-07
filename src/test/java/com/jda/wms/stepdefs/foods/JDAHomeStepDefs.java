@@ -34,9 +34,7 @@ public class JDAHomeStepDefs {
 
 	@Given("^user is in JDA Dispatcher Food application$")
 	public void user_is_in_JDA_Dispatcher_Food_application() throws Throwable {
-
 		try {
-
 			jdaHomePage.login();
 			Thread.sleep(5000);
 			Screenshot.screenshotcapture();
