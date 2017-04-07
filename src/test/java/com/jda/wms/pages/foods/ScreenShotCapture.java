@@ -1,4 +1,4 @@
-package com.jda.wms.stepdefs.foods;
+package com.jda.wms.pages.foods;
 
 import java.awt.AWTException;
 import java.awt.AlphaComposite;
@@ -24,19 +24,13 @@ import com.jda.wms.pages.PageObject;
 
 import cucumber.api.Scenario;
 
-public class ScreenCaptureStepDefs extends PageObject {
+public class ScreenShotCapture extends PageObject {
 
 	public Scenario myScenario;
 	private WebDriver webDriver;
 
-	// @Before()
-	// public void embedScreenshotStep(Scenario scenario) {
-	//
-	// myScenario = scenario;
-	// }
-
 	@Inject
-	public ScreenCaptureStepDefs(WebDriver webDriver) {
+	public ScreenShotCapture(WebDriver webDriver) {
 		super(webDriver);
 		this.webDriver = webDriver;
 	}

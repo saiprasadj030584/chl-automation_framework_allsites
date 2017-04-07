@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-import com.jda.wms.config.Constants;
 import com.jda.wms.pages.PageObject;
-import com.jda.wms.stepdefs.foods.ScreenCaptureStepDefs;
 
 public class JdaLoginPage extends PageObject {
 
@@ -19,7 +17,7 @@ public class JdaLoginPage extends PageObject {
 
 	@Inject
 	public JdaLoginPage(WebDriver webDriver, OrderHeaderPage orderHeaderPage,
-			ScreenCaptureStepDefs screenCaptureStepDefs) {
+			ScreenShotCapture screenCaptureStepDefs) {
 		super(webDriver);
 		this.webDriver = webDriver;
 	}
@@ -29,67 +27,20 @@ public class JdaLoginPage extends PageObject {
 		try {
 			webDriver.manage().window().maximize();
 			webDriver.navigate().to(environment);
-			 /*try {
-			 Thread.sleep(60000);
-			 } catch (Exception e) {
-			 }*/
 			Thread.sleep(30000);
-			screen.wait("images/Use.png",100);
-			screen.click("images/Use.png",25);
+			screen.wait("images/Use.png", 100);
+			screen.click("images/Use.png", 25);
 			screen.type("P9124783");
-			
-			screen.wait("images/PWD.png",100);
-			screen.click("images/PWD.png",25);
-			screen.type("12345"); 
-			
-			screen.wait("images/Submit.png",100);
-			screen.click("images/Submit.png",25); 
-			/*screen.wait(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\Use.png",
-					100);
-			screen.click(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\Use.png",
-					25);
-			screen.type("P9124783");
-			screen.wait(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\PWD.png",
-					10);
-			screen.click(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\PWD.png",
-					10);
+
+			screen.wait("images/PWD.png", 100);
+			screen.click("images/PWD.png", 25);
 			screen.type("12345");
-			screen.wait(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\Submit.png",
-					10);
-			screen.click(
-					"C:\\Users\\Santhaseelan.Shanmug\\JDA Project\\jda-wms-test-framework-master\\jda-wms-test-framework-master\\images\\Submit.png",
-					10);*/
+
+			screen.wait("images/Submit.png", 100);
+			screen.click("images/Submit.png", 25);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
-	public void waitForImage(String image, int time) throws InterruptedException {
-		for (int i = 0; i < time; i++) {
-			if (isImagePresent(image)) {
-				break;
-			} else {
-				Thread.sleep(1000);
-			}
-		}
-	}
-
-	public boolean isImagePresent(String image) {
-		boolean status = false;
-		try {
-			status = true;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return status;
-	}
-
 }
