@@ -3,90 +3,69 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.Screen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
 import com.jda.wms.pages.PageObject;
-import com.jda.wms.stepdefs.foods.ScreenCaptureStepDefs;
 
 public class JdaLoginPage extends PageObject {
-
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	WebElement webElement;
-	// WebDriverWait wait = new WebDriverWait(driver, 90);
 	private final WebDriver webDriver;
+	private final Configuration configuration;
 	Screen screen = new Screen();
 
-	// public static final String environment = getData("Environment");
-	public static final String environment = "http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html";
-	// public static final String environment = "https://www.google.co.in/";
-
 	@Inject
-	public JdaLoginPage(WebDriver webDriver, OrderHeaderPage orderHeaderPage,
-			ScreenCaptureStepDefs screenCaptureStepDefs) {
+	public JdaLoginPage(WebDriver webDriver, OrderHeaderPage orderHeaderPage, Configuration configuration) {
 		super(webDriver);
 		this.webDriver = webDriver;
+		this.configuration = configuration;
 	}
 
 	public void login() {
-
 		try {
 			webDriver.manage().window().maximize();
-			webDriver.navigate().to(environment);
-			try {
-				Thread.sleep(30000);
-			} catch (Exception e) {
-			}
+			// webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
+			webDriver.navigate().to("https://www.google.com");
+			logger.debug("Brower is opened");
+			Thread.sleep(30000);
 
-			// waitForImage("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Use.png",
-			// 20);
-			screen.wait("Constants.IMAGE_PATH\\Use.png", 100);
-			screen.click("Constants.IMAGE_PATH\\\\Use.png", 10);
-			screen.type("P9124783");
-			screen.wait("Constants.IMAGE_PATH\\PWD.png", 10);
-			screen.click("Constants.IMAGE_PATH\\PWD.png", 10);
-			screen.type("12345");
-			screen.wait("Constants.IMAGE_PATH\\Submit.png", 10);
-			screen.click("Constants.IMAGE_PATH\\Submit.png", 10);
-
-			// screen.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Use.png",
-			// 100);
-			// screen.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Use.png",
-			// 10);
-			// screen.type("P9124783");
-			// screen.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\PWD.png",
-			// 10);
-			// screen.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\PWD.png",
-			// 10);
-			// screen.ype("12345");
-			// screen.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Submit.png",
-			// 10);
-			// screen.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Submit.png",
-			// 10);
-
+			enterUsername();
+			enterPassword();
+			clickSubmitButton();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public void waitForImage(String image, int time) throws InterruptedException {
-		for (int i = 0; i < time; i++) {
-			if (isImagePresent(image)) {
-				break;
-			} else {
-				Thread.sleep(1000);
-			}
-		}
-	}
-
-	public boolean isImagePresent(String image) {
-		boolean status = false;
+	private void enterUsername() {
 		try {
-			status = true;
+			screen.wait("images/username.png", 20);
+			screen.click("images/username.png", 25);
+			screen.type(configuration.getStringProperty("username"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return status;
 	}
 
+	private void enterPassword() {
+		try {
+			screen.wait("images/password.png", 20);
+			screen.click("images/password.png", 25);
+			screen.type(configuration.getStringProperty("password"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void clickSubmitButton() {
+		try {
+			screen.wait("images/Submit.png", 20);
+			screen.click("images/Submit.png", 25);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -8,7 +8,6 @@ import com.google.inject.Inject;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 
 public class Hooks {
 
@@ -17,11 +16,6 @@ public class Hooks {
 	@Inject
 	public Hooks(WebDriver webDriver) {
 		this.webDriver = webDriver;
-	}
-
-	@Before
-	public void gotoHomePage() throws InterruptedException {
-		// loginPage.openTempUrl();
 	}
 
 	@After()

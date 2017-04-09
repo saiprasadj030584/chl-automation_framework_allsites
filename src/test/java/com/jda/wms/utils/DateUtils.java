@@ -3,6 +3,7 @@ package com.jda.wms.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtils {
 
@@ -17,5 +18,47 @@ public class DateUtils {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, 10);
 		return dateFormat.format(cal.getTime());
+	}
+
+	public static String getSecond() {
+		SimpleDateFormat sdf = new SimpleDateFormat("ss");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
+	}
+
+	public static String getMin() {
+		SimpleDateFormat sdf = new SimpleDateFormat("mm");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
+	}
+
+	public static String getHour() {
+		SimpleDateFormat sdf = new SimpleDateFormat("hh");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
+	}
+
+	public static String getDay() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
+	}
+
+	public static String getMonth() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
+	}
+
+	public static String getYear() {
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		return strDate;
 	}
 }

@@ -2,20 +2,20 @@ package com.jda.wms.pages.foods;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.sikuli.basics.Settings;
 import org.sikuli.script.App;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
 public class OrderHeaderPage extends PageObject {
-
-	Screen Order = new Screen();
-	Settings st = new Settings();
-	int w = 20;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
 	private WebDriver webDriver;
 
 	@Inject
@@ -24,185 +24,125 @@ public class OrderHeaderPage extends PageObject {
 		this.webDriver = webDriver;
 	}
 
-	// public String Query ="";
-	// st.OcrTextSearch =true;
-	// st.OcrTextRead=true;
-
-	public void jdaOrder() {
+	public void navigateToOrderHeader() {
 		try {
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Data_Menu.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Data_Menu.png");
-
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Submenu.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Submenu.png");
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header.png");
+			screen.wait("images/DataMenu.png", timeoutInSec);
+			screen.click("images/DataMenu.png");
+			screen.wait("images/OrderSubmenu.png", timeoutInSec);
+			screen.click("images/OrderSubmenu.png");
+			screen.wait("images/OrderHeader.png", timeoutInSec);
+			screen.click("images/OrderHeader.png");
 			try {
 				Thread.sleep(5000);
 			} catch (Exception e) {
 			}
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Query1.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Query1.png");
-
+			screen.wait("images/OrderHeaderQuery1.png", timeoutInSec);
+			screen.click("images/OrderHeaderQuery1.png");
 			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void enter_OrderNo(String Order_No) throws Throwable {
+	public void enterOrderNo(String OrderNo) throws Throwable {
 		try {
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_no.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_no.png");
-			Order.type(Order_No);
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Execute.png", w);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Execute.png");
+			screen.wait("images/OrderHeaderNo.png", timeoutInSec);
+			screen.click("images/OrderHeaderNo.png");
+			screen.type(OrderNo);
+			screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
+			screen.click("images/OrderHeaderExecute.png");
 		} catch (Exception E) {
 			E.printStackTrace();
-			Assert.fail();
-
 		}
 	}
 
-	public void jdaorderline() {
+	public void navigateToOrderLineList() {
 		try {
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Lines.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Lines.png");
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Maintenance.png", 20);
-			Order.doubleClick("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Maintenance.png");
+			screen.wait("images/OrderHeaderLines.png", timeoutInSec);
+			screen.click("images/OrderHeaderLines.png");
+			screen.wait("images/OrderLineMaintenance.png", timeoutInSec);
+			screen.doubleClick("images/OrderLineMaintenance.png");
 
 			try {
 				Thread.sleep(2000);
-
 			} catch (Exception e) {
 			}
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Sku_tobe_doucleclik.png", 10);
-			Order.doubleClick("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Sku_tobe_doucleclik.png");
+			screen.wait("images/OrderlineSkuTobeDoucleclik.png", timeoutInSec);
+			screen.doubleClick("images/OrderlineSkuTobeDoucleclik.png");
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.fail();
 		}
 
 	}
 
-	public void allocated_product() {
+	public void allocateOrder() {
 		try {
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Update.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Update.png");
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_line_Allocate_check.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_line_Allocate_check.png");
-			Match mQty = Order.find("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_qtyorder_1.png");
-			Order.click(mQty.getCenter().offset(70, 0));
-			Order.type("a", Key.CTRL);
-			Order.type("c", Key.CTRL);
-			String SA1 = App.getClipboard();
+			screen.wait("images/OrderLineUpdate.png", timeoutInSec);
+			screen.click("images/OrderLineUpdate.png");
+			screen.wait("images/OrderlineAllocateCheck.png", timeoutInSec);
+			screen.click("images/OrderlineAllocateCheck.png");
 
-			while (Order
-					.exists("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Qty_Soft_Allocated1.png") == null) {
+			Match mQty = screen.find("images/OrderlineQuantityOrder.png");
+			screen.click(mQty.getCenter().offset(70, 0));
+			screen.type("a", Key.CTRL);
+			screen.type("c", Key.CTRL);
+			int quantity = Integer.parseInt(App.getClipboard());
+
+			while (screen.exists("images/QtySoftAllocated.png") == null) {
 				Assert.fail();
 			}
-			Match mQtysoft1 = Order.find("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Qty_Soft_Allocated.png");
-			// Match mQtytask =
-			// Order.find("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Qtytask.png");
-			Order.click(mQtysoft1.getCenter().offset(70, 0));
-			// Order.click(mQtytask.getCenter().offset(70,0));
-			Order.type("a", Key.CTRL);
-			Order.type("c", Key.CTRL);
-			String SA2 = App.getClipboard();
-			if (Integer.parseInt(SA1) > 0) {
-				Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Execute.png", 20);
-				Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Execute.png");
-				Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Save_Yes.png", 20);
-				Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Save_Yes.png");
+
+			Match mQtysoft1 = screen.find("images/QuantitySoftAllocated.png");
+			screen.click(mQtysoft1.getCenter().offset(70, 0));
+			screen.type("a", Key.CTRL);
+			screen.type("c", Key.CTRL);
+
+			if ((quantity) > 0) {
+				screen.wait("images/Order_Line_Execute.png", timeoutInSec);
+				screen.click("images/Order_Line_Execute.png");
+				screen.wait("images/Order_Line_Save_Yes.png", timeoutInSec);
+				screen.click("images/Order_Line_Save_Yes.png");
 			} else {
 				System.out.println("POC Failure");
 				Assert.fail();
 			}
 
 			Thread.sleep(60000);
-			Order.rightClick();
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh.png");
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh_Current.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh_Current.png");
+			screen.rightClick();
+			screen.wait("images/Order_Line_Refresh.png", timeoutInSec);
+			screen.click("images/Order_Line_Refresh.png");
+			screen.wait("images/Order_Line_Refresh_Current.png", timeoutInSec);
+			screen.click("images/Order_Line_Refresh_Current.png");
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.fail();
 		}
 	}
 
-	public void status_changed() {
+	public String getOrderStatus() {
+		String orderStatus = null;
 		try {
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_footer.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_footer.png");
-
+			screen.wait("images/Order_Header_footer.png", timeoutInSec);
+			screen.click("images/Order_Header_footer.png");
 			Thread.sleep(3000);
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Status1.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Status1.png");
-			Order.rightClick();
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh.png");
-			Order.wait("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh_Current.png", 20);
-			Order.click("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Line_Refresh_Current.png");
 
-			/*
-			 * Order.wait(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Data_Menu.png"
-			 * ,10); Order.click(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Data_Menu.png"
-			 * ); Order.wait(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Submenu.png"
-			 * ,10); Order.click(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Submenu.png"
-			 * ); Order.wait(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header.png"
-			 * ,10); Order.click(
-			 * "C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header.png"
-			 * );
-			 */
+			screen.wait("images/Order_Header_Status1.png", timeoutInSec);
+			screen.click("images/Order_Header_Status1.png");
+			screen.rightClick();
 
-			Match mStatus = Order.find("C:\\Users\\janakiraman.kesavan\\Desktop\\JDA_Image\\Order_Header_Status1.png");
-			Order.click(mStatus.getCenter().offset(70, 0));
-			Order.type("a", Key.CTRL);
-			Order.type("c", Key.CTRL);
-			String SA3 = App.getClipboard();
-			if (SA3.equals("Allocated")) {
-				System.out.println("POC Success");
+			screen.wait("images/Order_Line_Refresh.png", timeoutInSec);
+			screen.click("images/Order_Line_Refresh.png");
+			screen.wait("images/Order_Line_Refresh_Current.png", timeoutInSec);
+			screen.click("images/Order_Line_Refresh_Current.png");
 
-			} else {
-
-				System.out.println("POC Failure");
-				Assert.fail();
-			}
-
+			Match mStatus = screen.find("images/Order_Header_Status1.png");
+			screen.click(mStatus.getCenter().offset(70, 0));
+			screen.type("a", Key.CTRL);
+			screen.type("c", Key.CTRL);
+			orderStatus = App.getClipboard();
+			logger.debug("Order status is: " + orderStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.fail();
 		}
-
+		return orderStatus;
 	}
-
-	public void waitForImage(String image, int time) throws InterruptedException {
-		for (int i = 0; i < time; i++) {
-			if (isImagePresent(image)) {
-				break;
-			} else {
-				Thread.sleep(1000);
-			}
-		}
-	}
-
-	public boolean isImagePresent(String image) {
-		boolean status = false;
-		Screen s = new Screen();
-		try {
-
-			status = true;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return status;
-	}
-
 }

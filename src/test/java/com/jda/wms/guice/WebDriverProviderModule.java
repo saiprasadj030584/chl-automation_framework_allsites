@@ -14,7 +14,5 @@ public class WebDriverProviderModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(WebDriver.class).toProvider(WebDriverProvider.class).in(CucumberScopes.SCENARIO);
-
 	}
-
 }
