@@ -1,7 +1,6 @@
 package com.jda.wms.stepdefs.foods;
 
 import org.junit.Assert;
-import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.OrderHeaderPage;
@@ -18,24 +17,22 @@ public class OrderHeaderStepDefs {
 	}
 
 	@When("^I navigate to order header$")
-	public void i_navigate_to_order_header() throws FindFailed, InterruptedException {
+	public void i_navigate_to_order_header() throws Throwable {
 		orderHeaderPage.navigateToOrderHeader();
-		Thread.sleep(3000);
 	}
 
 	@When("^I search order number \"(.*?)\"$")
-	public void i_search_order_number(String orderNumber) throws FindFailed, InterruptedException {
+	public void i_search_order_number(String orderNumber) throws Throwable {
 		orderHeaderPage.enterOrderNo(orderNumber);
-		Thread.sleep(1000);
 	}
 
 	@When("^I select the SKU line$")
-	public void i_select_the_SKU_line() throws FindFailed, InterruptedException {
+	public void i_select_the_SKU_line() throws Throwable {
 		orderHeaderPage.navigateToOrderLineList();
 	}
 
 	@When("^I allocate the product$")
-	public void i_allocate_the_product() throws FindFailed, InterruptedException {
+	public void i_allocate_the_product() throws Throwable {
 		orderHeaderPage.allocateOrder();
 	}
 
