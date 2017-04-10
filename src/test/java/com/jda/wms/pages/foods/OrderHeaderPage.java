@@ -80,10 +80,10 @@ public class OrderHeaderPage extends PageObject {
 		screen.type("c", Key.CTRL);
 
 		if ((quantity) > 0) {
-			screen.wait("images/Order_Line_Execute.png", timeoutInSec);
-			screen.click("images/Order_Line_Execute.png");
-			screen.wait("images/Order_Line_Save_Yes.png", timeoutInSec);
-			screen.click("images/Order_Line_Save_Yes.png");
+			screen.wait("images/OrderlineExecute.png", timeoutInSec);
+			screen.click("images/OrderlineExecute.png");
+			screen.wait("images/OrderlineSaveYes.png", timeoutInSec);
+			screen.click("images/OrderlineSaveYes.png");
 		} else {
 			System.out.println("POC Failure");
 			Assert.fail();
@@ -91,28 +91,28 @@ public class OrderHeaderPage extends PageObject {
 
 		Thread.sleep(60000);
 		screen.rightClick();
-		screen.wait("images/Order_Line_Refresh.png", timeoutInSec);
-		screen.click("images/Order_Line_Refresh.png");
-		screen.wait("images/Order_Line_Refresh_Current.png", timeoutInSec);
-		screen.click("images/Order_Line_Refresh_Current.png");
+		screen.wait("images/OrderlineRefresh.png", timeoutInSec);
+		screen.click("images/OrderlineRefresh.png");
+		screen.wait("images/OrderlineRefreshCurrent.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshCurrent.png");
 	}
 
 	public String getOrderStatus() throws FindFailed, InterruptedException {
 		String orderStatus = null;
-		screen.wait("images/Order_Header_footer.png", timeoutInSec);
-		screen.click("images/Order_Header_footer.png");
+		screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
+		screen.click("images/OrderHeaderFooter.png");
 		Thread.sleep(3000);
 
-		screen.wait("images/Order_Header_Status1.png", timeoutInSec);
-		screen.click("images/Order_Header_Status1.png");
+		screen.wait("images/OrderHeaderStatus.png", timeoutInSec);
+		screen.click("images/OrderHeaderStatus.png");
 		screen.rightClick();
 
-		screen.wait("images/Order_Line_Refresh.png", timeoutInSec);
-		screen.click("images/Order_Line_Refresh.png");
-		screen.wait("images/Order_Line_Refresh_Current.png", timeoutInSec);
-		screen.click("images/Order_Line_Refresh_Current.png");
+		screen.wait("images/OrderlineRefresh.png", timeoutInSec);
+		screen.click("images/OrderlineRefresh.png");
+		screen.wait("images/OrderlineRefreshCurrent.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshCurrent.png");
 
-		Match mStatus = screen.find("images/Order_Header_Status1.png");
+		Match mStatus = screen.find("images/OrderHeaderStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
