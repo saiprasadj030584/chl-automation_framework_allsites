@@ -27,9 +27,7 @@ public class JdaLoginPage extends PageObject {
 	public void login() {
 		try {
 			webDriver.manage().window().maximize();
-			// webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
-			webDriver.navigate().to("https://www.google.com");
-			logger.debug("Brower is opened");
+			webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
 			Thread.sleep(30000);
 
 			enterUsername();
