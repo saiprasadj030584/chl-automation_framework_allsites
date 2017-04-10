@@ -2,6 +2,7 @@ package com.jda.wms.pages.foods;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,46 +25,30 @@ public class JdaLoginPage extends PageObject {
 		this.configuration = configuration;
 	}
 
-	public void login() {
-		try {
-			webDriver.manage().window().maximize();
-			webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
-			Thread.sleep(30000);
+	public void login() throws FindFailed {
+		webDriver.manage().window().maximize();
+		webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
+		// Thread.sleep(30000);
 
-			enterUsername();
-			enterPassword();
-			clickSubmitButton();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		enterUsername();
+		enterPassword();
+		clickSubmitButton();
 	}
 
-	private void enterUsername() {
-		try {
-			screen.wait("images/username.png", 20);
-			screen.click("images/username.png", 25);
-			screen.type(configuration.getStringProperty("username"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private void enterUsername() throws FindFailed {
+		screen.wait("images/username.png", 20);
+		screen.click("images/username.png", 25);
+		screen.type(configuration.getStringProperty("username"));
 	}
 
-	private void enterPassword() {
-		try {
-			screen.wait("images/password.png", 20);
-			screen.click("images/password.png", 25);
-			screen.type(configuration.getStringProperty("password"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private void enterPassword() throws FindFailed {
+		screen.wait("images/password.png", 20);
+		screen.click("images/password.png", 25);
+		screen.type(configuration.getStringProperty("password"));
 	}
 
-	private void clickSubmitButton() {
-		try {
-			screen.wait("images/Submit.png", 20);
-			screen.click("images/Submit.png", 25);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private void clickSubmitButton() throws FindFailed {
+		screen.wait("images/Submit.png", 20);
+		screen.click("images/Submit.png", 25);
 	}
 }
