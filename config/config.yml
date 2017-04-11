@@ -2,8 +2,8 @@
 ##################
 default:
  browser-name: ie
- auth-username: 'xxxxxx'
- auth-password: '12345'
+ username: 'xxxxxx'
+ password: '12345'
  gm-jda-url: 'http://hlxc0dc012.unix.marksandspencercate.com:8880/#'
  gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/#'
  gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
