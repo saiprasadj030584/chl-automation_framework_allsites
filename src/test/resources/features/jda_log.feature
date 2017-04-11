@@ -8,7 +8,7 @@ Feature: Allocate the product for the SKU
   Scenario: Allocate the order
     Given I have logged in as store agent in JDA dispatcher food application
     When I navigate to order header
-    And I search order number "6600033481"
+    And I navigate to orderline for the order number "6600033481"
     And I select the SKU line
     And I allocate the product
     Then the order status should be updated as "Allocated"
