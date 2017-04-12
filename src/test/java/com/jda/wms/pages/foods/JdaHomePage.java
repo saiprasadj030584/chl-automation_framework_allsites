@@ -3,18 +3,13 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
 public class JdaHomePage extends PageObject {
-
-	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	//private WebDriver webDriver;
 
 	@Inject
 	public JdaHomePage(WebDriver webDriver) {
@@ -23,12 +18,12 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
-		clickDatamenu();
+		clickDataMenu();
 		hoverOrder();
-		clickOrderheader();
+		clickOrderHeader();
 	}
 
-	private void clickDatamenu() throws FindFailed {
+	private void clickDataMenu() throws FindFailed {
 		screen.wait("images/DataMenu.png", timeoutInSec);
 		screen.click("images/DataMenu.png");
 	}
@@ -38,7 +33,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/OrderSubmenu.png");
 	}
 
-	private void clickOrderheader() throws FindFailed {
+	private void clickOrderHeader() throws FindFailed {
 		screen.wait("images/OrderHeader.png", timeoutInSec);
 		screen.click("images/OrderHeader.png");
 	}
