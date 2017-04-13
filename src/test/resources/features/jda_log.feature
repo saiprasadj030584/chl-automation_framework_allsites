@@ -1,8 +1,8 @@
 @login
 Feature: Allocate the product for the SKU
-  As a warehouse user
-  I want to allocate the product
-  So that I can disptach the orders
+  As a store agent
+  I want to login
+  So that I am able to allocate the product
 
   @complete
   Scenario: Allocate the order

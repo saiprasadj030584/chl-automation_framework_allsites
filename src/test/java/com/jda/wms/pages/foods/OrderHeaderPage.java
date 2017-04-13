@@ -1,6 +1,6 @@
 package com.jda.wms.pages.foods;
 
-import org.junit.Assert;
+/*import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -120,4 +120,4 @@ public class OrderHeaderPage extends PageObject {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-}
+}*/

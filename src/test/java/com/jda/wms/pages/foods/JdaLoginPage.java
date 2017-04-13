@@ -19,7 +19,7 @@ public class JdaLoginPage extends PageObject {
 	Screen screen = new Screen();
 
 	@Inject
-	public JdaLoginPage(WebDriver webDriver, OrderHeaderPage orderHeaderPage, Configuration configuration) {
+	public JdaLoginPage(WebDriver webDriver,Configuration configuration) {
 		super(webDriver);
 		this.webDriver = webDriver;
 		this.configuration = configuration;

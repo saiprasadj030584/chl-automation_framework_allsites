@@ -14,7 +14,6 @@ import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
 public class OrderLineMaintenancePage extends PageObject {
-
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -33,7 +32,8 @@ public class OrderLineMaintenancePage extends PageObject {
 	public void allocateOrder() throws FindFailed, InterruptedException {
 		clickUpdateButton();
 		selectAllocateCheckbox();
-		validateQuantityOrder();
+		clickExecuteButton();
+		clickSaveButton();
 		refreshOrderlinePage();
 	}
 
@@ -44,8 +44,8 @@ public class OrderLineMaintenancePage extends PageObject {
 	}
 
 	private void doubleClickSKULine() throws FindFailed {
-		screen.wait("images/OrderlineSkuTobeDoucleclik.png", timeoutInSec);
-		screen.doubleClick("images/OrderlineSkuTobeDoucleclik.png");
+		screen.wait("images/OrderlineSkuFirstLine.png", timeoutInSec);
+		screen.doubleClick("images/OrderlineSkuFirstLine.png");
 	}
 
 	private void clickUpdateButton() throws FindFailed {
@@ -54,18 +54,18 @@ public class OrderLineMaintenancePage extends PageObject {
 	}
 
 	private void selectAllocateCheckbox() throws FindFailed {
-		screen.wait("images/OrderlineAllocateCheck.png", timeoutInSec);
-		screen.click("images/OrderlineAllocateCheck.png");
+		screen.wait("images/OrderlineAllocateCheckbox.png", timeoutInSec);
+		screen.click("images/OrderlineAllocateCheckbox.png");
 	}
 
-	private void validateQuantityOrder() throws FindFailed {
+	private void validateQuantityOrder() throws FindFailed, InterruptedException {
 		Match mQty = screen.find("images/OrderlineQuantityOrder.png");
 		screen.click(mQty.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		int quantity = Integer.parseInt(App.getClipboard());
 
-		while (screen.exists("images/QtySoftAllocated.png") == null) {
+		while (screen.exists("images/QuantitySoftAllocated.png") == null) {
 			Assert.fail();
 		}
 
@@ -83,25 +83,22 @@ public class OrderLineMaintenancePage extends PageObject {
 		}
 	}
 
-	// private void orderLineQuantity
-
 	private void clickExecuteButton() throws FindFailed {
-		screen.wait("images/OrderlineExecute.png", timeoutInSec);
-		screen.click("images/OrderlineExecute.png");
+		screen.wait("images/OrderlineExecuteButton.png", timeoutInSec);
+		screen.click("images/OrderlineExecuteButton.png");
 	}
 
-	private void clickSaveButton() throws FindFailed {
+	private void clickSaveButton() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderlineSaveYes.png", timeoutInSec);
 		screen.click("images/OrderlineSaveYes.png");
-	}
-
-	private void refreshOrderlinePage() throws FindFailed, InterruptedException {
 		Thread.sleep(60000);
-		screen.rightClick();
-		screen.wait("images/OrderlineRefresh.png", timeoutInSec);
-		screen.click("images/OrderlineRefresh.png");
-		screen.wait("images/OrderlineRefreshCurrent.png", timeoutInSec);
-		screen.click("images/OrderlineRefreshCurrent.png");
 	}
 
+	public void refreshOrderlinePage() throws FindFailed, InterruptedException {
+		screen.rightClick();
+		screen.wait("images/OrderlineRefreshOption.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshOption.png");
+		screen.wait("images/OrderlineRefreshCurrentRecord.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshCurrentRecord.png");
+	}
 }
