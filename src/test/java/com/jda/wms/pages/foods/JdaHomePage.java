@@ -23,9 +23,9 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 	}
 
-	private void clickDataMenu() throws FindFailed {
-		screen.wait("images/DataMenu.png", timeoutInSec);
-		screen.click("images/DataMenu.png");
+	public void clickDataMenu() throws FindFailed {
+		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
+		screen.click("images/JDAHome/DataMenu.png");
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -37,4 +37,14 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/OrderHeader.png", timeoutInSec);
 		screen.click("images/OrderHeader.png");
 	}
+	
+	public void hoverSKU() throws FindFailed {
+		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
+		screen.click("images/JDAHome/SKU.png");
+	}
+	public void clickSupplierSKU() throws FindFailed {
+		screen.wait("images/JDAHome/SupplierSKU.png", timeoutInSec);
+		screen.click("images/JDAHome/SupplierSKU.png");
+	}
+	
 }
