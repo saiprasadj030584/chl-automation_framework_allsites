@@ -59,7 +59,6 @@ public class OrderLineMaintenancePage extends PageObject {
 	}
 
 	private void validateQuantityOrder() throws FindFailed, InterruptedException {
-
 		Match mQty = screen.find("images/OrderlineQuantityOrder.png");
 		screen.click(mQty.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);

@@ -4,11 +4,11 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderStepDefs {
-
 	private final OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 
 	@Inject

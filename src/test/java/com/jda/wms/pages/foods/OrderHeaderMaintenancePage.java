@@ -14,8 +14,10 @@ import com.jda.wms.pages.PageObject;
 
 public class OrderHeaderMaintenancePage extends PageObject {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+
 	private final OrderFooterPage orderFooterPage;
 	private final OrderLineMaintenancePage orderLineMaintenancePage;
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
