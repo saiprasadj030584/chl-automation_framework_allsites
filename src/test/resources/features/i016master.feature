@@ -1,10 +1,8 @@
-@Masterdata
+@master_data
 Feature: Master data validation
   As a warehouse user
   I want to validate master data 
-  So that I can use them for PO receiving putaway and allocation 
-
-#Background: I have logged in as warehouse user in JDA dispatcher food application
+  So that I can use them for PO receiving putaway and allocation
 
   @wip
   Scenario: Validate Supplier SKU table in JDA WMS dispatcher for I016

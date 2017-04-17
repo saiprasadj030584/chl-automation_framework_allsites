@@ -7,6 +7,8 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
+import cucumber.runtime.Env;
+
 public class JdaHomePage extends PageObject {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -37,14 +39,18 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/OrderHeader.png", timeoutInSec);
 		screen.click("images/OrderHeader.png");
 	}
-	
-	public void hoverSKU() throws FindFailed {
+
+	public void hoverSKU() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SKU.png");
+		screen.mouseMove(50,0);
+		Thread.sleep(5000);
 	}
-	public void clickSupplierSKU() throws FindFailed {
+
+	public void clickSupplierSKU() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/SupplierSKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SupplierSKU.png");
+		Thread.sleep(10000);
 	}
-	
+
 }
