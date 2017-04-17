@@ -10,3 +10,11 @@ Feature: Master data validation
     And I am on supplier SKU maintenance page
     When I search SKU id "20001265" and supplier "F02007"
     Then the description, supplier SKU details should be displayed for the given SKU id
+
+  @wip
+  Scenario: Validate Supplier SKU table in JDA WMS dispatcher when no records are found
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And I am on supplier SKU maintenance page
+    When I search SKU id "20001265" and supplier "D02007" which is not present
+    Then No records should be displayed on Supplier SKU maintenance page 
+    

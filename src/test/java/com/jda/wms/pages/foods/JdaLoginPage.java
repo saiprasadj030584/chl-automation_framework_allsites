@@ -48,10 +48,10 @@ public class JdaLoginPage extends PageObject {
 		screen.type(configuration.getStringProperty("password"));
 	}
 
-	private void clickConnectButton() throws FindFailed {
+	private void clickConnectButton() throws FindFailed, InterruptedException {
 		/*screen.wait("images/JDALogin/Connect.png", 20);
 		screen.click("images/JDALogin/Connect.png", 25);*/
 		screen.type(Key.ENTER);
-		
+		Thread.sleep(2000);
 	}
 }
