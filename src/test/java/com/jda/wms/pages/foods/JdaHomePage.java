@@ -25,7 +25,7 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 	}
 	
-	public void navigateToSKUMaintanence() throws FindFailed {
+	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
 		clickDataMenu();
 		hoverSKU();
 		clickSKUsubmenu();
