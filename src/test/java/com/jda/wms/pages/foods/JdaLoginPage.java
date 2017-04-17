@@ -3,6 +3,7 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,23 +33,25 @@ public class JdaLoginPage extends PageObject {
 
 		enterUsername();
 		enterPassword();
-		clickSubmitButton();
+		clickConnectButton();
 	}
 
 	private void enterUsername() throws FindFailed {
-		screen.wait("images/username.png", 20);
-		screen.click("images/username.png", 25);
+		screen.wait("images/JDALogin/username.png", 20);
+		screen.click("images/JDALogin/username.png", 25);
 		screen.type(configuration.getStringProperty("username"));
 	}
 
 	private void enterPassword() throws FindFailed {
-		screen.wait("images/password.png", 20);
-		screen.click("images/password.png", 25);
+		screen.wait("images/JDALogin/password.png", 20);
+		screen.click("images/JDALogin/password.png", 25);
 		screen.type(configuration.getStringProperty("password"));
 	}
 
-	private void clickSubmitButton() throws FindFailed {
-		screen.wait("images/Submit.png", 20);
-		screen.click("images/Submit.png", 25);
+	private void clickConnectButton() throws FindFailed {
+		/*screen.wait("images/JDALogin/Connect.png", 20);
+		screen.click("images/JDALogin/Connect.png", 25);*/
+		screen.type(Key.ENTER);
+		
 	}
 }
