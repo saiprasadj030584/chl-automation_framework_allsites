@@ -5,7 +5,7 @@ import com.jda.wms.pages.foods.RDTTask;
 public class Context {
 	private RDTTask currentTask;
 	private String preAdviceId;
-	private String sku;
+	private String skuId;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -23,11 +23,11 @@ public class Context {
 		this.preAdviceId = preAdviceId;
 	}
 
-	public String getSku() {
-		return sku;
+	public String getSkuId() {
+		return skuId;
 	}
 
-	public void setSku(String sku) {
-		this.sku = sku;
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
 	}
 }

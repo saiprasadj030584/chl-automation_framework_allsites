@@ -17,4 +17,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_order_header() throws Throwable {
 		jdaHomePage.navigateToOrderHeader();
 	}
+	
+	@When("^I navigate to SKU maintenance page$")
+	public void i_navigate_to_SKU_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToSKUMaintanence();
+	}
 }

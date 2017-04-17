@@ -9,18 +9,18 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-public class OrderFooterPage extends PageObject {
+public class FooterPage extends PageObject {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public OrderFooterPage(WebDriver webDriver) {
+	public FooterPage(WebDriver webDriver) {
 		super(webDriver);
 		this.webDriver = webDriver;
 	}
 
-	public void clickOrderHeaderFooterButton() throws FindFailed, InterruptedException {
+	public void clickFooterButton() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
 		screen.click("images/OrderHeaderFooter.png");
 		Thread.sleep(3000);
