@@ -13,8 +13,8 @@ public class JDALoginStepDefs {
 		this.jdaLoginPage = jdaLoginPage;
 	}
 
-	@Given("^I have logged in as store agent in JDA dispatcher food application$")
-	public void i_have_logged_in_as_store_agent_in_JDA_dispatcher_food_application() throws Throwable {
+	@Given("^I have logged in as warehouse user in JDA dispatcher food application$")
+	public void i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application() throws Throwable {
 		jdaLoginPage.login();
 	}
 }
