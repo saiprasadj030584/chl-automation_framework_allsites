@@ -8,6 +8,7 @@ Feature: Master Data Validation
 
   @wip
   Scenario: Validate whether Article data is successfully loaded into SKU table
+  	Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to SKU maintenance page
     And I search for the SKU id "20001249"
     Then the SKU id and SKU description fields should be displayed

@@ -64,12 +64,12 @@ public class SKUMaintenanceTableStepDef {
 		}
 
 		// Get Allocation Group Value
-		String allocationGroup = sKUMaintenancePage.getAllocationGroup();
-		context.setAllocationGroup(allocationGroup);
-		if (allocationGroup.equals(null)) {
-			failureList.add("Allocation Group is not displayed as expected. Expected [Not NULL value] but was ["
-					+ allocationGroup + "]");
-		}
+//		String allocationGroup = sKUMaintenancePage.getAllocationGroup();
+//		context.setAllocationGroup(allocationGroup);
+//		if (allocationGroup.equals(null)) {
+//			failureList.add("Allocation Group is not displayed as expected. Expected [Not NULL value] but was ["
+//					+ allocationGroup + "]");
+//		}
 
 		// Get EAN Value
 		String ean = sKUMaintenancePage.getEAN();
@@ -85,7 +85,8 @@ public class SKUMaintenanceTableStepDef {
 		}
 
 		// Get Each Quantity value
-		int eachQuantity = Integer.parseInt(sKUMaintenancePage.getEachQuantity());
+		double eachQuantity = Double.parseDouble(sKUMaintenancePage.getEachQuantity());
+		int eachqtyInt = (int) eachQuantity; 
 		if (eachQuantity <= 0) {
 			failureList.add("Each Quantity is not displayed as expected. Expected [>0] but was [" + eachQuantity + "]");
 		}
@@ -167,7 +168,6 @@ public class SKUMaintenanceTableStepDef {
 			failureList.add("C&E Alcoholic Strength is not displayed as expected. Expected [Not NULL value] but was ["
 					+ cealcoholicstrength + "]");
 		}
-
 	}
 
 	@When("^I navigate to linking tab$")
@@ -194,7 +194,7 @@ public class SKUMaintenanceTableStepDef {
 	public void the_expiry_required_field_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-		boolean isExpiryRequiredUncheked = sKUMaintenancePage.verifySiteId();
+		boolean isExpiryRequiredUncheked = sKUMaintenancePage.verifyExpiryRequired();
 		if (context.getAllocationGroup().equalsIgnoreCase("NONEXPIRY")) {
 			if (isExpiryRequiredUncheked == false) {
 				failureList
@@ -225,7 +225,8 @@ public class SKUMaintenanceTableStepDef {
 		}
 
 		// Get SAP Creation Status value
-		int sapcreationstatus = Integer.parseInt(sKUMaintenancePage.getSAPCreationStatus());
+		double sapcreationstatusdouble = Double.parseDouble(sKUMaintenancePage.getSAPCreationStatus());
+		int sapcreationstatus = (int) sapcreationstatusdouble;
 		if ((sapcreationstatus!=3)||(sapcreationstatus!=4)||(sapcreationstatus!=5)||(sapcreationstatus!=6)) {
 			failureList
 					.add("SAP Creation Status is not displayed as expected. Expected [3 or 4 or 5 or 6] but was [" + sapcreationstatus + "]");

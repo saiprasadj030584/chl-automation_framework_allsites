@@ -55,7 +55,7 @@ public class JdaHomePage extends PageObject {
 	public void hoverSKU() throws FindFailed {
 		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SKU.png");
-		screen.mouseMove(80, 0);
+		//screen.mouseMove(80, 0);
 	}
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
