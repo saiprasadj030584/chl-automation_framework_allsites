@@ -11,6 +11,7 @@ Feature: Master data validation
     When I search SKU id "20001265" and supplier "F02007"
     Then the description, supplier SKU details should be displayed for the given SKU id
 
+  @wip
   Scenario: Validate whether Article data is successfully loaded into SKU table
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to SKU maintenance page
