@@ -36,9 +36,10 @@ public class PackConfigMaintenanceStepDefs {
 			failureList.add("Tag Volume is not as expected.");
 		}
 
-		if (!packConfigMaintenancePage.checkVolumeAtEach()) {
-			failureList.add(" Volume at Each is not checked.");
-		}
+		// if (!packConfigMaintenancePage.checkVolumeAtEach()) {
+		// failureList.add(" Volume at Each is not checked.");
+		// }
+
 		Assert.assertTrue("Pack Config general details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
