@@ -13,19 +13,17 @@ import com.jda.wms.pages.PageObject;
 
 public class OrderHeaderMaintenancePage extends PageObject {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-
-	private final JDAFooter footerPage;
+	private final JDAFooter jdaFooter;
 	private final OrderLineMaintenancePage orderLineMaintenancePage;
-
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public OrderHeaderMaintenancePage(WebDriver webDriver, JDAFooter footerPage,
+	public OrderHeaderMaintenancePage(WebDriver webDriver, JDAFooter jdaFooter,
 			OrderLineMaintenancePage orderLineMaintenancePage) {
 		super(webDriver);
 		this.webDriver = webDriver;
-		this.footerPage = footerPage;
+		this.jdaFooter = jdaFooter;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
@@ -52,7 +50,7 @@ public class OrderHeaderMaintenancePage extends PageObject {
 
 	public String getOrderStatus() throws FindFailed, InterruptedException {
 		String orderStatus = null;
-		footerPage.clickOrderHeaderFooterButton();
+		jdaFooter.clickOrderHeaderFooterButton();
 		clickOrderHeaderStatus();
 		orderLineMaintenancePage.refreshOrderlinePage();
 		Match mStatus = screen.find("images/OrderHeaderStatus.png");
