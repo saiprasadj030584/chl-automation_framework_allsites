@@ -17,19 +17,17 @@ public class PackConfigMaintenancePage {
 	}
 
 	public void enterPackConfigId(String packConfigId) throws FindFailed {
-		// screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		// screen.click("/images/JDASupplierSKU/SKU.png");
+		screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
+		screen.click("/images/JDASupplierSKU/SKU.png");
 		screen.type(packConfigId);
 	}
 
 	public String getTagVolume() throws FindFailed {
-		String tagVoulme = null;
 		Match mTagVolume = screen.find("/images/JDAPackConfig/General/TagVolume.png");
 		screen.click(mTagVolume.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		tagVoulme = App.getClipboard();
-		return tagVoulme;
+		return App.getClipboard();
 	}
 
 	public boolean checkVolumeAtEach() throws FindFailed, InterruptedException {
@@ -50,19 +48,12 @@ public class PackConfigMaintenancePage {
 		Thread.sleep(5000);
 	}
 
-	public String getratios() throws FindFailed {
-		String ratio = null;
+	public String getRatio1To2() throws FindFailed {
 		Match mRatios = screen.find("/images/JDAPackConfig/Tracking Level/Ratio1to2.png");
 		screen.click(mRatios.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		ratio = App.getClipboard();
-		double ratios = Double.parseDouble(ratio);
-		int ratios1to2 = (int) Math.round(ratios);
-		if (ratios1to2 <= 0) {
-			Assert.fail("UPT quantity must be greater than zero");
-		}
-		return ratio;
+		return App.getClipboard();
 	}
 
 	public String getTrackingLevel1() throws FindFailed {

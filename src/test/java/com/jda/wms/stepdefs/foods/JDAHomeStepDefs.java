@@ -3,7 +3,6 @@ package com.jda.wms.stepdefs.foods;
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
