@@ -59,7 +59,8 @@ public class SupplierSKUMaintenancePage {
 	public boolean isNoRecords() throws FindFailed {
 		if (!screen.find("/images/JDA Footer/NoRecords.png").equals(null)) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 }
