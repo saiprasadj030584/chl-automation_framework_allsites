@@ -15,14 +15,14 @@ import com.jda.wms.pages.PageObject;
 public class OrderHeaderMaintenancePage extends PageObject {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private final OrderFooterPage orderFooterPage;
+	private final FooterPage orderFooterPage;
 	private final OrderLineMaintenancePage orderLineMaintenancePage;
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public OrderHeaderMaintenancePage(WebDriver webDriver, OrderFooterPage orderFooterPage,
+	public OrderHeaderMaintenancePage(WebDriver webDriver, FooterPage orderFooterPage,
 			OrderLineMaintenancePage orderLineMaintenancePage) {
 		super(webDriver);
 		this.webDriver = webDriver;
