@@ -3,7 +3,6 @@ package com.jda.wms.stepdefs.foods;
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -25,6 +24,14 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSupplierSKU();
+	}
+	
+	@Given("^I am on pack config maintenance page$")
+	public void i_am_on_pack_config_maintenance_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverSKU();
+		jdaHomePage.hoverPackConfig();
+		jdaHomePage.clickPackConfig();
 	}
 
 }

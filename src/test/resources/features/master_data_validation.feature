@@ -16,6 +16,15 @@ Feature: Master data validation
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on supplier SKU maintenance page
     When I search SKU id "20001265" and supplier "D02007"
-    Then No records should be displayed on Supplier SKU maintenance page 
-    
-   
+    Then No records should be displayed on Supplier SKU maintenance page
+
+  @complete
+  Scenario: Validate Pack config table in JDA WMS dispatcher for I016
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And I am on pack config maintenance page
+    When I search pack config id "20001452O01"
+    Then the tag volume, volume at each details should be displayed
+    When I navigate to tracking levels page
+    Then the tracking levels and ratios should be displayed
+    When I navigate to RDT page
+    Then the RDT tracking levels 1 and 2 should be displayed
