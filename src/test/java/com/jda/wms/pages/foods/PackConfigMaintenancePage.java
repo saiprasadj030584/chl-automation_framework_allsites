@@ -1,15 +1,11 @@
 package com.jda.wms.pages.foods;
 
-import org.sikuli.script.Region;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
-
 import junit.framework.Assert;
 
 public class PackConfigMaintenancePage {
@@ -36,7 +32,7 @@ public class PackConfigMaintenancePage {
 		return tagVoulme;
 	}
 
-	public boolean checkVolumeAtEach() throws FindFailed, InterruptedException { 
+	public boolean checkVolumeAtEach() throws FindFailed, InterruptedException {
 		if (!screen.exists("/images/JDAPackConfig/General/VolumeAtEach.png").equals(null)) {
 			return true;
 		} else
@@ -62,7 +58,7 @@ public class PackConfigMaintenancePage {
 		screen.type("c", Key.CTRL);
 		ratio = App.getClipboard();
 		double ratios = Double.parseDouble(ratio);
-		int ratios1to2 = (int)Math.round(ratios);
+		int ratios1to2 = (int) Math.round(ratios);
 		if (ratios1to2 <= 0) {
 			Assert.fail("UPT quantity must be greater than zero");
 		}
@@ -91,7 +87,7 @@ public class PackConfigMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-		
+
 	}
 
 	public String getRDTTrackingLevel2() throws FindFailed {

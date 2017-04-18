@@ -2,9 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.junit.Assert;
-
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.FooterPage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
