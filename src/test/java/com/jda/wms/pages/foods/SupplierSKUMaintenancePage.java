@@ -39,7 +39,8 @@ public class SupplierSKUMaintenancePage {
 	}
 
 	public String getDescription() throws FindFailed {
-		Match mDescription = screen.find("/images/JDASupplierSKU/Description.png");
+		Match mDescription = screen
+				.find("/images/JDASupplierSKU/Description.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -47,10 +48,19 @@ public class SupplierSKUMaintenancePage {
 	}
 
 	public String getSupplierSKU() throws FindFailed {
-		Match msupplierSKU = screen.find("/images/JDASupplierSKU/SupplierSKU.png");
+		Match msupplierSKU = screen
+				.find("/images/JDASupplierSKU/SupplierSKU.png");
 		screen.click(msupplierSKU.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public boolean isNoRecords() throws FindFailed {
+		if (!screen.find("/images/JDA Footer/NoRecords.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

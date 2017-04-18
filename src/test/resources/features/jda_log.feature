@@ -12,3 +12,5 @@ Feature: Allocate the product for the SKU
     And I select the SKU line
     And I allocate the product
     Then the order status should be updated as "Allocated"
+    
+    

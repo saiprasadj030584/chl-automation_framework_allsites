@@ -1,6 +1,7 @@
 2017-04-09 19:39:27 DEBUG JdaLoginPage:32 - Brower is opened
 2017-04-17 09:36:42 DEBUG SupplierSKUMaintenancePage:68 - Supplier Description: 00904735-POTEL BOURGOGNE CHARDONN
 2017-04-17 09:36:43 DEBUG SupplierSKUMaintenancePage:82 - Supplier SKU value: 00904735
+<<<<<<< HEAD
 2017-04-18 06:47:03 DEBUG SKUMaintenancePage:49 - SKU Id is: 
 2017-04-18 06:47:08 DEBUG SKUMaintenancePage:67 - SKU Description is: 
 2017-04-18 07:06:18 DEBUG SKUMaintenancePage:52 - SKU Id is: Thread.sleep(3000);
@@ -65,3 +66,9 @@
 2017-04-18 08:05:16 DEBUG SKUMaintenancePage:184 - UPC is: Excise
 2017-04-18 08:05:21 DEBUG SKUMaintenancePage:202 - UPC is: S
 2017-04-18 08:05:26 DEBUG SKUMaintenancePage:234 - UPC is: 12.5
+=======
+2017-04-18 07:40:25 DEBUG SupplierSkuMaintenanceStepDefs:44 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
+2017-04-18 07:40:26 DEBUG SupplierSkuMaintenanceStepDefs:50 - Supplier SKU: 00904735
+2017-04-18 07:47:16 DEBUG SupplierSkuMaintenanceStepDefs:45 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
+2017-04-18 07:47:17 DEBUG SupplierSkuMaintenanceStepDefs:52 - Supplier SKU: 00904735
+>>>>>>> fa46c25c5c2141765ca5a7c64ca5f820deb467c5

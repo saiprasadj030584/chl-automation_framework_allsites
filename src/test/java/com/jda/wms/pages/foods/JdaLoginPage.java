@@ -20,7 +20,7 @@ public class JdaLoginPage extends PageObject {
 	Screen screen = new Screen();
 
 	@Inject
-	public JdaLoginPage(WebDriver webDriver,Configuration configuration) {
+	public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
 		super(webDriver);
 		this.webDriver = webDriver;
 		this.configuration = configuration;
@@ -49,10 +49,11 @@ public class JdaLoginPage extends PageObject {
 	}
 
 	private void clickConnectButton() throws FindFailed, InterruptedException {
-		/*screen.wait("images/JDALogin/Connect.png", 20);
-		screen.click("images/JDALogin/Connect.png", 25);*/
+		/*
+		 * screen.wait("images/JDALogin/Connect.png", 20);
+		 * screen.click("images/JDALogin/Connect.png", 25);
+		 */
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
-		
 	}
 }
