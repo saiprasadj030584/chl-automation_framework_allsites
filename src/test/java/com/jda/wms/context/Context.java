@@ -10,7 +10,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
-	
+
 	public RDTTask getCurrentTask() {
 		return currentTask;
 	}
@@ -34,7 +34,7 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
-	
+
 	public String getEAN() {
 		return ean;
 	}
@@ -42,7 +42,7 @@ public class Context {
 	public void setEAN(String ean) {
 		this.ean = ean;
 	}
-	
+
 	public String getProductGroup() {
 		return productGroup;
 	}
@@ -50,7 +50,7 @@ public class Context {
 	public void setProductGroup(String productGroup) {
 		this.productGroup = productGroup;
 	}
-	
+
 	public String getAllocationGroup() {
 		return allocationGroup;
 	}
@@ -62,7 +62,7 @@ public class Context {
 	public void setCEWarehouseType(String cewarehousetype) {
 		this.cewarehousetype = cewarehousetype;
 	}
-	
+
 	public String getCEWarehouseType() {
 		return cewarehousetype;
 	}

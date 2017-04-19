@@ -3,6 +3,8 @@ package com.jda.wms.hooks;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +17,7 @@ import cucumber.api.java.Before;
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
+	Screen screen = new Screen();
 
 	@Inject
 	public Hooks(WebDriver webDriver) {
@@ -40,6 +43,7 @@ public class Hooks {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
+
 		// clearing down webdriver object
 		if (webDriver != null) {
 			webDriver.close();
@@ -54,5 +58,12 @@ public class Hooks {
 		logger.debug("End of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
+	}
+
+	@After
+	public void clickSignoutButton() throws FindFailed {
+		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
+		screen.click("images/JDAHeader/Singout.png", 25);
+		logger.debug("Signed off JDA WMS Application");
 	}
 }
