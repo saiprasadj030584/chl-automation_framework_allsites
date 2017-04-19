@@ -1,3 +1,11 @@
-2017-04-09 19:39:27 DEBUG JdaLoginPage:32 - Brower is opened
-2017-04-17 09:36:42 DEBUG SupplierSKUMaintenancePage:68 - Supplier Description: 00904735-POTEL BOURGOGNE CHARDONN
-2017-04-17 09:36:43 DEBUG SupplierSKUMaintenancePage:82 - Supplier SKU value: 00904735
+2017-04-19 15:02:14 DEBUG Hooks:28 - ###########################################################################################################################
+2017-04-19 15:02:14 DEBUG Hooks:30 - featureID: master-data-validation
+2017-04-19 15:02:14 DEBUG Hooks:31 - Start of Scenario: Validate Supplier SKU table in JDA WMS dispatcher when no records are found
+2017-04-19 15:02:14 DEBUG Hooks:32 - ###########################################################################################################################
+2017-04-19 15:03:39 DEBUG Hooks:52 - ###########################################################################################################################
+2017-04-19 15:03:39 DEBUG Hooks:54 - End of Scenario: Validate Supplier SKU table in JDA WMS dispatcher when no records are found
+2017-04-19 15:03:39 DEBUG Hooks:55 - ###########################################################################################################################
+2017-04-19 15:03:41 DEBUG Hooks:28 - ###########################################################################################################################
+2017-04-19 15:03:41 DEBUG Hooks:30 - featureID: master-data-validation
+2017-04-19 15:03:41 DEBUG Hooks:31 - Start of Scenario: Validate whether Article data is successfully loaded into SKU table
+2017-04-19 15:03:41 DEBUG Hooks:32 - ###########################################################################################################################

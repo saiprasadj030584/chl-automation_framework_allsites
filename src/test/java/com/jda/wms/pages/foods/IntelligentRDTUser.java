@@ -142,7 +142,7 @@ public class IntelligentRDTUser {
 	public void rcvPreEnt() {
 		write("At the Pre Advice entry screen");
 		type(context.getPreAdviceId());
-		type(context.getSku());
+		type(context.getSkuId());
 		type(Key.ENTER);
 	}
 
