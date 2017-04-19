@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
-import com.jda.wms.pages.foods.JdaSignout;
 import com.jda.wms.pages.foods.SupplierSKUMaintenancePage;
 
 import cucumber.api.java.en.Then;
@@ -17,13 +16,10 @@ import cucumber.api.java.en.When;
 public class SupplierSkuMaintenanceStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final SupplierSKUMaintenancePage supplierSKUMaintenancePage;
-	private final JdaSignout jdaSignout;
 
 	@Inject
-	public SupplierSkuMaintenanceStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage,
-			JdaSignout jdaSignout) {
+	public SupplierSkuMaintenanceStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage) {
 		this.supplierSKUMaintenancePage = supplierSKUMaintenancePage;
-		this.jdaSignout = jdaSignout;
 	}
 
 	@When("^I search SKU id \"([^\"]*)\" and supplier \"([^\"]*)\"$")
@@ -52,13 +48,11 @@ public class SupplierSkuMaintenanceStepDefs {
 
 		Assert.assertTrue("Supplier SKU details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-		jdaSignout.clickSignoutButton();
 	}
 
 	@Then("^No records should be displayed on Supplier SKU maintenance page$")
 	public void no_records_should_be_displayed_on_Supplier_SKU_maintenance_page() throws Throwable {
 		Assert.assertTrue("No records message exists", supplierSKUMaintenancePage.isNoRecords());
-		jdaSignout.clickSignoutButton();
 	}
 
 }
