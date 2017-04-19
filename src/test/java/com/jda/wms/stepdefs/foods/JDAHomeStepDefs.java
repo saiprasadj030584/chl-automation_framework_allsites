@@ -27,4 +27,19 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickSupplierSKU();
 	}
 
+	@Given("^I am on inventory query page$")
+
+	public void i_am_on_inventor_query_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverInventory();
+		jdaHomePage.clickInventory();
+	}
+	
+	@When("^I navigate to inventory update page$")
+	public void i_navigate_to_inventory_update_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverInventory();
+		jdaHomePage.clickInventoryUpdate();
+	}
+	
 }

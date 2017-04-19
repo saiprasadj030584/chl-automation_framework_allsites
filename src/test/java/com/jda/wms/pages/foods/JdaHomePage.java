@@ -51,5 +51,22 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/SupplierSKU.png");
 		Thread.sleep(3000);
 	}
+	
+	public void hoverInventory() throws FindFailed {
+		screen.wait("images/JDAHome/InventoryMenu.png", timeoutInSec);
+		screen.click("images/JDAHome/InventoryMenu.png");
+		screen.mouseMove(80, 0);
+	}
+
+	public void clickInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/Inventory.png", timeoutInSec);
+		screen.click("images/JDAHome/Inventory.png");
+		Thread.sleep(4000);
+	}
+	public void clickInventoryUpdate() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/Inventory.png", timeoutInSec);
+		screen.click("images/JDAHome/Inventory.png");
+		Thread.sleep(4000);
+	}
 
 }
