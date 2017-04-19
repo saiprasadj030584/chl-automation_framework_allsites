@@ -1,15 +1,12 @@
 package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
@@ -41,6 +38,7 @@ public class SKUMaintenanceTableStepDef {
 			failureList.add("SKU ID is not displayed as expected. Expected [" + context.getSkuId() + "] but was ["
 					+ skuid + "]");
 		}
+		logger.debug("SKU ID: " + skuid);
 
 		// Get SKU Description
 		String skuDesc = sKUMaintenancePage.getSKUDescription();
@@ -48,6 +46,7 @@ public class SKUMaintenanceTableStepDef {
 			failureList.add(
 					"SKU Description s not displayed as expected. Expected [Not NULL value] but was [" + skuDesc + "]");
 		}
+		logger.debug("SKU Description: " + skuDesc);
 
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
@@ -68,13 +67,13 @@ public class SKUMaintenanceTableStepDef {
 		logger.debug("Product Group: " + productGroup);
 
 		// Get Allocation Group Value
-		// String allocationGroup = sKUMaintenancePage.getAllocationGroup();
-		// context.setAllocationGroup(allocationGroup);
-		// if (allocationGroup.equals(null)) {
-		// failureList.add("Allocation Group is not displayed as expected.
-		// Expected [Not NULL value] but was ["
-		// + allocationGroup + "]");
-		// }
+		 String allocationGroup = sKUMaintenancePage.getAllocationGroup();
+		 context.setAllocationGroup(allocationGroup);
+		 if (allocationGroup.equals(null)) {
+		 failureList.add("Allocation Group is not displayed as expected.Expected [Not NULL value] but was ["
+		 + allocationGroup + "]");
+		 }
+		 logger.debug("Allocation Group: " + allocationGroup);
 
 		// Get EAN Value
 		String ean = sKUMaintenancePage.getEAN();
@@ -82,12 +81,14 @@ public class SKUMaintenanceTableStepDef {
 		if (ean.equals(null)) {
 			failureList.add("EAN is not displayed as expected. Expected [Not NULL value] but was [" + ean + "]");
 		}
+		logger.debug("EAN: " + ean);
 
 		// Get UPC Value
 		String upc = sKUMaintenancePage.getUPC();
 		if (upc.equals(null)) {
 			failureList.add("UPC is not displayed as expected. Expected [Not NULL value] but was [" + upc + "]");
 		}
+		logger.debug("UPC: " + upc);
 
 		// Get Each Quantity value
 		double eachQuantity = Double.parseDouble(sKUMaintenancePage.getEachQuantity());
@@ -95,12 +96,14 @@ public class SKUMaintenanceTableStepDef {
 		if (eachQtyInt <= 0) {
 			failureList.add("Each Quantity is not displayed as expected. Expected [>0] but was [" + eachQtyInt + "]");
 		}
+		logger.debug("Each Quantity: " + eachQtyInt);
 
 		// Validate Tag Merge check box
 		boolean isTagMergeUnchecked = sKUMaintenancePage.isTagMergeUnchecked();
 		if (!isTagMergeUnchecked) {
 			failureList.add("Tag Merge is not displayed as expected. Expected [Not Checked] but was [Checked]");
 		}
+		logger.debug("Tag Merge Unchecked?: " + isTagMergeUnchecked);
 
 		Assert.assertTrue("Setting 1 attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
@@ -113,8 +116,10 @@ public class SKUMaintenanceTableStepDef {
 
 	@Then("^the new product field should be displayed$")
 	public void the_new_product_field_should_be_displayed() throws Throwable {
+		boolean isNewProductChecked = sKUMaintenancePage.isNewProductChecked();
 		Assert.assertTrue("New Product is not displayed as expected. Expected [Checked] but was [Not Checked]",
-				sKUMaintenancePage.isNewProductChecked());
+				isNewProductChecked);
+		logger.debug("New Product Checked?: " + isNewProductChecked);
 	}
 
 	@When("^I navigate to customs & excise tab$")
@@ -143,12 +148,14 @@ public class SKUMaintenanceTableStepDef {
 								+ cewarehousetype + "]");
 			}
 		}
+		logger.debug("C&E Warehouse Type: " + cewarehousetype);
 
 		// Get C&E VAT Code
 		String cevatcode = sKUMaintenancePage.getCEVatCode();
 		if (cevatcode.equals(null)) {
 			failureList.add("EAN is not displayed as expected. Expected [Not NULL value] but was [" + cevatcode + "]");
 		}
+		logger.debug("C&E VAT Code: " + cevatcode);
 
 		// Validate C&E SKU check box
 		boolean isCESKUChecked = sKUMaintenancePage.isCESKUChecked();
@@ -164,6 +171,7 @@ public class SKUMaintenanceTableStepDef {
 						"C&E SKU is not displayed as expected for Ambient. Expected [Not Checked] but was [Checked]");
 			}
 		}
+		logger.debug("CE SKU Checked?: " + isCESKUChecked);
 
 		// Get C&E Alcoholic Strength
 		String ceAlcoholicStrength = sKUMaintenancePage.getCEAlcoholicStrength();
@@ -171,6 +179,7 @@ public class SKUMaintenanceTableStepDef {
 			failureList.add("C&E Alcoholic Strength is not displayed as expected. Expected [Not NULL value] but was ["
 					+ ceAlcoholicStrength + "]");
 		}
+		logger.debug("C&E Alcoholic Strength: " + ceAlcoholicStrength);
 
 		Assert.assertTrue(
 				"Customs & Excise attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -185,8 +194,10 @@ public class SKUMaintenanceTableStepDef {
 
 	@Then("^the site id should be displayed$")
 	public void the_site_id_should_be_displayed() throws Throwable {
+		boolean isSiteIdExist = sKUMaintenancePage.isSiteIdExist();
 		Assert.assertTrue("Site ID is not displayed as expected. Expected [9771] but was [Not 9771]",
 				sKUMaintenancePage.isSiteIdExist());
+		logger.debug("Site ID Exists?: " + isSiteIdExist);
 	}
 
 	@When("^I navigate to batch & expiry tab$")
@@ -196,6 +207,7 @@ public class SKUMaintenanceTableStepDef {
 
 	@Then("^the expiry required should be displayed$")
 	public void the_expiry_required_should_be_displayed() throws Throwable {
+		boolean isExpiryRequiredUnchecked = sKUMaintenancePage.isExpiryRequiredUnchecked();
 		if (context.getAllocationGroup().equalsIgnoreCase("NONEXPIRY")) {
 			Assert.assertTrue("Expiry Required is not displayed as expected. Expected [NOT Checked] but was [Checked]",
 					sKUMaintenancePage.isExpiryRequiredUnchecked());
@@ -203,6 +215,7 @@ public class SKUMaintenanceTableStepDef {
 			Assert.assertFalse("Expiry Required is not displayed as expected. Expected [Checked] but was [Not Checked]",
 					sKUMaintenancePage.isExpiryRequiredUnchecked());
 		}
+		logger.debug("Expiry Required?: " + isExpiryRequiredUnchecked);
 	}
 
 	@When("^I navigate to user defined tab$")
@@ -220,6 +233,7 @@ public class SKUMaintenanceTableStepDef {
 			failureList
 					.add("Base UOM is not displayed as expected. Expected [Not NULL value] but was [" + baseUom + "]");
 		}
+		logger.debug("Base UOM: " + baseUom);
 
 		// Get SAP Creation Status value
 		double sapCreationStatusDouble = Double.parseDouble(sKUMaintenancePage.getSAPCreationStatus());
@@ -232,8 +246,9 @@ public class SKUMaintenanceTableStepDef {
 		Assert.assertTrue(
 				"User defined attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+		logger.debug("SAP Creation Status: " + sapCreationStatus);
 	}
-
+		
 	@When("^I navigate to supplier SKU tab$")
 	public void i_navigate_to_supplier_SKU_tab() throws Throwable {
 		sKUMaintenancePage.navigateToSupplierSKU();
@@ -241,7 +256,9 @@ public class SKUMaintenanceTableStepDef {
 
 	@Then("^the supplier SKU id should be displayed$")
 	public void the_supplier_SKU_id_should_be_displayed() throws Throwable {
+		String supplierSKUId = sKUMaintenancePage.getSupplierSKUId();
 		Assert.assertEquals("Supplier SKU ID is not displayed as expected", context.getEAN(),
 				sKUMaintenancePage.getSupplierSKUId());
+		logger.debug("Supplier SKU ID: " + supplierSKUId);
 	}
 }

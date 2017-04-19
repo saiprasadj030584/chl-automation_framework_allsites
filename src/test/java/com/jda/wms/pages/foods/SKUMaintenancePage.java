@@ -23,9 +23,9 @@ public class SKUMaintenancePage {
 	}
 
 	private void enterSKUID(String skuId) throws FindFailed, InterruptedException {
-		// screen.wait("images/SKUMaintenanceTable/SKU-ID-Search.png",
+		// screen.wait("images/SKUMaintenanceTable/SKUIDSearch.png",
 		// timeoutInSec);
-		// screen.click("images/SKUMaintenanceTable/SKU-ID-Search.png");
+		// screen.click("images/SKUMaintenanceTable/SKUIDSearch.png");
 		screen.type(skuId);
 		Thread.sleep(2000);
 	}
@@ -38,7 +38,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getSKUid() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/SKU-ID.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/SKUID.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -46,7 +46,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getSKUDescription() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/SKU-Description.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/SKUDescription.png");
 		screen.click(mStatus.getCenter().offset(100, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -70,7 +70,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getProductGroup() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/Settings1/Product-Group.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/Settings1/ProductGroup.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -78,7 +78,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getEachQuantity() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/Settings1/Each-Quantity.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/Settings1/EachQuantity.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -86,7 +86,7 @@ public class SKUMaintenancePage {
 	}
 
 	public boolean isTagMergeUnchecked() throws InterruptedException, FindFailed {
-		if (screen.exists("images/SKUMaintenanceTable/Settings1/Tag-Merge-Unchecked.png") != null)
+		if (screen.exists("images/SKUMaintenanceTable/Settings1/TagMergeUnchecked.png") != null)
 			return true;
 		else
 			return false;
@@ -99,13 +99,13 @@ public class SKUMaintenancePage {
 	}
 
 	public void navigateToCustomsAndExcise() throws FindFailed, InterruptedException {
-		screen.wait("images/SKUMaintenanceTable/Customs-Excise.png", timeoutInSec);
-		screen.click("images/SKUMaintenanceTable/Customs-Excise.png");
+		screen.wait("images/SKUMaintenanceTable/CustomsExcise.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/CustomsExcise.png");
 		Thread.sleep(3000L);
 	}
 
 	public String getCEWarehouseType() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/CustomsAndExcise/CE-Warehouse-Type.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/CustomsAndExcise/CEWarehouseType.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -113,7 +113,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getCEVatCode() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/CustomsAndExcise/CE-VAT-Code.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/CustomsAndExcise/CEVATCode.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -121,14 +121,14 @@ public class SKUMaintenancePage {
 	}
 
 	public boolean isCESKUChecked() {
-		if (screen.exists("images/SKUMaintenanceTable/BatchExpiryData/CE-SKU-Checked.png") != null)
+		if (screen.exists("images/SKUMaintenanceTable/BatchExpiryData/CESKUChecked.png") != null)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean isNewProductChecked() {
-		if (screen.exists("images/SKUMaintenanceTable/Settings4/New-Product-Checked.png") != null)
+		if (screen.exists("images/SKUMaintenanceTable/Settings4/NewProductChecked.png") != null)
 			return true;
 		else
 			return false;
@@ -149,15 +149,15 @@ public class SKUMaintenancePage {
 	}
 
 	public boolean isSiteIdExist() {
-		if (screen.exists("images/SKUMaintenanceTable/Linking/SiteID-9771.png") != null)
+		if (screen.exists("images/SKUMaintenanceTable/Linking/SiteID9771.png") != null)
 			return true;
 		else
 			return false;
 	}
 
 	public void navigateToBatchExpiry() throws InterruptedException, FindFailed {
-		screen.wait("images/SKUMaintenanceTable/Batch-Expiry-Data.png", timeoutInSec);
-		screen.click("images/SKUMaintenanceTable/Batch-Expiry-Data.png");
+		screen.wait("images/SKUMaintenanceTable/BatchExpiryData.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/BatchExpiryData.png");
 		Thread.sleep(3000L);
 	}
 
@@ -170,13 +170,13 @@ public class SKUMaintenancePage {
 	}
 
 	public void navigateToUserDefined() throws FindFailed, InterruptedException {
-		screen.wait("images/SKUMaintenanceTable/User-Defined.png", timeoutInSec);
-		screen.click("images/SKUMaintenanceTable/User-Defined.png");
+		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/UserDefined.png");
 		Thread.sleep(3000L);
 	}
 
 	public String getBaseUOM() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/UserDefined/Base-UOM.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/UserDefined/BaseUOM.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -184,7 +184,7 @@ public class SKUMaintenancePage {
 	}
 
 	public String getSAPCreationStatus() throws InterruptedException, FindFailed {
-		Match mStatus = screen.find("images/SKUMaintenanceTable/UserDefined/SAP-Creation-Status.png");
+		Match mStatus = screen.find("images/SKUMaintenanceTable/UserDefined/SAPCreationStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -206,7 +206,7 @@ public class SKUMaintenancePage {
 	}
 
 	public boolean isExpiryRequiredUnchecked() {
-		if (screen.exists("images/SKUMaintenanceTable/BatchExpiryData/Expiry-Required-Unchecked.png") != null)
+		if (screen.exists("images/SKUMaintenanceTable/BatchExpiryData/ExpiryRequiredUnchecked.png") != null)
 			return true;
 		else
 			return false;
