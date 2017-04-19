@@ -25,10 +25,12 @@ public class Hooks {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
+		
 		// clearing down webdriver object
 		if (webDriver != null) {
 			webDriver.close();
 			webDriver.quit();
 		}
 	}
+	
 }

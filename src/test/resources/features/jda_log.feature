@@ -4,7 +4,7 @@ Feature: Allocate the product for the SKU
   I want to login
   So that I am able to allocate the product
 
-  @complete1
+  #@complete1
   Scenario: Allocate the order
     Given I have logged in as store agent in JDA dispatcher food application
     When I navigate to order header

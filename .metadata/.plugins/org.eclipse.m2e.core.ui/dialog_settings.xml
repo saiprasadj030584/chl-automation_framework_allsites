@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\saravanan.jeyabalan\workspace\JDA Auto\jda-wms-test-framework"/>
 			<item value="C:\Users\saravanan.jeyabalan\workspace\jda-wms-test-framework"/>
 		</list>
 		<list key="projectNameTemplate">
