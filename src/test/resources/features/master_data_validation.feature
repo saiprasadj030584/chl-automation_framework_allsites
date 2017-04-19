@@ -18,11 +18,11 @@ Feature: Master data validation
     When I search SKU id "20001265" and supplier "D02007"
     Then No records should be displayed on Supplier SKU maintenance page
 
-  @sara
+  @complete
   Scenario: Validate kit line table in JDA WMS dispatcher for BOM Article
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on kit line maintenance page
-    When I search with SKU id "20001265"
+    When I search with SKU id "20001590"
     Then the kit line details should be displayed for the given SKU id
 
   @complete
@@ -55,4 +55,3 @@ Feature: Master data validation
     Then the tracking levels and ratios should be displayed
     When I navigate to RDT page
     Then the RDT tracking levels 1 and 2 should be displayed
-
