@@ -3,7 +3,6 @@ package com.jda.wms.stepdefs.foods;
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -25,6 +24,16 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSupplierSKU();
+	}
+
+	@When("^I navigate to address maintenance page$")
+	public void i_navigate_to_address_maintenance_page() throws Throwable {
+		Thread.sleep(10000);
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverGeneral();
+		jdaHomePage.hoverSetup();
+		jdaHomePage.clickAddress();
+
 	}
 
 }

@@ -52,4 +52,19 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	public void hoverGeneral() throws FindFailed {
+		screen.wait("images/JDAHome/general.png", timeoutInSec);
+		screen.click("images/JDAHome/general.png");
+	}
+
+	public void hoverSetup() throws FindFailed {
+		screen.wait("images/JDAHome/Setup.png", timeoutInSec);
+		screen.click("images/JDAHome/Setup.png");
+	}
+
+	public void clickAddress() throws FindFailed {
+		screen.wait("images/JDAHome/Address.png", timeoutInSec);
+		screen.click("images/JDAHome/Address.png");
+	}
+
 }
