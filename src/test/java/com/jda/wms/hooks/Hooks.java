@@ -3,19 +3,34 @@ package com.jda.wms.hooks;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 
 public class Hooks {
-
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
 
 	@Inject
 	public Hooks(WebDriver webDriver) {
 		this.webDriver = webDriver;
+	}
+
+	@Before
+	public void logScenarioDetails(Scenario scenario) throws Exception {
+		String scenarioID = scenario.getId();
+		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
+		logger.debug(
+				"###########################################################################################################################");
+		logger.debug("featureID: " + featureID);
+		logger.debug("Start of Scenario: " + scenario.getName());
+		logger.debug(
+				"###########################################################################################################################");
 	}
 
 	@After()
@@ -30,5 +45,14 @@ public class Hooks {
 			webDriver.close();
 			webDriver.quit();
 		}
+	}
+
+	@After
+	public void afterDetails(Scenario scenario) {
+		logger.debug(
+				"###########################################################################################################################");
+		logger.debug("End of Scenario: " + scenario.getName());
+		logger.debug(
+				"###########################################################################################################################");
 	}
 }
