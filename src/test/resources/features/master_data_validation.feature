@@ -18,7 +18,7 @@ Feature: Master data validation
     When I search SKU id "20001265" and supplier "D02007"
     Then No records should be displayed on Supplier SKU maintenance page
 
-  @wip
+  @wip1
   Scenario: Validate whether Article data is successfully loaded into SKU table
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to SKU maintenance page
