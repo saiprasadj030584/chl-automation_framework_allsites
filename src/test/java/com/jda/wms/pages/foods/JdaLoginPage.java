@@ -20,7 +20,7 @@ public class JdaLoginPage extends PageObject {
 	Screen screen = new Screen();
 
 	@Inject
-	public JdaLoginPage(WebDriver webDriver,Configuration configuration) {
+	public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
 		super(webDriver);
 		this.webDriver = webDriver;
 		this.configuration = configuration;
@@ -29,7 +29,7 @@ public class JdaLoginPage extends PageObject {
 	public void login() throws FindFailed, InterruptedException {
 		webDriver.manage().window().maximize();
 		webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
-		Thread.sleep(30000);
+		Thread.sleep(60000);
 
 		enterUsername();
 		enterPassword();
@@ -49,9 +49,11 @@ public class JdaLoginPage extends PageObject {
 	}
 
 	private void clickConnectButton() throws FindFailed, InterruptedException {
-		/*screen.wait("images/JDALogin/Connect.png", 20);
-		screen.click("images/JDALogin/Connect.png", 25);*/
+		/*
+		 * screen.wait("images/JDALogin/Connect.png", 20);
+		 * screen.click("images/JDALogin/Connect.png", 25);
+		 */
 		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Thread.sleep(15000);
 	}
 }

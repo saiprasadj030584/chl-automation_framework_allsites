@@ -22,6 +22,18 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 	}
 
+	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverSKU();
+		clickSKUSubmenu();
+	}
+
+	private void clickSKUSubmenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Sku/skuSku.png", timeoutInSec);
+		screen.click("images/Menu/Data/Sku/skuSku.png");
+		Thread.sleep(3000);
+	}
+
 	public void clickDataMenu() throws FindFailed {
 		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
 		screen.click("images/JDAHome/DataMenu.png");
@@ -40,7 +52,6 @@ public class JdaHomePage extends PageObject {
 	public void hoverSKU() throws FindFailed {
 		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SKU.png");
-		screen.mouseMove(80, 0);
 	}
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
