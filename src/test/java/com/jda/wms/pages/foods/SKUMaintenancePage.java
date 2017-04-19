@@ -6,20 +6,21 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.jda.wms.context.Context;
+
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private final JDAFooter jDAFooter;
 
-	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
-		clickQuery();
-		enterSKUID(skuId);
-		clickExecute();
+	public SKUMaintenancePage(JDAFooter jDAFooter) {
+		this.jDAFooter = jDAFooter;
 	}
-
-	private void clickExecute() throws InterruptedException {
-		// screen.wait("images/execute.PNG", timeoutInSec);
-		// screen.click("images/execute.PNG");
-		screen.type(Key.F7);
+	
+	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
+		jDAFooter.clickQueryButton();
+		enterSKUID(skuId);
+		jDAFooter.clickExecuteButton();
 	}
 
 	private void enterSKUID(String skuId) throws FindFailed, InterruptedException {
@@ -27,13 +28,6 @@ public class SKUMaintenancePage {
 		// timeoutInSec);
 		// screen.click("images/SKUMaintenanceTable/SKUIDSearch.png");
 		screen.type(skuId);
-		Thread.sleep(2000);
-	}
-
-	private void clickQuery() throws FindFailed, InterruptedException {
-		// screen.wait("images/Query.PNG", timeoutInSec);
-		// screen.click("images/Query.PNG");
-		screen.type(Key.F2);
 		Thread.sleep(2000);
 	}
 
