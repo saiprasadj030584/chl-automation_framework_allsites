@@ -10,11 +10,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
-//	private String kitId;
-//	private String kitLineId;
-//	private String kitSKUId;
-//	private String kitQuantity;
-	
+
 	public RDTTask getCurrentTask() {
 		return currentTask;
 	}
@@ -38,7 +34,7 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
-	
+
 	public String getEAN() {
 		return ean;
 	}
@@ -46,7 +42,7 @@ public class Context {
 	public void setEAN(String ean) {
 		this.ean = ean;
 	}
-	
+
 	public String getProductGroup() {
 		return productGroup;
 	}
@@ -54,7 +50,7 @@ public class Context {
 	public void setProductGroup(String productGroup) {
 		this.productGroup = productGroup;
 	}
-	
+
 	public String getAllocationGroup() {
 		return allocationGroup;
 	}
@@ -66,41 +62,8 @@ public class Context {
 	public void setCEWarehouseType(String cewarehousetype) {
 		this.cewarehousetype = cewarehousetype;
 	}
-	
+
 	public String getCEWarehouseType() {
 		return cewarehousetype;
 	}
-	
-	
-//	public void setKitId(String kitId) {
-//		this.kitId = kitId;
-//	}
-//	
-//	public String getKitId() {
-//		return kitId;
-//	}
-//	
-//	public void setKitSKUId(String kitSKUId) {
-//		this.kitSKUId = kitSKUId;
-//	}
-//	
-//	public String getKitSKUId() {
-//		return kitSKUId;
-//	}
-//	public void setKitQuantity(String kitQuantity) {
-//		this.kitQuantity=kitQuantity;
-//	}
-//	
-//	public String getKitQuantity() {
-//		return kitQuantity;
-//	}
-//	
-//	public void setKitLineId(String kitLineId) {
-//		this.kitLineId = kitLineId;
-//	}
-//	
-//	public String getKitLineId() {
-//		return kitLineId;
-//	}
-	
 }
