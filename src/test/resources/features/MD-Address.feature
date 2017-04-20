@@ -6,7 +6,7 @@ Feature: Load site details into address table
 
   @address_table
   Scenario: Load the site details
-   # Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to address maintenance page
     And I search the address id"0010"
     Then the address type, name, address1 and country should be displayed
@@ -18,7 +18,7 @@ Feature: Load site details into address table
 
   @address_table2
   Scenario: Load the vendor details
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to address maintenance page
     And I search the address id"F01502"
     Then the address type, name, address1 and country should be displayed
