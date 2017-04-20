@@ -22,21 +22,15 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 	}
 
-	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
-		clickDataMenu();
-		hoverSKU();
-		clickSKUSubmenu();
-	}
-
-	private void clickSKUSubmenu() throws FindFailed, InterruptedException {
+	public void clickSKUSubmenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Sku/skuSku.png", timeoutInSec);
 		screen.click("images/Menu/Data/Sku/skuSku.png");
 		Thread.sleep(3000);
 	}
 
 	public void clickDataMenu() throws FindFailed {
-		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
-		screen.click("images/JDAHome/DataMenu.png");
+		screen.wait("images/Menu/menuData.png", timeoutInSec);
+		screen.click("images/Menu/menuData.png.png");
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -50,8 +44,8 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void hoverSKU() throws FindFailed {
-		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
-		screen.click("images/JDAHome/SKU.png");
+		screen.wait("images/Menu/Data/dataSku.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataSku.png");
 	}
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
@@ -70,5 +64,40 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/JDAHome/PackConfigScreen.png", timeoutInSec);
 		screen.click("images/JDAHome/PackConfigScreen.png");
 		Thread.sleep(3000);
+	}
+
+	
+	public void hoverDataInventory() throws FindFailed {
+		screen.wait("images/Menu/Data/dataInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataInventory.png");
+	}
+
+	public void clickDataInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventory.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickOperations() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
+		screen.click("images/Menu/menuOperations.png.png");
+	}
+
+	public void hoverOperationsInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/operationInventory.png", timeoutInSec);
+		screen.click("images/Menu/Operations/operationInventory.png");
+		Thread.sleep(2000);
+	}
+
+	public void clickStockAdjustment() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/Inventory/StockAdjustment.png", timeoutInSec);
+		screen.click("images/Menu/Operations/Inventory/StockAdjustment.png");
+		Thread.sleep(2000);
+	}
+
+	public void clickInventoryTransaction() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
+		Thread.sleep(2000);
 	}
 }

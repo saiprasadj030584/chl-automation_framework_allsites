@@ -10,6 +10,12 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String tagId;
+	private String status;
+	private String qtyOnHandBfrAdjustment;
+	private String caseRatio;
+	private String code;
+	private String adjustmentType;
 	
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -65,5 +71,53 @@ public class Context {
 	
 	public String getCEWarehouseType() {
 		return cewarehousetype;
+	}
+
+	public void setTagId(String tagId) {
+		this.tagId = tagId;
+	}
+	
+	public String getTagId() {
+		return tagId;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setqtyOnHandBfrAdjustment(String qtyOnHandBfrAdjustment) {
+		this.qtyOnHandBfrAdjustment = qtyOnHandBfrAdjustment;
+	}
+	
+	public String getqtyOnHandBfrAdjustment() {
+		return qtyOnHandBfrAdjustment;
+	}
+	
+	public void setCaseRatio(String caseRatio) {
+		this.caseRatio = caseRatio;
+	}
+	
+	public String getCaseRatio() {
+		return caseRatio;
+	}
+	
+	public void setAdjustmentType(String adjustmentType) {
+		this.adjustmentType = adjustmentType;
+	}
+	
+	public String getAdjustmentType() {
+		return adjustmentType;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getCode() {
+		return code;
 	}
 }

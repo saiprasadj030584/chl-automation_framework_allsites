@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class SKUMaintenanceTableStepDef {
