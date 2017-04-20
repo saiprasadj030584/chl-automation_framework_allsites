@@ -63,11 +63,13 @@ public class JdaHomePage extends PageObject {
 	public void hoverGeneral() throws FindFailed {
 		screen.wait("images/JDAHome/general.png", timeoutInSec);
 		screen.click("images/JDAHome/general.png");
+		screen.mouseMove(70, 0);
 	}
 
 	public void hoverSetup() throws FindFailed {
 		screen.wait("images/JDAHome/Setup.png", timeoutInSec);
 		screen.click("images/JDAHome/Setup.png");
+		screen.mouseMove(70, 0);
 	}
 
 	public void clickAddress() throws FindFailed {

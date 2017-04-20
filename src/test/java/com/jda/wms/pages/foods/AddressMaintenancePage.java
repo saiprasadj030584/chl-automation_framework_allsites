@@ -12,19 +12,19 @@ public class AddressMaintenancePage {
 
 	public void clickQueryButton() throws InterruptedException {
 		screen.type(Key.F2);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	public void enterAddressID(String addressId) throws FindFailed {
 		screen.wait("images/JDAAddressMaintenance/AddressId.png", timeoutInSec);
 		screen.click("images/JDAAddressMaintenance/AddressId.png");
 		screen.type(addressId);
-
 	}
 
-	public void clickExecuteButton() throws FindFailed {
+	public void clickExecuteButton() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAAddressMaintenance/AddressExecute.png", timeoutInSec);
 		screen.click("images/JDAAddressMaintenance/AddressExecute.png");
+		Thread.sleep(5000);
 	}
 
 	public Object getAddressType() throws FindFailed {
@@ -49,7 +49,6 @@ public class AddressMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-		
 	}
 
 	public Object getCountry() throws FindFailed {
@@ -58,30 +57,26 @@ public class AddressMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-		
+	
 	}
 
 	public void clickCustomsExcisetab() throws FindFailed {
 		screen.wait("images/JDAAddressMaintenance/AddressCustomsExcise.png", timeoutInSec);
 		screen.click("images/JDAAddressMaintenance/AddressCustomsExcise.png");
-	
 	}
 
 	public void clickUserDefinedTab() throws FindFailed {
 		screen.wait("images/JDAAddressMaintenance/AddressUserDefined.png", timeoutInSec);
 		screen.click("images/JDAAddressMaintenance/AddressUserDefined.png");
-		
-		
 	}
 
 	public boolean checkIsSite() throws FindFailed {
-	if(!screen.find("images/JDAAddressMaintenance/UserDefined/IsSite.png").equals(null)){
-			 return true;}
-	else{
-		return false;}
-			
-			}
-	
+		if (!screen.find("images/JDAAddressMaintenance/UserDefined/IsSite.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public String getSiteCategory() throws FindFailed {
 		Match mDescription = screen.find("images/JDAAddressMaintenance/UserDefined/SiteCategory.png");
@@ -89,8 +84,6 @@ public class AddressMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-		
-		
 	}
 
 	public String getCEWarehouseType() throws FindFailed {
@@ -99,8 +92,15 @@ public class AddressMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-		
 	}
 
-}
+	public boolean checkIsVendor() throws FindFailed {
+		if (!screen.find("images/JDAAddressMaintenance/UserDefined/IsSiteUnchecked.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 
+	}
+}
