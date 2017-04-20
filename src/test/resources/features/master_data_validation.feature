@@ -19,6 +19,13 @@ Feature: Master data validation
     Then No records should be displayed on Supplier SKU maintenance page
 
   @complete
+  Scenario: Validate kit line table in JDA WMS dispatcher for BOM Article
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And I am on kit line maintenance page
+    When I search with SKU id "20001590"
+    Then the kit line details should be displayed for the given SKU id
+
+  @complete
   Scenario: Validate whether Article data is successfully loaded into SKU table
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to SKU maintenance page
