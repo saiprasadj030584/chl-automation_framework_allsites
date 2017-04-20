@@ -3,11 +3,8 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
-
-import cucumber.runtime.Env;
 
 public class JdaHomePage extends PageObject {
 	Screen screen = new Screen();
@@ -23,6 +20,18 @@ public class JdaHomePage extends PageObject {
 		clickDataMenu();
 		hoverOrder();
 		clickOrderHeader();
+	}
+
+	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverSKU();
+		clickSKUSubmenu();
+	}
+
+	private void clickSKUSubmenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Sku/skuSku.png", timeoutInSec);
+		screen.click("images/Menu/Data/Sku/skuSku.png");
+		Thread.sleep(3000);
 	}
 
 	public void clickDataMenu() throws FindFailed {
@@ -43,7 +52,6 @@ public class JdaHomePage extends PageObject {
 	public void hoverSKU() throws FindFailed {
 		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SKU.png");
-		screen.mouseMove(80, 0);
 	}
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
@@ -82,4 +90,15 @@ public class JdaHomePage extends PageObject {
 		screen.mouseMove(80, 0);
 	}
 
+	public void hoverPackConfig() throws FindFailed {
+		screen.wait("images/JDAHome/PackConfig.png", timeoutInSec);
+		screen.click("images/JDAHome/PackConfig.png");
+		screen.mouseMove(70, 0);
+	}
+
+	public void clickPackConfig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PackConfigScreen.png", timeoutInSec);
+		screen.click("images/JDAHome/PackConfigScreen.png");
+		Thread.sleep(3000);
+	}
 }

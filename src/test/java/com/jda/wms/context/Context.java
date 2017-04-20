@@ -5,7 +5,11 @@ import com.jda.wms.pages.foods.RDTTask;
 public class Context {
 	private RDTTask currentTask;
 	private String preAdviceId;
-	private String sku;
+	private String skuId;
+	private String productGroup;
+	private String cewarehousetype;
+	private String allocationGroup;
+	private String ean;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -23,11 +27,43 @@ public class Context {
 		this.preAdviceId = preAdviceId;
 	}
 
-	public String getSku() {
-		return sku;
+	public String getSkuId() {
+		return skuId;
 	}
 
-	public void setSku(String sku) {
-		this.sku = sku;
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
+	}
+
+	public String getEAN() {
+		return ean;
+	}
+
+	public void setEAN(String ean) {
+		this.ean = ean;
+	}
+
+	public String getProductGroup() {
+		return productGroup;
+	}
+
+	public void setProductGroup(String productGroup) {
+		this.productGroup = productGroup;
+	}
+
+	public String getAllocationGroup() {
+		return allocationGroup;
+	}
+
+	public void setAllocationGroup(String allocationGroup) {
+		this.allocationGroup = allocationGroup;
+	}
+
+	public void setCEWarehouseType(String cewarehousetype) {
+		this.cewarehousetype = cewarehousetype;
+	}
+
+	public String getCEWarehouseType() {
+		return cewarehousetype;
 	}
 }
