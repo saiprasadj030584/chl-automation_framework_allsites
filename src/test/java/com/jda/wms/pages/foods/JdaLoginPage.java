@@ -34,6 +34,7 @@ public class JdaLoginPage extends PageObject {
 		enterUsername();
 		enterPassword();
 		clickConnectButton();
+		Thread.sleep(5000);
 	}
 
 	private void enterUsername() throws FindFailed {

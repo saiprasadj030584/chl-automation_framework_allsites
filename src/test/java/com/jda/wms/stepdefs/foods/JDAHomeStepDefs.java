@@ -29,6 +29,16 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSupplierSKU();
 	}
+
+	@When("^I navigate to address maintenance page$")
+	public void i_navigate_to_address_maintenance_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverGeneral();
+		jdaHomePage.hoverSetup();
+		jdaHomePage.clickAddress();
+		Thread.sleep(5000);
+	}
+
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
