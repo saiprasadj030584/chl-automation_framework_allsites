@@ -6,11 +6,14 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+
 public class StockAdjustmentsPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jDAFooter;
 
+	@Inject
 	public StockAdjustmentsPage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}

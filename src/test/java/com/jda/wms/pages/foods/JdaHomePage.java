@@ -28,9 +28,10 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	public void clickDataMenu() throws FindFailed {
+	public void clickDataMenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/menuData.png", timeoutInSec);
-		screen.click("images/Menu/menuData.png.png");
+		screen.click("images/Menu/menuData.png");
+		Thread.sleep(2000);
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -67,15 +68,17 @@ public class JdaHomePage extends PageObject {
 	}
 
 	
-	public void hoverDataInventory() throws FindFailed {
+	public void hoverDataInventory() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/dataInventory.png", timeoutInSec);
 		screen.click("images/Menu/Data/dataInventory.png");
+		screen.mouseMove(70, 0);
+		Thread.sleep(2000);
 	}
 
 	public void clickDataInventory() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Inventory/inventoryInventory.png", timeoutInSec);
 		screen.click("images/Menu/Data/Inventory/inventoryInventory.png");
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 	}
 
 	public void clickOperations() throws FindFailed, InterruptedException {

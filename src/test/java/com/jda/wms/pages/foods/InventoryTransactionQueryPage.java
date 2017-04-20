@@ -5,6 +5,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+import com.google.inject.Inject;
 
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
@@ -12,6 +13,7 @@ public class InventoryTransactionQueryPage {
 	private final JDAFooter jDAFooter;
 	private final InventoryQueryPage inventoryQueryPage;
 
+	@Inject
 	public InventoryTransactionQueryPage(JDAFooter jDAFooter,InventoryQueryPage inventoryQueryPage) {
 		this.jDAFooter = jDAFooter;
 		this.inventoryQueryPage = inventoryQueryPage;
