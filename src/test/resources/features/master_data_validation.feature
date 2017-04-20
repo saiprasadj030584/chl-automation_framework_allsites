@@ -55,3 +55,26 @@ Feature: Master data validation
     Then the tracking levels and ratios should be displayed
     When I navigate to RDT page
     Then the RDT tracking levels 1 and 2 should be displayed
+
+  @complete @address_table
+  Scenario: Load the site details
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    When I navigate to address maintenance page
+    And I search the address id "0010"
+    Then the address type, name, address line 1 and country should be displayed
+    When I navigate to customs & excise tab	in address maintenance
+    Then the CE & warehouse type should be displayed
+    When I navigate to user defined tab in address maintenance
+    Then I should see the is site flag is updated as site
+    And the site category should be displayed
+
+  @complete @address_table 
+  Scenario: Load the vendor details
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    When I navigate to address maintenance page
+    And I search the address id "F01502"
+    Then the address type, name, address line 1 and country should be displayed
+    When I navigate to customs & excise tab	in address maintenance
+    Then the CE & warehouse type should be displayed
+    When I navigate to user defined tab in address maintenance
+    Then I should see the is site flag is updated as vendor

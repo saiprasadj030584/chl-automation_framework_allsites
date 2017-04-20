@@ -32,12 +32,11 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
-		Thread.sleep(10000);
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverGeneral();
 		jdaHomePage.hoverSetup();
 		jdaHomePage.clickAddress();
-
+		Thread.sleep(5000);
 	}
 
 	@Given("^I am on pack config maintenance page$")
