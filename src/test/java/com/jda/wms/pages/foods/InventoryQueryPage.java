@@ -8,12 +8,12 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
-public class inventoryLockPage {
+public class InventoryQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public inventoryLockPage() {
+	public InventoryQueryPage() {
 	}
 
 	public void clickQueryButton() throws FindFailed, InterruptedException {

@@ -8,3 +8,6 @@
 2017-04-18 11:53:30 DEBUG SupplierSkuMaintenanceStepDefs:44 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
 2017-04-18 11:53:31 DEBUG SupplierSkuMaintenanceStepDefs:50 - Supplier SKU: 00904735
 2017-04-19 10:46:41 DEBUG inventoryLockStepDefs:38 - Status in Inventory screen : Unlocked
+2017-04-19 11:40:17 DEBUG InventoryQueryStepDefs:33 - Status in Inventory screen : Unlocked
+2017-04-19 12:05:38 DEBUG InventoryQueryStepDefs:33 - Status in Inventory screen : Unlocked
+2017-04-19 12:19:08 DEBUG InventoryQueryStepDefs:33 - Status in Inventory screen : Unlocked
