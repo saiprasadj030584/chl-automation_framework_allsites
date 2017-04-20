@@ -14,19 +14,27 @@ public class InventoryTransactionQueryPage {
 	private final InventoryQueryPage inventoryQueryPage;
 
 	@Inject
-	public InventoryTransactionQueryPage(JDAFooter jDAFooter,InventoryQueryPage inventoryQueryPage) {
+	public InventoryTransactionQueryPage(JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage) {
 		this.jDAFooter = jDAFooter;
 		this.inventoryQueryPage = inventoryQueryPage;
 	}
 
 	public void searchTagID(String tagId, String code) throws FindFailed, InterruptedException {
 		jDAFooter.clickQueryButton();
-		enterCode(tagId, code);
-		inventoryQueryPage.enterTagId(tagId);
+		enterCode(code);
+		enterTagId(tagId);
+		// inventoryQueryPage.enterTagId(tagId);
 		jDAFooter.clickExecuteButton();
 	}
 
-	private void enterCode(String tagId, String code) throws FindFailed, InterruptedException {
+	private void enterTagId(String tagId) throws InterruptedException {
+		// screen.wait("images/InventoryTransactionQuery/TagID.png",timeoutInSec);
+		// screen.click("images/InventoryTransactionQuery/TagID.png");
+		screen.type(tagId);
+		Thread.sleep(2000);
+	}
+
+	private void enterCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/Code.png");
 		screen.type(code);
@@ -76,7 +84,7 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public String getUploadedFileName() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/Miscellaneous2/UploadedFilename.png");
 		screen.click(mStatus.getCenter().offset(70, 0));

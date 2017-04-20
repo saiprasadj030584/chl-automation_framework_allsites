@@ -31,7 +31,8 @@ public class StockAdjustmentsStepDef {
 	public void i_search_the_inventory_details() throws Throwable {
 		stockAdjustmentsPage.clickNext();
 		// Accessing tag id from Inventory Query page- reuse function
-		inventoryQueryPage.enterTagId(context.getTagId());
+		// inventoryQueryPage.enterTagId(context.getTagId());
+		stockAdjustmentsPage.enterTagId(context.getTagId());
 		stockAdjustmentsPage.clickNext();
 	}
 
@@ -51,15 +52,16 @@ public class StockAdjustmentsStepDef {
 	public void the_product_details_should_be_displayed_as_expected_from_inventory() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-		String skuId = stockAdjustmentsPage.getSkuId();
-		if (!skuId.equalsIgnoreCase(context.getSkuId())) {
-			failureList.add("Stock Adjustment - SKU ID is not displayed as expected. Expected [" + context.getSkuId()
-					+ "] but was [" + skuId + "]");
-		}
-		logger.debug("Stock Adjustment - SKU ID: " + skuId);
+//		String skuId = stockAdjustmentsPage.getSkuId();
+//		if (!skuId.equalsIgnoreCase(context.getSkuId())) {
+//			failureList.add("Stock Adjustment - SKU ID is not displayed as expected. Expected [" + context.getSkuId()
+//					+ "] but was [" + skuId + "]");
+//		}
+//		logger.debug("Stock Adjustment - SKU ID: " + skuId);
 
 		// Accessing Inventory screen - status function
-		String status = inventoryQueryPage.getStatus();
+		//String status = inventoryQueryPage.getStatus();
+		String status = stockAdjustmentsPage.getStatus();
 		if (!status.equalsIgnoreCase(context.getStatus())) {
 			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["
 					+ status + "]");

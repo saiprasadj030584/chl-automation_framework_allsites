@@ -83,19 +83,21 @@ public class JdaHomePage extends PageObject {
 
 	public void clickOperations() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
-		screen.click("images/Menu/menuOperations.png.png");
+		screen.click("images/Menu/menuOperations.png");
+		Thread.sleep(2000);
 	}
 
 	public void hoverOperationsInventory() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Operations/operationInventory.png", timeoutInSec);
 		screen.click("images/Menu/Operations/operationInventory.png");
+		screen.mouseMove(80, 0);
 		Thread.sleep(2000);
 	}
 
 	public void clickStockAdjustment() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Operations/Inventory/StockAdjustment.png", timeoutInSec);
 		screen.click("images/Menu/Operations/Inventory/StockAdjustment.png");
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 	}
 
 	public void clickInventoryTransaction() throws FindFailed, InterruptedException {

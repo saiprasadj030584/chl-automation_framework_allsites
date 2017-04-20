@@ -72,3 +72,67 @@
 2017-04-18 07:47:16 DEBUG SupplierSkuMaintenanceStepDefs:45 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
 2017-04-18 07:47:17 DEBUG SupplierSkuMaintenanceStepDefs:52 - Supplier SKU: 00904735
 >>>>>>> fa46c25c5c2141765ca5a7c64ca5f820deb467c5
+2017-04-20 08:23:56 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:25:13 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:27:29 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:27:32 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:27:33 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:27:35 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:27:36 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:29:02 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:29:03 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:29:05 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:29:06 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:29:08 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:31:16 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:31:18 DEBUG InventoryQueryStepDef:32 - SKU ID: Thread.sleep(2000);
+2017-04-20 08:31:50 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:31:52 DEBUG InventoryQueryStepDef:32 - SKU ID: Thread.sleep(2000);
+2017-04-20 08:42:47 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:42:49 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:42:50 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:42:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:42:53 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:44:39 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:44:41 DEBUG InventoryQueryStepDef:32 - SKU ID: 00810555-2 RASPBERRY & WHITE CHOC
+2017-04-20 08:44:43 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:44:44 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:44:45 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:51:51 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:51:52 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:51:54 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:51:55 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:51:57 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:53:25 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:53:27 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:53:28 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:53:30 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:53:31 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:54:12 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:54:14 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:54:15 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:54:17 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:54:18 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:54:49 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 08:56:46 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:56:48 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:56:49 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:56:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:56:52 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:58:47 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:58:49 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:58:50 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:58:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:58:53 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:59:25 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 09:01:57 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 09:01:58 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 09:02:00 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 09:02:01 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 09:02:02 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 09:03:20 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 09:03:22 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 09:03:23 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 09:03:24 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 09:03:26 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 09:03:57 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true

@@ -60,4 +60,19 @@ public class StockAdjustmentsPage {
 		else
 			return false;
 	}
+
+	public void enterTagId(String tagId) throws InterruptedException {
+		// screen.wait("images/StockAdjustment/Search/TagID.png",timeoutInSec);
+		// screen.click("images/StockAdjustment/Search/TagID.png");
+		screen.type(tagId);
+		Thread.sleep(2000);
+	}
+
+	public String getStatus() throws FindFailed {
+		Match mStatus = screen.find("images/StockAdjustment/CreateModify/Status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }
