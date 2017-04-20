@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
+import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.*;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
@@ -14,11 +16,13 @@ public class SKUMaintenanceTableStepDef {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final SKUMaintenancePage sKUMaintenancePage;
 	private Context context;
+	private Utilities utilities;
 
 	@Inject
-	public SKUMaintenanceTableStepDef(SKUMaintenancePage sKUMaintenancePage, Context context) {
+	public SKUMaintenanceTableStepDef(SKUMaintenancePage sKUMaintenancePage, Context context,Utilities utilities) {
 		this.sKUMaintenancePage = sKUMaintenancePage;
 		this.context = context;
+		this.utilities = utilities;
 	}
 
 	@When("^I search for the SKU id \"([^\"]*)\"$")
@@ -90,8 +94,9 @@ public class SKUMaintenanceTableStepDef {
 		logger.debug("UPC: " + upc);
 
 		// Get Each Quantity value
-		double eachQuantity = Double.parseDouble(sKUMaintenancePage.getEachQuantity());
-		int eachQtyInt = (int) eachQuantity;
+		int eachQtyInt = utilities.convertStringToInteger(sKUMaintenancePage.getEachQuantity());
+		//double eachQuantity = Double.parseDouble(sKUMaintenancePage.getEachQuantity());
+		//int eachQtyInt = (int) eachQuantity;
 		if (eachQtyInt <= 0) {
 			failureList.add("Each Quantity is not displayed as expected. Expected [>0] but was [" + eachQtyInt + "]");
 		}
@@ -235,8 +240,9 @@ public class SKUMaintenanceTableStepDef {
 		logger.debug("Base UOM: " + baseUom);
 
 		// Get SAP Creation Status value
-		double sapCreationStatusDouble = Double.parseDouble(sKUMaintenancePage.getSAPCreationStatus());
-		int sapCreationStatus = (int) sapCreationStatusDouble;
+		int sapCreationStatus = utilities.convertStringToInteger(sKUMaintenancePage.getSAPCreationStatus());
+//		double sapCreationStatusDouble = Double.parseDouble(sKUMaintenancePage.getSAPCreationStatus());
+//		int sapCreationStatus = (int) sapCreationStatusDouble;
 		if ((sapCreationStatus != 3) || (sapCreationStatus != 4) || (sapCreationStatus != 5)
 				|| (sapCreationStatus != 6)) {
 			failureList.add("SAP Creation Status is not displayed as expected. Expected [3 or 4 or 5 or 6] but was ["

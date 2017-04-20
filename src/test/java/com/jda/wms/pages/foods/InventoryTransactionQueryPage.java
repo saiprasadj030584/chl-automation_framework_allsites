@@ -10,31 +10,19 @@ import com.google.inject.Inject;
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jDAFooter;
-	private final InventoryQueryPage inventoryQueryPage;
 
 	@Inject
-	public InventoryTransactionQueryPage(JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage) {
-		this.jDAFooter = jDAFooter;
-		this.inventoryQueryPage = inventoryQueryPage;
+	public InventoryTransactionQueryPage() {
 	}
 
-	public void searchTagID(String tagId, String code) throws FindFailed, InterruptedException {
-		jDAFooter.clickQueryButton();
-		enterCode(code);
-		enterTagId(tagId);
-		// inventoryQueryPage.enterTagId(tagId);
-		jDAFooter.clickExecuteButton();
-	}
-
-	private void enterTagId(String tagId) throws InterruptedException {
+	public void enterTagId(String tagId) throws InterruptedException {
 		// screen.wait("images/InventoryTransactionQuery/TagID.png",timeoutInSec);
 		// screen.click("images/InventoryTransactionQuery/TagID.png");
 		screen.type(tagId);
 		Thread.sleep(2000);
 	}
 
-	private void enterCode(String code) throws FindFailed, InterruptedException {
+	public void enterCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/Code.png");
 		screen.type(code);

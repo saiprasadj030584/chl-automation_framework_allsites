@@ -42,7 +42,7 @@ public class JDAHomeStepDefs {
 	public void i_am_on_inventory_query_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickDataInventory();
+		jdaHomePage.clickInventory();
 	}
 	
 	@When("^I navigate to stock adjustments page$")

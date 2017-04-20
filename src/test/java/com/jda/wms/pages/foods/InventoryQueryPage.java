@@ -10,17 +10,17 @@ import com.google.inject.Inject;
 public class InventoryQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jDAFooter;
+	private final JDAFooter jdaFooter;
 
 	@Inject
 	public InventoryQueryPage(JDAFooter jDAFooter) {
-		this.jDAFooter = jDAFooter;
+		this.jdaFooter = jDAFooter;
 	}
 
 	public void searchTagId(String tagId) throws FindFailed, InterruptedException {
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		enterTagId(tagId);
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 	}
 
 	public void enterTagId(String tagId) throws InterruptedException {

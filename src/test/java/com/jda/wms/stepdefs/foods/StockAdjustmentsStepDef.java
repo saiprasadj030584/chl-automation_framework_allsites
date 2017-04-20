@@ -8,48 +8,48 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.pages.foods.InventoryQueryPage;
+import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.StockAdjustmentsPage;
-import cucumber.api.java.en.*;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class StockAdjustmentsStepDef {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final StockAdjustmentsPage stockAdjustmentsPage;
 	private Context context;
-	private final InventoryQueryPage inventoryQueryPage;
+	private final JDAFooter jdaFooter;
 
 	@Inject
-	public StockAdjustmentsStepDef(StockAdjustmentsPage stockAdjustmentsPage, Context context,
-			InventoryQueryPage inventoryQueryPage) {
+	public StockAdjustmentsStepDef(StockAdjustmentsPage stockAdjustmentsPage, Context context, JDAFooter jdaFooter) {
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.context = context;
-		this.inventoryQueryPage = inventoryQueryPage;
+		this.jdaFooter = jdaFooter;
 	}
 
 	@When("^I search the inventory details$")
 	public void i_search_the_inventory_details() throws Throwable {
-		stockAdjustmentsPage.clickNext();
-		// Accessing tag id from Inventory Query page- reuse function
-		// inventoryQueryPage.enterTagId(context.getTagId());
+		jdaFooter.clickNext();
 		stockAdjustmentsPage.enterTagId(context.getTagId());
-		stockAdjustmentsPage.clickNext();
+		jdaFooter.clickNext();
 	}
 
 	@Then("^the record should be displayed in the results$")
 	public void the_record_should_be_displayed_in_the_results() throws Throwable {
 		boolean isRecordExists = stockAdjustmentsPage.isRecordExists();
-		Assert.assertTrue("Results Record not displayed as expected.", isRecordExists);
+		Assert.assertTrue("Results Record not displayed in search results.", isRecordExists);
 		logger.debug("Record Exists?: " + isRecordExists);
 	}
 
 	@When("^I navigate to create or modify tab$")
 	public void i_navigate_to_create_or_modify_tab() throws Throwable {
-		stockAdjustmentsPage.clickNext();
+		jdaFooter.clickNext();
 	}
 
-	@Then("^the product details should be displayed as expected from inventory$")
-	public void the_product_details_should_be_displayed_as_expected_from_inventory() throws Throwable {
+	@Then("^the product details should be displayed from inventory$")
+	public void the_product_details_should_be_displayed_from_inventory() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 //		String skuId = stockAdjustmentsPage.getSkuId();
@@ -58,15 +58,13 @@ public class StockAdjustmentsStepDef {
 //					+ "] but was [" + skuId + "]");
 //		}
 //		logger.debug("Stock Adjustment - SKU ID: " + skuId);
-
-		// Accessing Inventory screen - status function
-		//String status = inventoryQueryPage.getStatus();
-		String status = stockAdjustmentsPage.getStatus();
-		if (!status.equalsIgnoreCase(context.getStatus())) {
-			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["
-					+ status + "]");
-		}
-		logger.debug("Stock Adjustment - Status: " + status);
+//
+//		String status = stockAdjustmentsPage.getStatus();
+//		if (!status.equalsIgnoreCase(context.getStatus())) {
+//			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["
+//					+ status + "]");
+//		}
+//		logger.debug("Stock Adjustment - Status: " + status);
 
 		Assert.assertTrue(
 				"Stock Adjustment attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -77,14 +75,11 @@ public class StockAdjustmentsStepDef {
 	public void i_the_quantity_on_hand(String adjustmentType) throws Throwable {
 		context.setAdjustmentType(adjustmentType);
 		if (adjustmentType.equalsIgnoreCase("Decrement")) {
-			int decrementQty = Integer.parseInt(context.getqtyOnHandBfrAdjustment())
-					- Integer.parseInt(context.getCaseRatio());
+			int decrementQty = context.getQtyOnHandBeforeAdjustment() - context.getCaseRatio();
 			logger.debug("Quantity to update for adjustment " + decrementQty);
 			stockAdjustmentsPage.updateQtyOnHand(Integer.toString(decrementQty));
-
 		} else if (adjustmentType.equalsIgnoreCase("Increment")) {
-			int incrementQty = Integer.parseInt(context.getqtyOnHandBfrAdjustment())
-					+ Integer.parseInt(context.getCaseRatio());
+			int incrementQty = context.getQtyOnHandBeforeAdjustment() + context.getCaseRatio();
 			logger.debug("Quantity to update for adjustment " + incrementQty);
 			stockAdjustmentsPage.updateQtyOnHand(Integer.toString(incrementQty));
 		}

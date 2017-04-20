@@ -75,7 +75,7 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(2000);
 	}
 
-	public void clickDataInventory() throws FindFailed, InterruptedException {
+	public void clickInventory() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Inventory/inventoryInventory.png", timeoutInSec);
 		screen.click("images/Menu/Data/Inventory/inventoryInventory.png");
 		Thread.sleep(8000);

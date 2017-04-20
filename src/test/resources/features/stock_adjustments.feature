@@ -6,14 +6,14 @@ Feature: Stock adjustments
 
   @wip
   Scenario Outline: Stock adjustments of a locked/unlocked product with different reason codes
-    # Given I have logged in as warehouse user in JDA dispatcher food application
-   # And I am on inventory query page
+    #Given I have logged in as warehouse user in JDA dispatcher food application
+    #And I am on inventory query page
     And I have the tag id "<TagID>" with "<Status>" status
     When I navigate to stock adjustments page
     When I search the inventory details
     Then the record should be displayed in the results
     When I navigate to create or modify tab
-    Then the product details should be displayed as expected from inventory
+    Then the product details should be displayed from inventory
     When I "<AdjustmentType>" the quantity on hand
     And I choose the reason code as "<ReasonCode>"
     Then the stock adjustments home page should be displayed
@@ -26,8 +26,8 @@ Feature: Stock adjustments
     Then I should see the uploaded filename
 
     Examples: 
-      | TagID      | Status   | AdjustmentType | ReasonCode           |
-      | 6327637212 | Locked   | Decrement      | Damaged by Warehouse |
+      | TagID      | Status | AdjustmentType | ReasonCode           |
+      | 6327637212 | Locked | Decrement      | Damaged by Warehouse |
       #| 2000160302 | Unlocked | Decrement      | Damaged by Warehouse |
       #| 6327637212 | Locked   | Decrement      | Expired Stock        |
       #| 2000160302 | Unlocked | Decrement      | Expired Stock        |
