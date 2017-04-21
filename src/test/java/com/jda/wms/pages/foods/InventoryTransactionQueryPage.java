@@ -5,6 +5,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 
 public class InventoryTransactionQueryPage {
@@ -15,9 +16,9 @@ public class InventoryTransactionQueryPage {
 	public InventoryTransactionQueryPage() {
 	}
 
-	public void enterTagId(String tagId) throws InterruptedException {
-		// screen.wait("images/InventoryTransactionQuery/TagID.png",timeoutInSec);
-		// screen.click("images/InventoryTransactionQuery/TagID.png");
+	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
+		screen.wait("images/InventoryTransactionQuery/TagID.png",timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/TagID.png");
 		screen.type(tagId);
 		Thread.sleep(2000);
 	}
@@ -25,7 +26,10 @@ public class InventoryTransactionQueryPage {
 	public void enterCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/Code.png");
-		screen.type(code);
+		Thread.sleep(2000);
+		screen.wait("images/InventoryTransactionQuery/CodeAdjustment.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/CodeAdjustment.png");
+//		screen.type(code);
 		Thread.sleep(2000);
 	}
 
@@ -79,5 +83,16 @@ public class InventoryTransactionQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void selectRequiredRecord() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
+		Thread.sleep(2000);
+		screen.mouseMove(0, 20);
+		System.out.println("Location "+screen.getTarget());
+		screen.moveTo(screen.getTarget());
+		//screen.doubleClick();
+		Thread.sleep(2000);
 	}
 }

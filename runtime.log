@@ -193,3 +193,26 @@
 2017-04-20 18:52:51 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
 2017-04-20 18:53:23 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
 2017-04-20 18:53:26 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 432
+2017-04-21 05:04:33 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:04:35 DEBUG InventoryQueryStepDef:36 - SKU ID: cb89441a6c08b1e1cde993ac4df09ffc18df1f61
+2017-04-21 05:06:21 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:06:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:06:25 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:06:26 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 432
+2017-04-21 05:06:27 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:06:59 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:07:02 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 420
+2017-04-21 05:08:35 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:08:37 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:08:39 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:08:40 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 420
+2017-04-21 05:08:41 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:09:13 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:09:16 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408
+2017-04-21 05:10:57 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:10:59 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:11:01 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:11:02 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 420
+2017-04-21 05:11:03 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:11:34 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:11:37 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408

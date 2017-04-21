@@ -37,6 +37,12 @@ public class InventoryTransactionQueryStepDef {
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
 	}
+	
+	@When("^I select the adjusted stock from the results$")
+	public void i_select_the_adjusted_stock_from_the_results() throws Throwable {
+		inventoryTransactionQueryPage.selectRequiredRecord();
+	}
+
 
 	@Then("^I should see the original quantity and updated quantity in the general tab$")
 	public void i_should_see_the_original_quantity_and_updated_quantity_in_the_general_tab() throws Throwable {
