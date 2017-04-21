@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.InventoryUpdatePage;
+import com.jda.wms.pages.foods.JDAFooter;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -18,10 +20,15 @@ public class InventoryUpdateStepDefs {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final InventoryUpdatePage inventoryUpdatePage;
+	private final JDAFooter jDAFooter;
+	private final InventoryQueryPage inventoryQueryPage;
 
 	@Inject
-	public InventoryUpdateStepDefs(InventoryUpdatePage inventoryUpdatePage) {
+	public InventoryUpdateStepDefs(InventoryUpdatePage inventoryUpdatePage, JDAFooter jDAFooter,
+			InventoryQueryPage inventoryQueryPage) {
 		this.inventoryUpdatePage = inventoryUpdatePage;
+		this.jDAFooter = jDAFooter;
+		this.inventoryQueryPage = inventoryQueryPage;
 	}
 
 	@When("^I choose the type of inventory property as \"([^\"]*)\"$")
@@ -47,56 +54,21 @@ public class InventoryUpdateStepDefs {
 	}
 
 	@When("^I select the status as \"([^\"]*)\", lock code as \"([^\"]*)\" and reason code as \"([^\"]*)\"$")
-	public void i_select_the_status_as_lock_code_as_and_reason_code_as(String status, String lockCode, String reasonCode)
-			throws Throwable {
+	public void i_select_the_status_as_lock_code_as_and_reason_code_as(String status, String lockCode,
+			String reasonCode) throws Throwable {
 		inventoryUpdatePage.selectStatus(status);
 		inventoryUpdatePage.selectLockCode(lockCode);
 		inventoryUpdatePage.selectReasonCode(reasonCode);
 	}
 
-	/*
-	 * @When("^I proceed to complete the process$") public void
-	 * i_proceed_to_complete_the_process() throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @Then("^the inventory update home page should be displayed$") public void
-	 * the_inventory_update_home_page_should_be_displayed() throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @When("^I navigate to inventory query$") public void
-	 * i_navigate_to_inventory_query() throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @Then(
-	 * "^the I should see the status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$"
-	 * ) public void
-	 * the_I_should_see_the_status_as_and_lock_code_as_in_the_inventory_query(
-	 * String arg1, String arg2) throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @When("^I navigate to inventory transaction query$") public void
-	 * i_navigate_to_inventory_transaction_query() throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @When(
-	 * "^I search tag id \"([^\"]*)\" and transaction date as \"([^\"]*)\"$")
-	 * public void i_search_tag_id_and_transaction_date_as(String arg1, String
-	 * arg2) throws Throwable {
-	 * 
-	 * }
-	 * 
-	 * @Then(
-	 * "^the I should see the status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the transaction query$"
-	 * ) public void
-	 * the_I_should_see_the_status_as_and_lock_code_as_in_the_transaction_query(
-	 * String arg1, String arg2) throws Throwable {
-	 * 
-	 * }
-	 */
+	@When("^I proceed to complete the process$")
+	public void i_proceed_to_complete_the_process() throws Throwable {
+		jDAFooter.clickExecuteButton();
+	}
+
+	@Then("^the inventory update home page should be displayed$")
+	public void the_inventory_update_home_page_should_be_displayed() throws Throwable {
+		Assert.assertTrue("Inventory lock unsuccessful", inventoryUpdatePage.verifyHomePage());
+	}
 
 }

@@ -11,6 +11,12 @@ import com.google.inject.Inject;
 public class InventoryUpdatePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private final JDAFooter jDAFooter;
+	
+	@Inject
+	public InventoryUpdatePage(JDAFooter jDAFooter) {
+		this.jDAFooter = jDAFooter;
+	}
 
 	public void selectType(String selectType) throws FindFailed, InterruptedException {
 		Match iselectType = screen.find("/images/InventoryUpdate/selectType.png");
@@ -54,6 +60,7 @@ public class InventoryUpdatePage {
 		Match ilockCode = screen.find("/images/InventoryUpdate/LockStatusChange/lockCode.png");
 		screen.click(ilockCode.getCenter().offset(70, 0));
 		screen.type(lockCode);
+		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
@@ -61,7 +68,15 @@ public class InventoryUpdatePage {
 		Match ireasonCode = screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
 		screen.click(ireasonCode.getCenter().offset(70, 0));
 		screen.type(reasonCode);
+		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
+	public Boolean verifyHomePage() throws FindFailed, InterruptedException {
+		if (screen.exists("/images/InventoryUpdate/selectType.png") != null) {
+			return true;
+		} else
+			return false;
+
+	}
 }

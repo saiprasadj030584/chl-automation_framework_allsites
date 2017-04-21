@@ -41,4 +41,23 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
+	public String getLockCode() throws FindFailed, InterruptedException {
+		Match status = screen.find("/images/InventoryQuery/lockCode.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(3000);
+		return App.getClipboard();
+	}
+
+	public void refreshInventoryQuery() throws FindFailed, InterruptedException {
+		screen.wait("/images/InventoryQuery/Status.png", timeoutInSec);
+		screen.click("/images/InventoryQuery/Status.png");
+		screen.rightClick();
+		screen.wait("images/OrderlineRefreshOption.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshOption.png");
+		screen.wait("images/OrderlineRefreshCurrentRecord.png", timeoutInSec);
+		screen.click("images/OrderlineRefreshCurrentRecord.png");
+	}
+	
 }
