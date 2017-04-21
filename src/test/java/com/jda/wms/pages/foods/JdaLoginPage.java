@@ -1,6 +1,5 @@
 package com.jda.wms.pages.foods;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
@@ -8,6 +7,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.pages.PageObject;
