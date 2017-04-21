@@ -35,8 +35,8 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void clickDataMenu() throws FindFailed {
-		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
-		screen.click("images/JDAHome/DataMenu.png");
+		screen.wait("images/Menu/menuData.png", timeoutInSec);
+		screen.click("images/Menu/menuData.png");
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -60,6 +60,7 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+
 	public void hoverGeneral() throws FindFailed {
 		screen.wait("images/JDAHome/general.png", timeoutInSec);
 		screen.click("images/JDAHome/general.png");
@@ -77,6 +78,36 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/Address.png");
 	}
 
+	public void hoverDataInventory() throws FindFailed {
+		screen.wait("images/Menu/Data/dataInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataInventory.png");
+		screen.mouseMove(80, 0);
+	}
+
+	public void clickDataInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory.png");
+		Thread.sleep(4000);
+	}
+
+	public void clickInventoryUpdate() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/operationInventoryUpdate.png", timeoutInSec);
+		screen.click("images/Menu/Operations/operationInventoryUpdate.png");
+		Thread.sleep(4000);
+	}
+
+	public void clickOperationsMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
+		screen.click("images/Menu/menuOperations.png");
+		Thread.sleep(4000);
+	}
+
+	public void hoverOperationsInventory() throws FindFailed {
+		screen.wait("images/Menu/Operations/operationInventory.png", timeoutInSec);
+		screen.click("images/Menu/Operations/operationInventory.png");
+		screen.mouseMove(80, 0);
+	}
+
 	public void hoverPackConfig() throws FindFailed {
 		screen.wait("images/JDAHome/PackConfig.png", timeoutInSec);
 		screen.click("images/JDAHome/PackConfig.png");
@@ -88,4 +119,16 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/PackConfigScreen.png");
 		Thread.sleep(3000);
 	}
+
+	public void clickInventorytab() throws FindFailed, InterruptedException {
+		screen.wait("images/JDA Footer/inventory.png", timeoutInSec);
+		screen.click("images/JDA Footer/inventory.png");
+		Thread.sleep(3000);
+	}
+	public void clickInventoryTransaction() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
+		Thread.sleep(3000);
+	}
+	
 }

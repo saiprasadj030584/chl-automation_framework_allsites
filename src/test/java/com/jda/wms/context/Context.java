@@ -10,6 +10,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String code;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -65,5 +66,8 @@ public class Context {
 
 	public String getCEWarehouseType() {
 		return cewarehousetype;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

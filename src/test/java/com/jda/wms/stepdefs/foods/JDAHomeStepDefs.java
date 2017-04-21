@@ -39,11 +39,38 @@ public class JDAHomeStepDefs {
 		Thread.sleep(5000);
 	}
 
+	@Given("^I am on inventory query page$")
+	public void i_am_on_inventor_query_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverDataInventory();
+		jdaHomePage.clickDataInventory();
+	}
+
+	@When("^I navigate to inventory query$")
+	public void i_navigate_to_inventory_query() throws Throwable {
+		jdaHomePage.clickInventorytab();
+		
+	}
+
+	@When("^I navigate to inventory update page$")
+	public void i_navigate_to_inventory_update_page() throws Throwable {
+		jdaHomePage.clickOperationsMenu();
+		jdaHomePage.hoverOperationsInventory();
+		jdaHomePage.clickInventoryUpdate();
+	}
+
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverSKU();
 		jdaHomePage.hoverPackConfig();
 		jdaHomePage.clickPackConfig();
+	}
+	
+	@When("^I navigate to inventory transaction query$")
+	public void i_navigate_to_inventory_transaction_query() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverDataInventory();
+		jdaHomePage.clickInventoryTransaction();
 	}
 }
