@@ -1,74 +1,37 @@
-2017-04-09 19:39:27 DEBUG JdaLoginPage:32 - Brower is opened
-2017-04-17 09:36:42 DEBUG SupplierSKUMaintenancePage:68 - Supplier Description: 00904735-POTEL BOURGOGNE CHARDONN
-2017-04-17 09:36:43 DEBUG SupplierSKUMaintenancePage:82 - Supplier SKU value: 00904735
-<<<<<<< HEAD
-2017-04-18 06:47:03 DEBUG SKUMaintenancePage:49 - SKU Id is: 
-2017-04-18 06:47:08 DEBUG SKUMaintenancePage:67 - SKU Description is: 
-2017-04-18 07:06:18 DEBUG SKUMaintenancePage:52 - SKU Id is: Thread.sleep(3000);
-2017-04-18 07:06:23 DEBUG SKUMaintenancePage:70 - SKU Description is: Thread.sleep(3000);
-2017-04-18 07:08:40 DEBUG SKUMaintenancePage:52 - SKU Id is: #
-2017-04-18 07:12:40 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:12:45 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:12:51 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:16:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:16:43 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:16:48 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:19:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:20:56 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:21:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:21:07 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:23:57 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:24:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:24:08 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:25:48 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:25:53 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:26:57 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:27:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:27:07 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:27:13 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
-2017-04-18 07:27:18 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
-2017-04-18 07:27:23 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
-2017-04-18 07:30:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:30:43 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:30:48 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:30:53 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
-2017-04-18 07:30:59 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
-2017-04-18 07:31:04 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
-2017-04-18 07:38:03 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:38:09 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:38:14 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:38:19 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
-2017-04-18 07:38:24 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
-2017-04-18 07:38:30 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
-2017-04-18 07:50:27 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 07:50:32 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 07:50:37 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 07:50:43 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
-2017-04-18 07:50:48 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
-2017-04-18 07:50:54 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
-2017-04-18 07:51:10 DEBUG SKUMaintenancePage:182 - UPC is: Excise
-2017-04-18 07:51:15 DEBUG SKUMaintenancePage:200 - UPC is: S
-2017-04-18 07:51:20 DEBUG SKUMaintenancePage:232 - UPC is: 12.5
-2017-04-18 08:01:08 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
-2017-04-18 08:01:13 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 08:01:18 DEBUG SKUMaintenancePage:127 - UPC is: F20
-2017-04-18 08:01:24 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
-2017-04-18 08:01:29 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
-2017-04-18 08:01:34 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
-2017-04-18 08:01:50 DEBUG SKUMaintenancePage:182 - UPC is: Excise
-2017-04-18 08:01:56 DEBUG SKUMaintenancePage:200 - UPC is: S
-2017-04-18 08:02:01 DEBUG SKUMaintenancePage:232 - UPC is: 12.5
-2017-04-18 08:04:39 DEBUG SKUMaintenancePage:73 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
-2017-04-18 08:04:44 DEBUG SKUMaintenancePage:129 - UPC is: F20
-2017-04-18 08:04:50 DEBUG SKUMaintenancePage:93 - EAN is: 00912532
-2017-04-18 08:04:55 DEBUG SKUMaintenancePage:111 - UPC is: 00912532
-2017-04-18 08:05:00 DEBUG SKUMaintenancePage:147 - UPC is: 1.0
-2017-04-18 08:05:16 DEBUG SKUMaintenancePage:184 - UPC is: Excise
-2017-04-18 08:05:21 DEBUG SKUMaintenancePage:202 - UPC is: S
-2017-04-18 08:05:26 DEBUG SKUMaintenancePage:234 - UPC is: 12.5
-=======
-2017-04-18 07:40:25 DEBUG SupplierSkuMaintenanceStepDefs:44 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
-2017-04-18 07:40:26 DEBUG SupplierSkuMaintenanceStepDefs:50 - Supplier SKU: 00904735
-2017-04-18 07:47:16 DEBUG SupplierSkuMaintenanceStepDefs:45 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
-2017-04-18 07:47:17 DEBUG SupplierSkuMaintenanceStepDefs:52 - Supplier SKU: 00904735
->>>>>>> fa46c25c5c2141765ca5a7c64ca5f820deb467c5
+2017-04-20 12:42:24 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-20 12:42:24 DEBUG Hooks:33 - featureID: master-data-validation
+2017-04-20 12:42:24 DEBUG Hooks:34 - Start of Scenario: Load the site details
+2017-04-20 12:42:24 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-20 12:43:46 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-20 12:43:46 DEBUG Hooks:58 - End of Scenario: Load the site details
+2017-04-20 12:43:46 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-20 12:44:11 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-20 12:44:11 DEBUG Hooks:33 - featureID: master-data-validation
+2017-04-20 12:44:11 DEBUG Hooks:34 - Start of Scenario: Load the vendor details
+2017-04-20 12:44:11 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-20 12:45:32 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-20 12:45:32 DEBUG Hooks:58 - End of Scenario: Load the vendor details
+2017-04-20 12:45:32 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-20 13:26:05 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-20 13:26:05 DEBUG Hooks:33 - featureID: master-data-validation
+2017-04-20 13:26:05 DEBUG Hooks:34 - Start of Scenario: Load the site details
+2017-04-20 13:26:05 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-20 13:26:47 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-20 13:26:47 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-20 13:26:47 DEBUG Hooks:58 - End of Scenario: Load the site details
+2017-04-20 13:26:47 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-20 13:26:48 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-20 13:26:48 DEBUG Hooks:33 - featureID: master-data-validation
+2017-04-20 13:26:48 DEBUG Hooks:34 - Start of Scenario: Load the vendor details
+2017-04-20 13:26:48 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-20 13:27:30 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-20 13:27:30 DEBUG Hooks:58 - End of Scenario: Load the vendor details
+2017-04-20 13:27:30 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-20 13:40:14 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-20 13:40:14 DEBUG Hooks:33 - featureID: master-data-validation
+2017-04-20 13:40:14 DEBUG Hooks:34 - Start of Scenario: Load the vendor details
+2017-04-20 13:40:14 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-20 13:40:55 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-20 13:40:55 DEBUG Hooks:58 - End of Scenario: Load the vendor details
+2017-04-20 13:40:55 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-20 13:40:57 DEBUG Hooks:67 - Signed off JDA WMS Application
