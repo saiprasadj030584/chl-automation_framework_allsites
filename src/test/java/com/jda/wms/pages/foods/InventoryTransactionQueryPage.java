@@ -89,10 +89,16 @@ public class InventoryTransactionQueryPage {
 		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
 		Thread.sleep(2000);
-		screen.mouseMove(0, 20);
+		Match mStatus = screen.find("images/InventoryTransactionQuery/CodeInResults.png");
+		Thread.sleep(2000);
+		screen.click(mStatus.below(10));
+		Thread.sleep(2000);
+		Match mStatuscode = screen.find("images/InventoryTransactionQuery/CodeInResult.png");
+		screen.doubleClick(mStatuscode.below());
+		/*screen.mouseMove(0, 20);
 		System.out.println("Location "+screen.getTarget());
 		screen.moveTo(screen.getTarget());
 		//screen.doubleClick();
-		Thread.sleep(2000);
+		Thread.sleep(2000);*/
 	}
 }

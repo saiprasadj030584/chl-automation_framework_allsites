@@ -216,3 +216,11 @@
 2017-04-21 05:11:03 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
 2017-04-21 05:11:34 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
 2017-04-21 05:11:37 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408
+2017-04-24 13:07:42 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:19:50 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:19:52 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 13:19:53 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 13:45:25 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:45:26 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 13:45:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 13:55:10 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
