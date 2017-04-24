@@ -21,8 +21,8 @@ public class InventoryQueryStepDef {
 
 	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
 	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
-		/*context.setTagId(tagId);
-		context.setStatus(status);*/
+		// context.setTagId(tagId);
+		// context.setStatus(status);
 
 		inventoryQueryPage.searchTagId(tagId);
 		logger.debug("Tag ID: " + tagId);
@@ -36,11 +36,11 @@ public class InventoryQueryStepDef {
 		logger.debug("Inventory Query - Status: " + productStatus);
 
 		String qtyOnHandBfrAdjustment = inventoryQueryPage.getQtyOnHand();
-//		context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
+		// context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
 		String caseRatio = inventoryQueryPage.getcaseRatio();
-//		context.setCaseRatio(caseRatio);
+		// context.setCaseRatio(caseRatio);
 		logger.debug("Case Ratio: " + caseRatio);
 	}
 }

@@ -62,7 +62,7 @@ public class InventoryUpdateStepDefs {
 
 	@Given("^I select the type of invetnotry status as \"([^\"]*)\"$")
 	public void i_select_the_type_of_invetnotry_status_as(String inventoryStatus) throws Throwable {
-		inventoryUpdatePage.selectExpiryDateUpdate(inventoryStatus);
+		inventoryUpdatePage.enterExpiryDateUpdate(inventoryStatus);
 	}
 
 	@Given("^I proceed to next$")

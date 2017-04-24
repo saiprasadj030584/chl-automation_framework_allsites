@@ -20,7 +20,7 @@ public class InventoryUpdatePage {
 
 	}
 
-	public void selectExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
+	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
 		screen.type(expiryDateUpdate);
 	}
 
