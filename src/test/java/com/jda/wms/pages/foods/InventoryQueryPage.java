@@ -16,20 +16,8 @@ public class InventoryQueryPage {
 	public InventoryQueryPage() {
 	}
 
-	public void clickQueryButton() throws FindFailed, InterruptedException {
-		screen.type(Key.F2);
-		Thread.sleep(3000);
-	}
-
 	public void enterTagId(String tagId) throws FindFailed {
-		// screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		// screen.click("/images/JDASupplierSKU/SKU.png");
 		screen.type(tagId);
-	}
-
-	public void clickExecuteButton() throws InterruptedException {
-		screen.type(Key.F7);
-		Thread.sleep(3000);
 	}
 
 	public String getStatus() throws FindFailed, InterruptedException {
@@ -41,6 +29,21 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
+	public void clickStatus() throws FindFailed {
+		screen.wait("/images/InventoryQuery/Status.png", timeoutInSec);
+		screen.click("/images/InventoryQuery/Status.png");
+	}
+
+	public void selectRefreshOptions() throws FindFailed {
+		screen.wait("images/RefreshOption.png", timeoutInSec);
+		screen.click("images/RefreshOption.png");
+	}
+
+	public void selectRefreshCurrentRecord() throws FindFailed {
+		screen.wait("images/RefreshCurrentRecord.png", timeoutInSec);
+		screen.click("images/RefreshCurrentRecord.png");
+	}
+
 	public String getLockCode() throws FindFailed, InterruptedException {
 		Match status = screen.find("/images/InventoryQuery/lockCode.png");
 		screen.click(status.getCenter().offset(70, 0));
@@ -50,14 +53,11 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
-	public void refreshInventoryQuery() throws FindFailed, InterruptedException {
-		screen.wait("/images/InventoryQuery/Status.png", timeoutInSec);
-		screen.click("/images/InventoryQuery/Status.png");
+	public void refreshInventoryQueryPage() throws FindFailed, InterruptedException {
+		clickStatus();
 		screen.rightClick();
-		screen.wait("images/OrderlineRefreshOption.png", timeoutInSec);
-		screen.click("images/OrderlineRefreshOption.png");
-		screen.wait("images/OrderlineRefreshCurrentRecord.png", timeoutInSec);
-		screen.click("images/OrderlineRefreshCurrentRecord.png");
+		selectRefreshOptions();
+		selectRefreshCurrentRecord();
 	}
-	
+
 }

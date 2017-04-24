@@ -66,27 +66,27 @@ public class JdaHomePage extends PageObject {
 		screen.mouseMove(80, 0);
 	}
 
-	public void clickDataInventory() throws FindFailed, InterruptedException {
-		screen.wait("images/Menu/Data/Inventory.png", timeoutInSec);
-		screen.click("images/Menu/Data/Inventory.png");
+	public void clickInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/Inventory/Inventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/Inventory/Inventory.png");
 		Thread.sleep(4000);
 	}
 
 	public void clickInventoryUpdate() throws FindFailed, InterruptedException {
-		screen.wait("images/Menu/Operations/operationInventoryUpdate.png", timeoutInSec);
-		screen.click("images/Menu/Operations/operationInventoryUpdate.png");
+		screen.wait("images/Menu/Operations/OperationInventoryUpdate.png", timeoutInSec);
+		screen.click("images/Menu/Operations/OperationInventoryUpdate.png");
 		Thread.sleep(4000);
 	}
 
 	public void clickOperationsMenu() throws FindFailed, InterruptedException {
-		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
-		screen.click("images/Menu/menuOperations.png");
+		screen.wait("images/Menu/MenuOperations.png", timeoutInSec);
+		screen.click("images/Menu/MenuOperations.png");
 		Thread.sleep(4000);
 	}
 
 	public void hoverOperationsInventory() throws FindFailed {
-		screen.wait("images/Menu/Operations/operationInventory.png", timeoutInSec);
-		screen.click("images/Menu/Operations/operationInventory.png");
+		screen.wait("images/Menu/Operations/OperationInventory.png", timeoutInSec);
+		screen.click("images/Menu/Operations/OperationInventory.png");
 		screen.mouseMove(80, 0);
 	}
 
@@ -103,14 +103,15 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void clickInventorytab() throws FindFailed, InterruptedException {
-		screen.wait("images/JDA Footer/inventory.png", timeoutInSec);
-		screen.click("images/JDA Footer/inventory.png");
+		screen.wait("images/JDAFooter/Inventory.png", timeoutInSec);
+		screen.click("images/JDAFooter/Inventory.png");
 		Thread.sleep(3000);
 	}
+
 	public void clickInventoryTransaction() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
 		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(3000);
 	}
-	
+
 }

@@ -1,40 +1,47 @@
 package com.jda.wms.stepdefs.foods;
 
-import java.util.ArrayList;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
-import cucumber.api.java.en.*;
-import edu.emory.mathcs.backport.java.util.Arrays;
+import com.jda.wms.pages.foods.JDAFooter;
+
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class InventoryTransactionQueryStepDef {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private final InventoryTransactionQueryPage inventoryTransactionQueryPage;
+	private JDAFooter jdaFooter;
 
 	@Inject
 	public InventoryTransactionQueryStepDef(InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			Context context) {
+			Context context, JDAFooter jdaFooter) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
+		this.jdaFooter = jdaFooter;
 	}
 
 	@When("^I search tag id \"([^\"]*)\", code as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
 	public void i_search_tag_id_and_code_as(String tagId, String code, String lockCode) throws Throwable {
 		context.setCode(code);
-		inventoryTransactionQueryPage.searchTagID(tagId, code, lockCode);
+		jdaFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode(code);
+		inventoryTransactionQueryPage.enterTagId(tagId);
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterLockCode(lockCode);
+		jdaFooter.clickExecuteButton();
 	}
 
 	@Then("^I should see the status as \"([^\"]*)\" in the transaction query$")
 	public void the_I_should_see_the_status_as_and_lock_code_as_in_the_transaction_query(String status)
 			throws Throwable {
-
-		Assert.assertTrue("Status in Inventory Transaction screen is not as expected",
-				inventoryTransactionQueryPage.verifyStatus(status));
-
+		Assert.assertEquals("Status in Inventory Transaction screen is not as expected", status,
+				inventoryTransactionQueryPage.getStatus());
 	}
 
 	@When("^I navigate to miscellaneous tab$")
@@ -45,12 +52,7 @@ public class InventoryTransactionQueryStepDef {
 	@Then("^I should see the readon code as \"([^\"]*)\"$")
 	public void i_should_see_the_readon_code_as(String reasonCode) throws Throwable {
 		String actualReasonCode = inventoryTransactionQueryPage.getReasonCode();
-
-		switch (reasonCode) {
-		case "Damaged by Warehouse":
-			Assert.assertEquals("Reason Code not displayed as expected", "3PLDMGD", actualReasonCode);
-			break;
-		}
+		Assert.assertEquals("Reason Code not displayed as expected", reasonCode, actualReasonCode);
 		logger.debug("Reason code: " + actualReasonCode);
 	}
 

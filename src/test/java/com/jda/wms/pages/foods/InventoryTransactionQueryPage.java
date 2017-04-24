@@ -5,37 +5,25 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jDAFooter;
-	private final InventoryQueryPage inventoryQueryPage;
 
 	@Inject
-	public InventoryTransactionQueryPage(JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage) {
-		this.jDAFooter = jDAFooter;
-		this.inventoryQueryPage = inventoryQueryPage;
+	public InventoryTransactionQueryPage() {
 	}
 
-	public void searchTagID(String tagId, String code, String lockCode) throws FindFailed, InterruptedException {
-		jDAFooter.clickQueryButton();
-		enterCode(code);
-		enterTagId(tagId);
-		enterTransactionDate();
-		enterLockCode(lockCode);
-		jDAFooter.clickExecuteButton();
-	}
-
-	private void enterCode(String code) throws FindFailed, InterruptedException {
+	public void enterCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/Code.png");
 		screen.type(code);
 		Thread.sleep(2000);
 	}
 
-	private void enterTagId(String tagId) throws InterruptedException, FindFailed {
+	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match itagId = screen.find("images/InventoryTransactionQuery/TagID.png");
 		screen.click(itagId.getCenter().offset(70, 0));
 		screen.type(tagId);
@@ -43,18 +31,83 @@ public class InventoryTransactionQueryPage {
 
 	}
 
-	private void enterTransactionDate() throws FindFailed, InterruptedException {
+	public void enterTransactionDate() throws FindFailed, InterruptedException {
 		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
 		screen.type("0");
 		Thread.sleep(3000);
 	}
 
-	private void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
+	public void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
 		Match ilockCode = screen.find("images/InventoryTransactionQuery/lockCode.png");
 		screen.click(ilockCode.getCenter().offset(70, 0));
-		screen.type(lockCode);
-		Thread.sleep(3000);
+
+		switch (lockCode) {
+		case "Code Approval":
+			screen.type("CODEAPP");
+			Thread.sleep(2000);
+			break;
+		case "Components Stock":
+			screen.type("CS");
+			Thread.sleep(2000);
+			break;
+		case "1Damaged":
+			screen.type("DMGD");
+			Thread.sleep(2000);
+			break;
+		case "EVENTS":
+			screen.type("EVENT");
+			Thread.sleep(2000);
+			break;
+		case "Pick exception lock code":
+			screen.type("EXCEPT");
+			Thread.sleep(2000);
+			break;
+		case "1Expired":
+			screen.type("EXPD");
+			Thread.sleep(2000);
+			break;
+		case "Head Office Request":
+			screen.type("HOREQ");
+			Thread.sleep(2000);
+			break;
+		case "Lock code for new vintage or new wine":
+			screen.type("NV");
+			Thread.sleep(2000);
+			break;
+		case "Outlets Stock":
+			screen.type("OS");
+			Thread.sleep(2000);
+			break;
+		case "Product Recall":
+			screen.type("PRODRECALL");
+			Thread.sleep(2000);
+			break;
+		case "Return from RDC":
+			screen.type("RDCRETURNS");
+			Thread.sleep(2000);
+			break;
+		case "Supplier Damage":
+			screen.type("SUDMG");
+			Thread.sleep(2000);
+			break;
+		case "Return to Supplier":
+			screen.type("SUPPRETURNS");
+			Thread.sleep(2000);
+			break;
+		case "Warehouse Damage":
+			screen.type("WHDMG");
+			Thread.sleep(2000);
+			break;
+		case "Hampers Stock":
+			screen.type("HS");
+			Thread.sleep(2000);
+			break;
+		case "Incubation lock code":
+			screen.type("INCUB");
+			Thread.sleep(2000);
+			break;
+		}
 	}
 
 	public String getReasonCode() throws FindFailed {
@@ -65,15 +118,7 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public boolean verifyStatus(String status) throws FindFailed, InterruptedException {
-		String istatus = getStatus();
-		if (!istatus.equals(status)) {
-			return false;
-		} else
-			return true;
-	}
-
-	private String getStatus() throws FindFailed, InterruptedException {
+	public String getStatus() throws FindFailed, InterruptedException {
 		Match status = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
