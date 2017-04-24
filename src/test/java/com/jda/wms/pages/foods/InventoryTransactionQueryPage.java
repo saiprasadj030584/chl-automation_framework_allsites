@@ -86,12 +86,17 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void selectRequiredRecord() throws FindFailed, InterruptedException {
-		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
+//		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
+//		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
+		Thread.sleep(3000);
+		Match mStatus = screen.find("images/InventoryTransactionQuery/CodeInResults.png");
+//		screen.highlight();
+		screen.click(mStatus.getBottomLeft().offset(0, 1));
 		Thread.sleep(2000);
 		screen.mouseMove(0, 20);
-		System.out.println("Location "+screen.getTarget());
-		screen.moveTo(screen.getTarget());
+		screen.click("Adjustment");
+		//System.out.println("Location "+screen.getTarget());
+		//screen.moveTo(screen.getTarget());
 		//screen.doubleClick();
 		Thread.sleep(2000);
 	}

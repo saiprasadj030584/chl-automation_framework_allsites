@@ -98,7 +98,7 @@ public class StockAdjustmentsPage {
 	}
 
 	public boolean isStockAdjustmentHomeDisplayed() throws FindFailed {
-		if (screen.exists("images/StockAdjustment/Start/StockAdjustmentHome.png.png") != null)
+		if (screen.exists("images/StockAdjustment/Start/StockAdjustmentHome.png") != null)
 			return true;
 		else
 			return false;
