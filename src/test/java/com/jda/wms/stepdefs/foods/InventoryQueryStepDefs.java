@@ -79,7 +79,7 @@ public class InventoryQueryStepDefs {
 			Assert.assertEquals("Lock Code not displayed as expected", "SUDMG", actualLockCode);
 			break;
 		case "Return to Supplier":
-			Assert.assertEquals("Lock Code not displayed as expected", "SUPPRETURNS", actualLockCode);
+			Assert.assertEquals("Lock Code not displayed as expected", "SUPPRETURN", actualLockCode);
 			break;
 		case "Warehouse Damage":
 			Assert.assertEquals("Lock Code not displayed as expected", "WHDMG", actualLockCode);

@@ -92,7 +92,7 @@ public class InventoryTransactionQueryPage {
 			Thread.sleep(2000);
 			break;
 		case "Return to Supplier":
-			screen.type("SUPPRETURNS");
+			screen.type("SUPPRETURN");
 			Thread.sleep(2000);
 			break;
 		case "Warehouse Damage":
