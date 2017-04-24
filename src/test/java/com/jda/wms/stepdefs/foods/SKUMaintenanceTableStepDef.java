@@ -260,5 +260,11 @@ public class SKUMaintenanceTableStepDef {
 		Assert.assertEquals("Supplier SKU ID is not displayed as expected", context.getEAN(),
 				sKUMaintenancePage.getSupplierSKUId());
 		logger.debug("Supplier SKU ID: " + supplierSKUId);
-	}
+	} 
+	
+	@Then("^the product allocation group field should be displayed$")
+	public void the_product_allocation_group_field_should_be_displayed() throws Throwable {
+		Assert.assertEquals("Allocation grouo does not match", "EXPIRY", sKUMaintenancePage.getAllocationGroup());
+		}
+	
 }
