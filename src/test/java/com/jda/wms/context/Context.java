@@ -16,6 +16,7 @@ public class Context {
 	private int caseRatio;
 	private String code;
 	private String adjustmentType;
+	private String supplierID;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -31,6 +32,14 @@ public class Context {
 
 	public void setPreAdviceId(String preAdviceId) {
 		this.preAdviceId = preAdviceId;
+	}
+	
+	public String getSupplierID() {
+		return supplierID;
+	}
+
+	public void setSupplierID(String supplierID) {
+		this.supplierID = supplierID;
 	}
 
 	public String getSkuId() {
