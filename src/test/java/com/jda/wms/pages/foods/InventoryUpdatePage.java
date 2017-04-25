@@ -77,6 +77,14 @@ public class InventoryUpdatePage {
 			return true;
 		} else
 			return false;
-
+	}
+	public void enterABV(String newAbv) throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
+		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
+		Thread.sleep(5000);
+		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
+		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
+		screen.type(newAbv);
+		
 	}
 }

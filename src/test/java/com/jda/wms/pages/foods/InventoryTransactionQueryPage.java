@@ -109,4 +109,40 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void giveTagID(String tagId, String selectType) throws FindFailed, InterruptedException {
+		jDAFooter.clickQueryButton();
+		enterTagId(tagId);
+		enterCode(selectType);
+		enterTransactionDate();
+		jDAFooter.clickExecuteButton();
+	}
+
+	public String getSkuId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/Sku.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+		
+	}
+
+	public String getReference() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/Reference.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getAbv() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/Sku.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+		
+	}
+
+	
 }

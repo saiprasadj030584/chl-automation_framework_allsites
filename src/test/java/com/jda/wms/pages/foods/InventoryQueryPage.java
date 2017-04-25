@@ -59,5 +59,47 @@ public class InventoryQueryPage {
 		screen.wait("images/OrderlineRefreshCurrentRecord.png", timeoutInSec);
 		screen.click("images/OrderlineRefreshCurrentRecord.png");
 	}
+
+	public String getSkuId() throws FindFailed, InterruptedException {
+		Match status = screen.find("images/InventoryQuery/Sku.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(3000);
+		return App.getClipboard();
+	}
+
+	public void clickUserDefinedTab() throws FindFailed {
+		screen.wait("images/InventoryQuery/UserDefined/UserDefined.png", timeoutInSec);
+		screen.click("images/InventoryQuery/UserDefined/UserDefined.png");
+	}
+
+	public String getProductGroup() throws FindFailed, InterruptedException {
+		Match status = screen.find("images/InventoryQuery/UserDefined/ProductGroup.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(3000);
+		return App.getClipboard();
+	}
+
+	public String getABV() throws FindFailed, InterruptedException {
+		Match status = screen.find("images/InventoryQuery/UserDefined/ABV.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(3000);
+		return App.getClipboard();
+	}
+
+	public String checkUpdatedABV() throws FindFailed, InterruptedException {
+		Match status = screen.find("images/InventoryQuery/UserDefined/ABV.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(3000);
+		return App.getClipboard();
+	}
+
 	
 }

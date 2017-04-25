@@ -1,5 +1,8 @@
 package com.jda.wms.pages.foods;
 
-public class ABVUpdatePage {
+import org.sikuli.script.Screen;
 
+public class ABVUpdatePage {
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
 }

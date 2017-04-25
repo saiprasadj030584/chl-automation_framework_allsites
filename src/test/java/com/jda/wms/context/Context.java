@@ -11,6 +11,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String code;
+	private String newAbv;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -19,7 +20,12 @@ public class Context {
 	public void setCurrentTask(RDTTask currentTask) {
 		this.currentTask = currentTask;
 	}
-
+	public String getABV(){
+		return newAbv;
+	}
+	public void setABV(String newAbv ){
+		this.newAbv=newAbv;
+	}
 	public String getPreAdviceId() {
 		return preAdviceId;
 	}
