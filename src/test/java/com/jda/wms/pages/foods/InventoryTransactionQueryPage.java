@@ -95,10 +95,12 @@ public class InventoryTransactionQueryPage {
 		Thread.sleep(2000);
 		Match mStatuscode = screen.find("images/InventoryTransactionQuery/CodeInResult.png");
 		screen.doubleClick(mStatuscode.below(1));
-		/*screen.mouseMove(0, 20);
-		System.out.println("Location "+screen.getTarget());
-		screen.moveTo(screen.getTarget());
-		//screen.doubleClick();
-		Thread.sleep(2000);*/
+	}
+
+	public boolean isOneTransactionDisplayed() throws FindFailed {
+		if (screen.find("images/InventoryTransactionQuery/Record1.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

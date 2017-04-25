@@ -40,34 +40,37 @@ public class InventoryTransactionQueryStepDef {
 	
 	@When("^I select the adjusted stock from the results$")
 	public void i_select_the_adjusted_stock_from_the_results() throws Throwable {
-		inventoryTransactionQueryPage.selectRequiredRecord();
+		boolean isOneRecord = inventoryTransactionQueryPage.isOneTransactionDisplayed();
+		Thread.sleep(2000);
+		System.out.println(isOneRecord);
+		if (isOneRecord==true){
+			inventoryTransactionQueryPage.selectRequiredRecord();	
+		}
 	}
-
 
 	@Then("^I should see the original quantity and updated quantity in the general tab$")
 	public void i_should_see_the_original_quantity_and_updated_quantity_in_the_general_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
 		String originalQty = inventoryTransactionQueryPage.getOriginalQty();
-		if (!originalQty.equals(context.getQtyOnHandBeforeAdjustment())) {
+		String qtytoCheck = String.valueOf(context.getQtyOnHandBeforeAdjustment());
+		if (!originalQty.equals(qtytoCheck)) {
 			failureList.add("Original Quantity before Adjustment is not displayed as expected. Expected ["
-					+ context.getQtyOnHandBeforeAdjustment() + "] but was [" + originalQty + "]");
+					+ qtytoCheck + "] but was [" + originalQty + "]");
 		}
 		logger.debug("Original Quantity: " + originalQty);
 
 		String updateQty = inventoryTransactionQueryPage.getUpdateQty();
+		String updateQtyToCheck = String.valueOf(context.getCaseRatio());
 		if (context.getAdjustmentType().equalsIgnoreCase("Decrement")) {
-			System.out.println("-" + context.getCaseRatio());
-			System.out.println(updateQty.equals("-" + context.getCaseRatio()));
-			if (updateQty.equals("-" + context.getCaseRatio())) {
+			if (!updateQty.equals("-" + updateQtyToCheck)) {
 				failureList.add("Update Quantity is not displayed as expected. Expected [" + "-"
-						+ context.getCaseRatio() + "] but was [" + updateQty + "]");
+						+ updateQtyToCheck + "] but was [" + updateQty + "]");
 			}
 		} else if (context.getAdjustmentType().equalsIgnoreCase("Increment")) {
 
-			if (updateQty.equals("+" + context.getCaseRatio())) {
+			if (!updateQty.equals("+" + updateQtyToCheck)) {
 				failureList.add("Update Quantity is not displayed as expected. Expected [" + "+"
-						+ context.getCaseRatio() + "] but was [" + updateQty + "]");
+						+ updateQtyToCheck + "] but was [" + updateQty + "]");
 			}
 		}
 

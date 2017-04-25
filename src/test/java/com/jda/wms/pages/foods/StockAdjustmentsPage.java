@@ -35,11 +35,11 @@ public class StockAdjustmentsPage {
 	}
 
 	public void updateQtyOnHand(String decrementQty) throws FindFailed, InterruptedException {
-		screen.wait("images/StockAdjustment/CreateModify/SAQtyOnHand.png", timeoutInSec);
-		screen.click("images/StockAdjustment/CreateModify/SAQtyOnHand.png");
-		screen.mouseMove(70, 0);
+		Match mStatus = screen.find("images/StockAdjustment/CreateModify/SAQtyOnHand.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
-		screen.type("a", Key.BACKSPACE);
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(1000);
 		screen.type(decrementQty);
 		Thread.sleep(3000);
 		jdaFooter.clickNext();

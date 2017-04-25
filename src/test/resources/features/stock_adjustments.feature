@@ -7,18 +7,18 @@ Feature: Stock adjustments
   @wip
   Scenario Outline: Receiving process in JDA WMS
     #Given I have logged in as warehouse user in JDA dispatcher food application
-    #And I am on inventory query page
-    #And I have the tag id "<TagID>" with "<Status>" status
-    #When I navigate to stock adjustments page
-    #When I search the inventory details
-    #Then the record should be displayed in the results
-    #When I navigate to create or modify tab
-    #Then the product details should be displayed from inventory
-    #When I "<AdjustmentType>" the quantity on hand
-    #And I choose the reason code as "<ReasonCode>"
-    #Then the stock adjustments home page should be displayed
-    #When I navigate to inventory transaction query
-    #And I search tag id "<TagID>" and code as "Adjustment"
+    And I am on inventory query page
+    And I have the tag id "<TagID>" with "<Status>" status
+    When I navigate to stock adjustments page
+    When I search the inventory details
+    Then the record should be displayed in the results
+    When I navigate to create or modify tab
+    Then the product details should be displayed from inventory
+    When I "<AdjustmentType>" the quantity on hand
+    And I choose the reason code as "<ReasonCode>"
+    Then the stock adjustments home page should be displayed
+    When I navigate to inventory transaction query
+    And I search tag id "<TagID>" and code as "Adjustment"
     When I select the adjusted stock from the results
     Then I should see the original quantity and updated quantity in the general tab
     When I navigate to miscellaneous tab
@@ -28,11 +28,11 @@ Feature: Stock adjustments
 
     Examples: 
       | TagID      | Status | AdjustmentType | ReasonCode           |
-      | 6327637212 | Locked | Decrement      | Damaged by Warehouse |
+      #| 2050004499 | Locked | Decrement      | Damaged by Warehouse |
       #| 2000160302 | Unlocked | Decrement      | Damaged by Warehouse |
-      #| 6327637212 | Locked   | Decrement      | Expired Stock        |
+      #| 2050004499 | Locked   | Decrement      | Expired Stock        |
       #| 2000160302 | Unlocked | Decrement      | Expired Stock        |
-      #| 6327637212 | Locked   | Decrement      | Head Office          |
+      | 2050004499 | Locked   | Decrement      | Head Office          |
       #| 2000160302 | Unlocked | Decrement      | Head Office          |
       #| 6327637212 | Locked   | Decrement      | Hampers Stock        |
       #| 2000160302 | Unlocked | Decrement      | Hampers Stock        |
