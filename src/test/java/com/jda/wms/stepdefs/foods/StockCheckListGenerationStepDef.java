@@ -101,6 +101,20 @@ public class StockCheckListGenerationStepDef {
 				failureList.isEmpty());
 	}
 
+	@Then("^I should see the confirmation for number of items checked$")
+	public void i_should_see_the_confirmation_for_number_of_items_checked() throws Throwable {
+		// stockCheckListGenerationPage
+		String getSelectedListConfirmationText = stockCheckListGenerationPage.getSelectedListConfirmationText();
+		ArrayList<String> failureList = new ArrayList<String>();
+		if (getSelectedListConfirmationText.contains("You have not selected any tasks")) {
+			failureList.add("Stock Check list confirmation text not displayed");
+		} else {
+			logger.debug("Stock Check list Confirmation : " + getSelectedListConfirmationText);
+		}
+		Assert.assertTrue("Stock Check List not generated as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
 	@When("^I proceed to generate the stock check list$")
 	public void i_proceed_to_generate_the_stock_check_list() throws Throwable {
 		stockCheckListGenerationPage.clickDoneButton();
@@ -119,6 +133,21 @@ public class StockCheckListGenerationStepDef {
 		Assert.assertTrue("Stock Check List not generated as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 
+	}
+
+	@When("^I select mode of list generation as 'Generate by inventory'$")
+	public void i_select_mode_of_list_generation_as_Generate_by_inventory() throws Throwable {
+		stockCheckListGenerationPage.selectGenerateByInventory();
+	}
+
+	@When("^I enter the Tag ID as \"([^\"]*)\" on inventory tab$")
+	public void i_enter_the_Tag_ID_as_on_inventory_tab(String tagId) throws Throwable {
+		stockCheckListGenerationPage.enterTagId(tagId);
+	}
+
+	@When("^I search the list by tag id as \"([^\"]*)\"$")
+	public void i_search_the_list_by_tag_id_as(String arg1) throws Throwable {
+		jDAFooter.clickExecuteButton();
 	}
 
 }

@@ -52,6 +52,11 @@ public class StockCheckTaskQueryPage {
 		//Check if the task date field exists
 		screen.wait("images/StockCheckQuery/TaskDate.png", timeoutInSec);
 		screen.click("images/StockCheckQuery/TaskDate.png");
+		
+		screen.type("0");
+		screen.type(Key.ENTER);
+		
+		/*
 		//Click date selector option for Task date field
 		screen.wait("images/StockCheckQuery/DateSelector.png", timeoutInSec);
 		screen.click("images/StockCheckQuery/DateSelector.png");
@@ -59,7 +64,7 @@ public class StockCheckTaskQueryPage {
 		screen.wait("images/StockCheckQuery/DateSelectionScreen.png", timeoutInSec);
 		screen.wait("images/StockCheckQuery/SetDateOkButton.png", timeoutInSec);
 		//select today's date by clicking on OK
-		screen.click("images/StockCheckQuery/SetDateOkButton.png");
+		screen.click("images/StockCheckQuery/SetDateOkButton.png");*/
 		
 		// Java Code
 		/*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");

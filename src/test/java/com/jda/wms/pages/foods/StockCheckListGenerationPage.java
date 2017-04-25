@@ -129,4 +129,13 @@ public class StockCheckListGenerationPage {
 		screen.click("/images/StockCheckListGeneration/SelectedTAB.png");
 	}
 
+	public void enterTagId(String tagId) throws FindFailed {
+		screen.wait("/images/StockCheckListGeneration/EnterTagId.png", timeoutInSec);
+		screen.click("/images/StockCheckListGeneration/EnterTagId.png");
+		screen.type(tagId);
+		
+	}
+	
+
+
 }
