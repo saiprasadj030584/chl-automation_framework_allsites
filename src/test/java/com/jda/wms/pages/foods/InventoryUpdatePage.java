@@ -1,6 +1,8 @@
 package com.jda.wms.pages.foods;
 
-import org.sikuli.script.App;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -12,7 +14,7 @@ public class InventoryUpdatePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jDAFooter;
-	
+
 	@Inject
 	public InventoryUpdatePage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
@@ -26,26 +28,11 @@ public class InventoryUpdatePage {
 		Thread.sleep(4000);
 	}
 
-	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
-		Match itagId = screen.find("/images/InventoryUpdate/TagId.png");
-		screen.click(itagId.getCenter().offset(70, 0));
-		screen.type(tagId);
-		screen.type(Key.F7);
-		Thread.sleep(4000);
-	}
-
 	public Boolean isRecordExists() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/1record.png") != null) {
 			return true;
 		} else
 			return false;
-
-	}
-
-	public void clickNext() throws FindFailed, InterruptedException {
-
-		screen.type(Key.F7);
-		Thread.sleep(4000);
 	}
 
 	public void selectStatus(String status) throws FindFailed, InterruptedException {
@@ -64,13 +51,13 @@ public class InventoryUpdatePage {
 		Thread.sleep(3000);
 	}
 
-	public void selectReasonCode(String reasonCode) throws FindFailed, InterruptedException {
-		Match ireasonCode = screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
-		screen.click(ireasonCode.getCenter().offset(70, 0));
-		screen.type(reasonCode);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
-	}
+//	public void selectReasonCode(String reasonCode) throws FindFailed, InterruptedException {
+//		Match ireasonCode = screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
+//		screen.click(ireasonCode.getCenter().offset(70, 0));
+//		screen.type(reasonCode);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(3000);
+//	}
 
 	public Boolean verifyHomePage() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/selectType.png") != null) {
@@ -78,6 +65,7 @@ public class InventoryUpdatePage {
 		} else
 			return false;
 	}
+
 	public void enterABV(String newAbv) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
 		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
@@ -85,6 +73,29 @@ public class InventoryUpdatePage {
 		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
 		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
 		screen.type(newAbv);
-		
+
+	}
+
+	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
+		screen.type(expiryDateUpdate);
+	}
+
+	public void enterTagId(String tagId) throws FindFailed {
+		screen.type(tagId);
+	}
+
+	public String enterFutureDate() throws FindFailed {
+		SimpleDateFormat formattedExpiryDate = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 364);
+		String futureDateExpiry = formattedExpiryDate.format(cal.getTime());
+		screen.type(futureDateExpiry);
+		return futureDateExpiry;
+	}
+
+	public void selectReasonCode(String reasonCode) throws FindFailed {
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(reasonCode);
 	}
 }

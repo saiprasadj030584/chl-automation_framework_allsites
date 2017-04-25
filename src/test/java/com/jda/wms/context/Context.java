@@ -12,6 +12,7 @@ public class Context {
 	private String ean;
 	private String code;
 	private String newAbv;
+	private String expiryDate;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -20,12 +21,15 @@ public class Context {
 	public void setCurrentTask(RDTTask currentTask) {
 		this.currentTask = currentTask;
 	}
-	public String getABV(){
+
+	public String getABV() {
 		return newAbv;
 	}
-	public void setABV(String newAbv ){
-		this.newAbv=newAbv;
+
+	public void setABV(String newAbv) {
+		this.newAbv = newAbv;
 	}
+
 	public String getPreAdviceId() {
 		return preAdviceId;
 	}
@@ -73,7 +77,16 @@ public class Context {
 	public String getCEWarehouseType() {
 		return cewarehousetype;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getFutureExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setFutureExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 }

@@ -37,19 +37,18 @@ public class InventoryUpdateStepDefs {
 	@When("^I choose the type of inventory property as \"([^\"]*)\"$")
 	public void i_choose_the_type_of_inventory_property_as(String selectType) throws Throwable {
 		inventoryUpdatePage.selectType(selectType);
-		jDAFooter.clickNextButton();
+		jDAFooter.clickNext();
+
 	}
 
 	@When("^I search the tag ID \"([^\"]*)\"$")
 	public void i_search_the_tag_ID(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
-		jDAFooter.clickNextButton();
 	}
 
 	@Then("^the record should be displayed in the search result$")
 	public void the_record_should_be_displayed_in_the_search_result() throws Throwable {
 		Assert.assertTrue("No records are present for this tag Id", inventoryUpdatePage.isRecordExists());
-		jDAFooter.clickNextButton();
 	}
 
 	@When("^I proceed to lock the record$")
@@ -76,6 +75,7 @@ public class InventoryUpdateStepDefs {
 	}
 	@When("^I enter ABV value as \"([^\"]*)\"$")
 	public void i_enter_ABV_value_as(String newAbv) throws Throwable {
+		jDAFooter.clickNext();
 		context.setABV(newAbv);
 		inventoryUpdatePage.enterABV(newAbv);
 	}
