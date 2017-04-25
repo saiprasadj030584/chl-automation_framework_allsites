@@ -71,4 +71,12 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/PackConfigScreen.png");
 		Thread.sleep(3000);
 	}
+	public void hoverInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/Inventory.png", timeoutInSec);
+		screen.click("images/JDAHome/Inventory.png");
+		Thread.sleep(3000);
+		screen.mouseMove(70, 0);
+	}
+	
+	
 }
