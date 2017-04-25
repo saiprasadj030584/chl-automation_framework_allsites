@@ -7,6 +7,10 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.context.Context;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,16 +18,19 @@ import cucumber.api.java.en.Then;
 public class InventoryQueryStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final InventoryQueryPage inventoryQueryPage;
-	private JDAFooter jdaFooter;
+	private final JDAFooter jdaFooter;
+	private Context context;
 
 	@Inject
-	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage,JDAFooter jdaFooter) {
+	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage,JDAFooter jdaFooter, Context context) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
+		this.context = context;
 	}
-
-	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
-	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
+	
+	@Given("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
+	public void i_have_tag_id_with_status(String tagId, String status) throws Throwable {
+		
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
@@ -32,6 +39,17 @@ public class InventoryQueryStepDefs {
 		Assert.assertEquals("Tag id is not in unlocked status", status, actualstatus);
 		logger.debug("Status in Inventory screen : " + actualstatus);
 	}
+	
+//	@And("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
+//	public void i_have_tag_id_with_status(String tagId, String status) throws Throwable {
+//		jdaFooter.clickQueryButton();
+//		inventoryQueryPage.enterTagId(tagId);
+//		jdaFooter.clickExecuteButton();
+//
+//		String actualstatus = inventoryQueryPage.getStatus();
+//		Assert.assertEquals("Tag id is not in unlocked status", status, actualstatus);
+//		logger.debug("Status in Inventory screen : " + actualstatus);
+//	}
 
 	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$")
 	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query(String status, String lockCode)
@@ -92,5 +110,30 @@ public class InventoryQueryStepDefs {
 			break;
 		}
 		logger.debug("Lock Code: " + actualLockCode);
+	}
+	
+	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
+	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
+		// context.setTagId(tagId);
+		// context.setStatus(status);
+
+		inventoryQueryPage.searchTagId(tagId);
+		logger.debug("Tag ID: " + tagId);
+
+		String inventorySKUId = inventoryQueryPage.getInventorySKUId();
+		context.setSkuId(inventorySKUId);
+		logger.debug("SKU ID: " + inventorySKUId);
+
+		String productStatus = inventoryQueryPage.getStatus();
+		Assert.assertEquals("Status is not displayed as expected", status, productStatus);
+		logger.debug("Inventory Query - Status: " + productStatus);
+
+		String qtyOnHandBfrAdjustment = inventoryQueryPage.getQtyOnHand();
+		// context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
+		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
+
+		String caseRatio = inventoryQueryPage.getcaseRatio();
+		// context.setCaseRatio(caseRatio);
+		logger.debug("Case Ratio: " + caseRatio);
 	}
 }
