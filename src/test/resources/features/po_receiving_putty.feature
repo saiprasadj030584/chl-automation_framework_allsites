@@ -6,7 +6,7 @@ Feature: Purchase order
 
   @wip_receive
   Scenario Outline: Receiving process in JDA WMS
-    Given I have logged in as warehouse user in Putty with host "<Host>" and port "<Port>"
+    #Given I have logged in as warehouse user in Putty with host "<Host>" and port "<Port>"
     When I select the user directed receiving option in main menu
     And I select the receive under user menu
     And I select the basic receiving

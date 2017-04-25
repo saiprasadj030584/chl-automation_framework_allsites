@@ -80,7 +80,7 @@ public class POReceivingFromPuttyPage {
 		while (screen.exists("images/Putty/Receiving/2PreAdvReceive.png") == null){
 			screen.type(Key.F12);
 		}
-		screen.type("1");
+		screen.type("2");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);

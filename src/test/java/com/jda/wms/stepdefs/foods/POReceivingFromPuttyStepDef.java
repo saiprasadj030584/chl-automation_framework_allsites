@@ -48,7 +48,7 @@ public class POReceivingFromPuttyStepDef {
 
 	@Given("^I select the receive under user menu$")
 	public void i_select_the_receive_under_user_menu() throws Throwable {
-		poReceivingFromPuttyPage.selectBasicReceiveMenu();
+		poReceivingFromPuttyPage.selectReceiveMenu();
 	}
 
 	@Given("^I select the basic receiving$")
