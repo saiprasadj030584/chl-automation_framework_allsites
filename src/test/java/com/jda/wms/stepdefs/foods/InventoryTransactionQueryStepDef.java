@@ -17,7 +17,7 @@ public class InventoryTransactionQueryStepDef {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private final InventoryTransactionQueryPage inventoryTransactionQueryPage;
-	private JDAFooter jdaFooter;
+	private final JDAFooter jdaFooter;
 
 	@Inject
 	public InventoryTransactionQueryStepDef(InventoryTransactionQueryPage inventoryTransactionQueryPage,
@@ -75,7 +75,7 @@ public class InventoryTransactionQueryStepDef {
 		}
 		logger.debug("Uploaded File Name: " + uploadedFileName);
 	}
-	
+
 	@Given("^I select the code as \"([^\"]*)\" and enter the tag id \"([^\"]*)\"$")
 	public void i_select_the_code_as_and_enter_the_tag_id(String code, String tagId) throws Throwable {
 		inventoryTransactionQueryPage.selectCode(code);

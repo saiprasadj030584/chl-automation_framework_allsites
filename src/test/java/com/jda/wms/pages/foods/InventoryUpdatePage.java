@@ -1,21 +1,25 @@
 package com.jda.wms.pages.foods;
 
-import org.sikuli.script.Match;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
+import org.sikuli.script.Match;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 
 public class InventoryUpdatePage {
 	int timeoutInSec = 20;
 	Region reg = new Region(0, 0, 4000, 1000);
 	Screen screen = new Screen();
+	private final JDAFooter jdaFooter;
 
 	@Inject
-	public InventoryUpdatePage() {
+	public InventoryUpdatePage(JDAFooter jdaFooter) {
+		this.jdaFooter = jdaFooter;
 	}
 
 	public void selectType(String selectType) throws FindFailed, InterruptedException {

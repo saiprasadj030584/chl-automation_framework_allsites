@@ -1,9 +1,11 @@
 package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryQueryPage;
@@ -23,10 +25,10 @@ public class InventoryUpdateStepDefs {
 	private final InventoryUpdatePage inventoryUpdatePage;
 	private final JDAFooter jdaFooter;
 	private final InventoryTransactionQueryPage inventoryTransactionQueryPage;
-	private Context context;
-	private SKUMaintenancePage skuMaintenancePage;
-	private InventoryQueryPage inventoryQueryPage;
-	private JdaHomePage jdaHomePage;
+	private final Context context;
+	private final SKUMaintenancePage skuMaintenancePage;
+	private final InventoryQueryPage inventoryQueryPage;
+	private final JdaHomePage jdaHomePage;
 
 	@Inject
 	public InventoryUpdateStepDefs(SKUMaintenancePage skuMaintenancePage, InventoryQueryPage inventoryQueryPage,
