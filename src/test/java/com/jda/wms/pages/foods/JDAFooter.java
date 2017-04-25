@@ -66,12 +66,13 @@ public class JDAFooter {
 		Thread.sleep(3000);
 	}
 
-	public void clickDoneButton() throws FindFailed, InterruptedException {
-		screen.type(Key.F12);
+	public void clickNextButton() throws FindFailed, InterruptedException {
+		screen.type(Key.F7);
 		Thread.sleep(3000);
 	}
 
-	public void clickNextButton() throws FindFailed, InterruptedException {
-		clickExecuteButton();
+	public void clickDoneButton() throws FindFailed, InterruptedException {
+		screen.type(Key.F12);
+		Thread.sleep(3000);
 	}
 }

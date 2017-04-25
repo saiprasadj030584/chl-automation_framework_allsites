@@ -9,6 +9,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -73,5 +74,13 @@ public class InventoryTransactionQueryStepDef {
 					+ uploadedFileName + "]", uploadedFileName);
 		}
 		logger.debug("Uploaded File Name: " + uploadedFileName);
+	}
+	
+	@Given("^I select the code as \"([^\"]*)\" and enter the tag id \"([^\"]*)\"$")
+	public void i_select_the_code_as_and_enter_the_tag_id(String code, String tagId) throws Throwable {
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(tagId);
+		jdaFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.navigateToMiscellaneousTab();
 	}
 }

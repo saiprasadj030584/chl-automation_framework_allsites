@@ -5,19 +5,17 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 
 public class InventoryQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
-	@Inject
-	public InventoryQueryPage() {
-	}
+	private final JDAFooter jdaFooter;
 
-	public void enterTagId(String tagId) throws FindFailed {
-		screen.type(tagId);
+	@Inject
+	public InventoryQueryPage(JDAFooter jdaFooter) {
+		this.jdaFooter = jdaFooter;
 	}
 
 	public String getStatus() throws FindFailed, InterruptedException {
@@ -60,4 +58,56 @@ public class InventoryQueryPage {
 		selectRefreshCurrentRecord();
 	}
 
+	public void searchTagId(String tagId) throws FindFailed, InterruptedException {
+		jdaFooter.clickQueryButton();
+		enterTagId(tagId);
+		jdaFooter.clickExecuteButton();
+	}
+
+	public void enterTagId(String tagId) throws InterruptedException {
+		// screen.wait("images/InventoryQuery/GeneraleTable/TagID.png",timeoutInSec);
+		// screen.click("images/InventoryQuery/GeneraleTable/TagID.png");
+		screen.type(tagId);
+		Thread.sleep(2000);
+	}
+
+	public String getInventorySKUId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/InventorySKUId.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getQtyOnHand() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/QtyOnHand.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getcaseRatio() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/CaseRatio.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public int getQtyOnhand() throws FindFailed {
+		Match mQtyOnhand = screen.find("images/Inventory/QtyOnHand.png");
+		screen.click(mQtyOnhand.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return Integer.parseInt(App.getClipboard());
+	}
+
+	public int getQtyAllocated() throws FindFailed {
+		Match mQtyAllocated = screen.find("images/Inventory/QtyAllocated.png");
+		screen.click(mQtyAllocated.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return Integer.parseInt(App.getClipboard());
+	}
 }

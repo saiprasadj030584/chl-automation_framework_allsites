@@ -1,15 +1,18 @@
 package com.jda.wms.pages.foods;
 
+import org.sikuli.script.Match;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
-import org.sikuli.script.Match;
+import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 
 public class InventoryUpdatePage {
-	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	Region reg = new Region(0, 0, 4000, 1000);
+	Screen screen = new Screen();
 
 	@Inject
 	public InventoryUpdatePage() {
@@ -50,18 +53,27 @@ public class InventoryUpdatePage {
 		Thread.sleep(2000);
 	}
 
-	public void selectReasonCode(String reasonCode) throws FindFailed, InterruptedException {
-		Match mReasonCode = screen.find("/images/InventoryUpdate/Finish/reasonCode.png");
-		screen.click(mReasonCode.getCenter().offset(70, 0));
-		screen.type(reasonCode);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-	}
-
 	public Boolean isHomePage() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/Start/SelectType.png") != null) {
 			return true;
 		} else
 			return false;
+	}
+
+	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
+		screen.type(expiryDateUpdate);
+	}
+
+	public String enterFutureDate() throws FindFailed {
+		SimpleDateFormat formattedExpiryDate = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 364);
+		String futureDateExpiry = formattedExpiryDate.format(cal.getTime());
+		screen.type(futureDateExpiry);
+		return futureDateExpiry;
+	}
+
+	public void selectReasonCode(String reasonCode) throws FindFailed {
+		screen.type(reasonCode);
 	}
 }

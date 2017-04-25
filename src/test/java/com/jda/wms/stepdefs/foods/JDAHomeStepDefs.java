@@ -49,6 +49,15 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickInventoryUpdate();
 	}
 
+	@When("^I navigate to address maintenance page$")
+	public void i_navigate_to_address_maintenance_page() throws Throwable {
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverGeneral();
+		jdaHomePage.hoverSetup();
+		jdaHomePage.clickAddress();
+		Thread.sleep(5000);
+	}
+
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
@@ -56,11 +65,26 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverPackConfig();
 		jdaHomePage.clickPackConfig();
 	}
-	
+
+//	@When("^I navigate to inventory transaction query$")
+//	public void i_navigate_to_inventory_transaction_query() throws Throwable {
+//		jdaHomePage.clickDataMenu();
+//		jdaHomePage.hoverDataInventory();
+//		jdaHomePage.clickInventoryTransaction();
+//	}
+
 	@When("^I navigate to inventory transaction query$")
 	public void i_navigate_to_inventory_transaction_query() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventoryTransaction();
+		jdaHomePage.navigateToInventoryTransactionPage();
+	}
+	
+	@When("^I navigate to SKU page$")
+	public void i_navigate_to_SKU_page() throws Throwable {
+		jdaHomePage.navigateToSKUMaintanence();
+	}
+
+	@When("^I navigate to inventory query page$")
+	public void i_navigate_to_inventory_query_page() throws Throwable {
+		jdaHomePage.navigateToInventoryQueryPage();
 	}
 }
