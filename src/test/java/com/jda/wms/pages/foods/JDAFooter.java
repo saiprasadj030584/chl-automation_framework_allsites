@@ -68,7 +68,7 @@ public class JDAFooter {
 	
 	public void clickNext() throws InterruptedException {
 		screen.type(Key.F7);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	public void clickDone() throws InterruptedException {

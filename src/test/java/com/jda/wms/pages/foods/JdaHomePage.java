@@ -2,6 +2,7 @@ package com.jda.wms.pages.foods;
 
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
@@ -104,5 +105,41 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
 		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(2000);
+	}
+	
+	public void clickSearchIcon() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/SearchIconButton.png", timeoutInSec);
+		screen.click("images/JDAHome/SearchIconButton.png");
+		Thread.sleep(3000);
+	}
+	
+	public void navigateToInventoryQuery() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Inventory Query");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+	
+	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock Adjustment");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToInventoryTransaction() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("(ITL) query");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 	}
 }

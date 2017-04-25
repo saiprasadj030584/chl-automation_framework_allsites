@@ -34,6 +34,7 @@ public class StockAdjustmentsStepDef {
 		jdaFooter.clickNext();
 		stockAdjustmentsPage.enterTagId(context.getTagId());
 		jdaFooter.clickNext();
+		Thread.sleep(1000);
 	}
 
 	@Then("^the record should be displayed in the results$")
@@ -58,13 +59,13 @@ public class StockAdjustmentsStepDef {
 //					+ "] but was [" + skuId + "]");
 //		}
 //		logger.debug("Stock Adjustment - SKU ID: " + skuId);
-//
-//		String status = stockAdjustmentsPage.getStatus();
-//		if (!status.equalsIgnoreCase(context.getStatus())) {
-//			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["
-//					+ status + "]");
-//		}
-//		logger.debug("Stock Adjustment - Status: " + status);
+
+		String status = stockAdjustmentsPage.getStatus();
+		if (!status.equalsIgnoreCase(context.getStatus())) {
+			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["
+					+ status + "]");
+		}
+		logger.debug("Stock Adjustment - Status: " + status);
 
 		Assert.assertTrue(
 				"Stock Adjustment attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",

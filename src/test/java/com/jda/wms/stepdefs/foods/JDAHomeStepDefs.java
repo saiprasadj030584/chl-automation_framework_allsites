@@ -40,22 +40,26 @@ public class JDAHomeStepDefs {
 	
 	@Given("^I am on inventory query page$")
 	public void i_am_on_inventory_query_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
+		/*jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventory();
+		jdaHomePage.clickInventory();*/
+		jdaHomePage.navigateToInventoryQuery();
+		
 	}
 	
 	@When("^I navigate to stock adjustments page$")
 	public void i_navigate_to_stock_adjustments_page() throws Throwable {
-		jdaHomePage.clickOperations();
+		/*jdaHomePage.clickOperations();
 		jdaHomePage.hoverOperationsInventory();
-		jdaHomePage.clickStockAdjustment();
+		jdaHomePage.clickStockAdjustment();*/
+		jdaHomePage.navigateToStockAdjustment();
 	}
 	
 	@When("^I navigate to inventory transaction query$")
 	public void i_navigate_to_inventory_transaction_query() throws Throwable {
-		jdaHomePage.clickDataMenu();
+		/*jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventoryTransaction();
+		jdaHomePage.clickInventoryTransaction();*/
+		jdaHomePage.navigateToInventoryTransaction();
 	}
 }
