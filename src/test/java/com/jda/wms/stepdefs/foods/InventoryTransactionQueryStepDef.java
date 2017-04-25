@@ -57,7 +57,8 @@ public class InventoryTransactionQueryStepDef {
 
 		String updateQty = inventoryTransactionQueryPage.getUpdateQty();
 		if (context.getAdjustmentType().equalsIgnoreCase("Decrement")) {
-
+			System.out.println("-" + context.getCaseRatio());
+			System.out.println(updateQty.equals("-" + context.getCaseRatio()));
 			if (updateQty.equals("-" + context.getCaseRatio())) {
 				failureList.add("Update Quantity is not displayed as expected. Expected [" + "-"
 						+ context.getCaseRatio() + "] but was [" + updateQty + "]");

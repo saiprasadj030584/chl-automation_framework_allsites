@@ -216,6 +216,7 @@
 2017-04-21 05:11:03 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
 2017-04-21 05:11:34 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
 2017-04-21 05:11:37 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408
+<<<<<<< HEAD
 2017-04-24 13:07:42 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
 2017-04-24 13:19:50 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
 2017-04-24 13:19:52 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
@@ -224,3 +225,96 @@
 2017-04-24 13:45:26 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
 2017-04-24 13:45:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
 2017-04-24 13:55:10 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+=======
+2017-04-24 05:27:48 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:27:49 DEBUG InventoryQueryStepDef:36 - SKU ID: package com.jda.wms.putty;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+public class putty_Telnet {
+
+	public static void main(String[] args) throws IOException, AWTException {
+		Robot robot = new Robot();
+		
+		System.out.println("Ping telnet");
+		        Socket pingSocket = null;
+		        PrintWriter out = null;
+		        BufferedReader in = null;
+
+		        try {
+		            pingSocket = new Socket("hlxc0dc024.unix.marksandspencercate.com", 20140);
+		            out = new PrintWriter(pingSocket.getOutputStream(), true);
+		            in = new BufferedReader(new InputStreamReader(pingSocket.getInputStream()));
+		        } catch (IOException e) {
+		            return;
+		        }
+
+		        System.out.println(in.readLine());
+		        //System.out.println(in.readLine());
+//		        out.println("");
+		        while (in.readLine() != null){
+		        	String readLineValue = in.readLine();
+		        	System.out.println(readLineValue);
+		        	if (readLineValue.contains("Username")){
+		        		out.println("P9120368  12345 ");
+//		        		out.flush();
+//		        		out.println(" ");
+//		        		robot.keyPress(KeyEvent.VK_ENTER);
+		        	}
+//		        	else if (readLineValue.contains("Password")){
+//		        		out.println("12345");
+//		        	}
+//		        	else if (readLineValue.contains("3 Picking")){
+//		        		out.println("3");
+//		        	}
+//		        	else if (readLineValue.contains("3 Demand Allocate")){
+//		        		out.println("3");
+//		        	}
+//		        	else if (readLineValue.contains("3 Logout")){
+//		        		out.println("3");
+//		        	}
+//		        	else {
+//		        		out.println(" ");
+//		        	}
+		        }
+		        out.close();
+		        in.close();
+		        pingSocket.close();
+		    }
+	}
+
+
+
+2017-04-24 05:29:22 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:29:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:29:25 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:29:26 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 408
+2017-04-24 05:29:28 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:29:53 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:29:56 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 396
+2017-04-24 05:31:14 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:31:16 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:31:17 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:31:18 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 396
+2017-04-24 05:31:20 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:31:45 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:31:48 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 384
+2017-04-24 05:32:33 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 396
+2017-04-24 05:32:35 DEBUG InventoryTransactionQueryStepDef:73 - Update Quantity: -12
+2017-04-24 05:36:40 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:36:41 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:36:42 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:36:44 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 384
+2017-04-24 05:36:45 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:37:10 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:37:13 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 372
+2017-04-24 05:37:59 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 384
+2017-04-24 05:38:00 DEBUG InventoryTransactionQueryStepDef:74 - Update Quantity: -12
+>>>>>>> 1b52d8fafaf70d00f61f1b2a498888075000ad4e

@@ -94,7 +94,7 @@ public class InventoryTransactionQueryPage {
 		screen.click(mStatus.below(10));
 		Thread.sleep(2000);
 		Match mStatuscode = screen.find("images/InventoryTransactionQuery/CodeInResult.png");
-		screen.doubleClick(mStatuscode.below());
+		screen.doubleClick(mStatuscode.below(1));
 		/*screen.mouseMove(0, 20);
 		System.out.println("Location "+screen.getTarget());
 		screen.moveTo(screen.getTarget());
