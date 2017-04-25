@@ -67,8 +67,8 @@ public class StockAdjustmentsPage {
 			screen.click("images/StockAdjustment/Finish/HS.png");
 			break;
 		case "Receiving Correction":
-			screen.wait("images/StockAdjustment/Finish/ES.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/ES.png");
+			screen.wait("images/StockAdjustment/Finish/IE.png", timeoutInSec);
+			screen.click("images/StockAdjustment/Finish/IE.png");
 			break;
 		case "Infestation":
 			screen.wait("images/StockAdjustment/Finish/IF.png", timeoutInSec);
@@ -83,12 +83,12 @@ public class StockAdjustmentsPage {
 			screen.click("images/StockAdjustment/Finish/RT.png");
 			break;
 		case "Stock Count":
-			screen.wait("images/StockAdjustment/Finish/ES.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/ES.png");
-			break;
-		case "Returns to Supplier":
 			screen.wait("images/StockAdjustment/Finish/SC.png", timeoutInSec);
 			screen.click("images/StockAdjustment/Finish/SC.png");
+			break;
+		case "Returns to Supplier":
+			screen.wait("images/StockAdjustment/Finish/ST.png", timeoutInSec);
+			screen.click("images/StockAdjustment/Finish/ST.png");
 			break;
 		}
 		
