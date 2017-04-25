@@ -28,7 +28,7 @@ public class InventoryUpdatePage {
 		Thread.sleep(4000);
 	}
 
-	public Boolean isRecordExists() throws FindFailed, InterruptedException {
+	public boolean isRecordExists() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/1record.png") != null) {
 			return true;
 		} else
@@ -51,29 +51,30 @@ public class InventoryUpdatePage {
 		Thread.sleep(3000);
 	}
 
-//	public void selectReasonCode(String reasonCode) throws FindFailed, InterruptedException {
-//		Match ireasonCode = screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
-//		screen.click(ireasonCode.getCenter().offset(70, 0));
-//		screen.type(reasonCode);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(3000);
-//	}
+	// public void selectReasonCode(String reasonCode) throws FindFailed,
+	// InterruptedException {
+	// Match ireasonCode =
+	// screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
+	// screen.click(ireasonCode.getCenter().offset(70, 0));
+	// screen.type(reasonCode);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	// }
 
-	public Boolean verifyHomePage() throws FindFailed, InterruptedException {
+	public boolean isHomePage() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/selectType.png") != null) {
 			return true;
 		} else
 			return false;
 	}
 
-	public void enterABV(String newAbv) throws FindFailed, InterruptedException {
+	public void enterABV(String abv) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
 		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
 		Thread.sleep(5000);
 		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
 		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
-		screen.type(newAbv);
-
+		screen.type(abv);
 	}
 
 	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {

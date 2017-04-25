@@ -108,21 +108,12 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public void giveTagID(String tagId, String selectType) throws FindFailed, InterruptedException {
-		jdaFooter.clickQueryButton();
-		enterTagId(tagId);
-		enterCode(selectType);
-		enterTransactionDate();
-		jdaFooter.clickExecuteButton();
-	}
-
 	public String getSkuId() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/Sku.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
 	public String getReference() throws FindFailed {
@@ -139,7 +130,6 @@ public class InventoryTransactionQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
 	public String getExpiryDate() throws FindFailed {
@@ -159,14 +149,14 @@ public class InventoryTransactionQueryPage {
 		jdaFooter.clickExecuteButton();
 	}
 
-	private void enterCode(String code) throws FindFailed, InterruptedException {
+	public void enterCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/Code.png");
 		screen.type(code);
 		Thread.sleep(2000);
 	}
 
-	private void enterTransactionDate() throws FindFailed, InterruptedException {
+	public void enterTransactionDate() throws FindFailed, InterruptedException {
 		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
 		screen.type("0");

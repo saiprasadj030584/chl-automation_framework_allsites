@@ -6,8 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
-	private final JdaHomePage jdaHomePage; 
-	
+	private final JdaHomePage jdaHomePage;
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -50,15 +49,15 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to inventory query$")
 	public void i_navigate_to_inventory_query() throws Throwable {
 		jdaHomePage.clickInventorytab();
-		
 	}
 
-//	@When("^I navigate to inventory update page$")
-//	public void i_navigate_to_inventory_update_page() throws Throwable {
-//		jdaHomePage.clickOperationsMenu();
-//		jdaHomePage.hoverOperationsInventory();
-//		jdaHomePage.clickInventoryUpdate();
-//	}
+	// TODO remove this method after dry run
+	// @When("^I navigate to inventory update page$")
+	// public void i_navigate_to_inventory_update_page() throws Throwable {
+	// jdaHomePage.clickOperationsMenu();
+	// jdaHomePage.hoverOperationsInventory();
+	// jdaHomePage.clickInventoryUpdate();
+	// }
 
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
@@ -67,28 +66,35 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverPackConfig();
 		jdaHomePage.clickPackConfig();
 	}
-	
 
-	@When("^I navigate to inventory transaction query$")
-	public void i_navigate_to_inventory_transaction_query() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventoryTransaction();}
+	// TODO remove this method after dry run
+	// @When("^I navigate to inventory transaction query$")
+	// public void i_navigate_to_inventory_transaction_query() throws Throwable
+	// {
+	// jdaHomePage.clickDataMenu();
+	// jdaHomePage.hoverDataInventory();
+	// jdaHomePage.clickInventoryTransaction();}
 
 	@When("^I navigate to SKU page$")
 	public void i_navigate_to_SKU_page() throws Throwable {
 		jdaHomePage.navigateToSKUMaintanence();
-	} 
-	
+	}
+
 	@When("^I navigate to inventory query page$")
 	public void i_navigate_to_inventory_query_page() throws Throwable {
 		jdaHomePage.navigateToInventoryQueryPage();
 
 	}
+
 	@When("^I navigate to inventory update page$")
 	public void i_navigate_to_inventory_update_page() throws Throwable {
 		jdaHomePage.navigateToInventoryUpdate();
-		
+
 	}
-	
+
+	@When("^I navigate to inventory transaction query$")
+	public void i_navigate_to_inventory_transaction_query() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+	}
+
 }
