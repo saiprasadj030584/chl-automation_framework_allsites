@@ -24,7 +24,6 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
@@ -48,7 +47,6 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 

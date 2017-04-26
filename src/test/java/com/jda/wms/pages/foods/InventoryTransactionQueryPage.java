@@ -43,8 +43,8 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
-		Match ilockCode = screen.find("images/InventoryTransactionQuery/lockCode.png");
-		screen.click(ilockCode.getCenter().offset(70, 0));
+		Match mLockCode = screen.find("images/InventoryTransactionQuery/lockCode.png");
+		screen.click(mLockCode.getCenter().offset(70, 0));
 
 		switch (lockCode) {
 		case "Code Approval":
@@ -133,7 +133,6 @@ public class InventoryTransactionQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
