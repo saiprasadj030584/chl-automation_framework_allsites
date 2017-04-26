@@ -27,16 +27,16 @@ public class InventoryQueryStepDefs {
 		this.context = context;
 		this.jdaFooter = jdaFooter;
 	}
-
+	
 	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
 	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
-		// context.setTagId(tagId);
-		// context.setStatus(status);
+//		 context.setTagId(tagId);
+//		 context.setStatus(status);
 
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
-
+		
 		String inventorySKUId = inventoryQueryPage.getInventorySKUId();
 		context.setSkuId(inventorySKUId);
 		logger.debug("SKU ID: " + inventorySKUId);

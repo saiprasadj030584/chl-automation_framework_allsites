@@ -150,7 +150,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	public void clickWelcomeButton() throws FindFailed {

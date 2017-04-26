@@ -52,10 +52,17 @@ public class InventoryQueryPage {
 	}
 
 	public void refreshInventoryQueryPage() throws FindFailed, InterruptedException {
-		clickStatus();
+		//clickStatus();
+		clickABV();
 		screen.rightClick();
 		selectRefreshOptions();
 		selectRefreshCurrentRecord();
+	}
+
+	private void clickABV() throws FindFailed {
+		screen.wait("images/InventoryQuery/UserDefined/ABV.png", timeoutInSec);
+		screen.click("images/InventoryQuery/UserDefined/ABV.png");
+		
 	}
 
 	public String getSkuId() throws FindFailed, InterruptedException {

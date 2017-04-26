@@ -27,6 +27,7 @@ public class InventoryTransactionQueryPage {
 
 	public void enterTagId(String tagId) throws InterruptedException {
 		screen.type(Key.TAB);
+		screen.type(Key.TAB);
 		screen.type(tagId);
 		Thread.sleep(2000);
 	}

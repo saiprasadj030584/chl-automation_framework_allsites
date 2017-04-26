@@ -1,6 +1,10 @@
 package com.jda.wms.stepdefs.foods;
 
 import org.junit.Assert;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
+import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryQueryPage;
@@ -11,6 +15,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class InventoryUpdateStepDefs {
+	
 
 	private final InventoryUpdatePage inventoryUpdatePage;
 	private final JDAFooter jDAFooter;
@@ -27,12 +32,13 @@ public class InventoryUpdateStepDefs {
 	@When("^I choose the type of inventory property as \"([^\"]*)\"$")
 	public void i_choose_the_type_of_inventory_property_as(String selectType) throws Throwable {
 		inventoryUpdatePage.selectType(selectType);
-		jDAFooter.clickNextButton();
+		//jDAFooter.clickNextButton();
 	}
 
 	@When("^I search the tag ID \"([^\"]*)\"$")
 	public void i_search_the_tag_ID(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
+		jDAFooter.clickNextButton();
 	}
 
 	@Then("^the record should be displayed in the search result$")
@@ -70,9 +76,16 @@ public class InventoryUpdateStepDefs {
 		inventoryUpdatePage.enterABV(abv);
 	}
 
+//	@When("^I select the reason code as \"([^\"]*)\"$")
+//	public void i_select_the_reason_code_as(String reasonCode) throws Throwable {
+//		inventoryUpdatePage.selectReasonCode(reasonCode);
+//	}
 	@When("^I select the reason code as \"([^\"]*)\"$")
 	public void i_select_the_reason_code_as(String reasonCode) throws Throwable {
-		inventoryUpdatePage.selectReasonCode(reasonCode);
+		inventoryUpdatePage.enterReasonCode( reasonCode);
+
+		
 	}
+	
 
 }

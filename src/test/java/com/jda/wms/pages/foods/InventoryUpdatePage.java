@@ -21,7 +21,7 @@ public class InventoryUpdatePage {
 	}
 
 	public void selectType(String selectType) throws FindFailed, InterruptedException {
-		Match iselectType = screen.find("/images/InventoryUpdate/selectType.png");
+		Match iselectType = screen.find("images/InventoryUpdate/selectType.png");
 		screen.click(iselectType.getCenter().offset(70, 0));
 		screen.type(selectType);
 		screen.type(Key.F7);
@@ -29,7 +29,7 @@ public class InventoryUpdatePage {
 	}
 
 	public boolean isRecordExists() throws FindFailed, InterruptedException {
-		if (screen.exists("/images/InventoryUpdate/1record.png") != null) {
+		if (screen.exists("images/InventoryUpdate/1record.png") != null) {
 			return true;
 		} else
 			return false;
@@ -96,7 +96,14 @@ public class InventoryUpdatePage {
 
 	public void selectReasonCode(String reasonCode) throws FindFailed {
 		screen.type(Key.TAB);
-		screen.type(Key.TAB);
+		//screen.type(Key.TAB);
 		screen.type(reasonCode);
+	}
+
+	public void enterReasonCode(String reasonCode) throws FindFailed {
+		Match status = screen.find("images/InventoryUpdate/Finish/ReasonCode.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type(reasonCode);
+		
 	}
 }
