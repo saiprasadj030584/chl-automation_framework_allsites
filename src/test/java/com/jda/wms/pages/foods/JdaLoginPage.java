@@ -31,6 +31,7 @@ public class JdaLoginPage extends PageObject {
 		enterUsername();
 		enterPassword();
 		clickConnectButton();
+		Thread.sleep(5000);
 	}
 
 	private void enterUsername() throws FindFailed {
@@ -46,10 +47,6 @@ public class JdaLoginPage extends PageObject {
 	}
 
 	private void clickConnectButton() throws FindFailed, InterruptedException {
-		/*
-		 * screen.wait("images/JDALogin/Connect.png", 20);
-		 * screen.click("images/JDALogin/Connect.png", 25);
-		 */
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
 	}
