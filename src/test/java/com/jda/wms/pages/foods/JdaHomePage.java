@@ -3,9 +3,9 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
-import org.sikuli.script.Match;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
@@ -47,8 +47,8 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void clickDataMenu() throws FindFailed {
-		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
-		screen.click("images/JDAHome/DataMenu.png");
+		screen.wait("images/Menu/menuData.png", timeoutInSec);
+		screen.click("images/Menu/menuData.png");
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -70,6 +70,36 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/JDAHome/SupplierSKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SupplierSKU.png");
 		Thread.sleep(3000);
+	}
+
+	public void hoverDataInventory() throws FindFailed {
+		screen.wait("images/Menu/Data/dataInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataInventory.png");
+		screen.mouseMove(80, 0);
+	}
+
+	public void clickInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/Inventory/Inventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/Inventory/Inventory.png");
+		Thread.sleep(4000);
+	}
+
+	public void clickInventoryUpdate() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/OperationInventoryUpdate.png", timeoutInSec);
+		screen.click("images/Menu/Operations/OperationInventoryUpdate.png");
+		Thread.sleep(4000);
+	}
+
+	public void clickOperationsMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/MenuOperations.png", timeoutInSec);
+		screen.click("images/Menu/MenuOperations.png");
+		Thread.sleep(4000);
+	}
+
+	public void hoverOperationsInventory() throws FindFailed {
+		screen.wait("images/Menu/Operations/OperationInventory.png", timeoutInSec);
+		screen.click("images/Menu/Operations/OperationInventory.png");
+		screen.mouseMove(80, 0);
 	}
 
 	public void hoverGeneral() throws FindFailed {
@@ -98,6 +128,18 @@ public class JdaHomePage extends PageObject {
 	public void clickPackConfig() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/PackConfigScreen.png", timeoutInSec);
 		screen.click("images/JDAHome/PackConfigScreen.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickInventorytab() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/Inventory.png", timeoutInSec);
+		screen.click("images/JDAFooter/Inventory.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickInventoryTransaction() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(3000);
 	}
 
@@ -140,5 +182,9 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
+	}
+
+	public void enterTabKey() {
+		screen.type(Key.TAB);
 	}
 }
