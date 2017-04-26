@@ -42,12 +42,12 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickInventorytab();
 	}
 
-	@When("^I navigate to inventory update page$")
-	public void i_navigate_to_inventory_update_page() throws Throwable {
-		jdaHomePage.clickOperationsMenu();
-		jdaHomePage.hoverOperationsInventory();
-		jdaHomePage.clickInventoryUpdate();
-	}
+	// @When("^I navigate to inventory update page$")
+	// public void i_navigate_to_inventory_update_page() throws Throwable {
+	// jdaHomePage.clickOperationsMenu();
+	// jdaHomePage.hoverOperationsInventory();
+	// jdaHomePage.clickInventoryUpdate();
+	// }
 
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
@@ -66,18 +66,19 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickPackConfig();
 	}
 
-//	@When("^I navigate to inventory transaction query$")
-//	public void i_navigate_to_inventory_transaction_query() throws Throwable {
-//		jdaHomePage.clickDataMenu();
-//		jdaHomePage.hoverDataInventory();
-//		jdaHomePage.clickInventoryTransaction();
-//	}
+	// @When("^I navigate to inventory transaction query$")
+	// public void i_navigate_to_inventory_transaction_query() throws Throwable
+	// {
+	// jdaHomePage.clickDataMenu();
+	// jdaHomePage.hoverDataInventory();
+	// jdaHomePage.clickInventoryTransaction();
+	// }
 
 	@When("^I navigate to inventory transaction query$")
 	public void i_navigate_to_inventory_transaction_query() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
 	}
-	
+
 	@When("^I navigate to SKU page$")
 	public void i_navigate_to_SKU_page() throws Throwable {
 		jdaHomePage.navigateToSKUMaintanence();
