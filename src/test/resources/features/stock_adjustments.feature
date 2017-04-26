@@ -4,7 +4,7 @@ Feature: Stock adjustments
   I want to do stock adjustments 
   So that I can
 
-  @complete_sa
+  @complete
   Scenario Outline: Receiving process in JDA WMS
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on inventory query page
