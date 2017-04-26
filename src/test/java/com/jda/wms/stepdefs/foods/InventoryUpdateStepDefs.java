@@ -114,11 +114,6 @@ public class InventoryUpdateStepDefs {
 				failureList.isEmpty());
 	}
 
-	@When("^I navigate to inventory update page$")
-	public void i_navigate_to_inventory_update_page() throws Throwable {
-		jdaHomePage.navigateToInventoryUpdate();
-	}
-
 	@When("^I navigate to search tab$")
 	public void i_navigate_to_search_tab() throws Throwable {
 		jdaFooter.clickNextButton();

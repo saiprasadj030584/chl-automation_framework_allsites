@@ -42,12 +42,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickInventorytab();
 	}
 
-	// @When("^I navigate to inventory update page$")
-	// public void i_navigate_to_inventory_update_page() throws Throwable {
-	// jdaHomePage.clickOperationsMenu();
-	// jdaHomePage.hoverOperationsInventory();
-	// jdaHomePage.clickInventoryUpdate();
-	// }
 
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
@@ -87,5 +81,10 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to inventory query page$")
 	public void i_navigate_to_inventory_query_page() throws Throwable {
 		jdaHomePage.navigateToInventoryQueryPage();
+	}
+	
+	@When("^I navigate to inventory update page$")
+	public void i_navigate_to_inventory_update_page() throws Throwable {
+		jdaHomePage.navigateToInventoryUpdate();
 	}
 }

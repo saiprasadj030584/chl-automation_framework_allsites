@@ -6,7 +6,7 @@ Feature: Inventory Lock
 
   @wip
   Scenario Outline: Lock the inventory from unlocked status
-    Given I have logged in as warehouse user in JDA dispatcher food application
+    #Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on inventory query page
     And I have tag id "<tagID>" with "Unlocked" status
     When I navigate to inventory update page
@@ -29,7 +29,7 @@ Feature: Inventory Lock
 
     Examples: 
       | tagID      | lockCode      |
-      | 7080001015 | Code Approval |
+      | 7080001016 | Code Approval |
       #| 7080001001 | Components Stock                      |
       #| 7080001002 | 1Damaged                              |
       #| 7080001003 | EVENTS                                |
@@ -44,4 +44,4 @@ Feature: Inventory Lock
       #| 7080001012 | Return to Supplier                    |
       #| 7080001013 | Warehouse Damage                      |
       #| 7080001014 | Hampers Stock                         |
-      #| 7080001016 | Incubation lock code                  |
+      #| 7080001015 | Incubation lock code                  |
