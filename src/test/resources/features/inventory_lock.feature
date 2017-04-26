@@ -6,7 +6,7 @@ Feature: Inventory Lock
 
   @complete
   Scenario Outline: Lock the inventory from unlocked status
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on inventory query page
     And I have tag id "<tagID>" with "Unlocked" status
     When I navigate to inventory update page

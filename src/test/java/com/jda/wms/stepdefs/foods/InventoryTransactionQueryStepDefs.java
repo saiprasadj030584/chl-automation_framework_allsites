@@ -13,14 +13,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class InventoryTransactionQueryStepDef {
+public class InventoryTransactionQueryStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private final InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private final JDAFooter jdaFooter;
 
 	@Inject
-	public InventoryTransactionQueryStepDef(InventoryTransactionQueryPage inventoryTransactionQueryPage,
+	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			Context context, JDAFooter jdaFooter) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
