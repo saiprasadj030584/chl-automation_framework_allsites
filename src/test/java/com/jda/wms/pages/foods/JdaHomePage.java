@@ -3,9 +3,9 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
-import org.sikuli.script.Match;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 

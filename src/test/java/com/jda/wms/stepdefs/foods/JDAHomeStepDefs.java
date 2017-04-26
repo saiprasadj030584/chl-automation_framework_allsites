@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -42,7 +43,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickInventorytab();
 	}
 
-
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
@@ -60,14 +60,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickPackConfig();
 	}
 
-	// @When("^I navigate to inventory transaction query$")
-	// public void i_navigate_to_inventory_transaction_query() throws Throwable
-	// {
-	// jdaHomePage.clickDataMenu();
-	// jdaHomePage.hoverDataInventory();
-	// jdaHomePage.clickInventoryTransaction();
-	// }
-
 	@When("^I navigate to inventory transaction query$")
 	public void i_navigate_to_inventory_transaction_query() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
@@ -82,7 +74,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_inventory_query_page() throws Throwable {
 		jdaHomePage.navigateToInventoryQueryPage();
 	}
-	
+
 	@When("^I navigate to inventory update page$")
 	public void i_navigate_to_inventory_update_page() throws Throwable {
 		jdaHomePage.navigateToInventoryUpdate();
