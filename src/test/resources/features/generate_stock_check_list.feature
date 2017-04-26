@@ -4,33 +4,34 @@ Feature: Generate stock check list
   I want to generate stock check list 
   So that I can use the list to perform stock check
 
-  @sara
+  @complete
   Scenario: Validate generation of stock check list by location
-    #Data :  I verify if any inventory exists for the location "AB01C02" and site ID "9771"
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Data :  I verify if any inventory exists for the location "AB59A01" and site ID "9771"
+
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by location'
-    And I select the site ID as "9771" and from location as "AB01C02" on location tab
-    And I proceed to next
+    And I select the site ID as "9771" and from location as "AB59A01" on location tab
+    And I proceed to next tab
     Then the available list should be displayed
     When I select the record from the available list
     Then the record should be added in the selected list
-    When I proceed to next
+    When I proceed to next tab
     Then I should see the confirmation for number of location checked
     When I proceed to generate the stock check list
     Then I should see the created list
-    ## verify the generated stock check list by location
     When I navigate to stock check query page
-    And I search the list by site id as "9771", location as "AB01C02" and task date as current date
-    Then I should see the created list
-    
-    @sara_wip
-     Scenario: Validate generation of stock check list by inventory
-    #Data :  I verify if any inventory exists for the SKU "20001344" and site ID "9771"
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    And I search the list by site id as "9771", location as "AB59A01" and task date as current date
+    Then I should see the record with list ID
+
+  @complete
+  Scenario: Validate generation of stock check list by inventory
+    Data :  I verify if any inventory exists for the SKU "*********" and site ID "9771"
+
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by inventory'
-    And I enter the Tag ID as "1000000012" on inventory tab
+    And I enter the Tag ID as "1000000014" on inventory tab
     And I proceed to next
     Then the available list should be displayed
     When I select the record from the available list
@@ -39,7 +40,6 @@ Feature: Generate stock check list
     Then I should see the confirmation for number of items checked
     When I proceed to generate the stock check list
     Then I should see the created list
-    ## verify the generated stock check list by Inventory
     When I navigate to stock check query page
-    And I search the list by tag id as "1000000012"
-    Then I should see the created list
+    And I search the list by tag id as "1000000014" and task date as current date
+    Then I should see the record with list ID

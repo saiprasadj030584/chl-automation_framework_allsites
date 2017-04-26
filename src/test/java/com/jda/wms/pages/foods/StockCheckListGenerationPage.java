@@ -18,62 +18,37 @@ public class StockCheckListGenerationPage {
 	public StockCheckListGenerationPage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}
-	//Navigation to Stock Check List Generation page
-	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
-		clickOperations();
-		hoverInventory();
-		hoverStockCheck();
-		clickStockCheckListGeneration();
-	}
 
-	public void clickOperations() throws FindFailed {
-		screen.wait("images/JDAHome/Operations.png", timeoutInSec);
-		screen.click("images/JDAHome/Operations.png");
-	}
-
-	public void hoverInventory() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/Inventory.png", timeoutInSec);
-		screen.click("images/JDAHome/Inventory.png");
-	}
-
-	public void hoverStockCheck() throws FindFailed, InterruptedException {
-		screen.mouseMove(150, 0);
-		screen.wait("images/JDAHome/StockCheck.png", timeoutInSec);
-		screen.click("images/JDAHome/StockCheck.png");
-	}
-
-	public void clickStockCheckListGeneration() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/StockCheckListGeneration.png", timeoutInSec);
-		screen.click("images/JDAHome/StockCheckListGeneration.png");
-		Thread.sleep(1000);
-	}
+	// TODO move this method into JDAHomePage.java
+	
 
 	public void selectGenerateByLocation() throws FindFailed, InterruptedException {
-		Thread.sleep(3000);
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png");
 		jDAFooter.clickExecuteButton();
 	}
 
 	public void selectGenerateByInventory() throws FindFailed, InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByInventory.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByInventory.png");
 		jDAFooter.clickExecuteButton();
 	}
 
-	public void setSiteIDandLocation(String siteId, String fromLocation) throws FindFailed, InterruptedException {
+	public void selectSiteId(String siteId) throws FindFailed, InterruptedException {
 		screen.wait("/images/StockCheckListGeneration/SiteId.png", timeoutInSec);
 		screen.click("/images/StockCheckListGeneration/SiteId.png");
 		screen.type(siteId);
 		screen.type(Key.ENTER);
+	}
+
+	public void enterLocation(String fromLocation) throws FindFailed, InterruptedException {
 		screen.wait("/images/StockCheckListGeneration/FromLocation.png", timeoutInSec);
 		screen.click("/images/StockCheckListGeneration/FromLocation.png");
 		screen.type(fromLocation);
 	}
 
 	public boolean isListAvailable() {
-
 		if (screen.exists("/images/StockCheckListGeneration/Add.png") != null)
 			return true;
 		else
@@ -93,16 +68,15 @@ public class StockCheckListGenerationPage {
 		else
 			return false;
 	}
-	
-	public void clickDoneButton() {
-		screen.type(Key.F12);
-	}
-	
-	public boolean isListIdPopupDisplayed(){
-		if (screen.exists("/images/StockCheckListGeneration/CreatedListPopup.png") != null)
+
+	public boolean isListIdPopupDisplayed() throws InterruptedException {
+		if (screen.exists("/images/StockCheckListGeneration/CreatedListPopup.png") != null) {
+			screen.type(Key.ENTER);
+			Thread.sleep(1000);
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 	public String getSelectedListConfirmationText() throws FindFailed, InterruptedException {
@@ -111,14 +85,12 @@ public class StockCheckListGenerationPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		Thread.sleep(1000);
-		//mConfirmationText.drag("/images/StockCheckListGeneration/SelectedListConfirmationText.png");
 		return App.getClipboard();
 	}
 
 	public void clickAddButton() throws FindFailed {
 		screen.wait("/images/StockCheckListGeneration/Add.png", timeoutInSec);
 		screen.click("/images/StockCheckListGeneration/Add.png");
-
 	}
 
 	public void navigateToSelectedTab() throws FindFailed {
@@ -131,8 +103,4 @@ public class StockCheckListGenerationPage {
 		screen.click("/images/StockCheckListGeneration/EnterTagId.png");
 		screen.type(tagId);
 	}
-	
-	
-
-
 }
