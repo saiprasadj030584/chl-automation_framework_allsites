@@ -42,19 +42,26 @@ public class JDAHomeStepDefs {
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverSKU();
 		jdaHomePage.hoverPackConfig();
 		jdaHomePage.clickPackConfig();
 	}
 
 	@Given("^I am on to pre-advice header maintenance page$")
 	public void i_am_on_to_pre_advice_header_maintenance_page() throws Throwable {
-		
-//	jdaHomePage.clickDataMenu();
-//	jdaHomePage.hoverPreAdvice();
-//	jdaHomePage.clickPreAdviceHeader();
-//	Thread.sleep(5000);
+		// jdaHomePage.clickDataMenu();
+		// jdaHomePage.hoverPreAdvice();
+		// jdaHomePage.clickPreAdviceHeader();
+		// Thread.sleep(5000);
+	}
+
+	@When("^I navigate to SKU page$")
+	public void i_navigate_to_SKU_page() throws Throwable {
+		jdaHomePage.navigateToSKUMaintanence();
+	}
+
+	@When("^I navigate to inventory query page$")
+	public void i_navigate_to_inventory_query_page() throws Throwable {
+		jdaHomePage.navigateToInventoryQueryPage();
+	}
+
 }
-	
-}
-   

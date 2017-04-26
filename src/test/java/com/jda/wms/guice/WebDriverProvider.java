@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -28,6 +29,11 @@ public class WebDriverProvider implements Provider<WebDriver> {
 			return new ChromeDriver();
 
 		case "ie":
+			DesiredCapabilities capabilities = null;
+			capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			capabilities.setCapability("ignoreZoomSetting", true);
+			capabilities.setCapability("screen-resolution", "1364*768");
 			System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 			return new InternetExplorerDriver();
 
