@@ -18,7 +18,7 @@ public class StockCheckListGenerationPage {
 	public StockCheckListGenerationPage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}
-
+	//Navigation to Stock Check List Generation page
 	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
 		clickOperations();
 		hoverInventory();
@@ -34,14 +34,12 @@ public class StockCheckListGenerationPage {
 	public void hoverInventory() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/Inventory.png", timeoutInSec);
 		screen.click("images/JDAHome/Inventory.png");
-		// Thread.sleep(1000);
 	}
 
 	public void hoverStockCheck() throws FindFailed, InterruptedException {
 		screen.mouseMove(150, 0);
 		screen.wait("images/JDAHome/StockCheck.png", timeoutInSec);
 		screen.click("images/JDAHome/StockCheck.png");
-		// Thread.sleep(1000);
 	}
 
 	public void clickStockCheckListGeneration() throws FindFailed, InterruptedException {
@@ -80,7 +78,6 @@ public class StockCheckListGenerationPage {
 			return true;
 		else
 			return false;
-
 	}
 
 	public boolean isSelectedListAvailable() throws FindFailed {
