@@ -8,6 +8,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -113,8 +114,8 @@ public class InventoryQueryStepDefs {
 
 	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
 	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
-		// context.setTagId(tagId);
-		// context.setStatus(status);
+		context.setTagId(tagId);
+		context.setStatus(status);
 
 		inventoryQueryPage.searchTagId(tagId);
 		logger.debug("Tag ID: " + tagId);
@@ -124,15 +125,15 @@ public class InventoryQueryStepDefs {
 		logger.debug("SKU ID: " + inventorySKUId);
 
 		String productStatus = inventoryQueryPage.getStatus();
-		Assert.assertEquals("Status is not displayed as expected", status, productStatus);
+		Assert.assertEquals("the given TAG id is not in " + status + " status", status, productStatus);
 		logger.debug("Inventory Query - Status: " + productStatus);
 
 		String qtyOnHandBfrAdjustment = inventoryQueryPage.getQtyOnHand();
-		// context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
+		context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
 		String caseRatio = inventoryQueryPage.getcaseRatio();
-		// context.setCaseRatio(caseRatio);
+		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
 		logger.debug("Case Ratio: " + caseRatio);
 	}
 }

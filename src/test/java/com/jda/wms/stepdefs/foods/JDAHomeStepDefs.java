@@ -2,7 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
-
+import cucumber.api.java.en.*;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -21,7 +21,9 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to SKU maintenance page$")
 	public void i_navigate_to_SKU_maintenance_page() throws Throwable {
-		jdaHomePage.navigateToSKUMaintanence();
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverSKU();
+		jdaHomePage.clickSKUSubmenu();
 	}
 
 	@Given("^I am on supplier SKU maintenance page$")
@@ -29,13 +31,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSupplierSKU();
-	}
-
-	@Given("^I am on inventory query page$")
-	public void i_am_on_inventor_query_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventory();
 	}
 
 	@When("^I navigate to inventory query$")
@@ -60,8 +55,33 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickPackConfig();
 	}
 
+	@Given("^I am on inventory query page$")
+	public void i_am_on_inventory_query_page() throws Throwable {
+		/*
+		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
+		 * jdaHomePage.clickInventory();
+		 */
+//		jdaHomePage.navigateToInventoryQueryPage();
+		i_navigate_to_inventory_query_page();
+
+	}
+
+	@When("^I navigate to stock adjustments page$")
+	public void i_navigate_to_stock_adjustments_page() throws Throwable {
+		/*
+		 * jdaHomePage.clickOperations();
+		 * jdaHomePage.hoverOperationsInventory();
+		 * jdaHomePage.clickStockAdjustment();
+		 */
+		jdaHomePage.navigateToStockAdjustment();
+	}
+
 	@When("^I navigate to inventory transaction query$")
 	public void i_navigate_to_inventory_transaction_query() throws Throwable {
+		/*
+		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
+		 * jdaHomePage.clickInventoryTransaction();
+		 */
 		jdaHomePage.navigateToInventoryTransactionPage();
 	}
 

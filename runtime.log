@@ -1,3 +1,937 @@
+<<<<<<< HEAD
+2017-04-09 19:39:27 DEBUG JdaLoginPage:32 - Brower is opened
+2017-04-17 09:36:42 DEBUG SupplierSKUMaintenancePage:68 - Supplier Description: 00904735-POTEL BOURGOGNE CHARDONN
+2017-04-17 09:36:43 DEBUG SupplierSKUMaintenancePage:82 - Supplier SKU value: 00904735
+<<<<<<< HEAD
+2017-04-18 06:47:03 DEBUG SKUMaintenancePage:49 - SKU Id is: 
+2017-04-18 06:47:08 DEBUG SKUMaintenancePage:67 - SKU Description is: 
+2017-04-18 07:06:18 DEBUG SKUMaintenancePage:52 - SKU Id is: Thread.sleep(3000);
+2017-04-18 07:06:23 DEBUG SKUMaintenancePage:70 - SKU Description is: Thread.sleep(3000);
+2017-04-18 07:08:40 DEBUG SKUMaintenancePage:52 - SKU Id is: #
+2017-04-18 07:12:40 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:12:45 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:12:51 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:16:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:16:43 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:16:48 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:19:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:20:56 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:21:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:21:07 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:23:57 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:24:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:24:08 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:25:48 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:25:53 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:26:57 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:27:02 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:27:07 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:27:13 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
+2017-04-18 07:27:18 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
+2017-04-18 07:27:23 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
+2017-04-18 07:30:38 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:30:43 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:30:48 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:30:53 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
+2017-04-18 07:30:59 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
+2017-04-18 07:31:04 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
+2017-04-18 07:38:03 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:38:09 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:38:14 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:38:19 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
+2017-04-18 07:38:24 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
+2017-04-18 07:38:30 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
+2017-04-18 07:50:27 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 07:50:32 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 07:50:37 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 07:50:43 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
+2017-04-18 07:50:48 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
+2017-04-18 07:50:54 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
+2017-04-18 07:51:10 DEBUG SKUMaintenancePage:182 - UPC is: Excise
+2017-04-18 07:51:15 DEBUG SKUMaintenancePage:200 - UPC is: S
+2017-04-18 07:51:20 DEBUG SKUMaintenancePage:232 - UPC is: 12.5
+2017-04-18 08:01:08 DEBUG SKUMaintenancePage:53 - SKU Id is: 20001249
+2017-04-18 08:01:13 DEBUG SKUMaintenancePage:71 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 08:01:18 DEBUG SKUMaintenancePage:127 - UPC is: F20
+2017-04-18 08:01:24 DEBUG SKUMaintenancePage:91 - EAN is: 00912532
+2017-04-18 08:01:29 DEBUG SKUMaintenancePage:109 - UPC is: 00912532
+2017-04-18 08:01:34 DEBUG SKUMaintenancePage:145 - UPC is: 1.0
+2017-04-18 08:01:50 DEBUG SKUMaintenancePage:182 - UPC is: Excise
+2017-04-18 08:01:56 DEBUG SKUMaintenancePage:200 - UPC is: S
+2017-04-18 08:02:01 DEBUG SKUMaintenancePage:232 - UPC is: 12.5
+2017-04-18 08:04:39 DEBUG SKUMaintenancePage:73 - SKU Description is: 00912532-LE FROGLET CHARDONNAY NEW
+2017-04-18 08:04:44 DEBUG SKUMaintenancePage:129 - UPC is: F20
+2017-04-18 08:04:50 DEBUG SKUMaintenancePage:93 - EAN is: 00912532
+2017-04-18 08:04:55 DEBUG SKUMaintenancePage:111 - UPC is: 00912532
+2017-04-18 08:05:00 DEBUG SKUMaintenancePage:147 - UPC is: 1.0
+2017-04-18 08:05:16 DEBUG SKUMaintenancePage:184 - UPC is: Excise
+2017-04-18 08:05:21 DEBUG SKUMaintenancePage:202 - UPC is: S
+2017-04-18 08:05:26 DEBUG SKUMaintenancePage:234 - UPC is: 12.5
+=======
+2017-04-18 07:40:25 DEBUG SupplierSkuMaintenanceStepDefs:44 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
+2017-04-18 07:40:26 DEBUG SupplierSkuMaintenanceStepDefs:50 - Supplier SKU: 00904735
+2017-04-18 07:47:16 DEBUG SupplierSkuMaintenanceStepDefs:45 - SKU Description: 00904735-POTEL BOURGOGNE CHARDONN
+2017-04-18 07:47:17 DEBUG SupplierSkuMaintenanceStepDefs:52 - Supplier SKU: 00904735
+>>>>>>> fa46c25c5c2141765ca5a7c64ca5f820deb467c5
+2017-04-20 08:23:56 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:25:13 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:27:29 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:27:32 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:27:33 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:27:35 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:27:36 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:29:02 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:29:03 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:29:05 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:29:06 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:29:08 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:31:16 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:31:18 DEBUG InventoryQueryStepDef:32 - SKU ID: Thread.sleep(2000);
+2017-04-20 08:31:50 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:31:52 DEBUG InventoryQueryStepDef:32 - SKU ID: Thread.sleep(2000);
+2017-04-20 08:42:47 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:42:49 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:42:50 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:42:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:42:53 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:44:39 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:44:41 DEBUG InventoryQueryStepDef:32 - SKU ID: 00810555-2 RASPBERRY & WHITE CHOC
+2017-04-20 08:44:43 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:44:44 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:44:45 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:51:51 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:51:52 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:51:54 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:51:55 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:51:57 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:53:25 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:53:27 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:53:28 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:53:30 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:53:31 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:54:12 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:54:14 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:54:15 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:54:17 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:54:18 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:54:49 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 08:56:46 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:56:48 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:56:49 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:56:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:56:52 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:58:47 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 08:58:49 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 08:58:50 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 08:58:51 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 08:58:53 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 08:59:25 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 09:01:57 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 09:01:58 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 09:02:00 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 09:02:01 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 09:02:02 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 09:03:20 DEBUG InventoryQueryStepDef:28 - Tag ID: 6327637212
+2017-04-20 09:03:22 DEBUG InventoryQueryStepDef:32 - SKU ID: 21042007
+2017-04-20 09:03:23 DEBUG InventoryQueryStepDef:36 - Inventory Query - Status: Locked
+2017-04-20 09:03:24 DEBUG InventoryQueryStepDef:40 - Quantity on Hand before Adjustment: 468
+2017-04-20 09:03:26 DEBUG InventoryQueryStepDef:44 - Case Ratio: 12
+2017-04-20 09:03:57 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 17:56:22 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 17:56:23 DEBUG InventoryQueryStepDef:36 - SKU ID: utilities.convertStringToInteger
+2017-04-20 17:56:52 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 17:56:53 DEBUG InventoryQueryStepDef:36 - SKU ID: 
+2017-04-20 17:59:38 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 17:59:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 17:59:41 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 17:59:42 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 468
+2017-04-20 17:59:44 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:00:15 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:02:21 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:02:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:02:25 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:02:26 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 468
+2017-04-20 18:02:27 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:02:59 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:03:02 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 456
+2017-04-20 18:34:21 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:34:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:34:24 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:34:25 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 468
+2017-04-20 18:34:27 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:34:57 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:35:00 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 456
+2017-04-20 18:36:56 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:36:58 DEBUG InventoryQueryStepDef:36 - SKU ID: ("a", Key.CTRL);
+2017-04-20 18:37:24 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:37:26 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:37:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:37:28 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 468
+2017-04-20 18:37:30 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:38:01 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:38:04 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 456
+2017-04-20 18:46:37 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:46:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:46:40 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:46:41 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 468
+2017-04-20 18:46:43 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:47:16 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:47:19 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 456
+2017-04-20 18:49:27 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:49:28 DEBUG InventoryQueryStepDef:36 - SKU ID: screen.type(Key.F7);
+		Thread.sleep(3000);
+2017-04-20 18:50:06 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:50:08 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:50:10 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:50:11 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 456
+2017-04-20 18:50:12 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:50:43 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:50:46 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 444
+2017-04-20 18:52:45 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-20 18:52:47 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-20 18:52:48 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-20 18:52:49 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 444
+2017-04-20 18:52:51 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-20 18:53:23 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-20 18:53:26 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 432
+2017-04-21 05:04:33 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:04:35 DEBUG InventoryQueryStepDef:36 - SKU ID: cb89441a6c08b1e1cde993ac4df09ffc18df1f61
+2017-04-21 05:06:21 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:06:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:06:25 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:06:26 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 432
+2017-04-21 05:06:27 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:06:59 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:07:02 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 420
+2017-04-21 05:08:35 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:08:37 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:08:39 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:08:40 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 420
+2017-04-21 05:08:41 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:09:13 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:09:16 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408
+2017-04-21 05:10:57 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-21 05:10:59 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-21 05:11:01 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-21 05:11:02 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 420
+2017-04-21 05:11:03 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-21 05:11:34 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-21 05:11:37 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 408
+<<<<<<< HEAD
+2017-04-24 13:07:42 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:19:50 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:19:52 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 13:19:53 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 13:45:25 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 13:45:26 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 13:45:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 13:55:10 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+=======
+2017-04-24 05:27:48 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:27:49 DEBUG InventoryQueryStepDef:36 - SKU ID: package com.jda.wms.putty;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+public class putty_Telnet {
+
+	public static void main(String[] args) throws IOException, AWTException {
+		Robot robot = new Robot();
+		
+		System.out.println("Ping telnet");
+		        Socket pingSocket = null;
+		        PrintWriter out = null;
+		        BufferedReader in = null;
+
+		        try {
+		            pingSocket = new Socket("hlxc0dc024.unix.marksandspencercate.com", 20140);
+		            out = new PrintWriter(pingSocket.getOutputStream(), true);
+		            in = new BufferedReader(new InputStreamReader(pingSocket.getInputStream()));
+		        } catch (IOException e) {
+		            return;
+		        }
+
+		        System.out.println(in.readLine());
+		        //System.out.println(in.readLine());
+//		        out.println("");
+		        while (in.readLine() != null){
+		        	String readLineValue = in.readLine();
+		        	System.out.println(readLineValue);
+		        	if (readLineValue.contains("Username")){
+		        		out.println("P9120368  12345 ");
+//		        		out.flush();
+//		        		out.println(" ");
+//		        		robot.keyPress(KeyEvent.VK_ENTER);
+		        	}
+//		        	else if (readLineValue.contains("Password")){
+//		        		out.println("12345");
+//		        	}
+//		        	else if (readLineValue.contains("3 Picking")){
+//		        		out.println("3");
+//		        	}
+//		        	else if (readLineValue.contains("3 Demand Allocate")){
+//		        		out.println("3");
+//		        	}
+//		        	else if (readLineValue.contains("3 Logout")){
+//		        		out.println("3");
+//		        	}
+//		        	else {
+//		        		out.println(" ");
+//		        	}
+		        }
+		        out.close();
+		        in.close();
+		        pingSocket.close();
+		    }
+	}
+
+
+
+2017-04-24 05:29:22 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:29:23 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:29:25 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:29:26 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 408
+2017-04-24 05:29:28 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:29:53 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:29:56 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 396
+2017-04-24 05:31:14 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:31:16 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:31:17 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:31:18 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 396
+2017-04-24 05:31:20 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:31:45 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:31:48 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 384
+2017-04-24 05:32:33 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 396
+2017-04-24 05:32:35 DEBUG InventoryTransactionQueryStepDef:73 - Update Quantity: -12
+2017-04-24 05:36:40 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-24 05:36:41 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-24 05:36:42 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-24 05:36:44 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 384
+2017-04-24 05:36:45 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-24 05:37:10 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-24 05:37:13 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 372
+2017-04-24 05:37:59 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 384
+2017-04-24 05:38:00 DEBUG InventoryTransactionQueryStepDef:74 - Update Quantity: -12
+>>>>>>> 1b52d8fafaf70d00f61f1b2a498888075000ad4e
+2017-04-25 06:21:26 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 06:29:36 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 06:29:38 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 06:29:39 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 06:29:41 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 06:29:42 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:13:11 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:13:13 DEBUG InventoryQueryStepDef:36 - SKU ID: http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html
+2017-04-25 07:14:58 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:14:59 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:15:01 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:15:02 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:15:04 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:32:26 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:32:28 DEBUG InventoryQueryStepDef:36 - SKU ID: 
+2017-04-25 07:33:52 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:33:54 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:33:55 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:33:57 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:33:58 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:36:14 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:36:16 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:36:17 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:36:18 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:36:20 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:38:52 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:38:54 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:38:55 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:38:57 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:38:58 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:40:41 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:40:42 DEBUG InventoryQueryStepDef:36 - SKU ID: 12
+2017-04-25 07:40:44 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:40:45 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:40:46 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:41:05 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:43:06 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:43:08 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:43:09 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:43:10 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:43:12 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:43:31 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:43:35 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: 12
+2017-04-25 07:44:40 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:44:42 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:45:37 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:45:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:45:40 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:45:42 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:45:43 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:46:02 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:46:06 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 07:46:07 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 348
+2017-04-25 07:47:39 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:47:41 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:47:42 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:47:43 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:47:45 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:48:04 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:48:08 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 07:48:08 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 348
+2017-04-25 07:49:41 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:49:42 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:49:44 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:49:45 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:49:46 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:50:05 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:50:10 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 07:50:10 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 348
+2017-04-25 07:51:55 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 07:51:57 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 07:51:58 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 07:51:59 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 360
+2017-04-25 07:52:01 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 07:52:19 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 07:52:24 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 07:52:24 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 348
+2017-04-25 07:52:43 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:12:38 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 08:12:40 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 08:12:41 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:12:43 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 348
+2017-04-25 08:12:44 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 08:13:04 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:13:09 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:13:09 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 336
+2017-04-25 08:13:27 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:20:09 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 348
+2017-04-25 08:21:47 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 08:21:49 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 08:21:50 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:21:51 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 336
+2017-04-25 08:21:53 DEBUG InventoryQueryStepDef:48 - Case Ratio: 12
+2017-04-25 08:22:12 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:22:16 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:22:16 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 324
+2017-04-25 08:22:34 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:23:14 DEBUG InventoryTransactionQueryStepDef:56 - Original Quantity: 336
+2017-04-25 08:23:16 DEBUG InventoryTransactionQueryStepDef:74 - Update Quantity: -12
+2017-04-25 08:33:27 DEBUG InventoryQueryStepDef:32 - Tag ID: 6327637212
+2017-04-25 08:33:28 DEBUG InventoryQueryStepDef:36 - SKU ID: 21042007
+2017-04-25 08:33:30 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:33:31 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 324
+2017-04-25 08:33:33 DEBUG InventoryQueryStepDef:48 - Case Ratio: 324
+2017-04-25 08:33:52 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:33:56 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:33:56 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 0
+2017-04-25 08:34:15 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:34:54 DEBUG InventoryTransactionQueryStepDef:55 - Original Quantity: 324
+2017-04-25 08:34:55 DEBUG InventoryTransactionQueryStepDef:74 - Update Quantity: -324
+2017-04-25 08:41:53 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004496
+2017-04-25 08:41:54 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 08:41:56 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:41:57 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 1700
+2017-04-25 08:41:59 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 08:42:17 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:42:22 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:42:22 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 1680
+2017-04-25 08:42:40 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:50:58 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004496
+2017-04-25 08:50:59 DEBUG InventoryQueryStepDef:36 - SKU ID: http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html
+2017-04-25 08:51:34 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004496
+2017-04-25 08:51:36 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 08:51:37 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:51:39 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 1680
+2017-04-25 08:51:40 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 08:52:59 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 08:53:45 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 08:53:47 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 08:53:48 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:53:49 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 4000
+2017-04-25 08:53:51 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 08:54:10 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:54:14 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:54:14 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 3980
+2017-04-25 08:54:34 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 08:55:03 DEBUG InventoryTransactionQueryStepDef:58 - Original Quantity: 4000
+2017-04-25 08:55:04 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: -20
+2017-04-25 08:58:42 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 08:58:43 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 08:58:45 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 08:58:46 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3980
+2017-04-25 08:58:48 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 08:59:07 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 08:59:12 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 08:59:12 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 3960
+2017-04-25 08:59:30 DEBUG StockAdjustmentsStepDef:97 - Stock Adjustment Home page displayed?: true
+2017-04-25 09:59:05 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 09:59:06 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 09:59:08 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 09:59:09 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3960
+2017-04-25 09:59:11 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:00:37 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:00:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:00:40 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:00:42 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3960
+2017-04-25 10:00:43 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:01:02 DEBUG StockAdjustmentsStepDef:43 - Record Exists?: true
+2017-04-25 10:01:06 DEBUG StockAdjustmentsStepDef:67 - Stock Adjustment - Status: Locked
+2017-04-25 10:01:06 DEBUG StockAdjustmentsStepDef:79 - Quantity to update for adjustment 3940
+2017-04-25 10:02:46 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:02:47 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:02:48 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:02:50 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3960
+2017-04-25 10:02:51 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:05:47 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:05:48 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:05:50 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:05:51 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3960
+2017-04-25 10:05:52 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:06:12 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:06:17 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:06:17 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3940
+2017-04-25 10:06:35 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:11:46 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:11:47 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:11:49 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:11:50 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3940
+2017-04-25 10:11:52 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:12:12 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:12:16 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:12:16 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3920
+2017-04-25 10:12:34 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:13:17 DEBUG InventoryTransactionQueryStepDef:62 - Original Quantity: 3940
+2017-04-25 10:13:18 DEBUG InventoryTransactionQueryStepDef:81 - Update Quantity: -20
+2017-04-25 10:16:15 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:16:16 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:16:18 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:16:19 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3920
+2017-04-25 10:16:21 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:16:40 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:16:45 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:16:45 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3900
+2017-04-25 10:17:03 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:17:46 DEBUG InventoryTransactionQueryStepDef:62 - Original Quantity: 3920
+2017-04-25 10:17:47 DEBUG InventoryTransactionQueryStepDef:81 - Update Quantity: -20
+2017-04-25 10:20:59 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:21:00 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:21:02 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:21:03 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3900
+2017-04-25 10:21:05 DEBUG InventoryQueryStepDef:48 - Case Ratio: 3900
+2017-04-25 10:21:25 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:21:29 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:21:29 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 0
+2017-04-25 10:24:28 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:24:29 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:24:31 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:24:32 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3900
+2017-04-25 10:24:33 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:27:31 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:27:33 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:27:34 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:27:36 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3900
+2017-04-25 10:27:37 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:28:01 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:28:07 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:28:07 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3880
+2017-04-25 10:28:28 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:41:27 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:41:28 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:41:30 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:41:31 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3880
+2017-04-25 10:41:32 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:41:56 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:42:03 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:42:03 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3860
+2017-04-25 10:42:23 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:43:07 DEBUG InventoryTransactionQueryStepDef:62 - Original Quantity: 3880
+2017-04-25 10:43:08 DEBUG InventoryTransactionQueryStepDef:81 - Update Quantity: -20
+2017-04-25 10:54:07 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:54:08 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:54:09 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:54:11 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3860
+2017-04-25 10:54:12 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:54:36 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:54:43 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:54:43 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3840
+2017-04-25 10:55:04 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:55:47 DEBUG InventoryTransactionQueryStepDef:63 - Original Quantity: 3860
+2017-04-25 10:55:48 DEBUG InventoryTransactionQueryStepDef:83 - Update Quantity: -20
+2017-04-25 10:55:53 DEBUG InventoryTransactionQueryStepDef:130 - Reason code: DW
+2017-04-25 10:55:59 DEBUG InventoryTransactionQueryStepDef:149 - Uploaded File Name: I0809itlext.0000001256.xml
+2017-04-25 10:57:59 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 10:58:01 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 10:58:02 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 10:58:04 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3840
+2017-04-25 10:58:05 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 10:58:30 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 10:58:36 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 10:58:36 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3820
+2017-04-25 10:58:56 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 10:59:39 DEBUG InventoryTransactionQueryStepDef:63 - Original Quantity: 3840
+2017-04-25 10:59:40 DEBUG InventoryTransactionQueryStepDef:83 - Update Quantity: -20
+2017-04-25 10:59:45 DEBUG InventoryTransactionQueryStepDef:130 - Reason code: EX
+2017-04-25 10:59:50 DEBUG InventoryTransactionQueryStepDef:149 - Uploaded File Name: I0809itlext.0000001257.xml
+2017-04-25 11:01:38 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 11:01:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 11:01:41 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 11:01:42 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3820
+2017-04-25 11:01:44 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 11:02:08 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 11:02:14 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 11:02:14 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3800
+2017-04-25 11:02:34 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 11:03:16 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3820
+2017-04-25 11:03:18 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: -20
+2017-04-25 11:04:32 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 11:04:34 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 11:04:35 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 11:04:36 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3800
+2017-04-25 11:04:38 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 11:05:01 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 11:05:08 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 11:05:08 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3780
+2017-04-25 11:05:28 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 11:06:10 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3800
+2017-04-25 11:06:12 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: -20
+2017-04-25 11:06:16 DEBUG InventoryTransactionQueryStepDef:124 - Reason code: HO
+2017-04-25 11:06:23 DEBUG InventoryTransactionQueryStepDef:143 - Uploaded File Name: I0809itlext.0000001259.xml
+2017-04-25 18:09:11 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:09:13 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:09:14 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:09:15 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3780
+2017-04-25 18:09:17 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:10:35 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:10:37 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:10:38 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:10:39 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3780
+2017-04-25 18:10:41 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:11:04 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:11:11 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:11:11 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3760
+2017-04-25 18:11:32 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:12:14 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3780
+2017-04-25 18:12:16 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: -20
+2017-04-25 18:12:20 DEBUG InventoryTransactionQueryStepDef:124 - Reason code: HS
+2017-04-25 18:12:26 DEBUG InventoryTransactionQueryStepDef:143 - Uploaded File Name: No
+2017-04-25 18:14:20 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:14:22 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:14:23 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:14:24 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:14:25 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:14:49 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:14:55 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:14:55 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3740
+2017-04-25 18:15:14 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:15:56 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3760
+2017-04-25 18:15:58 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: -20
+2017-04-25 18:16:02 DEBUG InventoryTransactionQueryStepDef:124 - Reason code: IE
+2017-04-25 18:16:08 DEBUG InventoryTransactionQueryStepDef:143 - Uploaded File Name: No
+2017-04-25 18:18:58 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:18:59 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:19:01 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:19:02 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3740
+2017-04-25 18:19:03 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:19:27 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:19:33 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:19:33 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 3760
+2017-04-25 18:19:51 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:20:30 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3740
+2017-04-25 18:20:31 DEBUG InventoryTransactionQueryStepDef:77 - Update Quantity: 20
+2017-04-25 18:22:15 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:22:16 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:22:18 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:22:19 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:22:21 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:22:45 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:22:51 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:22:51 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 3780
+2017-04-25 18:23:09 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:23:47 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3760
+2017-04-25 18:23:49 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 20
+2017-04-25 18:23:53 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: IE
+2017-04-25 18:23:59 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001266.xml
+2017-04-25 18:25:32 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:25:33 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:25:35 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:25:36 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3780
+2017-04-25 18:25:37 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:26:01 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:26:08 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:26:08 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3760
+2017-04-25 18:26:25 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:27:03 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3780
+2017-04-25 18:27:04 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -20
+2017-04-25 18:27:09 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: IF
+2017-04-25 18:27:14 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+2017-04-25 18:27:36 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:27:37 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:27:38 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:27:39 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:27:40 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:28:59 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:29:01 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:29:02 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:29:03 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:29:05 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:29:29 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:29:35 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:29:35 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3740
+2017-04-25 18:29:52 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:30:31 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3760
+2017-04-25 18:30:32 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -20
+2017-04-25 18:30:37 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: OS
+2017-04-25 18:30:43 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001268.xml
+2017-04-25 18:31:06 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:31:07 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:31:08 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:31:09 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3740
+2017-04-25 18:31:10 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:31:33 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:31:40 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:31:40 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 3760
+2017-04-25 18:31:56 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:32:32 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3740
+2017-04-25 18:32:33 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 20
+2017-04-25 18:32:37 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: RT
+2017-04-25 18:32:41 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001269.xml
+2017-04-25 18:33:03 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:33:04 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:33:05 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:33:06 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:33:07 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:33:31 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:33:37 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:33:37 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3740
+2017-04-25 18:33:53 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:34:29 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3760
+2017-04-25 18:34:30 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -20
+2017-04-25 18:34:34 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: SC
+2017-04-25 18:34:38 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001270.xml
+2017-04-25 18:35:02 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:35:03 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:35:04 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:35:05 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3740
+2017-04-25 18:35:06 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:35:29 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:35:35 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:35:35 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 3760
+2017-04-25 18:35:51 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:36:29 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3740
+2017-04-25 18:36:31 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 20
+2017-04-25 18:36:35 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: SC
+2017-04-25 18:36:41 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001271.xml
+2017-04-25 18:37:03 DEBUG InventoryQueryStepDef:32 - Tag ID: 2050004499
+2017-04-25 18:37:04 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001608
+2017-04-25 18:37:06 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Locked
+2017-04-25 18:37:07 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3760
+2017-04-25 18:37:08 DEBUG InventoryQueryStepDef:48 - Case Ratio: 20
+2017-04-25 18:37:32 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:37:39 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Locked
+2017-04-25 18:37:39 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3740
+2017-04-25 18:37:56 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:38:33 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3760
+2017-04-25 18:38:34 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -20
+2017-04-25 18:38:38 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: ST
+2017-04-25 18:38:42 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001272.xml
+2017-04-25 18:40:38 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:40:39 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:40:41 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:40:42 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 42000
+2017-04-25 18:40:44 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:41:07 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:41:13 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:41:13 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41944
+2017-04-25 18:41:31 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:42:40 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:42:41 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:42:42 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:42:43 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41944
+2017-04-25 18:42:44 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:46:32 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:46:33 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:46:34 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:46:36 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41944
+2017-04-25 18:46:37 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:48:24 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:48:25 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:48:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:48:28 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41944
+2017-04-25 18:48:29 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:48:53 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:48:59 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:48:59 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41888
+2017-04-25 18:49:17 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:49:56 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41944
+2017-04-25 18:49:57 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 18:50:02 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: DW
+2017-04-25 18:50:07 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+2017-04-25 18:51:14 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:51:15 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:51:17 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:51:18 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41888
+2017-04-25 18:51:19 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:51:43 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:51:49 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:51:49 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41832
+2017-04-25 18:52:07 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:52:45 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41888
+2017-04-25 18:52:47 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 18:52:51 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: EX
+2017-04-25 18:52:57 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001275.xml
+2017-04-25 18:53:20 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:53:21 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:53:22 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:53:23 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41832
+2017-04-25 18:53:24 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:53:47 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:53:53 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:53:53 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41776
+2017-04-25 18:54:09 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:54:46 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41832
+2017-04-25 18:54:47 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 18:54:50 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: HO
+2017-04-25 18:54:55 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+2017-04-25 18:55:18 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:55:20 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:55:21 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:55:22 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41776
+2017-04-25 18:55:24 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:55:48 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:55:54 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:55:54 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41720
+2017-04-25 18:56:11 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:56:50 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41776
+2017-04-25 18:56:51 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 18:56:55 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: HS
+2017-04-25 18:57:01 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+2017-04-25 18:57:25 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 18:57:26 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 18:57:27 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 18:57:28 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41720
+2017-04-25 18:57:28 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 18:57:52 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 18:57:58 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 18:57:58 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41664
+2017-04-25 18:58:14 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 18:58:50 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41720
+2017-04-25 18:58:51 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 18:58:55 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: IE
+2017-04-25 18:59:00 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+2017-04-25 19:01:07 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:01:08 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:01:09 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:01:11 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41664
+2017-04-25 19:01:12 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:01:36 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:01:42 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:01:42 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 41720
+2017-04-25 19:02:00 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:02:38 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41664
+2017-04-25 19:02:39 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 56
+2017-04-25 19:02:44 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: IE
+2017-04-25 19:02:50 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001279.xml
+2017-04-25 19:03:11 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:03:12 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:03:13 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:03:14 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41720
+2017-04-25 19:03:15 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:03:39 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:03:45 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:03:45 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41664
+2017-04-25 19:04:01 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:04:38 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41720
+2017-04-25 19:04:39 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 19:04:42 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: IF
+2017-04-25 19:04:47 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001280.xml
+2017-04-25 19:05:09 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:05:10 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:05:11 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:05:12 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41664
+2017-04-25 19:05:13 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:05:36 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:05:42 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:05:42 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41608
+2017-04-25 19:05:58 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:06:35 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41664
+2017-04-25 19:06:35 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 19:06:39 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: OS
+2017-04-25 19:06:44 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001281.xml
+2017-04-25 19:07:07 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:07:08 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:07:09 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:07:10 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41608
+2017-04-25 19:07:11 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:07:34 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:07:40 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:07:40 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 41664
+2017-04-25 19:07:56 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:08:34 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41608
+2017-04-25 19:08:36 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 56
+2017-04-25 19:08:40 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: RT
+2017-04-25 19:08:46 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001282.xml
+2017-04-25 19:09:09 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:09:10 DEBUG InventoryQueryStepDef:36 - SKU ID: I0809itlext.0000001282.xml
+2017-04-25 19:11:08 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:11:09 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:11:11 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:11:12 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41664
+2017-04-25 19:11:13 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:11:37 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:11:43 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:11:43 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41608
+2017-04-25 19:12:01 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:12:39 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41664
+2017-04-25 19:12:41 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 19:12:45 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: SC
+2017-04-25 19:12:51 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001283.xml
+2017-04-25 19:13:14 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:13:14 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:13:15 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:13:16 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41608
+2017-04-25 19:13:17 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:13:41 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:13:47 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:13:47 DEBUG StockAdjustmentsStepDef:84 - Quantity to update for adjustment 41664
+2017-04-25 19:14:03 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:14:39 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41608
+2017-04-25 19:14:40 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: 56
+2017-04-25 19:14:43 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: SC
+2017-04-25 19:14:48 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001284.xml
+2017-04-25 19:15:12 DEBUG InventoryQueryStepDef:32 - Tag ID: 2000160302
+2017-04-25 19:15:13 DEBUG InventoryQueryStepDef:36 - SKU ID: 20001603
+2017-04-25 19:15:14 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-25 19:15:15 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 41664
+2017-04-25 19:15:16 DEBUG InventoryQueryStepDef:48 - Case Ratio: 56
+2017-04-25 19:15:39 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-25 19:15:45 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-25 19:15:45 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 41608
+2017-04-25 19:16:01 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-25 19:16:37 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 41664
+2017-04-25 19:16:38 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -56
+2017-04-25 19:16:42 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: ST
+2017-04-25 19:16:47 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: I0809itlext.0000001285.xml
+2017-04-26 05:20:09 DEBUG InventoryQueryStepDef:32 - Tag ID: 6000000024
+2017-04-26 05:20:10 DEBUG InventoryQueryStepDef:36 - SKU ID: 21036210
+2017-04-26 05:20:12 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-26 05:20:13 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3780
+2017-04-26 05:20:14 DEBUG InventoryQueryStepDef:48 - Case Ratio: 18
+2017-04-26 05:21:35 DEBUG InventoryQueryStepDef:32 - Tag ID: 6000000024
+2017-04-26 05:21:37 DEBUG InventoryQueryStepDef:36 - SKU ID: 21036210
+2017-04-26 05:21:38 DEBUG InventoryQueryStepDef:40 - Inventory Query - Status: Unlocked
+2017-04-26 05:21:40 DEBUG InventoryQueryStepDef:44 - Quantity on Hand before Adjustment: 3780
+2017-04-26 05:21:41 DEBUG InventoryQueryStepDef:48 - Case Ratio: 18
+2017-04-26 05:22:05 DEBUG StockAdjustmentsStepDef:44 - Record Exists?: true
+2017-04-26 05:22:11 DEBUG StockAdjustmentsStepDef:68 - Stock Adjustment - Status: Unlocked
+2017-04-26 05:22:11 DEBUG StockAdjustmentsStepDef:80 - Quantity to update for adjustment 3762
+2017-04-26 05:22:29 DEBUG StockAdjustmentsStepDef:98 - Stock Adjustment Home page displayed?: true
+2017-04-26 05:22:56 DEBUG InventoryTransactionQueryStepDef:60 - Original Quantity: 3780
+2017-04-26 05:22:57 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -18
+2017-04-26 05:23:02 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: DW
+2017-04-26 05:23:08 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+=======
 2017-04-26 07:40:46 DEBUG Hooks:31 - ###########################################################################################################################
 2017-04-26 07:40:46 DEBUG Hooks:33 - featureID: inventory-lock;lock-the-inventory-from-unlocked-status;
 2017-04-26 07:40:46 DEBUG Hooks:34 - Start of Scenario: Lock the inventory from unlocked status
@@ -28,3 +962,8 @@
 2017-04-26 08:18:02 DEBUG Hooks:56 - ###########################################################################################################################
 2017-04-26 08:18:02 DEBUG Hooks:58 - End of Scenario: Lock the inventory from unlocked status
 2017-04-26 08:18:02 DEBUG Hooks:59 - ###########################################################################################################################
+>>>>>>> 0b3a614cb502913dcf50667d666a5770de7ea2d1
+2017-04-26 14:41:56 DEBUG Hooks:30 - ###########################################################################################################################
+2017-04-26 14:41:56 DEBUG Hooks:32 - featureID: stock-adjustments;receiving-process-in-jda-wms;
+2017-04-26 14:41:56 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-04-26 14:41:56 DEBUG Hooks:34 - ###########################################################################################################################
