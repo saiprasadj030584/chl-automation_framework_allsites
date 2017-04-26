@@ -16,14 +16,14 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
-public class StockAdjustmentsStepDef {
+public class StockAdjustmentsStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final StockAdjustmentsPage stockAdjustmentsPage;
 	private Context context;
 	private final JDAFooter jdaFooter;
 
 	@Inject
-	public StockAdjustmentsStepDef(StockAdjustmentsPage stockAdjustmentsPage, Context context, JDAFooter jdaFooter) {
+	public StockAdjustmentsStepDefs(StockAdjustmentsPage stockAdjustmentsPage, Context context, JDAFooter jdaFooter) {
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;

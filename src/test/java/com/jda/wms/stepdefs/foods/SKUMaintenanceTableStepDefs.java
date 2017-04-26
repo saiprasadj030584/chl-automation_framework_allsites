@@ -12,14 +12,14 @@ import com.jda.wms.utils.Utilities;
 import cucumber.api.java.en.*;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
-public class SKUMaintenanceTableStepDef {
+public class SKUMaintenanceTableStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final SKUMaintenancePage sKUMaintenancePage;
 	private Context context;
 	private Utilities utilities;
 
 	@Inject
-	public SKUMaintenanceTableStepDef(SKUMaintenancePage sKUMaintenancePage, Context context,Utilities utilities) {
+	public SKUMaintenanceTableStepDefs(SKUMaintenancePage sKUMaintenancePage, Context context,Utilities utilities) {
 		this.sKUMaintenancePage = sKUMaintenancePage;
 		this.context = context;
 		this.utilities = utilities;

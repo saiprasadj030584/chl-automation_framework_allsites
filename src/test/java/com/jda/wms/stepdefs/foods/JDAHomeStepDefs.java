@@ -33,13 +33,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickSupplierSKU();
 	}
 
-	@Given("^I am on inventory query page$")
-	public void i_am_on_inventor_query_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverDataInventory();
-		jdaHomePage.clickInventory();
-	}
-
 	@When("^I navigate to inventory query$")
 	public void i_navigate_to_inventory_query() throws Throwable {
 		jdaHomePage.clickInventorytab();
@@ -68,7 +61,8 @@ public class JDAHomeStepDefs {
 		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
 		 * jdaHomePage.clickInventory();
 		 */
-		jdaHomePage.navigateToInventoryQueryPage();
+//		jdaHomePage.navigateToInventoryQueryPage();
+		i_navigate_to_inventory_query_page();
 
 	}
 
