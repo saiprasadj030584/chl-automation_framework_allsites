@@ -47,12 +47,14 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public void searchTagId(String tagId, String code) throws FindFailed, InterruptedException {
-		jdaFooter.clickQueryButton();
-		enterCode(tagId, code);
-		inventoryQueryPage.enterTagId(tagId);
-		jdaFooter.clickExecuteButton();
-	}
+	// TODO move these step into step definitons
+	// public void searchTagId(String tagId, String code) throws FindFailed,
+	// InterruptedException {
+	// jdaFooter.clickQueryButton();
+	// enterCode(tagId, code);
+	// inventoryQueryPage.enterTagId(tagId);
+	// jdaFooter.clickExecuteButton();
+	// }
 
 	public void navigateToMiscellaneousTab() throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
