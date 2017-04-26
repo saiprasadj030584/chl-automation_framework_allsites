@@ -46,4 +46,15 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverPackConfig();
 		jdaHomePage.clickPackConfig();
 	}
+
+	@Given("^I am on to pre-advice header maintenance page$")
+	public void i_am_on_to_pre_advice_header_maintenance_page() throws Throwable {
+		
+//	jdaHomePage.clickDataMenu();
+//	jdaHomePage.hoverPreAdvice();
+//	jdaHomePage.clickPreAdviceHeader();
+//	Thread.sleep(5000);
 }
+	
+}
+   

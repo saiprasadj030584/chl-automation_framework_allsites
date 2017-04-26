@@ -1,0 +1,17 @@
+@purchase_order
+Feature: purchase order validation
+  As a warehouse user
+  I want to validate purchase order
+  So that I can use them for 
+  
+@pre_advice_header_table
+  Scenario: Load the pre-advice header details
+  Given the PO should be "Released" status and have future due date, site id, number of lines 
+  And the PO should have address details in the pre-advice header maintenance table
+  Then the supplier should have supplier pallet details in the address maintenanace table
+    
+   
+    
+    
+    
+      

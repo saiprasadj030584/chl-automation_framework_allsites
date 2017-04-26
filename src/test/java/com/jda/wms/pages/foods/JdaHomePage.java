@@ -35,8 +35,8 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void clickDataMenu() throws FindFailed {
-		screen.wait("images/JDAHome/DataMenu.png", timeoutInSec);
-		screen.click("images/JDAHome/DataMenu.png");
+		screen.wait("images/JDAHome/Data.png", timeoutInSec);
+		screen.click("images/JDAHome/Data.png");
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -86,6 +86,18 @@ public class JdaHomePage extends PageObject {
 	public void clickPackConfig() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/PackConfigScreen.png", timeoutInSec);
 		screen.click("images/JDAHome/PackConfigScreen.png");
+		Thread.sleep(3000);
+	}
+
+	public void hoverPreAdvice() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdvice.png", timeoutInSec);
+		screen.click("(images/JDAHome/PreAdvice.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickPreAdviceHeader() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdviceHeader.png", timeoutInSec);
+		screen.click("images/JDAHome/PreAdviceHeader.png");
 		Thread.sleep(3000);
 	}
 }
