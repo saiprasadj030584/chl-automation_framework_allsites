@@ -133,8 +133,8 @@ public class StockCheckListGenerationPage {
 		screen.wait("/images/StockCheckListGeneration/EnterTagId.png", timeoutInSec);
 		screen.click("/images/StockCheckListGeneration/EnterTagId.png");
 		screen.type(tagId);
-		
 	}
+	
 	
 
 
