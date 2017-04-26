@@ -23,13 +23,9 @@ public class InventoryTransactionQueryPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterCode(String code) throws FindFailed, InterruptedException {
+	public void selectCode(String code) throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/Code.png");
-		Thread.sleep(2000);
-		screen.wait("images/InventoryTransactionQuery/CodeAdjustment.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/CodeAdjustment.png");
-//		screen.type(code);
+		screen.type(code);
 		Thread.sleep(2000);
 	}
 
@@ -97,8 +93,8 @@ public class InventoryTransactionQueryPage {
 		screen.doubleClick(mStatuscode.below(1));
 	}
 
-	public boolean isOneTransactionDisplayed() throws FindFailed {
-		if (screen.find("images/InventoryTransactionQuery/Record1.png") != null)
+	public boolean isOneOrNoTransactionDisplayed() throws FindFailed {
+		if ((screen.find("images/InventoryTransactionQuery/Record1.png") != null)||(screen.find("images/InventoryTransactionQuery/NoRecords.png") != null))
 			return true;
 		else
 			return false;

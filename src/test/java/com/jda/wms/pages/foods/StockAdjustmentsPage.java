@@ -46,52 +46,7 @@ public class StockAdjustmentsPage {
 	}
 
 	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
-	screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
-	screen.click("images/StockAdjustment/Finish/ReasonCode.png");
-		
-		switch (reasonCode) {
-		case "Damaged by Warehouse":
-			screen.wait("images/StockAdjustment/Finish/DW.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/DW.png");
-			break;
-		case "Expired Stock":
-			screen.wait("images/StockAdjustment/Finish/ES.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/ES.png");
-			break;
-		case "Head Office":
-			screen.wait("images/StockAdjustment/Finish/HO.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/HO.png");
-			break;
-		case "Hampers Stock":
-			screen.wait("images/StockAdjustment/Finish/HS.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/HS.png");
-			break;
-		case "Receiving Correction":
-			screen.wait("images/StockAdjustment/Finish/IE.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/IE.png");
-			break;
-		case "Infestation":
-			screen.wait("images/StockAdjustment/Finish/IF.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/IF.png");
-			break;
-		case "Outlets Stock":
-			screen.wait("images/StockAdjustment/Finish/OS.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/OS.png");
-			break;
-		case "Returns from RDC":
-			screen.wait("images/StockAdjustment/Finish/RT.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/RT.png");
-			break;
-		case "Stock Count":
-			screen.wait("images/StockAdjustment/Finish/SC.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/SC.png");
-			break;
-		case "Returns to Supplier":
-			screen.wait("images/StockAdjustment/Finish/ST.png", timeoutInSec);
-			screen.click("images/StockAdjustment/Finish/ST.png");
-			break;
-		}
-		
+		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(reasonCode);
 		Thread.sleep(2000);
 		jdaFooter.clickDone();

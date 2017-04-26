@@ -53,13 +53,6 @@ public class StockAdjustmentsStepDef {
 	public void the_product_details_should_be_displayed_from_inventory() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-//		String skuId = stockAdjustmentsPage.getSkuId();
-//		if (!skuId.equalsIgnoreCase(context.getSkuId())) {
-//			failureList.add("Stock Adjustment - SKU ID is not displayed as expected. Expected [" + context.getSkuId()
-//					+ "] but was [" + skuId + "]");
-//		}
-//		logger.debug("Stock Adjustment - SKU ID: " + skuId);
-
 		String status = stockAdjustmentsPage.getStatus();
 		if (!status.equalsIgnoreCase(context.getStatus())) {
 			failureList.add("Status is not displayed as expected. Expected [" + context.getStatus() + "] but was ["

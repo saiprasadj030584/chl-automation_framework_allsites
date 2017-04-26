@@ -33,17 +33,16 @@ public class InventoryTransactionQueryStepDef {
 	public void i_search_tag_id_and_code_as(String tagId, String code) throws Throwable {
 		context.setCode(code);
 		jdaFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode(code);
+		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
 	}
 	
 	@When("^I select the adjusted stock from the results$")
 	public void i_select_the_adjusted_stock_from_the_results() throws Throwable {
-		boolean isOneRecord = inventoryTransactionQueryPage.isOneTransactionDisplayed();
+		boolean isOneOrNoRecord = inventoryTransactionQueryPage.isOneOrNoTransactionDisplayed();
 		Thread.sleep(2000);
-		System.out.println(isOneRecord);
-		if (isOneRecord==true){
+		if (isOneOrNoRecord==false){
 			inventoryTransactionQueryPage.selectRequiredRecord();	
 		}
 	}
@@ -68,9 +67,8 @@ public class InventoryTransactionQueryStepDef {
 			}
 		} else if (context.getAdjustmentType().equalsIgnoreCase("Increment")) {
 
-			if (!updateQty.equals("+" + updateQtyToCheck)) {
-				failureList.add("Update Quantity is not displayed as expected. Expected [" + "+"
-						+ updateQtyToCheck + "] but was [" + updateQty + "]");
+			if (!updateQty.equals(updateQtyToCheck)) {
+				failureList.add("Update Quantity is not displayed as expected. Expected [" +updateQtyToCheck + "] but was [" + updateQty + "]");
 			}
 		}
 
