@@ -10,6 +10,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String code;
 	private String expiryDate;
 
 	public RDTTask getCurrentTask() {
@@ -66,6 +67,10 @@ public class Context {
 
 	public String getCEWarehouseType() {
 		return cewarehousetype;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getFutureExpiryDate() {
