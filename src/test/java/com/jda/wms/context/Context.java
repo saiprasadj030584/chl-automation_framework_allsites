@@ -17,6 +17,7 @@ public class Context {
 	private String code;
 	private String adjustmentType;
 	private String supplierID;
+	private String expiryDate;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -33,7 +34,7 @@ public class Context {
 	public void setPreAdviceId(String preAdviceId) {
 		this.preAdviceId = preAdviceId;
 	}
-	
+
 	public String getSupplierID() {
 		return supplierID;
 	}
@@ -128,5 +129,13 @@ public class Context {
 
 	public String getCode() {
 		return code;
+	}
+
+	public String getFutureExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setFutureExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 }

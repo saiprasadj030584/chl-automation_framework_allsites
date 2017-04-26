@@ -31,9 +31,9 @@ public class StockAdjustmentsStepDef {
 
 	@When("^I search the inventory details$")
 	public void i_search_the_inventory_details() throws Throwable {
-		jdaFooter.clickNext();
+		jdaFooter.clickNextButton();
 		stockAdjustmentsPage.enterTagId(context.getTagId());
-		jdaFooter.clickNext();
+		jdaFooter.clickNextButton();
 		Thread.sleep(1000);
 	}
 
@@ -46,7 +46,7 @@ public class StockAdjustmentsStepDef {
 
 	@When("^I navigate to create or modify tab$")
 	public void i_navigate_to_create_or_modify_tab() throws Throwable {
-		jdaFooter.clickNext();
+		jdaFooter.clickNextButton();
 	}
 
 	@Then("^the product details should be displayed from inventory$")

@@ -42,14 +42,14 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 		screen.type(decrementQty);
 		Thread.sleep(3000);
-		jdaFooter.clickNext();
+		jdaFooter.clickNextButton();
 	}
 
 	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(reasonCode);
 		Thread.sleep(2000);
-		jdaFooter.clickDone();
+		jdaFooter.clickDoneButton();
 	}
 
 	public boolean isStockAdjustmentHomeDisplayed() throws FindFailed {

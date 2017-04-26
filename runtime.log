@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2017-04-09 19:39:27 DEBUG JdaLoginPage:32 - Brower is opened
 2017-04-17 09:36:42 DEBUG SupplierSKUMaintenancePage:68 - Supplier Description: 00904735-POTEL BOURGOGNE CHARDONN
 2017-04-17 09:36:43 DEBUG SupplierSKUMaintenancePage:82 - Supplier SKU value: 00904735
@@ -930,3 +931,35 @@ public class putty_Telnet {
 2017-04-26 05:22:57 DEBUG InventoryTransactionQueryStepDef:76 - Update Quantity: -18
 2017-04-26 05:23:02 DEBUG InventoryTransactionQueryStepDef:123 - Reason code: DW
 2017-04-26 05:23:08 DEBUG InventoryTransactionQueryStepDef:142 - Uploaded File Name: No
+=======
+2017-04-26 07:40:46 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-26 07:40:46 DEBUG Hooks:33 - featureID: inventory-lock;lock-the-inventory-from-unlocked-status;
+2017-04-26 07:40:46 DEBUG Hooks:34 - Start of Scenario: Lock the inventory from unlocked status
+2017-04-26 07:40:46 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-26 07:42:28 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-26 07:42:28 DEBUG Hooks:58 - End of Scenario: Lock the inventory from unlocked status
+2017-04-26 07:42:28 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-26 07:42:39 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-26 07:42:39 DEBUG Hooks:33 - featureID: inventory-lock;lock-the-inventory-from-unlocked-status;
+2017-04-26 07:42:39 DEBUG Hooks:34 - Start of Scenario: Lock the inventory from unlocked status
+2017-04-26 07:42:39 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-26 07:44:00 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-26 07:44:00 DEBUG Hooks:58 - End of Scenario: Lock the inventory from unlocked status
+2017-04-26 07:44:00 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-26 08:13:57 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-26 08:13:57 DEBUG Hooks:33 - featureID: inventory-lock;lock-the-inventory-from-unlocked-status;
+2017-04-26 08:13:57 DEBUG Hooks:34 - Start of Scenario: Lock the inventory from unlocked status
+2017-04-26 08:13:57 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-26 08:16:04 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-26 08:16:04 DEBUG Hooks:33 - featureID: inventory-lock;lock-the-inventory-from-unlocked-status;
+2017-04-26 08:16:04 DEBUG Hooks:34 - Start of Scenario: Lock the inventory from unlocked status
+2017-04-26 08:16:04 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-26 08:16:25 DEBUG InventoryQueryStepDefs:37 - Status in Inventory screen : Unlocked
+2017-04-26 08:17:15 DEBUG InventoryQueryStepDefs:111 - Lock Code: CODEAPP
+2017-04-26 08:17:55 DEBUG InventoryTransactionQueryStepDef:57 - Reason code: HOREQ
+2017-04-26 08:18:00 DEBUG InventoryTransactionQueryStepDef:76 - Uploaded File Name: I0809itlext.0000001287.xml
+2017-04-26 08:18:02 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-26 08:18:02 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-26 08:18:02 DEBUG Hooks:58 - End of Scenario: Lock the inventory from unlocked status
+2017-04-26 08:18:02 DEBUG Hooks:59 - ###########################################################################################################################
+>>>>>>> 0b3a614cb502913dcf50667d666a5770de7ea2d1
