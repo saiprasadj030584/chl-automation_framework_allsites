@@ -31,14 +31,6 @@ public class InventoryTransactionQueryPage {
 		Thread.sleep(2000);
 	}
 
-	// private void enterTagId(String tagId) throws InterruptedException,
-	// FindFailed {
-	// Match itagId = screen.find("images/InventoryTransactionQuery/TagID.png");
-	// screen.click(itagId.getCenter().offset(70, 0));
-	// screen.type(tagId);
-	// Thread.sleep(3000);
-	// }
-
 	public String getOriginalQty() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/General/OriginalQty.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
