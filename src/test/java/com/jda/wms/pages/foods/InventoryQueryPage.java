@@ -5,23 +5,21 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 
 public class InventoryQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-
 	private final JDAFooter jdaFooter;
 
 	@Inject
-	public InventoryQueryPage(JDAFooter jdaFooter) {
-		this.jdaFooter = jdaFooter;
+	public InventoryQueryPage(JDAFooter jDAFooter) {
+		this.jdaFooter = jDAFooter;
 	}
 
-	public String getStatus() throws FindFailed, InterruptedException {
-		Match status = screen.find("/images/InventoryQuery/Status.png");
-		screen.click(status.getCenter().offset(70, 0));
+	public String getStatus() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
@@ -78,6 +76,7 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
+	
 	public String getQtyOnHand() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryQuery/General/QtyOnHand.png");
 		screen.click(mStatus.getCenter().offset(70, 0));

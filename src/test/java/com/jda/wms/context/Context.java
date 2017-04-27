@@ -10,7 +10,13 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String tagId;
+	private String status;
+	private int qtyOnHandBfrAdjustment;
+	private int caseRatio;
 	private String code;
+	private String adjustmentType;
+	private String supplierID;
 	private String expiryDate;
 
 	public RDTTask getCurrentTask() {
@@ -27,6 +33,14 @@ public class Context {
 
 	public void setPreAdviceId(String preAdviceId) {
 		this.preAdviceId = preAdviceId;
+	}
+
+	public String getSupplierID() {
+		return supplierID;
+	}
+
+	public void setSupplierID(String supplierID) {
+		this.supplierID = supplierID;
 	}
 
 	public String getSkuId() {
@@ -69,8 +83,52 @@ public class Context {
 		return cewarehousetype;
 	}
 
+	public void setTagId(String tagId) {
+		this.tagId = tagId;
+	}
+
+	public String getTagId() {
+		return tagId;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setqtyOnHandBeforeAdjustment(int qtyOnHandBfrAdjustment) {
+		this.qtyOnHandBfrAdjustment = qtyOnHandBfrAdjustment;
+	}
+
+	public int getQtyOnHandBeforeAdjustment() {
+		return qtyOnHandBfrAdjustment;
+	}
+
+	public void setCaseRatio(int caseRatio) {
+		this.caseRatio = caseRatio;
+	}
+
+	public int getCaseRatio() {
+		return caseRatio;
+	}
+
+	public void setAdjustmentType(String adjustmentType) {
+		this.adjustmentType = adjustmentType;
+	}
+
+	public String getAdjustmentType() {
+		return adjustmentType;
+	}
+
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getCode() {
+		return code;
 	}
 
 	public String getFutureExpiryDate() {

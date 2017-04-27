@@ -4,12 +4,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
-
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -50,7 +49,26 @@ public class Hooks {
 			webDriver.quit();
 		}
 	}
-
+	
+	@After()
+	public void logoutPutty() throws FindFailed, InterruptedException{
+		while (screen.exists("/images/Putty/3Logout.png") == null){
+			screen.type(Key.F12);
+		}
+		screen.type("3");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+		
+		screen.wait("images/Putty/PuttyClose.png", 20);
+		screen.click("images/Putty/PuttyClose.png", 25);
+		Thread.sleep(1000);
+		
+		screen.wait("images/Putty/PuttyCloseOK.png", 20);
+		screen.click("images/Putty/PuttyCloseOK.png", 25);
+		Thread.sleep(1000);
+	}
+	
 	@After
 	public void afterDetails(Scenario scenario) {
 		logger.debug(
