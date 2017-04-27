@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 2017-04-20 12:42:24 DEBUG Hooks:31 - ###########################################################################################################################
 2017-04-20 12:42:24 DEBUG Hooks:33 - featureID: master-data-validation
 2017-04-20 12:42:24 DEBUG Hooks:34 - Start of Scenario: Load the site details
@@ -1677,3 +1678,5 @@ public class putty_Telnet {
 2017-04-27 13:28:55 DEBUG Hooks:34 - ###########################################################################################################################
 2017-04-27 13:29:07 DEBUG InventoryTransactionQueryStepDefs:124 - Reason code: ABV
 2017-04-27 13:29:14 DEBUG Hooks:85 - Signed off JDA WMS Application
+=======
+>>>>>>> 40531c3cc75677f69b06d8f510d4822e93fb00c3

@@ -74,14 +74,6 @@ public class InventoryQueryPage {
 		screen.click("images/InventoryQuery/UserDefined/UserDefined.png");
 	}
 
-	public String getProductGroup() throws FindFailed, InterruptedException {
-		Match status = screen.find("images/InventoryQuery/UserDefined/ProductGroup.png");
-		screen.click(status.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
 	public String getABV() throws FindFailed, InterruptedException {
 		Match status = screen.find("images/InventoryQuery/UserDefined/ABV.png");
 		screen.click(status.getCenter().offset(70, 0));
@@ -150,5 +142,147 @@ public class InventoryQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return Integer.parseInt(App.getClipboard());
+	}
+
+	public String getSiteId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/SiteId.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getLocation() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/Location.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getDescription() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/Description.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getPackConfig() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/PackConfig.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getTrackingLevel() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/TrackingLevel.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getCaseRatio() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/CaseRatio.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getPalletType() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/PalletType.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getSupplier() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/Supplier.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getReceiptId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/ReceiptId.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getLineId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/LineId.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getExpiryDate() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/ExpiryDate.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getInventoryCreatedBy() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/Miscellaneous/InventoryCreatedBy.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getBaseUOM() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/UserDefined/BaseUOM.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getProductGroup() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/UserDefined/ProductGroup.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getStorageLocation() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/UserDefined/StorageLocation.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public void navigateToMiscellaneousTab() throws FindFailed {
+		screen.wait("images/InventoryQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryQuery/MiscellaneousTab.png");
+	}
+
+	public void navigateToUserDefinedTab() throws FindFailed {
+		screen.wait("images/InventoryQuery/UserDefinedTab.png", timeoutInSec);
+		screen.click("images/InventoryQuery/UserDefinedTab.png");
+	}
+
+	public void enterPOId(String poId) {
+		screen.type(poId);
+	}
+
+	public String getPreAdviceStatus() throws FindFailed {
+		Match mStatus = screen.find("images/PreAdviceHeader/Status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 }
