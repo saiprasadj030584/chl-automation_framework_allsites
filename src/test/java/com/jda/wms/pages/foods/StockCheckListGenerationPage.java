@@ -18,10 +18,7 @@ public class StockCheckListGenerationPage {
 	public StockCheckListGenerationPage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}
-
-	// TODO move this method into JDAHomePage.java
 	
-
 	public void selectGenerateByLocation() throws FindFailed, InterruptedException {
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png");
