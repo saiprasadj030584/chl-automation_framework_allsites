@@ -88,7 +88,6 @@ public class AddressMaintenancePage {
 		} else {
 			return false;
 		}
-
 	}
 
 	public String getDefaultSupplierPallet() throws FindFailed {

@@ -11,8 +11,6 @@ public class PreAdviceHeaderPage {
 	int timeoutInSec = 20;
 
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
-		screen.wait("images/PreAdviceHeader/PreAdviceId.png", timeoutInSec);
-		screen.click("images/PreAdviceHeader/PreAdviceId.png");
 		screen.type(preAdviceId);
 	}
 
@@ -22,16 +20,14 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
-
+ 
 	public String getDuedate() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/DueDate.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
 	public String getSiteId() throws FindFailed {
@@ -40,16 +36,14 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
-	public String getType() throws FindFailed {
-		Match mDescription = screen.find("images/PreAdviceHeader/Type.png");
-		screen.click(mDescription.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-
+	public boolean isTypeExist() throws FindFailed {
+		if (!screen.find("images/PreAdviceHeader/Type.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public String getSupplier() throws FindFailed {
@@ -58,22 +52,20 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
-	public String getNumberoflines() throws FindFailed {
+	public String getNumberOfLines() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/NumberOfLines.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
-	public void clickAddressTab() throws FindFailed {
+	public void clickAddressTab() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceHeader/address/Address.png", timeoutInSec);
-		screen.click("/images/PreAdviceHeader/address/Address.png");
-
+		screen.click("images/PreAdviceHeader/address/Address.png");
+		Thread.sleep(2000);
 	}
 
 	public String getName() throws FindFailed {
@@ -82,7 +74,6 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
 	public String getAddress1() throws FindFailed {
@@ -91,7 +82,6 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 
 	public String getCountry() throws FindFailed {
@@ -100,6 +90,5 @@ public class PreAdviceHeaderPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-
 	}
 }
