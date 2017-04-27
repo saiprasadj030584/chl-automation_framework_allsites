@@ -29,11 +29,11 @@ public class WebDriverProvider implements Provider<WebDriver> {
 			return new ChromeDriver();
 
 		case "ie":
-			DesiredCapabilities capabilities = null;
+			/*DesiredCapabilities capabilities = null;
 			capabilities = DesiredCapabilities.internetExplorer();
 			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 			capabilities.setCapability("ignoreZoomSetting", true);
-			capabilities.setCapability("screen-resolution", "1364*768");
+			capabilities.setCapability("screen-resolution", "1364*768");*/
 			System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 			return new InternetExplorerDriver();
 

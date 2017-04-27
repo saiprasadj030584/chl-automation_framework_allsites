@@ -11,6 +11,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String expiryDate;
+	private int qtyReceivedfromPutty;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -74,5 +75,13 @@ public class Context {
 
 	public void setFutureExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+
+	public int getQtyReceivedfromPutty() {
+		return qtyReceivedfromPutty;
+	}
+
+	public int setQtyReceivedfromPutty() {
+		return qtyReceivedfromPutty ;
 	}
 }

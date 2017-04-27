@@ -3,9 +3,9 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
-import org.sikuli.script.Match;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
@@ -136,6 +136,16 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Inventory transaction (ITL) query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+	
+	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
+		screen.type("f",Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

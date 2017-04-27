@@ -48,10 +48,10 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void searchTagId(String tagId, String code) throws FindFailed, InterruptedException {
-		jdaFooter.clickQueryButton();
+		/*jdaFooter.clickQueryButton();
 		enterCode(tagId, code);
 		inventoryQueryPage.enterTagId(tagId);
-		jdaFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();*/
 	}
 
 	public void navigateToMiscellaneousTab() throws FindFailed, InterruptedException {

@@ -62,8 +62,8 @@ public class Hooks {
 
 	@After
 	public void clickSignoutButton() throws FindFailed {
-		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
+		/*screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);
-		logger.debug("Signed off JDA WMS Application");
+		logger.debug("Signed off JDA WMS Application");*/
 	}
 }
