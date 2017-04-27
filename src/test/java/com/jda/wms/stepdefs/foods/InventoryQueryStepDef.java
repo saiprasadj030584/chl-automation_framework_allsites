@@ -33,7 +33,7 @@ public class InventoryQueryStepDef {
 		this.jdaFooter = jdaFooter;
 	}
 
-	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
+	/*@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
 	public void i_have_the_tag_id_with_status(String tagId, String status) throws Throwable {
 		// context.setTagId(tagId);
 		// context.setStatus(status);
@@ -56,7 +56,7 @@ public class InventoryQueryStepDef {
 		String caseRatio = inventoryQueryPage.getcaseRatio();
 		// context.setCaseRatio(caseRatio);
 		logger.debug("Case Ratio: " + caseRatio);
-	}
+	}*/
 
 	
 	
