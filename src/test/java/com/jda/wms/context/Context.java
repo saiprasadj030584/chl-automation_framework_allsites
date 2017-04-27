@@ -1,5 +1,8 @@
 package com.jda.wms.context;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
@@ -18,6 +21,13 @@ public class Context {
 	private String adjustmentType;
 	private String supplierID;
 	private String expiryDate;
+	private int noOfLines;
+	private Map<String,Map<String,String>>purchaseOrderMap;
+	private Map<String, ArrayList<String>> tagIDMap;
+	private int lineItem = 1; 
+	private int rcvQtyDue;
+	private String location;
+	private int tagIdIndex =0 ;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -137,5 +147,61 @@ public class Context {
 
 	public void setFutureExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+	
+	public int getNoOfLines() {
+		return noOfLines;
+	}
+
+	public void setNoOfLines(int noOfLines) {
+		this.noOfLines = noOfLines;
+	}
+
+	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+		return purchaseOrderMap;
+	}
+
+	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+		this.purchaseOrderMap = purchaseOrderMap;
+	}
+
+	public int getLineItem() {
+		return lineItem;
+	}
+
+	public void setLineItem(int lineItem) {
+		this.lineItem = lineItem;
+	}
+
+	public int getRcvQtyDue() {
+		return rcvQtyDue;
+	}
+
+	public void setRcvQtyDue(int rcvQtyDue) {
+		this.rcvQtyDue = rcvQtyDue;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Map<String, ArrayList<String>> getTagIDMap() {
+		return tagIDMap;
+	}
+
+	public void setTagIDMap(Map<String, ArrayList<String>> tagIDMap) {
+		this.tagIDMap = tagIDMap;
+	}
+
+	public int getTagIdIndex() {
+		return tagIdIndex;
+	}
+
+	public void setTagIdIndex(int tagIdIndex) {
+		this.tagIdIndex = tagIdIndex;
 	}
 }

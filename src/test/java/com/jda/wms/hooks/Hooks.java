@@ -50,7 +50,7 @@ public class Hooks {
 		}
 	}
 	
-	@After()
+	@After() 
 	public void logoutPutty() throws FindFailed, InterruptedException{
 		while (screen.exists("/images/Putty/3Logout.png") == null){
 			screen.type(Key.F12);
