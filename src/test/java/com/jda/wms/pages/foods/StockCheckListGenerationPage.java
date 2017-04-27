@@ -72,7 +72,6 @@ public class StockCheckListGenerationPage {
 	public boolean isListIdPopupDisplayed() throws InterruptedException {
 		if (screen.exists("/images/StockCheckListGeneration/CreatedListPopup.png") != null) {
 			screen.type(Key.ENTER);
-			Thread.sleep(1000);
 			return true;
 		} else {
 			return false;

@@ -32,6 +32,8 @@ public class StockCheckTaskQueryStepDef {
 
 	@When("^I navigate to stock check query page$")
 	public void i_navigate_to_stock_check_query_page() throws Throwable {
+		Thread.sleep(3000);
+		screen.click(475,631);
 		jdaHomePage.navigateToStockCheckQueryPage();
 		Thread.sleep(3000);
 	}

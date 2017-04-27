@@ -109,7 +109,7 @@ public class StockCheckListGenerationStepDef {
 	public void i_should_see_the_created_list() throws Throwable {
 		Assert.assertTrue("Stock Check List not generated as expected.",
 				stockCheckListGenerationPage.isListIdPopupDisplayed());
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 	@When("^I select mode of list generation as 'Generate by inventory'$")

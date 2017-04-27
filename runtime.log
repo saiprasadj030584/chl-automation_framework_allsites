@@ -189,3 +189,124 @@ With no limit to the number of tasks on each list.
 2017-04-26 15:32:55 DEBUG Hooks:33 - featureID: generate-stock-check-list
 2017-04-26 15:32:55 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
 2017-04-26 15:32:55 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:33:18 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:33:18 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:33:18 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 06:33:18 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:35:24 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:35:24 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:35:24 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 06:35:24 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:35:50 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 06:36:52 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 06:36:52 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 06:36:52 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 06:36:52 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 06:36:54 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:36:54 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:36:54 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 06:36:54 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:46:56 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:46:56 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:46:56 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 06:46:56 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:47:22 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 06:48:14 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 06:48:14 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 06:48:14 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 06:48:14 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 06:48:16 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:48:16 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:48:16 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 06:48:16 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:53:19 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 06:53:19 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 06:53:19 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 06:53:19 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 06:53:45 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:00:20 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:00:20 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:00:20 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:00:20 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:00:46 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:02:54 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:02:54 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:02:54 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:02:54 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:03:23 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:04:35 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:04:35 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:04:35 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:04:35 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:05:05 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:05:52 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:05:52 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 07:05:52 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:05:53 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:13:01 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:13:01 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:13:01 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:13:01 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:13:30 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:14:13 DEBUG StockCheckTaskQueryStepDef:66 - List ID: 0000000368
+2017-04-27 07:14:18 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:14:18 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:14:18 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 07:14:18 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:14:20 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:14:20 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:14:20 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:14:20 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:15:15 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:15:15 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:15:15 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:15:15 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:15:58 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:15:58 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:15:58 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:15:58 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:15:58 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:15:58 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 07:15:58 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:16:00 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:16:02 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:16:02 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:16:02 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:16:02 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:18:51 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:18:51 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:18:51 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:18:51 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:19:31 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:19:31 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:19:31 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:19:33 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:19:35 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:19:35 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:19:35 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:19:35 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:19:35 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:19:35 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 07:19:35 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:21:35 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:21:35 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:21:35 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:21:35 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:22:01 DEBUG StockCheckListGenerationStepDef:69 - Record added to generate list
+2017-04-27 07:22:10 DEBUG StockCheckListGenerationStepDef:95 - Stock Check list Confirmation : You have selected:
+
+1 item(s) of inventory to be checked
+
+With no limit to the number of tasks on each list.
+2017-04-27 07:22:42 DEBUG StockCheckTaskQueryStepDef:66 - List ID: 0000000369
+2017-04-27 07:22:46 DEBUG Hooks:67 - Signed off JDA WMS Application
+2017-04-27 07:22:46 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:22:46 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by inventory
+2017-04-27 07:22:46 DEBUG Hooks:59 - ###########################################################################################################################
+2017-04-27 07:22:48 DEBUG Hooks:31 - ###########################################################################################################################
+2017-04-27 07:22:48 DEBUG Hooks:33 - featureID: generate-stock-check-list
+2017-04-27 07:22:48 DEBUG Hooks:34 - Start of Scenario: Validate generation of stock check list by location
+2017-04-27 07:22:48 DEBUG Hooks:35 - ###########################################################################################################################
+2017-04-27 07:23:09 DEBUG Hooks:56 - ###########################################################################################################################
+2017-04-27 07:23:09 DEBUG Hooks:58 - End of Scenario: Validate generation of stock check list by location
+2017-04-27 07:23:09 DEBUG Hooks:59 - ###########################################################################################################################

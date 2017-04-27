@@ -52,8 +52,7 @@ public class JdaHomePage extends PageObject {
 	}
 	
 	public void navigateToStockCheckQueryPage() throws FindFailed, InterruptedException {
-		screen.click(200, 200);
-		screen.type("f", Key.CTRL);
+		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("stock check task query screen");
 		screen.type(Key.ENTER);
@@ -150,8 +149,7 @@ public class JdaHomePage extends PageObject {
 	}
 	
 	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
-		screen.click(200, 200);
-		screen.type("f", Key.CTRL);
+		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("stock check list generation");
 		screen.type(Key.ENTER);
