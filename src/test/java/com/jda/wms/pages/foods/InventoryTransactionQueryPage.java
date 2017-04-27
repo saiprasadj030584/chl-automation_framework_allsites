@@ -29,7 +29,7 @@ public class InventoryTransactionQueryPage {
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(tagId);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public String getOriginalQty() throws FindFailed {
@@ -118,7 +118,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public String getAbv() throws FindFailed {
-		Match mStatus = screen.find("images/InventoryTransactionQuery/Sku.png");
+		Match mStatus = screen.find("images/InventoryTransactionQuery/ABV.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -143,17 +143,22 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterCode(String code) throws FindFailed, InterruptedException {
-		screen.wait("images/InventoryTransactionQuery/Code.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/Code.png");
+		Match mDescription = screen.find("images/InventoryTransactionQuery/Code.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type(code);
 		Thread.sleep(2000);
 	}
 
 	public void enterTransactionDate() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/TransactionDate.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/TransactionDate.png");
 		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type("0");
-		Thread.sleep(3000);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 
 	private void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
@@ -161,5 +166,12 @@ public class InventoryTransactionQueryPage {
 		screen.click(ilockCode.getCenter().offset(70, 0));
 		screen.type(lockCode);
 		Thread.sleep(3000);
+	}
+
+	public boolean isNoRecordsExists() {
+		if (screen.exists("images/InventoryTransactionQuery/NoRecord.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

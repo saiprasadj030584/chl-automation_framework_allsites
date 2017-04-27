@@ -14,6 +14,7 @@ import com.jda.wms.pages.foods.JDAFooter;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class InventoryTransactionQueryStepDef {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -87,6 +88,8 @@ public class InventoryTransactionQueryStepDef {
 	public void the_SKU_Id_and_Reference_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
+		boolean isNoRecordExists = inventoryTransactionQueryPage.isNoRecordsExists();
+		if (!isNoRecordExists){
 		String skuId = inventoryTransactionQueryPage.getSkuId();
 		if (skuId.equals(null)) {
 			failureList.add("SKU id is not as expected. Expected [Not NULL] but was [" + skuId + "]");
@@ -96,6 +99,14 @@ public class InventoryTransactionQueryStepDef {
 		if (reference.equals(null)) {
 			failureList.add("Reference is not as expected. Expected [Not NULL] but was [" + reference + "]");
 		}
+		}
+		else {
+			failureList.add("Record is not found. Expected [Record should be found] but was [" + isNoRecordExists + "]");
+		}
+		Assert.assertTrue(
+				"Values are not found. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		
 	}
 
 	@Then("^I should see the updated ABV in the inventory transaction query page$")

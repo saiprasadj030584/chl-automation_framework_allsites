@@ -43,7 +43,7 @@ public class JDAFooter {
 
 	public void clickExecuteButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F7);
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 	}
 
 	public void clickCancelButton() throws FindFailed, InterruptedException {
