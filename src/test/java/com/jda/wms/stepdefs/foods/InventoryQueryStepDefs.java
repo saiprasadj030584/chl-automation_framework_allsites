@@ -190,7 +190,7 @@ public class InventoryQueryStepDefs {
 
 	@Then("^I should see the updated ABV in the inventory query page$")
 	public void i_should_see_the_updated_ABV_in_the_inventory_query_page() throws Throwable {
-		inventoryQueryPage.refreshInventoryQueryPage();
+		inventoryQueryPage.refreshUserDefinedTab();
 		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryQueryPage.getUpdatedABV());
 	}
 }

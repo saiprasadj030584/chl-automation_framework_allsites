@@ -6,7 +6,7 @@ Feature: ABV update
 
   @wip2
   Scenario: To update the ABV through Inventory table in JDA WMS dispatcher
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to inventory query page
     And I have SKU id, product group and ABV for the tag id "1000000012"
     When I navigate to inventory update page

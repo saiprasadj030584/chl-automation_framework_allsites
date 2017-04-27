@@ -49,6 +49,15 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
 	}
+	@When("^I search tag id \"([^\"]*)\" with transaction code as \"([^\"]*)\"$")
+	public void i_search_tag_id_with_transaction_code_as(String tagId, String selectType) throws Throwable {
+		jdaFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterTagId(tagId);
+		inventoryTransactionQueryPage.enterCode(selectType);
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jdaFooter.clickExecuteButton();
+	}
+
 
 	@When("^I select the adjusted stock from the results$")
 	public void i_select_the_adjusted_stock_from_the_results() throws Throwable {
@@ -69,6 +78,11 @@ public class InventoryTransactionQueryStepDefs {
 	@When("^I navigate to miscellaneous tab$")
 	public void i_navigate_to_miscellaneous_tab() throws Throwable {
 		inventoryTransactionQueryPage.navigateToMiscellaneousTab();
+	}
+	
+	@Then("^I should see the updated ABV in the inventory transaction query page$")
+	public void i_should_see_the_updated_ABV_in_the_inventory_transaction_query_page() throws Throwable {
+		Assert.assertEquals("ABV is not as expected.", context.getABV(),inventoryTransactionQueryPage.getAbv());
 	}
 
 	@Then("^I should see the reason code as \"([^\"]*)\"$")
@@ -143,6 +157,31 @@ public class InventoryTransactionQueryStepDefs {
 		jdaFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.navigateToMiscellaneousTab();
 	}
+	@Then("^the SKU Id and Reference should be displayed$")
+	public void the_SKU_Id_and_Reference_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		boolean isNoRecordExists = inventoryTransactionQueryPage.isNoRecordsExists();
+		if (!isNoRecordExists){
+		String skuId = inventoryTransactionQueryPage.getSkuId();
+		if (skuId.equals(null)) {
+			failureList.add("SKU id is not as expected. Expected [Not NULL] but was [" + skuId + "]");
+		}
+
+		String reference = inventoryTransactionQueryPage.getReference();
+		if (reference.equals(null)) {
+			failureList.add("Reference is not as expected. Expected [Not NULL] but was [" + reference + "]");
+		}
+		}
+		else {
+			failureList.add("Record is not found. Expected [Record should be found] but was [" + isNoRecordExists + "]");
+		}
+		Assert.assertTrue(
+				"Values are not found. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		
+	}
+
 	
 	@Then("^I should see the original quantity and updated quantity in the general tab$")
 	public void i_should_see_the_original_quantity_and_updated_quantity_in_the_general_tab() throws Throwable {

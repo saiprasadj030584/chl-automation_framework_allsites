@@ -128,7 +128,7 @@ public class InventoryUpdateStepDefs {
 	@When("^I choose the type of inventory property as \"([^\"]*)\"$")
 	public void i_choose_the_type_of_inventory_property_as(String selectType) throws Throwable {
 		inventoryUpdatePage.selectType(selectType);
-		//jDAFooter.clickNextButton();
+		jDAFooter.clickNextButton();
 	}
 
 	@When("^I search the tag ID \"([^\"]*)\"$")
