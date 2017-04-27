@@ -50,7 +50,17 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/menuData.png");
 		Thread.sleep(2000);
 	}
-
+	
+	public void navigateToStockCheckQueryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+	
 	private void hoverOrder() throws FindFailed {
 		screen.wait("images/OrderSubmenu.png", timeoutInSec);
 		screen.click("images/OrderSubmenu.png");
@@ -132,6 +142,16 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/PackConfigScreen.png");
 		Thread.sleep(3000);
 	}
+	
+	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check list generation");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
 
 	public void clickOperations() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
@@ -144,6 +164,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/Operations/Inventory/StockAdjustment.png");
 		Thread.sleep(8000);
 	}
+
 	public void clickInventorytab() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAFooter/Inventory.png", timeoutInSec);
 		screen.click("images/JDAFooter/Inventory.png");
