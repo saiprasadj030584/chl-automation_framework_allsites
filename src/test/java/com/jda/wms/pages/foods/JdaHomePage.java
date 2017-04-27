@@ -28,9 +28,6 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
-		// clickDataMenu();
-		// hoverSKU();
-		// clickSKUSubmenu();
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("SKU Maintenance");
@@ -177,7 +174,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public void navigateToInventoryQueryPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -185,15 +182,15 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock Adjustment");
 	}
-	
+
 	public void clickWelcomeButton() throws FindFailed {
 		screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
 		screen.click("images/JDAHome/Welcome.png");

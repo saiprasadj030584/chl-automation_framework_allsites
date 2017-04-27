@@ -10,6 +10,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String newAbv;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -26,6 +27,14 @@ public class Context {
 
 	public void setCurrentTask(RDTTask currentTask) {
 		this.currentTask = currentTask;
+	}
+
+	public String getABV() {
+		return newAbv;
+	}
+
+	public void setABV(String newAbv) {
+		this.newAbv = newAbv;
 	}
 
 	public String getPreAdviceId() {
