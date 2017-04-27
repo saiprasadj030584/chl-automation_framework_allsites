@@ -111,7 +111,6 @@ public class InventoryTransactionQueryStepDef {
 
 	@Then("^I should see the updated ABV in the inventory transaction query page$")
 	public void i_should_see_the_updated_ABV_in_the_inventory_transaction_query_page() throws Throwable {
-		// TODO replace this assertion with Assert.assertEquals
 		Assert.assertEquals("ABV is not as expected.", context.getABV(),inventoryTransactionQueryPage.getAbv());
 	}
 

@@ -11,12 +11,18 @@ import com.google.inject.Inject;
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-
-	private JDAFooter jdaFooter;
+	private final JDAFooter jdaFooter;
 
 	@Inject
 	public InventoryTransactionQueryPage(JDAFooter jdaFooter) {
 		this.jdaFooter = jdaFooter;
+	}
+
+	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
+		Match mtagId = screen.find("images/InventoryTransactionQuery/TagID.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(tagId);
+		Thread.sleep(3000);
 	}
 
 	public void selectCode(String code) throws FindFailed, InterruptedException {
@@ -25,11 +31,84 @@ public class InventoryTransactionQueryPage {
 		screen.type(Key.TAB);
 	}
 
-	public void enterTagId(String tagId) throws InterruptedException {
-		screen.type(Key.TAB);
-		screen.type(Key.TAB);
-		screen.type(tagId);
-		Thread.sleep(5000);
+	public void enterTransactionDate() throws FindFailed, InterruptedException {
+		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
+		screen.click(transactionDate.getCenter().offset(70, 0));
+		screen.type("0");
+		Thread.sleep(3000);
+		screen.type(Key.ENTER);
+	}
+
+	public void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
+		Match mLockCode = screen.find("images/InventoryTransactionQuery/lockCode.png");
+		screen.click(mLockCode.getCenter().offset(70, 0));
+
+		switch (lockCode) {
+		case "Code Approval":
+			screen.type("CODEAPP");
+			Thread.sleep(2000);
+			break;
+		case "Components Stock":
+			screen.type("CS");
+			Thread.sleep(2000);
+			break;
+		case "1Damaged":
+			screen.type("DMGD");
+			Thread.sleep(2000);
+			break;
+		case "EVENTS":
+			screen.type("EVENT");
+			Thread.sleep(2000);
+			break;
+		case "Pick exception lock code":
+			screen.type("EXCEPT");
+			Thread.sleep(2000);
+			break;
+		case "1Expired":
+			screen.type("EXPD");
+			Thread.sleep(2000);
+			break;
+		case "Head Office Request":
+			screen.type("HOREQ");
+			Thread.sleep(2000);
+			break;
+		case "Lock code for new vintage or new wine":
+			screen.type("NV");
+			Thread.sleep(2000);
+			break;
+		case "Outlets Stock":
+			screen.type("OS");
+			Thread.sleep(2000);
+			break;
+		case "Product Recall":
+			screen.type("PRODRECALL");
+			Thread.sleep(2000);
+			break;
+		case "Return from RDC":
+			screen.type("RDCRETURNS");
+			Thread.sleep(2000);
+			break;
+		case "Supplier Damage":
+			screen.type("SUDMG");
+			Thread.sleep(2000);
+			break;
+		case "Return to Supplier":
+			screen.type("SUPPRETURN");
+			Thread.sleep(2000);
+			break;
+		case "Warehouse Damage":
+			screen.type("WHDMG");
+			Thread.sleep(2000);
+			break;
+		case "Hampers Stock":
+			screen.type("HS");
+			Thread.sleep(2000);
+			break;
+		case "Incubation lock code":
+			screen.type("INCUB");
+			Thread.sleep(2000);
+			break;
+		}
 	}
 
 	public String getOriginalQty() throws FindFailed {
@@ -48,12 +127,11 @@ public class InventoryTransactionQueryPage {
 			return true;
 	}
 
-	private String getStatus() throws FindFailed, InterruptedException {
+	public String getStatus() throws FindFailed, InterruptedException {
 		Match status = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
@@ -125,6 +203,26 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
+	public void selectRequiredRecord() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
+		Thread.sleep(2000);
+		Match mStatus = screen.find("images/InventoryTransactionQuery/CodeInResults.png");
+		Thread.sleep(2000);
+		screen.click(mStatus.below(10));
+		Thread.sleep(2000);
+		Match mStatuscode = screen.find("images/InventoryTransactionQuery/CodeInResult.png");
+		screen.doubleClick(mStatuscode.below(1));
+	}
+
+	public boolean isOneOrNoTransactionDisplayed() throws FindFailed {
+		if ((screen.find("images/InventoryTransactionQuery/Record1.png") != null)
+				|| (screen.find("images/InventoryTransactionQuery/NoRecords.png") != null))
+			return true;
+		else
+			return false;
+	}
+
 	public String getExpiryDate() throws FindFailed {
 		Match mExpiryDate = screen.find("images/InventoryTransactionQuery/Miscellaneous/ExpiryDate.png");
 		screen.click(mExpiryDate.getCenter().offset(70, 0));
@@ -149,29 +247,11 @@ public class InventoryTransactionQueryPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterTransactionDate() throws FindFailed, InterruptedException {
-		screen.wait("images/InventoryTransactionQuery/TransactionDate.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/TransactionDate.png");
-		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
-		screen.click(transactionDate.getCenter().offset(70, 0));
-		Thread.sleep(2000);
-		screen.type("0");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
-	}
-
-	private void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
-		Match ilockCode = screen.find("images/InventoryTransactionQuery/lockCode.png");
-		screen.click(ilockCode.getCenter().offset(70, 0));
-		screen.type(lockCode);
-		Thread.sleep(3000);
-	}
-
 	public boolean isNoRecordsExists() {
 		if (screen.exists("images/InventoryTransactionQuery/NoRecord.png") != null)
 			return true;
 		else
 			return false;
 	}
+
 }

@@ -11,19 +11,17 @@ import com.google.inject.Inject;
 public class InventoryQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
 
 	@Inject
-	public InventoryQueryPage(JDAFooter jdaFooter) {
-		this.jdaFooter = jdaFooter;
+
+	public InventoryQueryPage() {
 	}
 
-	public String getStatus() throws FindFailed, InterruptedException {
-		Match status = screen.find("/images/InventoryQuery/Status.png");
-		screen.click(status.getCenter().offset(70, 0));
+	public String getStatus() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
@@ -47,12 +45,10 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
-	public void refreshInventoryQueryPage() throws FindFailed, InterruptedException {
-		//clickStatus();
+	public void refreshUserDefinedTab() throws FindFailed, InterruptedException {
 		clickABV();
 		screen.rightClick();
 		selectRefreshOptions();
@@ -62,7 +58,7 @@ public class InventoryQueryPage {
 	private void clickABV() throws FindFailed {
 		screen.wait("images/InventoryQuery/UserDefined/ABV.png", timeoutInSec);
 		screen.click("images/InventoryQuery/UserDefined/ABV.png");
-		
+
 	}
 
 	public String getSkuId() throws FindFailed, InterruptedException {
@@ -70,7 +66,6 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
@@ -84,7 +79,6 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
 	}
 
@@ -93,8 +87,15 @@ public class InventoryQueryPage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		Thread.sleep(3000);
 		return App.getClipboard();
+	}
+
+	public void refreshInventoryQueryPage() throws FindFailed, InterruptedException {
+		clickStatus();
+		screen.rightClick();
+		selectRefreshOptions();
+		selectRefreshCurrentRecord();
+
 	}
 
 	public String getUpdatedABV() throws FindFailed, InterruptedException {

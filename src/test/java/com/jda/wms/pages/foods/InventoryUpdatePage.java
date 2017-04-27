@@ -6,66 +6,53 @@ import java.util.Calendar;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
+import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
 public class InventoryUpdatePage {
-	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jDAFooter;
+	Region reg = new Region(0, 0, 4000, 1000);
+	Screen screen = new Screen();
 
 	@Inject
-	public InventoryUpdatePage(JDAFooter jDAFooter) {
-		this.jDAFooter = jDAFooter;
+	public InventoryUpdatePage() {
 	}
 
 	public void selectType(String selectType) throws FindFailed, InterruptedException {
-		Match iselectType = screen.find("images/InventoryUpdate/selectType.png");
-		screen.click(iselectType.getCenter().offset(70, 0));
+		Match mSelectType = screen.find("/images/InventoryUpdate/Start/SelectType.png");
+		screen.click(mSelectType.getCenter().offset(70, 0));
 		screen.type(selectType);
-		screen.type(Key.F7);
-		Thread.sleep(4000);
 	}
 
-	public boolean isRecordExists() throws FindFailed, InterruptedException {
-		if (screen.exists("images/InventoryUpdate/1record.png") != null) {
+	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
+		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(tagId);
+	}
+
+	public Boolean isRecordExists() throws FindFailed, InterruptedException {
+		if (screen.exists("/images/InventoryUpdate/Results/OneRecord.png") != null) {
 			return true;
 		} else
 			return false;
 	}
 
 	public void selectStatus(String status) throws FindFailed, InterruptedException {
-		Match istatus = screen.find("/images/InventoryUpdate/LockStatusChange/status.png");
-		screen.click(istatus.getCenter().offset(70, 0));
+		Match mStatus = screen.find("/images/InventoryUpdate/Finish/status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type(status);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 	}
 
 	public void selectLockCode(String lockCode) throws FindFailed, InterruptedException {
-		Match ilockCode = screen.find("/images/InventoryUpdate/LockStatusChange/lockCode.png");
-		screen.click(ilockCode.getCenter().offset(70, 0));
+		Match mLockCode = screen.find("/images/InventoryUpdate/Finish/lockCode.png");
+		screen.click(mLockCode.getCenter().offset(70, 0));
 		screen.type(lockCode);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
-	}
-
-	// public void selectReasonCode(String reasonCode) throws FindFailed,
-	// InterruptedException {
-	// Match ireasonCode =
-	// screen.find("/images/InventoryUpdate/LockStatusChange/reasonCode.png");
-	// screen.click(ireasonCode.getCenter().offset(70, 0));
-	// screen.type(reasonCode);
-	// screen.type(Key.ENTER);
-	// Thread.sleep(3000);
-	// }
-
-	public boolean isHomePage() throws FindFailed, InterruptedException {
-		if (screen.exists("/images/InventoryUpdate/selectType.png") != null) {
-			return true;
-		} else
-			return false;
+		Thread.sleep(2000);
 	}
 
 	public void enterABV(String abv) throws FindFailed, InterruptedException {
@@ -77,12 +64,15 @@ public class InventoryUpdatePage {
 		screen.type(abv);
 	}
 
-	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
-		screen.type(expiryDateUpdate);
+	public Boolean isHomePage() throws FindFailed, InterruptedException {
+		if (screen.exists("/images/InventoryUpdate/Start/SelectType.png") != null) {
+			return true;
+		} else
+			return false;
 	}
 
-	public void enterTagId(String tagId) throws FindFailed {
-		screen.type(tagId);
+	public void enterExpiryDateUpdate(String expiryDateUpdate) throws FindFailed {
+		screen.type(expiryDateUpdate);
 	}
 
 	public String enterFutureDate() throws FindFailed {
@@ -96,7 +86,7 @@ public class InventoryUpdatePage {
 
 	public void selectReasonCode(String reasonCode) throws FindFailed {
 		screen.type(Key.TAB);
-		//screen.type(Key.TAB);
+		// screen.type(Key.TAB);
 		screen.type(reasonCode);
 	}
 
@@ -104,6 +94,5 @@ public class InventoryUpdatePage {
 		Match status = screen.find("images/InventoryUpdate/Finish/ReasonCode.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type(reasonCode);
-		
 	}
 }
