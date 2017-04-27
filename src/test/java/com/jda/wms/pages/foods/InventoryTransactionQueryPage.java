@@ -119,14 +119,6 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public boolean verifyStatus(String status) throws FindFailed, InterruptedException {
-		String istatus = getStatus();
-		if (!istatus.equals(status)) {
-			return false;
-		} else
-			return true;
-	}
-
 	public String getStatus() throws FindFailed, InterruptedException {
 		Match status = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
 		screen.click(status.getCenter().offset(70, 0));
@@ -229,15 +221,6 @@ public class InventoryTransactionQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-	}
-
-	public void searchTagID(String tagId, String code, String lockCode) throws FindFailed, InterruptedException {
-		jdaFooter.clickQueryButton();
-		enterCode(code);
-		enterTagId(tagId);
-		enterTransactionDate();
-		enterLockCode(lockCode);
-		jdaFooter.clickExecuteButton();
 	}
 
 	public void enterCode(String code) throws FindFailed, InterruptedException {
