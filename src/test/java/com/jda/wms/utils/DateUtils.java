@@ -19,6 +19,13 @@ public class DateUtils {
 		cal.add(Calendar.DATE, 10);
 		return dateFormat.format(cal.getTime());
 	}
+	
+	public static String getAddedSystemYear() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, 2);
+		return dateFormat.format(cal.getTime());
+	}
 
 	public static String getSecond() {
 		SimpleDateFormat sdf = new SimpleDateFormat("ss");

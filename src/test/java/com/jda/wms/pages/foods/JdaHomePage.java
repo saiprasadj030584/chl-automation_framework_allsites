@@ -3,9 +3,9 @@ package com.jda.wms.pages.foods;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
-import org.sikuli.script.Match;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
@@ -28,9 +28,6 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
-		// clickDataMenu();
-		// hoverSKU();
-		// clickSKUSubmenu();
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("SKU Maintenance");
@@ -40,15 +37,26 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	private void clickSKUSubmenu() throws FindFailed, InterruptedException {
+	public void clickSKUSubmenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Sku/skuSku.png", timeoutInSec);
 		screen.click("images/Menu/Data/Sku/skuSku.png");
 		Thread.sleep(3000);
 	}
 
-	public void clickDataMenu() throws FindFailed {
-		screen.wait("images/JDAHome/Data.png", timeoutInSec);
-		screen.click("images/JDAHome/Data.png");
+	public void clickDataMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/menuData.png", timeoutInSec);
+		screen.click("images/Menu/menuData.png");
+		Thread.sleep(2000);
+	}
+
+	public void navigateToStockCheckQueryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -62,14 +70,46 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void hoverSKU() throws FindFailed {
-		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
-		screen.click("images/JDAHome/SKU.png");
+		screen.wait("images/Menu/Data/dataSku.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataSku.png");
 	}
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/SupplierSKU.png", timeoutInSec);
 		screen.click("images/JDAHome/SupplierSKU.png");
 		Thread.sleep(3000);
+	}
+
+	public void hoverDataInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/dataInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/dataInventory.png");
+		screen.mouseMove(70, 0);
+		Thread.sleep(2000);
+	}
+
+	public void clickInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventory.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventory.png");
+		Thread.sleep(8000);
+	}
+
+	public void clickInventoryUpdate() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/OperationInventoryUpdate.png", timeoutInSec);
+		screen.click("images/Menu/Operations/OperationInventoryUpdate.png");
+		Thread.sleep(4000);
+	}
+
+	public void clickOperationsMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/MenuOperations.png", timeoutInSec);
+		screen.click("images/Menu/MenuOperations.png");
+		Thread.sleep(4000);
+	}
+
+	public void hoverOperationsInventory() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/operationInventory.png", timeoutInSec);
+		screen.click("images/Menu/Operations/operationInventory.png");
+		screen.mouseMove(80, 0);
+		Thread.sleep(2000);
 	}
 
 	public void hoverGeneral() throws FindFailed {
@@ -101,6 +141,39 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check list generation");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+	public void clickOperations() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
+		screen.click("images/Menu/menuOperations.png");
+		Thread.sleep(2000);
+	}
+
+	public void clickStockAdjustment() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations/Inventory/StockAdjustment.png", timeoutInSec);
+		screen.click("images/Menu/Operations/Inventory/StockAdjustment.png");
+		Thread.sleep(8000);
+	}
+
+	public void clickInventorytab() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/Inventory.png", timeoutInSec);
+		screen.click("images/JDAFooter/Inventory.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickInventoryTransaction() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
+		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
+		Thread.sleep(2000);
+	}
 
 	public void hoverPreAdvice() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/PreAdvice.png", timeoutInSec);
@@ -120,7 +193,13 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
+	}
+
+	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock Adjustment");
 	}
 
 	public void clickWelcomeButton() throws FindFailed {
@@ -147,20 +226,34 @@ public class JdaHomePage extends PageObject {
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Inventory transaction (ITL) query screen");
+		screen.type("(ITL) query");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
-public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException{
-	clickSearchIcon();
-	Thread.sleep(1000);
-	screen.type("Pre-advice header maintenance/query screen");
-	screen.type(Key.ENTER);
-	Thread.sleep(1000);
-	screen.type(Key.ENTER);
-	Thread.sleep(3000);
-}
+	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
+		screen.type("f", Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void enterTabKey() {
+		screen.type(Key.TAB);
+	}
 }
