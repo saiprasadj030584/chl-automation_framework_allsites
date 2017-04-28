@@ -13,6 +13,7 @@ public class Context {
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
+	private String newAbv;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -29,6 +30,10 @@ public class Context {
 	private String location;
 	private int tagIdIndex =0 ;
 	private Map<String, Integer> qtyReceivedPerTagMap;
+	private String name;
+	private String country;
+	private String address1;
+	private int qtyReceivedfromPutty;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -38,20 +43,20 @@ public class Context {
 		this.currentTask = currentTask;
 	}
 
+	public String getABV() {
+		return newAbv;
+	}
+
+	public void setABV(String newAbv) {
+		this.newAbv = newAbv;
+	}
+
 	public String getPreAdviceId() {
 		return preAdviceId;
 	}
 
 	public void setPreAdviceId(String preAdviceId) {
 		this.preAdviceId = preAdviceId;
-	}
-
-	public String getSupplierID() {
-		return supplierID;
-	}
-
-	public void setSupplierID(String supplierID) {
-		this.supplierID = supplierID;
 	}
 
 	public String getSkuId() {
@@ -213,4 +218,45 @@ public class Context {
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSupplierID() {
+		return supplierID;
+	}
+
+	public void setSupplierID(String supplierID) {
+		this.supplierID = supplierID;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public int getQtyReceivedfromPutty() {
+		return qtyReceivedfromPutty;
+	}
+
+	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
+		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	}
+
 }

@@ -51,7 +51,6 @@ public class AddressMaintenanceStepDefs {
 		}
 		Assert.assertTrue("Address maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-		Thread.sleep(5000);
 	}
 
 	@When("^I navigate to customs & excise tab	in address maintenance$")

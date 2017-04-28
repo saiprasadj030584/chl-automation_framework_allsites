@@ -5,6 +5,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
@@ -27,9 +28,6 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
-		// clickDataMenu();
-		// hoverSKU();
-		// clickSKUSubmenu();
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("SKU Maintenance");
@@ -49,6 +47,16 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/Menu/menuData.png", timeoutInSec);
 		screen.click("images/Menu/menuData.png");
 		Thread.sleep(2000);
+	}
+
+	public void navigateToStockCheckQueryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
 	}
 
 	private void hoverOrder() throws FindFailed {
@@ -133,6 +141,16 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("stock check list generation");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
 	public void clickOperations() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/menuOperations.png", timeoutInSec);
 		screen.click("images/Menu/menuOperations.png");
@@ -144,6 +162,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/Operations/Inventory/StockAdjustment.png");
 		Thread.sleep(8000);
 	}
+
 	public void clickInventorytab() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAFooter/Inventory.png", timeoutInSec);
 		screen.click("images/JDAFooter/Inventory.png");
@@ -155,7 +174,18 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(2000);
 	}
-	
+
+	public void hoverPreAdvice() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdvice.png", timeoutInSec);
+		screen.click("(images/JDAHome/PreAdvice.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickPreAdviceHeader() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdviceHeader.png", timeoutInSec);
+		screen.click("images/JDAHome/PreAdviceHeader.png");
+	}
+
 	public void navigateToInventoryQueryPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -163,15 +193,15 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock Adjustment");
 	}
-	
+
 	public void clickWelcomeButton() throws FindFailed {
 		screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
 		screen.click("images/JDAHome/Welcome.png");
@@ -197,6 +227,26 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("(ITL) query");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
+		screen.type("f", Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

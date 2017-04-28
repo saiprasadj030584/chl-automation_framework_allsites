@@ -88,6 +88,13 @@ public class AddressMaintenancePage {
 		} else {
 			return false;
 		}
+	}
 
+	public String getDefaultSupplierPallet() throws FindFailed {
+		Match mDescription = screen.find("images/AddressMaintenance/UserDefined/DefaultSupplierPallet.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 }

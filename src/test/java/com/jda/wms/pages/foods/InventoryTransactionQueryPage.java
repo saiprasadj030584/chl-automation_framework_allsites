@@ -12,33 +12,31 @@ public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jdaFooter;
-	private final InventoryQueryPage inventoryQueryPage;
 
-@Inject
-public InventoryTransactionQueryPage(JDAFooter jdaFooter, InventoryQueryPage inventoryQueryPage) {
-	this.jdaFooter = jdaFooter;
-	this.inventoryQueryPage = inventoryQueryPage;
-}
+	@Inject
+	public InventoryTransactionQueryPage(JDAFooter jdaFooter) {
+		this.jdaFooter = jdaFooter;
+	}
 
-public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-	Match mtagId = screen.find("images/InventoryTransactionQuery/TagID.png");
-	screen.click(mtagId.getCenter().offset(70, 0));
-	screen.type(tagId);
-	Thread.sleep(3000);
+	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
+		Match mtagId = screen.find("images/InventoryTransactionQuery/TagID.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(tagId);
+		Thread.sleep(3000);
+	}
 
-}
-	
 	public void selectCode(String code) throws FindFailed, InterruptedException {
 		jdaFooter.clickQueryButton();
 		screen.type(code);
 		screen.type(Key.TAB);
 	}
-		
+
 	public void enterTransactionDate() throws FindFailed, InterruptedException {
 		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
 		screen.type("0");
 		Thread.sleep(3000);
+		screen.type(Key.ENTER);
 	}
 
 	public void enterLockCode(String lockCode) throws FindFailed, InterruptedException {
@@ -113,8 +111,6 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		}
 	}
 
-	
-
 	public String getOriginalQty() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/General/OriginalQty.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
@@ -175,6 +171,30 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		return App.getClipboard();
 	}
 
+	public String getSkuId() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/Sku.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getReference() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/Reference.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getAbv() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/ABV.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
 	public void selectRequiredRecord() throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/CodeInResults.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/CodeInResults.png");
@@ -188,12 +208,13 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 	}
 
 	public boolean isOneOrNoTransactionDisplayed() throws FindFailed {
-		if ((screen.find("images/InventoryTransactionQuery/Record1.png") != null)||(screen.find("images/InventoryTransactionQuery/NoRecords.png") != null))
+		if ((screen.find("images/InventoryTransactionQuery/Record1.png") != null)
+				|| (screen.find("images/InventoryTransactionQuery/NoRecords.png") != null))
 			return true;
 		else
 			return false;
 	}
-	
+
 	public String getExpiryDate() throws FindFailed {
 		Match mExpiryDate = screen.find("images/InventoryTransactionQuery/Miscellaneous/ExpiryDate.png");
 		screen.click(mExpiryDate.getCenter().offset(70, 0));
@@ -201,4 +222,19 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void enterCode(String code) throws FindFailed, InterruptedException {
+		Match mDescription = screen.find("images/InventoryTransactionQuery/Code.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type(code);
+		Thread.sleep(2000);
+	}
+
+	public boolean isNoRecordsExists() {
+		if (screen.exists("images/InventoryTransactionQuery/NoRecord.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

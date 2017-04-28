@@ -15,6 +15,9 @@ chrome: &chrome
     
 ie: &ie
  browser-name: ie
+ 
+firefox: &firefox
+ browser-name: firefox 
 
 # Test Envoronment settings
 ###########################
@@ -56,7 +59,11 @@ dev-sit-chrome:
 dev-sit-ie:
  <<: *sit
  <<: *ie
-    
+
+dev-sit-firefox:
+ <<: *sit
+ <<: *firefox
+     
 dev-uat-chrome:
  <<: *uat
  <<: *chrome
