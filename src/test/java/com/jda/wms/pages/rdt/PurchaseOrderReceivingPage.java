@@ -77,13 +77,13 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
 		screen.type(skuID);
 		screen.type(Key.ENTER);
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 	}
 	
 	public String getPreAdvId() throws FindFailed, InterruptedException {

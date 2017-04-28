@@ -28,6 +28,7 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex =0 ;
+	private Map<String, Integer> qtyReceivedPerTagMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -203,5 +204,13 @@ public class Context {
 
 	public void setTagIdIndex(int tagIdIndex) {
 		this.tagIdIndex = tagIdIndex;
+	}
+
+	public Map<String, Integer> getQtyReceivedPerTagMap() {
+		return qtyReceivedPerTagMap;
+	}
+
+	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
+		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
 }
