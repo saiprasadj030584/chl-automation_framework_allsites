@@ -19,6 +19,10 @@ public class Context {
 	private String adjustmentType;
 	private String supplierID;
 	private String expiryDate;
+	private String name;
+	private String country;
+	private String address1;
+	private int noOfLines;
 	private int qtyReceivedfromPutty;
 
 	public RDTTask getCurrentTask() {
@@ -43,14 +47,6 @@ public class Context {
 
 	public void setPreAdviceId(String preAdviceId) {
 		this.preAdviceId = preAdviceId;
-	}
-
-	public String getSupplierID() {
-		return supplierID;
-	}
-
-	public void setSupplierID(String supplierID) {
-		this.supplierID = supplierID;
 	}
 
 	public String getSkuId() {
@@ -149,11 +145,52 @@ public class Context {
 		this.expiryDate = expiryDate;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSupplierID() {
+		return supplierID;
+	}
+
+	public void setSupplierID(String supplierID) {
+		this.supplierID = supplierID;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public int getNoOfLines() {
+		return noOfLines;
+	}
+
+	public void setNoOfLines(int noOfLines) {
+		this.noOfLines = noOfLines;
+	}
+
 	public int getQtyReceivedfromPutty() {
 		return qtyReceivedfromPutty;
 	}
 
-	public int setQtyReceivedfromPutty() {
-		return qtyReceivedfromPutty ;
+	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
+		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
 	}
+
 }

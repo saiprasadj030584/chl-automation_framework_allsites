@@ -1,5 +1,8 @@
 package com.jda.wms.stepdefs.foods;
 
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
 import cucumber.api.java.en.*;
@@ -55,6 +58,10 @@ public class JDAHomeStepDefs {
 		jdaHomePage.clickPackConfig();
 	}
 
+	@Given("^I am on to pre-advice header maintenance page$")
+	public void i_am_on_to_pre_advice_header_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
+	}
 
 	@Given("^I am on inventory query page$")
 	public void i_am_on_inventory_query_page() throws Throwable {
@@ -62,9 +69,8 @@ public class JDAHomeStepDefs {
 		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
 		 * jdaHomePage.clickInventory();
 		 */
-//		jdaHomePage.navigateToInventoryQueryPage();
+		// jdaHomePage.navigateToInventoryQueryPage();
 		i_navigate_to_inventory_query_page();
-
 	}
 
 	@When("^I navigate to stock adjustments page$")
@@ -99,7 +105,5 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to inventory update page$")
 	public void i_navigate_to_inventory_update_page() throws Throwable {
 		jdaHomePage.navigateToInventoryUpdate();
-
 	}
-	
 }

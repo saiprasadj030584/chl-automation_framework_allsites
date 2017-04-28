@@ -14,8 +14,8 @@ Feature: Receive purchase order
     When I navigate to pre-advice header maintenance page
     Then the status should be displayed as "Complete"
 
-  @pre_advice_line_table
-  Scenario: Load the pre-advice line details
+  @wip
+  Scenario: Load the pre-advice header details
     Given the PO "8050004526" should be "In Progress" status and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     And the supplier should have supplier pallet details
