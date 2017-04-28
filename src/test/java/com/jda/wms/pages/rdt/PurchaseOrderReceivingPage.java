@@ -69,7 +69,8 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
-		if (screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)||(screen.exists("images/Putty/Receiving/PreAdvComplete.png")!=null))
 			return true;
 		else
 			return false;
@@ -209,6 +210,14 @@ public class PurchaseOrderReceivingPage {
 		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
+	}
+
+	public void minimisePutty() throws FindFailed, InterruptedException {
+		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
+		screen.click("images/Putty/PuttyMinimise.png");
+		screen.mouseMove(80,0);
+		screen.click("images/Putty/PuttyMinimise.png");
+		Thread.sleep(2000);
 	}
 
 }

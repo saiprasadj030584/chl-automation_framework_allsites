@@ -2,6 +2,8 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
+
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class InventoryQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final Context context;
+	Map<String, Integer> qtyReceivedPerTagMap;
+	Map<String, Map<String, String>> purchaseOrderMap;
+	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
 	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context, JdaHomePage jdaHomePage) {
@@ -198,12 +203,39 @@ public class InventoryQueryStepDefs {
 		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryQueryPage.getUpdatedABV());
 	}
 	
-	@When("^I navigate to inventory query page and search the tag id \"([^\"]*)\"$")
-	public void i_navigate_to_inventory_query_page_and_search_the_tag_id(String tagId) throws Throwable {
-		jdaHomePage.navigateToInventoryQueryPage();
-		jdaFooter.clickQueryButton();
-		inventoryQueryPage.enterTagId(tagId);
-		jdaFooter.clickExecuteButton();
+	@When("^the inventory details should be displayed for all the tag id$")
+	public void the_inventory_details_should_be_displayed_for_all_the_tag_id() throws Throwable {
+		//Get the tag id and quantity received for the PO
+		String tagID = null;
+		int qtyReceivedPerTag = 0, caseRatio =0;
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
+		tagIDMap = context.getTagIDMap();
+		System.out.println(qtyReceivedPerTagMap);
+		for (String key : purchaseOrderMap.keySet()){
+			 System.out.println( "Sku Keys " +purchaseOrderMap.get(key).get("SKU") );
+			 String sku = purchaseOrderMap.get(key).get("SKU");
+			 caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
+			 System.out.println("caseratio "+caseRatio);
+			 System.out.println();
+			 for (int s=0;s<tagIDMap.size();s++){
+				 System.out.println("Inside tag id for loop");
+				 tagID = tagIDMap.get(sku).get(s);
+				 System.out.println("Tag to search: "+tagID);
+				 qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
+				 System.out.println("Qty received under Tag Id: "+qtyReceivedPerTag);
+				 
+				  context.setTagId(tagID);
+				  context.setQtyReceivedPerTag(qtyReceivedPerTag*caseRatio);
+				  System.out.println("qty value "+context.getQtyReceivedPerTag());
+				  jdaFooter.clickQueryButton();
+				  inventoryQueryPage.enterTagId(tagID);
+				  jdaFooter.clickExecuteButton();
+				  the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
+				  the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
+				  the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+			 }
+		}
 	}
 
 	@Then("^the quantity on hand, location, site id and status should be displayed in the general tab$")
@@ -228,13 +260,13 @@ public class InventoryQueryStepDefs {
 			failureList.add("Status is not displayed as expected. Expected [Not NULL value] but was [" + status + "]");
 		}
 
-		String caseRatio = inventoryQueryPage.getCaseRatio();
+//		String caseRatio = inventoryQueryPage.getCaseRatio();
 		String qtyOnHand = inventoryQueryPage.getQtyOnHand();
 		// context.setQtyReceivedfromPutty();
-		int qtyReceived = 10;
-		int expectedQtyonHand = qtyReceived * Integer.parseInt(caseRatio);
-		if (expectedQtyonHand != Integer.parseInt(qtyOnHand)) {
-			Assert.fail("Quantity on hand is not expected. Expected [" + qtyOnHand + "] but was [" + expectedQtyonHand
+//		int qtyReceived = 10;
+//		int expectedQtyonHand = qtyReceived * Integer.parseInt(caseRatio);
+		if (context.getQtyReceivedPerTag() != Integer.parseInt(qtyOnHand)) {
+			Assert.fail("Quantity on hand is not expected. Expected [" + context.getQtyReceivedPerTag() + "] but was [" + qtyOnHand
 					+ "]");
 		}
 
@@ -251,8 +283,8 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.navigateToMiscellaneousTab();
 		String expiryDate = inventoryQueryPage.getExpiryDate();
 		// TODO get expected expiry date from context
-		if (!expiryDate.equals("26/04/2019")) {
-			failureList.add("Expiry Date is not as expected. Expected [ ] but was [" + expiryDate + "]");
+		if (!expiryDate.equals(context.getFutureExpiryDate())) {
+			failureList.add("Expiry Date is not as expected. Expected ["+context.getFutureExpiryDate()+"] but was [" + expiryDate + "]");
 		}
 
 		String palletType = inventoryQueryPage.getPalletType();
@@ -312,13 +344,12 @@ public class InventoryQueryStepDefs {
 		jdaHomePage.navigateToPreAdviceHeaderPage();
 		jdaFooter.clickQueryButton();
 		// TODO get PO id from context
-		inventoryQueryPage.enterPOId("8050004526");
+		inventoryQueryPage.enterPOId(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
 	}
 
 	@Then("^the status should be displayed as \"([^\"]*)\"$")
 	public void the_status_should_be_displayed_as(String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
-
 	}
 }

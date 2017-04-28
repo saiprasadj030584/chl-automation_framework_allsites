@@ -68,6 +68,13 @@ public class PurchaseOrderReceivingStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
+//			if (i == 1) {
+//				lineItemsMap.put("SKU", "20001991");
+//				lineItemsMap.put("QtyDue", "410");
+//				lineItemsMap.put("RemainingQtyDue", "410");
+//				lineItemsMap.put("CaseRatio", "24");
+//				lineItemsMap.put("MaxQtyCanBeRcvd", "160");
+//			}
 			if (i == 1) {
 				lineItemsMap.put("SKU", "21036013");
 				lineItemsMap.put("QtyDue", "1500");
@@ -75,13 +82,13 @@ public class PurchaseOrderReceivingStepDefs {
 				lineItemsMap.put("CaseRatio", "15");
 				lineItemsMap.put("MaxQtyCanBeRcvd", "800");
 			}
-			if (i == 2) {
-				lineItemsMap.put("SKU", "21036046");
-				lineItemsMap.put("QtyDue", "1500");
-				lineItemsMap.put("RemainingQtyDue", "1500");
-				lineItemsMap.put("CaseRatio", "24");
-				lineItemsMap.put("MaxQtyCanBeRcvd", "800");
-			}
+//			if (i == 2) {
+//				lineItemsMap.put("SKU", "21036046");
+//				lineItemsMap.put("QtyDue", "1500");
+//				lineItemsMap.put("RemainingQtyDue", "1500");
+//				lineItemsMap.put("CaseRatio", "24");
+//				lineItemsMap.put("MaxQtyCanBeRcvd", "800");
+//			}
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
@@ -100,11 +107,15 @@ public class PurchaseOrderReceivingStepDefs {
 			} else {
 				noOfTagID = qtyDue / maxQtyRcv;
 			}
-
+			System.out.println(noOfTagID);
+			
 			for (int t = 0; t < noOfTagID; t++) {
 				totalTagsperPo++;
 				Thread.sleep(1000);
+				tagIDArrayList.clear();
 				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
+//				tagIDArrayList.add("1007504471");
+//				tagIDArrayList.add("1001286003");
 			}
 			tagIDMap.put(skuID, tagIDArrayList);
 		}
@@ -119,6 +130,9 @@ public class PurchaseOrderReceivingStepDefs {
 			for (int t = 0; t < tagIDMap.size(); t++) {
 				String currentTag = tagIDMap.get(skuCurrent).get(t);
 				qtyReceivedPerTagMap.put(currentTag, 0);
+//				qtyReceivedPerTagMap.put("1007504471", 800);
+//				qtyReceivedPerTagMap.put("1001286003", 700);
+				
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
@@ -204,7 +218,6 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter the location \"([^\"]*)\" and tag$")
 	public void i_enter_the_location_and_tag(String location) throws Throwable {
-		// context.setLocation(location);
 		purchaseOrderReceivingPage.enterLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
@@ -216,7 +229,6 @@ public class PurchaseOrderReceivingStepDefs {
 		String tagId = tagIDMap.get(skuID).get(context.getTagIdIndex());
 		System.out.println(tagId);
 		purchaseOrderReceivingPage.enterTagId(tagId);
-		// context.setTagIdIndex(context.getTagIdIndex()+1);
 		logger.debug("Tag ID: " + tagId);
 
 		Assert.assertTrue("RcvPreCmp page 2 not displayed as expected",
@@ -236,6 +248,10 @@ public class PurchaseOrderReceivingStepDefs {
 		System.out.println("contextSetforDueQtyFlag : " + contextSetforDueQtyFlag);
 		int rcvQtyDue = 0;
 
+		String currentSku = purchaseOrderMap.get(lineItem).get("SKU");
+		String tagId = tagIDMap.get(currentSku).get(context.getTagIdIndex());
+		context.setTagIdIndex(context.getTagIdIndex() + 1);
+		
 		if (contextSetforDueQtyFlag == true) {
 			context.setRcvQtyDue(Integer.parseInt(purchaseOrderMap.get(lineItem).get("RemainingQtyDue")));
 			rcvQtyDue = context.getRcvQtyDue();
@@ -262,10 +278,8 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		// To set the Qty received for every tag and to enter the quantity to be
 		// received
-		String currentSku = purchaseOrderMap.get(lineItem).get("SKU");
-		String tagId = tagIDMap.get(currentSku).get(context.getTagIdIndex());
-		context.setTagIdIndex(context.getTagIdIndex() + 1);
 		qtyReceivedPerTagMap.replace(tagId, qtyToReceive);
+		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 		System.out.println("qtyReceivedPerTagMap after replacement" + qtyReceivedPerTagMap);
 		context.setRcvQtyDue(rcvQtyDue);
 
@@ -285,6 +299,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the expiry details$")
 	public void i_enter_the_expiry_details() throws Throwable {
 		String expDate = DateUtils.getAddedSystemYear();
+		context.setFutureExpiryDate(expDate);
 		purchaseOrderReceivingPage.enterExpiryDate(expDate);
 		Thread.sleep(10000);
 	}
@@ -313,9 +328,10 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_expiry_details();
-				i_should_see_the_receiving_completion();
+//				i_should_see_the_receiving_completion();
 				Thread.sleep(5000);
 			}
 		}
+//		purchaseOrderReceivingPage.minimisePutty();
 	}
 }

@@ -33,7 +33,7 @@ public class Context {
 	private String name;
 	private String country;
 	private String address1;
-	private int qtyReceivedfromPutty;
+	private int qtyReceivedPerTag;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -251,12 +251,12 @@ public class Context {
 		this.address1 = address1;
 	}
 
-	public int getQtyReceivedfromPutty() {
-		return qtyReceivedfromPutty;
+	public int getQtyReceivedPerTag() {
+		return qtyReceivedPerTag;
 	}
 
-	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
-		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	public void setQtyReceivedPerTag(int qtyReceivedPerTag) {
+		this.qtyReceivedPerTag = qtyReceivedPerTag;
 	}
 
 }
