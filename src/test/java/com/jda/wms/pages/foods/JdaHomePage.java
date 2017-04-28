@@ -48,7 +48,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/Menu/menuData.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public void navigateToStockCheckQueryPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -58,7 +58,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
-	
+
 	private void hoverOrder() throws FindFailed {
 		screen.wait("images/OrderSubmenu.png", timeoutInSec);
 		screen.click("images/OrderSubmenu.png");
@@ -140,7 +140,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/PackConfigScreen.png");
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToStockCheckListGeneration() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -173,6 +173,17 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/Menu/Data/Inventory/inventoryInventoryTransaction.png", timeoutInSec);
 		screen.click("images/Menu/Data/Inventory/inventoryInventoryTransaction.png");
 		Thread.sleep(2000);
+	}
+
+	public void hoverPreAdvice() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdvice.png", timeoutInSec);
+		screen.click("(images/JDAHome/PreAdvice.png");
+		Thread.sleep(3000);
+	}
+
+	public void clickPreAdviceHeader() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/PreAdviceHeader.png", timeoutInSec);
+		screen.click("images/JDAHome/PreAdviceHeader.png");
 	}
 
 	public void navigateToInventoryQueryPage() throws FindFailed, InterruptedException {
@@ -221,9 +232,19 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
-		screen.type("f",Key.CTRL);
+		screen.type("f", Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
 		screen.type(Key.ENTER);
