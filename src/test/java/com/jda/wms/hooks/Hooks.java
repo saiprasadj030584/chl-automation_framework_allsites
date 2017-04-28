@@ -78,7 +78,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-//	@After
+	@After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);

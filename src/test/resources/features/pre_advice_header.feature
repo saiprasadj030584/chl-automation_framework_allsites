@@ -4,7 +4,7 @@ Feature: purchase order validation
   I want to validate purchase order
   So that I can use them for
 
-  @pre_advice_header_table
+  @complete
   Scenario: Load the pre-advice header details
     Given the PO "8050004526" should be "In Progress" status and have future due date, site id, number of lines
     And the PO should have address details in the pre-advice header maintenance table
