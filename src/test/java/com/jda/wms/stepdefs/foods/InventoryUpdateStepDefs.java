@@ -120,6 +120,11 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
+	@When("^I proceed to lock the record$")
+	public void i_proceed_to_lock_the_record() throws Throwable {
+		jDAFooter.clickNextButton();
+	}
+	
 	@When("^I search the tag id \"([^\"]*)\"$")
 	public void i_search_the_tag_id(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
