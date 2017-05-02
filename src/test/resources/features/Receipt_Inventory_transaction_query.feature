@@ -1,25 +1,21 @@
-#Author: Saravanan.Jeyabalan@msncorp.net
-#KEY : ITL -Inventory Transaction
 @Receipt_inventory_transaction_query
 Feature: Receipt ITL
   As a warehouse user
   I want to verify ITL generated for receipt
-  So that
+  So that I can ensure goods receipt details are sent to downstream systems
 
   @sara_wip
-  Scenario: validate I0808 (Goods Receipt) is generated successfully for the received stock
-    Given I navigate to inventory transaction query page
-    When I search tag id "" and code as ""
-    Then the Description, From location, to location,Update Qty,Reference and SKU should be displayed in the general tab
+  Scenario: Generate goods receipt for the received ambient stock
+    Given I navigate to inventory transaction query
+    When I search tag id "3201000011" with transaction code as "Receipt" and transaction date as current date
+    Then the description, from location, to location, update qty, reference and SKU should be displayed in the general tab
     When I navigate to miscellaneous tab
-    Then the expiry date, User ID, Workstation, RDT User mode and supplier details should be displayed
+    Then the expiry date,user id, workstation, RDT user mode and supplier details should be displayed
     When I navigate to miscellaneous2 tab
-    Then the pallet type, Pack Config, Uploaded=Y, Uploaded Filename, uploaded date and uploaded time should be displayed
-    When I navigate to Customs & Excise tab
-    Then the pallet type,  should be displayed
-    When I navigate to Customs & Excise tab
-    Then original rotation ID, rotation ID, C&E Receipt Type and Under Bond should be displayed
-    When I navigate to User Defined tab -Settings 1
-    Then the storage location, Base UOM, Case ratio ,Into Destination Date, vintage and ABV should be displayed
-    When I navigate to User Defined tab - Settings 2
-    Then the URN Child value should be displayed
+    Then the pallet type, pack config, uploaded status, uploaded filename, uploaded date and uploaded time should be displayed
+    When I navigate to customs & excise tab
+    Then the original rotation id, rotation id, CE receipt type and under bond should be displayed
+    When I navigate to user defined tab
+    Then the storage location, base UOM, case ratio ,into destination date should be displayed
+    When I navigate to settings 2 tab in the user defined tab
+    Then the URN child should be displayed

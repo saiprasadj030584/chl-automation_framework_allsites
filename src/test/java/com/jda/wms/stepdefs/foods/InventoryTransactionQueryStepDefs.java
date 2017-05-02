@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -14,7 +15,6 @@ import com.jda.wms.pages.foods.JDAFooter;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class InventoryTransactionQueryStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,7 +40,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterLockCode(lockCode);
 		jdaFooter.clickExecuteButton();
 	}
-	
+
 	@When("^I search tag id \"([^\"]*)\" and code as \"([^\"]*)\"$")
 	public void i_search_tag_id_and_code_as(String tagId, String code) throws Throwable {
 		context.setCode(code);
@@ -49,25 +49,31 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
 	}
+
 	@When("^I search tag id \"([^\"]*)\" with transaction code as \"([^\"]*)\"$")
-	public void i_search_tag_id_with_transaction_code_as(String tagId, String selectType) throws Throwable {
+	public void i_search_tag_id_with_transaction_code_as(String tagId, String code) throws Throwable {
+		i_search_tag_id_with_transaction_code_as_and_transaction_date_as_current_date(tagId, code);
+	}
+
+	@When("^I search tag id \"([^\"]*)\" with transaction code as \"([^\"]*)\" and transaction date as current date$")
+	public void i_search_tag_id_with_transaction_code_as_and_transaction_date_as_current_date(String tagId, String code)
+			throws Throwable {
 		jdaFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterTagId(tagId);
-		inventoryTransactionQueryPage.enterCode(selectType);
+		inventoryTransactionQueryPage.enterCode(code);
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jdaFooter.clickExecuteButton();
 	}
-
 
 	@When("^I select the adjusted stock from the results$")
 	public void i_select_the_adjusted_stock_from_the_results() throws Throwable {
 		boolean isOneOrNoRecord = inventoryTransactionQueryPage.isOneOrNoTransactionDisplayed();
 		Thread.sleep(2000);
-		if (isOneOrNoRecord==false){
-			inventoryTransactionQueryPage.selectRequiredRecord();	
+		if (isOneOrNoRecord == false) {
+			inventoryTransactionQueryPage.selectRequiredRecord();
 		}
 	}
-	
+
 	@Then("^I should see the status as \"([^\"]*)\" in the transaction query$")
 	public void the_I_should_see_the_status_as_and_lock_code_as_in_the_transaction_query(String status)
 			throws Throwable {
@@ -77,12 +83,12 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^I navigate to miscellaneous tab$")
 	public void i_navigate_to_miscellaneous_tab() throws Throwable {
-		inventoryTransactionQueryPage.navigateToMiscellaneousTab();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 	}
-	
+
 	@Then("^I should see the updated ABV in the inventory transaction query page$")
 	public void i_should_see_the_updated_ABV_in_the_inventory_transaction_query_page() throws Throwable {
-		Assert.assertEquals("ABV is not as expected.", context.getABV(),inventoryTransactionQueryPage.getAbv());
+		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryTransactionQueryPage.getABV());
 	}
 
 	@Then("^I should see the reason code as \"([^\"]*)\"$")
@@ -126,9 +132,9 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^I navigate to miscellaneous2 tab$")
 	public void i_navigate_to_miscellaneous2_tab() throws Throwable {
-		inventoryTransactionQueryPage.navigateToMiscellaneous2Tab();
+		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
 	}
-	
+
 	@Then("^I should see the readon code as \"([^\"]*)\"$")
 	public void i_should_see_the_readon_code_as(String reasonCode) throws Throwable {
 		String actualReasonCode = inventoryTransactionQueryPage.getReasonCode();
@@ -155,42 +161,41 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
-		inventoryTransactionQueryPage.navigateToMiscellaneousTab();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 	}
+
 	@Then("^the SKU Id and Reference should be displayed$")
 	public void the_SKU_Id_and_Reference_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		boolean isNoRecordExists = inventoryTransactionQueryPage.isNoRecordsExists();
-		if (!isNoRecordExists){
-		String skuId = inventoryTransactionQueryPage.getSkuId();
-		if (skuId.equals(null)) {
-			failureList.add("SKU id is not as expected. Expected [Not NULL] but was [" + skuId + "]");
-		}
+		if (!isNoRecordExists) {
+			String skuId = inventoryTransactionQueryPage.getSkuId();
+			if (skuId.equals(null)) {
+				failureList.add("SKU id is not as expected. Expected [Not NULL] but was [" + skuId + "]");
+			}
 
-		String reference = inventoryTransactionQueryPage.getReference();
-		if (reference.equals(null)) {
-			failureList.add("Reference is not as expected. Expected [Not NULL] but was [" + reference + "]");
+			String reference = inventoryTransactionQueryPage.getReference();
+			if (reference.equals(null)) {
+				failureList.add("Reference is not as expected. Expected [Not NULL] but was [" + reference + "]");
+			}
+		} else {
+			failureList
+					.add("Record is not found. Expected [Record should be found] but was [" + isNoRecordExists + "]");
 		}
-		}
-		else {
-			failureList.add("Record is not found. Expected [Record should be found] but was [" + isNoRecordExists + "]");
-		}
-		Assert.assertTrue(
-				"Values are not found. [" + Arrays.asList(failureList.toArray()) + "].",
+		Assert.assertTrue("Values are not found. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-		
+
 	}
 
-	
 	@Then("^I should see the original quantity and updated quantity in the general tab$")
 	public void i_should_see_the_original_quantity_and_updated_quantity_in_the_general_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		String originalQty = inventoryTransactionQueryPage.getOriginalQty();
 		String qtytoCheck = String.valueOf(context.getQtyOnHandBeforeAdjustment());
 		if (!originalQty.equals(qtytoCheck)) {
-			failureList.add("Original Quantity before Adjustment is not displayed as expected. Expected ["
-					+ qtytoCheck + "] but was [" + originalQty + "]");
+			failureList.add("Original Quantity before Adjustment is not displayed as expected. Expected [" + qtytoCheck
+					+ "] but was [" + originalQty + "]");
 		}
 		logger.debug("Original Quantity: " + originalQty);
 
@@ -198,13 +203,14 @@ public class InventoryTransactionQueryStepDefs {
 		String updateQtyToCheck = String.valueOf(context.getCaseRatio());
 		if (context.getAdjustmentType().equalsIgnoreCase("Decrement")) {
 			if (!updateQty.equals("-" + updateQtyToCheck)) {
-				failureList.add("Update Quantity is not displayed as expected. Expected [" + "-"
-						+ updateQtyToCheck + "] but was [" + updateQty + "]");
+				failureList.add("Update Quantity is not displayed as expected. Expected [" + "-" + updateQtyToCheck
+						+ "] but was [" + updateQty + "]");
 			}
 		} else if (context.getAdjustmentType().equalsIgnoreCase("Increment")) {
 
 			if (!updateQty.equals(updateQtyToCheck)) {
-				failureList.add("Update Quantity is not displayed as expected. Expected [" +updateQtyToCheck + "] but was [" + updateQty + "]");
+				failureList.add("Update Quantity is not displayed as expected. Expected [" + updateQtyToCheck
+						+ "] but was [" + updateQty + "]");
 			}
 		}
 
@@ -212,5 +218,211 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue(
 				"Stock Adjustment attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+
+	@When("^I navigate to settings 2 tab in the user defined tab$")
+	public void i_navigate_to_settings_2_tab_in_the_user_defined_tab() throws Throwable {
+		inventoryTransactionQueryPage.clickSettings2Tab();
+	}
+
+	@Then("^the URN child should be displayed$")
+	public void the_URN_child_should_be_displayed() throws Throwable {
+		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
+				inventoryTransactionQueryPage.getURNChild());
+		logger.debug("URN Child: " + inventoryTransactionQueryPage.getURNChild());
+	}
+
+	@Then("^the storage location, base UOM, case ratio ,into destination date should be displayed$")
+	public void the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String storageLocation = inventoryTransactionQueryPage.getStorageLocation();
+		if (!storageLocation.equals("0001")) {
+			failureList.add("Storage Location is not as expected. Expected [0001] but was [" + storageLocation + "]");
+		}
+		logger.debug("storageLocation: " + storageLocation);
+
+		String baseUOM = inventoryTransactionQueryPage.getBaseUOM();
+		if (!baseUOM.equals("EA")) {
+			failureList.add("Base UOM is not as expected. Expected [EA] but was [" + baseUOM + "]");
+		}
+		logger.debug("baseUOM: " + baseUOM);
+
+		String intoDestinationDate = inventoryTransactionQueryPage.getIntoDestinationDate();
+		if (intoDestinationDate.equals(null)) {
+			failureList.add("Into Destination Date is not as expected. Expected [Not NULL] but was ["
+					+ intoDestinationDate + "]");
+		}
+		logger.debug("intoDestinationDate: " + intoDestinationDate);
+
+		int caseRatio = Integer.parseInt(inventoryTransactionQueryPage.getCaseRatio());
+		if (!(caseRatio > 0)) {
+			failureList.add("Case Ratio is not as expected. Expected [Not NULL] but was [" + caseRatio + "]");
+		}
+		logger.debug("caseRatio: " + caseRatio);
+
+		Assert.assertTrue("Inventory transaction query user defined details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+	}
+
+	@Then("^the original rotation id, rotation id, CE receipt type and under bond should be displayed$")
+	public void the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String originalRotationId = inventoryTransactionQueryPage.getOriginalRotationId();
+		if (originalRotationId.equals(null)) {
+			failureList.add("Original Rotation ID is not as expected. Expected [Not Null] but was ["
+					+ originalRotationId + "]");
+		}
+		logger.debug("originalRotationId: " + originalRotationId);
+
+		String rotationId = inventoryTransactionQueryPage.getRotationId();
+		if (rotationId.equals(null)) {
+			failureList.add("Rotation ID is not as expected. Expected [Not Null] but was [" + rotationId + "]");
+		}
+		logger.debug("rotationId: " + rotationId);
+
+		String ceReceiptType = inventoryTransactionQueryPage.getCEReceiptType();
+		if (ceReceiptType.equals(null)) {
+			failureList.add("CE Receipt Type is not as expected. Expected [Not NULL] but was [" + ceReceiptType + "]");
+		}
+		logger.debug("ceReceiptType: " + ceReceiptType);
+
+		String underBond = inventoryTransactionQueryPage.getUnderBond();
+		if (underBond.equals(null)) {
+			failureList.add("Under Bond is not as expected. Expected [Not NULL] but was [" + underBond + "]");
+		}
+		logger.debug("underBond: " + underBond);
+
+		Assert.assertTrue("Inventory transaction query Customs & Excise tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+	}
+
+	@Then("^the description, from location, to location, update qty, reference and SKU should be displayed in the general tab$")
+	public void the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String description = inventoryTransactionQueryPage.getDescription();
+		if (description.equals(null)) {
+			failureList.add("Description in ITL is not as expected. Expected [Not Null] but was [" + description + "]");
+		}
+		logger.debug("description: " + description);
+
+		String fromLocation = inventoryTransactionQueryPage.getFromLocation();
+		if (fromLocation.equals(null)) {
+			failureList.add("From Location is not as expected. Expected [Not Null] but was [" + fromLocation + "]");
+		}
+		logger.debug("fromLocation: " + fromLocation);
+
+		String toLocation = inventoryTransactionQueryPage.getToLocation();
+		if (toLocation.equals(null)) {
+			failureList.add("To Location is not as expected. Expected [Not NULL] but was [" + toLocation + "]");
+		}
+		logger.debug("toLocation: " + toLocation);
+
+		Integer updateQty = Integer.parseInt(inventoryTransactionQueryPage.getUpdateQty());
+		if (updateQty > 0) {
+			failureList.add("Update Quantity is not as expected. Expected [Not NULL] but was [" + updateQty + "]");
+		}
+		logger.debug("updateQty: " + updateQty);
+
+		String reference = inventoryTransactionQueryPage.getReference();
+		if (reference.equals(null)) {
+			failureList
+					.add("Reference (PO Number) is not as expected. Expected [Not NULL] but was [" + reference + "]");
+		}
+		logger.debug("reference: " + reference);
+
+		Assert.assertTrue("Inventory transaction General tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+	}
+
+	@Then("^the expiry date,user id, workstation, RDT user mode and supplier details should be displayed$")
+	public void the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
+		if (expiryDate.equals(null)) {
+			failureList.add("Expiry Date is not as expected. Expected [Not Null] but was [" + expiryDate + "]");
+		}
+		logger.debug("expiryDate: " + expiryDate);
+
+		String userId = inventoryTransactionQueryPage.getUserId();
+		if (userId.equals(null)) {
+			failureList.add("User ID is not as expected. Expected [Not Null] but was [" + userId + "]");
+		}
+		logger.debug("userId: " + userId);
+
+		String workstation = inventoryTransactionQueryPage.getWorkstation();
+		if (workstation.contains("RDT")) {
+			failureList.add("Workstation is not as expected. Expected [RDT*] but was [" + workstation + "]");
+		}
+		logger.debug("workstation: " + workstation);
+
+		String rdtUserMode = inventoryTransactionQueryPage.getRDTUserMode();
+		if (!rdtUserMode.equals("Pre-Advice Receive")) {
+			failureList.add(
+					"RDT User Mode is not as expected. Expected [Pre-Advice Receive] but was [" + rdtUserMode + "]");
+		}
+		logger.debug("rDTUserMode: " + rdtUserMode);
+
+		String supplier = inventoryTransactionQueryPage.getSupplier();
+		if (supplier.equals(null)) {
+			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
+		}
+		logger.debug("supplier: " + supplier);
+
+		Assert.assertTrue("Inventory transaction query miscellaneous tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+	}
+
+	@Then("^the pallet type, pack config, uploaded status, uploaded filename, uploaded date and uploaded time should be displayed$")
+	public void the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String palletType = inventoryTransactionQueryPage.getPalletType();
+		if (palletType.equals(null)) {
+			failureList.add("Pallet Type is not as expected. Expected [0001] but was [" + palletType + "]");
+		}
+		logger.debug("palletType: " + palletType);
+
+		String packConfig = inventoryTransactionQueryPage.getPackConfig();
+		String skuId = inventoryTransactionQueryPage.getSkuId();
+		if (!packConfig.contains(skuId)) {
+			failureList.add("Pack Config is not as expected. Expected [" + skuId + "*] but was [" + packConfig + "]");
+		}
+		logger.debug("packConfig: " + packConfig);
+
+		String uploaded = inventoryTransactionQueryPage.getUploaded();
+		if (!uploaded.equals("Y")) {
+			failureList.add("Uploaded flag is not as expected. Expected [Y] but was [" + uploaded + "]");
+		}
+		logger.debug("uploaded: " + uploaded);
+
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		if (!uploadedFileName.contains("I0808itl")) {
+			failureList.add(
+					"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+		}
+		logger.debug("uploadedFileName: " + uploadedFileName);
+
+		String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
+		if (uploadedDate.equals(null)) {
+			failureList.add("Uploaded Date is not as expected. Expected [Not Null] but was [" + uploadedDate + "]");
+		}
+		logger.debug("uploadedDate: " + uploadedDate);
+
+		String uploadedTime = inventoryTransactionQueryPage.getUploadedTime();
+		if (uploadedTime.equals(null)) {
+			failureList.add("Uploaded Time is not as expected. Expected [Not Null] but was [" + uploadedTime + "]");
+		}
+		logger.debug("uploadedTime: " + uploadedTime);
+
+		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
 }

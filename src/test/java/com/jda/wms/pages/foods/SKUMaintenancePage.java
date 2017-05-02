@@ -7,7 +7,6 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-import com.jda.wms.context.Context;
 
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
@@ -18,7 +17,7 @@ public class SKUMaintenancePage {
 	public SKUMaintenancePage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}
-	
+
 	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
 		jDAFooter.clickQueryButton();
 		enterSKUID(skuId);
@@ -94,7 +93,7 @@ public class SKUMaintenancePage {
 		Thread.sleep(3000L);
 	}
 
-	public void navigateToCustomsAndExcise() throws FindFailed, InterruptedException {
+	public void clickCustomsAndExcise() throws FindFailed, InterruptedException {
 		screen.wait("images/SKUMaintenanceTable/CustomsExcise.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/CustomsExcise.png");
 		Thread.sleep(3000L);
@@ -165,7 +164,7 @@ public class SKUMaintenancePage {
 		return App.getClipboard();
 	}
 
-	public void navigateToUserDefined() throws FindFailed, InterruptedException {
+	public void clickUserDefined() throws FindFailed, InterruptedException {
 		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/UserDefined.png");
 		Thread.sleep(3000L);
