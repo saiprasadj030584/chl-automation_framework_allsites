@@ -264,9 +264,10 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
-	public void navigateToMiscellaneousTab() throws FindFailed {
+	public void navigateToMiscellaneousTab() throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryQuery/MiscellaneousTab.png", timeoutInSec);
 		screen.click("images/InventoryQuery/MiscellaneousTab.png");
+		Thread.sleep(2000);
 	}
 
 	public void navigateToUserDefinedTab() throws FindFailed {
@@ -284,5 +285,11 @@ public class InventoryQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void clickGeneralTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryQuery/GeneralTab.png", timeoutInSec);
+		screen.click("images/InventoryQuery/GeneralTab.png");
+		Thread.sleep(1000);
 	}
 }

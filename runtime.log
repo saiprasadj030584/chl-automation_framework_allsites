@@ -912,3 +912,348 @@
 2017-04-28 15:26:14 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1004577725
 2017-04-28 15:26:16 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
 2017-04-28 15:26:16 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 05:27:40 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:27:40 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:27:40 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:27:40 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:28:42 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:28:42 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:29:02 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1000356995
+2017-05-02 05:29:04 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 05:29:04 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 05:33:37 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:33:37 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:33:37 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:33:37 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:34:38 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:34:38 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:34:59 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1006332387
+2017-05-02 05:35:01 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 05:35:01 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 05:38:05 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:38:05 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:38:05 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:38:05 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:38:10 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 05:38:10 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 05:38:10 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 05:40:02 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:40:02 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:40:02 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:40:02 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:40:08 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 05:40:08 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 05:40:08 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 05:41:19 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:41:19 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:41:19 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:41:19 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:42:21 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:42:21 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:42:42 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1008646478
+2017-05-02 05:42:44 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 05:42:44 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 05:43:22 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:43:22 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:43:41 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1004081793
+2017-05-02 05:43:43 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 05:43:43 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 05:45:53 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 05:45:53 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 05:45:53 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 05:45:53 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 05:46:55 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:46:55 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:47:15 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1002305826
+2017-05-02 05:47:17 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 05:47:17 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 05:47:55 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 05:47:55 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 05:48:14 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1004125486
+2017-05-02 05:48:16 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 05:48:16 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 05:50:37 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 05:50:37 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 05:50:37 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:00:16 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:00:16 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:00:16 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:00:16 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:01:28 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:01:28 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:01:28 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:01:28 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:02:45 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:02:45 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:02:45 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:03:14 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:03:14 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:03:14 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:03:14 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:04:50 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:04:50 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:04:50 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:07:24 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:07:24 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:07:24 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:07:24 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:09:07 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:09:07 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:09:07 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:11:32 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:11:32 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:11:32 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:11:32 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:12:49 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:12:49 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:12:49 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:12:49 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:13:54 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:13:54 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:13:54 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:13:54 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:18:07 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:18:07 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:18:07 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:18:07 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:26:13 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:26:13 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:26:13 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:26:13 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:26:17 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:26:17 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:26:17 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:27:08 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:27:08 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:27:08 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:27:08 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:27:14 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:27:14 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:27:14 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 06:30:37 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 06:30:37 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 06:30:37 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 06:30:37 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 06:30:43 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 06:30:43 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 06:30:43 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:03:39 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:03:39 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:03:39 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:03:39 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:03:46 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:03:46 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:03:46 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:14:25 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:14:25 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:14:25 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:14:25 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:16:01 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:16:01 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:16:01 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:16:25 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:16:25 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:16:25 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:16:25 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:18:57 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:18:57 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:18:57 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:18:57 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:21:01 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:21:01 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:21:01 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:21:01 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:23:05 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:23:05 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:23:05 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:29:45 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:29:45 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:29:45 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:29:45 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:33:32 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:33:32 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:33:32 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:38:07 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:38:07 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:38:07 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:38:07 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:38:22 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:38:22 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:38:22 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:38:54 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:38:54 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:38:54 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:38:54 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:39:56 DEBUG PurchaseOrderReceivingStepDefs:185 - Line Item: 1
+2017-05-02 07:39:56 DEBUG PurchaseOrderReceivingStepDefs:186 - SKU ID: 21036013
+2017-05-02 07:40:17 DEBUG PurchaseOrderReceivingStepDefs:230 - Tag ID: 1003138020
+2017-05-02 07:40:20 DEBUG PurchaseOrderReceivingStepDefs:287 - Qty To Receive: 800
+2017-05-02 07:40:20 DEBUG PurchaseOrderReceivingStepDefs:288 - Remaining Qty Due: 700
+2017-05-02 07:40:58 DEBUG PurchaseOrderReceivingStepDefs:185 - Line Item: 1
+2017-05-02 07:40:58 DEBUG PurchaseOrderReceivingStepDefs:186 - SKU ID: 21036013
+2017-05-02 07:41:17 DEBUG PurchaseOrderReceivingStepDefs:230 - Tag ID: 1008571195
+2017-05-02 07:41:19 DEBUG PurchaseOrderReceivingStepDefs:287 - Qty To Receive: 700
+2017-05-02 07:41:19 DEBUG PurchaseOrderReceivingStepDefs:288 - Remaining Qty Due: 0
+2017-05-02 07:41:59 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:41:59 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:41:59 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:43:06 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:43:06 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:43:06 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:43:06 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:44:09 DEBUG PurchaseOrderReceivingStepDefs:185 - Line Item: 1
+2017-05-02 07:44:09 DEBUG PurchaseOrderReceivingStepDefs:186 - SKU ID: 21036013
+2017-05-02 07:44:29 DEBUG PurchaseOrderReceivingStepDefs:230 - Tag ID: 1005747539
+2017-05-02 07:44:32 DEBUG PurchaseOrderReceivingStepDefs:287 - Qty To Receive: 800
+2017-05-02 07:44:32 DEBUG PurchaseOrderReceivingStepDefs:288 - Remaining Qty Due: 700
+2017-05-02 07:45:10 DEBUG PurchaseOrderReceivingStepDefs:185 - Line Item: 1
+2017-05-02 07:45:10 DEBUG PurchaseOrderReceivingStepDefs:186 - SKU ID: 21036013
+2017-05-02 07:45:29 DEBUG PurchaseOrderReceivingStepDefs:230 - Tag ID: 1002898603
+2017-05-02 07:45:31 DEBUG PurchaseOrderReceivingStepDefs:287 - Qty To Receive: 700
+2017-05-02 07:45:31 DEBUG PurchaseOrderReceivingStepDefs:288 - Remaining Qty Due: 0
+2017-05-02 07:47:43 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:47:43 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:47:43 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:52:32 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:52:32 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:52:32 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:52:32 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:52:36 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:52:36 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:52:36 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 07:57:41 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:57:41 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:57:41 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:57:41 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:58:26 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 07:58:26 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 07:58:26 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 07:58:26 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 07:59:16 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 07:59:16 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 07:59:16 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:01:19 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:01:19 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:01:19 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:01:19 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:02:03 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:02:03 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:02:03 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:02:03 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:02:34 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:02:34 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:02:34 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:03:14 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:03:14 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:03:14 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:07:03 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:07:03 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:07:03 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:07:03 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:07:10 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:07:10 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:07:10 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:21:57 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:21:57 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:21:57 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:21:57 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:23:02 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:23:02 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:23:26 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1000311907
+2017-05-02 08:23:28 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 08:23:28 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 08:24:07 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:24:07 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:24:27 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1007301702
+2017-05-02 08:24:29 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 08:24:29 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 08:27:00 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:27:00 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:27:00 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:27:00 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:28:06 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:28:06 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:28:29 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1008594855
+2017-05-02 08:28:32 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 08:28:32 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 08:29:12 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:29:12 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:29:31 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1008064423
+2017-05-02 08:29:33 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 08:29:33 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 08:31:58 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:31:58 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:31:58 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:34:05 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:34:05 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:34:05 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:34:05 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:35:08 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:35:08 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:35:28 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1008336272
+2017-05-02 08:35:31 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 08:35:31 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 08:36:09 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:36:09 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:36:27 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1003771587
+2017-05-02 08:36:30 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 08:36:30 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 08:39:21 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:39:21 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:39:21 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:40:44 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:40:44 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:40:44 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:40:44 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:43:07 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:43:07 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:43:07 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:43:07 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:43:14 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:43:14 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:43:14 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 08:46:31 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:46:31 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:46:31 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:46:31 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:47:33 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:47:33 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:47:53 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1004789698
+2017-05-02 08:47:55 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 08:47:55 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 08:48:33 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:48:33 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:48:52 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1006167388
+2017-05-02 08:48:54 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 08:48:54 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 08:50:25 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 08:50:25 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 08:50:25 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 08:50:25 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 08:51:27 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:51:27 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:51:47 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1005179048
+2017-05-02 08:51:50 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 800
+2017-05-02 08:51:50 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 700
+2017-05-02 08:52:28 DEBUG PurchaseOrderReceivingStepDefs:187 - Line Item: 1
+2017-05-02 08:52:28 DEBUG PurchaseOrderReceivingStepDefs:188 - SKU ID: 21036013
+2017-05-02 08:52:47 DEBUG PurchaseOrderReceivingStepDefs:232 - Tag ID: 1005846464
+2017-05-02 08:52:49 DEBUG PurchaseOrderReceivingStepDefs:289 - Qty To Receive: 700
+2017-05-02 08:52:49 DEBUG PurchaseOrderReceivingStepDefs:290 - Remaining Qty Due: 0
+2017-05-02 08:56:20 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 08:56:20 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 08:56:20 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 10:21:44 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 10:21:44 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 10:21:44 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 10:21:44 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 10:22:04 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 10:22:04 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 10:22:04 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-02 10:23:16 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-02 10:23:16 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
+2017-05-02 10:23:16 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
+2017-05-02 10:23:16 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-02 10:23:41 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-02 10:23:41 DEBUG Hooks:76 - End of Scenario: Receiving process in JDA WMS
+2017-05-02 10:23:41 DEBUG Hooks:77 - ###########################################################################################################################

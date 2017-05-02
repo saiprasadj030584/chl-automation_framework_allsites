@@ -211,14 +211,18 @@ public class InventoryQueryStepDefs {
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
 		tagIDMap = context.getTagIDMap();
+		
+		System.out.println(purchaseOrderMap);
+		System.out.println(tagIDMap);
 		System.out.println(qtyReceivedPerTagMap);
+		
 		for (String key : purchaseOrderMap.keySet()){
 			 System.out.println( "Sku Keys " +purchaseOrderMap.get(key).get("SKU") );
 			 String sku = purchaseOrderMap.get(key).get("SKU");
 			 caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
 			 System.out.println("caseratio "+caseRatio);
-			 System.out.println();
-			 for (int s=0;s<tagIDMap.size();s++){
+			 System.out.println("tagIDMap.size() "+tagIDMap.size());
+			 for (int s=0;s<tagIDMap.get(sku).size();s++){
 				 System.out.println("Inside tag id for loop");
 				 tagID = tagIDMap.get(sku).get(s);
 				 System.out.println("Tag to search: "+tagID);
@@ -282,7 +286,7 @@ public class InventoryQueryStepDefs {
 
 		inventoryQueryPage.navigateToMiscellaneousTab();
 		String expiryDate = inventoryQueryPage.getExpiryDate();
-		// TODO get expected expiry date from context
+//		context.setFutureExpiryDate("02/05/2019");
 		if (!expiryDate.equals(context.getFutureExpiryDate())) {
 			failureList.add("Expiry Date is not as expected. Expected ["+context.getFutureExpiryDate()+"] but was [" + expiryDate + "]");
 		}
@@ -333,6 +337,8 @@ public class InventoryQueryStepDefs {
 		if (productGroup.equals(null)) {
 			failureList.add("Product Group is not as expected. Expected [Not NULL] but was [" + productGroup + "]");
 		}
+		
+		inventoryQueryPage.clickGeneralTab();
 
 		Assert.assertTrue(
 				"Inventory query user defined details are not as expected." + Arrays.asList(failureList.toString()),
