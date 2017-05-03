@@ -11,6 +11,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.pages.foods.JdaHomePage;
+import com.jda.wms.pages.foods.SKUMaintenancePage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,13 +23,17 @@ public class InventoryTransactionQueryStepDefs {
 	private Context context;
 	private final InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private final JDAFooter jdaFooter;
+	private final JdaHomePage jdaHomePage;
+	private final SKUMaintenancePage sKUMaintenancePage;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			Context context, JDAFooter jdaFooter) {
+			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
+		this.jdaHomePage = jdaHomePage;
+		this.sKUMaintenancePage = sKUMaintenancePage;
 	}
 
 	@When("^I search tag id \"([^\"]*)\", code as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
@@ -158,10 +164,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Given("^I select the code as \"([^\"]*)\" and enter the tag id \"([^\"]*)\"$")
 	public void i_select_the_code_as_and_enter_the_tag_id(String code, String tagId) throws Throwable {
+		jdaFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
-		inventoryTransactionQueryPage.clickMiscellaneousTab();
 	}
 
 	@Then("^the SKU Id and Reference should be displayed$")
@@ -304,6 +310,8 @@ public class InventoryTransactionQueryStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
+		if (inventoryTransactionQueryPage.isNoRecordsExists()==false)
+		{
 		String description = inventoryTransactionQueryPage.getDescription();
 		if (description.equals(null)) {
 			failureList.add("Description in ITL is not as expected. Expected [Not Null] but was [" + description + "]");
@@ -323,7 +331,7 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("toLocation: " + toLocation);
 
 		Integer updateQty = Integer.parseInt(inventoryTransactionQueryPage.getUpdateQty());
-		if (updateQty > 0) {
+		if (!(updateQty > 0)) {
 			failureList.add("Update Quantity is not as expected. Expected [Not NULL] but was [" + updateQty + "]");
 		}
 		logger.debug("updateQty: " + updateQty);
@@ -337,18 +345,43 @@ public class InventoryTransactionQueryStepDefs {
 
 		Assert.assertTrue("Inventory transaction General tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+		}
+		else
+		{
+			logger.debug("No Records exists for the query");
+			Assert.fail("No Records exists for the query");
+		}
 	}
 
 	@Then("^the expiry date,user id, workstation, RDT user mode and supplier details should be displayed$")
 	public void the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		String skuId = inventoryTransactionQueryPage.getSkuId();
+		String allocationGroup;
+		
+		jdaHomePage.navigateToSKUMaintanence();
+		jdaFooter.clickQueryButton();
+		sKUMaintenancePage.searchSKUid(skuId);
+		allocationGroup = sKUMaintenancePage.getAllocationGroup();
+		jdaFooter.clickCloseButton();
+		Thread.sleep(2000);
+		logger.debug("Allocation Group captured :" + allocationGroup);
+		
+		if (allocationGroup.equals("EXPIRY"))
+		{
 		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
-		if (expiryDate.equals(null)) {
+			if (expiryDate.equals(null)) 
+			{
 			failureList.add("Expiry Date is not as expected. Expected [Not Null] but was [" + expiryDate + "]");
+			}
+			logger.debug("expiryDate: " + expiryDate);
 		}
-		logger.debug("expiryDate: " + expiryDate);
+		else 
+		{
+			logger.debug("Expiry Date validation not required");
+		}
+		
 
 		String userId = inventoryTransactionQueryPage.getUserId();
 		if (userId.equals(null)) {
@@ -357,7 +390,7 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("userId: " + userId);
 
 		String workstation = inventoryTransactionQueryPage.getWorkstation();
-		if (workstation.contains("RDT")) {
+		if (!(workstation.contains("RDT"))) {
 			failureList.add("Workstation is not as expected. Expected [RDT*] but was [" + workstation + "]");
 		}
 		logger.debug("workstation: " + workstation);
@@ -424,5 +457,70 @@ public class InventoryTransactionQueryStepDefs {
 
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+	}
+	
+	//FIXME - Dry Run
+	@Then("^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$")
+	public void the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS() throws Throwable {
+	
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String originator = inventoryTransactionQueryPage.getOriginator();
+		if (originator.equals(null)) {
+			failureList.add("originator is not as expected. Expected [Not Null] but was [" + originator + "]");
+		}
+		logger.debug("originator: " + originator);
+
+		String originatorReference = inventoryTransactionQueryPage.getOriginatorReference();
+		if (originatorReference.equals(null)) {
+			failureList.add("originator Reference is not as expected. Expected [Not Null] but was [" + originatorReference + "]");
+		}
+		logger.debug("originatorReference: " + originatorReference);
+
+		
+		String ceConsignmentId = inventoryTransactionQueryPage.getCEConsignmentId();
+		if (ceConsignmentId.equals(null)) {
+			failureList.add("CE consignment id is not as expected. Expected [Not Null] but was [" + ceConsignmentId + "]");
+		}
+		logger.debug("CE consignment id: " + ceConsignmentId);
+
+		String documentDate = inventoryTransactionQueryPage.getDocumentDate();
+		if (documentDate.equals(null)) {
+			failureList.add("Upload file name is not as expected. Expected [Not Null] but was [" + documentDate + "]");
+		}
+		logger.debug("uploadedFileName: " + documentDate);
+
+		String documentTime = inventoryTransactionQueryPage.getDocumentTime();
+		if (documentTime.equals(null)) {
+			failureList.add("Document Time is not as expected. Expected [Not Null] but was [" + documentTime + "]");
+		}
+		logger.debug("Document Time: " + documentTime);
+
+		Assert.assertTrue("Inventory transaction query Customs & Excise tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+		
+	}
+
+	//FIXME - Dry run
+	@Then("^ABV percentage and vintage should be displayed for BWS$")
+	public void abv_percentage_and_vintage_should_be_displayed_for_BWS() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		
+		String abvPercentage = inventoryTransactionQueryPage.getABV();
+		if (abvPercentage.equals(null)) {
+			failureList.add(
+					"ABV Value is not as expected. Expected [Not Null] but was [" + abvPercentage + "]");
+		}
+		logger.debug("abvPercentage: " + abvPercentage);
+
+		String vintage = inventoryTransactionQueryPage.getVintage();
+		if (vintage.equals(null)) {
+			failureList.add("vintage is not as expected. Expected [Not Null] but was [" + vintage + "]");
+		}
+		logger.debug("vintage: " + vintage);
+		
+		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
+				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+		
 	}
 }
