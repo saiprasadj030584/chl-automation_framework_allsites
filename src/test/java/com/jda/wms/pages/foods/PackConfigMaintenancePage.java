@@ -88,4 +88,13 @@ public class PackConfigMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public String getRatio2To3() throws FindFailed {
+		Match mRatio = screen.find("/images/JDAPackConfig/Tracking Level/Ratio2to3.png");
+		screen.click(mRatio.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 }

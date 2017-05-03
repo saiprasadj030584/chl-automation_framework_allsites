@@ -75,4 +75,10 @@ public class JDAFooter {
 		screen.type(Key.F12);
 		Thread.sleep(3000);
 	}
+	
+	public void clickNextRecord() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/NextRecord.png", timeoutInSec);
+		screen.click("images/JDAFooter/NextRecord.png");
+		Thread.sleep(3000);
+	}
 }
