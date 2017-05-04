@@ -35,15 +35,14 @@ public class PreAdviceHeaderStepsDefs {
 	}
 
 	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
-	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines(String purchaseOrder, String productCategory, String status) throws Throwable {
-//	@When("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
-//	public void the_PO_should_be_status_and_have_future_due_date_site_id_number_of_lines(String purchaseOrder,
-//			String status) throws Throwable {
+	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines(String preAdviceId, String productCategory, String status) throws Throwable {
+		context.setPreAdviceId(preAdviceId);
+		context.setProductCategory(productCategory);
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
-		i_search_the_pre_advice_id(purchaseOrder);
+		i_search_the_pre_advice_id(preAdviceId);
 
 		String statusPreAdviceHeader = preAdviceHeaderPage.getStatus();
 		System.out.println(statusPreAdviceHeader);
@@ -178,6 +177,10 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_pre_advice_id_should_be_displayed_with_the_linked_consignment() throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(context.getPreAdviceId());
+//		jdaHomeStepDefs.navigateToPreAdviceLinePage();
+		jdaFooter.clickQueryButton();
+//		preAdviceLinePage.enterPreAdviceID("0030229923");
+		jdaFooter.clickExecuteButton();
 		
 		Assert.assertEquals("Consignment ID is not displayed in pre-advice header after linking", context.getConsignmentID(),
 				preAdviceHeaderPage.getConsignmentID());

@@ -11,7 +11,7 @@ Feature: Purchase order
     #Then the supplier should have supplier pallet details in the address maintenanace table
     #When I create consignment for the supplier
     #And I link the consignment to the pre-advice ID
-    #Then the pre-advice id should be displayed with the linked consignment
+    Then the pre-advice id should be displayed with the linked consignment
     #And I want to receive the purchase order "<PreAdviceID>", "<NoOfLines>", "<Supplier>"
     #When I have logged in as warehouse user in Putty with host "<Host>" and port "<Port>"
     #When I select user directed option in main menu

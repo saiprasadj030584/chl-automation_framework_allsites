@@ -36,6 +36,7 @@ public class Context {
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
 	private String consignmentID;
+	private String productCategory;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -275,5 +276,13 @@ public class Context {
 
 	public void setConsignmentID(String consignmentID) {
 		this.consignmentID = consignmentID;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
 	}
 }
