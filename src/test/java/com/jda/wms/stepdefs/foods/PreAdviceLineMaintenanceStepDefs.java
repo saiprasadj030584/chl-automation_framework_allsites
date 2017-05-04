@@ -14,13 +14,16 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
+import com.jda.wms.pages.foods.PopUpPage;
 import com.jda.wms.pages.foods.PreAdviceLinePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
-public class PreAdviceLineStepDefs {
+public class PreAdviceLineMaintenanceStepDefs {
 
 	private final PreAdviceLinePage preAdviceLinePage;
 	private final JDAFooter jdaFooter;
@@ -31,12 +34,13 @@ public class PreAdviceLineStepDefs {
 	private Context context;
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-
+	private PopUpPage popUpPage;
+	
 	@Inject
-	public PreAdviceLineStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
+	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
 			PackConfigMaintenancePage packConfigMaintenancePage, JDAHomeStepDefs jdaHomeStepDefs,
 			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs, Context context,
-			SKUMaintenancePage skuMaintenancePage) {
+			SKUMaintenancePage skuMaintenancePage,PopUpPage popUpPage) {
 		this.preAdviceLinePage = preAdviceLinePage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -45,6 +49,7 @@ public class PreAdviceLineStepDefs {
 		this.packConfigMaintenanceStepDefs = packConfigMaintenanceStepDefs;
 		this.context = context;
 		this.skuMaintenancePage = skuMaintenancePage;
+		this.popUpPage = popUpPage;
 	}
 
 	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items$")
@@ -60,7 +65,7 @@ public class PreAdviceLineStepDefs {
 		jdaHomeStepDefs.i_am_on_pack_config_maintenance_page();
 		jdaHomePage.navigateToSKUMaintanence();
 
-		jdaHomePage.navigateToPreAdviceLinePage();
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
 		jdaFooter.clickQueryButton();
 //		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
 		preAdviceLinePage.enterPreAdviceID("0030229923");
@@ -149,4 +154,29 @@ public class PreAdviceLineStepDefs {
 
 		System.out.println("Map " + context.getPurchaseOrderMap());
 	}
+	
+	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
+	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
+		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
+		jdaFooter.clickQueryButton();
+		preAdviceLinePage.enterPreAdviceId(preAdviceId);
+		preAdviceLinePage.enterSKUId(skuId);
+		jdaFooter.clickExecuteButton();
+	}
+
+	@When("^I lock the record with lockcode as \"([^\"]*)\"$")
+	public void i_lock_the_record_with_lockcode_as(String lockCode) throws Throwable {
+		jdaFooter.clickUpdateButton();
+		preAdviceLinePage.enterLockCode(lockCode);
+		jdaFooter.clickExecuteButton();
+		Thread.sleep(1000);
+		popUpPage.clickYes();
+	}
+
+	@Then("^the record should be locked$")
+	public void the_record_should_be_locked() throws Throwable {
+		Assert.assertEquals("Lock code is not displayed as expected.", context.getLockCode(),
+				preAdviceLinePage.getLockCode());
+	}
+	
 }

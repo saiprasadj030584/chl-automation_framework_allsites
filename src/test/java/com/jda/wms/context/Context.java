@@ -25,7 +25,11 @@ public class Context {
 	private String address1;
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
+<<<<<<< HEAD
 	private Map<String,Map<String,String>>purchaseOrderMap;
+=======
+	private String lockCode;
+>>>>>>> 6fd01d8bc720f9329fd934d49be3fdf58e4ea879
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -195,6 +199,7 @@ public class Context {
 		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
 	}
 
+<<<<<<< HEAD
 	public Map<String,Map<String,String>> getPurchaseOrderMap() {
 		return purchaseOrderMap;
 	}
@@ -202,4 +207,14 @@ public class Context {
 	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
 		this.purchaseOrderMap = purchaseOrderMap;
 	}
+=======
+	public String getLockCode() {
+		return lockCode;
+	}
+
+	public void setLockCode(String lockCode) {
+		this.lockCode = lockCode;
+	}
+
+>>>>>>> 6fd01d8bc720f9329fd934d49be3fdf58e4ea879
 }
