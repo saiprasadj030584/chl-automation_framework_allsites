@@ -27,11 +27,12 @@ public class InventoryTransactionQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final SKUMaintenancePage sKUMaintenancePage;
-	private final PreAdviceLine preAdviceLine;
+	//TODO private final PreAdviceLine preAdviceLine;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage, PreAdviceLine preAdviceLine) {
+			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage) {
+		// TODO PreAdviceLine preAdviceLine
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
@@ -508,46 +509,46 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^ABV percentage and vintage should be displayed for BWS$")
 	public void abv_percentage_and_vintage_should_be_displayed_for_BWS() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String abv;
-		String vintage;
-		
-		jdaHomePage.navigateToPreAdviceLineMaintenance();
-		jdaFooter.clickQueryButton();
-		PreAdviceLine.searchbyUPCandAdviceID();
-		abv = PreAdviceLine.getABV();
-		vintage = PreAdviceLine.getVintage();
-		jdaFooter.clickCloseButton();
-		Thread.sleep(2000);
-		logger.debug("ABV :" + abv);
-		logger.debug("Vintage :" + vintage);
-		
-		
-		if (abv<>null)
-		{
+//		String abv;
+//		String vintage;
+//		
+//		jdaHomePage.navigateToPreAdviceLineMaintenance();
+//		jdaFooter.clickQueryButton();
+//		PreAdviceLine.searchbyUPCandAdviceID();
+//		abv = PreAdviceLine.getABV();
+//		vintage = PreAdviceLine.getVintage();
+//		jdaFooter.clickCloseButton();
+//		Thread.sleep(2000);
+//		logger.debug("ABV :" + abv);
+//		logger.debug("Vintage :" + vintage);
+//		
+//		
+//		if (abv<>null)
+//		{
 		String abvPercentage = inventoryTransactionQueryPage.getABV();
 		if (abvPercentage.equals(null)) {
 			failureList.add(
 					"ABV Value is not as expected. Expected [Not Null] but was [" + abvPercentage + "]");
 		}
 			logger.debug("abvPercentage: " + abvPercentage);
-		}
-			else 
-			{
-			logger.debug("ABV validation not required");
-			}
-		
-		if (vintage <> null )
-		{
+////		}
+//			else 
+//			{
+//			logger.debug("ABV validation not required");
+//			}
+//		
+//		if (vintage <> null )
+//		{
 		String vintage = inventoryTransactionQueryPage.getVintage();
 		if (vintage.equals(null)) {
 			failureList.add("vintage is not as expected. Expected [Not Null] but was [" + vintage + "]");
 		}
 		logger.debug("vintage: " + vintage);
-		}
-			else
-			{
-			logger.debug("Vintage validation not required");
-			}
+//		}
+//			else
+//			{
+//			logger.debug("Vintage validation not required");
+//			}
 		
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
