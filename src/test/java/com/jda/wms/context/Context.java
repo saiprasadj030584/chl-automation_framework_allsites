@@ -37,6 +37,7 @@ public class Context {
 	private String ceWarehouseTax;
 	private String consignmentID;
 	private String productCategory;
+	private String lockCode;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -284,5 +285,12 @@ public class Context {
 
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
+	}
+	public String getLockCode() {
+		return lockCode;
+	}
+
+	public void setLockCode(String lockCode) {
+		this.lockCode = lockCode;
 	}
 }

@@ -204,4 +204,26 @@ public class SKUMaintenancePage {
 		else
 			return false;
 	}
-}
+
+	public void clicksettings1Tab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/Settings1.png");
+		Thread.sleep(2000);
+	}
+	
+	public boolean isCurrentVintage(String currentVintage) {
+		if (!currentVintage.equals(null))
+			return true;
+		else
+			return false;
+	}
+
+	public String getCurrentVintage() throws InterruptedException, FindFailed {
+		Match mCurrentVintage = screen.find("images/SKUMaintenanceTable/UserDefined/CurrentVintage.png");
+		Thread.sleep(2000);
+		screen.click(mCurrentVintage.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	}
