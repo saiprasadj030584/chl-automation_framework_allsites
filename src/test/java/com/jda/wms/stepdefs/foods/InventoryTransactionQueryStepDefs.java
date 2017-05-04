@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.dataObject.PreAdviceLine;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -27,7 +26,7 @@ public class InventoryTransactionQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final SKUMaintenancePage sKUMaintenancePage;
-	//TODO private final PreAdviceLine preAdviceLine;
+	//TODO private final PreAdviceLinePage preAdviceLinePage;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
@@ -38,6 +37,7 @@ public class InventoryTransactionQueryStepDefs {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.sKUMaintenancePage = sKUMaintenancePage;
+		// this.preAdviceLine = preAdviceLine;
 	}
 
 	@When("^I search tag id \"([^\"]*)\", code as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
@@ -463,7 +463,6 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
 	
-	//FIXME - Dry Run
 	@Then("^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$")
 	public void the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS() throws Throwable {
 	
@@ -505,16 +504,17 @@ public class InventoryTransactionQueryStepDefs {
 		
 	}
 
-	//FIXME - Dry run
 	@Then("^ABV percentage and vintage should be displayed for BWS$")
 	public void abv_percentage_and_vintage_should_be_displayed_for_BWS() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+		
+	// TODO : Commented code with updated after merging with TC-03 (Pre-advice line)
 //		String abv;
 //		String vintage;
 //		
 //		jdaHomePage.navigateToPreAdviceLineMaintenance();
 //		jdaFooter.clickQueryButton();
-//		PreAdviceLine.searchbyUPCandAdviceID();
+//		preAdviceLinePage.enterPreAdviceID();
 //		abv = PreAdviceLine.getABV();
 //		vintage = PreAdviceLine.getVintage();
 //		jdaFooter.clickCloseButton();
@@ -523,7 +523,7 @@ public class InventoryTransactionQueryStepDefs {
 //		logger.debug("Vintage :" + vintage);
 //		
 //		
-//		if (abv<>null)
+//		if (!abv.equals(null))
 //		{
 		String abvPercentage = inventoryTransactionQueryPage.getABV();
 		if (abvPercentage.equals(null)) {
@@ -537,7 +537,7 @@ public class InventoryTransactionQueryStepDefs {
 //			logger.debug("ABV validation not required");
 //			}
 //		
-//		if (vintage <> null )
+//		if (!vintage.equals(null))
 //		{
 		String vintage = inventoryTransactionQueryPage.getVintage();
 		if (vintage.equals(null)) {

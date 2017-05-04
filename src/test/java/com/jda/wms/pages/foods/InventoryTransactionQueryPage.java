@@ -455,7 +455,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public String getVintage() throws FindFailed {
-		Match mVintage = screen.find("images/InventoryTransactionQuery/Miscellaneous2/Vintage.png");
+		Match mVintage = screen.find("images/InventoryTransactionQuery/UserDefined/Vintage.png");
 		screen.click(mVintage.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);

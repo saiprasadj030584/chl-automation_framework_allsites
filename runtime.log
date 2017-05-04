@@ -1,143 +1,28 @@
-2017-05-03 13:59:12 DEBUG Hooks:30 - ###########################################################################################################################
-2017-05-03 13:59:12 DEBUG Hooks:32 - featureID: receipt-itl
-2017-05-03 13:59:12 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 13:59:12 DEBUG Hooks:34 - ###########################################################################################################################
-2017-05-03 13:59:43 DEBUG InventoryTransactionQueryStepDefs:319 - description: 00476041-SAINT-BRIS SAUVIGNON BLA
-2017-05-03 13:59:45 DEBUG InventoryTransactionQueryStepDefs:325 - fromLocation: REC001
-2017-05-03 13:59:46 DEBUG InventoryTransactionQueryStepDefs:331 - toLocation: REC001
-2017-05-03 13:59:47 DEBUG InventoryTransactionQueryStepDefs:337 - updateQty: 6000
-2017-05-03 13:59:49 DEBUG InventoryTransactionQueryStepDefs:344 - reference: 2056216370
-2017-05-03 14:00:20 DEBUG InventoryTransactionQueryStepDefs:380 - Expiry Date validation not required
-2017-05-03 14:00:21 DEBUG InventoryTransactionQueryStepDefs:388 - userId: P9121154
-2017-05-03 14:00:23 DEBUG InventoryTransactionQueryStepDefs:394 - workstation: RDT1101
-2017-05-03 14:00:24 DEBUG InventoryTransactionQueryStepDefs:401 - rDTUserMode: Pre-Advice Receive
-2017-05-03 14:00:25 DEBUG InventoryTransactionQueryStepDefs:407 - supplier: F04228
-2017-05-03 14:00:30 DEBUG InventoryTransactionQueryStepDefs:422 - palletType: CHEP
-2017-05-03 14:00:32 DEBUG InventoryTransactionQueryStepDefs:429 - packConfig: 20001263O01
-2017-05-03 14:00:34 DEBUG InventoryTransactionQueryStepDefs:435 - uploaded: Y
-2017-05-03 14:00:35 DEBUG InventoryTransactionQueryStepDefs:442 - uploadedFileName: I0808itlext.0000001010.xml
-2017-05-03 14:00:36 DEBUG InventoryTransactionQueryStepDefs:448 - uploadedDate: 25/04/2017
-2017-05-03 14:00:38 DEBUG InventoryTransactionQueryStepDefs:454 - uploadedTime: 13:37:55
-2017-05-03 14:00:43 DEBUG InventoryTransactionQueryStepDefs:284 - originalRotationId: 17/0000870
-2017-05-03 14:00:44 DEBUG InventoryTransactionQueryStepDefs:290 - rotationId: 17/0000870
-2017-05-03 14:00:46 DEBUG InventoryTransactionQueryStepDefs:296 - ceReceiptType: From EU
-2017-05-03 14:00:47 DEBUG InventoryTransactionQueryStepDefs:302 - underBond: Free circulation with excise duty to pay
-2017-05-03 14:00:52 DEBUG InventoryTransactionQueryStepDefs:249 - storageLocation: 0001
-2017-05-03 14:00:54 DEBUG InventoryTransactionQueryStepDefs:255 - baseUOM: EA
-2017-05-03 14:00:55 DEBUG InventoryTransactionQueryStepDefs:262 - intoDestinationDate: EA
-2017-05-03 14:00:56 DEBUG InventoryTransactionQueryStepDefs:268 - caseRatio: 6
-2017-05-03 14:01:03 DEBUG InventoryTransactionQueryStepDefs:238 - URN Child: 2000126301
-2017-05-03 14:01:04 DEBUG Hooks:85 - Signed off JDA WMS Application
-2017-05-03 14:01:04 DEBUG Hooks:74 - ###########################################################################################################################
-2017-05-03 14:01:04 DEBUG Hooks:76 - End of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:01:04 DEBUG Hooks:77 - ###########################################################################################################################
-2017-05-03 14:10:50 DEBUG Hooks:30 - ###########################################################################################################################
-2017-05-03 14:10:50 DEBUG Hooks:32 - featureID: receipt-itl
-2017-05-03 14:10:50 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:10:50 DEBUG Hooks:34 - ###########################################################################################################################
-2017-05-03 14:11:20 DEBUG InventoryTransactionQueryStepDefs:319 - description: 00476041-SAINT-BRIS SAUVIGNON BLA
-2017-05-03 14:11:22 DEBUG InventoryTransactionQueryStepDefs:325 - fromLocation: REC001
-2017-05-03 14:11:23 DEBUG InventoryTransactionQueryStepDefs:331 - toLocation: REC001
-2017-05-03 14:11:25 DEBUG InventoryTransactionQueryStepDefs:337 - updateQty: 6000
-2017-05-03 14:11:26 DEBUG InventoryTransactionQueryStepDefs:344 - reference: 2056216370
-2017-05-03 14:12:00 DEBUG InventoryTransactionQueryStepDefs:369 - Allocation Group captured :EXPIRY
-2017-05-03 14:12:00 DEBUG InventoryTransactionQueryStepDefs:382 - Expiry Date validation not required
-2017-05-03 14:12:01 DEBUG InventoryTransactionQueryStepDefs:390 - userId: P9121154
-2017-05-03 14:12:03 DEBUG InventoryTransactionQueryStepDefs:396 - workstation: RDT1101
-2017-05-03 14:12:04 DEBUG InventoryTransactionQueryStepDefs:403 - rDTUserMode: Pre-Advice Receive
-2017-05-03 14:12:05 DEBUG InventoryTransactionQueryStepDefs:409 - supplier: F04228
-2017-05-03 14:12:10 DEBUG InventoryTransactionQueryStepDefs:424 - palletType: CHEP
-2017-05-03 14:12:12 DEBUG InventoryTransactionQueryStepDefs:431 - packConfig: 20001263O01
-2017-05-03 14:12:14 DEBUG InventoryTransactionQueryStepDefs:437 - uploaded: Y
-2017-05-03 14:12:15 DEBUG InventoryTransactionQueryStepDefs:444 - uploadedFileName: I0808itlext.0000001010.xml
-2017-05-03 14:12:16 DEBUG InventoryTransactionQueryStepDefs:450 - uploadedDate: 25/04/2017
-2017-05-03 14:12:18 DEBUG InventoryTransactionQueryStepDefs:456 - uploadedTime: 13:37:55
-2017-05-03 14:12:24 DEBUG InventoryTransactionQueryStepDefs:284 - originalRotationId: 17/0000870
-2017-05-03 14:12:25 DEBUG InventoryTransactionQueryStepDefs:290 - rotationId: 17/0000870
-2017-05-03 14:12:26 DEBUG InventoryTransactionQueryStepDefs:296 - ceReceiptType: From EU
-2017-05-03 14:12:27 DEBUG InventoryTransactionQueryStepDefs:302 - underBond: Free circulation with excise duty to pay
-2017-05-03 14:12:33 DEBUG InventoryTransactionQueryStepDefs:249 - storageLocation: 0001
-2017-05-03 14:12:34 DEBUG InventoryTransactionQueryStepDefs:255 - baseUOM: EA
-2017-05-03 14:12:35 DEBUG InventoryTransactionQueryStepDefs:262 - intoDestinationDate: 25/04/2017
-2017-05-03 14:12:37 DEBUG InventoryTransactionQueryStepDefs:268 - caseRatio: 6
-2017-05-03 14:12:43 DEBUG InventoryTransactionQueryStepDefs:238 - URN Child: 2000126301
-2017-05-03 14:12:43 DEBUG Hooks:74 - ###########################################################################################################################
-2017-05-03 14:12:43 DEBUG Hooks:76 - End of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:12:43 DEBUG Hooks:77 - ###########################################################################################################################
-2017-05-03 14:12:45 DEBUG Hooks:85 - Signed off JDA WMS Application
-2017-05-03 14:42:48 DEBUG Hooks:30 - ###########################################################################################################################
-2017-05-03 14:42:48 DEBUG Hooks:32 - featureID: receipt-itl
-2017-05-03 14:42:48 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:42:48 DEBUG Hooks:34 - ###########################################################################################################################
-2017-05-03 14:43:20 DEBUG InventoryTransactionQueryStepDefs:319 - description: vintage
-2017-05-03 14:43:22 DEBUG InventoryTransactionQueryStepDefs:325 - fromLocation: REC001
-2017-05-03 14:43:24 DEBUG InventoryTransactionQueryStepDefs:331 - toLocation: REC001
-2017-05-03 14:43:26 DEBUG InventoryTransactionQueryStepDefs:337 - updateQty: 6000
-2017-05-03 14:43:27 DEBUG InventoryTransactionQueryStepDefs:344 - reference: 2056216370
-2017-05-03 14:44:01 DEBUG InventoryTransactionQueryStepDefs:369 - Allocation Group captured :EXPIRY
-2017-05-03 14:44:02 DEBUG InventoryTransactionQueryStepDefs:378 - expiryDate: 24/05/2018
-2017-05-03 14:44:04 DEBUG InventoryTransactionQueryStepDefs:390 - userId: P9121154
-2017-05-03 14:44:06 DEBUG InventoryTransactionQueryStepDefs:396 - workstation: RDT1101
-2017-05-03 14:44:08 DEBUG InventoryTransactionQueryStepDefs:403 - rDTUserMode: Pre-Advice Receive
-2017-05-03 14:44:09 DEBUG InventoryTransactionQueryStepDefs:409 - supplier: F04228
-2017-05-03 14:44:14 DEBUG InventoryTransactionQueryStepDefs:424 - palletType: CHEP
-2017-05-03 14:44:17 DEBUG InventoryTransactionQueryStepDefs:431 - packConfig: 20001263O01
-2017-05-03 14:44:18 DEBUG InventoryTransactionQueryStepDefs:437 - uploaded: Y
-2017-05-03 14:44:19 DEBUG InventoryTransactionQueryStepDefs:444 - uploadedFileName: I0808itlext.0000001010.xml
-2017-05-03 14:44:21 DEBUG InventoryTransactionQueryStepDefs:450 - uploadedDate: 25/04/2017
-2017-05-03 14:44:22 DEBUG InventoryTransactionQueryStepDefs:456 - uploadedTime: 13:37:55
-2017-05-03 14:44:28 DEBUG InventoryTransactionQueryStepDefs:284 - originalRotationId: 17/0000870
-2017-05-03 14:44:29 DEBUG InventoryTransactionQueryStepDefs:290 - rotationId: 17/0000870
-2017-05-03 14:44:30 DEBUG InventoryTransactionQueryStepDefs:296 - ceReceiptType: From EU
-2017-05-03 14:44:32 DEBUG InventoryTransactionQueryStepDefs:302 - underBond: Free circulation with excise duty to pay
-2017-05-03 14:44:38 DEBUG InventoryTransactionQueryStepDefs:249 - storageLocation: 0001
-2017-05-03 14:44:39 DEBUG InventoryTransactionQueryStepDefs:255 - baseUOM: EA
-2017-05-03 14:44:40 DEBUG InventoryTransactionQueryStepDefs:262 - intoDestinationDate: 25/04/2017
-2017-05-03 14:44:42 DEBUG InventoryTransactionQueryStepDefs:268 - caseRatio: 6
-2017-05-03 14:44:48 DEBUG InventoryTransactionQueryStepDefs:238 - URN Child: 2000126301
-2017-05-03 14:44:51 DEBUG Hooks:74 - ###########################################################################################################################
-2017-05-03 14:44:51 DEBUG Hooks:76 - End of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:44:51 DEBUG Hooks:77 - ###########################################################################################################################
-2017-05-03 14:44:53 DEBUG Hooks:85 - Signed off JDA WMS Application
-2017-05-03 14:53:14 DEBUG Hooks:30 - ###########################################################################################################################
-2017-05-03 14:53:14 DEBUG Hooks:32 - featureID: receipt-itl
-2017-05-03 14:53:14 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received ambient stock
-2017-05-03 14:53:14 DEBUG Hooks:34 - ###########################################################################################################################
-2017-05-03 14:53:21 DEBUG InventoryTransactionQueryStepDefs:424 - palletType: CHEP
-2017-05-03 14:53:24 DEBUG InventoryTransactionQueryStepDefs:431 - packConfig: 20001263O01
-2017-05-03 14:53:25 DEBUG InventoryTransactionQueryStepDefs:437 - uploaded: Y
-2017-05-03 14:53:27 DEBUG InventoryTransactionQueryStepDefs:444 - uploadedFileName: Y
-2017-05-03 14:53:30 DEBUG InventoryTransactionQueryStepDefs:450 - uploadedDate: @Receipt_inventory_transaction_query
-Feature: Receipt ITL
-  As a warehouse user
-  I want to verify ITL generated for receipt
-  So that I can ensure goods receipt details are sent to downstream systems
-Started InternetExplorerDriver server (32-bit)
-2.43.0.0
-Listening on port 21898
-May 03, 2017 2:53:09 PM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-log4j:WARN No appenders could be found for logger (org.apache.http.client.protocol.RequestAddCookies).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-May 03, 2017 2:53:11 PM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: OSS
-[log] CLICK on L(217,248)@S(0)[0,0 1366x768]
-[log] CLICK on L(214,363)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-[log] ( Ctrl )  TYPE "c"
-[log] CLICK on L(653,364)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-[log] ( Ctrl )  TYPE "c"
-[log] CLICK on L(671,215)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-[log] ( Ctrl )  TYPE "c"
-[log] CLICK on L(1101,399)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-[log] ( Ctrl )  TYPE "c"
-[log] CLICK on L(189,428)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-[log] ( Ctrl )  TYPE "c"
-[log] CLICK on L(648,427)@S(0)[0,0 1366x768]
-[log] ( Ctrl )  TYPE "a"
-
+2017-05-04 10:33:43 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-04 10:33:43 DEBUG Hooks:32 - featureID: receipt-itl
+2017-05-04 10:33:43 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received BWS stock
+2017-05-04 10:33:43 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-04 10:33:50 DEBUG InventoryTransactionQueryStepDefs:254 - storageLocation: 0001
+2017-05-04 10:33:52 DEBUG InventoryTransactionQueryStepDefs:260 - baseUOM: EA
+2017-05-04 10:33:53 DEBUG InventoryTransactionQueryStepDefs:267 - intoDestinationDate: 20/04/2017
+2017-05-04 10:33:54 DEBUG InventoryTransactionQueryStepDefs:273 - caseRatio: 12
+2017-05-04 10:33:56 DEBUG InventoryTransactionQueryStepDefs:533 - abvPercentage: 12.5
+2017-05-04 10:33:57 DEBUG Hooks:85 - Signed off JDA WMS Application
+2017-05-04 10:33:57 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-04 10:33:57 DEBUG Hooks:76 - End of Scenario: Generate goods receipt for the received BWS stock
+2017-05-04 10:33:57 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-04 10:38:29 DEBUG Hooks:30 - ###########################################################################################################################
+2017-05-04 10:38:29 DEBUG Hooks:32 - featureID: receipt-itl
+2017-05-04 10:38:29 DEBUG Hooks:33 - Start of Scenario: Generate goods receipt for the received BWS stock
+2017-05-04 10:38:29 DEBUG Hooks:34 - ###########################################################################################################################
+2017-05-04 10:38:36 DEBUG InventoryTransactionQueryStepDefs:254 - storageLocation: 0001
+2017-05-04 10:38:38 DEBUG InventoryTransactionQueryStepDefs:260 - baseUOM: EA
+2017-05-04 10:38:39 DEBUG InventoryTransactionQueryStepDefs:267 - intoDestinationDate: 21/04/2017
+2017-05-04 10:38:41 DEBUG InventoryTransactionQueryStepDefs:273 - caseRatio: 12
+2017-05-04 10:38:42 DEBUG InventoryTransactionQueryStepDefs:533 - abvPercentage: 12.5
+2017-05-04 10:38:43 DEBUG InventoryTransactionQueryStepDefs:546 - vintage: 2017
+2017-05-04 10:38:50 DEBUG InventoryTransactionQueryStepDefs:243 - URN Child: 2000124904
+2017-05-04 10:38:53 DEBUG Hooks:85 - Signed off JDA WMS Application
+2017-05-04 10:38:53 DEBUG Hooks:74 - ###########################################################################################################################
+2017-05-04 10:38:53 DEBUG Hooks:76 - End of Scenario: Generate goods receipt for the received BWS stock
+2017-05-04 10:38:53 DEBUG Hooks:77 - ###########################################################################################################################
