@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
@@ -129,49 +128,58 @@ public class PreAdviceHeaderStepsDefs {
 		preAdviceHeaderPage.clickAddressTab();
 	}
 
-	@Then("^the supplier should have supplier pallet details in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_in_the_address_maintenanace_table() throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-
-		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
-		jdaFooter.clickQueryButton();
-		// addressMaintenancePage.enterAddressID(context.getSupplierID());
-		addressMaintenancePage.enterAddressID("F01946");
-		jdaFooter.clickExecuteButton();
-
-		String name = addressMaintenancePage.getName();
-		if (!context.getName().equals(name)) {
-			failureList.add("Name is not as expected. Expected [" + context.getName() + "]  but was [" + name + "]");
-		}
-
-		String address1 = addressMaintenancePage.getAddress1();
-		if (!context.getAddress1().equals(address1)) {
-			failureList.add(
-					"Address1 is not as expected. Expected [" + context.getAddress1() + "] but was [" + address1 + "]");
-		}
-
-		String country = addressMaintenancePage.getCountry();
-		if (!context.getCountry().equals(country)) {
-			failureList.add(
-					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
-		}
-
-		i_navigate_to_user_defined_tab_in_address_maintenance_page();
-		String defaultySuppleirPallet = addressMaintenancePage.getDefaultSupplierPallet();
-		if (!defaultySuppleirPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
-					+ defaultySuppleirPallet + "]");
-		}
-
-		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
-				failureList.isEmpty());
-	}
-
-	@Then("^I navigate to user defined tab in address maintenance page$")
-	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
-		// jdaFooter.clickQueryButton();
-		// addressMaintenancePage.enterAddressID(context.getSupplierID());
-		// jdaFooter.clickExecuteButton();
-		addressMaintenancePage.clickUserDefinedTab();
+//	@Then("^the supplier should have supplier pallet details in the address maintenanace table$")
+//	public void the_supplier_should_have_supplier_pallet_details_in_the_address_maintenanace_table() throws Throwable {
+//		ArrayList<String> failureList = new ArrayList<String>();
+//
+//		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
+//		jdaFooter.clickQueryButton();
+//		// addressMaintenancePage.enterAddressID(context.getSupplierID());
+//		addressMaintenancePage.enterAddressID("F01946");
+//		jdaFooter.clickExecuteButton();
+//
+//		String name = addressMaintenancePage.getName();
+//		if (!context.getName().equals(name)) {
+//			failureList.add("Name is not as expected. Expected [" + context.getName() + "]  but was [" + name + "]");
+//		}
+//
+//		String address1 = addressMaintenancePage.getAddress1();
+//		if (!context.getAddress1().equals(address1)) {
+//			failureList.add(
+//					"Address1 is not as expected. Expected [" + context.getAddress1() + "] but was [" + address1 + "]");
+//		}
+//
+//		String country = addressMaintenancePage.getCountry();
+//		if (!context.getCountry().equals(country)) {
+//			failureList.add(
+//					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
+//		}
+//
+//		i_navigate_to_user_defined_tab_in_address_maintenance_page();
+//		String defaultySuppleirPallet = addressMaintenancePage.getDefaultSupplierPallet();
+//		if (!defaultySuppleirPallet.equals("CHEP")) {
+//			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
+//					+ defaultySuppleirPallet + "]");
+//		}
+//
+//		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
+//				failureList.isEmpty());
+//	}
+//
+//	@Then("^I navigate to user defined tab in address maintenance page$")
+//	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
+//		// jdaFooter.clickQueryButton();
+//		// addressMaintenancePage.enterAddressID(context.getSupplierID());
+//		// jdaFooter.clickExecuteButton();
+//		addressMaintenancePage.clickUserDefinedTab();
+//	}
+//	
+	@Then("^the pre-advice id should be displayed with the linked consignment$")
+	public void the_pre_advice_id_should_be_displayed_with_the_linked_consignment() throws Throwable {
+		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
+		i_search_the_pre_advice_id(context.getPreAdviceId());
+		
+		Assert.assertEquals("Consignment ID is not displayed in pre-advice header after linking", context.getConsignmentID(),
+				preAdviceHeaderPage.getConsignmentID());
 	}
 }

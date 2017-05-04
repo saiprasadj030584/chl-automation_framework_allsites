@@ -34,6 +34,8 @@ public class Context {
 	private String country;
 	private String address1;
 	private int qtyReceivedPerTag;
+	private String ceWarehouseTax;
+	private String consignmentID;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -259,4 +261,19 @@ public class Context {
 		this.qtyReceivedPerTag = qtyReceivedPerTag;
 	}
 
+	public String getCeWarehouseTax() {
+		return ceWarehouseTax;
+	}
+
+	public void setCEWarehouseTax(String ceWarehouseTax) {
+		this.ceWarehouseTax = ceWarehouseTax;
+	}
+
+	public String getConsignmentID() {
+		return consignmentID;
+	}
+
+	public void setConsignmentID(String consignmentID) {
+		this.consignmentID = consignmentID;
+	}
 }
