@@ -4,8 +4,7 @@ Feature: Receipt ITL
   I want to verify ITL generated for receipt
   So that I can ensure goods receipt details are sent to downstream systems
 
-#Tag to be updated after review
-  @sara_wip 
+  @complete
   Scenario: Generate goods receipt for the received 'ambient' stock
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to inventory transaction query
@@ -22,10 +21,9 @@ Feature: Receipt ITL
     When I navigate to settings 2 tab in the user defined tab
     Then the URN child should be displayed
 
-#Tag to be updated after review    
-  @sara_wip
-	Scenario: Generate goods receipt for the received 'BWS' stock
-	Given I have logged in as warehouse user in JDA dispatcher food application
+  @complete
+  Scenario: Generate goods receipt for the received 'BWS' stock
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to inventory transaction query
     When I select the code as "Receipt" and enter the tag id "2000122101"
     Then the description, from location, to location, update qty, reference and SKU should be displayed in the general tab

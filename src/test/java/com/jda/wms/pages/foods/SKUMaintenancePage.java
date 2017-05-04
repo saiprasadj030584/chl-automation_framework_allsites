@@ -18,16 +18,14 @@ public class SKUMaintenancePage {
 		this.jDAFooter = jDAFooter;
 	}
 
+	// TODO donot use this method and replace with enterSKUID() method
 	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
 		jDAFooter.clickQueryButton();
 		enterSKUID(skuId);
 		jDAFooter.clickExecuteButton();
 	}
 
-	private void enterSKUID(String skuId) throws FindFailed, InterruptedException {
-		// screen.wait("images/SKUMaintenanceTable/SKUIDSearch.png",
-		// timeoutInSec);
-		// screen.click("images/SKUMaintenanceTable/SKUIDSearch.png");
+	public void enterSKUID(String skuId) throws FindFailed, InterruptedException {
 		screen.type(skuId);
 		Thread.sleep(2000);
 	}

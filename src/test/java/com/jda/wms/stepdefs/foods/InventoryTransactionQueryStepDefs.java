@@ -13,7 +13,6 @@ import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
-//TODO import com.jda.wms.pages.foods.PreAdviceLinePage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,18 +25,15 @@ public class InventoryTransactionQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final SKUMaintenancePage sKUMaintenancePage;
-	//TODO private final PreAdviceLinePage preAdviceLinePage;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage) {
-		// TODO PreAdviceLine preAdviceLine
+			Context context, JDAFooter jdaFooter, JdaHomePage jdaHomePage, SKUMaintenancePage sKUMaintenancePage) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.sKUMaintenancePage = sKUMaintenancePage;
-		// this.preAdviceLine = preAdviceLine;
 	}
 
 	@When("^I search tag id \"([^\"]*)\", code as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
@@ -314,44 +310,42 @@ public class InventoryTransactionQueryStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-		if (inventoryTransactionQueryPage.isNoRecordsExists()==false)
-		{
-		String description = inventoryTransactionQueryPage.getDescription();
-		if (description.equals(null)) {
-			failureList.add("Description in ITL is not as expected. Expected [Not Null] but was [" + description + "]");
-		}
-		logger.debug("description: " + description);
+		if (inventoryTransactionQueryPage.isNoRecordsExists() == false) {
+			String description = inventoryTransactionQueryPage.getDescription();
+			if (description.equals(null)) {
+				failureList.add(
+						"Description in ITL is not as expected. Expected [Not Null] but was [" + description + "]");
+			}
+			logger.debug("description: " + description);
 
-		String fromLocation = inventoryTransactionQueryPage.getFromLocation();
-		if (fromLocation.equals(null)) {
-			failureList.add("From Location is not as expected. Expected [Not Null] but was [" + fromLocation + "]");
-		}
-		logger.debug("fromLocation: " + fromLocation);
+			String fromLocation = inventoryTransactionQueryPage.getFromLocation();
+			if (fromLocation.equals(null)) {
+				failureList.add("From Location is not as expected. Expected [Not Null] but was [" + fromLocation + "]");
+			}
+			logger.debug("fromLocation: " + fromLocation);
 
-		String toLocation = inventoryTransactionQueryPage.getToLocation();
-		if (toLocation.equals(null)) {
-			failureList.add("To Location is not as expected. Expected [Not NULL] but was [" + toLocation + "]");
-		}
-		logger.debug("toLocation: " + toLocation);
+			String toLocation = inventoryTransactionQueryPage.getToLocation();
+			if (toLocation.equals(null)) {
+				failureList.add("To Location is not as expected. Expected [Not NULL] but was [" + toLocation + "]");
+			}
+			logger.debug("toLocation: " + toLocation);
 
-		Integer updateQty = Integer.parseInt(inventoryTransactionQueryPage.getUpdateQty());
-		if (!(updateQty > 0)) {
-			failureList.add("Update Quantity is not as expected. Expected [Not NULL] but was [" + updateQty + "]");
-		}
-		logger.debug("updateQty: " + updateQty);
+			Integer updateQty = Integer.parseInt(inventoryTransactionQueryPage.getUpdateQty());
+			if (!(updateQty > 0)) {
+				failureList.add("Update Quantity is not as expected. Expected [Not NULL] but was [" + updateQty + "]");
+			}
+			logger.debug("updateQty: " + updateQty);
 
-		String reference = inventoryTransactionQueryPage.getReference();
-		if (reference.equals(null)) {
-			failureList
-					.add("Reference (PO Number) is not as expected. Expected [Not NULL] but was [" + reference + "]");
-		}
-		logger.debug("reference: " + reference);
+			String reference = inventoryTransactionQueryPage.getReference();
+			if (reference.equals(null)) {
+				failureList.add(
+						"Reference (PO Number) is not as expected. Expected [Not NULL] but was [" + reference + "]");
+			}
+			logger.debug("reference: " + reference);
 
-		Assert.assertTrue("Inventory transaction General tab details are not as expected."
-				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
-		}
-		else
-		{
+			Assert.assertTrue("Inventory transaction General tab details are not as expected."
+					+ Arrays.asList(failureList.toString()), failureList.isEmpty());
+		} else {
 			logger.debug("No Records exists for the query");
 			Assert.fail("No Records exists for the query");
 		}
@@ -361,31 +355,25 @@ public class InventoryTransactionQueryStepDefs {
 	public void the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+
 		String skuId = inventoryTransactionQueryPage.getSkuId();
-		String allocationGroup;
-		
+
 		jdaHomePage.navigateToSKUMaintanence();
 		jdaFooter.clickQueryButton();
-		sKUMaintenancePage.searchSKUid(skuId);
-		allocationGroup = sKUMaintenancePage.getAllocationGroup();
+		sKUMaintenancePage.enterSKUID(skuId);
+		jdaFooter.clickExecuteButton();
+		String allocationGroup = sKUMaintenancePage.getAllocationGroup();
+		logger.debug("Allocation Group captured :" + allocationGroup);
 		jdaFooter.clickCloseButton();
 		Thread.sleep(2000);
-		logger.debug("Allocation Group captured :" + allocationGroup);
-		
-		if (allocationGroup.equals("EXPIRY"))
-		{
-		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
-			if (expiryDate.equals(null)) 
-			{
-			failureList.add("Expiry Date is not as expected. Expected [Not Null] but was [" + expiryDate + "]");
+
+		if (allocationGroup.equals("EXPIRY")) {
+			String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
+			if (expiryDate.equals(null)) {
+				failureList.add("Expiry Date is not as expected. Expected [Not Null] but was [" + expiryDate + "]");
 			}
 			logger.debug("expiryDate: " + expiryDate);
 		}
-		else 
-		{
-			logger.debug("Expiry Date validation not required");
-		}
-		
 
 		String userId = inventoryTransactionQueryPage.getUserId();
 		if (userId.equals(null)) {
@@ -462,10 +450,11 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
+
 	@Then("^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$")
-	public void the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS() throws Throwable {
-	
+	public void the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS()
+			throws Throwable {
+
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		String originator = inventoryTransactionQueryPage.getOriginator();
@@ -476,14 +465,15 @@ public class InventoryTransactionQueryStepDefs {
 
 		String originatorReference = inventoryTransactionQueryPage.getOriginatorReference();
 		if (originatorReference.equals(null)) {
-			failureList.add("originator Reference is not as expected. Expected [Not Null] but was [" + originatorReference + "]");
+			failureList.add("originator Reference is not as expected. Expected [Not Null] but was ["
+					+ originatorReference + "]");
 		}
 		logger.debug("originatorReference: " + originatorReference);
 
-		
 		String ceConsignmentId = inventoryTransactionQueryPage.getCEConsignmentId();
 		if (ceConsignmentId.equals(null)) {
-			failureList.add("CE consignment id is not as expected. Expected [Not Null] but was [" + ceConsignmentId + "]");
+			failureList
+					.add("CE consignment id is not as expected. Expected [Not Null] but was [" + ceConsignmentId + "]");
 		}
 		logger.debug("CE consignment id: " + ceConsignmentId);
 
@@ -501,57 +491,25 @@ public class InventoryTransactionQueryStepDefs {
 
 		Assert.assertTrue("Inventory transaction query Customs & Excise tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
-		
 	}
 
 	@Then("^ABV percentage and vintage should be displayed for BWS$")
 	public void abv_percentage_and_vintage_should_be_displayed_for_BWS() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		
-	// TODO : Commented code with updated after merging with TC-03 (Pre-advice line)
-//		String abv;
-//		String vintage;
-//		
-//		jdaHomePage.navigateToPreAdviceLineMaintenance();
-//		jdaFooter.clickQueryButton();
-//		preAdviceLinePage.enterPreAdviceID();
-//		abv = PreAdviceLine.getABV();
-//		vintage = PreAdviceLine.getVintage();
-//		jdaFooter.clickCloseButton();
-//		Thread.sleep(2000);
-//		logger.debug("ABV :" + abv);
-//		logger.debug("Vintage :" + vintage);
-//		
-//		
-//		if (!abv.equals(null))
-//		{
+
 		String abvPercentage = inventoryTransactionQueryPage.getABV();
 		if (abvPercentage.equals(null)) {
-			failureList.add(
-					"ABV Value is not as expected. Expected [Not Null] but was [" + abvPercentage + "]");
+			failureList.add("ABV Value is not as expected. Expected [Not Null] but was [" + abvPercentage + "]");
 		}
-			logger.debug("abvPercentage: " + abvPercentage);
-////		}
-//			else 
-//			{
-//			logger.debug("ABV validation not required");
-//			}
-//		
-//		if (!vintage.equals(null))
-//		{
+		logger.debug("abvPercentage: " + abvPercentage);
+
 		String vintage = inventoryTransactionQueryPage.getVintage();
 		if (vintage.equals(null)) {
 			failureList.add("vintage is not as expected. Expected [Not Null] but was [" + vintage + "]");
 		}
 		logger.debug("vintage: " + vintage);
-//		}
-//			else
-//			{
-//			logger.debug("Vintage validation not required");
-//			}
-		
+
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
-		
 	}
 }
