@@ -4,8 +4,9 @@ Feature: Pre-Advice Lock
   I want to lock a product
   So that those product cannot be received
 
-  @complete 
+  @complete
   Scenario Outline: Lock the product from unlocked status
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I search the pre-advice id "<preAdviceId>" and SKU id "<skuId>" in pre-advice line maintenance page
     And I lock the record with lockcode as "<lockCode>"
     Then the record should be locked

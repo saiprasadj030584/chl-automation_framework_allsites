@@ -18,7 +18,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private JDAFooter jdaFooter;
 	private PopUpPage popUpPage;
 	private Context context;
-	private JdaLoginPage jdaLoginPage;
 
 	@Inject
 	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter,
@@ -32,7 +31,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
-		// jdaLoginPage.login();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLinePage.enterPreAdviceId(preAdviceId);

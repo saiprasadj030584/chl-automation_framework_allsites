@@ -11,14 +11,13 @@ import com.jda.wms.context.Context;
 
 public class PreAdviceLinePage {
 	private Context context;
+	int timeoutInSec = 20;
+	Screen screen = new Screen();
 
 	@Inject
 	public PreAdviceLinePage(Context context) {
 		this.context = context;
 	}
-
-	Screen screen = new Screen();
-	int timeoutInSec = 20;
 
 	public void enterPreAdviceId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/PreAdviceId.png", timeoutInSec);
@@ -40,11 +39,11 @@ public class PreAdviceLinePage {
 		screen.type("a", Key.CTRL);
 		screen.type(Key.BACKSPACE);
 		Thread.sleep(1000);
-		
+
 		switch (lockCode) {
 		case "Code Approval":
 			screen.type("CODEAPP");
-			context.setLockCode("CODEAPP"); 
+			context.setLockCode("CODEAPP");
 			Thread.sleep(2000);
 			break;
 		case "Components Stock":
