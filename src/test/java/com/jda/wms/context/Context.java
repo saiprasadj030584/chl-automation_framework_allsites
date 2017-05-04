@@ -1,6 +1,7 @@
 package com.jda.wms.context;
 
 import com.jda.wms.pages.foods.RDTTask;
+import java.util.Map;
 
 public class Context {
 	private RDTTask currentTask;
@@ -24,6 +25,7 @@ public class Context {
 	private String address1;
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
+	private Map<String,Map<String,String>>purchaseOrderMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -193,4 +195,11 @@ public class Context {
 		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
 	}
 
+	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+		return purchaseOrderMap;
+	}
+
+	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+		this.purchaseOrderMap = purchaseOrderMap;
+	}
 }

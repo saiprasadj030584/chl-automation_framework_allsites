@@ -28,8 +28,6 @@ public class PreAdviceLinePage {
 		return App.getClipboard();
 	}
 
-	// FIXME mDeAYOOscription - rename with appropriate field names for all the
-	// methods
 	public String getQtyDue() throws FindFailed {
 		Match mQtyDue = screen.find("images/PreAdviceLine/General/QtyDue.png");
 		screen.click(mQtyDue.getCenter().offset(70, 0));
@@ -62,7 +60,7 @@ public class PreAdviceLinePage {
 		return App.getClipboard();
 	}
 
-	public void ClickUserDefinedTab() throws FindFailed, InterruptedException {
+	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/UserDefined.png", timeoutInSec);
 		screen.click("images/PreAdviceLine/UserDefined.png");
 		Thread.sleep(3000);
@@ -85,15 +83,24 @@ public class PreAdviceLinePage {
 	}
 
 	public void selectFirstRecord() throws FindFailed, InterruptedException {
-		// screen.wait("images/InventoryTransactionQuery/CodeInResults.png",
-		// timeoutInSec);
-		// screen.click("images/InventoryTransactionQuery/CodeInResults.png");
-		// Thread.sleep(2000);
 		Match mPreAdviceIdHeader = screen.find("images/PreAdviceLine/PreAdviceIdHeader.png");
 		Thread.sleep(2000);
-		screen.click(mPreAdviceIdHeader.below(10));
-		Thread.sleep(2000);
-		Match mFirstRecord = screen.find("images/PreAdviceLine/FirstRecord.png");
-		screen.doubleClick(mFirstRecord.below(1));
+		screen.doubleClick(mPreAdviceIdHeader.below(10));
+		Thread.sleep(3000);
 	}
+
+	public void clickGeneralTab() throws FindFailed, InterruptedException {
+		screen.wait("images/PreAdviceLine/General.png", timeoutInSec);
+		screen.click("images/PreAdviceLine/General.png");
+		Thread.sleep(3000);
+	}
+
+	public String getVintage() throws FindFailed {
+		Match mDescription = screen.find("images/PreAdviceLine/UserDefined/Vintage.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
 }

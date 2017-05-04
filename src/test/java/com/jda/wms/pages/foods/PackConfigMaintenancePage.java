@@ -97,4 +97,10 @@ public class PackConfigMaintenancePage {
 		return App.getClipboard();
 	}
 	
+	public void clickGeneraltab() throws FindFailed, InterruptedException {
+		screen.wait("/images/JDAPackConfig/General.png", timeoutInSec);
+		screen.click("/images/JDAPackConfig/General.png");
+		Thread.sleep(2000);
+	}
+	
 }

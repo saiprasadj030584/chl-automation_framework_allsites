@@ -18,7 +18,7 @@ public class SKUMaintenancePage {
 	public SKUMaintenancePage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
 	}
-	
+
 	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
 		jDAFooter.clickQueryButton();
 		enterSKUID(skuId);
@@ -190,7 +190,7 @@ public class SKUMaintenancePage {
 	public void navigateToSupplierSKU() throws InterruptedException, FindFailed {
 		screen.wait("images/SKUMaintenanceTable/SupplierSKU.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/SupplierSKU.png");
-		Thread.sleep(3000L);
+		Thread.sleep(3000);
 	}
 
 	public String getSupplierSKUId() throws InterruptedException, FindFailed {
@@ -207,4 +207,33 @@ public class SKUMaintenancePage {
 		else
 			return false;
 	}
+
+	
+	public boolean isCurrentVintage(String currentVintage) {
+		if (!currentVintage.equals(null))
+			return true;
+		else
+			return false;
+	}
+	
+	public void clickUserDefinedTab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/UserDefined.png");
+		Thread.sleep(2000);
+	}
+
+	public String getCurrentVintage() throws InterruptedException, FindFailed {
+		Match mCurrentVintage = screen.find("images/SKUMaintenanceTable/UserDefined/CurrentVintage.png");
+		screen.click(mCurrentVintage.getCenter().offset(30, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public void clicksettings1Tab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/Settings1.png");
+		Thread.sleep(2000);
+	}
+
 }
