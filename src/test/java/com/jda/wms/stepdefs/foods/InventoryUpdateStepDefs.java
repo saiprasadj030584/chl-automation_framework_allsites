@@ -96,7 +96,8 @@ public class InventoryUpdateStepDefs {
 	@Then("^I should see the future expiry date and reason code in the miscellaneous tab$")
 	public void i_should_see_the_future_expiry_date_and_reason_code_in_the_miscellaneous_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		// Get Expiry Date
 		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
 		if (!context.getFutureExpiryDate().equals(expiryDate)) {
@@ -120,6 +121,11 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
+	@When("^I proceed to lock the record$")
+	public void i_proceed_to_lock_the_record() throws Throwable {
+		jDAFooter.clickNextButton();
+	}
+	
 	@When("^I search the tag id \"([^\"]*)\"$")
 	public void i_search_the_tag_id(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
