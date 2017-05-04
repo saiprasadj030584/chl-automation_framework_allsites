@@ -384,3 +384,24 @@
 2017-05-04 14:24:37 DEBUG Hooks:76 - ###########################################################################################################################
 2017-05-04 14:24:37 DEBUG Hooks:78 - End of Scenario: Load the pre-advice header details
 2017-05-04 14:24:37 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-04 15:15:13 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-04 15:15:13 DEBUG Hooks:34 - featureID: receive-purchase-order
+2017-05-04 15:15:13 DEBUG Hooks:35 - Start of Scenario: Load the pre-advice header details
+2017-05-04 15:15:13 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:144 - Pre-Advice Line level information of SKU : 20002248
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:145 - Quantity Due: 1
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:146 - Pack Config : 20002248O01
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:147 - CaseRatio: 6
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:148 - Product group: F20
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:149 - Vintage in Pre-Advice Line : 2016
+2017-05-04 15:17:15 DEBUG PreAdviceLineMaintenanceStepDefs:150 - Current Vintage in SKU table: 2016.0
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:144 - Pre-Advice Line level information of SKU : 20002289
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:145 - Quantity Due: 1
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:146 - Pack Config : 20002289O01
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:147 - CaseRatio: 8
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:148 - Product group: F20
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:149 - Vintage in Pre-Advice Line : 2016
+2017-05-04 15:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:150 - Current Vintage in SKU table: 2017.0
+2017-05-04 15:18:20 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-04 15:18:20 DEBUG Hooks:78 - End of Scenario: Load the pre-advice header details
+2017-05-04 15:18:20 DEBUG Hooks:79 - ###########################################################################################################################

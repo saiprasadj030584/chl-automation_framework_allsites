@@ -60,15 +60,14 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		int caseRatio = 0;
 
-		context.setNoOfLines(2);
-
+//		context.setNoOfLines(2);
+		
 		jdaHomeStepDefs.i_am_on_pack_config_maintenance_page();
 		jdaHomePage.navigateToSKUMaintanence();
 
 		jdaHomePage.navigateToPreAdviceLineMaintenance();
 		jdaFooter.clickQueryButton();
-//		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
-		preAdviceLinePage.enterPreAdviceID("0030229923");
+		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
 
 		if (context.getNoOfLines() != 1) {
@@ -78,9 +77,11 @@ public class PreAdviceLineMaintenanceStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuId = preAdviceLinePage.getSkuId();
 			qtyDue = preAdviceLinePage.getQtyDue();
-			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
 			String packConfig = preAdviceLinePage.getPackConfig();
+			
+			//to be used for BWS PO processing
 			// String underBond = preAdviceLinePage.getUnderBond();
+			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
 
 			preAdviceLinePage.clickUserDefinedTab();
 			vintage = preAdviceLinePage.getVintage();
@@ -107,7 +108,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 			// getting details from SKU table
 			jdaFooter.clickSku();
-//			skuMaintenancePage.searchSKUid(skuId);
 			jdaFooter.clickQueryButton();
 			skuMaintenancePage.enterSKUID(skuId);
 			jdaFooter.clickExecuteButton();
