@@ -204,7 +204,6 @@ public class SKUMaintenancePage {
 		else
 			return false;
 	}
-
 	
 	public boolean isCurrentVintage(String currentVintage) {
 		if (!currentVintage.equals(null))
@@ -221,7 +220,8 @@ public class SKUMaintenancePage {
 
 	public String getCurrentVintage() throws InterruptedException, FindFailed {
 		Match mCurrentVintage = screen.find("images/SKUMaintenanceTable/UserDefined/CurrentVintage.png");
-		screen.click(mCurrentVintage.getCenter().offset(30, 0));
+		Thread.sleep(2000);
+		screen.click(mCurrentVintage.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();

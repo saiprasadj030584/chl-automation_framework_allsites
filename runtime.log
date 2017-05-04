@@ -335,3 +335,52 @@
 2017-05-04 13:06:14 DEBUG Hooks:77 - ###########################################################################################################################
 =======
 >>>>>>> 8208e5f95e2b3dc350e2b36eaa39aa504520165c
+2017-05-04 13:52:27 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-04 13:52:27 DEBUG Hooks:34 - featureID: receive-purchase-order
+2017-05-04 13:52:27 DEBUG Hooks:35 - Start of Scenario: Load the pre-advice header details
+2017-05-04 13:52:27 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-04 13:55:34 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-04 13:55:34 DEBUG Hooks:78 - End of Scenario: Load the pre-advice header details
+2017-05-04 13:55:34 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-04 14:13:14 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-04 14:13:14 DEBUG Hooks:34 - featureID: receive-purchase-order
+2017-05-04 14:13:14 DEBUG Hooks:35 - Start of Scenario: Load the pre-advice header details
+2017-05-04 14:13:14 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:139 - SKU: 20002248
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:140 - Quantity Due: 1
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:141 - Pack Config : 20002248O01
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:142 - CaseRatio: 6
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:143 - Product group: F20
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:144 - Vintage in Pre-Advice Line : 2016
+2017-05-04 14:15:18 DEBUG PreAdviceLineStepDefs:145 - Current Vintage in SKU table: NONEXPIRY
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:139 - SKU: 20002289
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:140 - Quantity Due: 1
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:141 - Pack Config : 20002289O01
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:142 - CaseRatio: 8
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:143 - Product group: F20
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:144 - Vintage in Pre-Advice Line : 2016
+2017-05-04 14:16:22 DEBUG PreAdviceLineStepDefs:145 - Current Vintage in SKU table: NONEXPIRY
+2017-05-04 14:16:24 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-04 14:16:24 DEBUG Hooks:78 - End of Scenario: Load the pre-advice header details
+2017-05-04 14:16:24 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-04 14:21:21 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-04 14:21:21 DEBUG Hooks:34 - featureID: receive-purchase-order
+2017-05-04 14:21:21 DEBUG Hooks:35 - Start of Scenario: Load the pre-advice header details
+2017-05-04 14:21:21 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:139 - SKU: 20002248
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:140 - Quantity Due: 1
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:141 - Pack Config : 20002248O01
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:142 - CaseRatio: 6
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:143 - Product group: F20
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:144 - Vintage in Pre-Advice Line : 2016
+2017-05-04 14:23:24 DEBUG PreAdviceLineStepDefs:145 - Current Vintage in SKU table: 2016.0
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:139 - SKU: 20002289
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:140 - Quantity Due: 1
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:141 - Pack Config : 20002289O01
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:142 - CaseRatio: 8
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:143 - Product group: F20
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:144 - Vintage in Pre-Advice Line : 2016
+2017-05-04 14:24:35 DEBUG PreAdviceLineStepDefs:145 - Current Vintage in SKU table: 2017.0
+2017-05-04 14:24:37 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-04 14:24:37 DEBUG Hooks:78 - End of Scenario: Load the pre-advice header details
+2017-05-04 14:24:37 DEBUG Hooks:79 - ###########################################################################################################################

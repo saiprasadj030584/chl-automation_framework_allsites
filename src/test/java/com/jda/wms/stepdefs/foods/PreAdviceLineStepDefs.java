@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -28,6 +30,7 @@ public class PreAdviceLineStepDefs {
 	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
 	private Context context;
 	private final SKUMaintenancePage skuMaintenancePage;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public PreAdviceLineStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
@@ -59,7 +62,8 @@ public class PreAdviceLineStepDefs {
 
 		jdaHomePage.navigateToPreAdviceLinePage();
 		jdaFooter.clickQueryButton();
-		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
+//		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
+		preAdviceLinePage.enterPreAdviceID("0030229923");
 		jdaFooter.clickExecuteButton();
 
 		if (context.getNoOfLines() != 1) {
@@ -98,11 +102,16 @@ public class PreAdviceLineStepDefs {
 
 			// getting details from SKU table
 			jdaFooter.clickSku();
-			skuMaintenancePage.searchSKUid(skuId);
+//			skuMaintenancePage.searchSKUid(skuId);
+			jdaFooter.clickQueryButton();
+			skuMaintenancePage.enterSKUID(skuId);
+			jdaFooter.clickExecuteButton();
+			
 			productGroup = skuMaintenancePage.getProductGroup();
 			allocationGroup = skuMaintenancePage.getAllocationGroup();
 			skuMaintenancePage.clickUserDefinedTab();
 			String currentVintage = skuMaintenancePage.getCurrentVintage();
+			System.out.println("current vintage in SKU table is " + currentVintage);
 			skuMaintenancePage.clicksettings1Tab();
 
 			if (!vintage.equals(null)) {
@@ -126,6 +135,14 @@ public class PreAdviceLineStepDefs {
 			jdaFooter.clickPreAdiceLine();
 			jdaFooter.clickNextRecord();
 			preAdviceLinePage.clickGeneralTab();
+			
+			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
+			logger.debug("Quantity Due: " + qtyDue);
+			logger.debug("Pack Config : " + packConfig);
+			logger.debug("CaseRatio: " + caseRatio);
+			logger.debug("Product group: " + productGroup);
+			logger.debug("Vintage in Pre-Advice Line : " + vintage);
+			logger.debug("Current Vintage in SKU table: " + currentVintage);
 		}
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
