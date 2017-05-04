@@ -44,4 +44,4 @@ Feature: Purchase order
 
     Examples: 
       | Host                                    | Port  | PreAdviceID | NoOfLines | Supplier | Location |
-      | hlxc0dc024.unix.marksandspencercate.com | 20140 |  8050004578 |         1 | F01946   | REC002   |
+      | hlxc0dc024.unix.marksandspencercate.com | 20140 |  8050004580 |         1 | F01946   | REC002   |
