@@ -59,7 +59,7 @@ public class PreAdviceLineStepDefs {
 
 		jdaHomePage.navigateToPreAdviceLinePage();
 		jdaFooter.clickQueryButton();
-		preAdviceLinePage.enterPreAdviceID("0030229923");
+		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
 
 		if (context.getNoOfLines() != 1) {

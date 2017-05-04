@@ -96,7 +96,8 @@ public class InventoryUpdateStepDefs {
 	@Then("^I should see the future expiry date and reason code in the miscellaneous tab$")
 	public void i_should_see_the_future_expiry_date_and_reason_code_in_the_miscellaneous_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		// Get Expiry Date
 		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
 		if (!context.getFutureExpiryDate().equals(expiryDate)) {
