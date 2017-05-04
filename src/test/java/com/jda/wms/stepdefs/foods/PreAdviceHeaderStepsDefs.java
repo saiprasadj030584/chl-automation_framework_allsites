@@ -11,9 +11,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PreAdviceHeaderPage;
-
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -36,9 +34,11 @@ public class PreAdviceHeaderStepsDefs {
 		this.context = context;
 	}
 
-	@When("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
-	public void the_PO_should_be_status_and_have_future_due_date_site_id_number_of_lines(String purchaseOrder,
-			String status) throws Throwable {
+	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
+	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines(String purchaseOrder, String productCategory, String status) throws Throwable {
+//	@When("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
+//	public void the_PO_should_be_status_and_have_future_due_date_site_id_number_of_lines(String purchaseOrder,
+//			String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();

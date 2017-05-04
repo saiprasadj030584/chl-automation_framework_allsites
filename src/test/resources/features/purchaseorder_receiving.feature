@@ -6,12 +6,12 @@ Feature: Purchase order
 
   @po_receive_wip_bws
   Scenario Outline: Receiving process in JDA WMS
-    #Given the PO "<PreAdviceID>" should be "Released" status and have future due date, site id, number of lines
+    Given the PO "<PreAdviceID>" with "Ambient" category should be "Released" status and have future due date, site id, number of lines
     #And the PO should have address details in the pre-advice header maintenance table
     #Then the supplier should have supplier pallet details in the address maintenanace table
-    When I create consignment for the supplier
-    And I link the consignment to the pre-advice ID
-    Then the pre-advice id should be displayed with the linked consignment
+    #When I create consignment for the supplier
+    #And I link the consignment to the pre-advice ID
+    #Then the pre-advice id should be displayed with the linked consignment
     #And I want to receive the purchase order "<PreAdviceID>", "<NoOfLines>", "<Supplier>"
     #When I have logged in as warehouse user in Putty with host "<Host>" and port "<Port>"
     #When I select user directed option in main menu

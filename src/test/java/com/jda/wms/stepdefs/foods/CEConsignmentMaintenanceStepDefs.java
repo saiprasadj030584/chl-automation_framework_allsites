@@ -23,6 +23,7 @@ public class CEConsignmentMaintenanceStepDefs {
 	private final JDAFooter jdaFooter;
 	private final AddressMaintenancePage addressMaintenancePage;
 	private AddressMaintenanceStepDefs addressMaintenanceStepDefs;
+	private String euCountries = "AlbaniaAndorraArmeniaAustriaAzerbaijanBelarusBelgiumBosnia-HerzegovinaBulgariaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandItalyKazakhstanKosovoLatviaLiechtensteinLithuaniaLuxembourgMacedoniaMaltaMoldovaMonacoMontserratNetherlandsNorwayPolandPortugalRomaniaRussiaSan MarinoSerbiaSlovakiaSloveniaSpainSwedenSwitzerlandTurkeyUkraineVatican City State";
 
 	@Inject
 	public CEConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage ceConsignmentMaintenancePage, Context context, JdaHomePage jdaHomePage, JDAFooter jdaFooter, AddressMaintenancePage addressMaintenancePage,AddressMaintenanceStepDefs addressMaintenanceStepDefs) {
@@ -56,7 +57,7 @@ public class CEConsignmentMaintenanceStepDefs {
 		if (context.getCountry().equals("United Kingdom")){
 			ceConsignmentMaintenancePage.selectReceiptType("Other Warehouse");
 		}
-		else {
+		else if (euCountries.contains(context.getCountry())){
 			ceConsignmentMaintenancePage.selectReceiptType("From EU");
 		}
 		
