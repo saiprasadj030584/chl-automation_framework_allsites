@@ -256,4 +256,14 @@ public class JdaHomePage extends PageObject {
 	public void enterTabKey() {
 		screen.type(Key.TAB);
 	}
+	public void navigateToPreAdviceLinePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice line maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+
 }

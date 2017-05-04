@@ -24,6 +24,7 @@ public class Context {
 	private String address1;
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
+	private String palletType;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -191,6 +192,14 @@ public class Context {
 
 	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
 		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	}
+	public String getPalletType() {
+		return palletType;
+	}
+
+	public void setPalletType(String palletType) {
+		this.palletType = palletType;
+		
 	}
 
 }
