@@ -106,4 +106,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_inventory_update_page() throws Throwable {
 		jdaHomePage.navigateToInventoryUpdate();
 	}
+
+@Given("^I am on to pre-advice line maintenance page$")
+public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
+	jdaHomePage.navigateToPreAdviceLineMaintenance();
+}
 }
