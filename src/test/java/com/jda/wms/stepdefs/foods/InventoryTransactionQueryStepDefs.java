@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataObject.PreAdviceLine;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
+//TODO import com.jda.wms.pages.foods.PreAdviceLinePage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -25,10 +27,11 @@ public class InventoryTransactionQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final SKUMaintenancePage sKUMaintenancePage;
+	private final PreAdviceLine preAdviceLine;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage) {
+			Context context, JDAFooter jdaFooter,JdaHomePage jdaHomePage,SKUMaintenancePage sKUMaintenancePage, PreAdviceLine preAdviceLine) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
@@ -486,9 +489,9 @@ public class InventoryTransactionQueryStepDefs {
 
 		String documentDate = inventoryTransactionQueryPage.getDocumentDate();
 		if (documentDate.equals(null)) {
-			failureList.add("Upload file name is not as expected. Expected [Not Null] but was [" + documentDate + "]");
+			failureList.add("Document Date is not as expected. Expected [Not Null] but was [" + documentDate + "]");
 		}
-		logger.debug("uploadedFileName: " + documentDate);
+		logger.debug("Document Date: " + documentDate);
 
 		String documentTime = inventoryTransactionQueryPage.getDocumentTime();
 		if (documentTime.equals(null)) {
@@ -496,7 +499,7 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("Document Time: " + documentTime);
 
-		Assert.assertTrue("Inventory transaction query Customs & Excise tab details are not as expected."
+		Assert.assertTrue("Inventory transaction query Customs & Excise tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 		
 	}
@@ -505,21 +508,48 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^ABV percentage and vintage should be displayed for BWS$")
 	public void abv_percentage_and_vintage_should_be_displayed_for_BWS() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+		String abv;
+		String vintage;
 		
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+		jdaFooter.clickQueryButton();
+		PreAdviceLine.searchbyUPCandAdviceID();
+		abv = PreAdviceLine.getABV();
+		vintage = PreAdviceLine.getVintage();
+		jdaFooter.clickCloseButton();
+		Thread.sleep(2000);
+		logger.debug("ABV :" + abv);
+		logger.debug("Vintage :" + vintage);
+		
+		
+		if (abv<>null)
+		{
 		String abvPercentage = inventoryTransactionQueryPage.getABV();
 		if (abvPercentage.equals(null)) {
 			failureList.add(
 					"ABV Value is not as expected. Expected [Not Null] but was [" + abvPercentage + "]");
 		}
-		logger.debug("abvPercentage: " + abvPercentage);
-
+			logger.debug("abvPercentage: " + abvPercentage);
+		}
+			else 
+			{
+			logger.debug("ABV validation not required");
+			}
+		
+		if (vintage <> null )
+		{
 		String vintage = inventoryTransactionQueryPage.getVintage();
 		if (vintage.equals(null)) {
 			failureList.add("vintage is not as expected. Expected [Not Null] but was [" + vintage + "]");
 		}
 		logger.debug("vintage: " + vintage);
+		}
+			else
+			{
+			logger.debug("Vintage validation not required");
+			}
 		
-		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
+		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 		
 	}

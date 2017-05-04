@@ -413,10 +413,8 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	//FIXME -- Image
 	public String getOriginator() throws FindFailed {
-		// TODO Auto-generated method stub
-		Match mOriginator = screen.find("images/InventoryTransactionQuery/Customs & Excise//UploadedTime.png");
+		Match mOriginator = screen.find("images/InventoryTransactionQuery/Customs & Excise/Originator.png");
 		screen.click(mOriginator.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -424,46 +422,40 @@ public class InventoryTransactionQueryPage {
 	}
 	
 
-//FIXME -- Image
 	public String getOriginatorReference() throws FindFailed {
-		// TODO Auto-generated method stub
-		Match mOriginatorReference = screen.find("images/InventoryTransactionQuery/Customs & Excise//UploadedTime.png");
+		Match mOriginatorReference = screen.find("images/InventoryTransactionQuery/Customs & Excise/OriginatorReference.png");
 		screen.click(mOriginatorReference.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	//FIXME -- Image
+
 	public String getCEConsignmentId() throws FindFailed {
-		// TODO Auto-generated method stub
-		Match mCEConsignmentId = screen.find("images/InventoryTransactionQuery/Customs & Excise//UploadedTime.png");
+		Match mCEConsignmentId = screen.find("images/InventoryTransactionQuery/Customs & Excise/CEConsignmentID.png");
 		screen.click(mCEConsignmentId.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	//FIXME -- Image
+	
 	public String getDocumentDate()throws FindFailed  {
-		// TODO Auto-generated method stub
-		Match mDocumentDate = screen.find("images/InventoryTransactionQuery/Customs & Excise//UploadedTime.png");
+		Match mDocumentDate = screen.find("images/InventoryTransactionQuery/Customs & Excise/DocumentDate.png");
 		screen.click(mDocumentDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	//FIXME -- Image
+
 	public String getDocumentTime() throws FindFailed {
-		// TODO Auto-generated method stub
-		Match mDocumentTime = screen.find("images/InventoryTransactionQuery/Customs & Excise//UploadedTime.png");
+		Match mDocumentTime = screen.find("images/InventoryTransactionQuery/Customs & Excise/DocumentTime.png");
 		screen.click(mDocumentTime.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	//FIXME -- Image
+
 	public String getVintage() throws FindFailed {
-		// TODO Auto-generated method stub
-		Match mVintage = screen.find("images/InventoryTransactionQuery/Miscellaneous2/UploadedTime.png");
+		Match mVintage = screen.find("images/InventoryTransactionQuery/Miscellaneous2/Vintage.png");
 		screen.click(mVintage.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
