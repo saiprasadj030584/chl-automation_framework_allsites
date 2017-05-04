@@ -4,7 +4,7 @@ Feature: Pre-Advice Lock
   I want to lock a product
   So that those product cannot be received
 
-  @complete @lock_status
+  @complete 
   Scenario Outline: Lock the product from unlocked status
     When I search the pre-advice id "<preAdviceId>" and SKU id "<skuId>" in pre-advice line maintenance page
     And I lock the record with lockcode as "<lockCode>"
