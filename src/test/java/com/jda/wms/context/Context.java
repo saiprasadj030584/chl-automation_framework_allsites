@@ -27,6 +27,7 @@ public class Context {
 	private int qtyReceivedfromPutty;
 	private Map<String,Map<String,String>>purchaseOrderMap;
 	private String lockCode;
+	private int qtyOnHand;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -211,4 +212,13 @@ public class Context {
 		this.lockCode = lockCode;
 	}
 
+
+	public void setQtyOnHand(int qtyOnHand) {
+		this.qtyOnHand = qtyOnHand;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
+	}
+	
 }
