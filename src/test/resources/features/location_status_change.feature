@@ -4,7 +4,7 @@ Feature: Location Status Change
   I want to change the location status of REC lane
   So that I manage the locations effectively
 
-  @sara_wip
+  @complete
   Scenario Outline: Change REC lane lock status
     #Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to Location Maintenance Page
@@ -16,8 +16,8 @@ Feature: Location Status Change
     Examples: 
       | LocationID | LockStatus |
       | RED126     | Locked     |
-      | REC127     | Outlocked  |
-      | REC128     | Inlocked   |
+      | REC127     | Unlocked   |
+      | REC128     | Unlocked   |
       | REC126     | Unlocked   |
 	#Negative validation - Example 1
 	#Positive validation - Examples 2, 3 and 4
