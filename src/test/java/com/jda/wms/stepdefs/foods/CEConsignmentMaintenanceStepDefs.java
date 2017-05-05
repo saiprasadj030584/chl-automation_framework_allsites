@@ -10,6 +10,7 @@ import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.CEConsignmentMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
+import com.jda.wms.pages.foods.PopUpPage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.*;
@@ -23,16 +24,19 @@ public class CEConsignmentMaintenanceStepDefs {
 	private final JDAFooter jdaFooter;
 	private final AddressMaintenancePage addressMaintenancePage;
 	private AddressMaintenanceStepDefs addressMaintenanceStepDefs;
+	private PopUpPage popUpPage;
+
 	private String euCountries = "AlbaniaAndorraArmeniaAustriaAzerbaijanBelarusBelgiumBosnia-HerzegovinaBulgariaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandItalyKazakhstanKosovoLatviaLiechtensteinLithuaniaLuxembourgMacedoniaMaltaMoldovaMonacoMontserratNetherlandsNorwayPolandPortugalRomaniaRussiaSan MarinoSerbiaSlovakiaSloveniaSpainSwedenSwitzerlandTurkeyUkraineVatican City State";
 
 	@Inject
-	public CEConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage ceConsignmentMaintenancePage, Context context, JdaHomePage jdaHomePage, JDAFooter jdaFooter, AddressMaintenancePage addressMaintenancePage,AddressMaintenanceStepDefs addressMaintenanceStepDefs) {
+	public CEConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage ceConsignmentMaintenancePage, Context context, JdaHomePage jdaHomePage, JDAFooter jdaFooter, AddressMaintenancePage addressMaintenancePage,AddressMaintenanceStepDefs addressMaintenanceStepDefs, PopUpPage popUpPage) {
 		this.ceConsignmentMaintenancePage = ceConsignmentMaintenancePage;
 		this.context = context;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.addressMaintenanceStepDefs = addressMaintenanceStepDefs;
+		this.popUpPage = popUpPage;
 	}
 	
 	@When("^I create consignment for the supplier$")
@@ -72,7 +76,7 @@ public class CEConsignmentMaintenanceStepDefs {
 		ceConsignmentMaintenancePage.enterECMSEADDate();
 		ceConsignmentMaintenancePage.enterECMSEADTime();
 		jdaFooter.clickExecuteButton();
-		ceConsignmentMaintenancePage.clickYes();
+		popUpPage.clickYes();
 		
 		String consignmentID = ceConsignmentMaintenancePage.getConsignmentID();
 		context.setConsignmentID(consignmentID);

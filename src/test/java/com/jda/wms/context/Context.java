@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.jda.wms.pages.foods.RDTTask;
+import java.util.Map;
 
 public class Context {
 	private RDTTask currentTask;
@@ -167,14 +168,6 @@ public class Context {
 		this.noOfLines = noOfLines;
 	}
 
-	public Map<String,Map<String,String>> getPurchaseOrderMap() {
-		return purchaseOrderMap;
-	}
-
-	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
-		this.purchaseOrderMap = purchaseOrderMap;
-	}
-
 	public int getLineItem() {
 		return lineItem;
 	}
@@ -286,6 +279,7 @@ public class Context {
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
+	
 	public String getLockCode() {
 		return lockCode;
 	}
@@ -293,4 +287,13 @@ public class Context {
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
 	}
+
+	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+		return purchaseOrderMap;
+	}
+
+	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+		this.purchaseOrderMap = purchaseOrderMap;
+	}
 }
+

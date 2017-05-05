@@ -263,16 +263,6 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	public void navigateToPreAdviceLinePage() throws FindFailed, InterruptedException {
- 		clickSearchIcon();
- 		Thread.sleep(1000);
- 		screen.type("Pre-advice line maintenance/query screen");
- 		screen.type(Key.ENTER);
- 		Thread.sleep(1000);
- 		screen.type(Key.ENTER);
- 		Thread.sleep(5000);
- 	}
-	
 	public void enterTabKey() {
 		screen.type(Key.TAB);
 	}
@@ -291,6 +281,16 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment maintenance");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPackConfigPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("pack configuration maintenance/query screen");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

@@ -34,10 +34,9 @@ public class PreAdviceHeaderStepsDefs {
 		this.context = context;
 	}
 
-	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines$")
-	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines(String preAdviceId, String productCategory, String status) throws Throwable {
-		context.setPreAdviceId(preAdviceId);
-		context.setProductCategory(productCategory);
+	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
+	public void the_PO_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
+			String preAdviceId, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
@@ -65,12 +64,12 @@ public class PreAdviceHeaderStepsDefs {
 		if (supplier.equals(null)) {
 			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
 		}
-         
+
 		boolean isType = preAdviceHeaderPage.isTypeExist();
 		if (!isType) {
 			failureList.add("Type is not displayed as PO");
 		}
-		
+
 		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
 		context.setNoOfLines(numberOfLines);
 		if (numberOfLines < 0) {
@@ -86,9 +85,8 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("The TYPE is not a PO expected, [PO] but was [not PO]", preAdviceHeaderPage.isTypeExist());
 	}
 
-	@Then("^the PO should have address details in the pre-advice header maintenance table$")
-	public void the_PO_should_have_address1_name_and_country_in_the_pre_advice_header_maintenance_table()
-			throws Throwable {
+	@Given("^the PO should have address details$")
+	public void the_PO_should_have_address_details() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		i_navigate_to_address_tab_in_pre_advice_header_maintenance_page();
@@ -125,5 +123,51 @@ public class PreAdviceHeaderStepsDefs {
 	@When("^I navigate to address tab in pre-advice header maintenance page$")
 	public void i_navigate_to_address_tab_in_pre_advice_header_maintenance_page() throws Throwable {
 		preAdviceHeaderPage.clickAddressTab();
+	}
+
+	@Given("^the supplier should have supplier pallet details$")
+	public void the_supplier_should_have_supplier_pallet_details() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
+		jdaFooter.clickQueryButton();
+		// addressMaintenancePage.enterAddressID(context.getSupplierID());
+		addressMaintenancePage.enterAddressID("F01946");
+		jdaFooter.clickExecuteButton();
+
+		String name = addressMaintenancePage.getName();
+		if (!context.getName().equals(name)) {
+			failureList.add("Name is not as expected. Expected [" + context.getName() + "]  but was [" + name + "]");
+		}
+
+		String address1 = addressMaintenancePage.getAddress1();
+		if (!context.getAddress1().equals(address1)) {
+			failureList.add(
+					"Address1 is not as expected. Expected [" + context.getAddress1() + "] but was [" + address1 + "]");
+		}
+
+		String country = addressMaintenancePage.getCountry();
+		if (!context.getCountry().equals(country)) {
+			failureList.add(
+					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
+		}
+
+		i_navigate_to_user_defined_tab_in_address_maintenance_page();
+		String defaultySuppleirPallet = addressMaintenancePage.getDefaultSupplierPallet();
+		if (!defaultySuppleirPallet.equals("CHEP")) {
+			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
+					+ defaultySuppleirPallet + "]");
+		}
+
+		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^I navigate to user defined tab in address maintenance page$")
+	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
+		// jdaFooter.clickQueryButton();
+		// addressMaintenancePage.enterAddressID(context.getSupplierID());
+		// jdaFooter.clickExecuteButton();
+		addressMaintenancePage.clickUserDefinedTab();
 	}
 }

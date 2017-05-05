@@ -187,7 +187,7 @@ public class SKUMaintenancePage {
 	public void navigateToSupplierSKU() throws InterruptedException, FindFailed {
 		screen.wait("images/SKUMaintenanceTable/SupplierSKU.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/SupplierSKU.png");
-		Thread.sleep(3000L);
+		Thread.sleep(3000);
 	}
 
 	public String getSupplierSKUId() throws InterruptedException, FindFailed {
@@ -217,6 +217,12 @@ public class SKUMaintenancePage {
 		else
 			return false;
 	}
+	
+	public void clickUserDefinedTab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/UserDefined.png");
+		Thread.sleep(2000);
+	}
 
 	public String getCurrentVintage() throws InterruptedException, FindFailed {
 		Match mCurrentVintage = screen.find("images/SKUMaintenanceTable/UserDefined/CurrentVintage.png");
@@ -226,4 +232,10 @@ public class SKUMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void clickSettings1Tab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/Settings1.png");
+		Thread.sleep(2000);
 	}
+}
