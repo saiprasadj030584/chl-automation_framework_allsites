@@ -75,4 +75,28 @@ public class JDAFooter {
 		screen.type(Key.F12);
 		Thread.sleep(3000);
 	}
+	
+	public void clickNextRecord() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/NextRecord.png", timeoutInSec);
+		screen.click("images/JDAFooter/NextRecord.png");
+		Thread.sleep(3000);
+	}
+	
+	public void clickPackConfig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/PackConfig.png", timeoutInSec);
+		screen.click("images/JDAFooter/PackConfig.png");
+		Thread.sleep(3000);
+	}
+	
+	public void clickPreAdiceLine() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/PreAdviceLine.png", timeoutInSec);
+		screen.click("images/JDAFooter/PreAdviceLine.png");
+		Thread.sleep(3000);
+	}
+	
+	public void clickSku() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/Sku.png", timeoutInSec);
+		screen.click("images/JDAFooter/Sku.png");
+		Thread.sleep(2000);
+	}
 }
