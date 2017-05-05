@@ -13,7 +13,7 @@ public class CheckStringDetailsJsonDao {
 	@Inject
 	private JsonDataLoader jsonDataLoader;
 
-	public CheckString getCheckStringDetails() throws DataException {
+	public List<CheckString> getCheckStringDetails() throws DataException {
 		return Arrays.asList(jsonDataLoader.getData(CHECK_STRING_PATH, CheckString[].class));
 	}
 }

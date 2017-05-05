@@ -220,10 +220,9 @@ public class JdaHomePage extends PageObject {
 	public void navigateToLocationPage() throws FindFailed, InterruptedException {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
-		screen.type("Location maintenance/query screen");
-		screen.wait("images/JDAHome/PalletLocation.png", timeoutInSec);
-		screen.click("images/JDAHome/PalletLocation.png");
-		screen.type(Key.DOWN);
+		screen.type("Location maintenance/query screen*");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}

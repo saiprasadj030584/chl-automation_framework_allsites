@@ -47,6 +47,21 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+	
+	public void mimimizePuty() throws FindFailed, InterruptedException {
+		screen.wait("/images/Putty/MinimizePutty.png", timeoutInSec);
+		screen.click("/images/Putty/MinimizePutty.png");
+		screen.rightClick();
+		Thread.sleep(2000);
+		screen.wait("/images/Putty/Minimize.png", timeoutInSec);
+		screen.click("/images/Putty/Minimize.png");
+	}
+	
+	public void clickPuttyIcon() throws FindFailed
+	{
+		screen.wait("/images/Putty/ClickPutttyIcon.png", timeoutInSec);
+		screen.click("/images/Putty/ClickPutttyIcon.png");
+	}
 
 	public void completeProcess() throws InterruptedException {
 		Thread.sleep(2500);

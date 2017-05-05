@@ -1,17 +1,20 @@
 package com.jda.wms.pages.foods;
 
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
-public class MoveTaskUpdate {
+public class MoveTaskUpdatePage {
 	private final JdaHomePage jdaHomePage;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public MoveTaskUpdate(JdaHomePage jdaHomePage) {
+	public MoveTaskUpdatePage(JdaHomePage jdaHomePage) {
 		this.jdaHomePage = jdaHomePage;
 	}
 
@@ -25,5 +28,13 @@ public class MoveTaskUpdate {
 		jdaHomePage.enterTabKey();
 		jdaHomePage.enterTabKey();
 		screen.type(tagId);
+	}
+	
+	public String getCheckString() throws FindFailed {
+		Match mStatus = screen.find("images/Location/CheckString.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 }

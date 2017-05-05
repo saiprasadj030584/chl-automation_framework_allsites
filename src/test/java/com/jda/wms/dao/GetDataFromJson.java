@@ -1,5 +1,6 @@
 package com.jda.wms.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -15,9 +16,9 @@ public class GetDataFromJson {
 		this.checkStringDetailsJsonDao = checkStringDetailsJsonDao;
 	}
 
-	public CheckString getCheckString() throws DataException {
+	public ArrayList<String> getCheckString() throws DataException {
 		List<CheckString> checkStringList = checkStringDetailsJsonDao.getCheckStringDetails();
-		return checkStringList;
+		return (ArrayList)checkStringList;
 	}
 
 	// private Card getCardDetail(String type, List<Card> cardList) {

@@ -15,7 +15,7 @@ import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.LocationPage;
-import com.jda.wms.pages.foods.MoveTaskUpdate;
+import com.jda.wms.pages.foods.MoveTaskUpdatePage;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 import com.jda.wms.stepdefs.foods.JDALoginStepDefs;
 
@@ -27,7 +27,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 public class PurchaseOrderPutawayStepDefs {
 	private final JdaHomePage jdaHomepage;
 	private final InventoryQueryPage inventoryQueryPage;
-	private final MoveTaskUpdate moveTaskUpdate;
+	private final MoveTaskUpdatePage moveTaskUpdate;
 	private final JDAFooter jdaFooter;
 	private final PurchaseOrderPutawayPage purchaseOrderPutawayPage;
 	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
@@ -43,7 +43,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, InventoryQueryPage inventoryQueryPage,
-			MoveTaskUpdate moveTaskUpdate, JDAFooter jdaFooter,
+			MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,
 			PurchaseOrderPutawayPage purchaseOrderPutawayPage,
 			InventoryTransactionQueryPage inventoryTransactionQueryPage, JDALoginStepDefs jdaLoginStepDefs,
@@ -165,7 +165,14 @@ public class PurchaseOrderPutawayStepDefs {
 				locationPerTagMap.put(currentTagId, location);
 				i_proceed_to_complete();
 				Thread.sleep(2000);
-				locationCS = checkString.getCheckString();
+				purchaseOrderPutawayPage.mimimizePuty();
+				Thread.sleep(2000);
+				jdaHomepage.navigateToLocationPage();
+				String cs = moveTaskUpdate.getCheckString();
+				purchaseOrderPutawayPage.clickPuttyIcon();
+				purchaseOrderPutawayPage.enterCheckString(cs);
+				
+				/*locationCS = checkString.getCheckString();
 				System.out.println(locationCS.get(0));
 				System.out.println(locationCS.get(2));
 				System.out.println(locationCS.get(50));
@@ -176,7 +183,9 @@ public class PurchaseOrderPutawayStepDefs {
 						purchaseOrderPutawayPage.enterCheckString(checkString[1]);
 						break;
 					}
-				}
+				}*/
+				
+				
 				i_should_be_directed_to_putent_page();
 			}
 		}

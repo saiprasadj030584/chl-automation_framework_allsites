@@ -15,14 +15,14 @@ Feature: Purchase order
     
     Examples: 
       | Host                                    | Port  |
-      | hlxc0dc024.unix.marksandspencercate.com | 20140 | 
+      | hlxc0dc024.unix.marksandspencercate.com | 20139 | 
       
       
      #Given the tag id should be received
     #When I navigate to move task update
     #And I relase the tag
     #Then the tag id should be released
-    #When I login as warehouse user in Putty with host "<Host>" and port "<Port>"
+    #When I login as warehouse user in Putty with host "<Host>Move Task Update" and port "<Port>"
     #And I select user directed option in main menu
     #And I select normal putaway
     #And I enter the tag and check string
