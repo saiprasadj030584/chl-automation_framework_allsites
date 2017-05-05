@@ -277,3 +277,4 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 }
+
