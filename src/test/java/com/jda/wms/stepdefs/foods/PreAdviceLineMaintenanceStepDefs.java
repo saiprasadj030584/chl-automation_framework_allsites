@@ -35,12 +35,12 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private PopUpPage popUpPage;
-	
+
 	@Inject
-	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
-			PackConfigMaintenancePage packConfigMaintenancePage, JDAHomeStepDefs jdaHomeStepDefs,
-			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs, Context context,
-			SKUMaintenancePage skuMaintenancePage,PopUpPage popUpPage) {
+	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter,
+			JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
+			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
+			Context context, SKUMaintenancePage skuMaintenancePage, PopUpPage popUpPage) {
 		this.preAdviceLinePage = preAdviceLinePage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -60,8 +60,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		int caseRatio = 0;
 
-//		context.setNoOfLines(2);
-		
 		jdaHomeStepDefs.i_am_on_pack_config_maintenance_page();
 		jdaHomePage.navigateToSKUMaintanence();
 
@@ -78,8 +76,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			skuId = preAdviceLinePage.getSkuId();
 			qtyDue = preAdviceLinePage.getQtyDue();
 			String packConfig = preAdviceLinePage.getPackConfig();
-			
-			//to be used for BWS PO processing
+
+			// to be used for BWS PO processing
 			// String underBond = preAdviceLinePage.getUnderBond();
 			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
 
@@ -111,13 +109,13 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickQueryButton();
 			skuMaintenancePage.enterSKUID(skuId);
 			jdaFooter.clickExecuteButton();
-			
+
 			productGroup = skuMaintenancePage.getProductGroup();
 			allocationGroup = skuMaintenancePage.getAllocationGroup();
 			skuMaintenancePage.clickUserDefinedTab();
 			String currentVintage = skuMaintenancePage.getCurrentVintage();
 			System.out.println("current vintage in SKU table is " + currentVintage);
-			skuMaintenancePage.clicksettings1Tab();
+			skuMaintenancePage.clickSettings1Tab();
 
 			if (!vintage.equals(null)) {
 				if (!skuMaintenancePage.isCurrentVintage(currentVintage) == true) {
@@ -140,7 +138,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickPreAdiceLine();
 			jdaFooter.clickNextRecord();
 			preAdviceLinePage.clickGeneralTab();
-			
+
 			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
 			logger.debug("Quantity Due: " + qtyDue);
 			logger.debug("Pack Config : " + packConfig);
@@ -154,7 +152,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 		System.out.println("Map " + context.getPurchaseOrderMap());
 	}
-	
+
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
@@ -178,5 +176,5 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertEquals("Lock code is not displayed as expected.", context.getLockCode(),
 				preAdviceLinePage.getLockCode());
 	}
-	
+
 }

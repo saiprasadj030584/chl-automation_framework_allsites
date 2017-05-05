@@ -227,7 +227,7 @@ public class SKUMaintenancePage {
 		return App.getClipboard();
 	}
 
-	public void clicksettings1Tab() throws InterruptedException, FindFailed {
+	public void clickSettings1Tab() throws InterruptedException, FindFailed {
 		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
