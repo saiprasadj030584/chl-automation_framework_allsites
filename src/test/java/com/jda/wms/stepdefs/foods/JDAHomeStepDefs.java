@@ -52,10 +52,8 @@ public class JDAHomeStepDefs {
 
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverSKU();
-		jdaHomePage.hoverPackConfig();
-		jdaHomePage.clickPackConfig();
+		jdaHomePage.navigateToPackConfigPage();
+		
 	}
 
 	@Given("^I am on to pre-advice header maintenance page$")
