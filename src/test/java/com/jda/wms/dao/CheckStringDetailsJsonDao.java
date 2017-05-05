@@ -8,7 +8,7 @@ import com.jda.wms.dataObject.CheckString;
 import com.jda.wms.exception.DataException;
 
 public class CheckStringDetailsJsonDao {
-	private static String CHECK_STRING_PATH = "./src/test/resources/data/checkString.json";
+	private static String CHECK_STRING_PATH = "./src/test/resources/data/check_string.json";
 
 	@Inject
 	private JsonDataLoader jsonDataLoader;
