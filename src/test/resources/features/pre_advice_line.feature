@@ -6,7 +6,7 @@ Feature: pallet type update
 
   @complete
   Scenario Outline: Pallet type update
-  	Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And the sku "<sku>" of pre-advice id "<preAdviceId>" have the pallet type as "<existingPalletType>"
     When I update the pallet type as "<palletType>"
     Then the pallet type should be updated
@@ -17,5 +17,5 @@ Feature: pallet type update
       |  0040000098 | 20001670 | CHEP               | BROWN      |
       |  0071000091 | 21107028 | CHEP               | RED        |
       |  8050004505 | 21036013 | EURO               | CHEP       |
-     	|  7165010017 | 21101988 | RED                | BROWN      |
-      |	 716501091	| 20001717 | RED 								| CHEP			 |
+      |  7165010017 | 21101988 | RED                | BROWN      |
+      |   716501091 | 20001717 | RED                | CHEP       |

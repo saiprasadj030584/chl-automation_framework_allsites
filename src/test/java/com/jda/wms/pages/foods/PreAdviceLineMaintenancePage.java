@@ -7,13 +7,13 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class PreAdviceLinePage {
+public class PreAdviceLineMaintenancePage {
 	private Context context;
 	int timeoutInSec = 20;
 	Screen screen = new Screen();
 
 	@Inject
-	public PreAdviceLinePage(Context context) {
+	public PreAdviceLineMaintenancePage(Context context) {
 		this.context = context;
 	}
 
@@ -116,7 +116,7 @@ public class PreAdviceLinePage {
 	}
 	
 	public String getPalletType() throws FindFailed {
-		Match mSkuId = screen.find("images/PreAdviceLine/General/palletType.png");
+		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
 		screen.click(mSkuId.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -124,7 +124,7 @@ public class PreAdviceLinePage {
 	}
 		
 	public String enterPalletType(String palletType) throws FindFailed {
-		Match mSkuId = screen.find("images/PreAdviceLine/General/palletType.png");
+		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
 		screen.click(mSkuId.getCenter().offset(70, 0));
 		screen.type(palletType);
 		return App.getClipboard();
