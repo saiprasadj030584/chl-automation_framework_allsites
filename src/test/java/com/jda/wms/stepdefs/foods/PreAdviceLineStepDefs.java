@@ -45,6 +45,7 @@ public class PreAdviceLineStepDefs {
 			preAdviceLinePage.enterPalletType(existingPalletType);
 			jdaFooter.clickExecuteButton();
 			popUpPage.clickYes();
+			Thread.sleep(3000);
 		}
 	}
 
@@ -55,6 +56,7 @@ public class PreAdviceLineStepDefs {
 		preAdviceLinePage.enterPalletType(palletType);
 		jdaFooter.clickExecuteButton();
 		popUpPage.clickYes();
+		Thread.sleep(3000);
 	}
 
 	@Then("^the pallet type should be updated")
