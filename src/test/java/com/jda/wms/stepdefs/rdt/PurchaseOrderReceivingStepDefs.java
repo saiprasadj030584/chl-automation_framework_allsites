@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Assert;
+import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
@@ -35,41 +36,10 @@ public class PurchaseOrderReceivingStepDefs {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
-	@Given("^I want to receive the purchase order \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
-	public void i_want_to_receive_the_purchase_order(String preAdviceId, String noOfLines, String supplierID)
-			throws InterruptedException {
-		context.setPreAdviceId(preAdviceId);
-		context.setNoOfLines(Integer.parseInt(noOfLines));
-		context.setSupplierID(supplierID);
+	@Given("^I want to receive the purchase order$")
+	public void i_want_to_receive_the_purchase_order() throws InterruptedException {
 
-		// Create Hash map to store line items
-		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
-		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			Map<String, String> lineItemsMap = new HashMap<String, String>();
-//			if (i == 1) {
-//				lineItemsMap.put("SKU", "20001991");
-//				lineItemsMap.put("QtyDue", "410");
-//				lineItemsMap.put("RemainingQtyDue", "410");
-//				lineItemsMap.put("CaseRatio", "24");
-//				lineItemsMap.put("MaxQtyCanBeRcvd", "160");
-//			}
-			if (i == 1) {
-				lineItemsMap.put("SKU", "21036013");
-				lineItemsMap.put("QtyDue", "1500");
-				lineItemsMap.put("RemainingQtyDue", "1500");
-				lineItemsMap.put("CaseRatio", "15");
-				lineItemsMap.put("MaxQtyCanBeRcvd", "800");
-			}
-//			if (i == 2) {
-//				lineItemsMap.put("SKU", "21036046");
-//				lineItemsMap.put("QtyDue", "1500");
-//				lineItemsMap.put("RemainingQtyDue", "1500");
-//				lineItemsMap.put("CaseRatio", "24");
-//				lineItemsMap.put("MaxQtyCanBeRcvd", "800");
-//			}
-			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-		}
-		context.setPurchaseOrderMap(purchaseOrderMap);
+		purchaseOrderMap = context.getPurchaseOrderMap();
 
 		// To get the number of tagIds for every SKU
 		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
@@ -77,7 +47,7 @@ public class PurchaseOrderReceivingStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			ArrayList<String> tagIDArrayList = new ArrayList<String>();
 			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-			System.out.println("SKU "+skuID);
+			System.out.println("SKU " + skuID);
 			int qtyDue = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("QtyDue"));
 			int maxQtyRcv = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd"));
 			int noOfTagID;
@@ -86,8 +56,8 @@ public class PurchaseOrderReceivingStepDefs {
 			} else {
 				noOfTagID = qtyDue / maxQtyRcv;
 			}
-			System.out.println("No of tags"+noOfTagID);
-			
+			System.out.println("No of tags" + noOfTagID);
+
 			for (int t = 0; t < noOfTagID; t++) {
 				totalTagsperPo++;
 				Thread.sleep(1000);
@@ -101,7 +71,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		// To get the qty to receive for each tag
 		Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
-		
+
 		for (int s = 1; s <= tagIDMap.size(); s++) {
 			String skuCurrent = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
 			for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
@@ -224,7 +194,7 @@ public class PurchaseOrderReceivingStepDefs {
 		String currentSku = purchaseOrderMap.get(lineItem).get("SKU");
 		String tagId = tagIDMap.get(currentSku).get(context.getTagIdIndex());
 		context.setTagIdIndex(context.getTagIdIndex() + 1);
-		
+
 		if (isFirstTagForLineItem == true) {
 			context.setRcvQtyDue(Integer.parseInt(purchaseOrderMap.get(lineItem).get("RemainingQtyDue")));
 			rcvQtyDue = context.getRcvQtyDue();
@@ -269,39 +239,55 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.isRcvPreCmp3Displayed());
 	}
 
-	@When("^I enter the expiry details$")
-	public void i_enter_the_expiry_details() throws Throwable {
-		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")){
-		String expDate = DateUtils.getAddedSystemYear();
-		context.setFutureExpiryDate(expDate);
-		purchaseOrderReceivingPage.enterExpiryDate(expDate);
-		Thread.sleep(10000);
+	@When("^I enter the expiry  and vintage details$")
+	public void i_enter_the_expiry_and_vintage_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			purchaseOrderReceivingPage.enterVintage(context.getVintage());
+			purchaseOrderReceivingPage.pressTab();
+			purchaseOrderReceivingPage.enterABV(context.getAbv());
+			purchaseOrderReceivingPage.pressTab();
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			}
+		} else if (context.getProductCategory().contains("Ambient")) {
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			}
 		}
 	}
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
-//		Assert.assertTrue("Receive not completed and Home page not displayed.",
-//				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-//		Thread.sleep(2000);
+		Assert.assertTrue("Receive not completed and Home page not displayed.",
+				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+		Thread.sleep(2000);
 	}
 
-	@When("^I receive all the skus for pre-advice id \"([^\"]*)\" and at location \"([^\"]*)\"$")
-	public void i_receive_all_skus_for_pre_advice_id_and_at_location(String preAdviceId, String location)
-			throws Throwable {
-		context.setPreAdviceId(preAdviceId);
+	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
+			context.setAbv(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
+			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
 				System.out.println("i,j: " + i + "," + j);
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
-				i_enter_the_expiry_details();
+				i_enter_the_expiry_and_vintage_details();
 				i_should_see_the_receiving_completion();
 				Thread.sleep(5000);
 			}

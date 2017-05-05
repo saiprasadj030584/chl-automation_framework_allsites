@@ -34,9 +34,9 @@ public class PreAdviceHeaderStepsDefs {
 		this.context = context;
 	}
 
-	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
-	public void the_PO_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
-			String preAdviceId, String status) throws Throwable {
+	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
+	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
+			String preAdviceId, String productCategory, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();

@@ -170,6 +170,17 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-	
+	public void pressTab(){
+		screen.type(Key.TAB);
+	}
 
+	public void enterVintage(String vintage) throws InterruptedException {
+		screen.type(vintage);
+		Thread.sleep(1000);
+	}
+
+	public void enterABV(String abv) throws InterruptedException {
+		screen.type(abv);
+		Thread.sleep(1000);
+	}
 }

@@ -77,10 +77,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			qtyDue = preAdviceLinePage.getQtyDue();
 			String packConfig = preAdviceLinePage.getPackConfig();
 
-			// to be used for BWS PO processing
-			// String underBond = preAdviceLinePage.getUnderBond();
-			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
-
 			preAdviceLinePage.clickUserDefinedTab();
 			vintage = preAdviceLinePage.getVintage();
 			caseRatio = Utilities.convertStringToInteger(preAdviceLinePage.getCaseRatio());
@@ -130,8 +126,11 @@ public class PreAdviceLineMaintenanceStepDefs {
 			skuMaintenancePage.clickUserDefined();
 			String currentVintage = skuMaintenancePage.getCurrentVintage();
 			System.out.println("current vintage in SKU table is " + currentVintage);
+			skuMaintenancePage.clickCustomsAndExcise();
+			String abv = skuMaintenancePage.getCEAlcoholicStrength();
 			skuMaintenancePage.clicksettings1Tab();
 
+			//comparing vintage with Pre-advcie line & sku table
 			if (!vintage.equals(null)) {
 				if (!skuMaintenancePage.isCurrentVintage(currentVintage) == true) {
 					failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
@@ -147,6 +146,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("Allocation group", allocationGroup);
 			lineItemsMap.put("Product group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
+			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 			context.setPurchaseOrderMap(purchaseOrderMap);
 
@@ -164,8 +164,46 @@ public class PreAdviceLineMaintenanceStepDefs {
 		}
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+		
+		// To get the number of tagIds for every SKU
+				Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
+				int totalTagsperPo = 0;
+				for (int i = 1; i <= context.getNoOfLines(); i++) {
+					ArrayList<String> tagIDArrayList = new ArrayList<String>();
+					String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+					int quantitytyDue = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("QtyDue"));
+					int maxQtyRcv = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd"));
+					int noOfTagID;
+					if (quantitytyDue % maxQtyRcv > 0) {
+						noOfTagID = (quantitytyDue / maxQtyRcv) + 1;
+					} else {
+						noOfTagID = quantitytyDue / maxQtyRcv;
+					}
+					
+					for (int t = 0; t < noOfTagID; t++) {
+						totalTagsperPo++;
+						Thread.sleep(1000);
+						tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
+					}
+					tagIDMap.put(skuID, tagIDArrayList);
+				}
+				context.setTagIDMap(tagIDMap);
 
-		System.out.println("Map " + context.getPurchaseOrderMap());
+				// To get the qty to receive for each tag
+				Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
+				
+				for (int s = 1; s <= tagIDMap.size(); s++) {
+					String skuCurrent = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
+					for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
+						String currentTag = tagIDMap.get(skuCurrent).get(t);
+						qtyReceivedPerTagMap.put(currentTag, 0);
+					}
+				}
+				context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
+
+		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
+		System.out.println("Tag ID Map "+context.getTagIDMap());
+		System.out.println("Quantity Received Per Tag Map "+context.getQtyReceivedPerTagMap());
 	}
 
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")

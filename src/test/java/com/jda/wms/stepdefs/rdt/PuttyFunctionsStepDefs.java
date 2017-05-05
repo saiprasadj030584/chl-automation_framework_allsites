@@ -24,12 +24,15 @@ public class PuttyFunctionsStepDefs {
 		this.configuration = configuration;
 	}
 
-	@Given("^I have logged in as warehouse user in Putty with host \"([^\"]*)\" and port \"([^\"]*)\"$")
-	public void i_have_logged_in_as_warehouse_user_in_Putty_with_host_and_port(String host, String port)
+	@Given("^I have logged in as warehouse user in Putty$")
+	public void i_have_logged_in_as_warehouse_user_in_Putty()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
+		
+		String host= configuration.getStringProperty("putty-foods-host");
+		String port= configuration.getStringProperty("putty-foods-port");
 		puttyFunctionsPage.loginPutty(host, port);
 		Assert.assertTrue("Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 

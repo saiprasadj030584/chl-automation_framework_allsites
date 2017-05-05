@@ -64,19 +64,6 @@ public class InventoryQueryStepDefs {
 		logger.debug("Status in Inventory screen : " + actualstatus);
 	}
 
-	// @And("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
-	// public void i_have_tag_id_with_status(String tagId, String status) throws
-	// Throwable {
-	// jdaFooter.clickQueryButton();
-	// inventoryQueryPage.enterTagId(tagId);
-	// jdaFooter.clickExecuteButton();
-	//
-	// String actualstatus = inventoryQueryPage.getStatus();
-	// Assert.assertEquals("Tag id is not in unlocked status", status,
-	// actualstatus);
-	// logger.debug("Status in Inventory screen : " + actualstatus);
-	// }
-
 	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$")
 	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query(String status, String lockCode)
 			throws Throwable {

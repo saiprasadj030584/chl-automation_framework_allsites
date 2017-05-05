@@ -39,6 +39,8 @@ public class Context {
 	private String consignmentID;
 	private String productCategory;
 	private String lockCode;
+	private String vintage;
+	private String abv;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -294,6 +296,22 @@ public class Context {
 
 	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
 		this.purchaseOrderMap = purchaseOrderMap;
+	}
+
+	public String getVintage() {
+		return vintage;
+	}
+
+	public void setVintage(String vintage) {
+		this.vintage = vintage;
+	}
+
+	public String getAbv() {
+		return abv;
+	}
+
+	public void setAbv(String abv) {
+		this.abv = abv;
 	}
 }
 
