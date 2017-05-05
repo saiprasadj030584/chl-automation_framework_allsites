@@ -15,20 +15,8 @@ public class GetDataFromJson {
 		this.checkStringDetailsJsonDao = checkStringDetailsJsonDao;
 	}
 
-	public CheckString getCheckString() throws DataException {
+	public void getCheckString() throws DataException {
 		List<CheckString> checkStringList = checkStringDetailsJsonDao.getCheckStringDetails();
-		return checkStringList;
 	}
-
-	// private Card getCardDetail(String type, List<Card> cardList) {
-	// Card card = null;
-	// for (int index = 0; index < cardList.size(); index++) {
-	// if (cardList.get(index).getType().equals(type)) {
-	// card = cardList.get(index);
-	// break;
-	// }
-	// }
-	// return card;
-	// }
 
 }
