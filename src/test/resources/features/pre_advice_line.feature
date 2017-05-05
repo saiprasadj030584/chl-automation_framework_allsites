@@ -4,9 +4,9 @@ Feature: pallet type update
   I want to update the pallet type for the item 
   So that the correct pallet can be updtaed
 
-  @wip1
+  @complete
   Scenario Outline: Pallet type update
-  #  Given I have logged in as warehouse user in JDA dispatcher food application
+  	Given I have logged in as warehouse user in JDA dispatcher food application
     And the sku "<sku>" of pre-advice id "<preAdviceId>" have the pallet type as "<existingPalletType>"
     When I update the pallet type as "<palletType>"
     Then the pallet type should be updated

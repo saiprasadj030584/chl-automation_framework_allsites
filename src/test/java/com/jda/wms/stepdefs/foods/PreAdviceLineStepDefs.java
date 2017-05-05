@@ -17,17 +17,15 @@ public class PreAdviceLineStepDefs {
 	private final PreAdviceLinePage preAdviceLinePage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
-	private final JDAHomeStepDefs jdaHomeStepDefs;
 	private final PopUpPage popUpPage;
 	private final Context context;
 
 	@Inject
 	public PreAdviceLineStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
-			JDAHomeStepDefs jdaHomeStepDefs, PopUpPage popUpPage, Context context) {
+			 PopUpPage popUpPage, Context context) {
 		this.preAdviceLinePage = preAdviceLinePage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
-		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.popUpPage = popUpPage;
 		this.context = context;
 	}
