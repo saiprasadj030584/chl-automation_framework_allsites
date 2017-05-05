@@ -35,8 +35,8 @@ public class PreAdviceLineStepDefs {
 			String existingPalletType) throws Throwable {
 		jdaHomePage.navigateToPreAdviceLinePage();
 		jdaFooter.clickQueryButton();
-		preAdviceLinePage.enterPreAdviceID(preAdviceId);
-		preAdviceLinePage.enterSkuID(sku);
+		preAdviceLinePage.enterPreAdviceId(preAdviceId);
+		preAdviceLinePage.enterSKUId(sku);
 		jdaFooter.clickExecuteButton();
 		if (!existingPalletType.equals(preAdviceLinePage.getPalletType())) {
 			jdaFooter.clickUpdateButton();

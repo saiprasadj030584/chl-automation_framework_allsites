@@ -25,6 +25,8 @@ public class Context {
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
 	private String palletType;
+	private String lockCode;
+
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -200,6 +202,14 @@ public class Context {
 	public void setPalletType(String palletType) {
 		this.palletType = palletType;
 		
+	}
+
+	public String getLockCode() {
+		return lockCode;
+	}
+
+	public void setLockCode(String lockCode) {
+		this.lockCode = lockCode;
 	}
 
 }
