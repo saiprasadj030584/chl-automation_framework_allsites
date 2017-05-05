@@ -37,19 +37,19 @@ public class CEConsignmentMaintenanceStepDefs {
 	
 	@When("^I create consignment for the supplier$")
 	public void i_create_consignment_for_the_supplier() throws Throwable {
-		//For scenario purpose
-		context.setSupplierID("F06259");
-		context.setCountry("France");
-		context.setPreAdviceId("2050004488");
-		jdaHomePage.navigateToAddressMaintenancePage();
-		jdaFooter.clickQueryButton();
-		addressMaintenancePage.enterAddressID(context.getSupplierID());
-		jdaFooter.clickExecuteButton();
-		//For scenario purpose
-		
-		addressMaintenanceStepDefs.i_navigate_to_customs_excise_tab_in_address_maintenance();
-		addressMaintenanceStepDefs.the_CE_warehouse_type_should_be_displayed_as_excise();
-		addressMaintenanceStepDefs.the_CE_tax_warehouse_should_be_displayed();
+//		//For scenario purpose
+//		context.setSupplierID("F01946");
+//		context.setCountry("United Kingdom");
+//		context.setPreAdviceId("8050004598");
+//		jdaHomePage.navigateToAddressMaintenancePage();
+//		jdaFooter.clickQueryButton();
+//		addressMaintenancePage.enterAddressID(context.getSupplierID());
+//		jdaFooter.clickExecuteButton();
+//		//For scenario purpose
+//		
+//		addressMaintenanceStepDefs.i_navigate_to_customs_excise_tab_in_address_maintenance();
+//		addressMaintenanceStepDefs.the_CE_warehouse_type_should_be_displayed_as_excise();
+//		addressMaintenanceStepDefs.the_CE_tax_warehouse_should_be_displayed();
 		
 		jdaHomePage.navigateToCEConsignmentMaintenenacePage();
 		jdaFooter.clickAddButton();
@@ -57,6 +57,7 @@ public class CEConsignmentMaintenanceStepDefs {
 		if (context.getCountry().equals("United Kingdom")){
 			ceConsignmentMaintenancePage.selectReceiptType("Other Warehouse");
 		}
+		//TODO try to get the european country list from JSON
 		else if (euCountries.contains(context.getCountry())){
 			ceConsignmentMaintenancePage.selectReceiptType("From EU");
 		}
@@ -66,7 +67,6 @@ public class CEConsignmentMaintenanceStepDefs {
 		ceConsignmentMaintenancePage.enterSupplier(context.getSupplierID());
 		ceConsignmentMaintenancePage.enterConsignerExciseNumber(context.getCeWarehouseTax());
 		String arcNo = "16ESD08200000"+Utilities.getEightDigitRAndomNumber();
-		System.out.println(arcNo);
 		context.setConsignmentID(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADARC(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADDate();

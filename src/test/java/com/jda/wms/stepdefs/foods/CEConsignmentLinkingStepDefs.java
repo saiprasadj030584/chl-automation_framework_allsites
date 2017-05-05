@@ -29,6 +29,14 @@ public class CEConsignmentLinkingStepDefs {
 		jdaHomePage.navigateToConsignmentLinkingPage();
 		ceConsignmentLinkingPage.enterSiteID("9771");
 		ceConsignmentLinkingPage.enterPreAdviceId(context.getPreAdviceId());
+		
+		jdaFooter.clickNextButton();
+		Thread.sleep(1000);
+		jdaFooter.clickNextButton();
+		Thread.sleep(1000);
+		
 		ceConsignmentLinkingPage.enterConsignmentID(context.getConsignmentID());
+		jdaFooter.clickDoneButton();
+		Thread.sleep(2000);
 	}
 }

@@ -14,32 +14,13 @@ import com.google.inject.Inject;
 import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Environment;
 
 public class PurchaseOrderReceivingPage {
-	private Robot robot;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
 	public PurchaseOrderReceivingPage() {
 	}
-
-	public void invokePutty() throws IOException, InterruptedException {
-		Process putty = Runtime.getRuntime().exec("putty.exe");
-		Thread.sleep(2000);
-	}
-
-	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/HostName.png", timeoutInSec);
-		screen.click("images/Putty/HostName.png");
-		screen.type(host);
-		screen.type(Key.TAB);
-		screen.type(port);
-
-		screen.wait("images/Putty/Telnet.png", timeoutInSec);
-		screen.click("images/Putty/Telnet.png");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-	}
-
+	
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
 		screen.type("2");
 		Thread.sleep(1000);
@@ -144,13 +125,6 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 	}
 
-	public boolean isMainMenuDisplayed() {
-		if (screen.exists("images/Putty/MainMenu.png") != null)
-			return true;
-		else
-			return false;
-	}
-
 	public boolean isUserMenuDisplayed() {
 		if (screen.exists("images/Putty/UserMenu.png") != null)
 			return true;
@@ -186,22 +160,6 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/Username.png", timeoutInSec);
-		screen.type(username);
-		screen.type(Key.TAB);
-		screen.type(pwd);
-		screen.type(Key.ENTER);
-		Thread.sleep(4000);
-	}
-
-	public boolean isLoginScreenDisplayed() {
-		if (screen.exists("images/Putty/Username.png") != null)
-			return true;
-		else
-			return false;
-	}
-
 	public String getSKUId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/SKUDisplayed.png");
 		screen.click(mStatus.getCenter().offset(50, 0));
@@ -212,12 +170,6 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-	public void minimisePutty() throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
-		screen.click("images/Putty/PuttyMinimise.png");
-		screen.mouseMove(80,0);
-		screen.click("images/Putty/PuttyMinimise.png");
-		Thread.sleep(2000);
-	}
+	
 
 }

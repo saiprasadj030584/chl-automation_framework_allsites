@@ -512,4 +512,22 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-}
+	
+	@Then("^the goods receipt should be generated for the received stock in inventory transaction table$")
+	public void the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		
+//		i_select_the_code_as_and_enter_the_tag_id(code, tagId);
+		the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
+		i_navigate_to_miscellaneous_tab();
+		the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();
+		i_navigate_to_miscellaneous2_tab();
+		the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed();
+//		i_navigate_to_customs_excise_tab();
+		the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed();
+//		i_navigate_to_user_defined_tab();
+		the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
+		i_navigate_to_settings_2_tab_in_the_user_defined_tab();
+		the_URN_child_should_be_displayed();
+		}
+	}

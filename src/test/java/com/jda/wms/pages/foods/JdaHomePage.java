@@ -230,7 +230,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 	}
 
 	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
@@ -244,6 +244,16 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+	
+	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");

@@ -113,14 +113,14 @@ public class AddressMaintenanceStepDefs {
 				addressMaintenancePage.isIsSiteUnchecked());
 	}
 	
-	@Then("^the supplier should have supplier pallet details in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_in_the_address_maintenanace_table() throws Throwable {
+	@Then("^the supplier should have supplier pallet and customs excise details in the address maintenanace table$")
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_details_in_the_address_maintenanace_table() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
 		jdaFooter.clickQueryButton();
 		// addressMaintenancePage.enterAddressID(context.getSupplierID());
-		addressMaintenancePage.enterAddressID("F01946");
+		addressMaintenancePage.enterAddressID(context.getSupplierID());
 		jdaFooter.clickExecuteButton();
 
 		String name = addressMaintenancePage.getName();
@@ -135,17 +135,24 @@ public class AddressMaintenanceStepDefs {
 		}
 
 		String country = addressMaintenancePage.getCountry();
+		context.setCountry(country);
+		System.out.println(country);
 		if (!context.getCountry().equals(country)) {
 			failureList.add(
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
 
 		i_navigate_to_user_defined_tab_in_address_maintenance_page();
-		String defaultySuppleirPallet = addressMaintenancePage.getDefaultSupplierPallet();
-		if (!defaultySuppleirPallet.equals("CHEP")) {
+		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
+		System.out.println("defaultySupplierPallet "+defaultySupplierPallet);
+		if (!defaultySupplierPallet.equals("CHEP")) {
 			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
-					+ defaultySuppleirPallet + "]");
+					+ defaultySupplierPallet + "]");
 		}
+		
+		i_navigate_to_customs_excise_tab_in_address_maintenance();
+		the_CE_warehouse_type_should_be_displayed_as_excise();
+		the_CE_tax_warehouse_should_be_displayed();
 
 		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

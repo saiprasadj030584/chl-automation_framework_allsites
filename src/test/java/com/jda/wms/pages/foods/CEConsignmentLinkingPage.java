@@ -26,16 +26,10 @@ public class CEConsignmentLinkingPage {
 		screen.wait("images/CEConsignmentLinking/PreAdviceID.png", timeoutInSec);
 		screen.type(preAdviceId);
 		Thread.sleep(1000);
-		jdaFooter.clickNextButton();
-		Thread.sleep(1000);
-		jdaFooter.clickNextButton();
-		Thread.sleep(1000);
 	}
 	public void enterConsignmentID(String consignmentID) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentLinking/ConsignmentID.png", timeoutInSec);
 		screen.type(consignmentID);
 		Thread.sleep(1000);
-		jdaFooter.clickDoneButton();
-		Thread.sleep(2000);
 	}
 }

@@ -3,14 +3,13 @@ package com.jda.wms.stepdefs.rdt;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
-import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
+import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
 import cucumber.api.java.en.Given;
@@ -22,39 +21,18 @@ public class PurchaseOrderReceivingStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private Context context;
-	private Configuration configuration;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 	Map<String, Integer> qtyReceivedPerTagMap;
-	static private boolean contextSetforDueQtyFlag = true;
+	static private boolean isFirstTagForLineItem = true;
+	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
-			Configuration configuration) {
+			PuttyFunctionsPage puttyFunctionsPage) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
-		this.configuration = configuration;
-	}
-
-	@Given("^I have logged in as warehouse user in Putty with host \"([^\"]*)\" and port \"([^\"]*)\"$")
-	public void i_have_logged_in_as_warehouse_user_in_Putty_with_host_and_port(String host, String port)
-			throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-
-		purchaseOrderReceivingPage.invokePutty();
-		purchaseOrderReceivingPage.loginPutty(host, port);
-		Assert.assertTrue("Login page not displayed as expected", purchaseOrderReceivingPage.isLoginScreenDisplayed());
-
-		purchaseOrderReceivingPage.enterJdaLogin(configuration.getStringProperty("username"),
-				configuration.getStringProperty("password"));
-		Thread.sleep(2000);
-
-		if (!(purchaseOrderReceivingPage.isMainMenuDisplayed())) {
-			failureList.add("Main Menu not displayed as expected");
-		}
-
-		Assert.assertTrue("Putty Login not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	@Given("^I want to receive the purchase order \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
@@ -113,10 +91,7 @@ public class PurchaseOrderReceivingStepDefs {
 			for (int t = 0; t < noOfTagID; t++) {
 				totalTagsperPo++;
 				Thread.sleep(1000);
-//				tagIDArrayList.clear();
 				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
-//				tagIDArrayList.add("1002305826");
-//				tagIDArrayList.add("1004125486");
 			}
 			tagIDMap.put(skuID, tagIDArrayList);
 		}
@@ -132,14 +107,12 @@ public class PurchaseOrderReceivingStepDefs {
 			for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
 				String currentTag = tagIDMap.get(skuCurrent).get(t);
 				qtyReceivedPerTagMap.put(currentTag, 0);
-//				qtyReceivedPerTagMap.put("1002305826", 800);
-//				qtyReceivedPerTagMap.put("1004125486", 700);
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-		System.err.println("qtyReceivedPerTagMap :" + qtyReceivedPerTagMap);
-		System.err.println("keyset " + qtyReceivedPerTagMap.keySet());
-		System.err.println("qtyReceivedPerTagMap size :" + qtyReceivedPerTagMap.size());
+		System.out.println("qtyReceivedPerTagMap :" + qtyReceivedPerTagMap);
+		System.out.println("keyset " + qtyReceivedPerTagMap.keySet());
+		System.out.println("qtyReceivedPerTagMap size :" + qtyReceivedPerTagMap.size());
 		Thread.sleep(2000);
 	}
 
@@ -245,18 +218,18 @@ public class PurchaseOrderReceivingStepDefs {
 
 		String lineItem = String.valueOf(context.getLineItem());
 		System.out.println(purchaseOrderMap);
-		System.out.println("contextSetforDueQtyFlag : " + contextSetforDueQtyFlag);
+		System.out.println("contextSetforDueQtyFlag : " + isFirstTagForLineItem);
 		int rcvQtyDue = 0;
 
 		String currentSku = purchaseOrderMap.get(lineItem).get("SKU");
 		String tagId = tagIDMap.get(currentSku).get(context.getTagIdIndex());
 		context.setTagIdIndex(context.getTagIdIndex() + 1);
 		
-		if (contextSetforDueQtyFlag == true) {
+		if (isFirstTagForLineItem == true) {
 			context.setRcvQtyDue(Integer.parseInt(purchaseOrderMap.get(lineItem).get("RemainingQtyDue")));
 			rcvQtyDue = context.getRcvQtyDue();
-			contextSetforDueQtyFlag = false;
-			System.out.println("contextSetforDueQtyFlag : " + contextSetforDueQtyFlag);
+			isFirstTagForLineItem = false;
+			System.out.println("contextSetforDueQtyFlag : " + isFirstTagForLineItem);
 		} else {
 			rcvQtyDue = context.getRcvQtyDue();
 		}
@@ -274,7 +247,7 @@ public class PurchaseOrderReceivingStepDefs {
 			rcvQtyDue = 0;
 			context.setLineItem(Integer.parseInt(lineItem) + 1);
 			context.setTagIdIndex(0);
-			contextSetforDueQtyFlag = true;
+			isFirstTagForLineItem = true;
 		}
 		// To set the Qty received for every tag and to enter the quantity to be
 		// received
@@ -298,10 +271,12 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter the expiry details$")
 	public void i_enter_the_expiry_details() throws Throwable {
+		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")){
 		String expDate = DateUtils.getAddedSystemYear();
 		context.setFutureExpiryDate(expDate);
 		purchaseOrderReceivingPage.enterExpiryDate(expDate);
 		Thread.sleep(10000);
+		}
 	}
 
 	@Then("^I should see the receiving completion$")
@@ -327,10 +302,10 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_expiry_details();
-//				i_should_see_the_receiving_completion();
+				i_should_see_the_receiving_completion();
 				Thread.sleep(5000);
 			}
 		}
-//		purchaseOrderReceivingPage.minimisePutty();
+		puttyFunctionsPage.minimisePutty();
 	}
 }

@@ -43,19 +43,17 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverGeneral();
-		jdaHomePage.hoverSetup();
-		jdaHomePage.clickAddress();
-		Thread.sleep(5000);
+		jdaHomePage.navigateToAddressMaintenancePage();
 	}
 
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
+		/*jdaHomePage.clickDataMenu();
 		jdaHomePage.hoverSKU();
 		jdaHomePage.hoverPackConfig();
-		jdaHomePage.clickPackConfig();
+		jdaHomePage.clickPackConfig();*/
+		
+		jdaHomePage.navigateToPackConfigMaintenance();
 	}
 
 	@Given("^I am on to pre-advice header maintenance page$")

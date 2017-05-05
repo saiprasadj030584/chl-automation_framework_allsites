@@ -35,12 +35,12 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private PopUpPage popUpPage;
-	
+
 	@Inject
-	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
-			PackConfigMaintenancePage packConfigMaintenancePage, JDAHomeStepDefs jdaHomeStepDefs,
-			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs, Context context,
-			SKUMaintenancePage skuMaintenancePage,PopUpPage popUpPage) {
+	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter,
+			JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
+			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
+			Context context, SKUMaintenancePage skuMaintenancePage, PopUpPage popUpPage) {
 		this.preAdviceLinePage = preAdviceLinePage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -60,8 +60,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		int caseRatio = 0;
 
-//		context.setNoOfLines(2);
-		
 		jdaHomeStepDefs.i_am_on_pack_config_maintenance_page();
 		jdaHomePage.navigateToSKUMaintanence();
 
@@ -78,8 +76,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			skuId = preAdviceLinePage.getSkuId();
 			qtyDue = preAdviceLinePage.getQtyDue();
 			String packConfig = preAdviceLinePage.getPackConfig();
-			
-			//to be used for BWS PO processing
+
+			// to be used for BWS PO processing
 			// String underBond = preAdviceLinePage.getUnderBond();
 			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
 
@@ -111,8 +109,23 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickQueryButton();
 			skuMaintenancePage.enterSKUID(skuId);
 			jdaFooter.clickExecuteButton();
-			
+
 			productGroup = skuMaintenancePage.getProductGroup();
+			if (context.getProductCategory().equals("Ambient")) {
+				if ((productGroup.equals("F20")) || (productGroup.equals("F21")) || (productGroup.equals("F23"))
+						|| (productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for Ambient. Expected [Not F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			} else if (context.getProductCategory().contains("BWS")) {
+				if ((!productGroup.equals("F20")) || (!productGroup.equals("F21")) || (!productGroup.equals("F23"))
+						|| (!productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			}
 			allocationGroup = skuMaintenancePage.getAllocationGroup();
 			skuMaintenancePage.clickUserDefined();
 			String currentVintage = skuMaintenancePage.getCurrentVintage();
@@ -140,7 +153,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickPreAdiceLine();
 			jdaFooter.clickNextRecord();
 			preAdviceLinePage.clickGeneralTab();
-			
+
 			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
 			logger.debug("Quantity Due: " + qtyDue);
 			logger.debug("Pack Config : " + packConfig);
@@ -154,7 +167,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 		System.out.println("Map " + context.getPurchaseOrderMap());
 	}
-	
+
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
@@ -178,5 +191,30 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertEquals("Lock code is not displayed as expected.", context.getLockCode(),
 				preAdviceLinePage.getLockCode());
 	}
-	
+
+	@Then("^the pre-advice line items should be linked with the consignment$")
+	public void the_pre_advice_line_items_should_be_linked_with_theconsignment() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setNoOfLines(1);
+		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
+		jdaFooter.clickQueryButton();
+		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
+		jdaFooter.clickExecuteButton();
+
+		if (context.getNoOfLines() != 1) {
+			preAdviceLinePage.selectFirstRecord();
+		}
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String consignmentID = preAdviceLinePage.getConsignmentID();
+			if (!context.getConsignmentID().equals(consignmentID)) {
+				failureList.add("Consignment ID in line " + i + " is not displayed as expected. Expected ["
+						+ context.getConsignmentID() + "] but was [" + consignmentID + ") ");
+				jdaFooter.clickNextRecord();
+			}
+		}
+		Assert.assertTrue("Consignment ID is not as expected" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
 }
