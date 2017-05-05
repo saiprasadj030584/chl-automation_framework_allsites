@@ -25,10 +25,11 @@ public class Context {
 	private String address1;
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
+	private String locationLockStatus;
+	private String locationID;
 	private String palletType;
-	private Map<String,Map<String,String>>purchaseOrderMap;
+	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
-
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -44,6 +45,22 @@ public class Context {
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+
+	public String getlocationID() {
+		return locationID;
+	}
+
+	public void setlocationID(String locationID) {
+		this.locationID = locationID;
+	}
+
+	public String getlocationLockStatus() {
+		return locationLockStatus;
+	}
+
+	public void setlocationLockStatus(String locationLockStatus) {
+		this.locationLockStatus = locationLockStatus;
 	}
 
 	public String getPreAdviceId() {
@@ -197,22 +214,24 @@ public class Context {
 	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
 		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
 	}
+
 	public String getPalletType() {
 		return palletType;
 	}
 
 	public void setPalletType(String palletType) {
 		this.palletType = palletType;
-		
+
 	}
 
-	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+	public Map<String, Map<String, String>> getPurchaseOrderMap() {
 		return purchaseOrderMap;
 	}
 
-	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+	public void setPurchaseOrderMap(Map<String, Map<String, String>> purchaseOrderMap) {
 		this.purchaseOrderMap = purchaseOrderMap;
 	}
+
 	public String getLockCode() {
 		return lockCode;
 	}
