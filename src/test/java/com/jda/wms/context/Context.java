@@ -24,6 +24,8 @@ public class Context {
 	private String address1;
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
+	private String locationLockStatus;
+	private String locationID;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -40,7 +42,23 @@ public class Context {
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
 	}
+	
+	public String getlocationID() {
+		return locationID;
+	}
 
+	public void setlocationID(String locationID) {
+		this.locationID = locationID;
+	}
+
+	public String getlocationLockStatus() {
+		return locationLockStatus;
+	}
+
+	public void setlocationLockStatus(String locationLockStatus) {
+		this.locationLockStatus = locationLockStatus;
+	}
+	
 	public String getPreAdviceId() {
 		return preAdviceId;
 	}
