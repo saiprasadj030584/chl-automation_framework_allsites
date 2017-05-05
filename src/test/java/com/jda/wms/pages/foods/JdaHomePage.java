@@ -206,4 +206,25 @@ public class JdaHomePage extends PageObject {
 	public void enterTabKey() {
 		screen.type(Key.TAB);
 	}
+	
+	public void navigateToMoveTaskUpdate() throws FindFailed, InterruptedException {
+		screen.type("f", Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Move Task Update");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToLocationPage() throws FindFailed, InterruptedException {
+		screen.type("f", Key.CTRL);
+		Thread.sleep(1000);
+		screen.type("Location maintenance/query screen");
+		screen.wait("images/JDAHome/PalletLocation.png", timeoutInSec);
+		screen.click("images/JDAHome/PalletLocation.png");
+		screen.type(Key.DOWN);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 }

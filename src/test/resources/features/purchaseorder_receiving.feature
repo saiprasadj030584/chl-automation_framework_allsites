@@ -1,10 +1,10 @@
-@purchase_order
+#@purchase_order
 Feature: Purchase order
   As a warehouse user
   I want to receive the articles 
   So that I can complete the purchase order
 
-  @wip_receive
+  #@wip_receive
   Scenario Outline: Receiving process in JDA WMS
     Given I have logged in as warehouse user in Putty with host "<Host>" and port "<Port>"
     And I want to receive the purchase order "<PreAdviceID>", "<NoOfLines>", "<Supplier>"

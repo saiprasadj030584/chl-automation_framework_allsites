@@ -194,6 +194,30 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 			return false;
 	}
 	
+	public String getFromLocation() throws FindFailed {
+		Match mFromLocation = screen.find("images/InventoryTransactionQuery/General/FromLocation.png");
+		screen.click(mFromLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getToLocation() throws FindFailed {
+		Match mToLocation = screen.find("images/InventoryTransactionQuery/General/ToLocation.png");
+		screen.click(mToLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	public String getFinalLocation() throws FindFailed {
+		Match mToLocation = screen.find("images/InventoryTransactionQuery/General/FinalLocation.png");
+		screen.click(mToLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 	public String getExpiryDate() throws FindFailed {
 		Match mExpiryDate = screen.find("images/InventoryTransactionQuery/Miscellaneous/ExpiryDate.png");
 		screen.click(mExpiryDate.getCenter().offset(70, 0));

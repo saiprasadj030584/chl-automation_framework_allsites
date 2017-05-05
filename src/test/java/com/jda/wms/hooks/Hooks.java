@@ -49,26 +49,26 @@ public class Hooks {
 			webDriver.quit();
 		}
 	}
-	
-	@After() 
-	public void logoutPutty() throws FindFailed, InterruptedException{
-		while (screen.exists("/images/Putty/3Logout.png") == null){
+
+	// @After()
+	public void logoutPutty() throws FindFailed, InterruptedException {
+		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
 		screen.type("3");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
-		
+
 		screen.wait("images/Putty/PuttyClose.png", 20);
 		screen.click("images/Putty/PuttyClose.png", 25);
 		Thread.sleep(1000);
-		
+
 		screen.wait("images/Putty/PuttyCloseOK.png", 20);
 		screen.click("images/Putty/PuttyCloseOK.png", 25);
 		Thread.sleep(1000);
 	}
-	
+
 	@After
 	public void afterDetails(Scenario scenario) {
 		logger.debug(
@@ -78,7 +78,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@After
+//	@After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);

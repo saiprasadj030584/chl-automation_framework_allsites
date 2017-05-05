@@ -28,6 +28,8 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex =0 ;
+	private String locationZone;
+	private Map<String, String> locationPerTagMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -203,5 +205,21 @@ public class Context {
 
 	public void setTagIdIndex(int tagIdIndex) {
 		this.tagIdIndex = tagIdIndex;
+	}
+	
+	public String getLocationZone() {
+		return locationZone;
+	}
+
+	public void setLocationZone(String locationZone) {
+		this.locationZone = locationZone;
+	}
+	
+	public Map<String, String> getLocationPerTagMap() {
+		return locationPerTagMap;
+	}
+
+	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
+		this.locationPerTagMap = locationPerTagMap;
 	}
 }

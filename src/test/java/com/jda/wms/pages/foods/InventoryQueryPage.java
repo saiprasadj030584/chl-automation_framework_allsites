@@ -108,4 +108,12 @@ public class InventoryQueryPage {
 		screen.type("c", Key.CTRL);
 		return Integer.parseInt(App.getClipboard());
 	}
+	
+	public String getLocationZone() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/LocationZone.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }
