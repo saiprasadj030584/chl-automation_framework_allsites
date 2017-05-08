@@ -276,6 +276,48 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+
+	public void navigateToPickFaceMaintenance() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pick face maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToLocationMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Location maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void hoverLocation() throws FindFailed, InterruptedException {
+		screen.wait("images/PickFaceMaintenance/LocationHover.png", timeoutInSec);
+		screen.click("images/PickFaceMaintenance/LocationHover.png");
+		Thread.sleep(4000);
+	}
+		
+	
+
+	public void hoverLocation1() throws FindFailed, InterruptedException {
+		screen.wait("images/PickFaceMaintenance/LocationHover1.png", timeoutInSec);
+		screen.click("images/PickFaceMaintenance/LocationHover1.png");
+		Thread.sleep(4000);
+	}
 		
 	}
+		
+		
+	
+
+
+
+
+	
 

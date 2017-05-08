@@ -25,6 +25,9 @@ public class Context {
 	private int noOfLines;
 	private int qtyReceivedfromPutty;
 	private String lockCode;
+	private String faceType;
+	private String siteId;
+	private String location;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -201,5 +204,31 @@ public class Context {
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
 	}
+
+	public String getFaceType() {
+		return faceType;
+	}
+
+	public void setFaceType(String faceType) {
+		this.faceType = faceType;
+	}
+
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
 
 }

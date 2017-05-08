@@ -37,8 +37,8 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@After()
-	public void tearDown(Scenario scenario) {
+//	@After()
+	 public void tearDown(Scenario scenario) {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);

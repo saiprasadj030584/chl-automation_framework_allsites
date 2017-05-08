@@ -108,4 +108,20 @@ public class JDAHomeStepDefs {
 public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
 	jdaHomePage.navigateToPreAdviceLineMaintenance();
 }
+
+@Given("^I am on to pick face maintenance page$")
+public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
+	jdaHomePage.navigateToPickFaceMaintenance();
 }
+
+	
+	@Then("^I navigate to location maintenance page$")
+	public void i_navigate_to_location_maintenance_page() throws Throwable {
+		//jdaHomePage.navigateToLocationMaintenance();
+		jdaHomePage.clickDataMenu();
+		jdaHomePage.hoverLocation();
+		jdaHomePage.hoverLocation1();
+		
+	}
+}
+
