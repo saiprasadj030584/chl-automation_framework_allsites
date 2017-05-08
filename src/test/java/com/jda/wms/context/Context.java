@@ -30,6 +30,7 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
+	private Map<String, Map<String, String>> stockTransferOrderMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -238,6 +239,15 @@ public class Context {
 
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
+	}
+	public Map<String, Map<String, String>> getstockTransferOrderMap() {
+		return stockTransferOrderMap;
+	}
+
+
+	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
+		this.stockTransferOrderMap = stockTransferOrderMap;
+		
 	}
 
 }

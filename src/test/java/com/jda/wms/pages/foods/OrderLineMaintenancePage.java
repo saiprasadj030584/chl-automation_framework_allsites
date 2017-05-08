@@ -101,4 +101,70 @@ public class OrderLineMaintenancePage extends PageObject {
 		screen.wait("images/OrderlineRefreshCurrentRecord.png", timeoutInSec);
 		screen.click("images/OrderlineRefreshCurrentRecord.png");
 	}
+
+	public void selectFirstRecord() throws InterruptedException, FindFailed {
+		Match mPreAdviceIdHeader = screen.find("images/OrderLineMaintenance/OrderId.png");
+		Thread.sleep(2000);
+		screen.doubleClick(mPreAdviceIdHeader.below(10));
+		Thread.sleep(3000);
+	}
+
+	public String getSkuId() throws FindFailed {
+		Match mSkuId = screen.find("images/OrderLineMaintenance/General/Sku.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getQtyordered() throws FindFailed {
+		Match mSkuId = screen.find("images/OrderLineMaintenance/General/QtyOrdered.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getQtyTasked() throws FindFailed {
+		Match mSkuId = screen.find("images/OrderLineMaintenance/General/QtyTasked.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getPackConfig() throws FindFailed {
+		Match mSkuId = screen.find("images/OrderLineMaintenance/General/PackConfig.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
+		screen.wait("images/OrderLineMaintenance/UserDefined.png", timeoutInSec);
+		screen.click("images/OrderLineMaintenance/UserDefined.png");
+		Thread.sleep(3000);
+		
+	}
+
+	public String getCaseRatio() throws FindFailed {
+		Match mDescription = screen.find("images/OrderLineMaintenance/UserDefined/CaseRatio.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public void clickGeneralTab() throws FindFailed, InterruptedException {
+		screen.wait("images/OrderLineMaintenance/GeneralTab.png", timeoutInSec);
+		screen.click("images/OrderLineMaintenance/GeneralTab.png");
+		Thread.sleep(3000);
+		
+	}
+
+	public void enterOrderID(String orderId) {
+		screen.type(orderId);
+		
+	}
 }
