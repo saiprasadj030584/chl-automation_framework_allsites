@@ -26,14 +26,14 @@ public class PickFaceMaintenanceStepDefs {
 	@Inject
 	public PickFaceMaintenanceStepDefs(PickFaceMaintenancePage pickFaceMaintenancPage, JDAFooter jdaFooter,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, LocationMaintenancePage locationMaintenancePage,
-			WarningPopUpPage warningPopUpPage,JdaHomePage jdaHomePage) {
+			WarningPopUpPage warningPopUpPage, JdaHomePage jdaHomePage) {
 		this.pickFaceMaintenancPage = pickFaceMaintenancPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.locationMaintenancePage = locationMaintenancePage;
 		this.warningPopUpPage = warningPopUpPage;
-		this.jdaHomePage =jdaHomePage;
+		this.jdaHomePage = jdaHomePage;
 	}
 
 	@Given("^the location id \"([^\"]*)\" is no more eixst in the location maintenance$")
@@ -59,7 +59,7 @@ public class PickFaceMaintenanceStepDefs {
 		context.setFaceType("Fixed");
 
 		pickFaceMaintenancPage.enterLocation(location);
-		context.setLocation("AA01E02");
+		context.setLocation("AA05A02");
 
 		pickFaceMaintenancPage.enterSkuId(skuId);
 		context.setSkuId("20001273");
@@ -70,7 +70,7 @@ public class PickFaceMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 		warningPopUpPage.clickYes();
 	}
-	
+
 	@Then("^the location id should be added$")
 	public void the_location_id_should_be_added() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
