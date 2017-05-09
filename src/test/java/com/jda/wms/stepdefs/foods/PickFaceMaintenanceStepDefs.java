@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PickFaceMaintenancePage;
-import com.jda.wms.pages.foods.PopUpPage;
+import com.jda.wms.pages.foods.WarningPopUpPage;
 
 import cucumber.api.java.en.*;
 
@@ -19,18 +19,18 @@ public class PickFaceMaintenanceStepDefs {
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private Context context;
 	private LocationMaintenancePage locationMaintenancePage;
-	private PopUpPage popUpPage;
+	private WarningPopUpPage warningPopUpPage;
 
 	@Inject
 	public PickFaceMaintenanceStepDefs(PickFaceMaintenancePage pickFaceMaintenancPage, JDAFooter jdaFooter,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, LocationMaintenancePage locationMaintenancePage,
-			PopUpPage popUpPage) {
+			 WarningPopUpPage warningPopUpPage) {
 		this.pickFaceMaintenancPage = pickFaceMaintenancPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.locationMaintenancePage = locationMaintenancePage;
-		this.popUpPage = popUpPage;
+		this.warningPopUpPage = warningPopUpPage;
 	}
 
 	@Given("^the location id \"([^\"]*)\" is no more eixst in the location maintenance$")
@@ -66,7 +66,7 @@ public class PickFaceMaintenanceStepDefs {
 		context.setSiteId("9771");
 
 		jdaFooter.clickExecuteButton();
-		popUpPage.clickYes();
+		warningPopUpPage.clickYesButtonOnSecondPopup();
 	}
 
 	@Then("^the location id should be added$")

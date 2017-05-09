@@ -13,7 +13,7 @@ import com.jda.wms.pages.foods.StockCheckTaskQueryPage;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class StockCheckTaskQueryStepDef {
+public class StockCheckTaskQueryStepDefs {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final StockCheckTaskQueryPage stockCheckTaskQueryPage;
@@ -23,7 +23,7 @@ public class StockCheckTaskQueryStepDef {
 	int timeoutInSec = 20;
 
 	@Inject
-	public StockCheckTaskQueryStepDef(StockCheckTaskQueryPage stockCheckTaskQueryPage, JDAFooter jdaFooter,
+	public StockCheckTaskQueryStepDefs(StockCheckTaskQueryPage stockCheckTaskQueryPage, JDAFooter jdaFooter,
 			JdaHomePage jdaHomePage) {
 		this.stockCheckTaskQueryPage = stockCheckTaskQueryPage;
 		this.jdaFooter = jdaFooter;
