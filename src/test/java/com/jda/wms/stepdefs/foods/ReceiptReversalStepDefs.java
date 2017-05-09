@@ -1,7 +1,5 @@
 package com.jda.wms.stepdefs.foods;
 
-import java.util.Arrays;
-
 import org.junit.Assert;
 
 import com.google.inject.Inject;
@@ -36,12 +34,13 @@ public class ReceiptReversalStepDefs {
 
 	@Given("^I have received tag Id \"([^\"]*)\"$")
 	public void i_have_received_tag_Id(String tagId) throws Throwable {
-		int qtyOnHand = inventoryQueryPage.getQtyOnhand();
-		context.setQtyOnHand(qtyOnHand);
 		jdaHomePage.navigateToInventoryQueryPage();
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
+		
+		int qtyOnHand = Utilities.convertStringToInteger(inventoryQueryPage.getQtyOnHand());
+		context.setQtyOnHand(qtyOnHand);
 
 		String sku = inventoryQueryPage.getSkuId();
 		context.setSkuId(sku);
@@ -72,14 +71,14 @@ public class ReceiptReversalStepDefs {
 
 	@When("^I enter the Qty to reverse as \"([^\"]*)\" and navigate to finish screen$")
 	 public void
-	 i_enter_the_Qty_to_reverse_as_and_navigate_to_finish_screen(String qtyToReverse)
+	 i_enter_the_Qty_to_reverse_as_and_navigate_to_finish_screen(String qtyReverse)
 	 throws Throwable {
-		 
+		 int qtyToReverse = Utilities.convertStringToInteger(qtyReverse);
 		//To verify whether the quantity to reverse is in multiples of case ratio
-		int caseRatio = context.getCaseRatio();
-		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio", receiptReversalPage.isQtyMultipleOfCaseRatio(caseRatio));
+		
+		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio", receiptReversalPage.isQtyMultipleOfCaseRatio(qtyToReverse));
 		 receiptReversalPage.scrollNext();
-		 receiptReversalPage.enterQtyToReverse(qtyToReverse);
+		 receiptReversalPage.enterQtyToReverse(qtyReverse);
 		 jdaFooter.clickNextButton();
 		
 	 }
@@ -94,16 +93,4 @@ public class ReceiptReversalStepDefs {
 		 jdaFooter.clickDoneButton();
 	 }
 	
-	// @Then("^Inventory should be updated with the new updated quantity$")
-	// public void inventory_should_be_updated_with_the_new_updated_quantity()
-	// throws Throwable {
-	// }
-	//
-	// @Then("^I(\\d+) ITL should be generated for the receipt reversal$")
-	// public void i_ITL_should_be_generated_for_the_receipt_reversal(int arg1)
-	// throws Throwable {
-	// }
-	//
-	//
-	//
 }
