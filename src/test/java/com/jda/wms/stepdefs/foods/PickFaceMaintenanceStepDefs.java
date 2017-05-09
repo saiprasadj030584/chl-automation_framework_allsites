@@ -8,6 +8,7 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.PickFaceMaintenancePage;
 import com.jda.wms.pages.foods.WarningPopUpPage;
 
@@ -20,17 +21,19 @@ public class PickFaceMaintenanceStepDefs {
 	private Context context;
 	private LocationMaintenancePage locationMaintenancePage;
 	private WarningPopUpPage warningPopUpPage;
+	private final JdaHomePage jdaHomePage;
 
 	@Inject
 	public PickFaceMaintenanceStepDefs(PickFaceMaintenancePage pickFaceMaintenancPage, JDAFooter jdaFooter,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, LocationMaintenancePage locationMaintenancePage,
-			 WarningPopUpPage warningPopUpPage) {
+			WarningPopUpPage warningPopUpPage,JdaHomePage jdaHomePage) {
 		this.pickFaceMaintenancPage = pickFaceMaintenancPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.locationMaintenancePage = locationMaintenancePage;
 		this.warningPopUpPage = warningPopUpPage;
+		this.jdaHomePage =jdaHomePage;
 	}
 
 	@Given("^the location id \"([^\"]*)\" is no more eixst in the location maintenance$")
@@ -40,8 +43,6 @@ public class PickFaceMaintenanceStepDefs {
 		pickFaceMaintenancPage.enterLocation(location);
 		jdaFooter.clickExecuteButton();
 
-
-
 		if (pickFaceMaintenancPage.isNoRecordDisplayed()) {
 			// pickFaceMaintenancPage.selectNoRecord();
 			jdaFooter.clickCancelButton();
@@ -49,9 +50,10 @@ public class PickFaceMaintenanceStepDefs {
 			jdaFooter.clickDeleteButton();
 		}
 	}
-	
+
 	@When("^I add the location Id \"([^\"]*)\" with face type \"([^\"]*)\", sku \"([^\"]*)\", site id \"([^\"]*)\"$")
-	public void i_add_the_location_Id_with_face_type_sku_site_id(String location, String facetype, String skuId, String SiteId) throws Throwable {
+	public void i_add_the_location_Id_with_face_type_sku_site_id(String location, String facetype, String skuId,
+			String SiteId) throws Throwable {
 		jdaFooter.clickAddButton();
 		pickFaceMaintenancPage.selectFaceType(facetype);
 		context.setFaceType("Fixed");
@@ -66,9 +68,9 @@ public class PickFaceMaintenanceStepDefs {
 		context.setSiteId("9771");
 
 		jdaFooter.clickExecuteButton();
-		warningPopUpPage.clickYesButtonOnSecondPopup();
+		warningPopUpPage.clickYes();
 	}
-
+	
 	@Then("^the location id should be added$")
 	public void the_location_id_should_be_added() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -89,7 +91,7 @@ public class PickFaceMaintenanceStepDefs {
 			failureList.add(
 					"Location is not as expected. Expected [" + context.getLocation() + "] but was [" + loaction + "]");
 		}
-		
+
 		String siteId = pickFaceMaintenancPage.getSiteId();
 		if (!context.getSiteId().equals(siteId)) {
 			failureList
@@ -102,6 +104,7 @@ public class PickFaceMaintenanceStepDefs {
 
 	@Then("^I search location Id  \"([^\"]*)\"$")
 	public void i_search_location_Id(String location) throws Throwable {
+		jdaHomePage.navigateToLocationMaintanence();
 		jdaFooter.clickQueryButton();
 		locationMaintenancePage.enterLocation(location);
 		jdaFooter.clickExecuteButton();
@@ -113,4 +116,3 @@ public class PickFaceMaintenanceStepDefs {
 				locationMaintenancePage.getPickFace());
 	}
 }
-

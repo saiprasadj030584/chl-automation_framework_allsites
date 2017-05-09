@@ -11,7 +11,6 @@ public class PickFaceMaintenancePage {
 	int timeoutInSec = 20;
 
 	public void enterLocation(String location) throws FindFailed {
-		
 		screen.wait("images/PickFaceMaintenance/LocationAdd.png", timeoutInSec);
 		screen.click("images/PickFaceMaintenance/LocationAdd.png");
 		screen.type(location);
@@ -29,7 +28,6 @@ public class PickFaceMaintenancePage {
 		screen.wait("images/PickFaceMaintenance/SkuId.png", timeoutInSec);
 		screen.click("images/PickFaceMaintenance/SkuId.png");
 		screen.type(skuId);
-		
 	}
 
 	public void selectSiteId(String SiteId) throws FindFailed {
@@ -51,7 +49,6 @@ public class PickFaceMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
 
 	public String getSkuId() throws FindFailed {
 		Match mDescription = screen.find("images/PickFaceMaintenance/Sku.png");
@@ -60,7 +57,6 @@ public class PickFaceMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
 
 	public String getLocation() throws FindFailed {
 		Match mDescription = screen.find("images/PickFaceMaintenance/LocationId.png");
@@ -69,8 +65,6 @@ public class PickFaceMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
-		
 
 	public String getSiteId() throws FindFailed {
 		Match mDescription = screen.find("images/PickFaceMaintenance/Site.png");
@@ -79,6 +73,4 @@ public class PickFaceMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-
-	
 }

@@ -46,7 +46,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 	public void clickSKUSubmenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Data/Sku/skuSku.png", timeoutInSec);
 		screen.click("images/Menu/Data/Sku/skuSku.png");
@@ -287,12 +287,6 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	public void navigateToLocationMaintenance() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Location maintenance/query screen");
-	}
-	
 	public void navigateToPackConfigPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -302,21 +296,4 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-
-	public void hoverLocation() throws FindFailed, InterruptedException {
-		screen.wait("images/PickFaceMaintenance/LocationHover.png", timeoutInSec);
-		screen.click("images/PickFaceMaintenance/LocationHover.png");
-		Thread.sleep(4000);
-	}
-		
-	
-
-	public void hoverLocation1() throws FindFailed, InterruptedException {
-		screen.wait("images/PickFaceMaintenance/LocationHover1.png", timeoutInSec);
-		screen.click("images/PickFaceMaintenance/LocationHover1.png");
-		Thread.sleep(4000);
-		
-
-	}
 }
-
