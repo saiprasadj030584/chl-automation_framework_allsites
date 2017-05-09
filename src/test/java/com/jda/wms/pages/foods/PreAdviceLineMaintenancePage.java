@@ -1,21 +1,21 @@
 package com.jda.wms.pages.foods;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 import com.jda.wms.context.Context;
-
 import com.google.inject.Inject;
 
-public class PreAdviceLinePage {
+public class PreAdviceLineMaintenancePage {
+	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
 
 	@Inject
-	public PreAdviceLinePage() {
+	public PreAdviceLineMaintenancePage(Context context) {
+		this.context = context;
 	}
 
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
@@ -60,13 +60,6 @@ public class PreAdviceLinePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
-	}
-
-	public void enterPreAdviceId(String preAdviceId) throws FindFailed, InterruptedException {
-		screen.wait("images/PreAdviceLine/PreAdviceId.png", timeoutInSec);
-		screen.click("images/PreAdviceLine/PreAdviceId.png");
-		screen.type(preAdviceId);
-		Thread.sleep(1000);
 	}
 
 	public void enterSKUId(String skuId) throws FindFailed, InterruptedException {
@@ -159,6 +152,14 @@ public class PreAdviceLinePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public String getPalletType() throws FindFailed {
+		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 		
 	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/UserDefined.png", timeoutInSec);
@@ -171,6 +172,13 @@ public class PreAdviceLinePage {
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+		
+	public String enterPalletType(String palletType) throws FindFailed {
+		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type(palletType);
 		return App.getClipboard();
 	}
 

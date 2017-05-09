@@ -4,28 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
+import com.jda.wms.pages.foods.WarningPopUpPage;
+import com.jda.wms.pages.foods.PreAdviceLineMaintenancePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
-import com.jda.wms.pages.foods.PopUpPage;
-import com.jda.wms.pages.foods.PreAdviceLinePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
 import com.jda.wms.utils.Utilities;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class PreAdviceLineMaintenanceStepDefs {
-
-	private final PreAdviceLinePage preAdviceLinePage;
+	private final PreAdviceLineMaintenancePage preAdviceLineMaintenancePage;
+	private WarningPopUpPage warningPopUpPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
@@ -34,22 +31,23 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private Context context;
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private PopUpPage popUpPage;
 
 	@Inject
-	public PreAdviceLineMaintenanceStepDefs(PreAdviceLinePage preAdviceLinePage, JDAFooter jdaFooter,
+	
+	public PreAdviceLineMaintenanceStepDefs(PreAdviceLineMaintenancePage preAdviceLineMaintenancePage, JDAFooter jdaFooter,
 			JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
-			Context context, SKUMaintenancePage skuMaintenancePage, PopUpPage popUpPage) {
-		this.preAdviceLinePage = preAdviceLinePage;
+			Context context, SKUMaintenancePage skuMaintenancePage, WarningPopUpPage warningPopUpPage) {
 		this.jdaFooter = jdaFooter;
-		this.jdaHomePage = jdaHomePage;
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
+		this.warningPopUpPage = warningPopUpPage;
+		this.context = context;
+		this.preAdviceLineMaintenancePage = preAdviceLineMaintenancePage;
+		this.jdaHomePage = jdaHomePage;
 		this.packConfigMaintenanceStepDefs = packConfigMaintenanceStepDefs;
 		this.context = context;
 		this.skuMaintenancePage = skuMaintenancePage;
-		this.popUpPage = popUpPage;
 	}
 
 	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items$")
@@ -65,26 +63,26 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 		jdaHomePage.navigateToPreAdviceLineMaintenance();
 		jdaFooter.clickQueryButton();
-		preAdviceLinePage.enterPreAdviceID(context.getPreAdviceId());
+		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
 
 		if (context.getNoOfLines() != 1) {
-			preAdviceLinePage.selectFirstRecord();
+			preAdviceLineMaintenancePage.selectFirstRecord();
 		}
 
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			skuId = preAdviceLinePage.getSkuId();
-			qtyDue = preAdviceLinePage.getQtyDue();
-			String packConfig = preAdviceLinePage.getPackConfig();
+			skuId = preAdviceLineMaintenancePage.getSkuId();
+			qtyDue = preAdviceLineMaintenancePage.getQtyDue();
+			String packConfig = preAdviceLineMaintenancePage.getPackConfig();
 
 			// to be used for BWS PO processing
 			// String underBond = preAdviceLinePage.getUnderBond();
 			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
 
-			preAdviceLinePage.clickUserDefinedTab();
-			vintage = preAdviceLinePage.getVintage();
-			caseRatio = Utilities.convertStringToInteger(preAdviceLinePage.getCaseRatio());
-			String baseUOM = preAdviceLinePage.getBaseUOM();
+			preAdviceLineMaintenancePage.clickUserDefinedTab();
+			vintage = preAdviceLineMaintenancePage.getVintage();
+			caseRatio = Utilities.convertStringToInteger(preAdviceLineMaintenancePage.getCaseRatio());
+			String baseUOM = preAdviceLineMaintenancePage.getBaseUOM();
 
 			if (baseUOM.isEmpty()) {
 				failureList.add("Base UOM is not as expected for SKU (" + skuId + ") " + "Expected [Not Null] but was ["
@@ -137,7 +135,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 			jdaFooter.clickPreAdiceLine();
 			jdaFooter.clickNextRecord();
-			preAdviceLinePage.clickGeneralTab();
+			preAdviceLineMaintenancePage.clickGeneralTab();
 
 			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
 			logger.debug("Quantity Due: " + qtyDue);
@@ -157,24 +155,59 @@ public class PreAdviceLineMaintenanceStepDefs {
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
-		preAdviceLinePage.enterPreAdviceId(preAdviceId);
-		preAdviceLinePage.enterSKUId(skuId);
+		preAdviceLineMaintenancePage.enterPreAdviceID(preAdviceId);
+		preAdviceLineMaintenancePage.enterSKUId(skuId);
 		jdaFooter.clickExecuteButton();
 	}
 
 	@When("^I lock the record with lockcode as \"([^\"]*)\"$")
 	public void i_lock_the_record_with_lockcode_as(String lockCode) throws Throwable {
 		jdaFooter.clickUpdateButton();
-		preAdviceLinePage.enterLockCode(lockCode);
+		preAdviceLineMaintenancePage.enterLockCode(lockCode);
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(1000);
-		popUpPage.clickYes();
+		warningPopUpPage.clickYes();
 	}
 
 	@Then("^the record should be locked$")
 	public void the_record_should_be_locked() throws Throwable {
 		Assert.assertEquals("Lock code is not displayed as expected.", context.getLockCode(),
-				preAdviceLinePage.getLockCode());
+				preAdviceLineMaintenancePage.getLockCode());
+	}
+	@Given("^the sku \"([^\"]*)\" of pre-advice id \"([^\"]*)\" have the pallet type as \"([^\"]*)\"$")
+	public void the_sku_of_pre_advice_id_have_the_pallet_type_as( String preAdviceId,String sku,
+			String existingPalletType) throws Throwable {
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+		jdaFooter.clickQueryButton();
+		preAdviceLineMaintenancePage.enterPreAdviceID(preAdviceId);
+		preAdviceLineMaintenancePage.enterSKUId(sku);
+		jdaFooter.clickExecuteButton();
+		
+		if (!existingPalletType.equals(preAdviceLineMaintenancePage.getPalletType())) {
+			jdaFooter.clickUpdateButton();
+			preAdviceLineMaintenancePage.enterPalletType(existingPalletType);
+			jdaFooter.clickExecuteButton();
+			warningPopUpPage.clickYes();
+			Thread.sleep(3000);
+		}
+	}
+
+	@When("^I update the pallet type as \"([^\"]*)\"$")
+	public void i_update_the_pallet_type_as(String palletType) throws Throwable {
+		context.setPalletType(palletType);
+		jdaFooter.clickUpdateButton();
+		preAdviceLineMaintenancePage.enterPalletType(palletType);
+		jdaFooter.clickExecuteButton();
+		warningPopUpPage.clickYes();
+		Thread.sleep(3000);
+	}
+
+	@Then("^the pallet type should be updated")
+	public void the_pallet_type_should_be_updated() throws Throwable {
+		Assert.assertEquals("Pallet type is not as expected", context.getPalletType(),
+				preAdviceLineMaintenancePage.getPalletType());
 	}
 
 }
+
+
