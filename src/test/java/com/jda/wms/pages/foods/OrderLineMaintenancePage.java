@@ -145,7 +145,6 @@ public class OrderLineMaintenancePage extends PageObject {
 		screen.wait("images/OrderLineMaintenance/UserDefined.png", timeoutInSec);
 		screen.click("images/OrderLineMaintenance/UserDefined.png");
 		Thread.sleep(3000);
-		
 	}
 
 	public String getCaseRatio() throws FindFailed {
@@ -160,11 +159,10 @@ public class OrderLineMaintenancePage extends PageObject {
 		screen.wait("images/OrderLineMaintenance/GeneralTab.png", timeoutInSec);
 		screen.click("images/OrderLineMaintenance/GeneralTab.png");
 		Thread.sleep(3000);
-		
+
 	}
 
 	public void enterOrderID(String orderId) {
 		screen.type(orderId);
-		
 	}
 }
