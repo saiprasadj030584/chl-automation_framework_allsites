@@ -59,7 +59,7 @@ public class PickFaceMaintenanceStepDefs {
 		context.setFaceType("Fixed");
 
 		pickFaceMaintenancPage.enterLocation(location);
-		context.setLocation("AA05A02");
+		context.setLocation(location);
 
 		pickFaceMaintenancPage.enterSkuId(skuId);
 		context.setSkuId("20001273");
