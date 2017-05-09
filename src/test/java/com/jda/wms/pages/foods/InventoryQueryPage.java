@@ -285,4 +285,5 @@ public class InventoryQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
 }

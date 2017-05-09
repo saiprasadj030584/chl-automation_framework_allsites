@@ -155,7 +155,7 @@ public class InventoryTransactionQueryStepDefs {
 		if (uploadedValue.equalsIgnoreCase("N")) {
 			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
-		} else if (uploadedValue.equalsIgnoreCase("Y") && (!uploadedFileName.equals(null))) {
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
 			Assert.assertNotNull("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
 		}
@@ -512,4 +512,45 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
+	
+	@Then("^the ITL should be generated for the code \"([^\"]*)\"$")
+	public void the_ITL_should_be_generated_for_the_code(String code) throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		inventoryTransactionQueryPage.selectCode(code);
+	    inventoryTransactionQueryPage.enterTagId("2000135502");
+	    inventoryTransactionQueryPage.enterTransactionDate();
+	    jdaFooter.clickExecuteButton();
+	    
+	    boolean isRecord = inventoryTransactionQueryPage.isRecordsExists();
+		Thread.sleep(2000);
+		if(isRecord==true)
+		{
+			logger.debug("Records not present");
+		}
+		else{
+	    Assert.assertEquals("Update Qty is not as expected","-" + 12 , inventoryTransactionQueryPage.getUpdateQty()); 
+	}
+	}
+	
+	@Then("^the uploaded filename should be displayed$")
+	public void the_uploaded_filename_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String uploadedValue = inventoryTransactionQueryPage.getUploaded();
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		
+		if (uploadedValue.equalsIgnoreCase("N")) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
+					+ uploadedFileName + "]");
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
+					+ uploadedFileName + "]");
+		}
+		
+		if (!uploadedFileName.contains("I0808itl")) {
+			failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+		}
+		
+		logger.debug("Uploaded File Name: " + uploadedFileName);
+	}
+
 }

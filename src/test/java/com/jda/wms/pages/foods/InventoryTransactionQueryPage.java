@@ -461,4 +461,11 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public boolean isRecordsExists() throws FindFailed {
+		if (screen.exists("images/InventoryTransactionQuery/NoRecords.png") != null)
+			return true;
+		else
+			return false;
+	}
 }
