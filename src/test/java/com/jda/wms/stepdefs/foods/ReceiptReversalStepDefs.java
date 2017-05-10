@@ -1,6 +1,8 @@
 package com.jda.wms.stepdefs.foods;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -8,28 +10,30 @@ import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.ReceiptReversalPage;
-import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.foods.WarningPopUpPage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ReceiptReversalStepDefs {
-
 	private final InventoryQueryPage inventoryQueryPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final Context context;
 	private final ReceiptReversalPage receiptReversalPage;
+	private final WarningPopUpPage warningPopUpPage;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public ReceiptReversalStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context,
-			JdaHomePage jdaHomePage, ReceiptReversalPage receiptReversalPage) {
+			JdaHomePage jdaHomePage, ReceiptReversalPage receiptReversalPage, WarningPopUpPage warningPopUpPage) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.context = context;
 		this.receiptReversalPage = receiptReversalPage;
+		this.warningPopUpPage = warningPopUpPage;
 	}
 
 	@Given("^I have received tag Id \"([^\"]*)\"$")
@@ -38,25 +42,27 @@ public class ReceiptReversalStepDefs {
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
-		
-		int qtyOnHand = Utilities.convertStringToInteger(inventoryQueryPage.getQtyOnHand());
+
+		context.setTagId(tagId);
+
+		int qtyOnHand = Integer.parseInt(inventoryQueryPage.getQtyOnHand());
 		context.setQtyOnHand(qtyOnHand);
 
 		String sku = inventoryQueryPage.getSkuId();
 		context.setSkuId(sku);
-		
-		int caseRatio = Utilities.convertStringToInteger(inventoryQueryPage.getCaseRatio());
+
+		int caseRatio = Integer.parseInt(inventoryQueryPage.getCaseRatio());
 		context.setCaseRatio(caseRatio);
-		
-		String locationZone = inventoryQueryPage.getLocationZone();
-		Assert.assertEquals("Location is not an inbound location", "INBOUND", locationZone);
+
+		Assert.assertEquals("Location is not as expected. ", "INBOUND", inventoryQueryPage.getLocationZone());
+		logger.debug("Before performing Receipt reversal - TAG ID: " + tagId + ", SKU: " + sku + ", Qty on Hand : "
+				+ qtyOnHand);
 	}
 
-	@When("^select Receipt Type as \"([^\"]*)\" and enter the tag id as \"([^\"]*)\"$")
+	@When("^I select receipt type as \"([^\"]*)\" and enter the tag id as \"([^\"]*)\"$")
 	public void select_Receipt_Type_as_and_enter_the_tag_id_as(String receiptType, String tagId) throws Throwable {
 		receiptReversalPage.selectReceiptType(receiptType);
 		receiptReversalPage.enterTagId(tagId);
-
 	}
 
 	@When("^I navigate to next screen$")
@@ -64,33 +70,24 @@ public class ReceiptReversalStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
-	@Then("^corresponding inventory information should be displayed in reversals screen$")
+	@Then("^the inventory details should be displayed in reversals tab$")
 	public void corresponding_inventory_information_should_be_displayed_in_reversals_screen() throws Throwable {
 		Assert.assertTrue("Record is not present in reversal screen", receiptReversalPage.isRecordExists());
 	}
 
-	@When("^I enter the Qty to reverse as \"([^\"]*)\" and navigate to finish screen$")
-	 public void
-	 i_enter_the_Qty_to_reverse_as_and_navigate_to_finish_screen(String qtyReverse)
-	 throws Throwable {
-		 int qtyToReverse = Utilities.convertStringToInteger(qtyReverse);
-		//To verify whether the quantity to reverse is in multiples of case ratio
-		
-		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio", receiptReversalPage.isQtyMultipleOfCaseRatio(qtyToReverse));
-		 receiptReversalPage.scrollNext();
-		 receiptReversalPage.enterQtyToReverse(qtyReverse);
-		 jdaFooter.clickNextButton();
-		
-	 }
+	@When("^I enter the quantity (\\d+) to reverse$")
+	public void i_enter_the_Qty_to_reverse_as_and_navigate_to_finish_screen(int qtyReverse) throws Throwable {
+		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio",
+				qtyReverse % context.getCaseRatio() == 0);
 
-	 @When("^I enter the reason code as \"([^\"]*)\"$")
-	 public void i_enter_the_reason_code_as(String reasonCode) throws Throwable {
-		 receiptReversalPage.enterReasonCode(reasonCode);
-	 }
-	
-	 @When("^proceed to reverse the quantity$")
-	 public void proceed_to_reverse_the_quantity() throws Throwable {
-		 jdaFooter.clickDoneButton();
-	 }
-	
+		receiptReversalPage.scrollNext();
+		receiptReversalPage.enterQtyToReverse(qtyReverse);
+		jdaFooter.clickNextButton();
+	}
+
+	@When("^I proceed to reverse the quantity$")
+	public void proceed_to_reverse_the_quantity() throws Throwable {
+		jdaFooter.clickDoneButton();
+		warningPopUpPage.clickYes();
+	}
 }

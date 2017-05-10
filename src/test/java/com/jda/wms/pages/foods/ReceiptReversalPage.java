@@ -5,18 +5,13 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-import com.jda.wms.context.Context;
 
 public class ReceiptReversalPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
-	private final Context context;
-	
+
 	@Inject
-	public ReceiptReversalPage(JDAFooter jdaFooter,Context context) {
-		this.jdaFooter = jdaFooter;
-		this.context = context;
+	public ReceiptReversalPage() {
 	}
 
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
@@ -36,34 +31,20 @@ public class ReceiptReversalPage {
 			return false;
 	}
 
-	public boolean isQtyMultipleOfCaseRatio(int qtyToReverse) throws InterruptedException, FindFailed {
-		context.setCaseRatio(16);
-		int caseRatio = context.getCaseRatio();
-		if (qtyToReverse % caseRatio == 0) {
-
-			return true;
-		} else
-			return false;
-	}
-	
 	public void scrollNext() throws FindFailed {
 		screen.wait("images/ReceiptReversal/ScrollNext.png", timeoutInSec);
 		screen.click("images/ReceiptReversal/ScrollNext.png");
 	}
-	
-	public void enterQtyToReverse(String qtyReverse) throws FindFailed, InterruptedException {
+
+	public void enterQtyToReverse(int qtyReverse) throws FindFailed, InterruptedException {
 		Match mQtyToReverse = screen.find("images/ReceiptReversal/Reversals/QtyToReverse.png");
 		Thread.sleep(2000);
 		screen.click(mQtyToReverse.below(10));
-		screen.type(qtyReverse);
+		screen.type(Integer.toString(qtyReverse));
 		Thread.sleep(3000);
 	}
-	
+
 	public void enterReasonCode(String reasonCode) throws FindFailed {
-//		Match mreasonCode = screen.find("images/ReceiptReversal/ReasonCode.png");
-//		screen.click(mreasonCode.getCenter().offset(70, 0));
 		screen.type(reasonCode);
 	}
-	
-
 }
