@@ -1,7 +1,8 @@
 package com.jda.wms.context;
 
-import com.jda.wms.pages.foods.RDTTask;
 import java.util.Map;
+
+import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
 	private RDTTask currentTask;
@@ -30,13 +31,12 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
-<<<<<<< HEAD
+
 	private Map<String, Map<String, String>> stockTransferOrderMap;
-=======
+
 	private String faceType;
 	private String siteId;
 	private String location;
->>>>>>> 152165b063859b86e7863e46aa98855677a2ba4d
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -246,14 +246,14 @@ public class Context {
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
 	}
+
 	public Map<String, Map<String, String>> getstockTransferOrderMap() {
 		return stockTransferOrderMap;
 	}
 
-
 	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
 		this.stockTransferOrderMap = stockTransferOrderMap;
-		
+
 	}
 
 	public String getFaceType() {
@@ -279,7 +279,5 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	
 
 }
