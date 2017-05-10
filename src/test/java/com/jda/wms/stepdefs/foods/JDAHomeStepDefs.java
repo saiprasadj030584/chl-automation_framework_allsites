@@ -113,4 +113,10 @@ public class JDAHomeStepDefs {
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToPickFaceMaintenance();
 	}
+
+	@Given("^I navigate to order Line Maintenance Page$")
+	public void i_navigate_to_order_Line_Maintenance_Page() throws Throwable {
+		jdaHomePage.navigateToOrderLineMaintenance();
+	}
+
 }

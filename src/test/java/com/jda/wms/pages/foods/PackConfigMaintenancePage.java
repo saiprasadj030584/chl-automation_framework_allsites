@@ -17,8 +17,8 @@ public class PackConfigMaintenancePage {
 	}
 
 	public void enterPackConfigId(String packConfigId) throws FindFailed {
-		screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		screen.click("/images/JDASupplierSKU/SKU.png");
+		screen.wait("images/JDAPackConfig/PackConfig.png", timeoutInSec);
+		screen.click("images/JDAPackConfig/PackConfig.png");
 		screen.type(packConfigId);
 	}
 

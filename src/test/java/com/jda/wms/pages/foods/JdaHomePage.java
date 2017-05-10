@@ -296,7 +296,13 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
+	public void navigateToOrderLineMaintenance() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order Line Maintenance/query screen");
+	}
+
 	public void navigateToReceiptReversalPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
