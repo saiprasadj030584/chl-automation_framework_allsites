@@ -31,6 +31,9 @@ public class Context {
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
 	private int qtyOnHand;
+	private String faceType;
+	private String siteId;
+	private String location;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -241,7 +244,6 @@ public class Context {
 		this.lockCode = lockCode;
 	}
 
-
 	public void setQtyOnHand(int qtyOnHand) {
 		this.qtyOnHand = qtyOnHand;
 	}
@@ -250,4 +252,27 @@ public class Context {
 		return qtyOnHand;
 	}
 	
+	public String getFaceType() {
+		return faceType;
+	}
+
+	public void setFaceType(String faceType) {
+		this.faceType = faceType;
+	}
+
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

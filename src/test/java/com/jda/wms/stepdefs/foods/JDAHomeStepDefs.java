@@ -1,11 +1,8 @@
 package com.jda.wms.stepdefs.foods;
 
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
-
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
-import cucumber.api.java.en.*;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -112,4 +109,8 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
 
+	@Given("^I am on to pick face maintenance page$")
+	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPickFaceMaintenance();
+	}
 }
