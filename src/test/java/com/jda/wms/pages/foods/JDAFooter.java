@@ -99,4 +99,10 @@ public class JDAFooter {
 		screen.click("images/JDAFooter/NextRecord.png");
 		Thread.sleep(3000);
 	}
+	
+	public void clickOrderLine() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAFooter/OrderLine.png", timeoutInSec);
+		screen.click("images/JDAFooter/OrderLine.png");
+		Thread.sleep(3000);
+	}
 }

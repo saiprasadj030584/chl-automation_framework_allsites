@@ -1,11 +1,8 @@
 package com.jda.wms.stepdefs.foods;
 
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
-
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
-import cucumber.api.java.en.*;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -97,8 +94,24 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToInventoryUpdate();
 	}
 
-@Given("^I am on to pre-advice line maintenance page$")
-public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
-	jdaHomePage.navigateToPreAdviceLineMaintenance();
-}
+	@Given("^I am on to pre-advice line maintenance page$")
+	public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+	}
+
+	@When("^I navigate to receipt reversal page$")
+	public void i_navigate_to_receipt_reversal_page() throws Throwable {
+		jdaHomePage.navigateToReceiptReversalPage();
+	}
+
+	@Given("^I am on to pick face maintenance page$")
+	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPickFaceMaintenance();
+	}
+
+	@Given("^I navigate to order Line Maintenance Page$")
+	public void i_navigate_to_order_Line_Maintenance_Page() throws Throwable {
+		jdaHomePage.navigateToOrderLineMaintenance();
+	}
+
 }

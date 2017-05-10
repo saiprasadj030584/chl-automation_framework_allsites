@@ -17,6 +17,8 @@ public class PackConfigMaintenancePage {
 	}
 
 	public void enterPackConfigId(String packConfigId) throws FindFailed, InterruptedException {
+		screen.wait("images/JDAPackConfig/PackConfig.png", timeoutInSec);
+		screen.click("images/JDAPackConfig/PackConfig.png");
 		screen.type(packConfigId);
 		Thread.sleep(1000);
 	}

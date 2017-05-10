@@ -2,9 +2,7 @@ package com.jda.wms.context;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import com.jda.wms.pages.foods.RDTTask;
-import java.util.Map;
 
 public class Context {
 	private RDTTask currentTask;
@@ -41,6 +39,14 @@ public class Context {
 	private String lockCode;
 	private String vintage;
 	private String abv;
+	private int qtyReceivedfromPutty;
+	private String locationLockStatus;
+	private String locationID;
+	private String palletType;
+	private Map<String, Map<String, String>> stockTransferOrderMap;
+	private int qtyOnHand;
+	private String faceType;
+	private String siteId;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -56,6 +62,22 @@ public class Context {
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+
+	public String getlocationID() {
+		return locationID;
+	}
+
+	public void setlocationID(String locationID) {
+		this.locationID = locationID;
+	}
+
+	public String getlocationLockStatus() {
+		return locationLockStatus;
+	}
+
+	public void setlocationLockStatus(String locationLockStatus) {
+		this.locationLockStatus = locationLockStatus;
 	}
 
 	public String getPreAdviceId() {
@@ -186,14 +208,6 @@ public class Context {
 		this.rcvQtyDue = rcvQtyDue;
 	}
 
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
 	public Map<String, ArrayList<String>> getTagIDMap() {
 		return tagIDMap;
 	}
@@ -282,6 +296,15 @@ public class Context {
 		this.productCategory = productCategory;
 	}
 	
+	public String getPalletType() {
+		return palletType;
+	}
+
+	public void setPalletType(String palletType) {
+		this.palletType = palletType;
+
+	}
+
 	public String getLockCode() {
 		return lockCode;
 	}
@@ -305,5 +328,45 @@ public class Context {
 	public void setVintage(String vintage) {
 		this.vintage = vintage;
 	}
-}
 
+	public Map<String, Map<String, String>> getstockTransferOrderMap() {
+		return stockTransferOrderMap;
+	}
+
+	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
+		this.stockTransferOrderMap = stockTransferOrderMap;
+
+	}
+
+	public void setQtyOnHand(int qtyOnHand) {
+		this.qtyOnHand = qtyOnHand;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
+	}
+
+	public String getFaceType() {
+		return faceType;
+	}
+
+	public void setFaceType(String faceType) {
+		this.faceType = faceType;
+	}
+
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+}

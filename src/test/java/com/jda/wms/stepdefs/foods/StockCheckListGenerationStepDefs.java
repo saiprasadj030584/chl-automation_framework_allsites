@@ -16,14 +16,14 @@ import com.jda.wms.pages.foods.StockCheckListGenerationPage;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class StockCheckListGenerationStepDef {
+public class StockCheckListGenerationStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final StockCheckListGenerationPage stockCheckListGenerationPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	
 	@Inject
-	public StockCheckListGenerationStepDef(StockCheckListGenerationPage stockCheckListGenerationPage,
+	public StockCheckListGenerationStepDefs(StockCheckListGenerationPage stockCheckListGenerationPage,
 			JDAFooter jdaFooter,JdaHomePage jdaHomePage) {
 		this.stockCheckListGenerationPage = stockCheckListGenerationPage;
 		this.jdaFooter = jdaFooter;

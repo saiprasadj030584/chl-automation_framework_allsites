@@ -37,8 +37,11 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@After()
+
+
+	// @After()
 	public void tearDown(Scenario scenario) {
+
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
@@ -80,7 +83,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-//	@After
+	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);
