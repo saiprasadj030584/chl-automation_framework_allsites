@@ -1,6 +1,5 @@
 package com.jda.wms.pages.foods;
 
-import org.junit.Assert;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;

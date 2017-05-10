@@ -16,10 +16,9 @@ public class PackConfigMaintenancePage {
 	public PackConfigMaintenancePage() {
 	}
 
-	public void enterPackConfigId(String packConfigId) throws FindFailed {
-		screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		screen.click("/images/JDASupplierSKU/SKU.png");
+	public void enterPackConfigId(String packConfigId) throws FindFailed, InterruptedException {
 		screen.type(packConfigId);
+		Thread.sleep(1000);
 	}
 
 	public String getTagVolume() throws FindFailed {

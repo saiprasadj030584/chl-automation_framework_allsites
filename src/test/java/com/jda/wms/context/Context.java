@@ -305,13 +305,5 @@ public class Context {
 	public void setVintage(String vintage) {
 		this.vintage = vintage;
 	}
-
-	public String getAbv() {
-		return abv;
-	}
-
-	public void setAbv(String abv) {
-		this.abv = abv;
-	}
 }
 

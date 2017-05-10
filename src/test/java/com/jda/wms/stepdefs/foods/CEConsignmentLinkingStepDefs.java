@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.foods;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
@@ -34,9 +36,12 @@ public class CEConsignmentLinkingStepDefs {
 		Thread.sleep(1000);
 		jdaFooter.clickNextButton();
 		Thread.sleep(1000);
-		
+		boolean isNoRowsSelected = ceConsignmentLinkingPage.isNoRowsDisplayed();
+		Assert.assertFalse("Line items not displayed. No rows displayed.", isNoRowsSelected);
+		if (!isNoRowsSelected){
 		ceConsignmentLinkingPage.enterConsignmentID(context.getConsignmentID());
 		jdaFooter.clickDoneButton();
 		Thread.sleep(2000);
+		}
 	}
 }

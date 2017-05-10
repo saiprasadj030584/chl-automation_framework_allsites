@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
+import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 public class PuttyFunctionsPage {
@@ -17,8 +18,8 @@ public class PuttyFunctionsPage {
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/HostName.png", timeoutInSec);
-		screen.click("images/Putty/HostName.png");
+//		screen.wait("images/Putty/HostName.png", timeoutInSec);
+//		screen.click("images/Putty/HostName.png");
 		screen.type(host);
 		screen.type(Key.TAB);
 		screen.type(port);
@@ -27,6 +28,7 @@ public class PuttyFunctionsPage {
 		screen.click("images/Putty/Telnet.png");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 	}
 	
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
@@ -48,8 +50,9 @@ public class PuttyFunctionsPage {
 	public void minimisePutty() throws FindFailed, InterruptedException {
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
 		screen.click("images/Putty/PuttyMinimise.png");
-		screen.mouseMove(80,0);
-		screen.click("images/Putty/PuttyMinimise.png");
+		Match mStatus = screen.find("images/Putty/PuttyMinimise.png");
+		screen.mouseMove(63,0);
+		screen.click(mStatus.containsMouse());
 		Thread.sleep(2000);
 	}
 	

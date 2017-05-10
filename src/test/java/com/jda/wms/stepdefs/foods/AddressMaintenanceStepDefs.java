@@ -88,12 +88,6 @@ public class AddressMaintenanceStepDefs {
 				ceTaxWarehouse);
 	}
 
-
-	@When("^I navigate to user defined tab in address maintenance$")
-	public void i_navigate_to_user_defined_tab_in_address_maintenance() throws Throwable {
-		addressMaintenancePage.clickUserDefinedTab();
-	}
-
 	@Then("^I should see the is site flag is updated as site$")
 	public void i_should_see_the_is_site_flag_is_updated_as_site() throws Throwable {
 		Assert.assertTrue("The address Id is not a site. Expected [checkbox selected] but was [not selected]",
@@ -119,7 +113,6 @@ public class AddressMaintenanceStepDefs {
 
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
 		jdaFooter.clickQueryButton();
-		// addressMaintenancePage.enterAddressID(context.getSupplierID());
 		addressMaintenancePage.enterAddressID(context.getSupplierID());
 		jdaFooter.clickExecuteButton();
 
@@ -136,15 +129,13 @@ public class AddressMaintenanceStepDefs {
 
 		String country = addressMaintenancePage.getCountry();
 		context.setCountry(country);
-		System.out.println(country);
 		if (!context.getCountry().equals(country)) {
 			failureList.add(
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
-
-		i_navigate_to_user_defined_tab_in_address_maintenance_page();
+		
+		addressMaintenancePage.clickUserDefinedTab();
 		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
-		System.out.println("defaultySupplierPallet "+defaultySupplierPallet);
 		if (!defaultySupplierPallet.equals("CHEP")) {
 			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
 					+ defaultySupplierPallet + "]");
@@ -161,7 +152,7 @@ public class AddressMaintenanceStepDefs {
 	@Then("^I navigate to user defined tab in address maintenance page$")
 	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
 		// jdaFooter.clickQueryButton();
-		// addressMaintenancePage.enterAddressID(context.getSupplierID());
+		// addressMaintenancePage.entersAddressID(context.getSupplierID());
 		// jdaFooter.clickExecuteButton();
 		addressMaintenancePage.clickUserDefinedTab();
 	}

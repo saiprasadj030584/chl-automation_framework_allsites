@@ -158,7 +158,7 @@ public class InventoryTransactionQueryStepDefs {
 		if (uploadedValue.equalsIgnoreCase("N")) {
 			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
-		} else if (uploadedValue.equalsIgnoreCase("Y") && (!uploadedFileName.equals(null))) {
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
 			Assert.assertNotNull("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
 		}
@@ -359,17 +359,6 @@ public class InventoryTransactionQueryStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-//		String skuId = inventoryTransactionQueryPage.getSkuId();
-//
-//		jdaHomePage.navigateToSKUMaintanence();
-//		jdaFooter.clickQueryButton();
-//		sKUMaintenancePage.enterSKUID(skuId);
-//		jdaFooter.clickExecuteButton();
-//		String allocationGroup = sKUMaintenancePage.getAllocationGroup();
-//		logger.debug("Allocation Group captured :" + allocationGroup);
-//		jdaFooter.clickCloseButton();
-//		Thread.sleep(2000);
-
 		if (context.getAllocationGroup().equals("EXPIRY")) {
 			String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
 			if (expiryDate.equals(null)) {
@@ -426,16 +415,14 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("packConfig: " + packConfig);
 
 		String uploaded = inventoryTransactionQueryPage.getUploaded();
-		if (!uploaded.equals("Y")) {
-			failureList.add("Uploaded flag is not as expected. Expected [Y] but was [" + uploaded + "]");
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		if ((uploaded.equals("Y"))||(uploaded.equalsIgnoreCase("Yes"))) {
+			if (!uploadedFileName.contains("I0808itl")) {
+				failureList.add(
+						"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+			}
 		}
 		logger.debug("uploaded: " + uploaded);
-
-		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
-		if (!uploadedFileName.contains("I0808itl")) {
-			failureList.add(
-					"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
-		}
 		logger.debug("uploadedFileName: " + uploadedFileName);
 
 		String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
@@ -526,7 +513,7 @@ public class InventoryTransactionQueryStepDefs {
 		
 		for (String key : purchaseOrderMap.keySet()){
 			 String sku = purchaseOrderMap.get(key).get("SKU");
-			 context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation group"));
+			 context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
 			 for (int s=0;s<tagIDMap.get(sku).size();s++){
 				 tagID = tagIDMap.get(sku).get(s);
 				 jdaFooter.clickQueryButton();
@@ -537,7 +524,7 @@ public class InventoryTransactionQueryStepDefs {
 					i_navigate_to_miscellaneous2_tab();
 					the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed();
 					sKUMaintenancePage.clickCustomsAndExcise();
-					if ((!context.getProductCategory().contains("Non-Bonded"))||(!context.getProductCategory().contains("Ambient"))){
+					if ((!context.getProductCategory().contains("Non-Bonded"))&&(!context.getProductCategory().contains("Ambient"))){
 						the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS();
 					}
 					the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed();
@@ -548,6 +535,8 @@ public class InventoryTransactionQueryStepDefs {
 					the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
 					i_navigate_to_settings_2_tab_in_the_user_defined_tab();
 					the_URN_child_should_be_displayed();
+					inventoryTransactionQueryPage.clickUserDefinedSettings1Tab();
+					inventoryTransactionQueryPage.clickGeneralTab();
 			 }
 		}
 		}

@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -30,7 +31,8 @@ public class InventoryQueryStepDefs {
 	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
-	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context, JdaHomePage jdaHomePage) {
+	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context,
+			JdaHomePage jdaHomePage) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -189,43 +191,32 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.refreshUserDefinedTab();
 		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryQueryPage.getUpdatedABV());
 	}
-	
+
 	@When("^the inventory details should be displayed for all the tag id$")
 	public void the_inventory_details_should_be_displayed_for_all_the_tag_id() throws Throwable {
-		//Get the tag id and quantity received for the PO
-		String tagID = null;
-		int qtyReceivedPerTag = 0, caseRatio =0;
+		String tagID = null,allocationGroup=null;
+		int qtyReceivedPerTag = 0, caseRatio = 0;
+
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
 		tagIDMap = context.getTagIDMap();
-		
-		System.out.println(purchaseOrderMap);
-		System.out.println(tagIDMap);
-		System.out.println(qtyReceivedPerTagMap);
-		
-		for (String key : purchaseOrderMap.keySet()){
-			 System.out.println( "Sku Keys " +purchaseOrderMap.get(key).get("SKU") );
-			 String sku = purchaseOrderMap.get(key).get("SKU");
-			 caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
-			 System.out.println("caseratio "+caseRatio);
-			 System.out.println("tagIDMap.size() "+tagIDMap.size());
-			 for (int s=0;s<tagIDMap.get(sku).size();s++){
-				 System.out.println("Inside tag id for loop");
-				 tagID = tagIDMap.get(sku).get(s);
-				 System.out.println("Tag to search: "+tagID);
-				 qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
-				 System.out.println("Qty received under Tag Id: "+qtyReceivedPerTag);
-				 
-				  context.setTagId(tagID);
-				  context.setQtyReceivedPerTag(qtyReceivedPerTag*caseRatio);
-				  System.out.println("qty value "+context.getQtyReceivedPerTag());
-				  jdaFooter.clickQueryButton();
-				  inventoryQueryPage.enterTagId(tagID);
-				  jdaFooter.clickExecuteButton();
-				  the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
-				  the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
-				  the_storage_location_base_UOM_and_product_groud_should_be_displayed();
-			 }
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
+				tagID = tagIDMap.get(sku).get(s);
+				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
+				context.setTagId(tagID);
+				context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
+				jdaFooter.clickQueryButton();
+				inventoryQueryPage.enterTagId(tagID);
+				jdaFooter.clickExecuteButton();
+				the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
+				the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
+				the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+			}
 		}
 	}
 
@@ -246,19 +237,17 @@ public class InventoryQueryStepDefs {
 		}
 
 		String status = inventoryQueryPage.getStatus();
-		// TODO expected value from context
-		if (!status.equals("Unlocked")) {
+		if (!status.equals("Unlocked")&&(context.getProductCategory().contains("Ambient"))) {
+			failureList.add("Status is not displayed as expected. Expected [Unlocked] but was [" + status + "]");
+		}
+		else if((status.equals(null))&&(context.getProductCategory().contains("BWS"))) {
 			failureList.add("Status is not displayed as expected. Expected [Not NULL value] but was [" + status + "]");
 		}
 
-//		String caseRatio = inventoryQueryPage.getCaseRatio();
 		String qtyOnHand = inventoryQueryPage.getQtyOnHand();
-		// context.setQtyReceivedfromPutty();
-//		int qtyReceived = 10;
-//		int expectedQtyonHand = qtyReceived * Integer.parseInt(caseRatio);
 		if (context.getQtyReceivedPerTag() != Integer.parseInt(qtyOnHand)) {
-			Assert.fail("Quantity on hand is not expected. Expected [" + context.getQtyReceivedPerTag() + "] but was [" + qtyOnHand
-					+ "]");
+			Assert.fail("Quantity on hand is not expected. Expected [" + context.getQtyReceivedPerTag() + "] but was ["
+					+ qtyOnHand + "]");
 		}
 
 		Assert.assertTrue(
@@ -270,12 +259,14 @@ public class InventoryQueryStepDefs {
 	public void the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		
 		inventoryQueryPage.navigateToMiscellaneousTab();
+		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")){
 		String expiryDate = inventoryQueryPage.getExpiryDate();
-//		context.setFutureExpiryDate("02/05/2019");
 		if (!expiryDate.equals(context.getFutureExpiryDate())) {
-			failureList.add("Expiry Date is not as expected. Expected ["+context.getFutureExpiryDate()+"] but was [" + expiryDate + "]");
+			failureList.add("Expiry Date is not as expected. Expected [" + context.getFutureExpiryDate() + "] but was ["
+					+ expiryDate + "]");
+		}
 		}
 
 		String palletType = inventoryQueryPage.getPalletType();
@@ -324,7 +315,7 @@ public class InventoryQueryStepDefs {
 		if (productGroup.equals(null)) {
 			failureList.add("Product Group is not as expected. Expected [Not NULL] but was [" + productGroup + "]");
 		}
-		
+
 		inventoryQueryPage.clickGeneralTab();
 
 		Assert.assertTrue(
@@ -336,7 +327,6 @@ public class InventoryQueryStepDefs {
 	public void i_navigate_to_pre_advice_header_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToPreAdviceHeaderPage();
 		jdaFooter.clickQueryButton();
-		// TODO get PO id from context
 		inventoryQueryPage.enterPOId(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
 	}

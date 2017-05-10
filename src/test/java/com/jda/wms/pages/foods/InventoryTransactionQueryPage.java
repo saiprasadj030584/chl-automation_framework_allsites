@@ -461,4 +461,16 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void clickGeneralTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/GeneralTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/GeneralTab.png");
+		Thread.sleep(2000);
+	}
+
+	public void clickUserDefinedSettings1Tab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/UserDefined/Settings1Tab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/UserDefined/Settings1Tab.png");
+		Thread.sleep(2000);
+	}
 }

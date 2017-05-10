@@ -32,4 +32,10 @@ public class CEConsignmentLinkingPage {
 		screen.type(consignmentID);
 		Thread.sleep(1000);
 	}
+	public boolean isNoRowsDisplayed() {
+		if (screen.exists("images/CEConsignmentLinking/NoRowsSelected.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

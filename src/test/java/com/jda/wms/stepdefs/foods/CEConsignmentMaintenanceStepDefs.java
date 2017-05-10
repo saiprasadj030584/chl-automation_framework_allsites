@@ -1,7 +1,5 @@
 package com.jda.wms.stepdefs.foods;
 
-import java.util.ArrayList;
-
 import org.junit.Assert;
 
 import com.google.inject.Inject;
@@ -13,8 +11,7 @@ import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.PopUpPage;
 import com.jda.wms.utils.Utilities;
 
-import cucumber.api.java.en.*;
-import edu.emory.mathcs.backport.java.util.Arrays;
+import cucumber.api.java.en.When;
 
 public class CEConsignmentMaintenanceStepDefs {
 	
@@ -41,20 +38,6 @@ public class CEConsignmentMaintenanceStepDefs {
 	
 	@When("^I create consignment for the supplier$")
 	public void i_create_consignment_for_the_supplier() throws Throwable {
-//		//For scenario purpose
-//		context.setSupplierID("F01946");
-//		context.setCountry("United Kingdom");
-//		context.setPreAdviceId("8050004598");
-//		jdaHomePage.navigateToAddressMaintenancePage();
-//		jdaFooter.clickQueryButton();
-//		addressMaintenancePage.enterAddressID(context.getSupplierID());
-//		jdaFooter.clickExecuteButton();
-//		//For scenario purpose
-//		
-//		addressMaintenanceStepDefs.i_navigate_to_customs_excise_tab_in_address_maintenance();
-//		addressMaintenanceStepDefs.the_CE_warehouse_type_should_be_displayed_as_excise();
-//		addressMaintenanceStepDefs.the_CE_tax_warehouse_should_be_displayed();
-		
 		jdaHomePage.navigateToCEConsignmentMaintenenacePage();
 		jdaFooter.clickAddButton();
 		

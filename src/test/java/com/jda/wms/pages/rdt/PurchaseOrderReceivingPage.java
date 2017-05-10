@@ -117,9 +117,6 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterExpiryDate(String expDate) throws InterruptedException {
-		screen.type(Key.TAB);
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
 		screen.type(expDate);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
@@ -170,8 +167,9 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-	public void pressTab(){
+	public void pressTab() throws InterruptedException{
 		screen.type(Key.TAB);
+		Thread.sleep(1000);
 	}
 
 	public void enterVintage(String vintage) throws InterruptedException {
@@ -182,5 +180,12 @@ public class PurchaseOrderReceivingPage {
 	public void enterABV(String abv) throws InterruptedException {
 		screen.type(abv);
 		Thread.sleep(1000);
+	}
+
+	public boolean isNoValidPreAdviceDisplayed() {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+			return true;
+		else
+			return false;
 	}
 }
