@@ -27,20 +27,10 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
-	public void clickQueryButton() throws FindFailed {
-		screen.wait("images/OrderHeaderQuery.png", timeoutInSec);
-		screen.click("images/OrderHeaderQuery.png");
-	}
-
 	public void enterOrderNo(String OrderNo) throws FindFailed {
 		screen.wait("images/OrderNumber.png", timeoutInSec);
 		screen.click("images/OrderNumber.png");
 		screen.type(OrderNo);
-	}
-
-	public void clickExecuteButton() throws FindFailed {
-		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
-		screen.click("images/OrderHeaderExecute.png");
 	}
 
 	public void clickLinesButton() throws FindFailed {
@@ -66,5 +56,106 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.wait("images/OrderHeaderStatus.png", timeoutInSec);
 		screen.click("images/OrderHeaderStatus.png");
 		Thread.sleep(3000L);
+	}
+
+	public String getOrderDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCreatedBy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public String getOrderTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCreationDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCreationTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getMoveTaskStatus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getFromSiteId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isTypeExist() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getNumberOfLines() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void clickDeliveryAddressTab() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getAddress1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCountry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void clickDeliveryDetailsTab() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getDeliveryByTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getShipByTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getShipByDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getDeliveryByDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void clickUserDefinedTab() {
+		// TODO Auto-generated method stub
+		
 	}
 }

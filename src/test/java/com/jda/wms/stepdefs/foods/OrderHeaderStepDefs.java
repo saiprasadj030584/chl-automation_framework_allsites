@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.foods;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
+import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 
 import cucumber.api.java.en.Then;
@@ -10,17 +11,19 @@ import cucumber.api.java.en.When;
 
 public class OrderHeaderStepDefs {
 	private final OrderHeaderMaintenancePage orderHeaderMaintenancePage;
+	private JDAFooter jdaFooter;
 
 	@Inject
-	public OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage) {
+	public OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAFooter jdaFooter) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
+		this.jdaFooter = jdaFooter;
 	}
 
 	@When("^I navigate to orderline for the order number \"([^\"]*)\"$")
 	public void i_navigate_to_orderline_for_the_order_number(String orderNumber) throws Throwable {
-		orderHeaderMaintenancePage.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderNumber);
-		orderHeaderMaintenancePage.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		orderHeaderMaintenancePage.clickLinesButton();
 	}
 
