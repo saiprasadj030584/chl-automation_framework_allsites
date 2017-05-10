@@ -30,7 +30,13 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
+<<<<<<< HEAD
 	private Map<String, Map<String, String>> stockTransferOrderMap;
+=======
+	private String faceType;
+	private String siteId;
+	private String location;
+>>>>>>> 152165b063859b86e7863e46aa98855677a2ba4d
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -249,5 +255,31 @@ public class Context {
 		this.stockTransferOrderMap = stockTransferOrderMap;
 		
 	}
+
+	public String getFaceType() {
+		return faceType;
+	}
+
+	public void setFaceType(String faceType) {
+		this.faceType = faceType;
+	}
+
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
 
 }

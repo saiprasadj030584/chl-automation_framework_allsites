@@ -47,7 +47,7 @@ public class OrderLineMaintenanceStepDefs {
 
 	@When("^I select the SKU line$")
 	public void i_select_the_SKU_line() throws Throwable {
-		orderLineMaintenancePage.navigatedOrderLinepage();
+		orderLineMaintenancePage.navigateOrderLinepage();
 	}
 
 	@When("^I allocate the product$")

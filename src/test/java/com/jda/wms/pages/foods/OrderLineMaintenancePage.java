@@ -24,7 +24,7 @@ public class OrderLineMaintenancePage extends PageObject {
 		this.webDriver = webDriver;
 	}
 
-	public void navigatedOrderLinepage() throws FindFailed, InterruptedException {
+	public void navigateOrderLinepage() throws FindFailed, InterruptedException {
 		doubleClickOrderLineMaintenance();
 		doubleClickSKULine();
 	}
