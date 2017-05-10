@@ -328,8 +328,9 @@ public class InventoryQueryStepDefs {
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();
-		int qty = 60, qtyToReverse = 12;
-		int expectedQtyOnHand = (qty) - qtyToReverse;
+		int qtyOnHand = context.getQtyOnHand();
+		int qtyReverse = context.getQtyReverse();
+		int expectedQtyOnHand = qtyOnHand - qtyReverse;
 		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
 	}
 }

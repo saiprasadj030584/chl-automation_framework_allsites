@@ -69,10 +69,12 @@ public class PreAdviceHeaderStepsDefs {
 			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
 		}
 
+         
 		boolean isType = preAdviceHeaderPage.isTypeExist();
 		if (!isType) {
 			failureList.add("Type is not displayed as PO");
 		}
+
 
 		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
 		context.setNoOfLines(numberOfLines);

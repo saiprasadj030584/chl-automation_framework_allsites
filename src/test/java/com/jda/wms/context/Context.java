@@ -1,7 +1,8 @@
 package com.jda.wms.context;
 
-import com.jda.wms.pages.foods.RDTTask;
 import java.util.Map;
+
+import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
 	private RDTTask currentTask;
@@ -30,6 +31,12 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
+	private Map<String, Map<String, String>> stockTransferOrderMap;
+	private int qtyOnHand;
+	private String faceType;
+	private String siteId;
+	private String location;
+	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -238,6 +245,56 @@ public class Context {
 
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
+	}
+
+	public Map<String, Map<String, String>> getstockTransferOrderMap() {
+		return stockTransferOrderMap;
+	}
+
+	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
+		this.stockTransferOrderMap = stockTransferOrderMap;
+
+	}
+
+	public void setQtyOnHand(int qtyOnHand) {
+		this.qtyOnHand = qtyOnHand;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
+	}
+
+	public String getFaceType() {
+		return faceType;
+	}
+
+	public void setFaceType(String faceType) {
+		this.faceType = faceType;
+	}
+
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getQtyReverse() {
+		return qtyReverse;
+	}
+
+	public void setQtyReverse(int qtyReverse) {
+		this.qtyReverse = qtyReverse;
+
 	}
 
 }

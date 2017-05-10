@@ -515,9 +515,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the ITL should be generated for the code \"([^\"]*)\"$")
 	public void the_ITL_should_be_generated_for_the_code(String code) throws Throwable {
+		String tagId = context.getTagId();
 		jdaHomePage.navigateToInventoryTransactionPage();
 		inventoryTransactionQueryPage.selectCode(code);
-		inventoryTransactionQueryPage.enterTagId("2000135502");
+		inventoryTransactionQueryPage.enterTagId(tagId);
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jdaFooter.clickExecuteButton();
 
@@ -526,7 +527,7 @@ public class InventoryTransactionQueryStepDefs {
 		if (isRecord == true) {
 			logger.debug("Records not present");
 		} else {
-			int qtyToReverse = 12;
+			int qtyToReverse = context.getQtyReverse();
 			Assert.assertEquals("Update Qty is not as expected", "-" + qtyToReverse,
 					inventoryTransactionQueryPage.getUpdateQty());
 		}

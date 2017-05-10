@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2017-05-05 12:25:34 DEBUG Hooks:32 - ###########################################################################################################################
 2017-05-05 12:25:34 DEBUG Hooks:34 - featureID: location-status-change;change-rec-lane-lock-status;
 2017-05-05 12:25:34 DEBUG Hooks:35 - Start of Scenario: Change REC lane lock status
@@ -28,6 +29,7 @@
 2017-05-05 12:27:47 DEBUG Hooks:76 - ###########################################################################################################################
 2017-05-05 12:27:47 DEBUG Hooks:78 - End of Scenario: Change REC lane lock status
 2017-05-05 12:27:47 DEBUG Hooks:79 - ###########################################################################################################################
+<<<<<<< HEAD
 2017-05-09 09:08:01 DEBUG Hooks:32 - ###########################################################################################################################
 2017-05-09 09:08:01 DEBUG Hooks:34 - featureID: inventory-lock
 2017-05-09 09:08:01 DEBUG Hooks:35 - Start of Scenario: Lock the inventory from unlocked status
@@ -225,3 +227,165 @@
 2017-05-09 12:49:59 DEBUG Hooks:76 - ###########################################################################################################################
 2017-05-09 12:49:59 DEBUG Hooks:78 - End of Scenario: Lock the inventory from unlocked status
 2017-05-09 12:49:59 DEBUG Hooks:79 - ###########################################################################################################################
+=======
+2017-05-08 08:18:49 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 08:18:49 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 08:18:49 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 08:18:49 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 08:18:49 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-08 08:18:49 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-08 08:18:49 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-08 08:26:01 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 08:26:01 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 08:26:01 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 08:26:01 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 08:26:02 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-08 08:26:02 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-08 08:26:02 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-08 08:26:36 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 08:26:36 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 08:26:36 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 08:26:36 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 08:26:36 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-08 08:26:36 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-08 08:26:36 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-08 08:45:45 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 08:45:45 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 08:45:45 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 08:45:45 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 08:46:06 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-08 08:46:06 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-08 08:46:06 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-08 08:46:12 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 08:46:12 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 08:46:12 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 08:46:12 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 08:46:33 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-08 08:46:33 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-08 08:46:33 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-08 12:58:29 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 12:58:29 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 12:58:29 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 12:58:29 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-08 13:00:59 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-08 13:00:59 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-08 13:00:59 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-08 13:00:59 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 12:55:44 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 12:55:44 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 12:55:44 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 12:55:44 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 12:56:59 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 12:56:59 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 12:56:59 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 13:04:03 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 13:04:03 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 13:04:03 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 13:04:03 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 13:05:23 DEBUG OrderLineStepDefs:111 - Pre-Advice Line level information of SKU : 20001894
+2017-05-09 13:05:23 DEBUG OrderLineStepDefs:112 - Quantity Due: 31
+2017-05-09 13:05:23 DEBUG OrderLineStepDefs:113 - Quantity Due: 372
+2017-05-09 13:05:23 DEBUG OrderLineStepDefs:114 - Pack Config : 20001894O01
+2017-05-09 13:05:23 DEBUG OrderLineStepDefs:115 - CaseRatio: 12
+2017-05-09 13:06:03 DEBUG OrderLineStepDefs:111 - Pre-Advice Line level information of SKU : 20001920
+2017-05-09 13:06:03 DEBUG OrderLineStepDefs:112 - Quantity Due: 35
+2017-05-09 13:06:03 DEBUG OrderLineStepDefs:113 - Quantity Due: 420
+2017-05-09 13:06:03 DEBUG OrderLineStepDefs:114 - Pack Config : 20001920O01
+2017-05-09 13:06:03 DEBUG OrderLineStepDefs:115 - CaseRatio: 12
+2017-05-09 13:06:42 DEBUG OrderLineStepDefs:111 - Pre-Advice Line level information of SKU : 20001715
+2017-05-09 13:06:42 DEBUG OrderLineStepDefs:112 - Quantity Due: 20
+2017-05-09 13:06:42 DEBUG OrderLineStepDefs:113 - Quantity Due: 240
+2017-05-09 13:06:42 DEBUG OrderLineStepDefs:114 - Pack Config : 20001715O01
+2017-05-09 13:06:42 DEBUG OrderLineStepDefs:115 - CaseRatio: 12
+2017-05-09 13:07:22 DEBUG OrderLineStepDefs:111 - Pre-Advice Line level information of SKU : 20001730
+2017-05-09 13:07:22 DEBUG OrderLineStepDefs:112 - Quantity Due: 31
+2017-05-09 13:07:22 DEBUG OrderLineStepDefs:113 - Quantity Due: 186
+2017-05-09 13:07:22 DEBUG OrderLineStepDefs:114 - Pack Config : 20001730O01
+2017-05-09 13:07:22 DEBUG OrderLineStepDefs:115 - CaseRatio: 6
+2017-05-09 13:07:22 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 13:07:22 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 13:07:22 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 13:48:54 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 13:48:54 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 13:48:54 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 13:48:54 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 13:50:17 DEBUG OrderLineStepDefs:111 - Pre-Advice Line level information of SKU : 20001894
+2017-05-09 13:50:17 DEBUG OrderLineStepDefs:112 - Quantity Due: 31
+2017-05-09 13:50:17 DEBUG OrderLineStepDefs:113 - Quantity Due: 372
+2017-05-09 13:50:17 DEBUG OrderLineStepDefs:114 - Pack Config : 20001894O01
+2017-05-09 13:50:17 DEBUG OrderLineStepDefs:115 - CaseRatio: 12
+2017-05-09 13:51:37 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 13:51:37 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 13:51:37 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 13:51:37 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 13:52:55 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 13:52:55 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 13:52:55 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 14:42:43 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:42:43 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:42:43 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:42:43 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 14:43:48 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 14:43:48 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 14:43:48 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 14:47:33 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:47:33 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:47:33 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:47:33 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 14:48:52 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:48:52 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:48:52 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:48:52 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 14:49:57 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 14:49:57 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 14:49:57 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 14:53:19 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:53:19 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:53:19 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:53:19 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 14:55:21 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:55:21 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:55:21 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:55:21 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 14:56:25 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 14:56:25 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 14:56:25 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 14:59:59 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 14:59:59 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 14:59:59 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 14:59:59 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 15:01:21 DEBUG OrderLineMaintenanceStepDefs:114 - SKU : 20001894
+2017-05-09 15:01:21 DEBUG OrderLineMaintenanceStepDefs:115 - Qty ordered: 31
+2017-05-09 15:01:21 DEBUG OrderLineMaintenanceStepDefs:116 - Qty Tasked: 372
+2017-05-09 15:01:21 DEBUG OrderLineMaintenanceStepDefs:117 - Pack Config : 20001894O01
+2017-05-09 15:01:21 DEBUG OrderLineMaintenanceStepDefs:118 - CaseRatio: 12
+2017-05-09 15:02:00 DEBUG OrderLineMaintenanceStepDefs:114 - SKU : 20001920
+2017-05-09 15:02:00 DEBUG OrderLineMaintenanceStepDefs:115 - Qty ordered: 35
+2017-05-09 15:02:00 DEBUG OrderLineMaintenanceStepDefs:116 - Qty Tasked: 420
+2017-05-09 15:02:00 DEBUG OrderLineMaintenanceStepDefs:117 - Pack Config : 20001920O01
+2017-05-09 15:02:00 DEBUG OrderLineMaintenanceStepDefs:118 - CaseRatio: 12
+2017-05-09 15:02:40 DEBUG OrderLineMaintenanceStepDefs:114 - SKU : 20001715
+2017-05-09 15:02:40 DEBUG OrderLineMaintenanceStepDefs:115 - Qty ordered: 20
+2017-05-09 15:02:40 DEBUG OrderLineMaintenanceStepDefs:116 - Qty Tasked: 240
+2017-05-09 15:02:40 DEBUG OrderLineMaintenanceStepDefs:117 - Pack Config : 20001715O01
+2017-05-09 15:02:40 DEBUG OrderLineMaintenanceStepDefs:118 - CaseRatio: 12
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:114 - SKU : 20001730
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:115 - Qty ordered: 31
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:116 - Qty Tasked: 186
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:117 - Pack Config : 20001730O01
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:118 - CaseRatio: 6
+2017-05-09 15:03:20 DEBUG OrderLineMaintenanceStepDefs:125 - Map: {1={CaseRatio=12, SKU=20001894, Qtyordered=31, QtyTasked=372, PackConfig=20001894O01}, 2={CaseRatio=12, SKU=20001920, Qtyordered=35, QtyTasked=420, PackConfig=20001920O01}, 3={CaseRatio=12, SKU=20001715, Qtyordered=20, QtyTasked=240, PackConfig=20001715O01}, 4={CaseRatio=6, SKU=20001730, Qtyordered=31, QtyTasked=186, PackConfig=20001730O01}}
+2017-05-09 15:03:20 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 15:03:20 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 15:03:20 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-09 15:06:54 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-09 15:06:54 DEBUG Hooks:34 - featureID: check-the-oredr-details
+2017-05-09 15:06:54 DEBUG Hooks:35 - Start of Scenario: check the order details in order line screen
+2017-05-09 15:06:54 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-09 15:10:15 DEBUG OrderLineMaintenanceStepDefs:125 - Map: {1={CaseRatio=12, SKU=20001894, Qtyordered=31, QtyTasked=372, PackConfig=20001894O01}, 2={CaseRatio=12, SKU=20001920, Qtyordered=35, QtyTasked=420, PackConfig=20001920O01}, 3={CaseRatio=12, SKU=20001715, Qtyordered=20, QtyTasked=240, PackConfig=20001715O01}, 4={CaseRatio=6, SKU=20001730, Qtyordered=31, QtyTasked=186, PackConfig=20001730O01}}
+2017-05-09 15:10:15 DEBUG Hooks:76 - ###########################################################################################################################
+2017-05-09 15:10:15 DEBUG Hooks:78 - End of Scenario: check the order details in order line screen
+2017-05-09 15:10:15 DEBUG Hooks:79 - ###########################################################################################################################
+=======
+>>>>>>> 152165b063859b86e7863e46aa98855677a2ba4d
+>>>>>>> 42de8ed6a58206076846d811c934ffa6b849a358
