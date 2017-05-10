@@ -53,7 +53,7 @@ public class JDAHomeStepDefs {
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToPackConfigPage();
-		
+
 	}
 
 	@Given("^I am on to pre-advice header maintenance page$")
@@ -102,8 +102,13 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToInventoryUpdate();
 	}
 
-@Given("^I am on to pre-advice line maintenance page$")
-public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
-	jdaHomePage.navigateToPreAdviceLineMaintenance();
-}
+	@Given("^I am on to pre-advice line maintenance page$")
+	public void i_am_on_to_pre_advice_line_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+	}
+
+	@Given("^I am on to pick face maintenance page$")
+	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
+		jdaHomePage.navigateToPickFaceMaintenance();
+	}
 }
