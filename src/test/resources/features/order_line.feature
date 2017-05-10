@@ -4,7 +4,6 @@ Feature: check the oredr details
   I want to receive the purchase order 
   So that I can be used for allocation
 
-  @wip4
+  @complete
   Scenario: check the order details in order line screen
-    #Given I navigate to order Line Maintenance Page
     And the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each  line items
