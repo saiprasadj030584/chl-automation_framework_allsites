@@ -30,6 +30,7 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
+	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
 	private String location;
@@ -243,6 +244,14 @@ public class Context {
 		this.lockCode = lockCode;
 	}
 
+	public void setQtyOnHand(int qtyOnHand) {
+		this.qtyOnHand = qtyOnHand;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
+	}
+	
 	public String getFaceType() {
 		return faceType;
 	}
@@ -266,7 +275,4 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	
-
 }

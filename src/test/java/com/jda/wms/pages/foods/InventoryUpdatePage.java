@@ -94,5 +94,6 @@ public class InventoryUpdatePage {
 		Match status = screen.find("images/InventoryUpdate/Finish/ReasonCode.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type(reasonCode);
+		screen.type(Key.ENTER);
 	}
 }
