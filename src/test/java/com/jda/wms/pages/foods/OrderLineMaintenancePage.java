@@ -117,7 +117,7 @@ public class OrderLineMaintenancePage extends PageObject {
 		return App.getClipboard();
 	}
 
-	public String getQtyordered() throws FindFailed {
+	public String getQtyOrdered() throws FindFailed {
 		Match mSkuId = screen.find("images/OrderLineMaintenance/General/QtyOrdered.png");
 		screen.click(mSkuId.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
@@ -159,7 +159,6 @@ public class OrderLineMaintenancePage extends PageObject {
 		screen.wait("images/OrderLineMaintenance/GeneralTab.png", timeoutInSec);
 		screen.click("images/OrderLineMaintenance/GeneralTab.png");
 		Thread.sleep(3000);
-
 	}
 
 	public void enterOrderID(String orderId) {

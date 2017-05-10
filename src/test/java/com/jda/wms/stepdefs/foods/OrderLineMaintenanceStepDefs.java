@@ -77,7 +77,7 @@ public class OrderLineMaintenanceStepDefs {
 
 		for (int i = 1; i <= lines; i++) {
 			skuId = orderLineMaintenancePage.getSkuId();
-			qtyOrdered = orderLineMaintenancePage.getQtyordered();
+			qtyOrdered = orderLineMaintenancePage.getQtyOrdered();
 			qtyTasked = orderLineMaintenancePage.getQtyTasked();
 			String packConfig = orderLineMaintenancePage.getPackConfig();
 
