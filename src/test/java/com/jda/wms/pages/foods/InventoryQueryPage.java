@@ -129,7 +129,7 @@ public class InventoryQueryPage {
 	}
 
 	public int getQtyOnhand() throws FindFailed {
-		Match mQtyOnhand = screen.find("images/Inventory/QtyOnHand.png");
+		Match mQtyOnhand = screen.find("images/InventoryQuery/General/QtyOnHand.png");
 		screen.click(mQtyOnhand.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -285,4 +285,13 @@ public class InventoryQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public String getLocationZone() throws FindFailed {
+		Match mLocationZone = screen.find("images/InventoryQuery/General/LocationZone.png");
+		screen.click(mLocationZone.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 }

@@ -31,9 +31,8 @@ public class Context {
 	private String palletType;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private String lockCode;
-
 	private Map<String, Map<String, String>> stockTransferOrderMap;
-
+	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
 	private String location;
@@ -254,6 +253,14 @@ public class Context {
 	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
 		this.stockTransferOrderMap = stockTransferOrderMap;
 
+	}
+
+	public void setQtyOnHand(int qtyOnHand) {
+		this.qtyOnHand = qtyOnHand;
+	}
+
+	public int getQtyOnHand() {
+		return qtyOnHand;
 	}
 
 	public String getFaceType() {
