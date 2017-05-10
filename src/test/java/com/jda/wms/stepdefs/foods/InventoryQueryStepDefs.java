@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,8 @@ public class InventoryQueryStepDefs {
 	private final Context context;
 
 	@Inject
-	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context, JdaHomePage jdaHomePage) {
+	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context,
+			JdaHomePage jdaHomePage) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -197,7 +199,7 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.refreshUserDefinedTab();
 		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryQueryPage.getUpdatedABV());
 	}
-	
+
 	@When("^I navigate to inventory query page and search the tag id \"([^\"]*)\"$")
 	public void i_navigate_to_inventory_query_page_and_search_the_tag_id(String tagId) throws Throwable {
 		jdaHomePage.navigateToInventoryQueryPage();
@@ -321,12 +323,13 @@ public class InventoryQueryStepDefs {
 		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
 
 	}
+
 	@Then("^Inventory should be updated with the new updated quantity$")
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();
-		int qty=60;
-		int expectedQtyOnHand=(qty)-12;
-	Assert.assertEquals("Qty on Hand does not match",expectedQtyOnHand,inventoryQueryPage.getQtyOnhand());
+		int qty = 60, qtyToReverse = 12;
+		int expectedQtyOnHand = (qty) - qtyToReverse;
+		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
 	}
 }
