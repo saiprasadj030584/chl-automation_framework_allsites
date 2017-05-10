@@ -115,7 +115,6 @@ public class OrderLineMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Stock Transfer Order line details are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-
 		logger.debug("Map: " + stockTransferOrderMap.toString());
 	}
 

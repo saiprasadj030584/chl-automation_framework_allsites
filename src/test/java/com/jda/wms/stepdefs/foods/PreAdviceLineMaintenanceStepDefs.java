@@ -4,18 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
-import com.jda.wms.pages.foods.WarningPopUpPage;
-import com.jda.wms.pages.foods.PreAdviceLineMaintenancePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
+import com.jda.wms.pages.foods.PreAdviceLineMaintenancePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
+import com.jda.wms.pages.foods.WarningPopUpPage;
 import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -33,9 +36,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	
-	public PreAdviceLineMaintenanceStepDefs(PreAdviceLineMaintenancePage preAdviceLineMaintenancePage, JDAFooter jdaFooter,
-			JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
+
+	public PreAdviceLineMaintenanceStepDefs(PreAdviceLineMaintenancePage preAdviceLineMaintenancePage,
+			JDAFooter jdaFooter, JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
 			Context context, SKUMaintenancePage skuMaintenancePage, WarningPopUpPage warningPopUpPage) {
 		this.jdaFooter = jdaFooter;
@@ -130,6 +133,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("Allocation group", allocationGroup);
 			lineItemsMap.put("Product group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
+
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 			context.setPurchaseOrderMap(purchaseOrderMap);
 
@@ -137,18 +141,10 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickNextRecord();
 			preAdviceLineMaintenancePage.clickGeneralTab();
 
-			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
-			logger.debug("Quantity Due: " + qtyDue);
-			logger.debug("Pack Config : " + packConfig);
-			logger.debug("CaseRatio: " + caseRatio);
-			logger.debug("Product group: " + productGroup);
-			logger.debug("Vintage in Pre-Advice Line : " + vintage);
-			logger.debug("Current Vintage in SKU table: " + currentVintage);
 		}
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-
-		System.out.println("Map " + context.getPurchaseOrderMap());
+		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
 
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
@@ -174,15 +170,16 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertEquals("Lock code is not displayed as expected.", context.getLockCode(),
 				preAdviceLineMaintenancePage.getLockCode());
 	}
+
 	@Given("^the sku \"([^\"]*)\" of pre-advice id \"([^\"]*)\" have the pallet type as \"([^\"]*)\"$")
-	public void the_sku_of_pre_advice_id_have_the_pallet_type_as( String preAdviceId,String sku,
+	public void the_sku_of_pre_advice_id_have_the_pallet_type_as(String preAdviceId, String sku,
 			String existingPalletType) throws Throwable {
 		jdaHomePage.navigateToPreAdviceLineMaintenance();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(preAdviceId);
 		preAdviceLineMaintenancePage.enterSKUId(sku);
 		jdaFooter.clickExecuteButton();
-		
+
 		if (!existingPalletType.equals(preAdviceLineMaintenancePage.getPalletType())) {
 			jdaFooter.clickUpdateButton();
 			preAdviceLineMaintenancePage.enterPalletType(existingPalletType);
@@ -209,5 +206,3 @@ public class PreAdviceLineMaintenanceStepDefs {
 	}
 
 }
-
-
