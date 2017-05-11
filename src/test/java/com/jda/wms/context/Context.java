@@ -33,6 +33,8 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private String location;
+	private String customer;
+	
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -206,9 +208,7 @@ public class Context {
 		return noOfLines;
 	}
 
-	public void setNoOfLines(int noOfLines) {
-		this.noOfLines = noOfLines;
-	}
+	
 
 	public int getQtyReceivedfromPutty() {
 		return qtyReceivedfromPutty;
@@ -267,6 +267,23 @@ public class Context {
 		this.location = location;
 	}
 
+	public String getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+
+	public void setNoOfLines(int noOfLines) {
+		this. noOfLines =  noOfLines;
+		
+		
+	}
+
+
+		
+	}
+
 	
 
-}

@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { " @order_header_table" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @order_header_table_STR" })
 
 public class AllTest {
 }

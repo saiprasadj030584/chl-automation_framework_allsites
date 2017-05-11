@@ -97,4 +97,12 @@ public class AddressMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public boolean isCSSMChecked() throws FindFailed {
+		if (!screen.find("images/AddressMaintenance/UserDefined/CssmChecked.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
