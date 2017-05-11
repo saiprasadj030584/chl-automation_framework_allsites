@@ -91,4 +91,12 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public String getConsignmentID() throws FindFailed {
+		Match mConsignmentID = screen.find("images/PreAdviceHeader/ConsignmentID.png");
+		screen.click(mConsignmentID.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }

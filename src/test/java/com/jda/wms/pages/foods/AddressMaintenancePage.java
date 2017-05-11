@@ -48,9 +48,10 @@ public class AddressMaintenancePage {
 		return App.getClipboard();
 	}
 
-	public void clickCustomsExciseTab() throws FindFailed {
+	public void clickCustomsExciseTab() throws FindFailed, InterruptedException {
 		screen.wait("images/AddressMaintenance/AddressCustomsExcise.png", timeoutInSec);
 		screen.click("images/AddressMaintenance/AddressCustomsExcise.png");
+		Thread.sleep(1000);
 	}
 
 	public void clickUserDefinedTab() throws FindFailed {
@@ -95,6 +96,15 @@ public class AddressMaintenancePage {
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getCETaxwarehouse() throws FindFailed, InterruptedException {
+		Match mDescription = screen.find("images/AddressMaintenance/CustomsExcise/CETaxWarehouse.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(1000);
 		return App.getClipboard();
 	}
 }

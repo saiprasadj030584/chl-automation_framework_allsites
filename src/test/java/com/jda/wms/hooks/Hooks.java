@@ -54,10 +54,10 @@ public class Hooks {
 			webDriver.quit();
 		}
 	}
-
-	// @After()
-	public void logoutPutty() throws FindFailed, InterruptedException {
-		while (screen.exists("/images/Putty/3Logout.png") == null) {
+	
+//	@After("@purchase_order") 
+	public void logoutPutty() throws FindFailed, InterruptedException{
+		while (screen.exists("/images/Putty/3Logout.png") == null){
 			screen.type(Key.F12);
 		}
 		screen.type("3");

@@ -1,0 +1,191 @@
+package com.jda.wms.pages.rdt;
+
+import java.awt.Robot;
+import java.io.IOException;
+
+import org.sikuli.script.App;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
+import org.sikuli.script.Screen;
+
+import com.google.inject.Inject;
+
+import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Environment;
+
+public class PurchaseOrderReceivingPage {
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
+
+	@Inject
+	public PurchaseOrderReceivingPage() {
+	}
+	
+	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void selectReceiveMenu() throws FindFailed, InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void selectBasicReceiveMenu() throws FindFailed, InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void selectPreAdviceReceive() throws FindFailed, InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)||(screen.exists("images/Putty/Receiving/PreAdvComplete.png")!=null))
+			return true;
+		else
+			return false;
+	}
+
+	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
+		screen.type(preAdviceId);
+		Thread.sleep(4000);
+	}
+
+	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
+		screen.type(skuID);
+		screen.type(Key.ENTER);
+		Thread.sleep(10000);
+	}
+	
+	public String getPreAdvId() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
+		screen.click(mStatus.below(10));
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.below(1));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getSupplierId() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/SuppDisplayed.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public void enterLocation(String location) throws InterruptedException, FindFailed {
+		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+		screen.click("images/Putty/Receiving/Location.png");
+		screen.type(location);
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void enterTagId(String uniqueId) throws InterruptedException {
+		screen.type(uniqueId);
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
+	}
+
+	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
+		screen.type(qtyToReceive);
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void enterCaseRatio(String caseRatio) throws InterruptedException {
+		screen.type(caseRatio);
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
+	}
+
+	public void enterExpiryDate(String expDate) throws InterruptedException {
+		screen.type(expDate);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+	}
+
+	public boolean isUserMenuDisplayed() {
+		if (screen.exists("images/Putty/UserMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isReceiveMenuDisplayed() {
+		if (screen.exists("images/Putty/Receiving/ReceiveMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isBasicReceiveMenuDisplayed() {
+		if (screen.exists("images/Putty/Receiving/BasicReceiveMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isRcvPreCmp2Displayed() {
+		if (screen.exists("images/Putty/Receiving/RcvPreCmp2.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isRcvPreCmp3Displayed() {
+		if (screen.exists("images/Putty/Receiving/RcvPreCmp3.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public String getSKUId() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/SKUDisplayed.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public void pressTab() throws InterruptedException{
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void enterVintage(String vintage) throws InterruptedException {
+		screen.type(vintage);
+		Thread.sleep(1000);
+	}
+
+	public void enterABV(String abv) throws InterruptedException {
+		screen.type(abv);
+		Thread.sleep(1000);
+	}
+
+	public boolean isNoValidPreAdviceDisplayed() {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+			return true;
+		else
+			return false;
+	}
+}

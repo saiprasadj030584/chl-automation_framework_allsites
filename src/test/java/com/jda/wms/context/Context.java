@@ -1,7 +1,7 @@
 package com.jda.wms.context;
 
+import java.util.ArrayList;
 import java.util.Map;
-
 import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
@@ -21,22 +21,37 @@ public class Context {
 	private String adjustmentType;
 	private String supplierID;
 	private String expiryDate;
+	private int noOfLines;
+	private Map<String,Map<String,String>>purchaseOrderMap;
+	private Map<String, ArrayList<String>> tagIDMap;
+	private int lineItem = 1; 
+	private int rcvQtyDue;
+	private String location;
+	private int tagIdIndex =0 ;
+	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
 	private String address1;
-	private int noOfLines;
+	private int qtyReceivedPerTag;
+	private String ceWarehouseTax;
+	private String consignmentID;
+	private String productCategory;
+	private String lockCode;
+	private String vintage;
+	private String abv;
 	private int qtyReceivedfromPutty;
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
-	private Map<String, Map<String, String>> purchaseOrderMap;
-	private String lockCode;
 	private Map<String, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+<<<<<<< HEAD
 	private String location;
 	private int qtyReverse;
+=======
+>>>>>>> e44b301e155b6a0cf1f5044624a4e9d65a021311
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -173,6 +188,54 @@ public class Context {
 	public void setFutureExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
+	
+	public int getNoOfLines() {
+		return noOfLines;
+	}
+
+	public void setNoOfLines(int noOfLines) {
+		this.noOfLines = noOfLines;
+	}
+
+	public int getLineItem() {
+		return lineItem;
+	}
+
+	public void setLineItem(int lineItem) {
+		this.lineItem = lineItem;
+	}
+
+	public int getRcvQtyDue() {
+		return rcvQtyDue;
+	}
+
+	public void setRcvQtyDue(int rcvQtyDue) {
+		this.rcvQtyDue = rcvQtyDue;
+	}
+
+	public Map<String, ArrayList<String>> getTagIDMap() {
+		return tagIDMap;
+	}
+
+	public void setTagIDMap(Map<String, ArrayList<String>> tagIDMap) {
+		this.tagIDMap = tagIDMap;
+	}
+
+	public int getTagIdIndex() {
+		return tagIdIndex;
+	}
+
+	public void setTagIdIndex(int tagIdIndex) {
+		this.tagIdIndex = tagIdIndex;
+	}
+
+	public Map<String, Integer> getQtyReceivedPerTagMap() {
+		return qtyReceivedPerTagMap;
+	}
+
+	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
+		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
+	}
 
 	public String getName() {
 		return name;
@@ -206,22 +269,38 @@ public class Context {
 		this.address1 = address1;
 	}
 
-	public int getNoOfLines() {
-		return noOfLines;
+	public int getQtyReceivedPerTag() {
+		return qtyReceivedPerTag;
 	}
 
-	public void setNoOfLines(int noOfLines) {
-		this.noOfLines = noOfLines;
+	public void setQtyReceivedPerTag(int qtyReceivedPerTag) {
+		this.qtyReceivedPerTag = qtyReceivedPerTag;
 	}
 
-	public int getQtyReceivedfromPutty() {
-		return qtyReceivedfromPutty;
+	public String getCeWarehouseTax() {
+		return ceWarehouseTax;
 	}
 
-	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
-		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	public void setCEWarehouseTax(String ceWarehouseTax) {
+		this.ceWarehouseTax = ceWarehouseTax;
 	}
 
+	public String getConsignmentID() {
+		return consignmentID;
+	}
+
+	public void setConsignmentID(String consignmentID) {
+		this.consignmentID = consignmentID;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+	
 	public String getPalletType() {
 		return palletType;
 	}
@@ -231,20 +310,28 @@ public class Context {
 
 	}
 
-	public Map<String, Map<String, String>> getPurchaseOrderMap() {
-		return purchaseOrderMap;
-	}
-
-	public void setPurchaseOrderMap(Map<String, Map<String, String>> purchaseOrderMap) {
-		this.purchaseOrderMap = purchaseOrderMap;
-	}
-
 	public String getLockCode() {
 		return lockCode;
 	}
 
 	public void setLockCode(String lockCode) {
 		this.lockCode = lockCode;
+	}
+
+	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+		return purchaseOrderMap;
+	}
+
+	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+		this.purchaseOrderMap = purchaseOrderMap;
+	}
+
+	public String getVintage() {
+		return vintage;
+	}
+
+	public void setVintage(String vintage) {
+		this.vintage = vintage;
 	}
 
 	public Map<String, Map<String, String>> getstockTransferOrderMap() {
@@ -287,6 +374,7 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+<<<<<<< HEAD
 
 	public int getQtyReverse() {
 		return qtyReverse;
@@ -298,3 +386,6 @@ public class Context {
 	}
 
 }
+=======
+}
+>>>>>>> e44b301e155b6a0cf1f5044624a4e9d65a021311
