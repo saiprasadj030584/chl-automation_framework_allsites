@@ -1,7 +1,5 @@
 package com.jda.wms.pages.rdt;
 
-import java.io.IOException;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -16,24 +14,6 @@ public class PurchaseOrderReceivingPage {
 
 	@Inject
 	public PurchaseOrderReceivingPage() {
-	}
-
-	public void invokePutty() throws IOException, InterruptedException {
-		Runtime.getRuntime().exec("putty.exe");
-		Thread.sleep(2000);
-	}
-
-	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/HostName.png", timeoutInSec);
-		screen.click("images/Putty/HostName.png");
-		screen.type(host);
-		screen.type(Key.TAB);
-		screen.type(port);
-
-		screen.wait("images/Putty/Telnet.png", timeoutInSec);
-		screen.click("images/Putty/Telnet.png");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
 	}
 
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {

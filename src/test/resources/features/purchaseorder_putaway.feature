@@ -1,10 +1,10 @@
-@purchase_order
+@putaway
 Feature: Purchase order
   As a warehouse user
   I want to putaway the articles 
   So that I can complete the purchase order
 
-  @wip1
+  @complete
   Scenario Outline: Putaway process in JDA WMS
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the tag id should be received

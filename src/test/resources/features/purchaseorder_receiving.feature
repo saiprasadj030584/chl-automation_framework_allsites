@@ -1,4 +1,4 @@
-#@purchase_order
+@purchase_order
 Feature: Purchase order
   As a warehouse user
   I want to receive the articles 
