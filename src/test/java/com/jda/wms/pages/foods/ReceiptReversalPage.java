@@ -1,6 +1,7 @@
 package com.jda.wms.pages.foods;
 
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
@@ -37,14 +38,29 @@ public class ReceiptReversalPage {
 	}
 
 	public void enterQtyToReverse(int qtyReverse) throws FindFailed, InterruptedException {
-		Match mQtyToReverse = screen.find("images/ReceiptReversal/Reversals/QtyToReverse.png");
-		Thread.sleep(2000);
-		screen.click(mQtyToReverse.below(10));
+		// Match mQtyToReverse =
+		// screen.find("images/ReceiptReversal/Reversals/QtyToReverse.png");
+		// Thread.sleep(2000);
+		// screen.click(mQtyToReverse.below(10));
 		screen.type(Integer.toString(qtyReverse));
 		Thread.sleep(3000);
 	}
 
 	public void enterReasonCode(String reasonCode) throws FindFailed {
 		screen.type(reasonCode);
+	}
+
+	public void clickRecord() throws FindFailed, InterruptedException {
+		Match mReceiptId = screen.find("images/ReceiptReversal/ReceiptId.png");
+		Thread.sleep(2000);
+		screen.click(mReceiptId.below(10));
+		Thread.sleep(3000);
+
+		for (int i = 1; i <= 13; i++) {
+			// receiptReversalPage.scrollNext();
+			screen.type(Key.TAB);
+		}
+		Thread.sleep(1000);
+
 	}
 }
