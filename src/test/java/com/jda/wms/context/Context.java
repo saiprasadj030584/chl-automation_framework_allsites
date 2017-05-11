@@ -2,6 +2,7 @@ package com.jda.wms.context;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
@@ -22,12 +23,12 @@ public class Context {
 	private String supplierID;
 	private String expiryDate;
 	private int noOfLines;
-	private Map<String,Map<String,String>>purchaseOrderMap;
+	private Map<String, Map<String, String>> purchaseOrderMap;
 	private Map<String, ArrayList<String>> tagIDMap;
-	private int lineItem = 1; 
+	private int lineItem = 1;
 	private int rcvQtyDue;
 	private String location;
-	private int tagIdIndex =0 ;
+	private int tagIdIndex = 0;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
@@ -47,11 +48,7 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
-<<<<<<< HEAD
-	private String location;
 	private int qtyReverse;
-=======
->>>>>>> e44b301e155b6a0cf1f5044624a4e9d65a021311
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -188,7 +185,7 @@ public class Context {
 	public void setFutureExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	
+
 	public int getNoOfLines() {
 		return noOfLines;
 	}
@@ -300,7 +297,7 @@ public class Context {
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
-	
+
 	public String getPalletType() {
 		return palletType;
 	}
@@ -318,11 +315,11 @@ public class Context {
 		this.lockCode = lockCode;
 	}
 
-	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+	public Map<String, Map<String, String>> getPurchaseOrderMap() {
 		return purchaseOrderMap;
 	}
 
-	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+	public void setPurchaseOrderMap(Map<String, Map<String, String>> purchaseOrderMap) {
 		this.purchaseOrderMap = purchaseOrderMap;
 	}
 
