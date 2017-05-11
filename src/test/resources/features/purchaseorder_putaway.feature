@@ -7,7 +7,7 @@ Feature: Purchase order
   @complete
   Scenario Outline: Putaway process in JDA WMS
     Given I have logged in as warehouse user in JDA dispatcher food application
-    And the tag id should be received
+    And the pre advice id "<preAdviceId>" , "<Category>" , "<Status>" , "<Location>" and "Complete" should be received
     When I navigate to move task update and release all the tags for the SKU
     And I login as warehouse user in Putty with host "<Host>" and port "<Port>"
     And I select user directed option in main menu
@@ -20,5 +20,5 @@ Feature: Purchase order
     Then I should see the from location, to location and final location for the tag
 
     Examples: 
-      | Host                                    | Port  |
-      | hlxc0dc024.unix.marksandspencercate.com | 20139 |
+      | Host                                    | Port  | preAdviceId | Category | Status   | Location |
+      | hlxc0dc024.unix.marksandspencercate.com | 20139 |  8050004584 | Ambient  | Released | REC002   |

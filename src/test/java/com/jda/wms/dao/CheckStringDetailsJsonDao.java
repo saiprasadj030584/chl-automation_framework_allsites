@@ -16,4 +16,5 @@ public class CheckStringDetailsJsonDao {
 	public List<CheckString> getCheckStringDetails() throws DataException {
 		return Arrays.asList(jsonDataLoader.getData(CHECK_STRING_PATH, CheckString[].class));
 	}
+
 }

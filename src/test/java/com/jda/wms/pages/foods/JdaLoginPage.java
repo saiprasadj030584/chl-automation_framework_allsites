@@ -26,7 +26,6 @@ public class JdaLoginPage extends PageObject {
 	public void login() throws FindFailed, InterruptedException {
 		webDriver.manage().window().maximize();
 		webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
-		Thread.sleep(90000);
 
 		enterUsername();
 		enterPassword();

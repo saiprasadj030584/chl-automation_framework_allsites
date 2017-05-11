@@ -1,24 +1,25 @@
 package com.jda.wms.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.google.inject.Inject;
-import com.jda.wms.dataObject.CheckString;
-import com.jda.wms.exception.DataException;
+import org.openqa.selenium.WebDriver;
 
-public class GetDataFromJson {
+import com.google.inject.Inject;
+import com.jda.wms.exception.DataException;
+import com.jda.wms.pages.PageObject;
+
+public class GetDataFromJson extends PageObject {
 
 	private final CheckStringDetailsJsonDao checkStringDetailsJsonDao;
 
 	@Inject
-	public GetDataFromJson(CheckStringDetailsJsonDao checkStringDetailsJsonDao) {
+	public GetDataFromJson(WebDriver webDriver, CheckStringDetailsJsonDao checkStringDetailsJsonDao) {
+		super(webDriver);
 		this.checkStringDetailsJsonDao = checkStringDetailsJsonDao;
 	}
 
-
-	public void getCheckString() throws DataException {
-		List<CheckString> checkStringList = checkStringDetailsJsonDao.getCheckStringDetails();
+	public List<String> getCheckString() throws DataException {
+		return checkStringDetailsJsonDao.getCheckStringDetails().get(0).getCheckString();
 	}
 
 }
