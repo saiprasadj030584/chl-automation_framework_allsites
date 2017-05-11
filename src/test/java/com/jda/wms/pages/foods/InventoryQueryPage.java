@@ -292,7 +292,7 @@ public class InventoryQueryPage {
 		screen.click("images/InventoryQuery/GeneralTab.png");
 		Thread.sleep(1000);
 	}
-	
+
 	public String getLocationZone() throws FindFailed {
 		Match mLocationZone = screen.find("images/InventoryQuery/General/LocationZone.png");
 		screen.click(mLocationZone.getCenter().offset(70, 0));

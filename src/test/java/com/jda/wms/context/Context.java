@@ -1,7 +1,9 @@
 package com.jda.wms.context;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
 import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
@@ -22,12 +24,15 @@ public class Context {
 	private String supplierID;
 	private String expiryDate;
 	private int noOfLines;
-	private Map<String,Map<String,String>>purchaseOrderMap;
+	private Map<String, Map<String, String>> purchaseOrderMap;
 	private Map<String, ArrayList<String>> tagIDMap;
-	private int lineItem = 1; 
+	private int lineItem = 1;
 	private int rcvQtyDue;
 	private String location;
-	private int tagIdIndex =0 ;
+	private int tagIdIndex = 0;
+	private String locationZone;
+	private Map<String, String> locationPerTagMap;
+	private List<String> checkStrings;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
@@ -183,7 +188,7 @@ public class Context {
 	public void setFutureExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	
+
 	public int getNoOfLines() {
 		return noOfLines;
 	}
@@ -222,6 +227,22 @@ public class Context {
 
 	public void setTagIdIndex(int tagIdIndex) {
 		this.tagIdIndex = tagIdIndex;
+	}
+
+	public String getLocationZone() {
+		return locationZone;
+	}
+
+	public void setLocationZone(String locationZone) {
+		this.locationZone = locationZone;
+	}
+
+	public Map<String, String> getLocationPerTagMap() {
+		return locationPerTagMap;
+	}
+
+	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
+		this.locationPerTagMap = locationPerTagMap;
 	}
 
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
@@ -295,7 +316,7 @@ public class Context {
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
-	
+
 	public String getPalletType() {
 		return palletType;
 	}
@@ -313,11 +334,11 @@ public class Context {
 		this.lockCode = lockCode;
 	}
 
-	public Map<String,Map<String,String>> getPurchaseOrderMap() {
+	public Map<String, Map<String, String>> getPurchaseOrderMap() {
 		return purchaseOrderMap;
 	}
 
-	public void setPurchaseOrderMap(Map<String,Map<String,String>> purchaseOrderMap) {
+	public void setPurchaseOrderMap(Map<String, Map<String, String>> purchaseOrderMap) {
 		this.purchaseOrderMap = purchaseOrderMap;
 	}
 

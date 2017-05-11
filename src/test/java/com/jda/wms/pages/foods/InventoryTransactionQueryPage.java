@@ -118,17 +118,17 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public String getStatus() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
+	public String getUpdateQty() throws FindFailed {
+		Match mUpdateQty = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");
+		screen.click(mUpdateQty.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
-	public String getUpdateQty() throws FindFailed {
-		Match mUpdateQty = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");
-		screen.click(mUpdateQty.getCenter().offset(70, 0));
+	public String getStatus() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
@@ -184,14 +184,6 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public String getReference() throws FindFailed {
-		Match mReference = screen.find("images/InventoryTransactionQuery/Reference.png");
-		screen.click(mReference.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
 	public String getABV() throws FindFailed {
 		Match mABV = screen.find("images/InventoryTransactionQuery/ABV.png");
 		screen.click(mABV.getCenter().offset(70, 0));
@@ -220,12 +212,26 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 
+	public String getFinalLocation() throws FindFailed {
+		Match mToLocation = screen.find("images/InventoryTransactionQuery/General/FinalLocation.png");
+		screen.click(mToLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
 	public String getExpiryDate() throws FindFailed {
 		Match mExpiryDate = screen.find("images/InventoryTransactionQuery/Miscellaneous/ExpiryDate.png");
 		screen.click(mExpiryDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void navigateToUserDefinedTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/UserDefinedTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/UserDefinedTab.png");
+		Thread.sleep(2000);
 	}
 
 	public void enterCode(String code) throws FindFailed, InterruptedException {
@@ -325,30 +331,6 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public String getDescription() throws FindFailed {
-		Match mDescription = screen.find("images/InventoryTransactionQuery/General/Description.png");
-		screen.click(mDescription.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
-	public String getFromLocation() throws FindFailed {
-		Match mFromLocation = screen.find("images/InventoryTransactionQuery/General/FromLocation.png");
-		screen.click(mFromLocation.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
-	public String getToLocation() throws FindFailed {
-		Match mToLocation = screen.find("images/InventoryTransactionQuery/General/ToLocation.png");
-		screen.click(mToLocation.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
 	public String getUserId() throws FindFailed {
 		Match mUserId = screen.find("images/InventoryTransactionQuery/Miscellaneous/UserID.png");
 		screen.click(mUserId.getCenter().offset(70, 0));
@@ -360,22 +342,6 @@ public class InventoryTransactionQueryPage {
 	public String getWorkstation() throws FindFailed {
 		Match mWorkstation = screen.find("images/InventoryTransactionQuery/Miscellaneous/Workstation.png");
 		screen.click(mWorkstation.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
-	public String getRDTUserMode() throws FindFailed {
-		Match mRDTUserMode = screen.find("images/InventoryTransactionQuery/Miscellaneous/RDTUserMode.png");
-		screen.click(mRDTUserMode.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
-
-	public String getSupplier() throws FindFailed {
-		Match mSupplier = screen.find("images/InventoryTransactionQuery/Miscellaneous/Supplier.png");
-		screen.click(mSupplier.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
@@ -420,10 +386,10 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
 
 	public String getOriginatorReference() throws FindFailed {
-		Match mOriginatorReference = screen.find("images/InventoryTransactionQuery/Customs & Excise/OriginatorReference.png");
+		Match mOriginatorReference = screen
+				.find("images/InventoryTransactionQuery/Customs & Excise/OriginatorReference.png");
 		screen.click(mOriginatorReference.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -437,8 +403,8 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
-	public String getDocumentDate()throws FindFailed  {
+
+	public String getDocumentDate() throws FindFailed {
 		Match mDocumentDate = screen.find("images/InventoryTransactionQuery/Customs & Excise/DocumentDate.png");
 		screen.click(mDocumentDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
@@ -472,5 +438,53 @@ public class InventoryTransactionQueryPage {
 		screen.wait("images/InventoryTransactionQuery/UserDefined/Settings1Tab.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/UserDefined/Settings1Tab.png");
 		Thread.sleep(2000);
+	}
+
+	public String getDescription() throws FindFailed {
+		Match mDescription = screen.find("images/InventoryTransactionQuery/General/Description.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getSupplier() throws FindFailed {
+		Match mSupplier = screen.find("images/InventoryTransactionQuery/Miscellaneous/Supplier.png");
+		screen.click(mSupplier.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getRDTUserMode() throws FindFailed {
+		Match mRDTUserMode = screen.find("images/InventoryTransactionQuery/Miscellaneous/RDTUserMode.png");
+		screen.click(mRDTUserMode.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getFromLocation() throws FindFailed {
+		Match mFromLocation = screen.find("images/InventoryTransactionQuery/General/FromLocation.png");
+		screen.click(mFromLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getToLocation() throws FindFailed {
+		Match mToLocation = screen.find("images/InventoryTransactionQuery/General/ToLocation.png");
+		screen.click(mToLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+
+	public String getReference() throws FindFailed, InterruptedException {
+		Match status = screen.find("/images/InventoryTransactionQuery/Reference.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 }
