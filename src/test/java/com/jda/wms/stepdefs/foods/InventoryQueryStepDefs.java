@@ -1,5 +1,6 @@
 package com.jda.wms.stepdefs.foods;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -148,7 +149,7 @@ public class InventoryQueryStepDefs {
 
 	@Then("^I should see the location zone in inventory page$")
 	public void i_should_see_the_location_zone_in_inventory_page() throws Throwable {
-
+		ArrayList<String> failureList = new ArrayList<String>();
 		Map<String, String> locationTagMap = context.getLocationPerTagMap();
 
 		for (String tagId : locationTagMap.keySet()) {
@@ -163,9 +164,12 @@ public class InventoryQueryStepDefs {
 			jdaFooter.clickQueryButton();
 			inventoryQueryPage.enterTagId(tagId);
 			jdaFooter.clickExecuteButton();
+			String invLocationZone = inventoryQueryPage.getLocationZone();
 
-			// TODO do the assertion in the failureList array
-			Assert.assertEquals("Location Zone does not match", locationZone, inventoryQueryPage.getLocationZone());
+			if (!locationZone.equals(invLocationZone)) {
+				failureList.add("Location Zone does  not displayed as expected for" + tagId + ". Expected ["
+						+ locationZone + "] but was [" + invLocationZone + "]");
+			}
 		}
 	}
 }
