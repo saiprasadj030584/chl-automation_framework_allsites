@@ -240,7 +240,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 	}
 
 	public void navigateToPreAdviceHeaderPage() throws FindFailed, InterruptedException {
@@ -262,21 +262,37 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	
+	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice header maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 
 	public void enterTabKey() {
 		screen.type(Key.TAB);
 	}
 
-	public void navigateToPreAdviceLineMaintenance() throws FindFailed, InterruptedException {
+	public void navigateToAddressMaintenancePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Pre-advice line maintenance/query screen");
+		screen.type("Address");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 	}
 
+	public void navigateToCEConsignmentMaintenenacePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("C&E consignment maintenance");
+	}
+	
 	public void navigateToPickFaceMaintenance() throws InterruptedException, FindFailed {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -297,6 +313,26 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	public void navigateToConsignmentLinkingPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("C&E consignment linking");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToPreAdviceLineMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pre-advice line maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
 	public void navigateToOrderLineMaintenance() throws InterruptedException, FindFailed {
 		clickSearchIcon();
 		Thread.sleep(1000);

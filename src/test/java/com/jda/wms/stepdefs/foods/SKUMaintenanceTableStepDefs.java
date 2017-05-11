@@ -140,7 +140,7 @@ public class SKUMaintenanceTableStepDefs {
 		String cewarehousetype = sKUMaintenancePage.getCEWarehouseType();
 		context.setCEWarehouseType(cewarehousetype);
 		if ((context.getProductGroup().equalsIgnoreCase("F20")) || (context.getProductGroup().equalsIgnoreCase("F21"))
-				|| (context.getProductGroup().equalsIgnoreCase("F23"))) {
+				|| (context.getProductGroup().equalsIgnoreCase("F23"))||(context.getProductGroup().equalsIgnoreCase("F07"))) {
 			if (!cewarehousetype.equalsIgnoreCase("Excise")) {
 				failureList.add("C&E Warehouse Type is not displayed as expected for BWS. Expected [Excise] but was ["
 						+ cewarehousetype + "]");
@@ -164,7 +164,7 @@ public class SKUMaintenanceTableStepDefs {
 		// Validate C&E SKU check box
 		boolean isCESKUChecked = sKUMaintenancePage.isCESKUChecked();
 		if ((context.getProductGroup().equalsIgnoreCase("F20")) || (context.getProductGroup().equalsIgnoreCase("F21"))
-				|| (context.getProductGroup().equalsIgnoreCase("F23"))) {
+				|| (context.getProductGroup().equalsIgnoreCase("F23"))||(context.getProductGroup().equalsIgnoreCase("F07"))) {
 			if (!isCESKUChecked) {
 				failureList
 						.add("C&E SKU is not displayed as expected for BWS. Expected [Checked] but was [Not Checked]");
