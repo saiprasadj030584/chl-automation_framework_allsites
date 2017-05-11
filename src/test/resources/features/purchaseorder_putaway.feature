@@ -6,32 +6,19 @@ Feature: Purchase order
 
   @wip1
   Scenario Outline: Putaway process in JDA WMS
-    Given the tag id should be received
-    When I login as warehouse user in Putty with host "<Host>" and port "<Port>"
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And the tag id should be received
+    When I navigate to move task update and release all the tags for the SKU
+    And I login as warehouse user in Putty with host "<Host>" and port "<Port>"
     And I select user directed option in main menu
     And I select normal putaway
-    And I enter the tag and check string
-    Then I should see the location zone
-    
+    And I do putaway for all the tags
+    Then I should be directed to putent page
+    When I naviagate to inventory query page
+    Then I should see the location zone in inventory page
+    When I navigate to inventory transaction query page
+    Then I should see the from location, to location and final location for the tag
+
     Examples: 
       | Host                                    | Port  |
-      | hlxc0dc024.unix.marksandspencercate.com | 20139 | 
-      
-      
-     #Given the tag id should be received
-    #When I navigate to move task update
-    #And I relase the tag
-    #Then the tag id should be released
-    #When I login as warehouse user in Putty with host "<Host>Move Task Update" and port "<Port>"
-    #And I select user directed option in main menu
-    #And I select normal putaway
-    #And I enter the tag and check string
-    #And I proceed to complete
-    #Then I should be directed to putent page
-    #When I navigate to location page
-    #Then I should see the location zone
-    #When I naviagate to inventory query page
-    #Then I should see the location zone in inventory page
-    #When I navigate to inventory transaction query page
-    #Then I should see the from location, to location and final location for the tag
-    #And I should see the uploaded status and uploaded file in the miscellaneous2 tab
+      | hlxc0dc024.unix.marksandspencercate.com | 20139 |

@@ -1,8 +1,10 @@
 package com.jda.wms.context;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jda.wms.pages.foods.RDTTask;
 
 public class Context {
@@ -30,6 +32,7 @@ public class Context {
 	private int tagIdIndex =0 ;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
+	private List<String> checkStrings;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -221,5 +224,13 @@ public class Context {
 
 	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
 		this.locationPerTagMap = locationPerTagMap;
+	}
+	
+	public List<String> getCheckString() {
+		return checkStrings;
+	}
+
+	public void setCheckString(List<String> checkStrings) {
+		this.checkStrings = checkStrings;
 	}
 }

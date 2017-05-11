@@ -25,16 +25,22 @@ public class MoveTaskUpdatePage {
 	}
 
 	public void enterTagId(String tagId) throws FindFailed {
-		jdaHomePage.enterTabKey();
-		jdaHomePage.enterTabKey();
+		screen.wait("images/MoveTaskUpdate/TagId.png", timeoutInSec);
+		screen.click("images/MoveTaskUpdate/TagId.png");
+		screen.type("a", Key.CTRL);
+		screen.type(Key.DELETE);
 		screen.type(tagId);
 	}
-	
+
 	public String getCheckString() throws FindFailed {
 		Match mStatus = screen.find("images/Location/CheckString.png");
 		screen.click(mStatus.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void enterLocation(String location) throws FindFailed {
+		screen.type(location);
 	}
 }

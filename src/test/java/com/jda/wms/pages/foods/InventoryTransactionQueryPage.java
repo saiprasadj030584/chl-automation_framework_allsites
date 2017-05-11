@@ -113,8 +113,6 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		}
 	}
 
-	
-
 	public String getOriginalQty() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/General/OriginalQty.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
@@ -122,9 +120,25 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public String getDescription() throws FindFailed {
+		Match mDescription = screen.find("images/InventoryTransactionQuery/Description.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 
-	public String getStatus() throws FindFailed, InterruptedException {
+	public String getLockStatus() throws FindFailed, InterruptedException {
 		Match status = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	public String getReference() throws FindFailed, InterruptedException {
+		Match status = screen.find("/images/InventoryTransactionQuery/Reference.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -148,6 +162,22 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 	public String getReasonCode() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/Miscellaneous/ReasonCode.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	public String getSupplier() throws FindFailed {
+		Match mSupplier = screen.find("images/InventoryTransactionQuery/Miscellaneous/Supplier.png");
+		screen.click(mSupplier.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	public String getRDTUserMode() throws FindFailed {
+		Match mSupplier = screen.find("images/InventoryTransactionQuery/Miscellaneous/RDTUserMode.png");
+		screen.click(mSupplier.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
@@ -225,4 +255,19 @@ public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public void navigateToUserDefinedTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/UserDefinedTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/UserDefinedTab.png");
+		Thread.sleep(2000);
+	}
+	
+	public String getABV() throws FindFailed {
+		Match mToLocation = screen.find("images/InventoryTransactionQuery/UserDefined/ABV.png");
+		screen.click(mToLocation.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 }

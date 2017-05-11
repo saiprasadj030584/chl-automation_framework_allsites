@@ -1,6 +1,5 @@
 package com.jda.wms.pages.rdt;
 
-import java.awt.Robot;
 import java.io.IOException;
 
 import org.sikuli.script.App;
@@ -11,10 +10,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
-import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Environment;
-
 public class PurchaseOrderReceivingPage {
-	private Robot robot;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
@@ -23,7 +19,7 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void invokePutty() throws IOException, InterruptedException {
-		Process putty = Runtime.getRuntime().exec("putty.exe");
+		Runtime.getRuntime().exec("putty.exe");
 		Thread.sleep(2000);
 	}
 
@@ -85,7 +81,7 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(8000);
 	}
-	
+
 	public String getPreAdvId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
 		screen.click(mStatus.below(10));
