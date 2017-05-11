@@ -1,6 +1,7 @@
 package com.jda.wms.context;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.jda.wms.pages.foods.RDTTask;
@@ -29,6 +30,9 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
+	private String locationZone;
+	private Map<String, String> locationPerTagMap;
+	private List<String> checkStrings;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
@@ -224,6 +228,22 @@ public class Context {
 
 	public void setTagIdIndex(int tagIdIndex) {
 		this.tagIdIndex = tagIdIndex;
+	}
+
+	public String getLocationZone() {
+		return locationZone;
+	}
+
+	public void setLocationZone(String locationZone) {
+		this.locationZone = locationZone;
+	}
+
+	public Map<String, String> getLocationPerTagMap() {
+		return locationPerTagMap;
+	}
+
+	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
+		this.locationPerTagMap = locationPerTagMap;
 	}
 
 	public Map<String, Integer> getQtyReceivedPerTagMap() {

@@ -13,6 +13,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
+import com.jda.wms.pages.foods.LocationPage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
@@ -24,17 +25,19 @@ public class InventoryQueryStepDefs {
 	private final InventoryQueryPage inventoryQueryPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
+	private final LocationPage locationPage;
 	private final Context context;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
-	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, Context context,
-			JdaHomePage jdaHomePage) {
+	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, LocationPage locationPage,
+			Context context, JdaHomePage jdaHomePage) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
+		this.locationPage = locationPage;
 		this.context = context;
 	}
 
@@ -158,6 +161,33 @@ public class InventoryQueryStepDefs {
 		String caseRatio = inventoryQueryPage.getcaseRatio();
 		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
 		logger.debug("Case Ratio: " + caseRatio);
+	}
+
+	@Then("^I should see the location zone in inventory page$")
+
+	public void i_should_see_the_location_zone_in_inventory_page() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		Map<String, String> locationTagMap = context.getLocationPerTagMap();
+
+		for (String tagId : locationTagMap.keySet()) {
+			jdaHomePage.navigateToLocationPage();
+			String location = locationTagMap.get(tagId);
+			jdaFooter.clickQueryButton();
+			locationPage.enterLocation(location);
+			jdaFooter.clickExecuteButton();
+			String locationZone = locationPage.getLocationZone();
+
+			jdaHomePage.navigateToInventoryQueryPage();
+			jdaFooter.clickQueryButton();
+			inventoryQueryPage.enterTagId(tagId);
+			jdaFooter.clickExecuteButton();
+			String invLocationZone = inventoryQueryPage.getLocationZone();
+
+			if (!locationZone.equals(invLocationZone)) {
+				failureList.add("Location Zone does  not displayed as expected for" + tagId + ". Expected ["
+						+ locationZone + "] but was [" + invLocationZone + "]");
+			}
+		}
 	}
 
 	@Given("^I have SKU id, product group and ABV for the tag id \"([^\"]*)\"$")
