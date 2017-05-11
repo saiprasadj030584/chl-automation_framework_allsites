@@ -1,11 +1,8 @@
 package com.jda.wms.stepdefs.foods;
 
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
-
 import com.google.inject.Inject;
 import com.jda.wms.pages.foods.JdaHomePage;
-import cucumber.api.java.en.*;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -43,17 +40,12 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to address maintenance page$")
 	public void i_navigate_to_address_maintenance_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverGeneral();
-		jdaHomePage.hoverSetup();
-		jdaHomePage.clickAddress();
-		Thread.sleep(5000);
+		jdaHomePage.navigateToAddressMaintenancePage();
 	}
 
 	@Given("^I am on pack config maintenance page$")
 	public void i_am_on_pack_config_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToPackConfigPage();
-
 	}
 
 	@Given("^I am on to pre-advice header maintenance page$")
@@ -107,8 +99,19 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToPreAdviceLineMaintenance();
 	}
 
+	@When("^I navigate to receipt reversal page$")
+	public void i_navigate_to_receipt_reversal_page() throws Throwable {
+		jdaHomePage.navigateToReceiptReversalPage();
+	}
+
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToPickFaceMaintenance();
 	}
+
+	@Given("^I navigate to order Line Maintenance Page$")
+	public void i_navigate_to_order_Line_Maintenance_Page() throws Throwable {
+		jdaHomePage.navigateToOrderLineMaintenance();
+	}
+
 }

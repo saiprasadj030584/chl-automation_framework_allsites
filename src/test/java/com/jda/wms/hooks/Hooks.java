@@ -37,8 +37,6 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-
-
 	// @After()
 	public void tearDown(Scenario scenario) {
 
@@ -55,7 +53,7 @@ public class Hooks {
 		}
 	}
 
-	// @After()
+	// @After("@purchase_order")
 	public void logoutPutty() throws FindFailed, InterruptedException {
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);

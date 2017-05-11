@@ -8,8 +8,13 @@ public class Utilities {
 		return (int) Double.parseDouble(stringToConvert);
 	}
 
-	public static int getTenDigitRandomNumber() {
-		Random r = new Random();
-		return r.nextInt(r.nextInt(100000000) + 999999999);
+	public static String getTenDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(9000000) + 1000000000);
+	}
+
+	public static String getEightDigitRAndomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(9000000) + 10000000);
 	}
 }

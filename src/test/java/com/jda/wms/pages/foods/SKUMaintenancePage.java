@@ -204,6 +204,12 @@ public class SKUMaintenancePage {
 		else
 			return false;
 	}
+
+	public void clicksettings1Tab() throws InterruptedException, FindFailed {
+		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
+		screen.click("images/SKUMaintenanceTable/Settings1.png");
+		Thread.sleep(2000);
+	}
 	
 	public boolean isCurrentVintage(String currentVintage) {
 		if (!currentVintage.equals(null))
@@ -232,5 +238,4 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
-
 }

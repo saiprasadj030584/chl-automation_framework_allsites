@@ -159,6 +159,10 @@ public class OrderHeaderMaintenanceStepDefs {
 			failureList.add("Delivery By Time From User Defined  tab is not as expected. Expected [Not NULL] but was ["
 					+ deliverybydatefromuserdefinedtab + "]");
 		}
+		String ifosordernum = orderHeaderMaintenancePage.getIfosOrderNum();
+		if (ifosordernum.equals(null)) {
+			failureList.add("Ifos Order Num is not as expected. Expected [Not NULL] but was [" + ifosordernum + "]");
+		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

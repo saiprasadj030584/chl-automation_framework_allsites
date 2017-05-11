@@ -249,7 +249,7 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.click("images/OrderHeaderMaintenance/HubAddres.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public String getHub() throws FindFailed {
 		Match mDescription = screen.find("images/OrderHeaderMaintenance/HubAddress/Hub.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
@@ -257,6 +257,7 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
 	public String getHubName() throws FindFailed {
 		Match mDescription = screen.find("images/OrderHeaderMaintenance/HubAddress/HubName.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
