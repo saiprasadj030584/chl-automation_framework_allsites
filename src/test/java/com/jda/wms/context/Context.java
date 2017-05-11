@@ -374,7 +374,6 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-<<<<<<< HEAD
 
 	public int getQtyReverse() {
 		return qtyReverse;
@@ -386,6 +385,3 @@ public class Context {
 	}
 
 }
-=======
-}
->>>>>>> e44b301e155b6a0cf1f5044624a4e9d65a021311

@@ -82,9 +82,17 @@ public class ReceiptReversalStepDefs {
 		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio",
 				qtyReverse % context.getCaseRatio() == 0);
 
-		receiptReversalPage.clickRecord();
-		receiptReversalPage.enterQtyToReverse(qtyReverse);
-		jdaFooter.clickNextButton();
+		receiptReversalPage.scrollNext();
+		for (int i = 1; i <= 3; i++) {
+			boolean qtyToReverse = receiptReversalPage.isQtyToReverseExists();
+			if (qtyToReverse == true) {
+				// receiptReversalPage.clickRecord();
+				receiptReversalPage.enterQtyToReverse(qtyReverse);
+				jdaFooter.clickNextButton();
+			} else {
+				receiptReversalPage.scrollNext();
+			}
+		}
 	}
 
 	@When("^I proceed to reverse the quantity$")

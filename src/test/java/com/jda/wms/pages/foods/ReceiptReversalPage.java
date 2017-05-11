@@ -63,4 +63,12 @@ public class ReceiptReversalPage {
 		Thread.sleep(1000);
 
 	}
+
+	public boolean isQtyToReverseExists() throws FindFailed {
+		if (!screen.find("images/ReceiptReversal/QtyToReverse.png").equals(null)) {
+			return true;
+		} else
+			return false;
+
+	}
 }
