@@ -65,7 +65,9 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
-		if (screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)
+				|| (screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null))
 			return true;
 		else
 			return false;
@@ -73,13 +75,13 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
 		screen.type(skuID);
 		screen.type(Key.ENTER);
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 	}
 
 	public String getPreAdvId() throws FindFailed, InterruptedException {
@@ -131,19 +133,9 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterExpiryDate(String expDate) throws InterruptedException {
-		screen.type(Key.TAB);
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
 		screen.type(expDate);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-	}
-
-	public boolean isMainMenuDisplayed() {
-		if (screen.exists("images/Putty/MainMenu.png") != null)
-			return true;
-		else
-			return false;
 	}
 
 	public boolean isUserMenuDisplayed() {
@@ -181,22 +173,6 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/Username.png", timeoutInSec);
-		screen.type(username);
-		screen.type(Key.TAB);
-		screen.type(pwd);
-		screen.type(Key.ENTER);
-		Thread.sleep(4000);
-	}
-
-	public boolean isLoginScreenDisplayed() {
-		if (screen.exists("images/Putty/Username.png") != null)
-			return true;
-		else
-			return false;
-	}
-
 	public String getSKUId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/SKUDisplayed.png");
 		screen.click(mStatus.getCenter().offset(50, 0));
@@ -207,4 +183,25 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
+	public void pressTab() throws InterruptedException {
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void enterVintage(String vintage) throws InterruptedException {
+		screen.type(vintage);
+		Thread.sleep(1000);
+	}
+
+	public void enterABV(String abv) throws InterruptedException {
+		screen.type(abv);
+		Thread.sleep(1000);
+	}
+
+	public boolean isNoValidPreAdviceDisplayed() {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

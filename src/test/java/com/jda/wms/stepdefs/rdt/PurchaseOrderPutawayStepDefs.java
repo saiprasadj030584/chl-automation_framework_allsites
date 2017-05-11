@@ -8,15 +8,12 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.dataObject.CheckString;
 import com.jda.wms.pages.foods.InventoryQueryPage;
-import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
-import com.jda.wms.pages.foods.LocationPage;
 import com.jda.wms.pages.foods.MoveTaskUpdatePage;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
-import com.jda.wms.stepdefs.foods.JDALoginStepDefs;
+import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -28,7 +25,7 @@ public class PurchaseOrderPutawayStepDefs {
 	private final MoveTaskUpdatePage moveTaskUpdate;
 	private final JDAFooter jdaFooter;
 	private final PurchaseOrderPutawayPage purchaseOrderPutawayPage;
-	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	private final PuttyFunctionsPage puttyFunctionsPage;
 
 	private Context context;
 	String tagId = null;
@@ -38,18 +35,15 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, InventoryQueryPage inventoryQueryPage,
-			MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,
-			PurchaseOrderPutawayPage purchaseOrderPutawayPage,
-			InventoryTransactionQueryPage inventoryTransactionQueryPage, JDALoginStepDefs jdaLoginStepDefs,
-			Context context, LocationPage locationPage, CheckString checkString) {
+			MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter, PurchaseOrderPutawayPage purchaseOrderPutawayPage,
+			Context context, PuttyFunctionsPage puttyFunctionsPage) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
-		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	@Given("^the tag id should be received$")
@@ -95,7 +89,7 @@ public class PurchaseOrderPutawayStepDefs {
 					context.setTagId(tagId);
 
 					jdaFooter.clickQueryButton();
-					inventoryQueryPage.searchTagId(context.getTagId());
+					inventoryQueryPage.enterTagId(context.getTagId());
 					jdaFooter.clickExecuteButton();
 
 					Assert.assertEquals("Location Zone does not match", "INBOUND",
@@ -147,7 +141,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I login as warehouse user in Putty with host \"([^\"]*)\" and port \"([^\"]*)\"$")
 	public void i_login_as_warehouse_user_in_Putty_with_host_and_port(String host, String port) throws Throwable {
-		purchaseOrderReceivingStepDefs.i_have_logged_in_as_warehouse_user_in_Putty_with_host_and_port(host, port);
+		puttyFunctionsPage.loginPutty(host, port);
 	}
 
 	@When("^I select normal putaway$")

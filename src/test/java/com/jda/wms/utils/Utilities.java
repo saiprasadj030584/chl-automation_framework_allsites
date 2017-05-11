@@ -9,12 +9,12 @@ public class Utilities {
 	}
 
 	public static String getTenDigitRandomNumber() {
-//		Random r = new Random();
-//		int r1 = r.nextInt(100000000) + 999999999;
-//		int r2 = r.nextInt(r.nextInt(10) + 9);
-//		return (String.valueOf(r1)+String.valueOf(r2));
-		
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000000) + 1000000000);
+	}
+
+	public static String getEightDigitRAndomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(9000000) + 10000000);
 	}
 }

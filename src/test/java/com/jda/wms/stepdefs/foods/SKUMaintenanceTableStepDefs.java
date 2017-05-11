@@ -128,7 +128,7 @@ public class SKUMaintenanceTableStepDefs {
 
 	@When("^I navigate to customs & excise tab$")
 	public void i_navigate_to_customs_excise_tab() throws Throwable {
-		sKUMaintenancePage.navigateToCustomsAndExcise();
+		sKUMaintenancePage.clickCustomsAndExcise();
 	}
 
 	@Then("^the C&E warehouse type, C&E VAT code, C&E SKU, C&E alcoholic strength fields should be displayed$")
@@ -140,7 +140,7 @@ public class SKUMaintenanceTableStepDefs {
 		String cewarehousetype = sKUMaintenancePage.getCEWarehouseType();
 		context.setCEWarehouseType(cewarehousetype);
 		if ((context.getProductGroup().equalsIgnoreCase("F20")) || (context.getProductGroup().equalsIgnoreCase("F21"))
-				|| (context.getProductGroup().equalsIgnoreCase("F23"))) {
+				|| (context.getProductGroup().equalsIgnoreCase("F23"))||(context.getProductGroup().equalsIgnoreCase("F07"))) {
 			if (!cewarehousetype.equalsIgnoreCase("Excise")) {
 				failureList.add("C&E Warehouse Type is not displayed as expected for BWS. Expected [Excise] but was ["
 						+ cewarehousetype + "]");
@@ -164,7 +164,7 @@ public class SKUMaintenanceTableStepDefs {
 		// Validate C&E SKU check box
 		boolean isCESKUChecked = sKUMaintenancePage.isCESKUChecked();
 		if ((context.getProductGroup().equalsIgnoreCase("F20")) || (context.getProductGroup().equalsIgnoreCase("F21"))
-				|| (context.getProductGroup().equalsIgnoreCase("F23"))) {
+				|| (context.getProductGroup().equalsIgnoreCase("F23"))||(context.getProductGroup().equalsIgnoreCase("F07"))) {
 			if (!isCESKUChecked) {
 				failureList
 						.add("C&E SKU is not displayed as expected for BWS. Expected [Checked] but was [Not Checked]");
@@ -224,7 +224,7 @@ public class SKUMaintenanceTableStepDefs {
 
 	@When("^I navigate to user defined tab$")
 	public void i_navigate_to_user_defined_tab() throws Throwable {
-		sKUMaintenancePage.navigateToUserDefined();
+		sKUMaintenancePage.clickUserDefined();
 	}
 
 	@Then("^the base UOM, SAP creation status should be displayed$")
@@ -271,5 +271,4 @@ public class SKUMaintenanceTableStepDefs {
 	public void the_product_allocation_group_field_should_be_displayed() throws Throwable {
 		Assert.assertEquals("Allocation grouo does not match", "EXPIRY", sKUMaintenancePage.getAllocationGroup());
 		}
-	
 }

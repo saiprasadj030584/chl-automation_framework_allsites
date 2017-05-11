@@ -16,10 +16,11 @@ public class PackConfigMaintenancePage {
 	public PackConfigMaintenancePage() {
 	}
 
-	public void enterPackConfigId(String packConfigId) throws FindFailed {
-		screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		screen.click("/images/JDASupplierSKU/SKU.png");
+	public void enterPackConfigId(String packConfigId) throws FindFailed, InterruptedException {
+		screen.wait("images/JDAPackConfig/PackConfig.png", timeoutInSec);
+		screen.click("images/JDAPackConfig/PackConfig.png");
 		screen.type(packConfigId);
+		Thread.sleep(1000);
 	}
 
 	public String getTagVolume() throws FindFailed {
@@ -87,5 +88,19 @@ public class PackConfigMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+	
+	public String getRatio2To3() throws FindFailed {
+		Match mRatio = screen.find("/images/JDAPackConfig/Tracking Level/Ratio2to3.png");
+		screen.click(mRatio.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	public void clickGeneraltab() throws FindFailed, InterruptedException {
+		screen.wait("/images/JDAPackConfig/General.png", timeoutInSec);
+		screen.click("/images/JDAPackConfig/General.png");
+		Thread.sleep(2000);
 	}
 }

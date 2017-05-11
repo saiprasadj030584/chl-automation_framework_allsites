@@ -5,15 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.pages.PageObject;
 
 public class JdaLoginPage extends PageObject {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
 	WebElement webElement;
 	private final WebDriver webDriver;
 	private final Configuration configuration;
@@ -37,7 +34,16 @@ public class JdaLoginPage extends PageObject {
 		Thread.sleep(5000);
 	}
 
-	private void enterUsername() throws FindFailed {
+	private void enterUsername() throws FindFailed, InterruptedException {
+		int waitTime = 15;
+		do {
+			if (screen.exists("images/JDALogin/username.png") != null) {
+				break;
+			}
+			Thread.sleep(15000);
+			waitTime = waitTime + 15;
+		} while (waitTime < 120);
+
 		screen.wait("images/JDALogin/username.png", 20);
 		screen.click("images/JDALogin/username.png", 25);
 		screen.type(configuration.getStringProperty("username"));

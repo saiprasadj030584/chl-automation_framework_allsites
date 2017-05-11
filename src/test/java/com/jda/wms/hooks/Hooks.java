@@ -8,7 +8,9 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -35,8 +37,9 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@After()
+	// @After()
 	public void tearDown(Scenario scenario) {
+
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
@@ -50,7 +53,7 @@ public class Hooks {
 		}
 	}
 
-	// @After()
+	// @After("@purchase_order")
 	public void logoutPutty() throws FindFailed, InterruptedException {
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
@@ -78,7 +81,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-//	@After
+	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);

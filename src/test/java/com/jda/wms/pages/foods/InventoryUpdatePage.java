@@ -15,11 +15,9 @@ public class InventoryUpdatePage {
 	int timeoutInSec = 20;
 	Region reg = new Region(0, 0, 4000, 1000);
 	Screen screen = new Screen();
-	private final JDAFooter jdaFooter;
 
 	@Inject
-	public InventoryUpdatePage(JDAFooter jdaFooter) {
-		this.jdaFooter = jdaFooter;
+	public InventoryUpdatePage() {
 	}
 
 	public void selectType(String selectType) throws FindFailed, InterruptedException {
@@ -57,6 +55,15 @@ public class InventoryUpdatePage {
 		Thread.sleep(2000);
 	}
 
+	public void enterABV(String abv) throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
+		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
+		Thread.sleep(5000);
+		screen.wait("images/InventoryUpdate/Finish/ABVCheck.png", timeoutInSec);
+		screen.click("images/InventoryUpdate/Finish/ABVCheck.png");
+		screen.type(abv);
+	}
+
 	public Boolean isHomePage() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/Start/SelectType.png") != null) {
 			return true;
@@ -78,6 +85,15 @@ public class InventoryUpdatePage {
 	}
 
 	public void selectReasonCode(String reasonCode) throws FindFailed {
+		screen.type(Key.TAB);
+		// screen.type(Key.TAB);
 		screen.type(reasonCode);
+	}
+
+	public void enterReasonCode(String reasonCode) throws FindFailed {
+		Match status = screen.find("images/InventoryUpdate/Finish/ReasonCode.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type(reasonCode);
+		screen.type(Key.ENTER);
 	}
 }
