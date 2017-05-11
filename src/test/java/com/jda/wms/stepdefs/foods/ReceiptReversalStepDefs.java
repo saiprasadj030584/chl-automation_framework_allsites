@@ -83,10 +83,9 @@ public class ReceiptReversalStepDefs {
 				qtyReverse % context.getCaseRatio() == 0);
 
 		receiptReversalPage.scrollNext();
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 0; i < 2; i++) {
 			boolean qtyToReverse = receiptReversalPage.isQtyToReverseExists();
 			if (qtyToReverse == true) {
-				// receiptReversalPage.clickRecord();
 				receiptReversalPage.enterQtyToReverse(qtyReverse);
 				jdaFooter.clickNextButton();
 			} else {

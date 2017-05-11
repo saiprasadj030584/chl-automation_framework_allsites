@@ -463,7 +463,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public boolean isRecordsExists() throws FindFailed {
-		if (screen.exists("images/InventoryTransactionQuery/NoRecords.png") != null)
+		if (screen.find("images/InventoryTransactionQuery/NoRecords.png").equals(null))
 			return true;
 		else
 			return false;

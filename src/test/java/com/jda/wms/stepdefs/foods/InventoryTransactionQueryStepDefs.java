@@ -512,15 +512,11 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jdaFooter.clickExecuteButton();
 
-		boolean isRecord = inventoryTransactionQueryPage.isRecordsExists();
-		Thread.sleep(2000);
-		if (isRecord == true) {
-			logger.debug("Records not present");
-		} else {
-			int qtyToReverse = context.getQtyReverse();
-			Assert.assertEquals("Update Qty is not as expected", "-" + qtyToReverse,
-					inventoryTransactionQueryPage.getUpdateQty());
-		}
+		Assert.assertTrue("Record is not present in ITL screen", inventoryTransactionQueryPage.isRecordsExists());
+
+		int qtyToReverse = context.getQtyReverse();
+		Assert.assertEquals("Update Qty is not as expected", "-" + qtyToReverse,
+				inventoryTransactionQueryPage.getUpdateQty());
 	}
 
 	@Then("^the uploaded filename should be displayed$")
