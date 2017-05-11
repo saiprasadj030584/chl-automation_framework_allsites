@@ -32,58 +32,59 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_bulk_pick_order_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String status) throws Throwable {
+			String actualstatus) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status1 = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status1);
-		if (!status1.equals(status1)) {
-			failureList.add("Status is not as expected. Expected [" + status1 + "] but was [" + status1 + "]");
+		String status = orderHeaderMaintenancePage.getStatus();
+		System.out.println(status);
+		if (!status.equals(actualstatus)) {
+			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
 		}
 
-		String orderdate = orderHeaderMaintenancePage.getOrderDate();
-		if (orderdate.equals(null)) {
-			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderdate + "]");
+		String orderDate = orderHeaderMaintenancePage.getOrderDate();
+		if (orderDate.equals(null)) {
+			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderDate + "]");
 		}
 
-		String createdby = orderHeaderMaintenancePage.getCreatedBy();
-		if (createdby.equals(null)) {
-			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdby + "]");
+		String createdBy = orderHeaderMaintenancePage.getCreatedBy();
+		if (createdBy.equals(null)) {
+			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdBy + "]");
 		}
 
-		String ordertime = orderHeaderMaintenancePage.getOrderTime();
-		if (ordertime.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + ordertime + "]");
+		String orderTime = orderHeaderMaintenancePage.getOrderTime();
+		if (orderTime.equals(null)) {
+			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + orderTime + "]");
 		}
 
-		String creationdate = orderHeaderMaintenancePage.getCreationDate();
-		if (creationdate.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + creationdate + "]");
+		String creationDate = orderHeaderMaintenancePage.getCreationDate();
+		if (creationDate.equals(null)) {
+			failureList.add("Creation Date is not as expected. Expected [Not NULL] but was [" + creationDate + "]");
 		}
-		String creationtime = orderHeaderMaintenancePage.getCreationTime();
-		if (creationtime.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + creationtime + "]");
+		String creationTime = orderHeaderMaintenancePage.getCreationTime();
+		if (creationTime.equals(null)) {
+			failureList.add("Creation Time  is not as expected. Expected [Not NULL] but was [" + creationTime + "]");
 		}
 
-		String movetaskstatus = orderHeaderMaintenancePage.getMoveTaskStatus();
-		if (movetaskstatus.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + movetaskstatus + "]");
+		String moveTaskStatus = orderHeaderMaintenancePage.getMoveTaskStatus();
+		if (moveTaskStatus.equals(null)) {
+			failureList
+					.add("Move Task Status is not as expected. Expected [Not NULL] but was [" + moveTaskStatus + "]");
 		}
-		String fromsiteId = orderHeaderMaintenancePage.getFromSiteId();
-		if (fromsiteId.equals(null)) {
-			failureList.add(" From SiteId is not as expected. Expected [Not NULL] but was [" + fromsiteId + "]");
+		String fromSiteId = orderHeaderMaintenancePage.getFromSiteId();
+		if (fromSiteId.equals(null)) {
+			failureList.add("From SiteId is not as expected. Expected [Not NULL] but was [" + fromSiteId + "]");
 		}
 		String type = orderHeaderMaintenancePage.getType();
 		if (!type.equals("RDC")) {
 			failureList.add("Type is not as expected. Expected [RDC] but was [" + type + "]");
 		}
-		String numberoflines = orderHeaderMaintenancePage.getNumberOfLines();
-		if (numberoflines.equals(null)) {
-			failureList.add(" Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberoflines + "]");
+		String numberOfLines = orderHeaderMaintenancePage.getNumberOfLines();
+		if (numberOfLines.equals(null)) {
+			failureList.add("Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
@@ -102,15 +103,15 @@ public class OrderHeaderMaintenanceStepDefs {
 		}
 		String name = orderHeaderMaintenancePage.getName();
 		if (name.equals(null)) {
-			failureList.add(" Name is not as expected. Expected [Not NULL] but was [" + name + "]");
+			failureList.add("Name is not as expected. Expected [Not NULL] but was [" + name + "]");
 		}
 		String address1 = orderHeaderMaintenancePage.getAddress1();
 		if (address1.equals(null)) {
-			failureList.add(" Address1 is not as expected. Expected [Not NULL] but was [" + address1 + "]");
+			failureList.add("Address1 is not as expected. Expected [Not NULL] but was [" + address1 + "]");
 		}
 		String country = orderHeaderMaintenancePage.getCountry();
 		if (country.equals(null)) {
-			failureList.add(" Country is not as expected. Expected [Not NULL] but was [" + country + "]");
+			failureList.add("Country is not as expected. Expected [Not NULL] but was [" + country + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
@@ -122,46 +123,46 @@ public class OrderHeaderMaintenanceStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickDeliveryDetailsTab();
 
-		String shipbydate = orderHeaderMaintenancePage.getShipByDate();
-		if (shipbydate.equals(null)) {
-			failureList.add("Ship By Date is not as expected. Expected [Not NULL] but was [" + shipbydate + "]");
+		String shipByDate = orderHeaderMaintenancePage.getShipByDate();
+		if (shipByDate.equals(null)) {
+			failureList.add("Ship By Date is not as expected. Expected [Not NULL] but was [" + shipByDate + "]");
 		}
-		String shipbytime = orderHeaderMaintenancePage.getShipByTime();
-		if (shipbytime.equals(null)) {
-			failureList.add("Ship By Time is not as expected. Expected [Not NULL] but was [" + shipbytime + "]");
+		String shipByTime = orderHeaderMaintenancePage.getShipByTime();
+		if (shipByTime.equals(null)) {
+			failureList.add("Ship By Time is not as expected. Expected [Not NULL] but was [" + shipByTime + "]");
 		}
-		String deliverybytimefromdeliverydetailstab = orderHeaderMaintenancePage
+		String deliveryByTimeFromDeliveryDetailsTab = orderHeaderMaintenancePage
 				.getDeliveryByTimeFromDeliveryDetailsTab();
-		if (deliverybytimefromdeliverydetailstab.equals(null)) {
+		if (deliveryByTimeFromDeliveryDetailsTab.equals(null)) {
 			failureList.add("Delivery By Time is not as expected. Expected [Not NULL] but was ["
-					+ deliverybytimefromdeliverydetailstab + "]");
+					+ deliveryByTimeFromDeliveryDetailsTab + "]");
 		}
-		String deliverybydatefromdeliverydetailstab = orderHeaderMaintenancePage
+		String deliveryByDateFromDeliveryDetailsTab = orderHeaderMaintenancePage
 				.getDeliveryByDateFromDeliveryDetailsTab();
-		if (deliverybydatefromdeliverydetailstab.equals(null)) {
+		if (deliveryByDateFromDeliveryDetailsTab.equals(null)) {
 			failureList.add("Delivery By Date is not as expected. Expected [Not NULL] but was ["
-					+ deliverybydatefromdeliverydetailstab + "]");
+					+ deliveryByDateFromDeliveryDetailsTab + "]");
 		}
 
 		orderHeaderMaintenancePage.clickUserDefinedTab();
 
-		String deliverytype = orderHeaderMaintenancePage.getDeliveryType();
-		if (deliverytype.equals(null)) {
-			failureList.add("Delivery Type is not as expected. Expected [Not NULL] but was [" + deliverytype + "]");
+		String deliveryType = orderHeaderMaintenancePage.getDeliveryType();
+		if (deliveryType.equals(null)) {
+			failureList.add("Delivery Type is not as expected. Expected [Not NULL] but was [" + deliveryType + "]");
 		}
-		String deliverybytimefromuserdefinedtab = orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab();
-		if (deliverybytimefromuserdefinedtab.equals(null)) {
+		String deliveryByTimeFromUserDefinedTab = orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab();
+		if (deliveryByTimeFromUserDefinedTab.equals(null)) {
 			failureList.add("Delivery By Time From User Defined  tab is not as expected. Expected [Not NULL] but was ["
-					+ deliverybytimefromuserdefinedtab + "]");
+					+ deliveryByTimeFromUserDefinedTab + "]");
 		}
-		String deliverybydatefromuserdefinedtab = orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab();
-		if (deliverybydatefromuserdefinedtab.equals(null)) {
-			failureList.add("Delivery By Time From User Defined  tab is not as expected. Expected [Not NULL] but was ["
-					+ deliverybydatefromuserdefinedtab + "]");
+		String deliveryByDateFromUserDefinedTab = orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab();
+		if (deliveryByDateFromUserDefinedTab.equals(null)) {
+			failureList.add("Delivery By Date From User Defined  tab is not as expected. Expected [Not NULL] but was ["
+					+ deliveryByDateFromUserDefinedTab + "]");
 		}
-		String ifosordernum = orderHeaderMaintenancePage.getIfosOrderNum();
-		if (ifosordernum.equals(null)) {
-			failureList.add("Ifos Order Num is not as expected. Expected [Not NULL] but was [" + ifosordernum + "]");
+		String ifosOrderNum = orderHeaderMaintenancePage.getIfosOrderNum();
+		if (ifosOrderNum.equals(null)) {
+			failureList.add("Ifos Order Num is not as expected. Expected [Not NULL] but was [" + ifosOrderNum + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
@@ -170,58 +171,59 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_STO_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String status) throws Throwable {
+			String actualstatus) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status1 = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status1);
-		if (!status1.equals(status1)) {
-			failureList.add("Status is not as expected. Expected [" + status1 + "] but was [" + status1 + "]");
+		String status = orderHeaderMaintenancePage.getStatus();
+		System.out.println(status);
+		if (!status.equals(actualstatus)) {
+			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
 		}
 
-		String orderdate = orderHeaderMaintenancePage.getOrderDate();
-		if (orderdate.equals(null)) {
-			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderdate + "]");
+		String orderDate = orderHeaderMaintenancePage.getOrderDate();
+		if (orderDate.equals(null)) {
+			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderDate + "]");
 		}
 
-		String createdby = orderHeaderMaintenancePage.getCreatedBy();
-		if (createdby.equals(null)) {
-			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdby + "]");
+		String createdBy = orderHeaderMaintenancePage.getCreatedBy();
+		if (createdBy.equals(null)) {
+			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdBy + "]");
 		}
 
-		String ordertime = orderHeaderMaintenancePage.getOrderTime();
-		if (ordertime.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + ordertime + "]");
+		String orderTime = orderHeaderMaintenancePage.getOrderTime();
+		if (orderTime.equals(null)) {
+			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + orderTime + "]");
 		}
 
-		String creationdate = orderHeaderMaintenancePage.getCreationDate();
-		if (creationdate.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + creationdate + "]");
+		String creationDate = orderHeaderMaintenancePage.getCreationDate();
+		if (creationDate.equals(null)) {
+			failureList.add("Creation Date is not as expected. Expected [Not NULL] but was [" + creationDate + "]");
 		}
-		String creationtime = orderHeaderMaintenancePage.getCreationTime();
-		if (creationtime.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + creationtime + "]");
+		String creationTime = orderHeaderMaintenancePage.getCreationTime();
+		if (creationTime.equals(null)) {
+			failureList.add("Creation Time is not as expected. Expected [Not NULL] but was [" + creationTime + "]");
 		}
 
-		String movetaskstatus = orderHeaderMaintenancePage.getMoveTaskStatus();
-		if (movetaskstatus.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + movetaskstatus + "]");
+		String moveTaskStatus = orderHeaderMaintenancePage.getMoveTaskStatus();
+		if (moveTaskStatus.equals(null)) {
+			failureList
+					.add("Move Task Status is not as expected. Expected [Not NULL] but was [" + moveTaskStatus + "]");
 		}
-		String fromsiteId = orderHeaderMaintenancePage.getFromSiteId();
-		if (fromsiteId.equals(null)) {
-			failureList.add(" From SiteId is not as expected. Expected [Not NULL] but was [" + fromsiteId + "]");
+		String fromSiteId = orderHeaderMaintenancePage.getFromSiteId();
+		if (fromSiteId.equals(null)) {
+			failureList.add("From SiteId is not as expected. Expected [Not NULL] but was [" + fromSiteId + "]");
 		}
 		String type = orderHeaderMaintenancePage.getType();
 		if (!type.equals("STR")) {
 			failureList.add("Type is not as expected. Expected [STR] but was [" + type + "]");
 		}
-		String numberoflines = orderHeaderMaintenancePage.getNumberOfLines();
-		if (numberoflines.equals(null)) {
-			failureList.add(" Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberoflines + "]");
+		String numberOfLines = orderHeaderMaintenancePage.getNumberOfLines();
+		if (numberOfLines.equals(null)) {
+			failureList.add("Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
@@ -244,58 +246,59 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the INT \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_INT_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String status) throws Throwable {
+			String actualstatus) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status1 = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status1);
-		if (!status1.equals(status1)) {
-			failureList.add("Status is not as expected. Expected [" + status1 + "] but was [" + status1 + "]");
+		String status = orderHeaderMaintenancePage.getStatus();
+		System.out.println(status);
+		if (!status.equals(actualstatus)) {
+			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
 		}
 
-		String orderdate = orderHeaderMaintenancePage.getOrderDate();
-		if (orderdate.equals(null)) {
-			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderdate + "]");
+		String orderDate = orderHeaderMaintenancePage.getOrderDate();
+		if (orderDate.equals(null)) {
+			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderDate + "]");
 		}
 
-		String createdby = orderHeaderMaintenancePage.getCreatedBy();
-		if (createdby.equals(null)) {
-			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdby + "]");
+		String createdBy = orderHeaderMaintenancePage.getCreatedBy();
+		if (createdBy.equals(null)) {
+			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdBy + "]");
 		}
 
-		String ordertime = orderHeaderMaintenancePage.getOrderTime();
-		if (ordertime.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + ordertime + "]");
+		String orderTime = orderHeaderMaintenancePage.getOrderTime();
+		if (orderTime.equals(null)) {
+			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + orderTime + "]");
 		}
 
-		String creationdate = orderHeaderMaintenancePage.getCreationDate();
-		if (creationdate.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + creationdate + "]");
+		String creationDate = orderHeaderMaintenancePage.getCreationDate();
+		if (creationDate.equals(null)) {
+			failureList.add("Creation Date is not as expected. Expected [Not NULL] but was [" + creationDate + "]");
 		}
-		String creationtime = orderHeaderMaintenancePage.getCreationTime();
-		if (creationtime.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + creationtime + "]");
+		String creationTime = orderHeaderMaintenancePage.getCreationTime();
+		if (creationTime.equals(null)) {
+			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + creationTime + "]");
 		}
 
-		String movetaskstatus = orderHeaderMaintenancePage.getMoveTaskStatus();
-		if (movetaskstatus.equals(null)) {
-			failureList.add("CreationTime is not as expected. Expected [Not NULL] but was [" + movetaskstatus + "]");
+		String moveTaskStatus = orderHeaderMaintenancePage.getMoveTaskStatus();
+		if (moveTaskStatus.equals(null)) {
+			failureList
+					.add("Move Task Status  is not as expected. Expected [Not NULL] but was [" + moveTaskStatus + "]");
 		}
-		String fromsiteId = orderHeaderMaintenancePage.getFromSiteId();
-		if (fromsiteId.equals(null)) {
-			failureList.add(" From SiteId is not as expected. Expected [Not NULL] but was [" + fromsiteId + "]");
+		String fromSiteId = orderHeaderMaintenancePage.getFromSiteId();
+		if (fromSiteId.equals(null)) {
+			failureList.add("From SiteId is not as expected. Expected [Not NULL] but was [" + fromSiteId + "]");
 		}
 		String type = orderHeaderMaintenancePage.getType();
 		if (!type.equals("INT SEA")) {
 			failureList.add("Type is not as expected. Expected [INT SEA] but was [" + type + "]");
 		}
-		String numberoflines = orderHeaderMaintenancePage.getNumberOfLines();
-		if (numberoflines.equals(null)) {
-			failureList.add(" Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberoflines + "]");
+		String numberOfLines = orderHeaderMaintenancePage.getNumberOfLines();
+		if (numberOfLines.equals(null)) {
+			failureList.add("Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
@@ -311,13 +314,13 @@ public class OrderHeaderMaintenanceStepDefs {
 		if (hub.equals(null)) {
 			failureList.add("Hub is not as expected. Expected [Not NULL] but was [" + hub + "]");
 		}
-		String hubname = orderHeaderMaintenancePage.getHubName();
-		if (hubname.equals(null)) {
-			failureList.add("Hub Name is not as expected. Expected [Not NULL] but was [" + hubname + "]");
+		String hubName = orderHeaderMaintenancePage.getHubName();
+		if (hubName.equals(null)) {
+			failureList.add("Hub Name is not as expected. Expected [Not NULL] but was [" + hubName + "]");
 		}
-		String hubcountry = orderHeaderMaintenancePage.getHubCountry();
-		if (hubcountry.equals(null)) {
-			failureList.add("Hub is not as expected. Expected [Not NULL] but was [" + hubcountry + "]");
+		String hubCountry = orderHeaderMaintenancePage.getHubCountry();
+		if (hubCountry.equals(null)) {
+			failureList.add("Hub Country is not as expected. Expected [Not NULL] but was [" + hubCountry + "]");
 		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),

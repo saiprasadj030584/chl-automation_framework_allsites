@@ -41,8 +41,6 @@ public class OrderHeaderMaintenancePage extends PageObject {
 	public String getOrderStatus() throws FindFailed, InterruptedException {
 		String orderStatus = null;
 		jdaFooter.clickQueryButton();
-		// clickOrderHeaderStatus();
-		// orderLineMaintenancePage.refreshOrderlinePage();
 		Match mStatus = screen.find("images/OrderHeaderStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
