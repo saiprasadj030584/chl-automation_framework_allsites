@@ -52,7 +52,10 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+
 	private String customer;
+
+	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -398,6 +401,15 @@ public class Context {
 
 	public void setCustomer(String customer) {
 		this.customer = customer;
+	}
+
+	public int getQtyReverse() {
+		return qtyReverse;
+	}
+
+	public void setQtyReverse(int qtyReverse) {
+		this.qtyReverse = qtyReverse;
+
 	}
 
 }

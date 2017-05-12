@@ -1,3 +1,4 @@
+
 @receipt_reversal
 Feature: Receipt reversal
   As a warehouse user
@@ -16,5 +17,9 @@ Feature: Receipt reversal
     And I proceed to next
     And I select the reason code as "Damaged Stock"
     And I proceed to reverse the quantity
-    Then the quantity should be updated for the tag id
-    And the "Receipt Reversal" ITL should be generated
+    Then the Inventory should be updated with the new updated quantity
+    And the ITL should be generated for the code "receipt reversal"
+    When I navigate to miscellaneous tab
+    Then I should see the readon code as "DMGD"
+    When I navigate to miscellaneous2 tab
+    Then the uploaded filename should be displayed
