@@ -32,17 +32,16 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_bulk_pick_order_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String actualstatus) throws Throwable {
+			String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status);
-		if (!status.equals(actualstatus)) {
-			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
+		String actualstatus = orderHeaderMaintenancePage.getStatus();
+		if (!actualstatus.equals(status)) {
+			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus + "]");
 		}
 
 		String orderDate = orderHeaderMaintenancePage.getOrderDate();
@@ -171,17 +170,17 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_STO_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String actualstatus) throws Throwable {
+			String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status);
-		if (!status.equals(actualstatus)) {
-			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
+		String actualstatus = orderHeaderMaintenancePage.getStatus();
+	
+		if (!actualstatus.equals(status)) {
+			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus  + "]");
 		}
 
 		String orderDate = orderHeaderMaintenancePage.getOrderDate();
@@ -246,17 +245,17 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the INT \"([^\"]*)\" should be \"([^\"]*)\" status, order details in the order header maintenance table$")
 	public void the_INT_should_be_status_order_details_in_the_order_header_maintenance_table(String orderID,
-			String actualstatus) throws Throwable {
+			String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String status = orderHeaderMaintenancePage.getStatus();
+		String actualstatus = orderHeaderMaintenancePage.getStatus();
 		System.out.println(status);
-		if (!status.equals(actualstatus)) {
-			failureList.add("Status is not as expected. Expected [" + actualstatus + "] but was [" + status + "]");
+		if (!actualstatus.equals(status)) {
+			failureList.add("Status is not as expected. Expected [" +status + "] but was [" + actualstatus + "]");
 		}
 
 		String orderDate = orderHeaderMaintenancePage.getOrderDate();
