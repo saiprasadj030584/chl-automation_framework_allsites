@@ -221,6 +221,14 @@ public class InventoryQueryStepDefs {
 		Assert.assertEquals("ABV is not as expected.", context.getABV(), inventoryQueryPage.getUpdatedABV());
 	}
 
+	@When("^I navigate to inventory query page and search the tag id \"([^\"]*)\"$")
+	public void i_navigate_to_inventory_query_page_and_search_the_tag_id(String tagId) throws Throwable {
+		jdaHomePage.navigateToInventoryQueryPage();
+		jdaFooter.clickQueryButton();
+		inventoryQueryPage.enterTagId(tagId);
+		jdaFooter.clickExecuteButton();
+	}
+
 	@When("^the inventory details should be displayed for all the tag id$")
 	public void the_inventory_details_should_be_displayed_for_all_the_tag_id() throws Throwable {
 		String tagID = null, allocationGroup = null;
@@ -362,5 +370,13 @@ public class InventoryQueryStepDefs {
 	@Then("^the status should be displayed as \"([^\"]*)\"$")
 	public void the_status_should_be_displayed_as(String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
+	}
+
+	@Then("^the Inventory should be updated with the new updated quantity$")
+	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
+		jdaHomePage.clickInventorytab();
+		inventoryQueryPage.refreshInventoryQueryPage();
+		int expectedQtyOnHand = context.getQtyOnHand() - context.getQtyReverse();
+		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
 	}
 }

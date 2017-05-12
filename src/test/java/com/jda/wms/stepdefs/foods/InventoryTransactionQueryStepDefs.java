@@ -155,6 +155,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_should_see_the_uploaded_filename() throws Throwable {
 		String uploadedValue = inventoryTransactionQueryPage.getUploaded();
 		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+
 		if (uploadedValue.equalsIgnoreCase("N")) {
 			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
@@ -287,6 +288,7 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the uploaded status and uploaded file should be displayed$")
 	public void the_uploaded_status_and_uploaded_file_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+
 		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
 
 		String uploadedStatus = inventoryTransactionQueryPage.getUploaded();
@@ -619,6 +621,43 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
 
+	@Then("^the ITL should be generated for the code \"([^\"]*)\"$")
+	public void the_ITL_should_be_generated_for_the_code(String code) throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jdaFooter.clickExecuteButton();
+		Assert.assertTrue("Record in ITL screen is not as expected", inventoryTransactionQueryPage.isRecordfound());
+		Assert.assertEquals("Update Qty is not as expected", "-" + context.getQtyReverse(),
+				inventoryTransactionQueryPage.getUpdateQty());
+	}
+
+	@Then("^the uploaded filename should be displayed$")
+	public void the_uploaded_filename_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String uploadedValue = inventoryTransactionQueryPage.getUploaded();
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+
+		if (uploadedValue.equalsIgnoreCase("N")) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
+					+ uploadedFileName + "]");
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
+					+ uploadedFileName + "]");
+		}
+
+		if (!uploadedFileName.contains("I0808itl")) {
+			failureList.add(
+					"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+		}
+
+		logger.debug("Uploaded File Name: " + uploadedFileName);
+		Assert.assertTrue("uploaded file name details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
 	@Then("^the goods receipt should be generated for the received stock in inventory transaction table$")
 	public void the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table()
 			throws Throwable {
@@ -631,9 +670,11 @@ public class InventoryTransactionQueryStepDefs {
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				jdaFooter.clickQueryButton();
+
 				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
 				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
 				i_navigate_to_miscellaneous_tab();
@@ -641,15 +682,18 @@ public class InventoryTransactionQueryStepDefs {
 				i_navigate_to_miscellaneous2_tab();
 				the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed();
 				sKUMaintenancePage.clickCustomsAndExcise();
+
 				if ((!context.getProductCategory().contains("Non-Bonded"))
 						&& (!context.getProductCategory().contains("Ambient"))) {
 					the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS();
 				}
+
 				the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed();
 				sKUMaintenancePage.clickUserDefined();
 				if (!context.getProductCategory().contains("Ambient")) {
 					abv_percentage_and_vintage_should_be_displayed_for_BWS();
 				}
+
 				the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
 				i_navigate_to_settings_2_tab_in_the_user_defined_tab();
 				the_URN_child_should_be_displayed();

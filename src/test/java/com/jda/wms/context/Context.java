@@ -52,6 +52,7 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -390,4 +391,14 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	public int getQtyReverse() {
+		return qtyReverse;
+	}
+
+	public void setQtyReverse(int qtyReverse) {
+		this.qtyReverse = qtyReverse;
+
+	}
+
 }
