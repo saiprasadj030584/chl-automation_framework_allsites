@@ -178,9 +178,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 
 		String actualstatus = orderHeaderMaintenancePage.getStatus();
-	
+
 		if (!actualstatus.equals(status)) {
-			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus  + "]");
+			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus + "]");
 		}
 
 		String orderDate = orderHeaderMaintenancePage.getOrderDate();
@@ -253,9 +253,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 
 		String actualstatus = orderHeaderMaintenancePage.getStatus();
-		System.out.println(status);
 		if (!actualstatus.equals(status)) {
-			failureList.add("Status is not as expected. Expected [" +status + "] but was [" + actualstatus + "]");
+			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus + "]");
 		}
 
 		String orderDate = orderHeaderMaintenancePage.getOrderDate();
