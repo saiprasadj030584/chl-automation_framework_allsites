@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 
@@ -18,72 +20,43 @@ public class OrderHeaderMaintenanceStepDefs {
 	private JDAFooter jdaFooter;
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
+	private Verification verification;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
+		this.verification = verification;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
-	public void the_bulk_pick_order_should_be_status_type_order_details_in_the_order_header_maintenance_table(String orderID, String status, String type) throws Throwable {
+	public void the_bulk_pick_order_should_be_status_type_order_details_in_the_order_header_maintenance_table(
+			String orderID, String status, String type) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
 
-		String actualstatus = orderHeaderMaintenancePage.getStatus();
-		if (!actualstatus.equals(status)) {
-			failureList.add("Status is not as expected. Expected [" + status + "] but was [" + actualstatus + "]");
-		}
+		verification.verifyData("Bulk pick order status", status, orderHeaderMaintenancePage.getStatus(), failureList);
+		verification.verifyData("Order date", "Not Null", orderHeaderMaintenancePage.getOrderDate(), failureList);
+		verification.verifyData("Created By", "Not Null", orderHeaderMaintenancePage.getCreatedBy(), failureList);
+		verification.verifyData("Order time", "Not Null", orderHeaderMaintenancePage.getOrderTime(), failureList);
+		verification.verifyData("Creation date", "Not Null", orderHeaderMaintenancePage.getCreationDate(), failureList);
+		verification.verifyData("Creation time", "Not Null", orderHeaderMaintenancePage.getCreationTime(), failureList);
+		verification.verifyData("Move task status", "Not Null", orderHeaderMaintenancePage.getMoveTaskStatus(),
+				failureList);
+		verification.verifyData("From site id", "Not Null", orderHeaderMaintenancePage.getFromSiteId(), failureList);
+		verification.verifyData("Type", "Not Null", orderHeaderMaintenancePage.getType(), failureList);
+		verification.verifyData("Number of lines", "Not Null", orderHeaderMaintenancePage.getNumberOfLines(),
+				failureList);
 
-		String orderDate = orderHeaderMaintenancePage.getOrderDate();
-		if (orderDate.equals(null)) {
-			failureList.add("OrderDate is not as expected. Expected [Not NULL] but was [" + orderDate + "]");
-		}
-
-		String createdBy = orderHeaderMaintenancePage.getCreatedBy();
-		if (createdBy.equals(null)) {
-			failureList.add("CreatedBy is not as expected. Expected [Not NULL] but was [" + createdBy + "]");
-		}
-
-		String orderTime = orderHeaderMaintenancePage.getOrderTime();
-		if (orderTime.equals(null)) {
-			failureList.add("OrderTime is not as expected. Expected [Not NULL] but was [" + orderTime + "]");
-		}
-
-		String creationDate = orderHeaderMaintenancePage.getCreationDate();
-		if (creationDate.equals(null)) {
-			failureList.add("Creation Date is not as expected. Expected [Not NULL] but was [" + creationDate + "]");
-		}
-		String creationTime = orderHeaderMaintenancePage.getCreationTime();
-		if (creationTime.equals(null)) {
-			failureList.add("Creation Time  is not as expected. Expected [Not NULL] but was [" + creationTime + "]");
-		}
-
-		String moveTaskStatus = orderHeaderMaintenancePage.getMoveTaskStatus();
-		if (moveTaskStatus.equals(null)) {
-			failureList
-					.add("Move Task Status is not as expected. Expected [Not NULL] but was [" + moveTaskStatus + "]");
-		}
-		String fromSiteId = orderHeaderMaintenancePage.getFromSiteId();
-		if (fromSiteId.equals(null)) {
-			failureList.add("From SiteId is not as expected. Expected [Not NULL] but was [" + fromSiteId + "]");
-		}
-		String actualtype = orderHeaderMaintenancePage.getType();
-		if (!actualtype.equals(type)) {
-			failureList.add("Type is not as expected. Expected [RDC] but was [" + actualtype + "]");
-		}
-		String numberOfLines = orderHeaderMaintenancePage.getNumberOfLines();
-		if (numberOfLines.equals(null)) {
-			failureList.add("Number Of Lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
-		}
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
@@ -96,13 +69,9 @@ public class OrderHeaderMaintenanceStepDefs {
 
 		String customer = orderHeaderMaintenancePage.getCustomer();
 		context.setCustomer(customer);
-		if (customer.equals(null)) {
-			failureList.add("Customer is not as expected. Expected [Not NULL] but was [" + customer + "]");
-		}
-		String name = orderHeaderMaintenancePage.getName();
-		if (name.equals(null)) {
-			failureList.add("Name is not as expected. Expected [Not NULL] but was [" + name + "]");
-		}
+		verification.verifyData("Customer", "Not Null", customer, failureList);
+		verification.verifyData("Name", "Not Null", orderHeaderMaintenancePage.getName(), failureList);
+
 		String address1 = orderHeaderMaintenancePage.getAddress1();
 		if (address1.equals(null)) {
 			failureList.add("Address1 is not as expected. Expected [Not NULL] but was [" + address1 + "]");
@@ -111,6 +80,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		if (country.equals(null)) {
 			failureList.add("Country is not as expected. Expected [Not NULL] but was [" + country + "]");
 		}
+
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
@@ -166,7 +136,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-	
+
 	@Given("^the customer should have CSSM flag updated in address maintenance table$")
 	public void the_customer_should_have_CSSM_flag_updated_in_address_maintenance_table() throws Throwable {
 
