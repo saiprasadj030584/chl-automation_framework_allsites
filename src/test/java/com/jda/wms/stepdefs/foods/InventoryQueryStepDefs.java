@@ -372,13 +372,11 @@ public class InventoryQueryStepDefs {
 		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
 	}
 
-	@Then("^Inventory should be updated with the new updated quantity$")
+	@Then("^the Inventory should be updated with the new updated quantity$")
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();
-		int qtyOnHand = context.getQtyOnHand();
-		int qtyReverse = context.getQtyReverse();
-		int expectedQtyOnHand = qtyOnHand - qtyReverse;
+		int expectedQtyOnHand = context.getQtyOnHand() - context.getQtyReverse();
 		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
 	}
 }

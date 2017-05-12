@@ -428,8 +428,14 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public boolean isRecordsExists() throws FindFailed {
-		if (screen.find("images/InventoryTransactionQuery/NoRecords.png").equals(null))
+	/*
+	 * public boolean isRecordsExists() throws FindFailed { if
+	 * (screen.exists("images/InventoryTransactionQuery/NoRecords.png").equals(
+	 * null)) return true; else return false; }
+	 */
+
+	public boolean isRecordfound() throws FindFailed {
+		if (screen.exists("/images/InventoryTransactionQuery/1RecordFound.png", timeoutInSec) != null)
 			return true;
 		else
 			return false;
