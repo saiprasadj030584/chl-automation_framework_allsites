@@ -71,17 +71,10 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setCustomer(customer);
 		verification.verifyData("Customer", "Not Null", customer, failureList);
 		verification.verifyData("Name", "Not Null", orderHeaderMaintenancePage.getName(), failureList);
-
-		String address1 = orderHeaderMaintenancePage.getAddress1();
-		if (address1.equals(null)) {
-			failureList.add("Address1 is not as expected. Expected [Not NULL] but was [" + address1 + "]");
-		}
-		String country = orderHeaderMaintenancePage.getCountry();
-		if (country.equals(null)) {
-			failureList.add("Country is not as expected. Expected [Not NULL] but was [" + country + "]");
-		}
-
-		Assert.assertTrue(
+		verification.verifyData("Address1", "Not Null", orderHeaderMaintenancePage.getAddress1(), failureList);
+		verification.verifyData("Country", "Not Null", orderHeaderMaintenancePage.getCountry(), failureList);
+		
+				Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -90,49 +83,18 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_delivery_details_in_delivery_details_and_user_defined_tabs() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickDeliveryDetailsTab();
-
-		String shipByDate = orderHeaderMaintenancePage.getShipByDate();
-		if (shipByDate.equals(null)) {
-			failureList.add("Ship By Date is not as expected. Expected [Not NULL] but was [" + shipByDate + "]");
-		}
-		String shipByTime = orderHeaderMaintenancePage.getShipByTime();
-		if (shipByTime.equals(null)) {
-			failureList.add("Ship By Time is not as expected. Expected [Not NULL] but was [" + shipByTime + "]");
-		}
-		String deliveryByTimeFromDeliveryDetailsTab = orderHeaderMaintenancePage
-				.getDeliveryByTimeFromDeliveryDetailsTab();
-		if (deliveryByTimeFromDeliveryDetailsTab.equals(null)) {
-			failureList.add("Delivery By Time is not as expected. Expected [Not NULL] but was ["
-					+ deliveryByTimeFromDeliveryDetailsTab + "]");
-		}
-		String deliveryByDateFromDeliveryDetailsTab = orderHeaderMaintenancePage
-				.getDeliveryByDateFromDeliveryDetailsTab();
-		if (deliveryByDateFromDeliveryDetailsTab.equals(null)) {
-			failureList.add("Delivery By Date is not as expected. Expected [Not NULL] but was ["
-					+ deliveryByDateFromDeliveryDetailsTab + "]");
-		}
+		verification.verifyData("ShipByDate", "Not Null",orderHeaderMaintenancePage.getShipByDate(), failureList);
+		verification.verifyData("DeliveryByTimeFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByTimeFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("DeliveryByDateFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByDateFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("ShipByTime", "Not Null",orderHeaderMaintenancePage.getShipByTime(), failureList);
 
 		orderHeaderMaintenancePage.clickUserDefinedTab();
-
-		String deliveryType = orderHeaderMaintenancePage.getDeliveryType();
-		if (deliveryType.equals(null)) {
-			failureList.add("Delivery Type is not as expected. Expected [Not NULL] but was [" + deliveryType + "]");
-		}
-		String deliveryByTimeFromUserDefinedTab = orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab();
-		if (deliveryByTimeFromUserDefinedTab.equals(null)) {
-			failureList.add("Delivery By Time From User Defined  tab is not as expected. Expected [Not NULL] but was ["
-					+ deliveryByTimeFromUserDefinedTab + "]");
-		}
-		String deliveryByDateFromUserDefinedTab = orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab();
-		if (deliveryByDateFromUserDefinedTab.equals(null)) {
-			failureList.add("Delivery By Date From User Defined  tab is not as expected. Expected [Not NULL] but was ["
-					+ deliveryByDateFromUserDefinedTab + "]");
-		}
-		String ifosOrderNum = orderHeaderMaintenancePage.getIfosOrderNum();
-		if (ifosOrderNum.equals(null)) {
-			failureList.add("Ifos Order Num is not as expected. Expected [Not NULL] but was [" + ifosOrderNum + "]");
-		}
-		Assert.assertTrue(
+		verification.verifyData("DeliveryType", "Not Null",orderHeaderMaintenancePage.getDeliveryType(), failureList);
+		verification.verifyData("DeliveryByTimeFromUserDefinedTab", "Not Null",orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab(), failureList);
+		verification.verifyData("DeliveryByDateFromUserDefinedtab", "Not Null",orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab(), failureList);
+		verification.verifyData("IfosOrderNum", "Not Null",orderHeaderMaintenancePage.getIfosOrderNum(), failureList);
+		
+				Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -154,19 +116,10 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_hub_details_in_hub_address_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickHubAddressTab();
-
-		String hub = orderHeaderMaintenancePage.getHub();
-		if (hub.equals(null)) {
-			failureList.add("Hub is not as expected. Expected [Not NULL] but was [" + hub + "]");
-		}
-		String hubName = orderHeaderMaintenancePage.getHubName();
-		if (hubName.equals(null)) {
-			failureList.add("Hub Name is not as expected. Expected [Not NULL] but was [" + hubName + "]");
-		}
-		String hubCountry = orderHeaderMaintenancePage.getHubCountry();
-		if (hubCountry.equals(null)) {
-			failureList.add("Hub Country is not as expected. Expected [Not NULL] but was [" + hubCountry + "]");
-		}
+		verification.verifyData("Hub", "Not Null",orderHeaderMaintenancePage.getHub(), failureList);
+		verification.verifyData("HubName", "Not Null",orderHeaderMaintenancePage.getHubName(), failureList);
+		verification.verifyData("HubCountry", "Not Null",orderHeaderMaintenancePage.getHubCountry(), failureList);
+		
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
