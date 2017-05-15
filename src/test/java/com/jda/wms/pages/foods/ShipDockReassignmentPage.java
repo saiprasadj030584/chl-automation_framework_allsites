@@ -19,7 +19,7 @@ public class ShipDockReassignmentPage {
 		screen.type(siteId);
 	}
 
-	public boolean is1Record() throws FindFailed {
+	public boolean is1RecordDisplayed() throws FindFailed {
 		if (!screen.find("images/ShipDockReassignment/1Record.png").equals(null)) {
 			return true;
 		} else {
@@ -27,10 +27,9 @@ public class ShipDockReassignmentPage {
 		}
 	}
 
-	public void enterNewShopDock(String FAVESD) throws FindFailed {
+	public void enterNewShipDockName(String shipDockName) throws FindFailed {
 		screen.wait("images/ShipDockReassignment/NewShipDock.png", timeoutInSec);
 		screen.click("images/ShipDockReassignment/NewShipDock.png");
-		screen.type(FAVESD);
+		screen.type(shipDockName);
 	}
-
 }
