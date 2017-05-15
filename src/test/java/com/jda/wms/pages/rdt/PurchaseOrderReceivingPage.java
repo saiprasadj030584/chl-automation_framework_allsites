@@ -184,4 +184,30 @@ public class PurchaseOrderReceivingPage {
 		else
 			return false;
 	}
+
+	public void enterYes() {
+		screen.type("Y");
+
+	}
+
+	public boolean isMorePercentageAbv() {
+		if (screen.exists("images/Putty/Receiving/MorePercentageAbv.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isReceivingInprogressDisplayed() {
+		if (screen.exists("images/Putty/Receiving/ReceivingInProgress.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isEnterABVForUpcDisplayed() {
+		if (screen.exists("images/Putty/Receiving/EnterTheAbv.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

@@ -363,4 +363,36 @@ public class InventoryQueryStepDefs {
 	public void the_status_should_be_displayed_as(String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
 	}
+
+	@Then("^the ABV should be updated for all the Tag Id$")
+	public void the_ABV_should_be_updated_for_all_the_Tag_Id() throws Throwable {
+		String tagID = null, expectedAbv = null;
+		int qtyReceivedPerTag = 0, caseRatio = 0;
+
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		// qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
+		tagIDMap = context.getTagIDMap();
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			expectedAbv = (purchaseOrderMap.get(key).get("ABV"));
+			// context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation
+			// Group"));
+			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
+				tagID = tagIDMap.get(sku).get(s);
+				// qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
+				context.setTagId(tagID);
+				// context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
+				jdaFooter.clickQueryButton();
+				inventoryQueryPage.enterTagId(tagID);
+				jdaFooter.clickExecuteButton();
+				inventoryQueryPage.navigateToUserDefinedTab();
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryPage.getUpdatedABV());
+				// the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
+				// the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
+				// the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+			}
+		}
+
+	}
 }
