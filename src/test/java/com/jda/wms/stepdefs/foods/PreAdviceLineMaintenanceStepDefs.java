@@ -156,7 +156,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("QtyDue", qtyDue);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
-			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("AllocationGroup", allocationGroup);
 			lineItemsMap.put("Product Group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
@@ -299,7 +299,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickExecuteButton();
 			productGroup = skuMaintenancePage.getProductGroup();
 			allocationGroup = skuMaintenancePage.getAllocationGroup();
-
 			if (context.getProductCategory().equals("Ambient")) {
 				if ((productGroup.equals("F20")) || (productGroup.equals("F21")) || (productGroup.equals("F23"))
 						|| (productGroup.equals("F07"))) {
@@ -337,13 +336,13 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("QtyDue", qtyDue);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
-			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("AllocationGroup", allocationGroup);
 			lineItemsMap.put("Product Group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(1), lineItemsMap);
 
-			//Print values in log file
+			// Print values in log file
 			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
 			logger.debug("Quantity Due: " + qtyDue);
 			logger.debug("Pack Config : " + packConfig);
@@ -352,7 +351,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			logger.debug("Vintage in Pre-Advice Line : " + vintage);
 			logger.debug("Current Vintage in SKU table: " + currentVintage);
 
-		} 
+		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
@@ -362,7 +361,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		if (firstRecordSelected) {
 			ArrayList<String> tagIDArrayList = new ArrayList<String>();
 			String skuID = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
-			
+
 			System.out.println("SKU from Map : " + skuID);
 
 			int quantityDue = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(1)).get("QtyDue")));

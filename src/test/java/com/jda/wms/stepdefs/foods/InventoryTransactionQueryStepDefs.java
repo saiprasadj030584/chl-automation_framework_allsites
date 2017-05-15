@@ -669,13 +669,14 @@ public class InventoryTransactionQueryStepDefs {
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				jdaFooter.clickQueryButton();
 
 				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
+
 				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
 				i_navigate_to_miscellaneous_tab();
 				the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();

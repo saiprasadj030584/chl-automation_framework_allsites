@@ -43,6 +43,15 @@ public class PuttyFunctionsPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
 	}
+	
+	public void mimimizePuty() throws FindFailed, InterruptedException {
+		screen.wait("/images/Putty/MinimizePutty.png", timeoutInSec);
+		screen.click("/images/Putty/MinimizePutty.png");
+		screen.rightClick();
+		Thread.sleep(2000);
+		screen.wait("/images/Putty/Minimize.png", timeoutInSec);
+		screen.click("/images/Putty/Minimize.png");
+	}
 
 	public boolean isLoginScreenDisplayed() {
 		if (screen.exists("images/Putty/Username.png") != null)

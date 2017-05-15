@@ -302,6 +302,10 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment maintenance");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
 	}
 
 	public void navigateToPickFaceMaintenance() throws InterruptedException, FindFailed {

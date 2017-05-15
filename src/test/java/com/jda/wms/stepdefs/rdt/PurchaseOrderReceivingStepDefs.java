@@ -126,7 +126,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@Then("^the pre-advice id and supplier id should be displayed in the receive pre-advice page$")
 	public void the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		String preAdvId = purchaseOrderReceivingPage.getPreAdvId();
 		System.out.println("Putty Advice ID : " + preAdvId);
 		System.out.println("Web Advice ID : " + context.getPreAdviceId());
@@ -257,7 +257,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("AllocationGroup"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 			context.setSkuId(currentSku);
@@ -298,10 +298,12 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_the_expiry_and_vintage_details();
 			Thread.sleep(1000);
 			i_should_see_the_receiving_completion();
+			Thread.sleep(1000);
 		}
 
 		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+		puttyFunctionsPage.mimimizePuty();
+		
 	}
 
 	@When("^I receive all the skus for the purchase order$")

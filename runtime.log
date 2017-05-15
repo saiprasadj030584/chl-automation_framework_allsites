@@ -1,0 +1,127 @@
+2017-05-15 12:57:12 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 12:57:12 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 12:57:12 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 12:57:12 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 12:57:36 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:346 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:347 - Quantity Due: 1500
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:348 - Pack Config : 21036013O01
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:349 - CaseRatio: 15
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:350 - Product group: F13
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:351 - Vintage in Pre-Advice Line : null
+2017-05-15 12:59:55 DEBUG PreAdviceLineMaintenanceStepDefs:352 - Current Vintage in SKU table: null
+2017-05-15 12:59:57 DEBUG PreAdviceLineMaintenanceStepDefs:400 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 13:01:38 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 13:01:38 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:01:38 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 13:18:55 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 13:18:55 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 13:18:55 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:18:55 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 13:19:20 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:346 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:347 - Quantity Due: 1500
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:348 - Pack Config : 21036013O01
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:349 - CaseRatio: 15
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:350 - Product group: F13
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:351 - Vintage in Pre-Advice Line : null
+2017-05-15 13:21:41 DEBUG PreAdviceLineMaintenanceStepDefs:352 - Current Vintage in SKU table: null
+2017-05-15 13:21:43 DEBUG PreAdviceLineMaintenanceStepDefs:400 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 13:25:04 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 13:25:04 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:25:04 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 13:35:50 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 13:35:50 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 13:35:50 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:35:50 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 13:36:10 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 13:36:10 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 13:36:10 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:36:10 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 13:36:35 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 13:36:38 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 13:36:38 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 13:36:38 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:17:34 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:17:34 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 14:17:34 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 14:17:34 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:17:58 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:346 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:347 - Quantity Due: 1500
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:348 - Pack Config : 21036013O01
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:349 - CaseRatio: 15
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:350 - Product group: F13
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:351 - Vintage in Pre-Advice Line : null
+2017-05-15 14:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:352 - Current Vintage in SKU table: null
+2017-05-15 14:20:19 DEBUG PreAdviceLineMaintenanceStepDefs:400 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 14:24:01 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:24:01 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 14:24:01 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 16:55:29 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 16:55:29 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 16:55:29 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 16:55:29 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 16:55:53 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 16:55:56 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 16:55:56 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 16:55:56 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 16:57:10 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 16:57:10 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 16:57:10 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 16:57:10 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 16:57:51 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 16:57:51 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 16:57:51 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 16:57:51 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 16:58:15 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F01946
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:346 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:347 - Quantity Due: 1500
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:348 - Pack Config : 21036013O01
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:349 - CaseRatio: 15
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:350 - Product group: F13
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:351 - Vintage in Pre-Advice Line : null
+2017-05-15 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:352 - Current Vintage in SKU table: null
+2017-05-15 17:00:35 DEBUG PreAdviceLineMaintenanceStepDefs:400 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 17:05:54 DEBUG InventoryTransactionQueryStepDefs:470 - No Records exists for the query
+2017-05-15 17:05:54 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 17:05:54 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 17:05:54 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 17:17:47 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 17:17:47 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 17:17:47 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 17:17:47 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 17:17:48 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 17:17:48 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 17:17:48 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 17:19:13 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 17:19:13 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-15 17:19:13 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 17:19:13 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 17:19:46 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 17:19:46 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-15 17:19:46 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 17:37:38 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 17:37:38 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-15 17:37:38 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-15 17:37:38 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 17:38:02 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F04971
+2017-05-15 17:38:40 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 17:38:40 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-15 17:38:40 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 17:46:40 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 17:46:40 DEBUG Hooks:34 - featureID: partial-receive-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-15 17:46:40 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-15 17:46:40 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 17:47:04 DEBUG PreAdviceHeaderStepsDefs:109 - Supplier Id: F02163
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:346 - Pre-Advice Line level information of SKU : 20001806
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:347 - Quantity Due: 500.0
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:348 - Pack Config : 500.0
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:349 - CaseRatio: 12
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:350 - Product group: F20
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:351 - Vintage in Pre-Advice Line : 500.0
+2017-05-15 17:49:32 DEBUG PreAdviceLineMaintenanceStepDefs:352 - Current Vintage in SKU table: NONEXPIRY
+2017-05-15 17:50:14 DEBUG PreAdviceLineMaintenanceStepDefs:400 - Map: {1={Product Group=F20, AllocationGroup=NONEXPIRY, ABV=4.0, CaseRatio=12, SKU=20001806, QtyDue=500.0, MaxQtyCanBeRcvd=12, Vintage=500.0}}
+2017-05-15 17:50:44 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 17:50:44 DEBUG Hooks:79 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-15 17:50:44 DEBUG Hooks:80 - ###########################################################################################################################
