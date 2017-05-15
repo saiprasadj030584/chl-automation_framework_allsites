@@ -17,10 +17,10 @@ public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final PreAdviceHeaderPage preAdviceHeaderPage;
 	private JDAFooter jdaFooter;
-	private JDALoginStepDefs jdaLoginStepDefs;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Context context;
+	private JDALoginStepDefs jdaLoginStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(PreAdviceHeaderPage preAdviceHeaderPage, JDAFooter jdaFooter,
@@ -28,7 +28,6 @@ public class PreAdviceHeaderStepsDefs {
 			AddressMaintenancePage addressMaintenancePage, Context context) {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.jdaFooter = jdaFooter;
-		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.context = context;

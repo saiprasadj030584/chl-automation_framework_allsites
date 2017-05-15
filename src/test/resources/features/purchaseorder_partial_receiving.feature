@@ -6,14 +6,14 @@ Feature: Partial receive purchase order
 
   @receive_po_partial_ambient
   Scenario Outline: Receiving process in JDA WMS for Ambient product category
-    #Given the "Ambient" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
-    #And the PO should have address details
-    #Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
-    #And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item
-    #When I have logged in as warehouse user in Putty
-    #When I select user directed option in main menu
-    #And I receive the PO with basic and pre-advice receiving
-    #Then I should be directed to pre-advice entry page
+    Given the "Ambient" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
+    And the PO should have address details
+    Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item
+    When I have logged in as warehouse user in Putty
+    When I select user directed option in main menu
+    And I receive the PO with basic and pre-advice receiving
+    Then I should be directed to pre-advice entry page
     When I receive the first sku of the purchase order at location "<Location>"
     Then I should see the receiving completion
     #When I have logged in as warehouse user in JDA dispatcher food application

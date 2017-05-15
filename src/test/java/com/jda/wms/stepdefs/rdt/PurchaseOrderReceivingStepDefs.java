@@ -1,3 +1,4 @@
+
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
@@ -259,6 +260,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
+			context.setSkuId(currentSku);
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
@@ -275,30 +277,28 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I receive the first sku of the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_the_first_sku_of_the_purchase_order_at_location(String location) throws Throwable {
 
-	 context.setLocation(location);
-		 purchaseOrderMap = context.getPurchaseOrderMap();
-		 tagIDMap = context.getTagIDMap();
+		context.setLocation(location);
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
 
-		 String currentSku =purchaseOrderMap.get(String.valueOf(1)).get("SKU");
-		 context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(1)).get("AllocationGroup"));
-		 context.setABV(purchaseOrderMap.get(String.valueOf(1)).get("ABV"));
-		 context.setVintage(purchaseOrderMap.get(String.valueOf(1)).get("Vintage"));
-		 context.setSkuId(currentSku);
-		 for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
-		 i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
-		Thread.sleep(1000);
-		the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
-		Thread.sleep(1000);
-		 i_enter_the_location_and_tag(context.getLocation());
-		i_enter_the_location_and_tag("REC002");
-
-		Thread.sleep(1000);
-		i_enter_the_quantity_to_receive_and_case_ratio();
-		Thread.sleep(1000);
-		i_enter_the_expiry_and_vintage_details();
-		Thread.sleep(1000);
-		i_should_see_the_receiving_completion();
-		 }
+		String currentSku = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+		context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(1)).get("AllocationGroup"));
+		context.setABV(purchaseOrderMap.get(String.valueOf(1)).get("ABV"));
+		context.setVintage(purchaseOrderMap.get(String.valueOf(1)).get("Vintage"));
+		context.setSkuId(currentSku);
+		for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
+			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+			Thread.sleep(1000);
+			the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
+			Thread.sleep(1000);
+			i_enter_the_location_and_tag(context.getLocation());
+			Thread.sleep(1000);
+			i_enter_the_quantity_to_receive_and_case_ratio();
+			Thread.sleep(1000);
+			i_enter_the_expiry_and_vintage_details();
+			Thread.sleep(1000);
+			i_should_see_the_receiving_completion();
+		}
 
 		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();

@@ -155,6 +155,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_should_see_the_uploaded_filename() throws Throwable {
 		String uploadedValue = inventoryTransactionQueryPage.getUploaded();
 		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+
 		if (uploadedValue.equalsIgnoreCase("N")) {
 			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
 					+ uploadedFileName + "]", uploadedFileName);
@@ -227,6 +228,123 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue(
 				"Stock Adjustment attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+
+	@Given("^I search tag id \"([^\"]*)\" and select the code as \"([^\"]*)\"$")
+	public void i_search_tag_id_and_select_the_code_as(String tagId, String code) throws Throwable {
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(tagId);
+		jdaFooter.clickExecuteButton();
+		// inventoryTransactionQueryPage.navigateToMiscellaneousTab();
+	}
+
+	@Then("^the  description,lock status, reference and lock code should be displayed$")
+	public void the_description_lock_status_reference_and_lock_code_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String description = inventoryTransactionQueryPage.getDescription();
+		if (description.equals(null)) {
+			failureList.add("Description is not as expected. Expectecd [Not NULL] but was " + description + "]");
+		}
+		String lockStatus = inventoryTransactionQueryPage.getStatus();
+		if (lockStatus.equals(null)) {
+			failureList.add("Lock Status is not as expected. Expectecd [Not NULL] but was " + lockStatus + "]");
+		}
+		String reference = inventoryTransactionQueryPage.getReference();
+		if (reference.equals(null)) {
+			failureList.add("Reference is not as expected. Expectecd [Not NULL] but was " + reference + "]");
+		}
+		String lockCode = inventoryTransactionQueryPage.getDescription();
+		if (lockCode.equals(null)) {
+			failureList.add("Lock Code is not as expected. Expectecd [Not NULL] but was " + lockCode + "]");
+		}
+		Assert.assertTrue("ITL General details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
+	@Then("^the reason code, supplier and RDT user mode should be displayed$")
+	public void the_reason_code_supplier_and_RDT_user_mode_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String reasonCode = inventoryTransactionQueryPage.getReasonCode();
+		if (reasonCode.equals(null)) {
+			failureList.add("Reason Code is not as expected. Expectecd [Not NULL] but was " + reasonCode + "]");
+		}
+
+		String supplier = inventoryTransactionQueryPage.getSupplier();
+		if (supplier.equals(null)) {
+			failureList.add("Supplier is not as expected. Expectecd [Not NULL] but was " + supplier + "]");
+		}
+
+		String rdtUserMode = inventoryTransactionQueryPage.getRDTUserMode();
+		if (rdtUserMode.equals(null)) {
+			failureList.add("Supplier is not as expected. Expectecd [Not NULL] but was " + rdtUserMode + "]");
+		}
+		Assert.assertTrue(
+				"ITL miscellaneous details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
+	}
+
+	@Then("^the uploaded status and uploaded file should be displayed$")
+	public void the_uploaded_status_and_uploaded_file_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
+
+		String uploadedStatus = inventoryTransactionQueryPage.getUploaded();
+		if (!uploadedStatus.equals("Y")) {
+			failureList.add("Uploaded status not displayed as expected. Expected [Y] but was " + uploadedStatus + "]");
+		}
+
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		if (!uploadedFileName.contains("I0809")) {
+			failureList.add("Uploaded File Name not displayed as expected. Expected [I0809] but was ["
+					+ uploadedFileName + "]");
+		}
+
+		Assert.assertTrue("Inventory miscellaneous2 tab  not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@When("^i navigate to user defined tab$")
+	public void i_navigate_to_user_defined_tab() throws Throwable {
+		inventoryTransactionQueryPage.navigateToUserDefinedTab();
+	}
+
+	@Then("^the ABV should be displayed$")
+	public void the_ABV_should_be_displayed() throws Throwable {
+		// TODO get abv value from context
+		Assert.assertEquals("ABV values are not matched", "value from context", inventoryTransactionQueryPage.getABV());
+	}
+
+	@Then("^I should see the from location, to location and final location for the tag$")
+	public void i_should_see_the_from_location_to_location_and_final_location_for_the_tag() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		Map<String, String> locationTagMap = context.getLocationPerTagMap();
+		for (String tagId : locationTagMap.keySet()) {
+			jdaFooter.clickQueryButton();
+			inventoryTransactionQueryPage.selectCode("Putaway");
+			inventoryTransactionQueryPage.enterTagId(tagId);
+			jdaFooter.clickExecuteButton();
+
+			String fromLocation = inventoryTransactionQueryPage.getFromLocation();
+			if (!fromLocation.equals("REC002")) {
+				failureList.add("Uploaded File Name not displayed as expected for " + tagId
+						+ ". Expected [REC002] but was [" + fromLocation + "]");
+			}
+			String finalLocation = inventoryTransactionQueryPage.getFinalLocation();
+			String toLocation = inventoryTransactionQueryPage.getToLocation();
+
+			if (!toLocation.equals(finalLocation)) {
+				failureList.add("Uploaded File Name not displayed as expected for " + tagId + ". Expected ["
+						+ finalLocation + "]   but was [" + toLocation + "]");
+			}
+		}
+		Assert.assertTrue(
+				"Inventory general tab  not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
+		the_uploaded_status_and_uploaded_file_should_be_displayed();
 	}
 
 	@When("^I navigate to settings 2 tab in the user defined tab$")
@@ -416,10 +534,10 @@ public class InventoryTransactionQueryStepDefs {
 
 		String uploaded = inventoryTransactionQueryPage.getUploaded();
 		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
-		if ((uploaded.equals("Y"))||(uploaded.equalsIgnoreCase("Yes"))) {
+		if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
 			if (!uploadedFileName.contains("I0808itl")) {
-				failureList.add(
-						"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+				failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
+						+ uploadedFileName + "]");
 			}
 		}
 		logger.debug("uploaded: " + uploaded);
@@ -502,42 +620,86 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected for BWS."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
-	@Then("^the goods receipt should be generated for the received stock in inventory transaction table$")
-	public void the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table() throws Throwable {
+
+	@Then("^the ITL should be generated for the code \"([^\"]*)\"$")
+	public void the_ITL_should_be_generated_for_the_code(String code) throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
-		
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jdaFooter.clickExecuteButton();
+		Assert.assertTrue("Record in ITL screen is not as expected", inventoryTransactionQueryPage.isRecordfound());
+		Assert.assertEquals("Update Qty is not as expected", "-" + context.getQtyReverse(),
+				inventoryTransactionQueryPage.getUpdateQty());
+	}
+
+	@Then("^the uploaded filename should be displayed$")
+	public void the_uploaded_filename_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String uploadedValue = inventoryTransactionQueryPage.getUploaded();
+		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+
+		if (uploadedValue.equalsIgnoreCase("N")) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
+					+ uploadedFileName + "]");
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
+			failureList.add("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
+					+ uploadedFileName + "]");
+		}
+
+		if (!uploadedFileName.contains("I0808itl")) {
+			failureList.add(
+					"Upload file name is not as expected. Expected [I0808itl*.txt] but was [" + uploadedFileName + "]");
+		}
+
+		logger.debug("Uploaded File Name: " + uploadedFileName);
+		Assert.assertTrue("uploaded file name details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^the goods receipt should be generated for the received stock in inventory transaction table$")
+	public void the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table()
+			throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+
 		String tagID = null;
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
-		
-		for (String key : purchaseOrderMap.keySet()){
-			 String sku = purchaseOrderMap.get(key).get("SKU");
-			 context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
-			 for (int s=0;s<tagIDMap.get(sku).size();s++){
-				 tagID = tagIDMap.get(sku).get(s);
-				 jdaFooter.clickQueryButton();
-				 	i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
-					the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
-					i_navigate_to_miscellaneous_tab();
-					the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();
-					i_navigate_to_miscellaneous2_tab();
-					the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed();
-					sKUMaintenancePage.clickCustomsAndExcise();
-					if ((!context.getProductCategory().contains("Non-Bonded"))&&(!context.getProductCategory().contains("Ambient"))){
-						the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS();
-					}
-					the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed();
-					sKUMaintenancePage.clickUserDefined();
-					if (!context.getProductCategory().contains("Ambient")){
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+
+			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
+				tagID = tagIDMap.get(sku).get(s);
+				jdaFooter.clickQueryButton();
+
+				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
+				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
+				i_navigate_to_miscellaneous_tab();
+				the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();
+				i_navigate_to_miscellaneous2_tab();
+				the_pallet_type_pack_config_uploaded_status_uploaded_filename_uploaded_date_and_uploaded_time_should_be_displayed();
+				sKUMaintenancePage.clickCustomsAndExcise();
+
+				if ((!context.getProductCategory().contains("Non-Bonded"))
+						&& (!context.getProductCategory().contains("Ambient"))) {
+					the_originator_originator_reference_CE_consignment_id_document_date_document_time_should_be_displayed_for_BWS();
+				}
+
+				the_original_rotation_id_rotation_id_CE_receipt_type_and_under_bond_should_be_displayed();
+				sKUMaintenancePage.clickUserDefined();
+				if (!context.getProductCategory().contains("Ambient")) {
 					abv_percentage_and_vintage_should_be_displayed_for_BWS();
-					}
-					the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
-					i_navigate_to_settings_2_tab_in_the_user_defined_tab();
-					the_URN_child_should_be_displayed();
-					inventoryTransactionQueryPage.clickUserDefinedSettings1Tab();
-					inventoryTransactionQueryPage.clickGeneralTab();
-			 }
-		}
+				}
+
+				the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
+				i_navigate_to_settings_2_tab_in_the_user_defined_tab();
+				the_URN_child_should_be_displayed();
+				inventoryTransactionQueryPage.clickUserDefinedSettings1Tab();
+				inventoryTransactionQueryPage.clickGeneralTab();
+			}
 		}
 	}
+}

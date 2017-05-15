@@ -26,7 +26,7 @@ public class JdaLoginPage extends PageObject {
 	public void login() throws FindFailed, InterruptedException {
 		webDriver.manage().window().maximize();
 		webDriver.navigate().to(configuration.getStringProperty("gm-foods-url"));
-//		Thread.sleep(90000);
+		Thread.sleep(90000);
 
 		enterUsername();
 		enterPassword();
@@ -36,14 +36,14 @@ public class JdaLoginPage extends PageObject {
 
 	private void enterUsername() throws FindFailed, InterruptedException {
 		int waitTime = 15;
-		do{
-			if(screen.exists("images/JDALogin/username.png")!=null){
+		do {
+			if (screen.exists("images/JDALogin/username.png") != null) {
 				break;
 			}
 			Thread.sleep(15000);
-			waitTime = waitTime+15;
-		}while(waitTime<120);
-		
+			waitTime = waitTime + 15;
+		} while (waitTime < 120);
+
 		screen.wait("images/JDALogin/username.png", 20);
 		screen.click("images/JDALogin/username.png", 25);
 		screen.type(configuration.getStringProperty("username"));

@@ -37,8 +37,6 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-
-
 	// @After()
 	public void tearDown(Scenario scenario) {
 
@@ -54,10 +52,10 @@ public class Hooks {
 			webDriver.quit();
 		}
 	}
-	
-//	@After("@purchase_order") 
-	public void logoutPutty() throws FindFailed, InterruptedException{
-		while (screen.exists("/images/Putty/3Logout.png") == null){
+
+	// @After("@purchase_order")
+	public void logoutPutty() throws FindFailed, InterruptedException {
+		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
 		screen.type("3");
