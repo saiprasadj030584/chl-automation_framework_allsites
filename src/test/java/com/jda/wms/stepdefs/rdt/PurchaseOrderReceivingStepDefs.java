@@ -27,7 +27,7 @@ public class PurchaseOrderReceivingStepDefs {
 	Map<String, Integer> qtyReceivedPerTagMap;
 	static private boolean isFirstTagForLineItem = true;
 	private PuttyFunctionsPage puttyFunctionsPage;
-	private boolean puttyFlag=true;;
+	static private boolean puttyFlag=true;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -219,6 +219,9 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
 			}
+			else {
+				purchaseOrderReceivingPage.pressEnter();
+			}
 		} else if (context.getProductCategory().contains("Ambient")) {
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 				String expDate = DateUtils.getAddedSystemYear();
@@ -228,27 +231,28 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
 			}
+			else {
+				purchaseOrderReceivingPage.pressEnter();
+			}
 		}
 	}
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
-		if (puttyFlag==true){
-		Assert.assertTrue("Receive not completed and Home page not displayed.",
-				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-		Thread.sleep(5000);
-		}
+		Assert.assertTrue("Receive not completed and Home page not displayed.[" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
 	}
 
 	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
-
+		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
 		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			context.setSkuId(currentSku);
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
@@ -258,10 +262,13 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_expiry_and_vintage_details();
-				i_should_see_the_receiving_completion();
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()){
+					failureList.add("Receive not completed and Home page not displayed.");
+				}
+				purchaseOrderReceivingPage.pressEnter();
+				Thread.sleep(5000);
 			}
 		}
-		puttyFlag=false;
 		puttyFunctionsPage.minimisePutty();
 	}
 	
@@ -269,23 +276,25 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I receive all the skus for the purchase order$")
 	public void i_receive_all_the_skus_for_the_purchase_order() throws Throwable {
 		purchaseOrderMap = context.getPurchaseOrderMap();
+		ArrayList<String> failureList = new ArrayList<String>();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setSkuId(currentSku);
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
-				i_should_see_error_in_receiving();
+				
+				if (!purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed()){
+					failureList.add("No Valid Pre advices message is not displayed for SKU "+currentSku);
+				}
+				purchaseOrderReceivingPage.pressEnter();
+				Thread.sleep(5000);
 		}
-		puttyFlag = false;
+		context.setFailureList(failureList);
 		puttyFunctionsPage.minimisePutty();
 	}
 
-	@Then("^I should see error in receiving$")
-	public void i_should_see_error_in_receiving() throws Throwable {
-		System.out.println(puttyFlag);
-		if (puttyFlag == true){
-				Assert.assertTrue("Appropriate error not displayed. Expected [No Valid Pre advices]",
-						purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed());
-				Thread.sleep(5000);
-		}
+	@Then("^I should see that no valid preadvices found message$")
+	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
+		Assert.assertTrue("No Valid Pre advices message is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
 	}
 }

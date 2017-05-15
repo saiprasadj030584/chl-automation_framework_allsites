@@ -47,6 +47,7 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private ArrayList<String> failureList;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -368,5 +369,13 @@ public class Context {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
 	}
 }

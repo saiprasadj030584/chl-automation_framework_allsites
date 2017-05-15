@@ -3590,3 +3590,459 @@
 =======
 >>>>>>> 152165b063859b86e7863e46aa98855677a2ba4d
 >>>>>>> 42de8ed6a58206076846d811c934ffa6b849a358
+2017-05-11 09:27:11 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 09:27:11 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 09:27:11 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 09:27:11 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 09:29:19 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 09:29:19 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 09:29:19 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 09:29:19 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 09:29:43 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-11 09:29:43 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 09:29:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-11 14:08:14 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 14:08:14 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 14:08:14 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 14:08:14 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 14:08:43 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 14:08:46 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-11 14:08:46 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 14:08:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-11 14:10:05 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 14:10:05 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 14:10:05 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 14:10:05 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 14:10:32 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 14:11:21 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-11 14:11:21 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 14:11:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-11 14:12:20 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 14:12:20 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 14:12:20 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 14:12:20 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 14:12:46 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 16:57:01 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 16:57:01 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 16:57:01 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 16:57:01 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 16:57:28 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21126978
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 24000.0
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21126978O01
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F23
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2016
+2017-05-11 17:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: 2016.0
+2017-05-11 17:02:56 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 17:02:56 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 17:02:56 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:02:56 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 17:03:22 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 17:05:09 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 17:05:09 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 17:05:09 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:05:09 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 17:05:46 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 17:05:46 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 17:05:46 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:05:46 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 17:06:12 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-11 17:06:21 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-11 17:06:21 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:06:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-11 17:07:17 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 17:07:17 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 17:07:17 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:07:17 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-11 17:07:44 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: 9771
+2017-05-11 17:08:07 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-11 17:08:07 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:08:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-11 17:16:01 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-11 17:16:01 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-11 17:16:01 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-11 17:16:01 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:19:42 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:19:42 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:19:42 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:19:42 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:39:10 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:39:11 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:39:11 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:39:11 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:41:26 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:41:26 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:41:26 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:41:26 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:41:53 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 06:42:34 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 06:42:34 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:42:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 06:43:08 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:43:08 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:43:08 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:43:08 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:43:34 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 24000.0
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21126978O01
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F23
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2016
+2017-05-12 06:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: 2016.0
+2017-05-12 06:48:34 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:48:34 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:48:34 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:48:34 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:49:02 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 24000.0
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21126978O01
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F23
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2016
+2017-05-12 06:51:52 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: 2016.0
+2017-05-12 06:54:46 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 06:54:46 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 06:54:46 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 06:54:46 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 06:55:13 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 24000.0
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21126978O01
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F23
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2016
+2017-05-12 06:58:02 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: 2016.0
+2017-05-12 07:05:49 DEBUG PreAdviceLineMaintenanceStepDefs:230 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=24000.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 07:06:19 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 07:06:19 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:06:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 07:28:52 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:28:52 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:28:52 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:28:52 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:29:18 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 24000.0
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 07:32:09 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 07:37:15 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:37:15 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:37:15 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:37:15 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:37:41 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 07:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 07:40:42 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 07:41:11 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 07:41:11 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:41:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 07:48:33 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:48:33 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:48:33 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:48:33 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:49:04 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 07:52:22 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 07:52:33 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 07:53:51 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:53:51 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:53:51 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:53:51 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:54:20 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 07:55:05 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 07:55:05 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:55:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 07:56:15 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:56:15 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:56:15 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:56:15 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:56:44 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 07:57:35 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 07:57:35 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:57:35 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 07:58:42 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 07:58:42 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 07:58:42 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 07:58:42 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 07:59:09 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:02:10 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:04:47 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:04:47 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:04:47 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 08:06:25 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:06:25 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:06:25 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:06:25 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:06:52 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:09:43 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:09:53 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:12:43 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:12:43 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:12:43 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:12:43 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:13:10 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:13:12 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:13:12 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:13:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 08:13:47 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:13:47 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:13:47 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:13:47 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:14:14 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:16:10 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:16:10 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:16:10 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 08:16:38 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:16:38 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:16:38 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:16:38 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:17:09 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:20:03 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:20:13 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=F23, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:20:26 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:20:26 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:20:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 08:21:00 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:21:00 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:21:00 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:21:00 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:21:27 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 240.0
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:24:37 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:24:48 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=240.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:28:04 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:28:04 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:28:04 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:28:04 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:28:34 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:28:34 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:28:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 08:33:00 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:33:00 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:33:00 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:33:00 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:33:26 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 150.0
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:36:16 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:36:24 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=150.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:44:33 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 08:44:33 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 08:44:33 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:44:33 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 08:45:02 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 08:47:52 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 08:47:59 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 08:51:10 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 08:51:10 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 08:51:10 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 10:23:12 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:23:12 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 10:23:12 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:23:12 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:23:38 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 10:23:41 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 10:23:41 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:23:41 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 10:31:00 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:31:00 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-new-vintage-product-category;
+2017-05-12 10:31:00 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-New-Vintage product category
+2017-05-12 10:31:00 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:31:28 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F02616
+2017-05-12 10:33:52 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 10:33:52 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-New-Vintage product category
+2017-05-12 10:33:52 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 10:36:00 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:36:00 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 10:36:00 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:36:00 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:36:31 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 10:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 10:39:54 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 10:40:21 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 10:40:21 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:40:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 10:42:42 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:42:42 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 10:42:42 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:42:42 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:43:19 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 10:46:21 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 10:46:28 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 10:49:25 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:49:25 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 10:49:25 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:49:25 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:49:52 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 10:52:44 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 10:52:51 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 10:54:11 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 10:54:11 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:54:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 10:55:09 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 10:55:09 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 10:55:09 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 10:55:09 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 10:55:35 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-12 10:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-12 10:58:33 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-12 11:00:33 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:00:33 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:00:33 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:04:03 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:04:03 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:04:03 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:04:03 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:04:26 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:04:26 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:04:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:05:55 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:05:55 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:05:55 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:05:55 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:06:22 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 11:06:25 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:06:25 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:06:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:12:51 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:12:51 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:12:51 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:12:51 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:13:13 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:13:13 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:13:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:14:25 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:14:25 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:14:25 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:14:25 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:14:52 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 11:14:54 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:14:54 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:14:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:16:08 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:16:08 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:16:08 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:16:08 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:17:03 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:17:03 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:17:03 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:17:03 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:17:26 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:17:26 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:17:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:19:09 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:19:09 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:19:09 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:19:09 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:19:35 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 11:22:46 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:22:46 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:22:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:26:40 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:26:40 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:26:40 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:26:40 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:27:06 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 11:27:51 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 11:27:51 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:27:51 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 11:31:10 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 11:31:10 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 11:31:10 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 11:31:10 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 11:31:36 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 12:02:13 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 12:02:13 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 12:02:13 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 12:02:13 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 12:02:41 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 12:03:26 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 12:03:26 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 12:03:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-12 14:03:37 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 14:03:37 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 14:03:37 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 14:03:37 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 14:04:11 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 17:01:41 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-12 17:01:41 DEBUG Hooks:34 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-f23-product-category;
+2017-05-12 17:01:41 DEBUG Hooks:35 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 17:01:41 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-12 17:02:08 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-12 17:03:46 DEBUG Hooks:79 - ###########################################################################################################################
+2017-05-12 17:03:46 DEBUG Hooks:81 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-12 17:03:46 DEBUG Hooks:82 - ###########################################################################################################################

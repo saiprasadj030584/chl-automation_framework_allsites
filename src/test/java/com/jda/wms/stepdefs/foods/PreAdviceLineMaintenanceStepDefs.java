@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private Context context;
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Date date = new Date();
 
 	@Inject
 
@@ -176,10 +178,13 @@ public class PreAdviceLineMaintenanceStepDefs {
 			logger.debug("Current Vintage in SKU table: " + currentVintage);
 			
 			preAdviceLineMaintenancePage.clickGeneralTab();
+			System.out.println("Check1"+date.getTime());
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+		System.out.println("Check2 "+date.getTime());
+		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
 		
 		// To get the number of tagIds for every SKU
 				Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
@@ -204,6 +209,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 					tagIDMap.put(skuID, tagIDArrayList);
 				}
 				context.setTagIDMap(tagIDMap);
+				System.out.println("Check3 "+date.getTime());
+				System.out.println("Tag ID Map "+context.getTagIDMap());
 				
 				// To get the qty to receive for each tag
 				Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
@@ -216,6 +223,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 					}
 				}
 				context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
+				System.out.println("Check4 "+date.getTime());
+				System.out.println("Quantity Received Per Tag Map "+context.getQtyReceivedPerTagMap());
 
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
 		System.out.println("Tag ID Map "+context.getTagIDMap());

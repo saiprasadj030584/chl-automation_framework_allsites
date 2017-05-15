@@ -27,6 +27,7 @@ public class PuttyFunctionsStepDefs {
 	@Given("^I have logged in as warehouse user in Putty$")
 	public void i_have_logged_in_as_warehouse_user_in_Putty()
 			throws Throwable {
+		System.out.println("Check5");
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();

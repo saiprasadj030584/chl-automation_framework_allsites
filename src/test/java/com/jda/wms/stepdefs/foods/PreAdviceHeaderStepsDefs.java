@@ -40,7 +40,7 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -162,8 +162,8 @@ public class PreAdviceHeaderStepsDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have line items$")
-	public void the_PO_should_be_status_and_have_line_items(String preAdviceId, String status) throws Throwable {
+	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_PO_should_be_status(String preAdviceId, String status) throws Throwable {
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
@@ -174,7 +174,7 @@ public class PreAdviceHeaderStepsDefs {
 				statusPreAdviceHeader, status);
 
 		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
-		Assert.assertNotNull("Numberoflines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
+		Assert.assertNotNull("Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
 				numberOfLines);
 		context.setNoOfLines(numberOfLines);
 	}
