@@ -57,8 +57,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 	public void the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_line_items()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		
-		String currentVintage =null, skuId = null, abv = null, qtyDue = null, vintage = null, allocationGroup = null, productGroup = null, maxQty = null;
+
+		String currentVintage = null, skuId = null, abv = null, qtyDue = null, vintage = null, allocationGroup = null,
+				productGroup = null, maxQty = null;
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		int caseRatio = 0;
 
@@ -80,8 +81,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			String packConfig = preAdviceLineMaintenancePage.getPackConfig();
 
 			preAdviceLineMaintenancePage.clickUserDefinedTab();
-			if (!context.getProductCategory().equals("Ambient")){
-			vintage = preAdviceLineMaintenancePage.getVintage();
+			if (!context.getProductCategory().equals("Ambient")) {
+				vintage = preAdviceLineMaintenancePage.getVintage();
 			}
 
 			caseRatio = Utilities.convertStringToInteger(preAdviceLineMaintenancePage.getCaseRatio());
@@ -89,7 +90,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			// to be used for BWS PO processing
 			// String underBond = preAdviceLinePage.getUnderBond();
 			// String trackingLevel = preAdviceLinePage.getTrackingLevel();
-
 
 			if (baseUOM.isEmpty()) {
 				failureList.add("Base UOM is not as expected for SKU (" + skuId + ") " + "Expected [Not Null] but was ["
@@ -116,7 +116,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			jdaFooter.clickExecuteButton();
 			productGroup = skuMaintenancePage.getProductGroup();
 			allocationGroup = skuMaintenancePage.getAllocationGroup();
-			
+
 			if (context.getProductCategory().equals("Ambient")) {
 				if ((productGroup.equals("F20")) || (productGroup.equals("F21")) || (productGroup.equals("F23"))
 						|| (productGroup.equals("F07"))) {
@@ -132,22 +132,22 @@ public class PreAdviceLineMaintenanceStepDefs {
 									+ productGroup);
 				}
 			}
-			
+
 			skuMaintenancePage.clickUserDefined();
-			if (!context.getProductCategory().equals("Ambient")){
-			currentVintage = skuMaintenancePage.getCurrentVintage();
-			
-			skuMaintenancePage.clickCustomsAndExcise();
-			abv = skuMaintenancePage.getCEAlcoholicStrength();
-			
-			//comparing vintage with Pre-advcie line & sku table
-			if (!vintage.equals(null)) {
-				if (!skuMaintenancePage.isCurrentVintage(currentVintage) == true) {
-					failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+			if (!context.getProductCategory().equals("Ambient")) {
+				currentVintage = skuMaintenancePage.getCurrentVintage();
+
+				skuMaintenancePage.clickCustomsAndExcise();
+				abv = skuMaintenancePage.getCEAlcoholicStrength();
+
+				// comparing vintage with Pre-advcie line & sku table
+				if (!vintage.equals(null)) {
+					if (!skuMaintenancePage.isCurrentVintage(currentVintage) == true) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					}
 				}
 			}
-			}
-			
+
 			skuMaintenancePage.clicksettings1Tab();
 
 			// map
@@ -161,12 +161,12 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-			
-			jdaFooter.clickPreAdiceLine();
+
+			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
-			
+
 			preAdviceLineMaintenancePage.clickGeneralTab();
-			
+
 			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
 			logger.debug("Quantity Due: " + qtyDue);
 			logger.debug("Pack Config : " + packConfig);
@@ -174,60 +174,237 @@ public class PreAdviceLineMaintenanceStepDefs {
 			logger.debug("Product group: " + productGroup);
 			logger.debug("Vintage in Pre-Advice Line : " + vintage);
 			logger.debug("Current Vintage in SKU table: " + currentVintage);
-			
+
 			preAdviceLineMaintenancePage.clickGeneralTab();
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-		
+
 		// To get the number of tagIds for every SKU
-				Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
-				int totalTagsperPo = 0;
-				for (int i = 1; i <= context.getNoOfLines(); i++) {
-					ArrayList<String> tagIDArrayList = new ArrayList<String>();
-					String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-					int quantitytyDue = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("QtyDue")));
-					int maxQtyRcv = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd")));
-					int noOfTagID;
-					if (quantitytyDue % maxQtyRcv > 0) {
-						noOfTagID = (quantitytyDue / maxQtyRcv) + 1;
-					} else {
-						noOfTagID = quantitytyDue / maxQtyRcv;
-					}
-					
-					for (int t = 0; t < noOfTagID; t++) {
-						totalTagsperPo++;
-						Thread.sleep(1000);
-						tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
-					}
-					tagIDMap.put(skuID, tagIDArrayList);
-				}
-				context.setTagIDMap(tagIDMap);
-				
-				// To get the qty to receive for each tag
-				Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
-				
-				for (int s = 1; s <= tagIDMap.size(); s++) {
-					String skuCurrent = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
-					for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
-						String currentTag = tagIDMap.get(skuCurrent).get(t);
-						qtyReceivedPerTagMap.put(currentTag, 0);
-					}
-				}
-				context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
+		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
+		int totalTagsperPo = 0;
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			ArrayList<String> tagIDArrayList = new ArrayList<String>();
+			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			int quantitytyDue = Utilities
+					.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("QtyDue")));
+			int maxQtyRcv = Utilities
+					.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd")));
+			int noOfTagID;
+			if (quantitytyDue % maxQtyRcv > 0) {
+				noOfTagID = (quantitytyDue / maxQtyRcv) + 1;
+			} else {
+				noOfTagID = quantitytyDue / maxQtyRcv;
+			}
+
+			for (int t = 0; t < noOfTagID; t++) {
+				totalTagsperPo++;
+				Thread.sleep(1000);
+				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
+			}
+			tagIDMap.put(skuID, tagIDArrayList);
+		}
+		context.setTagIDMap(tagIDMap);
+
+		// To get the qty to receive for each tag
+		Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
+
+		for (int s = 1; s <= tagIDMap.size(); s++) {
+			String skuCurrent = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
+			for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
+				String currentTag = tagIDMap.get(skuCurrent).get(t);
+				qtyReceivedPerTagMap.put(currentTag, 0);
+			}
+		}
+		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
-		System.out.println("Tag ID Map "+context.getTagIDMap());
-		System.out.println("Quantity Received Per Tag Map "+context.getQtyReceivedPerTagMap());
+		System.out.println("Tag ID Map " + context.getTagIDMap());
+		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
 		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
 
+	@Then("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and Vintage details for selected pre-advice line item$")
+	public void the_PO_should_have_the_SKU_quantity_due_tracking_level_pack_config_under_bond_case_ratio_base_UOM_and_Vintage_details_for_selected_pre_advice_line_item()
+			throws Throwable {
+
+		the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_selected_pre_advice_line_item();
+
+	}
+
+	@Then("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item$")
+	public void the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_selected_pre_advice_line_item()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String currentVintage = null, skuId = null, abv = null, qtyDue = null, vintage = null, allocationGroup = null,
+				productGroup = null, maxQty = null;
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		int caseRatio = 0;
+		Boolean firstRecordSelected = false;
+
+		jdaHomeStepDefs.i_am_on_pack_config_maintenance_page();
+		jdaHomePage.navigateToSKUMaintanence();
+
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+		jdaFooter.clickQueryButton();
+		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
+		jdaFooter.clickExecuteButton();
+		int NoOfLines = context.getNoOfLines();
+
+		if (NoOfLines > 1) {
+			preAdviceLineMaintenancePage.selectFirstRecord();
+			firstRecordSelected = true;
+		} else {
+			failureList.add("Number of Line items is not as expected. Expected [>1] but was [" + NoOfLines + "]");
+		}
+
+		// Receive only one line item. Runs loop only for first record
+		if (firstRecordSelected) {
+			skuId = preAdviceLineMaintenancePage.getSkuId();
+			qtyDue = preAdviceLineMaintenancePage.getQtyDue();
+			String packConfig = preAdviceLineMaintenancePage.getPackConfig();
+
+			preAdviceLineMaintenancePage.clickUserDefinedTab();
+
+			if (!context.getProductCategory().equals("Ambient")) {
+				vintage = preAdviceLineMaintenancePage.getVintage();
+			}
+
+			caseRatio = Utilities.convertStringToInteger(preAdviceLineMaintenancePage.getCaseRatio());
+			String baseUOM = preAdviceLineMaintenancePage.getBaseUOM();
+
+			if (baseUOM.isEmpty()) {
+				failureList.add("Base UOM is not as expected for SKU (" + skuId + ") " + "Expected [Not Null] but was ["
+						+ baseUOM + "]");
+			}
+
+			jdaFooter.clickPackConfig();
+			packConfigMaintenanceStepDefs.i_search_pack_config_id(packConfig);
+			packConfigMaintenanceStepDefs.i_navigate_to_tracking_levels_page();
+			int ratio1To2 = Utilities.convertStringToInteger(packConfigMaintenancePage.getRatio1To2());
+			Thread.sleep(2000);
+			maxQty = packConfigMaintenancePage.getRatio2To3();
+
+			if (caseRatio != ratio1To2) {
+				failureList.add("Case ratio is not as expected for SKU (" + skuId + ") " + "Expected [" + ratio1To2
+						+ "] but was [" + caseRatio + "]");
+			}
+
+			// getting details from SKU table
+			jdaFooter.clickSku();
+			jdaFooter.clickQueryButton();
+			skuMaintenancePage.enterSKUID(skuId);
+			jdaFooter.clickExecuteButton();
+			productGroup = skuMaintenancePage.getProductGroup();
+			allocationGroup = skuMaintenancePage.getAllocationGroup();
+
+			if (context.getProductCategory().equals("Ambient")) {
+				if ((productGroup.equals("F20")) || (productGroup.equals("F21")) || (productGroup.equals("F23"))
+						|| (productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for Ambient. Expected [Not F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			} else if (context.getProductCategory().contains("BWS")) {
+				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
+						&& (!productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			}
+
+			skuMaintenancePage.clickUserDefined();
+			if (!context.getProductCategory().equals("Ambient")) {
+				currentVintage = skuMaintenancePage.getCurrentVintage();
+
+				skuMaintenancePage.clickCustomsAndExcise();
+				abv = skuMaintenancePage.getCEAlcoholicStrength();
+
+				// comparing vintage with Pre-advcie line & sku table
+				if (!vintage.equals(null)) {
+					if (!skuMaintenancePage.isCurrentVintage(currentVintage) == true) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					}
+				}
+			}
+
+			// Map for line item
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("SKU", skuId);
+			lineItemsMap.put("QtyDue", qtyDue);
+			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
+			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
+			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("Product Group", productGroup);
+			lineItemsMap.put("Vintage", vintage);
+			lineItemsMap.put("ABV", abv);
+			purchaseOrderMap.put(String.valueOf(1), lineItemsMap);
+
+			//Print values in log file
+			logger.debug("Pre-Advice Line level information of SKU : " + skuId);
+			logger.debug("Quantity Due: " + qtyDue);
+			logger.debug("Pack Config : " + packConfig);
+			logger.debug("CaseRatio: " + caseRatio);
+			logger.debug("Product group: " + productGroup);
+			logger.debug("Vintage in Pre-Advice Line : " + vintage);
+			logger.debug("Current Vintage in SKU table: " + currentVintage);
+
+		} 
+		context.setPurchaseOrderMap(purchaseOrderMap);
+		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+
+		// To get the number of tagIds for first SKU
+		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
+		if (firstRecordSelected) {
+			ArrayList<String> tagIDArrayList = new ArrayList<String>();
+			String skuID = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+			
+			System.out.println("SKU from Map : " + skuID);
+
+			int quantityDue = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(1)).get("QtyDue")));
+			int maxQtyRcv = Utilities
+					.convertStringToInteger((purchaseOrderMap.get(String.valueOf(1)).get("MaxQtyCanBeRcvd")));
+			int noOfTagID;
+			if (quantityDue % maxQtyRcv > 0) {
+				noOfTagID = (quantityDue / maxQtyRcv) + 1;
+			} else {
+				noOfTagID = quantityDue / maxQtyRcv;
+			}
+
+			for (int t = 0; t < noOfTagID; t++) {
+				Thread.sleep(1000);
+				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
+			}
+			tagIDMap.put(skuID, tagIDArrayList);
+		}
+		context.setTagIDMap(tagIDMap);
+
+		// To get the qty to receive for each tag
+		Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
+
+		for (int s = 1; s <= tagIDMap.size(); s++) {
+			String skuCurrent = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+			for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
+				String currentTag = tagIDMap.get(skuCurrent).get(t);
+				qtyReceivedPerTagMap.put(currentTag, 0);
+			}
+		}
+		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
+
+		System.out.println("Purchase order Map :" + context.getPurchaseOrderMap());
+		System.out.println("Tag ID Map : " + context.getTagIDMap());
+		System.out.println("Quantity Received Per Tag Map :" + context.getQtyReceivedPerTagMap());
+		logger.debug("Map: " + purchaseOrderMap.toString());
+	}
 
 	@Given("^the PO should have pre-advice line items$")
 	public void the_PO_should_have_pre_advice_line_items() throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
-		String skuId =null;
+		String skuId = null;
 
 		jdaHomePage.navigateToPreAdviceLineMaintenance();
 		jdaFooter.clickQueryButton();
@@ -245,9 +422,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
-		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was ["+skuId, skuId);
+		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
 	}
-	
+
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();

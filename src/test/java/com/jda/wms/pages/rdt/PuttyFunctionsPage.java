@@ -20,15 +20,19 @@ public class PuttyFunctionsPage {
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
 //		screen.wait("images/Putty/HostName.png", timeoutInSec);
 //		screen.click("images/Putty/HostName.png");
+		screen.type("A",Key.CTRL);
+		screen.type(Key.BACKSPACE);
 		screen.type(host);
 		screen.type(Key.TAB);
+		screen.type("A",Key.CTRL);
+		screen.type(Key.BACKSPACE);
 		screen.type(port);
 
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 	
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {

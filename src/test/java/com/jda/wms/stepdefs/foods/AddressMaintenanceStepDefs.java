@@ -151,9 +151,6 @@ public class AddressMaintenanceStepDefs {
 
 	@Then("^I navigate to user defined tab in address maintenance page$")
 	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
-		// jdaFooter.clickQueryButton();
-		// addressMaintenancePage.entersAddressID(context.getSupplierID());
-		// jdaFooter.clickExecuteButton();
 		addressMaintenancePage.clickUserDefinedTab();
 	}
 }

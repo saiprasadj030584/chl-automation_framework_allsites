@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.gargoylesoftware.htmlunit.javascript.host.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
@@ -27,7 +29,7 @@ public class PurchaseOrderReceivingStepDefs {
 	Map<String, Integer> qtyReceivedPerTagMap;
 	static private boolean isFirstTagForLineItem = true;
 	private PuttyFunctionsPage puttyFunctionsPage;
-	private boolean puttyFlag=true;;
+	private boolean puttyFlag = true;;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -110,19 +112,24 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_should_be_directed_to_pre_advice_entry_page() throws Throwable {
 		Assert.assertTrue("Receive pre-Advice entry not displayed as expected.",
 				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+		Thread.sleep(1000);
 	}
 
 	@When("^I enter pre-advice id \"([^\"]*)\" and SKU id")
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId) throws Throwable {
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
+		System.out.println(" Context SKU : " + context.getSkuId());
 		purchaseOrderReceivingPage.enterSKUId(context.getSkuId());
 	}
 
 	@Then("^the pre-advice id and supplier id should be displayed in the receive pre-advice page$")
 	public void the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		Thread.sleep(2000);
 		String preAdvId = purchaseOrderReceivingPage.getPreAdvId();
+		System.out.println("Putty Advice ID : " + preAdvId);
+		System.out.println("Web Advice ID : " + context.getPreAdviceId());
+
 		if (!preAdvId.equalsIgnoreCase(context.getPreAdviceId())) {
 			failureList.add("Pre-Advice ID not displayed as expected. Expected [" + context.getPreAdviceId()
 					+ "] but was [" + preAdvId + "]");
@@ -183,7 +190,7 @@ public class PurchaseOrderReceivingStepDefs {
 		int caseRatio = Integer.parseInt(purchaseOrderMap.get(lineItem).get("CaseRatio"));
 		int qtyToReceive;
 		Thread.sleep(2000);
-		
+
 		if (rcvQtyDue > maxQtyCanBeRcvd) {
 			qtyToReceive = maxQtyCanBeRcvd;
 			rcvQtyDue = rcvQtyDue - maxQtyCanBeRcvd;
@@ -233,10 +240,10 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
-		if (puttyFlag==true){
-		Assert.assertTrue("Receive not completed and Home page not displayed.",
-				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-		Thread.sleep(5000);
+		if (puttyFlag == true) {
+			Assert.assertTrue("Receive not completed and Home page not displayed.",
+					purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+			Thread.sleep(5000);
 		}
 	}
 
@@ -246,7 +253,7 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
-		
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
@@ -261,19 +268,50 @@ public class PurchaseOrderReceivingStepDefs {
 				i_should_see_the_receiving_completion();
 			}
 		}
-		puttyFlag=false;
+		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();
 	}
-	
-	
+
+	@When("^I receive the first sku of the purchase order at location \"([^\"]*)\"$")
+	public void i_receive_the_first_sku_of_the_purchase_order_at_location(String location) throws Throwable {
+
+	 context.setLocation(location);
+		 purchaseOrderMap = context.getPurchaseOrderMap();
+		 tagIDMap = context.getTagIDMap();
+
+		 String currentSku =purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+		 context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(1)).get("AllocationGroup"));
+		 context.setABV(purchaseOrderMap.get(String.valueOf(1)).get("ABV"));
+		 context.setVintage(purchaseOrderMap.get(String.valueOf(1)).get("Vintage"));
+		 context.setSkuId(currentSku);
+		 for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
+		 i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+		Thread.sleep(1000);
+		the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
+		Thread.sleep(1000);
+		 i_enter_the_location_and_tag(context.getLocation());
+		i_enter_the_location_and_tag("REC002");
+
+		Thread.sleep(1000);
+		i_enter_the_quantity_to_receive_and_case_ratio();
+		Thread.sleep(1000);
+		i_enter_the_expiry_and_vintage_details();
+		Thread.sleep(1000);
+		i_should_see_the_receiving_completion();
+		 }
+
+		puttyFlag = false;
+		puttyFunctionsPage.minimisePutty();
+	}
+
 	@When("^I receive all the skus for the purchase order$")
 	public void i_receive_all_the_skus_for_the_purchase_order() throws Throwable {
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setSkuId(currentSku);
-				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
-				i_should_see_error_in_receiving();
+			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+			i_should_see_error_in_receiving();
 		}
 		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();
@@ -282,10 +320,10 @@ public class PurchaseOrderReceivingStepDefs {
 	@Then("^I should see error in receiving$")
 	public void i_should_see_error_in_receiving() throws Throwable {
 		System.out.println(puttyFlag);
-		if (puttyFlag == true){
-				Assert.assertTrue("Appropriate error not displayed. Expected [No Valid Pre advices]",
-						purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed());
-				Thread.sleep(5000);
+		if (puttyFlag == true) {
+			Assert.assertTrue("Appropriate error not displayed. Expected [No Valid Pre advices]",
+					purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed());
+			Thread.sleep(5000);
 		}
 	}
 }

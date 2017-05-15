@@ -64,13 +64,13 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
 		screen.type(skuID);
+		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(10000);
 	}
 	
 	public String getPreAdvId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
-		screen.click(mStatus.below(10));
+		screen.click(mStatus.below(5));
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		screen.type("a", Key.CTRL);
