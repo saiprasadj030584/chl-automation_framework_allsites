@@ -291,8 +291,8 @@ public class OrderHeaderMaintenanceStepDefs {
 			failureList.add("From SiteId is not as expected. Expected [Not NULL] but was [" + fromSiteId + "]");
 		}
 		String type = orderHeaderMaintenancePage.getType();
-		if (!type.equals("INT SEA")) {
-			failureList.add("Type is not as expected. Expected [INT SEA] but was [" + type + "]");
+		if (!type.equals("INTSEA")) {
+			failureList.add("Type is not as expected. Expected [INTSEA] but was [" + type + "]");
 		}
 		String numberOfLines = orderHeaderMaintenancePage.getNumberOfLines();
 		if (numberOfLines.equals(null)) {

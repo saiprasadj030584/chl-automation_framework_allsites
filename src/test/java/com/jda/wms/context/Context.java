@@ -52,6 +52,8 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private String orderId;
+	private String shipDock;
 
 	private String customer;
 
@@ -412,4 +414,23 @@ public class Context {
 
 	}
 
+	public void setOrderNo(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getorderId() {
+		return orderId;
+	}
+
+	public String getShipDock() {
+		return shipDock;
+	}
+
+	public void setShipDock(String shipDock) {
+		this.shipDock = shipDock;
+	}
 }
+
+		
+	
+
+
