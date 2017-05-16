@@ -1,5 +1,6 @@
 package com.jda.wms.context;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,8 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
-
 	private String customer;
+	private Connection connection = null;
 
 	private int qtyReverse;
 
@@ -410,6 +411,14 @@ public class Context {
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
 
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 }

@@ -7,15 +7,24 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
+import com.jda.wms.db.Database;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jDAFooter;
+	private Database database;
+	private Configuration configuration;
 
 	@Inject
-	public SKUMaintenancePage(JDAFooter jDAFooter) {
+	public SKUMaintenancePage(JDAFooter jDAFooter, Database database,Configuration configuration) {
 		this.jDAFooter = jDAFooter;
+		this.database = database;
+		this.configuration =configuration;
 	}
 
 	// TODO donot use this method and replace with enterSKUID() method
@@ -237,5 +246,10 @@ public class SKUMaintenancePage {
 		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
+	}
+	
+	public void invokeDataBase() throws ClassNotFoundException{
+		database.connect(configuration.getStringProperty("db-host"), configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
+		System.out.println(database.getABV("60070710"));
 	}
 }
