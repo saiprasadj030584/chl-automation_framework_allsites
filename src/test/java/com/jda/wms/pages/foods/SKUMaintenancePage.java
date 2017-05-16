@@ -5,6 +5,8 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
@@ -19,6 +21,7 @@ public class SKUMaintenancePage {
 	private final JDAFooter jDAFooter;
 	private Database database;
 	private Configuration configuration;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public SKUMaintenancePage(JDAFooter jDAFooter, Database database,Configuration configuration) {
@@ -250,6 +253,6 @@ public class SKUMaintenancePage {
 	
 	public void invokeDataBase() throws ClassNotFoundException{
 		database.connect(configuration.getStringProperty("db-host"), configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
-		System.out.println(database.getABV("60070710"));
+		logger.debug(database.getABV("60070710"));
 	}
 }

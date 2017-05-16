@@ -45,7 +45,6 @@ public class Database {
 @Inject
 	public Database(Context context) {
 	this.context = context;
-	// TODO Auto-generated constructor stub
 }
 	
 	/**
@@ -62,7 +61,6 @@ public class Database {
 	 * @throws ClassNotFoundException 
 	 */
 	public void connect(String address, String username, String password) throws ClassNotFoundException {
-		System.out.println("context.getConnection() "+context.getConnection());
 		if (context.getConnection()==null){
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
@@ -91,7 +89,6 @@ public class Database {
 			vStatement.setClob(2, new StringReader(xml));
 			vStatement.registerOutParameter(1, Types.VARCHAR);
 			vStatement.executeUpdate();
-			System.out.println(vStatement.getString(1));
 			success = true;
 		} catch (SQLException ex) {
 			write("Failed to execute statement:: " + ex.toString());
@@ -325,11 +322,9 @@ public class Database {
 	 * @return - returns the ABV
 	 */
 	public String getABV(String sku) {
-		System.out.println(sku);
 		String abv = "";
 		try {
 			Statement stmt = connection.createStatement();
-//			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select CE_ALCOHOLIC_STRENGTH from sku where sku_id = '" + sku + "'");
 			rs.next();
 			abv = rs.getString(1);
