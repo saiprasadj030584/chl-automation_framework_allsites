@@ -30,7 +30,8 @@ import java.util.ArrayList;
  *
  * @author Tone Walters (tone_walters@yahoo.com)
  */
-public class Database {
+public class Database2 {
+
 	private String applicationUser;
 	private Connection connection;
 
@@ -45,19 +46,22 @@ public class Database {
 	 * @param password
 	 *            - password
 	 * @return - returns true if the connection is successful.
+	 * @throws ClassNotFoundException 
 	 */
-	public boolean connect(String address, String username, String password) {
+	public boolean connect(String address, String username, String password) throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
+			System.out.println("DB Connection");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection(address, username, password);
 			connection.setAutoCommit(true);
 			connectionSucessful = true;
-			System.out.println("connectionSucessful "+connectionSucessful);
+			System.out.println("connectionSucessful"+connectionSucessful);
 		} catch (SQLException ex) {
 			// LogWriter.writeLogEntry("Something went wrong connecting to the
 			// database");
 			// LogWriter.writeLogEntry(ex.toString());
-			System.out.println("Exception "+ex.getMessage());
+			System.out.println(ex.getMessage());
 		}
 		return connectionSucessful;
 	}

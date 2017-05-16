@@ -79,26 +79,26 @@ Feature: Purchase order
     Given the PO "<PreAdviceID>" with "BWS-New Vintage" category should be "Released" status and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
-    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
+    #And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
     #And the sku should not have any inventory in that particular vintage
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment
-    When I have logged in as warehouse user in Putty
-    When I select user directed option in main menu
-    And I receive the PO with basic and pre-advice receiving
-    Then I should be directed to pre-advice entry page
-    When I receive all the skus for the purchase order at location "<Location>"
-    Then I should see the receiving completion
-    When I navigate to inventory query page
-    Then the inventory details should be displayed for all the tag id
-    When I navigate to pre-advice header maintenance page
-    Then the status should be displayed as "Complete"
-    Then the goods receipt should be generated for the received stock in inventory transaction table
+    #When I have logged in as warehouse user in Putty
+    #When I select user directed option in main menu
+    #And I receive the PO with basic and pre-advice receiving
+    #Then I should be directed to pre-advice entry page
+    #When I receive all the skus for the purchase order at location "<Location>"
+    #Then I should see the receiving completion
+    #When I navigate to inventory query page
+    #Then the inventory details should be displayed for all the tag id
+    #When I navigate to pre-advice header maintenance page
+    #Then the status should be displayed as "Complete"
+    #Then the goods receipt should be generated for the received stock in inventory transaction table
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010289 | REC002   |
+      |  7150010294 | REC002   |
 
   @po_receive_bws_F23_bonded
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded F23 product category
@@ -123,7 +123,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150011786 | REC002   |
+      |  7150011771 | REC002   |
 
   @po_receive_negative
   Scenario Outline: Receive a Complete / On hold Purchase order

@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.db.Database;
+import com.jda.wms.db.Database3;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -18,14 +20,19 @@ import cucumber.api.java.Before;
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
+	private final Database3 database3;
+	private final Database database;
 	Screen screen = new Screen();
 
 	@Inject
-	public Hooks(WebDriver webDriver) {
+	public Hooks(WebDriver webDriver, Database3 database3, Database database) {
 		this.webDriver = webDriver;
+		this.database3 = database3;
+		this.database = database;
 	}
+	
 
-	@Before
+//	@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -85,8 +92,13 @@ public class Hooks {
 
 	// @After
 	public void clickSignoutButton() throws FindFailed {
-		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
+		screen.wait("/images/JDAHeader/Headercons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);
 		logger.debug("Signed off JDA WMS Application");
+	}
+	
+	@Before
+	public void invokeDataBase() throws Exception {
+		database.connect("jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2", "dcsdba", "dcsabd");
 	}
 }
