@@ -4007,3 +4007,1025 @@
 2017-05-11 11:15:16 DEBUG Hooks:42 - featureID: purchase-order;putaway-process-in-jda-wms;
 2017-05-11 11:15:16 DEBUG Hooks:43 - Start of Scenario: Putaway process in JDA WMS
 2017-05-11 11:15:16 DEBUG Hooks:44 - ###########################################################################################################################
+2017-05-15 07:38:07 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 07:38:07 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 07:38:07 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 07:38:07 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 07:38:33 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 07:38:35 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 07:38:35 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 07:38:35 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 07:41:08 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 07:41:08 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 07:41:08 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 07:41:08 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 07:41:37 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 07:43:36 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 07:44:43 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 07:44:52 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 07:45:53 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 07:45:53 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 07:45:53 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 07:50:42 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 07:50:42 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 07:50:42 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 07:50:42 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 07:51:15 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 07:54:22 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 07:54:30 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 07:54:42 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 07:54:42 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 07:54:42 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 07:56:59 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 07:56:59 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 07:56:59 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 07:56:59 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 07:57:27 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 07:59:26 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:00:33 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:00:42 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 08:01:42 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 08:01:42 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 08:01:42 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 08:08:19 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:08:19 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:08:19 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:08:19 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:08:50 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:10:50 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:11:56 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:12:05 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 08:17:35 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 08:17:35 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 08:17:35 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 08:24:49 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:24:49 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:24:49 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:24:49 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:25:18 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:27:23 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:28:31 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:28:40 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 08:34:11 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 08:34:11 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 08:34:11 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 08:40:35 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:40:35 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:40:35 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:40:35 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:42:33 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:42:33 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:42:33 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:42:33 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:43:01 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 08:44:42 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 08:44:42 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 08:44:42 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 08:45:53 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:45:53 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:45:53 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:45:53 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:46:19 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:48:19 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:49:26 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:49:35 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 08:49:47 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 08:49:47 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 08:49:47 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 08:50:45 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 08:50:45 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 08:50:45 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 08:50:45 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 08:51:14 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:53:13 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 08:54:20 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 08:54:29 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 09:00:31 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 09:00:31 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 09:00:31 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 09:06:18 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 09:06:18 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 09:06:18 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 09:06:18 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 09:06:45 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 09:08:45 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 10:12:03 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 10:12:03 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 10:12:03 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 10:12:03 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 10:12:31 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 10:13:51 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 10:13:51 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 10:13:51 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 10:15:03 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 10:15:03 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 10:15:03 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 10:15:03 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 10:15:30 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 10:17:29 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 10:18:36 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 10:18:45 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 10:27:51 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-15 10:27:53 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-15 10:27:54 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-15 10:27:55 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-15 10:27:57 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004998
+2017-05-15 10:28:01 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 15/05/2019
+2017-05-15 10:28:02 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-15 10:28:04 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-15 10:28:05 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-15 10:28:06 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-15 10:28:11 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-15 10:28:13 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-15 10:28:16 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-15 10:28:16 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-15 10:28:17 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-15 10:28:18 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-15 10:28:24 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000145
+2017-05-15 10:28:25 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000145
+2017-05-15 10:28:26 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-15 10:28:28 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-15 10:28:33 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-15 10:28:34 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-15 10:28:35 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-15 10:28:37 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-15 10:28:44 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 10:28:44 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 10:28:44 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:29:15 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:29:15 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:29:15 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:29:15 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:30:23 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:30:23 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:30:23 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:30:23 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:30:51 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 14:30:53 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:30:53 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 14:30:53 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:32:47 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:32:47 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:32:47 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:32:47 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:33:16 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 14:35:17 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 14:36:11 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:36:11 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 14:36:11 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:37:30 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:37:30 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:37:30 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:37:30 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:37:59 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 14:39:59 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 14:41:06 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 14:41:15 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 14:41:28 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:41:28 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 14:41:28 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:42:29 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:42:29 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:42:29 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:42:29 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:42:57 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 14:44:58 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036046
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036046O01
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 24
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 14:46:05 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 14:46:14 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 14:53:36 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:53:36 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 14:53:36 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 14:57:50 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 14:57:50 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 14:57:50 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 14:57:50 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 14:58:19 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 14:59:06 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 14:59:06 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 14:59:06 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 15:01:35 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 15:01:35 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 15:01:35 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 15:01:35 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 15:02:07 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 15:06:28 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 15:06:28 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 15:06:28 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 15:06:28 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 15:06:54 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 15:06:57 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 15:06:57 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 15:06:57 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-15 15:08:35 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-15 15:08:35 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-15 15:08:35 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-15 15:08:35 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-15 15:09:04 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-15 15:10:58 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-15 15:11:05 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-15 15:16:40 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-15 15:16:41 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-15 15:16:43 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-15 15:16:44 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-15 15:16:46 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004595
+2017-05-15 15:16:50 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 15/05/2019
+2017-05-15 15:16:51 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-15 15:16:53 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-15 15:16:55 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-15 15:16:56 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-15 15:17:02 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-15 15:17:05 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-15 15:17:07 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-15 15:17:07 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-15 15:17:09 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-15 15:17:10 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-15 15:17:16 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000152
+2017-05-15 15:17:17 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000152
+2017-05-15 15:17:19 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-15 15:17:20 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-15 15:17:26 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-15 15:17:27 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-15 15:17:29 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-15 15:17:30 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-15 15:17:39 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1003661234
+2017-05-15 15:18:05 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-15 15:18:06 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-15 15:18:08 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-15 15:18:09 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-15 15:18:10 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004595
+2017-05-15 15:18:14 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 15/05/2019
+2017-05-15 15:18:15 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-15 15:18:16 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-15 15:18:17 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-15 15:18:18 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-15 15:18:22 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-15 15:18:25 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-15 15:18:27 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-15 15:18:27 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-15 15:18:28 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-15 15:18:29 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-15 15:18:34 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000152
+2017-05-15 15:18:35 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000152
+2017-05-15 15:18:37 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-15 15:18:38 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-15 15:18:44 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-15 15:18:45 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-15 15:18:47 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-15 15:18:48 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-15 15:18:56 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1006442767
+2017-05-15 15:20:16 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-15 15:20:16 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-15 15:20:16 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 08:03:19 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:03:19 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:03:19 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:03:19 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:10:49 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:10:49 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:10:49 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:10:49 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:11:17 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 08:12:04 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 08:12:04 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 08:12:04 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 08:17:09 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:17:09 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:17:09 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:17:09 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:17:42 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 08:19:37 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 08:19:43 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 08:19:56 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 08:19:56 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 08:19:56 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 08:21:08 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:21:08 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:21:08 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:21:08 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:21:36 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 08:23:31 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 08:23:38 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 08:28:58 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 08:28:58 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 08:28:58 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 08:36:23 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:36:23 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:36:23 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:36:23 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:36:53 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 08:38:48 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 08:38:54 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 08:39:07 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 08:39:07 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 08:39:07 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 08:39:59 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 08:39:59 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 08:39:59 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 08:39:59 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 08:40:31 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 08:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 08:42:36 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 08:48:06 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 08:48:07 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 08:48:08 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 08:48:09 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 08:48:11 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004597
+2017-05-16 08:48:15 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 08:48:16 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 08:48:18 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 08:48:19 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 08:48:21 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 08:48:25 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 08:48:28 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 08:48:33 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 08:48:33 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 08:48:34 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 08:48:35 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 08:48:41 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000155
+2017-05-16 08:48:42 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000155
+2017-05-16 08:48:44 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 08:48:45 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 08:48:50 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 08:48:52 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 08:48:53 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 08:48:54 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 08:49:01 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1006733161
+2017-05-16 08:49:27 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 08:49:28 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 08:49:28 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 08:49:29 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 08:49:30 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004597
+2017-05-16 08:49:34 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 08:49:35 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 08:49:36 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 08:49:37 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 08:49:38 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 08:49:42 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 08:49:44 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 08:49:45 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 08:49:45 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 08:49:46 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 08:49:47 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 08:49:52 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000155
+2017-05-16 08:49:53 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000155
+2017-05-16 08:49:54 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 08:49:55 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 08:50:00 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 08:50:01 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 08:50:02 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 08:50:03 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 08:50:09 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1006202729
+2017-05-16 08:51:50 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 08:51:50 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 08:51:50 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 09:07:42 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 09:07:42 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 09:07:42 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 09:07:42 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 09:08:12 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 09:08:12 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 09:08:12 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 09:08:12 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 09:08:39 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 09:10:33 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 09:10:40 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 09:16:09 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 09:16:10 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 09:16:12 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 09:16:13 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 09:16:14 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004512
+2017-05-16 09:16:19 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 09:16:20 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 09:16:22 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 09:16:23 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 09:16:24 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 09:16:29 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 09:16:32 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 09:16:34 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 09:16:34 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 09:16:36 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 09:16:37 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 09:16:43 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000156
+2017-05-16 09:16:44 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000156
+2017-05-16 09:16:46 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 09:16:47 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 09:16:52 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 09:16:54 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 09:16:55 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 09:16:56 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 09:17:03 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1005996405
+2017-05-16 09:17:29 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 09:17:30 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 09:17:31 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 09:17:32 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 09:17:33 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004512
+2017-05-16 09:17:37 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 09:17:38 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 09:17:39 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 09:17:40 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 09:17:40 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 09:17:44 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 09:17:46 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 09:17:48 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 09:17:48 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 09:17:49 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 09:17:50 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 09:17:55 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000156
+2017-05-16 09:17:55 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000156
+2017-05-16 09:17:56 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 09:17:57 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 09:18:02 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 09:18:03 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 09:18:04 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 09:18:05 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 09:18:11 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1005951939
+2017-05-16 09:18:28 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 09:18:28 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 09:18:28 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 09:40:00 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 09:40:00 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 09:40:00 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 09:40:00 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 09:40:29 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 09:42:23 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 09:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 09:47:58 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 09:47:59 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 09:48:00 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 09:48:01 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 09:48:04 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004511
+2017-05-16 09:48:08 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 09:48:10 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 09:48:12 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 09:48:13 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 09:48:14 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 09:48:18 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 09:48:22 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 09:48:24 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 09:48:24 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 09:48:25 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 09:48:26 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 09:48:32 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000157
+2017-05-16 09:48:34 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000157
+2017-05-16 09:48:35 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 09:48:36 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 09:48:42 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 09:48:43 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 09:48:44 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 09:48:46 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 09:48:53 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1002666442
+2017-05-16 09:49:18 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 09:49:19 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 09:49:20 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 09:49:21 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 09:49:22 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004511
+2017-05-16 09:49:26 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 09:49:27 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 09:49:28 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 09:49:29 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 09:49:29 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 09:49:33 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 09:49:35 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 09:49:37 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 09:49:37 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 09:49:38 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 09:49:39 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 09:49:44 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000157
+2017-05-16 09:49:45 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000157
+2017-05-16 09:49:45 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 09:49:46 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 09:49:51 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 09:49:52 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 09:49:53 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 09:49:54 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 09:50:00 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1001722415
+2017-05-16 09:52:02 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 09:52:02 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 09:52:02 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 10:42:07 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 10:42:07 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 10:42:07 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 10:42:07 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 10:42:36 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 10:44:31 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 10:44:37 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 10:44:50 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 10:44:50 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 10:44:50 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 10:45:49 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 10:45:49 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 10:45:49 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 10:45:49 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 10:46:18 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 10:48:13 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 10:48:20 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 10:49:37 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 10:49:37 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 10:49:37 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 10:51:56 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 10:51:56 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 10:51:56 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 10:51:56 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 10:52:24 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 10:54:19 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 10:54:25 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 10:55:46 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 10:55:46 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 10:55:46 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:02:38 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:02:38 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:02:38 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:02:38 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:03:06 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 11:05:02 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 11:05:08 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 11:06:20 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 11:06:20 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 11:06:20 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:10:46 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:10:46 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:10:46 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:10:46 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:11:23 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:11:26 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 11:11:26 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 11:11:26 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:12:41 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:12:41 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:12:41 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:12:41 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:13:09 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 11:15:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 11:15:11 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 11:19:10 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 11:19:10 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 11:19:10 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:24:47 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:24:47 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:24:47 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:24:47 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:25:16 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 11:27:11 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 11:27:18 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 11:32:57 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 11:32:59 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 11:33:00 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 11:33:01 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 11:33:02 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004510
+2017-05-16 11:33:07 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 11:33:08 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 11:33:10 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 11:33:11 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 11:33:12 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 11:33:17 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 11:33:20 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 11:33:22 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 11:33:22 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 11:33:23 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 11:33:24 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 11:33:30 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000159
+2017-05-16 11:33:31 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000159
+2017-05-16 11:33:33 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 11:33:34 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 11:33:39 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 11:33:40 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 11:33:42 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 11:33:43 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 11:33:50 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1004648469
+2017-05-16 11:34:15 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 11:34:16 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 11:34:17 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 11:34:18 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 11:34:19 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004510
+2017-05-16 11:34:23 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 11:34:23 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 11:34:24 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 11:34:25 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 11:34:26 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 11:34:30 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 11:34:32 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 11:34:34 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 11:34:34 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 11:34:35 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 11:34:36 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 11:34:40 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000159
+2017-05-16 11:34:41 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000159
+2017-05-16 11:34:42 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 11:34:43 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 11:34:48 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 11:34:49 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 11:34:50 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 11:34:51 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 11:34:56 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1002638264
+2017-05-16 11:36:24 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 11:36:24 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 11:36:24 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:39:59 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:39:59 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:39:59 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:39:59 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:40:28 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 11:42:24 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 11:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 11:48:12 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 11:48:13 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 11:48:14 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 11:48:16 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 11:48:17 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004508
+2017-05-16 11:48:21 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 8050004508
+2017-05-16 11:48:23 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 11:48:24 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 11:48:26 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 11:48:27 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 11:48:31 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 11:48:34 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 11:48:37 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 11:48:37 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 11:48:38 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 11:48:39 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 11:48:45 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000160
+2017-05-16 11:48:46 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000160
+2017-05-16 11:48:48 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 11:48:49 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 11:48:54 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 11:48:55 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 11:48:57 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 11:48:58 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 11:49:05 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1007606195
+2017-05-16 11:49:30 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 11:49:31 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 11:49:32 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 11:49:33 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 11:49:34 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004508
+2017-05-16 11:49:38 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 11:49:39 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 11:49:40 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 11:49:41 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 11:49:41 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 11:49:45 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 11:49:47 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 11:49:49 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 11:49:49 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 11:49:50 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 11:49:51 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 11:49:56 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000160
+2017-05-16 11:49:56 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000160
+2017-05-16 11:49:57 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 11:49:58 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 11:50:03 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 11:50:04 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 11:50:05 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 11:50:06 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 11:50:12 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1008983886
+2017-05-16 11:51:22 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 11:51:22 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 11:51:22 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 11:55:53 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 11:55:53 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 11:55:53 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 11:55:53 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 11:56:23 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 11:58:20 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 11:58:26 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 12:04:06 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 12:04:07 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 12:04:09 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 12:04:10 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 12:04:12 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004507
+2017-05-16 12:04:16 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 12:04:17 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 12:04:19 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 12:04:20 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 12:04:22 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 12:04:26 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 12:04:29 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 12:04:32 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 12:04:32 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 12:04:33 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 12:04:34 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 12:04:40 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000161
+2017-05-16 12:04:41 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000161
+2017-05-16 12:04:43 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 12:04:44 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 12:04:50 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 12:04:51 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 12:04:52 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 12:04:53 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 12:05:00 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1002350511
+2017-05-16 12:05:26 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 12:05:27 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 12:05:28 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 12:05:29 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 12:05:29 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004507
+2017-05-16 12:05:33 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 12:05:34 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 12:05:35 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 12:05:36 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 12:05:37 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 12:05:41 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 12:05:43 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 12:05:45 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 12:05:45 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 12:05:45 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 12:05:46 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 12:05:51 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000161
+2017-05-16 12:05:52 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000161
+2017-05-16 12:05:53 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 12:05:54 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 12:05:59 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 12:06:00 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 12:06:01 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 12:06:02 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 12:06:07 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1006785826
+2017-05-16 12:08:09 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 12:08:09 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 12:08:09 DEBUG Hooks:80 - ###########################################################################################################################
+2017-05-16 12:31:50 DEBUG Hooks:32 - ###########################################################################################################################
+2017-05-16 12:31:50 DEBUG Hooks:34 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 12:31:50 DEBUG Hooks:35 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 12:31:50 DEBUG Hooks:36 - ###########################################################################################################################
+2017-05-16 12:32:19 DEBUG PreAdviceHeaderStepsDefs:67 - Supplier Id: F01946
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 12:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 12:34:20 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 12:40:00 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 12:40:01 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 12:40:02 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 12:40:04 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 12000
+2017-05-16 12:40:05 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004506
+2017-05-16 12:40:09 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 12:40:11 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 12:40:13 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 12:40:14 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 12:40:15 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 12:40:20 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 12:40:23 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 12:40:26 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 12:40:26 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 12:40:27 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 12:40:28 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 12:40:34 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000162
+2017-05-16 12:40:35 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000162
+2017-05-16 12:40:37 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 12:40:38 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 12:40:43 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 12:40:45 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 12:40:46 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 12:40:47 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 12:40:55 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1004189897
+2017-05-16 12:41:20 DEBUG InventoryTransactionQueryStepDefs:438 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 12:41:21 DEBUG InventoryTransactionQueryStepDefs:444 - fromLocation: REC002
+2017-05-16 12:41:22 DEBUG InventoryTransactionQueryStepDefs:450 - toLocation: REC002
+2017-05-16 12:41:23 DEBUG InventoryTransactionQueryStepDefs:456 - updateQty: 10500
+2017-05-16 12:41:24 DEBUG InventoryTransactionQueryStepDefs:463 - reference: 8050004506
+2017-05-16 12:41:28 DEBUG InventoryTransactionQueryStepDefs:483 - expiryDate: 16/05/2019
+2017-05-16 12:41:29 DEBUG InventoryTransactionQueryStepDefs:490 - userId: SARWAN
+2017-05-16 12:41:30 DEBUG InventoryTransactionQueryStepDefs:496 - workstation: RDT0140
+2017-05-16 12:41:31 DEBUG InventoryTransactionQueryStepDefs:503 - rDTUserMode: Pre-Advice Receive
+2017-05-16 12:41:32 DEBUG InventoryTransactionQueryStepDefs:509 - supplier: F01946
+2017-05-16 12:41:35 DEBUG InventoryTransactionQueryStepDefs:524 - palletType: CHEP
+2017-05-16 12:41:37 DEBUG InventoryTransactionQueryStepDefs:531 - packConfig: 21036013O01
+2017-05-16 12:41:39 DEBUG InventoryTransactionQueryStepDefs:541 - uploaded: No
+2017-05-16 12:41:39 DEBUG InventoryTransactionQueryStepDefs:542 - uploadedFileName: No
+2017-05-16 12:41:40 DEBUG InventoryTransactionQueryStepDefs:548 - uploadedDate: No
+2017-05-16 12:41:41 DEBUG InventoryTransactionQueryStepDefs:554 - uploadedTime: No
+2017-05-16 12:41:46 DEBUG InventoryTransactionQueryStepDefs:403 - originalRotationId: 17/D00000162
+2017-05-16 12:41:47 DEBUG InventoryTransactionQueryStepDefs:409 - rotationId: 17/D00000162
+2017-05-16 12:41:48 DEBUG InventoryTransactionQueryStepDefs:415 - ceReceiptType: Non-Bond
+2017-05-16 12:41:49 DEBUG InventoryTransactionQueryStepDefs:421 - underBond: Duty Paid (Free circulation)
+2017-05-16 12:41:53 DEBUG InventoryTransactionQueryStepDefs:368 - storageLocation: 0001
+2017-05-16 12:41:54 DEBUG InventoryTransactionQueryStepDefs:374 - baseUOM: EA
+2017-05-16 12:41:55 DEBUG InventoryTransactionQueryStepDefs:381 - intoDestinationDate: 07/04/2017
+2017-05-16 12:41:56 DEBUG InventoryTransactionQueryStepDefs:387 - caseRatio: 15
+2017-05-16 12:42:02 DEBUG InventoryTransactionQueryStepDefs:357 - URN Child: 1006680755
+2017-05-16 12:44:14 DEBUG Hooks:77 - ###########################################################################################################################
+2017-05-16 12:44:14 DEBUG Hooks:79 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 12:44:14 DEBUG Hooks:80 - ###########################################################################################################################

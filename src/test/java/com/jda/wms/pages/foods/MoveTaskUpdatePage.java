@@ -25,8 +25,8 @@ public class MoveTaskUpdatePage {
 	}
 
 	public void enterTagId(String tagId) throws FindFailed {
-		screen.wait("images/MoveTaskUpdate/TagId.png", timeoutInSec);
-		screen.click("images/MoveTaskUpdate/TagId.png");
+		Match mStatus = screen.find("images/MoveTaskUpdate/mTagID.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type(Key.DELETE);
 		screen.type(tagId);

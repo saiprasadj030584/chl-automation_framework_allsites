@@ -79,7 +79,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
-		ArrayList<String> tagIDArrayList = new ArrayList<String>();
+		// ArrayList<String> tagIDArrayList = new ArrayList<String>();
 
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
@@ -92,6 +92,7 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderReceivingStepDefs.i_should_be_directed_to_pre_advice_entry_page();
 		purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_purchase_order_at_location(location);
 		purchaseOrderReceivingStepDefs.i_should_see_the_receiving_completion();
+		puttyFunctionsPage.logoutPutty();
 		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomepage.navigateToInventoryQueryPage();
 		inventoryQueryStepDefs.the_inventory_details_should_be_displayed_for_all_the_tag_id();
@@ -100,41 +101,15 @@ public class PurchaseOrderPutawayStepDefs {
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table();
 
-		/*
-		 * // commented the hardcode values // TODO to be deleted once
-		 * integrated with receiving scenarios context.setNoOfLines(1); for (int
-		 * i = 1; i <= context.getNoOfLines(); i++) { Map<String, String>
-		 * lineItemsMap = new HashMap<String, String>(); if (i == 1) {
-		 * lineItemsMap.put("SKU", "21036013"); }
-		 * 
-		 * if (i == 2) { lineItemsMap.put("SKU", "21036046"); }
-		 * 
-		 * purchaseOrderMap.put(String.valueOf(i), lineItemsMap); }
-		 * context.setPurchaseOrderMap(purchaseOrderMap);
-		 * 
-		 * for (int i = 1; i <= context.getNoOfLines(); i++) { String skuID =
-		 * purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-		 * 
-		 * for (int t = 0; t < 2; t++) { tagIDArrayList.clear();
-		 * tagIDArrayList.add("1000493118"); tagIDArrayList.add("1000757676"); }
-		 * 
-		 * tagIDMap.put(skuID, tagIDArrayList); context.setTagIDMap(tagIDMap);
-		 * context.getTagIDMap();
-		 * 
-		 */
-
 		jdaHomepage.navigateToInventoryQueryPage();
-
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			System.out.println("Tag ID : " + tagIDMap.get(sku).size());
 
 			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
-				tagId = tagIDMap.get(sku).get(t);
-				context.setTagId(tagId);
-
 				jdaFooter.clickQueryButton();
-				inventoryQueryPage.enterTagId(context.getTagId());
+				inventoryQueryPage.enterTagId(tagIDMap.get(sku).get(t));
 				jdaFooter.clickExecuteButton();
 
 				Assert.assertEquals("Location Zone does not match", "INBOUND", inventoryQueryPage.getLocationZone());
@@ -145,7 +120,6 @@ public class PurchaseOrderPutawayStepDefs {
 	@When("^I navigate to move task update and release all the tags for the SKU$")
 	public void i_navigate_to_move_task_update_and_relase_all_the_tags_for_the_SKU() throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = context.getPurchaseOrderMap();
-		System.out.println(purchaseOrderMap);
 		Map<String, ArrayList<String>> tagIDMap = context.getTagIDMap();
 		jdaHomepage.navigateToMoveTaskUpdate();
 
@@ -162,29 +136,9 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 	}
 
-	@When("^I relase all the tags for the SKU$")
-	public void i_relase_all_the_tags_for_the_SKU() throws Throwable {
-		Map<String, Map<String, String>> purchaseOrderMap = context.getPurchaseOrderMap();
-		System.out.println(purchaseOrderMap);
-		Map<String, ArrayList<String>> tagIDMap = context.getTagIDMap();
-
-		for (String key : purchaseOrderMap.keySet()) {
-			String sku = purchaseOrderMap.get(key).get("SKU");
-
-			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
-
-				moveTaskUpdate.enterTagId(tagIDMap.get(sku).get(t));
-				jdaFooter.clickNextButton();
-				moveTaskUpdate.clickReleaseButton();
-				jdaFooter.clickNextButton();
-				jdaFooter.clickDoneButton();
-			}
-		}
-	}
-
-	@When("^I login as warehouse user in Putty with host \"([^\"]*)\" and port \"([^\"]*)\"$")
-	public void i_login_as_warehouse_user_in_Putty_with_host_and_port(String host, String port) throws Throwable {
-		puttyFunctionsPage.loginPutty(host, port);
+	@When("^I login as warehouse user in Putty$")
+	public void i_login_as_warehouse_user_in_Putty() throws Throwable {
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
 	}
 
 	@When("^I select normal putaway$")
@@ -206,30 +160,33 @@ public class PurchaseOrderPutawayStepDefs {
 			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
 				String currentTagId = tagIDMap.get(sku).get(t);
 				purchaseOrderPutawayPage.enterTagId(currentTagId);
-				Thread.sleep(5000);
-
-				String location = purchaseOrderPutawayPage.getLocation();
-				String[] loc = location.split("_______");
-				context.setLocation(loc[0]);
-				locationPerTagMap.put(currentTagId, loc[0]);
-
+				Thread.sleep(3000);
 				purchaseOrderPutawayPage.completeProcess();
+				String location = purchaseOrderPutawayPage.getLocation();
+				System.out.println("Locaion is " + location);
+				locationPerTagMap.put(currentTagId, location);
 				Thread.sleep(2000);
 
 				List<String> chkString = getDataFromJson.getCheckString();
+				System.out.println(chkString.size());
+				System.out.println(chkString.get(50));
+				System.out.println(chkString.get(12));
+				// AH20E02
 				for (int i = 0; i < chkString.size(); i++) {
+					System.out.println("inside for loop");
 					if (chkString.get(i).contains(location)) {
+						System.out.println("inside if loop");
 						String cs = chkString.get(i);
 						String[] checkString = cs.split(":");
+						System.out.println(checkString[1]);
 						purchaseOrderPutawayPage.enterCheckString(checkString[1]);
 						break;
 					}
 				}
-
-				i_should_be_directed_to_putent_page();
-				purchaseOrderPutawayPage.mimimizePuty();
-				Thread.sleep(2000);
 			}
+			i_should_be_directed_to_putent_page();
+			purchaseOrderPutawayPage.mimimizePuty();
+			Thread.sleep(2000);
 		}
 		context.setLocationPerTagMap(locationPerTagMap);
 	}
@@ -237,6 +194,7 @@ public class PurchaseOrderPutawayStepDefs {
 	@Then("^I should be directed to putent page$")
 	public void i_should_be_directed_to_putent_page() throws Throwable {
 		Assert.assertTrue("Putaway not completed and Home page not displayed.", purchaseOrderPutawayPage.isPutEnt());
+		// puttyFunctionsPage.logoutPutty();
 	}
 
 	@When("^I naviagate to inventory query page$")

@@ -22,4 +22,8 @@ public class GetDataFromJson extends PageObject {
 		return checkStringDetailsJsonDao.getCheckStringDetails().get(0).getCheckString();
 	}
 
+	public List<String> getCheckStrings() throws DataException {
+		return checkStringDetailsJsonDao.getCheckStringDetails().get(0).getCheckString();
+	}
+
 }

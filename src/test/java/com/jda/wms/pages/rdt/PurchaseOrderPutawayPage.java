@@ -58,15 +58,16 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void clickPuttyIcon() throws FindFailed, InterruptedException {
-		/*reg.getBottomLeft();
-		screen.getBottomLeft();*/
+		/*
+		 * reg.getBottomLeft(); screen.getBottomLeft();
+		 */
 		screen.wait("/images/Putty/ClickPuttyIcon.png", timeoutInSec);
 		screen.click("/images/Putty/ClickPuttyIcon.png");
 		Thread.sleep(2000);
 	}
 
 	public void completeProcess() throws InterruptedException {
-		Thread.sleep(2500);
+		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 	}
 
