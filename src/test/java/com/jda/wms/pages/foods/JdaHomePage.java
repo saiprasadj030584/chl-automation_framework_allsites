@@ -25,6 +25,7 @@ public class JdaHomePage extends PageObject {
 		clickDataMenu();
 		hoverOrder();
 		clickOrderHeader();
+		Thread.sleep(3000);
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
@@ -70,13 +71,13 @@ public class JdaHomePage extends PageObject {
 	}
 
 	private void hoverOrder() throws FindFailed {
-		screen.wait("images/OrderSubmenu.png", timeoutInSec);
-		screen.click("images/OrderSubmenu.png");
+		screen.wait("images/OrderSubmenu.PNG", timeoutInSec);
+		screen.click("images/OrderSubmenu.PNG");
 	}
 
 	private void clickOrderHeader() throws FindFailed {
-		screen.wait("images/OrderHeader.png", timeoutInSec);
-		screen.click("images/OrderHeader.png");
+		screen.wait("images/OrderHeader.PNG", timeoutInSec);
+		screen.click("images/OrderHeader.PNG");
 	}
 
 	public void hoverSKU() throws FindFailed {

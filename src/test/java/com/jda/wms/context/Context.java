@@ -1,5 +1,6 @@
 package com.jda.wms.context;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,10 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private String customer;
+	private Connection connection = null;
+
+	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -390,4 +395,30 @@ public class Context {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	public String getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+
+	public int getQtyReverse() {
+		return qtyReverse;
+	}
+
+	public void setQtyReverse(int qtyReverse) {
+		this.qtyReverse = qtyReverse;
+
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
 }

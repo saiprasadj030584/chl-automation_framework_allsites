@@ -428,6 +428,19 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
+	/*
+	 * public boolean isRecordsExists() throws FindFailed { if
+	 * (screen.exists("images/InventoryTransactionQuery/NoRecords.png").equals(
+	 * null)) return true; else return false; }
+	 */
+
+	public boolean isRecordfound() throws FindFailed {
+		if (screen.exists("/images/InventoryTransactionQuery/1RecordFound.png", timeoutInSec) != null)
+			return true;
+		else
+			return false;
+	}
+
 	public void clickGeneralTab() throws FindFailed, InterruptedException {
 		screen.wait("images/InventoryTransactionQuery/GeneralTab.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/GeneralTab.png");

@@ -1,5 +1,7 @@
 package com.jda.wms.hooks;
 
+import java.sql.SQLException;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -19,10 +22,12 @@ public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
 	Screen screen = new Screen();
+	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver) {
+	public Hooks(WebDriver webDriver,Context context) {
 		this.webDriver = webDriver;
+		this.context = context;
 	}
 
 	@Before
@@ -80,6 +85,15 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
+	
+	@After
+	public void closeDBConnection() throws SQLException{
+		if (!context.getConnection().equals(null)){
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+	}
+	
 
 	// @After
 	public void clickSignoutButton() throws FindFailed {
