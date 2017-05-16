@@ -280,8 +280,6 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		return App.getClipboard();
 	}
 
-	
-
 	public String getshipDock() throws FindFailed {
 		Match mDescription = screen.find("images/OrderHeaderMaintenance/ShipDock.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
@@ -289,5 +287,5 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 
-}
+	}
 }

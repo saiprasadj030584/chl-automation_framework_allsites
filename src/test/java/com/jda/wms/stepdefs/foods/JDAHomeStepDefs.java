@@ -113,8 +113,8 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_order_Line_Maintenance_Page() throws Throwable {
 		jdaHomePage.navigateToOrderLineMaintenance();
 	}
-	@When("^I navigate to ship dock reassignment table$")
-	public void i_navigate_to_ship_dock_reassignment_table() throws Throwable {
+	@When("^I navigate to ship dock reassignment$")
+	public void i_navigate_to_ship_dock_reassignment() throws Throwable {
 		jdaHomePage.navigateToShipDockReassignment();
 	}
 

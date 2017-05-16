@@ -3,17 +3,15 @@ Feature: Receive STO order
   As a warehouse user
   I want to receive the STO 
   So that I can be used for allocation
-  
-  
-  @shipdock_reassignment
-   Scenario: To assign the the shipdock
+
+ 
+@shipdock_reassignment
+  Scenario: Shipdock reassignment
     Given I have logged in as warehouse user in JDA dispatcher food application
-    When I navigate to order header maintenance table
-    And I search the order Id "3000000011"
-    Then the ship dock should be displayed as "DEFAULT SD"
-    When I navigate to ship dock reassignment table
-    Then I enter the site id "9771" and order id "3000000011"
-    Then I should find one record
-    Then I enter the "FAVESD" in new shipdock reassignment
-    When I navigate to order header maintenance table
-    Then  the shipdock should be displayed as "FAVESD"
+    When I navigate to ship dock reassignment
+    And I enter the from site id "9771" and order id "3000000001"
+    And I proceed to next
+    Then the order list should be displayed
+    When I proceed to next
+    And I enter the new ship dock "TESTSD"
+    Then the ship dock should be updated for an order

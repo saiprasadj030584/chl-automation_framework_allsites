@@ -54,6 +54,7 @@ public class Context {
 	private String siteId;
 	private String orderId;
 	private String shipDock;
+	private String newShipDock;
 
 	private String customer;
 
@@ -427,6 +428,14 @@ public class Context {
 
 	public void setShipDock(String shipDock) {
 		this.shipDock = shipDock;
+	}
+
+	public String getNewShipDock() {
+		return newShipDock;
+	}
+
+	public void setNewShipDock(String newShipDock) {
+		this.newShipDock = newShipDock;
 	}
 }
 
