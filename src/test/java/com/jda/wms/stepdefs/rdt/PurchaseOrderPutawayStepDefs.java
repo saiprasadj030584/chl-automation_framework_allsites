@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.LocationDB;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.MoveTaskUpdatePage;
@@ -34,6 +35,7 @@ public class PurchaseOrderPutawayStepDefs {
 	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private final Database database;
 	private final LocationDB locationDB;
+	private final Hooks hooks;
 	private Context context;
 	String tagId = null;
 	Map<String, ArrayList<String>> tagIDMap;
@@ -43,7 +45,7 @@ public class PurchaseOrderPutawayStepDefs {
 	@Inject
 	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
 			PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context, PuttyFunctionsPage puttyFunctionsPage,
-			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database,
+			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database, Hooks hooks,
 			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
@@ -59,6 +61,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.database = database;
 		this.locationDB = locationDB;
+		this.hooks = hooks;
 	}
 
 	@Given("^the pre advice id \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" and \"([^\"]*)\" should be received$")
@@ -76,7 +79,7 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
 		purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_purchase_order_at_location(location);
 		purchaseOrderReceivingStepDefs.i_should_see_the_receiving_completion();
-		puttyFunctionsPage.logoutPutty();
+		hooks.logoutPutty();
 	}
 
 	@When("^I navigate to move task update and release all the tags for the SKU$")
@@ -96,11 +99,6 @@ public class PurchaseOrderPutawayStepDefs {
 				jdaFooter.clickDoneButton();
 			}
 		}
-	}
-
-	@When("^I login as warehouse user in Putty$")
-	public void i_login_as_warehouse_user_in_Putty() throws Throwable {
-		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
 	}
 
 	@When("^I select normal putaway$")
@@ -134,7 +132,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 			Thread.sleep(5000);
 			i_should_be_directed_to_putent_page();
-			puttyFunctionsPage.logoutPutty();
+			hooks.logoutPutty();
 			Thread.sleep(2000);
 		}
 		context.setLocationPerTagMap(locationPerTagMap);

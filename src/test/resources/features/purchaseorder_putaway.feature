@@ -6,7 +6,7 @@ Feature: Putaway for purchase order
 
   @complete
   Scenario Outline: Normal putaway for PO
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And the pre advice id "<preAdviceId>" , "<Category>" , "<Status>" , "<Location>" and "Complete" should be received
     When I navigate to move task update and release all the tags for the SKU
     And I login as warehouse user in Putty

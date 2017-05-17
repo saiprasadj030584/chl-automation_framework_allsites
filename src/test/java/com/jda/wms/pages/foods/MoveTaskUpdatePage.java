@@ -9,13 +9,11 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
 public class MoveTaskUpdatePage {
-	private final JdaHomePage jdaHomePage;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public MoveTaskUpdatePage(JdaHomePage jdaHomePage) {
-		this.jdaHomePage = jdaHomePage;
+	public MoveTaskUpdatePage() {
 	}
 
 	public void clickReleaseButton() throws FindFailed, InterruptedException {

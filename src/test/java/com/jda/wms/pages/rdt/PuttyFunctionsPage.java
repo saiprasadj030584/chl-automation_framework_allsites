@@ -62,33 +62,4 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
-
-	public void logoutPutty() throws FindFailed, InterruptedException {
-		while (screen.exists("/images/Putty/3Logout.png") == null) {
-			screen.type(Key.F12);
-		}
-		screen.type("3");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-
-		screen.wait("images/Putty/PuttyClose.png", 20);
-		screen.click("images/Putty/PuttyClose.png", 25);
-		Thread.sleep(3000);
-
-		screen.wait("images/Putty/PuttyCloseOK.png", 20);
-		screen.click("images/Putty/PuttyCloseOK.png", 25);
-		Thread.sleep(2000);
-
-		/*
-		 * screen.wait("images/Putty/Putty.png", 20);
-		 * screen.click("images/Putty/Putty.png", 25); screen.rightClick();
-		 * Thread.sleep(2000); screen.wait("images/Putty/PuttyKlose.png", 20);
-		 * screen.click("images/Putty/PuttyKlose.png", 25); Thread.sleep(3000);
-		 * screen.wait("images/Putty/PuttyCloseOK.png", 20);
-		 * screen.click("images/Putty/PuttyCloseOK.png", 25);
-		 * Thread.sleep(1000);
-		 */
-
-	}
 }
