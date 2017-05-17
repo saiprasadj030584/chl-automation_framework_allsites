@@ -26,6 +26,12 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+
 /**
  *
  * @author Tone Walters (tone_walters@yahoo.com)
@@ -33,7 +39,14 @@ import java.util.ArrayList;
 public class Database {
 	private String applicationUser;
 	private Connection connection;
+	private Context context;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
+@Inject
+	public Database(Context context) {
+	this.context = context;
+}
+	
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
@@ -45,19 +58,20 @@ public class Database {
 	 * @param password
 	 *            - password
 	 * @return - returns true if the connection is successful.
+	 * @throws ClassNotFoundException 
 	 */
-	public boolean connect(String address, String username, String password) {
-		boolean connectionSucessful = false;
+	public void connect(String address, String username, String password) throws ClassNotFoundException {
+		if (context.getConnection()==null){
 		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); 
 			connection = DriverManager.getConnection(address, username, password);
+			context.setConnection(connection);
 			connection.setAutoCommit(true);
-			connectionSucessful = true;
+			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
-			// LogWriter.writeLogEntry("Something went wrong connecting to the
-			// database");
-			// LogWriter.writeLogEntry(ex.toString());
+			
 		}
-		return connectionSucessful;
+		}
 	}
 
 	/**
@@ -75,7 +89,6 @@ public class Database {
 			vStatement.setClob(2, new StringReader(xml));
 			vStatement.registerOutParameter(1, Types.VARCHAR);
 			vStatement.executeUpdate();
-			System.out.println(vStatement.getString(1));
 			success = true;
 		} catch (SQLException ex) {
 			write("Failed to execute statement:: " + ex.toString());

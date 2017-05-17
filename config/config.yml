@@ -8,7 +8,14 @@ default:
  gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html'
  gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
  putty-foods-host: 'hlxc0dc024.unix.marksandspencercate.com'
+<<<<<<< HEAD
  putty-foods-port: '20137'
+=======
+ putty-foods-port: '20140'
+ db-host: 'jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2'
+ db-username: 'dcsdba'
+ db-password: 'dcsabd'
+>>>>>>> a071fda166a89a44572865f0b151fad79641db6a
       
 # Browser settings
 ##################
