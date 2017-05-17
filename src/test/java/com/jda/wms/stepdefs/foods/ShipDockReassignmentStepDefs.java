@@ -26,6 +26,7 @@ public class ShipDockReassignmentStepDefs {
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.shipDockReassignmentPage = shipDockReassignmentPage;
+		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 	}
 
 	@When("^I enter the from site id \"([^\"]*)\" and order id \"([^\"]*)\"$")
@@ -34,7 +35,7 @@ public class ShipDockReassignmentStepDefs {
 		shipDockReassignmentPage.enterOrderNo(orderId);
 		context.setOrderId(orderId);
 	}
-	
+
 	@Then("^the order list should be displayed$")
 	public void the_order_list_should_be_displayed() throws Throwable {
 		Assert.assertTrue("order list is not displayed.", shipDockReassignmentPage.is1RecordDisplayed());
@@ -53,7 +54,6 @@ public class ShipDockReassignmentStepDefs {
 	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
-		System.out.println("context.getOrderId() "+context.getOrderId());
 		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
