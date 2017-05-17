@@ -2,10 +2,10 @@
 Feature: Receive STO order
   As a warehouse user
   I want to receive the STO 
-  So that I can be used for allocation
+  So that it can be used for allocation
 
  
-@shipdock_reassignment
+@complete
   Scenario: Shipdock reassignment
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to ship dock reassignment
