@@ -29,7 +29,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderLineMaintenancePage orderLineMaintenancePage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -133,23 +134,14 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-	@When("^i enter the order id \"([^\"]*)\"$")
-	public void i_enter_the_order_id(String orderID) throws Throwable {
+
+	@Then("^the ship dock should be updated for an order$")
+	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
 		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickExecuteButton();
-	}
-	@Then("^i should see the status as \"([^\"]*)\"$")
-	public void i_should_see_the_status_as(String status) throws Throwable {
-		Assert.assertEquals("STO Status does not match", status,  orderHeaderMaintenancePage.getStatus());
-	}
-	@Then("^i enter the order id \"([^\"]*)\" in order line maintenance page$")
-	public void i_enter_the_order_id_in_order_line_maintenance_page(String orderID) throws Throwable {
-		jdaHomeStepDefs.i_navigate_to_order_Line_Maintenance_Page();
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(orderID);
-		jdaFooter.clickExecuteButton();
-		orderLineMaintenancePage.selectFirstRecord();
+		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
+				orderHeaderMaintenancePage.getShipDock());
 	}
 
 }

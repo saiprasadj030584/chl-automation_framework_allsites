@@ -385,7 +385,7 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToOrderHeaderMaintenance() throws FindFailed, InterruptedException {
-	    clickSearchIcon();
+		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Header Maintenance/query screen");
 		screen.type(Key.ENTER);
@@ -393,7 +393,4 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	}
-		
-	
-
+}
