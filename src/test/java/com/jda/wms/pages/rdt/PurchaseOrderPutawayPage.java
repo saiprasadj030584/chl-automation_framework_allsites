@@ -37,7 +37,7 @@ public class PurchaseOrderPutawayPage {
 	public void enterTagId(String tagId) throws InterruptedException {
 		screen.type(tagId);
 		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public String getLocation() throws FindFailed, InterruptedException {

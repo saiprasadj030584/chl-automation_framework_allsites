@@ -19,7 +19,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-		Match mtagId = screen.find("images/InventoryTransactionQuery/TagID.png");
+		Match mtagId = screen.find("images/InventoryTransactionQuery/TagIDs.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}

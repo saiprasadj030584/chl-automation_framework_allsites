@@ -2,23 +2,19 @@ package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.dao.GetDataFromJson;
-import com.jda.wms.pages.foods.InventoryQueryPage;
+import com.jda.wms.db.Database;
+import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.MoveTaskUpdatePage;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
-import com.jda.wms.stepdefs.foods.InventoryQueryStepDefs;
-import com.jda.wms.stepdefs.foods.InventoryTransactionQueryStepDefs;
-import com.jda.wms.stepdefs.foods.JDALoginStepDefs;
 import com.jda.wms.stepdefs.foods.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.foods.PreAdviceLineMaintenanceStepDefs;
 
@@ -28,19 +24,16 @@ import cucumber.api.java.en.When;
 
 public class PurchaseOrderPutawayStepDefs {
 	private final JdaHomePage jdaHomepage;
-	private final InventoryQueryPage inventoryQueryPage;
 	private final MoveTaskUpdatePage moveTaskUpdate;
 	private final JDAFooter jdaFooter;
 	private final PurchaseOrderPutawayPage purchaseOrderPutawayPage;
 	private final PuttyFunctionsPage puttyFunctionsPage;
-	private final GetDataFromJson getDataFromJson;
 	private final PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs;
 	private final PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs;
 	private final PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
-	private final JDALoginStepDefs jdaLoginStepDefs;
-	private final InventoryQueryStepDefs inventoryQueryStepDefs;
-	private final InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
+	private final Database database;
+	private final LocationDB locationDB;
 	private Context context;
 	String tagId = null;
 	Map<String, ArrayList<String>> tagIDMap;
@@ -48,73 +41,42 @@ public class PurchaseOrderPutawayStepDefs {
 	Map<String, String> locationTagMap;
 
 	@Inject
-	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, InventoryQueryPage inventoryQueryPage,
-			MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter, PurchaseOrderPutawayPage purchaseOrderPutawayPage,
-			Context context, PuttyFunctionsPage puttyFunctionsPage, GetDataFromJson getDataFromJson,
-			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs,
+	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
+			PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context, PuttyFunctionsPage puttyFunctionsPage,
+			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database,
+			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, JDALoginStepDefs jdaLoginStepDefs) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
-		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsPage = puttyFunctionsPage;
-		this.getDataFromJson = getDataFromJson;
 		this.preAdviceHeaderStepsDefs = preAdviceHeaderStepsDefs;
 		this.preAdviceLineMaintenanceStepDefs = preAdviceLineMaintenanceStepDefs;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
-		this.jdaLoginStepDefs = jdaLoginStepDefs;
-		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
-		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
+		this.database = database;
+		this.locationDB = locationDB;
 	}
 
 	@Given("^the pre advice id \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" and \"([^\"]*)\" should be received$")
 	public void the_pre_advice_id_and_should_be_received(String preAdviceId, String category, String status,
 			String location, String finalStatus) throws Throwable {
 
-		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
-		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
-		// ArrayList<String> tagIDArrayList = new ArrayList<String>();
-
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
 						preAdviceId, category, status);
 		preAdviceLineMaintenanceStepDefs
 				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_line_items();
+
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
-		purchaseOrderReceivingStepDefs.i_should_be_directed_to_pre_advice_entry_page();
 		purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_purchase_order_at_location(location);
 		purchaseOrderReceivingStepDefs.i_should_see_the_receiving_completion();
 		puttyFunctionsPage.logoutPutty();
-		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-		jdaHomepage.navigateToInventoryQueryPage();
-		inventoryQueryStepDefs.the_inventory_details_should_be_displayed_for_all_the_tag_id();
-		inventoryQueryStepDefs.i_navigate_to_pre_advice_header_maintenance_page();
-		inventoryQueryStepDefs.the_status_should_be_displayed_as(finalStatus);
-		inventoryTransactionQueryStepDefs
-				.the_goods_receipt_should_be_generated_for_the_received_stock_in_inventory_transaction_table();
-
-		jdaHomepage.navigateToInventoryQueryPage();
-		purchaseOrderMap = context.getPurchaseOrderMap();
-		tagIDMap = context.getTagIDMap();
-		for (String key : purchaseOrderMap.keySet()) {
-			String sku = purchaseOrderMap.get(key).get("SKU");
-
-			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
-				jdaFooter.clickQueryButton();
-				inventoryQueryPage.enterTagId(tagIDMap.get(sku).get(t));
-				jdaFooter.clickExecuteButton();
-
-				Assert.assertEquals("Location Zone does not match", "INBOUND", inventoryQueryPage.getLocationZone());
-			}
-		}
 	}
 
 	@When("^I navigate to move task update and release all the tags for the SKU$")
@@ -154,38 +116,25 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
 
-		for (int s = 1; s <= tagIDMap.size(); s++) {
-			String sku = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
+		for (int skuIndex = 1; skuIndex <= tagIDMap.size(); skuIndex++) {
+			String sku = purchaseOrderMap.get(String.valueOf(skuIndex)).get("SKU");
 
-			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
-				String currentTagId = tagIDMap.get(sku).get(t);
+			for (int tagIndex = 0; tagIndex < tagIDMap.get(sku).size(); tagIndex++) {
+				String currentTagId = tagIDMap.get(sku).get(tagIndex);
 				purchaseOrderPutawayPage.enterTagId(currentTagId);
-				Thread.sleep(3000);
 				purchaseOrderPutawayPage.completeProcess();
 				String location = purchaseOrderPutawayPage.getLocation();
-				System.out.println("Locaion is " + location);
 				locationPerTagMap.put(currentTagId, location);
 				Thread.sleep(2000);
 
-				List<String> chkString = getDataFromJson.getCheckString();
-				System.out.println(chkString.size());
-				System.out.println(chkString.get(50));
-				System.out.println(chkString.get(12));
-				// AH20E02
-				for (int i = 0; i < chkString.size(); i++) {
-					System.out.println("inside for loop");
-					if (chkString.get(i).contains(location)) {
-						System.out.println("inside if loop");
-						String cs = chkString.get(i);
-						String[] checkString = cs.split(":");
-						System.out.println(checkString[1]);
-						purchaseOrderPutawayPage.enterCheckString(checkString[1]);
-						break;
-					}
-				}
+				database.connect();
+				String checkString = locationDB.geCheckString(location);
+				purchaseOrderPutawayPage.enterCheckString(checkString);
 			}
+
+			Thread.sleep(5000);
 			i_should_be_directed_to_putent_page();
-			purchaseOrderPutawayPage.mimimizePuty();
+			puttyFunctionsPage.logoutPutty();
 			Thread.sleep(2000);
 		}
 		context.setLocationPerTagMap(locationPerTagMap);
@@ -194,7 +143,6 @@ public class PurchaseOrderPutawayStepDefs {
 	@Then("^I should be directed to putent page$")
 	public void i_should_be_directed_to_putent_page() throws Throwable {
 		Assert.assertTrue("Putaway not completed and Home page not displayed.", purchaseOrderPutawayPage.isPutEnt());
-		// puttyFunctionsPage.logoutPutty();
 	}
 
 	@When("^I naviagate to inventory query page$")
@@ -207,4 +155,16 @@ public class PurchaseOrderPutawayStepDefs {
 		jdaHomepage.navigateToInventoryTransactionPage();
 	}
 
+	@Then("^I enter the tag and check string$")
+	public void i_enter_the_tag_and_check_string() throws Throwable {
+		purchaseOrderPutawayPage.enterTagId(context.getTagId());
+		purchaseOrderPutawayPage.completeProcess();
+
+		String location = purchaseOrderPutawayPage.getLocation();
+		context.setLocation(location);
+
+		database.connect();
+		String checkString = locationDB.geCheckString(location);
+		purchaseOrderPutawayPage.enterCheckString(checkString);
+	}
 }
