@@ -185,8 +185,10 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-	public void enterYes() {
-		screen.type("Y");
+	public void enterYes() throws InterruptedException {
+		screen.type("y");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
 
 	}
 
@@ -206,6 +208,20 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isEnterABVForUpcDisplayed() {
 		if (screen.exists("images/Putty/Receiving/EnterTheAbv.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isVintageNotExpectedDisplayed() {
+		if (screen.exists("images/Putty/Receiving/VintageNotExpected.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isEnterVintageForUpcDisplayed() {
+		if (screen.exists("images/Putty/Receiving/EnterVintage.png") != null)
 			return true;
 		else
 			return false;

@@ -2,13 +2,13 @@
 ##################
 default:
  browser-name: ie
- username: 'sarwan'
- password: 'pass'
+ username: 'P9135145'
+ password: '12345'
  gm-jda-url: 'http://hlxc0dc012.unix.marksandspencercate.com:8880/#'
  gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html'
  gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
  putty-foods-host: 'hlxc0dc024.unix.marksandspencercate.com'
- putty-foods-port: '20140'
+ putty-foods-port: '20137'
       
 # Browser settings
 ##################
@@ -33,7 +33,7 @@ st: &st
  putty-foods-port: '20140'
 
 sit: &sit
- username: 'p9121154'
+ username: 'p9135145'
  password: '12345'
  gm-jda-url: 'http://hlxc0dc012.unix.marksandspencercate.com:8880/#'
  gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html'

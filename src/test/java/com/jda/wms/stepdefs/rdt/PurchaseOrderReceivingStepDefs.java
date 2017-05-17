@@ -117,7 +117,11 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter pre-advice id \"([^\"]*)\" and SKU id")
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId) throws Throwable {
+		// purchaseOrderReceivingPage.enterPreAdvId("0030001870");
+		// context.setPreAdviceId("0030001870");
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
+		// purchaseOrderReceivingPage.enterSKUId("20002340");
+		// context.setSkuId("20002340");
 		purchaseOrderReceivingPage.enterSKUId(context.getSkuId());
 	}
 
@@ -132,6 +136,7 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 
 		String supplierId = purchaseOrderReceivingPage.getSupplierId();
+		// if (!supplierId.equalsIgnoreCase("F06048")) {
 		if (!supplierId.equalsIgnoreCase(context.getSupplierID())) {
 			failureList.add("Supplier ID not displayed as expected. Expected [" + context.getSupplierID()
 					+ "] but was [" + supplierId + "]");
@@ -156,6 +161,7 @@ public class PurchaseOrderReceivingStepDefs {
 		String skuID = purchaseOrderMap.get(String.valueOf(context.getLineItem())).get("SKU");
 		String tagId = tagIDMap.get(skuID).get(context.getTagIdIndex());
 		purchaseOrderReceivingPage.enterTagId(tagId);
+		// purchaseOrderReceivingPage.enterTagId("5678234561");
 
 		Assert.assertTrue("RcvPreCmp page 2 not displayed as expected",
 				purchaseOrderReceivingPage.isRcvPreCmp2Displayed());
@@ -203,7 +209,9 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 		context.setRcvQtyDue(rcvQtyDue);
 
+		// purchaseOrderReceivingPage.enterQtyToReceive("10");
 		purchaseOrderReceivingPage.enterQtyToReceive(String.valueOf(qtyToReceive));
+		// purchaseOrderReceivingPage.enterCaseRatio("6");
 		purchaseOrderReceivingPage.enterCaseRatio(String.valueOf(caseRatio));
 
 		Assert.assertTrue("RcvPreCmp page 3 not displayed as expected",
@@ -343,9 +351,125 @@ public class PurchaseOrderReceivingStepDefs {
 
 	}
 
-	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\" with ABV more than ten percentage$")
-	public void i_receive_all_the_skus_for_the_purchase_order_at_location_with_ABV_more_than_ten_percentage(
-			String location) throws Throwable {
+	@Then("^the error message should be displayed as vintage is not as expected$")
+	public void the_error_message_should_be_displayed_as_vintage_is_not_as_expected() throws Throwable {
+		System.out.println(puttyFlag);
+		if (puttyFlag == true) {
+			Assert.assertTrue("Appropriate error not displayed. Expected [Enter the ABV for the UPC being received]",
+					purchaseOrderReceivingPage.isVintageNotExpectedDisplayed());
+			Thread.sleep(5000);
+		}
+
+	}
+
+	@Then("^the error message should be displayed as enter vintage for the UPC$")
+	public void the_error_message_should_be_displayed_as_enter_vintage_for_the_UPC() throws Throwable {
+		System.out.println(puttyFlag);
+		if (puttyFlag == true) {
+			Assert.assertTrue("Appropriate error not displayed. Expected [Enter the ABV for the UPC being received]",
+					purchaseOrderReceivingPage.isEnterVintageForUpcDisplayed());
+			Thread.sleep(5000);
+		}
+
+	}
+
+	@When("^I receive all the skus at location \"([^\"]*)\"$")
+	public void i_receive_all_the_skus_at_location(String location) throws Throwable {
+		context.setLocation(location);
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
+			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("UpdatedABV"));
+			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
+			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
+				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
+				i_enter_the_location_and_tag(context.getLocation());
+				i_enter_the_quantity_to_receive_and_case_ratio();
+				i_enter_the_expiry_and_vintage_details();
+			}
+		}
+		puttyFlag = false;
+		puttyFunctionsPage.minimisePutty();
+	}
+
+	@When("^I receive  the skus for each line item at location \"([^\"]*)\" with no vintage$")
+	public void i_receive_the_skus_for_each_line_item_at_location_with_no_vintage(String location) throws Throwable {
+
+		context.setLocation(location);
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
+			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
+			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
+			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
+				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
+				i_enter_the_location_and_tag(context.getLocation());
+				// i_enter_the_location_and_tag(location);
+				i_enter_the_quantity_to_receive_and_case_ratio();
+				purchaseOrderReceivingPage.pressTab();
+				i_enter_the_ABV_details();
+				i_enter_the_expiry_details();
+
+			}
+
+		}
+		puttyFlag = false;
+		puttyFunctionsPage.minimisePutty();
+
+	}
+
+	@When("^I enter the expiry details$")
+	public void i_enter_the_expiry_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			}
+		} else if (context.getProductCategory().contains("Ambient")) {
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			}
+		}
+	}
+
+	@When("^I enter the ABV details$")
+	public void i_enter_the_ABV_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			// purchaseOrderReceivingPage.enterABV("12.5");
+			purchaseOrderReceivingPage.enterABV(context.getABV());
+		} else if (context.getProductCategory().contains("Ambient")) {
+			purchaseOrderReceivingPage.pressTab();
+			Thread.sleep(10000);
+		}
+	}
+
+	@When("^I enter the vintage details$")
+	public void i_enter_the_vintage_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			// purchaseOrderReceivingPage.enterVintage("2017");
+			purchaseOrderReceivingPage.enterVintage(context.getVintage());
+		} else if (context.getProductCategory().contains("Ambient")) {
+			purchaseOrderReceivingPage.pressTab();
+			Thread.sleep(10000);
+		}
+	}
+
+	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\" with no ABV$")
+	public void i_receive_all_the_skus_for_the_purchase_order_at_location_with_no_ABV(String location)
+			throws Throwable {
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
@@ -360,7 +484,10 @@ public class PurchaseOrderReceivingStepDefs {
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
-				i_enter_the_expiry_and_vintage_details();
+				i_enter_the_vintage_details();
+				purchaseOrderReceivingPage.pressTab();
+				i_enter_the_expiry_details();
+
 			}
 		}
 		puttyFlag = false;

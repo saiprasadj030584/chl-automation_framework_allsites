@@ -378,32 +378,15 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
 	}
 
-	@Given("^the ABV should be more than ten percentage of its actual value$")
-	public void the_ABV_should_be_more_than_ten_percentage_of_its_actual_value() throws Throwable {
+	@Given("^the ABV should be calculated for \"([^\"]*)\" percentage of its actual value$")
+	public void the_ABV_should_be_calculated_for_percentage_of_its_actual_value(String percentage) throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			purchaseOrderMap = context.getPurchaseOrderMap();
 			String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("ABV");
 			float newAbv = Float.parseFloat(currentAbv);
-			float highAbv = (float) (newAbv * (11 / 100.0f));
-			float enterAbv = newAbv + highAbv;
-			String updatedAbv = String.valueOf(enterAbv);
-			context.setABV(updatedAbv);
-
-			Map<String, String> lineItemsMap = new HashMap<String, String>();
-			lineItemsMap.put("UpdatedABV", updatedAbv);
-
-		}
-	}
-
-	@Given("^the ABV should be within ten percentage  of its actual value$")
-	public void the_ABV_should_be_within_ten_percentage_of_its_actual_value() throws Throwable {
-		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
-		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			purchaseOrderMap = context.getPurchaseOrderMap();
-			String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("ABV");
-			float newAbv = Float.parseFloat(currentAbv);
-			float highAbv = (float) (newAbv * (5 / 100.0f));
+			float fpercentage = Float.parseFloat(percentage);
+			float highAbv = (float) (newAbv * (fpercentage / 100.0f));
 			float enterAbv = newAbv + highAbv;
 			String updatedAbv = String.valueOf(enterAbv);
 			context.setABV(updatedAbv);
