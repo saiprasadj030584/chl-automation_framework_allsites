@@ -189,7 +189,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mABV.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public void selectRequiredRecord() throws FindFailed, InterruptedException {
@@ -368,7 +370,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mUploadedDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public String getUploadedTime() throws FindFailed {
@@ -384,7 +388,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mOriginator.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public String getOriginatorReference() throws FindFailed {
@@ -393,7 +399,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mOriginatorReference.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public String getCEConsignmentId() throws FindFailed {
@@ -409,7 +417,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mDocumentDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public String getDocumentTime() throws FindFailed {
@@ -417,7 +427,9 @@ public class InventoryTransactionQueryPage {
 		screen.click(mDocumentTime.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
 
 	public String getVintage() throws FindFailed {
@@ -425,14 +437,10 @@ public class InventoryTransactionQueryPage {
 		screen.click(mVintage.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		return temp;
 	}
-
-	/*
-	 * public boolean isRecordsExists() throws FindFailed { if
-	 * (screen.exists("images/InventoryTransactionQuery/NoRecords.png").equals(
-	 * null)) return true; else return false; }
-	 */
 
 	public boolean isRecordfound() throws FindFailed {
 		if (screen.exists("/images/InventoryTransactionQuery/1RecordFound.png", timeoutInSec) != null)

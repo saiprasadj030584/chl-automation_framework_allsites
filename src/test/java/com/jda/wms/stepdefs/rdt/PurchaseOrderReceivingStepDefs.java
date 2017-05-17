@@ -126,11 +126,15 @@ public class PurchaseOrderReceivingStepDefs {
 	@Then("^the pre-advice id and supplier id should be displayed in the receive pre-advice page$")
 	public void the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		Thread.sleep(5000);
+		// Thread.sleep(5000);
+		while (purchaseOrderReceivingPage.isSearchInfoDisplayed()!=false) {
+			Thread.sleep(1000);
+		}
+		
 		String preAdvId = purchaseOrderReceivingPage.getPreAdvId();
 		System.out.println("Putty Advice ID : " + preAdvId);
 		System.out.println("Web Advice ID : " + context.getPreAdviceId());
-
+		
 		if (!preAdvId.equalsIgnoreCase(context.getPreAdviceId())) {
 			failureList.add("Pre-Advice ID not displayed as expected. Expected [" + context.getPreAdviceId()
 					+ "] but was [" + preAdvId + "]");
@@ -218,14 +222,81 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the expiry  and vintage details$")
 	public void i_enter_the_expiry_and_vintage_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
-			purchaseOrderReceivingPage.enterVintage(context.getVintage());
-			purchaseOrderReceivingPage.enterABV(context.getABV());
-			purchaseOrderReceivingPage.pressTab();
+			/*
+			 * purchaseOrderReceivingPage.enterVintage(context.getVintage());
+			 * purchaseOrderReceivingPage.enterABV(context.getABV());
+			 * purchaseOrderReceivingPage.pressTab();
+			 */
+
+			String vintageValue = context.getVintage();
+			System.out.println(" Vintage value from Context : " + vintageValue);
+			if (!vintageValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterVintage(vintageValue);
+			} else {
+				purchaseOrderReceivingPage.pressTab();
+			}
+
+			String abvValue = context.getABV();
+			System.out.println(" ABV value from Context : " + abvValue);
+			if (!abvValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterABV(abvValue);
+			}
+
+			purchaseOrderReceivingPage.nextScreen();
+
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 				String expDate = DateUtils.getAddedSystemYear();
 				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.pressTab();
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
+			}
+		} else if (context.getProductCategory().contains("Ambient")) {
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				purchaseOrderReceivingPage.nextScreen();
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			} else {
+				purchaseOrderReceivingPage.pressEnter();
+			}
+		}
+	}
+
+	@When("^I enter the expiry ABV and vintage details$")
+	public void i_enter_the_expiry_ABV_and_vintage_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			String vintageValue = context.getVintage();
+			System.out.println(" Vintage value from Context : " + vintageValue);
+			if (!vintageValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterVintage(vintageValue);
+				Thread.sleep(1000);
+			} else {
+				purchaseOrderReceivingPage.pressTab();
+				Thread.sleep(1000);
+			}
+
+			String abvValue = context.getABV();
+			System.out.println(" ABV value from Context : " + abvValue);
+			if (!abvValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterABV(abvValue);
+			}
+			purchaseOrderReceivingPage.nextScreen();
+
+			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				String expDate = DateUtils.getAddedSystemYear();
+				context.setFutureExpiryDate(expDate);
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.pressTab();
+				purchaseOrderReceivingPage.enterExpiryDate(expDate);
+				Thread.sleep(10000);
+			}
+			else {
+				purchaseOrderReceivingPage.pressEnter();
 			}
 		} else if (context.getProductCategory().contains("Ambient")) {
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
@@ -235,6 +306,8 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.pressTab();
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
+			} else {
+				purchaseOrderReceivingPage.pressEnter();
 			}
 		}
 	}
@@ -290,12 +363,11 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 			Thread.sleep(1000);
 			the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
-			Thread.sleep(1000);
 			i_enter_the_location_and_tag(context.getLocation());
 			Thread.sleep(1000);
 			i_enter_the_quantity_to_receive_and_case_ratio();
 			Thread.sleep(1000);
-			i_enter_the_expiry_and_vintage_details();
+			i_enter_the_expiry_ABV_and_vintage_details();
 			Thread.sleep(1000);
 			i_should_see_the_receiving_completion();
 			Thread.sleep(1000);
@@ -303,7 +375,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		puttyFlag = false;
 		puttyFunctionsPage.mimimizePuty();
-		
+
 	}
 
 	@When("^I receive all the skus for the purchase order$")

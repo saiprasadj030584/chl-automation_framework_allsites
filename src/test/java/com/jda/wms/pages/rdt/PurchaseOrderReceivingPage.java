@@ -74,10 +74,18 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
+	public boolean isSearchInfoDisplayed() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/SearchInfo.png") != null)
+				|| (screen.exists("images/Putty/Info - Po.png") != null))
+			return true;
+		else
+			return false;
+	}
+
 	public String getSupplierId() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/Putty/Receiving/SuppDisplayed.png");
-		screen.click(mStatus.getCenter().offset(50, 0));
-		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Match mSupplierId = screen.find("images/Putty/Receiving/SuppDisplayed.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
@@ -91,6 +99,8 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
+	
+	
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);
@@ -100,15 +110,24 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
-		screen.type(qtyToReceive);
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
+
+		if (Integer.parseInt(qtyToReceive) > 999) {
+			screen.type(qtyToReceive);
+			Thread.sleep(1000);
+		} else {
+			screen.type(qtyToReceive);
+			screen.type(Key.TAB);
+			Thread.sleep(1000);
+		}
 	}
 
 	public void enterCaseRatio(String caseRatio) throws InterruptedException {
 		screen.type(caseRatio);
-		screen.type("x", Key.CTRL);
-		screen.type(Key.NUM4);
+		// screen.type("x", Key.CTRL);
+		// screen.type(Key.NUM4);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB); //to navigate to Vintage
 		Thread.sleep(2000);
 	}
 
@@ -166,6 +185,17 @@ public class PurchaseOrderReceivingPage {
 	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
+	}
+
+	public void pressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+	public void nextScreen() throws InterruptedException {
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
 	}
 
 	public void enterVintage(String vintage) throws InterruptedException {

@@ -136,8 +136,8 @@ public class AddressMaintenanceStepDefs {
 		
 		addressMaintenancePage.clickUserDefinedTab();
 		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
-		if (!defaultySupplierPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
+		if (defaultySupplierPallet.isEmpty()) {
+			failureList.add("Default Supplier Pallet is not as expected. Expected [Not Null] but was ["
 					+ defaultySupplierPallet + "]");
 		}
 		

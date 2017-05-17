@@ -533,15 +533,18 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("packConfig: " + packConfig);
 
 		String uploaded = inventoryTransactionQueryPage.getUploaded();
-		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		
+		if (!((uploaded.equalsIgnoreCase("No"))|| (uploaded.equals("N"))))
+		{
+		 String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
 		if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
 			if (!uploadedFileName.contains("I0808itl")) {
 				failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
 						+ uploadedFileName + "]");
 			}
 		}
-		logger.debug("uploaded: " + uploaded);
 		logger.debug("uploadedFileName: " + uploadedFileName);
+		
 
 		String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
 		if (uploadedDate.equals(null)) {
@@ -555,6 +558,9 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("uploadedTime: " + uploadedTime);
 
+		}
+		logger.debug("uploaded: " + uploaded);
+		
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}

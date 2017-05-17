@@ -15,8 +15,6 @@ Feature: Partial receive purchase order
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
     When I receive the first sku of the purchase order at location "<Location>"
-    Then I should see the receiving completion
-    When I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to inventory query page
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
@@ -41,7 +39,6 @@ Feature: Partial receive purchase order
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
     When I receive the first sku of the purchase order at location "<Location>"
-    Then I should see the receiving completion
     When I navigate to inventory query page
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
@@ -50,7 +47,7 @@ Feature: Partial receive purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  0070000003 | REC002   |
+      |  7000000010 | REC002   |
 
   @receive_po_partial_bws_non_bonded
   Scenario Outline: Receiving process in JDA WMS for BWS-Non-Bonded product category
@@ -63,7 +60,6 @@ Feature: Partial receive purchase order
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
     When I receive the first sku of the purchase order at location "<Location>"
-    Then I should see the receiving completion
     When I navigate to inventory query page
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
