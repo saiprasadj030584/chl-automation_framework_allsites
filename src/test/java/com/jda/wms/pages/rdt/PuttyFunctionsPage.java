@@ -48,6 +48,7 @@ public class PuttyFunctionsPage {
 	}
 	
 	public void minimisePutty() throws FindFailed, InterruptedException {
+		System.out.println("Putty minimise");
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
 		screen.click("images/Putty/PuttyMinimise.png");
 		Match mStatus = screen.find("images/Putty/PuttyMinimise.png");

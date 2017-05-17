@@ -97,8 +97,8 @@ public class Hooks {
 		logger.debug("Signed off JDA WMS Application");
 	}
 	
-	@Before
-	public void invokeDataBase() throws Exception {
-		database.connect("jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2", "dcsdba", "dcsabd");
-	}
+//	@Before
+//	public void invokeDataBase() throws Exception {
+//		database.connect("jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2", "dcsdba", "dcsabd");
+//	}
 }

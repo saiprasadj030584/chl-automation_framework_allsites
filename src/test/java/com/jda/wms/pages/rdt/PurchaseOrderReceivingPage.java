@@ -51,19 +51,24 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
-		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)||(screen.exists("images/Putty/Receiving/PreAdvComplete.png")!=null))
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
 			return true;
-		else
+		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png")!=null)){
+			pressEnter();
+			return true;
+		}
 			return false;
 	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
+		System.out.println("SKu in enter Skuid "+skuID);
 		screen.type(skuID);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
 	}

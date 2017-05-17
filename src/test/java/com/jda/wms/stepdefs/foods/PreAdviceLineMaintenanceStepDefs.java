@@ -128,7 +128,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
 				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
-						&& (!productGroup.equals("F07"))) {
+						&& (!productGroup.equals("F13"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);
@@ -195,6 +195,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 					int quantitytyDue = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("QtyDue")));
 					int maxQtyRcv = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd")));
 					int noOfTagID;
+					System.out.println("quantitytyDue "+quantitytyDue);
+					System.out.println("maxQtyRcv "+maxQtyRcv);
 					if (quantitytyDue % maxQtyRcv > 0) {
 						noOfTagID = (quantitytyDue / maxQtyRcv) + 1;
 					} else {
@@ -209,7 +211,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 					tagIDMap.put(skuID, tagIDArrayList);
 				}
 				context.setTagIDMap(tagIDMap);
-				System.out.println("Check3 "+date.getTime());
 				System.out.println("Tag ID Map "+context.getTagIDMap());
 				
 				// To get the qty to receive for each tag
@@ -223,7 +224,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 					}
 				}
 				context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-				System.out.println("Check4 "+date.getTime());
 				System.out.println("Quantity Received Per Tag Map "+context.getQtyReceivedPerTagMap());
 
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());

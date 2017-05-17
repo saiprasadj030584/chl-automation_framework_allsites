@@ -4171,3 +4171,199 @@
 2017-05-16 11:57:04 DEBUG Hooks:86 - ###########################################################################################################################
 2017-05-16 11:57:04 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
 2017-05-16 11:57:04 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-16 16:52:41 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-16 16:52:50 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-16 16:52:50 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-16 16:52:50 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 05:10:39 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 05:13:29 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-17 05:13:36 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-17 05:16:00 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 05:16:00 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded F23 product category
+2017-05-17 05:16:00 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 05:22:51 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 100.0
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 05:25:40 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-17 05:25:47 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=100.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-17 05:34:31 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01918
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21126978
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 624.0
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21126978O01
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 6
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F23
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 05:37:20 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: 2016.0
+2017-05-17 05:37:37 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F23, ABV=13.0, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21126978, QtyDue=624.0, MaxQtyCanBeRcvd=52, Vintage=2016}}
+2017-05-17 05:47:08 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 05:47:52 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 05:47:52 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 05:47:52 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 05:50:11 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 21036013O01
+2017-05-17 05:52:59 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 05:53:04 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 05:53:04 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 05:53:04 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 05:55:17 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 21036013O01
+2017-05-17 05:58:04 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 05:58:10 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=21036013O01}}
+2017-05-17 06:04:29 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 06:04:29 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 06:04:29 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 06:06:33 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 21036013O01
+2017-05-17 06:09:21 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 06:09:28 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=21036013O01}}
+2017-05-17 06:16:15 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 21036013O01
+2017-05-17 06:19:12 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 06:19:19 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=21036013O01}}
+2017-05-17 06:23:49 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 06:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 06:26:51 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 06:32:53 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 06:35:41 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 06:35:48 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 06:36:00 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 06:36:00 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 06:36:00 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 07:02:33 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 07:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 07:05:32 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 07:11:50 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 07:14:46 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 07:14:53 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 07:21:18 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 07:24:04 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 07:24:11 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 07:27:39 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 07:27:39 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 07:27:39 DEBUG Hooks:89 - ###########################################################################################################################
+2017-05-17 07:51:30 DEBUG PreAdviceHeaderStepsDefs:63 - Supplier Id: F01946
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:173 - Quantity Due: 1500.0
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Pack Config : 21036013O01
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:175 - CaseRatio: 15
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Product group: F13
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:177 - Vintage in Pre-Advice Line : 2016
+2017-05-17 07:54:17 DEBUG PreAdviceLineMaintenanceStepDefs:178 - Current Vintage in SKU table: EXPIRY
+2017-05-17 07:54:23 DEBUG PreAdviceLineMaintenanceStepDefs:232 - Map: {1={Product Group=F13, ABV=0.0, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=2016}}
+2017-05-17 07:59:57 DEBUG InventoryTransactionQueryStepDefs:322 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-17 07:59:58 DEBUG InventoryTransactionQueryStepDefs:328 - fromLocation: REC002
+2017-05-17 08:00:00 DEBUG InventoryTransactionQueryStepDefs:334 - toLocation: REC002
+2017-05-17 08:00:02 DEBUG InventoryTransactionQueryStepDefs:340 - updateQty: 12000
+2017-05-17 08:00:03 DEBUG InventoryTransactionQueryStepDefs:347 - reference: 8050004611
+2017-05-17 08:00:08 DEBUG InventoryTransactionQueryStepDefs:367 - expiryDate: 17/05/2019
+2017-05-17 08:00:09 DEBUG InventoryTransactionQueryStepDefs:374 - userId: P9120368
+2017-05-17 08:00:11 DEBUG InventoryTransactionQueryStepDefs:380 - workstation: RDT0253
+2017-05-17 08:00:13 DEBUG InventoryTransactionQueryStepDefs:387 - rDTUserMode: Pre-Advice Receive
+2017-05-17 08:00:14 DEBUG InventoryTransactionQueryStepDefs:393 - supplier: F01946
+2017-05-17 08:00:19 DEBUG InventoryTransactionQueryStepDefs:408 - palletType: CHEP
+2017-05-17 08:00:22 DEBUG InventoryTransactionQueryStepDefs:415 - packConfig: 21036013O01
+2017-05-17 08:00:24 DEBUG InventoryTransactionQueryStepDefs:425 - uploaded: No
+2017-05-17 08:00:24 DEBUG InventoryTransactionQueryStepDefs:426 - uploadedFileName: No
+2017-05-17 08:00:26 DEBUG InventoryTransactionQueryStepDefs:432 - uploadedDate: No
+2017-05-17 08:00:27 DEBUG InventoryTransactionQueryStepDefs:438 - uploadedTime: No
+2017-05-17 08:00:33 DEBUG InventoryTransactionQueryStepDefs:287 - originalRotationId: 17/D00000172
+2017-05-17 08:00:34 DEBUG InventoryTransactionQueryStepDefs:293 - rotationId: 17/D00000172
+2017-05-17 08:00:36 DEBUG InventoryTransactionQueryStepDefs:299 - ceReceiptType: Non-Bond
+2017-05-17 08:00:37 DEBUG InventoryTransactionQueryStepDefs:305 - underBond: Duty Paid (Free circulation)
+2017-05-17 08:00:43 DEBUG InventoryTransactionQueryStepDefs:494 - abvPercentage: Duty Paid (Free circulation)
+2017-05-17 08:00:44 DEBUG InventoryTransactionQueryStepDefs:500 - vintage: Duty Paid (Free circulation)
+2017-05-17 08:00:46 DEBUG InventoryTransactionQueryStepDefs:252 - storageLocation: 0001
+2017-05-17 08:00:47 DEBUG InventoryTransactionQueryStepDefs:258 - baseUOM: EA
+2017-05-17 08:00:48 DEBUG InventoryTransactionQueryStepDefs:265 - intoDestinationDate: 07/04/2017
+2017-05-17 08:00:50 DEBUG InventoryTransactionQueryStepDefs:271 - caseRatio: 15
+2017-05-17 08:00:57 DEBUG InventoryTransactionQueryStepDefs:241 - URN Child: 1004569847
+2017-05-17 08:01:22 DEBUG InventoryTransactionQueryStepDefs:322 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-17 08:01:23 DEBUG InventoryTransactionQueryStepDefs:328 - fromLocation: REC002
+2017-05-17 08:01:24 DEBUG InventoryTransactionQueryStepDefs:334 - toLocation: REC002
+2017-05-17 08:01:25 DEBUG InventoryTransactionQueryStepDefs:340 - updateQty: 10500
+2017-05-17 08:01:26 DEBUG InventoryTransactionQueryStepDefs:347 - reference: 8050004611
+2017-05-17 08:01:30 DEBUG InventoryTransactionQueryStepDefs:367 - expiryDate: 17/05/2019
+2017-05-17 08:01:31 DEBUG InventoryTransactionQueryStepDefs:374 - userId: P9120368
+2017-05-17 08:01:32 DEBUG InventoryTransactionQueryStepDefs:380 - workstation: RDT0253
+2017-05-17 08:01:33 DEBUG InventoryTransactionQueryStepDefs:387 - rDTUserMode: Pre-Advice Receive
+2017-05-17 08:01:34 DEBUG InventoryTransactionQueryStepDefs:393 - supplier: F01946
+2017-05-17 08:01:38 DEBUG InventoryTransactionQueryStepDefs:408 - palletType: CHEP
+2017-05-17 08:01:40 DEBUG InventoryTransactionQueryStepDefs:415 - packConfig: 21036013O01
+2017-05-17 08:01:42 DEBUG InventoryTransactionQueryStepDefs:425 - uploaded: No
+2017-05-17 08:01:42 DEBUG InventoryTransactionQueryStepDefs:426 - uploadedFileName: No
+2017-05-17 08:01:43 DEBUG InventoryTransactionQueryStepDefs:432 - uploadedDate: No
+2017-05-17 08:01:44 DEBUG InventoryTransactionQueryStepDefs:438 - uploadedTime: No
+2017-05-17 08:01:49 DEBUG InventoryTransactionQueryStepDefs:287 - originalRotationId: 17/D00000172
+2017-05-17 08:01:50 DEBUG InventoryTransactionQueryStepDefs:293 - rotationId: 17/D00000172
+2017-05-17 08:01:51 DEBUG InventoryTransactionQueryStepDefs:299 - ceReceiptType: Non-Bond
+2017-05-17 08:01:52 DEBUG InventoryTransactionQueryStepDefs:305 - underBond: Duty Paid (Free circulation)
+2017-05-17 08:01:57 DEBUG InventoryTransactionQueryStepDefs:494 - abvPercentage: Duty Paid (Free circulation)
+2017-05-17 08:01:58 DEBUG InventoryTransactionQueryStepDefs:500 - vintage: Duty Paid (Free circulation)
+2017-05-17 08:01:59 DEBUG InventoryTransactionQueryStepDefs:252 - storageLocation: 0001
+2017-05-17 08:02:00 DEBUG InventoryTransactionQueryStepDefs:258 - baseUOM: EA
+2017-05-17 08:02:01 DEBUG InventoryTransactionQueryStepDefs:265 - intoDestinationDate: 07/04/2017
+2017-05-17 08:02:02 DEBUG InventoryTransactionQueryStepDefs:271 - caseRatio: 15
+2017-05-17 08:02:07 DEBUG InventoryTransactionQueryStepDefs:241 - URN Child: 1002490408
+2017-05-17 08:02:13 DEBUG Hooks:86 - ###########################################################################################################################
+2017-05-17 08:02:13 DEBUG Hooks:88 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-17 08:02:13 DEBUG Hooks:89 - ###########################################################################################################################
