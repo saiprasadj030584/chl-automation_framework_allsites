@@ -5,9 +5,9 @@ Feature: Receive STO order
   So that it can be used for allocation
 
  
-@complete
+@complete1
   Scenario: Shipdock reassignment
-    Given I have logged in as warehouse user in JDA dispatcher food application
+   # Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to ship dock reassignment
     And I enter the from site id "9771" and order id "3000000001"
     And I proceed to next
