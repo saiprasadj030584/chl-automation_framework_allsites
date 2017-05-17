@@ -11,6 +11,7 @@ import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class PuttyFunctionsStepDefs {
@@ -46,6 +47,11 @@ public class PuttyFunctionsStepDefs {
 
 		Assert.assertTrue("Putty Login not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+	
+	@When("^I login as warehouse user in Putty$")
+	public void i_login_as_warehouse_user_in_Putty() throws Throwable {
+		i_have_logged_in_as_warehouse_user_in_Putty();
 	}
 	
 }
