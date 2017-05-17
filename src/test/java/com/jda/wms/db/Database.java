@@ -26,6 +26,10 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
+import com.jda.wms.context.Context;
+
 /**
  *
  * @author Tone Walters (tone_walters@yahoo.com)
@@ -33,6 +37,14 @@ import java.util.ArrayList;
 public class Database {
 	private String applicationUser;
 	private Connection connection;
+	private Configuration configuration;
+	private Context context;
+	
+	@Inject
+	public Database(Configuration configuration,Context context) {
+		this.configuration = configuration;
+		this.context = context;
+	}
 
 	/**
 	 * This method creates a connection to the database using the parameters
@@ -46,13 +58,13 @@ public class Database {
 	 *            - password
 	 * @return - returns true if the connection is successful.
 	 */
-	public boolean connect(String address, String username, String password) {
+	public boolean connect() {
 		boolean connectionSucessful = false;
 		try {
-			connection = DriverManager.getConnection(address, username, password);
+			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
 			connection.setAutoCommit(true);
+			context.setConnection(connection);
 			connectionSucessful = true;
-			System.out.println("connectionSucessful "+connectionSucessful);
 		} catch (SQLException ex) {
 			// LogWriter.writeLogEntry("Something went wrong connecting to the
 			// database");

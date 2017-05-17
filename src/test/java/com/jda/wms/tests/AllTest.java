@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@po_receive_bws_non_bonded" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@sto_get_listid" })
 public class AllTest {
 }
 

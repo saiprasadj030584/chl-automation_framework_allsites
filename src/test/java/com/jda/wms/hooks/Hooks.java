@@ -1,5 +1,7 @@
 package com.jda.wms.hooks;
 
+import java.sql.SQLException;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
-import com.jda.wms.db.Database;
-import com.jda.wms.db.Database3;
+import com.jda.wms.context.Context;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -20,19 +21,16 @@ import cucumber.api.java.Before;
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
-	private final Database3 database3;
-	private final Database database;
 	Screen screen = new Screen();
+	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver, Database3 database3, Database database) {
+	public Hooks(WebDriver webDriver,Context context) {
 		this.webDriver = webDriver;
-		this.database3 = database3;
-		this.database = database;
+		this.context = context;
 	}
-	
 
-//	@Before
+	@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -43,8 +41,6 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
-
-
 
 	// @After()
 	public void tearDown(Scenario scenario) {
@@ -61,10 +57,10 @@ public class Hooks {
 			webDriver.quit();
 		}
 	}
-	
-//	@After("@purchase_order") 
-	public void logoutPutty() throws FindFailed, InterruptedException{
-		while (screen.exists("/images/Putty/3Logout.png") == null){
+
+	// @After("@purchase_order")
+	public void logoutPutty() throws FindFailed, InterruptedException {
+		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
 		screen.type("3");
@@ -89,16 +85,19 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
-
+	
+	@After
+	public void closeDBConnection() throws SQLException{
+		if (!context.getConnection().equals(null)){
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+	}
+	
 	// @After
 	public void clickSignoutButton() throws FindFailed {
-		screen.wait("/images/JDAHeader/Headercons.png", 20);
+		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
 		screen.click("images/JDAHeader/Singout.png", 25);
 		logger.debug("Signed off JDA WMS Application");
 	}
-	
-//	@Before
-//	public void invokeDataBase() throws Exception {
-//		database.connect("jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2", "dcsdba", "dcsabd");
-//	}
 }

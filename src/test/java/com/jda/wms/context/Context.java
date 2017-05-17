@@ -1,5 +1,6 @@
 package com.jda.wms.context;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
 import com.jda.wms.pages.foods.RDTTask;
@@ -48,6 +49,9 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
+	private Connection connection = null;
+	private String orderId;
+	private Map<Integer, Map<String, String>> listIDMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -377,5 +381,29 @@ public class Context {
 
 	public void setFailureList(ArrayList<String> failureList) {
 		this.failureList = failureList;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public Map<Integer, Map<String, String>> getListIDMap() {
+		return listIDMap;
+	}
+
+	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
+		this.listIDMap = listIDMap;
 	}
 }

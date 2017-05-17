@@ -9,6 +9,9 @@ default:
  gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
  putty-foods-host: 'hlxc0dc024.unix.marksandspencercate.com'
  putty-foods-port: '20253'
+ db-host: 'jdbc:oracle:thin:@10.128.177.64:1521:WMSBAC2'
+ db-username: 'dcsdba'
+ db-password: 'dcsabd'
       
 # Browser settings
 ##################
