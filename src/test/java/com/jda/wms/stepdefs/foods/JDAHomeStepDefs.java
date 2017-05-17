@@ -117,5 +117,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_ship_dock_reassignment() throws Throwable {
 		jdaHomePage.navigateToShipDockReassignment();
 	}
+	@When("^i navigate to order header maintenance$")
+	public void i_navigate_to_order_header_maintenance() throws Throwable {
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+	}
 
 }

@@ -25,7 +25,7 @@ public class Hooks {
 	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver,Context context) {
+	public Hooks(WebDriver webDriver, Context context) {
 		this.webDriver = webDriver;
 		this.context = context;
 	}
@@ -85,15 +85,14 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
-	
+
 	@After
-	public void closeDBConnection() throws SQLException{
-		if (!context.getConnection().equals(null)){
+	public void closeDBConnection() throws SQLException {
+		if (context.getConnection() != null) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
 	}
-	
 
 	// @After
 	public void clickSignoutButton() throws FindFailed {

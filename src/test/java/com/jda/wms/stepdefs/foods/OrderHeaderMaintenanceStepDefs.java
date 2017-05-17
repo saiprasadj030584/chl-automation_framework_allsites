@@ -10,9 +10,12 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
@@ -21,17 +24,19 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
+	private OrderLineMaintenancePage orderLineMaintenancePage;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
+		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -127,6 +132,24 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+	@When("^i enter the order id \"([^\"]*)\"$")
+	public void i_enter_the_order_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+	}
+	@Then("^i should see the status as \"([^\"]*)\"$")
+	public void i_should_see_the_status_as(String status) throws Throwable {
+		Assert.assertEquals("STO Status does not match", status,  orderHeaderMaintenancePage.getStatus());
+	}
+	@Then("^i enter the order id \"([^\"]*)\" in order line maintenance page$")
+	public void i_enter_the_order_id_in_order_line_maintenance_page(String orderID) throws Throwable {
+		jdaHomeStepDefs.i_navigate_to_order_Line_Maintenance_Page();
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+		orderLineMaintenancePage.selectFirstRecord();
 	}
 
 }

@@ -417,10 +417,10 @@ public class Context {
 	}
 
 
-	public void setOrderNo(String orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-	public String getorderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
