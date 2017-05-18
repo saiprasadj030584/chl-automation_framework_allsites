@@ -247,7 +247,10 @@ public class PurchaseOrderReceivingStepDefs {
 		if (puttyFlag == true) {
 			Assert.assertTrue("Receive not completed and Home page not displayed.",
 					purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+
 			Thread.sleep(5000);
+
+			System.out.println("Please logout the putty screen");
 		}
 	}
 
@@ -260,6 +263,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			context.setSkuId(currentSku);
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
@@ -272,8 +276,9 @@ public class PurchaseOrderReceivingStepDefs {
 				i_should_see_the_receiving_completion();
 			}
 		}
-		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+
+		// puttyFlag = false;
+		// puttyFunctionsPage.minimisePutty();
 	}
 
 	@When("^I receive all the skus for the purchase order$")
@@ -489,6 +494,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_expiry_details();
 
 			}
+
 		}
 		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();

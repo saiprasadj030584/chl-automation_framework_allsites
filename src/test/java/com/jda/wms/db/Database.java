@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 
 /**
@@ -37,40 +38,30 @@ import com.jda.wms.context.Context;
  * @author Tone Walters (tone_walters@yahoo.com)
  */
 public class Database {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
 	private Context context;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private Configuration configuration;
 
-@Inject
-	public Database(Context context) {
-	this.context = context;
-}
-	
-	/**
-	 * This method creates a connection to the database using the parameters
-	 * provided. Returns true if the connection is a success.
-	 *
-	 * @param address
-	 *            - address of the server
-	 * @param username
-	 *            - username
-	 * @param password
-	 *            - password
-	 * @return - returns true if the connection is successful.
-	 * @throws ClassNotFoundException 
-	 */
-	public void connect(String address, String username, String password) throws ClassNotFoundException {
-		if (context.getConnection()==null){
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver"); 
-			connection = DriverManager.getConnection(address, username, password);
-			context.setConnection(connection);
-			connection.setAutoCommit(true);
-			logger.debug("Connection successfull");
-		} catch (SQLException ex) {
-			
-		}
+	@Inject
+	public Database(Context context, Configuration configuration) {
+		this.context = context;
+		this.configuration = configuration;
+	}
+
+	public void connect() throws ClassNotFoundException {
+		if (context.getConnection() == null) {
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
+						configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
+				context.setConnection(connection);
+				connection.setAutoCommit(true);
+				logger.debug("Connection successfull");
+			} catch (SQLException ex) {
+
+			}
 		}
 	}
 
@@ -124,29 +115,6 @@ public class Database {
 		} catch (SQLException ex) {
 			write("It failed to make the statement::" + ex.toString());
 			write("Filed statment = " + sql);
-		}
-		return result;
-	}
-
-	/**
-	 * This method returns the check string of the location passed in as a
-	 * parameter
-	 *
-	 * @param location
-	 *            - the location
-	 * @return - the check string
-	 */
-	public String geCheckString(String location) {
-		String result = "";
-		try {
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select check_string from location where location_id = '" + location + "'");
-			int row = 1;
-			rs.next();
-			result = rs.getString(1);
-		} catch (SQLException ex) {
-			System.out.println("It failed to make the statement::" + ex.toString());
 		}
 		return result;
 	}
@@ -225,6 +193,21 @@ public class Database {
 		} catch (SQLException ex) {
 		}
 		return results;
+	}
+
+	public String geCheckString(String location) {
+		String result = "";
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select check_string from location where location_id = '" + location + "'");
+			int row = 1;
+			rs.next();
+			result = rs.getString(1);
+		} catch (SQLException ex) {
+			System.out.println("It failed to make the statement::" + ex.toString());
+		}
+		return result;
 	}
 
 	/**
