@@ -58,7 +58,7 @@ public class Hooks {
 		}
 	}
 
-	// @After("@purchase_order")
+	@After("@purchase_order")
 	public void logoutPutty() throws FindFailed, InterruptedException {
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
@@ -88,7 +88,7 @@ public class Hooks {
 
 	@After
 	public void closeDBConnection() throws SQLException {
-		if (context.getConnection() != null) {
+		if (!context.getConnection().equals(null)) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
