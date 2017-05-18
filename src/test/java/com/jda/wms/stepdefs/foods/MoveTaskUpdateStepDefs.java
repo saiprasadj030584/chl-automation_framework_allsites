@@ -7,7 +7,6 @@ import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.MoveTaskUpdatePage;
 
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class MoveTaskUpdateStepDefs {
 
@@ -23,11 +22,6 @@ public class MoveTaskUpdateStepDefs {
 		this.moveTaskUpdatePage = moveTaskUpdatePage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
-	}
-
-	@When("^I navigate to move task update$")
-	public void i_navigate_to_move_task_update() throws Throwable {
-		jdaHomepage.navigateToMoveTaskUpdate();
 	}
 
 	@Then("^the tag id should be released$")
