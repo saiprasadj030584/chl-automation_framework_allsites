@@ -88,7 +88,7 @@ public class Hooks {
 
 	@After
 	public void closeDBConnection() throws SQLException {
-		if (!context.getConnection().equals(null)) {
+		if  (context.getConnection() != null) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}

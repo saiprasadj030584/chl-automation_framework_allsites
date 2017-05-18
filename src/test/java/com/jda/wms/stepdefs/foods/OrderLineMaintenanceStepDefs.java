@@ -119,30 +119,4 @@ public class OrderLineMaintenanceStepDefs {
 				failureList.isEmpty());
 		logger.debug("Map: " + stockTransferOrderMap.toString());
 	}
-	@Given("^the quantity tasked should be updated for each order lines$")
-	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
-		String orderStatus = moveTaskDB.getOrderStatus(orderID)
-	
-
-	
-
-	@Then("^the tracking level, Qty Ordered, should be displayed$")
-	public void the_tracking_level_Qty_Ordered_should_be_displayed() throws Throwable {
-		orderLineMaintenancePage.getQtyOrdered();
-		context.setQtyOrdered(qtyOrdered);
-		orderLineMaintenancePage.getTrackinglevel();
-
-	}
-
-	@Then("^i navigate user defined tab$")
-	public void i_navigate_user_defined_tab() throws Throwable {
-		orderLineMaintenancePage.clickUserDefinedTab();
-	}
-
-	@Then("^the case ratio should be dislayed$")
-	public void the_case_ratio_should_be_dislayed() throws Throwable {
-		orderLineMaintenancePage.getCaseRatio();
-		context.getCaseRatio();
-	}
-
 }
