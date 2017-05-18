@@ -58,7 +58,7 @@ public class Database {
 	 *            - password
 	 * @return - returns true if the connection is successful.
 	 */
-	public boolean connect() {
+	public void connect() {
 		boolean connectionSucessful = false;
 		try {
 			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
@@ -71,7 +71,6 @@ public class Database {
 			// LogWriter.writeLogEntry(ex.toString());
 			System.out.println("Exception "+ex.getMessage());
 		}
-		return connectionSucessful;
 	}
 
 	/**

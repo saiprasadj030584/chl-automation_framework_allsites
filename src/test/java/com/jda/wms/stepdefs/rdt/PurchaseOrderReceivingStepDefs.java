@@ -1,18 +1,21 @@
+
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Assert;
-import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -27,7 +30,6 @@ public class PurchaseOrderReceivingStepDefs {
 	Map<String, Integer> qtyReceivedPerTagMap;
 	static private boolean isFirstTagForLineItem = true;
 	private PuttyFunctionsPage puttyFunctionsPage;
-	static private boolean puttyFlag=true;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -183,7 +185,7 @@ public class PurchaseOrderReceivingStepDefs {
 		int caseRatio = Integer.parseInt(purchaseOrderMap.get(lineItem).get("CaseRatio"));
 		int qtyToReceive;
 		Thread.sleep(2000);
-		
+
 		if (rcvQtyDue > maxQtyCanBeRcvd) {
 			qtyToReceive = maxQtyCanBeRcvd;
 			rcvQtyDue = rcvQtyDue - maxQtyCanBeRcvd;
@@ -247,8 +249,8 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
-//		Assert.assertTrue("Receive not completed and Home page not displayed.[" + Arrays.asList(context.getFailureList().toArray()) + "].",
-//				context.getFailureList().isEmpty());
+		Assert.assertTrue("Receive not completed and Home page not displayed.[" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
 	}
 
 	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
@@ -257,8 +259,6 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
-		System.out.println("purchaseOrderMap "+purchaseOrderMap);
-		System.out.println("tagIDMap "+tagIDMap);
 		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
@@ -267,7 +267,6 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
-				System.out.println("Inside loop");
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
 				i_enter_the_location_and_tag(context.getLocation());
@@ -276,15 +275,12 @@ public class PurchaseOrderReceivingStepDefs {
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()){
 					failureList.add("Receive not completed and Home page not displayed.");
 				}
-				System.out.println("After tag "+i+j);
-//				purchaseOrderReceivingPage.pressEnter();
 				Thread.sleep(5000);
 			}
 		}
 		puttyFunctionsPage.minimisePutty();
 	}
-	
-	
+
 	@When("^I receive all the skus for the purchase order$")
 	public void i_receive_all_the_skus_for_the_purchase_order() throws Throwable {
 		purchaseOrderMap = context.getPurchaseOrderMap();

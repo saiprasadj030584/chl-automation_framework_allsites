@@ -47,4 +47,12 @@ public class ReceiptReversalPage {
 	public void enterReasonCode(String reasonCode) throws FindFailed {
 		screen.type(reasonCode);
 	}
+
+	public boolean isQtyToReverseExists() throws FindFailed {
+		if (screen.find("images/ReceiptReversal/Reversals/QtyToReverse.png").equals(null)) {
+			return false;
+		} else
+			return true;
+
+	}
 }

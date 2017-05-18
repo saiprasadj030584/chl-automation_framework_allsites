@@ -114,4 +114,8 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToOrderLineMaintenance();
 	}
 
+	@When("^I navigate to move task update$")
+	public void i_navigate_to_move_task_update() throws Throwable {
+		jdaHomePage.navigateToMoveTaskUpdate();
+	}
 }

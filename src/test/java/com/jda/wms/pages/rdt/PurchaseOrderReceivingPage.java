@@ -1,8 +1,5 @@
 package com.jda.wms.pages.rdt;
 
-import java.awt.Robot;
-import java.io.IOException;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -11,8 +8,6 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
-import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Environment;
-
 public class PurchaseOrderReceivingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -20,7 +15,7 @@ public class PurchaseOrderReceivingPage {
 	@Inject
 	public PurchaseOrderReceivingPage() {
 	}
-	
+
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
 		screen.type("2");
 		Thread.sleep(1000);
@@ -72,7 +67,7 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
 	}
-	
+
 	public String getPreAdvId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
 		screen.click(mStatus.below(10));
@@ -172,7 +167,7 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-	public void pressTab() throws InterruptedException{
+	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
@@ -187,11 +182,14 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(1000);
 	}
 
-	public boolean isNoValidPreAdviceDisplayed() {
-		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+	public boolean isNoValidPreAdviceDisplayed() throws InterruptedException {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null){
+			pressEnter();
 			return true;
+		}
 		else
 			return false;
+		
 	}
 
 	public void pressEnter() throws InterruptedException {

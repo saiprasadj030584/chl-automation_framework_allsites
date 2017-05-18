@@ -6,21 +6,25 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PreAdviceHeaderPage;
-import cucumber.api.java.en.*;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final PreAdviceHeaderPage preAdviceHeaderPage;
 	private JDAFooter jdaFooter;
-	private JDALoginStepDefs jdaLoginStepDefs;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Context context;
+	private JDALoginStepDefs jdaLoginStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(PreAdviceHeaderPage preAdviceHeaderPage, JDAFooter jdaFooter,
@@ -28,7 +32,6 @@ public class PreAdviceHeaderStepsDefs {
 			AddressMaintenancePage addressMaintenancePage, Context context) {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.jdaFooter = jdaFooter;
-		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.context = context;
@@ -40,7 +43,7 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		 jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 

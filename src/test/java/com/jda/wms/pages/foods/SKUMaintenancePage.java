@@ -5,17 +5,26 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
+import com.jda.wms.db.Database;
 
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jDAFooter;
+	private Database database;
+	private Configuration configuration;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public SKUMaintenancePage(JDAFooter jDAFooter) {
+	public SKUMaintenancePage(JDAFooter jDAFooter, Database database, Configuration configuration) {
 		this.jDAFooter = jDAFooter;
+		this.database = database;
+		this.configuration = configuration;
 	}
 
 	// TODO donot use this method and replace with enterSKUID() method
@@ -210,14 +219,14 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public boolean isCurrentVintage(String currentVintage) {
 		if (!currentVintage.equals(null))
 			return true;
 		else
 			return false;
 	}
-	
+
 	public void clickUserDefinedTab() throws InterruptedException, FindFailed {
 		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/UserDefined.png");
@@ -237,5 +246,10 @@ public class SKUMaintenancePage {
 		screen.wait("images/SKUMaintenanceTable/Settings1.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
+	}
+
+	public void invokeDataBase() throws ClassNotFoundException {
+		database.connect();
+		logger.debug(database.getABV("60070710"));
 	}
 }

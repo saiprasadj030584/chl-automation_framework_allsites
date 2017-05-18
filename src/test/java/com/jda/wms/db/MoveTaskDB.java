@@ -19,7 +19,7 @@ public class MoveTaskDB {
 		this.database = database;
 	}
 
-	public ArrayList<String> getListId(String orderID) throws SQLException{
+	public ArrayList<String> getListId(String orderID) throws SQLException, ClassNotFoundException{
 		ArrayList<String> listId = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();

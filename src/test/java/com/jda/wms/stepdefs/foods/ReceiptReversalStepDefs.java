@@ -73,14 +73,17 @@ public class ReceiptReversalStepDefs {
 	@Then("^the inventory details should be displayed in reversals tab$")
 	public void corresponding_inventory_information_should_be_displayed_in_reversals_screen() throws Throwable {
 		Assert.assertTrue("Record is not present in reversal screen", receiptReversalPage.isRecordExists());
+		Thread.sleep(1000);
 	}
 
 	@When("^I enter the quantity (\\d+) to reverse$")
 	public void i_enter_the_Qty_to_reverse_as_and_navigate_to_finish_screen(int qtyReverse) throws Throwable {
+		context.setQtyReverse(qtyReverse);
 		Assert.assertTrue("Quantity to reverse is not in multiples of case ratio",
 				qtyReverse % context.getCaseRatio() == 0);
-
-		receiptReversalPage.scrollNext();
+		for (int i = 0; i < 2; i++) {
+			receiptReversalPage.scrollNext();
+		}
 		receiptReversalPage.enterQtyToReverse(qtyReverse);
 		jdaFooter.clickNextButton();
 	}

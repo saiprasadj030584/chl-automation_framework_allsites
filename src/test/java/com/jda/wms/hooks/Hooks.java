@@ -25,7 +25,7 @@ public class Hooks {
 	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver,Context context) {
+	public Hooks(WebDriver webDriver, Context context) {
 		this.webDriver = webDriver;
 		this.context = context;
 	}
@@ -93,7 +93,6 @@ public class Hooks {
 			logger.debug("DB Connection closed");
 		}
 	}
-	
 	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
