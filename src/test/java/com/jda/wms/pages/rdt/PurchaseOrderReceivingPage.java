@@ -196,4 +196,9 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+
+	public void selectPickingMenu() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -21,8 +21,8 @@ public class MoveTaskStepDefs {
 		this.context = context;
 	}
 
-	@Given("^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details$")
-	public void the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details(String orderID)
+	@Given("^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details from move task table$")
+	public void the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table(String orderID)
 			throws Throwable {
 		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
 		ArrayList<String> listID = new ArrayList<String>();

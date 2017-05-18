@@ -25,10 +25,6 @@ public class MoveTaskUpdateStepDefs {
 		this.jdaFooter = jdaFooter;
 	}
 
-	@When("^I navigate to move task update$")
-	public void i_navigate_to_move_task_update() throws Throwable {
-		jdaHomepage.navigateToMoveTaskUpdate();
-	}
 
 	@Then("^the tag id should be released$")
 	public void the_tag_id_should_be_released() throws Throwable {

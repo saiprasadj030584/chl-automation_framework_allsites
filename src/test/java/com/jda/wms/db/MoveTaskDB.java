@@ -36,7 +36,7 @@ public class MoveTaskDB {
 		return listId;
 	}
 
-	public ArrayList<String> getQtyToMove(String orderID) throws SQLException{
+	public ArrayList<String> getQtyToMove(String orderID) throws SQLException, ClassNotFoundException{
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -53,7 +53,7 @@ public class MoveTaskDB {
 		return qtyToMove;
 	}
 
-	public ArrayList<String> getToPalletID(String orderID) throws SQLException {
+	public ArrayList<String> getToPalletID(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> toPalletID = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -70,7 +70,7 @@ public class MoveTaskDB {
 		return toPalletID;
 	}
 
-	public ArrayList<String> getToContainerID(String orderID) throws SQLException {
+	public ArrayList<String> getToContainerID(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> toContainerID = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();

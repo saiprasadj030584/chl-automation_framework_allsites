@@ -57,10 +57,12 @@ public class Database {
 	 * @param password
 	 *            - password
 	 * @return - returns true if the connection is successful.
+	 * @throws ClassNotFoundException 
 	 */
-	public void connect() {
+	public void connect() throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); 
 			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
 			connection.setAutoCommit(true);
 			context.setConnection(connection);

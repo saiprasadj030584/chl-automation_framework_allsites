@@ -7,6 +7,7 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -18,31 +19,61 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
-	private Context context;
+	private Context context; 
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
+	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,OrderHeaderMaintenanceDB orderHeaderMaintenanceDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
+		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 	}
 
+	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header table$")
+	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status, String type) throws Throwable {
+		context.setOrderId(orderID);
+		ArrayList<String> failureList = new ArrayList<String>();
+		
+		verification.verifyData("Bulk pick order status", status, orderHeaderMaintenanceDB.getStatus(context.getOrderId()), failureList);
+//		verification.verifyData("Order date", "Not Null", orderHeaderMaintenanceDB.getOrderDate(), failureList);
+//		verification.verifyData("Created By", "Not Null", orderHeaderMaintenanceDB.getCreatedBy(), failureList);
+//		verification.verifyData("Order time", "Not Null", orderHeaderMaintenanceDB.getOrderTime(), failureList);
+//		verification.verifyData("Creation date", "Not Null", orderHeaderMaintenanceDB.getCreationDate(), failureList);
+//		verification.verifyData("Creation time", "Not Null", orderHeaderMaintenanceDB.getCreationTime(), failureList);
+//		verification.verifyData("Move task status", "Not Null", orderHeaderMaintenanceDB.getMoveTaskStatus(),
+//				failureList);
+//		verification.verifyData("From site id", "Not Null", orderHeaderMaintenanceDB.getFromSiteId(), failureList);
+//		verification.verifyData("Type", "Not Null", orderHeaderMaintenanceDB.getType(), failureList);
+//		verification.verifyData("Number of lines", "Not Null", orderHeaderMaintenanceDB.getNumberOfLines(),
+//				failureList);
+
+		Assert.assertTrue(
+				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	
+	@Given("^the order should have delivery details$")
+	public void the_order_should_have_delivery_details() throws Throwable {
+	}
+	
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
 	public void the_bulk_pick_order_should_be_status_type_order_details_in_the_order_header_maintenance_table(
 			String orderID, String status, String type) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-		jdaHomeStepDefs.i_navigate_to_order_header();
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(orderID);
-		jdaFooter.clickExecuteButton();
+//		jdaHomeStepDefs.i_navigate_to_order_header();
+//		jdaFooter.clickQueryButton();
+//		orderHeaderMaintenancePage.enterOrderNo(orderID);
+//		jdaFooter.clickExecuteButton();
 
 		verification.verifyData("Bulk pick order status", status, orderHeaderMaintenancePage.getStatus(), failureList);
 		verification.verifyData("Order date", "Not Null", orderHeaderMaintenancePage.getOrderDate(), failureList);
