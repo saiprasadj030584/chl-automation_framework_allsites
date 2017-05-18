@@ -288,7 +288,6 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the uploaded status and uploaded file should be displayed$")
 	public void the_uploaded_status_and_uploaded_file_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
 		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
 
 		String uploadedStatus = inventoryTransactionQueryPage.getUploaded();
@@ -317,10 +316,12 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertEquals("ABV values are not matched", "value from context", inventoryTransactionQueryPage.getABV());
 	}
 
-	@Then("^I should see the from location, to location and final location for the tag$")
-	public void i_should_see_the_from_location_to_location_and_final_location_for_the_tag() throws Throwable {
+	@Then("^I should see the from location, to location, final location, uploaded status and uploaded file name for the tags$")
+	public void i_should_see_the_from_location_to_location_final_location_uploaded_status_and_uploaded_file_name_for_the_tags()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		Map<String, String> locationTagMap = context.getLocationPerTagMap();
+
 		for (String tagId : locationTagMap.keySet()) {
 			jdaFooter.clickQueryButton();
 			inventoryTransactionQueryPage.selectCode("Putaway");
@@ -339,12 +340,26 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.add("Uploaded File Name not displayed as expected for " + tagId + ". Expected ["
 						+ finalLocation + "]   but was [" + toLocation + "]");
 			}
-		}
-		Assert.assertTrue(
-				"Inventory general tab  not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
 
-		the_uploaded_status_and_uploaded_file_should_be_displayed();
+			inventoryTransactionQueryPage.clickMiscellaneous2Tab();
+
+			String uploadedStatus = inventoryTransactionQueryPage.getUploaded();
+			if (!uploadedStatus.equals("Y")) {
+				failureList
+						.add("Uploaded status not displayed as expected. Expected [Y] but was " + uploadedStatus + "]");
+			}
+
+			String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+			if (!uploadedFileName.contains("I0809")) {
+				failureList.add("Uploaded File Name not displayed as expected. Expected [I0809] but was ["
+						+ uploadedFileName + "]");
+			}
+
+			inventoryTransactionQueryPage.clickGeneralTab();
+		}
+
+		Assert.assertTrue("Inventory transanction details  not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
 	@When("^I navigate to settings 2 tab in the user defined tab$")
@@ -708,5 +723,34 @@ public class InventoryTransactionQueryStepDefs {
 				inventoryTransactionQueryPage.clickGeneralTab();
 			}
 		}
+	}
+
+	@Then("^I should see the from location, to location and final location for the tag$")
+	public void i_should_see_the_from_location_to_location_and_final_location_for_the_tag() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		jdaFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Putaway");
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		jdaFooter.clickExecuteButton();
+
+		String fromLocation = inventoryTransactionQueryPage.getFromLocation();
+		if (!fromLocation.equals("REC002")) {
+			failureList.add("Uploaded File Name not displayed as expected for " + ". Expected [REC002] but was ["
+					+ fromLocation + "]");
+		}
+		String finalLocation = inventoryTransactionQueryPage.getFinalLocation();
+		String toLocation = inventoryTransactionQueryPage.getToLocation();
+
+		if (!toLocation.equals(finalLocation)) {
+			failureList.add("Uploaded File Name not displayed as expected for " + ". Expected [" + finalLocation
+					+ "]   but was [" + toLocation + "]");
+		}
+
+		Assert.assertTrue(
+				"Inventory general tab  not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
+		the_uploaded_status_and_uploaded_file_should_be_displayed();
 	}
 }

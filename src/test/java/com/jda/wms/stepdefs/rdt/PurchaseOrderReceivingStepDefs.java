@@ -4,8 +4,8 @@ package com.jda.wms.stepdefs.rdt;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Assert;
-import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +16,7 @@ import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -317,7 +318,7 @@ public class PurchaseOrderReceivingStepDefs {
 		if (puttyFlag == true) {
 			Assert.assertTrue("Receive not completed and Home page not displayed.",
 					purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-			Thread.sleep(5000);
+			System.out.println("Please logout the putty screen");
 		}
 	}
 
@@ -330,10 +331,10 @@ public class PurchaseOrderReceivingStepDefs {
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("AllocationGroup"));
+			context.setSkuId(currentSku);
+			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
-			context.setSkuId(currentSku);
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
@@ -343,8 +344,8 @@ public class PurchaseOrderReceivingStepDefs {
 				i_should_see_the_receiving_completion();
 			}
 		}
-		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+//		puttyFlag = false;
+//		puttyFunctionsPage.minimisePutty();
 	}
 
 	@When("^I receive the first sku of the purchase order at location \"([^\"]*)\"$")

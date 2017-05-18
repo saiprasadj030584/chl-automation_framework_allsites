@@ -1,5 +1,7 @@
 package com.jda.wms.hooks;
 
+import java.sql.SQLException;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -19,10 +22,12 @@ public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final WebDriver webDriver;
 	Screen screen = new Screen();
+	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver) {
+	public Hooks(WebDriver webDriver, Context context) {
 		this.webDriver = webDriver;
+		this.context = context;
 	}
 
 	@Before
@@ -53,7 +58,7 @@ public class Hooks {
 		}
 	}
 
-	// @After("@purchase_order")
+	@After("@purchase_order")
 	public void logoutPutty() throws FindFailed, InterruptedException {
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
@@ -79,6 +84,14 @@ public class Hooks {
 		logger.debug("End of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
+	}
+
+	@After
+	public void closeDBConnection() throws SQLException {
+		if (!context.getConnection().equals(null)) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
 	}
 
 	// @After

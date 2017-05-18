@@ -6,12 +6,16 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PreAdviceHeaderPage;
-import cucumber.api.java.en.*;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
