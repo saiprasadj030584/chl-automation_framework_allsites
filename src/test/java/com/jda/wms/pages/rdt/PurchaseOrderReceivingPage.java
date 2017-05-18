@@ -99,8 +99,6 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
-	
-	
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);
@@ -127,7 +125,7 @@ public class PurchaseOrderReceivingPage {
 		// screen.type(Key.NUM4);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
-		screen.type(Key.TAB); //to navigate to Vintage
+		screen.type(Key.TAB); // to navigate to Vintage
 		Thread.sleep(2000);
 	}
 
@@ -180,22 +178,6 @@ public class PurchaseOrderReceivingPage {
 		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
-	}
-
-	public void pressTab() throws InterruptedException {
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
-	}
-
-	public void pressEnter() throws InterruptedException {
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-	}
-
-	public void nextScreen() throws InterruptedException {
-		screen.type("x", Key.CTRL);
-		screen.type(Key.NUM4);
-		Thread.sleep(2000);
 	}
 
 	public void enterVintage(String vintage) throws InterruptedException {

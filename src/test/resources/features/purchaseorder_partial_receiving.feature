@@ -4,8 +4,8 @@ Feature: Partial receive purchase order
   I want to receive the PO partially 
   So that I can receive the remaining later
 
-  @receive_po_partial_ambient
-  Scenario Outline: Receiving process in JDA WMS for Ambient product category
+  @complete
+  Scenario Outline: Receive partially for Ambient product category
     Given the "Ambient" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
@@ -19,14 +19,14 @@ Feature: Partial receive purchase order
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
     Then the status should be displayed as "In Progress"
-    Then the goods receipt should be generated for the received stock in invent	ory transaction table
+    Then the goods receipt should be generated for the received stock in inventory transaction table
 
     Examples: 
       | PreAdviceID | Location |
       |  8000000003 | REC002   |
 
-  @receive_po_partial_bws_bonded
-  Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category
+  @complete
+  Scenario Outline: Receive partially for BWS bonded product category
     Given the "BWS-Bonded" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
@@ -49,8 +49,8 @@ Feature: Partial receive purchase order
       | PreAdviceID | Location |
       |  7000000010 | REC002   |
 
-  @receive_po_partial_bws_non_bonded
-  Scenario Outline: Receiving process in JDA WMS for BWS-Non-Bonded product category
+  @complete
+  Scenario Outline: Receive partially for BWS non-bonded product category
     Given the "BWS-Non-Bonded" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table

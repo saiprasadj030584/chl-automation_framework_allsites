@@ -18,16 +18,16 @@ public class PuttyFunctionsPage {
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-		
-		//Clear pre-entered host name
-		screen.type("A",Key.CTRL);
+
+		// Clear pre-entered host name
+		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
 		screen.type(host);
-		
-		//navigate to Port
+
+		// navigate to Port
 		screen.type(Key.TAB);
-		//Clear pre-entered Port detail
-		screen.type("A",Key.CTRL);
+		// Clear pre-entered Port detail
+		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
 		screen.type(port);
 
@@ -46,7 +46,7 @@ public class PuttyFunctionsPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
 	}
-	
+
 	public void mimimizePuty() throws FindFailed, InterruptedException {
 		screen.wait("/images/Putty/MinimizePutty.png", timeoutInSec);
 		screen.click("/images/Putty/MinimizePutty.png");
@@ -77,5 +77,21 @@ public class PuttyFunctionsPage {
 			return true;
 		else
 			return false;
+	}
+
+	public void pressTab() throws InterruptedException {
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void pressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+	public void nextScreen() throws InterruptedException {
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
 	}
 }

@@ -43,7 +43,7 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		//jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -83,14 +83,14 @@ public class PreAdviceHeaderStepsDefs {
 				failureList.isEmpty());
 	}
 
-	
-@Given("^the \"([^\"]*)\" category  PO \"([^\"]*)\" in \"([^\"]*)\" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table$")
-public void the_category_PO_in_status_with_more_than_one_line_items_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(String productCategory, String preAdviceId, String status) throws Throwable 
-{
+	@Given("^the \"([^\"]*)\" category  PO \"([^\"]*)\" in \"([^\"]*)\" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table$")
+	public void the_category_PO_in_status_with_more_than_one_line_items_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
+			String productCategory, String preAdviceId, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		//jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -123,13 +123,13 @@ public void the_category_PO_in_status_with_more_than_one_line_items_and_have_fut
 		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
 		context.setNoOfLines(numberOfLines);
 		if (numberOfLines <= 1) {
-			failureList.add("Numberoflines is not as expected. Expected [>1] but was [" + numberOfLines + "]");
+			failureList.add("Number of lines is not as expected. Expected [>1] but was [" + numberOfLines + "]");
 		}
 
 		Assert.assertTrue("PreAdvice Header details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-	
+
 	@Then("^I should see the type is updated as PO$")
 	public void i_should_see_the_type_is_updated_as_PO() throws Throwable {
 		Assert.assertTrue("The TYPE is not a PO expected, [PO] but was [not PO]", preAdviceHeaderPage.isTypeExist());
