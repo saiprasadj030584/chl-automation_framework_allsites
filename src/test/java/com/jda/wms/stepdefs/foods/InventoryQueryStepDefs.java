@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.InventoryQueryDb;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -27,18 +28,20 @@ public class InventoryQueryStepDefs {
 	private final JdaHomePage jdaHomePage;
 	private final LocationPage locationPage;
 	private final Context context;
+	private final InventoryQueryDb inventoryQueryDb;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
 	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, LocationPage locationPage,
-			Context context, JdaHomePage jdaHomePage) {
+			Context context, JdaHomePage jdaHomePage, InventoryQueryDb inventoryQueryDb) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.locationPage = locationPage;
 		this.context = context;
+		this.inventoryQueryDb = inventoryQueryDb;
 	}
 
 	@Given("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
@@ -375,30 +378,17 @@ public class InventoryQueryStepDefs {
 	@Then("^the ABV should be updated for all the Tag Id$")
 	public void the_ABV_should_be_updated_for_all_the_Tag_Id() throws Throwable {
 		String tagID = null, expectedAbv = null;
-		int qtyReceivedPerTag = 0, caseRatio = 0;
-
 		purchaseOrderMap = context.getPurchaseOrderMap();
-		// qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
 		tagIDMap = context.getTagIDMap();
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			expectedAbv = (purchaseOrderMap.get(key).get("ABV"));
-			// context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation
-			// Group"));
+			expectedAbv = (purchaseOrderMap.get(key).get("UpdatedABV"));
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
-				// qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
 				context.setTagId(tagID);
-				// context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
-				jdaFooter.clickQueryButton();
-				inventoryQueryPage.enterTagId(tagID);
-				jdaFooter.clickExecuteButton();
-				inventoryQueryPage.navigateToUserDefinedTab();
-				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryPage.getUpdatedABV());
-				// the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
-				// the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
-				// the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDb.getABV(tagID));
+
 			}
 		}
 	}

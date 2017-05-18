@@ -29,8 +29,8 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location | ABV |
-      |  0030001869 | REC002   |  11 |
-      |  0030001869 | REC002   |   5 |
+      |  7150010210 | REC002   |  11 |
+      |  7150010210 | REC002   |   5 |
 
   @wip4
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category

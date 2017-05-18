@@ -43,7 +43,7 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -68,6 +68,8 @@ public class PreAdviceHeaderStepsDefs {
 			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
 		}
 
+		// this method should be deleted and use the getType() from
+		// PreadviceHeaderDB.java
 		boolean isType = preAdviceHeaderPage.isTypeExist();
 		if (!isType) {
 			failureList.add("Type is not displayed as PO");
