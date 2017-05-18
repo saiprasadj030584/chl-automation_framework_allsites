@@ -10,9 +10,12 @@ import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
@@ -21,17 +24,20 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
+	private OrderLineMaintenancePage orderLineMaintenancePage;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderLineMaintenancePage orderLineMaintenancePage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
+		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -73,8 +79,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Name", "Not Null", orderHeaderMaintenancePage.getName(), failureList);
 		verification.verifyData("Address1", "Not Null", orderHeaderMaintenancePage.getAddress1(), failureList);
 		verification.verifyData("Country", "Not Null", orderHeaderMaintenancePage.getCountry(), failureList);
-		
-				Assert.assertTrue(
+
+		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -83,18 +89,22 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_delivery_details_in_delivery_details_and_user_defined_tabs() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickDeliveryDetailsTab();
-		verification.verifyData("ShipByDate", "Not Null",orderHeaderMaintenancePage.getShipByDate(), failureList);
-		verification.verifyData("DeliveryByTimeFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByTimeFromDeliveryDetailsTab(), failureList);
-		verification.verifyData("DeliveryByDateFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByDateFromDeliveryDetailsTab(), failureList);
-		verification.verifyData("ShipByTime", "Not Null",orderHeaderMaintenancePage.getShipByTime(), failureList);
+		verification.verifyData("ShipByDate", "Not Null", orderHeaderMaintenancePage.getShipByDate(), failureList);
+		verification.verifyData("DeliveryByTimeFromDeliveryDetailsTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByTimeFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("DeliveryByDateFromDeliveryDetailsTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByDateFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("ShipByTime", "Not Null", orderHeaderMaintenancePage.getShipByTime(), failureList);
 
 		orderHeaderMaintenancePage.clickUserDefinedTab();
-		verification.verifyData("DeliveryType", "Not Null",orderHeaderMaintenancePage.getDeliveryType(), failureList);
-		verification.verifyData("DeliveryByTimeFromUserDefinedTab", "Not Null",orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab(), failureList);
-		verification.verifyData("DeliveryByDateFromUserDefinedtab", "Not Null",orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab(), failureList);
-		verification.verifyData("IfosOrderNum", "Not Null",orderHeaderMaintenancePage.getIfosOrderNum(), failureList);
-		
-				Assert.assertTrue(
+		verification.verifyData("DeliveryType", "Not Null", orderHeaderMaintenancePage.getDeliveryType(), failureList);
+		verification.verifyData("DeliveryByTimeFromUserDefinedTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab(), failureList);
+		verification.verifyData("DeliveryByDateFromUserDefinedtab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab(), failureList);
+		verification.verifyData("IfosOrderNum", "Not Null", orderHeaderMaintenancePage.getIfosOrderNum(), failureList);
+
+		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -116,13 +126,22 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_hub_details_in_hub_address_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickHubAddressTab();
-		verification.verifyData("Hub", "Not Null",orderHeaderMaintenancePage.getHub(), failureList);
-		verification.verifyData("HubName", "Not Null",orderHeaderMaintenancePage.getHubName(), failureList);
-		verification.verifyData("HubCountry", "Not Null",orderHeaderMaintenancePage.getHubCountry(), failureList);
-		
+		verification.verifyData("Hub", "Not Null", orderHeaderMaintenancePage.getHub(), failureList);
+		verification.verifyData("HubName", "Not Null", orderHeaderMaintenancePage.getHubName(), failureList);
+		verification.verifyData("HubCountry", "Not Null", orderHeaderMaintenancePage.getHubCountry(), failureList);
+
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+
+	@Then("^the ship dock should be updated for an order$")
+	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickExecuteButton();
+		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
+				orderHeaderMaintenancePage.getShipDock());
 	}
 
 }

@@ -18,6 +18,7 @@ import com.jda.wms.pages.foods.PackConfigMaintenancePage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderLineMaintenanceStepDefs {
@@ -29,6 +30,7 @@ public class OrderLineMaintenanceStepDefs {
 	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private int qtyOrdered;
 
 	@Inject
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
@@ -55,7 +57,7 @@ public class OrderLineMaintenanceStepDefs {
 		orderLineMaintenancePage.allocateOrder();
 	}
 
-	@Given("^the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each  line items$")
+	@Given("^the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each line items$")
 	public void the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -117,5 +119,4 @@ public class OrderLineMaintenanceStepDefs {
 				failureList.isEmpty());
 		logger.debug("Map: " + stockTransferOrderMap.toString());
 	}
-
 }
