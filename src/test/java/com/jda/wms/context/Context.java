@@ -49,7 +49,7 @@ public class Context {
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
-	private Map<String, Map<String, String>> stockTransferOrderMap;
+	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
@@ -360,11 +360,11 @@ public class Context {
 		this.vintage = vintage;
 	}
 
-	public Map<String, Map<String, String>> getstockTransferOrderMap() {
+	public Map<Integer, Map<String, String>> getstockTransferOrderMap() {
 		return stockTransferOrderMap;
 	}
 
-	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
+	public void setstockTransferOrderMap(Map<Integer, Map<String, String>> stockTransferOrderMap) {
 		this.stockTransferOrderMap = stockTransferOrderMap;
 
 	}
@@ -422,7 +422,7 @@ public class Context {
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-	public String getorderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 

@@ -27,9 +27,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
-	private String orderID;
-	
-	
+
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
@@ -142,8 +140,9 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 	@Given("^the order should be in \"([^\"]*)\" status$")
+	
 	public void the_order_should_be_in_status(String status) throws Throwable {
-		String orderStatus =orderHeaderMaintenanceDB.getOrderStatus(orderID);
+		String orderStatus =orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
 	}
 
 	
