@@ -7,6 +7,7 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -24,12 +25,18 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
-	private  OrderLineMaintenancePage orderLineMaintenancePage;
+	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
+	private String orderID;
+	
+	
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderLineMaintenancePage orderLineMaintenancePage,OrderHeaderMaintenanceDB orderHeaderMaintenanceDB
+	) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -37,6 +44,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -133,26 +141,13 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+	@Given("^the order should be in \"([^\"]*)\" status$")
+	public void the_order_should_be_in_status(String status) throws Throwable {
+		String orderStatus =orderHeaderMaintenanceDB.getOrderStatus(orderID);
+	}
 
-@When("^i enter the order id \"([^\"]*)\"$")
-	public void i_enter_the_order_id(String orderID) throws Throwable {
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(orderID);
-		jdaFooter.clickExecuteButton();
+	
 
-}
-@Then("^i should see the status as \"([^\"]*)\"$")
-public void i_should_see_the_status_as(String status) throws Throwable {
-	Assert.assertEquals("STO Status does not match", status,  orderHeaderMaintenancePage.getStatus());
-}
-@Then("^i enter the order id \"([^\"]*)\" in order line maintenance page$")
-public void i_enter_the_order_id_in_order_line_maintenance_page(String orderID) throws Throwable {
-	jdaHomeStepDefs.i_navigate_to_order_Line_Maintenance_Page();
-	jdaFooter.clickQueryButton();
-	orderHeaderMaintenancePage.enterOrderNo(orderID);
-	jdaFooter.clickExecuteButton();
-	orderLineMaintenancePage.selectFirstRecord();
-}
-@Then("^the tracking level, Qty Ordered, should be displayed$")
-public void the_tracking_level_Qty_Ordered_should_be_displayed() throws Throwable {
+	
+	
 }

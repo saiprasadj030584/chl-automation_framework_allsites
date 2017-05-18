@@ -58,6 +58,8 @@ public class Context {
 	private String newShipDock;
 	private String customer;
 	private Connection connection = null;
+	private int qtyOrdered;
+	private Map<Integer, Map<String, String>> listIDMap;
 
 	private int qtyReverse;
 
@@ -417,7 +419,7 @@ public class Context {
 	}
 
 
-	public void setOrderNo(String orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	public String getorderId() {
@@ -446,6 +448,22 @@ public class Context {
 
 	public void setConnection(Connection connection) {
 		this.connection = connection;
+	}
+
+	public int getQtyOrdered() {
+		return qtyOrdered;
+	}
+
+	public void setQtyOrdered(int qtyOrdered) {
+		this.qtyOrdered = qtyOrdered;
+	}
+
+	public Map<Integer, Map<String, String>> getListIDMap() {
+		return listIDMap;
+	}
+
+	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
+		this.listIDMap = listIDMap;
 	}
 
 }

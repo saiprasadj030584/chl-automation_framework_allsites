@@ -26,10 +26,8 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 
 /**
@@ -39,14 +37,15 @@ import com.jda.wms.context.Context;
 public class Database {
 	private String applicationUser;
 	private Connection connection;
+	private Configuration configuration;
 	private Context context;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-
-@Inject
-	public Database(Context context) {
-	this.context = context;
-}
 	
+	@Inject
+	public Database(Configuration configuration,Context context) {
+		this.configuration = configuration;
+		this.context = context;
+	}
+
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
@@ -60,17 +59,19 @@ public class Database {
 	 * @return - returns true if the connection is successful.
 	 * @throws ClassNotFoundException 
 	 */
-	public void connect(String address, String username, String password) throws ClassNotFoundException {
-		if (context.getConnection()==null){
+	public void connect() throws ClassNotFoundException {
+		boolean connectionSucessful = false;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver"); 
-			connection = DriverManager.getConnection(address, username, password);
-			context.setConnection(connection);
+			Class.forName("oracle.jdbc.driver.OracleDriver");  
+			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
 			connection.setAutoCommit(true);
-			logger.debug("Connection successfull");
+			context.setConnection(connection);
+			connectionSucessful = true;
 		} catch (SQLException ex) {
-			
-		}
+			// LogWriter.writeLogEntry("Something went wrong connecting to the
+			// database");
+			// LogWriter.writeLogEntry(ex.toString());
+			System.out.println("Exception "+ex.getMessage());
 		}
 	}
 

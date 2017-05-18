@@ -250,9 +250,4 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
-	
-	public void invokeDataBase() throws ClassNotFoundException{
-		database.connect(configuration.getStringProperty("db-host"), configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
-		logger.debug(database.getABV("60070710"));
-	}
 }

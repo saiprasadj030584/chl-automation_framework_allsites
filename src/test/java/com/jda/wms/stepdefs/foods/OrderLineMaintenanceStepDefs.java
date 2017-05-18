@@ -18,6 +18,7 @@ import com.jda.wms.pages.foods.PackConfigMaintenancePage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderLineMaintenanceStepDefs {
@@ -29,6 +30,7 @@ public class OrderLineMaintenanceStepDefs {
 	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private int qtyOrdered;
 
 	@Inject
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
@@ -55,7 +57,7 @@ public class OrderLineMaintenanceStepDefs {
 		orderLineMaintenancePage.allocateOrder();
 	}
 
-	@Given("^the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each  line items$")
+	@Given("^the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each line items$")
 	public void the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -116,6 +118,35 @@ public class OrderLineMaintenanceStepDefs {
 				"Stock Transfer Order line details are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 		logger.debug("Map: " + stockTransferOrderMap.toString());
+	}
+	@Given("^the quantity tasked should be updated for each order lines$")
+	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
+		jdaFooter.clickQueryButton();
+		OrderLineMaintenancePage.enterOrderNo("66661642250");
+		jdaFooter.clickExecuteButton();
+		orderLineMaintenancePage.selectFirstRecord();
+	}
+	
+
+	
+
+	@Then("^the tracking level, Qty Ordered, should be displayed$")
+	public void the_tracking_level_Qty_Ordered_should_be_displayed() throws Throwable {
+		orderLineMaintenancePage.getQtyOrdered();
+		context.setQtyOrdered(qtyOrdered);
+		orderLineMaintenancePage.getTrackinglevel();
+
+	}
+
+	@Then("^i navigate user defined tab$")
+	public void i_navigate_user_defined_tab() throws Throwable {
+		orderLineMaintenancePage.clickUserDefinedTab();
+	}
+
+	@Then("^the case ratio should be dislayed$")
+	public void the_case_ratio_should_be_dislayed() throws Throwable {
+		orderLineMaintenancePage.getCaseRatio();
+		context.getCaseRatio();
 	}
 
 }

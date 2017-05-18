@@ -164,4 +164,14 @@ public class OrderLineMaintenancePage extends PageObject {
 	public void enterOrderID(String orderId) {
 		screen.type(orderId);
 	}
+
+	public void getTrackinglevel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void enterOrderNo(String orderID) {
+		// TODO Auto-generated method stub
+		
+	}
 }
