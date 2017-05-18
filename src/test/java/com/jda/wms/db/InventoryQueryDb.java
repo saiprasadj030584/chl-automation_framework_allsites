@@ -31,5 +31,4 @@ public class InventoryQueryDb {
 		abv = rs.getString(1);
 		return abv;
 	}
-
 }

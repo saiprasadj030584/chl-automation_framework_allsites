@@ -5547,3 +5547,29 @@
 2017-05-17 13:59:02 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-17 13:59:02 DEBUG Hooks:93 - DB Connection closed
 >>>>>>> d52d81a6e69f7e097fa4fe82afaa7d71020145ff
+2017-05-18 06:36:53 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 06:36:53 DEBUG Hooks:39 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-18 06:36:53 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-18 06:36:53 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 08:32:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 08:32:52 DEBUG Hooks:39 - featureID: purchase-order;receiving-purcahse-order-for-bws-bonded-product-category;
+2017-05-18 08:32:52 DEBUG Hooks:40 - Start of Scenario: Receiving purcahse order for BWS bonded product category
+2017-05-18 08:32:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 11:07:39 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 11:07:39 DEBUG Hooks:39 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category-with-no-abv;
+2017-05-18 11:07:39 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
+2017-05-18 11:07:39 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 11:07:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 11:07:39 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
+2017-05-18 11:07:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 11:08:20 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 11:08:20 DEBUG Hooks:39 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category-with-no-abv;
+2017-05-18 11:08:20 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
+2017-05-18 11:08:20 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 11:08:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 11:08:20 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
+2017-05-18 11:08:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 11:12:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 11:12:00 DEBUG Hooks:39 - featureID: purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category-with-incorrect-vintage;
+2017-05-18 11:12:00 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category with incorrect vintage
+2017-05-18 11:12:00 DEBUG Hooks:41 - ###########################################################################################################################

@@ -28,7 +28,7 @@ public class InventoryQueryStepDefs {
 	private final JdaHomePage jdaHomePage;
 	private final LocationPage locationPage;
 	private final Context context;
-	private final InventoryQueryDb inventoryQueryDb;
+	private final InventoryQueryDb inventoryQueryDB;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
@@ -41,7 +41,7 @@ public class InventoryQueryStepDefs {
 		this.jdaHomePage = jdaHomePage;
 		this.locationPage = locationPage;
 		this.context = context;
-		this.inventoryQueryDb = inventoryQueryDb;
+		this.inventoryQueryDB = inventoryQueryDb;
 	}
 
 	@Given("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
@@ -387,12 +387,14 @@ public class InventoryQueryStepDefs {
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			expectedAbv = (purchaseOrderMap.get(key).get("UpdatedABV"));
-			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
-				tagID = tagIDMap.get(sku).get(s);
-				context.setTagId(tagID);
-				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDb.getABV(tagID));
+			String currentAbv = purchaseOrderMap.get(key).get("ABV");
+			expectedAbv = String.valueOf((Float.parseFloat(currentAbv) + (float) (Float.parseFloat(currentAbv)
+					* (Float.parseFloat(context.getABVPercentage()) / 100.0f))));
 
+			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
+				tagID = tagIDMap.get(sku).get(skuIndex);
+				context.setTagId(tagID);
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
 			}
 		}
 	}

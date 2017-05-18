@@ -163,6 +163,7 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
+	// TODO move this method to JDAHomePage.java
 	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
@@ -189,7 +190,6 @@ public class PurchaseOrderReceivingPage {
 		screen.type("y");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-
 	}
 
 	public boolean isMorePercentageAbv() {

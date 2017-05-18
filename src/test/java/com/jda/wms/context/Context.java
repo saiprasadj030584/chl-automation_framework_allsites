@@ -50,11 +50,13 @@ public class Context {
 	private String locationID;
 	private String palletType;
 	private Map<String, Map<String, String>> stockTransferOrderMap;
+	private ArrayList<String> failureList;
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
 	private String customer;
 	private Connection connection = null;
+	private String abvPercentage;
 
 	private int qtyReverse;
 
@@ -419,6 +421,22 @@ public class Context {
 
 	public void setConnection(Connection connection) {
 		this.connection = connection;
+	}
+
+	public String getABVPercentage() {
+		return abvPercentage;
+	}
+
+	public void setABVPercentage(String abvPercentage) {
+		this.abvPercentage = abvPercentage;
+	}
+
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
 	}
 
 }
