@@ -4997,3 +4997,215 @@
 2017-05-18 11:07:35 DEBUG Hooks:84 - End of Scenario: STO for RDC
 2017-05-18 11:07:35 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-18 11:07:35 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 06:38:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 06:38:04 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 06:38:04 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 06:38:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 06:38:06 DEBUG Verification:20 - Order status - expected [Released] and actual [Released]
+2017-05-19 06:38:06 DEBUG Verification:20 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 06:38:06 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 06:38:06 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 06:38:06 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 06:38:06 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 06:39:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 06:39:30 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 06:39:30 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 06:39:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 06:39:32 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 06:39:32 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 06:39:32 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 06:39:32 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 06:39:32 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 06:39:32 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 06:49:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 06:49:12 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 06:49:12 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 06:49:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 06:49:14 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 06:49:14 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 06:49:14 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 06:49:14 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 06:49:14 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 06:49:14 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 06:55:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 06:55:05 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 06:55:05 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 06:55:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 06:55:06 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 06:55:07 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 06:55:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 06:55:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 06:55:07 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 06:55:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:06:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:06:04 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:06:04 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:06:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:06:05 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:06:06 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:06:06 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:06:06 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:06:06 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:06:06 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:17:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:17:35 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:17:35 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:17:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:17:39 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:17:39 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:17:39 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:17:39 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:17:39 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:17:39 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:17:39 DEBUG Verification:23 - Type - expected [Not Null] and actual [RDC]
+2017-05-19 07:17:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:17:39 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:17:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:17:39 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:18:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:18:42 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:18:42 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:18:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:18:44 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:18:44 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:18:44 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:18:44 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:18:44 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:18:44 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:18:44 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:18:44 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:18:44 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:18:44 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:18:44 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:20:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:20:46 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:20:46 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:20:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:20:47 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:20:47 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:20:47 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:20:47 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:20:47 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:20:47 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:20:47 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:20:47 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:20:47 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:20:47 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:20:47 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:24:58 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:24:58 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:24:58 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:24:58 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:24:59 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:24:59 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:24:59 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:24:59 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:24:59 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:24:59 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:24:59 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:24:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:24:59 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:24:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:24:59 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:27:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:27:14 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:27:14 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:27:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:27:16 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:27:16 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:27:16 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:27:16 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:27:16 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:27:16 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:27:16 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:27:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:27:16 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:27:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:27:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:28:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:28:25 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:28:25 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:28:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:28:27 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:28:27 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:28:27 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:28:27 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:28:27 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:28:27 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:28:27 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:28:27 DEBUG Verification:23 - Number of lines - expected [Not Null] and actual [1]
+2017-05-19 07:28:27 DEBUG Verification:23 - Customer - expected [Not Null] and actual [0159]
+2017-05-19 07:28:27 DEBUG Verification:23 - Name - expected [Not Null] and actual [MAYLANDS GIST DEPOT]
+2017-05-19 07:28:27 DEBUG Verification:23 - Address1 - expected [Not Null] and actual [Three Cheery Trees Lane]
+2017-05-19 07:28:27 DEBUG Verification:23 - Country - expected [Not Null] and actual [GBR]
+2017-05-19 07:28:27 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:28:27 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:28:27 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:28:27 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:29:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:29:00 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:29:00 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:29:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:29:02 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:29:02 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:29:02 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:29:02 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:29:02 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:29:02 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:29:02 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:29:02 DEBUG Verification:23 - Number of lines - expected [Not Null] and actual [1]
+2017-05-19 07:29:02 DEBUG Verification:23 - Customer - expected [Not Null] and actual [0159]
+2017-05-19 07:29:02 DEBUG Verification:23 - Name - expected [Not Null] and actual [MAYLANDS GIST DEPOT]
+2017-05-19 07:29:02 DEBUG Verification:23 - Address1 - expected [Not Null] and actual [Three Cheery Trees Lane]
+2017-05-19 07:29:02 DEBUG Verification:23 - Country - expected [Not Null] and actual [GBR]
+2017-05-19 07:29:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:29:02 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:29:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:29:02 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:30:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:30:18 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:30:18 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:30:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:30:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:30:18 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:30:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:36:50 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:36:50 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:36:50 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:36:50 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:36:53 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:36:54 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:36:54 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:36:54 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:36:54 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:36:54 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:36:54 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:36:54 DEBUG Verification:23 - Number of lines - expected [Not Null] and actual [1]
+2017-05-19 07:36:54 DEBUG Verification:23 - Customer - expected [Not Null] and actual [0159]
+2017-05-19 07:36:54 DEBUG Verification:23 - Name - expected [Not Null] and actual [MAYLANDS GIST DEPOT]
+2017-05-19 07:36:54 DEBUG Verification:23 - Address1 - expected [Not Null] and actual [Three Cheery Trees Lane]
+2017-05-19 07:36:54 DEBUG Verification:23 - Country - expected [Not Null] and actual [GBR]
+2017-05-19 07:36:54 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:36:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:36:54 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:36:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:38:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:38:22 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-19 07:38:22 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-19 07:38:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:38:25 DEBUG Verification:23 - Order status - expected [Released] and actual [Released]
+2017-05-19 07:38:25 DEBUG Verification:23 - Order date - expected [Not Null] and actual [2017-01-10 07:53:38.0 Europe/London]
+2017-05-19 07:38:25 DEBUG Verification:23 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-19 07:38:25 DEBUG Verification:23 - Creation date - expected [Not Null] and actual [2017-01-10 07:54:06.69234 Europe/London]
+2017-05-19 07:38:25 DEBUG Verification:23 - Move task status - expected [Not Null] and actual [Released]
+2017-05-19 07:38:25 DEBUG Verification:23 - From site id - expected [Not Null] and actual [9771]
+2017-05-19 07:38:25 DEBUG Verification:23 - Type - expected [RDC] and actual [RDC]
+2017-05-19 07:38:25 DEBUG Verification:23 - Number of lines - expected [Not Null] and actual [1]
+2017-05-19 07:38:25 DEBUG Verification:23 - Customer - expected [Not Null] and actual [0159]
+2017-05-19 07:38:25 DEBUG Verification:23 - Name - expected [Not Null] and actual [MAYLANDS GIST DEPOT]
+2017-05-19 07:38:25 DEBUG Verification:23 - Address1 - expected [Not Null] and actual [Three Cheery Trees Lane]
+2017-05-19 07:38:25 DEBUG Verification:23 - Country - expected [Not Null] and actual [GBR]
+2017-05-19 07:38:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:38:25 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-19 07:38:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:38:25 DEBUG Hooks:93 - DB Connection closed

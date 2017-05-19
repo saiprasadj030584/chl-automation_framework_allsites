@@ -12,6 +12,7 @@ import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 
@@ -19,7 +20,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
-	private Context context; 
+	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
@@ -27,7 +28,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification,OrderHeaderMaintenanceDB orderHeaderMaintenanceDB) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderHeaderMaintenanceDB orderHeaderMaintenanceDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -38,42 +40,60 @@ public class OrderHeaderMaintenanceStepDefs {
 	}
 
 	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header table$")
-	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status, String type) throws Throwable {
+	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status,
+			String type) throws Throwable {
 		context.setOrderId(orderID);
 		ArrayList<String> failureList = new ArrayList<String>();
-		
-		verification.verifyData("Bulk pick order status", status, orderHeaderMaintenanceDB.getStatus(context.getOrderId()), failureList);
-//		verification.verifyData("Order date", "Not Null", orderHeaderMaintenanceDB.getOrderDate(), failureList);
-//		verification.verifyData("Created By", "Not Null", orderHeaderMaintenanceDB.getCreatedBy(), failureList);
-//		verification.verifyData("Order time", "Not Null", orderHeaderMaintenanceDB.getOrderTime(), failureList);
-//		verification.verifyData("Creation date", "Not Null", orderHeaderMaintenanceDB.getCreationDate(), failureList);
-//		verification.verifyData("Creation time", "Not Null", orderHeaderMaintenanceDB.getCreationTime(), failureList);
-//		verification.verifyData("Move task status", "Not Null", orderHeaderMaintenanceDB.getMoveTaskStatus(),
-//				failureList);
-//		verification.verifyData("From site id", "Not Null", orderHeaderMaintenanceDB.getFromSiteId(), failureList);
-//		verification.verifyData("Type", "Not Null", orderHeaderMaintenanceDB.getType(), failureList);
-//		verification.verifyData("Number of lines", "Not Null", orderHeaderMaintenanceDB.getNumberOfLines(),
-//				failureList);
 
-		Assert.assertTrue(
-				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
+		verification.verifyData("Order status", status, orderHeaderMaintenanceDB.getStatus(context.getOrderId()),
+				failureList);
+		verification.verifyData("Order date", "Not Null", orderHeaderMaintenanceDB.getOrderDate(context.getOrderId()),
+				failureList);
+		verification.verifyData("Created By", "Not Null", orderHeaderMaintenanceDB.getCreatedBy(context.getOrderId()),
+				failureList);
+		verification.verifyData("Creation date", "Not Null",
+				orderHeaderMaintenanceDB.getCreationDate(context.getOrderId()), failureList);
+		verification.verifyData("Move task status", "Not Null",
+				orderHeaderMaintenanceDB.getMoveTaskStatus(context.getOrderId()), failureList);
+		verification.verifyData("From site id", "Not Null",
+				orderHeaderMaintenanceDB.getFromSiteId(context.getOrderId()), failureList);
+		verification.verifyData("Type", type, orderHeaderMaintenanceDB.getType(context.getOrderId()),
+				failureList);
+		int noOfLines = Utilities.convertStringToInteger(orderHeaderMaintenanceDB.getNumberOfLines(context.getOrderId()));
+		verification.verifyData("Number of lines", "Not Null", String.valueOf(noOfLines), failureList);
+		context.setNoOfLines(noOfLines);
+		Assert.assertTrue("Order  details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
 
-	
 	@Given("^the order should have delivery details$")
 	public void the_order_should_have_delivery_details() throws Throwable {
+
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String customer = orderHeaderMaintenanceDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		verification.verifyData("Customer", "Not Null", customer, failureList);
+		verification.verifyData("Name", "Not Null", orderHeaderMaintenanceDB.getName(context.getOrderId()),
+				failureList);
+		verification.verifyData("Address1", "Not Null", orderHeaderMaintenanceDB.getAddress1(context.getOrderId()),
+				failureList);
+		verification.verifyData("Country", "Not Null", orderHeaderMaintenanceDB.getCountry(context.getOrderId()),
+				failureList);
+
+		Assert.assertTrue("Delivery details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
-	
+
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
 	public void the_bulk_pick_order_should_be_status_type_order_details_in_the_order_header_maintenance_table(
 			String orderID, String status, String type) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
-//		jdaHomeStepDefs.i_navigate_to_order_header();
-//		jdaFooter.clickQueryButton();
-//		orderHeaderMaintenancePage.enterOrderNo(orderID);
-//		jdaFooter.clickExecuteButton();
+		// jdaHomeStepDefs.i_navigate_to_order_header();
+		// jdaFooter.clickQueryButton();
+		// orderHeaderMaintenancePage.enterOrderNo(orderID);
+		// jdaFooter.clickExecuteButton();
 
 		verification.verifyData("Bulk pick order status", status, orderHeaderMaintenancePage.getStatus(), failureList);
 		verification.verifyData("Order date", "Not Null", orderHeaderMaintenancePage.getOrderDate(), failureList);
@@ -104,8 +124,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Name", "Not Null", orderHeaderMaintenancePage.getName(), failureList);
 		verification.verifyData("Address1", "Not Null", orderHeaderMaintenancePage.getAddress1(), failureList);
 		verification.verifyData("Country", "Not Null", orderHeaderMaintenancePage.getCountry(), failureList);
-		
-				Assert.assertTrue(
+
+		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -114,18 +134,22 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_delivery_details_in_delivery_details_and_user_defined_tabs() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickDeliveryDetailsTab();
-		verification.verifyData("ShipByDate", "Not Null",orderHeaderMaintenancePage.getShipByDate(), failureList);
-		verification.verifyData("DeliveryByTimeFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByTimeFromDeliveryDetailsTab(), failureList);
-		verification.verifyData("DeliveryByDateFromDeliveryDetailsTab", "Not Null",orderHeaderMaintenancePage. getDeliveryByDateFromDeliveryDetailsTab(), failureList);
-		verification.verifyData("ShipByTime", "Not Null",orderHeaderMaintenancePage.getShipByTime(), failureList);
+		verification.verifyData("ShipByDate", "Not Null", orderHeaderMaintenancePage.getShipByDate(), failureList);
+		verification.verifyData("DeliveryByTimeFromDeliveryDetailsTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByTimeFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("DeliveryByDateFromDeliveryDetailsTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByDateFromDeliveryDetailsTab(), failureList);
+		verification.verifyData("ShipByTime", "Not Null", orderHeaderMaintenancePage.getShipByTime(), failureList);
 
 		orderHeaderMaintenancePage.clickUserDefinedTab();
-		verification.verifyData("DeliveryType", "Not Null",orderHeaderMaintenancePage.getDeliveryType(), failureList);
-		verification.verifyData("DeliveryByTimeFromUserDefinedTab", "Not Null",orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab(), failureList);
-		verification.verifyData("DeliveryByDateFromUserDefinedtab", "Not Null",orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab(), failureList);
-		verification.verifyData("IfosOrderNum", "Not Null",orderHeaderMaintenancePage.getIfosOrderNum(), failureList);
-		
-				Assert.assertTrue(
+		verification.verifyData("DeliveryType", "Not Null", orderHeaderMaintenancePage.getDeliveryType(), failureList);
+		verification.verifyData("DeliveryByTimeFromUserDefinedTab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByTimeFromUserDefinedTab(), failureList);
+		verification.verifyData("DeliveryByDateFromUserDefinedtab", "Not Null",
+				orderHeaderMaintenancePage.getDeliveryByDateFromUserDefinedtab(), failureList);
+		verification.verifyData("IfosOrderNum", "Not Null", orderHeaderMaintenancePage.getIfosOrderNum(), failureList);
+
+		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -147,10 +171,10 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_have_hub_details_in_hub_address_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		orderHeaderMaintenancePage.clickHubAddressTab();
-		verification.verifyData("Hub", "Not Null",orderHeaderMaintenancePage.getHub(), failureList);
-		verification.verifyData("HubName", "Not Null",orderHeaderMaintenancePage.getHubName(), failureList);
-		verification.verifyData("HubCountry", "Not Null",orderHeaderMaintenancePage.getHubCountry(), failureList);
-		
+		verification.verifyData("Hub", "Not Null", orderHeaderMaintenancePage.getHub(), failureList);
+		verification.verifyData("HubName", "Not Null", orderHeaderMaintenancePage.getHubName(), failureList);
+		verification.verifyData("HubCountry", "Not Null", orderHeaderMaintenancePage.getHubCountry(), failureList);
+
 		Assert.assertTrue(
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

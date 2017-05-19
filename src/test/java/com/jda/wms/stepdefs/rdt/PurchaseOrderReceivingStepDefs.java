@@ -274,6 +274,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_expiry_and_vintage_details();
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()){
 					failureList.add("Receive not completed and Home page not displayed.");
+					context.setFailureList(failureList);
 				}
 				Thread.sleep(5000);
 			}
