@@ -35,11 +35,12 @@ public class PuttyFunctionsStepDefs {
 		String host= configuration.getStringProperty("putty-foods-host");
 		String port= configuration.getStringProperty("putty-foods-port");
 		puttyFunctionsPage.loginPutty(host, port);
-		Assert.assertTrue("Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
+		Thread.sleep(9000);
+		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
 				configuration.getStringProperty("password"));
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 
 		if (!(puttyFunctionsPage.isMainMenuDisplayed())) {
 			failureList.add("Main Menu not displayed as expected");

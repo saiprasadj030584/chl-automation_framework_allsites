@@ -86,6 +86,7 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to inventory query page$")
 	public void i_navigate_to_inventory_query_page() throws Throwable {
+		Thread.sleep(2000);
 		jdaHomePage.navigateToInventoryQueryPage();
 	}
 

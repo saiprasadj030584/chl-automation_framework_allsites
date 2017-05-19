@@ -1,4 +1,5 @@
 package com.jda.wms.pages.foods;
+
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -8,7 +9,7 @@ import com.jda.wms.context.Context;
 import com.google.inject.Inject;
 
 public class PreAdviceLineMaintenancePage {
-	
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
@@ -51,7 +52,11 @@ public class PreAdviceLineMaintenancePage {
 		screen.click(mPackConfig.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+		String temp = App.getClipboard();
+		App.setClipboard("");
+		System.out.println("Current Clipboard value : " + App.getClipboard() );
+		System.out.println("Temp String value : " + temp );
+		return temp;
 	}
 
 	public String getUnderBond() throws FindFailed {
@@ -152,7 +157,7 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public String getPalletType() throws FindFailed {
 		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
 		screen.click(mSkuId.getCenter().offset(70, 0));
@@ -160,7 +165,7 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-		
+
 	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/UserDefined.png", timeoutInSec);
 		screen.click("images/PreAdviceLine/UserDefined.png");
@@ -174,7 +179,7 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-		
+
 	public String enterPalletType(String palletType) throws FindFailed {
 		Match mSkuId = screen.find("images/PreAdviceLine/General/PalletType.png");
 		screen.click(mSkuId.getCenter().offset(70, 0));
