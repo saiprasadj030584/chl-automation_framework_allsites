@@ -1,14 +1,14 @@
 package com.jda.wms.stepdefs.rdt;
 
 import org.junit.Assert;
-import com.jda.wms.pages.rdt.StoreTrackingOrderPage;
+import com.jda.wms.pages.rdt.StoreTrackingOrderPickingPage;
 import cucumber.api.java.en.*;
 
 public class StoreTrackingOrderPickingStepDefs {
 	
-	private StoreTrackingOrderPage storeTrackingOrderPage;
+	private StoreTrackingOrderPickingPage storeTrackingOrderPage;
 	
-	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPage storeTrackingOrderPage) {
+	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPickingPage storeTrackingOrderPage) {
 		this.storeTrackingOrderPage = storeTrackingOrderPage;
 	}
 

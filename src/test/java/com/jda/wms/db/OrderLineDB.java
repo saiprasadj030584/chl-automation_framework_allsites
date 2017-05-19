@@ -27,7 +27,7 @@ public class OrderLineDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select TRACKING_LEVEL from ORDER_LINE WHERE order_id ='" + orderID + "','" + skuID + "'");
+				"select TRACKING_LEVEL from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		rs.next();
 		trackingLevel = (rs.getString(1));
 		return trackingLevel;

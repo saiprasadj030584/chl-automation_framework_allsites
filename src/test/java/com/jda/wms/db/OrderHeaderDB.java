@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class OrderHeaderMaintenanceDB {
+public class OrderHeaderDB {
 	private Context context;
 	private Database database;
 
 	@Inject
-	public OrderHeaderMaintenanceDB(Context context, Database database) {
+	public OrderHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}

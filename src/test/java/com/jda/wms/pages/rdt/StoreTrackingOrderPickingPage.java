@@ -3,7 +3,7 @@ package com.jda.wms.pages.rdt;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
-public class StoreTrackingOrderPage {
+public class StoreTrackingOrderPickingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
@@ -44,7 +44,7 @@ public class StoreTrackingOrderPage {
 
 	public boolean isPickEntryDisplayed() throws InterruptedException {
 		Thread.sleep(5000);
-		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
+		if ((screen.exists("images/Putty/Picking/PickEntry.png") != null))
 			return true;
 		else
 			return false;

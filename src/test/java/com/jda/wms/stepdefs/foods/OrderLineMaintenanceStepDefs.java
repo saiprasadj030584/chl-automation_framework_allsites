@@ -3,43 +3,38 @@ package com.jda.wms.stepdefs.foods;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderLineDB;
+import com.jda.wms.db.SkuConfigDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 import com.jda.wms.utils.Utilities;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 public class OrderLineMaintenanceStepDefs {
-	private final OrderLineMaintenancePage orderLineMaintenancePage;
 	private OrderLineDB orderLineDB;
-	private final JDAHomeStepDefs jdaHomeStepDefs;
-	private final JdaHomePage jdaHomePage;
-	private final JDAFooter jdaFooter;
+	private SkuConfigDB skuConfigDB;
 	private Context context;
-	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
-	private final PackConfigMaintenancePage packConfigMaintenancePage;
+	private Verification verification;
+	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
-			JDAHomeStepDefs jdaHomeStepDefs, JdaHomePage jdaHomePage, JDAFooter jdaFooter, Context context,
-			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
-			PackConfigMaintenancePage packConfigMaintenancePage) {
-		this.orderLineMaintenancePage = orderLineMaintenancePage;
-		this.jdaHomeStepDefs = jdaHomeStepDefs;
-		this.jdaHomePage = jdaHomePage;
-		this.jdaFooter = jdaFooter;
+	public OrderLineMaintenanceStepDefs(Context context,OrderLineDB orderLineDB,SkuConfigDB skuConfigDB, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage) {
+		this.orderLineDB = orderLineDB;
 		this.context = context;
-		this.packConfigMaintenanceStepDefs = packConfigMaintenanceStepDefs;
-		this.packConfigMaintenancePage = packConfigMaintenancePage;
-
+		this.skuConfigDB = skuConfigDB;
+		this.verification = verification;
+		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
 	@When("^I select the SKU line$")
@@ -56,38 +51,32 @@ public class OrderLineMaintenanceStepDefs {
 	public void the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String skuId = null, qtyOrdered = null, qtyTasked = null, trackingLevel = null;
+		String qtyOrdered = null, qtyTasked = null, trackingLevel = null;
 		Map<Integer, Map<String, String>> stockTransferOrderMap = new HashMap<Integer, Map<String, String>>();
 		int caseRatio = 0;
 		ArrayList<String> skuID = new ArrayList<String>();
 		
-
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
-
 			skuID = orderLineDB.getsku(context.getOrderId());
 			qtyOrdered = orderLineDB.getQtyOrdered(context.getOrderId(),skuID.get(i-1));
 			qtyTasked = orderLineDB.getQtyTasked(context.getOrderId(),skuID.get(i-1));
 			trackingLevel = orderLineDB.getTrackingLevel(context.getOrderId(),skuID.get(i-1));
 			String packConfig = orderLineDB.getPackConfig(context.getOrderId(),skuID.get(i-1));
-
 			caseRatio = Integer.parseInt(orderLineDB.getCaseRatio(context.getOrderId(),skuID.get(i-1)));
-
-			int ratio1To2 = Utilities.convertStringToInteger(packConfigMaintenancePage.getRatio1To2());
-			Thread.sleep(2000);
-			packConfigMaintenancePage.clickGeneraltab();
-
-			if (caseRatio != ratio1To2) {
-				failureList.add("Case ratio is not as expected for SKU (" + skuId + ") " + "Expected [" + ratio1To2
-						+ "] but was [" + caseRatio + "]");
-			}
+			
+			verification.verifyData("Type", "CASE", trackingLevel,failureList);
+			
+			int ratio1To2 = Utilities.convertStringToInteger(skuConfigDB.getRatio1To2(packConfig));
+			verification.verifyData("Case Ratio", String.valueOf(ratio1To2), String.valueOf(caseRatio),failureList);
 
 			// map
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
-			lineItemsMap.put("SKU", skuId);
+			lineItemsMap.put("SKU", skuID.get(i-1));
 			lineItemsMap.put("QtyOrdered", qtyOrdered);
 			lineItemsMap.put("QtyTasked", qtyTasked);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("PackConfig", packConfig);
+			lineItemsMap.put("TrackingLevel", trackingLevel);
 
 			stockTransferOrderMap.put(i, lineItemsMap);
 
