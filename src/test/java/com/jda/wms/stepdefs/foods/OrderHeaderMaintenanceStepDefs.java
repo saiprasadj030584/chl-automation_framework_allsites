@@ -28,13 +28,11 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
-
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage,OrderHeaderMaintenanceDB orderHeaderMaintenanceDB
-	) {
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderMaintenanceDB orderHeaderMaintenanceDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -139,14 +137,11 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Order Header Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+
 	@Given("^the order should be in \"([^\"]*)\" status$")
-	
 	public void the_order_should_be_in_status(String status) throws Throwable {
-		String orderStatus =orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
+		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
+		Assert.assertEquals("status is not as expected","Allocated",orderStatus);
 	}
 
-	
-
-	
-	
 }

@@ -27,13 +27,13 @@ public class OrderLineDB {
 			ResultSet rs = stmt.executeQuery("select TRACKING_LEVEL from ORDER_LINE WHERE order_id ='" + orderID + "','" + skuID + "'");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int columns = rsmd.getColumnCount();
-			while(rs.next())  {
-				for(int j=1;j <= columns;j++){
-					trackingLevel= (rs.getString(j));
+			rs.next();
+			trackingLevel= (rs.getString(1));	
+			return trackingLevel;
 				}
-			}
-		return trackingLevel;
-	}
+			
+		
+	
 	public String getQtyordered(String orderID, String skuID) throws SQLException, ClassNotFoundException {
 		String qtyOrdered = null; 
 		if (context.getConnection()==null){

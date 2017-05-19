@@ -360,7 +360,7 @@ public class Context {
 		this.vintage = vintage;
 	}
 
-	public Map<Integer, Map<String, String>> getstockTransferOrderMap() {
+	public Map<Integer, Map<String, String>> getStockTransferOrderMap() {
 		return stockTransferOrderMap;
 	}
 

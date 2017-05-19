@@ -32,7 +32,6 @@ public class MoveTaskStepDefs {
 		
 		context.setOrderId(orderID);
 		listID = moveTaskDB.getListId(orderID);
-		String orderStatus = moveTaskDB.getOrderStatus(orderID);
 		qtyToMove = moveTaskDB.getQtyToMove(orderID);
 		toPalletID = moveTaskDB.getToPalletID(orderID);
 		toContainerID = moveTaskDB.getToContainerID(orderID);
