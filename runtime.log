@@ -301,3 +301,179 @@
 2017-05-17 13:59:02 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
 2017-05-17 13:59:02 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-17 13:59:02 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 07:27:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:27:48 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 07:27:48 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 07:27:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:27:48 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:27:48 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 07:27:48 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 07:45:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:45:05 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 07:45:05 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 07:45:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:45:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:45:05 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 07:45:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:52:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:52:42 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 11:52:42 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 11:52:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:52:43 DEBUG Database:61 - Connection successfull
+2017-05-19 11:52:44 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [null]
+2017-05-19 11:52:44 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 11:52:44 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:52:44 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 11:52:44 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:56:33 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:56:33 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 11:56:33 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 11:56:33 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:56:34 DEBUG Database:61 - Connection successfull
+2017-05-19 11:56:34 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 11:56:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:56:34 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 11:56:34 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 12:02:38 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 12:02:38 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 12:02:38 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:02:38 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 12:02:39 DEBUG Database:61 - Connection successfull
+2017-05-19 12:02:39 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 12:02:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 12:02:39 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:02:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 12:06:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 12:06:52 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 12:06:52 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:06:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 12:06:53 DEBUG Database:61 - Connection successfull
+2017-05-19 12:06:54 DEBUG OrderHeaderMaintenanceStepDefs:154 - Ship Dock: CUMBSD
+2017-05-19 12:06:54 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 12:06:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 12:06:54 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:06:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 12:40:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 12:40:18 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 12:40:18 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:40:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 12:40:19 DEBUG Database:61 - Connection successfull
+2017-05-19 12:40:19 DEBUG OrderHeaderMaintenanceStepDefs:155 - Ship Dock: CUMBSD
+2017-05-19 12:40:19 DEBUG OrderHeaderMaintenanceStepDefs:156 - consignment: CUMB----20170424
+2017-05-19 12:40:19 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 12:40:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 12:40:19 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:40:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 12:46:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 12:46:06 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 12:46:06 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:46:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 12:46:07 DEBUG Database:61 - Connection successfull
+2017-05-19 12:46:07 DEBUG OrderHeaderMaintenanceStepDefs:155 - Ship Dock: FAVESD
+2017-05-19 12:46:07 DEBUG OrderHeaderMaintenanceStepDefs:156 - consignment: FAVE----20170425
+2017-05-19 12:46:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 12:46:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 12:46:07 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:46:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 12:48:21 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 12:48:21 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 12:48:21 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:48:21 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 12:48:23 DEBUG Database:61 - Connection successfull
+2017-05-19 12:48:23 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [null]
+2017-05-19 12:48:23 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 12:48:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 12:48:23 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 12:48:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:01:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:01:35 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:01:35 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:01:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:01:36 DEBUG Database:61 - Connection successfull
+2017-05-19 13:01:36 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [null]
+2017-05-19 13:01:36 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:01:36 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:01:36 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:01:36 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:03:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:03:47 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:03:47 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:03:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:03:49 DEBUG Database:61 - Connection successfull
+2017-05-19 13:03:49 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [null]
+2017-05-19 13:03:49 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:03:49 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:03:49 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:03:49 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:05:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:05:31 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:05:31 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:05:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:05:33 DEBUG Database:61 - Connection successfull
+2017-05-19 13:05:33 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-19 13:05:33 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-19 13:05:33 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:05:33 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:05:33 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:05:33 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:09:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:09:27 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:09:27 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:09:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:09:29 DEBUG Database:61 - Connection successfull
+2017-05-19 13:09:29 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20170130]
+2017-05-19 13:09:29 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-19 13:09:29 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-19 13:09:29 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:09:29 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:09:29 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:09:29 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:12:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:12:00 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:12:00 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:12:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:12:02 DEBUG Database:61 - Connection successfull
+2017-05-19 13:12:02 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20170130]
+2017-05-19 13:12:02 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-19 13:12:02 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-19 13:12:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:12:02 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:12:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:12:02 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:15:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:15:06 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:15:06 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:15:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:15:08 DEBUG Database:61 - Connection successfull
+2017-05-19 13:15:08 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20170130]
+2017-05-19 13:15:08 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-19 13:15:08 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-19 13:15:08 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:15:08 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:15:08 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:15:08 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:37:08 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:37:08 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:37:08 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:37:08 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:37:10 DEBUG Database:61 - Connection successfull
+2017-05-19 13:37:10 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20170130]
+2017-05-19 13:37:10 DEBUG OrderHeaderMaintenanceStepDefs:147 - Group ID: STR
+2017-05-19 13:37:10 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-19 13:37:10 DEBUG OrderHeaderMaintenanceStepDefs:150 - Consignment Group ID: null
+2017-05-19 13:37:10 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-19 13:37:10 DEBUG Hooks:93 - DB Connection closed
+2017-05-19 13:37:10 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:37:10 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:37:10 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:42:28 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:42:28 DEBUG Hooks:39 - featureID: allocation
+2017-05-19 13:42:28 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:42:28 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:42:29 DEBUG Database:61 - Connection successfull
+2017-05-19 13:42:30 DEBUG OrderHeaderMaintenanceStepDefs:151 - Ship Dock: EIRESD
+2017-05-19 13:42:30 DEBUG OrderHeaderMaintenanceStepDefs:152 - consignment: EIRE----20170424
+2017-05-19 13:42:30 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:42:30 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-19 13:42:30 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:42:30 DEBUG Hooks:93 - DB Connection closed
