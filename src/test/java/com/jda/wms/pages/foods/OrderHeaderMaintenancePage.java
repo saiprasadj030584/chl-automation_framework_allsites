@@ -28,8 +28,8 @@ public class OrderHeaderMaintenancePage extends PageObject {
 	}
 
 	public void enterOrderNo(String OrderNo) throws FindFailed {
-		screen.wait("images/OrderNumber.png", timeoutInSec);
-		screen.click("images/OrderNumber.png");
+		screen.wait("images/OrderHeaderMaintenance/Order.png", timeoutInSec);
+		screen.click("images/OrderHeaderMaintenance/Order.png");
 		screen.type(OrderNo);
 	}
 
@@ -243,8 +243,8 @@ public class OrderHeaderMaintenancePage extends PageObject {
 	}
 
 	public void clickHubAddressTab() throws FindFailed, InterruptedException {
-		screen.wait("images/OrderHeaderMaintenance/HubAddres.png", timeoutInSec);
-		screen.click("images/OrderHeaderMaintenance/HubAddres.png");
+		screen.wait("images/OrderHeaderMaintenance/HubAddress.png", timeoutInSec);
+		screen.click("images/OrderHeaderMaintenance/HubAddress.png");
 		Thread.sleep(2000);
 	}
 
@@ -280,4 +280,12 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		return App.getClipboard();
 	}
 
+	public String getShipDock() throws FindFailed {
+		Match mDescription = screen.find("images/OrderHeaderMaintenance/ShipDock.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+
+	}
 }

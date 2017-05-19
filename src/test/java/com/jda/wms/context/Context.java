@@ -53,6 +53,9 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private String orderId;
+	private String shipDock;
+	private String newShipDock;
 	private String customer;
 	private Connection connection = null;
 
@@ -411,6 +414,30 @@ public class Context {
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
 
+	}
+
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public String getShipDock() {
+		return shipDock;
+	}
+
+	public void setShipDock(String shipDock) {
+		this.shipDock = shipDock;
+	}
+
+	public String getNewShipDock() {
+		return newShipDock;
+	}
+
+	public void setNewShipDock(String newShipDock) {
+		this.newShipDock = newShipDock;
 	}
 
 	public Connection getConnection() {
