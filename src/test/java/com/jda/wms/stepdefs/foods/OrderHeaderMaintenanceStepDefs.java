@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -46,6 +47,7 @@ public class OrderHeaderMaintenanceStepDefs {
 			String orderID, String status, String type) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
+		context.setOrderId(orderID);
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
@@ -136,20 +138,20 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@When("^I have the \"([^\"]*)\" OrderId the shipdock and consignmnet should be displayed$")
-	public void i_have_the_OrderId_the_shipdock_and_consignmnet_should_be_displayed(String orderId) throws Throwable {
+	@When("^the order id should have ship dock and consignmnet$")
+	public void the_Order_id_should_have_ship_dock_and_consignmnet() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String shipdock = orderHeaderDB.getShipdock(orderId);
-		String consignment = (orderHeaderDB.getconsignment(orderId));
+
+		String shipdock = orderHeaderDB.getShipdock(context.getOrderId());
+		String consignment = orderHeaderDB.getConsignment(context.getOrderId());
+
 		if ((shipdock == null || shipdock.equals("DEFAULTSD")) || consignment == null) {
-			verification.verifyData("Work Group", "Not Null", orderHeaderDB.getWorkGroup(orderId), failureList);
-			verification.verifyData("Group ID", "Not Null", orderHeaderDB.getorderGroupId(orderId), failureList);
-			verification.verifyData("Consignment Group ID", "Not Null", orderHeaderDB.getConsignmentGroupId(orderId),
+			HashMap<String, String> orderGroupDetails = orderHeaderDB.getGroupDetails(context.getOrderId());
+			verification.verifyData("Work Group", "Not Null", orderGroupDetails.get("WORKGROUP"), failureList);
+			verification.verifyData("Group ID", "Not Null", orderGroupDetails.get("ORDERGROUPINGID"), failureList);
+			verification.verifyData("Consignment Group ID", "Not Null", orderGroupDetails.get("CONSIGNMENTGROUPINGID"),
 					failureList);
 		}
-
-		logger.debug("Ship Dock: " + shipdock);
-		logger.debug("consignment: " + consignment);
 		Assert.assertTrue(
 				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

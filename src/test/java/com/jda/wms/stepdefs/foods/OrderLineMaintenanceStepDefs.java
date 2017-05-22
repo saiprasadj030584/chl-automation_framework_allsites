@@ -66,7 +66,7 @@ public class OrderLineMaintenanceStepDefs {
 		jdaHomePage.navigateToPackConfigPage();
 		jdaHomePage.navigateToOrderLineMaintenance();
 		jdaFooter.clickQueryButton();
-		orderLineMaintenancePage.enterOrderID("5800002015");
+		orderLineMaintenancePage.enterOrderID(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 
 		int lines = 4;

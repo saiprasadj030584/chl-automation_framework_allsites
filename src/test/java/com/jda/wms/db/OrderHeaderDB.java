@@ -3,6 +3,7 @@ package com.jda.wms.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ public class OrderHeaderDB {
 	}
 
 	public String getShipdock(String orderId) throws SQLException, ClassNotFoundException {
-		String shipdock = "";
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -30,11 +30,10 @@ public class OrderHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ship_dock from order_header where order_id='" + orderId + "'");
 		rs.next();
-		shipdock = rs.getString(1);
-		return shipdock;
+		return rs.getString(1);
 	}
 
-	public String getconsignment(String orderId) throws ClassNotFoundException, SQLException {
+	public String getConsignment(String orderId) throws ClassNotFoundException, SQLException {
 		String consignment = "";
 		if (context.getConnection() == null) {
 			database.connect();
@@ -58,10 +57,9 @@ public class OrderHeaderDB {
 		rs.next();
 		workGroup = rs.getString(1);
 		return workGroup;
-
 	}
 
-	public String getorderGroupId(String orderId) throws ClassNotFoundException, SQLException {
+	public String getOrderGroupId(String orderId) throws ClassNotFoundException, SQLException {
 		String orderGroupId = "";
 		if (context.getConnection() == null) {
 			database.connect();
@@ -72,7 +70,6 @@ public class OrderHeaderDB {
 		rs.next();
 		orderGroupId = rs.getString(1);
 		return orderGroupId;
-
 	}
 
 	public String getConsignmentGroupId(String orderId) throws ClassNotFoundException, SQLException {
@@ -87,7 +84,28 @@ public class OrderHeaderDB {
 		rs.next();
 		consignmentGroupId = rs.getString(1);
 		return consignmentGroupId;
-
 	}
 
+	public HashMap<String, String> getGroupDetails(String orderId) throws SQLException, ClassNotFoundException {
+		ResultSet resultSet = null;
+		HashMap<String, String> orderGroupDetails = new HashMap<String, String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		resultSet = stmt.executeQuery(this.getOrderHeaderQuery(orderId));
+		resultSet.next();
+		orderGroupDetails.put("WORKGROUP", resultSet.getString(1));
+		orderGroupDetails.put("ORDERGROUPINGID", resultSet.getString(2));
+		orderGroupDetails.put("CONSIGNMENTGROUPINGID", resultSet.getString(3));
+		logger.debug("Order Group Details: " + orderGroupDetails);
+		return orderGroupDetails;
+	}
+
+	public String getOrderHeaderQuery(String orderId) {
+		return " select work_group, order_grouping_id, consignment_grouping_id from order_header WHERE order_id='"
+				+ orderId + "'";
+	}
 }

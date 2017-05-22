@@ -54,6 +54,7 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private String customer;
+	private String orderID;
 	private Connection connection = null;
 
 	private int qtyReverse;
@@ -419,6 +420,14 @@ public class Context {
 
 	public void setConnection(Connection connection) {
 		this.connection = connection;
+	}
+
+	public void setOrderId(String orderID) {
+		this.orderID = orderID;
+	}
+
+	public String getOrderId() {
+		return orderID;
 	}
 
 }

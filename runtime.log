@@ -477,3 +477,166 @@
 2017-05-19 13:42:30 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
 2017-05-19 13:42:30 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-19 13:42:30 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 06:45:07 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 06:45:07 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 06:45:07 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 06:45:07 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 06:45:09 DEBUG Database:61 - Connection successfull
+2017-05-22 06:45:09 DEBUG OrderHeaderMaintenanceStepDefs:158 - Ship Dock: EIRESD
+2017-05-22 06:45:09 DEBUG OrderHeaderMaintenanceStepDefs:159 - consignment: EIRE----20170424
+2017-05-22 06:45:09 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 06:45:09 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 06:45:09 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 06:45:09 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:08:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:08:11 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:08:11 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:08:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:08:12 DEBUG Database:61 - Connection successfull
+2017-05-22 07:08:12 DEBUG OrderHeaderMaintenanceStepDefs:155 - Ship Dock: EIRESD
+2017-05-22 07:08:12 DEBUG OrderHeaderMaintenanceStepDefs:156 - consignment: EIRE----20170424
+2017-05-22 07:08:12 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:08:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:08:12 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:08:12 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:14:28 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:14:28 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:14:28 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:14:28 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:14:29 DEBUG Database:61 - Connection successfull
+2017-05-22 07:14:30 DEBUG OrderHeaderDB:103 - Order Group Details: {WORKGROUP=STR20170130, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:14:30 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20170130]
+2017-05-22 07:14:30 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:14:30 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:14:30 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:14:30 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:14:30 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:14:30 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:24:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:24:12 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:24:12 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:24:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:24:13 DEBUG Database:61 - Connection successfull
+2017-05-22 07:24:13 DEBUG OrderHeaderMaintenanceStepDefs:155 - Ship Dock: CUMBSD
+2017-05-22 07:24:13 DEBUG OrderHeaderMaintenanceStepDefs:156 - consignment: CUMB----20170424
+2017-05-22 07:24:13 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:24:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:24:13 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:24:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:37:58 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:37:58 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:37:58 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:37:58 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:37:59 DEBUG Database:61 - Connection successfull
+2017-05-22 07:37:59 DEBUG OrderHeaderDB:103 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:37:59 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:37:59 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:37:59 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:37:59 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:37:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:37:59 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:37:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:44:21 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:44:21 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:44:21 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:44:21 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:44:22 DEBUG Database:61 - Connection successfull
+2017-05-22 07:44:23 DEBUG OrderHeaderDB:103 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:44:23 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:44:23 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:44:23 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:44:23 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:44:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:44:23 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:44:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:46:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:46:25 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:46:25 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:46:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:46:26 DEBUG Database:61 - Connection successfull
+2017-05-22 07:46:27 DEBUG OrderHeaderDB:104 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:46:27 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:46:27 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:46:27 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:46:27 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:46:27 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:46:27 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:46:27 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:48:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:48:00 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:48:00 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:48:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:48:01 DEBUG Database:61 - Connection successfull
+2017-05-22 07:48:01 DEBUG OrderHeaderDB:104 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:48:01 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:48:01 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:48:01 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:48:01 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:48:01 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:48:01 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:48:01 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:53:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:53:06 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:53:06 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:53:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:53:07 DEBUG Database:61 - Connection successfull
+2017-05-22 07:53:08 DEBUG OrderHeaderDB:104 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:53:08 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:53:08 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:53:08 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:53:08 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:53:08 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:53:08 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:53:08 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:55:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:55:32 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:55:32 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:55:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:55:33 DEBUG Database:61 - Connection successfull
+2017-05-22 07:55:33 DEBUG OrderHeaderDB:104 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:55:33 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:55:33 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:55:33 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:55:33 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:55:33 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:55:33 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:55:33 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 07:57:36 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 07:57:36 DEBUG Hooks:39 - featureID: allocation
+2017-05-22 07:57:36 DEBUG Hooks:40 - Start of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:57:36 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 07:57:37 DEBUG Database:61 - Connection successfull
+2017-05-22 07:57:37 DEBUG OrderHeaderDB:104 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 07:57:37 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 07:57:37 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 07:57:37 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 07:57:37 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 07:57:37 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 07:57:37 DEBUG Hooks:84 - End of Scenario: verify the Shipdock and Consignments in order header screen
+2017-05-22 07:57:37 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 08:13:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 08:13:25 DEBUG Hooks:39 - featureID: receive-sto-order
+2017-05-22 08:13:25 DEBUG Hooks:40 - Start of Scenario: Load the STO order details
+2017-05-22 08:13:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 08:13:26 DEBUG Database:61 - Connection successfull
+2017-05-22 08:13:26 DEBUG OrderHeaderDB:103 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 08:13:26 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 08:13:26 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 08:13:26 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 08:13:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 08:13:26 DEBUG Hooks:84 - End of Scenario: Load the STO order details
+2017-05-22 08:13:26 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-22 08:13:26 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 08:13:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-22 08:13:54 DEBUG Hooks:39 - featureID: receive-sto-order
+2017-05-22 08:13:54 DEBUG Hooks:40 - Start of Scenario: Load the STO order details
+2017-05-22 08:13:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-22 08:13:55 DEBUG Database:61 - Connection successfull
+2017-05-22 08:13:55 DEBUG OrderHeaderDB:103 - Order Group Details: {WORKGROUP=STR20161229, ORDERGROUPINGID=STR, CONSIGNMENTGROUPINGID=null}
+2017-05-22 08:13:55 DEBUG Verification:20 - Work Group - expected [Not Null] and actual [STR20161229]
+2017-05-22 08:13:55 DEBUG Verification:20 - Group ID - expected [Not Null] and actual [STR]
+2017-05-22 08:13:55 DEBUG Verification:20 - Consignment Group ID - expected [Not Null] and actual [null]
+2017-05-22 08:13:55 DEBUG Hooks:93 - DB Connection closed
+2017-05-22 08:13:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-22 08:13:55 DEBUG Hooks:84 - End of Scenario: Load the STO order details
+2017-05-22 08:13:55 DEBUG Hooks:85 - ###########################################################################################################################
