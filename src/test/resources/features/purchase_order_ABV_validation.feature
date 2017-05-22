@@ -10,9 +10,9 @@ Feature: Purchase order
     And the PO should have address details
     And the supplier should have supplier pallet and customs excise details in the address maintenanace table
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
-    When I create consignment for the supplier
-    And I link the consignment to the pre-advice ID
-    Then the pre-advice line items should be linked with the consignment
+    #When I create consignment for the supplier
+    #And I link the consignment to the pre-advice ID
+    #Then the pre-advice line items should be linked with the consignment
     When I have logged in as warehouse user in Putty
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
