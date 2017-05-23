@@ -57,6 +57,8 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String customer;
+	private String trailerNo;
+	private String bookingID;
 	private Connection connection = null;
 
 	private int qtyReverse;
@@ -416,10 +418,10 @@ public class Context {
 
 	}
 
-
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
 	public String getOrderId() {
 		return orderId;
 	}
@@ -448,4 +450,19 @@ public class Context {
 		this.connection = connection;
 	}
 
+	public void setTrailerNo(String trailerNo) {
+		this.trailerNo = trailerNo;
+	}
+
+	public String getTrailerNo() {
+		return trailerNo;
+	}
+	
+	public void setBookingID(String bookingID) {
+		this.bookingID = bookingID;
+	}
+
+	public String getBookingID() {
+		return bookingID;
+	}
 }
