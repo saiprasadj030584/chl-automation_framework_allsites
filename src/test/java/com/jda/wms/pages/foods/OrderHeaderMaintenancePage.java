@@ -8,6 +8,7 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
@@ -278,6 +279,11 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void clickOrderHeaderTab() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -17,6 +17,7 @@ import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
@@ -155,6 +156,20 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+
+	@Given("^I enter the Oreder id \"([^\"]*)\"$")
+	public void i_enter_the_Oreder_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+	}
+
+	@Then("^the consignment should be updated in the order header maintenance page$")
+	public void the_consignment_should_be_updated_in_the_order_header_maintenance_page() throws Throwable {
+		orderHeaderMaintenancePage.clickOrderHeaderTab();
+		jdaHomePage.clickInventorytab();
+		inventoryQueryPage.refreshInventoryQueryPage();
 	}
 
 }
