@@ -28,6 +28,7 @@ import org.sikuli.script.ScreenImage;
 
 import com.google.inject.Inject;
 import com.jda.wms.db.Database;
+import com.jda.wms.db.LocationDB;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
@@ -38,14 +39,16 @@ import au.com.bytecode.opencsv.CSVWriter;
 public class RDTUser {
 	private Screen screen = new Screen();
 	private final Database database;
+	private final LocationDB locationDB;
 	private final CSVWriter csvWriter;
 	private int screenCaps = 1;
 	private String username;
 
 	@Inject
-	public RDTUser(String username, Database database, CSVWriter csvWriter) {
+	public RDTUser(String username, Database database, CSVWriter csvWriter, LocationDB locationDB) {
 		this.database = database;
 		this.csvWriter = csvWriter;
+		this.locationDB = locationDB;
 		this.database.setApplicationUser(username);
 	}
 
@@ -399,7 +402,7 @@ public class RDTUser {
 		type(tag + Key.ENTER);
 		try {
 			wait("images/rdt/chkFrm.png", 5);
-			type(database.geCheckString(location) + Key.ENTER);
+			// type(locationDB.geCheckString(location) + Key.ENTER);
 			wait("images/rdt/relNewCmp.png", 5);
 			String results[][] = database.getEmptyLocationsAndCheckString();
 			type(results[0][0] + Key.ENTER);

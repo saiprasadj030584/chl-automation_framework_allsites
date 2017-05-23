@@ -9,13 +9,11 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
 public class MoveTaskUpdatePage {
-	private final JdaHomePage jdaHomePage;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public MoveTaskUpdatePage(JdaHomePage jdaHomePage) {
-		this.jdaHomePage = jdaHomePage;
+	public MoveTaskUpdatePage() {
 	}
 
 	public void clickReleaseButton() throws FindFailed, InterruptedException {
@@ -25,8 +23,8 @@ public class MoveTaskUpdatePage {
 	}
 
 	public void enterTagId(String tagId) throws FindFailed {
-		screen.wait("images/MoveTaskUpdate/TagId.png", timeoutInSec);
-		screen.click("images/MoveTaskUpdate/TagId.png");
+		Match mStatus = screen.find("images/MoveTaskUpdate/mTagID.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type(Key.DELETE);
 		screen.type(tagId);

@@ -164,7 +164,6 @@ public class InventoryQueryStepDefs {
 	}
 
 	@Then("^I should see the location zone in inventory page$")
-
 	public void i_should_see_the_location_zone_in_inventory_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		Map<String, String> locationTagMap = context.getLocationPerTagMap();
@@ -241,7 +240,7 @@ public class InventoryQueryStepDefs {
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 			caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
@@ -284,6 +283,11 @@ public class InventoryQueryStepDefs {
 		if (context.getQtyReceivedPerTag() != Integer.parseInt(qtyOnHand)) {
 			Assert.fail("Quantity on hand is not expected. Expected [" + context.getQtyReceivedPerTag() + "] but was ["
 					+ qtyOnHand + "]");
+		}
+
+		String locationZone = inventoryQueryPage.getLocationZone();
+		if (!locationZone.equals("INBOUND")) {
+			Assert.fail("Location Zone is not expected. Expected [INBOUND] +  but was [" + locationZone + "]");
 		}
 
 		Assert.assertTrue(
@@ -379,4 +383,38 @@ public class InventoryQueryStepDefs {
 		int expectedQtyOnHand = context.getQtyOnHand() - context.getQtyReverse();
 		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
 	}
+
+	@Given("^I enter the tagId \"([^\"]*)\"$")
+	public void i_enter_the_tagId(String tagId) throws Throwable {
+		context.setTagId(tagId);
+		inventoryQueryPage.enterTagId(tagId);
+	}
+
+	@Then("^I should see the location zone in inventory query page$")
+	public void i_should_see_the_location_zone_in_inventory_query_page() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		jdaHomePage.navigateToLocationPage();
+		jdaFooter.clickQueryButton();
+		locationPage.enterLocation(context.getLocation());
+		jdaFooter.clickExecuteButton();
+		String locationZone = locationPage.getLocationZone();
+
+		jdaHomePage.navigateToInventoryQueryPage();
+		jdaFooter.clickQueryButton();
+		inventoryQueryPage.enterTagId(context.getTagId());
+		jdaFooter.clickExecuteButton();
+		String invLocationZone = inventoryQueryPage.getLocationZone();
+
+		if (!locationZone.equals(invLocationZone)) {
+			failureList.add("Location Zone does  not displayed as expected for" + ". Expected [" + locationZone
+					+ "] but was [" + invLocationZone + "]");
+		}
+
+	}
+
+	@Then("^I should see the status$")
+	public void i_should_see_the_status() throws Throwable {
+	}
+
 }

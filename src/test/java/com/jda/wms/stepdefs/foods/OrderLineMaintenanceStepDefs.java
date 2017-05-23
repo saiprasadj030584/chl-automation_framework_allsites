@@ -35,6 +35,7 @@ public class OrderLineMaintenanceStepDefs {
 	private final OrderLineDB orderLineDB;
 	Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private Verification verification;
+	private int qtyOrdered;
 
 	@Inject
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
@@ -70,56 +71,53 @@ public class OrderLineMaintenanceStepDefs {
 		String skuId = null, qtyOrdered = null, qtyTasked = null;
 		Map<Integer, Map<String, String>> stockTransferOrderMap = new HashMap<Integer, Map<String, String>>();
 		int caseRatio = 0;
-		 jdaHomePage.navigateToPackConfigPage();
-				jdaHomePage.navigateToOrderLineMaintenance();
-		 jdaFooter.clickQueryButton();
-		 orderLineMaintenancePage.enterOrderID(context.getOrderId());
-		 jdaFooter.clickExecuteButton();
+		jdaHomePage.navigateToPackConfigPage();
+		jdaHomePage.navigateToOrderLineMaintenance();
+		jdaFooter.clickQueryButton();
+		orderLineMaintenancePage.enterOrderID(context.getOrderId());
+		jdaFooter.clickExecuteButton();
 
 		context.setNoOfLines(2);
 		if (context.getNoOfLines() != 1) {
-		 orderLineMaintenancePage.selectFirstRecord();
-		 }
+			orderLineMaintenancePage.selectFirstRecord();
+		}
 
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			 skuId = orderLineMaintenancePage.getSkuId();
-			 qtyOrdered = orderLineMaintenancePage.getQtyOrdered();
+			skuId = orderLineMaintenancePage.getSkuId();
+			qtyOrdered = orderLineMaintenancePage.getQtyOrdered();
 			qtyTasked = orderLineMaintenancePage.getQtyTasked();
-			 String packConfig = orderLineMaintenancePage.getPackConfig();
-			
-			 orderLineMaintenancePage.clickUserDefinedTab();
-			 caseRatio =
-			 Integer.parseInt(orderLineMaintenancePage.getCaseRatio());
-			
+			String packConfig = orderLineMaintenancePage.getPackConfig();
+
+			orderLineMaintenancePage.clickUserDefinedTab();
+			caseRatio = Integer.parseInt(orderLineMaintenancePage.getCaseRatio());
+
 			jdaFooter.clickPackConfig();
-			 packConfigMaintenanceStepDefs.i_search_pack_config_id(packConfig);
-			 packConfigMaintenanceStepDefs.i_navigate_to_tracking_levels_page();
-			 int ratio1To2 =
-			 Utilities.convertStringToInteger(packConfigMaintenancePage.getRatio1To2());
-			 Thread.sleep(2000);
-			 packConfigMaintenancePage.clickGeneraltab();
-			
-			 if (caseRatio != ratio1To2) {
-			 failureList.add("Case ratio is not as expected for SKU (" + skuId
-			 + ") " + "Expected [" + ratio1To2
-			 + "] but was [" + caseRatio + "]");
-			 }
+			packConfigMaintenanceStepDefs.i_search_pack_config_id(packConfig);
+			packConfigMaintenanceStepDefs.i_navigate_to_tracking_levels_page();
+			int ratio1To2 = Utilities.convertStringToInteger(packConfigMaintenancePage.getRatio1To2());
+			Thread.sleep(2000);
+			packConfigMaintenancePage.clickGeneraltab();
+
+			if (caseRatio != ratio1To2) {
+				failureList.add("Case ratio is not as expected for SKU (" + skuId + ") " + "Expected [" + ratio1To2
+						+ "] but was [" + caseRatio + "]");
+			}
 
 			// map
-			 Map<String, String> lineItemsMap = new HashMap<String, String>();
-			 lineItemsMap.put("SKU", skuId);
-			 lineItemsMap.put("QtyOrdered", qtyOrdered);
-			 lineItemsMap.put("QtyTasked", qtyTasked);
-			 lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
-			 lineItemsMap.put("PackConfig", packConfig);
-			
-			 stockTransferOrderMap.put(i, lineItemsMap);
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("SKU", skuId);
+			lineItemsMap.put("QtyOrdered", qtyOrdered);
+			lineItemsMap.put("QtyTasked", qtyTasked);
+			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
+			lineItemsMap.put("PackConfig", packConfig);
+
+			stockTransferOrderMap.put(i, lineItemsMap);
 			context.setstockTransferOrderMap(stockTransferOrderMap);
 			System.out.println(stockTransferOrderMap);
 
-			 jdaFooter.clickOrderLine();
-			 jdaFooter.clickNextRecord();
-			 orderLineMaintenancePage.clickGeneralTab();
+			jdaFooter.clickOrderLine();
+			jdaFooter.clickNextRecord();
+			orderLineMaintenancePage.clickGeneralTab();
 
 		}
 		Assert.assertTrue(
@@ -129,6 +127,7 @@ public class OrderLineMaintenanceStepDefs {
 	}
 
 	@Given("^the quantity tasked should be updated for each order lines$")
+
 	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
 		stockTransferOrderMap = context.getStockTransferOrderMap();
 		ArrayList<String> failureList = new ArrayList<String>();

@@ -12,9 +12,6 @@ import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.db.Database;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -24,10 +21,10 @@ public class SKUMaintenancePage {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public SKUMaintenancePage(JDAFooter jDAFooter, Database database,Configuration configuration) {
+	public SKUMaintenancePage(JDAFooter jDAFooter, Database database, Configuration configuration) {
 		this.jDAFooter = jDAFooter;
 		this.database = database;
-		this.configuration =configuration;
+		this.configuration = configuration;
 	}
 
 	// TODO donot use this method and replace with enterSKUID() method
@@ -222,14 +219,14 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public boolean isCurrentVintage(String currentVintage) {
 		if (!currentVintage.equals(null))
 			return true;
 		else
 			return false;
 	}
-	
+
 	public void clickUserDefinedTab() throws InterruptedException, FindFailed {
 		screen.wait("images/SKUMaintenanceTable/UserDefined.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/UserDefined.png");
@@ -250,4 +247,12 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
+
+
+
+	public void invokeDataBase() throws ClassNotFoundException {
+		database.connect();
+		logger.debug(database.getABV("60070710"));
+	}
+
 }

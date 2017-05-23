@@ -6,12 +6,16 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PreAdviceHeaderPage;
-import cucumber.api.java.en.*;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -39,7 +43,7 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -73,6 +77,53 @@ public class PreAdviceHeaderStepsDefs {
 		context.setNoOfLines(numberOfLines);
 		if (numberOfLines < 0) {
 			failureList.add("Numberoflines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
+		}
+
+		Assert.assertTrue("PreAdvice Header details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Given("^the \"([^\"]*)\" category  PO \"([^\"]*)\" in \"([^\"]*)\" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table$")
+	public void the_category_PO_in_status_with_more_than_one_line_items_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
+			String productCategory, String preAdviceId, String status) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setPreAdviceId(preAdviceId);
+		context.setProductCategory(productCategory);
+
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
+		i_search_the_pre_advice_id(preAdviceId);
+
+		String statusPreAdviceHeader = preAdviceHeaderPage.getStatus();
+		if (!statusPreAdviceHeader.equals(status)) {
+			failureList.add(
+					"Status is not as expected. Expected [" + status + "] but was [" + statusPreAdviceHeader + "]");
+		}
+		String duedate = preAdviceHeaderPage.getDuedate();
+		if (duedate.equals(null)) {
+			failureList.add("Duedate is not as expected. Expected [Not NULL] but was [" + duedate + "]");
+		}
+		String siteId = preAdviceHeaderPage.getSiteId();
+		if (siteId.equals(null)) {
+			failureList.add("SiteId is not as expected. Expected [Not NULL] but was [" + siteId + "]");
+		}
+
+		String supplier = preAdviceHeaderPage.getSupplier();
+		context.setSupplierID(supplier);
+		logger.debug("Supplier Id: " + supplier);
+		if (supplier.equals(null)) {
+			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
+		}
+
+		String orderType = preAdviceHeaderPage.getOrderType();
+		if (!orderType.contains("PO")) {
+			failureList.add("Order Type is not displayed as PO");
+		}
+
+		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
+		context.setNoOfLines(numberOfLines);
+		if (numberOfLines <= 1) {
+			failureList.add("Number of lines is not as expected. Expected [>1] but was [" + numberOfLines + "]");
 		}
 
 		Assert.assertTrue("PreAdvice Header details are not as expected." + Arrays.asList(failureList.toString()),

@@ -26,12 +26,14 @@ public class ShipDockReassignmentStepDefs {
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.shipDockReassignmentPage = shipDockReassignmentPage;
+		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 	}
 
 	@When("^I enter the from site id \"([^\"]*)\" and order id \"([^\"]*)\"$")
 	public void i_enter_the_from_site_id_and_order_id(String siteId, String orderId) throws Throwable {
 		shipDockReassignmentPage.enterSiteID(siteId);
 		shipDockReassignmentPage.enterOrderNo(orderId);
+		context.setOrderId(orderId);
 	}
 
 	@Then("^the order list should be displayed$")
@@ -57,4 +59,6 @@ public class ShipDockReassignmentStepDefs {
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
 				orderHeaderMaintenancePage.getShipDock());
 	}
+
+
 }
