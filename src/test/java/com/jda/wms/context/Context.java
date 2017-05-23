@@ -59,6 +59,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> listIDMap;
 	private String customer;
 	private int qtyReverse;
+	private String listID;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -444,5 +445,13 @@ public class Context {
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
 
+	}
+
+	public String getListID() {
+		return listID;
+	}
+
+	public void setListID(String listID) {
+		this.listID = listID;
 	}
 }

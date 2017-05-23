@@ -29,12 +29,16 @@ public class MoveTaskStepDefs {
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		ArrayList<String> toPalletID = new ArrayList<String>();
 		ArrayList<String> toContainerID = new ArrayList<String>();
+		ArrayList<String> skuID = new ArrayList<String>();
+		ArrayList<String> location = new ArrayList<String>();
 		
 		context.setOrderId(orderID);
 		listID = moveTaskDB.getListId(orderID);
 		qtyToMove = moveTaskDB.getQtyToMove(orderID);
 		toPalletID = moveTaskDB.getToPalletID(orderID);
 		toContainerID = moveTaskDB.getToContainerID(orderID);
+		skuID = moveTaskDB.getSkuID(orderID);
+		location = moveTaskDB.getLocation(orderID);
 		
 		for (int i=0;i<listID.size();i++){
 			Map<String, String> listDetailsMap = new HashMap<String, String>();
@@ -42,6 +46,9 @@ public class MoveTaskStepDefs {
 			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
 			listDetailsMap.put("ToPalletID", toPalletID.get(i));
 			listDetailsMap.put("ToContainerID", toContainerID.get(i));
+			listDetailsMap.put("SkuId", skuID.get(i));
+			listDetailsMap.put("Location", location.get(i));
+			listDetailsMap.put("TagID", "");
 			listIDMap.put(i+1, listDetailsMap);
 		}
 		context.setListIDMap(listIDMap);
