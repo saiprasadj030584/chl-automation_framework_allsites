@@ -280,10 +280,4 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-
-	public void clickOrderHeaderTab() {
-		// TODO Auto-generated method stub
-
-	}
-
 }
