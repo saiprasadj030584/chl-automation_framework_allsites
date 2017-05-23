@@ -161,5 +161,8 @@ public class OrderLineMaintenancePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	
+	public void enterOrderID(String orderId) {
+		screen.type(orderId);
+	}
+
 }

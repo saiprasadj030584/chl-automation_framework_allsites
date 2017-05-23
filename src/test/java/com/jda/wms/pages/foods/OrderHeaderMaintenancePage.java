@@ -8,6 +8,7 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 

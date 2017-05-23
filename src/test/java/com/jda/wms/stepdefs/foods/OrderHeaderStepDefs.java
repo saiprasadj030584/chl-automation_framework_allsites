@@ -14,7 +14,7 @@ public class OrderHeaderStepDefs {
 	private JDAFooter jdaFooter;
 
 	@Inject
-	public OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAFooter jdaFooter) {
+	public OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage, JDAFooter jdaFooter) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaFooter = jdaFooter;
 	}
@@ -31,4 +31,5 @@ public class OrderHeaderStepDefs {
 	public void the_order_status_should_updated_as(String orderStatus) throws Throwable {
 		Assert.assertEquals("Order status does not match", "Allocated", orderHeaderMaintenancePage.getOrderStatus());
 	}
+
 }

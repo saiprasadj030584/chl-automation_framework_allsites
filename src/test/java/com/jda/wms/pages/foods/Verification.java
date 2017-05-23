@@ -20,11 +20,11 @@ public class Verification {
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
 
 		if (expectedResults.equals("Not Null")) {
-			if (actualResults.contains(null)) {
+			if (null == actualResults) {
 				failureList.add(fieldName + " does not match. Expected  [Not Null] but was [" + actualResults + "]");
 			}
 		} else {
-			if (!actualResults.contains(expectedResults)) {
+			if (!expectedResults.contains(actualResults)) {
 				failureList.add(fieldName + " does not match. Expected  [" + expectedResults + "] but was ["
 						+ actualResults + "]");
 			}
