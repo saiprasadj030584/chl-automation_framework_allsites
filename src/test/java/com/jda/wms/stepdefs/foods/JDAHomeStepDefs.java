@@ -114,10 +114,12 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_order_Line_Maintenance_Page() throws Throwable {
 		jdaHomePage.navigateToOrderLineMaintenance();
 	}
+
 	@When("^I navigate to ship dock reassignment$")
 	public void i_navigate_to_ship_dock_reassignment() throws Throwable {
 		jdaHomePage.navigateToShipDockReassignment();
 	}
+
 	@When("^i navigate to order header maintenance$")
 	public void i_navigate_to_order_header_maintenance() throws Throwable {
 		jdaHomePage.navigateToOrderHeaderMaintenance();
@@ -131,5 +133,10 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to location page$")
 	public void i_navigate_to_location_page() throws Throwable {
 		jdaHomePage.navigateToLocationPage();
+	}
+
+	@When("^I navigate to order preparation screen$")
+	public void i_navigate_to_order_preparation_screen() throws Throwable {
+		jdaHomePage.navigateToOrderPreparationPage();
 	}
 }

@@ -8,14 +8,15 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
+import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
@@ -25,12 +26,15 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private InventoryQueryPage inventoryQueryPage;
+	private JdaHomePage jdaHomePage;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage) {
+			OrderLineMaintenancePage orderLineMaintenancePage, InventoryQueryPage inventoryQueryPage,
+			JdaHomePage jdaHomePage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -38,6 +42,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.inventoryQueryPage = inventoryQueryPage;
+		this.jdaHomePage = jdaHomePage;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -142,6 +148,20 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
 				orderHeaderMaintenancePage.getShipDock());
+	}
+
+	@Given("^I enter the Order id \"([^\"]*)\"$")
+	public void i_enter_the_Order_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+	}
+
+	@Then("^the consignment should be updated in the order header maintenance page$")
+	public void the_consignment_should_be_updated_in_the_order_header_maintenance_page() throws Throwable {
+		jdaHomePage.clickOrderHeaderTab();
+		inventoryQueryPage.selectRefreshOptions();
+		inventoryQueryPage.selectRefreshCurrentRecord();
 	}
 
 }
