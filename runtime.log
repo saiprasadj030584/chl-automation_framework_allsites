@@ -1,7 +1,60 @@
-2017-05-19 08:47:21 DEBUG Hooks:37 - ###########################################################################################################################
-2017-05-19 08:47:21 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;perform-vehicle-load-using-putty;
-2017-05-19 08:47:21 DEBUG Hooks:40 - Start of Scenario: Perform vehicle load using putty
-2017-05-19 08:47:21 DEBUG Hooks:41 - ###########################################################################################################################
-2017-05-19 08:48:23 DEBUG Hooks:82 - ###########################################################################################################################
-2017-05-19 08:48:23 DEBUG Hooks:84 - End of Scenario: Perform vehicle load using putty
-2017-05-19 08:48:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 07:22:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 07:22:12 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;perform-vehicle-load-using-putty;
+2017-05-23 07:22:12 DEBUG Hooks:40 - Start of Scenario: Perform vehicle load using putty
+2017-05-23 07:22:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 07:22:13 DEBUG Database:61 - Connection successfull
+2017-05-23 07:22:13 DEBUG OrderHeaderMaintenanceStepDefs:165 - Order ID : 6646215737
+2017-05-23 07:22:13 DEBUG OrderHeaderMaintenanceStepDefs:166 - Order status from DB : Ready to Load
+2017-05-23 07:22:13 DEBUG OrderHeaderMaintenanceStepDefs:155 -  Order Status  Ready to Load Verified
+2017-05-23 07:22:13 DEBUG MoveTaskStepDefs:60 - PalletID List[8061010149627, 8061010149668]
+2017-05-23 07:22:13 DEBUG MoveTaskStepDefs:61 -  No of Pallets to load : 2
+2017-05-23 07:23:04 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 07:23:04 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 07:23:04 DEBUG Hooks:84 - End of Scenario: Perform vehicle load using putty
+2017-05-23 07:23:04 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 07:35:53 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 07:35:53 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;perform-vehicle-load-using-putty;
+2017-05-23 07:35:53 DEBUG Hooks:40 - Start of Scenario: Perform vehicle load using putty
+2017-05-23 07:35:53 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 07:35:54 DEBUG Database:61 - Connection successfull
+2017-05-23 07:35:54 DEBUG OrderHeaderMaintenanceStepDefs:165 - Order ID : 6646215737
+2017-05-23 07:35:54 DEBUG OrderHeaderMaintenanceStepDefs:166 - Order status from DB : Ready to Load
+2017-05-23 07:35:54 DEBUG OrderHeaderMaintenanceStepDefs:155 -  Order Status  Ready to Load Verified
+2017-05-23 07:35:54 DEBUG MoveTaskStepDefs:60 - PalletID List[8061010149627]
+2017-05-23 07:35:54 DEBUG MoveTaskStepDefs:61 -  No of Pallets to load : 1
+2017-05-23 07:36:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 07:36:11 DEBUG Hooks:84 - End of Scenario: Perform vehicle load using putty
+2017-05-23 07:36:11 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 07:36:11 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 08:31:49 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 08:31:49 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;perform-vehicle-load-using-putty;
+2017-05-23 08:31:49 DEBUG Hooks:40 - Start of Scenario: Perform vehicle load using putty
+2017-05-23 08:31:49 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 08:31:51 DEBUG Database:61 - Connection successfull
+2017-05-23 08:31:51 DEBUG OrderHeaderMaintenanceStepDefs:165 - Order ID : 6646215737
+2017-05-23 08:31:51 DEBUG OrderHeaderMaintenanceStepDefs:166 - Order status from DB : Ready to Load
+2017-05-23 08:31:51 DEBUG OrderHeaderMaintenanceStepDefs:155 -  Order Status  Ready to Load Verified
+2017-05-23 08:31:51 DEBUG MoveTaskStepDefs:60 - PalletID List[8061010149627]
+2017-05-23 08:31:51 DEBUG MoveTaskStepDefs:61 -  No of Pallets to load : 1
+2017-05-23 08:31:51 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 08:31:51 DEBUG Hooks:84 - End of Scenario: Perform vehicle load using putty
+2017-05-23 08:31:51 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 08:31:51 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 08:31:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 08:31:52 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-23 08:31:52 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-23 08:31:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 08:31:52 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 08:31:52 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-23 08:31:52 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:01:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:01:35 DEBUG Hooks:39 - featureID: vehicle-loading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-23 11:01:35 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-23 11:01:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:01:36 DEBUG Database:61 - Connection successfull
+2017-05-23 11:01:36 DEBUG OrderHeaderMaintenanceStepDefs:190 - Order ID : 6646215737
+2017-05-23 11:01:36 DEBUG OrderHeaderMaintenanceStepDefs:191 - Order status from DB : Ready to Load
+2017-05-23 11:01:36 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:01:36 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-23 11:01:36 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:01:36 DEBUG Hooks:93 - DB Connection closed

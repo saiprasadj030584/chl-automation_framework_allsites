@@ -58,6 +58,11 @@ public class Context {
 	private String newShipDock;
 	private String customer;
 	private Connection connection = null;
+	private String orderStatus;
+	private ArrayList<String> palletIDList;
+	private Integer recordCountByTaskID;
+	private String palletID;
+	private int moveTaskRecordCount;
 
 	private int qtyReverse;
 
@@ -69,12 +74,28 @@ public class Context {
 		this.currentTask = currentTask;
 	}
 
+	public String getPalletID() {
+		return palletID;
+	}
+
+	public void setPalletID(String palletID) {
+		this.palletID = palletID;
+	}
+
 	public String getABV() {
 		return newAbv;
 	}
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public String getlocationID() {
@@ -227,6 +248,30 @@ public class Context {
 
 	public void setTagIDMap(Map<String, ArrayList<String>> tagIDMap) {
 		this.tagIDMap = tagIDMap;
+	}
+
+	public ArrayList<String> getPalletIDList() {
+		return palletIDList;
+	}
+
+	public void setPalletIDList(ArrayList<String> palletIDList) {
+		this.palletIDList = palletIDList;
+	}
+
+	public int getRecordCountByTaskID() {
+		return recordCountByTaskID;
+	}
+
+	public void setRecordCountByTaskID(int recordCountByTaskID) {
+		this.recordCountByTaskID = recordCountByTaskID;
+	}
+
+	public int getMoveTaskRecordCount() {
+		return moveTaskRecordCount;
+	}
+
+	public void setMoveTaskRecordCount(int moveTaskRecordCount) {
+		this.moveTaskRecordCount = moveTaskRecordCount;
 	}
 
 	public int getTagIdIndex() {
@@ -416,10 +461,10 @@ public class Context {
 
 	}
 
-
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
 	public String getOrderId() {
 		return orderId;
 	}

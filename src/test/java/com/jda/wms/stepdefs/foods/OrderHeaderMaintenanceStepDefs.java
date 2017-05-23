@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -15,9 +18,9 @@ import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
@@ -25,12 +28,13 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private OrderHeaderDB orderHeaderDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage) {
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderDB orderHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -38,6 +42,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.orderHeaderDB = orderHeaderDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -142,6 +147,58 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
 				orderHeaderMaintenancePage.getShipDock());
+	}
+
+	// TODO to remove after dry run
+	/*
+	 * @Then("^Order status should be \"([^\"]*)\" in Order Header page$")
+	 * public void order_status_should_be_in_Order_Header_page(String status)
+	 * throws Throwable { Assert.assertEquals(
+	 * "Order Status is not displayed as expected ", status,
+	 * context.getOrderStatus()); logger.debug(
+	 * " Order Status  Ready to Load Verified"); }
+	 */
+
+	// TODO - check and update this
+	@Then("^the order status should be \"([^\"]*)\" in order header$")
+	public void the_order_status_should_be_in_order_header(String orderStatus) throws Throwable {
+		String dbOrderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
+		logger.debug("Order ID : " + context.getOrderId());
+		logger.debug("Order status from DB after vehicle Load : " + dbOrderStatus);
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, dbOrderStatus);
+		logger.debug(" Order Status Complete Verified");
+	}
+
+	// TODO to remove after dry run
+	/*
+	 * @Given(
+	 * "^I connect to DB and query order header table using Order id \"([^\"]*)\" and get order status$"
+	 * ) public void
+	 * i_connect_to_DB_and_query_order_header_table_using_Order_id_and_get_order_status
+	 * (String orderID) throws Throwable { String orderStatus;
+	 * context.setOrderId(orderID); orderStatus =
+	 * orderHeaderDB.getOrderStatus(orderID);
+	 * context.setOrderStatus(orderStatus); logger.debug("Order ID : " +
+	 * orderID); logger.debug("Order status from DB : " + orderStatus); }
+	 */
+
+	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
+		String dbOrderStatus = orderHeaderDB.getOrderStatus(orderID);
+		context.setOrderId(orderID);
+		context.setOrderStatus(dbOrderStatus);
+		logger.debug("Order ID : " + orderID);
+		logger.debug("Order status from DB : " + dbOrderStatus);
+
+		if (dbOrderStatus == orderStatus) {
+			logger.debug("Expected Order status to proceed vehicle load");
+		} else if (dbOrderStatus == "Picked") {
+			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
+		} else if (dbOrderStatus == "Allocated") {
+			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
+		} else if (dbOrderStatus == "Released") {
+			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
+		}
 	}
 
 }
