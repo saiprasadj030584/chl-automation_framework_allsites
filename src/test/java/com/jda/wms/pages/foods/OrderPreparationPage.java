@@ -28,10 +28,10 @@ public class OrderPreparationPage {
 		Thread.sleep(3000);
 	}
 
-	public void selectTrailerType() throws FindFailed {
+	public void selectTrailerType(String trailerType) throws FindFailed {
 		screen.wait("images/AddressMaintenance/AddressId.png", timeoutInSec);
 		screen.click("images/AddressMaintenance/AddressId.png");
-		screen.type("TRAILER");
+		screen.type(trailerType);
 	}
 
 	public boolean isRecordExist() throws FindFailed {

@@ -16,7 +16,7 @@ Feature: Consignment Creation
     And I proceed to next
     Then I select the record
     And I proceed to next
-    When I select the Trailer type as"Trailer"
+    When I select the Trailer type as"Trailer" and validate the total orders
     And I proceed to next
     And I proceed to next
     Then the record should be displayed 

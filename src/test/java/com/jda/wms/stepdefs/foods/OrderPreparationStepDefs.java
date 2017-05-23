@@ -38,9 +38,9 @@ public class OrderPreparationStepDefs {
 		orderPreparationPage.selectRecord();
 	}
 
-	@When("^I select the Trailer type as\"([^\"]*)\"$")
-	public void i_select_the_Trailer_type_as(String arg1) throws Throwable {
-		orderPreparationPage.selectTrailerType();
+	@When("^I select the Trailer type as\"([^\"]*)\" and validate the total orders$")
+	public void i_select_the_Trailer_type_as_and_validate_the_total_orders(String trailerType) throws Throwable {
+		orderPreparationPage.selectTrailerType(trailerType);
 	}
 
 	@Then("^the record should be displayed$")
