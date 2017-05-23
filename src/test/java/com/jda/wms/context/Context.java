@@ -334,7 +334,6 @@ public class Context {
 
 	public void setPalletType(String palletType) {
 		this.palletType = palletType;
-
 	}
 
 	public String getLockCode() {
@@ -416,13 +415,12 @@ public class Context {
 
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
-
 	}
-
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
 	public String getOrderId() {
 		return orderId;
 	}
@@ -451,14 +449,6 @@ public class Context {
 		this.connection = connection;
 	}
 
-<<<<<<< HEAD
-	public void setOrderId(String orderID) {
-		this.orderID = orderID;
-	}
-
-	public String getOrderId() {
-		return orderID;
-=======
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}
@@ -473,7 +463,5 @@ public class Context {
 
 	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
 		this.listIDMap = listIDMap;
->>>>>>> 56f5aed242d380664cc498e6239ecc5be2aca309
 	}
-
 }
