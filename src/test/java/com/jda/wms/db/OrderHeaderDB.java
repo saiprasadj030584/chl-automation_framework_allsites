@@ -34,7 +34,6 @@ public class OrderHeaderDB {
 	}
 
 	public String getConsignment(String orderId) throws ClassNotFoundException, SQLException {
-		String consignment = "";
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -42,8 +41,7 @@ public class OrderHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select consignment from order_header where order_id='" + orderId + "'");
 		rs.next();
-		consignment = rs.getString(1);
-		return consignment;
+		return rs.getString(1);
 	}
 
 	public HashMap<String, String> getGroupDetails(String orderId) throws SQLException, ClassNotFoundException {
@@ -55,17 +53,14 @@ public class OrderHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		resultSet = stmt.executeQuery(this.getOrderHeaderQuery(orderId));
+		resultSet = stmt.executeQuery(
+				" select work_group, order_grouping_id, consignment_grouping_id from order_header WHERE order_id='"
+						+ orderId + "'");
 		resultSet.next();
 		orderGroupDetails.put("WORKGROUP", resultSet.getString(1));
 		orderGroupDetails.put("ORDERGROUPINGID", resultSet.getString(2));
 		orderGroupDetails.put("CONSIGNMENTGROUPINGID", resultSet.getString(3));
 		logger.debug("Order Group Details: " + orderGroupDetails);
 		return orderGroupDetails;
-	}
-
-	public String getOrderHeaderQuery(String orderId) {
-		return " select work_group, order_grouping_id, consignment_grouping_id from order_header WHERE order_id='"
-				+ orderId + "'";
 	}
 }
