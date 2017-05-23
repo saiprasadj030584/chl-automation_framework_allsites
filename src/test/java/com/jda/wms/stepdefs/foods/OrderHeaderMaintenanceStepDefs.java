@@ -11,14 +11,17 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderHeaderDB;
+import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
@@ -32,12 +35,16 @@ public class OrderHeaderMaintenanceStepDefs {
 	private InventoryQueryPage inventoryQueryPage;
 	private JdaHomePage jdaHomePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB,
-			InventoryQueryPage inventoryQueryPage, JdaHomePage jdaHomePage) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderMaintenanceDB orderHeaderMaintenanceDB,
+			JdaHomePage jdaHomePage, OrderHeaderDB orderHeaderDB, InventoryQueryPage inventoryQueryPage) {
+
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -47,6 +54,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.orderHeaderDB = orderHeaderDB;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaHomePage = jdaHomePage;
+		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -162,5 +171,20 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+
+	@Given("^the order should be in \"([^\"]*)\" status$")
+	public void the_order_should_be_in_status(String status) throws Throwable {
+		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
+		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
+	}
+
+	@Then("^the ship dock should be updated for an order$")
+	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickExecuteButton();
+		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
+				orderHeaderMaintenancePage.getShipDock());
 	}
 }

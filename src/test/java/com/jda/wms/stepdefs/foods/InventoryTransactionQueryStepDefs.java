@@ -548,15 +548,18 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("packConfig: " + packConfig);
 
 		String uploaded = inventoryTransactionQueryPage.getUploaded();
-		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+		
+		if (!((uploaded.equalsIgnoreCase("No"))|| (uploaded.equals("N"))))
+		{
+		 String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
 		if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
 			if (!uploadedFileName.contains("I0808itl")) {
 				failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
 						+ uploadedFileName + "]");
 			}
 		}
-		logger.debug("uploaded: " + uploaded);
 		logger.debug("uploadedFileName: " + uploadedFileName);
+		
 
 		String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
 		if (uploadedDate.equals(null)) {
@@ -570,6 +573,9 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("uploadedTime: " + uploadedTime);
 
+		}
+		logger.debug("uploaded: " + uploaded);
+		
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
@@ -684,13 +690,14 @@ public class InventoryTransactionQueryStepDefs {
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				jdaFooter.clickQueryButton();
 
 				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
+
 				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
 				i_navigate_to_miscellaneous_tab();
 				the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();

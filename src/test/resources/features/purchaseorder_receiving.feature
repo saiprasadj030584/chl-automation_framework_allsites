@@ -72,7 +72,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010189 | REC002   |
+      |  7000004500 | REC002   |
 
   @po_receive_bws_new_vintage
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category

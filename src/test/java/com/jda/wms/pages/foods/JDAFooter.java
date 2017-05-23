@@ -82,7 +82,7 @@ public class JDAFooter {
 		Thread.sleep(3000);
 	}
 	
-	public void clickPreAdiceLine() throws FindFailed, InterruptedException {
+	public void clickPreAdviceLine() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAFooter/PreAdviceLine.png", timeoutInSec);
 		screen.click("images/JDAFooter/PreAdviceLine.png");
 		Thread.sleep(3000);

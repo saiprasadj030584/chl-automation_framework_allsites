@@ -49,13 +49,18 @@ public class Context {
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
-	private Map<String, Map<String, String>> stockTransferOrderMap;
+	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private String orderId;
+	private String shipDock;
+	private String newShipDock;
 	private String customer;
 	private String orderID;
 	private Connection connection = null;
+	private int qtyOrdered;
+	private Map<Integer, Map<String, String>> listIDMap;
 
 	private int qtyReverse;
 
@@ -356,11 +361,11 @@ public class Context {
 		this.vintage = vintage;
 	}
 
-	public Map<String, Map<String, String>> getstockTransferOrderMap() {
+	public Map<Integer, Map<String, String>> getStockTransferOrderMap() {
 		return stockTransferOrderMap;
 	}
 
-	public void setstockTransferOrderMap(Map<String, Map<String, String>> stockTransferOrderMap) {
+	public void setstockTransferOrderMap(Map<Integer, Map<String, String>> stockTransferOrderMap) {
 		this.stockTransferOrderMap = stockTransferOrderMap;
 
 	}
@@ -414,6 +419,30 @@ public class Context {
 
 	}
 
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public String getShipDock() {
+		return shipDock;
+	}
+
+	public void setShipDock(String shipDock) {
+		this.shipDock = shipDock;
+	}
+
+	public String getNewShipDock() {
+		return newShipDock;
+	}
+
+	public void setNewShipDock(String newShipDock) {
+		this.newShipDock = newShipDock;
+	}
+
 	public Connection getConnection() {
 		return connection;
 	}
@@ -422,12 +451,29 @@ public class Context {
 		this.connection = connection;
 	}
 
+<<<<<<< HEAD
 	public void setOrderId(String orderID) {
 		this.orderID = orderID;
 	}
 
 	public String getOrderId() {
 		return orderID;
+=======
+	public int getQtyOrdered() {
+		return qtyOrdered;
+	}
+
+	public void setQtyOrdered(int qtyOrdered) {
+		this.qtyOrdered = qtyOrdered;
+	}
+
+	public Map<Integer, Map<String, String>> getListIDMap() {
+		return listIDMap;
+	}
+
+	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
+		this.listIDMap = listIDMap;
+>>>>>>> 56f5aed242d380664cc498e6239ecc5be2aca309
 	}
 
 }

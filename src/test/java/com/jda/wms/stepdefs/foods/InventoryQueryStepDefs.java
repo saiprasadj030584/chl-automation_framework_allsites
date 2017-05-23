@@ -240,7 +240,7 @@ public class InventoryQueryStepDefs {
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 			caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
