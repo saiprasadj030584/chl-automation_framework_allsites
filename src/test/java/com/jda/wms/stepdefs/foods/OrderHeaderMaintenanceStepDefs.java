@@ -7,6 +7,7 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -25,12 +26,15 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage) {
+
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderMaintenanceDB orderHeaderMaintenanceDB) {
+
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -38,6 +42,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+
+		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
+
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -135,6 +142,12 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Given("^the order should be in \"([^\"]*)\" status$")
+	public void the_order_should_be_in_status(String status) throws Throwable {
+		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
+		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
+	}
+
 	@Then("^the ship dock should be updated for an order$")
 	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
 		jdaFooter.clickQueryButton();
@@ -142,6 +155,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
 				orderHeaderMaintenancePage.getShipDock());
+
 	}
 
 }

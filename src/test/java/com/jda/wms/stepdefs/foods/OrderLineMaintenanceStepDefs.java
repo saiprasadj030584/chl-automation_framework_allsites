@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderLineDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
@@ -30,13 +32,16 @@ public class OrderLineMaintenanceStepDefs {
 	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private final OrderLineDB orderLineDB;
+	Map<Integer, Map<String, String>> stockTransferOrderMap;
+	private Verification verification;
 	private int qtyOrdered;
 
 	@Inject
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JdaHomePage jdaHomePage, JDAFooter jdaFooter, Context context,
 			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
-			PackConfigMaintenancePage packConfigMaintenancePage) {
+			PackConfigMaintenancePage packConfigMaintenancePage, OrderLineDB orderLineDB, Verification verification) {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaHomePage = jdaHomePage;
@@ -44,6 +49,8 @@ public class OrderLineMaintenanceStepDefs {
 		this.context = context;
 		this.packConfigMaintenanceStepDefs = packConfigMaintenanceStepDefs;
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
+		this.orderLineDB = orderLineDB;
+		this.verification = verification;
 
 	}
 
@@ -62,22 +69,20 @@ public class OrderLineMaintenanceStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		String skuId = null, qtyOrdered = null, qtyTasked = null;
-		Map<String, Map<String, String>> stockTransferOrderMap = new HashMap<String, Map<String, String>>();
+		Map<Integer, Map<String, String>> stockTransferOrderMap = new HashMap<Integer, Map<String, String>>();
 		int caseRatio = 0;
-
 		jdaHomePage.navigateToPackConfigPage();
 		jdaHomePage.navigateToOrderLineMaintenance();
 		jdaFooter.clickQueryButton();
-		orderLineMaintenancePage.enterOrderID("5800002015");
+		orderLineMaintenancePage.enterOrderID(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 
-		int lines = 4;
-		if (lines != 1) {
-			// if (context.getNoOfLines() != 1) {
+		context.setNoOfLines(2);
+		if (context.getNoOfLines() != 1) {
 			orderLineMaintenancePage.selectFirstRecord();
 		}
 
-		for (int i = 1; i <= lines; i++) {
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuId = orderLineMaintenancePage.getSkuId();
 			qtyOrdered = orderLineMaintenancePage.getQtyOrdered();
 			qtyTasked = orderLineMaintenancePage.getQtyTasked();
@@ -101,13 +106,14 @@ public class OrderLineMaintenanceStepDefs {
 			// map
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
 			lineItemsMap.put("SKU", skuId);
-			lineItemsMap.put("Qtyordered", qtyOrdered);
+			lineItemsMap.put("QtyOrdered", qtyOrdered);
 			lineItemsMap.put("QtyTasked", qtyTasked);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("PackConfig", packConfig);
 
-			stockTransferOrderMap.put(String.valueOf(i), lineItemsMap);
+			stockTransferOrderMap.put(i, lineItemsMap);
 			context.setstockTransferOrderMap(stockTransferOrderMap);
+			System.out.println(stockTransferOrderMap);
 
 			jdaFooter.clickOrderLine();
 			jdaFooter.clickNextRecord();
@@ -119,4 +125,32 @@ public class OrderLineMaintenanceStepDefs {
 				failureList.isEmpty());
 		logger.debug("Map: " + stockTransferOrderMap.toString());
 	}
+
+	@Given("^the quantity tasked should be updated for each order lines$")
+
+	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
+		stockTransferOrderMap = context.getStockTransferOrderMap();
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String sku = stockTransferOrderMap.get(i).get("SKU");
+
+			verification.verifyData("Tracking level", "CASE", stockTransferOrderMap.get(i).get("TrackingLevel"),
+					failureList);
+			if (stockTransferOrderMap.get(i).get("QtyTasked") != null) {
+				verification.verifyData("Quantity Tasked",
+						String.valueOf(Integer.parseInt(stockTransferOrderMap.get(i).get("QtyOrdered"))
+								* Integer.parseInt(stockTransferOrderMap.get(i).get("CaseRatio"))),
+						String.valueOf(Integer.parseInt(stockTransferOrderMap.get(i).get("QtyTasked"))), failureList);
+			} else {
+				verification.verifyData("Back Ordered", "Y", orderLineDB.getBackOrdered(context.getOrderId(), sku),
+						failureList);
+
+				Assert.assertTrue(
+						"Order line Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
+						failureList.isEmpty());
+			}
+		}
+	}
+
 }
