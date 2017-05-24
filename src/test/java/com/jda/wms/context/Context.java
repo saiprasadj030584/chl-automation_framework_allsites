@@ -57,12 +57,17 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String customer;
+	private String trailerNo;
+	private String bookingID;
+	private String orderStatus;
+	private String consignment;
 	private String orderID;
 	private Connection connection = null;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
 
 	private int qtyReverse;
+	
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -449,6 +454,38 @@ public class Context {
 		this.connection = connection;
 	}
 
+	public void setTrailerNo(String trailerNo) {
+		this.trailerNo = trailerNo;
+	}
+
+	public String getTrailerNo() {
+		return trailerNo;
+	}
+	
+	public void setBookingID(String bookingID) {
+		this.bookingID = bookingID;
+	}
+
+	public String getBookingID() {
+		return bookingID;
+	}
+	
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	
+	public void setSTOConsignment(String consignment) {
+		this.consignment = consignment;
+	}
+
+	public String getSTOConsignment() {
+		return consignment;
+	}
+	
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}

@@ -105,4 +105,13 @@ public class JDAFooter {
 		screen.click("images/JDAFooter/OrderLine.png");
 		Thread.sleep(3000);
 	}
+	
+	public void PressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	
+	public void clickSearch() throws FindFailed, InterruptedException {
+		clickNextButton();
+	}
 }

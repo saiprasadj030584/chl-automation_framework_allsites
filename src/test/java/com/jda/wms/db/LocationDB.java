@@ -23,6 +23,7 @@ public class LocationDB {
 
 	public String geCheckString(String location) throws SQLException, ClassNotFoundException {
 		String result = "";
+		
 		if (context.getConnection() == null) {
 			database.connect();
 		}

@@ -53,7 +53,7 @@ public class CEConsignmentMaintenanceStepDefs {
 		ceConsignmentMaintenancePage.enterSiteID("9771");
 		ceConsignmentMaintenancePage.enterSupplier(context.getSupplierID());
 		ceConsignmentMaintenancePage.enterConsignerExciseNumber(context.getCeWarehouseTax());
-		String arcNo = "16ESD08200000"+Utilities.getEightDigitRAndomNumber();
+		String arcNo = "16ESD08200000"+Utilities.getEightDigitRandomNumber();
 		context.setConsignmentID(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADARC(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADDate();

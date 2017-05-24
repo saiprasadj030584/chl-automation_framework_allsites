@@ -1,32 +1,31 @@
 package com.jda.wms.db;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class OrderHeaderMaintenanceDB {
+public class TrailerDB {
+
 	private Context context;
 	private Database database;
 
 	@Inject
-	public OrderHeaderMaintenanceDB(Context context, Database database) {
+	public TrailerDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}
 
-	public String getOrderStatus(String orderID) throws ClassNotFoundException, SQLException {
+	public String getTrailerDetails(String trailerID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER WHERE ORDER_ID = '" + orderID + "'");
+		ResultSet rs = stmt.executeQuery("select TRAILER_TYPE from trailer where trailer_id = '" + trailerID + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-
 }
