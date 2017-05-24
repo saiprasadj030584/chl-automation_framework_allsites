@@ -41,8 +41,8 @@ public class Database {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
-	private Context context;
 	private Configuration configuration;
+	private Context context;
 
 	@Inject
 	public Database(Context context, Configuration configuration) {
@@ -62,6 +62,7 @@ public class Database {
 			} catch (SQLException ex) {
 
 			}
+
 		}
 	}
 
