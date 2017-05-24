@@ -20,6 +20,7 @@ import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
@@ -48,11 +49,11 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.orderHeaderDB = orderHeaderDB;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaHomePage = jdaHomePage;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.orderHeaderDB = orderHeaderDB;
+
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -168,6 +169,21 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+
+	@Given("^I enter the Order id \"([^\"]*)\"$")
+
+	public void i_enter_the_Order_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+	}
+
+	@Then("^the consignment should be generated in the order header maintenance$")
+	public void the_consignment_should_be_generated_in_the_order_header_maintenance() throws Throwable {
+		logger.debug("Consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
+		Assert.assertNotNull("consignment is not displayed as expected",
+				orderHeaderDB.getConsignment(context.getOrderId()));
 	}
 
 	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")

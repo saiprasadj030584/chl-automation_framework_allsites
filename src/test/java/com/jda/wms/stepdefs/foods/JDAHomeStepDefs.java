@@ -135,4 +135,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_location_page() throws Throwable {
 		jdaHomePage.navigateToLocationPage();
 	}
+
+	@When("^I navigate to order preparation page$")
+	public void i_navigate_to_order_preparation_page() throws Throwable {
+		jdaHomePage.navigateToOrderPreparationPage();
+	}
 }
