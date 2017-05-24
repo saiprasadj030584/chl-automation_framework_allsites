@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.foods;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderPreparationPage;
 import com.jda.wms.pages.foods.WarningPopUpPage;
@@ -14,22 +15,25 @@ public class OrderPreparationStepDefs {
 	private OrderPreparationPage orderPreparationPage;
 	private final WarningPopUpPage warningPopUpPage;
 	private final JDAFooter jdaFooter;
+	private Context context;
 
 	@Inject
 	public OrderPreparationStepDefs(OrderPreparationPage orderPreparationPage, WarningPopUpPage warningPopUpPage,
-			JDAFooter jdaFooter) {
+			JDAFooter jdaFooter, Context context) {
 		this.orderPreparationPage = orderPreparationPage;
 		this.warningPopUpPage = warningPopUpPage;
 		this.jdaFooter = jdaFooter;
+		this.context = context;
 	}
 
-	@When("^I enter the Group type as \"([^\"]*)\"$")
-	public void i_enter_the_Group_type_as(String arg1) throws Throwable {
-		orderPreparationPage.enterGroupType();
+	@When("^I select the group type as \"([^\"]*)\"$")
+	public void i_select_the_group_type_as(String arg1) throws Throwable {
+		orderPreparationPage.selectGroupType();
 	}
 
-	@When("^I have the order id \"([^\"]*)\"$")
-	public void i_have_the_order_id(String orderId) throws Throwable {
+	@When("^I enter the order id \"([^\"]*)\"$")
+	public void i_enter_the_order_id(String orderId) throws Throwable {
+		context.setOrderId(orderId);
 		orderPreparationPage.enterOrderId(orderId);
 	}
 
@@ -38,20 +42,25 @@ public class OrderPreparationStepDefs {
 		orderPreparationPage.selectRecord();
 	}
 
-	@When("^I select the Trailer type as\"([^\"]*)\" and validate the total orders$")
-	public void i_select_the_Trailer_type_as_and_validate_the_total_orders(String trailerType) throws Throwable {
+	@When("^I select the trailer type as \"([^\"]*)\"$")
+	public void i_select_the_trailer_type_as_(String trailerType) throws Throwable {
 		orderPreparationPage.selectTrailerType(trailerType);
 	}
 
-	@Then("^the record should be displayed$")
-	public void the_record_should_be_displayed() throws Throwable {
+	@Then("^the record should be displayed for consignment preparation process$")
+	public void the_record_should_be_displayed_for_consignment_preparation_process() throws Throwable {
 		Assert.assertTrue("Record is not present in order preparation screen", orderPreparationPage.isRecordExist());
 	}
 
-	@When("^I proceed to complete the processs$")
-	public void i_proceed_to_complete_the_processs() throws Throwable {
+	@When("^I proceed to complete the process$")
+	public void i_proceed_to_complete_the_process() throws Throwable {
 		jdaFooter.clickDoneButton();
 		warningPopUpPage.clickYes();
 		orderPreparationPage.clickOk();
+	}
+
+	@Then("^the total orders should be displayed as \"([^\"]*)\"$")
+	public void the_total_orders_should_be_displayed_as(String order) throws Throwable {
+		Assert.assertEquals("Total orders is not as expected", order, orderPreparationPage.getTotalOrder());
 	}
 }

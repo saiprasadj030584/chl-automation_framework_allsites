@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
@@ -28,13 +31,15 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private InventoryQueryPage inventoryQueryPage;
 	private JdaHomePage jdaHomePage;
+	private OrderHeaderDB orderHeaderDB;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
 			OrderLineMaintenancePage orderLineMaintenancePage, InventoryQueryPage inventoryQueryPage,
-			JdaHomePage jdaHomePage) {
+			JdaHomePage jdaHomePage, OrderHeaderDB orderHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -44,6 +49,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaHomePage = jdaHomePage;
+		this.orderHeaderDB = orderHeaderDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -157,11 +163,10 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 	}
 
-	@Then("^the consignment should be updated in the order header maintenance page$")
-	public void the_consignment_should_be_updated_in_the_order_header_maintenance_page() throws Throwable {
-		jdaHomePage.clickOrderHeaderTab();
-		inventoryQueryPage.selectRefreshOptions();
-		inventoryQueryPage.selectRefreshCurrentRecord();
+	@Then("^the consignment should be generated in the order header maintenance$")
+	public void the_consignment_should_be_generated_in_the_order_header_maintenance() throws Throwable {
+		Assert.assertNotNull("consignment is not as expected", orderHeaderDB.getConsignment(context.getOrderId()));
+		logger.debug("consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
 	}
 
 }

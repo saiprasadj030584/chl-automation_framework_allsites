@@ -2,23 +2,43 @@
 Feature: Consignment Creation
   As a warehouse user
   I want to create the consignment
-  So that the consignments be used for allocation
+  So that the consignments can be used for picking and dispatching to stores
 
-  @wip04
-  Scenario: create consignment using Order Preparation screen
-   # Given I have logged in as warehouse user in JDA dispatcher food application
-    When i navigate to order header maintenance
-    And I enter the Order id "3000000010"
-    When I navigate to order preparation screen
-    And I enter the Group type as "consignment"
+  @wip8
+  Scenario: Create consignment for STO 
+    #Given I have logged in as warehouse user in JDA dispatcher food application
+    When I navigate to order preparation page
+    And I select the group type as "Consignment"
     And I proceed to next
-    And I have the order id "3000000010"
+    And I enter the order id "5000011419"
     And I proceed to next
     Then I select the record
     And I proceed to next
-    When I select the Trailer type as"Trailer" and validate the total orders
+    And the total orders should be displayed as "1"
+    When I select the trailer type as "TRAILER"
     And I proceed to next
     And I proceed to next
-    Then the record should be displayed 
-    When I proceed to complete the processs
-    Then the consignment should be updated in the order header maintenance page
+    Then the record should be displayed for consignment preparation process
+    When I proceed to complete the process
+    Then the consignment should be generated in the order header maintenance
+    
+    
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    When I navigate to order preparation page
+    And I select the group type as "Consignment"
+    And I proceed to next
+    And I enter the order id "5000011419"
+    And I proceed to next
+    And I select the record from the available list
+    And I proceed to next
+    Then the total orders should be displayed as 1
+    When I select the trailer type as "TRAILER"
+    And I proceed to next
+    And I proceed to next
+    Then the record should be displayed for consignment preparation process 
+    When I proceed to complete the process
+    And "step to click yes button"
+    Then the consignment should be generated in the order header maintenance
+
+    
+    
