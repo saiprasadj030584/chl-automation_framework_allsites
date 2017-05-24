@@ -35,4 +35,3 @@ Feature: Receive STO order
     And the order should be in "Allocated" status
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignmnet
-
