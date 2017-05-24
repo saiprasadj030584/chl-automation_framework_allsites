@@ -20,4 +20,4 @@ Feature: Vehicle loading for stock transfer order
 
     Examples: 
       | OrderId    |
-      | 6646215737 |
+      | 6666164804 |

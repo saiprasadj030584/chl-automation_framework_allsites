@@ -180,14 +180,14 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
 	}
 
-	@Then("^the ship dock should be updated for an order$")
+	/*@Then("^the ship dock should be updated for an order$")
 	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
 				orderHeaderMaintenancePage.getShipDock());
-	}
+	}*/
 
 	@Then("^the order status should be \"([^\"]*)\" in order header$")
 
