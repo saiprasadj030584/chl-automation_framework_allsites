@@ -11,11 +11,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
-import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
-import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
-import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
@@ -28,27 +25,19 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
-	private OrderLineMaintenancePage orderLineMaintenancePage;
-	private InventoryQueryPage inventoryQueryPage;
-	private JdaHomePage jdaHomePage;
 	private OrderHeaderDB orderHeaderDB;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage, InventoryQueryPage inventoryQueryPage,
-			JdaHomePage jdaHomePage, OrderHeaderDB orderHeaderDB) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.orderLineMaintenancePage = orderLineMaintenancePage;
-		this.inventoryQueryPage = inventoryQueryPage;
-		this.jdaHomePage = jdaHomePage;
 		this.orderHeaderDB = orderHeaderDB;
 	}
 
@@ -165,8 +154,8 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the consignment should be generated in the order header maintenance$")
 	public void the_consignment_should_be_generated_in_the_order_header_maintenance() throws Throwable {
-		Assert.assertNotNull("consignment is not as expected", orderHeaderDB.getConsignment(context.getOrderId()));
-		logger.debug("consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
+		logger.debug("Consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
+		Assert.assertNotNull("consignment is not displayed as expected",
+				orderHeaderDB.getConsignment(context.getOrderId()));
 	}
-
 }

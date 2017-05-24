@@ -11,30 +11,25 @@ public class OrderPreparationPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
-	public void selectGroupType() throws FindFailed {
-		Match status = screen.find("images/OrderPreparation/GroupType.png");
-		screen.click(status.getCenter().offset(70, 0));
-		screen.type("Consignment");
-	}
-
 	public void enterOrderId(String orderId) throws FindFailed, InterruptedException {
-		Match status = screen.find("images/OrderPreparation/Order.png");
-		screen.click(status.getCenter().offset(70, 0));
+		Match mOrderId = screen.find("images/OrderPreparation/Order.png");
+		screen.click(mOrderId.getCenter().offset(70, 0));
 		screen.type(orderId);
 		Thread.sleep(4000);
 	}
 
 	public void selectRecord() throws InterruptedException, FindFailed {
-		Match mQtyToReverse = screen.find("images/OrderPreparation/OrderID.png");
+		Match mRecord = screen.find("images/OrderPreparation/OrderID.png");
 		Thread.sleep(2000);
-		screen.doubleClick(mQtyToReverse.below(10));
+		screen.doubleClick(mRecord.below(10));
 		Thread.sleep(3000);
 	}
 
-	public void selectTrailerType(String trailerType) throws FindFailed {
-		screen.wait("images/OrderPreparation/TrailerType.png", timeoutInSec);
-		screen.click("images/OrderPreparation/TrailerType.png");
+	public void selectTrailerType(String trailerType) throws FindFailed, InterruptedException {
+		Match mTrailerType = screen.find("images/OrderPreparation/TrailerType.png");
+		screen.click(mTrailerType.getCenter().offset(70, 0));
 		screen.type(trailerType);
+		Thread.sleep(3000);
 	}
 
 	public boolean isRecordExist() throws FindFailed {
@@ -44,17 +39,17 @@ public class OrderPreparationPage {
 			return false;
 	}
 
-	public void clickOk() throws FindFailed {
-		screen.wait("images/OrderPreparation/Ok.png", timeoutInSec);
-		screen.click("images/OrderPreparation/Ok.png");
-	}
-
 	public String getTotalOrder() throws FindFailed {
-		Match mDescription = screen.find("images/OrderPreparation/TotalOrders.png");
-		screen.click(mDescription.getCenter().offset(70, 0));
+		Match mTotalOrder = screen.find("images/OrderPreparation/TotalOrders.png");
+		screen.click(mTotalOrder.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
+	public void selectGroupType(String groupType) throws FindFailed {
+		Match mGroupType = screen.find("images/OrderPreparation/GroupType.png");
+		screen.click(mGroupType.getCenter().offset(70, 0));
+		screen.type(groupType);
+	}
 }

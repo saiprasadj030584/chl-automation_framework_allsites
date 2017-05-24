@@ -27,8 +27,8 @@ public class OrderPreparationStepDefs {
 	}
 
 	@When("^I select the group type as \"([^\"]*)\"$")
-	public void i_select_the_group_type_as(String arg1) throws Throwable {
-		orderPreparationPage.selectGroupType();
+	public void i_select_the_group_type_as(String groupType) throws Throwable {
+		orderPreparationPage.selectGroupType(groupType);
 	}
 
 	@When("^I enter the order id \"([^\"]*)\"$")
@@ -49,14 +49,14 @@ public class OrderPreparationStepDefs {
 
 	@Then("^the record should be displayed for consignment preparation process$")
 	public void the_record_should_be_displayed_for_consignment_preparation_process() throws Throwable {
-		Assert.assertTrue("Record is not present in order preparation screen", orderPreparationPage.isRecordExist());
+		Assert.assertTrue("Record is not present in order preparation page", orderPreparationPage.isRecordExist());
 	}
 
-	@When("^I proceed to complete the process$")
+	@When("^I proceed to create the consignment$")
 	public void i_proceed_to_complete_the_process() throws Throwable {
 		jdaFooter.clickDoneButton();
 		warningPopUpPage.clickYes();
-		orderPreparationPage.clickOk();
+		warningPopUpPage.clickOk();
 	}
 
 	@Then("^the total orders should be displayed as \"([^\"]*)\"$")

@@ -27,5 +27,4 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
 }
