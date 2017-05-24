@@ -203,4 +203,5 @@ public class OrderHeaderMaintenanceStepDefs {
 		String orderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
 		Assert.assertEquals("status is not as expected", status, orderStatus);
 	}
+
 }

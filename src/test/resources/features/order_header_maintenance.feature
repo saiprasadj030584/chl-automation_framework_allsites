@@ -13,6 +13,7 @@ Feature: Receive STO order
     And the order should be in "Allocated" status
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignmnet
+    Then the order receipt should be generated in the inventory	for note "Complete --> Shipped"
 
   @complete
   Scenario: Load the STO order details
@@ -24,6 +25,7 @@ Feature: Receive STO order
     And the order should be in "Allocated" status
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignmnet
+    Then the order receipt should be generated in the inventory	for note "Complete --> Shipped"
 
   @complete
   Scenario: Load the international order details
@@ -35,3 +37,4 @@ Feature: Receive STO order
     And the order should be in "Allocated" status
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignmnet
+    Then the order receipt should be generated in the inventory	for note "Complete --> Shipped"
