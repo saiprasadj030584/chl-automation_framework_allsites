@@ -57,9 +57,11 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String customer;
-	private String orderID;
-	private Connection connection = null;
+	private String trailerNo;
+	private String bookingID;
 	private String orderStatus;
+	private String consignment;
+	private Connection connection = null;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
 	private String palletID;
@@ -492,6 +494,30 @@ public class Context {
 
 	public void setConnection(Connection connection) {
 		this.connection = connection;
+	}
+
+	public void setTrailerNo(String trailerNo) {
+		this.trailerNo = trailerNo;
+	}
+
+	public String getTrailerNo() {
+		return trailerNo;
+	}
+
+	public void setBookingID(String bookingID) {
+		this.bookingID = bookingID;
+	}
+
+	public String getBookingID() {
+		return bookingID;
+	}
+
+	public void setSTOConsignment(String consignment) {
+		this.consignment = consignment;
+	}
+
+	public String getSTOConsignment() {
+		return consignment;
 	}
 
 	public int getQtyOrdered() {

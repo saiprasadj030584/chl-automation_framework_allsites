@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderHeaderDB;
-import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
@@ -36,27 +35,23 @@ public class OrderHeaderMaintenanceStepDefs {
 	private InventoryQueryPage inventoryQueryPage;
 	private JdaHomePage jdaHomePage;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
-	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderMaintenanceDB orderHeaderMaintenanceDB,
-			JdaHomePage jdaHomePage, OrderHeaderDB orderHeaderDB, InventoryQueryPage inventoryQueryPage) {
-
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderDB orderHeaderD, JdaHomePage jdaHomePage,
+			OrderHeaderDB orderHeaderDB, InventoryQueryPage inventoryQueryPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.orderHeaderDB = orderHeaderDB;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaHomePage = jdaHomePage;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.orderHeaderDB = orderHeaderDB;
-		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -174,20 +169,22 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the order should be in \"([^\"]*)\" status$")
-	public void the_order_should_be_in_status(String status) throws Throwable {
-		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
-		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
+	// FIXME : Check with Kiruthika and Swetha
+	@Given("^I enter the Order id \"([^\"]*)\"$")
+	public void i_enter_the_Order_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
 	}
 
-	/*@Then("^the ship dock should be updated for an order$")
-	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
-		jdaFooter.clickExecuteButton();
-		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
-				orderHeaderMaintenancePage.getShipDock());
-	}*/
+	// FIXME : Check with Kiruthika and Swetha
+	/*
+	 * @Then("^the ship dock should be updated for an order$") public void
+	 * the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+	 * 
+	 * Assert.assertEquals("Ship Dock is not displayed as expected",
+	 * context.getNewShipDock(), orderHeaderMaintenancePage.getShipDock()); }
+	 */
 
 	@Then("^the order status should be \"([^\"]*)\" in order header$")
 
@@ -216,6 +213,34 @@ public class OrderHeaderMaintenanceStepDefs {
 		} else if (dbOrderStatus == "Released") {
 			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
 		}
+	}
+
+	@Then("^the consignment should be generated in the order header maintenance$")
+	public void the_consignment_should_be_generated_in_the_order_header_maintenance() throws Throwable {
+		logger.debug("Consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
+		Assert.assertNotNull("consignment is not displayed as expected",
+				orderHeaderDB.getConsignment(context.getOrderId()));
+	}
+
+	// TODO - to check with Senthil
+	/*
+	 * @Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$") public
+	 * void the_order_should_be_status(String orderID, String orderStatus)
+	 * throws Throwable { context.setOrderId(orderID); String dbOrderStatus =
+	 * orderHeaderDB.getOrderStatus(orderID); logger.debug("Order ID : " +
+	 * orderID); logger.debug("Order status from DB : " + dbOrderStatus);
+	 * 
+	 * Assert.assertEquals(
+	 * "Order status is not as expected to proceed vehicle load", dbOrderStatus,
+	 * orderStatus);
+	 * 
+	 * // TODO call picking steps here as precondition }
+	 */
+
+	@Given("^the order should be in \"([^\"]*)\" status$")
+	public void the_order_should_be_in_status(String status) throws Throwable {
+		String orderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
+		Assert.assertEquals("status is not as expected", status, orderStatus);
 	}
 
 }
