@@ -4,14 +4,14 @@ Feature: Consignment Creation
   I want to create the consignment
   So that the consignments can be used for picking and dispatching to stores
 
-  @wip8
+  @complete
   Scenario: Create consignment for STO
   #Pre-condition - STO should not have consignment earlier 
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to order preparation page
     And I select the group type as "Consignment"
     And I proceed to next
-    And I enter the order id "3000000006"
+    And I enter the order id "3000000004"
     And I proceed to next
     Then I select the record
     And I proceed to next
