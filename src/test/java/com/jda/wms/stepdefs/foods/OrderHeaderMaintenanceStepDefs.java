@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderHeaderDB;
+import com.jda.wms.db.OrderHeaderMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -17,6 +19,7 @@ import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
@@ -26,12 +29,16 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderHeaderDB orderHeaderDB;
+
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private OrderHeaderMaintenanceDB orderHeaderMaintenanceDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB) {
+			AddressMaintenancePage addressMaintenancePage, Verification verification,
+			OrderHeaderMaintenanceDB orderHeaderMaintenanceDB, OrderHeaderDB orderHeaderDB) {
+
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -39,6 +46,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderHeaderDB = orderHeaderDB;
+		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -46,6 +54,7 @@ public class OrderHeaderMaintenanceStepDefs {
 			String orderID, String status, String type) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
+		context.setOrderId(orderID);
 		jdaHomeStepDefs.i_navigate_to_order_header();
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
@@ -136,13 +145,23 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the ship dock should be updated for an order$")
-	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
-		jdaFooter.clickExecuteButton();
-		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
-				orderHeaderMaintenancePage.getShipDock());
+	@When("^the order id should have ship dock and consignmnet$")
+	public void the_Order_id_should_have_ship_dock_and_consignmnet() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String shipdock = orderHeaderDB.getShipdock(context.getOrderId());
+		String consignment = orderHeaderDB.getConsignment(context.getOrderId());
+
+		if ((shipdock == null || shipdock.equals("DEFAULTSD")) || consignment == null) {
+			HashMap<String, String> orderGroupDetails = orderHeaderDB.getGroupDetails(context.getOrderId());
+			verification.verifyData("Work Group", "Not Null", orderGroupDetails.get("WORKGROUP"), failureList);
+			verification.verifyData("Group ID", "Not Null", orderGroupDetails.get("ORDERGROUPINGID"), failureList);
+			verification.verifyData("Consignment Group ID", "Not Null", orderGroupDetails.get("CONSIGNMENTGROUPINGID"),
+					failureList);
+		}
+		Assert.assertTrue(
+				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 
 	@Given("^I enter the Order id \"([^\"]*)\"$")
@@ -157,5 +176,11 @@ public class OrderHeaderMaintenanceStepDefs {
 		logger.debug("Consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
 		Assert.assertNotNull("consignment is not displayed as expected",
 				orderHeaderDB.getConsignment(context.getOrderId()));
+	}
+
+	@Given("^the order should be in \"([^\"]*)\" status$")
+	public void the_order_should_be_in_status(String status) throws Throwable {
+		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
+		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
 	}
 }
