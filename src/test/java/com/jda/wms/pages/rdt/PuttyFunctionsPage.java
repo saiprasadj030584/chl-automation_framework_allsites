@@ -63,4 +63,20 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
+	
+	public void pressTab() throws InterruptedException{
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+	
+	public void pressEnter() throws InterruptedException{
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
+	}
+	
+	public void navigateToNextPage() throws InterruptedException {
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
+	}
 }

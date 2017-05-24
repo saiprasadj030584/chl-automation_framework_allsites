@@ -212,8 +212,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the expiry  and vintage details$")
 	public void i_enter_the_expiry_and_vintage_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
-			System.out.println("context.getVintage() "+context.getVintage());
-			System.out.println("context.getABV "+context.getABV());
 			if(!context.getVintage().equals(null)){
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
 			}
@@ -224,7 +222,6 @@ public class PurchaseOrderReceivingStepDefs {
 			System.out.println("context.getAllocationGroup() "+context.getAllocationGroup());
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 				String expDate = DateUtils.getAddedSystemYear();
-				System.out.println("expDate "+expDate);
 				context.setFutureExpiryDate(expDate);
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
@@ -273,7 +270,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_expiry_and_vintage_details();
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()){
-					failureList.add("Receive not completed and Home page not displayed.");
+					failureList.add("Receive not completed and Home page not displayed for Sku id "+currentSku);
 					context.setFailureList(failureList);
 				}
 				Thread.sleep(5000);

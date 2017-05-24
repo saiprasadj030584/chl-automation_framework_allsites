@@ -60,6 +60,10 @@ public class Context {
 	private String customer;
 	private int qtyReverse;
 	private String listID;
+	private String toPallet;
+	private String toLocation;
+	private String finalLocation;
+	private int qtytoMove;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -358,7 +362,7 @@ public class Context {
 		this.vintage = vintage;
 	}
 
-	public Map<Integer, Map<String, String>> getstockTransferOrderMap() {
+	public Map<Integer, Map<String, String>> getStockTransferOrderMap() {
 		return stockTransferOrderMap;
 	}
 
@@ -453,5 +457,37 @@ public class Context {
 
 	public void setListID(String listID) {
 		this.listID = listID;
+	}
+
+	public String getToPallet() {
+		return toPallet;
+	}
+
+	public void setToPallet(String toPallet) {
+		this.toPallet = toPallet;
+	}
+
+	public String getToLocation() {
+		return toLocation;
+	}
+
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
+	}
+
+	public String getFinalLocation() {
+		return finalLocation;
+	}
+
+	public void setFinalLocation(String finalLocation) {
+		this.finalLocation = finalLocation;
+	}
+
+	public int getQtytoMove() {
+		return qtytoMove;
+	}
+
+	public void setQtytoMove(int qtyToMove) {
+		this.qtytoMove = qtyToMove;
 	}
 }

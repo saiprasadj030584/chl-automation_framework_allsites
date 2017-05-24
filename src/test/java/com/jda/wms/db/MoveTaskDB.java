@@ -120,4 +120,38 @@ public class MoveTaskDB {
 			}
 		return location;
 	}
+
+	public ArrayList<String> getToLocation(String orderID) throws ClassNotFoundException, SQLException {
+		ArrayList<String> toLocation = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select TO_LOC_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					toLocation.add((rs.getString(j)));
+				}
+			}
+		return toLocation;
+	}
+
+	public ArrayList<String> getFinalLocation(String orderID) throws ClassNotFoundException, SQLException {
+		ArrayList<String> finalLocation = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select FINAL_LOC_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					finalLocation.add((rs.getString(j)));
+				}
+			}
+		return finalLocation;
+	}
 }

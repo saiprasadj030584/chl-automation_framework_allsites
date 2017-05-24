@@ -7,27 +7,27 @@ import java.sql.Statement;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class SkuConfigDB {
+public class SkuDB {
 	private Context context;
 	private Database database;
 
 	@Inject
-	public SkuConfigDB(Context context, Database database) {
+	public SkuDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 
 	}
 	
-	public String getRatio1To2(String packConfig) throws SQLException, ClassNotFoundException {
-		String trackingLevel = null;
+	public String getAllocationGroup(String sku) throws SQLException, ClassNotFoundException {
+		String allocationGroup = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select RATIO_1_TO_2 from SKU_CONFIG WHERE CONFIG_ID ='" + packConfig + "'");
+				"select ALLOCATION_GROUP from SKU WHERE SKU_ID ='" + sku + "'");
 		rs.next();
-		trackingLevel = (rs.getString(1));
-		return trackingLevel;
+		allocationGroup = (rs.getString(1));
+		return allocationGroup;
 	}
 }

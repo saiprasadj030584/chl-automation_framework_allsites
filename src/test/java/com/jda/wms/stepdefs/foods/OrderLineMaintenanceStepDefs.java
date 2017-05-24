@@ -11,6 +11,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderLineDB;
 import com.jda.wms.db.SkuConfigDB;
+import com.jda.wms.db.SkuDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderLineMaintenancePage;
@@ -23,17 +24,19 @@ import cucumber.api.java.en.When;
 public class OrderLineMaintenanceStepDefs {
 	private OrderLineDB orderLineDB;
 	private SkuConfigDB skuConfigDB;
+	private SkuDB skuDB;
 	private Context context;
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public OrderLineMaintenanceStepDefs(Context context,OrderLineDB orderLineDB,SkuConfigDB skuConfigDB, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage) {
+	public OrderLineMaintenanceStepDefs(Context context,OrderLineDB orderLineDB,SkuConfigDB skuConfigDB, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage,SkuDB skuDB) {
 		this.orderLineDB = orderLineDB;
 		this.context = context;
 		this.skuConfigDB = skuConfigDB;
 		this.verification = verification;
+		this.skuDB = skuDB;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 	}
 
@@ -51,7 +54,7 @@ public class OrderLineMaintenanceStepDefs {
 	public void the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String qtyOrdered = null, qtyTasked = null, trackingLevel = null;
+		String qtyOrdered = null, qtyTasked = null, trackingLevel = null, allocationGroup = null;
 		Map<Integer, Map<String, String>> stockTransferOrderMap = new HashMap<Integer, Map<String, String>>();
 		int caseRatio = 0;
 		ArrayList<String> skuID = new ArrayList<String>();
@@ -69,6 +72,8 @@ public class OrderLineMaintenanceStepDefs {
 			int ratio1To2 = Utilities.convertStringToInteger(skuConfigDB.getRatio1To2(packConfig));
 			verification.verifyData("Case Ratio", String.valueOf(ratio1To2), String.valueOf(caseRatio),failureList);
 
+			allocationGroup = skuDB.getAllocationGroup(skuID.get(i-1));
+			
 			// map
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
 			lineItemsMap.put("SKU", skuID.get(i-1));
@@ -77,6 +82,7 @@ public class OrderLineMaintenanceStepDefs {
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("PackConfig", packConfig);
 			lineItemsMap.put("TrackingLevel", trackingLevel);
+			lineItemsMap.put("AllocationGroup", allocationGroup);
 
 			stockTransferOrderMap.put(i, lineItemsMap);
 

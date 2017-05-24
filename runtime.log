@@ -5399,3 +5399,486 @@
 2017-05-22 14:17:11 DEBUG Hooks:82 - ###########################################################################################################################
 2017-05-22 14:17:11 DEBUG Hooks:84 - End of Scenario: STO for RDC
 2017-05-22 14:17:11 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 06:30:19 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 06:30:19 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 06:30:19 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 06:30:19 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 06:30:21 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 06:30:21 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 06:30:21 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 06:30:21 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 06:30:21 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 06:30:21 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 06:30:21 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 06:30:21 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 06:30:21 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 06:30:21 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 06:30:21 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 06:30:21 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 06:30:21 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 06:30:21 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 06:30:21 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 06:30:21 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 06:30:21 DEBUG OrderLineMaintenanceStepDefs:87 - Map: {1={TrackingLevel=CASE, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 06:30:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 06:30:21 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 06:30:21 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 06:30:21 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 10:53:02 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 10:53:02 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 10:53:02 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 10:53:02 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 10:53:04 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 10:53:04 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 10:53:04 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 10:53:04 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 10:53:04 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 10:53:04 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 10:53:04 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 10:53:04 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 10:53:04 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 10:53:04 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 10:53:04 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 10:53:04 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 10:53:04 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:53:04 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:53:04 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:53:04 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:53:04 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 10:53:27 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 10:53:27 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 10:53:27 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 10:53:27 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 10:55:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 10:55:17 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 10:55:17 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 10:55:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 10:55:18 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 10:55:18 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 10:55:18 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 10:55:18 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 10:55:18 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 10:55:18 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 10:55:18 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 10:55:18 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 10:55:18 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 10:55:18 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 10:55:18 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 10:55:18 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 10:55:18 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:55:18 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:55:18 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:55:18 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:55:18 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 10:56:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 10:56:19 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 10:56:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 10:56:19 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 10:57:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 10:57:17 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 10:57:17 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 10:57:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 10:57:18 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 10:57:18 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 10:57:18 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 10:57:18 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 10:57:18 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 10:57:18 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 10:57:18 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 10:57:18 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 10:57:18 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 10:57:18 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 10:57:18 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 10:57:18 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 10:57:18 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:57:18 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:57:18 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:57:18 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:57:18 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 10:58:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 10:58:20 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 10:58:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 10:58:20 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 10:59:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 10:59:00 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 10:59:00 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 10:59:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 10:59:01 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 10:59:01 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 10:59:01 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 10:59:01 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 10:59:01 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 10:59:01 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 10:59:01 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 10:59:01 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 10:59:01 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 10:59:01 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 10:59:01 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 10:59:01 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 10:59:02 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:59:02 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:59:02 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 10:59:02 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 10:59:02 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 11:00:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:00:03 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:00:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:00:03 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 11:05:55 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:05:55 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:05:55 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:05:55 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:05:56 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 11:05:56 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 11:05:56 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 11:05:56 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 11:05:56 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 11:05:56 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:05:56 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 11:05:56 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:05:56 DEBUG Verification:19 - Customer - expected [Not Null] and actual [8196]
+2017-05-23 11:05:56 DEBUG Verification:19 - Name - expected [Not Null] and actual [Franchise customer Bermuda]
+2017-05-23 11:05:56 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [The English Sports Shop]
+2017-05-23 11:05:56 DEBUG Verification:19 - Country - expected [Not Null] and actual [BMU]
+2017-05-23 11:05:56 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:05:56 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 11:05:56 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:05:56 DEBUG Verification:19 - Case Ratio - expected [24] and actual [24]
+2017-05-23 11:05:56 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20001991, QtyTasked=288, PackConfig=20001991O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=12, CaseRatio=24, SKU=20089139, QtyTasked=288, PackConfig=20089139O01}}
+2017-05-23 11:07:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:07:13 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:07:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:07:13 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 11:09:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:09:17 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:09:17 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:09:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:09:18 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Hold]
+2017-05-23 11:09:18 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 11:09:18 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 11:09:18 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 11:09:18 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 11:09:18 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:09:18 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 11:09:18 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:09:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:09:18 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:09:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:09:18 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 11:09:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:09:40 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:09:40 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:09:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:09:41 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Hold]
+2017-05-23 11:09:41 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-15 11:20:42.0 Europe/London]
+2017-05-23 11:09:41 DEBUG Verification:19 - Created By - expected [Not Null] and actual [INTERFACE]
+2017-05-23 11:09:41 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-15 11:21:01.0 Europe/London]
+2017-05-23 11:09:41 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Hold]
+2017-05-23 11:09:41 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:09:41 DEBUG Verification:19 - Type - expected [INTSEA] and actual [INTSEA]
+2017-05-23 11:09:41 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:09:41 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:09:41 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:09:41 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:09:41 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 11:24:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:24:29 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:24:29 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:24:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:24:29 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:24:29 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:24:29 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:37:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:37:14 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:37:14 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:37:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:37:14 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:37:14 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:37:14 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:57:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:57:11 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:57:11 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:57:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:57:13 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 11:57:13 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:57:13 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120368]
+2017-05-23 11:57:13 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:57:13 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 11:57:13 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:57:13 DEBUG Verification:19 - Type - expected [INTSEA] and actual [RDC]
+2017-05-23 11:57:13 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:57:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:57:13 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 11:57:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:57:13 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 11:57:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:57:32 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:57:32 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:57:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:57:33 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 11:57:33 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:57:33 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120368]
+2017-05-23 11:57:33 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:57:33 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 11:57:33 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:57:33 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-23 11:57:33 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:57:33 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-23 11:57:33 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-23 11:57:33 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-23 11:57:33 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-23 11:57:33 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:57:33 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 11:57:34 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:57:34 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 11:57:34 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001894, QtyTasked=24, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001920, QtyTasked=24, PackConfig=20001920O01}}
+2017-05-23 11:58:07 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:58:07 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 11:58:07 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 11:58:07 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:58:08 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 11:58:08 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:58:08 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120368]
+2017-05-23 11:58:08 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-23 11:58:08 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 11:58:08 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 11:58:08 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-23 11:58:08 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 11:58:08 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-23 11:58:08 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-23 11:58:08 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-23 11:58:08 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-23 11:58:08 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:58:08 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 11:58:08 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 11:58:08 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 11:58:08 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001894, QtyTasked=24, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001920, QtyTasked=24, PackConfig=20001920O01}}
+2017-05-23 12:05:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:05:14 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 12:05:14 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 12:05:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:05:15 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 12:05:16 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:05:16 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-23 12:05:16 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:05:16 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 12:05:16 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 12:05:16 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-23 12:05:16 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 12:05:16 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-23 12:05:16 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-23 12:05:16 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-23 12:05:16 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-23 12:05:16 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:05:16 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:05:16 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:05:16 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:05:16 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-23 12:05:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 12:05:16 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 12:05:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 12:05:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 12:06:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:06:25 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 12:06:25 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 12:06:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:06:26 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 12:06:26 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:06:26 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-23 12:06:26 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:06:26 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 12:06:26 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 12:06:26 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-23 12:06:26 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 12:06:26 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-23 12:06:26 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-23 12:06:26 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-23 12:06:26 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-23 12:06:26 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:06:26 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:06:26 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:06:26 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:06:26 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-23 12:06:26 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 12:06:26 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-23 12:06:26 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 12:06:26 DEBUG Hooks:93 - DB Connection closed
+2017-05-23 12:07:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:07:18 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-23 12:07:18 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-23 12:07:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:07:19 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-23 12:07:20 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:07:20 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-23 12:07:20 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-23 12:07:20 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-23 12:07:20 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-23 12:07:20 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-23 12:07:20 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-23 12:07:20 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-23 12:07:20 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-23 12:07:20 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-23 12:07:20 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-23 12:07:20 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:07:20 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:07:20 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-23 12:07:20 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-23 12:07:20 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:25:03 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:25:03 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 11:25:03 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 11:25:03 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:25:04 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 11:25:04 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:25:04 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 11:25:04 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:25:04 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 11:25:04 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 11:25:04 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 11:25:04 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 11:25:04 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 11:25:04 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 11:25:04 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 11:25:04 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 11:25:04 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:25:04 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:25:04 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:25:04 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:25:04 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:34:13 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:34:13 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 11:34:13 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 11:34:13 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:34:14 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 11:34:14 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:34:14 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 11:34:14 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:34:14 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 11:34:14 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 11:34:14 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 11:34:14 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 11:34:14 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 11:34:14 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 11:34:14 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 11:34:14 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 11:34:14 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:34:14 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:34:14 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:34:14 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:34:14 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:35:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:35:16 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-24 11:35:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:35:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-24 11:49:09 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:49:09 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 11:49:09 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 11:49:09 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:49:10 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 11:49:11 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:49:11 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 11:49:11 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:49:11 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 11:49:11 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 11:49:11 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 11:49:11 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 11:49:11 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 11:49:11 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 11:49:11 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 11:49:11 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 11:49:11 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:49:11 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:49:11 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:49:11 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:49:11 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:51:56 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:51:56 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 11:51:56 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 11:51:56 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:51:58 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 11:51:58 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:51:58 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 11:51:58 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:51:58 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 11:51:58 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 11:51:58 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 11:51:58 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 11:51:58 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 11:51:58 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 11:51:58 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 11:51:58 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 11:51:58 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:51:58 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:51:58 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:51:58 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:51:58 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:52:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:52:46 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-24 11:52:46 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:52:46 DEBUG Hooks:93 - DB Connection closed
+2017-05-24 11:58:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:58:48 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 11:58:48 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 11:58:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:58:49 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 11:58:50 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:58:50 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 11:58:50 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 11:58:50 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 11:58:50 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 11:58:50 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 11:58:50 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 11:58:50 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 11:58:50 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 11:58:50 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 11:58:50 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 11:58:50 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:58:50 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:58:50 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 11:58:50 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 11:58:50 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=26, CaseRatio=12, SKU=20001894, QtyTasked=312, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=23, CaseRatio=12, SKU=20001920, QtyTasked=276, PackConfig=20001920O01}}
+2017-05-24 11:59:51 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:59:51 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-24 11:59:51 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:59:51 DEBUG Hooks:93 - DB Connection closed
+2017-05-24 13:07:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 13:07:46 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 13:07:46 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 13:07:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 13:07:47 DEBUG Verification:19 - Order status - expected [Allocated] and actual [In Progress]
+2017-05-24 13:07:47 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 13:07:47 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120606]
+2017-05-24 13:07:47 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:45:53.0 Europe/London]
+2017-05-24 13:07:47 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 13:07:47 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 13:07:47 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 13:07:47 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 13:07:47 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 13:07:47 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-24 13:07:47 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 13:07:47 DEBUG Hooks:93 - DB Connection closed
+2017-05-24 13:30:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 13:30:22 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-24 13:30:22 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-24 13:30:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 13:30:23 DEBUG Verification:19 - Order status - expected [Allocated] and actual [Allocated]
+2017-05-24 13:30:23 DEBUG Verification:19 - Order date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-24 13:30:23 DEBUG Verification:19 - Created By - expected [Not Null] and actual [P9120368]
+2017-05-24 13:30:23 DEBUG Verification:19 - Creation date - expected [Not Null] and actual [2017-05-23 11:49:59.0 Europe/London]
+2017-05-24 13:30:23 DEBUG Verification:19 - Move task status - expected [Not Null] and actual [Released]
+2017-05-24 13:30:23 DEBUG Verification:19 - From site id - expected [Not Null] and actual [9771]
+2017-05-24 13:30:23 DEBUG Verification:19 - Type - expected [RDC] and actual [RDC]
+2017-05-24 13:30:23 DEBUG Verification:19 - Number of lines - expected [Not Null] and actual [2]
+2017-05-24 13:30:24 DEBUG Verification:19 - Customer - expected [Not Null] and actual [5173]
+2017-05-24 13:30:24 DEBUG Verification:19 - Name - expected [Not Null] and actual [GIST CUMBERNAULD]
+2017-05-24 13:30:24 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [WEST LENZIEMILL INDUSTRIAL EST]
+2017-05-24 13:30:24 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-24 13:30:24 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 13:30:24 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 13:30:24 DEBUG Verification:19 - Type - expected [CASE] and actual [CASE]
+2017-05-24 13:30:24 DEBUG Verification:19 - Case Ratio - expected [12] and actual [12]
+2017-05-24 13:30:24 DEBUG OrderLineMaintenanceStepDefs:93 - Map: {1={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001894, QtyTasked=24, PackConfig=20001894O01}, 2={TrackingLevel=CASE, AllocationGroup=NONEXPIRY, QtyOrdered=2, CaseRatio=12, SKU=20001920, QtyTasked=24, PackConfig=20001920O01}}
+2017-05-24 13:31:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 13:31:13 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-24 13:31:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 13:31:13 DEBUG Hooks:93 - DB Connection closed

@@ -7,27 +7,26 @@ import java.sql.Statement;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class SkuConfigDB {
+public class InventoryDB {
 	private Context context;
 	private Database database;
 
 	@Inject
-	public SkuConfigDB(Context context, Database database) {
+	public InventoryDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-
 	}
-	
-	public String getRatio1To2(String packConfig) throws SQLException, ClassNotFoundException {
-		String trackingLevel = null;
+
+	public String getExpDate(String skuId, String tagId, String location) throws SQLException, ClassNotFoundException {
+		String expDate = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select RATIO_1_TO_2 from SKU_CONFIG WHERE CONFIG_ID ='" + packConfig + "'");
+				"select EXPIRY_DSTAMP from INVENTORY where TAG_ID = '"+tagId+"' AND SKU_ID = '"+skuId+"' AND LOCATION_ID = '"+location+"' AND LOCK_STATUS = 'UnLocked'");
 		rs.next();
-		trackingLevel = (rs.getString(1));
-		return trackingLevel;
+		expDate = (rs.getString(1));
+		return expDate;
 	}
 }
