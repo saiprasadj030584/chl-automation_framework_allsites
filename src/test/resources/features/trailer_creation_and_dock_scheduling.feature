@@ -4,7 +4,7 @@ Feature: Dock booking for STO
   I want to create a trailer and link it to a dock door 
   So that I can despatch the order to the store or DCS
 
-  @wip01
+  @complete
     Scenario Outline: Create dock booking for STO
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the order "<OrderId>" should be "Ready to Load" status
