@@ -1,12 +1,11 @@
 package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderLineDB;
@@ -18,8 +17,8 @@ import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 import com.jda.wms.utils.Utilities;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
+import org.junit.Assert;
 
 public class OrderLineMaintenanceStepDefs {
 	private OrderLineDB orderLineDB;
@@ -29,15 +28,20 @@ public class OrderLineMaintenanceStepDefs {
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Map<Integer, Map<String, String>> stockTransferOrderMap;
+	private int qtyOrdered;
 
 	@Inject
-	public OrderLineMaintenanceStepDefs(Context context,OrderLineDB orderLineDB,SkuConfigDB skuConfigDB, Verification verification,OrderLineMaintenancePage orderLineMaintenancePage,SkuDB skuDB) {
-		this.orderLineDB = orderLineDB;
-		this.context = context;
-		this.skuConfigDB = skuConfigDB;
-		this.verification = verification;
-		this.skuDB = skuDB;
+	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
+			JDAHomeStepDefs jdaHomeStepDefs, JdaHomePage jdaHomePage, JDAFooter jdaFooter, Context context,
+			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
+			PackConfigMaintenancePage packConfigMaintenancePage, OrderLineDB orderLineDB, Verification verification,SkuDB skuDB) {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.context = context;
+		this.orderLineDB = orderLineDB;
+		this.verification = verification;
+		this.skuConfigDB = skuConfigDB;
+		this.skuDB = skuDB;
 	}
 
 	@When("^I select the SKU line$")
@@ -85,8 +89,8 @@ public class OrderLineMaintenanceStepDefs {
 			lineItemsMap.put("AllocationGroup", allocationGroup);
 
 			stockTransferOrderMap.put(i, lineItemsMap);
-
 			context.setstockTransferOrderMap(stockTransferOrderMap);
+			System.out.println(stockTransferOrderMap);
 
 		}
 		System.out.println("stockTransferOrderMap " + stockTransferOrderMap);
@@ -179,6 +183,32 @@ public class OrderLineMaintenanceStepDefs {
 		// Arrays.asList(failureList.toString()),
 		// failureList.isEmpty());
 		logger.debug("Map: " + stockTransferOrderMap.toString());
+	}
+
+	@Given("^the quantity tasked should be updated for each order lines$")
+
+	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
+		stockTransferOrderMap = context.getStockTransferOrderMap();
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String sku = stockTransferOrderMap.get(i).get("SKU");
+
+			verification.verifyData("Tracking level", "CASE", stockTransferOrderMap.get(i).get("TrackingLevel"),
+					failureList);
+			if (stockTransferOrderMap.get(i).get("QtyTasked") != null) {
+				verification.verifyData("Quantity Tasked",
+						String.valueOf(Integer.parseInt(stockTransferOrderMap.get(i).get("QtyOrdered"))
+								* Integer.parseInt(stockTransferOrderMap.get(i).get("CaseRatio"))),
+						String.valueOf(Integer.parseInt(stockTransferOrderMap.get(i).get("QtyTasked"))), failureList);
+			} else {
+				verification.verifyData("Back Ordered", "Y", orderLineDB.getBackOrdered(context.getOrderId(), sku),
+						failureList);
+
+				Assert.assertTrue("Order line Maintenance details are not as expected." + Arrays.asList(failureList.toString()),
+						failureList.isEmpty());
+			}
+		}
 	}
 
 }

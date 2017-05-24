@@ -23,7 +23,7 @@ public class CEConsignmentMaintenanceStepDefs {
 	private AddressMaintenanceStepDefs addressMaintenanceStepDefs;
 	private PopUpPage popUpPage;
 
-	private String euCountries = "AlbaniaAndorraArmeniaAustriaAzerbaijanBelarusBelgiumBosnia-HerzegovinaBulgariaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandItalyKazakhstanKosovoLatviaLiechtensteinLithuaniaLuxembourgMacedoniaMaltaMoldovaMonacoMontserratNetherlandsNorwayPolandPortugalRomaniaRussiaSan MarinoSerbiaSlovakiaSloveniaSpainSwedenSwitzerlandTurkeyUkraineVatican City State";
+	private String euCountries = "AlbaniaAndorraArmeniaAustriaAzerbaijanBelarusBelgiumBosnia-HerzegovinaBulgariaCroatiaCyprusCzech RepublicDenmarkEstoniaFinlandFranceGeorgiaGermanyGreeceHungaryIcelandIrelandItalyKazakhstanKosovoLatviaLiechtensteinLithuaniaLuxembourgMacedoniaMaltaMoldovaMonacoMontserratNetherlandsNorwayPolandPortugalRomaniaRussiaSouth AfricaSan MarinoSerbiaSlovakiaSloveniaSpainSwedenSwitzerlandTurkeyUkraineVatican City State";
 
 	@Inject
 	public CEConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage ceConsignmentMaintenancePage, Context context, JdaHomePage jdaHomePage, JDAFooter jdaFooter, AddressMaintenancePage addressMaintenancePage,AddressMaintenanceStepDefs addressMaintenanceStepDefs, PopUpPage popUpPage) {
@@ -48,12 +48,12 @@ public class CEConsignmentMaintenanceStepDefs {
 		else if (euCountries.contains(context.getCountry())){
 			ceConsignmentMaintenancePage.selectReceiptType("From EU");
 		}
-		
+		Thread.sleep(1000);
 		ceConsignmentMaintenancePage.selectCEStatus("Released");
 		ceConsignmentMaintenancePage.enterSiteID("9771");
 		ceConsignmentMaintenancePage.enterSupplier(context.getSupplierID());
 		ceConsignmentMaintenancePage.enterConsignerExciseNumber(context.getCeWarehouseTax());
-		String arcNo = "16ESD08200000"+Utilities.getEightDigitRAndomNumber();
+		String arcNo = "16ESD08200000"+Utilities.getEightDigitRandomNumber();
 		context.setConsignmentID(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADARC(arcNo);
 		ceConsignmentMaintenancePage.enterECMSEADDate();

@@ -80,7 +80,7 @@ Feature: Purchase order
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
-    And the sku should not have any inventory in that particular vintage
+    #And the sku should not have any inventory in that particular vintage
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment

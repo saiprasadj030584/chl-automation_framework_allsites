@@ -64,6 +64,15 @@ public class Context {
 	private String toLocation;
 	private String finalLocation;
 	private int qtytoMove;
+	private String shipDock;
+	private String newShipDock;
+	private String trailerNo;
+	private String bookingID;
+	private String orderStatus;
+	private String consignment;
+	private String orderID;
+	private int qtyOrdered;
+	
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -335,7 +344,6 @@ public class Context {
 
 	public void setPalletType(String palletType) {
 		this.palletType = palletType;
-
 	}
 
 	public String getLockCode() {
@@ -419,21 +427,6 @@ public class Context {
 		this.connection = connection;
 	}
 
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
-
-	public Map<Integer, Map<String, String>> getListIDMap() {
-		return listIDMap;
-	}
-
-	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
-		this.listIDMap = listIDMap;
-	}
 	public String getCustomer() {
 		return customer;
 	}
@@ -448,7 +441,30 @@ public class Context {
 
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
+	}
 
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public String getShipDock() {
+		return shipDock;
+	}
+
+	public void setShipDock(String shipDock) {
+		this.shipDock = shipDock;
+	}
+
+	public String getNewShipDock() {
+		return newShipDock;
+	}
+
+	public void setNewShipDock(String newShipDock) {
+		this.newShipDock = newShipDock;
 	}
 
 	public String getListID() {
@@ -489,5 +505,53 @@ public class Context {
 
 	public void setQtytoMove(int qtyToMove) {
 		this.qtytoMove = qtyToMove;
+	}
+	
+	public void setTrailerNo(String trailerNo) {
+		this.trailerNo = trailerNo;
+	}
+
+	public String getTrailerNo() {
+		return trailerNo;
+	}
+	
+	public void setBookingID(String bookingID) {
+		this.bookingID = bookingID;
+	}
+
+	public String getBookingID() {
+		return bookingID;
+	}
+	
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	
+	public void setSTOConsignment(String consignment) {
+		this.consignment = consignment;
+	}
+
+	public String getSTOConsignment() {
+		return consignment;
+	}
+	
+	public int getQtyOrdered() {
+		return qtyOrdered;
+	}
+
+	public void setQtyOrdered(int qtyOrdered) {
+		this.qtyOrdered = qtyOrdered;
+	}
+
+	public Map<Integer, Map<String, String>> getListIDMap() {
+		return listIDMap;
+	}
+
+	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
+		this.listIDMap = listIDMap;
 	}
 }

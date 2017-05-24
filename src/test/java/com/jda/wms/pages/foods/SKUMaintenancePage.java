@@ -248,8 +248,11 @@ public class SKUMaintenancePage {
 		Thread.sleep(2000);
 	}
 
+
+
 	public void invokeDataBase() throws ClassNotFoundException {
 		database.connect();
 		logger.debug(database.getABV("60070710"));
 	}
+
 }

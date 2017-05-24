@@ -26,6 +26,9 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
@@ -39,7 +42,8 @@ public class Database {
 	private Connection connection;
 	private Configuration configuration;
 	private Context context;
-	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+
 	@Inject
 	public Database(Configuration configuration,Context context) {
 		this.configuration = configuration;
@@ -67,11 +71,9 @@ public class Database {
 			connection.setAutoCommit(true);
 			context.setConnection(connection);
 			connectionSucessful = true;
+			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
-			// LogWriter.writeLogEntry("Something went wrong connecting to the
-			// database");
-			// LogWriter.writeLogEntry(ex.toString());
-			System.out.println("Exception "+ex.getMessage());
+			logger.debug("Exception "+ex.getMessage());
 		}
 	}
 

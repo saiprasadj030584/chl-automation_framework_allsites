@@ -5,7 +5,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -44,7 +43,6 @@ public class OrderLineDB {
 		rs.next();
 		qtyOrdered = (rs.getString(1));
 		return qtyOrdered;
-
 	}
 
 	public String getCaseRatio(String orderID, String skuID) throws SQLException, ClassNotFoundException {
@@ -58,7 +56,6 @@ public class OrderLineDB {
 		rs.next();
 		caseRatio = (rs.getString(1));
 		return caseRatio;
-
 	}
 
 	public String getQtyTasked(String orderID, String skuID) throws SQLException, ClassNotFoundException {
@@ -72,7 +69,6 @@ public class OrderLineDB {
 		rs.next();
 		qtytasked = rs.getString(1);
 		return qtytasked;
-
 	}
 
 	public String getBackOrdered(String orderID, String skuID) throws SQLException, ClassNotFoundException {
@@ -81,10 +77,11 @@ public class OrderLineDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select back_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
+		ResultSet rs = stmt.executeQuery(
+				"select back_ordered from ORDER_LINE WHERE order_id = '" + orderID + "' and sku_id = '" + skuID + "'");
 		rs.next();
-				backOrdered = (rs.getString(1));
-		return backOrdered;
+		return rs.getString(1);
+
 	}
 
 	public ArrayList<String> getsku(String orderId) throws SQLException, ClassNotFoundException {
@@ -115,4 +112,5 @@ public class OrderLineDB {
 		packConfig = (rs.getString(1));
 		return packConfig;
 	}
+		
 }

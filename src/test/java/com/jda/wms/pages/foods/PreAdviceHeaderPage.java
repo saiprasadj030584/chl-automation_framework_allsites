@@ -45,6 +45,15 @@ public class PreAdviceHeaderPage {
 			return false;
 		}
 	}
+	
+	public String getOrderType() throws FindFailed {
+		Match mOrderType = screen.find("images/PreAdviceHeader/Type.png");
+		screen.click(mOrderType.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 
 	public String getSupplier() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/Supplier.png");

@@ -18,12 +18,12 @@ public class Verification {
 			ArrayList<String> failureList) {
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
 
-		if (expectedResults.equals("Not Null")) {
+		if (expectedResults.equalsIgnoreCase("Not Null")) {
 			if (actualResults.equals(null)) {
 				failureList.add(fieldName + " does not match. Expected  [Not Null] but was [" + actualResults + "]");
 			}
 		} else {
-			if (!actualResults.contains(expectedResults)) {
+			if (!expectedResults.contains(actualResults)) {
 				failureList.add(fieldName + " does not match. Expected  [" + expectedResults + "] but was ["
 						+ actualResults + "]");
 			}

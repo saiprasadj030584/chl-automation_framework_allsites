@@ -123,7 +123,7 @@ public class StoreTrackingOrderPickingStepDefs {
 	public void i_enter_SKU_id_quantity_and_stock_details() throws Throwable {
 		int caseRatio = 0, qtyToPick = 0;
 		storeTrackingOrderPickingPage.enterSkuId(context.getSkuId());
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 		
 		String quantity = storeTrackingOrderPickingPage.getQuantity();
 		stockTransferOrderMap = context.getStockTransferOrderMap();
@@ -137,15 +137,15 @@ public class StoreTrackingOrderPickingStepDefs {
 		qtyToPick = context.getQtytoMove() / caseRatio;
 		Assert.assertEquals("Quantity to pick is not displayed as expected.", String.valueOf(qtyToPick)+"C", quantity);
 		
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 		Thread.sleep(1000);
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 		puttyFunctionsPage.pressEnter();
 		
 		String tagId = storeTrackingOrderPickingPage.getTagId();
 		context.setTagId(tagId);
 		
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
 		
@@ -173,9 +173,9 @@ public class StoreTrackingOrderPickingStepDefs {
 			storeTrackingOrderPickingPage.enterExpiryDate(expDate);
 		}
 		
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 		Thread.sleep(1000);
-		puttyFunctionsPage.navigateToNextPage();
+		puttyFunctionsPage.nextScreen();
 	}
 
 	@Then("^the to pallet, to location and destination should be displayed$")

@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 2017-04-27 12:02:32 DEBUG Hooks:30 - ###########################################################################################################################
 2017-04-27 12:02:32 DEBUG Hooks:32 - featureID: purchase-order;receiving-process-in-jda-wms;
 2017-04-27 12:02:32 DEBUG Hooks:33 - Start of Scenario: Receiving process in JDA WMS
@@ -5882,3 +5883,5 @@
 2017-05-24 13:31:13 DEBUG Hooks:84 - End of Scenario: STO for RDC
 2017-05-24 13:31:13 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-24 13:31:13 DEBUG Hooks:93 - DB Connection closed
+=======
+>>>>>>> 875fd49b526f289b4daa5e13fa7db06aee749a33
