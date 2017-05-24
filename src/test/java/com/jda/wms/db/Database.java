@@ -25,7 +25,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-import org.eclipse.jetty.util.log.Logger;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
@@ -37,12 +38,11 @@ import com.jda.wms.context.Context;
  * @author Tone Walters (tone_walters@yahoo.com)
  */
 public class Database {
-	private final Logger logger = (Logger) LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
 	private Configuration configuration;
 	private Context context;
-	
 
 	@Inject
 	public Database(Context context, Configuration configuration) {

@@ -57,6 +57,7 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String customer;
+	private String orderID;
 	private Connection connection = null;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
@@ -333,7 +334,6 @@ public class Context {
 
 	public void setPalletType(String palletType) {
 		this.palletType = palletType;
-
 	}
 
 	public String getLockCode() {
@@ -415,13 +415,12 @@ public class Context {
 
 	public void setQtyReverse(int qtyReverse) {
 		this.qtyReverse = qtyReverse;
-
 	}
-
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
+
 	public String getOrderId() {
 		return orderId;
 	}
@@ -465,5 +464,4 @@ public class Context {
 	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
 		this.listIDMap = listIDMap;
 	}
-
 }
