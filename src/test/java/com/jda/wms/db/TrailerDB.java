@@ -19,16 +19,13 @@ public class TrailerDB {
 	}
 
 	public String getTrailerDetails(String trailerID) throws SQLException, ClassNotFoundException {
-		String result = "";
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select TRAILER_TYPE from trailer where trailer_id = '" + trailerID + "'");
-
 		rs.next();
-		result = rs.getString(1);
-		return result;
+		return rs.getString(1);
 	}
 }

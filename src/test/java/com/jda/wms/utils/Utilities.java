@@ -13,7 +13,7 @@ public class Utilities {
 		return String.valueOf(r.nextInt(9000000) + 1000000000);
 	}
 
-	public static String getEightDigitRAndomNumber() {
+	public static String getEightDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000000) + 10000000);
 	}

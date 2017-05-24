@@ -36,7 +36,7 @@ public class DockSchedulerStepDefs {
 
 	@When("^I create new dock booking$")
 	public void i_create_new_dock_booking() throws Throwable {
-		jdaHomePage.navigateToTrailerMaintanencePage();
+		jdaHomePage.navigateToDockSchedulerPage();
 		dockSchedulerPage.selectCreateNewBooking();
 		dockSchedulerPage.enterSiteID();
 		jdaFooter.clickNextButton();
@@ -56,7 +56,7 @@ public class DockSchedulerStepDefs {
 		if (dockSchedulerPage.isSlotExists()) {
 			dockSchedulerPage.selectSlot();
 		} else {
-			dockSchedulerPage.scroll();
+			jdaHomePage.scrollDown();
 			dockSchedulerPage.selectSlot();
 		}
 		jdaFooter.clickNextButton();
@@ -66,13 +66,19 @@ public class DockSchedulerStepDefs {
 	public void i_enter_booking_details() throws Throwable {
 		String bookingID = Utilities.getFiveDigitRandomNumber();
 		context.setBookingID(bookingID);
+		
 		dockSchedulerPage.enterBookingId(bookingID);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		
 		dockSchedulerPage.enterTrailerType();
+		screen.type(Key.TAB);
 		dockSchedulerPage.enterTrailerNo(context.getTrailerNo());
+		screen.type(Key.TAB);
 		dockSchedulerPage.enterEstimatedPallets();
+		screen.type(Key.TAB);
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
 	}
@@ -81,10 +87,10 @@ public class DockSchedulerStepDefs {
 	public void the_booking_details_should_be_appeared_in_the_dock_scheduler_booking() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerBookingsPage();
 		jdaFooter.clickQueryButton();
+		
 		dockSchedulerBookingsPage.enterBookingID(context.getBookingID());
 		jdaFooter.clickExecuteButton();
-		String expectedTrailerNo = context.getTrailerNo();
-		String actualTrailerNo = dockSchedulerBookingsPage.getTrailerNo();
-		Assert.assertEquals("Trailer number is not as expected, Expected ["+ expectedTrailerNo +"] but was ["+ actualTrailerNo,expectedTrailerNo, actualTrailerNo);
+		
+		Assert.assertEquals("Trailer number is not as expected.",context.getTrailerNo(), dockSchedulerBookingsPage.getTrailerNo());
 	}
 }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -24,13 +27,15 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Context context;
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
+	private OrderHeaderDB orderHeaderDB;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage) {
+			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderDB orderHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -38,6 +43,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.orderHeaderDB = orderHeaderDB;
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -144,4 +150,16 @@ public class OrderHeaderMaintenanceStepDefs {
 				orderHeaderMaintenancePage.getShipDock());
 	}
 
+	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
+		context.setOrderId(orderID);
+		String dbOrderStatus = orderHeaderDB.getOrderStatus(orderID);
+		logger.debug("Order ID : " + orderID);
+		logger.debug("Order status from DB : " + dbOrderStatus);
+
+		Assert.assertEquals("Order status is not as expected to proceed vehicle load",dbOrderStatus,orderStatus);  {
+
+			// TODO call picking steps here as precondition
+		}
+	}
 }

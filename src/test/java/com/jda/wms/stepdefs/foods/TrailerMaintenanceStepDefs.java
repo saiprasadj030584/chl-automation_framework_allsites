@@ -23,7 +23,7 @@ public class TrailerMaintenanceStepDefs {
 
 	@Inject
 	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage, JdaHomePage jdaHomePage,
-			JDAFooter jdaFooter,Context context, TrailerDB trailerDB) {
+			JDAFooter jdaFooter, Context context, TrailerDB trailerDB) {
 		this.trailerMaintenancePage = trailerMaintenancePage;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
@@ -35,6 +35,7 @@ public class TrailerMaintenanceStepDefs {
 	public void i_create_a_trailer_in_trailer_Maintenance_page() throws Throwable {
 		jdaHomePage.navigateToTrailerMaintanencePage();
 		jdaFooter.clickAddButton();
+		
 		String trailerNo = Utilities.getFiveDigitRandomNumber();
 		trailerMaintenancePage.enterTrailerNo(trailerNo);
 		trailerMaintenancePage.enterTrailerType();
@@ -42,9 +43,10 @@ public class TrailerMaintenanceStepDefs {
 		jdaFooter.PressEnter();
 		context.setTrailerNo(trailerNo);
 	}
-	
+
 	@Then("^the trailer should be created$")
 	public void the_trailer_should_be_created() throws Throwable {
-		Assert.assertEquals("Trailer details are not as expected","TRAILER",trailerDB.getTrailerDetails(context.getTrailerNo()));
+		Assert.assertEquals("Trailer details are not as expected", "TRAILER",
+				trailerDB.getTrailerDetails(context.getTrailerNo()));
 	}
 }

@@ -5,9 +5,9 @@ Feature: Dock booking for STO
   So that I can despatch the order to the store or DCS
 
   @wip01
-    Scenario: Create dock booking for STO
-    #Given I have logged in as warehouse user in JDA dispatcher food application
-    #And the order "<93482394823>" should be in "Ready to Load" status
+    Scenario Outline: Create dock booking for STO
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And the order "<OrderId>" should be "Ready to Load" status
 
     When I create a trailer in trailer Maintenance page
     Then the trailer should be created
@@ -18,3 +18,8 @@ Feature: Dock booking for STO
     And I enter booking details
     And I proceed to complete the process
     Then the booking details should be appeared in the dock scheduler booking
+    
+    Examples: 
+      |   OrderId   | 
+      |  6666164804 | 
+    

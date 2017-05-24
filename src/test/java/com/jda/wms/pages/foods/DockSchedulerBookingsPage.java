@@ -28,5 +28,4 @@ public class DockSchedulerBookingsPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
 }
