@@ -19,7 +19,7 @@ public class SKUMaintenancePage {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public SKUMaintenancePage(JDAFooter jDAFooter,  Configuration configuration) {
+	public SKUMaintenancePage(JDAFooter jDAFooter, Configuration configuration) {
 		this.jDAFooter = jDAFooter;
 		this.configuration = configuration;
 	}
@@ -244,12 +244,5 @@ public class SKUMaintenancePage {
 		screen.click("images/SKUMaintenanceTable/Settings1.png");
 		Thread.sleep(2000);
 	}
-
-
-
-//	public void invokeDataBase() throws ClassNotFoundException {
-//		database.connect();
-//		logger.debug(database.getABV("60070710"));
-//	}
 
 }
