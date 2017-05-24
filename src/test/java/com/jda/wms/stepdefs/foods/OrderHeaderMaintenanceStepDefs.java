@@ -42,7 +42,6 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
-
 		this.orderHeaderMaintenanceDB = orderHeaderMaintenanceDB;
 
 	}
@@ -146,16 +145,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_be_in_status(String status) throws Throwable {
 		String orderStatus = orderHeaderMaintenanceDB.getOrderStatus(context.getOrderId());
 		Assert.assertEquals("status is not as expected", "Allocated", orderStatus);
-	}
-
-	@Then("^the ship dock should be updated for an order$")
-	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
-		jdaFooter.clickQueryButton();
-		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
-		jdaFooter.clickExecuteButton();
-		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
-				orderHeaderMaintenancePage.getShipDock());
-
 	}
 
 }

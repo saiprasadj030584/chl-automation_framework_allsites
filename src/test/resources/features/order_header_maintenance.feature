@@ -12,6 +12,7 @@ Feature: Receive STO order
     And the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each line items
     And the order should be in "Allocated" status
     And the quantity tasked should be updated for each order lines
+    Then the order receipt should be generated in the inventory	for note "Complete --> Shipped"
 
   @complete
   Scenario: Load the STO order details
