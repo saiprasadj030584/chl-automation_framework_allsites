@@ -49,4 +49,16 @@ public class ShipDockReassignmentStepDefs {
 		shipDockReassignmentPage.enterNewShipDockName(shipDockName);
 		jdaFooter.clickDoneButton();
 	}
+
+	@Then("^the ship dock should be updated for an order$")
+	public void the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+		jdaHomeStepDefs.i_navigate_to_order_header();
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickExecuteButton();
+		Assert.assertEquals("Ship Dock is not displayed as expected", context.getNewShipDock(),
+				orderHeaderMaintenancePage.getShipDock());
+	}
+
+
 }

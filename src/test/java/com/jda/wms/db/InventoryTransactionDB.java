@@ -9,12 +9,6 @@ import java.util.ArrayList;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-//import java.sql.ResultSet;
-//import java.sql.ResultSetMetaData;
-//import java.sql.SQLException;
-//import java.sql.Statement;
-//import java.util.ArrayList;
-
 public class InventoryTransactionDB {
 	private Context context;
 	private Database database;

@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.MoveTaskDB;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -25,32 +27,31 @@ public class MoveTaskStepDefs {
 	}
 
 	// FIXME to update after merging with Kiruthika's code
-	/*
-	 * @Given(
-	 * "^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details$"
-	 * ) public void
-	 * the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details
-	 * (String orderID) throws Throwable { Map<Integer, Map<String, String>>
-	 * listIDMap = new HashMap<Integer, Map<String, String>>();
-	 * ArrayList<String> listID = new ArrayList<String>(); ArrayList<String>
-	 * qtyToMove = new ArrayList<String>(); ArrayList<String> toPalletID = new
-	 * ArrayList<String>(); ArrayList<String> toContainerID = new
-	 * ArrayList<String>();
-	 * 
-	 * context.setOrderId(orderID); listID = moveTaskDB.getListId(orderID);
-	 * qtyToMove = moveTaskDB.getQtyToMove(orderID); toPalletID =
-	 * moveTaskDB.getToPalletID(orderID); toContainerID =
-	 * moveTaskDB.getToContainerID(orderID);
-	 * 
-	 * for (int i = 0; i < listID.size(); i++) { Map<String, String>
-	 * listDetailsMap = new HashMap<String, String>();
-	 * listDetailsMap.put("ListID", listID.get(i));
-	 * listDetailsMap.put("QtyToMove", qtyToMove.get(i));
-	 * listDetailsMap.put("ToPalletID", toPalletID.get(i));
-	 * listDetailsMap.put("ToContainerID", toContainerID.get(i));
-	 * listIDMap.put(i + 1, listDetailsMap); } context.setListIDMap(listIDMap);
-	 * System.out.println(context.getListIDMap()); }
-	 */
+	/*@Given("^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details$")
+	public void the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details(String orderID)
+			throws Throwable {
+		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
+		ArrayList<String> listID = new ArrayList<String>();
+		ArrayList<String> qtyToMove = new ArrayList<String>();
+		ArrayList<String> toPalletID = new ArrayList<String>();
+		ArrayList<String> toContainerID = new ArrayList<String>();
+		context.setOrderId(orderID);
+		listID = moveTaskDB.getListId(orderID);
+		qtyToMove = moveTaskDB.getQtyToMove(orderID);
+		toPalletID = moveTaskDB.getToPalletID(orderID);
+		toContainerID = moveTaskDB.getToContainerID(orderID);
+
+		for (int i = 0; i < listID.size(); i++) {
+			Map<String, String> listDetailsMap = new HashMap<String, String>();
+			listDetailsMap.put("ListID", listID.get(i));
+			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
+			listDetailsMap.put("ToPalletID", toPalletID.get(i));
+			listDetailsMap.put("ToContainerID", toContainerID.get(i));
+			listIDMap.put(i + 1, listDetailsMap);
+		}
+		context.setListIDMap(listIDMap);
+		System.out.println(context.getListIDMap());
+	}*/
 
 	@When("^I get the pallet ids from the move task$")
 	public void i_get_the_pallet_ids_from_the_move_task() throws Throwable {

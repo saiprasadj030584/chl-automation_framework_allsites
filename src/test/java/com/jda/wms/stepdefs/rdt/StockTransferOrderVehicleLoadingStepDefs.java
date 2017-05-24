@@ -118,5 +118,4 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 		logger.debug("No of ITL records for Vehicle Load : " + itlPalletID.size());
 		logger.debug("Move task Record Count" + context.getMoveTaskRecordCount());
 	}
-
 }
