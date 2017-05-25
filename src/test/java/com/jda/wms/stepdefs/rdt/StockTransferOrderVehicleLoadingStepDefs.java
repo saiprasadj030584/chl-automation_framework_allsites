@@ -91,11 +91,13 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 		for (int i = 0; i < palletIDList.size(); i++) {
 			stockTransferOrderVehicleLoadingPage.enterPalletID(palletIDList.get(i));
 			Thread.sleep(2000);
+
 			if (i < 1) {
 				stockTransferOrderVehicleLoadingPage.enterTrailer(trailer);
 				Thread.sleep(3000);
 				puttyFunctionsPage.pressEnter();
 			}
+
 			puttyFunctionsPage.pressEnter();
 			Thread.sleep(2000);
 		}
@@ -104,19 +106,14 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 
 	@Then("^the vehicle loading should be completed$")
 	public void the_vehicle_loading_should_be_completed() throws Throwable {
+		logger.debug(" Vehicle Loading Completed");
 		Assert.assertTrue("Vehicle loading not completed as expected ",
 				stockTransferOrderVehicleLoadingPage.isVehicleLoadComplete());
-		logger.debug(" Vehicle Loading Completed");
 	}
 
 	@Then("^the inventory transaction should be generated for vehicle load$")
 	public void the_inventory_transaction_should_be_generated_for_vehicle_load() throws Throwable {
-		ArrayList<String> itlPalletID = new ArrayList<String>();
-		itlPalletID = inventoryTransactionDB.getVehicleLoadITLRecords();
 		Assert.assertEquals("Vehicle Load ITLs generated not as expected ", context.getMoveTaskRecordCount(),
-				itlPalletID.size());
-		logger.debug("No of ITL records for Vehicle Load : " + itlPalletID.size());
-		logger.debug("Move task Record Count" + context.getMoveTaskRecordCount());
+				inventoryTransactionDB.getVehicleLoadITLRecords().size());
 	}
-
 }

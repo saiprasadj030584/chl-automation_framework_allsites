@@ -50,5 +50,4 @@ public class PuttyFunctionsStepDefs {
 	public void i_login_as_warehouse_user_in_putty() throws Throwable {
 		i_have_logged_in_as_warehouse_user_in_putty();
 	}
-
 }

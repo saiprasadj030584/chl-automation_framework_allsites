@@ -55,26 +55,24 @@ public class MoveTaskStepDefs {
 	@When("^I get the pallet ids from the move task$")
 	public void i_get_the_pallet_ids_from_the_move_task() throws Throwable {
 		ArrayList<String> palletIDList = new ArrayList<String>();
-		Integer moveTaskRecCount = moveTaskDB.getRecordCountByTaskID(context.getOrderId());
-		context.setMoveTaskRecordCount(moveTaskRecCount);
+		Integer moveTaskRecordCount = moveTaskDB.getRecordCountByTaskID(context.getOrderId());
+		context.setMoveTaskRecordCount(moveTaskRecordCount);
 
 		palletIDList = moveTaskDB.getPalletIdList(context.getOrderId());
 		context.setPalletIDList(palletIDList);
-		logger.debug(" No of Pallets to load : " + palletIDList.size());
-		logger.debug(" Move task Rec Count before loading : " + moveTaskRecCount);
+		logger.debug("No of Pallets to load : " + palletIDList.size());
+		logger.debug("Move task Rec Count before loading : " + moveTaskRecordCount);
 	}
 
 	@Then("^the pallet id should be displayed$")
 	public void the_pallet_id_should_be_displayed() throws Throwable {
-		Assert.assertNotNull("No Pallet IDs were retrieved ", context.getPalletIDList());
+		Assert.assertNotNull("No Pallet IDs were retrieved from DB", context.getPalletIDList());
 	}
 
 	@Then("^no record should exist for the Order ID$")
 	public void no_record_should_exist_for_the_Order_ID() throws Throwable {
 		Assert.assertEquals("Result is not as expected. ", "0",
 				moveTaskDB.getRecordCountByTaskID(context.getOrderId()));
-		logger.debug(
-				"Move Task rec count after vehicle load: " + moveTaskDB.getRecordCountByTaskID(context.getOrderId()));
 	}
 
 }

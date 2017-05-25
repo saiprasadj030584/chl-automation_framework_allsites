@@ -22,6 +22,7 @@ public class OrderHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderID + "'");
 		rs.next();

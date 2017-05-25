@@ -88,21 +88,22 @@ public class MoveTaskDB {
 	}
 
 	public ArrayList<String> getPalletIdList(String orderID) throws SQLException, ClassNotFoundException {
-		ArrayList<String> palletId = new ArrayList<String>();
+		ArrayList<String> palletIdList = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UNIQUE PALLET_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		while (rs.next()) {
 			for (int j = 1; j <= columns; j++) {
-				palletId.add((rs.getString(j)));
+				palletIdList.add((rs.getString(j)));
 				context.setMoveTaskRecordCount(j);
 			}
 		}
-		return palletId;
+		return palletIdList;
 	}
 
 	public Integer getRecordCountByTaskID(String taskID) throws SQLException, ClassNotFoundException {
@@ -114,5 +115,4 @@ public class MoveTaskDB {
 		ResultSet rs = stmt.executeQuery("select count(*) from MOVE_TASK where TASK_ID = '" + taskID + "'");
 		return Integer.parseInt(rs.getString(1));
 	}
-
 }

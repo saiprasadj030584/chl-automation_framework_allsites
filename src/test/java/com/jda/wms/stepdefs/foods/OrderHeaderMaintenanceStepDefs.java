@@ -162,11 +162,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	// TODO - check and update this
 	@Then("^the order status should be \"([^\"]*)\" in order header$")
 	public void the_order_status_should_be_in_order_header(String orderStatus) throws Throwable {
-		String dbOrderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
-		logger.debug("Order ID : " + context.getOrderId());
-		logger.debug("Order status from DB after vehicle Load : " + dbOrderStatus);
-		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, dbOrderStatus);
-		logger.debug(" Order Status Complete Verified");
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus,
+				orderHeaderDB.getOrderStatus(context.getOrderId()));
 	}
 
 	// TODO to remove after dry run
@@ -184,21 +181,15 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
 	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
-		String dbOrderStatus = orderHeaderDB.getOrderStatus(orderID);
+		String actualOrderStatus = orderHeaderDB.getOrderStatus(orderID);
 		context.setOrderId(orderID);
-		context.setOrderStatus(dbOrderStatus);
+		context.setOrderStatus(actualOrderStatus);
 		logger.debug("Order ID : " + orderID);
-		logger.debug("Order status from DB : " + dbOrderStatus);
+		logger.debug("Order status from DB : " + actualOrderStatus);
 
-		if (dbOrderStatus == orderStatus) {
+		// user AssertEquals
+		if (actualOrderStatus == actualOrderStatus) {
 			logger.debug("Expected Order status to proceed vehicle load");
-		} else if (dbOrderStatus == "Picked") {
-			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
-		} else if (dbOrderStatus == "Allocated") {
-			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
-		} else if (dbOrderStatus == "Released") {
-			logger.debug("Order Status : " + dbOrderStatus + " not as expected");
 		}
 	}
-
 }
