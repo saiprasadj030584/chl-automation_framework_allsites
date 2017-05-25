@@ -321,6 +321,8 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_navigate_to_user_defined_tab() throws Throwable {
 		inventoryTransactionQueryPage.navigateToUserDefinedTab();
 	}
+	
+	//TODO to be removed
 
 	/*
 	 * @Then("^the ABV should be displayed$") public void
@@ -420,8 +422,8 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.clickSettings2Tab();
 	}
 
-	@Then("^the URN child should be displayed$")
-	public void the_URN_child_should_be_displayed() throws Throwable {
+	@Then("^the URN child should be updated with tag id$") 
+	public void the_URN_child_should_be_update_with_tag_id() throws Throwable {
 		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
 				inventoryTransactionQueryPage.getURNChild());
 		logger.debug("URN Child: " + inventoryTransactionQueryPage.getURNChild());
@@ -479,6 +481,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query user defined details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
+	
+	//TODO to be removed
 
 	/*
 	 * @Then(
@@ -797,7 +801,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-
+	
+	//TODO to be removed
 	/*
 	 * @Then(
 	 * "^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$"
@@ -978,7 +983,7 @@ public class InventoryTransactionQueryStepDefs {
 
 				the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
 				i_navigate_to_settings_2_tab_in_the_user_defined_tab();
-				the_URN_child_should_be_displayed();
+				the_URN_child_should_be_update_with_tag_id();
 				inventoryTransactionQueryPage.clickUserDefinedSettings1Tab();
 				inventoryTransactionQueryPage.clickGeneralTab();
 			}

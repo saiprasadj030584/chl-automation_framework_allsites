@@ -18,7 +18,7 @@ public class MoveTaskUpdateDB {
 		this.database = database;
 	}
 
-	public void updateTagIdAsReleaseStatus(String tagId) throws SQLException, ClassNotFoundException {
+	public void releaseTagId(String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

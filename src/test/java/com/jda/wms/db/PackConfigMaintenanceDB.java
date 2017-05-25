@@ -19,7 +19,6 @@ public class PackConfigMaintenanceDB {
 	}
 	
 	public String getRatio1To2(String packConfig) throws SQLException, ClassNotFoundException {
-		String result = "";
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -27,12 +26,10 @@ public class PackConfigMaintenanceDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select RATIO_1_TO_2 from sku_config where config_id = '" + packConfig + "'");
 		rs.next();
-		result = rs.getString(1);
-		return result;
+		return rs.getString(1);
 	}
 	
 	public String getRatio2To3(String packConfig) throws SQLException, ClassNotFoundException {
-		String result = "";
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -40,8 +37,7 @@ public class PackConfigMaintenanceDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select RATIO_2_TO_3 from sku_config where config_id = '" + packConfig + "'");
 		rs.next();
-		result = rs.getString(1);
-		return result;
+		return rs.getString(1);
 	}
 
 }

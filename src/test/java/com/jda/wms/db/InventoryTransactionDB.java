@@ -62,9 +62,9 @@ public class InventoryTransactionDB {
 		inventoryTransactionMap.put("Pallet Type", resultSet.getString(11));
 		inventoryTransactionMap.put("Pack Config", resultSet.getString(12));
 		inventoryTransactionMap.put("Sku Id", resultSet.getString(13));
-		
+
 		inventoryTransactionMap.put("Uploaded Status", resultSet.getString(14));
-		inventoryTransactionMap.put("Uploaded File Name", resultSet.getString(15)); 
+		inventoryTransactionMap.put("Uploaded File Name", resultSet.getString(15));
 		inventoryTransactionMap.put("Uploaded Date", resultSet.getString(16));
 		inventoryTransactionMap.put("Uploaded Time", resultSet.getString(17));
 
@@ -81,18 +81,14 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		resultSet = stmt.executeQuery(this.getInventoryrTransactionUrn(tagId, code));
+		resultSet = stmt.executeQuery("Select  tag_id,user_def_note_2 from inventory_transaction    where tag_id = '"
+				+ tagId + "' and A.code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Tag Id", resultSet.getString(1));
 		inventoryTransactionMap.put("URN Child", resultSet.getString(2));
 
 		return inventoryTransactionMap;
-	}
-
-	private String getInventoryrTransactionUrn(String tagId, String code) {
-		return "Select  tag_id,user_def_note_2 from inventory_transaction    where tag_id = '" + tagId
-				+ "' and A.code = '" + code + "'";
 	}
 
 	public HashMap<String, String> getInventoryTransactionCEUDDetails(String tagId, String code)
@@ -105,7 +101,9 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		resultSet = stmt.executeQuery(this.getInventoryrTransactionCEUD(tagId, code));
+		resultSet = stmt.executeQuery(
+				"Select ce_originator, ce_originator_reference, ce_consignment_id, ce_document_dstamp,ce_orig_rotation_id, ce_rotation_id, ce_receipt_type, ce_under_bond,user_def_num_3, user_def_type_7,user_def_type_3,user_def_type_5,user_def_type_6,user_def_date_1  from inventory_transaction  where tag_id = '"
+						+ tagId + "' and A.code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Originator", resultSet.getString(1));
@@ -128,10 +126,4 @@ public class InventoryTransactionDB {
 
 		return inventoryTransactionMap;
 	}
-
-	private String getInventoryrTransactionCEUD(String tagId, String code) {
-		return "Select ce_originator, ce_originator_reference, ce_consignment_id, ce_document_dstamp,ce_orig_rotation_id, ce_rotation_id, ce_receipt_type, ce_under_bond,user_def_num_3, user_def_type_7,user_def_type_3,user_def_type_5,user_def_type_6,user_def_date_1  from inventory_transaction  where tag_id = '"
-				+ tagId + "' and A.code = '" + code + "'";
-	}
-
 }

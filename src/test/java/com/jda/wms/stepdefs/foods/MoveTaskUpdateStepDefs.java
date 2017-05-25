@@ -49,7 +49,7 @@ public class MoveTaskUpdateStepDefs {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 
 			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
-				moveTaskUpdateDB.updateTagIdAsReleaseStatus(tagIDMap.get(sku).get(t));
+				moveTaskUpdateDB.releaseTagId(tagIDMap.get(sku).get(t));
 			}
 		} 
 	}

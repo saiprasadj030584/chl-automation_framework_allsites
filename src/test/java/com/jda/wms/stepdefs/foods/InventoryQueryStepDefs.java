@@ -214,7 +214,9 @@ public class InventoryQueryStepDefs {
 			}
 		}
 
-		// FIXME add assertion for failureList
+		Assert.assertTrue(
+				"Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 
 	@Given("^I have SKU id, product group and ABV for the tag id \"([^\"]*)\"$")
@@ -304,8 +306,7 @@ public class InventoryQueryStepDefs {
 				context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
 
 				the_inventory_query_details_should_be_checked_in_inventory_table();
-				// the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
-				// the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+				
 			}
 		}
 	}

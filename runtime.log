@@ -1294,3 +1294,49 @@
 2017-05-24 13:46:27 DEBUG Hooks:84 - End of Scenario: Load the STO order details
 2017-05-24 13:46:27 DEBUG Hooks:85 - ###########################################################################################################################
 >>>>>>> 2bc3120f04acc7e50e13f8c235ce22082204d6cc
+2017-05-25 09:48:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:48:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:48:14 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:48:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:48:15 DEBUG Database:61 - Connection successfull
+2017-05-25 09:48:16 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:48:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:48:16 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:48:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:48:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:52:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:52:47 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:52:47 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:52:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:52:49 DEBUG Database:61 - Connection successfull
+2017-05-25 09:52:49 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:52:51 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:52:53 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:53:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:53:18 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:53:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:53:18 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:53:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:53:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:53:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:53:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:53:33 DEBUG Database:61 - Connection successfull
+2017-05-25 09:53:34 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:53:36 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:53:38 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:54:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:54:03 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:54:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:54:03 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:54:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:54:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:54:30 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:54:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:54:31 DEBUG Database:61 - Connection successfull
+2017-05-25 09:54:31 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:54:33 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:54:35 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:55:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:55:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:55:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:55:07 DEBUG Hooks:93 - DB Connection closed

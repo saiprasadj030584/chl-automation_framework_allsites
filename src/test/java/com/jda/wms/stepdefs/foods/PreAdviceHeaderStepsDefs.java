@@ -312,13 +312,15 @@ public class PreAdviceHeaderStepsDefs {
 		context.setNoOfLines(numberOfLines);
 	}
 	
-	@Then("^the status should be displayed as \"([^\"]*)\"$")
+	//TODO to be removed 
+	
+	/*@Then("^the status should be displayed as \"([^\"]*)\"$")
 	public void the_status_should_be_displayed_as (String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
-	}
+	}*/
 	
-	@Then("^the status should be checked as \"([^\"]*)\"$")
-	public void the_status_should_be_displayed_as_in_pre_advice_header_table(String status) throws Throwable {
+	@Then("^the status should be diaplayed as \"([^\"]*)\"$")
+	public void the_status_should_be_displayed(String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}
 }

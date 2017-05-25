@@ -4,7 +4,7 @@ Feature: Putaway for purchase order
   I want to putaway the articles 
   So that I can complete the purchase order
 
-  @complete3
+  @complete
   Scenario Outline: Normal putaway for PO
     Given the pre advice id "<preAdviceId>" should be received with "<Category>", "<Status>", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -17,7 +17,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Category | Status   | Location |
-      |  8050003145 | Ambient  | Released | REC002   |
+      |  8050003545 | Ambient  | Released | REC002   |
       #|  7150010138 | BWS-Bonded      | Released | REC002   |
       #|  0072000009 | BWS-Non-Bonded  | Released | REC002   |
       #|  8150010139 | BWS-New Vintage | Released | REC002   |
