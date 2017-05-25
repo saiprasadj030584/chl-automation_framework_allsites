@@ -179,4 +179,21 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(destination);
 		Thread.sleep(2000);
 	}
+
+	public boolean isContainerIDDisplayed() {
+		if ((screen.exists("images/Putty/Picking/ContainerIDScreen.png") != null))
+			return true;
+		else
+			return false;
+	}
+
+	public void enterContainerID(String containerId) throws InterruptedException {
+		screen.type(containerId);
+		Thread.sleep(2000);
+	}
+
+	public void enterCheckStrings(String chkStrings) throws InterruptedException {
+		screen.type(chkStrings);
+		Thread.sleep(2000);
+	}
 }

@@ -8,6 +8,7 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.InventoryDB;
+import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.pages.rdt.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.DateUtils;
@@ -25,14 +26,16 @@ public class StoreTrackingOrderPickingStepDefs {
 	private Map<Integer, Map<String, String>> listIDMap;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private Context context;
+	private LocationDB locationDB;
 
 	@Inject
 	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
-			Context context,InventoryDB inventoryDB,PuttyFunctionsPage puttyFunctionsPage) {
+			Context context,InventoryDB inventoryDB,PuttyFunctionsPage puttyFunctionsPage, LocationDB locationDB) {
 		this.storeTrackingOrderPickingPage = storeTrackingOrderPickingPage;
 		this.context = context;
 		this.inventoryDB = inventoryDB;
 		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.locationDB = locationDB;
 	}
 
 	@Given("^I select picking with container pick$")
@@ -81,6 +84,7 @@ public class StoreTrackingOrderPickingStepDefs {
 					context.setToLocation((listIDMap.get(j).get("ToLocation")));
 					context.setFinalLocation((listIDMap.get(j).get("FinalLocation")));
 					context.setQtytoMove(Integer.parseInt(listIDMap.get(j).get("QtyToMove")));
+					context.setContainerId(listIDMap.get(j).get("ToContainerID"));
 				}
 			}
 			the_location_should_be_displayed();
@@ -90,6 +94,8 @@ public class StoreTrackingOrderPickingStepDefs {
 			context.setListIDMap(listIDMap);
 			
 			the_to_pallet_to_location_and_destination_should_be_displayed();
+			Assert.assertTrue("Container ID entry page is not displayed as expected",storeTrackingOrderPickingPage.isContainerIDDisplayed());
+			i_enter_container_id_and_check_strings();
 			
 			if (!storeTrackingOrderPickingPage.isPickEntryDisplayed()){
 				failureList.add("Picking not completed and Home page not displayed for List ID "+context.getListID());
@@ -106,6 +112,17 @@ public class StoreTrackingOrderPickingStepDefs {
 	public void the_list_id_should_be_displayed() throws Throwable {
 		String listId = storeTrackingOrderPickingPage.getListIDDisplayed();
 		Assert.assertEquals("List ID in trolley Pick info is not displayed as expected.", context.getListID(),listId);
+	}
+	
+	@When("^I enter container id and check strings$")
+	public void i_enter_container_id_and_check_strings() throws Throwable {
+		storeTrackingOrderPickingPage.enterContainerID(context.getContainerId());
+		storeTrackingOrderPickingPage.pressEnter();
+		storeTrackingOrderPickingPage.pressEnter();
+		
+		String chkStrings = locationDB.getCheckString(context.getToLocation());
+		storeTrackingOrderPickingPage.enterCheckStrings(chkStrings);
+		storeTrackingOrderPickingPage.pressEnter();
 	}
 	
 	@When("^I enter task id and list id$")

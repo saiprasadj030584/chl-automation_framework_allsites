@@ -72,7 +72,7 @@ public class Context {
 	private String consignment;
 	private int qtyOrdered;
 	private int pickedRecords;
-	
+	private String containerId;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -585,5 +585,13 @@ public class Context {
 
 	public void setPickedRecords(int pickedRecords) {
 		this.pickedRecords = pickedRecords;
+	}
+
+	public String getContainerId() {
+		return containerId;
+	}
+
+	public void setContainerId(String containerId) {
+		this.containerId = containerId;
 	}
 }
