@@ -6,7 +6,7 @@ Feature: Store Tracking order
 
   @sto_picking_rdc
   Scenario Outline: STO for RDC
-    Given the STO "<OrderId>" should be "Allocated" status, "RDC" type, order details in the order header table
+    Given the STO "<OrderId>" should be "Released" status, "RDC" type, order details in the order header table
     And the order should have delivery details
     And the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each line items from order line table
     And the order should be in "Allocated" status
