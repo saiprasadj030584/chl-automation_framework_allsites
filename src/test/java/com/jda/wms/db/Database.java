@@ -25,7 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,14 +34,14 @@ import com.jda.wms.context.Context;
 
 /**
  *
- * @author Tone Walters (tone_walters@yahoo.com)
+ * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
-	private Context context;
 	private Configuration configuration;
+	private Context context;
 
 	@Inject
 	public Database(Context context, Configuration configuration) {
@@ -62,6 +61,7 @@ public class Database {
 			} catch (SQLException ex) {
 
 			}
+
 		}
 	}
 

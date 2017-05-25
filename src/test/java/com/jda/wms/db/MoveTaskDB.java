@@ -113,6 +113,7 @@ public class MoveTaskDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select count(*) from MOVE_TASK where TASK_ID = '" + taskID + "'");
+		rs.next();
 		return Integer.parseInt(rs.getString(1));
 	}
 }

@@ -22,10 +22,8 @@ public class WarningPopUpPage {
 		}
 	}
 
-
-
-
+	public void clickOk() throws FindFailed {
+		screen.wait("images/OrderPreparation/Ok.png", timeoutInSec);
+		screen.click("images/OrderPreparation/Ok.png");
 	}
-
-	
-
+}
