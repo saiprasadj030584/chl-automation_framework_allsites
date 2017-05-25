@@ -37,7 +37,6 @@ import com.jda.wms.context.Context;
  * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
-
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;

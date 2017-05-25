@@ -12,11 +12,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
-import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
-import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
-import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
@@ -24,6 +21,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
@@ -31,29 +29,19 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderHeaderDB orderHeaderDB;
-	private InventoryQueryPage inventoryQueryPage;
-	private JdaHomePage jdaHomePage;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private OrderLineMaintenancePage orderLineMaintenancePage;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
-			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderDB orderHeaderD, JdaHomePage jdaHomePage,
-			OrderHeaderDB orderHeaderDB, InventoryQueryPage inventoryQueryPage) {
-
+			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderD,
+			OrderHeaderDB orderHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.inventoryQueryPage = inventoryQueryPage;
-		this.jdaHomePage = jdaHomePage;
-		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.orderHeaderDB = orderHeaderDB;
-
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -171,12 +159,39 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
+	// FIXME : Check with Kiruthika and Swetha
 	@Given("^I enter the Order id \"([^\"]*)\"$")
-
 	public void i_enter_the_Order_id(String orderID) throws Throwable {
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
+	}
+
+	// FIXME : Check with Kiruthika and Swetha
+	/*
+	 * @Then("^the ship dock should be updated for an order$") public void
+	 * the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+	 * 
+	 * Assert.assertEquals("Ship Dock is not displayed as expected",
+	 * context.getNewShipDock(), orderHeaderMaintenancePage.getShipDock()); }
+	 */
+
+	@Then("^the order status should be \"([^\"]*)\" in order header$")
+
+	public void the_order_status_should_be_in_order_header(String orderStatus) throws Throwable {
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus,
+				orderHeaderDB.getOrderStatus(context.getOrderId()));
+	}
+
+	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
+		String actualOrderStatus = orderHeaderDB.getOrderStatus(orderID);
+		context.setOrderId(orderID);
+		context.setOrderStatus(actualOrderStatus);
+		logger.debug("Order ID : " + orderID);
+		logger.debug("Order status from DB : " + actualOrderStatus);
+
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, actualOrderStatus);
 	}
 
 	@Then("^the consignment should be generated in the order header maintenance$")
@@ -186,22 +201,24 @@ public class OrderHeaderMaintenanceStepDefs {
 				orderHeaderDB.getConsignment(context.getOrderId()));
 	}
 
-	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
-	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
-		context.setOrderId(orderID);
-		String dbOrderStatus = orderHeaderDB.getOrderStatus(orderID);
-		logger.debug("Order ID : " + orderID);
-		logger.debug("Order status from DB : " + dbOrderStatus);
-
-		Assert.assertEquals("Order status is not as expected to proceed vehicle load", dbOrderStatus, orderStatus);
-
-		// TODO call picking steps here as precondition
-	}
+	// TODO - to check with Senthil
+	/*
+	 * @Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$") public
+	 * void the_order_should_be_status(String orderID, String orderStatus)
+	 * throws Throwable { context.setOrderId(orderID); String dbOrderStatus =
+	 * orderHeaderDB.getOrderStatus(orderID); logger.debug("Order ID : " +
+	 * orderID); logger.debug("Order status from DB : " + dbOrderStatus);
+	 * 
+	 * Assert.assertEquals(
+	 * "Order status is not as expected to proceed vehicle load", dbOrderStatus,
+	 * orderStatus);
+	 * 
+	 * // TODO call picking steps here as precondition }
+	 */
 
 	@Given("^the order should be in \"([^\"]*)\" status$")
 	public void the_order_should_be_in_status(String status) throws Throwable {
 		String orderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
 		Assert.assertEquals("status is not as expected", status, orderStatus);
 	}
-
 }

@@ -94,4 +94,5 @@ public class PuttyFunctionsPage {
 		screen.type(Key.NUM4);
 		Thread.sleep(2000);
 	}
+
 }
