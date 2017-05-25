@@ -1,3 +1,1284 @@
+<<<<<<< HEAD
+2017-05-16 14:55:39 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-16 14:55:39 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 14:55:39 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 14:55:39 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-16 14:56:06 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 14:57:59 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 14:58:06 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 15:03:38 DEBUG InventoryTransactionQueryStepDefs:470 - No Records exists for the query
+2017-05-16 15:03:38 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-16 15:03:38 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 15:03:38 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-16 15:08:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-16 15:08:57 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 15:08:57 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 15:08:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-16 15:09:25 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 15:11:19 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 15:11:26 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 15:16:33 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-16 15:16:33 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 15:16:33 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-16 15:17:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-16 15:17:42 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 15:17:42 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 15:17:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-16 15:18:10 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 15:20:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 15:20:11 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 15:25:43 DEBUG InventoryTransactionQueryStepDefs:470 - No Records exists for the query
+2017-05-16 15:25:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-16 15:25:43 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 15:25:43 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-16 15:34:24 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-16 15:34:24 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 15:34:24 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 15:34:24 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-16 15:34:54 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 15:36:47 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 15:36:54 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 15:42:29 DEBUG InventoryTransactionQueryStepDefs:440 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 15:42:30 DEBUG InventoryTransactionQueryStepDefs:446 - fromLocation: REC002
+2017-05-16 15:42:31 DEBUG InventoryTransactionQueryStepDefs:452 - toLocation: REC002
+2017-05-16 15:42:32 DEBUG InventoryTransactionQueryStepDefs:458 - updateQty: 12000
+2017-05-16 15:42:34 DEBUG InventoryTransactionQueryStepDefs:465 - reference: 8050004516
+2017-05-16 15:42:38 DEBUG InventoryTransactionQueryStepDefs:485 - expiryDate: 16/05/2019
+2017-05-16 15:42:40 DEBUG InventoryTransactionQueryStepDefs:492 - userId: SARWAN
+2017-05-16 15:42:42 DEBUG InventoryTransactionQueryStepDefs:498 - workstation: RDT0140
+2017-05-16 15:42:43 DEBUG InventoryTransactionQueryStepDefs:505 - rDTUserMode: Pre-Advice Receive
+2017-05-16 15:42:44 DEBUG InventoryTransactionQueryStepDefs:511 - supplier: F01946
+2017-05-16 15:42:49 DEBUG InventoryTransactionQueryStepDefs:526 - palletType: CHEP
+2017-05-16 15:42:52 DEBUG InventoryTransactionQueryStepDefs:533 - packConfig: 21036013O01
+2017-05-16 15:42:54 DEBUG InventoryTransactionQueryStepDefs:543 - uploaded: No
+2017-05-16 15:42:54 DEBUG InventoryTransactionQueryStepDefs:544 - uploadedFileName: No
+2017-05-16 15:42:55 DEBUG InventoryTransactionQueryStepDefs:550 - uploadedDate: No
+2017-05-16 15:42:57 DEBUG InventoryTransactionQueryStepDefs:556 - uploadedTime: No
+2017-05-16 15:43:03 DEBUG InventoryTransactionQueryStepDefs:405 - originalRotationId: 17/D00000166
+2017-05-16 15:43:04 DEBUG InventoryTransactionQueryStepDefs:411 - rotationId: 17/D00000166
+2017-05-16 15:43:05 DEBUG InventoryTransactionQueryStepDefs:417 - ceReceiptType: Non-Bond
+2017-05-16 15:43:06 DEBUG InventoryTransactionQueryStepDefs:423 - underBond: Duty Paid (Free circulation)
+2017-05-16 15:43:12 DEBUG InventoryTransactionQueryStepDefs:370 - storageLocation: 0001
+2017-05-16 15:43:13 DEBUG InventoryTransactionQueryStepDefs:376 - baseUOM: EA
+2017-05-16 15:43:14 DEBUG InventoryTransactionQueryStepDefs:383 - intoDestinationDate: 07/04/2017
+2017-05-16 15:43:15 DEBUG InventoryTransactionQueryStepDefs:389 - caseRatio: 15
+2017-05-16 15:43:22 DEBUG InventoryTransactionQueryStepDefs:359 - URN Child: 1008845207
+2017-05-16 15:43:48 DEBUG InventoryTransactionQueryStepDefs:440 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 15:43:49 DEBUG InventoryTransactionQueryStepDefs:446 - fromLocation: REC002
+2017-05-16 15:43:50 DEBUG InventoryTransactionQueryStepDefs:452 - toLocation: REC002
+2017-05-16 15:43:51 DEBUG InventoryTransactionQueryStepDefs:458 - updateQty: 10500
+2017-05-16 15:43:52 DEBUG InventoryTransactionQueryStepDefs:465 - reference: 8050004516
+2017-05-16 15:43:56 DEBUG InventoryTransactionQueryStepDefs:485 - expiryDate: 16/05/2019
+2017-05-16 15:43:57 DEBUG InventoryTransactionQueryStepDefs:492 - userId: SARWAN
+2017-05-16 15:43:58 DEBUG InventoryTransactionQueryStepDefs:498 - workstation: RDT0140
+2017-05-16 15:43:59 DEBUG InventoryTransactionQueryStepDefs:505 - rDTUserMode: Pre-Advice Receive
+2017-05-16 15:44:00 DEBUG InventoryTransactionQueryStepDefs:511 - supplier: F01946
+2017-05-16 15:44:03 DEBUG InventoryTransactionQueryStepDefs:526 - palletType: CHEP
+2017-05-16 15:44:05 DEBUG InventoryTransactionQueryStepDefs:533 - packConfig: 21036013O01
+2017-05-16 15:44:07 DEBUG InventoryTransactionQueryStepDefs:543 - uploaded: No
+2017-05-16 15:44:07 DEBUG InventoryTransactionQueryStepDefs:544 - uploadedFileName: No
+2017-05-16 15:44:08 DEBUG InventoryTransactionQueryStepDefs:550 - uploadedDate: No
+2017-05-16 15:44:09 DEBUG InventoryTransactionQueryStepDefs:556 - uploadedTime: No
+2017-05-16 15:44:14 DEBUG InventoryTransactionQueryStepDefs:405 - originalRotationId: 17/D00000166
+2017-05-16 15:44:15 DEBUG InventoryTransactionQueryStepDefs:411 - rotationId: 17/D00000166
+2017-05-16 15:44:16 DEBUG InventoryTransactionQueryStepDefs:417 - ceReceiptType: Non-Bond
+2017-05-16 15:44:17 DEBUG InventoryTransactionQueryStepDefs:423 - underBond: Duty Paid (Free circulation)
+2017-05-16 15:44:21 DEBUG InventoryTransactionQueryStepDefs:370 - storageLocation: 0001
+2017-05-16 15:44:22 DEBUG InventoryTransactionQueryStepDefs:376 - baseUOM: EA
+2017-05-16 15:44:23 DEBUG InventoryTransactionQueryStepDefs:383 - intoDestinationDate: 07/04/2017
+2017-05-16 15:44:24 DEBUG InventoryTransactionQueryStepDefs:389 - caseRatio: 15
+2017-05-16 15:44:30 DEBUG InventoryTransactionQueryStepDefs:359 - URN Child: 1005470757
+2017-05-16 15:46:29 DEBUG Database:70 - Connection successfull
+2017-05-16 15:46:29 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-16 15:46:29 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 15:46:29 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-16 15:46:29 DEBUG Hooks:93 - DB Connection closed
+2017-05-16 15:52:15 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-16 15:52:15 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-16 15:52:15 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-16 15:52:15 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-16 15:52:46 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-16 15:54:39 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-16 15:54:46 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-16 16:00:23 DEBUG InventoryTransactionQueryStepDefs:440 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 16:00:25 DEBUG InventoryTransactionQueryStepDefs:446 - fromLocation: REC002
+2017-05-16 16:00:26 DEBUG InventoryTransactionQueryStepDefs:452 - toLocation: REC002
+2017-05-16 16:00:27 DEBUG InventoryTransactionQueryStepDefs:458 - updateQty: 12000
+2017-05-16 16:00:29 DEBUG InventoryTransactionQueryStepDefs:465 - reference: 8050004517
+2017-05-16 16:00:33 DEBUG InventoryTransactionQueryStepDefs:485 - expiryDate: 16/05/2019
+2017-05-16 16:00:34 DEBUG InventoryTransactionQueryStepDefs:492 - userId: SARWAN
+2017-05-16 16:00:36 DEBUG InventoryTransactionQueryStepDefs:498 - workstation: RDT0140
+2017-05-16 16:00:37 DEBUG InventoryTransactionQueryStepDefs:505 - rDTUserMode: Pre-Advice Receive
+2017-05-16 16:00:38 DEBUG InventoryTransactionQueryStepDefs:511 - supplier: F01946
+2017-05-16 16:00:43 DEBUG InventoryTransactionQueryStepDefs:526 - palletType: CHEP
+2017-05-16 16:00:46 DEBUG InventoryTransactionQueryStepDefs:533 - packConfig: 21036013O01
+2017-05-16 16:00:48 DEBUG InventoryTransactionQueryStepDefs:543 - uploaded: No
+2017-05-16 16:00:48 DEBUG InventoryTransactionQueryStepDefs:544 - uploadedFileName: No
+2017-05-16 16:00:49 DEBUG InventoryTransactionQueryStepDefs:550 - uploadedDate: No
+2017-05-16 16:00:50 DEBUG InventoryTransactionQueryStepDefs:556 - uploadedTime: No
+2017-05-16 16:00:56 DEBUG InventoryTransactionQueryStepDefs:405 - originalRotationId: 17/D00000167
+2017-05-16 16:00:57 DEBUG InventoryTransactionQueryStepDefs:411 - rotationId: 17/D00000167
+2017-05-16 16:00:59 DEBUG InventoryTransactionQueryStepDefs:417 - ceReceiptType: Non-Bond
+2017-05-16 16:01:00 DEBUG InventoryTransactionQueryStepDefs:423 - underBond: Duty Paid (Free circulation)
+2017-05-16 16:01:05 DEBUG InventoryTransactionQueryStepDefs:370 - storageLocation: 0001
+2017-05-16 16:01:07 DEBUG InventoryTransactionQueryStepDefs:376 - baseUOM: EA
+2017-05-16 16:01:08 DEBUG InventoryTransactionQueryStepDefs:383 - intoDestinationDate: 07/04/2017
+2017-05-16 16:01:09 DEBUG InventoryTransactionQueryStepDefs:389 - caseRatio: 15
+2017-05-16 16:01:16 DEBUG InventoryTransactionQueryStepDefs:359 - URN Child: 1004719181
+2017-05-16 16:01:42 DEBUG InventoryTransactionQueryStepDefs:440 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-16 16:01:43 DEBUG InventoryTransactionQueryStepDefs:446 - fromLocation: REC002
+2017-05-16 16:01:44 DEBUG InventoryTransactionQueryStepDefs:452 - toLocation: REC002
+2017-05-16 16:01:45 DEBUG InventoryTransactionQueryStepDefs:458 - updateQty: 10500
+2017-05-16 16:01:45 DEBUG InventoryTransactionQueryStepDefs:465 - reference: 8050004517
+2017-05-16 16:01:49 DEBUG InventoryTransactionQueryStepDefs:485 - expiryDate: 16/05/2019
+2017-05-16 16:01:50 DEBUG InventoryTransactionQueryStepDefs:492 - userId: SARWAN
+2017-05-16 16:01:51 DEBUG InventoryTransactionQueryStepDefs:498 - workstation: RDT0140
+2017-05-16 16:01:52 DEBUG InventoryTransactionQueryStepDefs:505 - rDTUserMode: Pre-Advice Receive
+2017-05-16 16:01:53 DEBUG InventoryTransactionQueryStepDefs:511 - supplier: F01946
+2017-05-16 16:01:57 DEBUG InventoryTransactionQueryStepDefs:526 - palletType: CHEP
+2017-05-16 16:01:59 DEBUG InventoryTransactionQueryStepDefs:533 - packConfig: 21036013O01
+2017-05-16 16:02:00 DEBUG InventoryTransactionQueryStepDefs:543 - uploaded: No
+2017-05-16 16:02:00 DEBUG InventoryTransactionQueryStepDefs:544 - uploadedFileName: No
+2017-05-16 16:02:01 DEBUG InventoryTransactionQueryStepDefs:550 - uploadedDate: No
+2017-05-16 16:02:02 DEBUG InventoryTransactionQueryStepDefs:556 - uploadedTime: No
+2017-05-16 16:02:07 DEBUG InventoryTransactionQueryStepDefs:405 - originalRotationId: 17/D00000167
+2017-05-16 16:02:08 DEBUG InventoryTransactionQueryStepDefs:411 - rotationId: 17/D00000167
+2017-05-16 16:02:09 DEBUG InventoryTransactionQueryStepDefs:417 - ceReceiptType: Non-Bond
+2017-05-16 16:02:10 DEBUG InventoryTransactionQueryStepDefs:423 - underBond: Duty Paid (Free circulation)
+2017-05-16 16:02:15 DEBUG InventoryTransactionQueryStepDefs:370 - storageLocation: 0001
+2017-05-16 16:02:16 DEBUG InventoryTransactionQueryStepDefs:376 - baseUOM: EA
+2017-05-16 16:02:16 DEBUG InventoryTransactionQueryStepDefs:383 - intoDestinationDate: 07/04/2017
+2017-05-16 16:02:17 DEBUG InventoryTransactionQueryStepDefs:389 - caseRatio: 15
+2017-05-16 16:02:23 DEBUG InventoryTransactionQueryStepDefs:359 - URN Child: 1004188749
+2017-05-16 16:04:23 DEBUG Database:70 - Connection successfull
+2017-05-16 16:04:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-16 16:04:55 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-16 16:04:55 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-16 16:04:55 DEBUG Hooks:93 - DB Connection closed
+2017-05-17 10:50:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 10:50:52 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-17 10:50:52 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-17 10:50:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 10:51:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-17 10:51:23 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-17 10:51:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-17 10:54:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 10:54:11 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-17 10:54:11 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-17 10:54:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 10:54:41 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-17 10:56:37 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-17 10:56:37 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-17 10:56:37 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-17 10:56:38 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 10:56:38 DEBUG Hooks:39 - featureID: purchase-order
+2017-05-17 10:56:38 DEBUG Hooks:40 - Start of Scenario: Inventory locked status for putaway process in JDA WMS
+2017-05-17 10:56:38 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 10:58:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 10:58:35 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-17 10:58:35 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-17 10:58:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 10:59:05 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-17 10:59:08 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-17 10:59:08 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-17 10:59:08 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-17 10:59:09 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 10:59:09 DEBUG Hooks:39 - featureID: purchase-order
+2017-05-17 10:59:09 DEBUG Hooks:40 - Start of Scenario: Inventory locked status for putaway process in JDA WMS
+2017-05-17 10:59:09 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 11:00:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 11:00:57 DEBUG Hooks:39 - featureID: purchase-order;putaway-process-in-jda-wms;
+2017-05-17 11:00:57 DEBUG Hooks:40 - Start of Scenario: Putaway process in JDA WMS
+2017-05-17 11:00:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 11:01:24 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-17 11:03:18 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-17 11:03:25 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-17 11:09:09 DEBUG InventoryTransactionQueryStepDefs:439 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-17 11:09:10 DEBUG InventoryTransactionQueryStepDefs:445 - fromLocation: REC002
+2017-05-17 11:09:12 DEBUG InventoryTransactionQueryStepDefs:451 - toLocation: REC002
+2017-05-17 11:09:13 DEBUG InventoryTransactionQueryStepDefs:457 - updateQty: 12000
+2017-05-17 11:09:14 DEBUG InventoryTransactionQueryStepDefs:464 - reference: 8050004518
+2017-05-17 11:09:19 DEBUG InventoryTransactionQueryStepDefs:484 - expiryDate: 17/05/2019
+2017-05-17 11:09:20 DEBUG InventoryTransactionQueryStepDefs:491 - userId: SARWAN
+2017-05-17 11:09:22 DEBUG InventoryTransactionQueryStepDefs:497 - workstation: RDT0140
+2017-05-17 11:09:23 DEBUG InventoryTransactionQueryStepDefs:504 - rDTUserMode: Pre-Advice Receive
+2017-05-17 11:09:24 DEBUG InventoryTransactionQueryStepDefs:510 - supplier: F01946
+2017-05-17 11:09:29 DEBUG InventoryTransactionQueryStepDefs:525 - palletType: CHEP
+2017-05-17 11:09:32 DEBUG InventoryTransactionQueryStepDefs:532 - packConfig: 21036013O01
+2017-05-17 11:09:34 DEBUG InventoryTransactionQueryStepDefs:542 - uploaded: No
+2017-05-17 11:09:34 DEBUG InventoryTransactionQueryStepDefs:543 - uploadedFileName: No
+2017-05-17 11:09:36 DEBUG InventoryTransactionQueryStepDefs:549 - uploadedDate: No
+2017-05-17 11:09:37 DEBUG InventoryTransactionQueryStepDefs:555 - uploadedTime: No
+2017-05-17 11:09:43 DEBUG InventoryTransactionQueryStepDefs:404 - originalRotationId: 17/D00000173
+2017-05-17 11:09:44 DEBUG InventoryTransactionQueryStepDefs:410 - rotationId: 17/D00000173
+2017-05-17 11:09:46 DEBUG InventoryTransactionQueryStepDefs:416 - ceReceiptType: Non-Bond
+2017-05-17 11:09:47 DEBUG InventoryTransactionQueryStepDefs:422 - underBond: Duty Paid (Free circulation)
+2017-05-17 11:09:52 DEBUG InventoryTransactionQueryStepDefs:369 - storageLocation: 0001
+2017-05-17 11:09:54 DEBUG InventoryTransactionQueryStepDefs:375 - baseUOM: EA
+2017-05-17 11:09:55 DEBUG InventoryTransactionQueryStepDefs:382 - intoDestinationDate: 07/04/2017
+2017-05-17 11:09:56 DEBUG InventoryTransactionQueryStepDefs:388 - caseRatio: 15
+2017-05-17 11:10:03 DEBUG InventoryTransactionQueryStepDefs:358 - URN Child: 1006546531
+2017-05-17 11:10:28 DEBUG InventoryTransactionQueryStepDefs:439 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-17 11:10:29 DEBUG InventoryTransactionQueryStepDefs:445 - fromLocation: REC002
+2017-05-17 11:10:30 DEBUG InventoryTransactionQueryStepDefs:451 - toLocation: REC002
+2017-05-17 11:10:31 DEBUG InventoryTransactionQueryStepDefs:457 - updateQty: 10500
+2017-05-17 11:10:32 DEBUG InventoryTransactionQueryStepDefs:464 - reference: 8050004518
+2017-05-17 11:10:36 DEBUG InventoryTransactionQueryStepDefs:484 - expiryDate: 17/05/2019
+2017-05-17 11:10:37 DEBUG InventoryTransactionQueryStepDefs:491 - userId: SARWAN
+2017-05-17 11:10:38 DEBUG InventoryTransactionQueryStepDefs:497 - workstation: RDT0140
+2017-05-17 11:10:39 DEBUG InventoryTransactionQueryStepDefs:504 - rDTUserMode: Pre-Advice Receive
+2017-05-17 11:10:40 DEBUG InventoryTransactionQueryStepDefs:510 - supplier: F01946
+2017-05-17 11:10:43 DEBUG InventoryTransactionQueryStepDefs:525 - palletType: CHEP
+2017-05-17 11:10:45 DEBUG InventoryTransactionQueryStepDefs:532 - packConfig: 21036013O01
+2017-05-17 11:10:47 DEBUG InventoryTransactionQueryStepDefs:542 - uploaded: No
+2017-05-17 11:10:47 DEBUG InventoryTransactionQueryStepDefs:543 - uploadedFileName: No
+2017-05-17 11:10:48 DEBUG InventoryTransactionQueryStepDefs:549 - uploadedDate: No
+2017-05-17 11:10:49 DEBUG InventoryTransactionQueryStepDefs:555 - uploadedTime: No
+2017-05-17 11:10:54 DEBUG InventoryTransactionQueryStepDefs:404 - originalRotationId: 17/D00000173
+2017-05-17 11:10:55 DEBUG InventoryTransactionQueryStepDefs:410 - rotationId: 17/D00000173
+2017-05-17 11:10:56 DEBUG InventoryTransactionQueryStepDefs:416 - ceReceiptType: Non-Bond
+2017-05-17 11:10:57 DEBUG InventoryTransactionQueryStepDefs:422 - underBond: Duty Paid (Free circulation)
+2017-05-17 11:11:02 DEBUG InventoryTransactionQueryStepDefs:369 - storageLocation: 0001
+2017-05-17 11:11:03 DEBUG InventoryTransactionQueryStepDefs:375 - baseUOM: EA
+2017-05-17 11:11:04 DEBUG InventoryTransactionQueryStepDefs:382 - intoDestinationDate: 07/04/2017
+2017-05-17 11:11:04 DEBUG InventoryTransactionQueryStepDefs:388 - caseRatio: 15
+2017-05-17 11:11:10 DEBUG InventoryTransactionQueryStepDefs:358 - URN Child: 1003172081
+2017-05-17 11:12:38 DEBUG Database:70 - Connection successfull
+2017-05-17 11:15:32 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-17 11:15:32 DEBUG Hooks:84 - End of Scenario: Putaway process in JDA WMS
+2017-05-17 11:15:32 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-17 11:15:32 DEBUG Hooks:93 - DB Connection closed
+2017-05-17 13:48:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-17 13:48:52 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-17 13:48:52 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-17 13:48:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-17 13:49:20 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 21036013
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 1500.0
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 21036013O01
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 15
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F13
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : null
+2017-05-17 13:51:13 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: null
+2017-05-17 13:51:19 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500.0, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-17 13:56:08 DEBUG Database:61 - Connection successfull
+2017-05-17 13:59:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-17 13:59:02 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-17 13:59:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-17 13:59:02 DEBUG Hooks:93 - DB Connection closed
+2017-05-18 07:20:10 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:20:10 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:20:10 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:20:10 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:20:51 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:20:51 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:20:51 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:20:51 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:21:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:21:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:21:40 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:21:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:23:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:23:18 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:23:18 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:23:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:23:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:23:18 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:23:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:26:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:26:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:26:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:26:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:27:08 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:27:08 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:27:08 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:27:08 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:28:17 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F01946
+2017-05-18 07:28:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:28:19 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:28:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:29:02 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:29:02 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:29:02 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:29:02 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:29:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:29:02 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:29:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:29:21 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:29:21 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:29:21 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:29:21 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:29:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:29:21 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:29:21 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:30:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:30:04 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:30:04 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:30:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:31:08 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:31:08 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:31:08 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:31:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:31:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:31:30 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:31:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:32:35 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:32:35 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:32:35 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:34:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:34:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:34:31 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:34:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:35:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:35:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:35:46 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:35:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:38:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:38:16 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:38:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:44:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:44:48 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:44:48 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:44:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:45:57 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:45:57 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:45:57 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:48:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:48:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:48:46 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:48:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:49:54 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 07:52:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001731O01
+2017-05-18 07:53:19 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 07:53:25 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001731O01}}
+2017-05-18 07:53:38 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 07:53:38 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 07:53:38 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 07:58:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 07:58:06 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 07:58:06 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 07:58:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 07:59:14 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 08:01:23 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001731O01
+2017-05-18 08:02:39 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:02:45 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001731O01}}
+2017-05-18 08:03:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 08:03:43 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 08:03:43 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 08:10:24 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 08:10:24 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 08:10:24 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 08:10:24 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 08:11:33 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 08:13:43 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:14:15 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 08:14:15 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 08:14:15 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 08:16:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 08:16:29 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 08:16:29 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 08:16:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 08:17:56 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 08:20:06 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001731O01
+2017-05-18 08:21:21 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:21:28 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001731O01}}
+2017-05-18 08:21:40 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 08:21:40 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 08:21:40 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 08:31:13 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 08:31:13 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 08:31:13 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 08:31:13 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 08:32:22 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 08:34:31 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001731O01
+2017-05-18 08:35:47 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:35:53 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001731O01}}
+2017-05-18 08:36:51 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 08:36:51 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 08:36:51 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 08:52:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 08:52:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 08:52:14 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 08:52:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 08:53:23 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 08:55:33 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2017
+2017-05-18 08:56:48 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 08:56:55 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-18 08:57:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 08:57:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 08:57:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 10:04:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 10:04:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 10:04:31 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 10:04:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 10:05:40 DEBUG PreAdviceHeaderStepsDefs:66 - Supplier Id: F06346
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 10:07:49 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2017
+2017-05-18 10:09:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 10:09:10 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-18 10:09:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 10:09:23 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 10:09:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 14:30:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 14:30:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-18 14:30:05 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-18 14:30:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 14:31:32 DEBUG PreAdviceHeaderStepsDefs:69 - Supplier Id: F06346
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001730
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001730O01
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 20001730O01
+2017-05-18 14:33:47 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:170 - Pre-Advice Line level information of SKU : 20001731
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:171 - Quantity Due: 116
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:172 - Pack Config : 20001731O01
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:173 - CaseRatio: 6
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:174 - Product group: F20
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:175 - Vintage in Pre-Advice Line : 2017
+2017-05-18 14:35:04 DEBUG PreAdviceLineMaintenanceStepDefs:176 - Current Vintage in SKU table: NONEXPIRY
+2017-05-18 14:35:10 DEBUG PreAdviceLineMaintenanceStepDefs:223 - Map: {1={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001730, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=20001730O01}, 2={Product Group=F20, ABV=13.5, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=20001731, QtyDue=116, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-18 14:35:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 14:35:23 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-18 14:35:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 14:35:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 14:35:25 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-18 14:35:25 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-18 14:35:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 14:35:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 14:35:25 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-18 14:35:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 14:39:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 14:39:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 14:39:12 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:39:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 14:39:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 14:39:12 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:39:12 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 14:39:59 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 14:39:59 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 14:39:59 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:39:59 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 14:39:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 14:39:59 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:39:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 14:41:41 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 14:41:41 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 14:41:41 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:41:41 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 14:42:01 DEBUG Database:61 - Connection successfull
+2017-05-18 14:42:07 DEBUG PreAdviceHeaderStepsDefs:118 - Supplier Id: F06346
+2017-05-18 14:42:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 14:42:21 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 14:42:21 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 15:44:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 15:44:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 15:44:46 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:44:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 15:44:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 15:44:46 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:44:46 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 15:45:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 15:45:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 15:45:14 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:45:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 15:45:36 DEBUG Database:61 - Connection successfull
+2017-05-18 15:45:52 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-18 15:45:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 15:45:54 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:45:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 15:45:54 DEBUG Hooks:94 - DB Connection closed
+2017-05-18 15:51:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-18 15:51:00 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-18 15:51:00 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:51:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-18 15:51:21 DEBUG Database:61 - Connection successfull
+2017-05-18 15:51:37 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-18 15:51:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-18 15:51:39 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-18 15:51:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-18 15:51:39 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 07:17:50 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 07:17:50 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 07:17:50 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 07:17:50 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 07:18:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 07:18:12 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 07:18:12 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:05:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:05:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:05:11 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:05:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:05:12 DEBUG Database:61 - Connection successfull
+2017-05-19 11:05:13 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:05:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:05:13 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:05:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:05:13 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 11:06:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:06:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:06:05 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:06:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:06:06 DEBUG Database:61 - Connection successfull
+2017-05-19 11:06:06 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:06:06 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:06:06 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:06:06 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:06:06 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 11:13:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:13:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:13:14 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:13:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:13:16 DEBUG Database:61 - Connection successfull
+2017-05-19 11:13:16 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:13:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:13:16 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:13:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:13:16 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 11:16:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:16:48 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:16:48 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:16:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:16:49 DEBUG Database:61 - Connection successfull
+2017-05-19 11:16:49 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:16:49 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:16:49 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:16:49 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:16:49 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 11:18:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:18:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:18:32 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:18:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:18:33 DEBUG Database:61 - Connection successfull
+2017-05-19 11:18:34 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:18:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:18:34 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:18:34 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:18:34 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 11:26:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 11:26:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 11:26:14 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:26:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 11:26:15 DEBUG Database:61 - Connection successfull
+2017-05-19 11:26:15 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 11:26:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 11:26:19 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 11:26:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 11:26:19 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 13:15:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:15:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 13:15:05 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 13:15:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:15:06 DEBUG Database:61 - Connection successfull
+2017-05-19 13:15:07 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 13:15:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:15:07 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 13:15:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:15:07 DEBUG Hooks:94 - DB Connection closed
+2017-05-19 13:26:39 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-19 13:26:39 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-19 13:26:39 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 13:26:39 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-19 13:26:40 DEBUG Database:61 - Connection successfull
+2017-05-19 13:26:41 DEBUG PreAdviceHeaderStepsDefs:127 - Supplier Id: F06346
+2017-05-19 13:26:44 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-19 13:26:44 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-19 13:26:44 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-19 13:26:44 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:33:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:33:04 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:33:04 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:33:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:33:05 DEBUG Database:61 - Connection successfull
+2017-05-23 11:33:05 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F06346
+2017-05-23 11:33:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:33:05 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:33:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:33:05 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:36:50 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:36:50 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:36:50 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:36:50 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:36:50 DEBUG Database:61 - Connection successfull
+2017-05-23 11:36:51 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F06346
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:327 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:328 - Quantity Due: null
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:329 - CaseRatio: 6
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Product group: F20
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Vintage in Pre-Advice Line : null
+2017-05-23 11:36:53 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Current Vintage in SKU table: null
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:327 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:328 - Quantity Due: null
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:329 - CaseRatio: 6
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Product group: F20
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Vintage in Pre-Advice Line : null
+2017-05-23 11:36:55 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Current Vintage in SKU table: null
+2017-05-23 11:36:55 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:36:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:36:55 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:36:55 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:39:44 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:39:44 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:39:44 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:39:44 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:39:45 DEBUG Database:61 - Connection successfull
+2017-05-23 11:39:45 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F06346
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:327 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:328 - Quantity Due: null
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:329 - CaseRatio: 6
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Product group: F20
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Vintage in Pre-Advice Line : null
+2017-05-23 11:39:47 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Current Vintage in SKU table: null
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:327 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:328 - Quantity Due: null
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:329 - CaseRatio: 6
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Product group: F20
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Vintage in Pre-Advice Line : null
+2017-05-23 11:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Current Vintage in SKU table: null
+2017-05-23 11:39:49 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:39:49 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:39:49 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:39:49 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:42:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:42:57 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:42:57 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:42:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:42:57 DEBUG Database:61 - Connection successfull
+2017-05-23 11:42:58 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F06346
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:329 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Quantity Due: null
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:331 - CaseRatio: 6
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Product group: F20
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Vintage in Pre-Advice Line : null
+2017-05-23 11:43:00 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Current Vintage in SKU table: null
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:329 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Quantity Due: null
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:331 - CaseRatio: 6
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Product group: F20
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Vintage in Pre-Advice Line : null
+2017-05-23 11:43:02 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Current Vintage in SKU table: null
+2017-05-23 11:43:02 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:43:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:43:02 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:43:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:44:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:44:57 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:44:57 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:44:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:44:58 DEBUG Database:61 - Connection successfull
+2017-05-23 11:44:58 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F06346
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Quantity Due: null
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:332 - CaseRatio: 6
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Product group: F20
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Vintage in Pre-Advice Line : null
+2017-05-23 11:45:00 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Current Vintage in SKU table: null
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Quantity Due: null
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:332 - CaseRatio: 6
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Product group: F20
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Vintage in Pre-Advice Line : null
+2017-05-23 11:45:02 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Current Vintage in SKU table: null
+2017-05-23 11:45:02 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:45:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:45:02 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:45:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 11:57:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 11:57:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 11:57:12 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:57:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 11:57:13 DEBUG Database:61 - Connection successfull
+2017-05-23 11:57:14 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:330 - Pre-Advice Line level information of SKU : null
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:331 - Quantity Due: null
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:332 - CaseRatio: 15
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Product group: F13
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Vintage in Pre-Advice Line : null
+2017-05-23 11:57:16 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Current Vintage in SKU table: null
+2017-05-23 11:57:16 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 11:57:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 11:57:16 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 11:57:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 12:04:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:04:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 12:04:31 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:04:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:04:32 DEBUG Database:61 - Connection successfull
+2017-05-23 12:04:32 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Pre-Advice Line level information of SKU : null
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Quantity Due: null
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:334 - CaseRatio: 15
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Product group: F13
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:336 - Vintage in Pre-Advice Line : null
+2017-05-23 12:04:34 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Current Vintage in SKU table: null
+2017-05-23 12:04:34 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 12:04:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 12:04:34 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:04:34 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 12:06:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:06:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 12:06:05 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:06:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:06:06 DEBUG Database:61 - Connection successfull
+2017-05-23 12:06:06 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:332 - Pre-Advice Line level information of SKU : null
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:333 - Quantity Due: null
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:334 - CaseRatio: 15
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Product group: F13
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:336 - Vintage in Pre-Advice Line : null
+2017-05-23 12:06:08 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Current Vintage in SKU table: null
+2017-05-23 12:06:08 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 12:06:08 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 12:06:08 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:06:08 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-23 12:14:03 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-23 12:14:03 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-23 12:14:03 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:14:03 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-23 12:14:04 DEBUG Database:61 - Connection successfull
+2017-05-23 12:14:04 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-23 12:14:06 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-23 12:14:08 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-23 12:14:21 DEBUG Hooks:94 - DB Connection closed
+2017-05-23 12:14:21 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-23 12:14:21 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-23 12:14:21 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 07:27:55 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 07:27:55 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 07:27:55 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 07:27:55 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 07:27:57 DEBUG Database:61 - Connection successfull
+2017-05-24 07:27:57 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 07:27:59 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 07:28:01 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 07:31:30 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 07:31:30 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 07:31:30 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 07:31:30 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:05:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:05:06 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:05:06 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:05:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:05:07 DEBUG Database:61 - Connection successfull
+2017-05-24 08:05:07 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:05:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:05:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:05:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:06:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:06:01 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:06:01 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:06:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:06:03 DEBUG Database:61 - Connection successfull
+2017-05-24 08:06:03 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:06:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:06:03 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:06:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:08:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:08:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:08:12 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:08:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:08:13 DEBUG Database:61 - Connection successfull
+2017-05-24 08:08:13 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:08:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:08:13 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:08:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:27:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:27:47 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:27:47 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:27:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:27:48 DEBUG Database:61 - Connection successfull
+2017-05-24 08:27:48 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:27:48 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:27:48 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:27:48 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:35:15 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:35:15 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:35:15 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:35:15 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:35:16 DEBUG Database:61 - Connection successfull
+2017-05-24 08:35:17 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:35:17 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:35:17 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:35:17 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:36:51 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:36:51 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:36:51 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:36:51 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:36:53 DEBUG Database:61 - Connection successfull
+2017-05-24 08:36:53 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:36:53 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:36:53 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:36:53 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:40:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:40:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:40:05 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:40:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:40:06 DEBUG Database:61 - Connection successfull
+2017-05-24 08:40:06 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 08:40:06 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:40:06 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:40:06 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:57:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 08:57:01 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 08:57:01 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 08:57:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 08:57:02 DEBUG Database:61 - Connection successfull
+2017-05-24 08:57:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 08:57:02 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 08:57:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 08:57:02 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 09:04:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 09:04:00 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 09:04:00 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 09:04:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 09:04:02 DEBUG Database:61 - Connection successfull
+2017-05-24 09:04:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 09:04:52 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 09:04:52 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 09:04:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 09:04:54 DEBUG Database:61 - Connection successfull
+2017-05-24 09:08:07 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 09:08:07 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 09:08:07 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 09:08:07 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 09:08:09 DEBUG Database:61 - Connection successfull
+2017-05-24 10:07:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 10:07:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 10:07:31 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 10:07:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 10:07:32 DEBUG Database:61 - Connection successfull
+2017-05-24 10:08:00 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 10:08:00 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 10:08:00 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 10:08:00 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 10:24:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 10:24:42 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 10:24:42 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 10:24:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 10:24:43 DEBUG Database:61 - Connection successfull
+2017-05-24 10:24:44 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 10:24:46 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 10:24:48 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 10:28:54 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 10:28:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 10:28:54 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 10:28:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 10:42:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 10:42:27 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 10:42:27 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 10:42:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 10:42:28 DEBUG Database:61 - Connection successfull
+2017-05-24 10:42:28 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 10:42:30 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 10:42:32 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 10:46:40 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 10:46:40 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 10:46:40 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 10:46:40 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:03:41 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:03:41 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:03:41 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:03:41 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:03:42 DEBUG Database:61 - Connection successfull
+2017-05-24 11:03:43 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 11:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 11:03:47 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 11:04:12 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:04:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:04:12 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:04:12 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:04:44 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:04:44 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:04:44 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:04:44 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:04:45 DEBUG Database:61 - Connection successfull
+2017-05-24 11:04:45 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 11:04:47 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 11:04:49 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 11:05:03 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:05:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:05:03 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:05:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:06:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:06:47 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:06:47 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:06:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:06:48 DEBUG Database:61 - Connection successfull
+2017-05-24 11:06:49 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 11:06:51 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 11:06:53 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 11:11:04 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:11:04 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:11:04 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:11:04 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:50:38 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:50:38 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:50:38 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:50:38 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:50:39 DEBUG Database:61 - Connection successfull
+2017-05-24 11:50:40 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:50:40 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:50:40 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:50:40 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:50:40 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:51:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:51:29 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:51:29 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:51:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:51:30 DEBUG Database:61 - Connection successfull
+2017-05-24 11:51:31 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 11:51:33 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 11:51:35 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 11:55:43 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:55:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:55:43 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:55:43 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:56:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:56:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:56:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:56:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:56:33 DEBUG Database:61 - Connection successfull
+2017-05-24 11:56:33 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:56:33 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 11:56:33 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 11:56:33 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 11:56:33 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 11:57:50 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 11:57:50 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 11:57:50 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 11:57:50 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 11:57:51 DEBUG Database:61 - Connection successfull
+2017-05-24 11:57:51 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 11:57:53 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 11:57:55 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:01:25 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:01:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:01:25 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:01:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 12:37:16 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 12:37:16 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 12:37:16 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 12:37:16 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 12:37:17 DEBUG Database:61 - Connection successfull
+2017-05-24 12:37:17 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 12:37:19 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 12:37:21 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:40:13 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:40:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:40:13 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:40:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 12:43:21 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 12:43:21 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 12:43:21 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 12:43:21 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 12:43:22 DEBUG Database:61 - Connection successfull
+2017-05-24 12:43:22 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 12:43:24 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 12:43:26 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:43:39 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:43:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:43:39 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:43:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 12:44:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 12:44:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 12:44:12 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 12:44:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 12:44:13 DEBUG Database:61 - Connection successfull
+2017-05-24 12:44:14 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 12:44:16 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 12:44:18 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:44:42 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:44:42 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:44:42 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:44:42 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 12:45:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 12:45:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 12:45:11 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 12:45:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 12:45:12 DEBUG Database:61 - Connection successfull
+2017-05-24 12:45:12 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 12:45:14 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 12:45:16 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:49:05 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:49:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:49:05 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:49:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 12:50:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 12:50:27 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 12:50:27 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 12:50:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 12:50:28 DEBUG Database:61 - Connection successfull
+2017-05-24 12:50:29 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:334 - Pre-Advice Line level information of SKU : null
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:335 - Quantity Due: 1500
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:336 - CaseRatio: 15
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:337 - Product group: F13
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:338 - Vintage in Pre-Advice Line : null
+2017-05-24 12:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:339 - Current Vintage in SKU table: null
+2017-05-24 12:50:33 DEBUG PreAdviceLineMaintenanceStepDefs:388 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 12:55:32 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 12:55:32 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 12:55:32 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 12:55:32 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:28:19 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:28:19 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:28:19 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:28:19 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:28:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 15:28:19 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 15:28:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:30:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:30:18 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:30:18 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:30:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:30:19 DEBUG Database:61 - Connection successfull
+2017-05-24 15:30:20 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 15:30:22 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:30:24 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:30:37 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 15:30:37 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 15:30:37 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 15:30:37 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:31:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:31:22 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:31:22 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:31:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:31:23 DEBUG Database:61 - Connection successfull
+2017-05-24 15:31:23 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 15:31:25 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:31:27 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:31:52 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 15:31:52 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 15:31:52 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 15:31:52 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:32:39 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:32:39 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:32:39 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:32:39 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:32:40 DEBUG Database:61 - Connection successfull
+2017-05-24 15:32:40 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 15:32:42 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:32:44 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:37:43 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 15:37:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 15:37:43 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 15:37:43 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:55:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:55:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:55:31 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:55:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:55:32 DEBUG Database:61 - Connection successfull
+2017-05-24 15:55:33 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 15:55:35 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:55:37 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:55:49 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 15:55:49 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 15:55:49 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 15:55:49 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 15:57:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 15:57:25 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-24 15:57:25 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-24 15:57:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 15:57:26 DEBUG Database:61 - Connection successfull
+2017-05-24 15:57:26 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-24 15:57:28 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 15:57:30 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-24 16:02:03 DEBUG Hooks:94 - DB Connection closed
+2017-05-24 16:02:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 16:02:03 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-24 16:02:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 06:39:02 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 06:39:02 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 06:39:02 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 06:39:02 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 06:39:03 DEBUG Database:61 - Connection successfull
+2017-05-25 06:39:03 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 06:39:05 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 06:39:07 DEBUG PreAdviceLineMaintenanceStepDefs:357 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 06:44:10 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 06:44:10 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 06:44:10 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 06:44:10 DEBUG Hooks:94 - DB Connection closed
+=======
 2017-05-24 13:44:27 DEBUG Hooks:37 - ###########################################################################################################################
 2017-05-24 13:44:27 DEBUG Hooks:39 - featureID: receive-sto-order
 2017-05-24 13:44:27 DEBUG Hooks:40 - Start of Scenario: Load the STO order details
@@ -12,3 +1293,50 @@
 2017-05-24 13:46:27 DEBUG Hooks:82 - ###########################################################################################################################
 2017-05-24 13:46:27 DEBUG Hooks:84 - End of Scenario: Load the STO order details
 2017-05-24 13:46:27 DEBUG Hooks:85 - ###########################################################################################################################
+>>>>>>> 2bc3120f04acc7e50e13f8c235ce22082204d6cc
+2017-05-25 09:48:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:48:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:48:14 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:48:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:48:15 DEBUG Database:61 - Connection successfull
+2017-05-25 09:48:16 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:48:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:48:16 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:48:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:48:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:52:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:52:47 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:52:47 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:52:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:52:49 DEBUG Database:61 - Connection successfull
+2017-05-25 09:52:49 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:52:51 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:52:53 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:53:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:53:18 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:53:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:53:18 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:53:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:53:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:53:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:53:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:53:33 DEBUG Database:61 - Connection successfull
+2017-05-25 09:53:34 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:53:36 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:53:38 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:54:03 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:54:03 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:54:03 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:54:03 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 09:54:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 09:54:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 09:54:30 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 09:54:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 09:54:31 DEBUG Database:61 - Connection successfull
+2017-05-25 09:54:31 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 09:54:33 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:54:35 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 09:55:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 09:55:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 09:55:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 09:55:07 DEBUG Hooks:93 - DB Connection closed

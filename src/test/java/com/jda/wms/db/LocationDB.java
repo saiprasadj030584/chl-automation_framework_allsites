@@ -21,9 +21,7 @@ public class LocationDB {
 		this.database = database;
 	}
 
-	public String geCheckString(String location) throws SQLException, ClassNotFoundException {
-		String result = "";
-		
+	public String getCheckString(String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -31,7 +29,18 @@ public class LocationDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select check_string from location where location_id = '" + location + "'");
 		rs.next();
-		result = rs.getString(1);
-		return result;
+		return rs.getString(1);
+		 
+	}
+	
+	public String getLocationZone(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

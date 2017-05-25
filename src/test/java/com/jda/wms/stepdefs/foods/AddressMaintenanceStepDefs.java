@@ -2,11 +2,13 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.AddressMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 
@@ -15,16 +17,18 @@ import cucumber.api.java.en.When;
 
 public class AddressMaintenanceStepDefs {
 	private final AddressMaintenancePage addressMaintenancePage;
+	private final  AddressMaintenanceDB addressMaintenanceDB;
 	private JDAFooter jdaFooter;
 	private Context context;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 
 	@Inject
-	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage, JDAFooter jdaFooter, Context context,JDAHomeStepDefs jdaHomeStepDefs) {
+	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,AddressMaintenanceDB addressMaintenanceDB, JDAFooter jdaFooter, Context context,JDAHomeStepDefs jdaHomeStepDefs) {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
+		this.addressMaintenanceDB = addressMaintenanceDB;
 	}
 
 	@When("^I search the address id \"([^\"]*)\"$")
@@ -148,9 +152,54 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+	@Then("^the supplier should have supplier pallet and customs excise detail in the address maintenanace table$")
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		HashMap<String, String> addressDbDetails = addressMaintenanceDB.getAdressDetails(context.getSupplierID());
+
+		String name = addressDbDetails.get("Name");
+		if (!context.getName().equals(name)) {
+			failureList.add("Name is not as expected. Expected [" + context.getName() + "]  but was [" + name + "]");
+		}
+
+		String address1 = addressDbDetails.get("Address1");
+		if (!context.getAddress1().equals(address1)) {
+			failureList.add(
+					"Address1 is not as expected. Expected [" + context.getAddress1() + "] but was [" + address1 + "]");
+		}
+
+		String country = addressDbDetails.get("Country");
+		context.setCountry(country);
+		if (!context.getCountry().equals(country)) {
+			failureList.add(
+					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
+		}
+
+		/*String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
+		if (!defaultSupplierPallet.equals("CHEP")) {
+			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
+					+ defaultSupplierPallet + "]");
+		}*/
+
+		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
+		if (!ceWarehouseType.equals("E")) {
+			failureList.add("CE & Warehouse type should not be null. Expected ['E'stands for Excise] but was ["
+					+ ceWarehouseType + "]");
+		}
+
+		String ceTaxWarehouse = addressDbDetails.get("CEWarehouseTax");
+		if (ceTaxWarehouse.equals(null)) {
+			failureList.add("CE Tax Warehouse is not displayed as expected. Expected [Not Null] but was ["
+					+ ceTaxWarehouse + "]");
+		}
+
+		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
 
 	@Then("^I navigate to user defined tab in address maintenance page$")
 	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
 		addressMaintenancePage.clickUserDefinedTab();
 	}
 }
+
