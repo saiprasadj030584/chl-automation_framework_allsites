@@ -319,7 +319,7 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}*/
 	
-	@Then("^the status should be diaplayed as \"([^\"]*)\"$")
+	@Then("^the status should be displayed as \"([^\"]*)\"$")
 	public void the_status_should_be_displayed(String status) throws Throwable {
 		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}

@@ -21,3 +21,24 @@ Feature: Putaway for purchase order
       #|  7150010138 | BWS-Bonded      | Released | REC002   |
       #|  0072000009 | BWS-Non-Bonded  | Released | REC002   |
       #|  8150010139 | BWS-New Vintage | Released | REC002   |
+
+      
+ @po_receive_ambient1
+  Scenario Outline: Receiving process in JDA WMS for Ambient1 product category
+    Given the PO "<PreAdviceID>" with "Ambient" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
+    And the PO should have address detail
+    Then the supplier should have supplier pallet and customs excise detail in the address maintenanace table
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice lines items
+    When I have logged in as warehouse user in Putty
+    When I select user directed option in main menu
+    And I receive the PO with basic and pre-advice receiving
+    Then I should be directed to pre-advice entry page
+    When I receive all the skus for the purchase order at location "<Location>"
+    And I should see the receiving completion
+    Then the inventory details should be displayed for all the tag ids
+    And the status should be displayed as "Complete"
+    Then the goods receipt should be generate for the received stock in inventory transaction table
+
+    Examples: 
+      | PreAdviceID | Location |
+      |  8050004520 | REC002   |

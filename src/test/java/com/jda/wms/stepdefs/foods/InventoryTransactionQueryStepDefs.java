@@ -422,15 +422,15 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.clickSettings2Tab();
 	}
 
-	@Then("^the URN child should be updated with tag id$") 
-	public void the_URN_child_should_be_update_with_tag_id() throws Throwable {
+	@Then("^the URN child should be displayed$") 
+	public void the_URN_child_should_be_displayed() throws Throwable {
 		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
 				inventoryTransactionQueryPage.getURNChild());
 		logger.debug("URN Child: " + inventoryTransactionQueryPage.getURNChild());
 	}
 
-	@Then("^the URN child should be checked$")
-	public void the_URN_child_should_be_checked() throws Throwable {
+	@Then("^the URN child should be updated with tag ids$")
+	public void the_URN_child_should_be_update_with_tag_ids() throws Throwable {
 		HashMap<String, String> preAdviceHeaderDbDetails = inventoryTransactionDB
 				.getInventoryTransactionUrn(context.getTagId(), "Receipt");
 
@@ -983,7 +983,7 @@ public class InventoryTransactionQueryStepDefs {
 
 				the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
 				i_navigate_to_settings_2_tab_in_the_user_defined_tab();
-				the_URN_child_should_be_update_with_tag_id();
+				the_URN_child_should_be_update_with_tag_ids();
 				inventoryTransactionQueryPage.clickUserDefinedSettings1Tab();
 				inventoryTransactionQueryPage.clickGeneralTab();
 			}
@@ -993,7 +993,6 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the goods receipt should be generate for the received stock in inventory transaction table$")
 	public void the_goods_receipt_should_be_generate_for_the_received_stock_in_inventory_transaction_table()
 			throws Throwable {
-
 		String tagID = null;
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
@@ -1004,8 +1003,7 @@ public class InventoryTransactionQueryStepDefs {
 			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
 
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
-				tagID = tagIDMap.get(sku).get(s);
-				context.setTagId(tagID);
+				context.setTagId(tagIDMap.get(sku).get(s));
 				the_inventory_transaction_details_should_be_checked_in_inventory_transaction_table();
 
 				if ((!context.getProductCategory().contains("Non-Bonded"))
@@ -1019,7 +1017,7 @@ public class InventoryTransactionQueryStepDefs {
 				}
 
 				the_storage_location_base_UOM_case_ratio_into_destination_date_should_be_displayed();
-				the_URN_child_should_be_checked();
+				the_URN_child_should_be_update_with_tag_ids();
 			}
 		}
 	}

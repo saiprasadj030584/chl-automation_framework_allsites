@@ -21,6 +21,7 @@ Feature: Purchase order
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
     Then the status should be displayed as "Complete"
+    And the status should be diaplayed as "Complete"
     Then the goods receipt should be generated for the received stock in inventory transaction table
 
     Examples: 
