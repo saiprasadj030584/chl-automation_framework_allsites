@@ -191,10 +191,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		logger.debug("Order ID : " + orderID);
 		logger.debug("Order status from DB : " + actualOrderStatus);
 
-		// user AssertEquals
-		if (actualOrderStatus == actualOrderStatus) {
-			logger.debug("Expected Order status to proceed vehicle load");
-		}
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, actualOrderStatus);
 	}
 
 	@Then("^the consignment should be generated in the order header maintenance$")
