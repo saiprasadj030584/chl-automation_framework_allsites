@@ -12,3 +12,21 @@
 2017-05-24 13:46:27 DEBUG Hooks:82 - ###########################################################################################################################
 2017-05-24 13:46:27 DEBUG Hooks:84 - End of Scenario: Load the STO order details
 2017-05-24 13:46:27 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 14:36:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-24 14:36:27 DEBUG Hooks:39 - featureID: receive-sto-order
+2017-05-24 14:36:27 DEBUG Hooks:40 - Start of Scenario: Load the STO order details
+2017-05-24 14:36:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-24 14:36:28 DEBUG Database:61 - Connection successfull
+2017-05-24 14:36:28 DEBUG Verification:20 - Customer - expected [0437] and actual [0437]
+2017-05-24 14:36:28 DEBUG Verification:20 - Consignment - expected [WAVE30----1520170504] and actual [WAVE30----1520170504]
+2017-05-24 14:36:28 DEBUG Verification:20 - FromStatus - expected [Complete] and actual [Complete]
+2017-05-24 14:36:28 DEBUG Verification:20 - ToStatus - expected [Shipped] and actual [Shipped]
+2017-05-24 14:36:28 DEBUG Verification:20 - UploadedDate - expected [Not NULL] and actual [2017-05-04 18:15:58.350433 Europe/London]
+2017-05-24 14:36:28 DEBUG Verification:20 - Uploaded - expected [Y] and actual [Y]
+2017-05-24 14:36:28 DEBUG Verification:20 - DwsPalletRef - expected [Not NULL] and actual [UK]
+2017-05-24 14:36:28 DEBUG Verification:20 - IntoDestinationDate - expected [Not NULL] and actual [2017-05-04 17:43:36.0 Europe/London]
+2017-05-24 14:36:28 DEBUG Verification:20 - IfosOrderNum - expected [Not NULL] and actual [9771]
+2017-05-24 14:36:28 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-24 14:36:28 DEBUG Hooks:84 - End of Scenario: Load the STO order details
+2017-05-24 14:36:28 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-24 14:36:28 DEBUG Hooks:93 - DB Connection closed
