@@ -28,7 +28,6 @@ public class PuttyFunctionsStepDefs {
 	@Given("^I have logged in as warehouse user in Putty$")
 	public void i_have_logged_in_as_warehouse_user_in_Putty()
 			throws Throwable {
-		System.out.println("Check5");
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
@@ -36,7 +35,7 @@ public class PuttyFunctionsStepDefs {
 		String host= configuration.getStringProperty("putty-foods-host");
 		String port= configuration.getStringProperty("putty-foods-port");
 		puttyFunctionsPage.loginPutty(host, port);
-		Thread.sleep(9000);
+		Thread.sleep(4000);
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),

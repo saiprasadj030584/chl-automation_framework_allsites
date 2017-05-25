@@ -150,8 +150,8 @@ public class StoreTrackingOrderPickingPage {
 
 	public String getToPallet() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Picking/ToPallet.png");
-		screen.click(mStatus.getCenter().offset(40, 0));
-		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
@@ -173,5 +173,10 @@ public class StoreTrackingOrderPickingPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void enterDestination(String destination) throws InterruptedException {
+		screen.type(destination);
+		Thread.sleep(2000);
 	}
 }

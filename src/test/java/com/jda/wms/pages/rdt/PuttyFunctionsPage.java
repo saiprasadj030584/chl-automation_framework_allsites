@@ -82,7 +82,7 @@ public class PuttyFunctionsPage {
 	
 	public void pressTab() throws InterruptedException{
 		screen.type(Key.TAB);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 	}
 	
 	public void pressEnter() throws InterruptedException{

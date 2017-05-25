@@ -85,7 +85,7 @@ public class StoreTrackingOrderPickingStepDefs {
 			}
 			the_location_should_be_displayed();
 			i_enter_SKU_id_quantity_and_stock_details();
-
+			
 			listIDMap.get(i).replace("TagID", context.getTagId());
 			context.setListIDMap(listIDMap);
 			
@@ -95,8 +95,11 @@ public class StoreTrackingOrderPickingStepDefs {
 				failureList.add("Picking not completed and Home page not displayed for List ID "+context.getListID());
 				context.setFailureList(failureList);
 			}
+			context.setPickedRecords(context.getPickedRecords()+1);
+//			System.out.println("Record picked "+context.getPickedRecords());
 		}
-//		puttyFunctionsPage.minimisePutty();
+		puttyFunctionsPage.minimisePutty();
+//		System.out.println("Total picked "+context.getPickedRecords());
 	}
 	
 	@When("^the list id should be displayed$")
@@ -107,8 +110,7 @@ public class StoreTrackingOrderPickingStepDefs {
 	
 	@When("^I enter task id and list id$")
 	public void i_enter_task_id_and_list_id() throws Throwable {
-//		storeTrackingOrderPickingPage.enterTaskID(context.getOrderId());
-		puttyFunctionsPage.pressTab();
+		storeTrackingOrderPickingPage.enterTaskID(context.getOrderId());
 		storeTrackingOrderPickingPage.enterListID(context.getListID());
 		puttyFunctionsPage.pressEnter();
 	}
@@ -127,7 +129,7 @@ public class StoreTrackingOrderPickingStepDefs {
 		
 		String quantity = storeTrackingOrderPickingPage.getQuantity();
 		stockTransferOrderMap = context.getStockTransferOrderMap();
-		for (int s=1;s<stockTransferOrderMap.size();s++){
+		for (int s=1;s<=stockTransferOrderMap.size();s++){
 			if (context.getSkuId().equals(stockTransferOrderMap.get(s).get("SKU"))){
 				caseRatio = Integer.parseInt(stockTransferOrderMap.get(s).get("CaseRatio"));
 				break;
@@ -139,37 +141,33 @@ public class StoreTrackingOrderPickingStepDefs {
 		
 		puttyFunctionsPage.nextScreen();
 		Thread.sleep(1000);
-		puttyFunctionsPage.nextScreen();
-		puttyFunctionsPage.pressEnter();
-		
+
 		String tagId = storeTrackingOrderPickingPage.getTagId();
 		context.setTagId(tagId);
 		
 		puttyFunctionsPage.nextScreen();
-		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
 		
 		puttyFunctionsPage.pressTab();
 		puttyFunctionsPage.pressTab();
 		
 		storeTrackingOrderPickingPage.enterQuantity(String.valueOf(qtyToPick)+"C");
-//		storeTrackingOrderPickingPage.enterQuantity("4C");
 		
 		stockTransferOrderMap = context.getStockTransferOrderMap();
 		String allocationGroup = null;
-		for (int s=1;s<stockTransferOrderMap.size();s++){
+		for (int s=1;s<=stockTransferOrderMap.size();s++){
 			if (context.getSkuId().equals(stockTransferOrderMap.get(s).get("SKU"))){
 				allocationGroup = stockTransferOrderMap.get(s).get("AllocationGroup");
 				break;
 			}
 		}
-		
+
 		if (allocationGroup.equalsIgnoreCase("Expiry")){
 			puttyFunctionsPage.pressTab();
 			String manufactureDate = DateUtils.getPrevSystemYear();
 			storeTrackingOrderPickingPage.enterManufactureDate(manufactureDate);
 			// TODO Convert date from DB
-			String expDate = inventoryDB.getExpDate(context.getSkuId(),tagId,context.getLocation());
+			String expDate = inventoryDB.getExpDate(context.getSkuId(),context.getTagId(),context.getLocation());
 			storeTrackingOrderPickingPage.enterExpiryDate(expDate);
 		}
 		
@@ -182,25 +180,31 @@ public class StoreTrackingOrderPickingStepDefs {
 	public void the_to_pallet_to_location_and_destination_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		
+		String destination = storeTrackingOrderPickingPage.getDestination();
+		String [] dest = destination.split("_");
+		destination = dest[0];
+		
+		if (!context.getFinalLocation().equals(destination)){
+			failureList.add("To Pallet is not displayed as expected. Expected [" + context.getFinalLocation()
+			+ "] but was [" + destination + "]");
+		}
+		
 		String toPallet = storeTrackingOrderPickingPage.getToPallet();
-		if (context.getToPallet().equals(toPallet)){
+		if (!context.getToPallet().equals(toPallet)){
 			failureList.add("To Pallet is not displayed as expected. Expected [" + context.getToPallet()
 			+ "] but was [" + toPallet + "]");
 		}
 		
 		String toLocation = storeTrackingOrderPickingPage.getToLocation();
-		if (context.getToLocation().equals(toLocation)){
+		if (!context.getToLocation().equals(toLocation)){
 			failureList.add("To Pallet is not displayed as expected. Expected [" + context.getToLocation()
 			+ "] but was [" + toLocation + "]");
 		}
 		
-		String destination = storeTrackingOrderPickingPage.getDestination();
-		if (context.getFinalLocation().equals(destination)){
-			failureList.add("To Pallet is not displayed as expected. Expected [" + context.getFinalLocation()
-			+ "] but was [" + destination + "]");
-		}
+		storeTrackingOrderPickingPage.enterDestination(destination);
 		
 		puttyFunctionsPage.pressEnter();
+		
 		Assert.assertTrue("Picking - List Id, SKU, Location are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}

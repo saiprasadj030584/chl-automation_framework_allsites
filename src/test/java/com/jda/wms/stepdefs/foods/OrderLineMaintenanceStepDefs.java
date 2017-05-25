@@ -28,7 +28,7 @@ public class OrderLineMaintenanceStepDefs {
 	private Verification verification;
 	private OrderLineMaintenancePage orderLineMaintenancePage;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	Map<Integer, Map<String, String>> stockTransferOrderMap;
+	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOrdered;
 
 	@Inject
@@ -73,7 +73,6 @@ public class OrderLineMaintenanceStepDefs {
 			caseRatio = Integer.parseInt(orderLineDB.getCaseRatio(context.getOrderId(),skuID.get(i-1)));
 			
 			verification.verifyData("Type", "CASE", trackingLevel,failureList);
-			System.out.println("skuConfigDB.getRatio1To2(packConfig) "+skuConfigDB.getRatio1To2(packConfig));
 			int ratio1To2 = Utilities.convertStringToInteger(skuConfigDB.getRatio1To2(packConfig));
 			verification.verifyData("Case Ratio", String.valueOf(ratio1To2), String.valueOf(caseRatio),failureList);
 
@@ -91,8 +90,6 @@ public class OrderLineMaintenanceStepDefs {
 
 			stockTransferOrderMap.put(i, lineItemsMap);
 			context.setstockTransferOrderMap(stockTransferOrderMap);
-			System.out.println(stockTransferOrderMap);
-
 		}
 		System.out.println("stockTransferOrderMap " + stockTransferOrderMap);
 		logger.debug("Map: " + stockTransferOrderMap.toString());

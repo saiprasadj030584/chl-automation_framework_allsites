@@ -56,7 +56,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status,
 			String type) throws Throwable {
 		context.setOrderId(orderID);
-		System.out.println(context.getOrderId());
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData("Order status", status, orderHeaderDB.getStatus(context.getOrderId()), failureList);
 		verification.verifyData("Order date", "Not Null", orderHeaderDB.getOrderDate(context.getOrderId()),
@@ -215,7 +214,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order should have hub details$")
 	public void the_order_should_have_hub_details() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		orderHeaderMaintenancePage.clickHubAddressTab();
 		verification.verifyData("Hub", "Not Null", orderHeaderDB.getHub(context.getOrderId()), failureList);
 		verification.verifyData("Hub Name", "Not Null", orderHeaderDB.getHubName(context.getOrderId()), failureList);
 		verification.verifyData("Hub Country", "Not Null", orderHeaderDB.getHubCountry(context.getOrderId()),

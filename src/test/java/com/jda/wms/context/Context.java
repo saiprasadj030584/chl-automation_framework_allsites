@@ -70,8 +70,8 @@ public class Context {
 	private String bookingID;
 	private String orderStatus;
 	private String consignment;
-	private String orderID;
 	private int qtyOrdered;
+	private int pickedRecords;
 	
 
 	public RDTTask getCurrentTask() {
@@ -553,5 +553,37 @@ public class Context {
 
 	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
 		this.listIDMap = listIDMap;
+	}
+
+	public String getAbv() {
+		return abv;
+	}
+
+	public void setAbv(String abv) {
+		this.abv = abv;
+	}
+
+	public int getQtyReceivedfromPutty() {
+		return qtyReceivedfromPutty;
+	}
+
+	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
+		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	}
+
+	public List<String> getCheckStrings() {
+		return checkStrings;
+	}
+
+	public void setCheckStrings(List<String> checkStrings) {
+		this.checkStrings = checkStrings;
+	}
+
+	public int getPickedRecords() {
+		return pickedRecords;
+	}
+
+	public void setPickedRecords(int pickedRecords) {
+		this.pickedRecords = pickedRecords;
 	}
 }
