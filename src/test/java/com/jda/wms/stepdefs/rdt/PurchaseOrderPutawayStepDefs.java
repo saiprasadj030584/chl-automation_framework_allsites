@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.LocationDB;
+import com.jda.wms.db.MoveTaskUpdateDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -26,6 +27,7 @@ import cucumber.api.java.en.When;
 public class PurchaseOrderPutawayStepDefs {
 	private final JdaHomePage jdaHomepage;
 	private final MoveTaskUpdatePage moveTaskUpdate;
+	private final MoveTaskUpdateDB moveTaskUpdateDB;
 	private final JDAFooter jdaFooter;
 	private final PurchaseOrderPutawayPage purchaseOrderPutawayPage;
 	private final PuttyFunctionsPage puttyFunctionsPage;
@@ -47,7 +49,7 @@ public class PurchaseOrderPutawayStepDefs {
 			PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context, PuttyFunctionsPage puttyFunctionsPage,
 			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database, Hooks hooks,
 			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
-			PuttyFunctionsStepDefs puttyFunctionsStepDefs,
+			PuttyFunctionsStepDefs puttyFunctionsStepDefs, MoveTaskUpdateDB moveTaskUpdateDB,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
@@ -62,17 +64,18 @@ public class PurchaseOrderPutawayStepDefs {
 		this.database = database;
 		this.locationDB = locationDB;
 		this.hooks = hooks;
+		this.moveTaskUpdateDB = moveTaskUpdateDB;
 	}
 
-	@Given("^the pre advice id \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" , \"([^\"]*)\" and \"([^\"]*)\" should be received$")
-	public void the_pre_advice_id_and_should_be_received(String preAdviceId, String category, String status,
-			String location, String finalStatus) throws Throwable {
+	@Given("^the pre advice id \"([^\"]*)\" should be received with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+	public void the_pre_advice_id_should_be_received_with(String preAdviceId, String category, String status,
+			String location ) throws Throwable {
 
 		preAdviceHeaderStepsDefs
-				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
+				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 						preAdviceId, category, status);
 		preAdviceLineMaintenanceStepDefs
-				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_line_items();
+				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items();
 
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
@@ -109,7 +112,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I do putaway for all the tags$")
 	public void i_do_putaway_for_all_the_tags() throws Throwable {
-		Map<String, String> locationPerTagMap = new HashMap<String, String>();
+		Map<String, String> locationForTagMap = new HashMap<String, String>();
 
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
@@ -122,11 +125,10 @@ public class PurchaseOrderPutawayStepDefs {
 				purchaseOrderPutawayPage.enterTagId(currentTagId);
 				purchaseOrderPutawayPage.completeProcess();
 				String location = purchaseOrderPutawayPage.getLocation();
-				locationPerTagMap.put(currentTagId, location);
-				Thread.sleep(2000);
+				locationForTagMap.put(currentTagId, location);
+				Thread.sleep(3000);
 
-				database.connect();
-				String checkString = locationDB.geCheckString(location);
+				String checkString = locationDB.getCheckString(location);
 				purchaseOrderPutawayPage.enterCheckString(checkString);
 			}
 
@@ -135,7 +137,7 @@ public class PurchaseOrderPutawayStepDefs {
 			hooks.logoutPutty();
 			Thread.sleep(2000);
 		}
-		context.setLocationPerTagMap(locationPerTagMap);
+		context.setLocationForTagMap(locationForTagMap);
 	}
 
 	@Then("^I should be directed to putent page$")
@@ -162,7 +164,7 @@ public class PurchaseOrderPutawayStepDefs {
 		context.setLocation(location);
 
 		database.connect();
-		String checkString = locationDB.geCheckString(location);
+		String checkString = locationDB.getCheckString(location);
 		purchaseOrderPutawayPage.enterCheckString(checkString);
 	}
 }

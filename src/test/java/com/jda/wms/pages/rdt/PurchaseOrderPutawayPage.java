@@ -67,7 +67,7 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void completeProcess() throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		screen.type(Key.ENTER);
 	}
 
