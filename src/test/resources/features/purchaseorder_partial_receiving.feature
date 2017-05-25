@@ -10,7 +10,7 @@ Feature: Partial receive purchase order
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item
-    When I have logged in as warehouse user in Putty
+    When I have logged in as warehouse user in putty
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
