@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.InventoryTransactionDB;
+import com.jda.wms.db.InventoryDB;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -31,17 +33,22 @@ public class InventoryTransactionQueryStepDefs {
 	private final SKUMaintenancePage sKUMaintenancePage;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
+	private Verification verification;
+	private InventoryDB inventoryDB;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			Context context, JDAFooter jdaFooter, JdaHomePage jdaHomePage, SKUMaintenancePage sKUMaintenancePage,
-			InventoryTransactionDB inventoryTransactionDB) {
+			InventoryTransactionDB inventoryTransactionDB, 
+			Verification verification, InventoryDB inventoryDB) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.sKUMaintenancePage = sKUMaintenancePage;
 		this.inventoryTransactionDB = inventoryTransactionDB;
+		this.verification = verification;
+		this.inventoryDB = inventoryDB;
 	}
 
 	@When("^I search tag id \"([^\"]*)\", code as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
@@ -761,27 +768,31 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("packConfig: " + packConfig);
 
 		String uploaded = inventoryTransactionQueryPage.getUploaded();
-		String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
-		if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
-			if (!uploadedFileName.contains("I0808itl")) {
-				failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
-						+ uploadedFileName + "]");
+
+		if (!((uploaded.equalsIgnoreCase("No")) || (uploaded.equals("N")))) {
+			String uploadedFileName = inventoryTransactionQueryPage.getUploadedFileName();
+			if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
+				if (!uploadedFileName.contains("I0808itl")) {
+					failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
+							+ uploadedFileName + "]");
+				}
 			}
+			logger.debug("uploadedFileName: " + uploadedFileName);
+
+			String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
+			if (uploadedDate.equals(null)) {
+				failureList.add("Uploaded Date is not as expected. Expected [Not Null] but was [" + uploadedDate + "]");
+			}
+			logger.debug("uploadedDate: " + uploadedDate);
+
+			String uploadedTime = inventoryTransactionQueryPage.getUploadedTime();
+			if (uploadedTime.equals(null)) {
+				failureList.add("Uploaded Time is not as expected. Expected [Not Null] but was [" + uploadedTime + "]");
+			}
+			logger.debug("uploadedTime: " + uploadedTime);
+
 		}
 		logger.debug("uploaded: " + uploaded);
-		logger.debug("uploadedFileName: " + uploadedFileName);
-
-		String uploadedDate = inventoryTransactionQueryPage.getUploadedDate();
-		if (uploadedDate.equals(null)) {
-			failureList.add("Uploaded Date is not as expected. Expected [Not Null] but was [" + uploadedDate + "]");
-		}
-		logger.debug("uploadedDate: " + uploadedDate);
-
-		String uploadedTime = inventoryTransactionQueryPage.getUploadedTime();
-		if (uploadedTime.equals(null)) {
-			failureList.add("Uploaded Time is not as expected. Expected [Not Null] but was [" + uploadedTime + "]");
-		}
-		logger.debug("uploadedTime: " + uploadedTime);
 
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
@@ -939,13 +950,14 @@ public class InventoryTransactionQueryStepDefs {
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				jdaFooter.clickQueryButton();
 
 				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
+
 				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
 				i_navigate_to_miscellaneous_tab();
 				the_expiry_date_user_id_workstation_RDT_user_mode_and_supplier_details_should_be_displayed();
@@ -1034,6 +1046,40 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 
 		the_uploaded_status_and_uploaded_file_should_be_displayed();
+	}
+
+	@Given("^the order receipt should be generated in the inventory	for note \"([^\"]*)\"$")
+	public void the_order_reciept_should_be_generated_in_inventory_for_note(String notes) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String reference = "6666164300";
+		context.setCustomer("0437");
+		context.setConsignmentID("WAVE30----1520170504");
+
+		verification.verifyData("Customer", context.getCustomer(), inventoryDB.getCustomer(reference, notes),
+				failureList);
+		verification.verifyData("Consignment", context.getConsignmentID(), inventoryDB.getConsignment(reference, notes),
+				failureList);
+
+		verification.verifyData("FromStatus", "Complete", inventoryDB.getFromStatus(reference, notes), failureList);
+		verification.verifyData("ToStatus", "Shipped", inventoryDB.getToStatus(reference, notes), failureList);
+		verification.verifyData("UploadedDate", "Not NULL", inventoryDB.getUploadedDate(reference,  notes),
+				failureList);
+		if (inventoryDB.getUploadedFileName(reference, notes) != null) {
+			verification.verifyData("Uploaded", "Y", inventoryDB.getUploaded(reference, notes), failureList);
+		} else {
+			verification.verifyData("Uploaded", "N", inventoryDB.getUploaded(reference, notes), failureList);
+		}
+
+		verification.verifyData("DwsPalletRef", "Not NULL", inventoryDB.getDwsPalletRef(reference, notes),
+				failureList);
+		verification.verifyData("IntoDestinationDate", "Not NULL",
+				inventoryDB.getIntoDestinationDate(reference, notes), failureList);
+		verification.verifyData("IfosOrderNum", "Not NULL", inventoryDB.getIfosOrderNum(reference, notes),
+				failureList);
+
+		Assert.assertTrue(
+				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 
 }

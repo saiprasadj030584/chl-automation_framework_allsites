@@ -82,7 +82,7 @@ public class JDAFooter {
 		Thread.sleep(3000);
 	}
 	
-	public void clickPreAdiceLine() throws FindFailed, InterruptedException {
+	public void clickPreAdviceLine() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAFooter/PreAdviceLine.png", timeoutInSec);
 		screen.click("images/JDAFooter/PreAdviceLine.png");
 		Thread.sleep(3000);
@@ -104,5 +104,14 @@ public class JDAFooter {
 		screen.wait("images/JDAFooter/OrderLine.png", timeoutInSec);
 		screen.click("images/JDAFooter/OrderLine.png");
 		Thread.sleep(3000);
+	}
+	
+	public void PressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	
+	public void clickSearch() throws FindFailed, InterruptedException {
+		clickNextButton();
 	}
 }

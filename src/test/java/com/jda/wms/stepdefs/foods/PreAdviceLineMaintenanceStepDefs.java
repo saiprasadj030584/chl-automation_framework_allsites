@@ -166,13 +166,13 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("QtyDue", qtyDue);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
-			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("AllocationGroup", allocationGroup);
 			lineItemsMap.put("Product Group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 
-			jdaFooter.clickPreAdiceLine();
+			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
 
 			preAdviceLineMaintenancePage.clickGeneralTab();
@@ -313,6 +313,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 
 			logger.debug(purchaseOrderMap.toString());
+			
+		
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
@@ -341,6 +343,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
 			}
 			tagIDMap.put(skuIDs, tagIDArrayList);
+		
 		}
 		context.setTagIDMap(tagIDMap);
 

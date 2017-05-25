@@ -10,20 +10,17 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
-import com.jda.wms.db.Database;
 
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final JDAFooter jDAFooter;
-	private Database database;
 	private Configuration configuration;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public SKUMaintenancePage(JDAFooter jDAFooter, Database database, Configuration configuration) {
+	public SKUMaintenancePage(JDAFooter jDAFooter, Configuration configuration) {
 		this.jDAFooter = jDAFooter;
-		this.database = database;
 		this.configuration = configuration;
 	}
 
@@ -249,8 +246,4 @@ public class SKUMaintenancePage {
 		Thread.sleep(2000);
 	}
 
-	public void invokeDataBase() throws ClassNotFoundException {
-		database.connect();
-		logger.debug(database.getABV("60070710"));
-	}
 }

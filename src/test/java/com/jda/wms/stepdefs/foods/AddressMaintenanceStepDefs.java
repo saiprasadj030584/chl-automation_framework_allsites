@@ -140,8 +140,8 @@ public class AddressMaintenanceStepDefs {
 		
 		addressMaintenancePage.clickUserDefinedTab();
 		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
-		if (!defaultySupplierPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected [CHEP] but was ["
+		if (defaultySupplierPallet.isEmpty()) {
+			failureList.add("Default Supplier Pallet is not as expected. Expected [Not Null] but was ["
 					+ defaultySupplierPallet + "]");
 		}
 		
@@ -199,9 +199,6 @@ public class AddressMaintenanceStepDefs {
 
 	@Then("^I navigate to user defined tab in address maintenance page$")
 	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
-		// jdaFooter.clickQueryButton();
-		// addressMaintenancePage.entersAddressID(context.getSupplierID());
-		// jdaFooter.clickExecuteButton();
 		addressMaintenancePage.clickUserDefinedTab();
 	}
 }
