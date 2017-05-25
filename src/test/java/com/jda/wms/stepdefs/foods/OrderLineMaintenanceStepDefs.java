@@ -35,13 +35,14 @@ public class OrderLineMaintenanceStepDefs {
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JdaHomePage jdaHomePage, JDAFooter jdaFooter, Context context,
 			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
-			PackConfigMaintenancePage packConfigMaintenancePage, OrderLineDB orderLineDB, Verification verification,SkuDB skuDB) {
+			PackConfigMaintenancePage packConfigMaintenancePage, OrderLineDB orderLineDB, Verification verification,SkuDB skuDB,SkuConfigDB skuConfigDB) {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.context = context;
 		this.orderLineDB = orderLineDB;
 		this.verification = verification;
 		this.skuConfigDB = skuConfigDB;
 		this.skuDB = skuDB;
+		this.skuConfigDB = skuConfigDB;
 	}
 
 	@When("^I select the SKU line$")
@@ -72,7 +73,7 @@ public class OrderLineMaintenanceStepDefs {
 			caseRatio = Integer.parseInt(orderLineDB.getCaseRatio(context.getOrderId(),skuID.get(i-1)));
 			
 			verification.verifyData("Type", "CASE", trackingLevel,failureList);
-			
+			System.out.println("skuConfigDB.getRatio1To2(packConfig) "+skuConfigDB.getRatio1To2(packConfig));
 			int ratio1To2 = Utilities.convertStringToInteger(skuConfigDB.getRatio1To2(packConfig));
 			verification.verifyData("Case Ratio", String.valueOf(ratio1To2), String.valueOf(caseRatio),failureList);
 
@@ -186,7 +187,6 @@ public class OrderLineMaintenanceStepDefs {
 	}
 
 	@Given("^the quantity tasked should be updated for each order lines$")
-
 	public void the_quantity_tasked_should_be_updated_for_each_order_lines() throws Throwable {
 		stockTransferOrderMap = context.getStockTransferOrderMap();
 		ArrayList<String> failureList = new ArrayList<String>();

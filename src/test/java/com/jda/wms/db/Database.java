@@ -33,6 +33,8 @@ import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 
+import cucumber.api.java.Before;
+
 /**
  *
  * @author Tone Walters (tone_walters@yahoo.com)
@@ -63,14 +65,17 @@ public class Database {
 	 * @return - returns true if the connection is successful.
 	 * @throws ClassNotFoundException 
 	 */
+	@Before
 	public void connect() throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
+			System.out.println("Inside connect mtd");
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
 			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
 			connection.setAutoCommit(true);
 			context.setConnection(connection);
 			connectionSucessful = true;
+			System.out.println("Connection successfull");
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
 			logger.debug("Exception "+ex.getMessage());

@@ -30,6 +30,7 @@ public class OrderHeaderDB {
 		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderId + "'");
 		rs.next();
 		status = (rs.getString(1));
+		System.out.println("Status in db " + status);
 		return status;
 	}
 
@@ -173,19 +174,19 @@ public class OrderHeaderDB {
 		country = (rs.getString(1));
 		return country;
 	}
-	
+
 	public String getOrderStatus(String orderID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		
+
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderID + "'");
 		rs.next();
 		String orderStatus = rs.getString(1);
 		context.setOrderStatus(orderStatus);
 		return orderStatus;
-	} 
+	}
 
 	public String getShipdock(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -230,5 +231,117 @@ public class OrderHeaderDB {
 		orderGroupDetails.put("CONSIGNMENTGROUPINGID", resultSet.getString(3));
 		logger.debug("Order Group Details: " + orderGroupDetails);
 		return orderGroupDetails;
+	}
+
+	public String getShipByDate(String orderId) throws ClassNotFoundException, SQLException {
+		String shipByDate = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SHIP_BY_DATE from order_header where order_id='" + orderId + "'");
+		rs.next();
+		shipByDate = rs.getString(1);
+		context.setSTOConsignment(shipByDate);
+		return shipByDate;
+	}
+
+	public String getDeliverByDate(String orderId) throws ClassNotFoundException, SQLException {
+		String deliveryByTime = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select DELIVER_BY_DATE from order_header where order_id='" + orderId + "'");
+		rs.next();
+		deliveryByTime = rs.getString(1);
+		context.setSTOConsignment(deliveryByTime);
+		return deliveryByTime;
+	}
+
+	public String getDeliveryType(String orderId) throws ClassNotFoundException, SQLException {
+		String deliveryType = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_8 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		deliveryType = rs.getString(1);
+		context.setSTOConsignment(deliveryType);
+		return deliveryType;
+	}
+
+	public String getIfosOrderNum(String orderId) throws ClassNotFoundException, SQLException {
+		String IFOSNum = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_2 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		IFOSNum = rs.getString(1);
+		context.setSTOConsignment(IFOSNum);
+		return IFOSNum;
+	}
+
+	public String getDeliveryByDateUserDefinedTab(String orderId) throws ClassNotFoundException, SQLException {
+		String deliverbyDate = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_DATE_1 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		deliverbyDate = rs.getString(1);
+		context.setSTOConsignment(deliverbyDate);
+		return deliverbyDate;
+	}
+
+	public String getHub(String orderId) throws ClassNotFoundException, SQLException {
+		String hub = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select HUB_ADDRESS_ID from order_header where order_id='" + orderId + "'");
+		rs.next();
+		hub = rs.getString(1);
+		context.setSTOConsignment(hub);
+		return hub;
+	}
+
+	public String getHubName(String orderId) throws ClassNotFoundException, SQLException {
+		String hubName = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select HUB_CONTACT from order_header where order_id='" + orderId + "'");
+		rs.next();
+		hubName = rs.getString(1);
+		context.setSTOConsignment(hubName);
+		return hubName;
+	}
+
+	public String getHubCountry(String orderId) throws ClassNotFoundException, SQLException {
+		String hubCountry = "";
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select HUB_COUNTRY from order_header where order_id='" + orderId + "'");
+		rs.next();
+		hubCountry = rs.getString(1);
+		context.setSTOConsignment(hubCountry);
+		return hubCountry;
 	}
 }

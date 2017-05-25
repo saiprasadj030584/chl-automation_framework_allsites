@@ -93,6 +93,8 @@ public class Hooks {
 			logger.debug("DB Connection closed");
 		}
 	}
+	
+	
 	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
