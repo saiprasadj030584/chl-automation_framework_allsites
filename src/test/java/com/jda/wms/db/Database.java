@@ -25,7 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +36,7 @@ import cucumber.api.java.Before;
 
 /**
  *
- * @author Tone Walters (tone_walters@yahoo.com)
+ * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
 	private String applicationUser;

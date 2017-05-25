@@ -22,6 +22,7 @@ import com.jda.wms.pages.foods.Verification;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
@@ -243,6 +244,21 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Given("^I enter the Order id \"([^\"]*)\"$")
+
+	public void i_enter_the_Order_id(String orderID) throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderHeaderMaintenancePage.enterOrderNo(orderID);
+		jdaFooter.clickExecuteButton();
+	}
+
+	@Then("^the consignment should be generated in the order header maintenance$")
+	public void the_consignment_should_be_generated_in_the_order_header_maintenance() throws Throwable {
+		logger.debug("Consignment: " + orderHeaderDB.getConsignment(context.getOrderId()));
+		Assert.assertNotNull("consignment is not displayed as expected",
+				orderHeaderDB.getConsignment(context.getOrderId()));
+	}
+
 	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
 	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
 		context.setOrderId(orderID);
@@ -260,4 +276,5 @@ public class OrderHeaderMaintenanceStepDefs {
 		String orderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
 		Assert.assertEquals("status is not as expected", status, orderStatus);
 	}
+
 }
