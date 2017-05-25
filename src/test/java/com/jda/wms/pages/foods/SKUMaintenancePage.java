@@ -217,6 +217,7 @@ public class SKUMaintenancePage {
 		Thread.sleep(2000);
 	}
 
+	// FIXME Why do you need this here?
 	public boolean isCurrentVintage(String currentVintage) {
 		if (!currentVintage.equals(null))
 			return true;

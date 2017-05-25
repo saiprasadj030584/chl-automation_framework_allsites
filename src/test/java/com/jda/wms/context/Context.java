@@ -33,7 +33,7 @@ public class Context {
 	private int tagIdIndex = 0;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
-	private List<String> checkStrings;
+	private List<String> caseRatiolist;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
@@ -258,18 +258,26 @@ public class Context {
 		this.locationZone = locationZone;
 	}
 
-	public Map<String, String> getLocationPerTagMap() {
+	public Map<String, String> getLocationForTagMap() {
 		return locationPerTagMap;
 	}
 
-	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
+	public void setLocationForTagMap(Map<String, String> locationPerTagMap) {
 		this.locationPerTagMap = locationPerTagMap;
 	}
 
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
 		return qtyReceivedPerTagMap;
 	}
-
+	
+	public List<String> getCaseRatioList() {
+		return caseRatiolist; //setCaseRatioList
+	}
+	
+	public void setCaseRatioList(List<String> caseRatiolist) {
+		this.caseRatiolist = caseRatiolist;
+	}
+	
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
@@ -569,14 +577,6 @@ public class Context {
 
 	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
 		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
-	}
-
-	public List<String> getCheckStrings() {
-		return checkStrings;
-	}
-
-	public void setCheckStrings(List<String> checkStrings) {
-		this.checkStrings = checkStrings;
 	}
 
 	public int getPickedRecords() {
