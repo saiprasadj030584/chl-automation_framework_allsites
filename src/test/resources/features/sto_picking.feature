@@ -48,7 +48,7 @@ Feature: Store Tracking order
 
   @picking_intl
   Scenario Outline: STO for International
-    Given the STO "<OrderId>" should be "Allocated" status, "INTSEA" type, order details in the order header table
+    Given the STO "<OrderId>" should be "Released" status, "INTSEA" type, order details in the order header table
     And the order should have delivery details
     And the order should have hub details
     And the STO should have the SKU,pack config, quantity ordered, quantity tasked,case ratio details for each line items from order line table
