@@ -188,7 +188,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			logger.debug("Current Vintage in SKU table: " + currentVintage);
 
 			preAdviceLineMaintenancePage.clickGeneralTab();
-			System.out.println("Check1"+date.getTime());
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),

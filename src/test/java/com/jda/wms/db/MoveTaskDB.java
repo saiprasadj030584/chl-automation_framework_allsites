@@ -19,7 +19,7 @@ public class MoveTaskDB {
 		this.database = database;
 	}
 
-	public ArrayList<String> getListId(String orderID) throws SQLException, ClassNotFoundException{
+	public ArrayList<String> getListIdList(String orderID) throws SQLException, ClassNotFoundException{
 		ArrayList<String> listId = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -36,7 +36,7 @@ public class MoveTaskDB {
 		return listId;
 	}
 
-	public ArrayList<String> getQtyToMove(String orderID) throws SQLException, ClassNotFoundException{
+	public ArrayList<String> getQtyToMoveList(String orderID) throws SQLException, ClassNotFoundException{
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -53,7 +53,7 @@ public class MoveTaskDB {
 		return qtyToMove;
 	}
 
-	public ArrayList<String> getToPalletID(String orderID) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getToPalletIDList(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> toPalletID = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -70,7 +70,7 @@ public class MoveTaskDB {
 		return toPalletID;
 	}
 
-	public ArrayList<String> getToContainerID(String orderID) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getToContainerIDList(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> toContainerID = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -87,7 +87,7 @@ public class MoveTaskDB {
 		return toContainerID;
 	}
 
-	public ArrayList<String> getSkuID(String orderID) throws ClassNotFoundException, SQLException {
+	public ArrayList<String> getSkuIDList(String orderID) throws ClassNotFoundException, SQLException {
 		ArrayList<String> skuID = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -104,7 +104,7 @@ public class MoveTaskDB {
 		return skuID;
 	}
 
-	public ArrayList<String> getLocation(String orderID) throws ClassNotFoundException, SQLException {
+	public ArrayList<String> getLocationList(String orderID) throws ClassNotFoundException, SQLException {
 		ArrayList<String> location = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -121,7 +121,7 @@ public class MoveTaskDB {
 		return location;
 	}
 
-	public ArrayList<String> getToLocation(String orderID) throws ClassNotFoundException, SQLException {
+	public ArrayList<String> getToLocationList(String orderID) throws ClassNotFoundException, SQLException {
 		ArrayList<String> toLocation = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();
@@ -138,7 +138,7 @@ public class MoveTaskDB {
 		return toLocation;
 	}
 
-	public ArrayList<String> getFinalLocation(String orderID) throws ClassNotFoundException, SQLException {
+	public ArrayList<String> getFinalLocationList(String orderID) throws ClassNotFoundException, SQLException {
 		ArrayList<String> finalLocation = new ArrayList<String>();
 		if (context.getConnection()==null){
 			database.connect();

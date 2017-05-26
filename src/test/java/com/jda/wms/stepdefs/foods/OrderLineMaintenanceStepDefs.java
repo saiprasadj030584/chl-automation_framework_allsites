@@ -65,7 +65,7 @@ public class OrderLineMaintenanceStepDefs {
 		ArrayList<String> skuID = new ArrayList<String>();
 		
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			skuID = orderLineDB.getsku(context.getOrderId());
+			skuID = orderLineDB.getskuList(context.getOrderId());
 			qtyOrdered = orderLineDB.getQtyOrdered(context.getOrderId(),skuID.get(i-1));
 			qtyTasked = orderLineDB.getQtyTasked(context.getOrderId(),skuID.get(i-1));
 			trackingLevel = orderLineDB.getTrackingLevel(context.getOrderId(),skuID.get(i-1));
@@ -91,7 +91,6 @@ public class OrderLineMaintenanceStepDefs {
 			stockTransferOrderMap.put(i, lineItemsMap);
 			context.setstockTransferOrderMap(stockTransferOrderMap);
 		}
-		System.out.println("stockTransferOrderMap " + stockTransferOrderMap);
 		logger.debug("Map: " + stockTransferOrderMap.toString());
 	}
 
@@ -175,7 +174,6 @@ public class OrderLineMaintenanceStepDefs {
 			 * orderLineMaintenancePage.clickGeneralTab();
 			 */
 		}
-		System.out.println("stockTransferOrderMap " + stockTransferOrderMap);
 		// Assert.assertTrue(
 		// "Stock Transfer Order line details are not as expected" +
 		// Arrays.asList(failureList.toString()),

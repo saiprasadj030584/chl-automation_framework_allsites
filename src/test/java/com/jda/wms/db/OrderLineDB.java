@@ -20,7 +20,6 @@ public class OrderLineDB {
 	}
 
 	public String getTrackingLevel(String orderID, String skuID) throws ClassNotFoundException, SQLException {
-		String trackingLevel = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -28,12 +27,10 @@ public class OrderLineDB {
 		ResultSet rs = stmt.executeQuery(
 				"select TRACKING_LEVEL from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		rs.next();
-		trackingLevel = (rs.getString(1));
-		return trackingLevel;
+		return rs.getString(1);
 	}
 
 	public String getQtyOrdered(String orderID, String skuID) throws SQLException, ClassNotFoundException {
-		String qtyOrdered = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -41,12 +38,10 @@ public class OrderLineDB {
 		ResultSet rs = stmt.executeQuery(
 				"select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		rs.next();
-		qtyOrdered = (rs.getString(1));
-		return qtyOrdered;
+		return rs.getString(1);
 	}
 
 	public String getCaseRatio(String orderID, String skuID) throws SQLException, ClassNotFoundException {
-		String caseRatio = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -54,12 +49,10 @@ public class OrderLineDB {
 		ResultSet rs = stmt.executeQuery("select user_def_type_6 from ORDER_LINE WHERE order_id ='" + orderID
 				+ "' and sku_id = '" + skuID + "'");
 		rs.next();
-		caseRatio = (rs.getString(1));
-		return caseRatio;
+		return rs.getString(1);
 	}
 
 	public String getQtyTasked(String orderID, String skuID) throws SQLException, ClassNotFoundException {
-		String qtytasked = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -67,8 +60,7 @@ public class OrderLineDB {
 		ResultSet rs = stmt.executeQuery(
 				"select qty_tasked from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		rs.next();
-		qtytasked = rs.getString(1);
-		return qtytasked;
+		return rs.getString(1);
 	}
 
 	public String getBackOrdered(String orderID, String skuID) throws SQLException, ClassNotFoundException {
@@ -84,7 +76,7 @@ public class OrderLineDB {
 
 	}
 
-	public ArrayList<String> getsku(String orderId) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getskuList(String orderId) throws SQLException, ClassNotFoundException {
 		ArrayList<String> skuId = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
@@ -102,15 +94,12 @@ public class OrderLineDB {
 	}
 
 	public String getPackConfig(String orderId, String skuID) throws ClassNotFoundException, SQLException {
-		String packConfig = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select CONFIG_ID from ORDER_LINE WHERE order_id ='" + orderId + "' and sku_id = '" + skuID + "'");
 		rs.next();
-		packConfig = (rs.getString(1));
-		return packConfig;
+		return rs.getString(1);
 	}
-		
 }

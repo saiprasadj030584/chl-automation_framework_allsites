@@ -18,7 +18,6 @@ public class InventoryDB {
 	}
 
 	public String getExpDate(String skuId, String tagId, String location) throws SQLException, ClassNotFoundException {
-		String expDate = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -26,8 +25,7 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select EXPIRY_DSTAMP from INVENTORY where TAG_ID = '"+tagId+"' AND SKU_ID = '"+skuId+"' AND LOCATION_ID = '"+location+"' AND LOCK_STATUS = 'UnLocked'");
 		rs.next();
-		expDate = (rs.getString(1));
-		return expDate;
+		return rs.getString(1);
 }
 
 	public String getCustomer(String reference, String notes) throws SQLException, ClassNotFoundException {

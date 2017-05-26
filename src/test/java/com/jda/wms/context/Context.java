@@ -45,7 +45,7 @@ public class Context {
 	private String lockCode;
 	private String vintage;
 	private String abv;
-	private int qtyReceivedfromPutty;
+	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
@@ -63,7 +63,7 @@ public class Context {
 	private String toPallet;
 	private String toLocation;
 	private String finalLocation;
-	private int qtytoMove;
+	private int qtyToMove;
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
@@ -507,12 +507,12 @@ public class Context {
 		this.finalLocation = finalLocation;
 	}
 
-	public int getQtytoMove() {
-		return qtytoMove;
+	public int getQtyToMove() {
+		return qtyToMove;
 	}
 
-	public void setQtytoMove(int qtyToMove) {
-		this.qtytoMove = qtyToMove;
+	public void setQtyToMove(int qtyToMove) {
+		this.qtyToMove = qtyToMove;
 	}
 	
 	public void setTrailerNo(String trailerNo) {
@@ -571,12 +571,12 @@ public class Context {
 		this.abv = abv;
 	}
 
-	public int getQtyReceivedfromPutty() {
-		return qtyReceivedfromPutty;
+	public int getQtyReceivedFromPutty() {
+		return qtyReceivedFromPutty;
 	}
 
-	public void setQtyReceivedfromPutty(int qtyReceivedfromPutty) {
-		this.qtyReceivedfromPutty = qtyReceivedfromPutty;
+	public void setQtyReceivedFromPutty(int qtyReceivedFromPutty) {
+		this.qtyReceivedFromPutty = qtyReceivedFromPutty;
 	}
 
 	public int getPickedRecords() {

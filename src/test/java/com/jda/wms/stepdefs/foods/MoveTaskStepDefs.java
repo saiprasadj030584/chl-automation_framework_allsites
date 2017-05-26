@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -16,7 +18,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 public class MoveTaskStepDefs {
 	private MoveTaskDB moveTaskDB;
 	private Context context;
-	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public MoveTaskStepDefs(MoveTaskDB moveTaskDB, Context context) {
@@ -29,48 +31,48 @@ public class MoveTaskStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
-		ArrayList<String> listID = new ArrayList<String>();
-		ArrayList<String> qtyToMove = new ArrayList<String>();
-		ArrayList<String> toPalletID = new ArrayList<String>();
-		ArrayList<String> toContainerID = new ArrayList<String>();
-		ArrayList<String> skuID = new ArrayList<String>();
-		ArrayList<String> location = new ArrayList<String>();
-		ArrayList<String> toLocation = new ArrayList<String>();
-		ArrayList<String> finalLocation = new ArrayList<String>();
+		ArrayList<String> listIDList = new ArrayList<String>();
+		ArrayList<String> qtyToMoveList = new ArrayList<String>();
+		ArrayList<String> toPalletIDList = new ArrayList<String>();
+		ArrayList<String> toContainerIDList = new ArrayList<String>();
+		ArrayList<String> skuIDList = new ArrayList<String>();
+		ArrayList<String> locationList = new ArrayList<String>();
+		ArrayList<String> toLocationList = new ArrayList<String>();
+		ArrayList<String> finalLocationList = new ArrayList<String>();
 		
-		listID = moveTaskDB.getListId(context.getOrderId());
+		listIDList = moveTaskDB.getListIdList(context.getOrderId());
 		
-		for (int l=0;l<listID.size();l++){
-			if (listID.get(l)==null){
+		for (int l=0;l<listIDList.size();l++){
+			if (listIDList.get(l)==null){
 				failureList.add("List ID not generated as expected : List id "+l+ "is null");
 			}
 		}
 		Assert.assertTrue("List ID not generated as expected.[" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 		
-		qtyToMove = moveTaskDB.getQtyToMove(context.getOrderId());
-		toPalletID = moveTaskDB.getToPalletID(context.getOrderId());
-		toContainerID = moveTaskDB.getToContainerID(context.getOrderId());
-		skuID = moveTaskDB.getSkuID(context.getOrderId());
-		location = moveTaskDB.getLocation(context.getOrderId());
-		toLocation = moveTaskDB.getToLocation(context.getOrderId());
-		finalLocation = moveTaskDB.getFinalLocation(context.getOrderId());
+		qtyToMoveList = moveTaskDB.getQtyToMoveList(context.getOrderId());
+		toPalletIDList = moveTaskDB.getToPalletIDList(context.getOrderId());
+		toContainerIDList = moveTaskDB.getToContainerIDList(context.getOrderId());
+		skuIDList = moveTaskDB.getSkuIDList(context.getOrderId());
+		locationList = moveTaskDB.getLocationList(context.getOrderId());
+		toLocationList = moveTaskDB.getToLocationList(context.getOrderId());
+		finalLocationList = moveTaskDB.getFinalLocationList(context.getOrderId());
 		
 		
-		for (int i=0;i<listID.size();i++){
+		for (int i=0;i<listIDList.size();i++){
 			Map<String, String> listDetailsMap = new HashMap<String, String>();
-			listDetailsMap.put("ListID", listID.get(i));
-			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
-			listDetailsMap.put("ToPalletID", toPalletID.get(i));
-			listDetailsMap.put("ToContainerID", toContainerID.get(i));
-			listDetailsMap.put("SkuId", skuID.get(i));
-			listDetailsMap.put("Location", location.get(i));
-			listDetailsMap.put("ToLocation", toLocation.get(i));
-			listDetailsMap.put("FinalLocation", finalLocation.get(i));
+			listDetailsMap.put("ListID", listIDList.get(i));
+			listDetailsMap.put("QtyToMove", qtyToMoveList.get(i));
+			listDetailsMap.put("ToPalletID", toPalletIDList.get(i));
+			listDetailsMap.put("ToContainerID", toContainerIDList.get(i));
+			listDetailsMap.put("SkuId", skuIDList.get(i));
+			listDetailsMap.put("Location", locationList.get(i));
+			listDetailsMap.put("ToLocation", toLocationList.get(i));
+			listDetailsMap.put("FinalLocation", finalLocationList.get(i));
 			listDetailsMap.put("TagID", "");
 			listIDMap.put(i+1, listDetailsMap);
 		}
 		context.setListIDMap(listIDMap);
-		System.out.println(context.getListIDMap()); 
+		logger.debug("List ID Map "+context.getListIDMap());
 	}
 }

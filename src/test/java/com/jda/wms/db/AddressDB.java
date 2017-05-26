@@ -18,7 +18,6 @@ public class AddressDB {
 	}
 
 	public String CSSMCheckedValue(String customer) throws SQLException, ClassNotFoundException {
-		String cssmCheckedVal = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -26,7 +25,6 @@ public class AddressDB {
 		ResultSet rs = stmt.executeQuery(
 				"select USER_DEF_CHK_3 from address WHERE ADDRESS_ID ='" + customer + "'");
 		rs.next();
-		cssmCheckedVal = (rs.getString(1));
-		return cssmCheckedVal;
+		return rs.getString(1);
 	}
 }

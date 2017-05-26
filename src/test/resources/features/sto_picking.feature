@@ -1,8 +1,8 @@
 @sto
 Feature: Store Tracking order
   As a warehouse user
-  I want to 
-  So that I can
+  I want to allocate orders in inventory
+  So that I can pick and dispatch 
 
   @picking_rdc
   Scenario Outline: STO for RDC
@@ -62,6 +62,7 @@ Feature: Store Tracking order
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
+    Then the receipt should be generated for the order in inventory transaction table
 
     Examples: 
       | OrderId    |

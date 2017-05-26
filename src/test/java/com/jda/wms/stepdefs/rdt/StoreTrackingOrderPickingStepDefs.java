@@ -66,11 +66,8 @@ public class StoreTrackingOrderPickingStepDefs {
 		for (int i = 1; i <= context.getListIDMap().size(); i++) {
 			
 			context.setListID(listIDMap.get(i).get("ListID"));
-			
 			i_enter_task_id_and_list_id();
-			
 			the_list_id_should_be_displayed();
-			
 			puttyFunctionsPage.pressEnter();
 			
 			String skuId = storeTrackingOrderPickingPage.getSkuId();
@@ -83,7 +80,7 @@ public class StoreTrackingOrderPickingStepDefs {
 					context.setToPallet((listIDMap.get(j).get("ToPalletID")));
 					context.setToLocation((listIDMap.get(j).get("ToLocation")));
 					context.setFinalLocation((listIDMap.get(j).get("FinalLocation")));
-					context.setQtytoMove(Integer.parseInt(listIDMap.get(j).get("QtyToMove")));
+					context.setQtyToMove(Integer.parseInt(listIDMap.get(j).get("QtyToMove")));
 					context.setContainerId(listIDMap.get(j).get("ToContainerID"));
 				}
 			}
@@ -117,12 +114,12 @@ public class StoreTrackingOrderPickingStepDefs {
 	@When("^I enter container id and check strings$")
 	public void i_enter_container_id_and_check_strings() throws Throwable {
 		storeTrackingOrderPickingPage.enterContainerID(context.getContainerId());
-		storeTrackingOrderPickingPage.pressEnter();
-		storeTrackingOrderPickingPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
 		
 		String chkStrings = locationDB.getCheckString(context.getToLocation());
 		storeTrackingOrderPickingPage.enterCheckStrings(chkStrings);
-		storeTrackingOrderPickingPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
 	}
 	
 	@When("^I enter task id and list id$")
@@ -153,7 +150,7 @@ public class StoreTrackingOrderPickingStepDefs {
 			}
 		}
 		
-		qtyToPick = context.getQtytoMove() / caseRatio;
+		qtyToPick = context.getQtyToMove() / caseRatio;
 		Assert.assertEquals("Quantity to pick is not displayed as expected.", String.valueOf(qtyToPick)+"C", quantity);
 		
 		puttyFunctionsPage.nextScreen();

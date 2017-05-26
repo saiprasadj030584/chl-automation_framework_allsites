@@ -58,16 +58,6 @@ public class StoreTrackingOrderPickingPage {
 		Thread.sleep(1000);
 	}
 	
-	public void pressTab() throws InterruptedException{
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
-	}
-	
-	public void pressEnter() throws InterruptedException{
-		screen.type(Key.ENTER);
-		Thread.sleep(4000);
-	}
-
 	public void enterListID(String listId) throws InterruptedException {
 		screen.type(listId);
 		Thread.sleep(1000);
@@ -120,12 +110,6 @@ public class StoreTrackingOrderPickingPage {
 
 	public void enterQuantity(String qtyToPick) throws InterruptedException {
 		screen.type(qtyToPick);
-		Thread.sleep(2000);
-	}
-
-	public void navigateToNextPage() throws InterruptedException {
-		screen.type("x", Key.CTRL);
-		screen.type(Key.NUM4);
 		Thread.sleep(2000);
 	}
 
