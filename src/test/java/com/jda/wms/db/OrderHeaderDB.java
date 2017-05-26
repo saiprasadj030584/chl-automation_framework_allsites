@@ -142,17 +142,6 @@ public class OrderHeaderDB {
 		return rs.getString(1);
 	}
 
-	public String getOrderStatus(String orderID) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderID + "'");
-		rs.next();
-		String orderStatus = rs.getString(1);
-		context.setOrderStatus(orderStatus);
-		return orderStatus;
-	}
 
 	public String getShipdock(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

@@ -54,11 +54,8 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
-	private Connection connection = null;
 	private String orderId;
-	private Map<Integer, Map<String, String>> listIDMap;
 	private String customer;
-	private int qtyReverse;
 	private String listID;
 	private String toPallet;
 	private String toLocation;
@@ -70,9 +67,16 @@ public class Context {
 	private String bookingID;
 	private String orderStatus;
 	private String consignment;
-	private int qtyOrdered;
 	private int pickedRecords;
 	private String containerId;
+	private Connection connection = null;
+	private ArrayList<String> palletIDList;
+	private Integer recordCountByTaskID;
+	private String palletID;
+	private int moveTaskRecordCount;
+	private int qtyOrdered;
+	private Map<Integer, Map<String, String>> listIDMap;
+	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -82,12 +86,28 @@ public class Context {
 		this.currentTask = currentTask;
 	}
 
+	public String getPalletID() {
+		return palletID;
+	}
+
+	public void setPalletID(String palletID) {
+		this.palletID = palletID;
+	}
+
 	public String getABV() {
 		return newAbv;
 	}
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public String getlocationID() {
@@ -240,6 +260,30 @@ public class Context {
 
 	public void setTagIDMap(Map<String, ArrayList<String>> tagIDMap) {
 		this.tagIDMap = tagIDMap;
+	}
+
+	public ArrayList<String> getPalletIDList() {
+		return palletIDList;
+	}
+
+	public void setPalletIDList(ArrayList<String> palletIDList) {
+		this.palletIDList = palletIDList;
+	}
+
+	public int getRecordCountByTaskID() {
+		return recordCountByTaskID;
+	}
+
+	public void setRecordCountByTaskID(int recordCountByTaskID) {
+		this.recordCountByTaskID = recordCountByTaskID;
+	}
+
+	public int getMoveTaskRecordCount() {
+		return moveTaskRecordCount;
+	}
+
+	public void setMoveTaskRecordCount(int moveTaskRecordCount) {
+		this.moveTaskRecordCount = moveTaskRecordCount;
 	}
 
 	public int getTagIdIndex() {
@@ -522,7 +566,7 @@ public class Context {
 	public String getTrailerNo() {
 		return trailerNo;
 	}
-	
+
 	public void setBookingID(String bookingID) {
 		this.bookingID = bookingID;
 	}
@@ -530,15 +574,7 @@ public class Context {
 	public String getBookingID() {
 		return bookingID;
 	}
-	
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
 
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-	
 	public void setSTOConsignment(String consignment) {
 		this.consignment = consignment;
 	}
@@ -546,7 +582,7 @@ public class Context {
 	public String getSTOConsignment() {
 		return consignment;
 	}
-	
+
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}

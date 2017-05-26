@@ -77,7 +77,7 @@ public class PurchaseOrderPutawayStepDefs {
 		preAdviceLineMaintenanceStepDefs
 				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items();
 
-		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
 		purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_purchase_order_at_location(location);

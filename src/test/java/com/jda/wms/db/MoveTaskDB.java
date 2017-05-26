@@ -12,9 +12,9 @@ import com.jda.wms.context.Context;
 public class MoveTaskDB {
 	private Context context;
 	private Database database;
-	
+
 	@Inject
-	public MoveTaskDB(Context context,Database database) {
+	public MoveTaskDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}
@@ -35,7 +35,7 @@ public class MoveTaskDB {
 			}
 		return listId;
 	}
-
+	
 	public ArrayList<String> getQtyToMoveList(String orderID) throws SQLException, ClassNotFoundException{
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		if (context.getConnection()==null){
@@ -68,6 +68,23 @@ public class MoveTaskDB {
 				}
 			}
 		return toPalletID;
+	}
+	
+	public ArrayList<String> getPalletIdList(String orderID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> PalletID = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select PALLET_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					PalletID.add((rs.getString(j)));
+				}
+			}
+		return PalletID;
 	}
 
 	public ArrayList<String> getToContainerIDList(String orderID) throws SQLException, ClassNotFoundException {
@@ -153,5 +170,16 @@ public class MoveTaskDB {
 				}
 			}
 		return finalLocation;
+	}
+
+	public Integer getRecordCountByTaskID(String taskID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from MOVE_TASK where TASK_ID = '" + taskID + "'");
+		rs.next();
+		return Integer.parseInt(rs.getString(1));
 	}
 }

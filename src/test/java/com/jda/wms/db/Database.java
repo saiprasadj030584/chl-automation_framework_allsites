@@ -39,11 +39,11 @@ import cucumber.api.java.Before;
  * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
 	private Configuration configuration;
 	private Context context;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
 	public Database(Configuration configuration,Context context) {

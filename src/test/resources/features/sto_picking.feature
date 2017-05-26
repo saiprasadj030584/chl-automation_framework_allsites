@@ -2,7 +2,7 @@
 Feature: Store Tracking order
   As a warehouse user
   I want to allocate orders in inventory
-  So that I can pick and dispatch 
+  So that I can pick and dispatch
 
   @picking_rdc
   Scenario Outline: STO for RDC
@@ -13,14 +13,14 @@ Feature: Store Tracking order
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignment
     Then the STO should have list id, quantity to move,to pallet, to container details from move task table
-    When I login as warehouse user in Putty
+    When I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
-    Then the receipt should be generated for the order in inventory transaction table
 
+    #Then the receipt should be generated for the order in inventory transaction table
     Examples: 
       | OrderId    |
       | 8800004368 |
