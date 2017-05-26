@@ -45,7 +45,7 @@ public class Context {
 	private String lockCode;
 	private String vintage;
 	private String abv;
-	private int qtyReceivedfromPutty;
+	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
@@ -53,14 +53,22 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private ArrayList<String> failureList;
 	private String orderId;
+	private String customer;
+	private String listID;
+	private String toPallet;
+	private String toLocation;
+	private String finalLocation;
+	private int qtyToMove;
 	private String shipDock;
 	private String newShipDock;
-	private String customer;
 	private String trailerNo;
 	private String bookingID;
 	private String orderStatus;
 	private String consignment;
+	private int pickedRecords;
+	private String containerId;
 	private Connection connection = null;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -68,7 +76,6 @@ public class Context {
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
-
 	private int qtyReverse;
 
 	public RDTTask getCurrentTask() {
@@ -456,6 +463,22 @@ public class Context {
 		this.location = location;
 	}
 
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
 	public String getCustomer() {
 		return customer;
 	}
@@ -496,14 +519,46 @@ public class Context {
 		this.newShipDock = newShipDock;
 	}
 
-	public Connection getConnection() {
-		return connection;
+	public String getListID() {
+		return listID;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setListID(String listID) {
+		this.listID = listID;
 	}
 
+	public String getToPallet() {
+		return toPallet;
+	}
+
+	public void setToPallet(String toPallet) {
+		this.toPallet = toPallet;
+	}
+
+	public String getToLocation() {
+		return toLocation;
+	}
+
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
+	}
+
+	public String getFinalLocation() {
+		return finalLocation;
+	}
+
+	public void setFinalLocation(String finalLocation) {
+		this.finalLocation = finalLocation;
+	}
+
+	public int getQtyToMove() {
+		return qtyToMove;
+	}
+
+	public void setQtyToMove(int qtyToMove) {
+		this.qtyToMove = qtyToMove;
+	}
+	
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
 	}
@@ -542,5 +597,37 @@ public class Context {
 
 	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
 		this.listIDMap = listIDMap;
+	}
+
+	public String getAbv() {
+		return abv;
+	}
+
+	public void setAbv(String abv) {
+		this.abv = abv;
+	}
+
+	public int getQtyReceivedFromPutty() {
+		return qtyReceivedFromPutty;
+	}
+
+	public void setQtyReceivedFromPutty(int qtyReceivedFromPutty) {
+		this.qtyReceivedFromPutty = qtyReceivedFromPutty;
+	}
+
+	public int getPickedRecords() {
+		return pickedRecords;
+	}
+
+	public void setPickedRecords(int pickedRecords) {
+		this.pickedRecords = pickedRecords;
+	}
+
+	public String getContainerId() {
+		return containerId;
+	}
+
+	public void setContainerId(String containerId) {
+		this.containerId = containerId;
 	}
 }

@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final SkuMaintenanceDB skuMaintenanceDB;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Date date = new Date();
 
 	@Inject
 
@@ -136,7 +138,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
 				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
-						&& (!productGroup.equals("F07"))) {
+						&& (!productGroup.equals("F13"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);

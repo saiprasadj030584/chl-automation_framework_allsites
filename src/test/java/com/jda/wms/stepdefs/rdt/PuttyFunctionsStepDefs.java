@@ -31,7 +31,7 @@ public class PuttyFunctionsStepDefs {
 		String host = configuration.getStringProperty("putty-foods-host");
 		String port = configuration.getStringProperty("putty-foods-port");
 		puttyFunctionsPage.loginPutty(host, port);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),

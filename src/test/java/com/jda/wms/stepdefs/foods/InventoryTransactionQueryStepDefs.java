@@ -1086,5 +1086,8 @@ public class InventoryTransactionQueryStepDefs {
 				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-
+	
+	@Then("^the receipt should be generated for the order in inventory transaction table$")
+	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
+	}
 }
