@@ -7,7 +7,6 @@ Feature: Generate stock check list
   @complete
   Scenario: Validate generation of stock check list by inventory
     #Data :  I verify if any inventory exists for the SKU "*********" and site ID "9771"
-
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by inventory'
@@ -24,11 +23,9 @@ Feature: Generate stock check list
     And I search the list by tag id as "1000000037" and task date as current date
     Then I should see the record with list ID
 
-
   @complete
   Scenario: Validate generation of stock check list by location
     #Data :  I verify if any inventory exists for the location "AB59G02" and site ID "9771"
-
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by location'
@@ -44,4 +41,3 @@ Feature: Generate stock check list
     When I navigate to stock check query page
     And I search the list by site id as "9771", location as "AB59G02" and task date as current date
     Then I should see the record with list ID
-

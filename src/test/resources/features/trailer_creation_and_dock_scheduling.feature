@@ -11,7 +11,7 @@ Feature: Dock booking for STO
 
     When I create a trailer in trailer Maintenance page
     Then the trailer should be created
-
+    
     When I create new dock booking
     And I select booking type and consignment
     And I select the slot 
