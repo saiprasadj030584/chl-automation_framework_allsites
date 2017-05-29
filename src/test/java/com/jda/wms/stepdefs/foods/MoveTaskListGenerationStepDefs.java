@@ -33,7 +33,7 @@ public class MoveTaskListGenerationStepDefs {
 	@When("^I enter the Tag ID and sku ID$")
 	public void i_enter_the_Tag_ID_and_sku_ID() throws Throwable {
 		moveTaskListGenerationPage.enterTagID(context.getTagId());
-		moveTaskListGenerationPage.enterskuID(context.getSkuId());
+		moveTaskListGenerationPage.enterSkuID(context.getSkuId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
 	}

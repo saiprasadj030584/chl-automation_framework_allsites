@@ -17,7 +17,7 @@ public class MoveTaskListGenerationPage {
 		Thread.sleep(1000);
 	}
 
-	public void enterskuID(String skuId) throws FindFailed, InterruptedException {
+	public void enterSkuID(String skuId) throws FindFailed, InterruptedException {
 		screen.wait("images/MoveTaskListGeneration/SkuID.png", timeoutInSec);
 		screen.click("images/MoveTaskListGeneration/SkuID.png");
 		screen.type(skuId);
