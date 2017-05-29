@@ -65,7 +65,8 @@ public class Context {
 	private Connection connection = null;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
-
+	private String taskId;
+	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
 	
 
@@ -500,5 +501,21 @@ public class Context {
 
 	public void setListIDMap(Map<Integer, Map<String, String>> listIDMap) {
 		this.listIDMap = listIDMap;
+	}
+
+	public String getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+
+	public Map<Integer, Map<String, String>> getReplenishmentDetailsMap() {
+		return replenishmentDetailsMap;
+	}
+
+	public void setReplenishmentDetailsMap(Map<Integer, Map<String, String>> replenishmentDetailsMap) {
+		this.replenishmentDetailsMap = replenishmentDetailsMap;
 	}
 }
