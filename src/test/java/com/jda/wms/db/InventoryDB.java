@@ -17,6 +17,17 @@ public class InventoryDB {
 		this.database = database;
 	}
 
+	public String getExpDate(String skuId, String tagId, String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select EXPIRY_DSTAMP from INVENTORY where TAG_ID = '"+tagId+"' AND SKU_ID = '"+skuId+"' AND LOCATION_ID = '"+location+"' AND LOCK_STATUS = 'UnLocked'");
+		rs.next();
+		return rs.getString(1);
+}
+
 	public String getCustomer(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

@@ -33,7 +33,7 @@ public class Context {
 	private int tagIdIndex = 0;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
-	private List<String> checkStrings;
+	private List<String> caseRatiolist;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
@@ -45,7 +45,7 @@ public class Context {
 	private String lockCode;
 	private String vintage;
 	private String abv;
-	private int qtyReceivedfromPutty;
+	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
 	private String palletType;
@@ -53,22 +53,32 @@ public class Context {
 	private int qtyOnHand;
 	private String faceType;
 	private String siteId;
+	private ArrayList<String> failureList;
 	private String orderId;
+	private String customer;
+	private String listID;
+	private String toPallet;
+	private String toLocation;
+	private String finalLocation;
+	private int qtyToMove;
 	private String shipDock;
 	private String newShipDock;
-	private String customer;
 	private String trailerNo;
 	private String bookingID;
 	private String orderStatus;
 	private String consignment;
-	private String orderID;
+	private int pickedRecords;
+	private String containerId;
 	private Connection connection = null;
+	private ArrayList<String> palletIDList;
+	private Integer recordCountByTaskID;
+	private String palletID;
+	private int moveTaskRecordCount;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
-	
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -78,12 +88,28 @@ public class Context {
 		this.currentTask = currentTask;
 	}
 
+	public String getPalletID() {
+		return palletID;
+	}
+
+	public void setPalletID(String palletID) {
+		this.palletID = palletID;
+	}
+
 	public String getABV() {
 		return newAbv;
 	}
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public String getlocationID() {
@@ -238,6 +264,30 @@ public class Context {
 		this.tagIDMap = tagIDMap;
 	}
 
+	public ArrayList<String> getPalletIDList() {
+		return palletIDList;
+	}
+
+	public void setPalletIDList(ArrayList<String> palletIDList) {
+		this.palletIDList = palletIDList;
+	}
+
+	public int getRecordCountByTaskID() {
+		return recordCountByTaskID;
+	}
+
+	public void setRecordCountByTaskID(int recordCountByTaskID) {
+		this.recordCountByTaskID = recordCountByTaskID;
+	}
+
+	public int getMoveTaskRecordCount() {
+		return moveTaskRecordCount;
+	}
+
+	public void setMoveTaskRecordCount(int moveTaskRecordCount) {
+		this.moveTaskRecordCount = moveTaskRecordCount;
+	}
+
 	public int getTagIdIndex() {
 		return tagIdIndex;
 	}
@@ -254,18 +304,26 @@ public class Context {
 		this.locationZone = locationZone;
 	}
 
-	public Map<String, String> getLocationPerTagMap() {
+	public Map<String, String> getLocationForTagMap() {
 		return locationPerTagMap;
 	}
 
-	public void setLocationPerTagMap(Map<String, String> locationPerTagMap) {
+	public void setLocationForTagMap(Map<String, String> locationPerTagMap) {
 		this.locationPerTagMap = locationPerTagMap;
 	}
 
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
 		return qtyReceivedPerTagMap;
 	}
-
+	
+	public List<String> getCaseRatioList() {
+		return caseRatiolist; //setCaseRatioList
+	}
+	
+	public void setCaseRatioList(List<String> caseRatiolist) {
+		this.caseRatiolist = caseRatiolist;
+	}
+	
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
@@ -407,6 +465,22 @@ public class Context {
 		this.location = location;
 	}
 
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
 	public String getCustomer() {
 		return customer;
 	}
@@ -447,14 +521,46 @@ public class Context {
 		this.newShipDock = newShipDock;
 	}
 
-	public Connection getConnection() {
-		return connection;
+	public String getListID() {
+		return listID;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setListID(String listID) {
+		this.listID = listID;
 	}
 
+	public String getToPallet() {
+		return toPallet;
+	}
+
+	public void setToPallet(String toPallet) {
+		this.toPallet = toPallet;
+	}
+
+	public String getToLocation() {
+		return toLocation;
+	}
+
+	public void setToLocation(String toLocation) {
+		this.toLocation = toLocation;
+	}
+
+	public String getFinalLocation() {
+		return finalLocation;
+	}
+
+	public void setFinalLocation(String finalLocation) {
+		this.finalLocation = finalLocation;
+	}
+
+	public int getQtyToMove() {
+		return qtyToMove;
+	}
+
+	public void setQtyToMove(int qtyToMove) {
+		this.qtyToMove = qtyToMove;
+	}
+	
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
 	}
@@ -462,7 +568,7 @@ public class Context {
 	public String getTrailerNo() {
 		return trailerNo;
 	}
-	
+
 	public void setBookingID(String bookingID) {
 		this.bookingID = bookingID;
 	}
@@ -470,15 +576,7 @@ public class Context {
 	public String getBookingID() {
 		return bookingID;
 	}
-	
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
 
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-	
 	public void setSTOConsignment(String consignment) {
 		this.consignment = consignment;
 	}
@@ -486,7 +584,7 @@ public class Context {
 	public String getSTOConsignment() {
 		return consignment;
 	}
-	
+
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}
@@ -517,5 +615,37 @@ public class Context {
 
 	public void setReplenishmentDetailsMap(Map<Integer, Map<String, String>> replenishmentDetailsMap) {
 		this.replenishmentDetailsMap = replenishmentDetailsMap;
+	}
+	
+	public String getAbv() {
+		return abv;
+	}
+
+	public void setAbv(String abv) {
+		this.abv = abv;
+	}
+
+	public int getQtyReceivedFromPutty() {
+		return qtyReceivedFromPutty;
+	}
+
+	public void setQtyReceivedFromPutty(int qtyReceivedFromPutty) {
+		this.qtyReceivedFromPutty = qtyReceivedFromPutty;
+	}
+
+	public int getPickedRecords() {
+		return pickedRecords;
+	}
+
+	public void setPickedRecords(int pickedRecords) {
+		this.pickedRecords = pickedRecords;
+	}
+
+	public String getContainerId() {
+		return containerId;
+	}
+
+	public void setContainerId(String containerId) {
+		this.containerId = containerId;
 	}
 }
