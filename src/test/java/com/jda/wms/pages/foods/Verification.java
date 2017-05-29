@@ -16,15 +16,13 @@ public class Verification {
 
 	public ArrayList<String> verifyData(String fieldName, String expectedResults, String actualResults,
 			ArrayList<String> failureList) {
-
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
-
-		if (expectedResults.equals("Not Null")) {
-			if (actualResults.contains(null)) {
+		if (expectedResults.equalsIgnoreCase("Not Null")) {
+			if (actualResults==null) {
 				failureList.add(fieldName + " does not match. Expected  [Not Null] but was [" + actualResults + "]");
 			}
 		} else {
-			if (!actualResults.contains(expectedResults)) {
+			if (!expectedResults.contains(actualResults)) {
 				failureList.add(fieldName + " does not match. Expected  [" + expectedResults + "] but was ["
 						+ actualResults + "]");
 			}

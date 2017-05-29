@@ -46,27 +46,30 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
-		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)
-				|| (screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null))
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
 			return true;
-		else
-			return false;
+		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
+			pressEnter();
+			return true;
+		}
+		return false;
 	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
+		System.out.println("SKu in enter Skuid " + skuID);
 		screen.type(skuID);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
-		Thread.sleep(15000);
 	}
 
 	public String getPreAdvId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
-		screen.click(mStatus.below(10));
+		screen.click(mStatus.below(5));
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		screen.type("a", Key.CTRL);
@@ -74,10 +77,18 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
+	public boolean isSearchInfoDisplayed() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/SearchInfo.png") != null)
+				|| (screen.exists("images/Putty/Info - Po.png") != null))
+			return true;
+		else
+			return false;
+	}
+
 	public String getSupplierId() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("images/Putty/Receiving/SuppDisplayed.png");
-		screen.click(mStatus.getCenter().offset(50, 0));
-		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Match mSupplierId = screen.find("images/Putty/Receiving/SuppDisplayed.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
@@ -100,15 +111,24 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
-		screen.type(qtyToReceive);
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
+
+		if (Integer.parseInt(qtyToReceive) > 999) {
+			screen.type(qtyToReceive);
+			Thread.sleep(1000);
+		} else {
+			screen.type(qtyToReceive);
+			screen.type(Key.TAB);
+			Thread.sleep(1000);
+		}
 	}
 
 	public void enterCaseRatio(String caseRatio) throws InterruptedException {
 		screen.type(caseRatio);
-		screen.type("x", Key.CTRL);
-		screen.type(Key.NUM4);
+		// screen.type("x", Key.CTRL);
+		// screen.type(Key.NUM4);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB); // to navigate to Vintage
 		Thread.sleep(2000);
 	}
 
@@ -179,10 +199,11 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(1000);
 	}
 
-	public boolean isNoValidPreAdviceDisplayed() {
-		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+	public boolean isNoValidPreAdviceDisplayed() throws InterruptedException {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null) {
+			pressEnter();
 			return true;
-		else
+		} else
 			return false;
 	}
 
@@ -225,5 +246,10 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		else
 			return false;
+	}
+
+	public void pressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
 	}
 }

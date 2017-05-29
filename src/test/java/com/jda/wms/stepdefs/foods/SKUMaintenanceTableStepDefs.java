@@ -55,7 +55,7 @@ public class SKUMaintenanceTableStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the product group, EAN, UPC, allocation group, each quantity, tag merge fields should be displayed in settings1 tab$")
+	@Then("^the product group, EAN, UPC, AllocationGroup, each quantity, tag merge fields should be displayed in settings1 tab$")
 	public void the_product_group_EAN_UPC_allocation_group_each_quantity_tag_merge_fields_should_be_displayed_in_settings1_tab()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -69,14 +69,14 @@ public class SKUMaintenanceTableStepDefs {
 		}
 		logger.debug("Product Group: " + productGroup);
 
-		// Get Allocation Group Value
+		// Get AllocationGroup Value
 		 String allocationGroup = sKUMaintenancePage.getAllocationGroup();
 		 context.setAllocationGroup(allocationGroup);
 		 if (allocationGroup.equals(null)) {
-		 failureList.add("Allocation Group is not displayed as expected.Expected [Not NULL value] but was ["
+		 failureList.add("AllocationGroup is not displayed as expected.Expected [Not NULL value] but was ["
 		 + allocationGroup + "]");
 		 }
-		 logger.debug("Allocation Group: " + allocationGroup);
+		 logger.debug("AllocationGroup: " + allocationGroup);
 
 		// Get EAN Value
 		String ean = sKUMaintenancePage.getEAN();
@@ -267,7 +267,7 @@ public class SKUMaintenanceTableStepDefs {
 		logger.debug("Supplier SKU ID: " + supplierSKUId);
 	} 
 	
-	@Then("^the product allocation group field should be displayed$")
+	@Then("^the product AllocationGroup field should be displayed$")
 	public void the_product_allocation_group_field_should_be_displayed() throws Throwable {
 		Assert.assertEquals("Allocation grouo does not match", "EXPIRY", sKUMaintenancePage.getAllocationGroup());
 		}

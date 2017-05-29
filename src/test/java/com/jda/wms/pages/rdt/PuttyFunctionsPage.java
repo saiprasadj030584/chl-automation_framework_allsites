@@ -18,17 +18,24 @@ public class PuttyFunctionsPage {
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-		// screen.wait("images/Putty/HostName.png", timeoutInSec);
-		// screen.click("images/Putty/HostName.png");
+
+		// Clear pre-entered host name
+		screen.type("A", Key.CTRL);
+		screen.type(Key.BACKSPACE);
 		screen.type(host);
+
+		// navigate to Port
 		screen.type(Key.TAB);
+		// Clear pre-entered Port detail
+		screen.type("A", Key.CTRL);
+		screen.type(Key.BACKSPACE);
 		screen.type(port);
 
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
@@ -40,6 +47,15 @@ public class PuttyFunctionsPage {
 		Thread.sleep(4000);
 	}
 
+	public void mimimizePuty() throws FindFailed, InterruptedException {
+		screen.wait("/images/Putty/MinimizePutty.png", timeoutInSec);
+		screen.click("/images/Putty/MinimizePutty.png");
+		screen.rightClick();
+		Thread.sleep(2000);
+		screen.wait("/images/Putty/Minimize.png", timeoutInSec);
+		screen.click("/images/Putty/Minimize.png");
+	}
+
 	public boolean isLoginScreenDisplayed() {
 		if (screen.exists("images/Putty/Username.png") != null)
 			return true;
@@ -48,6 +64,7 @@ public class PuttyFunctionsPage {
 	}
 
 	public void minimisePutty() throws FindFailed, InterruptedException {
+		System.out.println("Putty minimise");
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
 		screen.click("images/Putty/PuttyMinimise.png");
 		Match mStatus = screen.find("images/Putty/PuttyMinimise.png");
@@ -62,4 +79,21 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
+	
+	public void pressTab() throws InterruptedException{
+		screen.type(Key.TAB);
+		Thread.sleep(2000);
+	}
+	
+	public void pressEnter() throws InterruptedException{
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
+	}
+	
+	public void nextScreen() throws InterruptedException {
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
+	}
+
 }

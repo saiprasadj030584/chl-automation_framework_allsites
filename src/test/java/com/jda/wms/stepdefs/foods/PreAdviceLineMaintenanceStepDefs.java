@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.PackConfigMaintenanceDB;
+import com.jda.wms.db.PreAdviceLineDB;
+import com.jda.wms.db.SkuMaintenanceDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
@@ -25,22 +29,27 @@ import cucumber.api.java.en.When;
 
 public class PreAdviceLineMaintenanceStepDefs {
 	private final PreAdviceLineMaintenancePage preAdviceLineMaintenancePage;
+	private final PreAdviceLineDB preAdviceLineDB;
 	private WarningPopUpPage warningPopUpPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
+	private final PackConfigMaintenanceDB packConfigMaintenanceDB;
 	private final JDAHomeStepDefs jdaHomeStepDefs;
 	private final PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs;
 	private Context context;
 	private final SKUMaintenancePage skuMaintenancePage;
+	private final SkuMaintenanceDB skuMaintenanceDB;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Date date = new Date();
 
 	@Inject
 
 	public PreAdviceLineMaintenanceStepDefs(PreAdviceLineMaintenancePage preAdviceLineMaintenancePage,
 			JDAFooter jdaFooter, JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
-			Context context, SKUMaintenancePage skuMaintenancePage, WarningPopUpPage warningPopUpPage) {
+			Context context, PackConfigMaintenanceDB packConfigMaintenanceDB, SKUMaintenancePage skuMaintenancePage,
+			WarningPopUpPage warningPopUpPage, PreAdviceLineDB preAdviceLineDB, SkuMaintenanceDB skuMaintenanceDB) {
 		this.jdaFooter = jdaFooter;
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -51,6 +60,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 		this.packConfigMaintenanceStepDefs = packConfigMaintenanceStepDefs;
 		this.context = context;
 		this.skuMaintenancePage = skuMaintenancePage;
+		this.preAdviceLineDB = preAdviceLineDB;
+		this.packConfigMaintenanceDB = packConfigMaintenanceDB;
+		this.skuMaintenanceDB = skuMaintenanceDB;
 	}
 
 	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items$")
@@ -126,7 +138,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
 				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
-						&& (!productGroup.equals("F07"))) {
+						&& (!productGroup.equals("F13"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);
@@ -156,13 +168,12 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("QtyDue", qtyDue);
 			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
 			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
-			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("AllocationGroup", allocationGroup);
 			lineItemsMap.put("Product Group", productGroup);
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-
-			jdaFooter.clickPreAdiceLine();
+			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
 
 			preAdviceLineMaintenancePage.clickGeneralTab();
@@ -218,10 +229,133 @@ public class PreAdviceLineMaintenanceStepDefs {
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
 		System.out.println("Tag ID Map " + context.getTagIDMap());
 		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
+		logger.debug("Map: " + purchaseOrderMap.toString());
+	}
+
+	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice lines items$")
+	public void the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuID = new ArrayList<String>();
+		String currentVintage = null, skuId = null, abv = null, qtyDue = null, vintage = null, allocationGroup = null,
+				productGroup = null, maxQty = null;
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		int caseRatio = 0;
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
+			String sKuId = skuID.get(i - 1);
+			context.setSkuId(sKuId);
+			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
+			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
+
+			if (!context.getProductCategory().equals("Ambient")) {
+				vintage = preAdviceLineDB.getVintage(context.getPreAdviceId(), skuID.get(i - 1));
+				currentVintage = skuMaintenanceDB.getCurrentVintage(skuID.get(i - 1));
+				abv = skuMaintenanceDB.getCEAlcoholicStrength(skuID.get(i - 1));
+
+				if (!vintage.equals(null)) {
+					if (!currentVintage.equals(null)) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					}
+				}
+			}
+
+			caseRatio = Utilities
+					.convertStringToInteger(preAdviceLineDB.getCaseRatio(context.getPreAdviceId(), skuID.get(i - 1)));
+			String baseUOM = preAdviceLineDB.getBaseUOM(context.getPreAdviceId(), skuID.get(i - 1));
+
+			if (baseUOM.isEmpty()) {
+				failureList.add("Base UOM is not as expected for SKU (" + skuId + ") " + "Expected [Not Null] but was ["
+						+ baseUOM + "]");
+			}
+
+			int ratio1To2 = Utilities.convertStringToInteger(packConfigMaintenanceDB.getRatio1To2(packConfig));
+			Thread.sleep(2000);
+			maxQty = packConfigMaintenanceDB.getRatio2To3(packConfig);
+
+			if (caseRatio != ratio1To2) {
+				failureList.add("Case ratio is not as expected for SKU (" + skuId + ") " + "Expected [" + ratio1To2
+						+ "] but was [" + caseRatio + "]");
+			}
+
+			productGroup = skuMaintenanceDB.getProductGroup(skuID.get(i - 1));
+			allocationGroup = skuMaintenanceDB.getAllocationGroup(skuID.get(i - 1));
+
+			if (context.getProductCategory().equals("Ambient")) {
+				if ((productGroup.equals("F20")) || (productGroup.equals("F21")) || (productGroup.equals("F23"))
+						|| (productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for Ambient. Expected [Not F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			} else if (context.getProductCategory().contains("BWS")) {
+				if ((!productGroup.equals("F20")) || (!productGroup.equals("F21")) || (!productGroup.equals("F23"))
+						|| (!productGroup.equals("F07"))) {
+					failureList
+							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
+									+ productGroup);
+				}
+			}
+
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("SKU", skuID.get(i - 1));
+			lineItemsMap.put("QtyDue", qtyDue);
+			lineItemsMap.put("CaseRatio", String.valueOf(caseRatio));
+			lineItemsMap.put("MaxQtyCanBeRcvd", maxQty);
+			lineItemsMap.put("Allocation Group", allocationGroup);
+			lineItemsMap.put("Product Group", productGroup);
+			lineItemsMap.put("Vintage", vintage);
+			lineItemsMap.put("ABV", abv);
+			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
+
+			logger.debug(purchaseOrderMap.toString());
+
+		}
+		context.setPurchaseOrderMap(purchaseOrderMap);
+		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+
+		// To get the number of tagIds for every SKU
+		Map<String, ArrayList<String>> tagIDMap = new HashMap<String, ArrayList<String>>();
+		int totalTagsPerPO = 0;
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			ArrayList<String> tagIDArrayList = new ArrayList<String>();
+			String skuIDs = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			int quantitytyDue = Utilities
+					.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("QtyDue")));
+			int maxQtyRcv = Utilities
+					.convertStringToInteger((purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd")));
+			int noOfTagID;
+			if (quantitytyDue % maxQtyRcv > 0) {
+				noOfTagID = (quantitytyDue / maxQtyRcv) + 1;
+			} else {
+				noOfTagID = quantitytyDue / maxQtyRcv;
+			}
+
+			for (int t = 0; t < noOfTagID; t++) {
+				totalTagsPerPO++;
+				Thread.sleep(1000);
+				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
+			}
+			tagIDMap.put(skuIDs, tagIDArrayList);
+
+		}
+		context.setTagIDMap(tagIDMap);
+
+		// To get the qty to receive for each tag
+		Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
+
+		for (int s = 1; s <= tagIDMap.size(); s++) {
+			String skuCurrent = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
+			for (int t = 0; t < tagIDMap.get(skuCurrent).size(); t++) {
+				qtyReceivedPerTagMap.put(tagIDMap.get(skuCurrent).get(t), 0);
+			}
+		}
+		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
 
@@ -371,7 +505,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			// lineItemsMap.put("UpdatedABV", updatedAbv);
 			// lineItemsMap.put("CaseRatio", caseRatio);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-			jdaFooter.clickPreAdiceLine();
+			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
@@ -414,5 +548,4 @@ public class PreAdviceLineMaintenanceStepDefs {
 		}
 
 	}
-
 }

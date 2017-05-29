@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -10,7 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.InventoryQueryDb;
+import com.jda.wms.db.InventoryQueryDB;
+import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -27,21 +29,24 @@ public class InventoryQueryStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final LocationPage locationPage;
+	private final LocationDB locationDB;
 	private final Context context;
-	private final InventoryQueryDb inventoryQueryDB;
+	private final InventoryQueryDB inventoryQueryDB;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
 	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, LocationPage locationPage,
-			Context context, JdaHomePage jdaHomePage, InventoryQueryDb inventoryQueryDb) {
+
+			Context context, JdaHomePage jdaHomePage, InventoryQueryDB inventoryQueryDB, LocationDB locationDB) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.locationPage = locationPage;
 		this.context = context;
-		this.inventoryQueryDB = inventoryQueryDb;
+		this.inventoryQueryDB = inventoryQueryDB;
+		this.locationDB = locationDB;
 	}
 
 	@Given("^I have tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
@@ -169,7 +174,7 @@ public class InventoryQueryStepDefs {
 	@Then("^I should see the location zone in inventory page$")
 	public void i_should_see_the_location_zone_in_inventory_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		Map<String, String> locationTagMap = context.getLocationPerTagMap();
+		Map<String, String> locationTagMap = context.getLocationForTagMap();
 
 		for (String tagId : locationTagMap.keySet()) {
 			jdaHomePage.navigateToLocationPage();
@@ -190,6 +195,28 @@ public class InventoryQueryStepDefs {
 						+ locationZone + "] but was [" + invLocationZone + "]");
 			}
 		}
+	}
+
+	@Then("^I should see the location zone in inventory query$")
+	public void i_should_see_the_location_zone_in_inventory_query() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		Map<String, String> locationForTagMap = context.getLocationForTagMap();
+
+		for (String tagId : locationForTagMap.keySet()) {
+			String location = locationForTagMap.get(tagId);
+			String locationZone = locationDB.getLocationZone(location);
+
+			HashMap<String, String> inventoryQueryDetails = inventoryQueryDB.getInventoryQueryDetails(tagId);
+			String inventoryLocationZone = inventoryQueryDetails.get("Location Zone");
+
+			if (!locationZone.equals(inventoryLocationZone)) {
+				failureList.add("Location Zone does not displayed as expected for" + tagId + ". Expected ["
+						+ locationZone + "] but was [" + inventoryLocationZone + "]");
+			}
+		}
+
+		Assert.assertTrue("Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 
 	@Given("^I have SKU id, product group and ABV for the tag id \"([^\"]*)\"$")
@@ -243,7 +270,7 @@ public class InventoryQueryStepDefs {
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 			caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
-			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("AllocationGroup"));
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
 				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
@@ -255,6 +282,31 @@ public class InventoryQueryStepDefs {
 				the_quantity_on_hand_location_site_id_and_status_should_be_displayed_in_the_general_tab();
 				the_expiry_date_pallet_id_receipt_id_and_supplier_details_should_be_displayed_in_the_miscellaneous_tab();
 				the_storage_location_base_UOM_and_product_groud_should_be_displayed();
+			}
+		}
+	}
+
+	@When("^the inventory details should be displayed for all the tag ids$")
+	public void the_inventory_details_should_be_displayed_for_all_the_tag_ids() throws Throwable {
+		String tagID = null, allocationGroup = null;
+		int qtyReceivedPerTag = 0, caseRatio = 0;
+
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		qtyReceivedPerTagMap = context.getQtyReceivedPerTagMap();
+		tagIDMap = context.getTagIDMap();
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			caseRatio = Integer.parseInt(purchaseOrderMap.get(key).get("CaseRatio"));
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
+				tagID = tagIDMap.get(sku).get(s);
+				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
+				context.setTagId(tagID);
+				context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
+
+				the_inventory_query_details_should_be_checked_in_inventory_table();
+
 			}
 		}
 	}
@@ -295,6 +347,93 @@ public class InventoryQueryStepDefs {
 
 		Assert.assertTrue(
 				"Inventory query general details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^the inventory query details should be checked in inventory table$")
+	public void the_inventory_query_details_should_be_checked_in_inventory_table() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		HashMap<String, String> inventoryQueryDetails = inventoryQueryDB.getInventoryQueryDetails(context.getTagId());
+
+		String siteId = inventoryQueryDetails.get("SiteId");
+		if (siteId.equals(null)) {
+			failureList.add("Site Id is not displayed as expected. Expected [Not NULL value] but was [" + siteId + "]");
+		}
+
+		String location = inventoryQueryDetails.get("Location");
+		if (location.equals(null)) {
+			failureList
+					.add("Site Id is not displayed as expected. Expected [Not NULL value] but was [" + location + "]");
+		}
+
+		String status = inventoryQueryDetails.get("Lock Status");
+		if (!status.equals("Unlocked") && (context.getProductCategory().contains("Ambient"))) {
+			failureList.add("Status is not displayed as expected. Expected [Unlocked] but was [" + status + "]");
+		} else if ((status.equals(null)) && (context.getProductCategory().contains("BWS"))) {
+			failureList.add("Status is not displayed as expected. Expected [Not NULL value] but was [" + status + "]");
+		}
+
+		String qtyOnHand = inventoryQueryDetails.get("QtyOnHand");
+		if (context.getQtyReceivedPerTag() != Integer.parseInt(qtyOnHand)) {
+			Assert.fail("Quantity on hand is not expected. Expected [" + context.getQtyReceivedPerTag() + "] but was ["
+					+ qtyOnHand + "]");
+		}
+
+		String locationZone = inventoryQueryDetails.get("Location Zone");
+		if (!locationZone.equals("INBOUND")) {
+			Assert.fail("Location Zone is not expected. Expected [INBOUND] +  but was [" + locationZone + "]");
+		}
+
+		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+			String expiryDate = inventoryQueryDetails.get("Expiry Date");
+			if (!expiryDate.equals(context.getFutureExpiryDate())) {
+				failureList.add("Expiry Date is not as expected. Expected [" + context.getFutureExpiryDate()
+						+ "] but was [" + expiryDate + "]");
+			}
+		}
+
+		String palletType = inventoryQueryDetails.get("Pallet Type");
+		;
+		if (palletType.equals(null)) {
+			failureList.add("Pallet Type is not as expected. Expected [Not NULL] but was [" + palletType + "]");
+		}
+
+		String receiptID = inventoryQueryDetails.get("Receipt Id");
+		;
+		if (receiptID.equals(null)) {
+			failureList.add("Receipt Id is not as expected. Expected [Not NULL] but was [" + receiptID + "]");
+		}
+
+		String supplier = inventoryQueryDetails.get("Supplier Id");
+		;
+		if (supplier.equals(null)) {
+			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
+		}
+
+		String inventoryCreatedBy = inventoryQueryDetails.get("Created By");
+		if (inventoryCreatedBy.equals(null)) {
+			failureList.add("Inventory Created By is not as expected. Expected [Not NULL] but was ["
+					+ inventoryCreatedBy + "]");
+		}
+
+		String storageLocation = inventoryQueryDetails.get("Storage Location");
+		;
+		if (!storageLocation.equals("0001")) {
+			failureList.add("Storage Location is not as expected. Expected [0001] but was [" + storageLocation + "]");
+		}
+
+		String baseUOM = inventoryQueryDetails.get("Base UOM");
+		;
+		if (!baseUOM.equals("EA")) {
+			failureList.add("Base UOM is not as expected. Expected [EA] but was [" + baseUOM + "]");
+		}
+
+		String productGroup = inventoryQueryDetails.get("Product Group");
+		if (productGroup.equals(null)) {
+			failureList.add("Product Group is not as expected. Expected [Not NULL] but was [" + productGroup + "]");
+		}
+
+		Assert.assertTrue("Inventory query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
 
@@ -394,12 +533,14 @@ public class InventoryQueryStepDefs {
 			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
 				tagID = tagIDMap.get(sku).get(skuIndex);
 				context.setTagId(tagID);
-				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
+				// Assert.assertEquals("ABV is not as expected.", expectedAbv,
+				// inventoryQueryDB.getABV(tagID));
 			}
 		}
 	}
 
 	@Then("^the Inventory should be updated with the new updated quantity$")
+
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();

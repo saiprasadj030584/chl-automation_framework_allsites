@@ -25,7 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,35 +32,50 @@ import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 
+import cucumber.api.java.Before;
+
 /**
  *
- * @author Tone Walters (tone_walters@yahoo.com)
+ * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
-	private Context context;
 	private Configuration configuration;
+	private Context context;
 
 	@Inject
-	public Database(Context context, Configuration configuration) {
-		this.context = context;
+	public Database(Configuration configuration,Context context) {
 		this.configuration = configuration;
+		this.context = context;
 	}
 
+	/**
+	 * This method creates a connection to the database using the parameters
+	 * provided. Returns true if the connection is a success.
+	 *
+	 * @param address
+	 *            - address of the server
+	 * @param username
+	 *            - username
+	 * @param password
+	 *            - password
+	 * @return - returns true if the connection is successful.
+	 * @throws ClassNotFoundException 
+	 */
+	@Before
 	public void connect() throws ClassNotFoundException {
-		if (context.getConnection() == null) {
-			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-				connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
-						configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
-				context.setConnection(connection);
-				connection.setAutoCommit(true);
-				logger.debug("Connection successfull");
-			} catch (SQLException ex) {
-
-			}
+		boolean connectionSucessful = false;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); 
+			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
+			connection.setAutoCommit(true);
+			context.setConnection(connection);
+			connectionSucessful = true;
+			logger.debug("Connection successfull");
+		} catch (SQLException ex) {
+			logger.debug("Exception "+ex.getMessage());
 		}
 	}
 
@@ -80,6 +94,7 @@ public class Database {
 			vStatement.setClob(2, new StringReader(xml));
 			vStatement.registerOutParameter(1, Types.VARCHAR);
 			vStatement.executeUpdate();
+			System.out.println(vStatement.getString(1));
 			success = true;
 		} catch (SQLException ex) {
 			write("Failed to execute statement:: " + ex.toString());
@@ -115,6 +130,29 @@ public class Database {
 		} catch (SQLException ex) {
 			write("It failed to make the statement::" + ex.toString());
 			write("Filed statment = " + sql);
+		}
+		return result;
+	}
+
+	/**
+	 * This method returns the check string of the location passed in as a
+	 * parameter
+	 *
+	 * @param location
+	 *            - the location
+	 * @return - the check string
+	 */
+	public String geCheckString(String location) {
+		String result = "";
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select check_string from location where location_id = '" + location + "'");
+			int row = 1;
+			rs.next();
+			result = rs.getString(1);
+		} catch (SQLException ex) {
+			System.out.println("It failed to make the statement::" + ex.toString());
 		}
 		return result;
 	}
@@ -193,21 +231,6 @@ public class Database {
 		} catch (SQLException ex) {
 		}
 		return results;
-	}
-
-	public String geCheckString(String location) {
-		String result = "";
-		try {
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select check_string from location where location_id = '" + location + "'");
-			int row = 1;
-			rs.next();
-			result = rs.getString(1);
-		} catch (SQLException ex) {
-			System.out.println("It failed to make the statement::" + ex.toString());
-		}
-		return result;
 	}
 
 	/**

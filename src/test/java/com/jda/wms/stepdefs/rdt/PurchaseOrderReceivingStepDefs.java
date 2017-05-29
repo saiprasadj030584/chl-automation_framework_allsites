@@ -52,7 +52,7 @@ public class PurchaseOrderReceivingStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			ArrayList<String> tagIDArrayList = new ArrayList<String>();
 			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-			System.out.println("SKU " + skuID);
+			logger.debug("SKU " + skuID);
 			int qtyDue = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("QtyDue"));
 			int maxQtyRcv = Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("MaxQtyCanBeRcvd"));
 			int noOfTagID;
@@ -61,7 +61,7 @@ public class PurchaseOrderReceivingStepDefs {
 			} else {
 				noOfTagID = qtyDue / maxQtyRcv;
 			}
-			System.out.println("No of tags" + noOfTagID);
+			logger.debug("No of tags" + noOfTagID);
 
 			for (int t = 0; t < noOfTagID; t++) {
 				totalTagsperPo++;
@@ -71,8 +71,8 @@ public class PurchaseOrderReceivingStepDefs {
 			tagIDMap.put(skuID, tagIDArrayList);
 		}
 		context.setTagIDMap(tagIDMap);
-		System.out.println(tagIDMap);
-		System.out.println("totalTagsperPo" + totalTagsperPo);
+		logger.debug("Tag Id Map: " + tagIDMap);
+		logger.debug("totalTagsperPo: " + totalTagsperPo);
 
 		// To get the qty to receive for each tag
 		Map<String, Integer> qtyReceivedPerTagMap = new HashMap<String, Integer>();
@@ -85,10 +85,7 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-		System.out.println("qtyReceivedPerTagMap :" + qtyReceivedPerTagMap);
-		System.out.println("keyset " + qtyReceivedPerTagMap.keySet());
-		System.out.println("qtyReceivedPerTagMap size :" + qtyReceivedPerTagMap.size());
-		Thread.sleep(2000);
+		logger.debug(qtyReceivedPerTagMap.toString());
 	}
 
 	@When("^I select user directed option in main menu$")
@@ -126,11 +123,27 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterSKUId(context.getSkuId());
 	}
 
+	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
+		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
+		purchaseOrderReceivingPage.enterSKUId(skuId);
+	}
+
 	@Then("^the pre-advice id and supplier id should be displayed in the receive pre-advice page$")
 	public void the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+		int timeInSec = 1;
+
+		do {
+			if (purchaseOrderReceivingPage.isSearchInfoDisplayed() != false) {
+				Thread.sleep(1000);
+				timeInSec++;
+			}
+		} while (timeInSec > 10);
 
 		String preAdvId = purchaseOrderReceivingPage.getPreAdvId();
+		logger.debug("Putty Advice ID : " + preAdvId);
+		logger.debug("Web Advice ID : " + context.getPreAdviceId());
+
 		if (!preAdvId.equalsIgnoreCase(context.getPreAdviceId())) {
 			failureList.add("Pre-Advice ID not displayed as expected. Expected [" + context.getPreAdviceId()
 					+ "] but was [" + preAdvId + "]");
@@ -151,7 +164,6 @@ public class PurchaseOrderReceivingStepDefs {
 
 		Assert.assertTrue("Pre-Adv cmp page not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-		Thread.sleep(2000);
 	}
 
 	@When("^I enter the location \"([^\"]*)\" and tag$")
@@ -226,22 +238,87 @@ public class PurchaseOrderReceivingStepDefs {
 			purchaseOrderReceivingPage.enterABV(context.getABV());
 			purchaseOrderReceivingPage.pressTab();
 
+			/*
+			 * purchaseOrderReceivingPage.enterVintage(context.getVintage());
+			 * purchaseOrderReceivingPage.enterABV(context.getABV());
+			 * purchaseOrderReceivingPage.pressTab();
+			 */
+
+			String vintageValue = context.getVintage();
+			logger.debug(" Vintage value from Context : " + vintageValue);
+			if (!vintageValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterVintage(vintageValue);
+			} else {
+				puttyFunctionsPage.pressTab();
+			}
+
+			String abvValue = context.getABV();
+			logger.debug(" ABV value from Context : " + abvValue);
+			if (!abvValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterABV(abvValue);
+			}
+
+			puttyFunctionsPage.nextScreen();
+
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 				String expDate = DateUtils.getAddedSystemYear();
 				context.setFutureExpiryDate(expDate);
+				puttyFunctionsPage.pressTab();
+				puttyFunctionsPage.pressTab();
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
+			} else {
+				purchaseOrderReceivingPage.pressEnter();
 			}
 		} else if (context.getProductCategory().contains("Ambient")) {
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+				puttyFunctionsPage.nextScreen();
 				String expDate = DateUtils.getAddedSystemYear();
 				context.setFutureExpiryDate(expDate);
-				purchaseOrderReceivingPage.pressTab();
-				purchaseOrderReceivingPage.pressTab();
+				puttyFunctionsPage.pressTab();
+				puttyFunctionsPage.pressTab();
 				purchaseOrderReceivingPage.enterExpiryDate(expDate);
 				Thread.sleep(10000);
+			} else {
+				purchaseOrderReceivingPage.pressEnter();
 			}
 		}
+	}
+
+	@When("^I enter the expiry ABV and vintage details$")
+	public void i_enter_the_expiry_ABV_and_vintage_details() throws Throwable {
+		if (context.getProductCategory().contains("BWS")) {
+			String vintageValue = context.getVintage();
+
+			if (!vintageValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterVintage(vintageValue);
+				Thread.sleep(1000);
+			} else {
+				puttyFunctionsPage.pressTab();
+			}
+
+			String abvValue = context.getABV();
+			if (!abvValue.isEmpty()) {
+				purchaseOrderReceivingPage.enterABV(abvValue);
+			}
+			puttyFunctionsPage.nextScreen();
+		}
+
+		if (context.getProductCategory().contains("Ambient")) {
+			puttyFunctionsPage.nextScreen();
+		}
+
+		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
+			String expDate = DateUtils.getAddedSystemYear();
+			context.setFutureExpiryDate(expDate);
+			puttyFunctionsPage.pressTab();
+			puttyFunctionsPage.pressTab();
+			purchaseOrderReceivingPage.enterExpiryDate(expDate);
+			Thread.sleep(10000);
+		} else {
+			puttyFunctionsPage.pressEnter();
+		}
+		Thread.sleep(1000);
 	}
 
 	@Then("^I should see the receiving completion$")
@@ -254,11 +331,13 @@ public class PurchaseOrderReceivingStepDefs {
 
 			System.out.println("Please logout the putty screen");
 		}
+		Assert.assertTrue("Receive not completed and Home page not displayed.["
+				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
 	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
-
+		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		purchaseOrderMap = context.getPurchaseOrderMap();
 		tagIDMap = context.getTagIDMap();
@@ -270,40 +349,67 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
-				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
+				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId(), context.getSkuId());
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_expiry_and_vintage_details();
-				i_should_see_the_receiving_completion();
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for Sku id " + currentSku);
+					context.setFailureList(failureList);
+				}
+				Thread.sleep(5000);
 			}
 		}
+		puttyFunctionsPage.minimisePutty();
+	}
 
-		// puttyFlag = false;
-		// puttyFunctionsPage.minimisePutty();
+	@When("^I receive the first sku of the purchase order at location \"([^\"]*)\"$")
+	public void i_receive_the_first_sku_of_the_purchase_order_at_location(String location) throws Throwable {
+
+		context.setLocation(location);
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+
+		String currentSku = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+		context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(1)).get("AllocationGroup"));
+		context.setABV(purchaseOrderMap.get(String.valueOf(1)).get("ABV"));
+		context.setVintage(purchaseOrderMap.get(String.valueOf(1)).get("Vintage"));
+		context.setSkuId(currentSku);
+
+		for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
+			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId(), context.getSkuId());
+			the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
+			i_enter_the_location_and_tag(context.getLocation());
+			i_enter_the_quantity_to_receive_and_case_ratio();
+			i_enter_the_expiry_ABV_and_vintage_details();
+			i_should_see_the_receiving_completion();
+		}
+		puttyFunctionsPage.mimimizePuty();
 	}
 
 	@When("^I receive all the skus for the purchase order$")
 	public void i_receive_all_the_skus_for_the_purchase_order() throws Throwable {
 		purchaseOrderMap = context.getPurchaseOrderMap();
+		ArrayList<String> failureList = new ArrayList<String>();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setSkuId(currentSku);
-			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
-			i_should_see_error_in_receiving();
+			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId(), context.getSkuId());
+			if (!purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed()) {
+				failureList.add("No Valid Pre advices message is not displayed for SKU " + currentSku);
+			}
+			purchaseOrderReceivingPage.pressEnter();
+			Thread.sleep(5000);
 		}
-		puttyFlag = false;
+		context.setFailureList(failureList);
 		puttyFunctionsPage.minimisePutty();
 	}
 
-	@Then("^I should see error in receiving$")
-	public void i_should_see_error_in_receiving() throws Throwable {
-		System.out.println(puttyFlag);
-		if (puttyFlag == true) {
-			Assert.assertTrue("Appropriate error not displayed. Expected [No Valid Pre advices]",
-					purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed());
-			Thread.sleep(5000);
-		}
+	@Then("^I should see that no valid preadvices found message$")
+	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
+		Assert.assertTrue("No Valid Pre advices message is not displayed. ["
+				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
 	@When("^I receive  the skus for each line item$")
@@ -315,7 +421,7 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 			String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("UpdatedABV");
 			purchaseOrderReceivingPage.enterABV(currentAbv);
-			i_should_see_error_in_receiving();
+			// i_should_see_error_in_receiving();
 		}
 		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();
