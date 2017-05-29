@@ -140,4 +140,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_order_preparation_page() throws Throwable {
 		jdaHomePage.navigateToOrderPreparationPage();
 	}
+
+	@When("^I navigate to vehicle unloading page$")
+	public void i_navigate_to_vehicle_unloading_page() throws Throwable {
+		jdaHomePage.navigateToVehicleUnloadingPage();
+	}
 }
