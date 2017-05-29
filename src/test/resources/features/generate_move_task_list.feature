@@ -4,7 +4,7 @@ Feature: Generate move task list
   I want to generate move task list 
   So that I can use the list to perform replenishment
 
-  @replenish_listid_generation
+  @complete
   Scenario: Validate generation of move task list
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the tagid, skuid, quantity to move details should be displayed for "REPLENISH" tasks without list ids
