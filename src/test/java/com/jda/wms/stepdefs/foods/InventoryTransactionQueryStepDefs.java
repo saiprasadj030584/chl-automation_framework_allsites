@@ -524,7 +524,8 @@ public class InventoryTransactionQueryStepDefs {
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		HashMap<String, String> inventoryTransactionCEDetails = inventoryTransactionDB
-				.getInventoryTransactionCEUDDetails(context.getTagId(), "Receipt");
+				.getInventoryTransactionCEUDDetails(context.getTagId(), "Receipt"); 
+		System.out.println(inventoryTransactionCEDetails);
 
 		String originalRotationId = inventoryTransactionCEDetails.get("Original Rotation Id");
 		if (originalRotationId.equals(null)) {
@@ -539,11 +540,11 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("rotationId: " + rotationId);
 
-		String ceReceiptType = inventoryTransactionCEDetails.get("Receipt Type");
-		if (ceReceiptType.equals(null)) {
-			failureList.add("CE Receipt Type is not as expected. Expected [Not NULL] but was [" + ceReceiptType + "]");
-		}
-		logger.debug("ceReceiptType: " + ceReceiptType);
+//		String ceReceiptType = inventoryTransactionCEDetails.get("RecType");
+//		if (ceReceiptType.equals(null)) {
+//			failureList.add("CE Receipt Type is not as expected. Expected [Not NULL] but was [" + ceReceiptType + "]");
+//		}
+//		logger.debug("ceReceiptType: " + ceReceiptType);
 
 		String underBond = inventoryTransactionCEDetails.get("Under Bond");
 		if (underBond.equals(null)) {
@@ -652,16 +653,16 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("userId: " + userId);
 
-		String workstation = inventoryTransactionQueryPage.getWorkstation();
+		String workstation = InventoryTransactionDbDetails.get("Work Station");
 		if (!(workstation.contains("RDT"))) {
 			failureList.add("Workstation is not as expected. Expected [RDT*] but was [" + workstation + "]");
 		}
 		logger.debug("workstation: " + workstation);
 
 		String rdtUserMode = InventoryTransactionDbDetails.get("RDT User Mode");
-		if (!rdtUserMode.equals("Pre-Advice Receive")) {
+		if (!rdtUserMode.equalsIgnoreCase("padrc")) {
 			failureList.add(
-					"RDT User Mode is not as expected. Expected [Pre-Advice Receive] but was [" + rdtUserMode + "]");
+					"RDT User Mode is not as expected. Expected [padrc] but was [" + rdtUserMode + "]");
 		}
 		logger.debug("rDTUserMode: " + rdtUserMode);
 
@@ -671,11 +672,11 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		logger.debug("supplier: " + supplier);
 
-		String palletType = InventoryTransactionDbDetails.get("Pallet Type");
-		if (palletType.equals(null)) {
-			failureList.add("Pallet Type is not as expected. Expected [0001] but was [" + palletType + "]");
+		String storageLocation = InventoryTransactionDbDetails.get("Storage Location");
+		if (storageLocation.equals(null)) {
+			failureList.add("Storage Location is not as expected. Expected [0001] but was [" + storageLocation + "]");
 		}
-		logger.debug("palletType: " + palletType);
+		logger.debug("Storage Location: " + storageLocation);
 
 		String packConfig = InventoryTransactionDbDetails.get("Pack Config");
 		String skuId = InventoryTransactionDbDetails.get("Sku Id");
@@ -691,21 +692,22 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.add("Upload file name is not as expected. Expected [I0808itl*.txt] but was ["
 						+ uploadedFileName + "]");
 			}
+			
+			String uploadedDate = InventoryTransactionDbDetails.get("Uploaded Date");
+			if (uploadedDate.equals(null)) {
+				failureList.add("Uploaded Date is not as expected. Expected [Not Null] but was [" + uploadedDate + "]");
+			}
+			logger.debug("uploadedDate: " + uploadedDate);
+
+			String uploadedTime = InventoryTransactionDbDetails.get("Uploaded Time");
+			if (uploadedTime.equals(null)) {
+				failureList.add("Uploaded Time is not as expected. Expected [Not Null] but was [" + uploadedTime + "]");
+			}
+			logger.debug("uploadedTime: " + uploadedTime);
 		}
+		
 		logger.debug("uploaded: " + uploaded);
 		logger.debug("uploadedFileName: " + uploadedFileName);
-
-		String uploadedDate = InventoryTransactionDbDetails.get("Uploaded Date");
-		if (uploadedDate.equals(null)) {
-			failureList.add("Uploaded Date is not as expected. Expected [Not Null] but was [" + uploadedDate + "]");
-		}
-		logger.debug("uploadedDate: " + uploadedDate);
-
-		String uploadedTime = InventoryTransactionDbDetails.get("Uploaded Time");
-		if (uploadedTime.equals(null)) {
-			failureList.add("Uploaded Time is not as expected. Expected [Not Null] but was [" + uploadedTime + "]");
-		}
-		logger.debug("uploadedTime: " + uploadedTime);
 
 		Assert.assertTrue("Inventory transaction are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

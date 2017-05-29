@@ -248,6 +248,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
 			String sKuId = skuID.get(i - 1);
+			System.out.println(sKuId);
 			context.setSkuId(sKuId);
 			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
 			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
@@ -258,8 +259,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 				abv = skuMaintenanceDB.getCEAlcoholicStrength(skuID.get(i - 1));
 
 				if (!vintage.equals(null)) {
-					if (!currentVintage.equals(null)) {
-						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					if (currentVintage.equals(null)) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + sKuId + ") ");
 					}
 				}
 			}
@@ -293,8 +294,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 									+ productGroup);
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
-				if ((!productGroup.equals("F20")) || (!productGroup.equals("F21")) || (!productGroup.equals("F23"))
-						|| (!productGroup.equals("F07"))) {
+				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
+						&& (!productGroup.equals("F07"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);
@@ -313,8 +314,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 
 			logger.debug(purchaseOrderMap.toString());
-			
-		
+
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
@@ -343,7 +343,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
 			}
 			tagIDMap.put(skuIDs, tagIDArrayList);
-		
+
 		}
 		context.setTagIDMap(tagIDMap);
 
@@ -445,25 +445,40 @@ public class PreAdviceLineMaintenanceStepDefs {
 	@Then("^the pre-advice line items should be linked with the consignment$")
 	public void the_pre_advice_line_items_should_be_linked_with_theconsignment() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
-		jdaFooter.clickQueryButton();
-		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
-		jdaFooter.clickExecuteButton();
+		
+		// TODO to be removed
+		
+		/*
+		 * jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
+		 * jdaFooter.clickQueryButton();
+		 * preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId(
+		 * )); jdaFooter.clickExecuteButton();
+		 * 
+		 * if (context.getNoOfLines() != 1) {
+		 * preAdviceLineMaintenancePage.selectFirstRecord(); }
+		 */
 
-		if (context.getNoOfLines() != 1) {
-			preAdviceLineMaintenancePage.selectFirstRecord();
-		}
 
+		
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			String consignmentID = preAdviceLineMaintenancePage.getConsignmentID();
-			if (!context.getConsignmentID().equals(consignmentID)) {
-				failureList.add("Consignment ID in line " + i + " is not displayed as expected. Expected ["
-						+ context.getConsignmentID() + "] but was [" + consignmentID + ") ");
-				jdaFooter.clickNextRecord();
-			}
+			ArrayList<String> consignmentID = preAdviceLineDB.getConsignmentID(context.getPreAdviceId());
+			// String consignmentID = preAdviceLineMaintenancePage.getConsignmentID(); 
+			consignmentID.forEach(consignment -> {
+				if (!context.getConsignmentID().equals(consignment)) {
+					failureList.add("Consignment ID in line   is not displayed as expected. Expected ["
+							+ context.getConsignmentID() + "] but was [" + consignmentID + ") ");
+				}
+			}); 
+			
+			/*for (int j = 0; j < consignmentID.size(); j++) { 
+				if (!context.getConsignmentID().equals(consignmentID.get(j))) {
+					failureList.add("Consignment ID in line " + i + " is not displayed as expected. Expected ["
+							+ context.getConsignmentID() + "] but was [" + consignmentID + ") ");
+					// jdaFooter.clickNextRecord();
+				}
+			}*/
 		}
 		Assert.assertTrue("Consignment ID is not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-
 }

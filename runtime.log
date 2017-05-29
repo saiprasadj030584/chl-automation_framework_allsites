@@ -1340,3 +1340,919 @@
 2017-05-25 09:55:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
 2017-05-25 09:55:07 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-25 09:55:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:48:20 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:48:20 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 14:48:20 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 14:48:20 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:48:21 DEBUG Database:61 - Connection successfull
+2017-05-25 14:48:22 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:48:22 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 14:48:22 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:48:22 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:48:23 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:48:23 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-25 14:48:23 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-25 14:48:23 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:48:23 DEBUG Database:61 - Connection successfull
+2017-05-25 14:48:23 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-25 14:48:25 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-25 14:48:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:48:25 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-25 14:48:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:48:25 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:48:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:48:27 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 14:48:27 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:48:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:48:27 DEBUG Database:61 - Connection successfull
+2017-05-25 14:48:27 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 14:48:29 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:48:31 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:48:56 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:48:56 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:48:56 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:48:56 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:48:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:48:57 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-25 14:48:57 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-25 14:48:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:48:57 DEBUG Database:61 - Connection successfull
+2017-05-25 14:48:57 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-25 14:48:57 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:48:57 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-25 14:48:57 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:48:57 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:48:59 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:48:59 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-25 14:48:59 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-25 14:48:59 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:48:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:48:59 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-25 14:48:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:49:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:49:00 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-25 14:49:00 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-25 14:49:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:49:00 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:49:00 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-25 14:49:00 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:49:02 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:49:02 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient-product-category;
+2017-05-25 14:49:02 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-25 14:49:02 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:49:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:49:02 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient product category
+2017-05-25 14:49:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:54:56 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:54:56 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 14:54:56 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:54:56 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:54:57 DEBUG Database:61 - Connection successfull
+2017-05-25 14:54:57 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 14:54:59 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:55:01 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:56:00 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:56:00 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 14:56:00 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:56:00 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:56:01 DEBUG Database:61 - Connection successfull
+2017-05-25 14:56:02 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 14:56:04 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:56:06 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:56:37 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:56:37 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:56:37 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 14:56:37 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:58:25 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 14:58:25 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 14:58:25 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:58:25 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 14:58:26 DEBUG Database:61 - Connection successfull
+2017-05-25 14:58:26 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 14:58:28 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:58:30 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 14:59:33 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID :  
+2017-05-25 14:59:33 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003545
+2017-05-25 14:59:41 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 14:59:41 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 14:59:41 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 14:59:41 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 15:02:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 15:02:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 15:02:46 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:02:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 15:02:47 DEBUG Database:61 - Connection successfull
+2017-05-25 15:02:47 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 15:02:49 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:02:51 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:03:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 15:03:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 15:03:40 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:03:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 15:03:41 DEBUG Database:61 - Connection successfull
+2017-05-25 15:03:41 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 15:03:43 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:03:45 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:04:53 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID :  
+2017-05-25 15:04:53 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003545
+2017-05-25 15:05:01 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 15:05:01 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 15:05:01 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:05:01 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 15:08:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 15:08:54 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 15:08:54 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:08:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 15:08:56 DEBUG Database:61 - Connection successfull
+2017-05-25 15:08:56 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 15:08:58 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:09:00 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:10:11 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID :  
+2017-05-25 15:10:11 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003545
+2017-05-25 15:10:20 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 15:10:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 15:10:20 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:10:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 15:13:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 15:13:01 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 15:13:01 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:13:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 15:13:02 DEBUG Database:61 - Connection successfull
+2017-05-25 15:13:02 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 15:13:05 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:13:07 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:14:22 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003545
+2017-05-25 15:14:22 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003545
+2017-05-25 15:15:12 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:15:30 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003545
+2017-05-25 15:15:30 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003545
+2017-05-25 15:16:22 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:16:41 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:16:41 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 15:16:41 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 15:16:41 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:16:41 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 15:35:49 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 15:35:49 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 15:35:49 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:35:49 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 15:35:50 DEBUG Database:61 - Connection successfull
+2017-05-25 15:35:50 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 15:35:52 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:35:54 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 15:37:10 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003645
+2017-05-25 15:37:10 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003645
+2017-05-25 15:38:01 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:38:18 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003645
+2017-05-25 15:38:18 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003645
+2017-05-25 15:39:10 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:39:29 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 15:39:30 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 15:39:30 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 15:39:30 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 15:39:30 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 18:23:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 18:23:18 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 18:23:18 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:23:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 18:23:20 DEBUG Database:61 - Connection successfull
+2017-05-25 18:23:21 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 18:23:23 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:23:25 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:23:50 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 18:23:50 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 18:23:50 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:23:50 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 18:24:50 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 18:24:50 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 18:24:50 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:24:50 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 18:24:51 DEBUG Database:61 - Connection successfull
+2017-05-25 18:24:52 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 18:24:54 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:24:56 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:27:28 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 18:27:28 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 18:27:28 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:27:28 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 18:27:30 DEBUG Database:61 - Connection successfull
+2017-05-25 18:27:30 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 18:27:32 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:27:34 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:28:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 18:28:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 18:28:14 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:28:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 18:28:15 DEBUG Database:61 - Connection successfull
+2017-05-25 18:28:16 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 18:28:18 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:28:20 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 18:29:39 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003745
+2017-05-25 18:29:39 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003745
+2017-05-25 18:30:32 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 18:30:50 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003745
+2017-05-25 18:30:50 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003745
+2017-05-25 18:31:42 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 18:32:00 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 18:32:00 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 18:32:00 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 18:32:00 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 18:32:00 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 19:04:16 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 19:04:16 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 19:04:16 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:04:16 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 19:04:17 DEBUG Database:61 - Connection successfull
+2017-05-25 19:04:18 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 19:04:20 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:04:22 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:04:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 19:04:46 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:04:46 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 19:04:46 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 19:05:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 19:05:22 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 19:05:22 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:05:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 19:05:23 DEBUG Database:61 - Connection successfull
+2017-05-25 19:05:23 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 19:05:25 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:05:27 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:06:46 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003845
+2017-05-25 19:06:46 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003845
+2017-05-25 19:07:39 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 19:07:56 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003845
+2017-05-25 19:07:56 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003845
+2017-05-25 19:08:48 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 19:09:07 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050003845
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-25 00:00:00.0 Europe/London
+2017-05-25 19:09:07 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-25 19:09:11 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 19:09:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 19:09:11 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:09:11 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 19:54:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 19:54:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 19:54:40 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:54:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 19:54:41 DEBUG Database:61 - Connection successfull
+2017-05-25 19:54:41 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 19:54:41 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 19:54:41 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 19:54:41 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:54:41 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 19:55:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 19:55:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 19:55:12 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:55:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 19:55:13 DEBUG Database:61 - Connection successfull
+2017-05-25 19:55:13 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 19:55:15 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:55:17 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 19:56:36 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003945
+2017-05-25 19:56:36 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003945
+2017-05-25 19:57:29 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 19:57:46 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050003945
+2017-05-25 19:57:46 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050003945
+2017-05-25 19:58:39 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 19:59:01 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 19:59:01 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 19:59:01 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 19:59:01 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 20:01:39 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 20:01:39 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 20:01:39 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 20:01:39 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 20:01:41 DEBUG Database:61 - Connection successfull
+2017-05-25 20:01:41 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 20:01:43 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:01:45 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:02:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 20:02:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 20:02:30 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 20:02:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 20:02:31 DEBUG Database:61 - Connection successfull
+2017-05-25 20:02:32 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 20:02:34 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:02:36 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:03:54 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004045
+2017-05-25 20:03:54 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004045
+2017-05-25 20:04:47 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:05:05 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004045
+2017-05-25 20:05:05 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004045
+2017-05-25 20:05:57 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:06:15 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004045
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-25 00:00:00.0 Europe/London
+2017-05-25 20:06:15 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-25 20:06:15 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 20:06:15 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 20:06:15 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 20:06:15 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-25 20:27:53 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-25 20:27:53 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-25 20:27:53 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 20:27:53 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-25 20:27:54 DEBUG Database:61 - Connection successfull
+2017-05-25 20:27:54 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-25 20:27:56 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:27:58 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-25 20:29:17 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004145
+2017-05-25 20:29:17 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004145
+2017-05-25 20:30:10 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:30:28 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004145
+2017-05-25 20:30:28 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004145
+2017-05-25 20:31:21 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:31:39 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004145
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-25 00:00:00.0 Europe/London
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:678 - palletType: 0001
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:695 - uploaded: N
+2017-05-25 20:31:39 DEBUG InventoryTransactionQueryStepDefs:696 - uploadedFileName: null
+2017-05-25 20:31:39 DEBUG Hooks:93 - DB Connection closed
+2017-05-25 20:31:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-25 20:31:39 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-25 20:31:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 06:07:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 06:07:29 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 06:07:29 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 06:07:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 06:07:30 DEBUG Database:61 - Connection successfull
+2017-05-26 06:07:31 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 06:07:33 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 06:07:35 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 06:08:55 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004245
+2017-05-26 06:08:55 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004245
+2017-05-26 06:09:49 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:10:07 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004245
+2017-05-26 06:10:07 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004245
+2017-05-26 06:10:59 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:11:18 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004245
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:678 - palletType: 0001
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:695 - uploaded: N
+2017-05-26 06:11:18 DEBUG InventoryTransactionQueryStepDefs:696 - uploadedFileName: null
+2017-05-26 06:11:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 06:11:18 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 06:11:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 06:11:18 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 06:20:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 06:20:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 06:20:12 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 06:20:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 06:20:14 DEBUG Database:61 - Connection successfull
+2017-05-26 06:20:14 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 06:20:17 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 06:20:19 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 06:21:42 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004345
+2017-05-26 06:21:42 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004345
+2017-05-26 06:22:36 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:22:54 DEBUG PurchaseOrderReceivingStepDefs:134 - Putty Advice ID : 8050004345
+2017-05-26 06:22:54 DEBUG PurchaseOrderReceivingStepDefs:135 - Web Advice ID : 8050004345
+2017-05-26 06:23:46 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:24:04 DEBUG PurchaseOrderReceivingStepDefs:308 - Please logout the putty screen
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004345
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:678 - palletType: 0001
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 06:24:05 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 06:24:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 06:24:05 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 06:24:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 06:24:05 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 07:16:33 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 07:16:33 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 07:16:33 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:16:33 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 07:16:34 DEBUG Database:61 - Connection successfull
+2017-05-26 07:16:34 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 07:16:36 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:16:38 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:17:58 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004445
+2017-05-26 07:17:58 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004445
+2017-05-26 07:18:51 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:19:09 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004445
+2017-05-26 07:19:09 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004445
+2017-05-26 07:20:03 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:20:22 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004445
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:20:50 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:20:50 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 07:20:50 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:20:50 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 07:20:50 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 07:23:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 07:23:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 07:23:32 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:23:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 07:23:34 DEBUG Database:61 - Connection successfull
+2017-05-26 07:23:34 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 07:23:37 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:23:39 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:25:00 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004545
+2017-05-26 07:25:00 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004545
+2017-05-26 07:25:54 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:26:12 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004545
+2017-05-26 07:26:12 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004545
+2017-05-26 07:27:05 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:27:24 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004545
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:27:52 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:27:52 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 07:27:52 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:27:52 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 07:27:52 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 07:30:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 07:30:54 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 07:30:54 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:30:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 07:30:55 DEBUG Database:61 - Connection successfull
+2017-05-26 07:30:56 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 07:30:58 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:31:00 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:32:20 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004645
+2017-05-26 07:32:20 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004645
+2017-05-26 07:33:14 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:33:32 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004645
+2017-05-26 07:33:32 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004645
+2017-05-26 07:34:25 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:34:43 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004645
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:35:11 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:35:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 07:35:11 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:35:11 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 07:35:11 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 07:48:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 07:48:01 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 07:48:01 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:48:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 07:48:03 DEBUG Database:61 - Connection successfull
+2017-05-26 07:48:03 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 07:48:05 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:48:07 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:49:29 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004745
+2017-05-26 07:49:29 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004745
+2017-05-26 07:50:23 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:50:41 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004745
+2017-05-26 07:50:41 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004745
+2017-05-26 07:51:35 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:51:53 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004745
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:534 - originalRotationId: 17/D00000201
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:540 - rotationId: 17/D00000201
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:546 - ceReceiptType: NB
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:552 - underBond: N
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:455 - storageLocation: 0001
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:462 - baseUOM: EA
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:471 - intoDestinationDate: 2017-04-07 11:50:57.0 Europe/London
+2017-05-26 07:52:23 DEBUG InventoryTransactionQueryStepDefs:479 - caseRatio: 15
+2017-05-26 07:52:23 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 07:52:23 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:52:23 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 07:52:23 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 07:55:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 07:55:14 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-ambient1-product-category;
+2017-05-26 07:55:14 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:55:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 07:55:16 DEBUG Database:61 - Connection successfull
+2017-05-26 07:55:17 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-26 07:55:19 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:55:21 DEBUG PreAdviceLineMaintenanceStepDefs:359 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-26 07:56:42 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004845
+2017-05-26 07:56:42 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004845
+2017-05-26 07:57:36 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:57:54 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050004845
+2017-05-26 07:57:54 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050004845
+2017-05-26 07:58:46 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:59:06 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 12000
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004845
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:534 - originalRotationId: 17/D00000202
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:540 - rotationId: 17/D00000202
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:546 - ceReceiptType: NB
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:552 - underBond: N
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:455 - storageLocation: 0001
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:462 - baseUOM: EA
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:471 - intoDestinationDate: 2017-04-07 11:50:57.0 Europe/London
+2017-05-26 07:59:34 DEBUG InventoryTransactionQueryStepDefs:479 - caseRatio: 15
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00785808-99 CALORIE MLIK CHOCOLAT
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 10500
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 8050004845
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F01946
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 21036013O01
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:534 - originalRotationId: 17/D00000202
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:540 - rotationId: 17/D00000202
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:546 - ceReceiptType: NB
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:552 - underBond: N
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:455 - storageLocation: 0001
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:462 - baseUOM: EA
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:471 - intoDestinationDate: 2017-04-07 11:50:57.0 Europe/London
+2017-05-26 07:59:35 DEBUG InventoryTransactionQueryStepDefs:479 - caseRatio: 15
+2017-05-26 07:59:35 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 07:59:35 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for Ambient1 product category
+2017-05-26 07:59:35 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 07:59:35 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 08:43:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 08:43:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 08:43:40 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 08:43:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 08:43:42 DEBUG Database:61 - Connection successfull
+2017-05-26 08:43:43 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 08:43:45 DEBUG PreAdviceLineMaintenanceStepDefs:315 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 08:43:45 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 08:43:45 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 08:43:45 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 08:43:45 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 09:57:16 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 09:57:16 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 09:57:16 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 09:57:16 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 09:57:18 DEBUG Database:61 - Connection successfull
+2017-05-26 09:57:18 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 09:57:20 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 09:57:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 09:57:20 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 09:57:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 09:57:20 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 10:04:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 10:04:06 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 10:04:06 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:04:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 10:04:08 DEBUG Database:61 - Connection successfull
+2017-05-26 10:04:08 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 10:04:11 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:04:11 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 10:04:11 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:04:11 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 10:04:11 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 10:22:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 10:22:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 10:22:11 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:22:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 10:22:12 DEBUG Database:61 - Connection successfull
+2017-05-26 10:22:13 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 10:22:15 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:22:16 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:25:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 10:25:25 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:25:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 10:25:25 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 10:52:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 10:52:35 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 10:52:35 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:52:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 10:52:37 DEBUG Database:61 - Connection successfull
+2017-05-26 10:52:38 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 10:52:40 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:52:41 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:53:21 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 10:53:21 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 10:53:21 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:53:21 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 10:53:23 DEBUG Database:61 - Connection successfull
+2017-05-26 10:53:24 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 10:53:26 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:53:27 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:55:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 10:55:20 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:55:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 10:55:20 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 10:57:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 10:57:22 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-26 10:57:22 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:57:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 10:57:25 DEBUG Database:61 - Connection successfull
+2017-05-26 10:57:25 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 10:57:27 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:57:28 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-26 10:57:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 10:57:55 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-26 10:57:55 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 10:57:55 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 12:26:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 12:26:01 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 12:26:01 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:26:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 12:26:02 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 12:26:02 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:26:02 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 12:28:51 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 12:28:51 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 12:28:51 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:28:51 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 12:28:55 DEBUG Database:61 - Connection successfull
+2017-05-26 12:28:56 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 12:28:56 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 12:28:56 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:28:56 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 12:28:56 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 12:35:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 12:35:17 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 12:35:17 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:35:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 12:35:21 DEBUG Database:61 - Connection successfull
+2017-05-26 12:35:21 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 12:35:24 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 12:35:25 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 12:36:47 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150010189
+2017-05-26 12:36:47 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150010189
+2017-05-26 12:37:11 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-26 12:37:12 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-26 12:37:49 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 12:38:08 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 12:38:30 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 12:38:30 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:38:30 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 12:38:31 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 12:50:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 12:50:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 12:50:30 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:50:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 12:50:33 DEBUG Database:61 - Connection successfull
+2017-05-26 12:50:34 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 12:50:37 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 12:50:38 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 12:52:04 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7250010189
+2017-05-26 12:52:04 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7250010189
+2017-05-26 12:52:29 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-26 12:52:30 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-26 12:53:06 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 12:53:24 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:614 - description: 00044387-MEANTIME LONDON LAGER...
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:620 - fromLocation: REC002
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:626 - toLocation: REC002
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:632 - updateQty: 1800
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:639 - reference: 7250010189
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:646 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:653 - userId: SARWAN
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:659 - workstation: RDT0140
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:666 - rDTUserMode: padrc
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:672 - supplier: F02616
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:678 - Storage Location: 0001
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:685 - packConfig: 60070710O01
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:708 - uploaded: N
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:709 - uploadedFileName: null
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:534 - originalRotationId: 17/0000174
+2017-05-26 12:53:54 DEBUG InventoryTransactionQueryStepDefs:540 - rotationId: 17/0000174
+2017-05-26 12:53:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 12:53:54 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 12:53:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 12:53:54 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 13:26:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 13:26:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 13:26:40 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 13:26:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 13:26:43 DEBUG Database:61 - Connection successfull
+2017-05-26 13:26:43 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 13:26:45 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 13:26:46 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 13:28:08 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7350010189
+2017-05-26 13:28:08 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7350010189
+2017-05-26 13:28:33 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-26 13:28:34 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-26 13:29:10 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 13:29:29 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:615 - description: 00044387-MEANTIME LONDON LAGER...
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:621 - fromLocation: REC002
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:627 - toLocation: REC002
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:633 - updateQty: 1800
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:640 - reference: 7350010189
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:647 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:654 - userId: SARWAN
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:660 - workstation: RDT0140
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:667 - rDTUserMode: padrc
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:673 - supplier: F02616
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:679 - Storage Location: 0001
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:686 - packConfig: 60070710O01
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:709 - uploaded: N
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:710 - uploadedFileName: null
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:535 - originalRotationId: 17/0000175
+2017-05-26 13:29:56 DEBUG InventoryTransactionQueryStepDefs:541 - rotationId: 17/0000175
+2017-05-26 13:29:56 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 13:29:56 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 13:29:56 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 13:29:56 DEBUG Hooks:93 - DB Connection closed
+2017-05-26 13:43:37 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-26 13:43:37 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-non-bonded-product-category;
+2017-05-26 13:43:37 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 13:43:37 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-26 13:43:39 DEBUG Database:61 - Connection successfull
+2017-05-26 13:43:40 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-26 13:43:42 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 13:43:43 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-26 13:45:07 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7450010189
+2017-05-26 13:45:07 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7450010189
+2017-05-26 13:45:32 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-26 13:45:33 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-26 13:46:08 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 13:46:26 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:615 - description: 00044387-MEANTIME LONDON LAGER...
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:621 - fromLocation: REC002
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:627 - toLocation: REC002
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:633 - updateQty: 1800
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:640 - reference: 7450010189
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:647 - expiryDate: 2019-05-26 00:00:00.0 Europe/London
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:654 - userId: SARWAN
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:660 - workstation: RDT0140
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:667 - rDTUserMode: padrc
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:673 - supplier: F02616
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:679 - Storage Location: 0001
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:686 - packConfig: 60070710O01
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:709 - uploaded: N
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:710 - uploadedFileName: null
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:535 - originalRotationId: 17/0000176
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:541 - rotationId: 17/0000176
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:553 - underBond: Y
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:899 - abvPercentage: 4.5
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:906 - vintage: 2017
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:455 - storageLocation: 0001
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:462 - baseUOM: EA
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:471 - intoDestinationDate: 2017-03-14 12:38:45.0 Europe/London
+2017-05-26 13:46:56 DEBUG InventoryTransactionQueryStepDefs:479 - caseRatio: 12
+2017-05-26 13:46:56 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-26 13:46:56 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Non-Bonded product category
+2017-05-26 13:46:56 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-26 13:46:56 DEBUG Hooks:93 - DB Connection closed
+2017-05-29 06:53:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-29 06:53:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-29 06:53:11 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-29 06:53:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-29 06:53:12 DEBUG Database:61 - Connection successfull
+2017-05-29 06:53:13 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-29 06:53:15 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-29 06:53:16 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-29 06:53:36 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-29 06:53:36 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-29 06:53:36 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-29 06:53:36 DEBUG Hooks:93 - DB Connection closed
+2017-05-29 11:50:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-29 11:50:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;receiving-process-in-jda-wms-for-bws-bonded-product-category;
+2017-05-29 11:50:05 DEBUG Hooks:40 - Start of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-29 11:50:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-29 11:50:06 DEBUG Database:61 - Connection successfull
+2017-05-29 11:50:07 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-29 11:50:09 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-29 11:50:10 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-29 11:51:25 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150020202
+2017-05-29 11:51:25 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150020202
+2017-05-29 11:51:46 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2016
+2017-05-29 11:51:47 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-29 11:52:23 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-29 11:52:42 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:615 - description: 00044387-MEANTIME LONDON LAGER...
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:621 - fromLocation: REC002
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:627 - toLocation: REC002
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:633 - updateQty: 1800
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:640 - reference: 7150020202
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:647 - expiryDate: 2019-05-29 00:00:00.0 Europe/London
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:654 - userId: SARWAN
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:660 - workstation: RDT0140
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:667 - rDTUserMode: padrc
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:673 - supplier: F02616
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:679 - Storage Location: 0001
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:686 - packConfig: 60070710O01
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:709 - uploaded: N
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:710 - uploadedFileName: null
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:863 - originator: GB00000120796
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:870 - originatorReference: 16ESD0820000010654321
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:877 - CE consignment id: 000000247
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:883 - Document Date: 2017-05-31 08:02:43.0 Europe/London
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:535 - originalRotationId: 17/0000180
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:541 - rotationId: 17/0000180
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:553 - underBond: Y
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:899 - abvPercentage: 4.5
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:906 - vintage: 2016
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:455 - storageLocation: 0001
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:462 - baseUOM: EA
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:471 - intoDestinationDate: 2017-03-14 12:38:45.0 Europe/London
+2017-05-29 11:53:09 DEBUG InventoryTransactionQueryStepDefs:479 - caseRatio: 12
+2017-05-29 11:53:09 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-29 11:53:09 DEBUG Hooks:84 - End of Scenario: Receiving process in JDA WMS for BWS-Bonded product category
+2017-05-29 11:53:09 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-29 11:53:09 DEBUG Hooks:93 - DB Connection closed
+2017-05-29 12:46:10 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-29 12:46:10 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-po;
+2017-05-29 12:46:10 DEBUG Hooks:40 - Start of Scenario: Normal putaway for PO
+2017-05-29 12:46:10 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-29 12:46:11 DEBUG Database:61 - Connection successfull
+2017-05-29 12:46:12 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-29 12:46:14 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-29 12:46:15 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-29 12:47:15 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150011189
+2017-05-29 12:47:15 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150011189
+2017-05-29 12:47:36 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-29 12:47:37 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-29 12:48:13 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-29 12:48:31 DEBUG PurchaseOrderReceivingStepDefs:311 - Please logout the putty screen
+2017-05-29 12:50:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-29 12:50:25 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
+2017-05-29 12:50:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-29 12:50:25 DEBUG Hooks:93 - DB Connection closed

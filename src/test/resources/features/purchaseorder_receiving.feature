@@ -21,7 +21,7 @@ Feature: Purchase order
     Then the inventory details should be displayed for all the tag id
     When I navigate to pre-advice header maintenance page
     Then the status should be displayed as "Complete"
-    And the status should be diaplayed as "Complete"
+    And the status should be displayed as "Complete"
     Then the goods receipt should be generated for the received stock in inventory transaction table
 
     Examples: 
@@ -81,7 +81,7 @@ Feature: Purchase order
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
-    And the sku should not have any inventory in that particular vintage
+    #And the sku should not have any inventory in that particular vintage
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment
@@ -99,7 +99,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010189 | REC002   |
+      |  7150011189 | REC002   |
 
   @po_receive_negative
   Scenario Outline: Receiving process in JDA WMS for Ambient product category

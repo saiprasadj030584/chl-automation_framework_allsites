@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.foods;
 
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -304,9 +306,7 @@ public class InventoryQueryStepDefs {
 				qtyReceivedPerTag = qtyReceivedPerTagMap.get(tagID);
 				context.setTagId(tagID);
 				context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
-
 				the_inventory_query_details_should_be_checked_in_inventory_table();
-				
 			}
 		}
 	}
@@ -367,7 +367,8 @@ public class InventoryQueryStepDefs {
 		}
 
 		String status = inventoryQueryDetails.get("Lock Status");
-		if (!status.equals("Unlocked") && (context.getProductCategory().contains("Ambient"))) {
+		System.out.println(status);
+		if (!status.equalsIgnoreCase("Unlocked") && (context.getProductCategory().contains("Ambient"))) {
 			failureList.add("Status is not displayed as expected. Expected [Unlocked] but was [" + status + "]");
 		} else if ((status.equals(null)) && (context.getProductCategory().contains("BWS"))) {
 			failureList.add("Status is not displayed as expected. Expected [Not NULL value] but was [" + status + "]");
@@ -385,7 +386,12 @@ public class InventoryQueryStepDefs {
 		}
 
 		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
-			String expiryDate = inventoryQueryDetails.get("Expiry Date");
+			String  expDate = inventoryQueryDetails.get("Expiry Date");
+			System.out.println(expDate);
+			String []  futureDate =  expDate.split(" "); 
+			TemporalAccessor tempDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").parse(futureDate[0]);
+			String expiryDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(tempDate);
+			
 			if (!expiryDate.equals(context.getFutureExpiryDate())) {
 				failureList.add("Expiry Date is not as expected. Expected [" + context.getFutureExpiryDate()
 						+ "] but was [" + expiryDate + "]");

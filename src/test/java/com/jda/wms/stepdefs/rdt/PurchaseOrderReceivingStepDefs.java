@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
@@ -25,6 +26,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private Context context;
+	private final Hooks hooks;
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 	Map<String, Integer> qtyReceivedPerTagMap;
@@ -34,10 +36,11 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
-			PuttyFunctionsPage puttyFunctionsPage) {
+			PuttyFunctionsPage puttyFunctionsPage,Hooks hooks) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.hooks = hooks;
 	}
 
 	@Given("^I want to receive the purchase order$")
@@ -306,6 +309,11 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue("Receive not completed and Home page not displayed.",
 				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
 		logger.debug("Please logout the putty screen");
+	} 
+	
+	@Then("^I logout the putty$")
+	public void i_logout_the_putty() throws Throwable {
+		 hooks.logoutPutty();
 	}
 
 	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
@@ -330,6 +338,8 @@ public class PurchaseOrderReceivingStepDefs {
 				i_should_see_the_receiving_completion();
 			}
 		}
+		
+		//TODO apply for Flag regarding putty 
 		// puttyFlag = false;
 		// puttyFunctionsPage.minimisePutty();
 	}
