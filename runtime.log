@@ -2256,3 +2256,143 @@
 2017-05-29 12:50:25 DEBUG Hooks:84 - End of Scenario: Normal putaway for PO
 2017-05-29 12:50:25 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-29 12:50:25 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:31:38 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:31:38 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:31:38 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:31:38 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:31:39 DEBUG Database:61 - Connection successfull
+2017-05-30 07:31:40 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:31:42 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:31:44 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:35:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:35:29 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:35:29 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:35:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:35:30 DEBUG Database:61 - Connection successfull
+2017-05-30 07:35:30 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:35:32 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:35:34 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:36:50 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050014584
+2017-05-30 07:36:50 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050014584
+2017-05-30 07:38:03 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050014584
+2017-05-30 07:38:03 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050014584
+2017-05-30 07:39:25 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:39:25 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:39:25 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:39:25 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:44:33 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:44:33 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:44:33 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:44:33 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:44:34 DEBUG Database:61 - Connection successfull
+2017-05-30 07:44:35 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:45:33 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:45:33 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:45:33 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:45:33 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:45:34 DEBUG Database:61 - Connection successfull
+2017-05-30 07:45:35 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:45:35 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:45:35 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:45:35 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:45:35 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:47:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:47:27 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:47:27 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:47:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:47:28 DEBUG Database:61 - Connection successfull
+2017-05-30 07:47:28 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-30 07:47:28 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:47:28 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:47:28 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:47:28 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:48:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:48:54 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:48:54 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:48:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:48:55 DEBUG Database:61 - Connection successfull
+2017-05-30 07:48:55 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04971
+2017-05-30 07:48:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:48:55 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:48:55 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:48:55 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:49:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:49:42 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:49:42 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:49:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:49:43 DEBUG Database:61 - Connection successfull
+2017-05-30 07:49:43 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04971
+2017-05-30 07:49:43 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:49:43 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:49:43 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:49:43 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:51:10 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:51:11 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:51:11 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:51:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:51:11 DEBUG Database:61 - Connection successfull
+2017-05-30 07:51:12 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:51:12 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:51:12 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:51:12 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:51:12 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 07:53:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 07:53:05 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 07:53:05 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 07:53:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 07:53:06 DEBUG Database:61 - Connection successfull
+2017-05-30 07:53:06 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 07:53:08 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:53:10 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:53:14 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 07:54:29 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050005005
+2017-05-30 07:54:29 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050005005
+2017-05-30 07:56:04 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 07:56:04 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 07:56:04 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 07:56:04 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 08:01:55 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 08:01:55 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 08:01:55 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 08:01:55 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 08:01:56 DEBUG Database:61 - Connection successfull
+2017-05-30 08:01:56 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 08:01:58 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:02:00 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:02:04 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:03:19 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050005006
+2017-05-30 08:03:19 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050005006
+2017-05-30 08:04:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 08:04:54 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 08:04:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 08:04:54 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 08:10:55 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 08:10:55 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 08:10:55 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 08:10:55 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 08:10:57 DEBUG Database:61 - Connection successfull
+2017-05-30 08:10:58 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 08:11:00 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:11:02 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:11:06 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:12:22 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050005007
+2017-05-30 08:12:22 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050005007
+2017-05-30 08:13:42 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 08:13:42 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 08:13:42 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 08:13:42 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 08:18:14 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 08:18:14 DEBUG Hooks:39 - featureID: purchase-order;in-progress-status-for-ambient-product;
+2017-05-30 08:18:14 DEBUG Hooks:40 - Start of Scenario: In progress Status for ambient product
+2017-05-30 08:18:14 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 08:18:16 DEBUG Database:61 - Connection successfull
+2017-05-30 08:18:16 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 08:18:18 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:18:20 DEBUG PreAdviceLineMaintenanceStepDefs:316 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:18:24 DEBUG PreAdviceLineMaintenanceStepDefs:360 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}, 2={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=24, SKU=21036046, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 08:19:40 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050005008
+2017-05-30 08:19:40 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050005008
+2017-05-30 08:20:58 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 08:20:58 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
+2017-05-30 08:20:58 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 08:20:58 DEBUG Hooks:93 - DB Connection closed

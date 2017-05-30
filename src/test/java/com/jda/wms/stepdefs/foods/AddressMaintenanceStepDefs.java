@@ -158,12 +158,12 @@ public class AddressMaintenanceStepDefs {
 		HashMap<String, String> addressDbDetails = addressMaintenanceDB.getAdressDetails(context.getSupplierID());
 
 		String name = addressDbDetails.get("Name");
-		if (!context.getName().equals(name)) {
+		if (!context.getName().contains(name)) {
 			failureList.add("Name is not as expected. Expected [" + context.getName() + "]  but was [" + name + "]");
 		}
 
 		String address1 = addressDbDetails.get("Address1");
-		if (!context.getAddress1().equals(address1)) {
+		if (!context.getAddress1().contains(address1)) {
 			failureList.add(
 					"Address1 is not as expected. Expected [" + context.getAddress1() + "] but was [" + address1 + "]");
 		}
@@ -175,11 +175,11 @@ public class AddressMaintenanceStepDefs {
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
 
-		/*String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
+		String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
 		if (!defaultSupplierPallet.equals("CHEP")) {
 			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
 					+ defaultSupplierPallet + "]");
-		}*/
+		}
 
 		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
 		if (!ceWarehouseType.equals("E")) {
@@ -187,11 +187,11 @@ public class AddressMaintenanceStepDefs {
 					+ ceWarehouseType + "]");
 		}
 
-		String ceTaxWarehouse = addressDbDetails.get("CEWarehouseTax");
+		/*String ceTaxWarehouse = addressDbDetails.get("CEWarehouseTax");
 		if (ceTaxWarehouse.equals(null)) {
 			failureList.add("CE Tax Warehouse is not displayed as expected. Expected [Not Null] but was ["
 					+ ceTaxWarehouse + "]");
-		}
+		}*/
 
 		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

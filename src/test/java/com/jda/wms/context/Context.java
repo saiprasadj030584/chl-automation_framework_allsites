@@ -16,6 +16,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
+	private ArrayList<String> failureList;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -466,6 +467,14 @@ public class Context {
 		this.trailerNo = trailerNo;
 	}
 
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
+	}
+	
 	public String getTrailerNo() {
 		return trailerNo;
 	}
