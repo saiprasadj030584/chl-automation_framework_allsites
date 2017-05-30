@@ -1088,29 +1088,23 @@ public class InventoryTransactionQueryStepDefs {
 	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
 	}
 
-	@Then("^vehicle unload ITL should be generated$")
-	public void vehicle_unload_ITL_should_be_generated() throws Throwable {
+	@Then("^the vehicle unloading should be updated in the inventory transaction$")
+	public void the_vehicle_unloading_should_be_updated_in_the_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		String palletID = context.getPalletID();
-		
-		List<String> fromLocationList = inventoryTransactionDB.getFromLocation(palletID);
-		List<String> toLocationList = inventoryTransactionDB.getToLocation(palletID);
+
+		List<String> fromLocationList = inventoryTransactionDB.getFromLocationForUnloading(palletID);
+		List<String> toLocationList = inventoryTransactionDB.getToLocationForUnloading(palletID);
 		List<String> referenceIdList = inventoryTransactionDB.getReferenceNo(palletID);
 
 		for (int i = 0; i < fromLocationList.size(); i++) {
 			verification.verifyData("From Location", context.getTrailerNo(), fromLocationList.get(i), failureList);
 			verification.verifyData("Reference", "Not NULL", referenceIdList.get(i), failureList);
-			
-			String toLocation = toLocationList.get(i);
-			if(!toLocation.contains("IN"))
-			{
-				failureList.add("To Location is not as expected. Expected [*IN] but was [" + toLocation + "]");
-			}
+			verification.verifyData("To Location", "IN", toLocationList.get(i), failureList);
 		}
-		
+
 		Assert.assertTrue(
 				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-
 }

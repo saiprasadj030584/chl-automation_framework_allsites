@@ -150,7 +150,7 @@ public class InventoryTransactionDB {
 		return inventoryTransactionMap;
 	}
 
-	public ArrayList<String> getFromLocation(String palletID) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getFromLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> fromLocationList = new ArrayList<String>();
 
 		if (context.getConnection() == null) {
@@ -171,7 +171,7 @@ public class InventoryTransactionDB {
 		return fromLocationList;
 	}
 
-	public ArrayList<String> getToLocation(String palletID) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getToLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> toLocationList = new ArrayList<String>();
 
 		if (context.getConnection() == null) {

@@ -6,8 +6,6 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-import com.jda.wms.db.TrailerContentsDB;
-
 public class VehicleUnloadingPage {
 
 	private final JdaHomePage jdaHomePage;
