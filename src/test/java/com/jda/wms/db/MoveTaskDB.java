@@ -208,5 +208,120 @@ public class MoveTaskDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+
+	public ArrayList<String> getReplenishQtyToMoveList(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> qtyToMove = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select QTY_TO_MOVE from MOVE_TASK where sku_id = '" + sku + "' AND list_id is null");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					qtyToMove.add((rs.getString(j)));
+				}
+			}
+		return qtyToMove;
+	}
+
+	public ArrayList<String> getReplenishTagIDList(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> tagId = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select tag_id from MOVE_TASK where sku_id = '" + sku + "' AND list_id is null");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					tagId.add((rs.getString(j)));
+				}
+			}
+		return tagId;
+	}
+	
+
+	public ArrayList<String> getReplenishListId(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> replenishList = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select list_id from MOVE_TASK where sku_id = '" + sku + "' AND task_id = 'REPLENISH'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					replenishList.add((rs.getString(j)));
+				}
+			}
+		return replenishList;
+	}
+
+	public ArrayList<String> getReplenishLocationList(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> location = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select FROM_LOC_ID from MOVE_TASK where sku_id = '" + sku + "' AND task_id = 'REPLENISH'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					location.add((rs.getString(j)));
+				}
+			}
+		return location;
+	}
+
+	public ArrayList<String> getReplenishToLocationList(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> toLocation = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select TO_LOC_ID from MOVE_TASK where sku_id = '" + sku + "' AND task_id = 'REPLENISH'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					toLocation.add((rs.getString(j)));
+				}
+			}
+		return toLocation;
+	}
+
+	public ArrayList<String> getReplenishFinalLocationList(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> finalLocation = new ArrayList<String>();
+		if (context.getConnection()==null){
+			database.connect();
+		}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select FINAL_LOC_ID from MOVE_TASK where sku_id = '" + sku + "' AND task_id = 'REPLENISH'");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			while(rs.next())  {
+				for(int j=1;j <= columns;j++){
+					finalLocation.add((rs.getString(j)));
+				}
+			}
+		return finalLocation;
+	}
+
+	public String getPackConfig(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select config_id FROM move_task where sku_id = '" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
 		

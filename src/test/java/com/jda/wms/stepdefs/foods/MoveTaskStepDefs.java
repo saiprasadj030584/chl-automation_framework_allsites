@@ -7,10 +7,13 @@ import java.util.Map;
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.MoveTaskDB;
+import com.jda.wms.db.SkuConfigDB;
 import com.jda.wms.pages.foods.JDAFooter;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,36 +23,38 @@ public class MoveTaskStepDefs {
 	private MoveTaskDB moveTaskDB;
 	private Context context;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private SkuConfigDB skuConfigDB;
 
 	private final JDAFooter jDAFooter;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 
 	@Inject
-	public MoveTaskStepDefs(MoveTaskDB moveTaskDB, Context context, JDAFooter jDAFooter) {
+	public MoveTaskStepDefs(MoveTaskDB moveTaskDB, Context context, JDAFooter jDAFooter, SkuConfigDB skuConfigDB) {
 		this.moveTaskDB = moveTaskDB;
 		this.context = context;
 		this.jDAFooter = jDAFooter;
+		this.skuConfigDB = skuConfigDB;
 	}
 
-	@Given("^the tagid, skuid, quantity to move details should be displayed for \"([^\"]*)\" tasks without list ids$")
-	public void the_tagid_skuid_quantity_to_move_details_should_be_displayed_for_tasks_without_list_ids(String taskId)
+	@Given("^the tagid, quantity to move details should be displayed for the sku \"([^\"]*)\" with \"([^\"]*)\" tasks$")
+	public void the_tagid_quantity_to_move_details_should_be_displayed_for_the_sku_with_tasks(String sku, String taskId)
 			throws Throwable {
-		ArrayList<String> skuID = new ArrayList<String>();
+		context.setSkuId(sku);
+		context.setOrderId(taskId);
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		ArrayList<String> tagID = new ArrayList<String>();
 
 		context.setTaskId(taskId);
-		qtyToMove = moveTaskDB.getQtyToMoveList(context.getTaskId());
-		skuID = moveTaskDB.getSkuIDList(context.getTaskId());
-		tagID = moveTaskDB.getTagIDList(context.getTaskId());
+		qtyToMove = moveTaskDB.getReplenishQtyToMoveList(sku);
+		tagID = moveTaskDB.getReplenishTagIDList(sku);
 
 		Map<Integer, Map<String, String>> replenishmentDetailsMap = new HashMap<Integer, Map<String, String>>();
 
-		for (int i = 0; i < skuID.size(); i++) {
+		for (int i = 0; i < tagID.size(); i++) {
 			HashMap<String, String> listDetailsMap = new HashMap<String, String>();
 			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
-			listDetailsMap.put("SkuID", skuID.get(i));
 			listDetailsMap.put("TagID", tagID.get(i));
+			listDetailsMap.put("ListID", "");
 			replenishmentDetailsMap.put(i + 1, listDetailsMap);
 		}
 		context.setReplenishmentDetailsMap(replenishmentDetailsMap);
@@ -63,16 +68,16 @@ public class MoveTaskStepDefs {
 			context.setTagId(replenishmentDetailsMap.get(r).get("TagID"));
 			context.setSkuId(replenishmentDetailsMap.get(r).get("SkuID"));
 			String listID = moveTaskDB.getListID(context.getTagId(), context.getSkuId());
-			if (listID.equals(null)){
-				failureList.add("List ID not displayed as expected for Tag "+context.getTagId()+" Expected [NOT Null] but was "+listID);
+			if (listID.equals(null)) {
+				failureList.add("List ID not displayed as expected for Tag " + context.getTagId()
+						+ " Expected [NOT Null] but was " + listID);
+			} else {
+				replenishmentDetailsMap.get(r).replace("ListID", listID);
 			}
 		}
-		Assert.assertTrue(
-				"Replenish List IDs are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+		Assert.assertTrue("Replenish List IDs are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-
-	
 
 	@Given("^the STO should have list id, quantity to move,to pallet, to container details from move task table$")
 	public void the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table()
@@ -87,17 +92,17 @@ public class MoveTaskStepDefs {
 		ArrayList<String> locationList = new ArrayList<String>();
 		ArrayList<String> toLocationList = new ArrayList<String>();
 		ArrayList<String> finalLocationList = new ArrayList<String>();
-		
+
 		listIDList = moveTaskDB.getListId(context.getOrderId());
-		
-		for (int l=0;l<listIDList.size();l++){
-			if (listIDList.get(l)==null){
-				failureList.add("List ID not generated as expected : List id "+l+ "is null");
+
+		for (int l = 0; l < listIDList.size(); l++) {
+			if (listIDList.get(l) == null) {
+				failureList.add("List ID not generated as expected : List id " + l + "is null");
 			}
 		}
 		Assert.assertTrue("List ID not generated as expected.[" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-		
+
 		qtyToMoveList = moveTaskDB.getQtyToMoveList(context.getOrderId());
 		toPalletIDList = moveTaskDB.getToPalletIDList(context.getOrderId());
 		toContainerIDList = moveTaskDB.getToContainerIDList(context.getOrderId());
@@ -105,9 +110,8 @@ public class MoveTaskStepDefs {
 		locationList = moveTaskDB.getLocationList(context.getOrderId());
 		toLocationList = moveTaskDB.getToLocationList(context.getOrderId());
 		finalLocationList = moveTaskDB.getFinalLocationList(context.getOrderId());
-		
-		
-		for (int i=0;i<listIDList.size();i++){
+
+		for (int i = 0; i < listIDList.size(); i++) {
 			Map<String, String> listDetailsMap = new HashMap<String, String>();
 			listDetailsMap.put("ListID", listIDList.get(i));
 			listDetailsMap.put("QtyToMove", qtyToMoveList.get(i));
@@ -118,38 +122,38 @@ public class MoveTaskStepDefs {
 			listDetailsMap.put("ToLocation", toLocationList.get(i));
 			listDetailsMap.put("FinalLocation", finalLocationList.get(i));
 			listDetailsMap.put("TagID", "");
-			listIDMap.put(i+1, listDetailsMap);
-		}
-		context.setListIDMap(listIDMap);
-		logger.debug("List ID Map "+context.getListIDMap());
-	}
-
-	// FIXME to update after merging with Kiruthika's code
-	/*@Given("^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details$")
-	public void the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details(String orderID)
-			throws Throwable {
-		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
-		ArrayList<String> listID = new ArrayList<String>();
-		ArrayList<String> qtyToMove = new ArrayList<String>();
-		ArrayList<String> toPalletID = new ArrayList<String>();
-		ArrayList<String> toContainerID = new ArrayList<String>();
-		context.setOrderId(orderID);
-		listID = moveTaskDB.getListId(orderID);
-		qtyToMove = moveTaskDB.getQtyToMove(orderID);
-		toPalletID = moveTaskDB.getToPalletID(orderID);
-		toContainerID = moveTaskDB.getToContainerID(orderID);
-
-		for (int i = 0; i < listID.size(); i++) {
-			Map<String, String> listDetailsMap = new HashMap<String, String>();
-			listDetailsMap.put("ListID", listID.get(i));
-			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
-			listDetailsMap.put("ToPalletID", toPalletID.get(i));
-			listDetailsMap.put("ToContainerID", toContainerID.get(i));
 			listIDMap.put(i + 1, listDetailsMap);
 		}
 		context.setListIDMap(listIDMap);
-		System.out.println(context.getListIDMap());
-	}*/
+		logger.debug("List ID Map " + context.getListIDMap());
+	}
+
+	// FIXME to update after merging with Kiruthika's code
+	/*
+	 * @Given(
+	 * "^the STO \"([^\"]*)\" should have list id, quantity to move,to pallet, to container details$"
+	 * ) public void
+	 * the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details
+	 * (String orderID) throws Throwable { Map<Integer, Map<String, String>>
+	 * listIDMap = new HashMap<Integer, Map<String, String>>();
+	 * ArrayList<String> listID = new ArrayList<String>(); ArrayList<String>
+	 * qtyToMove = new ArrayList<String>(); ArrayList<String> toPalletID = new
+	 * ArrayList<String>(); ArrayList<String> toContainerID = new
+	 * ArrayList<String>(); context.setOrderId(orderID); listID =
+	 * moveTaskDB.getListId(orderID); qtyToMove =
+	 * moveTaskDB.getQtyToMove(orderID); toPalletID =
+	 * moveTaskDB.getToPalletID(orderID); toContainerID =
+	 * moveTaskDB.getToContainerID(orderID);
+	 * 
+	 * for (int i = 0; i < listID.size(); i++) { Map<String, String>
+	 * listDetailsMap = new HashMap<String, String>();
+	 * listDetailsMap.put("ListID", listID.get(i));
+	 * listDetailsMap.put("QtyToMove", qtyToMove.get(i));
+	 * listDetailsMap.put("ToPalletID", toPalletID.get(i));
+	 * listDetailsMap.put("ToContainerID", toContainerID.get(i));
+	 * listIDMap.put(i + 1, listDetailsMap); } context.setListIDMap(listIDMap);
+	 * System.out.println(context.getListIDMap()); }
+	 */
 
 	@When("^I get the pallet ids from the move task$")
 	public void i_get_the_pallet_ids_from_the_move_task() throws Throwable {
@@ -174,4 +178,52 @@ public class MoveTaskStepDefs {
 				moveTaskDB.getRecordCountByTaskID(context.getOrderId()));
 	}
 
+	@When("^the replenish STO should have list id,quantity to move, tagid, location details and case ratio$")
+	public void the_replenish_STO_should_have_list_id_quantity_to_move_tagid_location_details_and_case_ratio()
+			throws Throwable {
+		// ---------------
+		context.setOrderId("REPLENISH ");
+		context.setSkuId("21106955");
+
+		ArrayList<String> failureList = new ArrayList<String>();
+		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
+		ArrayList<String> listIDList = new ArrayList<String>();
+		ArrayList<String> qtyToMoveList = new ArrayList<String>();
+		ArrayList<String> locationList = new ArrayList<String>();
+		ArrayList<String> toLocationList = new ArrayList<String>();
+		ArrayList<String> finalLocationList = new ArrayList<String>();
+		ArrayList<String> tagIDList = new ArrayList<String>();
+
+		listIDList = moveTaskDB.getReplenishListId(context.getSkuId());
+
+		for (int l = 0; l < listIDList.size(); l++) {
+			if (listIDList.get(l) == null) {
+				failureList.add("List ID not generated as expected : List id " + l + "is null");
+			}
+		}
+		Assert.assertTrue("List ID not generated as expected.[" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
+		qtyToMoveList = moveTaskDB.getReplenishQtyToMoveList(context.getSkuId());
+		tagIDList = moveTaskDB.getReplenishTagIDList(context.getSkuId());
+		locationList = moveTaskDB.getReplenishLocationList(context.getSkuId());
+		toLocationList = moveTaskDB.getReplenishToLocationList(context.getSkuId());
+		finalLocationList = moveTaskDB.getReplenishFinalLocationList(context.getSkuId());
+
+		String packConfig = moveTaskDB.getPackConfig(context.getSkuId());
+		context.setCaseRatio(Integer.parseInt(skuConfigDB.getRatio1To2(packConfig)));
+
+		for (int i = 0; i < listIDList.size(); i++) {
+			Map<String, String> listDetailsMap = new HashMap<String, String>();
+			listDetailsMap.put("ListID", listIDList.get(i));
+			listDetailsMap.put("QtyToMove", qtyToMoveList.get(i));
+			listDetailsMap.put("Location", locationList.get(i));
+			listDetailsMap.put("ToLocation", toLocationList.get(i));
+			listDetailsMap.put("FinalLocation", finalLocationList.get(i));
+			listDetailsMap.put("TagID", tagIDList.get(i));
+			listIDMap.put(i + 1, listDetailsMap);
+		}
+		context.setListIDMap(listIDMap);
+		logger.debug("List ID Map " + context.getListIDMap());
+	}
 }

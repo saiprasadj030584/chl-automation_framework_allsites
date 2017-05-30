@@ -554,4 +554,12 @@ public class InventoryQueryStepDefs {
 	public void i_should_see_the_status() throws Throwable {
 	}
 
+
+@Then("^qty on hand should be updated in inventory query page$")
+public void qty_on_hand_should_be_updated_in_inventory_query_page() throws Throwable {
+String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(),context.getLocation());
+Assert.assertEquals("QtyOnHand is not updated ",context.getQtyToMove(), qtyOnHand);
 }
+}
+
+

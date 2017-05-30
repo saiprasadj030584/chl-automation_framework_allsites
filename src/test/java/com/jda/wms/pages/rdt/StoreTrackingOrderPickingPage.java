@@ -180,4 +180,24 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(chkStrings);
 		Thread.sleep(2000);
 	}
+
+	public void selectReplenishPickMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public String getReplenishQuantity() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/Quantity.png");
+		screen.click(mStatus.below(14));
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.below(2));
+		return App.getClipboard();
+	}
+
+	public void enterReplenishQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
+		Thread.sleep(1000);
+	}
 }

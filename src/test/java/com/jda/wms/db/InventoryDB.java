@@ -147,4 +147,24 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getlocation(String taskID, int tagID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getToLocation(String taskID, int tagID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getFinalLocation(String taskID, int tagID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getUpdateQty(String taskID, int tagID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

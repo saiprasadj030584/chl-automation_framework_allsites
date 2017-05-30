@@ -1090,4 +1090,22 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the receipt should be generated for the order in inventory transaction table$")
 	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
 	}
-}
+	@Then("^qty on hand and location details should be updated for tagid '(\\d+)' and taskid 'REPLENISH'$")
+	public void qty_on_hand_and_location_details_should_be_updated_for_tagid_and_taskid_REPLENISH(int tagID) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String taskID = "REPLENISH" ;
+		verification.verifyData("From Location", context.getLocation(), inventoryDB.getlocation(taskID,tagID),
+				failureList);
+		verification.verifyData("To Location", context.getToLocation(), inventoryDB.getToLocation(taskID,tagID),
+				failureList);
+		verification.verifyData("Final Location", context.getFinalLocation(), inventoryDB.getFinalLocation(taskID,tagID),
+				failureList);
+		verification.verifyData("Update QTY", context.getQtyOnHand(), inventoryDB.getUpdateQty(taskID,tagID),
+				failureList);
+		Assert.assertTrue(
+				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+		
+	}
+

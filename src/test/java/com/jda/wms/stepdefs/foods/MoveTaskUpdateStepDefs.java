@@ -53,4 +53,14 @@ public class MoveTaskUpdateStepDefs {
 			}
 		} 
 	}
+	
+	@When("^I release all the tags in the move task update$")
+	public void i_release_all_the_tags_in_the_move_task_update() throws Throwable {
+		Map<Integer, Map<String, String>> listIDMap  = context.getListIDMap();
+
+		for (Integer key : listIDMap.keySet()) {
+			String tagId = listIDMap.get(key).get("TagID");
+				moveTaskUpdateDB.releaseTagId(tagId);
+		} 
+	}
 }

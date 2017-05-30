@@ -6,20 +6,24 @@ import java.util.Arrays;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;;
 
 public class PackConfigMaintenanceStepDefs {
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
 	private final JDAFooter jdaFooter;
+	private Context context;
 
 	@Inject
-	public PackConfigMaintenanceStepDefs(JDAFooter jdaFooter, PackConfigMaintenancePage packConfigMaintenancePage) {
+	public PackConfigMaintenanceStepDefs(JDAFooter jdaFooter, PackConfigMaintenancePage packConfigMaintenancePage,Context context) {
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.jdaFooter = jdaFooter;
+		this.context = context;
 	}
 
 	@When("^I search pack config id \"([^\"]*)\"$")
