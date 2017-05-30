@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.foods;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -39,8 +40,7 @@ public class InventoryTransactionQueryStepDefs {
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			Context context, JDAFooter jdaFooter, JdaHomePage jdaHomePage, SKUMaintenancePage sKUMaintenancePage,
-			InventoryTransactionDB inventoryTransactionDB, 
-			Verification verification, InventoryDB inventoryDB) {
+			InventoryTransactionDB inventoryTransactionDB, Verification verification, InventoryDB inventoryDB) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
@@ -321,8 +321,8 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_navigate_to_user_defined_tab() throws Throwable {
 		inventoryTransactionQueryPage.navigateToUserDefinedTab();
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 
 	/*
 	 * @Then("^the ABV should be displayed$") public void
@@ -386,7 +386,7 @@ public class InventoryTransactionQueryStepDefs {
 		for (String tagId : locationForTagMap.keySet()) {
 			HashMap<String, String> inventoryTransactionDBDetails = inventoryTransactionDB
 					.getInventoryTransactionDetails(tagId, "Putaway");
-			
+
 			String fromLocation = inventoryTransactionDBDetails.get("From Location");
 			if (!fromLocation.equals("REC002")) {
 				failureList.add("From Location not displayed as expected for " + tagId + ". Expected [REC002] but was ["
@@ -422,7 +422,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.clickSettings2Tab();
 	}
 
-	@Then("^the URN child should be updated with tag id$") 
+	@Then("^the URN child should be updated with tag id$")
 	public void the_URN_child_should_be_update_with_tag_id() throws Throwable {
 		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
 				inventoryTransactionQueryPage.getURNChild());
@@ -481,8 +481,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query user defined details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 
 	/*
 	 * @Then(
@@ -801,8 +801,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 	/*
 	 * @Then(
 	 * "^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$"
@@ -1067,27 +1067,44 @@ public class InventoryTransactionQueryStepDefs {
 
 		verification.verifyData("FromStatus", "Complete", inventoryDB.getFromStatus(reference, notes), failureList);
 		verification.verifyData("ToStatus", "Shipped", inventoryDB.getToStatus(reference, notes), failureList);
-		verification.verifyData("UploadedDate", "Not NULL", inventoryDB.getUploadedDate(reference,  notes),
-				failureList);
+		verification.verifyData("UploadedDate", "Not NULL", inventoryDB.getUploadedDate(reference, notes), failureList);
 		if (inventoryDB.getUploadedFileName(reference, notes) != null) {
 			verification.verifyData("Uploaded", "Y", inventoryDB.getUploaded(reference, notes), failureList);
 		} else {
 			verification.verifyData("Uploaded", "N", inventoryDB.getUploaded(reference, notes), failureList);
 		}
 
-		verification.verifyData("DwsPalletRef", "Not NULL", inventoryDB.getDwsPalletRef(reference, notes),
+		verification.verifyData("DwsPalletRef", "Not NULL", inventoryDB.getDwsPalletRef(reference, notes), failureList);
+		verification.verifyData("IntoDestinationDate", "Not NULL", inventoryDB.getIntoDestinationDate(reference, notes),
 				failureList);
-		verification.verifyData("IntoDestinationDate", "Not NULL",
-				inventoryDB.getIntoDestinationDate(reference, notes), failureList);
-		verification.verifyData("IfosOrderNum", "Not NULL", inventoryDB.getIfosOrderNum(reference, notes),
-				failureList);
+		verification.verifyData("IfosOrderNum", "Not NULL", inventoryDB.getIfosOrderNum(reference, notes), failureList);
 
 		Assert.assertTrue(
 				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-	
+
 	@Then("^the receipt should be generated for the order in inventory transaction table$")
 	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
+	}
+
+	@Then("^the vehicle unloading should be updated in the inventory transaction$")
+	public void the_vehicle_unloading_should_be_updated_in_the_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String palletID = context.getPalletID();
+
+		List<String> fromLocationList = inventoryTransactionDB.getFromLocationForUnloading(palletID);
+		List<String> toLocationList = inventoryTransactionDB.getToLocationForUnloading(palletID);
+		List<String> referenceIdList = inventoryTransactionDB.getReferenceNo(palletID);
+
+		for (int i = 0; i < fromLocationList.size(); i++) {
+			verification.verifyData("From Location", context.getTrailerNo(), fromLocationList.get(i), failureList);
+			verification.verifyData("Reference", "Not NULL", referenceIdList.get(i), failureList);
+			verification.verifyData("To Location", "IN", toLocationList.get(i), failureList);
+		}
+
+		Assert.assertTrue(
+				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 }

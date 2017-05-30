@@ -149,4 +149,67 @@ public class InventoryTransactionDB {
 
 		return inventoryTransactionMap;
 	}
+
+	public ArrayList<String> getFromLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> fromLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select FROM_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				fromLocationList.add((rs.getString(j)));
+			}
+		}
+		return fromLocationList;
+	}
+
+	public ArrayList<String> getToLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> toLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select TO_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='" + palletID
+						+ "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				toLocationList.add((rs.getString(j)));
+			}
+		}
+		return toLocationList;
+	}
+
+	public ArrayList<String> getReferenceNo(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> referenceIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select REFERENCE_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				referenceIdList.add((rs.getString(j)));
+			}
+		}
+		return referenceIdList;
+	}
 }
