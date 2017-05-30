@@ -453,7 +453,7 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/ScrollDown.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public void navigateToVehicleUnloadingPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -462,5 +462,15 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
+	}
+
+	public void navigateToMoveTaskListGenerationPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Move task list generation screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 }
