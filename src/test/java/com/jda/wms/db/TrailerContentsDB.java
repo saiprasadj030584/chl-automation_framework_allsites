@@ -24,7 +24,7 @@ public class TrailerContentsDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select count(*) from trailer_contents where trailer_id = " + trailerNo + "'");
+		ResultSet rs = stmt.executeQuery("select count(*) from trailer_contents where trailer_id = '"+trailerNo+"'");
 		rs.next();
 		return rs.getString(1);
 	}

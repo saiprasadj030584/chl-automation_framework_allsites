@@ -9364,3 +9364,145 @@
 2017-05-29 15:16:10 DEBUG Hooks:82 - ###########################################################################################################################
 2017-05-29 15:16:10 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
 2017-05-29 15:16:10 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:09:18 DEBUG Database:76 - Connection successfull
+2017-05-30 09:09:23 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:09:23 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:09:23 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:09:23 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:09:24 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 09:09:24 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 09:09:24 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:09:24 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:11:24 DEBUG Database:76 - Connection successfull
+2017-05-30 09:11:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:11:27 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:11:27 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:11:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:11:28 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 09:11:28 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 09:11:28 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:11:28 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:19:19 DEBUG Database:76 - Connection successfull
+2017-05-30 09:19:23 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:19:23 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:19:23 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:19:23 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:19:24 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 09:19:24 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 09:19:24 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:19:24 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:21:10 DEBUG Database:76 - Connection successfull
+2017-05-30 09:21:13 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:21:13 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:21:13 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:21:13 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:21:14 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 09:21:14 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:21:14 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:21:14 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 09:23:37 DEBUG Database:76 - Connection successfull
+2017-05-30 09:23:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:23:40 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:23:40 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:23:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:28:39 DEBUG Database:76 - Connection successfull
+2017-05-30 09:28:43 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:28:43 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:28:43 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:28:43 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 09:29:05 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 09:29:05 DEBUG Verification:19 - To Location - expected [IN] and actual [LIVEIN]
+2017-05-30 09:29:05 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 09:29:05 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 09:29:05 DEBUG Verification:19 - To Location - expected [IN] and actual [LIVEIN]
+2017-05-30 09:29:05 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 09:29:05 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 09:29:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 09:29:05 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:29:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 09:36:54 DEBUG Database:76 - Connection successfull
+2017-05-30 09:36:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 09:36:57 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 09:36:57 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 09:36:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:16:10 DEBUG Database:76 - Connection successfull
+2017-05-30 12:16:13 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:16:13 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-load-for-stock-transfer-order;
+2017-05-30 12:16:13 DEBUG Hooks:40 - Start of Scenario: Vehicle load for stock transfer order
+2017-05-30 12:16:13 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:16:35 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:16:35 DEBUG Verification:19 - To Location - expected [IN] and actual [LIVEIN]
+2017-05-30 12:16:35 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:16:35 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:16:35 DEBUG Verification:19 - To Location - expected [IN] and actual [LIVEIN]
+2017-05-30 12:16:35 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:16:35 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:16:35 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:16:35 DEBUG Hooks:84 - End of Scenario: Vehicle load for stock transfer order
+2017-05-30 12:16:35 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:27:14 DEBUG Database:76 - Connection successfull
+2017-05-30 12:27:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:27:17 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:27:17 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:27:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:27:18 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:27:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:27:18 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:27:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:28:56 DEBUG Database:76 - Connection successfull
+2017-05-30 12:28:59 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:28:59 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:28:59 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:28:59 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:29:00 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:29:00 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:29:00 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:29:00 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:30:12 DEBUG Database:76 - Connection successfull
+2017-05-30 12:30:15 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:30:15 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:30:15 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:30:15 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:30:16 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:30:16 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:30:16 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:30:16 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:31:33 DEBUG Database:76 - Connection successfull
+2017-05-30 12:31:36 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:31:36 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:31:36 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:31:36 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:31:58 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:31:58 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:31:58 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:31:58 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:37:53 DEBUG Database:76 - Connection successfull
+2017-05-30 12:37:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:37:57 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:37:57 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:37:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:38:18 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:38:18 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:38:18 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:38:19 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 12:44:38 DEBUG Database:76 - Connection successfull
+2017-05-30 12:44:41 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 12:44:41 DEBUG Hooks:39 - featureID: vehicle-unloading-for-stock-transfer-order;vehicle-unload-for-stock-transfer-order;
+2017-05-30 12:44:41 DEBUG Hooks:40 - Start of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:44:41 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Verification:19 - From Location - expected [4323] and actual [4323]
+2017-05-30 12:45:07 DEBUG Verification:19 - Reference - expected [Not NULL] and actual [6600033112]
+2017-05-30 12:45:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 12:45:07 DEBUG Hooks:84 - End of Scenario: Vehicle unload for stock transfer order
+2017-05-30 12:45:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 12:45:07 DEBUG Hooks:93 - DB Connection closed
