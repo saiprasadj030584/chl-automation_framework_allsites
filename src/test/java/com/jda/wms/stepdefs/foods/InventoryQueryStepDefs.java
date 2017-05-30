@@ -526,15 +526,13 @@ public class InventoryQueryStepDefs {
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
-			String currentAbv = purchaseOrderMap.get(key).get("ABV");
-			expectedAbv = String.valueOf((Float.parseFloat(currentAbv) + (float) (Float.parseFloat(currentAbv)
-					* (Float.parseFloat(context.getABVPercentage()) / 100.0f))));
-
+			expectedAbv = context.getABV();
+			System.out.println("expectedAbv " + expectedAbv);
 			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
 				tagID = tagIDMap.get(sku).get(skuIndex);
-				context.setTagId(tagID);
-				// Assert.assertEquals("ABV is not as expected.", expectedAbv,
-				// inventoryQueryDB.getABV(tagID));
+				System.out.println("tagID " + tagID);
+				Thread.sleep(3000);
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
 			}
 		}
 	}
@@ -563,7 +561,6 @@ public class InventoryQueryStepDefs {
 		locationPage.enterLocation(context.getLocation());
 		jdaFooter.clickExecuteButton();
 		String locationZone = locationPage.getLocationZone();
-
 		jdaHomePage.navigateToInventoryQueryPage();
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(context.getTagId());

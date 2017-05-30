@@ -248,6 +248,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
 			String sKuId = skuID.get(i - 1);
+			System.out.println(sKuId);
 			context.setSkuId(sKuId);
 			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
 			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
@@ -258,8 +259,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 				abv = skuMaintenanceDB.getCEAlcoholicStrength(skuID.get(i - 1));
 
 				if (!vintage.equals(null)) {
-					if (!currentVintage.equals(null)) {
-						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					if (currentVintage.equals(null)) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + sKuId + ") ");
 					}
 				}
 			}
@@ -293,8 +294,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 									+ productGroup);
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
-				if ((!productGroup.equals("F20")) || (!productGroup.equals("F21")) || (!productGroup.equals("F23"))
-						|| (!productGroup.equals("F07"))) {
+				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
+						&& (!productGroup.equals("F07"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);

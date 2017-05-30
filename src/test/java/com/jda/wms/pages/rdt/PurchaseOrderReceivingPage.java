@@ -209,7 +209,7 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterYes() throws InterruptedException {
 		screen.type("y");
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 	}
 
@@ -220,8 +220,8 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-	public boolean isReceivingInprogressDisplayed() {
-		if (screen.exists("images/Putty/Receiving/ReceivingInProgress.png") != null)
+	public boolean isPreAdviceCompletedDisplayed() {
+		if (screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)
 			return true;
 		else
 			return false;

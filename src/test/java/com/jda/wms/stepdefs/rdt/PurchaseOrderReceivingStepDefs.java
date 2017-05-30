@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
@@ -32,13 +33,15 @@ public class PurchaseOrderReceivingStepDefs {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private boolean puttyFlag = true;
 	ArrayList<String> failureList = new ArrayList<String>();
+	private Hooks hooks;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
-			PuttyFunctionsPage puttyFunctionsPage) {
+			PuttyFunctionsPage puttyFunctionsPage, Hooks hooks) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.hooks = hooks;
 	}
 
 	@Given("^I want to receive the purchase order$")
@@ -150,7 +153,6 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 
 		String supplierId = purchaseOrderReceivingPage.getSupplierId();
-		// if (!supplierId.equalsIgnoreCase("F06048")) {
 		if (!supplierId.equalsIgnoreCase(context.getSupplierID())) {
 			failureList.add("Supplier ID not displayed as expected. Expected [" + context.getSupplierID()
 					+ "] but was [" + supplierId + "]");
@@ -174,7 +176,6 @@ public class PurchaseOrderReceivingStepDefs {
 		String skuID = purchaseOrderMap.get(String.valueOf(context.getLineItem())).get("SKU");
 		String tagId = tagIDMap.get(skuID).get(context.getTagIdIndex());
 		purchaseOrderReceivingPage.enterTagId(tagId);
-		// purchaseOrderReceivingPage.enterTagId("5678234561");
 
 		Assert.assertTrue("RcvPreCmp page 2 not displayed as expected",
 				purchaseOrderReceivingPage.isRcvPreCmp2Displayed());
@@ -236,27 +237,21 @@ public class PurchaseOrderReceivingStepDefs {
 		if (context.getProductCategory().contains("BWS")) {
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
 			purchaseOrderReceivingPage.enterABV(context.getABV());
-			purchaseOrderReceivingPage.pressTab();
 
-			/*
-			 * purchaseOrderReceivingPage.enterVintage(context.getVintage());
-			 * purchaseOrderReceivingPage.enterABV(context.getABV());
-			 * purchaseOrderReceivingPage.pressTab();
-			 */
-
-			String vintageValue = context.getVintage();
-			logger.debug(" Vintage value from Context : " + vintageValue);
-			if (!vintageValue.isEmpty()) {
-				purchaseOrderReceivingPage.enterVintage(vintageValue);
-			} else {
-				puttyFunctionsPage.pressTab();
-			}
-
-			String abvValue = context.getABV();
-			logger.debug(" ABV value from Context : " + abvValue);
-			if (!abvValue.isEmpty()) {
-				purchaseOrderReceivingPage.enterABV(abvValue);
-			}
+			// purchaseOrderReceivingPage.pressTab();
+			// String vintageValue = context.getVintage();
+			// logger.debug(" Vintage value from Context : " + vintageValue);
+			// if (!vintageValue.isEmpty()) {
+			// purchaseOrderReceivingPage.enterVintage(vintageValue);
+			// } else {
+			// puttyFunctionsPage.pressTab();
+			// }
+			//
+			// String abvValue = context.getABV();
+			// logger.debug(" ABV value from Context : " + abvValue);
+			// if (!abvValue.isEmpty()) {
+			// purchaseOrderReceivingPage.enterABV(abvValue);
+			// }
 
 			puttyFunctionsPage.nextScreen();
 
@@ -434,7 +429,10 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^the receiving should be completed$")
 	public void the_receiving_should_be_completed() throws Throwable {
-		Assert.assertTrue("Receive not completed.", purchaseOrderReceivingPage.isReceivingInprogressDisplayed());
+		Assert.assertTrue("Receive not completed and Home page not displayed",
+				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+		Thread.sleep(3000);
+		hooks.logoutPutty();
 	}
 
 	@Then("^the error message should be displayed$")
@@ -457,9 +455,12 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 
 			String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("ABV");
-			context.setABV(String.valueOf((Float.parseFloat(currentAbv)
-					+ (float) (Float.parseFloat(currentAbv) * (Float.parseFloat(percentage) / 100.0f)))));
+			double abvFloat = (Float.parseFloat(currentAbv)
+					+ (float) (Float.parseFloat(currentAbv) * (Float.parseFloat(context.getABVPercentage()) / 100.0f)));
 
+			String highAbv = String.valueOf(Utilities.getRoundOffToTwoDecimal(abvFloat));
+			context.setABV(highAbv);
+			System.out.println("highabv " + context.getABV());
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
@@ -479,7 +480,6 @@ public class PurchaseOrderReceivingStepDefs {
 				}
 			}
 		}
-		puttyFunctionsPage.minimisePutty();
 	}
 
 	@When("^I receive all the skus at location \"([^\"]*)\" with incorrect vintage$")
@@ -492,7 +492,8 @@ public class PurchaseOrderReceivingStepDefs {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setAllocationGroup(purchaseOrderMap.get(String.valueOf(i)).get("Allocation Group"));
 			context.setABV(purchaseOrderMap.get(String.valueOf(i)).get("ABV"));
-			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage") + 1);
+			context.setVintage(
+					String.valueOf(Integer.parseInt(purchaseOrderMap.get(String.valueOf(i)).get("Vintage")) + 1));
 
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
 				i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
@@ -509,7 +510,7 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+		hooks.logoutPutty();
 	}
 
 	@When("^I receive  the skus for each line item at location \"([^\"]*)\" with no vintage$")
@@ -539,14 +540,17 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+		hooks.logoutPutty();
 	}
 
 	@When("^I enter the expiry details$")
 	public void i_enter_the_expiry_details() throws Throwable {
+
 		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 			String expDate = DateUtils.getAddedSystemYear();
 			context.setFutureExpiryDate(expDate);
+			purchaseOrderReceivingPage.pressTab();
+			purchaseOrderReceivingPage.pressTab();
 			purchaseOrderReceivingPage.enterExpiryDate(expDate);
 			Thread.sleep(10000);
 		}
@@ -557,16 +561,21 @@ public class PurchaseOrderReceivingStepDefs {
 		if (context.getProductCategory().contains("BWS")) {
 			// purchaseOrderReceivingPage.enterABV("12.5");
 			purchaseOrderReceivingPage.enterABV(context.getABV());
+			puttyFunctionsPage.nextScreen();
 		} else if (context.getProductCategory().contains("Ambient")) {
 			purchaseOrderReceivingPage.pressTab();
 			Thread.sleep(10000);
+			puttyFunctionsPage.nextScreen();
 		}
 	}
 
 	@When("^I enter the vintage details$")
 	public void i_enter_the_vintage_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
+			// purchaseOrderReceivingPage.pressTab();
+			// purchaseOrderReceivingPage.pressTab();
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
+			purchaseOrderReceivingPage.pressTab();
 		} else if (context.getProductCategory().contains("Ambient")) {
 			purchaseOrderReceivingPage.pressTab();
 			Thread.sleep(10000);
@@ -591,11 +600,17 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
 				i_enter_the_vintage_details();
-				purchaseOrderReceivingPage.pressTab();
+				puttyFunctionsPage.nextScreen();
 				i_enter_the_expiry_details();
+
+				if (!purchaseOrderReceivingPage.isEnterABVForUpcDisplayed()) {
+					failureList.add("Enter the ABV for the UPC being received");
+				}
+				context.setFailureList(failureList);
+
 			}
 		}
 		puttyFlag = false;
-		puttyFunctionsPage.minimisePutty();
+		hooks.logoutPutty();
 	}
 }

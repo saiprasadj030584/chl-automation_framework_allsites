@@ -111,9 +111,12 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 				stockTransferOrderVehicleLoadingPage.isVehicleLoadComplete());
 	}
 
-	@Then("^the inventory transaction should be generated for vehicle load$")
-	public void the_inventory_transaction_should_be_generated_for_vehicle_load() throws Throwable {
-		Assert.assertEquals("Vehicle Load ITLs generated not as expected ", context.getMoveTaskRecordCount(),
-				inventoryTransactionDB.getVehicleLoadITLRecords().size());
-	}
+	// @Then("^the inventory transaction should be generated for vehicle load$")
+	// public void
+	// the_inventory_transaction_should_be_generated_for_vehicle_load() throws
+	// Throwable {
+	// Assert.assertEquals("Vehicle Load ITLs generated not as expected ",
+	// context.getMoveTaskRecordCount(),
+	// inventoryTransactionDB.getVehicleLoadITLRecords().size());
+	// }
 }

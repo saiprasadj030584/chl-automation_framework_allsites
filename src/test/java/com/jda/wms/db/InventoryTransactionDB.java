@@ -1,10 +1,8 @@
 package com.jda.wms.db;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.inject.Inject;
@@ -19,27 +17,6 @@ public class InventoryTransactionDB {
 	public InventoryTransactionDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-	}
-
-	public ArrayList<String> getVehicleLoadITLRecords() throws SQLException, ClassNotFoundException {
-		ArrayList<String> palletIdList = new ArrayList<String>();
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select PALLET_ID from INVENTORY_TRANSACTION where REFERENCE_ID = '"
-				+ context.getOrderId() + "' and code ='Vehicle Load'");
-		ResultSetMetaData rsmd = rs.getMetaData();
-		int columns = rsmd.getColumnCount();
-
-		while (rs.next()) {
-			for (int j = 1; j <= columns; j++) {
-				palletIdList.add((rs.getString(j)));
-			}
-		}
-		context.setPalletIDList(palletIdList);
-		return palletIdList;
 	}
 
 	public String getDescription(String tagId, String code, String skuId) throws SQLException, ClassNotFoundException {
@@ -66,7 +43,7 @@ public class InventoryTransactionDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery(
-				"Select  a.final_loc_id, a.from_loc_id, a.to_loc_id,a.update_qty, a.reference_id, a.expiry_dstamp,a.user_id,a.work_group,a.rdt_user_mode,a.supplier_id, a.pallet_id,a.config_id, a.sku_id,a.uploaded,a.uploaded_filename,a.uploaded_dstamp,a.uploaded_tm  from inventory_transaction A   where A.tag_id = '"
+				"Select  a.final_loc_id, a.from_loc_id, a.to_loc_id,a.update_qty, a.reference_id, a.expiry_dstamp,a.user_id,a.station_id,a.rdt_user_mode,a.supplier_id, a.user_def_type_3,a.config_id, a.sku_id,a.uploaded,a.uploaded_filename,a.uploaded_dstamp,a.uploaded_tm  from inventory_transaction A   where A.tag_id = '"
 						+ tagId + "' and A.code = '" + code + "'");
 		resultSet.next();
 
@@ -82,7 +59,7 @@ public class InventoryTransactionDB {
 		inventoryTransactionMap.put("RDT User Mode", resultSet.getString(9));
 		inventoryTransactionMap.put("Supplier", resultSet.getString(10));
 
-		inventoryTransactionMap.put("Pallet Type", resultSet.getString(11));
+		inventoryTransactionMap.put("Storage Location", resultSet.getString(11));
 		inventoryTransactionMap.put("Pack Config", resultSet.getString(12));
 		inventoryTransactionMap.put("Sku Id", resultSet.getString(13));
 
@@ -105,7 +82,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery("Select  tag_id,user_def_note_2 from inventory_transaction    where tag_id = '"
-				+ tagId + "' and A.code = '" + code + "'");
+				+ tagId + "' and code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Tag Id", resultSet.getString(1));
@@ -126,7 +103,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery(
 				"Select ce_originator, ce_originator_reference, ce_consignment_id, ce_document_dstamp,ce_orig_rotation_id, ce_rotation_id, ce_receipt_type, ce_under_bond,user_def_num_3, user_def_type_7,user_def_type_3,user_def_type_5,user_def_type_6,user_def_date_1  from inventory_transaction  where tag_id = '"
-						+ tagId + "' and A.code = '" + code + "'");
+						+ tagId + "' and code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Originator", resultSet.getString(1));
@@ -136,7 +113,7 @@ public class InventoryTransactionDB {
 
 		inventoryTransactionMap.put("Original Rotation Id", resultSet.getString(5));
 		inventoryTransactionMap.put("Rotation Id", resultSet.getString(6));
-		inventoryTransactionMap.put("Receipt Type", resultSet.getString(7));
+		inventoryTransactionMap.put("RecType", resultSet.getString(7));
 		inventoryTransactionMap.put("Under Bond", resultSet.getString(8));
 
 		inventoryTransactionMap.put("ABV", resultSet.getString(9));
