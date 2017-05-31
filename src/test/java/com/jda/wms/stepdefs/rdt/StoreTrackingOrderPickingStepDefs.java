@@ -9,10 +9,10 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.InventoryDB;
 import com.jda.wms.db.LocationDB;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.pages.rdt.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.DateUtils;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -27,15 +27,17 @@ public class StoreTrackingOrderPickingStepDefs {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private Context context;
 	private LocationDB locationDB;
+	private Hooks hooks;
 
 	@Inject
 	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
-			Context context,InventoryDB inventoryDB,PuttyFunctionsPage puttyFunctionsPage, LocationDB locationDB) {
+			Context context,InventoryDB inventoryDB,PuttyFunctionsPage puttyFunctionsPage, LocationDB locationDB,Hooks hooks) {
 		this.storeTrackingOrderPickingPage = storeTrackingOrderPickingPage;
 		this.context = context;
 		this.inventoryDB = inventoryDB;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.locationDB = locationDB;
+		this.hooks = hooks;
 	}
 
 	@Given("^I select picking with container pick$")
@@ -238,6 +240,7 @@ public class StoreTrackingOrderPickingStepDefs {
 	
 	@Then("^I should see the picking completion$")
 	public void i_should_see_the_picking_completion() throws Throwable {
+		System.out.println(context.getFailureList());
 		Assert.assertTrue("Picking not completed and Home page not displayed.[" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
 	}
@@ -261,29 +264,22 @@ public class StoreTrackingOrderPickingStepDefs {
 					context.setQtyToMove(Integer.parseInt(listIDMap.get(j).get("QtyToMove")));
 				}
 			}
-			the_location_should_be_displayed();
+			Assert.assertEquals("Location is not displayed as expected.", context.getLocation(),storeTrackingOrderPickingPage.getLocationInReplenishPick());
 			puttyFunctionsPage.nextScreen();
 			
 			Assert.assertEquals("SKU ID is not displayed as expected",context.getSkuId(),storeTrackingOrderPickingPage.getSkuId());
 			the_quantity_and_to_and_destination_location_should_be_displayed();
-			i_enter_SKU_id_quantity_and_stock_details();
 			
-			listIDMap.get(i).replace("TagID", context.getTagId());
-			context.setListIDMap(listIDMap);
-			
-			the_to_pallet_to_location_and_destination_should_be_displayed();
-			Assert.assertTrue("Container ID entry page is not displayed as expected",storeTrackingOrderPickingPage.isContainerIDDisplayed());
-			i_enter_container_id_and_check_strings();
+			String chkStrings = locationDB.getCheckString(context.getToLocation());
+			storeTrackingOrderPickingPage.enterCheckStrings(chkStrings);
+			puttyFunctionsPage.pressEnter();
 			
 			if (!storeTrackingOrderPickingPage.isPickEntryDisplayed()){
 				failureList.add("Picking not completed and Home page not displayed for List ID "+context.getListID());
 				context.setFailureList(failureList);
 			}
-			context.setPickedRecords(context.getPickedRecords()+1);
-//			System.out.println("Record picked "+context.getPickedRecords());
+			System.out.println(context.getFailureList());
 		}
-		puttyFunctionsPage.minimisePutty();
-//		System.out.println("Total picked "+context.getPickedRecords());
 	}
 	
 	
@@ -306,57 +302,18 @@ public class StoreTrackingOrderPickingStepDefs {
 		
 		qtyToMove = qtyToMove / context.getCaseRatio();
 		Assert.assertEquals("Quantity to pick is not displayed as expected.", String.valueOf(qtyToMove)+"C", quantity);
-		Assert.assertEquals("Destination is not displayed as expected.", context.getFinalLocation(), storeTrackingOrderPickingPage.getDestination());
-		Assert.assertEquals("To location  is not displayed as expected.", context.getToLocation(), storeTrackingOrderPickingPage.getDestination());
 		
-		
-		String toLocation = storeTrackingOrderPickingPage.getToLocation();
+		String toLocation = storeTrackingOrderPickingPage.getToLocationInReplenishPick();
 		String [] location = toLocation.split("_");
 		toLocation =location[0];
+		Assert.assertEquals("To Location is not displayed as expected.", context.getToLocation(), toLocation);
+		
+		Assert.assertEquals("Destination is not displayed as expected.", context.getFinalLocation(), storeTrackingOrderPickingPage.getDestinationInReplenishpick());
+
 		puttyFunctionsPage.pressEnter();
-		Assert.assertEquals("To Location is not displayed as expected.", context.getToLocation(), storeTrackingOrderPickingPage.getToLocation());
-		String toLocation = storeTrackingOrderPickingPage.getToLocation();
-		if (!context.getToLocation().equals(toLocation)){
-			failureList.add("To Pallet is not displayed as expected. Expected [" + context.getToLocation()
-			+ "] but was [" + toLocation + "]");
-		}
-
-		//----------------
-		puttyFunctionsPage.nextScreen();
-		Thread.sleep(1000);
-
-		String tagId = storeTrackingOrderPickingPage.getTagId();
-		context.setTagId(tagId);
-		
-		puttyFunctionsPage.nextScreen();
+		storeTrackingOrderPickingPage.enterTagId(context.getTagId());
 		puttyFunctionsPage.pressEnter();
-		
-		puttyFunctionsPage.pressTab();
-		puttyFunctionsPage.pressTab();
-		
-		storeTrackingOrderPickingPage.enterQuantity(String.valueOf(qtyToMove)+"C");
-		
-		stockTransferOrderMap = context.getStockTransferOrderMap();
-		String allocationGroup = null;
-		for (int s=1;s<=stockTransferOrderMap.size();s++){
-			if (context.getSkuId().equals(stockTransferOrderMap.get(s).get("SKU"))){
-				allocationGroup = stockTransferOrderMap.get(s).get("AllocationGroup");
-				break;
-			}
-		}
-
-		if (allocationGroup.equalsIgnoreCase("Expiry")){
-			puttyFunctionsPage.pressTab();
-			String manufactureDate = DateUtils.getPrevSystemYear();
-			storeTrackingOrderPickingPage.enterManufactureDate(manufactureDate);
-			// TODO Convert date from DB
-			String expDate = inventoryDB.getExpDate(context.getSkuId(),context.getTagId(),context.getLocation());
-			storeTrackingOrderPickingPage.enterExpiryDate(expDate);
-		}
-		
-		puttyFunctionsPage.nextScreen();
-		Thread.sleep(1000);
-		puttyFunctionsPage.nextScreen();
+		puttyFunctionsPage.pressEnter();
 	}
 
 }

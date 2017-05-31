@@ -63,13 +63,13 @@ public class InventoryQueryDB {
 		return inventoryQueryMap;
 	}
 
-	public String getQtyOnHand(String sku, String location) throws SQLException, ClassNotFoundException {
+	public String getQtyOnHand(String sku, String location, String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select qty_on_hand from Inventory  where sku_id ='" +sku+"' and location_id='"+location+"'");
+		ResultSet rs = stmt.executeQuery("select qty_on_hand from Inventory  where sku_id ='" +sku+"' and location_id='"+location+"' and tag_id='"+tagId+"'");
 		rs.next();
 		return rs.getString(1);
 	}

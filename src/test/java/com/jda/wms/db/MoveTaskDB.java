@@ -216,7 +216,7 @@ public class MoveTaskDB {
 			database.connect();
 		}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select QTY_TO_MOVE from MOVE_TASK where sku_id = '" + sku + "' AND list_id is null");
+			ResultSet rs = stmt.executeQuery("select QTY_TO_MOVE from MOVE_TASK where sku_id = '" + sku + "'");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int columns = rsmd.getColumnCount();
 			while(rs.next())  {
@@ -233,7 +233,7 @@ public class MoveTaskDB {
 			database.connect();
 		}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select tag_id from MOVE_TASK where sku_id = '" + sku + "' AND list_id is null");
+			ResultSet rs = stmt.executeQuery("select tag_id from MOVE_TASK where sku_id = '" + sku + "'");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int columns = rsmd.getColumnCount();
 			while(rs.next())  {

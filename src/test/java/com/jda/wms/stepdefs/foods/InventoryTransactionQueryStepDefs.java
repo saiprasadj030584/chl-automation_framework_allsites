@@ -18,6 +18,7 @@ import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
+import com.jda.wms.utils.DateUtils;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -35,6 +36,7 @@ public class InventoryTransactionQueryStepDefs {
 	Map<String, ArrayList<String>> tagIDMap;
 	private Verification verification;
 	private InventoryDB inventoryDB;
+	private Map<Integer, Map<String, String>> listIDMap;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
@@ -1087,24 +1089,29 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 	}
 	
-	@Then("^the receipt should be generated for the order in inventory transaction table$")
-	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
-	}
-	@Then("^qty on hand and location details should be updated for tagid '(\\d+)' and taskid 'REPLENISH'$")
-	public void qty_on_hand_and_location_details_should_be_updated_for_tagid_and_taskid_REPLENISH(int tagID) throws Throwable {
+	@Then("^quantity and location details should be updated for all tags$")
+	public void quantity_and_location_details_should_be_updated_for_all_tags() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String taskID = "REPLENISH" ;
-		verification.verifyData("From Location", context.getLocation(), inventoryDB.getlocation(taskID,tagID),
+		listIDMap = context.getListIDMap();
+		String dstamp = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getListIDMap().size(); i++) {
+		String tagID = listIDMap.get(i).get("ListID");
+//		String tagID = "1000000062";
+//		context.setToLocation("AA53A02");
+//		context.setFinalLocation("AA53A02");
+//		context.setQtyToMove(960);
+		verification.verifyData("From Location", context.getLocation(), inventoryTransactionDB.getlocation("REPLENISH",tagID,dstamp),
 				failureList);
-		verification.verifyData("To Location", context.getToLocation(), inventoryDB.getToLocation(taskID,tagID),
+		verification.verifyData("To Location", context.getToLocation(), inventoryTransactionDB.getToLocation("REPLENISH",tagID,dstamp),
 				failureList);
-		verification.verifyData("Final Location", context.getFinalLocation(), inventoryDB.getFinalLocation(taskID,tagID),
+		verification.verifyData("Final Location", context.getFinalLocation(), inventoryTransactionDB.getFinalLocation("REPLENISH",tagID,dstamp),
 				failureList);
-		verification.verifyData("Update QTY", context.getQtyOnHand(), inventoryDB.getUpdateQty(taskID,tagID),
+		verification.verifyData("Update QTY", String.valueOf(context.getQtyToMove()), inventoryTransactionDB.getUpdateQty("REPLENISH",tagID,dstamp),
 				failureList);
 		Assert.assertTrue(
 				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
 	}
 		
 	}

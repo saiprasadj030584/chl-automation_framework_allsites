@@ -79,6 +79,7 @@ public class Context {
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
+	private boolean puttyLoginFlag=false;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -647,5 +648,13 @@ public class Context {
 
 	public void setContainerId(String containerId) {
 		this.containerId = containerId;
+	}
+
+	public boolean isPuttyLoginFlag() {
+		return puttyLoginFlag;
+	}
+
+	public void setPuttyLoginFlag(boolean puttyLoginFlag) {
+		this.puttyLoginFlag = puttyLoginFlag;
 	}
 }

@@ -178,12 +178,12 @@ public class MoveTaskStepDefs {
 				moveTaskDB.getRecordCountByTaskID(context.getOrderId()));
 	}
 
-	@When("^the replenish STO should have list id,quantity to move, tagid, location details and case ratio$")
+	@Then("^the replenish STO should have list id,quantity to move, tagid, location details and case ratio$")
 	public void the_replenish_STO_should_have_list_id_quantity_to_move_tagid_location_details_and_case_ratio()
 			throws Throwable {
-		// ---------------
-		context.setOrderId("REPLENISH ");
-		context.setSkuId("21106955");
+//		// ---------------
+//		context.setOrderId("REPLENISH ");
+//		context.setSkuId("21106905");
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
@@ -195,7 +195,7 @@ public class MoveTaskStepDefs {
 		ArrayList<String> tagIDList = new ArrayList<String>();
 
 		listIDList = moveTaskDB.getReplenishListId(context.getSkuId());
-
+		
 		for (int l = 0; l < listIDList.size(); l++) {
 			if (listIDList.get(l) == null) {
 				failureList.add("List ID not generated as expected : List id " + l + "is null");
@@ -205,6 +205,7 @@ public class MoveTaskStepDefs {
 				failureList.isEmpty());
 
 		qtyToMoveList = moveTaskDB.getReplenishQtyToMoveList(context.getSkuId());
+		System.out.println(qtyToMoveList);
 		tagIDList = moveTaskDB.getReplenishTagIDList(context.getSkuId());
 		locationList = moveTaskDB.getReplenishLocationList(context.getSkuId());
 		toLocationList = moveTaskDB.getReplenishToLocationList(context.getSkuId());
