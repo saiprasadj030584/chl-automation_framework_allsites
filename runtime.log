@@ -9346,3 +9346,115 @@
 2017-05-25 09:55:07 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-25 09:55:07 DEBUG Hooks:93 - DB Connection closed
 >>>>>>> c64860eb246773486ed2393511688c9e93649279
+2017-05-31 05:16:45 DEBUG Database:76 - Connection successfull
+2017-05-31 05:16:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 05:16:48 DEBUG Hooks:39 - featureID: consignment-creation
+2017-05-31 05:16:48 DEBUG Hooks:40 - Start of Scenario: Create consignment for STO
+2017-05-31 05:16:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 05:22:51 DEBUG Database:76 - Connection successfull
+2017-05-31 05:22:53 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 05:22:53 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-31 05:22:53 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-31 05:22:53 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 05:22:54 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 05:22:54 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 05:22:54 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-31 05:22:54 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 05:23:27 DEBUG Database:76 - Connection successfull
+2017-05-31 05:23:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 05:23:30 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-31 05:23:30 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-31 05:23:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 05:23:31 DEBUG Verification:19 - SKU - expected [20062756] and actual [20062756]
+2017-05-31 05:23:31 DEBUG Verification:19 - Container - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:23:31 DEBUG Verification:19 - Pallet - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:23:31 DEBUG Verification:19 - Pack Config - expected [Not Null] and actual [20062756O01]
+2017-05-31 05:23:31 DEBUG Verification:19 - Consignment - expected [null] and actual [FAVE----20170224]
+2017-05-31 05:23:31 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 05:23:31 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 05:23:31 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-31 05:23:31 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 05:24:50 DEBUG Database:76 - Connection successfull
+2017-05-31 05:24:52 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 05:24:52 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-31 05:24:52 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-31 05:24:52 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 05:24:53 DEBUG Verification:19 - SKU - expected [20062756] and actual [20062756]
+2017-05-31 05:24:53 DEBUG Verification:19 - Container - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:24:53 DEBUG Verification:19 - Pallet - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:24:53 DEBUG Verification:19 - Pack Config - expected [Not Null] and actual [20062756O01]
+2017-05-31 05:24:53 DEBUG Verification:19 - Consignment - expected [FAVE----20170224] and actual [FAVE----20170224]
+2017-05-31 05:24:53 DEBUG Verification:19 - Qty Picked - expected [300] and actual [300]
+2017-05-31 05:24:53 DEBUG Verification:19 - Qty Shipped - expected [300] and actual [300]
+2017-05-31 05:24:53 DEBUG Verification:19 - Pick Label ID - expected [Not Null] and actual [404]
+2017-05-31 05:24:53 DEBUG Verification:19 - Shipped Date - expected [Not Null] and actual [2017-02-24 07:55:53.426489 Europe/London]
+2017-05-31 05:24:53 DEBUG Verification:19 - Picked Date - expected [Not Null] and actual [2017-02-24 07:55:01.990914 Europe/London]
+2017-05-31 05:24:53 DEBUG Verification:19 - Pallet Type - expected [Not Null] and actual [PALLET]
+2017-05-31 05:24:53 DEBUG Verification:19 - CE Rotation ID - expected [Not Null] and actual [17/0000008]
+2017-05-31 05:24:53 DEBUG Verification:19 - CE Consignment ID - expected [Not Null] and actual [000000011]
+2017-05-31 05:24:53 DEBUG Verification:19 - CE Receipt Type - expected [Not Null] and actual [OW]
+2017-05-31 05:24:53 DEBUG Verification:19 - CE Originator - expected [Not Null] and actual [GB00000120758]
+2017-05-31 05:24:53 DEBUG Verification:19 - CE Originator Reference - expected [Not Null] and actual [16ESD0820000011160007]
+2017-05-31 05:24:53 DEBUG Verification:19 - Shipment Number - expected [Not Null] and actual [128]
+2017-05-31 05:24:53 DEBUG Verification:19 - Customer - expected [null] and actual [5652]
+2017-05-31 05:24:53 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 05:24:53 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 05:24:53 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-31 05:24:53 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 05:27:28 DEBUG Database:76 - Connection successfull
+2017-05-31 05:27:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 05:27:31 DEBUG Hooks:39 - featureID: store-tracking-order;sto-for-rdc;
+2017-05-31 05:27:31 DEBUG Hooks:40 - Start of Scenario: STO for RDC
+2017-05-31 05:27:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 05:27:32 DEBUG Verification:19 - SKU - expected [20062756] and actual [20062756]
+2017-05-31 05:27:32 DEBUG Verification:19 - Container - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pallet - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pack Config - expected [Not Null] and actual [20062756O01]
+2017-05-31 05:27:32 DEBUG Verification:19 - Consignment - expected [FAVE----20170224] and actual [FAVE----20170224]
+2017-05-31 05:27:32 DEBUG Verification:19 - Qty Picked - expected [300] and actual [300]
+2017-05-31 05:27:32 DEBUG Verification:19 - Qty Shipped - expected [300] and actual [300]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pick Label ID - expected [Not Null] and actual [404]
+2017-05-31 05:27:32 DEBUG Verification:19 - Shipped Date - expected [Not Null] and actual [2017-02-24 07:55:53.426489 Europe/London]
+2017-05-31 05:27:32 DEBUG Verification:19 - Picked Date - expected [Not Null] and actual [2017-02-24 07:55:01.990914 Europe/London]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pallet Type - expected [Not Null] and actual [PALLET]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Rotation ID - expected [Not Null] and actual [17/0000008]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Consignment ID - expected [Not Null] and actual [000000011]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Receipt Type - expected [Not Null] and actual [OW]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Originator - expected [Not Null] and actual [GB00000120758]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Originator Reference - expected [Not Null] and actual [16ESD0820000011160007]
+2017-05-31 05:27:32 DEBUG Verification:19 - Shipment Number - expected [Not Null] and actual [128]
+2017-05-31 05:27:32 DEBUG Verification:19 - Customer - expected [5652] and actual [5652]
+2017-05-31 05:27:32 DEBUG Verification:19 - IFOS Order Number - expected [Not Null] and actual [null]
+2017-05-31 05:27:32 DEBUG Verification:19 - UPC - expected [Not Null] and actual [00928885]
+2017-05-31 05:27:32 DEBUG Verification:19 - DWS EDN Reference - expected [Not Null] and actual [721300121010]
+2017-05-31 05:27:32 DEBUG Verification:19 - STO Reference - expected [Not Null] and actual [4010027453]
+2017-05-31 05:27:32 DEBUG Verification:19 - Vintage - expected [2016] and actual [2016]
+2017-05-31 05:27:32 DEBUG Verification:19 - Delivery By Date - expected [Not Null] and actual [2017-02-04 00:00:00.0 Europe/London]
+2017-05-31 05:27:32 DEBUG Verification:19 - SKU - expected [21097685] and actual [21097685]
+2017-05-31 05:27:32 DEBUG Verification:19 - Container - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pallet - expected [8056520141908] and actual [8056520141908]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pack Config - expected [Not Null] and actual [21097685O01]
+2017-05-31 05:27:32 DEBUG Verification:19 - Consignment - expected [FAVE----20170224] and actual [FAVE----20170224]
+2017-05-31 05:27:32 DEBUG Verification:19 - Qty Picked - expected [600] and actual [600]
+2017-05-31 05:27:32 DEBUG Verification:19 - Qty Shipped - expected [600] and actual [600]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pick Label ID - expected [Not Null] and actual [405]
+2017-05-31 05:27:32 DEBUG Verification:19 - Shipped Date - expected [Not Null] and actual [2017-02-24 07:55:53.574541 Europe/London]
+2017-05-31 05:27:32 DEBUG Verification:19 - Picked Date - expected [Not Null] and actual [2017-02-24 07:55:02.490524 Europe/London]
+2017-05-31 05:27:32 DEBUG Verification:19 - Pallet Type - expected [Not Null] and actual [PALLET]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Rotation ID - expected [Not Null] and actual [17/0000010]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Consignment ID - expected [Not Null] and actual [000000011]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Receipt Type - expected [Not Null] and actual [OW]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Originator - expected [Not Null] and actual [GB00000120758]
+2017-05-31 05:27:32 DEBUG Verification:19 - CE Originator Reference - expected [Not Null] and actual [16ESD0820000011160007]
+2017-05-31 05:27:32 DEBUG Verification:19 - Shipment Number - expected [Not Null] and actual [128]
+2017-05-31 05:27:32 DEBUG Verification:19 - Customer - expected [5652] and actual [5652]
+2017-05-31 05:27:32 DEBUG Verification:19 - IFOS Order Number - expected [Not Null] and actual [null]
+2017-05-31 05:27:32 DEBUG Verification:19 - UPC - expected [Not Null] and actual [00282727]
+2017-05-31 05:27:32 DEBUG Verification:19 - DWS EDN Reference - expected [Not Null] and actual [721300121010]
+2017-05-31 05:27:32 DEBUG Verification:19 - STO Reference - expected [Not Null] and actual [4010027453]
+2017-05-31 05:27:32 DEBUG Verification:19 - Vintage - expected [2016] and actual [2016]
+2017-05-31 05:27:32 DEBUG Verification:19 - Delivery By Date - expected [Not Null] and actual [2017-02-04 00:00:00.0 Europe/London]
+2017-05-31 05:27:32 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 05:27:32 DEBUG Hooks:84 - End of Scenario: STO for RDC
+2017-05-31 05:27:32 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 05:27:32 DEBUG Hooks:93 - DB Connection closed

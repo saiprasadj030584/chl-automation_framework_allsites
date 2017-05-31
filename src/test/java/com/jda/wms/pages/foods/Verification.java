@@ -18,7 +18,7 @@ public class Verification {
 			ArrayList<String> failureList) {
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
 		if (expectedResults.equalsIgnoreCase("Not Null")) {
-			if (actualResults==null) {
+			if (null==actualResults) {
 				failureList.add(fieldName + " does not match. Expected  [Not Null] but was [" + actualResults + "]");
 			}
 		} else {

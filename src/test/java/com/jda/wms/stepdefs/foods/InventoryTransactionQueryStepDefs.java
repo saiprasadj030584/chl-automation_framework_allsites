@@ -1087,7 +1087,4 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 	}
 	
-	@Then("^the receipt should be generated for the order in inventory transaction table$")
-	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
-	}
 }

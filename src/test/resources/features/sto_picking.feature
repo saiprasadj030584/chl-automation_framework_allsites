@@ -19,8 +19,7 @@ Feature: Store Tracking order
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
-
-    #Then the receipt should be generated for the order in inventory transaction table
+    Then the shipping manifest should be generated
     Examples: 
       | OrderId    |
       | 8800004368 |
@@ -35,12 +34,13 @@ Feature: Store Tracking order
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignment
     Then the STO should have list id, quantity to move,to pallet, to container details from move task table
-    When I login as warehouse user in Putty
+    When I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
+    Then the shipping manifest should be generated
 
     Examples: 
       | OrderId    |
@@ -56,13 +56,13 @@ Feature: Store Tracking order
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignment
     Then the STO should have list id, quantity to move,to pallet, to container details from move task table
-    When I login as warehouse user in Putty
+    When I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
-    Then the receipt should be generated for the order in inventory transaction table
+    Then the shipping manifest should be generated
 
     Examples: 
       | OrderId    |
