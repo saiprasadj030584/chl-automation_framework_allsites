@@ -35,7 +35,7 @@ Feature: Store Tracking order
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignment
     Then the STO should have list id, quantity to move,to pallet, to container details from move task table
-    When I login as warehouse user in Putty
+    When I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page
@@ -56,7 +56,7 @@ Feature: Store Tracking order
     And the quantity tasked should be updated for each order lines
     And the order id should have ship dock and consignment
     Then the STO should have list id, quantity to move,to pallet, to container details from move task table
-    When I login as warehouse user in Putty
+    When I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page

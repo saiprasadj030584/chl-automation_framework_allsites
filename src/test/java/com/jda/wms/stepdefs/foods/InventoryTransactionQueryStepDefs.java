@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.foods;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -423,6 +424,13 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the URN child should be displayed$")
 	public void the_URN_child_should_be_displayed() throws Throwable {
+		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
+				inventoryTransactionQueryPage.getURNChild());
+		logger.debug("URN Child: " + inventoryTransactionQueryPage.getURNChild());
+	}
+
+	@Then("^the URN child should be updated with tag id$")
+	public void the_URN_child_should_be_update_with_tag_id() throws Throwable {
 		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
 				inventoryTransactionQueryPage.getURNChild());
 		logger.debug("URN Child: " + inventoryTransactionQueryPage.getURNChild());
@@ -1083,4 +1091,27 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Then("^the receipt should be generated for the order in inventory transaction table$")
+	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
+	}
+
+	@Then("^the vehicle unloading should be updated in the inventory transaction$")
+	public void the_vehicle_unloading_should_be_updated_in_the_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String palletID = context.getPalletID();
+
+		List<String> fromLocationList = inventoryTransactionDB.getFromLocationForUnloading(palletID);
+		List<String> toLocationList = inventoryTransactionDB.getToLocationForUnloading(palletID);
+		List<String> referenceIdList = inventoryTransactionDB.getReferenceNo(palletID);
+
+		for (int i = 0; i < fromLocationList.size(); i++) {
+			verification.verifyData("From Location", context.getTrailerNo(), fromLocationList.get(i), failureList);
+			verification.verifyData("Reference", "Not NULL", referenceIdList.get(i), failureList);
+			verification.verifyData("To Location", "IN", toLocationList.get(i), failureList);
+		}
+
+		Assert.assertTrue(
+				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
 }
