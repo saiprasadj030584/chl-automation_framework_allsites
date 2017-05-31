@@ -28,4 +28,11 @@ public class DockSchedulerBookingsPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public boolean isNoRecords() throws FindFailed, InterruptedException {
+		if (!screen.find("images/DockScheduleBookings/NoRecords.png").equals(null)) {
+			return false;
+		}
+		return true;
+	}
 }

@@ -454,6 +454,17 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(2000);
 	}
 
+	public void scrollRight() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollRight.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollRight.png");
+		Thread.sleep(2000);
+	}
+	public void scrollLeft() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollLeft.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollLeft.png");
+		Thread.sleep(2000);
+	}
+
 	public void navigateToMoveTaskListGenerationPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
