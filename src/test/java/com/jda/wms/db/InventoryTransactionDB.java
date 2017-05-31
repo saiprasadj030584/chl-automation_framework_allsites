@@ -21,6 +21,27 @@ public class InventoryTransactionDB {
 		this.database = database;
 	}
 
+	public ArrayList<String> getVehicleLoadITLRecords() throws SQLException, ClassNotFoundException {
+		ArrayList<String> palletIdList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select PALLET_ID from INVENTORY_TRANSACTION where REFERENCE_ID = '"
+				+ context.getOrderId() + "' and code ='Vehicle Load'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				palletIdList.add((rs.getString(j)));
+			}
+		}
+		context.setPalletIDList(palletIdList);
+		return palletIdList;
+	}
+
 	public String getDescription(String tagId, String code, String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
