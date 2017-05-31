@@ -79,6 +79,7 @@ public class Context {
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
+	private String stoType;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -647,5 +648,13 @@ public class Context {
 
 	public void setContainerId(String containerId) {
 		this.containerId = containerId;
+	}
+
+	public String getStoType() {
+		return stoType;
+	}
+
+	public void setStoType(String stoType) {
+		this.stoType = stoType;
 	}
 }

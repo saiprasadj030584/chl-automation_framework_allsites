@@ -1084,10 +1084,6 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the receipt should be generated for the order in inventory transaction table$")
-	public void the_receipt_should_be_generated_for_the_order_in_inventory_transaction_table() throws Throwable {
-	}
-
 	@Then("^the vehicle unloading should be updated in the inventory transaction$")
 	public void the_vehicle_unloading_should_be_updated_in_the_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();

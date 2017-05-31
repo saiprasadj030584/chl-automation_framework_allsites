@@ -59,7 +59,7 @@ public class OrderLineMaintenanceStepDefs {
 	public void the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String qtyOrdered = null, qtyTasked = null, trackingLevel = null, allocationGroup = null;
+		String qtyOrdered = null, qtyTasked = null, trackingLevel = null, allocationGroup = null,vintage = null;
 		Map<Integer, Map<String, String>> stockTransferOrderMap = new HashMap<Integer, Map<String, String>>();
 		int caseRatio = 0;
 		ArrayList<String> skuID = new ArrayList<String>();
@@ -77,6 +77,7 @@ public class OrderLineMaintenanceStepDefs {
 			verification.verifyData("Case Ratio", String.valueOf(ratio1To2), String.valueOf(caseRatio),failureList);
 
 			allocationGroup = skuDB.getAllocationGroup(skuID.get(i-1));
+			vintage = skuDB.getVintage(skuID.get(i-1));
 			
 			// map
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
