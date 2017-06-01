@@ -513,28 +513,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
 	}
 
-	// @Given("^the ABV should be calculated for \"([^\"]*)\" percentage of its
-	// actual value$")
-	// public void
-	// the_ABV_should_be_calculated_for_percentage_of_its_actual_value(String
-	// percentage) throws Throwable {
-	// Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String,
-	// Map<String, String>>();
-	//
-	// for (int i = 1; i <= context.getNoOfLines(); i++) {
-	// purchaseOrderMap = context.getPurchaseOrderMap();
-	// String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("ABV");
-	//
-	// String expectedAbv = String.valueOf((Float.parseFloat(currentAbv)
-	// + (float) (Float.parseFloat(currentAbv) * (Float.parseFloat(percentage) /
-	// 100.0f))));
-	//
-	// context.setABV(expectedAbv);
-	// Map<String, String> lineItemsMap = new HashMap<String, String>();
-	// lineItemsMap.put("UpdatedABV", expectedAbv);
-	// }
-	// }
-
 	@Given("^I have the vintage for each line item$")
 	public void i_have_the_vintage_for_each_line_item() throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();

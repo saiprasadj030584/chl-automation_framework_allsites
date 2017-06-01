@@ -30,4 +30,14 @@ public class SkuDB {
 		allocationGroup = (rs.getString(1));
 		return allocationGroup;
 	}
+
+	public String getVintage(String skuID) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_3 from SKU where sku_id = '" + skuID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

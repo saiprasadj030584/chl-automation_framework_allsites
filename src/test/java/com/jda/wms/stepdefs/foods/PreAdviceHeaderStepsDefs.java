@@ -76,8 +76,6 @@ public class PreAdviceHeaderStepsDefs {
 			failureList.add("Supplier is not as expected. Expected [Not NULL] but was [" + supplier + "]");
 		}
 
-		// this method should be deleted and use the getType() from
-		// PreadviceHeaderDB.java
 		boolean isType = preAdviceHeaderPage.isTypeExist();
 		if (!isType) {
 			failureList.add("Type is not displayed as PO");

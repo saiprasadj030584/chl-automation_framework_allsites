@@ -223,9 +223,7 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 		context.setRcvQtyDue(rcvQtyDue);
 
-		// purchaseOrderReceivingPage.enterQtyToReceive("10");
 		purchaseOrderReceivingPage.enterQtyToReceive(String.valueOf(qtyToReceive));
-		// purchaseOrderReceivingPage.enterCaseRatio("6");
 		purchaseOrderReceivingPage.enterCaseRatio(String.valueOf(caseRatio));
 
 		Assert.assertTrue("RcvPreCmp page 3 not displayed as expected",
@@ -237,22 +235,6 @@ public class PurchaseOrderReceivingStepDefs {
 		if (context.getProductCategory().contains("BWS")) {
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
 			purchaseOrderReceivingPage.enterABV(context.getABV());
-
-			// purchaseOrderReceivingPage.pressTab();
-			// String vintageValue = context.getVintage();
-			// logger.debug(" Vintage value from Context : " + vintageValue);
-			// if (!vintageValue.isEmpty()) {
-			// purchaseOrderReceivingPage.enterVintage(vintageValue);
-			// } else {
-			// puttyFunctionsPage.pressTab();
-			// }
-			//
-			// String abvValue = context.getABV();
-			// logger.debug(" ABV value from Context : " + abvValue);
-			// if (!abvValue.isEmpty()) {
-			// purchaseOrderReceivingPage.enterABV(abvValue);
-			// }
-
 			puttyFunctionsPage.nextScreen();
 
 			if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
@@ -416,7 +398,6 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId());
 			String currentAbv = purchaseOrderMap.get(String.valueOf(i)).get("UpdatedABV");
 			purchaseOrderReceivingPage.enterABV(currentAbv);
-			// i_should_see_error_in_receiving();
 		}
 		puttyFlag = false;
 		puttyFunctionsPage.minimisePutty();
@@ -460,7 +441,6 @@ public class PurchaseOrderReceivingStepDefs {
 
 			String highAbv = String.valueOf(Utilities.getRoundOffToTwoDecimal(abvFloat));
 			context.setABV(highAbv);
-			System.out.println("highabv " + context.getABV());
 			context.setVintage(purchaseOrderMap.get(String.valueOf(i)).get("Vintage"));
 
 			for (int j = 0; j < tagIDMap.get(currentSku).size(); j++) {
@@ -559,7 +539,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the ABV details$")
 	public void i_enter_the_ABV_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
-			// purchaseOrderReceivingPage.enterABV("12.5");
 			purchaseOrderReceivingPage.enterABV(context.getABV());
 			puttyFunctionsPage.nextScreen();
 		} else if (context.getProductCategory().contains("Ambient")) {
@@ -572,8 +551,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the vintage details$")
 	public void i_enter_the_vintage_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
-			// purchaseOrderReceivingPage.pressTab();
-			// purchaseOrderReceivingPage.pressTab();
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
 			purchaseOrderReceivingPage.pressTab();
 		} else if (context.getProductCategory().contains("Ambient")) {
