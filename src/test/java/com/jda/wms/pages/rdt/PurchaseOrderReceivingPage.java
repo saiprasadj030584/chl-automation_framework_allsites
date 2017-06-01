@@ -183,12 +183,6 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-	// TODO move this method to JDAHomePage.java
-	public void pressTab() throws InterruptedException {
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
-	}
-
 	public void enterVintage(String vintage) throws InterruptedException {
 		screen.type(vintage);
 		Thread.sleep(1000);

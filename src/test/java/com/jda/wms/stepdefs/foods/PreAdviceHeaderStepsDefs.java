@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -266,7 +264,6 @@ public class PreAdviceHeaderStepsDefs {
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
 		jdaFooter.clickQueryButton();
 		addressMaintenancePage.enterAddressID(context.getSupplierID());
-		// addressMaintenancePage.enterAddressID("F01946");
 		jdaFooter.clickExecuteButton();
 
 		String name = addressMaintenancePage.getName();
@@ -298,7 +295,7 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have line items$")
 	public void the_PO_should_be_status_and_have_line_items(String preAdviceId, String status) throws Throwable {
-		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 
 	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status$")

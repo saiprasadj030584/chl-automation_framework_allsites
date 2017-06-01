@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -118,11 +116,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter pre-advice id \"([^\"]*)\" and SKU id")
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId) throws Throwable {
-		// purchaseOrderReceivingPage.enterPreAdvId("0030001870");
-		// context.setPreAdviceId("0030001870");
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
-		// purchaseOrderReceivingPage.enterSKUId("20002340");
-		// context.setSkuId("20002340");
 		purchaseOrderReceivingPage.enterSKUId(context.getSkuId());
 	}
 
@@ -303,10 +297,7 @@ public class PurchaseOrderReceivingStepDefs {
 		if (puttyFlag == true) {
 			Assert.assertTrue("Receive not completed and Home page not displayed.",
 					purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-
 			Thread.sleep(5000);
-
-			System.out.println("Please logout the putty screen");
 		}
 		Assert.assertTrue("Receive not completed and Home page not displayed.["
 				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());

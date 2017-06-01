@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -38,7 +36,6 @@ public class InventoryQueryStepDefs {
 
 	@Inject
 	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, LocationPage locationPage,
-
 			Context context, JdaHomePage jdaHomePage, InventoryQueryDB inventoryQueryDB, LocationDB locationDB) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
@@ -527,10 +524,8 @@ public class InventoryQueryStepDefs {
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 			expectedAbv = context.getABV();
-			System.out.println("expectedAbv " + expectedAbv);
 			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
 				tagID = tagIDMap.get(sku).get(skuIndex);
-				System.out.println("tagID " + tagID);
 				Thread.sleep(3000);
 				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
 			}
