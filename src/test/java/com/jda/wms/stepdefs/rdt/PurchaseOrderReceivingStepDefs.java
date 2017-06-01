@@ -294,11 +294,9 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
-		if (puttyFlag == true) {
-			Assert.assertTrue("Receive not completed and Home page not displayed.",
-					purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-			Thread.sleep(5000);
-		}
+		Assert.assertTrue("Receive not completed and Home page not displayed.",
+				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+		Thread.sleep(5000);
 		Assert.assertTrue("Receive not completed and Home page not displayed.["
 				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
