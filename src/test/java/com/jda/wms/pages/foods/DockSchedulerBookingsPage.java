@@ -20,7 +20,7 @@ public class DockSchedulerBookingsPage {
 		screen.type(bookingID);
 		Thread.sleep(2000);
 	}
-	
+
 	public String getTrailerNo() throws FindFailed {
 		Match mDescription = screen.find("/images/DockScheduleBookings/Trailer.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
@@ -28,11 +28,11 @@ public class DockSchedulerBookingsPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public boolean isNoRecords() throws FindFailed, InterruptedException {
-		if (!screen.find("images/DockScheduleBookings/NoRecords.png").equals(null)) {
+		if (screen.exists("images/DockScheduleBookings/NoRecords.png") != (null))
+			return true;
+		else
 			return false;
-		}
-		return true;
 	}
 }

@@ -98,6 +98,8 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterEstimatedPallets();
 		screen.type(Key.TAB);
 		dockSchedulerPage.enterEstimatedCartons();
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
 		dockSchedulerPage.enterNotes(trailerNo);
 
 		jdaFooter.PressEnter();
@@ -141,7 +143,7 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking for the consignment$")
 	public void i_have_done_the_dock_scheduler_booking_for_the_consignment() throws Throwable {
 
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		
 		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
 
@@ -155,7 +157,7 @@ public class DockSchedulerStepDefs {
 	
 	public void i_have_done_the_dock_scheduler_booking_with_booking_id(String bookingID) throws Throwable {
 
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		
 		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
 
@@ -167,7 +169,7 @@ public class DockSchedulerStepDefs {
 		the_booking_details_should_be_appeared_in_the_dock_scheduler_booking();
 	}
 	
-
+	@When("^I select booking type and a consignment$")
 	public void i_select_booking_type_and_a_consignment() throws Throwable {
 		dockSchedulerPage.enterBookingType();
 		dockSchedulerPage.enterRandomConsignment();
@@ -178,12 +180,13 @@ public class DockSchedulerStepDefs {
 
 	@When("^I navigate to dock scheduler start page$")
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
-		dockSchedulerPage.clickStartTab();
+		jdaHomePage.navigateToDockSchedulerPage();
 	}
 
 	@When("^I select view existing bookings$")
 	public void i_select_view_existing_bookings() throws Throwable {
-		dockSchedulerPage.selectViewExistingBookings();
+		dockSchedulerPage.enterSiteID();
+		jdaFooter.clickNextButton();
 	}
 
 	@When("^I search the booking id$")
@@ -209,7 +212,7 @@ public class DockSchedulerStepDefs {
 		screen.rightClick();
 		dockSchedulerPage.selectDeleteBooking();
 		Assert.assertTrue("Delete confirmation message is not as expected",
-				dockSchedulerPage.isConfirmBookingDeletionMessage());
+				dockSchedulerPage.isDeleteBookingConfirmationMessageDisplayed());
 		screen.type(Key.ENTER);
 	}
 
@@ -228,7 +231,7 @@ public class DockSchedulerStepDefs {
 	public void i_search_the_booking_id_by_notes() throws Throwable {
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
-		dockSchedulerPage.enterNotesToSearch();
+		dockSchedulerPage.enterNotes();
 		screen.type(Key.ENTER);
 	}
 
@@ -253,8 +256,8 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectBookingDetails();
 	}
 
-	@Then("^I must be able to view the booking details$")
-	public void i_must_be_able_to_view_the_booking_details() throws Throwable {
+	@Then("^I should see the booking details$")
+	public void i_should_see_the_booking_details() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		verification.verifyData("Booking ID", context.getBookingID(), dockSchedulerPage.getBookingID(), failureList);
@@ -270,8 +273,6 @@ public class DockSchedulerStepDefs {
 		String[] bookingID = {"65945","12005"};
 		context.setDockSchedulerBookingID(bookingID);
 		
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-				
 		for (int i = 0; i < 2; i++) {
 			i_have_done_the_dock_scheduler_booking_with_booking_id(bookingID[i]);
 		}
@@ -286,18 +287,35 @@ public class DockSchedulerStepDefs {
 	@When("^I select the second booked slot$")
 	public void i_select_the_second_booked_slot() throws Throwable {
 
-		if (dockSchedulerPage.isBookedSlotExists()) {
-			dockSchedulerPage.selectBookedSlot();
-		} else {
+		while(!dockSchedulerPage.isBookedSlotExists()){
 			jdaHomePage.scrollDown();
-				dockSchedulerPage.selectBookedSlot();
 		}
+		dockSchedulerPage.selectBookedSlot();
+			
+//		if (dockSchedulerPage.isBookedSlotExists()) {
+//			dockSchedulerPage.selectBookedSlot();
+//		} else {
+//			jdaHomePage.scrollDown();
+//				dockSchedulerPage.selectBookedSlot();
+//		}
 		jdaFooter.clickNextButton();
 	}
 
-	 @Then("^the error message \"([^\"]*)\" should be displayed$")
-	 public void the_error_message_should_be_displayed() throws Throwable {
+	 @Then("^the booking ovverrun error message should be displayed$")
+	 public void the_booking_error_message_should_be_displayed() throws Throwable {
 		 Assert.assertTrue("Error message is not as expected",dockSchedulerPage.isErrorMessageDisplayed());
 		 screen.type(Key.ENTER);
+		 
+		 //Delete the loaded booking id
+		 String [] bookingID = context.getDockSchedulerBookingID();
+		 
+		 for (int i=0;i<bookingID.length;i++){
+			 i_navigate_to_dock_scheduler_start_page();
+			 i_select_view_existing_bookings();
+			 i_search_the_booking_id();
+			 the_booking_id_details_should_be_displayed();
+			 i_delete_the_booking();
+			 the_booking_details_should_be_deleted_in_the_dock_scheduler_booking();
+		 }
 	 }
 }

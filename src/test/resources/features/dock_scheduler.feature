@@ -4,7 +4,7 @@ Feature: Dock booking operations for STO
   I want to perform various operations in dock scheduler
   So that I can link the trailer to the dock door
 
-  @wip01
+  @complete
   Scenario: Delete dock booking
     Given I have done the dock scheduler booking for the consignment
     When I navigate to dock scheduler start page
@@ -31,4 +31,4 @@ Feature: Dock booking operations for STO
     And I move the booking
     And I select the second booked slot
     And I proceed to next
-    Then the error message "This booking overruns an existing booking" should be displayed
+    Then the booking ovverrun error message should be displayed

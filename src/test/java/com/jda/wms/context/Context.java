@@ -80,7 +80,7 @@ public class Context {
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
 	private String dockSchedulerNotes;
-	private String[] dockSchedulerBookingID1;
+	private String[] dockSchedulerBookingIDList;
 	
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -660,10 +660,10 @@ public class Context {
 	}
 	
 	public String[] getDockSchedulerBookingID() {
-		return dockSchedulerBookingID1;
+		return dockSchedulerBookingIDList;
 	}
 
-	public void setDockSchedulerBookingID(String[] dockSchedulerBookingID1) {
-		this.dockSchedulerBookingID1 = dockSchedulerBookingID1;
+	public void setDockSchedulerBookingID(String[] dockSchedulerBookingIDList) {
+		this.dockSchedulerBookingIDList = dockSchedulerBookingIDList;
 	}
 }
