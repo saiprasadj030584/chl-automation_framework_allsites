@@ -1,5 +1,7 @@
 package com.jda.wms.context;
 
+import java.util.ArrayList;
+
 public class OrderHeaderContext {
 	private String customerID;
 	private String deliverByDate;
@@ -11,6 +13,7 @@ public class OrderHeaderContext {
 	private String[][] headerData;
 	private int currentRecord = 0;
 	private int numberOfLines;
+	private ArrayList<String> failureList;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -90,5 +93,13 @@ public class OrderHeaderContext {
 
 	public void setNumberOfLines(int numberOfLines) {
 		this.numberOfLines = numberOfLines;
+	}
+
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
 	}
 }

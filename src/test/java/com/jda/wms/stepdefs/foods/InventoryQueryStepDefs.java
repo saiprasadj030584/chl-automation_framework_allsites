@@ -214,8 +214,7 @@ public class InventoryQueryStepDefs {
 			}
 		}
 
-		Assert.assertTrue(
-				"Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
+		Assert.assertTrue("Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
 
@@ -306,7 +305,7 @@ public class InventoryQueryStepDefs {
 				context.setQtyReceivedPerTag(qtyReceivedPerTag * caseRatio);
 
 				the_inventory_query_details_should_be_checked_in_inventory_table();
-				
+
 			}
 		}
 	}
@@ -554,17 +553,15 @@ public class InventoryQueryStepDefs {
 	public void i_should_see_the_status() throws Throwable {
 	}
 
-
-@Then("^qty on hand should be updated in inventory query page$")
-public void qty_on_hand_should_be_updated_in_inventory_query_page() throws Throwable {
-//	context.setSkuId("21106905");
-//	context.setLocation("AA53C01");
-//	context.setToLocation("AA53A02");
-//	context.setQtyToMove(960);
-//	context.setTagId("1000000062");
-String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(),context.getToLocation(),context.getTagId());
-Assert.assertEquals("QtyOnHand is not updated ",String.valueOf(context.getQtyToMove()), qtyOnHand);
+	@Then("^qty on hand should be updated in inventory query page$")
+	public void qty_on_hand_should_be_updated_in_inventory_query_page() throws Throwable {
+		// context.setSkuId("20001920");
+		// context.setLocation("AB06E01");
+		// context.setToLocation("AB03A02");
+		// context.setQtyToMove(240);
+		// context.setTagId("1000000169");
+		String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(),
+				context.getTagId());
+		Assert.assertEquals("Qty On Hand is not updated ", String.valueOf(context.getQtyToMove()), qtyOnHand);
+	}
 }
-}
-
-

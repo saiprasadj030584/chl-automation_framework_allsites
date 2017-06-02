@@ -7,8 +7,10 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.PackConfigMaintenanceDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.PackConfigMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -18,12 +20,17 @@ public class PackConfigMaintenanceStepDefs {
 	private final PackConfigMaintenancePage packConfigMaintenancePage;
 	private final JDAFooter jdaFooter;
 	private Context context;
+	private Verification verification;
+	private PackConfigMaintenanceDB packConfigMaintenanceDB;
 
 	@Inject
-	public PackConfigMaintenanceStepDefs(JDAFooter jdaFooter, PackConfigMaintenancePage packConfigMaintenancePage,Context context) {
+	public PackConfigMaintenanceStepDefs(JDAFooter jdaFooter, PackConfigMaintenancePage packConfigMaintenancePage,
+			Context context, Verification verification, PackConfigMaintenanceDB packConfigMaintenanceDB) {
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
+		this.verification = verification;
+		this.packConfigMaintenanceDB = packConfigMaintenanceDB;
 	}
 
 	@When("^I search pack config id \"([^\"]*)\"$")
@@ -101,5 +108,50 @@ public class PackConfigMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Pack Config RDT Tracking Levels details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
+	}
+
+	@Given("^the pack config id \"([^\"]*)\"$")
+	public void the_pack_config_id(String packConfigID) throws Throwable {
+		context.setPackConfigID(packConfigID);
+	}
+
+	@Then("^the tag volume, volume at each details should be displayed IN PACK$")
+	public void the_tag_volume_volume_at_each_details_should_be_displayed_IN_PACK() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData("Tag volume", "Not Null",
+				packConfigMaintenanceDB.getTagvolume(context.getPackConfigID()), failureList);
+		verification.verifyData("Volume at each", "Y",
+				packConfigMaintenanceDB.getIsVolumeAtEachchecked(context.getPackConfigID()), failureList);
+		Assert.assertTrue("Pack Config general details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^the tracking levels and ratios should be displayed  in TRACK$")
+	public void the_tracking_levels_and_ratios_should_be_displayed_in_TRACK() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		int ration1To2 = Integer.parseInt(packConfigMaintenanceDB.getRatio1To2(context.getPackConfigID()));
+		if (ration1To2 <= 0) {
+			failureList.add("Ratio 1 to 2 is not as expected. Expected [greater than 0] but was [" + ration1To2 + "]");
+		}
+		verification.verifyData("TrackingLevel1", "EA",
+				packConfigMaintenanceDB.getTrackingLevel1(context.getPackConfigID()), failureList);
+		verification.verifyData("TrackingLeve2", "CASE",
+				packConfigMaintenanceDB.getTrackingLevel2(context.getPackConfigID()), failureList);
+		Assert.assertTrue(
+				"Pack Config tracking level details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^the RDT tracking levels (\\d+) and (\\d+) should be displayed IN RDT$")
+	public void the_RDT_tracking_levels_and_should_be_displayed_IN_RDT(int arg1, int arg2) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData(" rdtTrackingLevel1", "E",
+				packConfigMaintenanceDB.getrdtTrackingLevel1(context.getPackConfigID()), failureList);
+		verification.verifyData(" rdtTrackingLevel2", "C",
+				packConfigMaintenanceDB.getrdtTrackingLevel2(context.getPackConfigID()), failureList);
+		Assert.assertTrue(
+				"Pack Config RDT Tracking Levels details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+
 	}
 }

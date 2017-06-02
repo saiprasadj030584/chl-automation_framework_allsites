@@ -1,6 +1,5 @@
 package com.jda.wms.stepdefs.foods;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -62,35 +61,34 @@ public class MoveTaskListGenerationStepDefs {
 	@When("^I proceed to generate the move task  list$")
 	public void i_proceed_to_generate_the_move_task_list() throws Throwable {
 		jdaFooter.clickDoneButton();
-		Thread.sleep(1000);
+		Thread.sleep(6000);
 	}
 
 	@Then("^I should see the  list created$")
 	public void i_should_see_the_list_created() throws Throwable {
 		Assert.assertTrue("Stock Check List not generated as expected.",
 				moveTaskListGenerationPage.isListIdPopupDisplayed());
-		Thread.sleep(1000);
 	}
 
 	@When("^I generate move task lists for all tags$")
 	public void i_generate_move_task_lists_for_all_tags() throws Throwable {
-		
 		replenishmentDetailsMap = context.getReplenishmentDetailsMap();
-		System.out.println("replenishmentDetailsMap "+replenishmentDetailsMap);
-		for (int r = 1; r <=replenishmentDetailsMap.size(); r++) {
+
+		for (int r = 1; r <= replenishmentDetailsMap.size(); r++) {
 			context.setTagId(replenishmentDetailsMap.get(r).get("TagID"));
 			context.setSkuId(replenishmentDetailsMap.get(r).get("SkuID"));
 			jdaFooter.clickNextButton();
 			Thread.sleep(4000);
+
 			i_enter_the_Tag_ID_and_sku_ID();
 			i_select_the_record_from_available_list();
 			the_record_should_be_added_in_selected_list();
 			jdaFooter.clickNextButton();
 			Thread.sleep(2000);
+
 			i_should_see_the_confirmation_for_number_of_items_selected();
 			i_proceed_to_generate_the_move_task_list();
 			i_should_see_the_list_created();
-			Thread.sleep(6000);
 		}
 	}
 }
