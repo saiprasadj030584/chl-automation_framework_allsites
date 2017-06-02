@@ -267,7 +267,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 				locationForTagMap.put(currentTagId, location);
 
-				//purchaseOrderPutawayPage.completeProcess();
+				purchaseOrderPutawayPage.completeProcess();
 				Thread.sleep(2000);
 
 				String checkString = locationDB.getCheckString(location);

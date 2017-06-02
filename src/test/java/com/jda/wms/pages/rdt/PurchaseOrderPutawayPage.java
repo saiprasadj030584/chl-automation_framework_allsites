@@ -82,7 +82,7 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(3000);
 		screen.type(chkString);
 		screen.type(Key.ENTER);
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 	}
 
 	public void enterLocation(String location) throws InterruptedException {

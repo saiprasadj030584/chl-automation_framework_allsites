@@ -65,8 +65,8 @@ Feature: Putaway for purchase order
     And I select normal putaway
     And I do putaway with pick face location for all the tags
     And I should see the location zone in inventory query
-    Then I should see the from location, to location, final location, uploaded status and uploaded file name for the tags
+    Then I should see the from location, to location, final location, uploaded status and uploaded file name
 
     Examples: 
       | preAdviceId | Category | Status   | Location |
-      |  8069104512 | Ambient  | Released | REC002   |
+      |  8069504512 | Ambient  | Released | REC002   |
