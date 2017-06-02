@@ -212,4 +212,50 @@ public class InventoryTransactionDB {
 		}
 		return referenceIdList;
 	}
+
+	public Object getStatus(String tagId, String code, String lockCode) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getReasonCode(String tagId, String code, String lockCode)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUploaded(String tagId, String code, String lockCode) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUploadedFileName(String tagId, String code, String lockCode)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

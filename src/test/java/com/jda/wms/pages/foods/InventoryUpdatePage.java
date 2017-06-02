@@ -96,4 +96,9 @@ public class InventoryUpdatePage {
 		screen.type(reasonCode);
 		screen.type(Key.ENTER);
 	}
+
+	public void enterLocation(String location) {
+		// TODO Auto-generated method stub
+
+	}
 }

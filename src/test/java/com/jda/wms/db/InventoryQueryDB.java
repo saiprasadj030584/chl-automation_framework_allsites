@@ -62,4 +62,64 @@ public class InventoryQueryDB {
 
 		return inventoryQueryMap;
 	}
+
+	public String getInventorySKUId(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getStatus(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQtyOnHand(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_on_hand from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getcaseRatio(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_6 from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getLockCode(String tagId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getLocation(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

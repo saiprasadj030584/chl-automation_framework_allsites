@@ -1,11 +1,11 @@
 package com.jda.wms.stepdefs.foods;
-import org.junit.Assert;
-import org.sikuli.script.Key;
-import org.sikuli.script.Match;
-import org.sikuli.script.Screen;
+
 import java.util.ArrayList;
+
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.InventoryQueryPage;
@@ -29,7 +29,7 @@ public class InventoryUpdateStepDefs {
 	private final InventoryQueryPage inventoryQueryPage;
 	private final JdaHomePage jdaHomePage;
 	private final JDAFooter jDAFooter;
-	
+
 	@Inject
 	public InventoryUpdateStepDefs(SKUMaintenancePage skuMaintenancePage, InventoryQueryPage inventoryQueryPage,
 			JDAFooter jDAFooter, InventoryTransactionQueryPage inventoryTransactionQueryPage, Context context,
@@ -42,6 +42,7 @@ public class InventoryUpdateStepDefs {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 	}
+
 	@When("^I enter ABV value as \"([^\"]*)\"$")
 	public void i_enter_ABV_value_as(String abv) throws Throwable {
 		jDAFooter.clickNextButton();
@@ -51,13 +52,13 @@ public class InventoryUpdateStepDefs {
 
 	@When("^I select the reason code as \"([^\"]*)\"$")
 	public void i_select_the_reason_code_as(String reasonCode) throws Throwable {
-		inventoryUpdatePage.enterReasonCode( reasonCode);
+		inventoryUpdatePage.enterReasonCode(reasonCode);
 	}
-	
+
 	@Given("^the quantity on hand should be more than allocated quantity for tag id \"([^\"]*)\"$")
 	public void the_quantity_on_hand_should_be_more_than_allocated_quantity_for_tag_id(String tagId) throws Throwable {
 		jdaHomePage.navigateToInventoryQueryPage();
-		//inventoryQueryPage.searchTagId(tagId);
+		// inventoryQueryPage.searchTagId(tagId);
 		int qtyOnHand = inventoryQueryPage.getQtyOnhand();
 		int qtyAllocated = inventoryQueryPage.getQtyAllocated();
 		if (qtyOnHand < qtyAllocated) {
@@ -87,8 +88,6 @@ public class InventoryUpdateStepDefs {
 		context.setFutureExpiryDate(FutureDate);
 	}
 
-	
-
 	@Then("^the inventory update home page should be displayed$")
 	public void the_inventory_update_home_page_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Inventory update home page is not displayed", inventoryUpdatePage.isHomePage());
@@ -97,7 +96,7 @@ public class InventoryUpdateStepDefs {
 	@Then("^I should see the future expiry date and reason code in the miscellaneous tab$")
 	public void i_should_see_the_future_expiry_date_and_reason_code_in_the_miscellaneous_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		
+
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		// Get Expiry Date
 		String expiryDate = inventoryTransactionQueryPage.getExpiryDate();
@@ -126,7 +125,7 @@ public class InventoryUpdateStepDefs {
 	public void i_proceed_to_lock_the_record() throws Throwable {
 		jDAFooter.clickNextButton();
 	}
-	
+
 	@When("^I search the tag id \"([^\"]*)\"$")
 	public void i_search_the_tag_id(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
@@ -138,9 +137,10 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
-	@When("^I search the tag ID \"([^\"]*)\"$")
-	public void i_search_the_tag_ID(String tagId) throws Throwable {
+	@When("^I search the tag ID \"([^\"]*)\",with location$")
+	public void i_search_the_tag_ID_with_location(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
+		inventoryUpdatePage.enterLocation(context.getLocation());
 		jDAFooter.clickNextButton();
 	}
 
@@ -163,5 +163,3 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickDoneButton();
 	}
 }
-
-	

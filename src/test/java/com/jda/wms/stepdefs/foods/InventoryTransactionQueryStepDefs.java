@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.InventoryTransactionDB;
 import com.jda.wms.db.InventoryDB;
+import com.jda.wms.db.InventoryTransactionDB;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -60,6 +60,28 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTransactionDate();
 		inventoryTransactionQueryPage.enterLockCode(lockCode);
 		jdaFooter.clickExecuteButton();
+	}
+
+	@When("^I should see the status as\"([^\"]*)\",reason code as \"([^\"]*)\",and uploaded filename for the \"([^\"]*)\",code \"([^\"]*)\", and lock code \"([^\"]*)\"$")
+	public void I_should_see_the_status_as_reason_code_as_and_uploaded_filename_for_the_code_and_lock_code(
+			String status, String reasonCode, String tagId, String code, String lockCode) throws Throwable {
+		Assert.assertEquals("Status in Inventory Transaction screen is not as expected", status,
+				inventoryTransactionDB.getStatus(tagId, code, lockCode));
+
+		String actualReasonCode = inventoryTransactionDB.getReasonCode(tagId, code, lockCode);
+		Assert.assertEquals("Reason Code not displayed as expected", reasonCode, actualReasonCode);
+
+		String uploadedValue = inventoryTransactionDB.getUploaded(tagId, code, lockCode);
+		String uploadedFileName = inventoryTransactionDB.getUploadedFileName(tagId, code, lockCode);
+
+		if (uploadedValue.equalsIgnoreCase("N")) {
+			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
+					+ uploadedFileName + "]", uploadedFileName);
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
+			Assert.assertNotNull("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
+					+ uploadedFileName + "]", uploadedFileName);
+		}
+		logger.debug("Uploaded File Name: " + uploadedFileName);
 	}
 
 	@When("^I search tag id \"([^\"]*)\" and code as \"([^\"]*)\"$")
