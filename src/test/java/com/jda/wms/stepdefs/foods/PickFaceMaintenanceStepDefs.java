@@ -2,11 +2,14 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.PickFaceTableDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.PickFaceMaintenancePage;
@@ -22,11 +25,13 @@ public class PickFaceMaintenanceStepDefs {
 	private LocationMaintenancePage locationMaintenancePage;
 	private WarningPopUpPage warningPopUpPage;
 	private final JdaHomePage jdaHomePage;
+	private final PickFaceTableDB pickFaceTableDB;
+	Map<String, Map<String, String>> purchaseOrderMap;
 
 	@Inject
 	public PickFaceMaintenanceStepDefs(PickFaceMaintenancePage pickFaceMaintenancPage, JDAFooter jdaFooter,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, LocationMaintenancePage locationMaintenancePage,
-			WarningPopUpPage warningPopUpPage, JdaHomePage jdaHomePage) {
+			WarningPopUpPage warningPopUpPage, JdaHomePage jdaHomePage,PickFaceTableDB pickFaceTableDB) {
 		this.pickFaceMaintenancPage = pickFaceMaintenancPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -34,6 +39,7 @@ public class PickFaceMaintenanceStepDefs {
 		this.locationMaintenancePage = locationMaintenancePage;
 		this.warningPopUpPage = warningPopUpPage;
 		this.jdaHomePage = jdaHomePage;
+		this.pickFaceTableDB = pickFaceTableDB;
 	}
 
 	@Given("^the location id \"([^\"]*)\" is no more eixst in the location maintenance$")
@@ -114,5 +120,36 @@ public class PickFaceMaintenanceStepDefs {
 	public void the_pick_face_should_be_updated_as(String fixed) throws Throwable {
 		Assert.assertEquals("Pick Face is not displayed as expected", context.getFaceType(),
 				locationMaintenancePage.getPickFace());
+	} 
+	
+	@Given("^the inventory exists for pick face location$")
+	public void the_inventory_exists_for_pick_face_location() throws Throwable {
+		int QtyOnHand = 0;
+		ArrayList<String> failureList = new ArrayList<String>();
+		purchaseOrderMap = context.getPurchaseOrderMap();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			QtyOnHand = Integer.parseInt(pickFaceTableDB.getQuantityOnHand(skuID));
+			if (!(QtyOnHand > 0)) {
+				failureList.add(
+						"QuantityOn Hand is not as expected, Expected Qty to be greater than 0 but was " + QtyOnHand);
+			}
+			Assert.assertTrue("QuantityOn is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+					failureList.isEmpty());
+		}
+	}
+	
+	@Given("^I get the pick face location$")
+	public void i_get_the_pick_face_location() throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		Map<String, String> putawayLocationMap = new HashMap<String, String>();
+
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			putawayLocationMap.put(skuID, pickFaceTableDB.getPickfaceLocation(skuID));
+		}
+		context.setPutawayLocationMap(putawayLocationMap);
 	}
 }

@@ -41,7 +41,7 @@ public class CEConsignmentMaintenanceStepDefs {
 	
 	@When("^I create consignment for the supplier$")
 	public void i_create_consignment_for_the_supplier() throws Throwable {
-		//jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomePage.navigateToCEConsignmentMaintenenacePage(); 
 		Thread.sleep(3000);
 		jdaFooter.clickAddButton();

@@ -79,8 +79,31 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void enterCheckString(String chkString) throws InterruptedException {
+		Thread.sleep(3000);
 		screen.type(chkString);
 		screen.type(Key.ENTER);
+		Thread.sleep(10000);
+	}
+
+	public void enterLocation(String location) throws InterruptedException {
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(location);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public boolean isSPWovrPageDisplayed() throws InterruptedException, FindFailed {
+		if (!screen.find("/images/Putty/Putaway/SPWovr.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void enterReasonToOverride() throws InterruptedException {
+		Thread.sleep(3000);
+		screen.type("2");
 		Thread.sleep(2000);
 	}
 }

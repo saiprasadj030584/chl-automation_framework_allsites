@@ -1,8 +1,11 @@
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.junit.Assert;
 
@@ -11,6 +14,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.LocationDB;
 import com.jda.wms.db.MoveTaskUpdateDB;
+import com.jda.wms.db.PickFaceTableDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -37,7 +41,8 @@ public class PurchaseOrderPutawayStepDefs {
 	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private final Database database;
 	private final LocationDB locationDB;
-	private final Hooks hooks;
+	private final Hooks hooks; 
+	private final PickFaceTableDB pickFaceTableDB;
 	private Context context;
 	String tagId = null;
 	Map<String, ArrayList<String>> tagIDMap;
@@ -50,7 +55,7 @@ public class PurchaseOrderPutawayStepDefs {
 			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database, Hooks hooks,
 			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, MoveTaskUpdateDB moveTaskUpdateDB,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,PickFaceTableDB pickFaceTableDB) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
 		this.jdaFooter = jdaFooter;
@@ -65,6 +70,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.locationDB = locationDB;
 		this.hooks = hooks;
 		this.moveTaskUpdateDB = moveTaskUpdateDB;
+		this.pickFaceTableDB = pickFaceTableDB;
 	}
 
 	@Given("^the pre advice id \"([^\"]*)\" should be received with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
@@ -83,6 +89,25 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_purchase_order_at_location(location);
 		purchaseOrderReceivingStepDefs.i_should_see_the_receiving_completion();
 		hooks.logoutPutty();
+	}
+	
+	@Given("^the pre advice id \"([^\"]*)\" should be partial receiving with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
+	public void the_pre_advice_id_should_be_partial_receiving_with(String preAdviceId, String category, String status,
+			String location ) throws Throwable {
+
+		preAdviceHeaderStepsDefs
+				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
+						preAdviceId, category, status);
+		preAdviceLineMaintenanceStepDefs
+				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_Putty();
+		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
+		purchaseOrderReceivingStepDefs.i_receive_single_sku_for_the_purchase_order_at_location(location);
+		if (category.contains("Ambient")) {
+			hooks.logoutPutty();
+		}
 	}
 
 	@When("^I navigate to move task update and release all the tags for the SKU$")
@@ -139,6 +164,33 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		context.setLocationForTagMap(locationForTagMap);
 	}
+	
+	@When("^I do putaway for single tag$")
+	public void i_do_putaway_for_single_tag() throws Throwable {
+		Map<String, String> locationForTagMap = new HashMap<String, String>();
+
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+
+		String sku = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
+
+		String currentTagId = tagIDMap.get(sku).get(0);
+		purchaseOrderPutawayPage.enterTagId(currentTagId);
+		purchaseOrderPutawayPage.completeProcess();
+		String location = purchaseOrderPutawayPage.getLocation();
+		locationForTagMap.put(currentTagId, location);
+		Thread.sleep(3000);
+
+		String checkString = locationDB.getCheckString(location);
+		purchaseOrderPutawayPage.enterCheckString(checkString);
+
+		Thread.sleep(5000);
+		i_should_be_directed_to_putent_page();
+		hooks.logoutPutty();
+		Thread.sleep(2000);
+
+		context.setLocationForTagMap(locationForTagMap);
+	}
 
 	@Then("^I should be directed to putent page$")
 	public void i_should_be_directed_to_putent_page() throws Throwable {
@@ -166,5 +218,67 @@ public class PurchaseOrderPutawayStepDefs {
 		database.connect();
 		String checkString = locationDB.getCheckString(location);
 		purchaseOrderPutawayPage.enterCheckString(checkString);
+	}
+	
+//	@Given("^I get the reserve location to putaway the stock$")
+//	public void I_get_the_reserve_location_to_putaway_the_stock() throws Throwable {
+//		Map<String, String> putawayLocationMap = new HashMap<String, String>();
+//		String location = null;
+//
+//		List<String> locationList = locationDB.getLocation();
+//		purchaseOrderMap = context.getPurchaseOrderMap();
+//
+//		for (int i = 1; i <= context.getNoOfLines(); i++) {
+//			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+//			location = locationList.get(new Random().nextInt(locationList.size()));
+//
+//			if (putawayLocationMap.containsValue(location)) {
+//				location = locationList.get(new Random().nextInt(locationList.size()));
+//			}
+//			putawayLocationMap.put(skuID, location);
+//		}
+//		context.setPutawayLocationMap(putawayLocationMap);
+//	}
+	
+	@When("^I do putaway with (?:reserve|pick face) location for all the tags$")
+	public void i_do_putaway_with_reserve_location_for_all_the_tags() throws Throwable {
+
+		Map<String, String> locationForTagMap = new HashMap<String, String>();
+		Map<String, String> putawayLocationMap = new HashMap<String, String>();
+		String location = "";
+
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+		putawayLocationMap = context.getPutawayLocationMap();
+
+		for (int s = 1; s <= tagIDMap.size(); s++) {
+			String skuID = purchaseOrderMap.get(String.valueOf(s)).get("SKU");
+
+			for (int t = 0; t < tagIDMap.get(skuID).size(); t++) {
+				String currentTagId = tagIDMap.get(skuID).get(t);
+				purchaseOrderPutawayPage.enterTagId(currentTagId);
+				Thread.sleep(5000);
+
+				location = putawayLocationMap.get(skuID);
+				purchaseOrderPutawayPage.enterLocation(location);
+				Thread.sleep(3000);
+				//Assert.assertTrue("Not able to find SPWovr page", purchaseOrderPutawayPage.isSPWovrPageDisplayed());
+				purchaseOrderPutawayPage.enterReasonToOverride();
+
+				locationForTagMap.put(currentTagId, location);
+
+				//purchaseOrderPutawayPage.completeProcess();
+				Thread.sleep(2000);
+
+				String checkString = locationDB.getCheckString(location);
+				System.out.println(checkString);
+				purchaseOrderPutawayPage.enterCheckString(checkString);
+			}
+			Thread.sleep(5000);
+			i_should_be_directed_to_putent_page();
+			hooks.logoutPutty();
+			Thread.sleep(2000);
+		}
+		context.setLocationForTagMap(locationForTagMap);
 	}
 }

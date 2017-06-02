@@ -2396,3 +2396,537 @@
 2017-05-30 08:20:58 DEBUG Hooks:84 - End of Scenario: In progress Status for ambient product
 2017-05-30 08:20:58 DEBUG Hooks:85 - ###########################################################################################################################
 2017-05-30 08:20:58 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 14:45:42 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 14:45:42 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 14:45:42 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:45:42 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 14:45:43 DEBUG Database:61 - Connection successfull
+2017-05-30 14:45:44 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 14:45:46 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:45:48 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:48:31 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 14:48:31 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 14:48:31 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:48:31 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 14:48:32 DEBUG Database:61 - Connection successfull
+2017-05-30 14:48:33 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 14:48:35 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:48:37 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:50:28 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 14:50:28 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 14:50:28 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:50:28 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 14:50:29 DEBUG Database:61 - Connection successfull
+2017-05-30 14:50:29 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 14:50:31 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:50:33 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:51:33 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050034845
+2017-05-30 14:51:33 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050034845
+2017-05-30 14:51:55 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 14:51:55 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:51:55 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 14:51:55 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 14:57:12 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 14:57:12 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 14:57:12 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:57:12 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 14:57:13 DEBUG Database:61 - Connection successfull
+2017-05-30 14:57:13 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 14:57:15 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:57:17 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 14:58:17 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050034845
+2017-05-30 14:58:17 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050034845
+2017-05-30 14:58:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 14:58:39 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 14:58:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 14:58:39 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 15:00:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:00:35 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:00:35 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:00:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:00:36 DEBUG Database:61 - Connection successfull
+2017-05-30 15:00:36 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:00:38 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:00:40 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:01:40 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050034845
+2017-05-30 15:01:40 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050034845
+2017-05-30 15:02:50 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050034845
+2017-05-30 15:02:50 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050034845
+2017-05-30 15:11:43 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:11:43 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:11:43 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:11:43 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:11:44 DEBUG Database:61 - Connection successfull
+2017-05-30 15:11:44 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:11:46 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:11:48 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, AllocationGroup=EXPIRY, ABV=null, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:12:48 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050044845
+2017-05-30 15:12:48 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050044845
+2017-05-30 15:13:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 15:13:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:13:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 15:13:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 15:14:38 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:14:38 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:14:38 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:14:38 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:14:39 DEBUG Database:61 - Connection successfull
+2017-05-30 15:14:39 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:14:41 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:14:43 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:22:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:22:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:22:11 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:22:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:22:12 DEBUG Database:61 - Connection successfull
+2017-05-30 15:22:13 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:22:15 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:22:17 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:23:17 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050044845
+2017-05-30 15:23:17 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050044845
+2017-05-30 15:24:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 15:24:34 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:24:34 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 15:24:34 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 15:34:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:34:11 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:34:11 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:34:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:34:12 DEBUG Database:61 - Connection successfull
+2017-05-30 15:34:12 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:34:14 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:34:16 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:35:16 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050054845
+2017-05-30 15:35:16 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050054845
+2017-05-30 15:36:40 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 15:36:40 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:36:40 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 15:36:40 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 15:53:58 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 15:53:58 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 15:53:58 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:53:58 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 15:53:59 DEBUG Database:61 - Connection successfull
+2017-05-30 15:53:59 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 15:54:01 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:54:03 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 15:55:03 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050064845
+2017-05-30 15:55:03 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050064845
+2017-05-30 15:57:34 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 15:57:34 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 15:57:34 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 15:57:34 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 18:22:37 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 18:22:37 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 18:22:37 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:22:37 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 18:22:38 DEBUG Database:61 - Connection successfull
+2017-05-30 18:22:38 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 18:22:40 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:22:42 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:23:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 18:23:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:23:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 18:23:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 18:23:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 18:23:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 18:23:46 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:23:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 18:23:47 DEBUG Database:61 - Connection successfull
+2017-05-30 18:23:47 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 18:23:49 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:23:51 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:24:54 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050074845
+2017-05-30 18:24:54 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050074845
+2017-05-30 18:26:38 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 18:26:38 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:26:38 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 18:26:38 DEBUG Hooks:93 - DB Connection closed
+2017-05-30 18:28:57 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-30 18:28:57 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-30 18:28:57 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:28:57 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-30 18:28:58 DEBUG Database:61 - Connection successfull
+2017-05-30 18:28:58 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-30 18:29:00 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:29:02 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-30 18:30:04 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050084845
+2017-05-30 18:30:04 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050084845
+2017-05-30 18:31:49 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-30 18:31:49 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-30 18:31:49 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-30 18:31:49 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 06:28:48 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 06:28:48 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 06:28:48 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 06:28:48 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 06:28:50 DEBUG Database:61 - Connection successfull
+2017-05-31 06:28:50 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 06:28:52 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 06:28:54 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 06:29:57 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050094845
+2017-05-31 06:29:57 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050094845
+2017-05-31 06:32:45 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 06:32:45 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 06:32:45 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 06:32:45 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 07:25:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:25:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:25:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:25:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:25:33 DEBUG Database:61 - Connection successfull
+2017-05-31 07:25:33 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 07:25:35 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:25:37 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:26:40 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050104845
+2017-05-31 07:26:40 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050104845
+2017-05-31 07:29:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:29:22 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:29:22 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:29:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:29:24 DEBUG Database:61 - Connection successfull
+2017-05-31 07:29:24 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 07:29:26 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:29:28 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:30:32 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050114845
+2017-05-31 07:30:32 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050114845
+2017-05-31 07:45:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:45:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:45:46 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:45:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:45:48 DEBUG Database:61 - Connection successfull
+2017-05-31 07:45:48 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 07:45:48 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:45:48 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 07:45:48 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 07:46:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:46:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:46:30 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:46:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:46:32 DEBUG Database:61 - Connection successfull
+2017-05-31 07:46:32 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 07:46:32 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:46:32 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 07:46:32 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 07:48:30 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:48:30 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:48:30 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:48:30 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:48:31 DEBUG Database:61 - Connection successfull
+2017-05-31 07:48:32 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 07:48:34 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:48:36 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:49:39 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050124845
+2017-05-31 07:49:39 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050124845
+2017-05-31 07:52:27 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 07:52:27 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:52:27 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 07:52:27 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 07:55:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 07:55:04 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 07:55:04 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:55:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 07:55:05 DEBUG Database:61 - Connection successfull
+2017-05-31 07:55:05 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 07:55:07 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:55:09 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 07:56:12 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050134845
+2017-05-31 07:56:12 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050134845
+2017-05-31 07:58:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 07:58:59 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 07:58:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 07:58:59 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 08:10:24 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 08:10:24 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 08:10:24 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:10:24 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 08:10:25 DEBUG Database:61 - Connection successfull
+2017-05-31 08:10:25 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F02616
+2017-05-31 08:10:27 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-31 08:10:28 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=4.5, Allocation Group=EXPIRY, CaseRatio=12, SKU=60070710, QtyDue=150, MaxQtyCanBeRcvd=160, Vintage=2016}}
+2017-05-31 08:11:31 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150011202
+2017-05-31 08:11:31 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150011202
+2017-05-31 08:11:53 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2016
+2017-05-31 08:11:54 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 4.5
+2017-05-31 08:29:05 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 08:29:05 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 08:29:05 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:29:05 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 08:29:06 DEBUG Database:61 - Connection successfull
+2017-05-31 08:29:07 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04722
+2017-05-31 08:29:07 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 08:29:07 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:29:07 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 08:29:07 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 08:39:46 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 08:39:46 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 08:39:46 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:39:46 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 08:39:47 DEBUG Database:61 - Connection successfull
+2017-05-31 08:39:47 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04722
+2017-05-31 08:39:49 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}}
+2017-05-31 08:39:50 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 08:39:50 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:39:50 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 08:39:50 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 08:46:19 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 08:46:19 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 08:46:19 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:46:19 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 08:46:20 DEBUG Database:61 - Connection successfull
+2017-05-31 08:46:20 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04722
+2017-05-31 08:46:22 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}}
+2017-05-31 08:46:24 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 08:46:35 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 08:46:59 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 08:46:59 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:46:59 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 08:46:59 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 08:49:08 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 08:49:08 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 08:49:08 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 08:49:08 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 08:49:09 DEBUG Database:61 - Connection successfull
+2017-05-31 08:49:10 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04722
+2017-05-31 08:49:12 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}}
+2017-05-31 08:49:14 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 08:49:25 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 08:50:28 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7777206185
+2017-05-31 08:50:28 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7777206185
+2017-05-31 08:50:50 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 08:50:51 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 40
+2017-05-31 10:03:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:03:54 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:03:54 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:03:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:03:56 DEBUG Database:61 - Connection successfull
+2017-05-31 10:03:56 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04722
+2017-05-31 10:03:58 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}}
+2017-05-31 10:04:00 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 10:04:11 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21098762, QtyDue=929, MaxQtyCanBeRcvd=120, Vintage=2017}, 2={Product Group=F21, ABV=40, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21104222, QtyDue=903, MaxQtyCanBeRcvd=400, Vintage=2017}}
+2017-05-31 10:05:14 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7777206185
+2017-05-31 10:05:14 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7777206185
+2017-05-31 10:05:37 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 10:05:38 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 40
+2017-05-31 10:06:29 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:06:29 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:06:29 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:06:29 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:16:43 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:16:43 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:16:43 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:16:43 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:16:44 DEBUG Database:61 - Connection successfull
+2017-05-31 10:16:45 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:16:45 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:16:45 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:16:45 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:16:45 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:21:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:21:35 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:21:35 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:21:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:21:36 DEBUG Database:61 - Connection successfull
+2017-05-31 10:21:36 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:21:36 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:21:36 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:21:36 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:21:36 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:22:49 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:22:49 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:22:49 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:22:49 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:22:50 DEBUG Database:61 - Connection successfull
+2017-05-31 10:22:50 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:22:52 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:22:55 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:23:01 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:24:03 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150013128
+2017-05-31 10:24:03 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150013128
+2017-05-31 10:24:25 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 10:24:27 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 14
+2017-05-31 10:25:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:25:17 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:25:17 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:25:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:25:18 DEBUG Database:61 - Connection successfull
+2017-05-31 10:25:18 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 10:25:19 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:25:19 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:25:19 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:25:19 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:27:06 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:27:06 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:27:06 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:27:06 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:27:08 DEBUG Database:61 - Connection successfull
+2017-05-31 10:27:08 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 10:27:10 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 10:27:12 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 10:28:15 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050144845
+2017-05-31 10:28:15 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050144845
+2017-05-31 10:29:38 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:29:38 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:29:38 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:29:38 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:39:22 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:39:22 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:39:22 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:39:22 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:39:23 DEBUG Database:61 - Connection successfull
+2017-05-31 10:39:24 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:39:26 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:39:28 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:39:34 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:39:58 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:39:58 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:39:58 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:39:58 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:40:20 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:40:20 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:40:20 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:40:20 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:40:22 DEBUG Database:61 - Connection successfull
+2017-05-31 10:40:22 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:40:24 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:40:26 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:40:32 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:41:36 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID :  
+2017-05-31 10:41:36 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150013128
+2017-05-31 10:41:46 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:41:46 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:41:46 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:41:46 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:42:23 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:42:23 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:42:23 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:42:23 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:42:24 DEBUG Database:61 - Connection successfull
+2017-05-31 10:42:25 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:42:27 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:42:29 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:42:35 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:43:38 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID :  
+2017-05-31 10:43:38 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150013128
+2017-05-31 10:43:48 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:43:48 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:43:48 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:43:48 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:48:32 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:48:32 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:48:32 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:48:32 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:48:33 DEBUG Database:61 - Connection successfull
+2017-05-31 10:48:33 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:48:35 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:48:37 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:48:43 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:49:46 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150013128
+2017-05-31 10:49:46 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150013128
+2017-05-31 10:50:08 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 10:50:09 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 14
+2017-05-31 10:52:38 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 10:52:38 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:52:38 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 10:52:38 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 10:59:36 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:59:36 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 10:59:36 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 10:59:36 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:59:37 DEBUG Database:61 - Connection successfull
+2017-05-31 10:59:37 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 10:59:39 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:59:41 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 10:59:47 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:00:28 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:00:28 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 11:00:28 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:00:28 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:00:30 DEBUG Database:61 - Connection successfull
+2017-05-31 11:00:30 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 11:00:32 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:00:34 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:00:40 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:01:43 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150031128
+2017-05-31 11:01:43 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150031128
+2017-05-31 11:02:05 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 11:02:06 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 14
+2017-05-31 11:04:39 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 11:04:39 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:04:39 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 11:04:39 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 11:16:53 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:16:53 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 11:16:53 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:16:53 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:16:55 DEBUG Database:61 - Connection successfull
+2017-05-31 11:16:55 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 11:16:57 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:16:59 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:17:05 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:18:09 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150041128
+2017-05-31 11:18:09 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150041128
+2017-05-31 11:18:31 DEBUG PurchaseOrderReceivingStepDefs:227 -  Vintage value from Context : 2017
+2017-05-31 11:18:32 DEBUG PurchaseOrderReceivingStepDefs:235 -  ABV value from Context : 14
+2017-05-31 11:20:52 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 11:20:52 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:20:52 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 11:20:52 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 11:26:40 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:26:40 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 11:26:40 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:26:40 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:26:41 DEBUG Database:61 - Connection successfull
+2017-05-31 11:26:41 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 11:26:43 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:26:45 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:26:51 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 11:27:54 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150051128
+2017-05-31 11:27:54 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150051128
+2017-05-31 11:28:16 DEBUG PurchaseOrderReceivingStepDefs:227 -  Vintage value from Context : 2017
+2017-05-31 11:28:17 DEBUG PurchaseOrderReceivingStepDefs:235 -  ABV value from Context : 14
+2017-05-31 11:30:36 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 11:30:36 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:30:36 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 11:30:36 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 11:37:10 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:37:10 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 11:37:10 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:37:10 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:37:12 DEBUG Database:61 - Connection successfull
+2017-05-31 11:37:12 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F01946
+2017-05-31 11:37:14 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 11:37:16 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F13, ABV=null, Allocation Group=EXPIRY, CaseRatio=15, SKU=21036013, QtyDue=1500, MaxQtyCanBeRcvd=800, Vintage=null}}
+2017-05-31 11:38:19 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 8050154845
+2017-05-31 11:38:19 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 8050154845
+2017-05-31 11:41:13 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 11:41:13 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 11:41:13 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 11:41:13 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 12:28:04 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 12:28:04 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 12:28:04 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 12:28:04 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 12:28:05 DEBUG Database:61 - Connection successfull
+2017-05-31 12:28:05 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 12:28:05 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 12:28:05 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 12:28:05 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 12:28:05 DEBUG Hooks:93 - DB Connection closed
+2017-05-31 12:28:29 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 12:28:29 DEBUG Hooks:39 - featureID: putaway-for-purchase-order;normal-putaway-for-partial-receiving-po;
+2017-05-31 12:28:29 DEBUG Hooks:40 - Start of Scenario: Normal putaway for partial receiving PO
+2017-05-31 12:28:29 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 12:28:30 DEBUG Database:61 - Connection successfull
+2017-05-31 12:28:31 DEBUG PreAdviceHeaderStepsDefs:122 - Supplier Id: F04081
+2017-05-31 12:28:33 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 12:28:35 DEBUG PreAdviceLineMaintenanceStepDefs:318 - {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 12:28:41 DEBUG PreAdviceLineMaintenanceStepDefs:362 - Map: {1={Product Group=F21, ABV=14, Allocation Group=NONEXPIRY, CaseRatio=12, SKU=21106955, QtyDue=250, MaxQtyCanBeRcvd=160, Vintage=2017}, 2={Product Group=F21, ABV=17, Allocation Group=NONEXPIRY, CaseRatio=6, SKU=21106905, QtyDue=500, MaxQtyCanBeRcvd=160, Vintage=2017}}
+2017-05-31 12:29:43 DEBUG PurchaseOrderReceivingStepDefs:137 - Putty Advice ID : 7150061128
+2017-05-31 12:29:43 DEBUG PurchaseOrderReceivingStepDefs:138 - Web Advice ID : 7150061128
+2017-05-31 12:30:06 DEBUG PurchaseOrderReceivingStepDefs:233 -  Vintage value from Context : 2017
+2017-05-31 12:30:07 DEBUG PurchaseOrderReceivingStepDefs:241 -  ABV value from Context : 14
+2017-05-31 12:32:20 DEBUG Hooks:82 - ###########################################################################################################################
+2017-05-31 12:32:20 DEBUG Hooks:84 - End of Scenario: Normal putaway for partial receiving PO
+2017-05-31 12:32:20 DEBUG Hooks:85 - ###########################################################################################################################
+2017-05-31 12:32:20 DEBUG Hooks:93 - DB Connection closed
