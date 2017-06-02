@@ -137,7 +137,7 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
-	@When("^I search the tag ID \"([^\"]*)\",with location$")
+	@When("^I search the tag ID \"([^\"]*)\" with location$")
 	public void i_search_the_tag_ID_with_location(String tagId) throws Throwable {
 		inventoryUpdatePage.enterTagId(tagId);
 		inventoryUpdatePage.enterLocation(context.getLocation());

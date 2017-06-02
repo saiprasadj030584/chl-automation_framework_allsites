@@ -27,8 +27,8 @@ Feature: Stock adjustments
     Then I should see the uploaded filename
 
     Examples: 
-      | TagID      | Status | AdjustmentType | ReasonCode           |
-      | 2050004499 | Locked | Decrement      | Damaged by Warehouse | 
+      | TagID      | Status   | AdjustmentType | ReasonCode           |
+      | 2050004499 | Locked   | Decrement      | Damaged by Warehouse |
       | 2000160302 | Unlocked | Decrement      | Damaged by Warehouse |
       | 2050004499 | Locked   | Decrement      | Expired Stock        |
       | 2000160302 | Unlocked | Decrement      | Expired Stock        |

@@ -213,49 +213,87 @@ public class InventoryTransactionDB {
 		return referenceIdList;
 	}
 
-	public Object getStatus(String tagId, String code, String lockCode) throws ClassNotFoundException, SQLException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getReasonCode(String tagId, String code, String lockCode)
+	public String getStatus(String tagId, String code, String lockCode, String dstamp)
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory_transaction where tag_id='" + tagId
+				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public String getUploaded(String tagId, String code, String lockCode) throws ClassNotFoundException, SQLException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getUploadedFileName(String tagId, String code, String lockCode)
+	public String getReasonCode(String tagId, String code, String lockCode, String dstamp)
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
+		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where tag_id='" + tagId
+				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '%" + dstamp + "'");
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getUploadedFileName(String tagId, String code, String lockCode, String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select uploaded_filename from inventory_transaction where tag_id='" + tagId
+				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUploadedValue(String tagId, String code, String lockCode, String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where tag_id='" + tagId
+				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getOriginalQty(String tagId, String code, String dstamp, String status, String reasonCode)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select ORIGINAL_QTY from inventory_transaction where tag_id='" + tagId + "' and code = '"
+				+ code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status + "' and REASON_ID ='"
+				+ reasonCode + "'");
+		ResultSet rs = stmt.executeQuery("select ORIGINAL_QTY from inventory_transaction where tag_id='" + tagId
+				+ "' and code = '" + code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status
+				+ "' and REASON_ID ='" + reasonCode + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUpdateQty(String tagId, String code, String dstamp, String status, String reasonCode)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
+				+ "' and code = '" + code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status
+				+ "' and REASON_ID ='" + reasonCode + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

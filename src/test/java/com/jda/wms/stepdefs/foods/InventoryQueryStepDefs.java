@@ -103,9 +103,24 @@ public class InventoryQueryStepDefs {
 		logger.debug("Status in Inventory screen : " + actualstatus);
 	}
 
-	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$")
-	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query(String status, String lockCode)
-			throws Throwable {
+	@Given("^I have tag id \"([^\"]*)\" with the \"([^\"]*)\" status in inventory$")
+	public void i_have_tag_id_with_the_status_in_inventory(String tagId, String status) throws Throwable {
+		context.setTagId(tagId);
+
+		String actualStatus = inventoryQueryDB.getStatus(tagId);
+		if (actualStatus.equals("Locked")) {
+			logger.debug("Status in Inventory: " + actualStatus);
+			inventoryQueryDB.updateStatus("UnLocked", tagId);
+		}
+
+		String location = inventoryQueryDB.getLocation(tagId);
+		context.setLocation(location);
+		logger.debug("Ltatus in Inventory: " + location);
+	}
+
+	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query page$")
+	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query_page(String status,
+			String lockCode) throws Throwable {
 		inventoryQueryPage.refreshInventoryQueryPage();
 		ArrayList<String> failureList1 = new ArrayList<String>();
 		String istatus = inventoryQueryPage.getStatus();
@@ -173,73 +188,73 @@ public class InventoryQueryStepDefs {
 		}
 	}
 
-	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query page$")
-	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query_page(String status,
-			String lockCode) throws Throwable {
-		ArrayList<String> failureList1 = new ArrayList<String>();
+	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$")
+	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query(String status, String lockCode)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
 		String istatus = inventoryQueryDB.getStatus(context.getTagId());
-		String ilockCode = inventoryQueryDB.getLockCode(context.getTagId());
-		if (!istatus.equals(status)) {
-			failureList1.add("Status is not updated to locked.");
-		}
-		if (!ilockCode.equals(lockCode)) {
-			failureList1.add("Lock Code is not updated to CODEAPP.");
-			String mStatus = inventoryQueryPage.getStatus();
-			Assert.assertEquals("Status is not updated to locked", status, mStatus);
-			String actualLockCode = inventoryQueryDB.getLockCode(context.getTagId());
+		String actualLockCode = inventoryQueryDB.getLockCode(context.getTagId());
 
-			switch (lockCode) {
-			case "Code Approval":
-				Assert.assertEquals("Lock Code not displayed as expected", "CODEAPP", actualLockCode);
-				break;
-			case "Components Stock":
-				Assert.assertEquals("Lock Code not displayed as expected", "CS", actualLockCode);
-				break;
-			case "1Damaged":
-				Assert.assertEquals("Lock Code not displayed as expected", "DMGD", actualLockCode);
-				break;
-			case "EVENTS":
-				Assert.assertEquals("Lock Code not displayed as expected", "EVENT", actualLockCode);
-				break;
-			case "Pick exception lock code":
-				Assert.assertEquals("Lock Code not displayed as expected", "EXCEPT", actualLockCode);
-				break;
-			case "1Expired":
-				Assert.assertEquals("Lock Code not displayed as expected", "EXPD", actualLockCode);
-				break;
-			case "Head Office Request":
-				Assert.assertEquals("Lock Code not displayed as expected", "HOREQ", actualLockCode);
-				break;
-			case "Lock code for new vintage or new wine":
-				Assert.assertEquals("Lock Code not displayed as expected", "NV", actualLockCode);
-				break;
-			case "Outlets Stock":
-				Assert.assertEquals("Lock Code not displayed as expected", "OS", actualLockCode);
-				break;
-			case "Product Recall":
-				Assert.assertEquals("Lock Code not displayed as expected", "PRODRECALL", actualLockCode);
-				break;
-			case "Return from RDC":
-				Assert.assertEquals("Lock Code not displayed as expected", "RDCRETURNS", actualLockCode);
-				break;
-			case "Supplier Damage":
-				Assert.assertEquals("Lock Code not displayed as expected", "SUDMG", actualLockCode);
-				break;
-			case "Return to Supplier":
-				Assert.assertEquals("Lock Code not displayed as expected", "SUPPRETURN", actualLockCode);
-				break;
-			case "Warehouse Damage":
-				Assert.assertEquals("Lock Code not displayed as expected", "WHDMG", actualLockCode);
-				break;
-			case "Hampers Stock":
-				Assert.assertEquals("Lock Code not displayed as expected", "HS", actualLockCode);
-				break;
-			case "Incubation lock code":
-				Assert.assertEquals("Lock Code not displayed as expected", "INCUB", actualLockCode);
-				break;
-			}
-			logger.debug("Lock Code: " + actualLockCode);
+		if (!istatus.equals(status)) {
+			failureList.add("Status is not updated to locked. Expected [Locked] but was [" + istatus + "]");
 		}
+
+		switch (lockCode) {
+		case "Code Approval":
+			Assert.assertEquals("Lock Code not displayed as expected", "CODEAPP", actualLockCode);
+			break;
+		case "Components Stock":
+			Assert.assertEquals("Lock Code not displayed as expected", "CS", actualLockCode);
+			break;
+		case "1Damaged":
+			Assert.assertEquals("Lock Code not displayed as expected", "DMGD", actualLockCode);
+			break;
+		case "EVENTS":
+			Assert.assertEquals("Lock Code not displayed as expected", "EVENT", actualLockCode);
+			break;
+		case "Pick exception lock code":
+			Assert.assertEquals("Lock Code not displayed as expected", "EXCEPT", actualLockCode);
+			break;
+		case "1Expired":
+			Assert.assertEquals("Lock Code not displayed as expected", "EXPD", actualLockCode);
+			break;
+		case "Head Office Request":
+			Assert.assertEquals("Lock Code not displayed as expected", "HOREQ", actualLockCode);
+			break;
+		case "Lock code for new vintage or new wine":
+			Assert.assertEquals("Lock Code not displayed as expected", "NV", actualLockCode);
+			break;
+		case "Outlets Stock":
+			Assert.assertEquals("Lock Code not displayed as expected", "OS", actualLockCode);
+			break;
+		case "Product Recall":
+			Assert.assertEquals("Lock Code not displayed as expected", "PRODRECALL", actualLockCode);
+			break;
+		case "Return from RDC":
+			Assert.assertEquals("Lock Code not displayed as expected", "RDCRETURNS", actualLockCode);
+			break;
+		case "Supplier Damage":
+			Assert.assertEquals("Lock Code not displayed as expected", "SUDMG", actualLockCode);
+			break;
+		case "Return to Supplier":
+			Assert.assertEquals("Lock Code not displayed as expected", "SUPPRETURN", actualLockCode);
+			break;
+		case "Warehouse Damage":
+			Assert.assertEquals("Lock Code not displayed as expected", "WHDMG", actualLockCode);
+			break;
+		case "Hampers Stock":
+			Assert.assertEquals("Lock Code not displayed as expected", "HS", actualLockCode);
+			break;
+		case "Incubation lock code":
+			Assert.assertEquals("Lock Code not displayed as expected", "INCUB", actualLockCode);
+			break;
+		}
+		context.setLockCode(actualLockCode);
+		logger.debug("Lock Code: " + actualLockCode);
+
+		Assert.assertTrue(
+				"Inventory query details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 
 	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
@@ -263,6 +278,32 @@ public class InventoryQueryStepDefs {
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
 		String caseRatio = inventoryQueryPage.getcaseRatio();
+		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
+		logger.debug("Case Ratio: " + caseRatio);
+	}
+
+	@Given("^I have the tag id \"([^\"]*)\" with the \"([^\"]*)\" status$")
+	public void i_have_the_tag_id_with_the_status(String tagId, String status) throws Throwable {
+		context.setTagId(tagId);
+		context.setStatus(status);
+
+		logger.debug("Tag ID: " + tagId);
+
+		String inventorySKUId = inventoryQueryDB.getInventorySKUId(tagId);
+		context.setSkuId(inventorySKUId);
+		logger.debug("SKU ID: " + inventorySKUId);
+
+		String lockStatus = inventoryQueryDB.getStatus(tagId);
+		if (!status.equals(lockStatus)) {
+			inventoryQueryDB.updateStatus(status, tagId);
+		}
+		logger.debug("Inventory Query - Status: " + lockStatus);
+
+		String qtyOnHandBfrAdjustment = inventoryQueryDB.getQtyOnHand(tagId);
+		context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
+		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
+
+		String caseRatio = inventoryQueryDB.getcaseRatio(tagId);
 		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
 		logger.debug("Case Ratio: " + caseRatio);
 	}

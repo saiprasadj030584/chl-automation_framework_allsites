@@ -107,11 +107,6 @@ public class InventoryQueryDB {
 		return rs.getString(1);
 	}
 
-	public String getLockCode(String tagId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String getLocation(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -119,6 +114,28 @@ public class InventoryQueryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public void updateStatus(String status, String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update inventory set lock_status = " + status + " where tag_id = '" + tagId + "'");
+		context.getConnection().commit();
+	}
+
+	public String getLockCode(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_code from inventory where tag_id='" + tagId + "'");
 		rs.next();
 		return rs.getString(1);
 	}

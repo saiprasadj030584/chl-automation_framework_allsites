@@ -20,21 +20,21 @@ public class DateUtils {
 		cal.add(Calendar.DATE, 10);
 		return dateFormat.format(cal.getTime());
 	}
-	
+
 	public static String getAddedSystemYear() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, 2);
 		return dateFormat.format(cal.getTime());
 	}
-	
+
 	public static String getPrevSystemYear() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, -2);
 		return dateFormat.format(cal.getTime());
 	}
-	
+
 	public static String getSecond() {
 		SimpleDateFormat sdf = new SimpleDateFormat("ss");
 		Date now = new Date();
@@ -79,9 +79,15 @@ public class DateUtils {
 
 	public static String getConvertDate(String expDate) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(expDate);  
+		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(expDate);
 		System.out.println(date1.toString());
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.toString();
+	}
+
+	public static String getCurrentSystemDateInDBFormat() {
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime()).toUpperCase();
 	}
 }
