@@ -212,4 +212,49 @@ public class InventoryTransactionDB {
 		}
 		return referenceIdList;
 	}
+	
+	public String getLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getToLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getFinalLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select final_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+
+	public String getUpdateQty(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select update_qty from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

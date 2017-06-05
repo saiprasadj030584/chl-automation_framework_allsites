@@ -575,4 +575,15 @@ public class InventoryQueryStepDefs {
 	public void i_should_see_the_status() throws Throwable {
 	}
 
+	@Then("^qty on hand should be updated in inventory query page$")
+	public void qty_on_hand_should_be_updated_in_inventory_query_page() throws Throwable {
+		// context.setSkuId("20001920");
+		// context.setLocation("AB06E01");
+		// context.setToLocation("AB03A02");
+		// context.setQtyToMove(240);
+		// context.setTagId("1000000169");
+		String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(),
+				context.getTagId());
+		Assert.assertEquals("Qty On Hand is not updated ", String.valueOf(context.getQtyToMove()), qtyOnHand);
+	}
 }

@@ -13,6 +13,12 @@ public class DateUtils {
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.format(cal.getTime());
 	}
+	
+	public static String getCurrentSystemDateInDBFormat(){
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime()).toUpperCase();
+	}
 
 	public static String getAddedSystemDate() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

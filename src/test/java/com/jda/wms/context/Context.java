@@ -80,6 +80,9 @@ public class Context {
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
+	private boolean puttyLoginFlag = false;
+	private String addressID;
+	private String packConfigID;
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
@@ -628,7 +631,7 @@ public class Context {
 	public void setReplenishmentDetailsMap(Map<Integer, Map<String, String>> replenishmentDetailsMap) {
 		this.replenishmentDetailsMap = replenishmentDetailsMap;
 	}
-	
+
 	public String getAbv() {
 		return abv;
 	}
@@ -659,6 +662,30 @@ public class Context {
 
 	public void setContainerId(String containerId) {
 		this.containerId = containerId;
+	}
+
+	public boolean isPuttyLoginFlag() {
+		return puttyLoginFlag;
+	}
+
+	public void setPuttyLoginFlag(boolean puttyLoginFlag) {
+		this.puttyLoginFlag = puttyLoginFlag;
+	}
+
+	public String getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(String addressID) {
+		this.addressID = addressID;
+	}
+
+	public String getPackConfigID() {
+		return packConfigID;
+	}
+
+	public void setPackConfigID(String packConfigID) {
+		this.packConfigID = packConfigID;
 	}
 	
 	public void setDockSchedulerNotes(String dockSchedulerNotes) {

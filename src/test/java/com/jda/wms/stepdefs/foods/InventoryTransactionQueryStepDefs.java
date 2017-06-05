@@ -19,6 +19,7 @@ import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.SKUMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
+import com.jda.wms.utils.DateUtils;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -36,6 +37,7 @@ public class InventoryTransactionQueryStepDefs {
 	Map<String, ArrayList<String>> tagIDMap;
 	private Verification verification;
 	private InventoryDB inventoryDB;
+	private Map<Integer, Map<String, String>> listIDMap;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
@@ -1091,7 +1093,35 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the vehicle unloading should be updated in the inventory transaction$")
+	@Then("^quantity and location details should be updated for all tags$")
+	public void quantity_and_location_details_should_be_updated_for_all_tags() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		listIDMap = context.getListIDMap();
+		String dateStamp = DateUtils.getCurrentSystemDateInDBFormat();
+
+		for (int i = 1; i <= context.getListIDMap().size(); i++) {
+			String tagID = listIDMap.get(i).get("ListID");
+			// context.setToLocation("AB03A02");
+			// context.setFinalLocation("AB06E01");
+			// context.setQtyToMove(240);
+
+			verification.verifyData("From Location", context.getLocation(),
+					inventoryTransactionDB.getLocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("To Location", context.getToLocation(),
+					inventoryTransactionDB.getToLocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("Final Location", context.getFinalLocation(),
+					inventoryTransactionDB.getFinalLocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("Update QTY", String.valueOf(context.getQtyToMove()),
+					inventoryTransactionDB.getUpdateQty("REPLENISH", tagID, dateStamp), failureList);
+
+			Assert.assertTrue(
+					"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+					failureList.isEmpty());
+		}
+		}
+
+		@Then("^the vehicle unloading should be updated in the inventory transaction$")
 	public void the_vehicle_unloading_should_be_updated_in_the_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		String palletID = context.getPalletID();
