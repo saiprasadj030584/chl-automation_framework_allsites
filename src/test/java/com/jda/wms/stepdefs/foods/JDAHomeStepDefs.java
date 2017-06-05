@@ -86,6 +86,7 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to inventory query page$")
 	public void i_navigate_to_inventory_query_page() throws Throwable {
+		Thread.sleep(2000);
 		jdaHomePage.navigateToInventoryQueryPage();
 	}
 
@@ -114,4 +115,40 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToOrderLineMaintenance();
 	}
 
+	@When("^I navigate to ship dock reassignment$")
+	public void i_navigate_to_ship_dock_reassignment() throws Throwable {
+		jdaHomePage.navigateToShipDockReassignment();
+	}
+
+	@When("^i navigate to order header maintenance$")
+	public void i_navigate_to_order_header_maintenance() throws Throwable {
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+
+	}
+
+	@When("^I navigate to move task update$")
+	public void i_navigate_to_move_task_update() throws Throwable {
+		jdaHomePage.navigateToMoveTaskUpdate();
+	}
+
+	@When("^I navigate to location page$")
+	public void i_navigate_to_location_page() throws Throwable {
+		jdaHomePage.navigateToLocationPage();
+	}
+
+	@When("^I navigate to order preparation page$")
+	public void i_navigate_to_order_preparation_page() throws Throwable {
+		jdaHomePage.navigateToOrderPreparationPage();
+	}
+
+	@When("^I navigate to vehicle unloading page$")
+	public void i_navigate_to_vehicle_unloading_page() throws Throwable {
+		jdaHomePage.navigateToVehicleUnloadingPage();
+	}
+
+	@When("^I navigate to move task list generation page$")
+	public void i_navigate_to_move_task_list_generation_page() throws Throwable {
+		jdaHomePage.navigateToMoveTaskListGenerationPage();
+		Thread.sleep(3000);
+	}
 }

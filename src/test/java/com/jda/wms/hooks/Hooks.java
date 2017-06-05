@@ -25,7 +25,7 @@ public class Hooks {
 	private Context context;
 
 	@Inject
-	public Hooks(WebDriver webDriver,Context context) {
+	public Hooks(WebDriver webDriver, Context context) {
 		this.webDriver = webDriver;
 		this.context = context;
 	}
@@ -58,8 +58,9 @@ public class Hooks {
 		}
 	}
 
-	// @After("@purchase_order")
+//	 @After
 	public void logoutPutty() throws FindFailed, InterruptedException {
+		if (context.isPuttyLoginFlag()==true){
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
@@ -75,6 +76,7 @@ public class Hooks {
 		screen.wait("images/Putty/PuttyCloseOK.png", 20);
 		screen.click("images/Putty/PuttyCloseOK.png", 25);
 		Thread.sleep(1000);
+		}
 	}
 
 	@After
@@ -94,7 +96,7 @@ public class Hooks {
 		}
 	}
 	
-
+	
 	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);

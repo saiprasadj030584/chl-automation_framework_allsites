@@ -30,23 +30,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+
+import cucumber.api.java.Before;
 
 /**
  *
- * @author Tone Walters (tone_walters@yahoo.com)
+ * @author Tone walters (tone_walters@yahoo.com)
  */
 public class Database {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
+	private Configuration configuration;
 	private Context context;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-@Inject
-	public Database(Context context) {
-	this.context = context;
-}
-	
+	@Inject
+	public Database(Configuration configuration, Context context) {
+		this.configuration = configuration;
+		this.context = context;
+	}
+
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
@@ -58,19 +63,21 @@ public class Database {
 	 * @param password
 	 *            - password
 	 * @return - returns true if the connection is successful.
-	 * @throws ClassNotFoundException 
+	 * @throws ClassNotFoundException
 	 */
-	public void connect(String address, String username, String password) throws ClassNotFoundException {
-		if (context.getConnection()==null){
+	@Before
+	public void connect() throws ClassNotFoundException {
+		boolean connectionSucessful = false;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver"); 
-			connection = DriverManager.getConnection(address, username, password);
-			context.setConnection(connection);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
+					configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
 			connection.setAutoCommit(true);
+			context.setConnection(connection);
+			connectionSucessful = true;
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
-			
-		}
+			logger.debug("Exception " + ex.getMessage());
 		}
 	}
 
@@ -146,7 +153,6 @@ public class Database {
 			rs.next();
 			result = rs.getString(1);
 		} catch (SQLException ex) {
-			System.out.println("It failed to make the statement::" + ex.toString());
 		}
 		return result;
 	}

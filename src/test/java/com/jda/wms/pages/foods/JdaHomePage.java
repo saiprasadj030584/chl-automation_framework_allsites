@@ -279,9 +279,19 @@ public class JdaHomePage extends PageObject {
 	}
 
 	public void navigateToMoveTaskUpdate() throws FindFailed, InterruptedException {
-		screen.type("f", Key.CTRL);
+		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Update");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToMoveTaskQuery() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Move Task Query");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
@@ -302,6 +312,10 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment maintenance");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
 	}
 
 	public void navigateToPickFaceMaintenance() throws InterruptedException, FindFailed {
@@ -372,5 +386,102 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
+	}
+
+	public void navigateToShipDockReassignment() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Ship dock reassignment screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToOrderHeaderMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order Header Maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToOrderPreparationPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order Preparation");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToTrailerMaintanencePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Trailer maintenance/query screen*");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToDockSchedulerPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Dock scheduler screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToDockSchedulerBookingsPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Dock Scheduler entries query screen*");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void scrollDown() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollDown.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollDown.png");
+		Thread.sleep(2000);
+	}
+
+	public void scrollRight() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollRight.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollRight.png");
+		Thread.sleep(2000);
+	}
+	public void scrollLeft() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollLeft.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollLeft.png");
+		Thread.sleep(2000);
+	}
+	
+	public void navigateToVehicleUnloadingPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Vehicle Unloading*");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToMoveTaskListGenerationPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Move task list generation screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 }
