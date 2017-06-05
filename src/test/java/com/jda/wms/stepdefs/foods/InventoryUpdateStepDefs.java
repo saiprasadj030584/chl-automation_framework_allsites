@@ -74,6 +74,7 @@ public class InventoryUpdateStepDefs {
 	@Given("^I proceed to next$")
 	public void i_proceed_to_next() throws Throwable {
 		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
 	}
 
 	@Given("^I select the expiry date in future and reason code as \"([^\"]*)\"$")

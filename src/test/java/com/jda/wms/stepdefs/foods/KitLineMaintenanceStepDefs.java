@@ -7,8 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+import com.jda.wms.db.KitLineMaintenanceDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.KitLineMaintenancePage;
+import com.jda.wms.pages.foods.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,11 +22,18 @@ public class KitLineMaintenanceStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final KitLineMaintenancePage kitLineMaintenancePage;
 	private JDAFooter jdaFooter;
+	private Context context;
+	private Verification verification;
+	private KitLineMaintenanceDB kitLineMaintenanceDB;
 
 	@Inject
-	public KitLineMaintenanceStepDefs(KitLineMaintenancePage kitLineMaintenancePage, JDAFooter jdaFooter) {
+	public KitLineMaintenanceStepDefs(KitLineMaintenancePage kitLineMaintenancePage, JDAFooter jdaFooter,
+			Verification verification, Context context, KitLineMaintenanceDB kitLineMaintenanceDB) {
 		this.kitLineMaintenancePage = kitLineMaintenancePage;
 		this.jdaFooter = jdaFooter;
+		this.context = context;
+		this.verification = verification;
+		this.kitLineMaintenanceDB = kitLineMaintenanceDB;
 	}
 
 	@Given("^I am on kit line maintenance page$")
@@ -68,5 +78,25 @@ public class KitLineMaintenanceStepDefs {
 		Assert.assertTrue(
 				"Kit line maintenance details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+
+	// @Given("^the Sku id \"([^\"]*)\"$")
+	// public void the_Sku_id(String SkuId) throws Throwable {
+	// context.setSkuId(SkuId);
+	// }
+
+	@Then("^the kit line details should be displayed$")
+	public void the_kit_line_details_should_be_displayed() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData(" kitId", "Not Null", kitLineMaintenanceDB.getKitId(context.getSkuId()), failureList);
+		verification.verifyData(" Kit Quantity", "Not Null", kitLineMaintenanceDB.getKitQuantity(context.getSkuId()),
+				failureList);
+		verification.verifyData(" Kit Line ID ", "Not Null", kitLineMaintenanceDB.getKidLineID(context.getSkuId()),
+				failureList);
+
+		Assert.assertTrue(
+				"Kit line maintenance details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
 	}
 }

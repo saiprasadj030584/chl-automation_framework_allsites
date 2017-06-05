@@ -10,20 +10,20 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.AddressDB;
 import com.jda.wms.db.OrderHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
-import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
-import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
-import com.jda.wms.pages.foods.OrderLineMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderHeaderMaintenanceStepDefs {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
@@ -31,29 +31,78 @@ public class OrderHeaderMaintenanceStepDefs {
 	private AddressMaintenancePage addressMaintenancePage;
 	private Verification verification;
 	private OrderHeaderDB orderHeaderDB;
-	private InventoryQueryPage inventoryQueryPage;
-	private JdaHomePage jdaHomePage;
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private OrderLineMaintenancePage orderLineMaintenancePage;
+	private AddressDB addressDB;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderLineMaintenancePage orderLineMaintenancePage, OrderHeaderDB orderHeaderD, JdaHomePage jdaHomePage,
-			OrderHeaderDB orderHeaderDB, InventoryQueryPage inventoryQueryPage) {
-
+			OrderHeaderDB orderHeaderDB,  AddressDB addressDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.inventoryQueryPage = inventoryQueryPage;
-		this.jdaHomePage = jdaHomePage;
-		this.orderLineMaintenancePage = orderLineMaintenancePage;
+		this.addressDB = addressDB;
 		this.orderHeaderDB = orderHeaderDB;
+	}
 
+	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header table$")
+	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status,
+			String type) throws Throwable {
+		context.setOrderId(orderID);
+		context.setStoType(type);
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData("Order status", status, orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		verification.verifyData("Order date", "Not Null", orderHeaderDB.getOrderDate(context.getOrderId()),
+				failureList);
+		verification.verifyData("Created By", "Not Null", orderHeaderDB.getCreatedBy(context.getOrderId()),
+				failureList);
+		verification.verifyData("Creation date", "Not Null", orderHeaderDB.getCreationDate(context.getOrderId()),
+				failureList);
+		verification.verifyData("Move task status", "Not Null", orderHeaderDB.getMoveTaskStatus(context.getOrderId()),
+				failureList);
+		verification.verifyData("From site id", "Not Null", orderHeaderDB.getFromSiteId(context.getOrderId()),
+				failureList);
+		verification.verifyData("Type", type, orderHeaderDB.getType(context.getOrderId()), failureList);
+		int noOfLines = Utilities.convertStringToInteger(orderHeaderDB.getNumberOfLines(context.getOrderId()));
+		verification.verifyData("Number of lines", "Not Null", String.valueOf(noOfLines), failureList);
+		context.setNoOfLines(noOfLines);
+		Assert.assertTrue("Order  details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Given("^the order should have delivery details$")
+	public void the_order_should_have_delivery_details() throws Throwable {
+
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		verification.verifyData("Customer", "Not Null", customer, failureList);
+		verification.verifyData("Name", "Not Null", orderHeaderDB.getName(context.getOrderId()), failureList);
+		verification.verifyData("Address1", "Not Null", orderHeaderDB.getAddress1(context.getOrderId()), failureList);
+		verification.verifyData("Country", "Not Null", orderHeaderDB.getCountry(context.getOrderId()), failureList);
+
+		verification.verifyData("Ship By Date - Delivery Details", "Not Null",
+				orderHeaderDB.getShipByDate(context.getOrderId()), failureList);
+		verification.verifyData("Deliver By Date - Delivery Details", "Not Null",
+				orderHeaderDB.getDeliverByDate(context.getOrderId()), failureList);
+
+		verification.verifyData("Deliver By Date - Delivery Details", "Not Null",
+				orderHeaderDB.getDeliverByDate(context.getOrderId()), failureList);
+
+		verification.verifyData("Deliver By Date - UserDefined", "Not Null",
+				orderHeaderDB.getDeliveryByDateUserDefinedTab(context.getOrderId()), failureList);
+		verification.verifyData("Delivery Type", "Not Null", orderHeaderDB.getDeliveryType(context.getOrderId()),
+				failureList);
+		verification.verifyData("IFOS OrderNum", "Not Null", orderHeaderDB.getIfosOrderNum(context.getOrderId()),
+				failureList);
+
+		Assert.assertTrue(
+				"Delivery details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
 	}
 
 	@Given("^the bulk pick order \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header maintenance table$")
@@ -139,6 +188,13 @@ public class OrderHeaderMaintenanceStepDefs {
 				addressMaintenancePage.isCSSMChecked());
 	}
 
+	@Given("^the customer should have CSSM flag updated in address table$")
+	public void the_customer_should_have_CSSM_flag_updated_in_address_table() throws Throwable {
+		String cssmCheckedval = addressDB.CSSMCheckedValue(context.getCustomer());
+		Assert.assertEquals("The address Id is not a STR. Expected [ CSSM checkbox selected] but was [not selected]",
+				"Y", cssmCheckedval);
+	}
+
 	@Given("^the order should have hub details in hub address tab$")
 	public void the_order_should_have_hub_details_in_hub_address_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -152,13 +208,25 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@When("^the order id should have ship dock and consignmnet$")
-	public void the_Order_id_should_have_ship_dock_and_consignmnet() throws Throwable {
+	@Given("^the order should have hub details$")
+	public void the_order_should_have_hub_details() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData("Hub", "Not Null", orderHeaderDB.getHub(context.getOrderId()), failureList);
+		verification.verifyData("Hub Name", "Not Null", orderHeaderDB.getHubName(context.getOrderId()), failureList);
+		verification.verifyData("Hub Country", "Not Null", orderHeaderDB.getHubCountry(context.getOrderId()),
+				failureList);
+
+		Assert.assertTrue("Hub details are not as expected." + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@When("^the order id should have ship dock and consignment$")
+	public void the_Order_id_should_have_ship_dock_and_consignment() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		String shipdock = orderHeaderDB.getShipdock(context.getOrderId());
 		String consignment = orderHeaderDB.getConsignment(context.getOrderId());
-
+		context.setSTOConsignment(consignment);
 		if ((shipdock == null || shipdock.equals("DEFAULTSD")) || consignment == null) {
 			HashMap<String, String> orderGroupDetails = orderHeaderDB.getGroupDetails(context.getOrderId());
 			verification.verifyData("Work Group", "Not Null", orderGroupDetails.get("WORKGROUP"), failureList);
@@ -171,12 +239,37 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^I enter the Order id \"([^\"]*)\"$")
-
-	public void i_enter_the_Order_id(String orderID) throws Throwable {
+	@Given("^I enter the Order id in order header\"([^\"]*)\"$")
+	public void i_enter_the_Order_id_in_order_header(String orderID) throws Throwable {
 		jdaFooter.clickQueryButton();
 		orderHeaderMaintenancePage.enterOrderNo(orderID);
 		jdaFooter.clickExecuteButton();
+	}
+
+	
+	 @Then("^the ship dock should be updated for an order$") public void
+	 the_ship_dock_should_be_updated_for_an_order() throws Throwable {
+	  
+	 Assert.assertEquals("Ship Dock is not displayed as expected",
+	 context.getNewShipDock(), orderHeaderMaintenancePage.getShipDock()); 
+	 }
+	 
+
+	@Then("^the order status should be \"([^\"]*)\" in order header$")
+	public void the_order_status_should_be_in_order_header(String orderStatus) throws Throwable {
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus,
+				orderHeaderDB.getStatus(context.getOrderId()));
+	}
+
+	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_order_should_be_status (String orderID, String orderStatus) throws Throwable {
+		String actualOrderStatus = orderHeaderDB.getStatus(orderID);
+		context.setOrderId(orderID);
+		context.setOrderStatus(actualOrderStatus);
+		logger.debug("Order ID : " + orderID);
+		logger.debug("Order status from DB : " + actualOrderStatus);
+
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, actualOrderStatus);
 	}
 
 	@Then("^the consignment should be generated in the order header maintenance$")
@@ -186,22 +279,9 @@ public class OrderHeaderMaintenanceStepDefs {
 				orderHeaderDB.getConsignment(context.getOrderId()));
 	}
 
-	@Given("^the order \"([^\"]*)\" should be \"([^\"]*)\" status$")
-	public void the_order_should_be_status(String orderID, String orderStatus) throws Throwable {
-		context.setOrderId(orderID);
-		String dbOrderStatus = orderHeaderDB.getOrderStatus(orderID);
-		logger.debug("Order ID : " + orderID);
-		logger.debug("Order status from DB : " + dbOrderStatus);
-
-		Assert.assertEquals("Order status is not as expected to proceed vehicle load", dbOrderStatus, orderStatus);
-
-		// TODO call picking steps here as precondition
-	}
-
 	@Given("^the order should be in \"([^\"]*)\" status$")
 	public void the_order_should_be_in_status(String status) throws Throwable {
-		String orderStatus = orderHeaderDB.getOrderStatus(context.getOrderId());
+		String orderStatus = orderHeaderDB.getStatus(context.getOrderId());
 		Assert.assertEquals("status is not as expected", status, orderStatus);
 	}
-
 }

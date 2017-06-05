@@ -453,4 +453,35 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/ScrollDown.png");
 		Thread.sleep(2000);
 	}
+
+	public void scrollRight() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollRight.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollRight.png");
+		Thread.sleep(2000);
+	}
+	public void scrollLeft() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollLeft.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollLeft.png");
+		Thread.sleep(2000);
+	}
+	
+	public void navigateToVehicleUnloadingPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Vehicle Unloading*");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToMoveTaskListGenerationPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Move task list generation screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
 }

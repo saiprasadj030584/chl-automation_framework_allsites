@@ -68,6 +68,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
+<<<<<<< HEAD
       |  7450012189 | REC002   |
 
   @po_receive_bws_new_vintage
@@ -76,6 +77,17 @@ Feature: Purchase order
     And the PO should have address detail
     Then the supplier should have supplier pallet and customs excise detail in the address maintenanace table
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice lines items
+=======
+      |  8050004611 | REC002   |
+
+  @po_receive_bws_new_vintage
+  Scenario Outline: Receiving process in JDA WMS for BWS-New-Vintage product category
+    Given the PO "<PreAdviceID>" with "BWS-New Vintage" category should be "Released" status and have future due date, site id, number of lines in the pre-advice header maintenance table
+    And the PO should have address details
+    Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
+    #And the sku should not have any inventory in that particular vintage
+>>>>>>> 5f66f8234417bc0fb46aefcef584229ae7e4355e
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment
@@ -110,18 +122,47 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
+<<<<<<< HEAD
       |  8050005009 | REC002   |
+=======
+      |  7150010294 | REC002   |
 
-  @po_receive_negative
-  Scenario Outline: Receiving process in JDA WMS for Ambient product category
-    Given the PO "<PreAdviceID>" should be "<Status>" status and have line items
-    And the PO should have pre-advice line items
+  @po_receive_bws_F23_bonded
+  Scenario Outline: Receiving process in JDA WMS for BWS-Bonded F23 product category
+    Given the PO "<PreAdviceID>" with "BWS-New Vintage" category should be "Released" status and have future due date, site id, number of lines in the pre-advice header maintenance table
+    And the PO should have address details
+    Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items
+    When I create consignment for the supplier
+    And I link the consignment to the pre-advice ID
+    Then the pre-advice line items should be linked with the consignment
     When I have logged in as warehouse user in Putty
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
+    When I receive all the skus for the purchase order at location "<Location>"
+    Then I should see the receiving completion
+    When I navigate to inventory query page
+    Then the inventory details should be displayed for all the tag id
+    When I navigate to pre-advice header maintenance page
+    Then the status should be displayed as "Complete"
+    Then the goods receipt should be generated for the received stock in inventory transaction table
+
+    Examples: 
+      | PreAdviceID | Location |
+      |  7150011794 | REC002   |
+>>>>>>> 5f66f8234417bc0fb46aefcef584229ae7e4355e
+
+  @po_receive_negative
+  Scenario Outline: Receive a Complete / On hold Purchase order
+    Given the PO "<PreAdviceID>" should be "<Status>" status
+    And the PO should have pre-advice line items
+    And I have logged in as warehouse user in Putty
+    When I select user directed option in main menu
+    And I receive the PO with basic and pre-advice receiving
+    Then I should be directed to pre-advice entry page
     When I receive all the skus for the purchase order
-    Then I should see error in receiving
+    Then I should see that no valid preadvices found message
 
     Examples: 
       | PreAdviceID | Status   |

@@ -58,8 +58,9 @@ public class Hooks {
 		}
 	}
 
-	//@After("@purchase_order")
+//	 @After
 	public void logoutPutty() throws FindFailed, InterruptedException {
+		if (context.isPuttyLoginFlag()==true){
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
@@ -75,6 +76,7 @@ public class Hooks {
 		screen.wait("images/Putty/PuttyCloseOK.png", 20);
 		screen.click("images/Putty/PuttyCloseOK.png", 25);
 		Thread.sleep(1000);
+		}
 	}
 
 	@After
@@ -85,15 +87,16 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
-
+	
 	@After
-	public void closeDBConnection() throws SQLException {
-		if  (context.getConnection() != null) {
+	public void closeDBConnection() throws SQLException{
+		if (!context.getConnection().equals(null)){
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
 	}
-
+	
+	
 	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);

@@ -62,4 +62,25 @@ public class InventoryQueryDB {
 
 		return inventoryQueryMap;
 	}
+
+	public String getQtyOnHand(String sku, String location, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_on_hand from Inventory  where sku_id ='" +sku+"' and location_id='"+location+"' and tag_id='"+tagId+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getABV(String tagID) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_num_3 from inventory where tag_id='" + tagID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

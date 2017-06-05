@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final SKUMaintenancePage skuMaintenancePage;
 	private final SkuMaintenanceDB skuMaintenanceDB;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	Date date = new Date();
 
 	@Inject
 
@@ -136,7 +138,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
 				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
-						&& (!productGroup.equals("F07"))) {
+						&& (!productGroup.equals("F13"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);
@@ -171,7 +173,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-
 			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
 
@@ -228,7 +229,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
 		System.out.println("Tag ID Map " + context.getTagIDMap());
 		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
@@ -628,5 +628,67 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Assert.assertTrue("Consignment ID is not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 		
+	}
+
+	@Given("^the PO should have the Sku,location,TagId,pallet type,vintage,Exp date,ABV,Case Ratio,qty due for the pre-advice line items$")
+	public void the_PO_should_have_the_Sku_location_TagId_pallet_type_vintage_Exp_date_ABV_Case_Ratio_qty_due_for_the_pre_advice_line_items()
+			throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		String skuId = null, abv = null, qtyDue = null, location = "REC002", palletType = "CHEP";
+		int caseRatio = 0;
+
+		context.setlocationID(location);
+		context.setPalletType(palletType);
+		jdaHomePage.navigateToSKUMaintanence();
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+		jdaFooter.clickQueryButton();
+		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
+		jdaFooter.clickExecuteButton();
+
+		if (context.getNoOfLines() != 1) {
+			preAdviceLineMaintenancePage.selectFirstRecord();
+		}
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			skuId = preAdviceLineMaintenancePage.getSkuId();
+			qtyDue = preAdviceLineMaintenancePage.getQtyDue();
+
+			preAdviceLineMaintenancePage.clickUserDefinedTab();
+			caseRatio = Utilities.convertStringToInteger(preAdviceLineMaintenancePage.getCaseRatio());
+
+			jdaFooter.clickSku();
+			jdaFooter.clickQueryButton();
+			skuMaintenancePage.enterSKUID(skuId);
+			jdaFooter.clickExecuteButton();
+			skuMaintenancePage.clickCustomsAndExcise();
+			abv = skuMaintenancePage.getCEAlcoholicStrength();
+
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("SKU", skuId);
+			lineItemsMap.put("QtyDue", qtyDue);
+			lineItemsMap.put("ABV", abv);
+			// lineItemsMap.put("UpdatedABV", updatedAbv);
+			// lineItemsMap.put("CaseRatio", caseRatio);
+			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
+			jdaFooter.clickPreAdviceLine();
+			jdaFooter.clickNextRecord();
+		}
+		context.setPurchaseOrderMap(purchaseOrderMap);
+		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
+	}
+
+	@Given("^I have the vintage for each line item$")
+	public void i_have_the_vintage_for_each_line_item() throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			String vintage = purchaseOrderMap.get(String.valueOf(i)).get("Vintage");
+			String newVintage = vintage + 1;
+			context.setVintage(newVintage);
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("new Vintage", newVintage);
+
+		}
+
 	}
 }

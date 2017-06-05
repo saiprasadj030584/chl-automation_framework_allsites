@@ -8,7 +8,7 @@ Feature: Putaway for purchase order
   Scenario Outline: Normal putaway for PO
     Given the pre advice id "<preAdviceId>" should be received with "<Category>", "<Status>", "<Location>"
     When I release all the tags for the SKU in the move task update
-    And I login as warehouse user in Putty
+    And I login as warehouse user in putty
     And I select user directed option in main menu
     And I select normal putaway
     And I do putaway for all the tags

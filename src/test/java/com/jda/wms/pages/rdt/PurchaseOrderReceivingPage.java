@@ -45,22 +45,25 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
-		Thread.sleep(15000);
-		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null)
-				|| (screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null))
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
 			return true;
-		else
-			return false;
+		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
+			pressEnter();
+			return true;
+		}
+		return false;
 	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
+		System.out.println("SKu in enter Skuid " + skuID);
 		screen.type(skuID);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(10000);
 	}
@@ -191,10 +194,57 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(1000);
 	}
 
-	public boolean isNoValidPreAdviceDisplayed() {
-		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null)
+	public boolean isNoValidPreAdviceDisplayed() throws InterruptedException {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null) {
+			pressEnter();
+			return true;
+		} else
+			return false;
+	}
+
+	public void enterYes() throws InterruptedException {
+		screen.type("y");
+		Thread.sleep(3000);
+		screen.type(Key.ENTER);
+	}
+
+	public boolean isMorePercentageAbv() {
+		if (screen.exists("images/Putty/Receiving/MorePercentageAbv.png") != null)
 			return true;
 		else
 			return false;
+	}
+
+	public boolean isPreAdviceCompletedDisplayed() {
+		if (screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isEnterABVForUpcDisplayed() {
+		if (screen.exists("images/Putty/Receiving/EnterTheAbv.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isVintageNotExpectedDisplayed() {
+		if (screen.exists("images/Putty/Receiving/VintageNotExpected.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isEnterVintageForUpcDisplayed() {
+		if (screen.exists("images/Putty/Receiving/EnterVintage.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public void pressEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
 	}
 }

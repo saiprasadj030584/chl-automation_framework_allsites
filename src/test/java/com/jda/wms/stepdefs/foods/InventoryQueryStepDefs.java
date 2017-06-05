@@ -28,12 +28,12 @@ import cucumber.api.java.en.When;
 public class InventoryQueryStepDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final InventoryQueryPage inventoryQueryPage;
-	private final InventoryQueryDB inventoryQueryDB;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final LocationPage locationPage;
 	private final LocationDB locationDB;
 	private final Context context;
+	private final InventoryQueryDB inventoryQueryDB;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
@@ -216,8 +216,7 @@ public class InventoryQueryStepDefs {
 			}
 		}
 
-		Assert.assertTrue(
-				"Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
+		Assert.assertTrue("Inventory location zone are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
 
@@ -519,7 +518,30 @@ public class InventoryQueryStepDefs {
 		jdaFooter.clickExecuteButton();
 	}
 
+	@Then("^the status should be displayed as \"([^\"]*)\"$")
+	public void the_status_should_be_displayed_as(String status) throws Throwable {
+		Assert.assertEquals("PO Status does not match", status, inventoryQueryPage.getPreAdviceStatus());
+	}
+
+	@Then("^the ABV should be updated for all the Tag Id$")
+	public void the_ABV_should_be_updated_for_all_the_Tag_Id() throws Throwable {
+		String tagID = null, expectedAbv = null;
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			expectedAbv = context.getABV();
+			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
+				tagID = tagIDMap.get(sku).get(skuIndex);
+				Thread.sleep(3000);
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
+			}
+		}
+	}
+
 	@Then("^the Inventory should be updated with the new updated quantity$")
+
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();
@@ -542,7 +564,6 @@ public class InventoryQueryStepDefs {
 		locationPage.enterLocation(context.getLocation());
 		jdaFooter.clickExecuteButton();
 		String locationZone = locationPage.getLocationZone();
-
 		jdaHomePage.navigateToInventoryQueryPage();
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(context.getTagId());
@@ -560,4 +581,15 @@ public class InventoryQueryStepDefs {
 	public void i_should_see_the_status() throws Throwable {
 	}
 
+	@Then("^qty on hand should be updated in inventory query page$")
+	public void qty_on_hand_should_be_updated_in_inventory_query_page() throws Throwable {
+		// context.setSkuId("20001920");
+		// context.setLocation("AB06E01");
+		// context.setToLocation("AB03A02");
+		// context.setQtyToMove(240);
+		// context.setTagId("1000000169");
+		String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(),
+				context.getTagId());
+		Assert.assertEquals("Qty On Hand is not updated ", String.valueOf(context.getQtyToMove()), qtyOnHand);
+	}
 }

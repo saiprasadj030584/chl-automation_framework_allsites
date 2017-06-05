@@ -98,13 +98,13 @@ public class PreAdviceHeaderStepsDefs {
 
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
-		
+
 		HashMap<String, String> preAdviceHeaderDbDetails = preAdviceHeaderDB.getPreAdviceHeaderDetails(preAdviceId);
 
 		String preAdviceOrderStatus = preAdviceHeaderDbDetails.get("STATUS");
 		if (!preAdviceOrderStatus.equals(status)) {
-			failureList.add(
-					"Status is not as expected. Expected [" + status + "] but was [" + preAdviceOrderStatus + "]");
+			failureList
+					.add("Status is not as expected. Expected [" + status + "] but was [" + preAdviceOrderStatus + "]");
 		}
 
 		String dueDate = preAdviceHeaderDbDetails.get("DUEDATE");
@@ -112,7 +112,7 @@ public class PreAdviceHeaderStepsDefs {
 			failureList.add("Duedate is not as expected. Expected [Not NULL] but was [" + dueDate + "]");
 		}
 
-		String siteId = preAdviceHeaderDbDetails.get("SITEID"); 
+		String siteId = preAdviceHeaderDbDetails.get("SITEID");
 		if (siteId.equals(null)) {
 			failureList.add("SiteId is not as expected. Expected [Not NULL] but was [" + siteId + "]");
 		}
@@ -134,7 +134,7 @@ public class PreAdviceHeaderStepsDefs {
 		if (numberOfLines < 0) {
 			failureList.add("Numberoflines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]");
 		}
-		
+
 		Assert.assertTrue("PreAdvice Header details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -221,9 +221,10 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the PO should have address detail$")
 	public void the_PO_should_have_address_detail() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		
-		HashMap<String, String> preAdviceHeaderDbDetails = preAdviceHeaderDB.getPreAdviceHeaderDetails(context.getPreAdviceId());
-		
+
+		HashMap<String, String> preAdviceHeaderDbDetails = preAdviceHeaderDB
+				.getPreAdviceHeaderDetails(context.getPreAdviceId());
+
 		String name = preAdviceHeaderDbDetails.get("NAME");
 		context.setName(name);
 		if (name.equals(null)) {
@@ -265,7 +266,6 @@ public class PreAdviceHeaderStepsDefs {
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
 		jdaFooter.clickQueryButton();
 		addressMaintenancePage.enterAddressID(context.getSupplierID());
-		//addressMaintenancePage.enterAddressID("F01946");
 		jdaFooter.clickExecuteButton();
 
 		String name = addressMaintenancePage.getName();
@@ -298,6 +298,11 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status and have line items$")
 	public void the_PO_should_be_status_and_have_line_items(String preAdviceId, String status) throws Throwable {
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+	}
+
+	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status$")
+	public void the_PO_should_be_status(String preAdviceId, String status) throws Throwable {
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
 		i_search_the_pre_advice_id(preAdviceId);
 
@@ -307,20 +312,13 @@ public class PreAdviceHeaderStepsDefs {
 				statusPreAdviceHeader, status);
 
 		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
-		Assert.assertNotNull("Numberoflines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
+		Assert.assertNotNull("Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
 				numberOfLines);
 		context.setNoOfLines(numberOfLines);
 	}
-	
-	@Then("^the status should be displayed as \"([^\"]*)\"$")
-	public void the_status_should_be_displayed_as(String status) throws Throwable {
-		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
-	}
-	
-	@When("^the status should be displayed as \"([^\"]*)\" in pre advice header$")
-	public void the_status_should_be_dispayed_as_in_pre_advice_header (String status) throws Throwable {
-		HashMap<String, String> preAdviceHeaderDbDetails = preAdviceHeaderDB.getPreAdviceHeaderDetails(context.getPreAdviceId());
 
-		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDbDetails.get("STATUS"));
+	@Then("^the status should be diaplayed as \"([^\"]*)\"$")
+	public void the_status_should_be_displayed(String status) throws Throwable {
+		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}
 }

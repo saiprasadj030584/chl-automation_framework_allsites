@@ -1,8 +1,10 @@
 package com.jda.wms.db;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.inject.Inject;
@@ -17,6 +19,27 @@ public class InventoryTransactionDB {
 	public InventoryTransactionDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+	}
+
+	public ArrayList<String> getVehicleLoadITLRecords() throws SQLException, ClassNotFoundException {
+		ArrayList<String> palletIdList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select PALLET_ID from INVENTORY_TRANSACTION where REFERENCE_ID = '"
+				+ context.getOrderId() + "' and code ='Vehicle Load'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				palletIdList.add((rs.getString(j)));
+			}
+		}
+		context.setPalletIDList(palletIdList);
+		return palletIdList;
 	}
 
 	public String getDescription(String tagId, String code, String skuId) throws SQLException, ClassNotFoundException {
@@ -146,5 +169,113 @@ public class InventoryTransactionDB {
 		inventoryTransactionMap.put("Uploaded File Name", resultSet.getString(4));
 
 		return inventoryTransactionMap;
+}
+
+	public ArrayList<String> getFromLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> fromLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select FROM_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				fromLocationList.add((rs.getString(j)));
+			}
+		}
+		return fromLocationList;
+	}
+
+	public ArrayList<String> getToLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> toLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select TO_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='" + palletID
+						+ "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				toLocationList.add((rs.getString(j)));
+			}
+		}
+		return toLocationList;
+	}
+
+	public ArrayList<String> getReferenceNo(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> referenceIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select REFERENCE_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				referenceIdList.add((rs.getString(j)));
+			}
+		}
+		return referenceIdList;
+	}
+	
+	public String getLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getToLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getFinalLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select final_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+
+	public String getUpdateQty(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select update_qty from inventory_transaction where CODE = 'Replenish' and tag_id = '"+tagID+"' and DStamp like '"+dstamp+"%'");
+		rs.next();
+		return rs.getString(1);
 	}
 }
