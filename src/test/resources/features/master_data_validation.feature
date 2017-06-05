@@ -4,86 +4,75 @@ Feature: Master data validation
   I want to validate master data 
   So that I can use them for PO receiving putaway and allocation
 
-  @complete
-  Scenario: Validate Supplier SKU table in JDA WMS dispatcher for I016
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    And I am on supplier SKU maintenance page
-    When I search SKU id "20001265" and supplier "F02007"
-    Then the description, supplier SKU details should be displayed for the given SKU id
-
-  @complete
-  Scenario: Validate Supplier SKU table in JDA WMS dispatcher when no records are found
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    And I am on supplier SKU maintenance page
-    When I search SKU id "20001265" and supplier "D02007"
-    Then No records should be displayed on Supplier SKU maintenance page
-
-  @complete
-  Scenario: Validate kit line table in JDA WMS dispatcher for BOM Article
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    And I am on kit line maintenance page
-    When I search with SKU id "20001590"
-    Then the kit line details should be displayed for the given SKU id
-
-  @complete
-  Scenario: Validate whether Article data is successfully loaded into SKU table
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    When I navigate to SKU maintenance page
-    And I search for the SKU id "20001249"
-    Then the SKU id and SKU description fields should be displayed
-    And the product group, EAN, UPC, allocation group, each quantity, tag merge fields should be displayed in settings1 tab
-    When I navigate to setting4 tab
-    Then the new product field should be displayed
-    When I navigate to customs & excise tab
-    Then the C&E warehouse type, C&E VAT code, C&E SKU, C&E alcoholic strength fields should be displayed
-    When I navigate to linking tab
-    Then the site id should be displayed
-    When I navigate to batch & expiry tab
-    Then the expiry required should be displayed
-    When I navigate to user defined tab
-    Then the base UOM, SAP creation status should be displayed
-    When I navigate to supplier SKU tab
-    Then the supplier SKU id should be displayed
-
-  @complete
-  Scenario: Validate Pack config table in JDA WMS dispatcher for I016
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    And I am on pack config maintenance page
-    When I search pack config id "20001452O01"
-    Then the tag volume, volume at each details should be displayed in pack config
-    When I navigate to tracking levels page
-    Then the tracking levels and ratios should be displayed in tracking level tab
-    When I navigate to RDT page
-    Then the RDT tracking levels 1 and 2 should be displayed in RDT
-
-  @complete @address_table
+  @complete @I005
   Scenario Outline: Load the site details
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    When I navigate to address maintenance page
-    And I search the address id "<addressId>"
-    Then the address type, name, address line 1 and country should be displayed
-    When I navigate to customs & excise tab	in address maintenance
-    Then the CE & warehouse type should be displayed
-    When I navigate to user defined tab in address maintenance
-    Then I should see the is site flag is updated as site
-    And the site category should be displayed
-    
-    Examples:
-    |addressId|
-    |0010|
-    
+    Given the address id "<addressId>"
+    Then the address should have address type, name, address line1 and country details
+    Then the CE warehouse type should be displayed
+    Then the  site category should be displayed ,site flag should be updated as site
 
-  @complete @address_table 
+    Examples: 
+      | addressId |
+      |      0010 |
+
+  @complete @I0035
   Scenario Outline: Load the vendor details
-    Given I have logged in as warehouse user in JDA dispatcher food application
-    When I navigate to address maintenance page
-    And I search the address id "<addressId>"
-    Then the address type, name, address line 1 and country should be displayed
-    When I navigate to customs & excise tab	in address maintenance
-    Then the CE & warehouse type should be displayed
-    When I navigate to user defined tab in address maintenance
-    Then I should see the is site flag is updated as vendor
-    
-     Examples:
-    |addressId|
-    |0010|
+    Given the address id "<addressId>"
+    Then the address should have address type, name, address line1 and country details
+    Then the CE warehouse type should be displayed
+    Then site flag should be updated as vendor
+
+    Examples: 
+      | addressId |
+      | F02007    |
+
+  @complete @I016
+  Scenario Outline: Validate Supplier SKU table in JDA WMS dispatcher for I016
+    Given the sku id "<skuId>" and supplier "<supplierId>"
+    Then the supplier SKU details should be displayed
+
+    Examples: 
+      | skuId    | supplierId |
+      | 20001265 | F02007     |
+
+  @complete @I016
+  Scenario Outline: Validate Supplier SKU table in JDA WMS dispatcher when no records are found
+    Given the sku id "<skuId>" and supplier "<supplierId>"
+    Then no records should be displayed
+
+    Examples: 
+      | skuId    | supplierId |
+      | 20001265 | D02007     |
+
+  @complete @I016
+  Scenario Outline: Validate kit line table in JDA WMS dispatcher for BOM Article
+    Given the Sku id "<SkuId>"
+    Then the kit line details should be displayed
+
+    Examples: 
+      | SkuId    |
+      | 20001590 |
+
+  @complete @I016
+  Scenario Outline: Validate whether Article data is successfully loaded into SKU table
+    Given the Sku id "<SkuId>"
+    Then the SKU description,product group, EAN, UPC, allocation group, each quantity, tag merge fields should be displayed in settings1 tab
+    Then the new product field should be displayed
+    Then the C&E warehouse type, C&E VAT code, C&E SKU, C&E alcoholic strength fields should be displayed
+    Then the expiry required should be displayed
+    Then the base UOM, SAP creation status should be displayed
+
+    Examples: 
+      | SkuId    |
+      | 20001249 |
+
+  @complete @I016
+  Scenario Outline: Validate Pack config table in JDA WMS dispatcher for I016
+    Given the pack config id "<pack config ID>"
+    Then the tag volume, volume at each details should be displayed
+    Then the tracking levels and ratios should be displayed
+    Then the RDT tracking levels 1 and 2 should be displayed
+
+    Examples: 
+      | pack config ID |
+      | 20001452O01    |
