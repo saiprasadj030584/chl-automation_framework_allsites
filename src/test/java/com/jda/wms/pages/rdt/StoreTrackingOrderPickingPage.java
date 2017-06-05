@@ -67,8 +67,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/ListID.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
@@ -78,8 +76,6 @@ public class StoreTrackingOrderPickingPage {
 		screen.click(mStatus.below(14));
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(2));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 	
@@ -88,8 +84,6 @@ public class StoreTrackingOrderPickingPage {
 		screen.click(mStatus.below(10));
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
@@ -102,8 +96,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/TagId.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
@@ -117,8 +109,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/Quantity.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
@@ -136,8 +126,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/ToPallet.png");
 		screen.click(mStatus.getCenter().offset(50, 0));
 		screen.doubleClick(mStatus.getCenter().offset(50, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
@@ -145,8 +133,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/ToLocation.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 	
@@ -154,8 +140,6 @@ public class StoreTrackingOrderPickingPage {
 		Match mStatus = screen.find("images/Putty/Picking/FinalLocation.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 
@@ -179,5 +163,51 @@ public class StoreTrackingOrderPickingPage {
 	public void enterCheckStrings(String chkStrings) throws InterruptedException {
 		screen.type(chkStrings);
 		Thread.sleep(2000);
+	}
+
+	public void selectReplenishPickMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public String getReplenishQuantity() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/ReplenishQuantity.png");
+		screen.click(mStatus.below(14));
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.below(4));
+		return App.getClipboard();
+	}
+
+	public void enterReplenishQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
+		Thread.sleep(1000);
+	}
+
+	public void enterTagId(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(2000);
+	}
+
+	public String getLocationInReplenishPick() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/FromLocation.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		return App.getClipboard();
+	}
+	
+	public String getToLocationInReplenishPick() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/ReplenishToLocation.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		return App.getClipboard();
+	}
+	
+	public String getDestinationInReplenishpick() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/ReplenishDestination.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		return App.getClipboard();
 	}
 }

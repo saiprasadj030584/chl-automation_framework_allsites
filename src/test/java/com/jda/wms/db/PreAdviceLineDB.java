@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -57,7 +56,7 @@ public class PreAdviceLineDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select sku_id from pre_advice_line where pre_advice_id = '" + preAdviceID + "'");
+				.executeQuery("select sku_id from pre_advice_line where pre_advice_id ='" + preAdviceID + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		while (rs.next()) {
@@ -125,5 +124,27 @@ public class PreAdviceLineDB {
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();
 		return rs.getString(1);
+	} 
+	
+	
+	
+	public ArrayList<String> getConsignmentID(String preAdviceID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> consignmentIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select CE_CONSIGNMENT_ID from pre_advice_line where pre_advice_id = '" + preAdviceID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				consignmentIdList.add((rs.getString(j)));
+			}
+		}
+		return consignmentIdList;
 	}
 }

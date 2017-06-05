@@ -87,7 +87,7 @@ public class PuttyFunctionsPage {
 	
 	public void pressEnter() throws InterruptedException{
 		screen.type(Key.ENTER);
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	}
 	
 	public void nextScreen() throws InterruptedException {

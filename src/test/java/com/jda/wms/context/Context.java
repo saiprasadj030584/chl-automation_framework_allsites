@@ -64,21 +64,28 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
-	private String bookingID;
+	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
 	private Connection connection = null;
+	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
 	private String palletID;
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
+	private Map<String, String> pickFaceMap;
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
+	private boolean puttyLoginFlag = false;
+	private String addressID;
+	private String packConfigID;
+	private String dockSchedulerNotes;
+	private String[] dockSchedulerBookingIDList;
 	private String stoType;
 
 	public RDTTask getCurrentTask() {
@@ -316,15 +323,15 @@ public class Context {
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
 		return qtyReceivedPerTagMap;
 	}
-	
+
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; //setCaseRatioList
+		return caseRatiolist; // setCaseRatioList
 	}
-	
+
 	public void setCaseRatioList(List<String> caseRatiolist) {
 		this.caseRatiolist = caseRatiolist;
 	}
-	
+
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
@@ -466,14 +473,6 @@ public class Context {
 		this.location = location;
 	}
 
-	public ArrayList<String> getFailureList() {
-		return failureList;
-	}
-
-	public void setFailureList(ArrayList<String> failureList) {
-		this.failureList = failureList;
-	}
-
 	public Connection getConnection() {
 		return connection;
 	}
@@ -561,25 +560,49 @@ public class Context {
 	public void setQtyToMove(int qtyToMove) {
 		this.qtyToMove = qtyToMove;
 	}
-	
+
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
 	}
 
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
+	}
+	
+	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
+		this.pickFaceMap = pickFaceMap;
+	}
+
+	public Map<String, String> getPutawayLocationMap() {
+		return pickFaceMap;
+	}
+	
 	public String getTrailerNo() {
 		return trailerNo;
 	}
 
 	public void setBookingID(String bookingID) {
-		this.bookingID = bookingID;
+		this.dockSchedulerBookingID = bookingID;
 	}
 
 	public String getBookingID() {
-		return bookingID;
+		return dockSchedulerBookingID;
 	}
 
 	public void setSTOConsignment(String consignment) {
 		this.consignment = consignment;
+	}
+
+	public String getABVPercentage() {
+		return abvPercentage;
+	}
+
+	public void setABVPercentage(String abvPercentage) {
+		this.abvPercentage = abvPercentage;
 	}
 
 	public String getSTOConsignment() {
@@ -617,7 +640,7 @@ public class Context {
 	public void setReplenishmentDetailsMap(Map<Integer, Map<String, String>> replenishmentDetailsMap) {
 		this.replenishmentDetailsMap = replenishmentDetailsMap;
 	}
-	
+
 	public String getAbv() {
 		return abv;
 	}
@@ -648,6 +671,46 @@ public class Context {
 
 	public void setContainerId(String containerId) {
 		this.containerId = containerId;
+	}
+
+	public boolean isPuttyLoginFlag() {
+		return puttyLoginFlag;
+	}
+
+	public void setPuttyLoginFlag(boolean puttyLoginFlag) {
+		this.puttyLoginFlag = puttyLoginFlag;
+	}
+
+	public String getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(String addressID) {
+		this.addressID = addressID;
+	}
+
+	public String getPackConfigID() {
+		return packConfigID;
+	}
+
+	public void setPackConfigID(String packConfigID) {
+		this.packConfigID = packConfigID;
+	}
+	
+	public void setDockSchedulerNotes(String dockSchedulerNotes) {
+		this.dockSchedulerNotes = dockSchedulerNotes;
+	}
+
+	public String getDockSchedulerNotes() {
+		return dockSchedulerNotes;
+	}
+	
+	public String[] getDockSchedulerBookingID() {
+		return dockSchedulerBookingIDList;
+	}
+
+	public void setDockSchedulerBookingID(String[] dockSchedulerBookingIDList) {
+		this.dockSchedulerBookingIDList = dockSchedulerBookingIDList;
 	}
 
 	public String getStoType() {

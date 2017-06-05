@@ -63,7 +63,28 @@ public class InventoryQueryDB {
 		return inventoryQueryMap;
 	}
 
-	public String getInventorySKUId(String tagId) throws ClassNotFoundException, SQLException {
+	public String getQtyOnHand(String sku, String location, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_on_hand from Inventory  where sku_id ='" +sku+"' and location_id='"+location+"' and tag_id='"+tagId+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getABV(String tagID) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_num_3 from inventory where tag_id='" + tagID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+		public String getInventorySKUId(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -84,41 +105,8 @@ public class InventoryQueryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
-	public String getQtyOnHand(String tagId) throws ClassNotFoundException, SQLException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select qty_on_hand from inventory where tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getcaseRatio(String tagId) throws ClassNotFoundException, SQLException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select user_def_type_6 from inventory where tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getLocation(String tagId) throws ClassNotFoundException, SQLException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public void updateStatus(String status, String tagId) throws ClassNotFoundException, SQLException {
+	
+		public void updateStatus(String status, String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -136,6 +124,39 @@ public class InventoryQueryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_code from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+public String getLocation(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+		public String getcaseRatio(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_6 from inventory where tag_id='" + tagId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getQtyOnHand(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_on_hand from inventory where tag_id='" + tagId + "'");
 		rs.next();
 		return rs.getString(1);
 	}

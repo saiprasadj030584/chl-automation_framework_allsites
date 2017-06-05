@@ -158,11 +158,15 @@
 	</build>
 
 	<dependencies>
-	<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-api</artifactId>
-    <version>1.7.5</version>
-</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/slf4j-api-1.7.5.jar</systemPath>
+		</dependency>
+		
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
@@ -239,7 +243,6 @@
 			<version>2.7</version>
 		</dependency>
 
-		
 		<dependency>
 			<groupId>com.sikulix</groupId>
 			<artifactId>sikulixapi</artifactId>
