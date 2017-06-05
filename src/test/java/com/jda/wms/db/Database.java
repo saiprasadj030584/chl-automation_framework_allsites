@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +47,7 @@ public class Database {
 	private Context context;
 
 	@Inject
-	public Database(Configuration configuration,Context context) {
+	public Database(Configuration configuration, Context context) {
 		this.configuration = configuration;
 		this.context = context;
 	}
@@ -62,20 +63,21 @@ public class Database {
 	 * @param password
 	 *            - password
 	 * @return - returns true if the connection is successful.
-	 * @throws ClassNotFoundException 
+	 * @throws ClassNotFoundException
 	 */
 	@Before
 	public void connect() throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver"); 
-			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),configuration.getStringProperty("db-username") ,configuration.getStringProperty("db-password") );
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
+					configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
 			connection.setAutoCommit(true);
 			context.setConnection(connection);
 			connectionSucessful = true;
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
-			logger.debug("Exception "+ex.getMessage());
+			logger.debug("Exception " + ex.getMessage());
 		}
 	}
 
@@ -94,7 +96,6 @@ public class Database {
 			vStatement.setClob(2, new StringReader(xml));
 			vStatement.registerOutParameter(1, Types.VARCHAR);
 			vStatement.executeUpdate();
-			System.out.println(vStatement.getString(1));
 			success = true;
 		} catch (SQLException ex) {
 			write("Failed to execute statement:: " + ex.toString());
@@ -152,7 +153,6 @@ public class Database {
 			rs.next();
 			result = rs.getString(1);
 		} catch (SQLException ex) {
-			System.out.println("It failed to make the statement::" + ex.toString());
 		}
 		return result;
 	}

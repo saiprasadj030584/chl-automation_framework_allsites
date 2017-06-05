@@ -66,7 +66,7 @@ public class InventoryTransactionDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery(
-				"Select  a.final_loc_id, a.from_loc_id, a.to_loc_id,a.update_qty, a.reference_id, a.expiry_dstamp,a.user_id,a.work_group,a.rdt_user_mode,a.supplier_id, a.pallet_id,a.config_id, a.sku_id,a.uploaded,a.uploaded_filename,a.uploaded_dstamp,a.uploaded_tm  from inventory_transaction A   where A.tag_id = '"
+				"Select  a.final_loc_id, a.from_loc_id, a.to_loc_id,a.update_qty, a.reference_id, a.expiry_dstamp,a.user_id,a.station_id,a.rdt_user_mode,a.supplier_id, a.user_def_type_3,a.config_id, a.sku_id,a.uploaded,a.uploaded_filename,a.uploaded_dstamp,a.uploaded_tm  from inventory_transaction A   where A.tag_id = '"
 						+ tagId + "' and A.code = '" + code + "'");
 		resultSet.next();
 
@@ -82,7 +82,7 @@ public class InventoryTransactionDB {
 		inventoryTransactionMap.put("RDT User Mode", resultSet.getString(9));
 		inventoryTransactionMap.put("Supplier", resultSet.getString(10));
 
-		inventoryTransactionMap.put("Pallet Type", resultSet.getString(11));
+		inventoryTransactionMap.put("Storage Location", resultSet.getString(11));
 		inventoryTransactionMap.put("Pack Config", resultSet.getString(12));
 		inventoryTransactionMap.put("Sku Id", resultSet.getString(13));
 
@@ -105,7 +105,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery("Select  tag_id,user_def_note_2 from inventory_transaction    where tag_id = '"
-				+ tagId + "' and A.code = '" + code + "'");
+				+ tagId + "' and code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Tag Id", resultSet.getString(1));
@@ -126,7 +126,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery(
 				"Select ce_originator, ce_originator_reference, ce_consignment_id, ce_document_dstamp,ce_orig_rotation_id, ce_rotation_id, ce_receipt_type, ce_under_bond,user_def_num_3, user_def_type_7,user_def_type_3,user_def_type_5,user_def_type_6,user_def_date_1  from inventory_transaction  where tag_id = '"
-						+ tagId + "' and A.code = '" + code + "'");
+						+ tagId + "' and code = '" + code + "'");
 		resultSet.next();
 
 		inventoryTransactionMap.put("Originator", resultSet.getString(1));
@@ -136,7 +136,7 @@ public class InventoryTransactionDB {
 
 		inventoryTransactionMap.put("Original Rotation Id", resultSet.getString(5));
 		inventoryTransactionMap.put("Rotation Id", resultSet.getString(6));
-		inventoryTransactionMap.put("Receipt Type", resultSet.getString(7));
+		inventoryTransactionMap.put("RecType", resultSet.getString(7));
 		inventoryTransactionMap.put("Under Bond", resultSet.getString(8));
 
 		inventoryTransactionMap.put("ABV", resultSet.getString(9));
@@ -148,5 +148,68 @@ public class InventoryTransactionDB {
 		inventoryTransactionMap.put("Into Destination Date", resultSet.getString(14));
 
 		return inventoryTransactionMap;
+	}
+
+	public ArrayList<String> getFromLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> fromLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select FROM_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				fromLocationList.add((rs.getString(j)));
+			}
+		}
+		return fromLocationList;
+	}
+
+	public ArrayList<String> getToLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> toLocationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select TO_LOC_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='" + palletID
+						+ "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				toLocationList.add((rs.getString(j)));
+			}
+		}
+		return toLocationList;
+	}
+
+	public ArrayList<String> getReferenceNo(String palletID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> referenceIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select REFERENCE_ID from inventory_transaction where code = 'Vehicle UnLoad' and pallet_id ='"
+						+ palletID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				referenceIdList.add((rs.getString(j)));
+			}
+		}
+		return referenceIdList;
 	}
 }

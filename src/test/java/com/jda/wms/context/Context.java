@@ -70,6 +70,7 @@ public class Context {
 	private int pickedRecords;
 	private String containerId;
 	private Connection connection = null;
+	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
 	private String palletID;
@@ -81,7 +82,8 @@ public class Context {
 	private int qtyReverse;
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
-	
+	private String stoType;
+
 	public RDTTask getCurrentTask() {
 		return currentTask;
 	}
@@ -317,15 +319,15 @@ public class Context {
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
 		return qtyReceivedPerTagMap;
 	}
-	
+
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; //setCaseRatioList
+		return caseRatiolist; // setCaseRatioList
 	}
-	
+
 	public void setCaseRatioList(List<String> caseRatiolist) {
 		this.caseRatiolist = caseRatiolist;
 	}
-	
+
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
@@ -562,7 +564,7 @@ public class Context {
 	public void setQtyToMove(int qtyToMove) {
 		this.qtyToMove = qtyToMove;
 	}
-	
+
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
 	}
@@ -581,6 +583,14 @@ public class Context {
 
 	public void setSTOConsignment(String consignment) {
 		this.consignment = consignment;
+	}
+
+	public String getABVPercentage() {
+		return abvPercentage;
+	}
+
+	public void setABVPercentage(String abvPercentage) {
+		this.abvPercentage = abvPercentage;
 	}
 
 	public String getSTOConsignment() {
@@ -665,5 +675,13 @@ public class Context {
 
 	public void setDockSchedulerBookingID(String[] dockSchedulerBookingIDList) {
 		this.dockSchedulerBookingIDList = dockSchedulerBookingIDList;
+	}
+
+	public String getStoType() {
+		return stoType;
+	}
+
+	public void setStoType(String stoType) {
+		this.stoType = stoType;
 	}
 }

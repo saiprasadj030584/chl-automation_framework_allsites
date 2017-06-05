@@ -52,6 +52,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_sto_should_be_status_type_order_details_in_the_order_header_table(String orderID, String status,
 			String type) throws Throwable {
 		context.setOrderId(orderID);
+		context.setStoType(type);
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData("Order status", status, orderHeaderDB.getStatus(context.getOrderId()), failureList);
 		verification.verifyData("Order date", "Not Null", orderHeaderDB.getOrderDate(context.getOrderId()),
@@ -225,7 +226,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 		String shipdock = orderHeaderDB.getShipdock(context.getOrderId());
 		String consignment = orderHeaderDB.getConsignment(context.getOrderId());
-		context.setConsignmentID(consignment);
+		context.setSTOConsignment(consignment);
 		if ((shipdock == null || shipdock.equals("DEFAULTSD")) || consignment == null) {
 			HashMap<String, String> orderGroupDetails = orderHeaderDB.getGroupDetails(context.getOrderId());
 			verification.verifyData("Work Group", "Not Null", orderGroupDetails.get("WORKGROUP"), failureList);

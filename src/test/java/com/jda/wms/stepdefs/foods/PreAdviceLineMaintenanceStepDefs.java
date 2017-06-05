@@ -173,7 +173,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			lineItemsMap.put("Vintage", vintage);
 			lineItemsMap.put("ABV", abv);
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-
 			jdaFooter.clickPreAdviceLine();
 			jdaFooter.clickNextRecord();
 
@@ -230,7 +229,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-
 		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
 		System.out.println("Tag ID Map " + context.getTagIDMap());
 		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
@@ -250,6 +248,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
 			String sKuId = skuID.get(i - 1);
+			System.out.println(sKuId);
 			context.setSkuId(sKuId);
 			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
 			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
@@ -260,8 +259,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 				abv = skuMaintenanceDB.getCEAlcoholicStrength(skuID.get(i - 1));
 
 				if (!vintage.equals(null)) {
-					if (!currentVintage.equals(null)) {
-						failureList.add("Current Vintage should not be null in SKU table for(" + skuId + ") ");
+					if (currentVintage.equals(null)) {
+						failureList.add("Current Vintage should not be null in SKU table for(" + sKuId + ") ");
 					}
 				}
 			}
@@ -295,8 +294,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 									+ productGroup);
 				}
 			} else if (context.getProductCategory().contains("BWS")) {
-				if ((!productGroup.equals("F20")) || (!productGroup.equals("F21")) || (!productGroup.equals("F23"))
-						|| (!productGroup.equals("F07"))) {
+				if ((!productGroup.equals("F20")) && (!productGroup.equals("F21")) && (!productGroup.equals("F23"))
+						&& (!productGroup.equals("F07"))) {
 					failureList
 							.add("Product Group not displayed as expected for BWS. Expected [F20 or F21 or F23 or F07] but was ["
 									+ productGroup);
@@ -315,8 +314,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
 
 			logger.debug(purchaseOrderMap.toString());
-			
-		
+
 		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 		Assert.assertTrue("Purchase Order line detailes are not as expected" + Arrays.asList(failureList.toString()),
@@ -345,7 +343,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				tagIDArrayList.add(Utilities.getTenDigitRandomNumber());
 			}
 			tagIDMap.put(skuIDs, tagIDArrayList);
-		
+
 		}
 		context.setTagIDMap(tagIDMap);
 
@@ -468,4 +466,65 @@ public class PreAdviceLineMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Given("^the PO should have the Sku,location,TagId,pallet type,vintage,Exp date,ABV,Case Ratio,qty due for the pre-advice line items$")
+	public void the_PO_should_have_the_Sku_location_TagId_pallet_type_vintage_Exp_date_ABV_Case_Ratio_qty_due_for_the_pre_advice_line_items()
+			throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		String skuId = null, abv = null, qtyDue = null, location = "REC002", palletType = "CHEP";
+		int caseRatio = 0;
+
+		context.setlocationID(location);
+		context.setPalletType(palletType);
+		jdaHomePage.navigateToSKUMaintanence();
+		jdaHomePage.navigateToPreAdviceLineMaintenance();
+		jdaFooter.clickQueryButton();
+		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
+		jdaFooter.clickExecuteButton();
+
+		if (context.getNoOfLines() != 1) {
+			preAdviceLineMaintenancePage.selectFirstRecord();
+		}
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			skuId = preAdviceLineMaintenancePage.getSkuId();
+			qtyDue = preAdviceLineMaintenancePage.getQtyDue();
+
+			preAdviceLineMaintenancePage.clickUserDefinedTab();
+			caseRatio = Utilities.convertStringToInteger(preAdviceLineMaintenancePage.getCaseRatio());
+
+			jdaFooter.clickSku();
+			jdaFooter.clickQueryButton();
+			skuMaintenancePage.enterSKUID(skuId);
+			jdaFooter.clickExecuteButton();
+			skuMaintenancePage.clickCustomsAndExcise();
+			abv = skuMaintenancePage.getCEAlcoholicStrength();
+
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("SKU", skuId);
+			lineItemsMap.put("QtyDue", qtyDue);
+			lineItemsMap.put("ABV", abv);
+			// lineItemsMap.put("UpdatedABV", updatedAbv);
+			// lineItemsMap.put("CaseRatio", caseRatio);
+			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
+			jdaFooter.clickPreAdviceLine();
+			jdaFooter.clickNextRecord();
+		}
+		context.setPurchaseOrderMap(purchaseOrderMap);
+		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
+	}
+
+	@Given("^I have the vintage for each line item$")
+	public void i_have_the_vintage_for_each_line_item() throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			String vintage = purchaseOrderMap.get(String.valueOf(i)).get("Vintage");
+			String newVintage = vintage + 1;
+			context.setVintage(newVintage);
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("new Vintage", newVintage);
+
+		}
+
+	}
 }

@@ -17,13 +17,15 @@ import cucumber.api.java.en.When;
 
 public class AddressMaintenanceStepDefs {
 	private final AddressMaintenancePage addressMaintenancePage;
-	private final  AddressMaintenanceDB addressMaintenanceDB;
+	private final AddressMaintenanceDB addressMaintenanceDB;
 	private JDAFooter jdaFooter;
 	private Context context;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 
 	@Inject
-	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,AddressMaintenanceDB addressMaintenanceDB, JDAFooter jdaFooter, Context context,JDAHomeStepDefs jdaHomeStepDefs) {
+	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,
+			AddressMaintenanceDB addressMaintenanceDB, JDAFooter jdaFooter, Context context,
+			JDAHomeStepDefs jdaHomeStepDefs) {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -74,15 +76,15 @@ public class AddressMaintenanceStepDefs {
 				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
 				ceWarehouseType);
 	}
-	
+
 	@Then("^the CE & warehouse type should be displayed as Excise$")
 	public void the_CE_warehouse_type_should_be_displayed_as_excise() throws Throwable {
 		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
 		Assert.assertEquals(
-				"CE & Warehouse type should not be null. Expected [Excise] but was [" + ceWarehouseType + "]",
-				"Excise",ceWarehouseType);
+				"CE & Warehouse type should not be null. Expected [Excise] but was [" + ceWarehouseType + "]", "Excise",
+				ceWarehouseType);
 	}
-	
+
 	@Then("^the CE tax warehouse should be displayed$")
 	public void the_CE_tax_warehouse_should_be_displayed() throws Throwable {
 		String ceTaxWarehouse = addressMaintenancePage.getCETaxwarehouse();
@@ -110,9 +112,10 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("The address Id is not a vendor.  Expected [checkbox selected] but was [not selected]",
 				addressMaintenancePage.isIsSiteUnchecked());
 	}
-	
+
 	@Then("^the supplier should have supplier pallet and customs excise details in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_details_in_the_address_maintenanace_table() throws Throwable {
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_details_in_the_address_maintenanace_table()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
@@ -137,14 +140,14 @@ public class AddressMaintenanceStepDefs {
 			failureList.add(
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
-		
+
 		addressMaintenancePage.clickUserDefinedTab();
 		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
 		if (defaultySupplierPallet.isEmpty()) {
 			failureList.add("Default Supplier Pallet is not as expected. Expected [Not Null] but was ["
 					+ defaultySupplierPallet + "]");
 		}
-		
+
 		i_navigate_to_customs_excise_tab_in_address_maintenance();
 		the_CE_warehouse_type_should_be_displayed_as_excise();
 		the_CE_tax_warehouse_should_be_displayed();
@@ -152,8 +155,10 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+
 	@Then("^the supplier should have supplier pallet and customs excise detail in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table() throws Throwable {
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		HashMap<String, String> addressDbDetails = addressMaintenanceDB.getAdressDetails(context.getSupplierID());
 
@@ -174,12 +179,6 @@ public class AddressMaintenanceStepDefs {
 			failureList.add(
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
-
-		/*String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
-		if (!defaultSupplierPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
-					+ defaultSupplierPallet + "]");
-		}*/
 
 		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
 		if (!ceWarehouseType.equals("E")) {
@@ -202,4 +201,3 @@ public class AddressMaintenanceStepDefs {
 		addressMaintenancePage.clickUserDefinedTab();
 	}
 }
-
