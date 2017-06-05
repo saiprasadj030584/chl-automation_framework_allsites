@@ -15,7 +15,7 @@ Feature: Master data validation
       | addressId |
       |      0010 |
 
- @complete
+  @complete
   Scenario Outline: Load the vendor details
     Given the address id "<addressId>"
     Then the address should have address type, name, address line1 and country details
@@ -26,7 +26,7 @@ Feature: Master data validation
       | addressId |
       | F02007    |
 
-@complete
+  @complete
   Scenario Outline: Validate Supplier SKU table in JDA WMS dispatcher for I016
     Given the sku id "<skuId>" and supplier "<supplierId>"
     Then the supplier SKU details should be displayed
@@ -53,31 +53,26 @@ Feature: Master data validation
       | SkuId    |
       | 20001590 |
 
- @complete
-   Scenario Outline: Validate whether Article data is successfully loaded into SKU table
+  @complete
+  Scenario Outline: Validate whether Article data is successfully loaded into SKU table
     Given the Sku id "<SkuId>"
     Then the SKU description,product group, EAN, UPC, allocation group, each quantity, tag merge fields should be displayed in settings1 tab
-    Then the new product field should be displayed 
-    Then the C&E warehouse type, C&E VAT code, C&E SKU, C&E alcoholic strength fields should be displayed 
-    Then the expiry required should be displayed 
-    Then the base UOM, SAP creation status should be displayed 
-    
-      Examples: 
+    Then the new product field should be displayed
+    Then the C&E warehouse type, C&E VAT code, C&E SKU, C&E alcoholic strength fields should be displayed
+    Then the expiry required should be displayed
+    Then the base UOM, SAP creation status should be displayed
+
+    Examples: 
       | SkuId    |
       | 20001249 |
-      
-     @complete
+
+  @complete
   Scenario Outline: Validate Pack config table in JDA WMS dispatcher for I016
-   Given the pack config id "<pack config ID>"
-   Then the tag volume, volume at each details should be displayed IN PACK
-   Then the tracking levels and ratios should be displayed  in TRACK
-   Then the RDT tracking levels 1 and 2 should be displayed IN RDT
-     Examples: 
+    Given the pack config id "<pack config ID>"
+    Then the tag volume, volume at each details should be displayed
+    Then the tracking levels and ratios should be displayed
+    Then the RDT tracking levels 1 and 2 should be displayed
+
+    Examples: 
       | pack config ID |
       | 20001452O01    |
-      
-      
-      
-      
-      
-      

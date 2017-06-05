@@ -76,9 +76,7 @@ public class SupplierSkuMaintenanceStepDefs {
 	@Then("^the supplier SKU details should be displayed$")
 	public void supplier_SKU_details_should_be_displayed() throws Throwable {
 		String supplierSku = supplierSkuDB.getSupplierSKU(context.getSkuId(), context.getSupplierID());
-		Assert.assertEquals("Supplier SKU details are not as expected.", supplierSku,
-				supplierSkuDB.getSupplierSKU(context.getSkuId(), context.getSupplierID()));
-
+		Assert.assertNotNull("Supplier SKU details are not as expected.", supplierSku);
 	}
 
 	@Then("^no records should be displayed$")

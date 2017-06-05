@@ -16,6 +16,8 @@ import com.jda.wms.pages.foods.Verification;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+
 
 public class AddressMaintenanceStepDefs {
 	private final AddressMaintenancePage addressMaintenancePage;
@@ -23,7 +25,7 @@ public class AddressMaintenanceStepDefs {
 	private JDAFooter jdaFooter;
 	private Context context;
 	private JDAHomeStepDefs jdaHomeStepDefs;
-	private Verification verification;
+private Verification verification;
 
 	@Inject
 	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,
@@ -36,6 +38,7 @@ public class AddressMaintenanceStepDefs {
 		this.addressMaintenanceDB = addressMaintenanceDB;
 		this.verification = verification;
 	}
+
 
 	@When("^I search the address id \"([^\"]*)\"$")
 	public void i_search_the_address_id(String addressId) throws Throwable {
@@ -73,8 +76,8 @@ public class AddressMaintenanceStepDefs {
 		addressMaintenancePage.clickCustomsExciseTab();
 	}
 
-	@Then("^the CE & warehouse type should be displayed$")
-	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
+	@Then("^the CE & warehouse type should be displayed in address page$")
+	public void the_CE_warehouse_type_should_be_displayed_in_address_page() throws Throwable {
 		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
 		Assert.assertNotNull(
 				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
@@ -209,8 +212,8 @@ public class AddressMaintenanceStepDefs {
 	public void the_address_id(String addressID) throws Throwable {
 		context.setAddressID(addressID);
 	}
-
-	@Then("^the address should have address type, name, address line(\\d+) and country details$")
+	
+		@Then("^the address should have address type, name, address line(\\d+) and country details$")
 	public void the_address_should_have_address_type_name_address_line_and_country_details(int arg1) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData("Address type", "Not Null", addressMaintenanceDB.getAddressType(context.getAddressID()),
@@ -223,8 +226,18 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("Address details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+	
+		@Then("^the CE warehouse type should be displayed$")
 
-	@Then("^the  site category should be displayed ,site flag should be updated as site$")
+	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
+		String ceWarehouseType = addressMaintenanceDB.getCEWarehouseType(context.getAddressID());
+		Assert.assertNotNull(
+				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
+				ceWarehouseType);
+
+	}
+	
+		@Then("^the  site category should be displayed ,site flag should be updated as site$")
 	public void the_site_category_should_be_displayed_site_flag_should_be_updated_as_site() throws Throwable {
 		String siteCategory = addressMaintenanceDB.getSiteCategory(context.getAddressID());
 		Assert.assertNotNull("site category should not be null. Expected [Not Null] but was [" + siteCategory + "]",

@@ -40,8 +40,8 @@ public class PackConfigMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 	}
 
-	@Then("^the tag volume, volume at each details should be displayed$")
-	public void the_tag_volume_volume_at_each_details_should_be_displayed() throws Throwable {
+	@Then("^the tag volume, volume at each details should be displayed in pack config$")
+	public void the_tag_volume_volume_at_each_details_should_be_displayed_in_pack_config() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		if (packConfigMaintenancePage.getTagVolume().equals(null)) {
 			failureList.add("Tag Volume is not as expected.");
@@ -60,8 +60,8 @@ public class PackConfigMaintenanceStepDefs {
 		packConfigMaintenancePage.clickTrackingLevelsTab();
 	}
 
-	@Then("^the tracking levels and ratios should be displayed$")
-	public void the_tracking_levels_and_ratios_should_be_displayed() throws Throwable {
+	@Then("^the tracking levels and ratios should be displayed in tracking level tab$")
+	public void the_tracking_levels_and_ratios_should_be_displayed_tracking_level_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		String ration1To2 = packConfigMaintenancePage.getRatio1To2();
@@ -89,8 +89,8 @@ public class PackConfigMaintenanceStepDefs {
 		packConfigMaintenancePage.clickRDTTab();
 	}
 
-	@Then("^the RDT tracking levels 1 and 2 should be displayed$")
-	public void the_RDT_tracking_levels_1_and_2_should_be_displayed() throws Throwable {
+	@Then("^the RDT tracking levels 1 and 2 should be displayed in RDT$")
+	public void the_RDT_tracking_levels_1_and_2_should_be_displayed_in_rdt() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		String rdtTrackingLevel1 = packConfigMaintenancePage.getRDTTrackingLevel1();
@@ -115,8 +115,8 @@ public class PackConfigMaintenanceStepDefs {
 		context.setPackConfigID(packConfigID);
 	}
 
-	@Then("^the tag volume, volume at each details should be displayed IN PACK$")
-	public void the_tag_volume_volume_at_each_details_should_be_displayed_IN_PACK() throws Throwable {
+	@Then("^the tag volume, volume at each details should be displayed$")
+	public void the_tag_volume_volume_at_each_details_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData("Tag volume", "Not Null",
 				packConfigMaintenanceDB.getTagvolume(context.getPackConfigID()), failureList);
@@ -126,8 +126,8 @@ public class PackConfigMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the tracking levels and ratios should be displayed  in TRACK$")
-	public void the_tracking_levels_and_ratios_should_be_displayed_in_TRACK() throws Throwable {
+	@Then("^the tracking levels and ratios should be displayed$")
+	public void the_tracking_levels_and_ratios_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		int ration1To2 = Integer.parseInt(packConfigMaintenanceDB.getRatio1To2(context.getPackConfigID()));
 		if (ration1To2 <= 0) {
@@ -142,8 +142,8 @@ public class PackConfigMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the RDT tracking levels (\\d+) and (\\d+) should be displayed IN RDT$")
-	public void the_RDT_tracking_levels_and_should_be_displayed_IN_RDT(int arg1, int arg2) throws Throwable {
+	@Then("^the RDT tracking levels (\\d+) and (\\d+) should be displayed$")
+	public void the_RDT_tracking_levels_and_should_be_displayed(int arg1, int arg2) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData(" rdtTrackingLevel1", "E",
 				packConfigMaintenanceDB.getrdtTrackingLevel1(context.getPackConfigID()), failureList);

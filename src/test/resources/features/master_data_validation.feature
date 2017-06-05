@@ -50,11 +50,11 @@ Feature: Master data validation
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I am on pack config maintenance page
     When I search pack config id "20001452O01"
-    Then the tag volume, volume at each details should be displayed
+    Then the tag volume, volume at each details should be displayed in pack config
     When I navigate to tracking levels page
-    Then the tracking levels and ratios should be displayed
+    Then the tracking levels and ratios should be displayed in tracking level tab
     When I navigate to RDT page
-    Then the RDT tracking levels 1 and 2 should be displayed
+    Then the RDT tracking levels 1 and 2 should be displayed in RDT
 
   @complete @address_table
   Scenario Outline: Load the site details
