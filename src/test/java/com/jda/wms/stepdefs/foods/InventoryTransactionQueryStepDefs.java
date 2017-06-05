@@ -64,6 +64,35 @@ public class InventoryTransactionQueryStepDefs {
 		jdaFooter.clickExecuteButton();
 	}
 
+	@When("^inventory transaction should be updated with \"([^\"]*)\" status, reason code \"([^\"]*)\" and transaction details$")
+	public void inventory_transaction_should_be_updated_with_status_reason_code_and_transaction_details(String status,
+			String reasonCode) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String dstamp = DateUtils.getCurrentSystemDateInDBFormat();
+		String code = "Inv Lock";
+
+		verification.verifyData("Status", status,
+				inventoryTransactionDB.getStatus(context.getTagId(), code, context.getLockCode(), dstamp), failureList);
+
+		verification.verifyData("Reason Code", reasonCode,
+				inventoryTransactionDB.getReasonCode(context.getTagId(), code, context.getLockCode(), dstamp),
+				failureList);
+
+		String uploadedValue = inventoryTransactionDB.getUploadedValue(context.getTagId(), code, context.getLockCode(),
+				dstamp);
+		String uploadedFileName = inventoryTransactionDB.getUploadedFileName(context.getTagId(), code,
+				context.getLockCode(), dstamp);
+
+		if (uploadedValue.equalsIgnoreCase("N")) {
+			Assert.assertNull("Uploaded File Name is not displayed as expected. Expected [NULL] but was ["
+					+ uploadedFileName + "]", uploadedFileName);
+		} else if (uploadedValue.equalsIgnoreCase("Y") && (uploadedFileName.equals(null))) {
+			Assert.assertNotNull("Uploaded File Name is not displayed as expected. Expected [Not NULL] but was ["
+					+ uploadedFileName + "]", uploadedFileName);
+		}
+		logger.debug("Uploaded File Name: " + uploadedFileName);
+	}
+
 	@When("^I search tag id \"([^\"]*)\" and code as \"([^\"]*)\"$")
 	public void i_search_tag_id_and_code_as(String tagId, String code) throws Throwable {
 		context.setCode(code);
@@ -224,6 +253,81 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("Original Quantity: " + originalQty);
 
 		String updateQty = inventoryTransactionQueryPage.getUpdateQty();
+		String updateQtyToCheck = String.valueOf(context.getCaseRatio());
+		if (context.getAdjustmentType().equalsIgnoreCase("Decrement")) {
+			if (!updateQty.equals("-" + updateQtyToCheck)) {
+				failureList.add("Update Quantity is not displayed as expected. Expected [" + "-" + updateQtyToCheck
+						+ "] but was [" + updateQty + "]");
+			}
+		} else if (context.getAdjustmentType().equalsIgnoreCase("Increment")) {
+
+			if (!updateQty.equals(updateQtyToCheck)) {
+				failureList.add("Update Quantity is not displayed as expected. Expected [" + updateQtyToCheck
+						+ "] but was [" + updateQty + "]");
+			}
+		}
+
+		logger.debug("Update Quantity: " + updateQty);
+		Assert.assertTrue(
+				"Stock Adjustment attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
+	@Then("^inventory transaction detail should have the updated quantity and uploaded filename for the \"([^\"]*)\"$")
+	public void inventory_transaction_detail_should_have_the_updated_quantity_and_uploaded_filename_for_the(
+			String rCode) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		String code = "Adjustment";
+		String dstamp = DateUtils.getCurrentSystemDateInDBFormat();
+		String reasonCode = null;
+
+		switch (rCode) {
+		case "Damaged by Warehouse":
+			reasonCode = "DW";
+			break;
+		case "Expired Stock":
+			reasonCode = "EX";
+			break;
+		case "Head Office":
+			reasonCode = "HO";
+			break;
+		case "Hampers Stock":
+			reasonCode = "HS";
+			break;
+		case "Receiving Correction":
+			reasonCode = "IE";
+			break;
+		case "Infestation":
+			reasonCode = "IF";
+			break;
+		case "Outlets Stock":
+			reasonCode = "OS";
+			break;
+		case "Returns from RDC":
+			reasonCode = "RT";
+			break;
+		case "Stock Count":
+			reasonCode = "SC";
+			break;
+		case "Returns to Supplier":
+			reasonCode = "ST";
+			break;
+		}
+
+		String originalQty = inventoryTransactionDB.getOriginalQty(context.getTagId(), code, dstamp,
+				context.getStatus(), reasonCode);
+
+		String qtytoCheck = String.valueOf(context.getQtyOnHandBeforeAdjustment());
+
+		if (!originalQty.equals(qtytoCheck)) {
+			failureList.add("Original Quantity before Adjustment is not displayed as expected. Expected [" + qtytoCheck
+					+ "] but was [" + originalQty + "]");
+		}
+		logger.debug("Original Quantity: " + originalQty);
+
+		String updateQty = inventoryTransactionDB.getUpdateQty(context.getTagId(), code, dstamp, context.getStatus(),
+				reasonCode);
+
 		String updateQtyToCheck = String.valueOf(context.getCaseRatio());
 		if (context.getAdjustmentType().equalsIgnoreCase("Decrement")) {
 			if (!updateQty.equals("-" + updateQtyToCheck)) {

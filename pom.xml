@@ -243,7 +243,6 @@
 			<version>2.7</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.sikulix</groupId>
 			<artifactId>sikulixapi</artifactId>
