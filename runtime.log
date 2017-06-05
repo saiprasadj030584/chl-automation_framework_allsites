@@ -256,3 +256,140 @@
 2017-05-31 08:45:56 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
 2017-05-31 08:45:56 DEBUG Hooks:87 - ###########################################################################################################################
 2017-05-31 08:45:56 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 09:14:33 DEBUG Database:76 - Connection successfull
+2017-05-31 09:14:35 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 09:14:35 DEBUG Hooks:39 - featureID: master-data-validation;load-the-site-details;
+2017-05-31 09:14:35 DEBUG Hooks:40 - Start of Scenario: Load the site details
+2017-05-31 09:14:35 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 09:14:35 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 09:14:35 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 09:14:35 DEBUG Hooks:86 - End of Scenario: Load the site details
+2017-05-31 09:14:35 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 09:40:33 DEBUG Database:76 - Connection successfull
+2017-05-31 09:40:36 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 09:40:36 DEBUG Hooks:39 - featureID: master-data-validation;load-the-site-details;
+2017-05-31 09:40:36 DEBUG Hooks:40 - Start of Scenario: Load the site details
+2017-05-31 09:40:36 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 09:40:36 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 09:40:36 DEBUG Hooks:86 - End of Scenario: Load the site details
+2017-05-31 09:40:36 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 09:40:36 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 09:41:13 DEBUG Database:76 - Connection successfull
+2017-05-31 09:41:16 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 09:41:16 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 09:41:16 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 09:41:16 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:56:21 DEBUG Database:76 - Connection successfull
+2017-05-31 10:56:24 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 10:56:24 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 10:56:24 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 10:56:24 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 10:56:25 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 10:56:25 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 10:56:25 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 10:56:25 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:00:08 DEBUG Database:76 - Connection successfull
+2017-05-31 11:00:11 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:00:11 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:00:11 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:00:11 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:00:12 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:00:12 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:00:12 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:00:12 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:15:13 DEBUG Database:76 - Connection successfull
+2017-05-31 11:15:17 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:15:17 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:15:17 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:15:17 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:15:17 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:15:37 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:15:37 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:15:37 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:15:37 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:16:51 DEBUG Database:76 - Connection successfull
+2017-05-31 11:16:54 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:16:54 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:16:54 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:16:54 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:16:55 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:17:16 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:17:16 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:17:16 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:17:16 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:18:24 DEBUG Database:76 - Connection successfull
+2017-05-31 11:18:27 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:18:27 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:18:27 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:18:27 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:18:28 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:18:47 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:18:47 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:18:47 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:18:47 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:20:43 DEBUG Database:76 - Connection successfull
+2017-05-31 11:20:47 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:20:47 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:20:47 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:20:47 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:20:47 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:21:07 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:21:07 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:21:07 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:21:07 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:21:58 DEBUG Database:76 - Connection successfull
+2017-05-31 11:22:01 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:22:01 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:22:01 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:22:01 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:22:01 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:22:21 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:22:21 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:22:21 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:22:21 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:23:15 DEBUG Database:76 - Connection successfull
+2017-05-31 11:23:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:23:18 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:23:18 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:23:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:23:18 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:23:38 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:23:38 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:23:38 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 11:23:38 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:24:06 DEBUG Database:76 - Connection successfull
+2017-05-31 11:24:09 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 11:24:09 DEBUG Hooks:39 - featureID: store-replenishment-order;replenishment-list-id-generation-and-picking;
+2017-05-31 11:24:09 DEBUG Hooks:40 - Start of Scenario: Replenishment list id generation and picking
+2017-05-31 11:24:09 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 11:24:10 DEBUG MoveTaskStepDefs:228 - List ID Map {1={ListID=0000278144, TagID=1000000169, FinalLocation=AB03A02, QtyToMove=240, Location=AB06E01, ToLocation=AB03A02}, 2={ListID=0000278145, TagID=1000000033, FinalLocation=AB03A02, QtyToMove=960, Location=AB03C02, ToLocation=AB03A02}}
+2017-05-31 11:25:52 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 11:25:52 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 11:25:52 DEBUG Hooks:86 - End of Scenario: Replenishment list id generation and picking
+2017-05-31 11:25:52 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 13:19:15 DEBUG Database:76 - Connection successfull
+2017-05-31 13:19:18 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 13:19:18 DEBUG Hooks:39 - featureID: master-data-validation;load-the-vendor-details;
+2017-05-31 13:19:18 DEBUG Hooks:40 - Start of Scenario: Load the vendor details
+2017-05-31 13:19:18 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 13:19:18 DEBUG Verification:19 - Address type - expected [Not Null] and actual [Supp/Cust]
+2017-05-31 13:19:18 DEBUG Verification:19 - Name - expected [Not Null] and actual [THURROCK OUTLET]
+2017-05-31 13:19:18 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [Unit 6  The Junction Retail Park]
+2017-05-31 13:19:18 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-31 13:19:18 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 13:19:18 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 13:19:18 DEBUG Hooks:86 - End of Scenario: Load the vendor details
+2017-05-31 13:19:18 DEBUG Hooks:87 - ###########################################################################################################################
+2017-05-31 13:20:38 DEBUG Database:76 - Connection successfull
+2017-05-31 13:20:41 DEBUG Hooks:37 - ###########################################################################################################################
+2017-05-31 13:20:41 DEBUG Hooks:39 - featureID: master-data-validation;load-the-vendor-details;
+2017-05-31 13:20:41 DEBUG Hooks:40 - Start of Scenario: Load the vendor details
+2017-05-31 13:20:41 DEBUG Hooks:41 - ###########################################################################################################################
+2017-05-31 13:20:41 DEBUG Verification:19 - Address type - expected [Not Null] and actual [Supp/Cust]
+2017-05-31 13:20:41 DEBUG Verification:19 - Name - expected [Not Null] and actual [THURROCK OUTLET]
+2017-05-31 13:20:41 DEBUG Verification:19 - Address1 - expected [Not Null] and actual [Unit 6  The Junction Retail Park]
+2017-05-31 13:20:41 DEBUG Verification:19 - Country - expected [Not Null] and actual [GBR]
+2017-05-31 13:20:42 DEBUG Hooks:95 - DB Connection closed
+2017-05-31 13:20:42 DEBUG Hooks:84 - ###########################################################################################################################
+2017-05-31 13:20:42 DEBUG Hooks:86 - End of Scenario: Load the vendor details
+2017-05-31 13:20:42 DEBUG Hooks:87 - ###########################################################################################################################

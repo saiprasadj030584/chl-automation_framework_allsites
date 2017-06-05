@@ -11,24 +11,30 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.AddressMaintenanceDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
+import com.jda.wms.pages.foods.Verification;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class AddressMaintenanceStepDefs {
 	private final AddressMaintenancePage addressMaintenancePage;
-	private final  AddressMaintenanceDB addressMaintenanceDB;
+	private final AddressMaintenanceDB addressMaintenanceDB;
 	private JDAFooter jdaFooter;
 	private Context context;
 	private JDAHomeStepDefs jdaHomeStepDefs;
+	private Verification verification;
 
 	@Inject
-	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,AddressMaintenanceDB addressMaintenanceDB, JDAFooter jdaFooter, Context context,JDAHomeStepDefs jdaHomeStepDefs) {
+	public AddressMaintenanceStepDefs(AddressMaintenancePage addressMaintenancePage,
+			AddressMaintenanceDB addressMaintenanceDB, JDAFooter jdaFooter, Context context,
+			JDAHomeStepDefs jdaHomeStepDefs, Verification verification) {
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.addressMaintenanceDB = addressMaintenanceDB;
+		this.verification = verification;
 	}
 
 	@When("^I search the address id \"([^\"]*)\"$")
@@ -67,22 +73,14 @@ public class AddressMaintenanceStepDefs {
 		addressMaintenancePage.clickCustomsExciseTab();
 	}
 
-	@Then("^the CE & warehouse type should be displayed$")
-	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
-		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
-		Assert.assertNotNull(
-				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
-				ceWarehouseType);
-	}
-	
 	@Then("^the CE & warehouse type should be displayed as Excise$")
 	public void the_CE_warehouse_type_should_be_displayed_as_excise() throws Throwable {
 		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
 		Assert.assertEquals(
-				"CE & Warehouse type should not be null. Expected [Excise] but was [" + ceWarehouseType + "]",
-				"Excise",ceWarehouseType);
+				"CE & Warehouse type should not be null. Expected [Excise] but was [" + ceWarehouseType + "]", "Excise",
+				ceWarehouseType);
 	}
-	
+
 	@Then("^the CE tax warehouse should be displayed$")
 	public void the_CE_tax_warehouse_should_be_displayed() throws Throwable {
 		String ceTaxWarehouse = addressMaintenancePage.getCETaxwarehouse();
@@ -110,9 +108,10 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("The address Id is not a vendor.  Expected [checkbox selected] but was [not selected]",
 				addressMaintenancePage.isIsSiteUnchecked());
 	}
-	
+
 	@Then("^the supplier should have supplier pallet and customs excise details in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_details_in_the_address_maintenanace_table() throws Throwable {
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_details_in_the_address_maintenanace_table()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		jdaHomeStepDefs.i_navigate_to_address_maintenance_page();
@@ -137,14 +136,14 @@ public class AddressMaintenanceStepDefs {
 			failureList.add(
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
-		
+
 		addressMaintenancePage.clickUserDefinedTab();
 		String defaultySupplierPallet = addressMaintenancePage.getDefaultSupplierPallet();
 		if (defaultySupplierPallet.isEmpty()) {
 			failureList.add("Default Supplier Pallet is not as expected. Expected [Not Null] but was ["
 					+ defaultySupplierPallet + "]");
 		}
-		
+
 		i_navigate_to_customs_excise_tab_in_address_maintenance();
 		the_CE_warehouse_type_should_be_displayed_as_excise();
 		the_CE_tax_warehouse_should_be_displayed();
@@ -152,8 +151,10 @@ public class AddressMaintenanceStepDefs {
 		Assert.assertTrue("Address details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
+
 	@Then("^the supplier should have supplier pallet and customs excise detail in the address maintenanace table$")
-	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table() throws Throwable {
+	public void the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		HashMap<String, String> addressDbDetails = addressMaintenanceDB.getAdressDetails(context.getSupplierID());
 
@@ -175,11 +176,13 @@ public class AddressMaintenanceStepDefs {
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
 
-		/*String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
-		if (!defaultSupplierPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
-					+ defaultSupplierPallet + "]");
-		}*/
+		/*
+		 * String defaultSupplierPallet =
+		 * addressDbDetails.get("DefaultSupplierPallet"); if
+		 * (!defaultSupplierPallet.equals("CHEP")) { failureList.add(
+		 * "Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
+		 * + defaultSupplierPallet + "]"); }
+		 */
 
 		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
 		if (!ceWarehouseType.equals("E")) {
@@ -201,5 +204,48 @@ public class AddressMaintenanceStepDefs {
 	public void i_navigate_to_user_defined_tab_in_address_maintenance_page() throws Throwable {
 		addressMaintenancePage.clickUserDefinedTab();
 	}
-}
 
+	@Given("^the address id \"([^\"]*)\"$")
+	public void the_address_id(String addressID) throws Throwable {
+		context.setAddressID(addressID);
+	}
+
+	@Then("^the address should have address type, name, address line(\\d+) and country details$")
+	public void the_address_should_have_address_type_name_address_line_and_country_details(int arg1) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		verification.verifyData("Address type", "Not Null", addressMaintenanceDB.getAddressType(context.getAddressID()),
+				failureList);
+		verification.verifyData("Name", "Not Null", addressMaintenanceDB.getName(context.getAddressID()), failureList);
+		verification.verifyData("Address1", "Not Null", addressMaintenanceDB.getAddress1(context.getAddressID()),
+				failureList);
+		verification.verifyData("Country", "Not Null", addressMaintenanceDB.getCountry(context.getAddressID()),
+				failureList);
+		Assert.assertTrue("Address details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}
+
+	@Then("^the CE warehouse type should be displayed$")
+
+	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
+		String ceWarehouseType = addressMaintenanceDB.getCEWarehouseType(context.getAddressID());
+		Assert.assertNotNull(
+				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
+				ceWarehouseType);
+
+	}
+
+	@Then("^the  site category should be displayed ,site flag should be updated as site$")
+	public void the_site_category_should_be_displayed_site_flag_should_be_updated_as_site() throws Throwable {
+		String siteCategory = addressMaintenanceDB.getSiteCategory(context.getAddressID());
+		Assert.assertNotNull("site category should not be null. Expected [Not Null] but was [" + siteCategory + "]",
+				siteCategory);
+		Assert.assertTrue("The address Id is not a site. Expected [checkbox selected] but was [not selected]",
+				addressMaintenanceDB.isIsSiteChecked(context.getAddressID()));
+	}
+
+	@Then("^site flag should be updated as vendor$")
+	public void the_site_flag_should_be_updated_as_vendor() throws Throwable {
+		Assert.assertTrue("The address Id is not a vendor. Expected [checkbox not selected] but was [selected]",
+				addressMaintenanceDB.isIsSiteUnchecked(context.getAddressID()));
+	}
+}

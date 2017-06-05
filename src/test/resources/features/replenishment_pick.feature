@@ -2,7 +2,7 @@
 Feature: Store Replenishment order
   As a warehouse user
   I want to allocate orders in inventory
-  So that do  i can replenishment
+  So that do I can replenishment
 
   @replenish_pick
   Scenario Outline: Replenishment list id generation and picking
@@ -12,6 +12,7 @@ Feature: Store Replenishment order
     When I generate move task lists for all tags
     Then the list ids should be generated
     Then the replenish STO should have list id,quantity to move, tagid, location details and case ratio
+    
     When I release all the tags in the move task update
     When I login as warehouse user in putty
     And I select user directed option in main menu

@@ -79,7 +79,9 @@ public class Context {
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
-	private boolean puttyLoginFlag=false;
+	private boolean puttyLoginFlag = false;
+	private String addressID;
+	private String packConfigID;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -316,15 +318,15 @@ public class Context {
 	public Map<String, Integer> getQtyReceivedPerTagMap() {
 		return qtyReceivedPerTagMap;
 	}
-	
+
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; //setCaseRatioList
+		return caseRatiolist; // setCaseRatioList
 	}
-	
+
 	public void setCaseRatioList(List<String> caseRatiolist) {
 		this.caseRatiolist = caseRatiolist;
 	}
-	
+
 	public void setQtyReceivedPerTagMap(Map<String, Integer> qtyReceivedPerTagMap) {
 		this.qtyReceivedPerTagMap = qtyReceivedPerTagMap;
 	}
@@ -561,7 +563,7 @@ public class Context {
 	public void setQtyToMove(int qtyToMove) {
 		this.qtyToMove = qtyToMove;
 	}
-	
+
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
 	}
@@ -617,7 +619,7 @@ public class Context {
 	public void setReplenishmentDetailsMap(Map<Integer, Map<String, String>> replenishmentDetailsMap) {
 		this.replenishmentDetailsMap = replenishmentDetailsMap;
 	}
-	
+
 	public String getAbv() {
 		return abv;
 	}
@@ -656,5 +658,21 @@ public class Context {
 
 	public void setPuttyLoginFlag(boolean puttyLoginFlag) {
 		this.puttyLoginFlag = puttyLoginFlag;
+	}
+
+	public String getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(String addressID) {
+		this.addressID = addressID;
+	}
+
+	public String getPackConfigID() {
+		return packConfigID;
+	}
+
+	public void setPackConfigID(String packConfigID) {
+		this.packConfigID = packConfigID;
 	}
 }

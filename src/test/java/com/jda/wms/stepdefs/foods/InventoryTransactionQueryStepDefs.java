@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.InventoryTransactionDB;
 import com.jda.wms.db.InventoryDB;
+import com.jda.wms.db.InventoryTransactionDB;
 import com.jda.wms.pages.foods.InventoryTransactionQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
@@ -41,8 +41,7 @@ public class InventoryTransactionQueryStepDefs {
 	@Inject
 	public InventoryTransactionQueryStepDefs(InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			Context context, JDAFooter jdaFooter, JdaHomePage jdaHomePage, SKUMaintenancePage sKUMaintenancePage,
-			InventoryTransactionDB inventoryTransactionDB, 
-			Verification verification, InventoryDB inventoryDB) {
+			InventoryTransactionDB inventoryTransactionDB, Verification verification, InventoryDB inventoryDB) {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.context = context;
 		this.jdaFooter = jdaFooter;
@@ -323,8 +322,8 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_navigate_to_user_defined_tab() throws Throwable {
 		inventoryTransactionQueryPage.navigateToUserDefinedTab();
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 
 	/*
 	 * @Then("^the ABV should be displayed$") public void
@@ -388,7 +387,7 @@ public class InventoryTransactionQueryStepDefs {
 		for (String tagId : locationForTagMap.keySet()) {
 			HashMap<String, String> inventoryTransactionDBDetails = inventoryTransactionDB
 					.getInventoryTransactionDetails(tagId, "Putaway");
-			
+
 			String fromLocation = inventoryTransactionDBDetails.get("From Location");
 			if (!fromLocation.equals("REC002")) {
 				failureList.add("From Location not displayed as expected for " + tagId + ". Expected [REC002] but was ["
@@ -424,7 +423,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.clickSettings2Tab();
 	}
 
-	@Then("^the URN child should be updated with tag id$") 
+	@Then("^the URN child should be updated with tag id$")
 	public void the_URN_child_should_be_update_with_tag_id() throws Throwable {
 		Assert.assertEquals("URN Child is not as expected.", inventoryTransactionQueryPage.getTagId(),
 				inventoryTransactionQueryPage.getURNChild());
@@ -483,8 +482,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query user defined details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 
 	/*
 	 * @Then(
@@ -803,8 +802,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory transaction query miscellaneous2 tab details are not as expected."
 				+ Arrays.asList(failureList.toString()), failureList.isEmpty());
 	}
-	
-	//TODO to be removed
+
+	// TODO to be removed
 	/*
 	 * @Then(
 	 * "^the originator, originator reference, CE consignment id, document date, document time should be displayed for BWS$"
@@ -1069,50 +1068,48 @@ public class InventoryTransactionQueryStepDefs {
 
 		verification.verifyData("FromStatus", "Complete", inventoryDB.getFromStatus(reference, notes), failureList);
 		verification.verifyData("ToStatus", "Shipped", inventoryDB.getToStatus(reference, notes), failureList);
-		verification.verifyData("UploadedDate", "Not NULL", inventoryDB.getUploadedDate(reference,  notes),
-				failureList);
+		verification.verifyData("UploadedDate", "Not NULL", inventoryDB.getUploadedDate(reference, notes), failureList);
 		if (inventoryDB.getUploadedFileName(reference, notes) != null) {
 			verification.verifyData("Uploaded", "Y", inventoryDB.getUploaded(reference, notes), failureList);
 		} else {
 			verification.verifyData("Uploaded", "N", inventoryDB.getUploaded(reference, notes), failureList);
 		}
 
-		verification.verifyData("DwsPalletRef", "Not NULL", inventoryDB.getDwsPalletRef(reference, notes),
+		verification.verifyData("DwsPalletRef", "Not NULL", inventoryDB.getDwsPalletRef(reference, notes), failureList);
+		verification.verifyData("IntoDestinationDate", "Not NULL", inventoryDB.getIntoDestinationDate(reference, notes),
 				failureList);
-		verification.verifyData("IntoDestinationDate", "Not NULL",
-				inventoryDB.getIntoDestinationDate(reference, notes), failureList);
-		verification.verifyData("IfosOrderNum", "Not NULL", inventoryDB.getIfosOrderNum(reference, notes),
-				failureList);
+		verification.verifyData("IfosOrderNum", "Not NULL", inventoryDB.getIfosOrderNum(reference, notes), failureList);
 
 		Assert.assertTrue(
 				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
-	
+
 	@Then("^quantity and location details should be updated for all tags$")
 	public void quantity_and_location_details_should_be_updated_for_all_tags() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		listIDMap = context.getListIDMap();
-		String dstamp = DateUtils.getCurrentSystemDateInDBFormat();
-		for (int i = 1; i <= context.getListIDMap().size(); i++) {
-		String tagID = listIDMap.get(i).get("ListID");
-//		String tagID = "1000000062";
-//		context.setToLocation("AA53A02");
-//		context.setFinalLocation("AA53A02");
-//		context.setQtyToMove(960);
-		verification.verifyData("From Location", context.getLocation(), inventoryTransactionDB.getlocation("REPLENISH",tagID,dstamp),
-				failureList);
-		verification.verifyData("To Location", context.getToLocation(), inventoryTransactionDB.getToLocation("REPLENISH",tagID,dstamp),
-				failureList);
-		verification.verifyData("Final Location", context.getFinalLocation(), inventoryTransactionDB.getFinalLocation("REPLENISH",tagID,dstamp),
-				failureList);
-		verification.verifyData("Update QTY", String.valueOf(context.getQtyToMove()), inventoryTransactionDB.getUpdateQty("REPLENISH",tagID,dstamp),
-				failureList);
-		Assert.assertTrue(
-				"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
-				failureList.isEmpty());
-	}
-	}
-		
-	}
 
+		listIDMap = context.getListIDMap();
+		String dateStamp = DateUtils.getCurrentSystemDateInDBFormat();
+
+		for (int i = 1; i <= context.getListIDMap().size(); i++) {
+			String tagID = listIDMap.get(i).get("ListID");
+			// context.setToLocation("AB03A02");
+			// context.setFinalLocation("AB06E01");
+			// context.setQtyToMove(240);
+
+			verification.verifyData("From Location", context.getLocation(),
+					inventoryTransactionDB.getlocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("To Location", context.getToLocation(),
+					inventoryTransactionDB.getToLocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("Final Location", context.getFinalLocation(),
+					inventoryTransactionDB.getFinalLocation("REPLENISH", tagID, dateStamp), failureList);
+			verification.verifyData("Update QTY", String.valueOf(context.getQtyToMove()),
+					inventoryTransactionDB.getUpdateQty("REPLENISH", tagID, dateStamp), failureList);
+
+			Assert.assertTrue(
+					"Inventory transaction query details are not as expected." + Arrays.asList(failureList.toString()),
+					failureList.isEmpty());
+		}
+	}
+}

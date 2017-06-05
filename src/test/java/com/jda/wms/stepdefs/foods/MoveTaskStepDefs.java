@@ -39,22 +39,21 @@ public class MoveTaskStepDefs {
 	@Given("^the tagid, quantity to move details should be displayed for the sku \"([^\"]*)\" with \"([^\"]*)\" tasks$")
 	public void the_tagid_quantity_to_move_details_should_be_displayed_for_the_sku_with_tasks(String sku, String taskId)
 			throws Throwable {
-		context.setSkuId(sku);
-		context.setOrderId(taskId);
 		ArrayList<String> qtyToMove = new ArrayList<String>();
 		ArrayList<String> tagID = new ArrayList<String>();
+		Map<Integer, Map<String, String>> replenishmentDetailsMap = new HashMap<Integer, Map<String, String>>();
 
+		context.setSkuId(sku);
 		context.setTaskId(taskId);
 		qtyToMove = moveTaskDB.getReplenishQtyToMoveList(sku);
 		tagID = moveTaskDB.getReplenishTagIDList(sku);
-
-		Map<Integer, Map<String, String>> replenishmentDetailsMap = new HashMap<Integer, Map<String, String>>();
 
 		for (int i = 0; i < tagID.size(); i++) {
 			HashMap<String, String> listDetailsMap = new HashMap<String, String>();
 			listDetailsMap.put("QtyToMove", qtyToMove.get(i));
 			listDetailsMap.put("TagID", tagID.get(i));
 			listDetailsMap.put("ListID", "");
+			// FIXME why does key contains serial sequence number in the map?
 			replenishmentDetailsMap.put(i + 1, listDetailsMap);
 		}
 		context.setReplenishmentDetailsMap(replenishmentDetailsMap);
@@ -62,12 +61,18 @@ public class MoveTaskStepDefs {
 
 	@Then("^the list ids should be generated$")
 	public void the_list_ids_should_be_generated() throws Throwable {
-		replenishmentDetailsMap = context.getReplenishmentDetailsMap();
 		ArrayList<String> failureList = new ArrayList<String>();
-		for (int r = 1; r < replenishmentDetailsMap.size(); r++) {
-			context.setTagId(replenishmentDetailsMap.get(r).get("TagID"));
-			context.setSkuId(replenishmentDetailsMap.get(r).get("SkuID"));
-			String listID = moveTaskDB.getListID(context.getTagId(), context.getSkuId());
+
+		replenishmentDetailsMap = context.getReplenishmentDetailsMap();
+
+		for (int r = 1; r <= replenishmentDetailsMap.size(); r++) {
+			// FIXME this context contains only last value of tag id and sku id
+			// in the context, why do you need this?
+			// context.setTagId(replenishmentDetailsMap.get(r).get("TagID"));
+			// context.setSkuId(replenishmentDetailsMap.get(r).get("SkuID"));
+			String listID = moveTaskDB.getListID(replenishmentDetailsMap.get(r).get("TagID"),
+					replenishmentDetailsMap.get(r).get("SkuID"));
+
 			if (listID.equals(null)) {
 				failureList.add("List ID not displayed as expected for Tag " + context.getTagId()
 						+ " Expected [NOT Null] but was " + listID);
@@ -181,10 +186,6 @@ public class MoveTaskStepDefs {
 	@Then("^the replenish STO should have list id,quantity to move, tagid, location details and case ratio$")
 	public void the_replenish_STO_should_have_list_id_quantity_to_move_tagid_location_details_and_case_ratio()
 			throws Throwable {
-//		// ---------------
-//		context.setOrderId("REPLENISH ");
-//		context.setSkuId("21106905");
-
 		ArrayList<String> failureList = new ArrayList<String>();
 		Map<Integer, Map<String, String>> listIDMap = new HashMap<Integer, Map<String, String>>();
 		ArrayList<String> listIDList = new ArrayList<String>();
@@ -195,24 +196,23 @@ public class MoveTaskStepDefs {
 		ArrayList<String> tagIDList = new ArrayList<String>();
 
 		listIDList = moveTaskDB.getReplenishListId(context.getSkuId());
-		
-		for (int l = 0; l < listIDList.size(); l++) {
-			if (listIDList.get(l) == null) {
-				failureList.add("List ID not generated as expected : List id " + l + "is null");
+
+		for (int j = 0; j < listIDList.size(); j++) {
+			if (null == listIDList.get(j)) {
+				failureList.add("List ID not generated as expected : List id " + j + "is null");
 			}
 		}
+
 		Assert.assertTrue("List ID not generated as expected.[" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 
 		qtyToMoveList = moveTaskDB.getReplenishQtyToMoveList(context.getSkuId());
-		System.out.println(qtyToMoveList);
 		tagIDList = moveTaskDB.getReplenishTagIDList(context.getSkuId());
 		locationList = moveTaskDB.getReplenishLocationList(context.getSkuId());
 		toLocationList = moveTaskDB.getReplenishToLocationList(context.getSkuId());
 		finalLocationList = moveTaskDB.getReplenishFinalLocationList(context.getSkuId());
 
-		String packConfig = moveTaskDB.getPackConfig(context.getSkuId());
-		context.setCaseRatio(Integer.parseInt(skuConfigDB.getRatio1To2(packConfig)));
+		context.setCaseRatio(Integer.parseInt(skuConfigDB.getRatio1To2(moveTaskDB.getPackConfig(context.getSkuId()))));
 
 		for (int i = 0; i < listIDList.size(); i++) {
 			Map<String, String> listDetailsMap = new HashMap<String, String>();
