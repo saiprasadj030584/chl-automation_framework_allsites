@@ -15,12 +15,12 @@ public class JDAFooter {
 	public JDAFooter() {
 	}
 
-	// public void clickOrderHeaderFooterButton() throws FindFailed,
-	// InterruptedException {
-	// screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
-	// screen.click("images/OrderHeaderFooter.png");
-	// Thread.sleep(3000);
-	// }
+	 public void clickOrderHeaderFooterButton() throws FindFailed,
+	 InterruptedException {
+	 screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
+	 screen.click("images/OrderHeaderFooter.png");
+	 Thread.sleep(3000);
+	 }
 
 	public void clickQueryButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
