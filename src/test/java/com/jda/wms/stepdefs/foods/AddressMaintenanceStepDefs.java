@@ -73,6 +73,14 @@ public class AddressMaintenanceStepDefs {
 		addressMaintenancePage.clickCustomsExciseTab();
 	}
 
+	@Then("^the CE & warehouse type should be displayed$")
+	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
+		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
+		Assert.assertNotNull(
+				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
+				ceWarehouseType);
+	}
+
 	@Then("^the CE & warehouse type should be displayed as Excise$")
 	public void the_CE_warehouse_type_should_be_displayed_as_excise() throws Throwable {
 		String ceWarehouseType = addressMaintenancePage.getCEWarehouseType();
@@ -176,14 +184,6 @@ public class AddressMaintenanceStepDefs {
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
 
-		/*
-		 * String defaultSupplierPallet =
-		 * addressDbDetails.get("DefaultSupplierPallet"); if
-		 * (!defaultSupplierPallet.equals("CHEP")) { failureList.add(
-		 * "Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
-		 * + defaultSupplierPallet + "]"); }
-		 */
-
 		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
 		if (!ceWarehouseType.equals("E")) {
 			failureList.add("CE & Warehouse type should not be null. Expected ['E'stands for Excise] but was ["
@@ -222,16 +222,6 @@ public class AddressMaintenanceStepDefs {
 				failureList);
 		Assert.assertTrue("Address details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-	}
-
-	@Then("^the CE warehouse type should be displayed$")
-
-	public void the_CE_warehouse_type_should_be_displayed() throws Throwable {
-		String ceWarehouseType = addressMaintenanceDB.getCEWarehouseType(context.getAddressID());
-		Assert.assertNotNull(
-				"CE & Warehouse type should not be null. Expected [Not Null] but was [" + ceWarehouseType + "]",
-				ceWarehouseType);
-
 	}
 
 	@Then("^the  site category should be displayed ,site flag should be updated as site$")

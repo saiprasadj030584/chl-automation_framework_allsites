@@ -40,6 +40,16 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
+	public String getVintage(String skuID) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_3 from SKU where sku_id = '" + skuID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public String getProductgroup(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -182,11 +192,6 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	// //public String getSupplierSKUId() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-
 	public String getSAPCreationStatus(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -196,5 +201,4 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
 }

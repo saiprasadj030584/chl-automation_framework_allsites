@@ -19,8 +19,7 @@ Feature: Store Tracking order
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
-
-    #Then the receipt should be generated for the order in inventory transaction table
+    Then the shipping manifest should be generated
     Examples: 
       | OrderId    |
       | 8800004368 |
@@ -41,6 +40,7 @@ Feature: Store Tracking order
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
+    Then the shipping manifest should be generated
 
     Examples: 
       | OrderId    |
@@ -62,7 +62,7 @@ Feature: Store Tracking order
     Then I should be directed to pick entry page
     When I pick all the list ids for the store tracking order
     Then I should see the picking completion
-    Then the receipt should be generated for the order in inventory transaction table
+    Then the shipping manifest should be generated
 
     Examples: 
       | OrderId    |

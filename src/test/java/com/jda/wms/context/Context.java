@@ -64,12 +64,13 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
-	private String bookingID;
+	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
 	private Connection connection = null;
+	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
 	private String palletID;
@@ -82,6 +83,9 @@ public class Context {
 	private boolean puttyLoginFlag = false;
 	private String addressID;
 	private String packConfigID;
+	private String dockSchedulerNotes;
+	private String[] dockSchedulerBookingIDList;
+	private String stoType;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -573,15 +577,23 @@ public class Context {
 	}
 
 	public void setBookingID(String bookingID) {
-		this.bookingID = bookingID;
+		this.dockSchedulerBookingID = bookingID;
 	}
 
 	public String getBookingID() {
-		return bookingID;
+		return dockSchedulerBookingID;
 	}
 
 	public void setSTOConsignment(String consignment) {
 		this.consignment = consignment;
+	}
+
+	public String getABVPercentage() {
+		return abvPercentage;
+	}
+
+	public void setABVPercentage(String abvPercentage) {
+		this.abvPercentage = abvPercentage;
 	}
 
 	public String getSTOConsignment() {
@@ -674,5 +686,29 @@ public class Context {
 
 	public void setPackConfigID(String packConfigID) {
 		this.packConfigID = packConfigID;
+	}
+	
+	public void setDockSchedulerNotes(String dockSchedulerNotes) {
+		this.dockSchedulerNotes = dockSchedulerNotes;
+	}
+
+	public String getDockSchedulerNotes() {
+		return dockSchedulerNotes;
+	}
+	
+	public String[] getDockSchedulerBookingID() {
+		return dockSchedulerBookingIDList;
+	}
+
+	public void setDockSchedulerBookingID(String[] dockSchedulerBookingIDList) {
+		this.dockSchedulerBookingIDList = dockSchedulerBookingIDList;
+	}
+
+	public String getStoType() {
+		return stoType;
+	}
+
+	public void setStoType(String stoType) {
+		this.stoType = stoType;
 	}
 }
