@@ -139,7 +139,7 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 		return rs.getString(1);
 	}
 	
-		public String getcaseRatio(String tagId) throws ClassNotFoundException, SQLException {
+		public String getCaseRatio(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

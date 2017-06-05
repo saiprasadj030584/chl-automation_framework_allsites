@@ -92,7 +92,7 @@ public class InventoryQueryStepDefs {
 		// context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
-		String caseRatio = inventoryQueryDB.getcaseRatio(tagId);
+		String caseRatio = inventoryQueryDB.getCaseRatio(tagId);
 		// context.setCaseRatio(caseRatio);
 		logger.debug("Case Ratio: " + caseRatio);
 
@@ -307,7 +307,7 @@ public class InventoryQueryStepDefs {
 		context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
-		String caseRatio = inventoryQueryDB.getcaseRatio(tagId);
+		String caseRatio = inventoryQueryDB.getCaseRatio(tagId);
 		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
 		logger.debug("Case Ratio: " + caseRatio);
 	}
