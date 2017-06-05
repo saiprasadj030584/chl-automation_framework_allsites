@@ -114,6 +114,7 @@ public class JDAFooter {
 
 	public void clickSearch() throws FindFailed, InterruptedException {
 		clickNextButton();
+		Thread.sleep(1000);
 	}
 
 	public void pressTab() throws InterruptedException {

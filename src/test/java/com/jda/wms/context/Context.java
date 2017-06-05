@@ -64,7 +64,7 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
-	private String bookingID;
+	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
 	private int pickedRecords;
@@ -80,6 +80,8 @@ public class Context {
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
+	private String dockSchedulerNotes;
+	private String[] dockSchedulerBookingIDList;
 	private String stoType;
 
 	public RDTTask getCurrentTask() {
@@ -572,11 +574,11 @@ public class Context {
 	}
 
 	public void setBookingID(String bookingID) {
-		this.bookingID = bookingID;
+		this.dockSchedulerBookingID = bookingID;
 	}
 
 	public String getBookingID() {
-		return bookingID;
+		return dockSchedulerBookingID;
 	}
 
 	public void setSTOConsignment(String consignment) {
@@ -657,6 +659,22 @@ public class Context {
 
 	public void setContainerId(String containerId) {
 		this.containerId = containerId;
+	}
+	
+	public void setDockSchedulerNotes(String dockSchedulerNotes) {
+		this.dockSchedulerNotes = dockSchedulerNotes;
+	}
+
+	public String getDockSchedulerNotes() {
+		return dockSchedulerNotes;
+	}
+	
+	public String[] getDockSchedulerBookingID() {
+		return dockSchedulerBookingIDList;
+	}
+
+	public void setDockSchedulerBookingID(String[] dockSchedulerBookingIDList) {
+		this.dockSchedulerBookingIDList = dockSchedulerBookingIDList;
 	}
 
 	public String getStoType() {
