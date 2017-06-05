@@ -88,7 +88,7 @@ public class KitLineMaintenanceStepDefs {
 	@Then("^the kit line details should be displayed$")
 	public void the_kit_line_details_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		verification.verifyData(" kitId", "Not Null", kitLineMaintenanceDB.getkitId(context.getSkuId()), failureList);
+		verification.verifyData(" kitId", "Not Null", kitLineMaintenanceDB.getKitId(context.getSkuId()), failureList);
 		verification.verifyData(" Kit Quantity", "Not Null", kitLineMaintenanceDB.getKitQuantity(context.getSkuId()),
 				failureList);
 		verification.verifyData(" Kit Line ID ", "Not Null", kitLineMaintenanceDB.getKidLineID(context.getSkuId()),

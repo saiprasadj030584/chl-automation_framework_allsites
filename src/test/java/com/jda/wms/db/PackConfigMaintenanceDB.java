@@ -51,7 +51,7 @@ public class PackConfigMaintenanceDB {
 		return rs.getString(1);
 	}
 
-	public String getIsVolumeAtEachchecked(String packConfigID) throws SQLException, ClassNotFoundException {
+	public String getIsVolumeAtEachChecked(String packConfigID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -99,7 +99,7 @@ public class PackConfigMaintenanceDB {
 		return rs.getString(1);
 	}
 
-	public String getrdtTrackingLevel1(String packConfigID) throws SQLException, ClassNotFoundException {
+	public String getRdtTrackingLevel1(String packConfigID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -111,7 +111,7 @@ public class PackConfigMaintenanceDB {
 		return rs.getString(1);
 	}
 
-	public String getrdtTrackingLevel2(String packConfigID) throws SQLException, ClassNotFoundException {
+	public String getRdtTrackingLevel2(String packConfigID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

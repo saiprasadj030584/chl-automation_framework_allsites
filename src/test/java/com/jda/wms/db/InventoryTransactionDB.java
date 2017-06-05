@@ -213,7 +213,7 @@ public class InventoryTransactionDB {
 		return referenceIdList;
 	}
 	
-	public String getlocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+	public String getLocation(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

@@ -50,7 +50,7 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	public String getProductgroup(String skuId) throws SQLException, ClassNotFoundException {
+	public String getProductGroup(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -76,16 +76,6 @@ public class SkuDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPC from sku where sku_id = '" + skuId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getAllocatioGroup(String skuId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select  allocation_group from sku where sku_id  = '" + skuId + "'");
 		rs.next();
 		return rs.getString(1);
 	}

@@ -121,7 +121,7 @@ public class PackConfigMaintenanceStepDefs {
 		verification.verifyData("Tag volume", "Not Null",
 				packConfigMaintenanceDB.getTagvolume(context.getPackConfigID()), failureList);
 		verification.verifyData("Volume at each", "Y",
-				packConfigMaintenanceDB.getIsVolumeAtEachchecked(context.getPackConfigID()), failureList);
+				packConfigMaintenanceDB.getIsVolumeAtEachChecked(context.getPackConfigID()), failureList);
 		Assert.assertTrue("Pack Config general details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
 	}
@@ -146,9 +146,9 @@ public class PackConfigMaintenanceStepDefs {
 	public void the_RDT_tracking_levels_and_should_be_displayed(int arg1, int arg2) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData(" rdtTrackingLevel1", "E",
-				packConfigMaintenanceDB.getrdtTrackingLevel1(context.getPackConfigID()), failureList);
+				packConfigMaintenanceDB.getRdtTrackingLevel1(context.getPackConfigID()), failureList);
 		verification.verifyData(" rdtTrackingLevel2", "C",
-				packConfigMaintenanceDB.getrdtTrackingLevel2(context.getPackConfigID()), failureList);
+				packConfigMaintenanceDB.getRdtTrackingLevel2(context.getPackConfigID()), failureList);
 		Assert.assertTrue(
 				"Pack Config RDT Tracking Levels details are not as expected." + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());

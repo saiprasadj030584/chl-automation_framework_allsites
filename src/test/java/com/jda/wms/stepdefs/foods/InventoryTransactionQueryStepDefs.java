@@ -1107,7 +1107,7 @@ public class InventoryTransactionQueryStepDefs {
 			// context.setQtyToMove(240);
 
 			verification.verifyData("From Location", context.getLocation(),
-					inventoryTransactionDB.getlocation("REPLENISH", tagID, dateStamp), failureList);
+					inventoryTransactionDB.getLocation("REPLENISH", tagID, dateStamp), failureList);
 			verification.verifyData("To Location", context.getToLocation(),
 					inventoryTransactionDB.getToLocation("REPLENISH", tagID, dateStamp), failureList);
 			verification.verifyData("Final Location", context.getFinalLocation(),

@@ -18,7 +18,7 @@ public class KitLineMaintenanceDB {
 
 	}
 
-	public String getkitId(String skuId) throws SQLException, ClassNotFoundException {
+	public String getKitId(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
