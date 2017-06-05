@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.core.Logger;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.hooks.Hooks;
+import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
@@ -32,14 +34,16 @@ public class PurchaseOrderReceivingStepDefs {
 	private boolean puttyFlag = true;
 	ArrayList<String> failureList = new ArrayList<String>();
 	private Hooks hooks;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
-			PuttyFunctionsPage puttyFunctionsPage, Hooks hooks) {
+			PuttyFunctionsPage puttyFunctionsPage, Hooks hooks, JDAFooter jDAFooter) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.hooks = hooks;
+		this.jDAFooter = jDAFooter;
 	}
 
 	@Given("^I want to receive the purchase order$")
@@ -297,8 +301,6 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue("Receive not completed and Home page not displayed.",
 				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
 		Thread.sleep(5000);
-		Assert.assertTrue("Receive not completed and Home page not displayed.["
-				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
 	@When("^I receive all the skus for the purchase order at location \"([^\"]*)\"$")
@@ -498,7 +500,7 @@ public class PurchaseOrderReceivingStepDefs {
 				the_pre_advice_id_and_supplier_id_should_be_displayed_in_the_pre_advice_page();
 				i_enter_the_location_and_tag(context.getLocation());
 				i_enter_the_quantity_to_receive_and_case_ratio();
-				purchaseOrderReceivingPage.pressTab();
+				jDAFooter.pressTab();
 				i_enter_the_ABV_details();
 				i_enter_the_expiry_details();
 
@@ -518,8 +520,8 @@ public class PurchaseOrderReceivingStepDefs {
 		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 			String expDate = DateUtils.getAddedSystemYear();
 			context.setFutureExpiryDate(expDate);
-			purchaseOrderReceivingPage.pressTab();
-			purchaseOrderReceivingPage.pressTab();
+			jDAFooter.pressTab();
+			jDAFooter.pressTab();
 			purchaseOrderReceivingPage.enterExpiryDate(expDate);
 			Thread.sleep(10000);
 		}
@@ -531,7 +533,7 @@ public class PurchaseOrderReceivingStepDefs {
 			purchaseOrderReceivingPage.enterABV(context.getABV());
 			puttyFunctionsPage.nextScreen();
 		} else if (context.getProductCategory().contains("Ambient")) {
-			purchaseOrderReceivingPage.pressTab();
+			jDAFooter.pressTab();
 			Thread.sleep(10000);
 			puttyFunctionsPage.nextScreen();
 		}
@@ -541,9 +543,9 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_the_vintage_details() throws Throwable {
 		if (context.getProductCategory().contains("BWS")) {
 			purchaseOrderReceivingPage.enterVintage(context.getVintage());
-			purchaseOrderReceivingPage.pressTab();
+			jDAFooter.pressTab();
 		} else if (context.getProductCategory().contains("Ambient")) {
-			purchaseOrderReceivingPage.pressTab();
+			jDAFooter.pressTab();
 			Thread.sleep(10000);
 		}
 	}
