@@ -9,8 +9,13 @@ Feature: Partial receive purchase order
     Given the "Ambient" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
+<<<<<<< HEAD
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and vintage details for selected pre-advice line item
+    When I have logged in as warehouse user in Putty
+=======
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item
     When I have logged in as warehouse user in putty
+>>>>>>> 5f66f8234417bc0fb46aefcef584229ae7e4355e
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page
@@ -30,7 +35,7 @@ Feature: Partial receive purchase order
     Given the "BWS-Bonded" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
-    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and Vintage details for selected pre-advice line item
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and vintage details for selected pre-advice line item
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment
@@ -54,8 +59,13 @@ Feature: Partial receive purchase order
     Given the "BWS-Non-Bonded" category  PO "<PreAdviceID>" in "Released" status with more than one line items and have future due date, site id, number of lines in the pre-advice header maintenance table
     And the PO should have address details
     Then the supplier should have supplier pallet and customs excise details in the address maintenanace table
+<<<<<<< HEAD
+    And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and vintage details for selected pre-advice line item
+    When I have logged in as warehouse user in Putty
+=======
     And the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for selected pre-advice line item
     When I have logged in as warehouse user in putty
+>>>>>>> 5f66f8234417bc0fb46aefcef584229ae7e4355e
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page

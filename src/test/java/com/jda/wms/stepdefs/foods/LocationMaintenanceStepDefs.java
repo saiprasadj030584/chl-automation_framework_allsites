@@ -1,5 +1,10 @@
 package com.jda.wms.stepdefs.foods;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
 import org.junit.Assert;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
@@ -7,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.LocationMaintenancePage;
@@ -23,19 +29,22 @@ public class LocationMaintenanceStepDefs {
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
 	private final WarningPopUpPage warningPopUpPage;
+	private final LocationDB locationDB;
 	private Context context;
+	Map<String, Map<String, String>> purchaseOrderMap;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
 	public LocationMaintenanceStepDefs(WarningPopUpPage warningPopUpPage,
 			LocationMaintenancePage locationMaintenancePage, Context context, JDAFooter jdaFooter,
-			JdaHomePage jdaHomePage) {
+			JdaHomePage jdaHomePage,LocationDB locationDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.locationMaintenancePage = locationMaintenancePage;
 		this.context = context;
 		this.warningPopUpPage = warningPopUpPage;
+		this.locationDB = locationDB;
 	}
 
 	@Given("^I navigate to Location Maintenance Page$")
@@ -76,5 +85,25 @@ public class LocationMaintenanceStepDefs {
 
 		Assert.assertEquals("REC Lane location lock status not changed as expected.", context.getlocationLockStatus(),
 				currentLockStatus);
+	}
+	
+	@Given("^I get the reserve location to putaway the stock$")
+	public void I_get_the_reserve_location_to_putaway_the_stock() throws Throwable {
+		Map<String, String> putawayLocationMap = new HashMap<String, String>();
+		String location = null;
+
+		List<String> locationList = locationDB.getLocation();
+		purchaseOrderMap = context.getPurchaseOrderMap();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+			location = locationList.get(new Random().nextInt(locationList.size()));
+
+			if (putawayLocationMap.containsValue(location)) {
+				location = locationList.get(new Random().nextInt(locationList.size()));
+			}
+			putawayLocationMap.put(skuID, location);
+		}
+		context.setPutawayLocationMap(putawayLocationMap);
 	}
 }

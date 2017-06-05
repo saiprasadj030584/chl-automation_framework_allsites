@@ -44,16 +44,31 @@ public class MoveTaskUpdateStepDefs {
 	public void i_release_all_the_tags_for_the_SKU_in_the_move_task_update() throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = context.getPurchaseOrderMap();
 		Map<String, ArrayList<String>> tagIDMap = context.getTagIDMap();
+		System.out.println(tagIDMap);
 
 		for (String key : purchaseOrderMap.keySet()) {
 			String sku = purchaseOrderMap.get(key).get("SKU");
 
 			for (int t = 0; t < tagIDMap.get(sku).size(); t++) {
+				System.out.println(tagIDMap.get(sku).get(t));
 				moveTaskUpdateDB.releaseTagId(tagIDMap.get(sku).get(t));
 			}
 		} 
 	}
 	
+	@When("^I release single tag for the SKU in the move task update$")
+	public void i_release_single_tag_for_the_SKU_in_the_move_task_update() throws Throwable {
+		Map<String, Map<String, String>> purchaseOrderMap = context.getPurchaseOrderMap();
+		Map<String, ArrayList<String>> tagIDMap = context.getTagIDMap();
+
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			System.out.println(tagIDMap.get(sku).get(0));
+			moveTaskUpdateDB.releaseTagId(tagIDMap.get(sku).get(0));
+			break;
+		}
+		}
+
 	@When("^I release all the tags in the move task update$")
 	public void i_release_all_the_tags_in_the_move_task_update() throws Throwable {
 		Map<Integer, Map<String, String>> listIDMap  = context.getListIDMap();

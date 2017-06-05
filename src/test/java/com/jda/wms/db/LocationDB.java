@@ -1,8 +1,10 @@
 package com.jda.wms.db;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,5 +44,24 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
+	} 
+	
+	public ArrayList<String> getLocation() throws SQLException, ClassNotFoundException {
+		ArrayList<String> locationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from location where zone_1 LIKE 'A%RESV'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				locationList.add((rs.getString(j)));
+			}
+		}
+		return locationList;
 	}
 }

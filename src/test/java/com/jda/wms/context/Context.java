@@ -77,6 +77,7 @@ public class Context {
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
+	private Map<String, String> pickFaceMap;
 	private String taskId;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
@@ -472,14 +473,6 @@ public class Context {
 		this.location = location;
 	}
 
-	public ArrayList<String> getFailureList() {
-		return failureList;
-	}
-
-	public void setFailureList(ArrayList<String> failureList) {
-		this.failureList = failureList;
-	}
-
 	public Connection getConnection() {
 		return connection;
 	}
@@ -572,6 +565,22 @@ public class Context {
 		this.trailerNo = trailerNo;
 	}
 
+	public ArrayList<String> getFailureList() {
+		return failureList;
+	}
+
+	public void setFailureList(ArrayList<String> failureList) {
+		this.failureList = failureList;
+	}
+	
+	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
+		this.pickFaceMap = pickFaceMap;
+	}
+
+	public Map<String, String> getPutawayLocationMap() {
+		return pickFaceMap;
+	}
+	
 	public String getTrailerNo() {
 		return trailerNo;
 	}

@@ -65,6 +65,7 @@ public class PurchaseOrderReceivingPage {
 		screen.type(skuID);
 		Thread.sleep(2000);
 		screen.type(Key.ENTER);
+		Thread.sleep(10000);
 	}
 
 	public String getPreAdvId() throws FindFailed, InterruptedException {
