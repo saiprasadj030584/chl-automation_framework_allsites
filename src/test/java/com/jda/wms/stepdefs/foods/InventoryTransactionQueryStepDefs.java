@@ -401,16 +401,17 @@ public class InventoryTransactionQueryStepDefs {
 			}
 
 			String uploadedStatus = inventoryTransactionDBDetails.get("Uploaded Status");
-			if (!uploadedStatus.equals("Y")) {
+			if (!"Y".equals(uploadedStatus)) {
 				failureList.add("Uploaded status not displayed as expected for " + tagId + ". Expected [Y] but was "
 						+ uploadedStatus + "]");
 			}
 
 			String uploadedFileName = inventoryTransactionDBDetails.get("Uploaded File Name");
-			if (!uploadedFileName.contains("I0809itl")) {
+			System.out.println(uploadedFileName);
+			if (!uploadedFileName.contains("I0809itlext")) {
 				failureList.add("Uploaded File Name not displayed as expected for " + tagId
-						+ ". Expected [I0809] but was [" + uploadedFileName + "]");
-			}
+						+ ". Expected [I0809itlext] but was [" + uploadedFileName + "]");
+			} 
 		}
 
 		Assert.assertTrue("Inventory transanction details not displayed as expected. ["
@@ -991,7 +992,54 @@ public class InventoryTransactionQueryStepDefs {
 			}
 		}
 	}
+	
+	@Then("^the \"([^\"]*)\" itl should be updated in inventory transaction table$")
+	public void the_itl_should_be_updated_in_inventory_transaction_table(String code) throws Throwable {
+		purchaseOrderMap = context.getPurchaseOrderMap();
+		tagIDMap = context.getTagIDMap();
 
+		for (String key : purchaseOrderMap.keySet()) {
+			String sku = purchaseOrderMap.get(key).get("SKU");
+			context.setSkuId(sku);
+			context.setAllocationGroup(purchaseOrderMap.get(key).get("Allocation Group"));
+
+			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
+				context.setTagId(tagIDMap.get(sku).get(s));
+
+				ArrayList<String> failureList = new ArrayList<String>();
+				HashMap<String, String> InventoryTransactionDbDetails = inventoryTransactionDB
+						.getInventoryTransactionInvLock(context.getTagId(), code);
+
+				String lockCode = InventoryTransactionDbDetails.get("Lock Code");
+
+				if (!lockCode.equals("NV")) {
+					failureList.add("Lock Code is not as expected for" + context.getTagId() + ".Expected [NV] but was ["
+							+ lockCode + "]");
+				}
+
+				String lockStatus = InventoryTransactionDbDetails.get("Lock Status");
+
+				if (!lockStatus.equals("Locked")) {
+					failureList.add("Lock Code is not as expected for" + context.getTagId()
+							+ ".Expected [Locked] but was [" + lockStatus + "]");
+				}
+				
+				String uploaded = InventoryTransactionDbDetails.get("Uploaded Status");
+				String uploadedFileName = InventoryTransactionDbDetails.get("Uploaded File Name");
+				if ((uploaded.equals("Y")) || (uploaded.equalsIgnoreCase("Yes"))) {
+					if (!uploadedFileName.contains("I0809itlext")) {
+						failureList.add("Upload file name is not as expected for " + context.getTagId()
+						+ ".Expected [I0809itl] but was [" + uploadedFileName + "]");
+					}
+				}
+
+				Assert.assertTrue("Itl details  are not as expected for" + Arrays.asList(failureList.toString()),
+						failureList.isEmpty());
+
+			}
+		}
+	} 
+	
 	@Then("^the goods receipt should be generate for the received stock in inventory transaction table$")
 	public void the_goods_receipt_should_be_generate_for_the_received_stock_in_inventory_transaction_table()
 			throws Throwable {

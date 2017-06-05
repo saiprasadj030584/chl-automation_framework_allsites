@@ -88,7 +88,8 @@ Feature: Purchase order
     And I logout the putty
     Then the inventory details should be displayed for all the tag ids
     And the status should be displayed as "Complete"
-    Then the goods receipt should be generate for the received stock in inventory transaction table
+    Then the goods receipt should be generate for the received stock in inventory transaction table 
+    #And the "Inventory Lock" itl should be updated in inventory transaction table
 
     Examples: 
       | PreAdviceID | Location |
