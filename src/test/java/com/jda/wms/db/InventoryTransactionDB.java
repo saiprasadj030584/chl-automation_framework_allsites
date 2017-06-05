@@ -221,7 +221,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_status from inventory_transaction where tag_id='" + tagId
-				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -234,7 +234,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where tag_id='" + tagId
-				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '%" + dstamp + "'");
+				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -247,7 +247,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded_filename from inventory_transaction where tag_id='" + tagId
-				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -260,7 +260,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where tag_id='" + tagId
-				+ "' and lock_code='" + code + "' and code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+				+ "' and code='" + code + "' and lock_code='" + lockCode + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}

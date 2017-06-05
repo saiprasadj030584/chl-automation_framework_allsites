@@ -107,6 +107,7 @@ public class InventoryQueryStepDefs {
 	public void i_have_tag_id_with_the_status_in_inventory(String tagId, String status) throws Throwable {
 		context.setTagId(tagId);
 
+		System.out.println("status:" + inventoryQueryDB.getStatus(tagId));
 		String actualStatus = inventoryQueryDB.getStatus(tagId);
 		if (actualStatus.equals("Locked")) {
 			logger.debug("Status in Inventory: " + actualStatus);
@@ -194,6 +195,7 @@ public class InventoryQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		String istatus = inventoryQueryDB.getStatus(context.getTagId());
 		String actualLockCode = inventoryQueryDB.getLockCode(context.getTagId());
+		context.setLockCode(actualLockCode);
 
 		if (!istatus.equals(status)) {
 			failureList.add("Status is not updated to locked. Expected [Locked] but was [" + istatus + "]");

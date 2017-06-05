@@ -17,7 +17,7 @@ Feature: Stock adjustments
     And I choose the reason code as "<ReasonCode>"
     Then the stock adjustments home page should be displayed
     Then inventory transaction detail should have the updated quantity and uploaded filename for the "<ReasonCode>"
-    
+
     Examples: 
       | TagID      | Status   | AdjustmentType | ReasonCode           |
       | 2050004499 | Locked   | Decrement      | Damaged by Warehouse |
@@ -44,4 +44,3 @@ Feature: Stock adjustments
       | 2000160302 | Unlocked | Increment      | Stock Count          |
       | 2050004499 | Locked   | Decrement      | Returns to Supplier  |
       | 2000160302 | Unlocked | Decrement      | Returns to Supplier  |
-    

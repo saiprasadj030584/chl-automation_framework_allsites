@@ -125,7 +125,7 @@ public class InventoryQueryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("update inventory set lock_status = " + status + " where tag_id = '" + tagId + "'");
+				.executeQuery("update inventory set lock_status = '" + status + "' where tag_id = '" + tagId + "'");
 		context.getConnection().commit();
 	}
 

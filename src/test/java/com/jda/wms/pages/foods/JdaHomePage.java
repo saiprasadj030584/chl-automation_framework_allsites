@@ -211,6 +211,10 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock Adjustment");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 
 	public void clickWelcomeButton() throws FindFailed {
