@@ -149,6 +149,27 @@ public class InventoryTransactionDB {
 
 		return inventoryTransactionMap;
 	}
+	
+	public HashMap<String, String> getInventoryTransactionInvLock(String tagId, String code)
+			throws ClassNotFoundException, SQLException {
+		ResultSet resultSet = null;
+		HashMap<String, String> inventoryTransactionMap = new HashMap<String, String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		resultSet = stmt.executeQuery(
+				"Select lock_code, lock_status,uploaded,uploaded_filename from inventory_transaction where tag_id = '"+ tagId + "' and code = '" + code + "'");
+		resultSet.next();
+
+		inventoryTransactionMap.put("Lock Code", resultSet.getString(1));
+		inventoryTransactionMap.put("Lock Status", resultSet.getString(2));
+		inventoryTransactionMap.put("Uploaded Status", resultSet.getString(3));
+		inventoryTransactionMap.put("Uploaded File Name", resultSet.getString(4));
+
+		return inventoryTransactionMap;
+}
 
 	public ArrayList<String> getFromLocationForUnloading(String palletID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> fromLocationList = new ArrayList<String>();
