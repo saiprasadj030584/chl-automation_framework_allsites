@@ -52,14 +52,7 @@ public class DockSchedulerPage {
 	}
 
 	public void selectConsignment() throws FindFailed, InterruptedException {
-		// screen.wait("images/DockScheduler/Build/SiteId.png", timeoutInSec);
-		// screen.click("images/DockScheduler/Build/SiteId.png");
-		// Thread.sleep(1000);
-		// screen.doubleClick("images/DockScheduler/Build/SiteId.png");
-		// Thread.sleep(2000);
 		screen.wait("images/DockScheduler/Build/FromSiteID.png", timeoutInSec);
-		// screen.click("images/DockScheduler/Build/FromSiteID.png");
-		// Thread.sleep(2000);
 		Match mStatus = screen.find("images/DockScheduler/Build/FromSiteID.png");
 		Thread.sleep(2000);
 		screen.click(mStatus.below(10));
@@ -122,7 +115,6 @@ public class DockSchedulerPage {
 		context.setDockSchedulerNotes(trailerNo);
 		screen.wait("images/DockScheduler/Schedule/Notes.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/Notes.png");
-//		System.out.println("In notes");
 		screen.type(trailerNo);
 		Thread.sleep(2000);
 	}
