@@ -12,7 +12,7 @@ Feature: Purchase order
     When I create consignment for the supplier
     And I link the consignment to the pre-advice ID
     Then the pre-advice line items should be linked with the consignment
-    When I have logged in as warehouse user in Putty
+    When I have logged in as warehouse user in putty
     When I select user directed option in main menu
     And I receive the PO with basic and pre-advice receiving
     Then I should be directed to pre-advice entry page

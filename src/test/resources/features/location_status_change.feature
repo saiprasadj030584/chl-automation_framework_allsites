@@ -1,10 +1,10 @@
-@Location_Status_Change
+@location_status_change
 Feature: Location Status Change
   As a warehouse user
   I want to change the location status of REC lane
   So that I manage the locations effectively
 
-  @complete
+  @complete @po @location_status_change
   Scenario Outline: Change REC lane lock status
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to Location Maintenance Page

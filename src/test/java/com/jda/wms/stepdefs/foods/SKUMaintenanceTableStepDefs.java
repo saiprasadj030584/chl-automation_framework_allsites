@@ -128,8 +128,8 @@ public class SKUMaintenanceTableStepDefs {
 	 sKUMaintenancePage.navigateToSettings4();
 	 }
 	
-	 @Then("^the new product field should be displayed$")
-	 public void the_new_product_Field_should_be_displayed() throws Throwable {
+	 @Then("^the new product field should be displayed in page$")
+	 public void the_new_product_Field_should_be_displayed_in_page() throws Throwable {
 	 boolean isNewProductChecked = sKUMaintenancePage.isNewProductChecked();
 	 Assert.assertTrue("New Product is not displayed as expected. Expected [Checked] but was [Not Checked]",
 	 isNewProductChecked);
@@ -221,8 +221,8 @@ public class SKUMaintenanceTableStepDefs {
 	 sKUMaintenancePage.navigateToBatchExpiry();
 	 }
 	
-	 @Then("^the expiry required should be displayed$")
-	 public void the_expiry_required_should_be_displayed() throws Throwable {
+	 @Then("^the expiry required should be displayed in page$")
+	 public void the_expiry_required_should_be_displayed_in_page() throws Throwable {
 	 boolean isExpiryRequiredUnchecked =sKUMaintenancePage.isExpiryRequiredUnchecked();
 	
 	 if (context.getAllocationGroup().equalsIgnoreCase("NONEXPIRY")) {
@@ -241,8 +241,8 @@ public class SKUMaintenanceTableStepDefs {
 	 sKUMaintenancePage.clickUserDefined();
 	 }
 	
-	 @Then("^the base UOM, SAP creation status should be displayed$")
-	 public void the_base_UOM_SAP_creation_status_should_be_displayed() throws
+	 @Then("^the base UOM, SAP creation status should be displayed in page$")
+	 public void the_base_UOM_SAP_creation_status_should_be_displayed_in_page() throws
 	 Throwable {
 	 ArrayList<String> failureList = new ArrayList<String>();
 	
@@ -359,7 +359,7 @@ public class SKUMaintenanceTableStepDefs {
 	}
 
 	@Then("^the expiry required should be displayed$")
-	public void the_expiry_required_should_be_displayed_in_batch_expiry_tab() throws Throwable {
+	public void the_expiry_required_should_be_displayed() throws Throwable {
 		String expiryRequiredUnchecked = skuDB.ExpiryRequiredUncheckedValue(context.getSkuId());
 		if (context.getAllocationGroup().equalsIgnoreCase("NONEXPIRY")) {
 			Assert.assertEquals("Expiry Required is not displayed as expected. Expected", "N",
@@ -371,7 +371,7 @@ public class SKUMaintenanceTableStepDefs {
 	}
 
 	@Then("^the base UOM, SAP creation status should be displayed$")
-	public void the_base_UOM_SAP_creation_status_should_be_displayed_in_user_defined_tab() throws Throwable {
+	public void the_base_UOM_SAP_creation_status_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData(" base UOM ", "Not Null", skuDB.getBaseUOM(context.getSkuId()), failureList);
 

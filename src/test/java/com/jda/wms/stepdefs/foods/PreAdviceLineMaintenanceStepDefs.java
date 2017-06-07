@@ -532,25 +532,16 @@ public class PreAdviceLineMaintenanceStepDefs {
 	@Given("^the PO should have pre-advice line items$")
 	public void the_PO_should_have_pre_advice_line_items() throws Throwable {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
-		String skuId = null;
-
-		jdaHomePage.navigateToPreAdviceLineMaintenance();
-		jdaFooter.clickQueryButton();
-		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
-		jdaFooter.clickExecuteButton();
-
-		if (context.getNoOfLines() != 1) {
-			preAdviceLineMaintenancePage.selectFirstRecord();
-		}
-
-		for (int i = 1; i <= context.getNoOfLines(); i++) {
-			skuId = preAdviceLineMaintenancePage.getSkuId();
+		ArrayList skuList = new ArrayList();
+		skuList = preAdviceLineDB.getSkuId(context.getPreAdviceId());
+		
+		Assert.assertEquals("Line items does not match with SKu items", context.getNoOfLines(),skuList.size());
+		for (int i = 0; i <context.getNoOfLines(); i++) {
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
-			lineItemsMap.put("SKU", skuId);
-			purchaseOrderMap.put(String.valueOf(i), lineItemsMap);
-		}
+			lineItemsMap.put("SKU", (String) skuList.get(i));
+			purchaseOrderMap.put(String.valueOf(i+1), lineItemsMap);
+		} 
 		context.setPurchaseOrderMap(purchaseOrderMap);
-		Assert.assertNotNull("SKU is not displayed as expected. Expected [Not Null] but was [" + skuId, skuId);
 	}
 
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")

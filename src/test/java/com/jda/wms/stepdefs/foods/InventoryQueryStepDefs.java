@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.InventoryQueryDB;
+import com.jda.wms.db.InventoryDB;
 import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.foods.InventoryQueryPage;
 import com.jda.wms.pages.foods.JDAFooter;
@@ -33,20 +33,20 @@ public class InventoryQueryStepDefs {
 	private final LocationPage locationPage;
 	private final LocationDB locationDB;
 	private final Context context;
-	private final InventoryQueryDB inventoryQueryDB;
+	private final InventoryDB inventoryDB;
 	Map<String, Integer> qtyReceivedPerTagMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, ArrayList<String>> tagIDMap;
 
 	@Inject
 	public InventoryQueryStepDefs(InventoryQueryPage inventoryQueryPage, JDAFooter jdaFooter, LocationPage locationPage,
-			Context context, JdaHomePage jdaHomePage, InventoryQueryDB inventoryQueryDB, LocationDB locationDB) {
+			Context context, JdaHomePage jdaHomePage, InventoryDB inventoryDB, LocationDB locationDB) {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.locationPage = locationPage;
 		this.context = context;
-		this.inventoryQueryDB = inventoryQueryDB;
+		this.inventoryDB = inventoryDB;
 		this.locationDB = locationDB;
 	}
 
@@ -80,27 +80,27 @@ public class InventoryQueryStepDefs {
 	@Given("^I have tag id \"([^\"]*)\" with the \"([^\"]*)\" status$")
 	public void i_have_tag_id_with__the_status(String tagId, String status) throws Throwable {
 		context.setTagId(tagId);
-		String inventorySKUId = inventoryQueryDB.getInventorySKUId(tagId);
+		String inventorySKUId = inventoryDB.getInventorySKUId(tagId);
 		context.setSkuId(inventorySKUId);
 		logger.debug("SKU ID: " + inventorySKUId);
 
-		String productStatus = inventoryQueryDB.getStatus(tagId);
+		String productStatus = inventoryDB.getStatus(tagId);
 		Assert.assertEquals("Status is not displayed as expected", status, productStatus);
 		logger.debug("Inventory Query - Status: " + productStatus);
 
-		String qtyOnHandBfrAdjustment = inventoryQueryDB.getQtyOnHand(tagId);
+		String qtyOnHandBfrAdjustment = inventoryDB.getQtyOnHand(tagId);
 		// context.setqtyOnHandBfrAdjustment(qtyOnHandBfrAdjustment);
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
-		String caseRatio = inventoryQueryDB.getCaseRatio(tagId);
+		String caseRatio = inventoryDB.getCaseRatio(tagId);
 		// context.setCaseRatio(caseRatio);
 		logger.debug("Case Ratio: " + caseRatio);
 
-		String actualstatus = inventoryQueryDB.getStatus(tagId);
+		String actualstatus = inventoryDB.getStatus(tagId);
 		Assert.assertEquals("Tag id is not in unlocked status", status, actualstatus);
 		logger.debug("Status in Inventory screen : " + actualstatus);
 
-		String location = inventoryQueryDB.getLocation(tagId);
+		String location = inventoryDB.getLocation(tagId);
 		context.setLocation(location);
 		logger.debug("Status in Inventory screen : " + actualstatus);
 	}
@@ -109,14 +109,14 @@ public class InventoryQueryStepDefs {
 	public void i_have_tag_id_with_the_status_in_inventory(String tagId, String status) throws Throwable {
 		context.setTagId(tagId);
 
-		System.out.println("status:" + inventoryQueryDB.getStatus(tagId));
-		String actualStatus = inventoryQueryDB.getStatus(tagId);
+		System.out.println("status:" + inventoryDB.getStatus(tagId));
+		String actualStatus = inventoryDB.getStatus(tagId);
 		if (actualStatus.equals("Locked")) {
 			logger.debug("Status in Inventory: " + actualStatus);
-			inventoryQueryDB.updateStatus("UnLocked", tagId);
+			inventoryDB.updateStatus("UnLocked", tagId);
 		}
 
-		String location = inventoryQueryDB.getLocation(tagId);
+		String location = inventoryDB.getLocation(tagId);
 		context.setLocation(location);
 		logger.debug("Ltatus in Inventory: " + location);
 	}
@@ -194,14 +194,11 @@ public class InventoryQueryStepDefs {
 	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query$")
 	public void I_should_see_the_updated_status_and_lock_code_in_the_inventory_query(String status, String lockCode)
 			throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		String istatus = inventoryQueryDB.getStatus(context.getTagId());
-		String actualLockCode = inventoryQueryDB.getLockCode(context.getTagId());
+		String istatus = inventoryDB.getStatus(context.getTagId());
+		String actualLockCode = inventoryDB.getLockCode(context.getTagId());
 		context.setLockCode(actualLockCode);
 
-		if (!istatus.equals(status)) {
-			failureList.add("Status is not updated to locked. Expected [Locked] but was [" + istatus + "]");
-		}
+		Assert.assertEquals("Status is not displayed as expecetd", status, istatus);
 
 		switch (lockCode) {
 		case "Code Approval":
@@ -255,10 +252,6 @@ public class InventoryQueryStepDefs {
 		}
 		context.setLockCode(actualLockCode);
 		logger.debug("Lock Code: " + actualLockCode);
-
-		Assert.assertTrue(
-				"Inventory query details are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
 	}
 
 	@Given("^I have the tag id \"([^\"]*)\" with \"([^\"]*)\" status$")
@@ -293,21 +286,21 @@ public class InventoryQueryStepDefs {
 
 		logger.debug("Tag ID: " + tagId);
 
-		String inventorySKUId = inventoryQueryDB.getInventorySKUId(tagId);
+		String inventorySKUId = inventoryDB.getInventorySKUId(tagId);
 		context.setSkuId(inventorySKUId);
 		logger.debug("SKU ID: " + inventorySKUId);
 
-		String lockStatus = inventoryQueryDB.getStatus(tagId);
+		String lockStatus = inventoryDB.getStatus(tagId);
 		if (!status.equals(lockStatus)) {
-			inventoryQueryDB.updateStatus(status, tagId);
+			inventoryDB.updateStatus(status, tagId);
 		}
 		logger.debug("Inventory Query - Status: " + lockStatus);
 
-		String qtyOnHandBfrAdjustment = inventoryQueryDB.getQtyOnHand(tagId);
+		String qtyOnHandBfrAdjustment = inventoryDB.getQtyOnHand(tagId);
 		context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
 		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
-		String caseRatio = inventoryQueryDB.getCaseRatio(tagId);
+		String caseRatio = inventoryDB.getCaseRatio(tagId);
 		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
 		logger.debug("Case Ratio: " + caseRatio);
 	}
@@ -347,7 +340,7 @@ public class InventoryQueryStepDefs {
 			String location = locationForTagMap.get(tagId);
 			String locationZone = locationDB.getLocationZone(location);
 
-			HashMap<String, String> inventoryQueryDetails = inventoryQueryDB.getInventoryQueryDetails(tagId);
+			HashMap<String, String> inventoryQueryDetails = inventoryDB.getInventoryQueryDetails(tagId);
 			String inventoryLocationZone = inventoryQueryDetails.get("Location Zone");
 
 			if (!locationZone.equals(inventoryLocationZone)) {
@@ -492,7 +485,7 @@ public class InventoryQueryStepDefs {
 	@Then("^the inventory query details should be checked in inventory table$")
 	public void the_inventory_query_details_should_be_checked_in_inventory_table() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		HashMap<String, String> inventoryQueryDetails = inventoryQueryDB.getInventoryQueryDetails(context.getTagId());
+		HashMap<String, String> inventoryQueryDetails = inventoryDB.getInventoryQueryDetails(context.getTagId());
 
 		String siteId = inventoryQueryDetails.get("SiteId");
 		if (siteId.equals(null)) {
@@ -675,7 +668,7 @@ public class InventoryQueryStepDefs {
 			for (int skuIndex = 0; skuIndex < tagIDMap.get(sku).size(); skuIndex++) {
 				tagID = tagIDMap.get(sku).get(skuIndex);
 				Thread.sleep(3000);
-				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryQueryDB.getABV(tagID));
+				Assert.assertEquals("ABV is not as expected.", expectedAbv, inventoryDB.getABV(tagID));
 			}
 		}
 	}
@@ -728,7 +721,7 @@ public class InventoryQueryStepDefs {
 		// context.setToLocation("AB03A02");
 		// context.setQtyToMove(240);
 		// context.setTagId("1000000169");
-		String qtyOnHand = inventoryQueryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(),
+		String qtyOnHand = inventoryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(),
 				context.getTagId());
 		Assert.assertEquals("Qty On Hand is not updated ", String.valueOf(context.getQtyToMove()), qtyOnHand);
 	}

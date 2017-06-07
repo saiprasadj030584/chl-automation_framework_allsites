@@ -42,8 +42,8 @@ public class PickFaceMaintenanceStepDefs {
 		this.pickFaceTableDB = pickFaceTableDB;
 	}
 
-	@Given("^the location id \"([^\"]*)\" is no more eixst in the location maintenance$")
-	public void the_location_id_is_no_more_eixst_in_the_location_maintenance(String location) throws Throwable {
+	@Given("^the location id \"([^\"]*)\" is no more exist in the location maintenance$")
+	public void the_location_id_is_no_more_exist_in_the_location_maintenance(String location) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pick_face_maintenance_page();
 		jdaFooter.clickQueryButton();
 		pickFaceMaintenancPage.enterLocation(location);

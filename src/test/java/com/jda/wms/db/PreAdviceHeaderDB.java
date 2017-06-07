@@ -57,4 +57,43 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
+	public String getNumberOfLines(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPreAdviceId(String status) throws ClassNotFoundException {
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select pre_advice_id from pre_advice_header WHERE status = '" + status + "'");
+		rs.next();
+		return rs.getString(1);
+		}
+		catch(Exception e){
+			return e.getMessage();
+		}
+	}
+
+	public void updateStatus(String preAdviceId, String status) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
+		context.getConnection().commit();
+	}
 }

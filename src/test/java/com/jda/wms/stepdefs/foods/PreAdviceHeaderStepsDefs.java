@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataload.foods.DeleteDataFromDB;
+import com.jda.wms.dataload.foods.InsertDataIntoDB;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.PreAdviceHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
@@ -30,12 +32,14 @@ public class PreAdviceHeaderStepsDefs {
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private final PreAdviceHeaderDB preAdviceHeaderDB;
 	private final Database database;
+	private InsertDataIntoDB insertDataIntoDB;
+	private DeleteDataFromDB deleteDataFromDB;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(PreAdviceHeaderPage preAdviceHeaderPage, JDAFooter jdaFooter,
 			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
 			AddressMaintenancePage addressMaintenancePage, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
-			Database database) {
+			Database database,InsertDataIntoDB insertDataIntoDB,DeleteDataFromDB deleteDataFromDB) {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -43,6 +47,8 @@ public class PreAdviceHeaderStepsDefs {
 		this.context = context;
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
 		this.database = database;
+		this.insertDataIntoDB = insertDataIntoDB;
+		this.deleteDataFromDB = deleteDataFromDB;
 	}
 
 	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
@@ -95,7 +101,13 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 			String preAdviceId, String productCategory, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
+		
+		//------------Data Setup-----------
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId,productCategory);
+		
+		//------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
 
@@ -302,19 +314,34 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status$")
 	public void the_PO_should_be_status(String preAdviceId, String status) throws Throwable {
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-		jdaHomeStepDefs.i_am_on_to_pre_advice_header_maintenance_page();
-		i_search_the_pre_advice_id(preAdviceId);
+		String statusPreAdviceHeader = preAdviceHeaderDB.getStatus(preAdviceId);
+		if (!statusPreAdviceHeader.equals(status)){
+			preAdviceHeaderDB.updateStatus(preAdviceId,status);
+		}
 
-		String statusPreAdviceHeader = preAdviceHeaderPage.getStatus();
-		Assert.assertEquals(
-				"Status is not as expected. Expected [" + status + "] but was [" + statusPreAdviceHeader + "]",
-				statusPreAdviceHeader, status);
-
-		int numberOfLines = Integer.parseInt(preAdviceHeaderPage.getNumberOfLines());
+		int numberOfLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 		Assert.assertNotNull("Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
 				numberOfLines);
 		context.setNoOfLines(numberOfLines);
+	}
+	
+	@Given("^a PO should be \"([^\"]*)\" status$")
+	public void a_PO_should_be_status(String status) throws Throwable {
+		ArrayList failureList = new ArrayList();
+		int numberOfLines =0;
+		String preAdviceId = preAdviceHeaderDB.getPreAdviceId(status);
+		if (!preAdviceId.contains("Exhausted Resultset")){
+			failureList.add("No Completed PO Data available. Exception message "+preAdviceId);
+		}
+		else{
+			context.setPreAdviceId(preAdviceId);
+			numberOfLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
+			Assert.assertNotNull("Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
+					numberOfLines);
+			context.setNoOfLines(numberOfLines);
+		}
+		Assert.assertTrue( "Test Data issue. [" +Arrays.asList(failureList.toArray()) + "].",
+				 failureList.isEmpty());
 	}
 
 	@Then("^the status should be diaplayed as \"([^\"]*)\"$")

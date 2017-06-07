@@ -1,10 +1,10 @@
-@purchase_order
+@po_abv_negative
 Feature: Purchase order
   As a warehouse user
   I want to receive the articles 
   So that I can complete the purchase order
 
-  @complete
+  @complete @po @abv_more_than10
   Scenario Outline: Receiving purcahse order for BWS bonded product category with ABV more than 10 percentage
     Given the PO "<PreAdviceID>" with "BWS-Bonded" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
     And the PO should have address detail
@@ -29,7 +29,7 @@ Feature: Purchase order
       | PreAdviceID | Location | ABVPercentage |
       |  7150010260 | REC002   |            14 |
 
-  @complete
+  @complete @po @abv_less_than10
   Scenario Outline: Receiving purchase order for BWS bonded product category with ABV less than 10 percentage
     Given the PO "<PreAdviceID>" with "BWS-Bonded" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
     And the PO should have address detail
@@ -52,7 +52,7 @@ Feature: Purchase order
       | PreAdviceID | Location | ABVPercentage |
       |  7150010254 | REC002   |             5 |
 
-  @complete
+  @complete @po @no_abv
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
     Given the PO "<PreAdviceID>" with "BWS-Bonded" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
     And the PO should have address detail
@@ -72,7 +72,7 @@ Feature: Purchase order
       | PreAdviceID | Location |
       |  7150010219 | REC002   |
 
-  @Complete
+  @complete @po @incorrect_vintage
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with incorrect vintage
     Given the PO "<PreAdviceID>" with "BWS-Bonded" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
     And the PO should have address detail
@@ -93,7 +93,7 @@ Feature: Purchase order
       | PreAdviceID | Location |
       |  7150010219 | REC002   |
 
-  @Complete
+  @complete @po @no_vintage
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with no vintage
     Given the PO "<PreAdviceID>" with "BWS-Bonded" category should be "Released" status and have future due date, site id, no of lines in the pre-advice header maintenance table
     And the PO should have address detail

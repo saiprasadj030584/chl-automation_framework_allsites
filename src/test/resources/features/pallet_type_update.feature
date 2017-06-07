@@ -1,10 +1,10 @@
-@pallet_type
+@pallet_type_update
 Feature: pallet type update
   As a warehouse user
   I want to update the pallet type for the item 
   So that the correct pallet can be updtaed
 
-  @complete
+  @complete @po @pallet_type_update
   Scenario Outline: Pallet type update
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the sku "<sku>" of pre-advice id "<preAdviceId>" have the pallet type as "<existingPalletType>"
