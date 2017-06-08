@@ -289,4 +289,15 @@ public class OrderHeaderMaintenancePage extends PageObject {
 		return App.getClipboard();
 
 	}
+	public boolean isSummaryRecordsDisplayed() {
+		if (screen.exists("images/OrderManagement/OrderManagementCheckValue.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public void clickSummaryRecord() throws FindFailed {
+		screen.wait("images/OrderManagement/OrderManagementCheckValue.png", timeoutInSec);
+		screen.click("images/OrderManagement/OrderManagementCheckValue.png");
+}
 }

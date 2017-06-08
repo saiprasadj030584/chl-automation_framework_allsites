@@ -4,7 +4,7 @@ Feature: Store Replenishment order
   I want to allocate orders in inventory
   So that do I can replenishment
 
-  @replenish_pick
+  @replenish_pick @complete @sto
   Scenario Outline: Replenishment list id generation and picking
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the tagid, quantity to move details should be displayed for the sku "<skuid>" with "REPLENISH " tasks

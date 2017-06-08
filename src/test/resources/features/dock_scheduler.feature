@@ -4,7 +4,7 @@ Feature: Dock booking operations for STO
   I want to perform various operations in dock scheduler
   So that I can link the trailer to the dock door
 
-  @complete
+  @complete @sto @delete_dock_booking
   Scenario: Delete dock booking
     Given I have done the dock scheduler booking for the consignment
     When I navigate to dock scheduler start page
@@ -14,7 +14,7 @@ Feature: Dock booking operations for STO
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @complete
+  @complete @sto @search_dock_booking
   Scenario: Search booking details by notes
     Given I have done the dock scheduler booking for the consignment
     When I navigate to dock scheduler start page
@@ -22,7 +22,7 @@ Feature: Dock booking operations for STO
     And I search the booking id by notes
     Then the booking details should be displayed
 
-  @complete
+  @complete @sto @multiple_dock_scheduling
   Scenario: Multiple dock scheduler booking with the same slot by move bookings
     Given I have done the two dock scheduler booking for the consignment
     When I navigate to dock scheduler start page

@@ -195,6 +195,12 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Y", cssmCheckedval);
 	}
 
+	@Then("^the summary records page should be displayed$")
+	public void the_summary_records_should_be_displayed() throws Throwable {
+		Assert.assertTrue("Order Managements Summary records page not displayed as expected.",orderHeaderMaintenancePage.isSummaryRecordsDisplayed());
+		orderHeaderMaintenancePage.clickSummaryRecord();
+	}
+	
 	@Given("^the order should have hub details in hub address tab$")
 	public void the_order_should_have_hub_details_in_hub_address_tab() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
