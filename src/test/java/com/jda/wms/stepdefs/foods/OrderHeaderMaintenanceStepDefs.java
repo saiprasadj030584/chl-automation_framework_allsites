@@ -249,9 +249,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	
 	 @Then("^the ship dock should be updated for an order$") public void
 	 the_ship_dock_should_be_updated_for_an_order() throws Throwable {
-	  
 	 Assert.assertEquals("Ship Dock is not displayed as expected",
-	 context.getNewShipDock(), orderHeaderMaintenancePage.getShipDock()); 
+	 context.getNewShipDock(), orderHeaderDB.getShipdock(context.getOrderId())); 
 	 }
 	 
 

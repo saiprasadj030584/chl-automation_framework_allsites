@@ -151,4 +151,9 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToMoveTaskListGenerationPage();
 		Thread.sleep(3000);
 	}
+	
+	@When("^I navigate to order management page$")
+	public void i_navigate_to_order_management_page() throws Throwable {
+		jdaHomePage.navigateToOrderManagementPage();
+	}
 }
