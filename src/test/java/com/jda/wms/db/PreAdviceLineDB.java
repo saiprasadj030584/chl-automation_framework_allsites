@@ -147,4 +147,16 @@ public class PreAdviceLineDB {
 		}
 		return consignmentIdList;
 	}
+
+	public String getPalletType(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select PALLET_CONFIG from pre_advice_line where pre_advice_id = '" + preAdviceID
+				+ "'   and sku_id = '" + skuID + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
 }

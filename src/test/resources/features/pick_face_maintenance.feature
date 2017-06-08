@@ -5,7 +5,7 @@ Feature: Pick face validation
   So that I can use them for
 
   @complete @po @pick_face_creation
-  Scenario Outline: Validate Pick face
+  Scenario Outline: Pick Face Creation
     Given I have logged in as warehouse user in JDA dispatcher food application
     And the location id "<LocationID>" is no more exist in the location maintenance
     When I add the location Id "<LocationID>" with face type "Fixed", sku "<SkuID>", site id "9771"
@@ -15,4 +15,4 @@ Feature: Pick face validation
 
     Examples: 
       | LocationID | SkuID    |
-      | AA05A02    | 20001273 |
+      | AA05A02    | 21036013 |

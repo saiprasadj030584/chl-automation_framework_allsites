@@ -1040,7 +1040,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertEquals("Update Qty is not as expected", "-" + context.getQtyReverse(),
 				inventoryTransactionQueryPage.getUpdateQty());
 	}
-
+	
 	@Then("^the uploaded filename should be displayed$")
 	public void the_uploaded_filename_should_be_displayed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();

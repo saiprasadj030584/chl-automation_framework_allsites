@@ -674,12 +674,17 @@ public class InventoryQueryStepDefs {
 	}
 
 	@Then("^the Inventory should be updated with the new updated quantity$")
-
 	public void inventory_should_be_updated_with_the_new_updated_quantity() throws Throwable {
 		jdaHomePage.clickInventorytab();
 		inventoryQueryPage.refreshInventoryQueryPage();
 		int expectedQtyOnHand = context.getQtyOnHand() - context.getQtyReverse();
 		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryQueryPage.getQtyOnhand());
+	}
+	
+	@Then("^the inventory should be updated with new quantity$")
+	public void the_inventory_should_be_updated_with_new_updated_quantity() throws Throwable {
+		int expectedQtyOnHand = context.getQtyOnHand() - context.getQtyReverse();
+		Assert.assertEquals("Qty on Hand does not match", expectedQtyOnHand, inventoryDB.getQtyOnHand(context.getTagId()));
 	}
 
 	@Given("^I enter the tagId \"([^\"]*)\"$")

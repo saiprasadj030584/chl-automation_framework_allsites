@@ -27,7 +27,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location | ABVPercentage |
-      |  7150010260 | REC002   |            14 |
+      |  2058206818 | REC002   |            14 |
 
   @complete @po @abv_less_than10
   Scenario Outline: Receiving purchase order for BWS bonded product category with ABV less than 10 percentage
@@ -50,7 +50,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location | ABVPercentage |
-      |  7150010254 | REC002   |             5 |
+      |  2058206819 | REC002   |             5 |
 
   @complete @po @no_abv
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with no ABV
@@ -70,7 +70,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010219 | REC002   |
+      |  2058206820 | REC002   |
 
   @complete @po @incorrect_vintage
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with incorrect vintage
@@ -91,7 +91,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010219 | REC002   |
+      |  2058206821 | REC002   |
 
   @complete @po @no_vintage
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded product category with no vintage
@@ -111,4 +111,4 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010219 | REC002   |
+      |  2058206822 | REC002   |

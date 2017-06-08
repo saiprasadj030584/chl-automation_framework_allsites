@@ -11,6 +11,9 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataload.foods.DeleteDataFromDB;
+import com.jda.wms.dataload.foods.InsertDataIntoDB;
+import com.jda.wms.dataload.foods.SelectDataFromDB;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.LocationDB;
 import com.jda.wms.db.MoveTaskUpdateDB;
@@ -41,13 +44,16 @@ public class PurchaseOrderPutawayStepDefs {
 	private final PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private final Database database;
 	private final LocationDB locationDB;
-	private final Hooks hooks; 
+	private final Hooks hooks;
 	private final PickFaceTableDB pickFaceTableDB;
 	private Context context;
 	String tagId = null;
 	Map<String, ArrayList<String>> tagIDMap;
 	Map<String, Map<String, String>> purchaseOrderMap;
 	Map<String, String> locationTagMap;
+	private InsertDataIntoDB insertDataIntoDB;
+	private DeleteDataFromDB deleteDataFromDB;
+	private SelectDataFromDB selectDataFromDB;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
@@ -55,7 +61,8 @@ public class PurchaseOrderPutawayStepDefs {
 			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, Database database, Hooks hooks,
 			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, MoveTaskUpdateDB moveTaskUpdateDB,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,PickFaceTableDB pickFaceTableDB) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, PickFaceTableDB pickFaceTableDB,
+			InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB, SelectDataFromDB selectDataFromDB) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
 		this.jdaFooter = jdaFooter;
@@ -71,11 +78,23 @@ public class PurchaseOrderPutawayStepDefs {
 		this.hooks = hooks;
 		this.moveTaskUpdateDB = moveTaskUpdateDB;
 		this.pickFaceTableDB = pickFaceTableDB;
+		this.insertDataIntoDB = insertDataIntoDB;
+		this.deleteDataFromDB = deleteDataFromDB;
+		this.selectDataFromDB = selectDataFromDB;
 	}
 
 	@Given("^the pre advice id \"([^\"]*)\" should be received with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
 	public void the_pre_advice_id_should_be_received_with(String preAdviceId, String category, String status,
-			String location ) throws Throwable {
+			String location) throws Throwable {
+
+		// ------------Data Setup-----------
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+
+		// ------------Data Setup-----------
 
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
@@ -90,10 +109,19 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderReceivingStepDefs.i_should_see_the_receiving_completion();
 		hooks.logoutPutty();
 	}
-	
+
 	@Given("^the pre advice id \"([^\"]*)\" should be partial receiving with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
 	public void the_pre_advice_id_should_be_partial_receiving_with(String preAdviceId, String category, String status,
-			String location ) throws Throwable {
+			String location) throws Throwable {
+
+		// ------------Data Setup-----------
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+
+		// ------------Data Setup-----------
 
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
@@ -164,7 +192,7 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		context.setLocationForTagMap(locationForTagMap);
 	}
-	
+
 	@When("^I do putaway for single tag$")
 	public void i_do_putaway_for_single_tag() throws Throwable {
 		Map<String, String> locationForTagMap = new HashMap<String, String>();
@@ -219,27 +247,28 @@ public class PurchaseOrderPutawayStepDefs {
 		String checkString = locationDB.getCheckString(location);
 		purchaseOrderPutawayPage.enterCheckString(checkString);
 	}
-	
-//	@Given("^I get the reserve location to putaway the stock$")
-//	public void I_get_the_reserve_location_to_putaway_the_stock() throws Throwable {
-//		Map<String, String> putawayLocationMap = new HashMap<String, String>();
-//		String location = null;
-//
-//		List<String> locationList = locationDB.getLocation();
-//		purchaseOrderMap = context.getPurchaseOrderMap();
-//
-//		for (int i = 1; i <= context.getNoOfLines(); i++) {
-//			String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
-//			location = locationList.get(new Random().nextInt(locationList.size()));
-//
-//			if (putawayLocationMap.containsValue(location)) {
-//				location = locationList.get(new Random().nextInt(locationList.size()));
-//			}
-//			putawayLocationMap.put(skuID, location);
-//		}
-//		context.setPutawayLocationMap(putawayLocationMap);
-//	}
-	
+
+	// @Given("^I get the reserve location to putaway the stock$")
+	// public void I_get_the_reserve_location_to_putaway_the_stock() throws
+	// Throwable {
+	// Map<String, String> putawayLocationMap = new HashMap<String, String>();
+	// String location = null;
+	//
+	// List<String> locationList = locationDB.getLocation();
+	// purchaseOrderMap = context.getPurchaseOrderMap();
+	//
+	// for (int i = 1; i <= context.getNoOfLines(); i++) {
+	// String skuID = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
+	// location = locationList.get(new Random().nextInt(locationList.size()));
+	//
+	// if (putawayLocationMap.containsValue(location)) {
+	// location = locationList.get(new Random().nextInt(locationList.size()));
+	// }
+	// putawayLocationMap.put(skuID, location);
+	// }
+	// context.setPutawayLocationMap(putawayLocationMap);
+	// }
+
 	@When("^I do putaway with (?:reserve|pick face) location for all the tags$")
 	public void i_do_putaway_with_reserve_location_for_all_the_tags() throws Throwable {
 
@@ -262,7 +291,8 @@ public class PurchaseOrderPutawayStepDefs {
 				location = putawayLocationMap.get(skuID);
 				purchaseOrderPutawayPage.enterLocation(location);
 				Thread.sleep(3000);
-				//Assert.assertTrue("Not able to find SPWovr page", purchaseOrderPutawayPage.isSPWovrPageDisplayed());
+				// Assert.assertTrue("Not able to find SPWovr page",
+				// purchaseOrderPutawayPage.isSPWovrPageDisplayed());
 				purchaseOrderPutawayPage.enterReasonToOverride();
 
 				locationForTagMap.put(currentTagId, location);

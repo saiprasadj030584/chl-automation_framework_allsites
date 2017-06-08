@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.dataload.foods.DeleteDataFromDB;
 import com.jda.wms.dataload.foods.InsertDataIntoDB;
+import com.jda.wms.dataload.foods.SelectDataFromDB;
 import com.jda.wms.db.Database;
 import com.jda.wms.db.PreAdviceHeaderDB;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
@@ -34,12 +35,14 @@ public class PreAdviceHeaderStepsDefs {
 	private final Database database;
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
+	private SelectDataFromDB selectDataFromDB;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(PreAdviceHeaderPage preAdviceHeaderPage, JDAFooter jdaFooter,
 			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
 			AddressMaintenancePage addressMaintenancePage, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
-			Database database,InsertDataIntoDB insertDataIntoDB,DeleteDataFromDB deleteDataFromDB) {
+			Database database, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
+			SelectDataFromDB selectDataFromDB) {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -49,6 +52,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.database = database;
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
+		this.selectDataFromDB = selectDataFromDB;
 	}
 
 	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
@@ -101,13 +105,15 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 			String preAdviceId, String productCategory, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		
-		//------------Data Setup-----------
+
+		// ------------Data Setup-----------
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceLine(preAdviceId,productCategory);
-		
-		//------------Data Setup-----------
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+
+		// ------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
 
@@ -314,9 +320,18 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Given("^the PO \"([^\"]*)\" should be \"([^\"]*)\" status$")
 	public void the_PO_should_be_status(String preAdviceId, String status) throws Throwable {
+		// ------------Data Setup-----------
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, "Ambient");
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+
+		// ------------Data Setup-----------
+
 		String statusPreAdviceHeader = preAdviceHeaderDB.getStatus(preAdviceId);
-		if (!statusPreAdviceHeader.equals(status)){
-			preAdviceHeaderDB.updateStatus(preAdviceId,status);
+		if (!statusPreAdviceHeader.equals(status)) {
+			preAdviceHeaderDB.updateStatus(preAdviceId, status);
 		}
 
 		int numberOfLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
@@ -324,24 +339,23 @@ public class PreAdviceHeaderStepsDefs {
 				numberOfLines);
 		context.setNoOfLines(numberOfLines);
 	}
-	
+
 	@Given("^a PO should be \"([^\"]*)\" status$")
 	public void a_PO_should_be_status(String status) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		int numberOfLines =0;
+		int numberOfLines = 0;
 		String preAdviceId = preAdviceHeaderDB.getPreAdviceId(status);
-		if (!preAdviceId.contains("Exhausted Resultset")){
-			failureList.add("No Completed PO Data available. Exception message "+preAdviceId);
-		}
-		else{
+		if (!preAdviceId.contains("Exhausted Resultset")) {
+			failureList.add("No Completed PO Data available. Exception message " + preAdviceId);
+		} else {
 			context.setPreAdviceId(preAdviceId);
 			numberOfLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
-			Assert.assertNotNull("Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
+			Assert.assertNotNull(
+					"Number of lines is not as expected. Expected [Not NULL] but was [" + numberOfLines + "]",
 					numberOfLines);
 			context.setNoOfLines(numberOfLines);
 		}
-		Assert.assertTrue( "Test Data issue. [" +Arrays.asList(failureList.toArray()) + "].",
-				 failureList.isEmpty());
+		Assert.assertTrue("Test Data issue. [" + Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
 	@Then("^the status should be diaplayed as \"([^\"]*)\"$")

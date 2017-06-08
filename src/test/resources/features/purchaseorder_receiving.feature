@@ -108,7 +108,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150010294 | REC002   |
+      |  2058206827 | REC002   |
 
   @po_receive_bws_F23_bonded @po @complete
   Scenario Outline: Receiving process in JDA WMS for BWS-Bonded F23 product category
@@ -132,7 +132,7 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7150011794 | REC002   |
+      |  2058206805 | REC002   |
 
   @po_negative_receive_completepo @po @complete
   Scenario: Receive a Complete / On hold Purchase order
@@ -158,4 +158,4 @@ Feature: Purchase order
 
     Examples: 
       | PreAdviceID | Status |
-      |  7150010189 | Hold   |
+      |  2058206826 | Hold   |

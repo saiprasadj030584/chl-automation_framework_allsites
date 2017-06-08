@@ -45,12 +45,12 @@ public class PickFaceMaintenanceStepDefs {
 	@Given("^the location id \"([^\"]*)\" is no more exist in the location maintenance$")
 	public void the_location_id_is_no_more_exist_in_the_location_maintenance(String location) throws Throwable {
 		jdaHomeStepDefs.i_am_on_to_pick_face_maintenance_page();
+		context.setLocation(location);
 		jdaFooter.clickQueryButton();
 		pickFaceMaintenancPage.enterLocation(location);
 		jdaFooter.clickExecuteButton();
 
 		if (pickFaceMaintenancPage.isNoRecordDisplayed()) {
-			// pickFaceMaintenancPage.selectNoRecord();
 			jdaFooter.clickCancelButton();
 		} else {
 			jdaFooter.clickDeleteButton();
@@ -59,20 +59,16 @@ public class PickFaceMaintenanceStepDefs {
 
 	@When("^I add the location Id \"([^\"]*)\" with face type \"([^\"]*)\", sku \"([^\"]*)\", site id \"([^\"]*)\"$")
 	public void i_add_the_location_Id_with_face_type_sku_site_id(String location, String facetype, String skuId,
-			String SiteId) throws Throwable {
+			String siteId) throws Throwable {
+		context.setFaceType(facetype);
+		context.setSkuId(skuId);
+		context.setSiteId(siteId);
+		
 		jdaFooter.clickAddButton();
 		pickFaceMaintenancPage.selectFaceType(facetype);
-		context.setFaceType("Fixed");
-
 		pickFaceMaintenancPage.enterLocation(location);
-		context.setLocation(location);
-
 		pickFaceMaintenancPage.enterSkuId(skuId);
-		context.setSkuId("20001273");
-
-		pickFaceMaintenancPage.selectSiteId(SiteId);
-		context.setSiteId("9771");
-
+		pickFaceMaintenancPage.selectSiteId(siteId);
 		jdaFooter.clickExecuteButton();
 		warningPopUpPage.clickYes();
 	}

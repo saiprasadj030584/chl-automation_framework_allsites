@@ -47,8 +47,8 @@ public class LocationMaintenanceStepDefs {
 		this.locationDB = locationDB;
 	}
 
-	@Given("^I navigate to Location Maintenance Page$")
-	public void i_navigate_to_Location_Maintenance_Page() throws Throwable {
+	@Given("^I navigate to location maintenance page$")
+	public void i_navigate_to_location_maintenance_page() throws Throwable {
 		jdaHomePage.navigateToLocationMaintanence();
 		Thread.sleep(3000);
 	}

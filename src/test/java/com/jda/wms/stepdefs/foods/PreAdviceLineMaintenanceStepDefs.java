@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataload.foods.DeleteDataFromDB;
+import com.jda.wms.dataload.foods.InsertDataIntoDB;
+import com.jda.wms.dataload.foods.SelectDataFromDB;
 import com.jda.wms.db.PackConfigMaintenanceDB;
 import com.jda.wms.db.PreAdviceLineDB;
 import com.jda.wms.db.SkuMaintenanceDB;
@@ -42,6 +45,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 	private final SkuMaintenanceDB skuMaintenanceDB;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Date date = new Date();
+	private InsertDataIntoDB insertDataIntoDB;
+	private DeleteDataFromDB deleteDataFromDB;
+	private SelectDataFromDB selectDataFromDB;
 
 	@Inject
 
@@ -49,7 +55,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			JDAFooter jdaFooter, JdaHomePage jdaHomePage, PackConfigMaintenancePage packConfigMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
 			Context context, PackConfigMaintenanceDB packConfigMaintenanceDB, SKUMaintenancePage skuMaintenancePage,
-			WarningPopUpPage warningPopUpPage, PreAdviceLineDB preAdviceLineDB, SkuMaintenanceDB skuMaintenanceDB) {
+			WarningPopUpPage warningPopUpPage, PreAdviceLineDB preAdviceLineDB, SkuMaintenanceDB skuMaintenanceDB,
+			InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB, SelectDataFromDB selectDataFromDB) {
 		this.jdaFooter = jdaFooter;
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -63,6 +70,9 @@ public class PreAdviceLineMaintenanceStepDefs {
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.packConfigMaintenanceDB = packConfigMaintenanceDB;
 		this.skuMaintenanceDB = skuMaintenanceDB;
+		this.insertDataIntoDB = insertDataIntoDB;
+		this.deleteDataFromDB = deleteDataFromDB;
+		this.selectDataFromDB = selectDataFromDB;
 	}
 
 	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice line items$")
@@ -234,8 +244,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
 		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
-	
-	
 
 	@Given("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM details for each pre-advice lines items$")
 	public void the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items()
@@ -360,8 +368,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 		logger.debug("Map: " + purchaseOrderMap.toString());
-	} 
-	
+	}
+
 	@Then("^the PO should have the SKU, quantity due, tracking level, pack config, under bond, case ratio, base UOM and vintage details for selected pre-advice line item$")
 	public void the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_and_vintage_details_for_selected_pre_advice_line_item()
 			throws Throwable {
@@ -534,18 +542,28 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		ArrayList skuList = new ArrayList();
 		skuList = preAdviceLineDB.getSkuId(context.getPreAdviceId());
-		
-		Assert.assertEquals("Line items does not match with SKu items", context.getNoOfLines(),skuList.size());
-		for (int i = 0; i <context.getNoOfLines(); i++) {
+
+		Assert.assertEquals("Line items does not match with SKu items", context.getNoOfLines(), skuList.size());
+		for (int i = 0; i < context.getNoOfLines(); i++) {
 			Map<String, String> lineItemsMap = new HashMap<String, String>();
 			lineItemsMap.put("SKU", (String) skuList.get(i));
-			purchaseOrderMap.put(String.valueOf(i+1), lineItemsMap);
-		} 
+			purchaseOrderMap.put(String.valueOf(i + 1), lineItemsMap);
+		}
 		context.setPurchaseOrderMap(purchaseOrderMap);
 	}
 
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
+		// ------------Data Setup-----------
+		String productCategory = "Ambient";
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+
+		// ------------Data Setup-----------
+
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(preAdviceId);
@@ -571,13 +589,18 @@ public class PreAdviceLineMaintenanceStepDefs {
 	@Given("^the sku \"([^\"]*)\" of pre-advice id \"([^\"]*)\" have the pallet type as \"([^\"]*)\"$")
 	public void the_sku_of_pre_advice_id_have_the_pallet_type_as(String preAdviceId, String sku,
 			String existingPalletType) throws Throwable {
-		jdaHomePage.navigateToPreAdviceLineMaintenance();
-		jdaFooter.clickQueryButton();
-		preAdviceLineMaintenancePage.enterPreAdviceID(preAdviceId);
-		preAdviceLineMaintenancePage.enterSKUId(sku);
-		jdaFooter.clickExecuteButton();
-
-		if (!existingPalletType.equals(preAdviceLineMaintenancePage.getPalletType())) {
+		// ------------Data Setup-----------
+		String productCategory = "Ambient";
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isRecordExists(preAdviceId));
+		// ------------Data Setup-----------
+		context.setPreAdviceId(preAdviceId);
+		context.setSkuId(sku);
+		preAdviceLineDB.getPalletType(preAdviceId, sku);
+		if (!existingPalletType.equals(preAdviceLineDB.getPalletType(preAdviceId, sku))) {
 			jdaFooter.clickUpdateButton();
 			preAdviceLineMaintenancePage.enterPalletType(existingPalletType);
 			jdaFooter.clickExecuteButton();
@@ -599,7 +622,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 	@Then("^the pallet type should be updated")
 	public void the_pallet_type_should_be_updated() throws Throwable {
 		Assert.assertEquals("Pallet type is not as expected", context.getPalletType(),
-				preAdviceLineMaintenancePage.getPalletType());
+				preAdviceLineDB.getPalletType(context.getPreAdviceId(), context.getSkuId()));
 	}
 
 	@Then("^the pre-advice line items should be linked with the consignment$")
@@ -615,10 +638,10 @@ public class PreAdviceLineMaintenanceStepDefs {
 				}
 			});
 		}
-		
+
 		Assert.assertTrue("Consignment ID is not as expected" + Arrays.asList(failureList.toString()),
 				failureList.isEmpty());
-		
+
 	}
 
 	@Given("^the PO should have the Sku,location,TagId,pallet type,vintage,Exp date,ABV,Case Ratio,qty due for the pre-advice line items$")

@@ -17,7 +17,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  8050024845 | REC002   |
+      |  2058206809 | REC002   |
 
   @po_putaway_bws_bonded @complete @po
   Scenario Outline: Putaway for BWS-Bonded PO
@@ -32,7 +32,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  7150030202 | REC002   |
+      |  2058206810 | REC002   |
 
   @po_putaway_bws_non_bonded @complete @po
   Scenario Outline: Putaway for BWS-Non-Bonded PO
@@ -47,7 +47,22 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  7450012190 | REC002   |
+      |  2058206811 | REC002   |
+      
+      @po_putaway_bws_F23_bonded @complete @po
+  Scenario Outline: Putaway for BWS-Non-Bonded PO
+    Given the pre advice id "<preAdviceId>" should be received with "BWS-F23-Bonded", "Released", "<Location>"
+    When I release all the tags for the SKU in the move task update
+    And I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select normal putaway
+    And I do putaway for all the tags
+    And I should see the location zone in inventory query
+    Then I should see the from location, to location, final location, uploaded status and uploaded file name
+
+    Examples: 
+      | preAdviceId | Location |
+      |  2058206813 | REC002   |
 
   @po_putaway_bws_new_vintage @complete @po
   Scenario Outline: Putaway for BWS-New-Vintage PO
@@ -62,7 +77,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  7150011191 | REC002   |
+      |  2058206812 | REC002   |
 
  @po_partial_putaway_ambient @complete @po
   Scenario Outline: Putaway for partial receiving Ambient PO
@@ -78,7 +93,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  8050154845 | REC002   |
+      |  2058206815 | REC002   |
 
 @po_partial_putaway_bws @complete @po
   Scenario Outline: Putaway for partial receiving BWS PO
@@ -94,11 +109,11 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  7150061128 | REC002   |
+      |  2058206814 | REC002   |
 
   @complete @po @po_reserve_putaway
   Scenario Outline: Putaway at reserve location
-    Given the pre advice id "<preAdviceId>" should be received with "<Category>", "<Status>", "<Location>"
+    Given the pre advice id "<preAdviceId>" should be received with "Ambient", "Released", "<Location>"
     And the inventory exists for pick face location
     And I get the reserve location to putaway the stock
     When I release all the tags for the SKU in the move task update
@@ -110,12 +125,12 @@ Feature: Putaway for purchase order
     Then I should see the from location, to location, final location, uploaded status and uploaded file name for the tags
 
     Examples: 
-      | preAdviceId | Category | Status   | Location |
-      |  8062004512 | Ambient  | Released | REC002   |
+      | preAdviceId |   Location |
+      |  2058206824 |  REC002   |
 
   @complete @po @po_override_putaway
   Scenario Outline: Override pickface location during putaway process in JDA WMS
-    Given the pre advice id "<preAdviceId>" should be received with "<Category>", "<Status>", "<Location>"
+    Given the pre advice id "<preAdviceId>" should be received with "Ambient", "Released", "<Location>"
     And I get the pick face location
     When I release all the tags for the SKU in the move task update
     And I have logged in as warehouse user in putty
@@ -126,5 +141,5 @@ Feature: Putaway for purchase order
     Then I should see the from location, to location, final location, uploaded status and uploaded file name
 
     Examples: 
-      | preAdviceId | Category | Status   | Location |
-      |  8069504512 | Ambient  | Released | REC002   |
+      | preAdviceId | Location |
+      |  2058206823 |  REC002   |

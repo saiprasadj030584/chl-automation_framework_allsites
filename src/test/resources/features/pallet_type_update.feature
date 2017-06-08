@@ -13,9 +13,9 @@ Feature: pallet type update
 
     Examples: 
       | preAdviceId | sku      | existingPalletType | palletType |
-      |  2050004483 | 21033574 | CAGE               | CHEP       |
-      |  0040000098 | 20001670 | CHEP               | BROWN      |
-      |  0071000091 | 21107028 | CHEP               | RED        |
-      |  8050004505 | 21036013 | EURO               | CHEP       |
-      |  7165010017 | 21101988 | RED                | BROWN      |
-      |   716501091 | 20001717 | RED                | CHEP       |
+      |  2058206817 | 21036013 | CAGE               | CHEP       |
+      |  2058206817 | 21036013 | CHEP               | BROWN      |
+      |  2058206817 | 21036013 | CHEP               | RED        |
+      |  2058206817 | 21036013 | EURO               | CHEP       |
+      |  2058206817 | 21036013 | RED                | BROWN      |
+      |  2058206817 | 21036013 | RED                | CHEP       |

@@ -7,7 +7,7 @@ Feature: Location Status Change
   @complete @po @location_status_change
   Scenario Outline: Change REC lane lock status
     Given I have logged in as warehouse user in JDA dispatcher food application
-    And I navigate to Location Maintenance Page
+    And I navigate to location maintenance page
     And I search with location ID "<LocationID>"
     Then the location record should be displayed
     When I update the location lock status as "<LockStatus>"

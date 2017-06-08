@@ -12,14 +12,16 @@ public class DeleteDataFromDB {
 
 	private Context context;
 	private Database database;
+	private SelectDataFromDB selectDataFromDB;
 
 	@Inject
-	public DeleteDataFromDB(Context context,Database database) {
+	public DeleteDataFromDB(Context context,Database database,SelectDataFromDB selectDataFromDB) {
 		this.context = context;
 		this.database = database;
+		this.selectDataFromDB = selectDataFromDB;
 	}
 	public void deletePreAdviceHeader(String preAdviceId) throws ClassNotFoundException, SQLException {
-		if (isRecordExists(preAdviceId)){
+		if (selectDataFromDB.isRecordExists(preAdviceId)){
 			if (context.getConnection() == null) {
 				database.connect();
 			}
@@ -28,24 +30,5 @@ public class DeleteDataFromDB {
 			context.getConnection().commit();
 		}
 	}
-	private boolean isRecordExists(String preAdviceId) throws ClassNotFoundException {
-		boolean isRecordExists = false;
-		try {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT PRE_ADVICE_ID FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
-		rs.next();
-		if (rs.getString(1).equals(preAdviceId)){
-			isRecordExists = true;
-		}
-		}
-		catch(SQLException e){
-			if (e.getMessage().contains("Exhausted Resultset")){
-				isRecordExists=false;
-			}
-		}
-		return isRecordExists;
-	}
+	
 }

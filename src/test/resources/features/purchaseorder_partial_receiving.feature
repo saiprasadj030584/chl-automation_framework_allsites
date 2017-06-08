@@ -23,7 +23,7 @@ Feature: Partial receive purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  8000000003 | REC002   |
+      |  2058206808 | REC002   |
 
   @po_partial_receive_bws_bonded @po @complete
   Scenario Outline: Receive partially for BWS bonded product category
@@ -47,7 +47,7 @@ Feature: Partial receive purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7000000010 | REC002   |
+      |  2058206806 | REC002   |
 
   @po_partial_receive_bws_non_bonded @po @complete
   Scenario Outline: Receive partially for BWS non-bonded product category
@@ -68,4 +68,4 @@ Feature: Partial receive purchase order
 
     Examples: 
       | PreAdviceID | Location |
-      |  7000004500 | REC002   |
+      |  2058206807 | REC002   |

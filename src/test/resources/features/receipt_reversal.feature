@@ -1,4 +1,3 @@
-
 @receipt_reversal
 Feature: Receipt reversal
   As a warehouse user
@@ -17,7 +16,7 @@ Feature: Receipt reversal
     And I proceed to next
     And I select the reason code as "Damaged Stock"
     And I proceed to reverse the quantity
-    Then the Inventory should be updated with the new updated quantity
+    Then the inventory should be updated with new quantity
     And the ITL should be generated for the code "receipt reversal"
     When I navigate to miscellaneous tab
     Then I should see the readon code as "DMGD"
