@@ -13,6 +13,12 @@ import com.jda.wms.db.LocationDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.pages.rdt.StoreTrackingOrderPickingPage;
+import com.jda.wms.stepdefs.foods.DockSchedulerStepDefs;
+import com.jda.wms.stepdefs.foods.InventoryUpdateStepDefs;
+import com.jda.wms.stepdefs.foods.MoveTaskStepDefs;
+import com.jda.wms.stepdefs.foods.OrderHeaderMaintenanceStepDefs;
+import com.jda.wms.stepdefs.foods.OrderLineMaintenanceStepDefs;
+import com.jda.wms.stepdefs.foods.TrailerMaintenanceStepDefs;
 import com.jda.wms.utils.DateUtils;
 
 import cucumber.api.java.en.Given;
@@ -27,21 +33,37 @@ public class StoreTrackingOrderPickingStepDefs {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Map<Integer, Map<String, String>> listIDMap;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
+	private OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs;
+	private OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs;
 	private Context context;
 	private LocationDB locationDB;
 	private Hooks hooks;
 	private OrderHeaderContext orderHeaderContext;
+	private MoveTaskStepDefs moveTaskStepDefs;
+	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
+	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
+	private DockSchedulerStepDefs dockSchedulerStepDefs;
+	private InventoryUpdateStepDefs inventoryUpdateStepDefs;
 
 	@Inject
 	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			Context context, InventoryDB inventoryDB, PuttyFunctionsPage puttyFunctionsPage, LocationDB locationDB,
-			Hooks hooks) {
+			Hooks hooks, OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs,OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,MoveTaskStepDefs moveTaskStepDefs,PuttyFunctionsStepDefs puttyFunctionsStepDefs,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,TrailerMaintenanceStepDefs trailerMaintenanceStepDefs,DockSchedulerStepDefs dockSchedulerStepDefs,InventoryUpdateStepDefs inventoryUpdateStepDefs) {
 		this.storeTrackingOrderPickingPage = storeTrackingOrderPickingPage;
 		this.context = context;
 		this.inventoryDB = inventoryDB;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.locationDB = locationDB;
 		this.hooks = hooks;
+		this.orderHeaderMaintenanceStepDefs = orderHeaderMaintenanceStepDefs;
+		this.orderLineMaintenanceStepDefs = orderLineMaintenanceStepDefs;
+		this.moveTaskStepDefs = moveTaskStepDefs;
+		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
+		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
+		this.trailerMaintenanceStepDefs =trailerMaintenanceStepDefs;
+		this.dockSchedulerStepDefs = dockSchedulerStepDefs;
+		this.inventoryUpdateStepDefs =inventoryUpdateStepDefs;
 	}
 
 	@Given("^I select picking with container pick$")
@@ -153,6 +175,30 @@ public class StoreTrackingOrderPickingStepDefs {
 	public void the_location_should_be_displayed() throws Throwable {
 		String location = storeTrackingOrderPickingPage.getLocation();
 		Assert.assertEquals("Location is not displayed as expected.", context.getLocation(), location);
+	}
+
+	@Given("^the STO \"([^\"]*)\" of \"([^\"]*)\" type should contain order details and be \"([^\"]*)\" container picked$")
+	public void the_sto_of_type_should_contain_order_details_and_be_container_picked(String orderId, String type,
+			String pickingType) throws Throwable {
+		context.setOrderId(orderId);
+		context.setStoType(type);
+		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table(orderId,
+				"Allocated", type);
+		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
+		if (context.getStoType().equals("STR")) {
+			orderHeaderMaintenanceStepDefs.the_customer_should_have_CSSM_flag_updated_in_address_table();
+		}
+		if (context.getStoType().equals("INTSEA")) {
+			orderHeaderMaintenanceStepDefs.the_order_should_have_hub_details();
+		}
+		orderLineMaintenanceStepDefs
+				.the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table();
+		orderHeaderMaintenanceStepDefs.the_order_should_be_in_status("Allocated");
+		orderLineMaintenanceStepDefs.the_quantity_tasked_should_be_updated_for_each_order_lines();
+		orderHeaderMaintenanceStepDefs.the_order_id_should_have_ship_dock_and_consignment();
+		moveTaskStepDefs
+				.the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table();
+		the_sto_should_be_container_picked(pickingType);
 	}
 
 	@When("^I enter SKU id, quantity and stock details$")
@@ -329,4 +375,69 @@ public class StoreTrackingOrderPickingStepDefs {
 		puttyFunctionsPage.pressEnter();
 	}
 
+	@Then("^the STO should be container picked$")
+	public void the_sto_should_be_container_picked(String pickingType) throws Throwable {
+		puttyFunctionsStepDefs.i_login_as_warehouse_user_in_putty();
+		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_picking_with_container_pick();
+		i_should_be_directed_to_pick_entry_page();
+		if (pickingType.equals("partially")) {
+			i_partially_pick_the_store_tracking_order();
+		} else if (pickingType.equals("completely")) {
+			i_pick_all_the_list_ids_for_the_store_tracking_order();
+		}
+		i_should_see_the_picking_completion();
+	}
+	
+	@Then("^i partially pick the store tracking order$")
+	public void i_partially_pick_the_store_tracking_order() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		listIDMap = context.getListIDMap();
+		stockTransferOrderMap = context.getStockTransferOrderMap();
+
+		context.setListID(listIDMap.get(1).get("ListID"));
+		i_enter_task_id_and_list_id();
+		the_list_id_should_be_displayed();
+		puttyFunctionsPage.pressEnter();
+
+		String skuId = storeTrackingOrderPickingPage.getSkuId();
+		Assert.assertNotNull("SKU ID is not displayed as expected", skuId);
+		context.setSkuId(skuId);
+
+		for (int j = 1; j <= context.getListIDMap().size(); j++) {
+			if (listIDMap.get(j).get("SkuId").equals(context.getSkuId())) {
+				context.setLocation(listIDMap.get(j).get("Location"));
+				context.setToPallet((listIDMap.get(j).get("ToPalletID")));
+				context.setToLocation((listIDMap.get(j).get("ToLocation")));
+				context.setFinalLocation((listIDMap.get(j).get("FinalLocation")));
+				context.setQtyToMove(Integer.parseInt(listIDMap.get(j).get("QtyToMove")));
+				context.setContainerId(listIDMap.get(j).get("ToContainerID"));
+			}
+		}
+		the_location_should_be_displayed();
+		i_enter_SKU_id_quantity_and_stock_details();
+
+		listIDMap.get(1).replace("TagID", context.getTagId());
+		context.setListIDMap(listIDMap);
+
+		the_to_pallet_to_location_and_destination_should_be_displayed();
+		Assert.assertTrue("Container ID entry page is not displayed as expected",
+				storeTrackingOrderPickingPage.isContainerIDDisplayed());
+		i_enter_container_id_and_check_strings();
+		Assert.assertTrue("Picking not completed and Home page not displayed for List ID " + context.getListID(),
+				storeTrackingOrderPickingPage.isPickEntryDisplayed());
+	}
+	
+	@Then("^the trailer and dock scheduling should be done$")
+	public void the_trailer_and_dock_scheduling_should_be_done() throws Throwable {
+		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
+		trailerMaintenanceStepDefs.the_trailer_should_be_created();
+		dockSchedulerStepDefs.i_create_new_dock_booking();
+		dockSchedulerStepDefs.i_select_booking_type_and_consignment();
+		dockSchedulerStepDefs.i_select_the_slot();
+		dockSchedulerStepDefs.i_enter_booking_details();
+		inventoryUpdateStepDefs.i_proceed_to_complete_the_process();
+		dockSchedulerStepDefs.the_booking_details_should_be_appeared_in_the_dock_scheduler_booking();
+
+	}
 }

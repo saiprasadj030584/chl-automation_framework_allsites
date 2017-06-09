@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.AddressDB;
 import com.jda.wms.db.OrderHeaderDB;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -32,12 +33,13 @@ public class OrderHeaderMaintenanceStepDefs {
 	private Verification verification;
 	private OrderHeaderDB orderHeaderDB;
 	private AddressDB addressDB;
+	private Hooks hooks;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification,
-			OrderHeaderDB orderHeaderDB,  AddressDB addressDB) {
+			OrderHeaderDB orderHeaderDB,  AddressDB addressDB,Hooks hooks) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
@@ -46,6 +48,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.verification = verification;
 		this.addressDB = addressDB;
 		this.orderHeaderDB = orderHeaderDB;
+		this.hooks = hooks;
 	}
 
 	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header table$")
@@ -226,6 +229,43 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Given("^the order should be \"([^\"]*)\" status$")
+	public void the_order_should_be_status(String orderStatus) throws Throwable {
+		String actualOrderStatus = orderHeaderDB.getStatus(context.getOrderId());
+		context.setOrderStatus(actualOrderStatus);
+		logger.debug("Order ID : " + context.getOrderId());
+		logger.debug("Order status from DB : " + actualOrderStatus);
+
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus, actualOrderStatus);
+	}
+	
+	@Then("^the vehicle loading should be completed and the status should be \"([^\"]*)\" in order header$")
+	public void the_vehicle_loading_should_be_completed_and_the__status_should_be_in_order_header(String orderStatus)
+			throws Throwable {
+		hooks.logoutPutty();
+		Assert.assertEquals("Order Status is not displayed as expected ", orderStatus,
+				orderHeaderDB.getStatus(context.getOrderId()));
+	}
+	
+	@When("^the order id should have ship dock and consignment$")
+	public void the_order_id_should_have_ship_dock_and_consignment() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		String shipdock = orderHeaderDB.getShipdock(context.getOrderId());
+		String consignment = orderHeaderDB.getConsignment(context.getOrderId());
+		context.setSTOConsignment(consignment);
+		if ((shipdock == null || shipdock.equals("DEFAULTSD")) || consignment == null) {
+			HashMap<String, String> orderGroupDetails = orderHeaderDB.getGroupDetails(context.getOrderId());
+			verification.verifyData("Work Group", "Not Null", orderGroupDetails.get("WORKGROUP"), failureList);
+			verification.verifyData("Group ID", "Not Null", orderGroupDetails.get("ORDERGROUPINGID"), failureList);
+			verification.verifyData("Consignment Group ID", "Not Null", orderGroupDetails.get("CONSIGNMENTGROUPINGID"),
+					failureList);
+		}
+		Assert.assertTrue(
+				"Shipdock and consignment detailes are not as expected" + Arrays.asList(failureList.toString()),
+				failureList.isEmpty());
+	}	
+	
 	@When("^the order id should have ship dock and consignment$")
 	public void the_Order_id_should_have_ship_dock_and_consignment() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();

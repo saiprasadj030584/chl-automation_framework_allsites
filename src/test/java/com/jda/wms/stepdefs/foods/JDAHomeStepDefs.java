@@ -25,6 +25,11 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSKUSubmenu();
 	}
+	
+	@When("^I navigate to Trailer Shipping page$")
+	public void i_navigate_to_Trailer_Shipping_page() throws Throwable {
+		jdaHomePage.navigateToTrailerShippingPage();
+	}
 
 	@Given("^I am on supplier SKU maintenance page$")
 	public void i_am_on_supplier_SKU_maintenance_page() throws Throwable {

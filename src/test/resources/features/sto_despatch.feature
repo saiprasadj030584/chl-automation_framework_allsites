@@ -29,9 +29,8 @@ Feature: Despatch STO
     Examples: 
       | OrderId    |
       | 6600033100 |
-      
-      
-      @sto_despatch_str_eu_store
+
+  @sto_despatch_str_eu_store
   Scenario Outline: STO despatch for EU/CI store
     Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
     And the order should be "Ready to Load" status
@@ -56,8 +55,8 @@ Feature: Despatch STO
     Examples: 
       | OrderId    |
       | 6600033100 |
-      
-       @sto_despatch_str_eu_franchise
+
+  @sto_despatch_str_eu_franchise
   Scenario Outline: STO despatch for EU/CI Franchise
     Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
     And the order should be "Ready to Load" status
@@ -133,8 +132,8 @@ Feature: Despatch STO
     Examples: 
       | OrderId    |
       | 8800004470 |
-      
-      @sto_despatch_rdc
+
+  @sto_despatch_rdc
   Scenario Outline: STO despatch for RDC
     Given the STO "<OrderId>" of "RDC" type should contain order details and be "completely" container picked
     And the order should be "Ready to Load" status
@@ -159,8 +158,8 @@ Feature: Despatch STO
     Examples: 
       | OrderId    |
       | 8800004470 |
-      
-       @sto_despatch_short_pick
+
+  @sto_despatch_short_pick
   Scenario Outline: STO short picking
     Given the STO "<OrderId>" of "RDC" type should contain order details and be "short picked" container picked
     And the order should be "Ready to Load" status

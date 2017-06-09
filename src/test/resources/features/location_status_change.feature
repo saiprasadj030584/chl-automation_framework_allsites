@@ -15,9 +15,19 @@ Feature: Location Status Change
 
     Examples: 
       | LocationID | LockStatus |
-      | RED126     | Locked     |
+      | REC127     | Inlocked   |
+      | REC127     | Locked     |
       | REC127     | Unlocked   |
-      | REC128     | Unlocked   |
-      | REC126     | Unlocked   |
-	#Negative validation - Example 1
-	#Positive validation - Examples 2, 3 and 4
+      | REC127     | Outlocked  |
+	
+	
+	@complete @po @location_status_change_negative
+  Scenario Outline: Change REC lane lock status
+    Given I have logged in as warehouse user in JDA dispatcher food application
+    And I navigate to location maintenance page
+    And I search with location ID "<LocationID>"
+    Then the location record should not be displayed
+
+    Examples: 
+      | LocationID | LockStatus |
+      | RED127     | Inlocked   |

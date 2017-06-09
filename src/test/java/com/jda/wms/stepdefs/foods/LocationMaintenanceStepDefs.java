@@ -66,6 +66,12 @@ public class LocationMaintenanceStepDefs {
 		Assert.assertTrue("Location details are not as expected.", locationMaintenancePage.isRecordfound());
 		logger.debug(" Location :  " + context.getlocationID());
 	}
+	
+	@Then("^the location record should not be displayed$")
+	public void the_location_record_should_not_be_displayed() throws Throwable {
+		Assert.assertTrue("Location details are not as expected.", (!locationMaintenancePage.isRecordfound()));
+		logger.debug(" Location :  " + context.getlocationID());
+	}
 
 	@When("^I update the location lock status as \"([^\"]*)\"$")
 	public void i_update_the_location_lock_status_as(String lockstatus) throws Throwable {

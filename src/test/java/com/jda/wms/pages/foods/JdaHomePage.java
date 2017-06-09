@@ -27,6 +27,16 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 		Thread.sleep(3000);
 	}
+	
+	public void navigateToTrailerShippingPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Trailer shipping screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
 		clickSearchIcon();

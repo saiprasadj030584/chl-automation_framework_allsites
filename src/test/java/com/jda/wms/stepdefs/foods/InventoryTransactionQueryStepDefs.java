@@ -1220,17 +1220,17 @@ public class InventoryTransactionQueryStepDefs {
 		the_uploaded_status_and_uploaded_file_should_be_displayed();
 	}
 
-	@Given("^the order receipt should be generated in the inventory	for note \"([^\"]*)\"$")
-	public void the_order_reciept_should_be_generated_in_inventory_for_note(String notes) throws Throwable {
+	@Given("^the order closure should be generated in the inventory	for note \"([^\"]*)\"$")
+	public void the_order_closure_should_be_generated_in_inventory_for_note(String notes) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		String reference = "6666164300";
-		context.setCustomer("0437");
-		context.setConsignmentID("WAVE30----1520170504");
+		String reference = context.getOrderId();
+		// context.setCustomer("0437");
+		// context.setConsignmentID("WAVE30----1520170504");
 
 		verification.verifyData("Customer", context.getCustomer(), inventoryDB.getCustomer(reference, notes),
 				failureList);
-		verification.verifyData("Consignment", context.getConsignmentID(), inventoryDB.getConsignment(reference, notes),
-				failureList);
+		verification.verifyData("Consignment", context.getSTOConsignment(),
+				inventoryDB.getConsignment(reference, notes), failureList);
 
 		verification.verifyData("FromStatus", "Complete", inventoryDB.getFromStatus(reference, notes), failureList);
 		verification.verifyData("ToStatus", "Shipped", inventoryDB.getToStatus(reference, notes), failureList);
