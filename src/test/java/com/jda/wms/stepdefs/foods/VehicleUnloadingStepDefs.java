@@ -33,7 +33,7 @@ public class VehicleUnloadingStepDefs {
 	public void the_vehicle_loading_has_been_done_for_order(String orderId) throws Throwable {
 		context.setOrderId(orderId);
 		storeTrackingOrderPickingStepDefs.the_sto_of_type_should_contain_order_details_and_be_container_picked(orderId,"STR","completely");
-		the_order_should_be_status("Ready to Load");
+//		the_order_should_be_status("Ready to Load");
 	}
 	
 	@When("^I enter the siteId,consignment and pallet$")
