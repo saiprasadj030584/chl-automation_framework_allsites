@@ -258,8 +258,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
 			String sKuId = skuID.get(i - 1);
-			System.out.println(sKuId);
 			context.setSkuId(sKuId);
+			System.out.println(context.getSkuId());
 			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
 			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
 
@@ -270,13 +270,13 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 				if (!vintage.equals(null)) {
 					if (currentVintage.equals(null)) {
-						failureList.add("Current Vintage should not be null in SKU table for(" + sKuId + ") ");
+						failureList.add("Current Vintage should not be null in SKU table for(" + context.getSkuId() + ") ");
 					}
 				}
 			}
 
 			caseRatio = Utilities
-					.convertStringToInteger(preAdviceLineDB.getCaseRatio(context.getPreAdviceId(), skuID.get(i - 1)));
+					.convertStringToInteger(preAdviceLineDB.getCaseRatio(context.getPreAdviceId(), context.getSkuId()));
 			String baseUOM = preAdviceLineDB.getBaseUOM(context.getPreAdviceId(), skuID.get(i - 1));
 
 			if (baseUOM.isEmpty()) {
@@ -289,7 +289,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			maxQty = packConfigMaintenanceDB.getRatio2To3(packConfig);
 
 			if (caseRatio != ratio1To2) {
-				failureList.add("Case ratio is not as expected for SKU (" + skuId + ") " + "Expected [" + ratio1To2
+				failureList.add("Case ratio is not as expected for SKU (" + context.getSkuId() + ") " + "Expected [" + ratio1To2
 						+ "] but was [" + caseRatio + "]");
 			}
 
@@ -542,7 +542,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		ArrayList skuList = new ArrayList();
 		skuList = preAdviceLineDB.getSkuId(context.getPreAdviceId());
-
+		System.out.println(skuList);
+		System.out.println(context.getNoOfLines());
 		Assert.assertEquals("Line items does not match with SKu items", context.getNoOfLines(), skuList.size());
 		for (int i = 0; i < context.getNoOfLines(); i++) {
 			Map<String, String> lineItemsMap = new HashMap<String, String>();

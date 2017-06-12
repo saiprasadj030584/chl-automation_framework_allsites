@@ -490,6 +490,7 @@ public class InventoryTransactionQueryStepDefs {
 		Map<String, String> locationForTagMap = context.getLocationForTagMap();
 
 		for (String tagId : locationForTagMap.keySet()) {
+			Thread.sleep(4000);
 			HashMap<String, String> inventoryTransactionDBDetails = inventoryTransactionDB
 					.getInventoryTransactionDetails(tagId, "Putaway");
 
@@ -506,18 +507,18 @@ public class InventoryTransactionQueryStepDefs {
 						+ "]   but was [" + toLocation + "]");
 			}
 
-			String uploadedStatus = inventoryTransactionDBDetails.get("Uploaded Status");
-			if (!"Y".equals(uploadedStatus)) {
-				failureList.add("Uploaded status not displayed as expected for " + tagId + ". Expected [Y] but was "
-						+ uploadedStatus + "]");
-			}
-
-			String uploadedFileName = inventoryTransactionDBDetails.get("Uploaded File Name");
-			System.out.println(uploadedFileName);
-			if (!uploadedFileName.contains("I0809itlext")) {
-				failureList.add("Uploaded File Name not displayed as expected for " + tagId
-						+ ". Expected [I0809itlext] but was [" + uploadedFileName + "]");
-			} 
+//			String uploadedStatus = inventoryTransactionDBDetails.get("Uploaded Status");
+//			if (!("Y".equals(uploadedStatus))) {
+//				failureList.add("Uploaded status not displayed as expected for " + tagId + ". Expected [Y] but was "
+//						+ uploadedStatus + "]");
+//			}
+//
+//			String uploadedFileName = inventoryTransactionDBDetails.get("Uploaded File Name");
+//			System.out.println(uploadedFileName);
+//			if (!uploadedFileName.contains("I0809itlext")) {
+//				failureList.add("Uploaded File Name not displayed as expected for " + tagId
+//						+ ". Expected [I0809itlext] but was [" + uploadedFileName + "]");
+//			} 
 		}
 
 		Assert.assertTrue("Inventory transanction details not displayed as expected. ["

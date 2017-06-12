@@ -25,11 +25,9 @@ public class DeleteDataFromDB {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
-			System.out.println("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
 			context.getConnection().commit();
-			System.out.println("Indelete fun");
 		}
 	}
 	

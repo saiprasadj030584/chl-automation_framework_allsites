@@ -125,6 +125,7 @@ public class PurchaseOrderReceivingStepDefs {
 	}
 
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
+		System.out.println("inside sku fun");
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
 		purchaseOrderReceivingPage.enterSKUId(skuId);
 	}
@@ -412,21 +413,24 @@ public class PurchaseOrderReceivingStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			String currentSku = purchaseOrderMap.get(String.valueOf(i)).get("SKU");
 			context.setSkuId(currentSku);
+			System.out.println(context.getPreAdviceId());
+			System.out.println(context.getSkuId());
 			i_enter_pre_advice_id_and_SKU_id(context.getPreAdviceId(), context.getSkuId());
 			if (!purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed()) {
 				failureList.add("No Valid Pre advices message is not displayed for SKU " + currentSku);
 			}
-			purchaseOrderReceivingPage.pressEnter();
+//			purchaseOrderReceivingPage.pressEnter();
 			Thread.sleep(5000);
 		}
 		context.setFailureList(failureList);
-		puttyFunctionsPage.minimisePutty();
+//		puttyFunctionsPage.minimisePutty();
 	}
 
 	@Then("^I should see that no valid preadvices found message$")
 	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
 		Assert.assertTrue("No Valid Pre advices message is not displayed. ["
 				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
+		hooks.logoutPutty();
 	}
 
 	@When("^I receive  the skus for each line item$")

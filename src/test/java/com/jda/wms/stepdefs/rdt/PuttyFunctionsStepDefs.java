@@ -39,7 +39,7 @@ public class PuttyFunctionsStepDefs {
 
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
 				configuration.getStringProperty("password"));
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		if (!(puttyFunctionsPage.isMainMenuDisplayed())) {
 			failureList.add("Main Menu not displayed as expected");

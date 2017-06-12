@@ -134,7 +134,7 @@ Feature: Purchase order
       | PreAdviceID | Location |
       |  2058206805 | REC002   |
 
-  @po_negative_receive_completepo @po @complete
+  @po_negative_receive_completepo @po @complete @po_demo
   Scenario: Receive a Complete / On hold Purchase order
     Given a PO should be "Complete" status
     And the PO should have pre-advice line items
@@ -145,7 +145,7 @@ Feature: Purchase order
     When I receive all the skus for the purchase order
     Then I should see that no valid preadvices found message
 
-  @po_negative_receive_holdpo @po @complete
+  @po_negative_receive_holdpo @po @complete @po_demo
   Scenario Outline: Receive a Complete / On hold Purchase order
     Given the PO "<PreAdviceID>" should be "<Status>" status
     And the PO should have pre-advice line items

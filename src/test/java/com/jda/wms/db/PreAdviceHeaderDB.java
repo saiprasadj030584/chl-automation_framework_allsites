@@ -20,7 +20,7 @@ public class PreAdviceHeaderDB {
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
 			throws ClassNotFoundException, SQLException {
-		ResultSet resultSet = null;
+//		ResultSet resultSet = null;
 		HashMap<String, String> preAdviceHeaderMap = new HashMap<String, String>();
 
 		if (context.getConnection() == null) {
@@ -29,7 +29,7 @@ public class PreAdviceHeaderDB {
 		System.out.println("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		Statement stmt = context.getConnection().createStatement();
-		resultSet = stmt.executeQuery("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
+		ResultSet resultSet = stmt.executeQuery("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		resultSet.next();
 		System.out.println(resultSet.getString(1));
@@ -66,7 +66,7 @@ public class PreAdviceHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
+				.executeQuery("select NUM_LINES from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -79,7 +79,7 @@ public class PreAdviceHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select pre_advice_id from pre_advice_header WHERE status = '" + status + "'");
+				.executeQuery("select pre_advice_id from pre_advice_header WHERE status = '" + status + "' and num_lines='1'");
 		rs.next();
 		return rs.getString(1);
 		}

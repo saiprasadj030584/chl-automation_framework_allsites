@@ -187,11 +187,12 @@ private Verification verification;
 					"Country is not as expected. Expected [" + context.getCountry() + "] but was [" + country + "]");
 		}
 
-		String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
-		if (!defaultSupplierPallet.equals("CHEP")) {
-			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
-					+ defaultSupplierPallet + "]");
-		}
+		//TODO check with functional team for the value from DB
+//		String defaultSupplierPallet = addressDbDetails.get("DefaultSupplierPallet");
+//		if (!defaultSupplierPallet.equals("CHEP")) {
+//			failureList.add("Default Supplier Pallet is not as expected. Expected[CHEP] but was ["
+//					+ defaultSupplierPallet + "]");
+//		}
 
 		String ceWarehouseType = addressDbDetails.get("CEWarehouseType");
 		if (!ceWarehouseType.equals("E")) {
