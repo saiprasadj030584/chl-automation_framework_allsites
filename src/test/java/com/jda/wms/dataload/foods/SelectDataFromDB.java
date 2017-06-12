@@ -18,7 +18,7 @@ public class SelectDataFromDB {
 		this.database = database;
 	}
 	
-	public boolean isRecordExists(String preAdviceId) throws ClassNotFoundException {
+	public boolean isPreAdviceRecordExists(String preAdviceId) throws ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
 		if (context.getConnection() == null) {
@@ -28,6 +28,27 @@ public class SelectDataFromDB {
 		ResultSet rs = stmt.executeQuery("SELECT PRE_ADVICE_ID FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
 		rs.next();
 		if (rs.getString(1).equals(preAdviceId)){
+			isRecordExists = true;
+		}
+		}
+		catch(SQLException e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				isRecordExists=false;
+			}
+		}
+		return isRecordExists;
+	}
+	
+	public boolean isOrderRecordExists(String orderId) throws ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT ORDER_ID FROM ORDER_HEADER WHERE ORDER_ID = '"+orderId+"'");
+		rs.next();
+		if (rs.getString(1).equals(orderId)){
 			isRecordExists = true;
 		}
 		}

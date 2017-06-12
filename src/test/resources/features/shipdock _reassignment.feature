@@ -18,4 +18,4 @@ Feature: Receive STO order
 
      Examples: 
       | OrderID     |
-      | 89000051014 |
+      | 5900005203 |

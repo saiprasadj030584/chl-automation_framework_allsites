@@ -24,7 +24,7 @@ public class DockSchedulerPage {
 		screen.click("images/DockScheduler/Start/CreateNewBooking.png");
 		Thread.sleep(2000);
 	}
-
+	
 	public void enterSiteID() throws FindFailed, InterruptedException {
 		Match msiteId = screen.find("/images/DockScheduler/Start/SiteID.png");
 		screen.click(msiteId.getCenter().offset(70, 0));
@@ -36,9 +36,30 @@ public class DockSchedulerPage {
 		screen.type("Consignment");
 		screen.type(Key.TAB);
 	}
+	
+
+	public void enterBookingType(String bookingType) {
+		screen.type(bookingType);
+		screen.type(Key.TAB);
+	}
+	
+	public void addAllOrders() throws FindFailed, InterruptedException {
+		screen.wait("images/DockScheduler/Build/AddButtonEnabled.png", timeoutInSec);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type("a", Key.CTRL);
+		screen.click("images/DockScheduler/Build/AddButtonEnabled.png");
+		Thread.sleep(3000);
+	}
 
 	public void enterConsignment() throws FindFailed, InterruptedException {
 		screen.type(context.getSTOConsignment());
+	}
+	
+	public void enterConsignmnet(String consignment) throws InterruptedException {
+		screen.type(consignment);
+		Thread.sleep(1000);
 	}
 
 	public void enterRandomConsignment() throws FindFailed, InterruptedException {

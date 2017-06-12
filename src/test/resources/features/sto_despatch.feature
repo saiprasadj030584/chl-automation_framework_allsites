@@ -4,9 +4,9 @@ Feature: Despatch STO
   I want to despatch the STO 
   So that the order should be reached to RDC
 
-  @sto_despatch_str_uk_retail
+  @sto_despatch_str_uk_retail @complete @sto
   Scenario Outline: STO despatch for UK Retail
-    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked for customer "0437"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -28,11 +28,11 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 6600033100 |
+      | 5900005201 |
 
-  @sto_despatch_str_eu_store
+  @sto_despatch_str_eu_store @complete @sto
   Scenario Outline: STO despatch for EU/CI store
-    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked for customer "0065"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -54,11 +54,11 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 6600033100 |
+      | 5900005208 |
 
-  @sto_despatch_str_eu_franchise
+  @sto_despatch_str_eu_franchise @sto @onhold
   Scenario Outline: STO despatch for EU/CI Franchise
-    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked for customer "8468"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -82,9 +82,9 @@ Feature: Despatch STO
       | OrderId    |
       | 6600033100 |
 
-  @sto_despatch_str_uk_franchise
+  @sto_despatch_str_uk_franchise @sto @onhold
   Scenario Outline: STO despatch for UK franchise
-    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked for customer "so"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -108,9 +108,9 @@ Feature: Despatch STO
       | OrderId    |
       | 6600033100 |
 
-  @sto_despatch_rdc_partial_shipment
+  @sto_despatch_rdc_partial_shipment @complete @sto
   Scenario Outline: STO partial shipment for RDC
-    Given the STO "<OrderId>" of "RDC" type should contain order details and be "partially" container picked
+    Given the STO "<OrderId>" of "RDC" type should contain order details and be "partially" container picked for customer "3942"
     And the order should be "In Progress" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -131,11 +131,11 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 8800004470 |
+      | 5900005209 |
 
-  @sto_despatch_rdc
+  @sto_despatch_rdc @sto @complete
   Scenario Outline: STO despatch for RDC
-    Given the STO "<OrderId>" of "RDC" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "RDC" type should contain order details and be "completely" container picked for customer "9010"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -157,11 +157,11 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 8800004470 |
+      | 5900005210 |
 
   @sto_despatch_short_pick
   Scenario Outline: STO short picking
-    Given the STO "<OrderId>" of "RDC" type should contain order details and be "short picked" container picked
+    Given the STO "<OrderId>" of "RDC" type should contain order details and be "short picked" container picked for customer "9010"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -183,11 +183,11 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 8800004470 |
+      | 5900005211 |
 
   @sto_despatch_international
   Scenario Outline: STO despatch for International
-    Given the STO "<OrderId>" of "INTSEA" type should contain order details and be "completely" container picked
+    Given the STO "<OrderId>" of "INTSEA" type should contain order details and be "completely" container picked for customer "8468"
     And the order should be "Ready to Load" status
     And the trailer and dock scheduling should be done
     When I get the pallet ids from the move task
@@ -209,4 +209,27 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 5800005170 |
+      | 5900005200 |
+
+  @sto_despatch_multiplepallet_singletrailer @sto @complete
+  Scenario: Load multiple STO with single tralier
+    Given the multiple order ids should be "Allocated" status
+      | OrderID    |
+      | 5900005206 |
+      | 5900005207 |
+    And the STO should be container picked for multiple order ids
+    Then the given order ids should be displayed as "Ready to Load" status
+    And the trailer has been created
+    When I create new dock booking for all orders
+    Then the booking details should be appeared in the dock scheduler booking
+    When I get the pallet ids from the move task for all orders
+    Then the pallet id should be displayed
+    When I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I navigate to load menu
+    And I perform vehicle loading for all the pallets
+    And all the orders should be in "Complete" status in order header
+    And the inventory transaction should be generated for vehicle load
+    When I ship the trailer with site id, trailer number and seal number
+    Then the shipping manifest should be generated
+    Then the order closure should be generated in the inventory	for note "Complete --> Shipped"

@@ -560,7 +560,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isRecordExists(preAdviceId));
+				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 
 		// ------------Data Setup-----------
 
@@ -595,7 +595,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isRecordExists(preAdviceId));
+				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 		// ------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);
 		context.setSkuId(sku);

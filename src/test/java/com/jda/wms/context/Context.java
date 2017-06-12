@@ -87,6 +87,7 @@ public class Context {
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
+	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -719,5 +720,13 @@ public class Context {
 
 	public void setStoType(String stoType) {
 		this.stoType = stoType;
+	}
+
+	public Map<String,Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
+		return multipleOrderListIDMap;
+	}
+
+	public void setMultipleOrderListIDMap(Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
+		this.multipleOrderListIDMap = multipleOrderListIDMap;
 	}
 }

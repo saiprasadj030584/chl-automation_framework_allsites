@@ -11,7 +11,7 @@ Feature: Consignment Creation
     When I navigate to order preparation page
     And I select the group type as "Consignment"
     And I proceed to next
-    And I enter the order id "<OrderID>"
+    And I enter the order id "<OrderID>" for the customer "0437"
     And I proceed to next
     Then I select the record
     And I proceed to next
@@ -25,4 +25,4 @@ Feature: Consignment Creation
 
     Examples: 
       | OrderID     |
-      | 89000051013 |
+      | 5900005202 |

@@ -6,7 +6,7 @@ Feature: Vehicle unloading for stock transfer order
 
   @complete @sto @vehicle_unload
   Scenario Outline: Vehicle unload for stock transfer order
-    Given the vehicle loading has been done for order "<OrderId>"
+    Given the vehicle loading has been done for order "<OrderId>" 
     When I navigate to vehicle unloading page
     And I enter the siteId,consignment and pallet
     And I select the pallet to unload
@@ -15,4 +15,4 @@ Feature: Vehicle unloading for stock transfer order
 
     Examples: 
       | OrderId     |
-      | 89000051013 |
+      | 5900005205 |

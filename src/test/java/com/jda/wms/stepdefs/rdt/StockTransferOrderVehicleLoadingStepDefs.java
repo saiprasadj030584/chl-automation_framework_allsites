@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.InventoryTransactionDB;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
@@ -44,46 +45,36 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 	private StockTransferOrderVehicleLoadingPage stockTransferOrderVehicleLoadingPage;
 	private ArrayList<String> palletIDList;
 	private InventoryTransactionDB inventoryTransactionDB;
+	private Hooks hooks;
 
 	@Inject
 	public StockTransferOrderVehicleLoadingStepDefs(
 			StockTransferOrderVehicleLoadingPage stockTransferOrderVehicleLoadingPage, Context context,
 			JdaHomePage jdaHomePage, PuttyFunctionsPage puttyFunctionsPage, JDAHomeStepDefs jdaHomeStepDefs,
 			JDAFooter jdaFooter, OrderHeaderMaintenancePage orderHeaderMaintenancePage, Verification verification,
-			InventoryTransactionDB inventoryTransactionDB) {
+			InventoryTransactionDB inventoryTransactionDB,Hooks hooks) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.verification = verification;
 		this.context = context;
+		this.hooks =hooks;
 		this.jdaHomePage = jdaHomePage;
 		this.stockTransferOrderVehicleLoadingPage = stockTransferOrderVehicleLoadingPage;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 	}
 
-	/*
-	 * @When(
-	 * "^I navigate to Order Header Page and search using Order id \"([^\"]*)\"$"
-	 * ) public void
-	 * i_navigate_to_Order_Header_Page_and_search_using_Order_id(String orderID)
-	 * throws Throwable { jdaHomeStepDefs.i_navigate_to_order_header();
-	 * jdaFooter.clickQueryButton();
-	 * orderHeaderMaintenancePage.enterOrderNo(orderID);
-	 * context.setOrderId(orderID); jdaFooter.clickExecuteButton(); }
-	 */
 
 	@When("^I navigate to load menu$")
 	public void i_navigate_to_load_menu() throws Throwable {
 		stockTransferOrderVehicleLoadingPage.navigateToLoadMenu();
 	}
-
+	
 	@When("^I perform vehicle loading for all the pallets$")
 	public void i_perform_vehicle_loading_for_all_the_pallets() throws Throwable {
 		ArrayList<String> palletIDList = new ArrayList<String>();
-		// context.getTrailer(); //TODO to update after Swetha completes
-		// ShipDock and Trailer creation
-		String trailer = "1701";
+		context.getTrailerNo(); 
 		palletIDList = context.getPalletIDList();
 
 		stockTransferOrderVehicleLoadingPage.navigateToVehicleLoad();
@@ -93,7 +84,7 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 			Thread.sleep(2000);
 
 			if (i < 1) {
-				stockTransferOrderVehicleLoadingPage.enterTrailer(trailer);
+				stockTransferOrderVehicleLoadingPage.enterTrailer(context.getTrailerNo());
 				Thread.sleep(3000);
 				puttyFunctionsPage.pressEnter();
 			}
@@ -102,6 +93,8 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 			Thread.sleep(2000);
 		}
 		Thread.sleep(3000);
+		hooks.logoutPutty();
+		Thread.sleep(5000);
 	}
 
 	@Then("^the vehicle loading should be completed$")

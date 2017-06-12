@@ -86,16 +86,6 @@ public class PurchaseOrderPutawayStepDefs {
 	@Given("^the pre advice id \"([^\"]*)\" should be received with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
 	public void the_pre_advice_id_should_be_received_with(String preAdviceId, String category, String status,
 			String location) throws Throwable {
-
-		// ------------Data Setup-----------
-		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isRecordExists(preAdviceId));
-
-		// ------------Data Setup-----------
-
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 						preAdviceId, category, status);
@@ -119,7 +109,7 @@ public class PurchaseOrderPutawayStepDefs {
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isRecordExists(preAdviceId));
+				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 
 		// ------------Data Setup-----------
 

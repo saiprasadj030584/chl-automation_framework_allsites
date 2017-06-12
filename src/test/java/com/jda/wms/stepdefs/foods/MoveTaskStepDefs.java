@@ -10,10 +10,12 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.context.OrderHeaderContext;
 import com.jda.wms.db.MoveTaskDB;
 import com.jda.wms.db.SkuConfigDB;
 import com.jda.wms.pages.foods.JDAFooter;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -24,16 +26,17 @@ public class MoveTaskStepDefs {
 	private Context context;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private SkuConfigDB skuConfigDB;
-
+	private OrderHeaderContext orderHeaderContext;
 	private final JDAFooter jDAFooter;
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 
 	@Inject
-	public MoveTaskStepDefs(MoveTaskDB moveTaskDB, Context context, JDAFooter jDAFooter, SkuConfigDB skuConfigDB) {
+	public MoveTaskStepDefs(MoveTaskDB moveTaskDB, Context context, JDAFooter jDAFooter, SkuConfigDB skuConfigDB,OrderHeaderContext orderHeaderContext) {
 		this.moveTaskDB = moveTaskDB;
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.skuConfigDB = skuConfigDB;
+		this.orderHeaderContext = orderHeaderContext;
 	}
 
 	@Given("^the tagid, quantity to move details should be displayed for the sku \"([^\"]*)\" with \"([^\"]*)\" tasks$")
@@ -82,6 +85,19 @@ public class MoveTaskStepDefs {
 		}
 		Assert.assertTrue("Replenish List IDs are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+	
+	@When("^I get the pallet ids from the move task for all orders$")
+	public void i_get_the_pallet_ids_from_the_move_task_for_all_orders() throws Throwable {
+		ArrayList<String> palletListId = new ArrayList<String>();
+		
+		DataTable orderIDDatatable = orderHeaderContext.getOrderIDDataTable();
+		for (Map<String, String> dataRow : orderIDDatatable.asMaps(String.class, String.class)) {
+			palletListId.addAll(moveTaskDB.getPalletIdList(dataRow.get("OrderID"))); 
+			
+		}
+		context.setPalletIDList(palletListId); 
+		logger.debug(" Pallet ID List : " + context.getPalletIDList()); 
 	}
 
 	@Given("^the STO should have list id, quantity to move,to pallet, to container details from move task table$")

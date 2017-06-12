@@ -17,7 +17,7 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  2058206809 | REC002   |
+      |  2058206802 | REC002   |
 
   @po_putaway_bws_bonded @complete @po
   Scenario Outline: Putaway for BWS-Bonded PO

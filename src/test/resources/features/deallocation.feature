@@ -7,7 +7,7 @@ Feature: Deallocate the order
   @deallocation @complete @sto
   Scenario Outline: De-allocate the stock transfer
     Given I have logged in as warehouse user in JDA dispatcher food application
-    And the order "<OrderID>" should be "Allocated" status
+    And the order "<OrderID>" should be "Allocated" status for customer "0437"
     When I navigate to order management page
     And the summary records page should be displayed
     When I proceed to next
@@ -20,4 +20,4 @@ Feature: Deallocate the order
 
     Examples: 
       | OrderID    |
-      | 6600033112 |
+      | 5900005204 |

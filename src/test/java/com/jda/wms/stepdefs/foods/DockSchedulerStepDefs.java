@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.foods;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.sikuli.script.Key;
@@ -9,6 +10,8 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.context.OrderHeaderContext;
+import com.jda.wms.db.DockSchedulerDB;
 import com.jda.wms.pages.foods.DockSchedulerBookingsPage;
 import com.jda.wms.pages.foods.DockSchedulerPage;
 import com.jda.wms.pages.foods.JDAFooter;
@@ -16,6 +19,7 @@ import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.Verification;
 import com.jda.wms.utils.Utilities;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -31,6 +35,8 @@ public class DockSchedulerStepDefs {
 	private final InventoryUpdateStepDefs inventoryUpdateStepDefs;
 	private final Verification verification;
 	private final JDALoginStepDefs jdaLoginStepDefs;
+	private OrderHeaderContext orderHeaderContext;
+	private DockSchedulerDB dockSchedulerDB;
 
 	Screen screen = new Screen();
 
@@ -38,16 +44,18 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JdaHomePage jdaHomePage, JDAFooter jdaFooter,
 			Context context, DockSchedulerBookingsPage dockSchedulerBookingsPage,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, InventoryUpdateStepDefs inventoryUpdateStepDefs,
-			Verification verification,JDALoginStepDefs jdaLoginStepDefs) {
+			Verification verification,JDALoginStepDefs jdaLoginStepDefs,OrderHeaderContext orderHeaderContext,DockSchedulerDB dockSchedulerDB) {
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.dockSchedulerPage = dockSchedulerPage;
+		this.dockSchedulerDB = dockSchedulerDB;
 		this.dockSchedulerBookingsPage = dockSchedulerBookingsPage;
 		this.trailerMaintenanceStepDefs = trailerMaintenanceStepDefs;
 		this.inventoryUpdateStepDefs = inventoryUpdateStepDefs;
 		this.verification = verification;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
+		this.orderHeaderContext = orderHeaderContext;
 	}
 
 	@When("^I create new dock booking$")
@@ -292,15 +300,47 @@ public class DockSchedulerStepDefs {
 		}
 		dockSchedulerPage.selectBookedSlot();
 			
-//		if (dockSchedulerPage.isBookedSlotExists()) {
-//			dockSchedulerPage.selectBookedSlot();
-//		} else {
-//			jdaHomePage.scrollDown();
-//				dockSchedulerPage.selectBookedSlot();
-//		}
 		jdaFooter.clickNextButton();
 	}
-
+	
+	@When("^I create new dock booking for all orders$")
+	public void i_create_new_dock_booking_for_all_orders() throws Throwable {
+		i_select_new_dock_booking();
+		i_select_booking_type_as_order_and_search_multiple_orders(orderHeaderContext.getOrderIDDataTable());
+		i_select_the_slot();
+		i_enter_booking_details();
+		i_proceed_to_complete_the_dock_scheduling_process();
+	}
+	
+	@When("^I proceed to complete the dock scheduling process$")
+	public void i_proceed_to_complete_the_dock_scheduling_process() throws Throwable {
+		jdaFooter.clickDoneButton();
+	}
+	
+	@When("^I select booking type as order and search multiple orders$")
+	public void i_select_booking_type_as_order_and_search_multiple_orders(DataTable dataTable) throws Throwable {
+		String orderID;
+		dockSchedulerPage.enterBookingType("Consignment");
+		for (Map<String, String> dataRow : dataTable.asMaps(String.class, String.class)) {
+			orderID = dataRow.get("OrderID");
+			screen.type(";");
+			String consignment = dockSchedulerDB.getConsignment(orderID);
+			dockSchedulerPage.enterConsignmnet(consignment);
+		}
+		
+		jdaFooter.clickSearch();
+		dockSchedulerPage.addAllOrders();
+		jdaFooter.clickNextButton();
+	}
+	
+	@When("^I select new dock booking$")
+	public void i_select_new_dock_booking() throws Throwable {
+		jdaHomePage.navigateToDockSchedulerPage();
+		dockSchedulerPage.selectCreateNewBooking();
+		dockSchedulerPage.enterSiteID();
+		jdaFooter.clickNextButton();
+	}
+	
 	 @Then("^the booking ovverrun error message should be displayed$")
 	 public void the_booking_error_message_should_be_displayed() throws Throwable {
 		 Assert.assertTrue("Error message is not as expected",dockSchedulerPage.isErrorMessageDisplayed());

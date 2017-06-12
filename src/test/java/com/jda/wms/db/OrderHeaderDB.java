@@ -269,4 +269,27 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getSoftAllocated(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select soft_allocated from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public void updateSoftAllocated(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update order_header set soft_allocated = 'Y' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+		rs.next();
+	}
 }

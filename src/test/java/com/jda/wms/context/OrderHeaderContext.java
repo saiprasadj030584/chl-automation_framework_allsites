@@ -2,6 +2,8 @@ package com.jda.wms.context;
 
 import java.util.ArrayList;
 
+import cucumber.api.DataTable;
+
 public class OrderHeaderContext {
 	private String customerID;
 	private String deliverByDate;
@@ -14,6 +16,7 @@ public class OrderHeaderContext {
 	private int currentRecord = 0;
 	private int numberOfLines;
 	private ArrayList<String> failureList;
+	private DataTable orderIDDataTable;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -101,5 +104,12 @@ public class OrderHeaderContext {
 
 	public void setFailureList(ArrayList<String> failureList) {
 		this.failureList = failureList;
+	}
+	public DataTable getOrderIDDataTable() {
+		return orderIDDataTable;
+	}
+
+	public void setOrderIDDataTable(DataTable orderIDDataTable) {
+		this.orderIDDataTable = orderIDDataTable;
 	}
 }
