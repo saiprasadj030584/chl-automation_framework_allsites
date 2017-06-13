@@ -259,7 +259,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			skuID = preAdviceLineDB.getSkuId(context.getPreAdviceId());
 			String sKuId = skuID.get(i - 1);
 			context.setSkuId(sKuId);
-			System.out.println(context.getSkuId());
 			qtyDue = preAdviceLineDB.getQtyDue(context.getPreAdviceId(), skuID.get(i - 1));
 			String packConfig = preAdviceLineDB.getPackConfig(context.getPreAdviceId(), skuID.get(i - 1));
 

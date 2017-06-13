@@ -66,14 +66,19 @@ public class Hooks {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
+		
+		screen.type("F4", Key.ALT);
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
 
-		screen.wait("images/Putty/PuttyClose.png", 20);
-		screen.click("images/Putty/PuttyClose.png", 25);
-		Thread.sleep(1000);
+//		screen.wait("images/Putty/PuttyClose.png", 20);
+//		screen.click("images/Putty/PuttyClose.png", 25);
+//		Thread.sleep(1000);
 
-		screen.wait("images/Putty/PuttyCloseOK.png", 20);
-		screen.click("images/Putty/PuttyCloseOK.png", 25);
-		Thread.sleep(1000);
+//		screen.wait("images/Putty/PuttyCloseOK.png", 20);
+//		screen.click("images/Putty/PuttyCloseOK.png", 25);
+//		Thread.sleep(1000);
 		}
 	}
 
