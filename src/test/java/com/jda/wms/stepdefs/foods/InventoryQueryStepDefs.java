@@ -105,20 +105,21 @@ public class InventoryQueryStepDefs {
 		logger.debug("Status in Inventory screen : " + actualstatus);
 	}
 
-	@Given("^I have tag id \"([^\"]*)\" with the \"([^\"]*)\" status in inventory$")
-	public void i_have_tag_id_with_the_status_in_inventory(String tagId, String status) throws Throwable {
-		context.setTagId(tagId);
-
-		System.out.println("status:" + inventoryDB.getStatus(tagId));
-		String actualStatus = inventoryDB.getStatus(tagId);
-		if (actualStatus.equals("Locked")) {
-			logger.debug("Status in Inventory: " + actualStatus);
-			inventoryDB.updateStatus("UnLocked", tagId);
+	@Given("^I have a tag id with the \"([^\"]*)\" status in inventory$")
+	public void i_have_a_tag_id_with_the_status_in_inventory(String status) throws Throwable {
+		ArrayList failureList = new ArrayList();
+		String tagId = inventoryDB.getTagIdWithUnlockedStatus();
+		if (!tagId.contains("Exhausted Resultset")){
+			context.setTagId(tagId);
+			String location = inventoryDB.getLocation(tagId);
+			context.setLocation(location);
 		}
-
-		String location = inventoryDB.getLocation(tagId);
-		context.setLocation(location);
-		logger.debug("Ltatus in Inventory: " + location);
+		else{
+			failureList.add("No Tag ID found for "+status+" status");
+		}
+		Assert.assertTrue(
+				"Test Data Issue. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 
 	@Then("^I should see the updated status as \"([^\"]*)\" and lock code as \"([^\"]*)\" in the inventory query page$")

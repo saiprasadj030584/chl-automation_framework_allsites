@@ -4,7 +4,7 @@ Feature: Putaway for purchase order
   I want to putaway the articles 
   So that I can complete the purchase order
 
-  @po_putaway_ambient @complete @po @po_demo
+  @po_putaway_ambient @complete @po
   Scenario Outline: Putaway for Ambient PO
     Given the pre advice id "<preAdviceId>" should be received with "Ambient", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
