@@ -111,7 +111,6 @@ public class PreAdviceHeaderStepsDefs {
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
 		Thread.sleep(3000);
-		System.out.println(selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 		Thread.sleep(3000);

@@ -55,7 +55,6 @@ public class PreAdviceLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select sku_id from pre_advice_line where pre_advice_id ='" + preAdviceID + "'");
 		ResultSet rs = stmt
 				.executeQuery("select sku_id from pre_advice_line where pre_advice_id ='" + preAdviceID + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -65,7 +64,6 @@ public class PreAdviceLineDB {
 				skuIdList.add((rs.getString(j)));
 			}
 		}
-		System.out.println("skuIdList "+skuIdList);
 		return skuIdList;
 	}
 
