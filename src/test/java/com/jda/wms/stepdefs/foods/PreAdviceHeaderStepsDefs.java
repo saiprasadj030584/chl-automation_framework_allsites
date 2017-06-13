@@ -110,9 +110,11 @@ public class PreAdviceHeaderStepsDefs {
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
-//		Assert.assertTrue("Test Data not available - Issue in Data loading",
-//				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
-		Thread.sleep(5000);
+		Thread.sleep(3000);
+		System.out.println(selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
+		Thread.sleep(3000);
 		// ------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);

@@ -213,14 +213,14 @@ public class StoreTrackingOrderPickingStepDefs {
 	public void the_sto_of_type_should_contain_order_details_and_be_container_picked_for_customer(String orderId,
 			String type, String pickingType, String customer) throws Throwable {
 		// ------------Data Setup-----------
-		deleteDataFromDB.deleteOrderHeader(orderId);
-		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
-		insertDataIntoDB.insertOrderLine(orderId);
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isPreAdviceRecordExists(orderId));
-		i_system_allocate_the_order();
-		i_create_list_ids_manually_in_clustering();
-		i_create_consignment();
+//		deleteDataFromDB.deleteOrderHeader(orderId);
+//		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
+//		insertDataIntoDB.insertOrderLine(orderId);
+//		Assert.assertTrue("Test Data not available - Issue in Data loading",
+//				selectDataFromDB.isPreAdviceRecordExists(orderId));
+//		i_system_allocate_the_order();
+//		i_create_list_ids_manually_in_clustering();
+//		i_create_consignment();
 		
 		// ------------Data Setup-----------
 

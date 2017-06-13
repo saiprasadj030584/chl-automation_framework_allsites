@@ -42,15 +42,13 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	// @After()
+	 @After()
 	public void tearDown(Scenario scenario) {
-
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
-
 		// clearing down webdriver object
 		if (webDriver != null) {
 			webDriver.close();

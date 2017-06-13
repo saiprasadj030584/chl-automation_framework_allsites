@@ -29,6 +29,8 @@ public class PreAdviceHeaderDB {
 		System.out.println("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
+						+ preAdviceID + "'");
 		ResultSet resultSet = stmt.executeQuery("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		resultSet.next();
