@@ -7,6 +7,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class PuttyFunctionsPage {
@@ -15,6 +16,7 @@ public class PuttyFunctionsPage {
 	int timeoutInSec = 20;
 	private Context context;
 
+	@Inject
 	public PuttyFunctionsPage(Context context) {
 		this.context = context;
 	}
