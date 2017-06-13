@@ -7,10 +7,17 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.jda.wms.context.Context;
+
 public class PuttyFunctionsPage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private Context context;
+
+	public PuttyFunctionsPage(Context context) {
+		this.context = context;
+	}
 
 	public void invokePutty() throws IOException, InterruptedException {
 		Process putty = Runtime.getRuntime().exec("putty.exe");
@@ -64,7 +71,6 @@ public class PuttyFunctionsPage {
 	}
 
 	public void minimisePutty() throws FindFailed, InterruptedException {
-		System.out.println("Putty minimise");
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
 		screen.click("images/Putty/PuttyMinimise.png");
 		Match mStatus = screen.find("images/Putty/PuttyMinimise.png");
@@ -74,22 +80,24 @@ public class PuttyFunctionsPage {
 	}
 
 	public boolean isMainMenuDisplayed() {
-		if (screen.exists("images/Putty/MainMenu.png") != null)
+		if (screen.exists("images/Putty/MainMenu.png") != null){
+			context.setPuttyLoginFlag(true);
 			return true;
+		}
 		else
 			return false;
 	}
-	
-	public void pressTab() throws InterruptedException{
+
+	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
 	}
-	
-	public void pressEnter() throws InterruptedException{
+
+	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void nextScreen() throws InterruptedException {
 		screen.type("x", Key.CTRL);
 		screen.type(Key.NUM4);

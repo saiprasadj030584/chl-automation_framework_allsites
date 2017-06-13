@@ -58,7 +58,7 @@ public class Hooks {
 		}
 	}
 
-//	 @After
+	 @After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag()==true){
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
