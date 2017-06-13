@@ -27,11 +27,8 @@ public class SelectDataFromDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT PRE_ADVICE_ID FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
 		rs.next();
-		System.out.println(rs.getString(1));
-		System.out.println(preAdviceId);
 		if (rs.getString(1).equals(preAdviceId)){
 			isRecordExists = true;
-			System.out.println("isRecordExists 1 "+isRecordExists);
 		}
 		}
 		catch(SQLException e){
@@ -39,7 +36,6 @@ public class SelectDataFromDB {
 				isRecordExists=false;
 			}
 		}
-		System.out.println("isRecordExists 2 "+isRecordExists);
 		return isRecordExists;
 	}
 	
