@@ -6,7 +6,7 @@ Feature: Inventory Lock
 
   @complete @il @po_demo
   Scenario Outline: Lock the inventory from unlocked status
-    #Given I have logged in as warehouse user in JDA dispatcher food application
+    Given I have logged in as warehouse user in JDA dispatcher food application
     And I have a tag id with the "UnLocked" status in inventory
     When I navigate to inventory update page
     And I choose the type of inventory property as "Lock Status Change"
