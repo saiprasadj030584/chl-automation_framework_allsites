@@ -1,5 +1,6 @@
 package com.jda.wms.hooks;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import org.openqa.selenium.OutputType;
@@ -57,7 +58,7 @@ public class Hooks {
 	}
 
 //	 @After
-	public void logoutPutty() throws FindFailed, InterruptedException {
+	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag()==true){
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
@@ -67,10 +68,13 @@ public class Hooks {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 		
-		screen.type("F4", Key.ALT);
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Process p = Runtime.getRuntime().exec("cmd /c C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
+		p.waitFor();
+		
+//		screen.type("F4", Key.ALT);
+//		Thread.sleep(2000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(2000);
 
 //		screen.wait("images/Putty/PuttyClose.png", 20);
 //		screen.click("images/Putty/PuttyClose.png", 25);
