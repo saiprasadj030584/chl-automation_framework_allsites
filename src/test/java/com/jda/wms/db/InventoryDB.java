@@ -318,14 +318,14 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 		return rs.getString(1);
 	}
 
-	public String getTagIdWithUnlockedStatus() throws ClassNotFoundException {
+	public String getTagIdWithStatus(String status) throws ClassNotFoundException {
 		try{
 			if (context.getConnection() == null) {
 				database.connect();
 			}
 
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select tag_id from inventory where lock_status='UnLocked'");
+			ResultSet rs = stmt.executeQuery("select tag_id from inventory where lock_status='"+status+"'");
 			rs.next();
 			return rs.getString(1);
 			}

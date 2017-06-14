@@ -269,7 +269,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 
 				if (!vintage.equals(null)) {
 					if (currentVintage.equals(null)) {
-						failureList.add("Current Vintage should not be null in SKU table for(" + context.getSkuId() + ") ");
+						failureList.add(
+								"Current Vintage should not be null in SKU table for(" + context.getSkuId() + ") ");
 					}
 				}
 			}
@@ -288,8 +289,8 @@ public class PreAdviceLineMaintenanceStepDefs {
 			maxQty = packConfigMaintenanceDB.getRatio2To3(packConfig);
 
 			if (caseRatio != ratio1To2) {
-				failureList.add("Case ratio is not as expected for SKU (" + context.getSkuId() + ") " + "Expected [" + ratio1To2
-						+ "] but was [" + caseRatio + "]");
+				failureList.add("Case ratio is not as expected for SKU (" + context.getSkuId() + ") " + "Expected ["
+						+ ratio1To2 + "] but was [" + caseRatio + "]");
 			}
 
 			productGroup = skuMaintenanceDB.getProductGroup(skuID.get(i - 1));
@@ -555,13 +556,12 @@ public class PreAdviceLineMaintenanceStepDefs {
 	@When("^I search the pre-advice id \"([^\"]*)\" and SKU id \"([^\"]*)\" in pre-advice line maintenance page$")
 	public void i_search_pre_advice_id_and_sku_id(String preAdviceId, String skuId) throws Throwable {
 		// ------------Data Setup-----------
-		String productCategory = "Ambient";
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, "Ambient");
+		Thread.sleep(3000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
-
 		// ------------Data Setup-----------
 
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
@@ -590,10 +590,10 @@ public class PreAdviceLineMaintenanceStepDefs {
 	public void the_sku_of_pre_advice_id_have_the_pallet_type_as(String preAdviceId, String sku,
 			String existingPalletType) throws Throwable {
 		// ------------Data Setup-----------
-		String productCategory = "Ambient";
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, "Ambient");
+		Thread.sleep(3000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 		// ------------Data Setup-----------

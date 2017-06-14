@@ -69,14 +69,14 @@ public class Hooks {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 		
-//		Process p = Runtime.getRuntime().exec("cmd /c "+envVar+"\\bin\\puttykillAdmin.lnk");
-//		//Process p = Runtime.getRuntime().exec("cmd /c C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
-//		p.waitFor();
-		
-		screen.type(Key.F4, Key.ALT);
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Process p = Runtime.getRuntime().exec("cmd /c "+envVar+"\\bin\\puttykillAdmin.lnk");
+		//Process p = Runtime.getRuntime().exec("cmd /c C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
+		p.waitFor();
+		context.setPuttyLoginFlag(false);
+//		screen.type(Key.F4, Key.ALT);
+//		Thread.sleep(2000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(2000);
 
 //		screen.wait("images/Putty/PuttyClose.png", 20);
 //		screen.click("images/Putty/PuttyClose.png", 25);

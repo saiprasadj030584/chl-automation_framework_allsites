@@ -15,12 +15,12 @@ import org.yaml.snakeyaml.Yaml;
 import com.google.inject.Inject;
 import com.jda.wms.exception.ConfigException;
 
-public class Configuration1 {
+public class DataConfiguration {
 
 	private Map<String, Object> config = new HashMap<String, Object>();
 
 	@Inject
-	public Configuration1() {
+	public DataConfiguration() {
 		loadConfigurations();
 		loadProperties();
 	}

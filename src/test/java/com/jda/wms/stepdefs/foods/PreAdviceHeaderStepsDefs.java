@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.DataConfiguration;
 import com.jda.wms.context.Context;
 import com.jda.wms.dataload.foods.DeleteDataFromDB;
 import com.jda.wms.dataload.foods.InsertDataIntoDB;
@@ -36,13 +37,14 @@ public class PreAdviceHeaderStepsDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
+	private DataConfiguration dataConfiguration;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(PreAdviceHeaderPage preAdviceHeaderPage, JDAFooter jdaFooter,
 			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
 			AddressMaintenancePage addressMaintenancePage, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			Database database, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
-			SelectDataFromDB selectDataFromDB) {
+			SelectDataFromDB selectDataFromDB,DataConfiguration configuration1) {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
@@ -53,6 +55,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
+		this.dataConfiguration = configuration1;
 	}
 
 	@Given("^the PO \"([^\"]*)\" with \"([^\"]*)\" category should be \"([^\"]*)\" status and have future due date, site id, number of lines in the pre-advice header maintenance table$")
@@ -105,7 +108,6 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 			String preAdviceId, String productCategory, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-
 		// ------------Data Setup-----------
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
@@ -113,7 +115,6 @@ public class PreAdviceHeaderStepsDefs {
 		Thread.sleep(3000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
-		Thread.sleep(3000);
 		// ------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
@@ -162,6 +163,15 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_category_PO_in_status_with_more_than_one_line_items_and_have_future_due_date_site_id_number_of_lines_in_the_pre_advice_header_maintenance_table(
 			String productCategory, String preAdviceId, String status) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+		// ------------Data Setup-----------
+		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
+		Thread.sleep(3000);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
+		// ------------Data Setup-----------
+
 		context.setPreAdviceId(preAdviceId);
 		context.setProductCategory(productCategory);
 
@@ -325,8 +335,8 @@ public class PreAdviceHeaderStepsDefs {
 		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
 		insertDataIntoDB.insertPreAdviceLine(preAdviceId, "Ambient");
-//		Assert.assertTrue("Test Data not available - Issue in Data loading",
-//				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
+		// Assert.assertTrue("Test Data not available - Issue in Data loading",
+		// selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
 		Thread.sleep(5000);
 		// ------------Data Setup-----------
 		context.setPreAdviceId(preAdviceId);

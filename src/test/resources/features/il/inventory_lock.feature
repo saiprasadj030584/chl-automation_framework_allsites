@@ -4,7 +4,7 @@ Feature: Inventory Lock
   I want to lock a product with lock code CODEAPP
   So that those invetories cannot be used for allocation
 
-  @complete @il @po_demo
+  @complete @il
   Scenario Outline: Lock the inventory from unlocked status
     Given I have logged in as warehouse user in JDA dispatcher food application
     And I have a tag id with the "UnLocked" status in inventory
@@ -22,18 +22,18 @@ Feature: Inventory Lock
     Examples: 
       | LockCode                              |
       | Code Approval                         |
-      #| Components Stock                      |
-      #| 1Damaged                              |
-      #| EVENTS                                |
-      #| Pick exception lock code              |
-      #| 1Expired                              |
-      #| Head Office Request                   |
-      #| Lock code for new vintage or new wine |
-      #| Outlets Stock                         |
-      #| Product Recall                        |
-      #| Return from RDC                       |
-      #| Supplier Damage                       |
-      #| Return to Supplier                    |
-      #| Warehouse Damage                      |
-      #| Hampers Stock                         |
-      #| Incubation lock code                  |
+      | Components Stock                      |
+      | 1Damaged                              |
+      | EVENTS                                |
+      | Pick exception lock code              |
+      | 1Expired                              |
+      | Head Office Request                   |
+      | Lock code for new vintage or new wine |
+      | Outlets Stock                         |
+      | Product Recall                        |
+      | Return from RDC                       |
+      | Supplier Damage                       |
+      | Return to Supplier                    |
+      | Warehouse Damage                      |
+      | Hampers Stock                         |
+      | Incubation lock code                  |

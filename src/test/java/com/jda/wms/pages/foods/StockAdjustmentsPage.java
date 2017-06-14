@@ -46,6 +46,7 @@ public class StockAdjustmentsPage {
 
 	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Finish/ReasonCode.png");
 		screen.type(reasonCode);
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();

@@ -108,7 +108,7 @@ public class InventoryQueryStepDefs {
 	@Given("^I have a tag id with the \"([^\"]*)\" status in inventory$")
 	public void i_have_a_tag_id_with_the_status_in_inventory(String status) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		String tagId = inventoryDB.getTagIdWithUnlockedStatus();
+		String tagId = inventoryDB.getTagIdWithStatus(status);
 		if (!tagId.contains("Exhausted Resultset")){
 			context.setTagId(tagId);
 			String location = inventoryDB.getLocation(tagId);
@@ -280,30 +280,34 @@ public class InventoryQueryStepDefs {
 		logger.debug("Case Ratio: " + caseRatio);
 	}
 
-	@Given("^I have the tag id \"([^\"]*)\" with the \"([^\"]*)\" status$")
-	public void i_have_the_tag_id_with_the_status(String tagId, String status) throws Throwable {
-		context.setTagId(tagId);
-		context.setStatus(status);
+	@Given("^I have a tag id with the \"([^\"]*)\" status$")
+	public void i_have_a_tag_id_with_the_status(String status) throws Throwable {
+		ArrayList failureList = new ArrayList();
+		String tagId = inventoryDB.getTagIdWithStatus(status);
+		System.out.println(tagId);
+		if (!tagId.contains("Exhausted Resultset")){
+			context.setTagId(tagId);
+			context.setStatus(status);
+			logger.debug("Tag ID: " + tagId);
 
-		logger.debug("Tag ID: " + tagId);
+			String inventorySKUId = inventoryDB.getInventorySKUId(tagId);
+			context.setSkuId(inventorySKUId);
+			logger.debug("SKU ID: " + inventorySKUId);
 
-		String inventorySKUId = inventoryDB.getInventorySKUId(tagId);
-		context.setSkuId(inventorySKUId);
-		logger.debug("SKU ID: " + inventorySKUId);
+			String qtyOnHandBfrAdjustment = inventoryDB.getQtyOnHand(tagId);
+			context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
+			logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
 
-		String lockStatus = inventoryDB.getStatus(tagId);
-		if (!status.equals(lockStatus)) {
-			inventoryDB.updateStatus(status, tagId);
+			String caseRatio = inventoryDB.getCaseRatio(tagId);
+			context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
+			logger.debug("Case Ratio: " + caseRatio);
 		}
-		logger.debug("Inventory Query - Status: " + lockStatus);
-
-		String qtyOnHandBfrAdjustment = inventoryDB.getQtyOnHand(tagId);
-		context.setqtyOnHandBeforeAdjustment(Utilities.convertStringToInteger(qtyOnHandBfrAdjustment));
-		logger.debug("Quantity on Hand before Adjustment: " + qtyOnHandBfrAdjustment);
-
-		String caseRatio = inventoryDB.getCaseRatio(tagId);
-		context.setCaseRatio(Utilities.convertStringToInteger(caseRatio));
-		logger.debug("Case Ratio: " + caseRatio);
+		else{
+			failureList.add("No Tag ID found for "+status+" status");
+		}
+		Assert.assertTrue(
+				"Test Data Issue. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 
 	@Then("^I should see the location zone in inventory page$")

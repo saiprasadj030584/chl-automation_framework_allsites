@@ -23,7 +23,7 @@ Feature: Location Status Change
 	
 	@complete @po @location_status_change_negative
   Scenario Outline: Change REC lane lock status
-    Given I have logged in as warehouse user in JDA dispatcher food application
+    #Given I have logged in as warehouse user in JDA dispatcher food application
     And I navigate to location maintenance page
     And I search with location ID "<LocationID>"
     Then the location record should not be displayed
