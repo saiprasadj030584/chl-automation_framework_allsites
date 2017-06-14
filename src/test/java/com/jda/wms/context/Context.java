@@ -88,6 +88,7 @@ public class Context {
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
 	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
+	private Process puttyProcess;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -728,5 +729,13 @@ public class Context {
 
 	public void setMultipleOrderListIDMap(Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
 		this.multipleOrderListIDMap = multipleOrderListIDMap;
+	}
+
+	public Process getPuttyProcess() {
+		return puttyProcess;
+	}
+
+	public void setPuttyProcess(Process puttyProcess) {
+		this.puttyProcess = puttyProcess;
 	}
 }

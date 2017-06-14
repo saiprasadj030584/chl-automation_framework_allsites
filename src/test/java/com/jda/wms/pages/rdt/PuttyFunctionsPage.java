@@ -23,6 +23,7 @@ public class PuttyFunctionsPage {
 
 	public void invokePutty() throws IOException, InterruptedException {
 		Process putty = Runtime.getRuntime().exec("putty.exe");
+		context.setPuttyProcess(putty);
 		Thread.sleep(2000);
 	}
 

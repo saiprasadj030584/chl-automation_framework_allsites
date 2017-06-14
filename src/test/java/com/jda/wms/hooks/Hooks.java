@@ -61,6 +61,7 @@ public class Hooks {
 	 @After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag()==true){
+			context.getPuttyProcess().waitFor();
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
