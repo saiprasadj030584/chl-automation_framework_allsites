@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.StockCheckTaskQueryPage;
@@ -21,13 +22,15 @@ public class StockCheckTaskQueryStepDefs {
 	private final JdaHomePage jdaHomePage;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private Context context;
 
 	@Inject
 	public StockCheckTaskQueryStepDefs(StockCheckTaskQueryPage stockCheckTaskQueryPage, JDAFooter jdaFooter,
-			JdaHomePage jdaHomePage) {
+			JdaHomePage jdaHomePage, Context context) {
 		this.stockCheckTaskQueryPage = stockCheckTaskQueryPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
+		this.context = context;
 	}
 
 	@When("^I navigate to stock check query page$")
@@ -38,21 +41,20 @@ public class StockCheckTaskQueryStepDefs {
 		Thread.sleep(3000);
 	}
 
-	@When("^I search the list by site id as \"([^\"]*)\", location as \"([^\"]*)\" and task date as current date$")
-	public void i_search_the_list_by_site_id_as_location_as_and_task_date_as_current_date(String siteId,
-			String location) throws Throwable {
+	@When("^I search the list by site id as \"([^\"]*)\", location and task date as current date$")
+	public void i_search_the_list_by_site_id_as_location_as_and_task_date_as_current_date(String siteId) throws Throwable {
 		jdaFooter.clickQueryButton();
 		stockCheckTaskQueryPage.selectSiteId(siteId);
-		stockCheckTaskQueryPage.enterLocation(location);
+		stockCheckTaskQueryPage.enterLocation(context.getLocation());
 		stockCheckTaskQueryPage.enterTaskDate();
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(1000);
 	}
 
-	@When("^I search the list by tag id as \"([^\"]*)\" and task date as current date$")
-	public void i_search_the_list_by_tag_id_as_and_task_date_as_current_date(String tagId) throws Throwable {
+	@When("^I search the list by tag id as and task date as current date$")
+	public void i_search_the_list_by_tag_id_as_and_task_date_as_current_date() throws Throwable {
 		jdaFooter.clickQueryButton();
-		stockCheckTaskQueryPage.enterTagId(tagId);
+		stockCheckTaskQueryPage.enterTagId(context.getTagId());
 		stockCheckTaskQueryPage.enterTaskDate();
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(1000);

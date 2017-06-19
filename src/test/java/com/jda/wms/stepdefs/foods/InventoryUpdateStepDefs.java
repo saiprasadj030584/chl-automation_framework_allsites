@@ -126,9 +126,9 @@ public class InventoryUpdateStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
-	@When("^I search the tag id \"([^\"]*)\"$")
-	public void i_search_the_tag_id(String tagId) throws Throwable {
-		inventoryUpdatePage.enterTagId(tagId);
+	@When("^I search the tag id$")
+	public void i_search_the_tag_id() throws Throwable {
+		inventoryUpdatePage.enterTagId(context.getTagId());
 	}
 
 	@When("^I choose the type of inventory property as \"([^\"]*)\"$")

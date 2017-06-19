@@ -22,7 +22,6 @@ import com.jda.wms.pages.foods.AddressMaintenancePage;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.foods.Verification;
-import com.jda.wms.stepdefs.rdt.StoreTrackingOrderPickingStepDefs;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.DataTable;
@@ -44,33 +43,37 @@ public class OrderHeaderMaintenanceStepDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
-	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
 	private OrderHeaderContext orderHeaderContext;
 	private OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs;
 	private MoveTaskStepDefs moveTaskStepDefs;
+	private SystemAllocationStepDefs systemAllocationStepDefs;
+	private ClusteringStepDefs clusteringStepDefs;
+	private OrderPreparationStepDefs orderPreparationStepDefs;
 
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB,
 			AddressDB addressDB, Hooks hooks,InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
-			SelectDataFromDB selectDataFromDB,StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs,OrderHeaderContext orderHeaderContext,OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,MoveTaskStepDefs moveTaskStepDefs) {
+			SelectDataFromDB selectDataFromDB,OrderHeaderContext orderHeaderContext,OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,MoveTaskStepDefs moveTaskStepDefs,SystemAllocationStepDefs systemAllocationStepDefs,ClusteringStepDefs clusteringStepDefs,OrderPreparationStepDefs orderPreparationStepDefs) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.verification = verification;
-		this.addressDB = addressDB;
 		this.orderHeaderDB = orderHeaderDB;
+		this.addressDB = addressDB;
 		this.hooks = hooks;
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
-		this.storeTrackingOrderPickingStepDefs = storeTrackingOrderPickingStepDefs;
 		this.orderHeaderContext = orderHeaderContext;
 		this.orderLineMaintenanceStepDefs =orderLineMaintenanceStepDefs;
 		this.moveTaskStepDefs =moveTaskStepDefs;
+		this.systemAllocationStepDefs = systemAllocationStepDefs;
+		this.clusteringStepDefs = clusteringStepDefs;
+		this.orderPreparationStepDefs = orderPreparationStepDefs;
 	}
 
 	@Given("^the STO \"([^\"]*)\" should be \"([^\"]*)\" status, \"([^\"]*)\" type, order details in the order header table$")
@@ -110,8 +113,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Address1", "Not Null", orderHeaderDB.getAddress1(context.getOrderId()), failureList);
 		verification.verifyData("Country", "Not Null", orderHeaderDB.getCountry(context.getOrderId()), failureList);
 
-		verification.verifyData("Ship By Date - Delivery Details", "Not Null",
-				orderHeaderDB.getShipByDate(context.getOrderId()), failureList);
+		/*verification.verifyData("Ship By Date - Delivery Details", "Not Null",				orderHeaderDB.getShipByDate(context.getOrderId()), failureList);
 		verification.verifyData("Deliver By Date - Delivery Details", "Not Null",
 				orderHeaderDB.getDeliverByDate(context.getOrderId()), failureList);
 
@@ -123,7 +125,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Delivery Type", "Not Null", orderHeaderDB.getDeliveryType(context.getOrderId()),
 				failureList);
 		verification.verifyData("IFOS OrderNum", "Not Null", orderHeaderDB.getIfosOrderNum(context.getOrderId()),
-				failureList);
+				failureList);*/
 
 		Assert.assertTrue(
 				"Delivery details are not as expected in Order Header" + Arrays.asList(failureList.toString()),
@@ -317,9 +319,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		insertDataIntoDB.insertOrderLine(orderID);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(orderID));
-		storeTrackingOrderPickingStepDefs.i_system_allocate_the_order();
-		storeTrackingOrderPickingStepDefs.i_create_list_ids_manually_in_clustering();
-		storeTrackingOrderPickingStepDefs.i_create_consignment();
+		systemAllocationStepDefs.i_system_allocate_the_order();
+		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+		orderPreparationStepDefs.i_create_consignment();
 
 		// ------------Data Setup-----------
 

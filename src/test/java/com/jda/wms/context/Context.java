@@ -89,6 +89,7 @@ public class Context {
 	private String stoType;
 	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
+	private String pickingType;
 
 	public RDTTask getCurrentTask() {
 		return currentTask;
@@ -737,5 +738,13 @@ public class Context {
 
 	public void setPuttyProcess(Process puttyProcess) {
 		this.puttyProcess = puttyProcess;
+	}
+
+	public String getPickingType() {
+		return pickingType;
+	}
+
+	public void setPickingType(String pickingType) {
+		this.pickingType = pickingType;
 	}
 }

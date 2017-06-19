@@ -61,11 +61,10 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterSKUId(String skuID) throws FindFailed, InterruptedException {
-		System.out.println("SKu in enter Skuid " + skuID);
 		screen.type(skuID);
 		Thread.sleep(2000);
 		screen.type(Key.ENTER);
-		Thread.sleep(10000);
+		Thread.sleep(13000);
 	}
 
 	public String getPreAdvId() throws FindFailed, InterruptedException {

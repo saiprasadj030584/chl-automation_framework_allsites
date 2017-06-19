@@ -1,11 +1,8 @@
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.junit.Assert;
 
@@ -24,6 +21,9 @@ import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.MoveTaskUpdatePage;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
+import com.jda.wms.stepdefs.foods.AddressMaintenanceStepDefs;
+import com.jda.wms.stepdefs.foods.CEConsignmentLinkingStepDefs;
+import com.jda.wms.stepdefs.foods.CEConsignmentMaintenanceStepDefs;
 import com.jda.wms.stepdefs.foods.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.foods.PreAdviceLineMaintenanceStepDefs;
 
@@ -54,6 +54,9 @@ public class PurchaseOrderPutawayStepDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
+	private CEConsignmentMaintenanceStepDefs ceConsignmentMaintenanceStepDefs;
+	private CEConsignmentLinkingStepDefs ceConsignmentLinkingStepDefs;
+	private AddressMaintenanceStepDefs addressMaintenanceStepDefs;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(JdaHomePage jdaHomepage, MoveTaskUpdatePage moveTaskUpdate, JDAFooter jdaFooter,
@@ -62,7 +65,7 @@ public class PurchaseOrderPutawayStepDefs {
 			PreAdviceLineMaintenanceStepDefs preAdviceLineMaintenanceStepDefs, LocationDB locationDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, MoveTaskUpdateDB moveTaskUpdateDB,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, PickFaceTableDB pickFaceTableDB,
-			InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB, SelectDataFromDB selectDataFromDB) {
+			InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB, SelectDataFromDB selectDataFromDB,CEConsignmentMaintenanceStepDefs ceConsignmentMaintenanceStepDefs,CEConsignmentLinkingStepDefs ceConsignmentLinkingStepDefs,AddressMaintenanceStepDefs addressMaintenanceStepDefs) {
 		this.jdaHomepage = jdaHomepage;
 		this.moveTaskUpdate = moveTaskUpdate;
 		this.jdaFooter = jdaFooter;
@@ -81,6 +84,9 @@ public class PurchaseOrderPutawayStepDefs {
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
+		this.ceConsignmentLinkingStepDefs = ceConsignmentLinkingStepDefs;
+		this.ceConsignmentMaintenanceStepDefs = ceConsignmentMaintenanceStepDefs;
+		this.addressMaintenanceStepDefs = addressMaintenanceStepDefs;
 	}
 
 	@Given("^the pre advice id \"([^\"]*)\" should be received with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\"$")
@@ -89,9 +95,15 @@ public class PurchaseOrderPutawayStepDefs {
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 						preAdviceId, category, status);
+		preAdviceHeaderStepsDefs.the_PO_should_have_address_detail();
+		addressMaintenanceStepDefs.the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table();
 		preAdviceLineMaintenanceStepDefs
 				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items();
-
+		if ((!category.contains("BWS-Non-Bonded")&&(!category.contains("Ambient")))){
+		ceConsignmentMaintenanceStepDefs.i_create_consignment_for_the_supplier();
+		ceConsignmentLinkingStepDefs.i_link_the_consignment_to_the_pre_advice_ID();
+		preAdviceLineMaintenanceStepDefs.the_pre_advice_line_items_should_be_linked_with_theconsignment();
+		}
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
@@ -105,20 +117,26 @@ public class PurchaseOrderPutawayStepDefs {
 			String location) throws Throwable {
 
 		// ------------Data Setup-----------
-		deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
-		insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
-
-		// ------------Data Setup-----------
+				deleteDataFromDB.deletePreAdviceHeader(preAdviceId);
+				insertDataIntoDB.insertPreAdviceHeader(preAdviceId);
+				insertDataIntoDB.insertPreAdviceLine(preAdviceId, category);
+				Thread.sleep(3000);
+				Assert.assertTrue("Test Data not available - Issue in Data loading",
+						selectDataFromDB.isPreAdviceRecordExists(preAdviceId));
+				// ------------Data Setup-----------
 
 		preAdviceHeaderStepsDefs
 				.the_PO_with_category_should_be_status_and_have_future_due_date_site_id_no_of_lines_in_the_pre_advice_header_maintenance_table(
 						preAdviceId, category, status);
+		preAdviceHeaderStepsDefs.the_PO_should_have_address_detail();
+		addressMaintenanceStepDefs.the_supplier_should_have_supplier_pallet_details_and_customs_excise_detail_in_the_address_maintenanace_table();
 		preAdviceLineMaintenanceStepDefs
 				.the_PO_should_have_the_SKU_Qty_due_Tracking_level_Pack_config_Under_bond_case_ratio_base_UOM_details_for_each_pre_advice_lines_items();
-
+		if ((!category.contains("BWS-Non-Bonded")&&(!category.contains("Ambient")))){
+			ceConsignmentMaintenanceStepDefs.i_create_consignment_for_the_supplier();
+			ceConsignmentLinkingStepDefs.i_link_the_consignment_to_the_pre_advice_ID();
+			preAdviceLineMaintenanceStepDefs.the_pre_advice_line_items_should_be_linked_with_theconsignment();
+			}
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();

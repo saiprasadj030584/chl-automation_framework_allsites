@@ -201,6 +201,7 @@ private Verification verification;
 		}
 
 		String ceTaxWarehouse = addressDbDetails.get("CEWarehouseTax");
+		context.setCEWarehouseTax(ceTaxWarehouse);
 		if (ceTaxWarehouse.equals(null)) {
 			failureList.add("CE Tax Warehouse is not displayed as expected. Expected [Not Null] but was ["
 					+ ceTaxWarehouse + "]");

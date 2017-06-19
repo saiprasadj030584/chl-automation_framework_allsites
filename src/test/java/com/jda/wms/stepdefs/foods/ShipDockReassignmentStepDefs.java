@@ -8,9 +8,7 @@ import com.jda.wms.dataload.foods.DeleteDataFromDB;
 import com.jda.wms.dataload.foods.InsertDataIntoDB;
 import com.jda.wms.dataload.foods.SelectDataFromDB;
 import com.jda.wms.pages.foods.JDAFooter;
-import com.jda.wms.pages.foods.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.foods.ShipDockReassignmentPage;
-import com.jda.wms.stepdefs.rdt.StoreTrackingOrderPickingStepDefs;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,26 +18,30 @@ public class ShipDockReassignmentStepDefs {
 	private JDAFooter jdaFooter;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private Context context;
-	private OrderHeaderMaintenancePage orderHeaderMaintenancePage;
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
-	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
+	private JDALoginStepDefs jdaLoginStepDefs;
+	private SystemAllocationStepDefs systemAllocationStepDefs;
+	private ClusteringStepDefs clusteringStepDefs;
+	private OrderPreparationStepDefs orderPreparationStepDefs;
 
 	@Inject
-	public ShipDockReassignmentStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
+	public ShipDockReassignmentStepDefs(
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			ShipDockReassignmentPage shipDockReassignmentPage,InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
-			SelectDataFromDB selectDataFromDB,StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs) {
+			SelectDataFromDB selectDataFromDB,JDALoginStepDefs jdaLoginStepDefs,SystemAllocationStepDefs systemAllocationStepDefs,ClusteringStepDefs clusteringStepDefs,OrderPreparationStepDefs orderPreparationStepDefs) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.shipDockReassignmentPage = shipDockReassignmentPage;
-		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
-		this.storeTrackingOrderPickingStepDefs = storeTrackingOrderPickingStepDefs;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
+		this.systemAllocationStepDefs = systemAllocationStepDefs;
+		this.clusteringStepDefs = clusteringStepDefs;
+		this.orderPreparationStepDefs = orderPreparationStepDefs;
 	}
 
 	@When("^I enter the from site id \"([^\"]*)\" and order id \"([^\"]*)\"$")
@@ -50,9 +52,10 @@ public class ShipDockReassignmentStepDefs {
 				insertDataIntoDB.insertOrderLine(orderId);
 				Assert.assertTrue("Test Data not available - Issue in Data loading",
 						selectDataFromDB.isPreAdviceRecordExists(orderId));
-				storeTrackingOrderPickingStepDefs.i_system_allocate_the_order();
-				storeTrackingOrderPickingStepDefs.i_create_list_ids_manually_in_clustering();
-				storeTrackingOrderPickingStepDefs.i_create_consignment();
+				jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+				systemAllocationStepDefs.i_system_allocate_the_order();
+				clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+				orderPreparationStepDefs.i_create_consignment();
 				
 				// ------------Data Setup-----------
 				jdaHomeStepDefs.i_navigate_to_ship_dock_reassignment();

@@ -76,7 +76,8 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 		ArrayList<String> palletIDList = new ArrayList<String>();
 		context.getTrailerNo(); 
 		palletIDList = context.getPalletIDList();
-
+		System.out.println("context.getPalletIDList() "+context.getPalletIDList());
+		
 		stockTransferOrderVehicleLoadingPage.navigateToVehicleLoad();
 
 		for (int i = 0; i < palletIDList.size(); i++) {
@@ -91,6 +92,10 @@ public class StockTransferOrderVehicleLoadingStepDefs {
 
 			puttyFunctionsPage.pressEnter();
 			Thread.sleep(2000);
+			
+			if (!context.getPickingType().equals("completely")){
+				break;
+			}
 		}
 		Thread.sleep(3000);
 		hooks.logoutPutty();

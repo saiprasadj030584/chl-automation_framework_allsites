@@ -35,10 +35,15 @@ public class VehicleUnloadingStepDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
+	private JDAHomeStepDefs jdaHomeStepDefs;
+	private JDALoginStepDefs jdaLoginStepDefs;
+	private SystemAllocationStepDefs systemAllocationStepDefs;
+	private ClusteringStepDefs clusteringStepDefs;
+	private OrderPreparationStepDefs orderPreparationStepDefs;
 
 	@Inject
 	public VehicleUnloadingStepDefs(JdaHomePage jdaHomePage, JDAFooter jdafooter,VehicleUnloadingPage vehicleUnloadingPage,Context context,StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs,OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs,MoveTaskStepDefs moveTaskStepDefs,PuttyFunctionsStepDefs puttyFunctionsStepDefs,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,StockTransferOrderVehicleLoadingStepDefs stockTransferOrderVehicleLoadingStepDefs,InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
-			SelectDataFromDB selectDataFromDB) {
+			SelectDataFromDB selectDataFromDB,JDALoginStepDefs jdaLoginStepDefs) {
 		this.jdaHomePage = jdaHomePage;
 		this.jdafooter = jdafooter;
 		this.vehicleUnloadingPage = vehicleUnloadingPage;
@@ -53,6 +58,7 @@ public class VehicleUnloadingStepDefs {
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
 		this.storeTrackingOrderPickingStepDefs = storeTrackingOrderPickingStepDefs;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
 	}
 	
 	@Given("^the vehicle loading has been done for order \"([^\"]*)\"$")
@@ -63,9 +69,10 @@ public class VehicleUnloadingStepDefs {
 				insertDataIntoDB.insertOrderLine(orderId);
 				Assert.assertTrue("Test Data not available - Issue in Data loading",
 						selectDataFromDB.isPreAdviceRecordExists(orderId));
-				storeTrackingOrderPickingStepDefs.i_system_allocate_the_order();
-				storeTrackingOrderPickingStepDefs.i_create_list_ids_manually_in_clustering();
-				storeTrackingOrderPickingStepDefs.i_create_consignment();
+				jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+				systemAllocationStepDefs.i_system_allocate_the_order();
+				clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+				orderPreparationStepDefs.i_create_consignment();
 				
 				// ------------Data Setup-----------
 		

@@ -102,9 +102,9 @@ public class InventoryTransactionQueryStepDefs {
 		jdaFooter.clickExecuteButton();
 	}
 
-	@When("^I search tag id \"([^\"]*)\" with transaction code as \"([^\"]*)\"$")
-	public void i_search_tag_id_with_transaction_code_as(String tagId, String code) throws Throwable {
-		i_search_tag_id_with_transaction_code_as_and_transaction_date_as_current_date(tagId, code);
+	@When("^I search tag id with transaction code as \"([^\"]*)\"$")
+	public void i_search_tag_id_with_transaction_code_as(String code) throws Throwable {
+		i_search_tag_id_with_transaction_code_as_and_transaction_date_as_current_date(context.getTagId(), code);
 	}
 
 	@When("^I search tag id \"([^\"]*)\" with transaction code as \"([^\"]*)\" and transaction date as current date$")
@@ -209,11 +209,11 @@ public class InventoryTransactionQueryStepDefs {
 		logger.debug("Uploaded File Name: " + uploadedFileName);
 	}
 
-	@Given("^I select the code as \"([^\"]*)\" and enter the tag id \"([^\"]*)\"$")
-	public void i_select_the_code_as_and_enter_the_tag_id(String code, String tagId) throws Throwable {
+	@Given("^I select the code as \"([^\"]*)\" and enter the tag id$")
+	public void i_select_the_code_as_and_enter_the_tag_id(String code) throws Throwable {
 		jdaFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
-		inventoryTransactionQueryPage.enterTagId(tagId);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jdaFooter.clickExecuteButton();
 	}
 
@@ -1082,9 +1082,10 @@ public class InventoryTransactionQueryStepDefs {
 
 			for (int s = 0; s < tagIDMap.get(sku).size(); s++) {
 				tagID = tagIDMap.get(sku).get(s);
+				context.setTagId(tagID);
 				jdaFooter.clickQueryButton();
 
-				i_select_the_code_as_and_enter_the_tag_id("Receipt", tagID);
+				i_select_the_code_as_and_enter_the_tag_id("Receipt");
 
 				the_description_from_location_to_location_update_qty_reference_and_SKU_should_be_displayed_in_the_general_tab();
 				i_navigate_to_miscellaneous_tab();

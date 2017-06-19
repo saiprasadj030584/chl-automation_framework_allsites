@@ -65,6 +65,7 @@ public class CEConsignmentMaintenanceStepDefs {
 		ceConsignmentMaintenancePage.enterECMSEADDate();
 		ceConsignmentMaintenancePage.enterECMSEADTime();
 		jdaFooter.clickExecuteButton();
+		Assert.assertTrue("Pop up not displayed after submission of consignment", popUpPage.isPopUpDisplayed());
 		popUpPage.clickYes();
 		
 		String consignmentID = ceConsignmentMaintenancePage.getConsignmentID();

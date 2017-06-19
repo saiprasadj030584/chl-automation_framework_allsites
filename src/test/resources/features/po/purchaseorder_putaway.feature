@@ -4,7 +4,7 @@ Feature: Putaway for purchase order
   I want to putaway the articles 
   So that I can complete the purchase order
 
-  @po_putaway_ambient @complete @po @po_demo
+  @po_putaway_ambient @complete @po 
   Scenario Outline: Putaway for Ambient PO
     Given the pre advice id "<preAdviceId>" should be received with "Ambient", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -19,7 +19,7 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206802 | REC002   |
 
-  @po_putaway_bws_bonded @complete @po
+  @po_putaway_bws_bonded @complete @po @demo-bws
   Scenario Outline: Putaway for BWS-Bonded PO
     Given the pre advice id "<preAdviceId>" should be received with "BWS-Bonded", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -34,7 +34,7 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206810 | REC002   |
 
-  @po_putaway_bws_non_bonded @complete @po
+  @po_putaway_bws_non_bonded @complete @po1
   Scenario Outline: Putaway for BWS-Non-Bonded PO
     Given the pre advice id "<preAdviceId>" should be received with "BWS-Non-Bonded", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -48,8 +48,8 @@ Feature: Putaway for purchase order
     Examples: 
       | preAdviceId | Location |
       |  2058206811 | REC002   |
-      
-      @po_putaway_bws_F23_bonded @complete @po
+
+  @po_putaway_bws_F23_bonded @complete @po @demo1
   Scenario Outline: Putaway for BWS-Non-Bonded PO
     Given the pre advice id "<preAdviceId>" should be received with "BWS-F23-Bonded", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -64,7 +64,7 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206813 | REC002   |
 
-  @po_putaway_bws_new_vintage @complete @po
+  @po_putaway_bws_new_vintage @complete @po @demo1
   Scenario Outline: Putaway for BWS-New-Vintage PO
     Given the pre advice id "<preAdviceId>" should be received with "BWS-New Vintage", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update
@@ -79,10 +79,10 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206812 | REC002   |
 
- @po_partial_putaway_ambient @complete @po
+  @po_partial_putaway_ambient @complete @po @demo
   Scenario Outline: Putaway for partial receiving Ambient PO
     Given the pre advice id "<preAdviceId>" should be partial receiving with "Ambient", "Released", "<Location>"
-    Then the status should be displayed as "In Progress"
+    Then the pre advice status should be displayed as "In Progress"
     When I release single tag for the SKU in the move task update
     And I login as warehouse user in putty
     And I select user directed option in main menu
@@ -95,10 +95,10 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206815 | REC002   |
 
-@po_partial_putaway_bws @complete @po
+  @po_partial_putaway_bws @complete @po 
   Scenario Outline: Putaway for partial receiving BWS PO
-    Given the pre advice id "<preAdviceId>" should be partial receiving with "BWS-Non-Bonded", "Released", "<Location>"
-    Then the status should be displayed as "In Progress"
+    Given the pre advice id "<preAdviceId>" should be partial receiving with "BWS-Bonded", "Released", "<Location>"
+    Then the pre advice status should be displayed as "In Progress"
     When I release single tag for the SKU in the move task update
     And I login as warehouse user in putty
     And I select user directed option in main menu
@@ -125,8 +125,8 @@ Feature: Putaway for purchase order
     Then I should see the from location, to location, final location, uploaded status and uploaded file name for the tags
 
     Examples: 
-      | preAdviceId |   Location |
-      |  2058206824 |  REC002   |
+      | preAdviceId | Location |
+      |  2058206824 | REC002   |
 
   @complete @po @po_override_putaway
   Scenario Outline: Override pickface location during putaway process in JDA WMS
@@ -142,4 +142,4 @@ Feature: Putaway for purchase order
 
     Examples: 
       | preAdviceId | Location |
-      |  2058206823 |  REC002   |
+      |  2058206823 | REC002   |

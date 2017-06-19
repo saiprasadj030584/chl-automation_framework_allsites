@@ -81,6 +81,7 @@ public class PurchaseOrderPutawayPage {
 	public void enterCheckString(String chkString) throws InterruptedException {
 		Thread.sleep(3000);
 		screen.type(chkString);
+		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}

@@ -219,6 +219,11 @@ public class PreAdviceHeaderStepsDefs {
 	public void i_should_see_the_type_is_updated_as_PO() throws Throwable {
 		Assert.assertTrue("The TYPE is not a PO expected, [PO] but was [not PO]", preAdviceHeaderPage.isTypeExist());
 	}
+	
+	@Then("^the pre advice status should be displayed as \"([^\"]*)\"$")
+	public void the_pre_advice_status_should_be_displayed_as(String status) throws Throwable {
+		Assert.assertEquals("PO Status does not match", status, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
+	}
 
 	@Given("^the PO should have address details$")
 	public void the_PO_should_have_address_details() throws Throwable {

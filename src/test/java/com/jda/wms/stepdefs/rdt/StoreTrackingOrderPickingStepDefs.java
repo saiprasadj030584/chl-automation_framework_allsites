@@ -11,16 +11,16 @@ import com.jda.wms.context.OrderHeaderContext;
 import com.jda.wms.dataload.foods.DeleteDataFromDB;
 import com.jda.wms.dataload.foods.InsertDataIntoDB;
 import com.jda.wms.dataload.foods.SelectDataFromDB;
+import com.jda.wms.dataload.foods.UpdateDataFromDB;
 import com.jda.wms.db.InventoryDB;
 import com.jda.wms.db.LocationDB;
 import com.jda.wms.hooks.Hooks;
-import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.pages.rdt.StoreTrackingOrderPickingPage;
 import com.jda.wms.stepdefs.foods.ClusteringStepDefs;
 import com.jda.wms.stepdefs.foods.DockSchedulerStepDefs;
 import com.jda.wms.stepdefs.foods.InventoryUpdateStepDefs;
-import com.jda.wms.stepdefs.foods.JDAHomeStepDefs;
+import com.jda.wms.stepdefs.foods.JDALoginStepDefs;
 import com.jda.wms.stepdefs.foods.MoveTaskStepDefs;
 import com.jda.wms.stepdefs.foods.OrderHeaderMaintenanceStepDefs;
 import com.jda.wms.stepdefs.foods.OrderLineMaintenanceStepDefs;
@@ -57,12 +57,12 @@ public class StoreTrackingOrderPickingStepDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
-	private JDAHomeStepDefs jdaHomeStepDefs;
-	private JDAFooter jDAFooter;
 	private SystemAllocationStepDefs systemAllocationStepDefs;
 	private ClusteringStepDefs clusteringStepDefs;
 	private OrderPreparationStepDefs orderPreparationStepDefs;
 	private Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap;
+	private JDALoginStepDefs jdaLoginStepDefs;
+	private UpdateDataFromDB updateDataFromDB;
 
 	@Inject
 	public StoreTrackingOrderPickingStepDefs(StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
@@ -73,7 +73,7 @@ public class StoreTrackingOrderPickingStepDefs {
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, DockSchedulerStepDefs dockSchedulerStepDefs,
 			InventoryUpdateStepDefs inventoryUpdateStepDefs,InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
-			SelectDataFromDB selectDataFromDB,JDAHomeStepDefs jdaHomeStepDefs,JDAFooter jDAFooter,SystemAllocationStepDefs systemAllocationStepDefs,ClusteringStepDefs clusteringStepDefs,OrderPreparationStepDefs orderPreparationStepDefs) {
+			SelectDataFromDB selectDataFromDB,SystemAllocationStepDefs systemAllocationStepDefs,ClusteringStepDefs clusteringStepDefs,OrderPreparationStepDefs orderPreparationStepDefs,JDALoginStepDefs jdaLoginStepDefs,UpdateDataFromDB updateDataFromDB) {
 		this.storeTrackingOrderPickingPage = storeTrackingOrderPickingPage;
 		this.context = context;
 		this.inventoryDB = inventoryDB;
@@ -91,11 +91,11 @@ public class StoreTrackingOrderPickingStepDefs {
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
-		this.jdaHomeStepDefs =jdaHomeStepDefs;
-		this.jDAFooter= jDAFooter;
 		this.systemAllocationStepDefs = systemAllocationStepDefs;
 		this.clusteringStepDefs = clusteringStepDefs;
 		this.orderPreparationStepDefs =orderPreparationStepDefs;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
+		this.updateDataFromDB = updateDataFromDB;
 	}
 
 	@Given("^I select picking with container pick$")
@@ -212,20 +212,24 @@ public class StoreTrackingOrderPickingStepDefs {
 	@Given("^the STO \"([^\"]*)\" of \"([^\"]*)\" type should contain order details and be \"([^\"]*)\" container picked for customer \"([^\"]*)\"$")
 	public void the_sto_of_type_should_contain_order_details_and_be_container_picked_for_customer(String orderId,
 			String type, String pickingType, String customer) throws Throwable {
-		// ------------Data Setup-----------
-//		deleteDataFromDB.deleteOrderHeader(orderId);
-//		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
-//		insertDataIntoDB.insertOrderLine(orderId);
-//		Assert.assertTrue("Test Data not available - Issue in Data loading",
-//				selectDataFromDB.isPreAdviceRecordExists(orderId));
-//		i_system_allocate_the_order();
-//		i_create_list_ids_manually_in_clustering();
-//		i_create_consignment();
-		
-		// ------------Data Setup-----------
-
 		context.setOrderId(orderId);
 		context.setStoType(type);
+		// ------------Data Setup-----------
+		deleteDataFromDB.deleteOrderHeader(orderId);
+		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
+		insertDataIntoDB.insertOrderLine(orderId);
+		Thread.sleep(4000);
+		updateDataFromDB.updateMoveTaskStatusInMoveTask(orderId);
+		updateDataFromDB.updateMoveTaskStatusInOrderHeader(orderId);
+		Thread.sleep(3000);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isOrderRecordExists(orderId));
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		systemAllocationStepDefs.i_system_allocate_the_order();
+		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+		orderPreparationStepDefs.i_create_consignment();
+		
+		// ------------Data Setup-----------
 		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table(orderId,
 				"Allocated", type);
 		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
@@ -244,40 +248,6 @@ public class StoreTrackingOrderPickingStepDefs {
 				.the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table();
 		the_sto_should_be_container_picked(pickingType);
 	}
-
-	@When("^I create consignment$")
-	public void i_create_consignment() throws Throwable {
-		// TODO Auto-generated method stub
-		jdaHomeStepDefs.i_navigate_to_order_preparation_page();
-		orderPreparationStepDefs.i_select_the_group_type_as("Consignment");
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		orderPreparationStepDefs.i_enter_the_order_id(context.getOrderId());
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		orderPreparationStepDefs.i_select_the_record();
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		orderPreparationStepDefs.the_total_orders_should_be_displayed_as("1");
-		orderPreparationStepDefs.i_select_the_trailer_type_as_("TRAILER");
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		orderPreparationStepDefs.the_record_should_be_displayed_for_consignment_preparation_process();
-		orderPreparationStepDefs.i_proceed_to_complete_the_process();
-		orderHeaderMaintenanceStepDefs.the_consignment_should_be_generated_in_the_order_header_maintenance();
-	}
-
-	@When("^I create list ids manually in clustering$")
-	public void i_create_list_ids_manually_in_clustering() throws Throwable {
-		jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
-		clusteringStepDefs.i_enter_the_site_id_and_group_id("9771",context.getStoType());
-		jDAFooter.clickNextButton();
-		Thread.sleep(3000);
-		clusteringStepDefs.the_record_should_be_displayed_in_clustering();
-	}
-	
 
 	@When("^I enter SKU id, quantity and stock details$")
 	public void i_enter_SKU_id_quantity_and_stock_details() throws Throwable {
@@ -309,8 +279,14 @@ public class StoreTrackingOrderPickingStepDefs {
 
 		puttyFunctionsPage.pressTab();
 		puttyFunctionsPage.pressTab();
-
-		storeTrackingOrderPickingPage.enterQuantity(String.valueOf(qtyToPick) + "C");
+		
+		if (context.getPickingType().equals("short picked")){
+			storeTrackingOrderPickingPage.enterQuantity("1C");	
+		}
+		else
+		{
+			storeTrackingOrderPickingPage.enterQuantity(String.valueOf(qtyToPick) + "C");
+		}
 
 		stockTransferOrderMap = context.getStockTransferOrderMap();
 		String allocationGroup = null;
@@ -377,17 +353,17 @@ public class StoreTrackingOrderPickingStepDefs {
 				orderHeaderContext.getFailureList().isEmpty());
 	}
 	
-	@When("^I system allocate the order$")
-	public void i_system_allocate_the_order() throws Throwable {
-		jdaHomeStepDefs.i_navigate_to_system_allocation_page();
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		systemAllocationStepDefs.i_have_order_id_with_soft_allocated_status(context.getOrderId());
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		systemAllocationStepDefs.the_record_should_be_displayed_in_system_allocation();
-		systemAllocationStepDefs.i_proceed_to_allocate_the_record();
-	}
+//	@When("^I system allocate the order$")
+//	public void i_system_allocate_the_order() throws Throwable {
+//		jdaHomeStepDefs.i_navigate_to_system_allocation_page();
+//		jDAFooter.clickNextButton();
+//		Thread.sleep(2000);
+//		systemAllocationStepDefs.i_have_order_id_with_soft_allocated_status(context.getOrderId());
+//		jDAFooter.clickNextButton();
+//		Thread.sleep(2000);
+//		systemAllocationStepDefs.the_record_should_be_displayed_in_system_allocation();
+//		systemAllocationStepDefs.i_proceed_to_allocate_the_record();
+//	}
 
 	@When("^I pick all the list ids for the replenish task$")
 	public void i_pick_all_the_list_ids_for_the_replenish_task() throws Throwable {
@@ -469,12 +445,14 @@ public class StoreTrackingOrderPickingStepDefs {
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		i_select_picking_with_container_pick();
 		i_should_be_directed_to_pick_entry_page();
-		if (pickingType.equals("partially")) {
+		context.setPickingType(pickingType);
+		if (pickingType.equals("partially")||(pickingType.equals("short picked"))) {
 			i_partially_pick_the_store_tracking_order();
 		} else if (pickingType.equals("completely")) {
 			i_pick_all_the_list_ids_for_the_store_tracking_order();
 		}
-		i_should_see_the_picking_completion();
+//		i_should_see_the_picking_completion();
+		hooks.logoutPutty();
 	}
 
 	@Then("^i partially pick the store tracking order$")
@@ -511,6 +489,12 @@ public class StoreTrackingOrderPickingStepDefs {
 		the_to_pallet_to_location_and_destination_should_be_displayed();
 		Assert.assertTrue("Container ID entry page is not displayed as expected",
 				storeTrackingOrderPickingPage.isContainerIDDisplayed());
+		if (context.getPickingType().equals("short picked")){
+			Assert.assertTrue("Pick Quantity down page not displayed",storeTrackingOrderPickingPage.isPickQtyDownDisplayed());
+			storeTrackingOrderPickingPage.enterShortPickReason();
+			puttyFunctionsPage.pressEnter();
+		}
+		
 		i_enter_container_id_and_check_strings();
 		Assert.assertTrue("Picking not completed and Home page not displayed for List ID " + context.getListID(),
 				storeTrackingOrderPickingPage.isPickEntryDisplayed());

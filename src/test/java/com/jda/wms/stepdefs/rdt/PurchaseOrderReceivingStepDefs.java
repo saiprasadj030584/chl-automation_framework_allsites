@@ -137,7 +137,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		do {
 			if (purchaseOrderReceivingPage.isSearchInfoDisplayed() != false) {
-				Thread.sleep(10000);
+				Thread.sleep(13000);
 				timeInSec++;
 			}
 		} while (timeInSec > 10);

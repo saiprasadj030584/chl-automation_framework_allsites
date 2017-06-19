@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+import com.jda.wms.db.InventoryDB;
+import com.jda.wms.db.LocationDB;
 import com.jda.wms.pages.foods.JDAFooter;
 import com.jda.wms.pages.foods.JdaHomePage;
 import com.jda.wms.pages.foods.StockCheckListGenerationPage;
@@ -21,13 +23,19 @@ public class StockCheckListGenerationStepDefs {
 	private final StockCheckListGenerationPage stockCheckListGenerationPage;
 	private final JDAFooter jdaFooter;
 	private final JdaHomePage jdaHomePage;
+	private InventoryDB inventoryDB;
+	private Context context;
+	private LocationDB locationDB;
 	
 	@Inject
 	public StockCheckListGenerationStepDefs(StockCheckListGenerationPage stockCheckListGenerationPage,
-			JDAFooter jdaFooter,JdaHomePage jdaHomePage) {
+			JDAFooter jdaFooter,JdaHomePage jdaHomePage, InventoryDB inventoryDB, Context context, LocationDB locationDB) {
 		this.stockCheckListGenerationPage = stockCheckListGenerationPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
+		this.inventoryDB = inventoryDB;
+		this.context = context;
+		this.locationDB = locationDB;
 	}
 
 	@When("^I navigate to stock check list Generation page$")
@@ -43,9 +51,11 @@ public class StockCheckListGenerationStepDefs {
 		Thread.sleep(1000);
 	}
 
-	@When("^I select the site ID as \"([^\"]*)\" and from location as \"([^\"]*)\" on location tab$")
-	public void i_select_the_site_ID_as_and_from_location_as_on_location_tab(String siteId, String fromLocation)
+	@When("^I select the site ID as \"([^\"]*)\" and from location on location tab$")
+	public void i_select_the_site_ID_as_and_from_location_as_on_location_tab(String siteId)
 			throws Throwable {
+		String fromLocation = locationDB.getLocation("UnLocked");
+		context.setLocation(fromLocation);
 		stockCheckListGenerationPage.selectSiteId(siteId);
 		stockCheckListGenerationPage.enterLocation(fromLocation);
 		Thread.sleep(1000);
@@ -117,8 +127,9 @@ public class StockCheckListGenerationStepDefs {
 		stockCheckListGenerationPage.selectGenerateByInventory();
 	}
 
-	@When("^I enter the Tag ID as \"([^\"]*)\" on inventory tab$")
-	public void i_enter_the_Tag_ID_as_on_inventory_tab(String tagId) throws Throwable {
-		stockCheckListGenerationPage.enterTagId(tagId);
+	@When("^I enter the Tag ID as on inventory tab$")
+	public void i_enter_the_Tag_ID_as_on_inventory_tab() throws Throwable {
+		context.setTagId(inventoryDB.getTagId());
+		stockCheckListGenerationPage.enterTagId(context.getTagId());
 	}
 }

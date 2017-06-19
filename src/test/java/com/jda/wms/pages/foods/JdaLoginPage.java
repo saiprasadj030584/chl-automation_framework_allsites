@@ -48,10 +48,13 @@ public class JdaLoginPage extends PageObject {
 		screen.type(configuration.getStringProperty("username"));
 	}
 
-	private void enterPassword() throws FindFailed {
-		screen.wait("images/JDALogin/password.png", 20);
-		screen.click("images/JDALogin/password.png", 25);
+	private void enterPassword() throws FindFailed, InterruptedException {
+//		screen.wait("images/JDALogin/password.png", 20);
+//		screen.click("images/JDALogin/password.png", 25);
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
 		screen.type(configuration.getStringProperty("password"));
+		Thread.sleep(1000);
 	}
 
 	private void clickConnectButton() throws FindFailed, InterruptedException {

@@ -268,7 +268,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 				abv = skuMaintenanceDB.getCEAlcoholicStrength(skuID.get(i - 1));
 
 				if (!vintage.equals(null)) {
-					if (currentVintage.equals(null)) {
+					if (null==currentVintage) {
 						failureList.add(
 								"Current Vintage should not be null in SKU table for(" + context.getSkuId() + ") ");
 					}
@@ -633,7 +633,7 @@ public class PreAdviceLineMaintenanceStepDefs {
 			ArrayList<String> consignmentID = preAdviceLineDB.getConsignmentID(context.getPreAdviceId());
 			consignmentID.forEach(consignment -> {
 				if (!context.getConsignmentID().equals(consignment)) {
-					failureList.add("Consignment ID in line   is not displayed as expected. Expected ["
+					failureList.add("Consignment ID in line is not displayed as expected. Expected ["
 							+ context.getConsignmentID() + "] but was [" + consignmentID + ") ");
 				}
 			});

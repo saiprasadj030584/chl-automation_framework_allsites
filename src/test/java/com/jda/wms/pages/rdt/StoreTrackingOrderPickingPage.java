@@ -210,4 +210,16 @@ public class StoreTrackingOrderPickingPage {
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
 		return App.getClipboard();
 	}
+
+	public boolean isPickQtyDownDisplayed() {
+		if ((screen.exists("images/Putty/Picking/ShortPickDown.png") != null))
+			return true;
+		else
+			return false;
+	}
+
+	public void enterShortPickReason() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(2000);
+	}
 }

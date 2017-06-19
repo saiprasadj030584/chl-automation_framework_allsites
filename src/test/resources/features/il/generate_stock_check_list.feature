@@ -10,7 +10,7 @@ Feature: Generate stock check list
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by inventory'
-    And I enter the Tag ID as "1000000037" on inventory tab
+    And I enter the Tag ID as on inventory tab
     And I proceed to next
     Then the available list should be displayed
     When I select the record from the available list
@@ -20,7 +20,7 @@ Feature: Generate stock check list
     When I proceed to generate the stock check list
     Then I should see the created list
     When I navigate to stock check query page
-    And I search the list by tag id as "1000000037" and task date as current date
+    And I search the list by tag id as and task date as current date
     Then I should see the record with list ID
 
   @complete
@@ -29,7 +29,7 @@ Feature: Generate stock check list
     Given I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to stock check list Generation page
     And I select mode of list generation as 'Generate by location'
-    And I select the site ID as "9771" and from location as "AB59G02" on location tab
+    And I select the site ID as "9771" and from location on location tab
     And I proceed to next tab
     Then the available list should be displayed
     When I select the record from the available list
@@ -39,5 +39,5 @@ Feature: Generate stock check list
     When I proceed to generate the stock check list
     Then I should see the created list
     When I navigate to stock check query page
-    And I search the list by site id as "9771", location as "AB59G02" and task date as current date
+    And I search the list by site id as "9771", location and task date as current date
     Then I should see the record with list ID

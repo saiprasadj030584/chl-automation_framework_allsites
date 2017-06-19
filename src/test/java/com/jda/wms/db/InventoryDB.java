@@ -333,4 +333,48 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 				return e.getMessage();
 			}
 	}
+
+	public String getTagForExpiredSkuWithQtyOnHandMoreThanAllocatedQty() throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select inventory.tag_id, inventory.sku_id,inventory.qty_on_hand,inventory.qty_allocated from inventory inner join sku on sku.allocation_group = 'EXPIRY' and sku.sku_id = inventory.sku_id and inventory.qty_on_hand>inventory.qty_allocated");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getTagIdWithBWSSku() throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select inventory.tag_id,inventory.user_def_num_3 from inventory inner join sku on sku.product_group = 'F20' and sku.sku_id = inventory.sku_id and inventory.user_def_num_3 is not null");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from inventory where tag_id ='"+tagId+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getTagId() throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select tag_id from inventory");
+		rs.next();
+		return rs.getString(1);
+	}
 }

@@ -358,14 +358,17 @@ public class InventoryQueryStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^I have SKU id, product group and ABV for the tag id \"([^\"]*)\"$")
-	public void i_have_SKU_id_product_group_and_ABV_for_the_tag_id(String tagId) throws Throwable {
+	@Given("^I have SKU id, product group and ABV for the tag id$")
+	public void i_have_SKU_id_product_group_and_ABV_for_the_tag_id() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		jdaFooter.clickQueryButton();
+		
+		String tagId = inventoryDB.getTagIdWithBWSSku();
+		context.setTagId(tagId);
 		inventoryQueryPage.enterTagId(tagId);
 		jdaFooter.clickExecuteButton();
 
-		String skuId = inventoryQueryPage.getSkuId();
+		String skuId = inventoryDB.getSkuId(tagId);
 		if (skuId.equals(null)) {
 			failureList.add("Sku Id is not as expected. Expected [Not NULL] but was [" + skuId + "]");
 		}
@@ -377,7 +380,7 @@ public class InventoryQueryStepDefs {
 					"Product Group is not as expected. Expected [F20 or F21 or F21] but was [" + productGroup + "]");
 		}
 
-		String abv = inventoryQueryPage.getABV();
+		String abv = inventoryDB.getABV(tagId);
 		if (abv.equals(null)) {
 			failureList.add("ABV is not as expected. Expected [NOT NULL] but was [" + abv + "]");
 		}
@@ -654,6 +657,12 @@ public class InventoryQueryStepDefs {
 		jdaFooter.clickQueryButton();
 		inventoryQueryPage.enterPOId(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
+	}
+	
+	@When("^the inventory should be expired for a SKU id and with qty on hand more than allocated qty for the tag$")
+	public void the_inventory_should_be_expired_for_a_sku_id_and_with_qty_on_hand_more_than_allocated_qty_for_the_tag() throws Throwable {
+		String tagId = inventoryDB.getTagForExpiredSkuWithQtyOnHandMoreThanAllocatedQty();
+		context.setTagId(tagId);
 	}
 
 	@Then("^the status should be displayed as \"([^\"]*)\"$")

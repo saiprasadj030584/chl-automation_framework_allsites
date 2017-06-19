@@ -14,8 +14,15 @@ public class PopUpPage {
 //		screen.click("images/PreAdviceLine/Yes.png");
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
+		}
+	
+	public boolean isPopUpDisplayed() throws InterruptedException, FindFailed {
+		if (screen.exists("images/PreAdviceLine/Yes.png") != null)
+			return true;
+		else
+			return false;
+		}
 	}
-		
-	}
+	
 
 

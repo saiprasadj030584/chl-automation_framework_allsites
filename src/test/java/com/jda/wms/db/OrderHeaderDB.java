@@ -274,7 +274,7 @@ public class OrderHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select soft_allocated from order_header where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select soft_allocated from order_header where order_id='" + orderId + "'");
 		rs.next();

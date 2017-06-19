@@ -53,7 +53,7 @@ public class ShippingManifest {
 			
 			verification.verifyData("SKU", skuFromList, shipmentManifestMap.get("SKU"), failureList);
 			verification.verifyData("Container", context.getContainerId(), shipmentManifestMap.get("Container"), failureList);
-			verification.verifyData("Pallet", context.getPalletID(), shipmentManifestMap.get("Pallet"), failureList);
+			verification.verifyData("Pallet", context.getContainerId(), shipmentManifestMap.get("Pallet"), failureList);
 			verification.verifyData("Pack Config", "Not Null", shipmentManifestMap.get("Pack Config"), failureList);
 			verification.verifyData("Consignment", context.getSTOConsignment(), shipmentManifestMap.get("Consignment"), failureList);
 			verification.verifyData("Qty Picked", String.valueOf(context.getQtyToMove()), shipmentManifestMap.get("Qty Picked"), failureList);
