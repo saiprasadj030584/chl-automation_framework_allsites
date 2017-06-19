@@ -514,7 +514,6 @@ public class InventoryTransactionQueryStepDefs {
 //			}
 //
 //			String uploadedFileName = inventoryTransactionDBDetails.get("Uploaded File Name");
-//			System.out.println(uploadedFileName);
 //			if (!uploadedFileName.contains("I0809itlext")) {
 //				failureList.add("Uploaded File Name not displayed as expected for " + tagId
 //						+ ". Expected [I0809itlext] but was [" + uploadedFileName + "]");
@@ -640,7 +639,6 @@ public class InventoryTransactionQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		HashMap<String, String> inventoryTransactionCEDetails = inventoryTransactionDB
 				.getInventoryTransactionCEUDDetails(context.getTagId(), "Receipt"); 
-		System.out.println(inventoryTransactionCEDetails);
 
 		String originalRotationId = inventoryTransactionCEDetails.get("Original Rotation Id");
 		if (null == originalRotationId) {
@@ -977,7 +975,6 @@ public class InventoryTransactionQueryStepDefs {
 				.getInventoryTransactionCEUDDetails(context.getTagId(), "Receipt");
 
 		String originator = inventoryTransactionCEDetails.get("Originator");
-		System.out.println("Originator from DB " + originator);
 		if (null == originator) {
 			failureList.add("originator is not as expected. Expected [Not Null] but was [" + originator + "]");
 		}

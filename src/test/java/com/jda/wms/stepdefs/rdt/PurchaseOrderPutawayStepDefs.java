@@ -309,7 +309,6 @@ public class PurchaseOrderPutawayStepDefs {
 				Thread.sleep(2000);
 
 				String checkString = locationDB.getCheckString(location);
-				System.out.println(checkString);
 				purchaseOrderPutawayPage.enterCheckString(checkString);
 			}
 			Thread.sleep(5000);

@@ -173,10 +173,8 @@ public class StoreTrackingOrderPickingStepDefs {
 				context.setFailureList(failureList);
 			}
 			context.setPickedRecords(context.getPickedRecords() + 1);
-			// System.out.println("Record picked "+context.getPickedRecords());
 		}
 		puttyFunctionsPage.minimisePutty();
-		// System.out.println("Total picked "+context.getPickedRecords());
 	}
 
 	@When("^the list id should be displayed$")

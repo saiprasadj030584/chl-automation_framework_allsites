@@ -239,9 +239,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			}
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
-		System.out.println("Purchase order Map " + context.getPurchaseOrderMap());
-		System.out.println("Tag ID Map " + context.getTagIDMap());
-		System.out.println("Quantity Received Per Tag Map " + context.getQtyReceivedPerTagMap());
 		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
 
@@ -499,7 +496,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 			ArrayList<String> tagIDArrayList = new ArrayList<String>();
 			String skuID = purchaseOrderMap.get(String.valueOf(1)).get("SKU");
 
-			System.out.println("SKU from Map : " + skuID);
 
 			int quantityDue = Utilities.convertStringToInteger((purchaseOrderMap.get(String.valueOf(1)).get("QtyDue")));
 			int maxQtyRcv = Utilities
@@ -531,9 +527,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		}
 		context.setQtyReceivedPerTagMap(qtyReceivedPerTagMap);
 
-		System.out.println("Purchase order Map :" + context.getPurchaseOrderMap());
-		System.out.println("Tag ID Map : " + context.getTagIDMap());
-		System.out.println("Quantity Received Per Tag Map :" + context.getQtyReceivedPerTagMap());
 		logger.debug("Map: " + purchaseOrderMap.toString());
 	}
 
@@ -542,8 +535,6 @@ public class PreAdviceLineMaintenanceStepDefs {
 		Map<String, Map<String, String>> purchaseOrderMap = new HashMap<String, Map<String, String>>();
 		ArrayList skuList = new ArrayList();
 		skuList = preAdviceLineDB.getSkuId(context.getPreAdviceId());
-		System.out.println(skuList);
-		System.out.println(context.getNoOfLines());
 		Assert.assertEquals("Line items does not match with SKu items", context.getNoOfLines(), skuList.size());
 		for (int i = 0; i < context.getNoOfLines(); i++) {
 			Map<String, String> lineItemsMap = new HashMap<String, String>();

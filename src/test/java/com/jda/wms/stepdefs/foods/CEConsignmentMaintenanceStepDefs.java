@@ -46,7 +46,6 @@ public class CEConsignmentMaintenanceStepDefs {
 		Thread.sleep(3000);
 		jdaFooter.clickAddButton();
 		
-		System.out.println(context.getCountry());
 		if (context.getCountry().equals("GBR")){
 			ceConsignmentMaintenancePage.selectReceiptType("Other Warehouse");
 		}

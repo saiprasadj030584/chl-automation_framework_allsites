@@ -86,7 +86,6 @@ public class DateUtils {
 	public static String getConvertDate(String expDate) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(expDate);
-		System.out.println(date1.toString());
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.toString();
 	}

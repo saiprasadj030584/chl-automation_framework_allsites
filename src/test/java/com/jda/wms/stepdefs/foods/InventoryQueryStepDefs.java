@@ -284,7 +284,6 @@ public class InventoryQueryStepDefs {
 	public void i_have_a_tag_id_with_the_status(String status) throws Throwable {
 		ArrayList failureList = new ArrayList();
 		String tagId = inventoryDB.getTagIdWithStatus(status);
-		System.out.println(tagId);
 		if (!tagId.contains("Exhausted Resultset")){
 			context.setTagId(tagId);
 			context.setStatus(status);
@@ -507,7 +506,6 @@ public class InventoryQueryStepDefs {
 		}
 
 		String status = inventoryQueryDetails.get("Lock Status");
-		System.out.println(status);
 		if (!status.equalsIgnoreCase("Unlocked") && (context.getProductCategory().contains("Ambient"))) {
 			failureList.add("Status is not displayed as expected. Expected [Unlocked] but was [" + status + "]");
 		} else if ((status.equals(null)) && (context.getProductCategory().contains("BWS"))) {
@@ -527,7 +525,6 @@ public class InventoryQueryStepDefs {
 
 		if (context.getAllocationGroup().equalsIgnoreCase("Expiry")) {
 			String  expDate = inventoryQueryDetails.get("Expiry Date");
-			System.out.println(expDate);
 			String []  futureDate =  expDate.split(" "); 
 			TemporalAccessor tempDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").parse(futureDate[0]);
 			String expiryDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(tempDate);

@@ -82,7 +82,6 @@ public class SupplierSkuMaintenanceStepDefs {
 	@Then("^no records should be displayed$")
 	public void no_records_should_be_displayed() throws Throwable {
 		String queryResult = supplierSkuDB.getSupplierSKU(context.getSkuId(), context.getSupplierID());
-		System.out.println();
 		Assert.assertThat(queryResult, (CoreMatchers.containsString("Exhausted Resultset")));
 	}
 }

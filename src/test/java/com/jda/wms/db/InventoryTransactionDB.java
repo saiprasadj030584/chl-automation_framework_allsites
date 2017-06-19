@@ -352,9 +352,6 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select ORIGINAL_QTY from inventory_transaction where tag_id='" + tagId + "' and code = '"
-				+ code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status + "' and REASON_ID ='"
-				+ reasonCode + "'");
 		ResultSet rs = stmt.executeQuery("select ORIGINAL_QTY from inventory_transaction where tag_id='" + tagId
 				+ "' and code = '" + code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status
 				+ "' and REASON_ID ='" + reasonCode + "'");

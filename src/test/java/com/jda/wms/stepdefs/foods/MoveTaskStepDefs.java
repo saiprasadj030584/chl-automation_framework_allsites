@@ -173,7 +173,6 @@ public class MoveTaskStepDefs {
 	 * listDetailsMap.put("ToPalletID", toPalletID.get(i));
 	 * listDetailsMap.put("ToContainerID", toContainerID.get(i));
 	 * listIDMap.put(i + 1, listDetailsMap); } context.setListIDMap(listIDMap);
-	 * System.out.println(context.getListIDMap()); }
 	 */
 
 	@When("^I get the pallet ids from the move task$")
