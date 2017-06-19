@@ -213,19 +213,19 @@ public class StoreTrackingOrderPickingStepDefs {
 		context.setOrderId(orderId);
 		context.setStoType(type);
 		// ------------Data Setup-----------
-		deleteDataFromDB.deleteOrderHeader(orderId);
-		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
-		insertDataIntoDB.insertOrderLine(orderId);
-		Thread.sleep(4000);
-		updateDataFromDB.updateMoveTaskStatusInMoveTask(orderId);
-		updateDataFromDB.updateMoveTaskStatusInOrderHeader(orderId);
-		Thread.sleep(3000);
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isOrderRecordExists(orderId));
+//		deleteDataFromDB.deleteOrderHeader(orderId);
+//		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
+//		insertDataIntoDB.insertOrderLine(orderId);
+//		Thread.sleep(4000);
+//		updateDataFromDB.updateMoveTaskStatusInMoveTask(orderId);
+//		updateDataFromDB.updateMoveTaskStatusInOrderHeader(orderId);
+//		Thread.sleep(3000);
+//		Assert.assertTrue("Test Data not available - Issue in Data loading",
+//				selectDataFromDB.isOrderRecordExists(orderId));
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-		systemAllocationStepDefs.i_system_allocate_the_order();
-		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
-		orderPreparationStepDefs.i_create_consignment();
+//		systemAllocationStepDefs.i_system_allocate_the_order();
+//		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//		orderPreparationStepDefs.i_create_consignment();
 		
 		// ------------Data Setup-----------
 		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table(orderId,

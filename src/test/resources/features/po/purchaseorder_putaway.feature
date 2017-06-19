@@ -19,7 +19,7 @@ Feature: Putaway for purchase order
       | preAdviceId | Location |
       |  2058206802 | REC002   |
 
-  @po_putaway_bws_bonded @complete @po @demo-bws
+  @po_putaway_bws_bonded @complete @po
   Scenario Outline: Putaway for BWS-Bonded PO
     Given the pre advice id "<preAdviceId>" should be received with "BWS-Bonded", "Released", "<Location>"
     When I release all the tags for the SKU in the move task update

@@ -4,7 +4,7 @@ Feature: Despatch STO
   I want to despatch the STO 
   So that the order should be reached to RDC
 
-  @sto_despatch_str_uk_retail @complete @sto @sto_demo
+  @sto_despatch_str_uk_retail @complete @sto
   Scenario Outline: STO despatch for UK Retail
     Given the STO "<OrderId>" of "STR" type should contain order details and be "completely" container picked for customer "0437"
     And the order should be "Ready to Load" status
@@ -28,8 +28,8 @@ Feature: Despatch STO
 
     Examples: 
       | OrderId    |
-      | 5900005201 |
-       #| 7210033126 |
+      #| 5900005201 |
+       | 7210033126 |
 
   @sto_despatch_str_eu_store @complete @sto
   Scenario Outline: STO despatch for EU/CI store
