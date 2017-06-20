@@ -213,38 +213,39 @@ public class StoreTrackingOrderPickingStepDefs {
 		context.setStoType(type);
 		context.setPickingType(pickingType);
 		// ------------Data Setup-----------
-//		deleteDataFromDB.deleteOrderHeader(orderId);
-//		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
-//		insertDataIntoDB.insertOrderLine(orderId);
-//		Thread.sleep(4000);
-//		updateDataFromDB.updateMoveTaskStatusInMoveTask(orderId);
-//		updateDataFromDB.updateMoveTaskStatusInOrderHeader(orderId);
-//		Thread.sleep(3000);
-//		Assert.assertTrue("Test Data not available - Issue in Data loading",
-//				selectDataFromDB.isOrderRecordExists(orderId));
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		deleteDataFromDB.deleteOrderHeader(orderId);
+		Thread.sleep(2000);
+		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
+		insertDataIntoDB.insertOrderLine(orderId);
+		Thread.sleep(4000);
+		updateDataFromDB.updateMoveTaskStatusInMoveTask(orderId);
+		updateDataFromDB.updateMoveTaskStatusInOrderHeader(orderId);
+		Thread.sleep(3000);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isOrderRecordExists(orderId));
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 //		systemAllocationStepDefs.i_system_allocate_the_order();
 //		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 //		orderPreparationStepDefs.i_create_consignment();
 		
 		// ------------Data Setup-----------
-		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table(orderId,
-				"Allocated", type);
-		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
-		if (context.getStoType().equals("STR")) {
-			orderHeaderMaintenanceStepDefs.the_customer_should_have_CSSM_flag_updated_in_address_table();
-		}
-		if (context.getStoType().equals("INTSEA")) {
-			orderHeaderMaintenanceStepDefs.the_order_should_have_hub_details();
-		}
-		orderLineMaintenanceStepDefs
-				.the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table();
-		orderHeaderMaintenanceStepDefs.the_order_should_be_in_status("Allocated");
-		orderLineMaintenanceStepDefs.the_quantity_tasked_should_be_updated_for_each_order_lines();
-		orderHeaderMaintenanceStepDefs.the_order_id_should_have_ship_dock_and_consignment();
-		moveTaskStepDefs
-				.the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table();
-		the_sto_should_be_container_picked(pickingType);
+//		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table(orderId,
+//				"Ready to Load", type);
+//		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
+//		if (context.getStoType().equals("STR")) {
+//			orderHeaderMaintenanceStepDefs.the_customer_should_have_CSSM_flag_updated_in_address_table();
+//		}
+//		if (context.getStoType().equals("INTSEA")) {
+//			orderHeaderMaintenanceStepDefs.the_order_should_have_hub_details();
+//		}
+//		orderLineMaintenanceStepDefs
+//				.the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table();
+//		orderHeaderMaintenanceStepDefs.the_order_should_be_in_status("Ready to Load");
+//		orderLineMaintenanceStepDefs.the_quantity_tasked_should_be_updated_for_each_order_lines();
+//		orderHeaderMaintenanceStepDefs.the_order_id_should_have_ship_dock_and_consignment();
+//		moveTaskStepDefs
+//				.the_STO_should_have_list_id_quantity_to_move_to_pallet_to_container_details_from_move_task_table();
+//		the_sto_should_be_container_picked(pickingType);
 	}
 
 	@When("^I enter SKU id, quantity and stock details$")
