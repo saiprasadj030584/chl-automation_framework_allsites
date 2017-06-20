@@ -174,7 +174,6 @@ public class StoreTrackingOrderPickingStepDefs {
 			}
 			context.setPickedRecords(context.getPickedRecords() + 1);
 		}
-		puttyFunctionsPage.minimisePutty();
 	}
 
 	@When("^the list id should be displayed$")
@@ -212,6 +211,7 @@ public class StoreTrackingOrderPickingStepDefs {
 			String type, String pickingType, String customer) throws Throwable {
 		context.setOrderId(orderId);
 		context.setStoType(type);
+		context.setPickingType(pickingType);
 		// ------------Data Setup-----------
 //		deleteDataFromDB.deleteOrderHeader(orderId);
 //		insertDataIntoDB.insertOrderHeader(orderId,type,customer);
@@ -443,7 +443,6 @@ public class StoreTrackingOrderPickingStepDefs {
 		purchaseOrderReceivingStepDefs.i_select_user_directed_option_in_main_menu();
 		i_select_picking_with_container_pick();
 		i_should_be_directed_to_pick_entry_page();
-		context.setPickingType(pickingType);
 		if (pickingType.equals("partially")||(pickingType.equals("short picked"))) {
 			i_partially_pick_the_store_tracking_order();
 		} else if (pickingType.equals("completely")) {

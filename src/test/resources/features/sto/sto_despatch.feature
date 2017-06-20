@@ -29,7 +29,7 @@ Feature: Despatch STO
     Examples: 
       | OrderId    |
       #| 5900005201 |
-       | 7210033126 |
+       | 8800004391 |
 
   @sto_despatch_str_eu_store @complete @sto
   Scenario Outline: STO despatch for EU/CI store

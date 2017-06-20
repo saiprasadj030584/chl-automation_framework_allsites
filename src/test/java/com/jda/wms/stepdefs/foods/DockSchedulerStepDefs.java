@@ -11,6 +11,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.context.OrderHeaderContext;
+import com.jda.wms.db.BookingInDiary;
 import com.jda.wms.db.DockSchedulerDB;
 import com.jda.wms.pages.foods.DockSchedulerBookingsPage;
 import com.jda.wms.pages.foods.DockSchedulerPage;
@@ -37,6 +38,7 @@ public class DockSchedulerStepDefs {
 	private final JDALoginStepDefs jdaLoginStepDefs;
 	private OrderHeaderContext orderHeaderContext;
 	private DockSchedulerDB dockSchedulerDB;
+	private BookingInDiary bookingInDiary;
 
 	Screen screen = new Screen();
 
@@ -44,7 +46,7 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JdaHomePage jdaHomePage, JDAFooter jdaFooter,
 			Context context, DockSchedulerBookingsPage dockSchedulerBookingsPage,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, InventoryUpdateStepDefs inventoryUpdateStepDefs,
-			Verification verification,JDALoginStepDefs jdaLoginStepDefs,OrderHeaderContext orderHeaderContext,DockSchedulerDB dockSchedulerDB) {
+			Verification verification,JDALoginStepDefs jdaLoginStepDefs,OrderHeaderContext orderHeaderContext,DockSchedulerDB dockSchedulerDB,BookingInDiary bookingInDiary) {
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -56,6 +58,7 @@ public class DockSchedulerStepDefs {
 		this.verification = verification;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.orderHeaderContext = orderHeaderContext;
+		this.bookingInDiary = bookingInDiary;
 	}
 
 	@When("^I create new dock booking$")
@@ -145,13 +148,13 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickExecuteButton();
 
 		Assert.assertEquals("Trailer number is not as expected.", context.getTrailerNo(),
-				dockSchedulerBookingsPage.getTrailerNo());
+				bookingInDiary.getTrailerID(context.getBookingID()));
 	}
 
 	@Given("^I have done the dock scheduler booking for the consignment$")
 	public void i_have_done_the_dock_scheduler_booking_for_the_consignment() throws Throwable {
 
-//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		
 		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
 
@@ -165,7 +168,7 @@ public class DockSchedulerStepDefs {
 	
 	public void i_have_done_the_dock_scheduler_booking_with_booking_id(String bookingID) throws Throwable {
 
-//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		
 		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
 
