@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jda.wms.pages.foods.RDTTask;
-
 public class Context {
-	private RDTTask currentTask;
 	private String preAdviceId;
 	private String skuId;
 	private String productGroup;
@@ -90,14 +87,14 @@ public class Context {
 	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
 	private String pickingType;
+	private String upiId;
+	private String asnId;
+	private Map<Integer, Map<String, String>> poMap;
+	private Map<String, Map<String, String>> UPIMap;
+	private String skuType;
+	private String packConfig;
+	private String UPC;
 
-	public RDTTask getCurrentTask() {
-		return currentTask;
-	}
-
-	public void setCurrentTask(RDTTask currentTask) {
-		this.currentTask = currentTask;
-	}
 
 	public String getPalletID() {
 		return palletID;
@@ -746,5 +743,61 @@ public class Context {
 
 	public void setPickingType(String pickingType) {
 		this.pickingType = pickingType;
+	}
+
+	public String getAsnId() {
+		return asnId;
+	}
+
+	public void setAsnId(String asnId) {
+		this.asnId = asnId;
+	}
+
+	public String getUpiId() {
+		return upiId;
+	}
+
+	public void setUpiId(String upiId) {
+		this.upiId = upiId;
+	}
+
+	public Map<Integer, Map<String, String>> getPOMap() {
+		return poMap;
+	}
+
+	public void setPOMap(Map<Integer, Map<String, String>> pOMap) {
+		poMap = pOMap;
+	}
+
+	public String getSKUType() {
+		return skuType;
+	}
+
+	public void setSKUType(String skuType) {
+		this.skuType = skuType;
+	}
+
+	public String getPackConfig() {
+		return packConfig;
+	}
+
+	public void setPackConfig(String packConfig) {
+		this.packConfig = packConfig;
+	}
+
+	public String getUPC() {
+		return UPC;
+	}
+
+	public void setUPC(String uPC) {
+		UPC = uPC;
+	}
+
+	public Map<String, Map<String, String>> getUPIMap() {
+		return UPIMap;
+	}
+
+	public void setUPIMap(Map<String, Map<String, String>> uPIMap) {
+		UPIMap = uPIMap;
 	}
 }

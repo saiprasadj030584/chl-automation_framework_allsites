@@ -54,7 +54,7 @@ public class PuttyFunctionsPage {
 		screen.type(Key.TAB);
 		screen.type(pwd);
 		screen.type(Key.ENTER);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 	}
 
 	public void mimimizePuty() throws FindFailed, InterruptedException {
@@ -71,6 +71,13 @@ public class PuttyFunctionsPage {
 			return true;
 		else
 			return false;
+	}
+	
+	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
 	}
 
 	public void minimisePutty() throws FindFailed, InterruptedException {
@@ -99,6 +106,13 @@ public class PuttyFunctionsPage {
 	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
+	}
+	
+	public boolean isUserMenuDisplayed() {
+		if (screen.exists("images/Putty/UserMenu.png") != null)
+			return true;
+		else
+			return false;
 	}
 
 	public void nextScreen() throws InterruptedException {

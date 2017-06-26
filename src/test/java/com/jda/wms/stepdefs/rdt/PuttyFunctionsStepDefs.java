@@ -31,10 +31,10 @@ public class PuttyFunctionsStepDefs {
 
 		puttyFunctionsPage.invokePutty();
 
-		String host = configuration.getStringProperty("putty-foods-host");
-		String port = configuration.getStringProperty("putty-foods-port");
+		String host = configuration.getStringProperty("putty-gm-host");
+		String port = configuration.getStringProperty("putty-gm-port");
 		puttyFunctionsPage.loginPutty(host, port);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
@@ -49,6 +49,12 @@ public class PuttyFunctionsStepDefs {
 				failureList.isEmpty());
 		
 		context.setPuttyLoginFlag(true);
+	}
+	
+	@When("^I select user directed option in main menu$")
+	public void i_select_user_directed_option_in_main_menu() throws Throwable {
+		puttyFunctionsPage.selectUserDirectedMenu();
+		Assert.assertTrue("User Menu not displayed as expected", puttyFunctionsPage.isUserMenuDisplayed());
 	}
 
 	@When("^I login as warehouse user in putty$")

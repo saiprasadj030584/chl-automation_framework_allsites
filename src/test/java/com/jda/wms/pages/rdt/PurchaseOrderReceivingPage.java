@@ -11,16 +11,11 @@ import com.google.inject.Inject;
 public class PurchaseOrderReceivingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
-	public PurchaseOrderReceivingPage() {
-	}
-
-	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
-		screen.type("2");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage) {
+	this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
@@ -49,7 +44,7 @@ public class PurchaseOrderReceivingPage {
 		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
 			return true;
 		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
-			pressEnter();
+			puttyFunctionsPage.pressEnter();
 			return true;
 		}
 		return false;
@@ -89,8 +84,6 @@ public class PurchaseOrderReceivingPage {
 		Match mSupplierId = screen.find("images/Putty/Receiving/SuppDisplayed.png");
 		screen.click(mSupplierId.getCenter().offset(50, 0));
 		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
@@ -99,8 +92,8 @@ public class PurchaseOrderReceivingPage {
 		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		screen.type(Key.TAB);
-		Thread.sleep(1000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(3000);
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
@@ -136,13 +129,6 @@ public class PurchaseOrderReceivingPage {
 		screen.type(expDate);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-	}
-
-	public boolean isUserMenuDisplayed() {
-		if (screen.exists("images/Putty/UserMenu.png") != null)
-			return true;
-		else
-			return false;
 	}
 
 	public boolean isReceiveMenuDisplayed() {
@@ -195,7 +181,7 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isNoValidPreAdviceDisplayed() throws InterruptedException {
 		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null) {
-			pressEnter();
+			puttyFunctionsPage.pressEnter();
 			return true;
 		} else
 			return false;
@@ -242,8 +228,61 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-	public void pressEnter() throws InterruptedException {
-		screen.type(Key.ENTER);
+	public void enterURNID(String urn) throws FindFailed, InterruptedException {
+//		screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
+		screen.type(urn);
 		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
+	}
+
+	public boolean isLocationDisplayed() {
+		if (screen.exists("images/Putty/Receiving/Location.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public String getTagId() throws FindFailed, InterruptedException {
+		Match mTagId = screen.find("images/Putty/Receiving/TagId.png");
+		screen.click(mTagId.getCenter().offset(50, 0));
+		screen.doubleClick(mTagId.getCenter().offset(50, 0));
+		String tag1 = App.getClipboard();
+		screen.click(mTagId.below(5));
+		screen.doubleClick(mTagId.below(1));
+		String tag2 = App.getClipboard();
+		Thread.sleep(1000);
+		return (tag1+tag2);
+	}
+
+	public String getPackConfig() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/PackConfig.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public String getUPC() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/UPC.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public boolean isRcvPalletEntPageDisplayed() {
+		if (screen.exists("images/Putty/Receiving/RcvPalletEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public String getQtyToReceive() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
 	}
 }

@@ -13,11 +13,12 @@ public class PurchaseOrderPutawayPage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-
 	Region reg = new Region(0, 0, 2000, 800);
+	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
-	public PurchaseOrderPutawayPage() {
+	public PurchaseOrderPutawayPage(PuttyFunctionsPage puttyFunctionsPage) {
+		this.puttyFunctionsPage =puttyFunctionsPage;
 	}
 
 	public void selectPutawayMenu() throws FindFailed, InterruptedException {
@@ -58,9 +59,6 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void clickPuttyIcon() throws FindFailed, InterruptedException {
-		/*
-		 * reg.getBottomLeft(); screen.getBottomLeft();
-		 */
 		screen.wait("/images/Putty/ClickPuttyIcon.png", timeoutInSec);
 		screen.click("/images/Putty/ClickPuttyIcon.png");
 		Thread.sleep(2000);
@@ -71,7 +69,7 @@ public class PurchaseOrderPutawayPage {
 		screen.type(Key.ENTER);
 	}
 
-	public boolean isPutEnt() {
+	public boolean isPutEntDisplayed() {
 		if (screen.exists("images/Putty/Putaway/PutEnt.png") != null)
 			return true;
 		else
@@ -88,10 +86,9 @@ public class PurchaseOrderPutawayPage {
 
 	public void enterLocation(String location) throws InterruptedException {
 		screen.type(Key.TAB);
-		screen.type(Key.TAB);
 		screen.type(location);
 		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	}
 
 	public boolean isSPWovrPageDisplayed() throws InterruptedException, FindFailed {
@@ -106,5 +103,42 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(3000);
 		screen.type("2");
 		Thread.sleep(2000);
+	}
+
+	public void enterURNID(String urn) throws InterruptedException {
+		screen.type(urn);
+		Thread.sleep(1000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
+	}
+
+	public boolean isPutCmpPageDisplayed() {
+		if (screen.exists("images/Putty/Putaway/PutCmp.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public String getFromLocation() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Putaway/FromLocation.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public String getTagId() throws FindFailed, InterruptedException {
+		Match mTagId = screen.find("images/Putty/Putaway/TagId.png");
+		screen.click(mTagId.below(5));
+		screen.doubleClick(mTagId.below(2));
+		Thread.sleep(1000);
+		return App.getClipboard();
+	}
+
+	public boolean isChkToDisplayed() {
+		if (screen.exists("images/Putty/Putaway/ChkTo.png") != null)
+			return true;
+		else
+			return false;
 	}
 }
