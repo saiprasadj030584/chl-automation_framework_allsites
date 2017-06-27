@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataload.gm.DataSetUp;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
@@ -49,7 +50,7 @@ public class PreAdviceHeaderStepsDefs {
 			context.setUpiId(upiId);
 			context.setAsnId(asnId);
 			context.setSKUType(type);
-			//DataSetUp.setPOData();
+//			DataSetUp.setPOData();
 			logger.debug("PO ID: "+preAdviceId);
 			logger.debug("UPI ID: "+upiId);
 			logger.debug("ASN ID: "+asnId);

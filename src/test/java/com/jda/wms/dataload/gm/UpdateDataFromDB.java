@@ -1,4 +1,4 @@
-package com.jda.wms.dataload.foods;
+package com.jda.wms.dataload.gm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
