@@ -1,11 +1,11 @@
 @purchase_order
-Feature: Purchase order
+Feature: Purchase order receiving and putaway
   As a warehouse user
   I want to receive and putaway the articles
   So that I can complete the purchase order
 
-  @po_receive_putaway @po @complete
-  Scenario Outline: Receiving process in JDA WMS for Hanging type
+  @po_receive_putaway_hanging @po @complete
+  Scenario Outline: Receiving and Putaway process in JDA WMS for Hanging type
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
@@ -23,7 +23,7 @@ Feature: Purchase order
       #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |
       
   @po_receive_putaway_boxed @po @complete
-  Scenario Outline: Receiving process in JDA WMS for Hanging type
+  Scenario Outline: Receiving and Putaway process in JDA WMS for Hanging type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
