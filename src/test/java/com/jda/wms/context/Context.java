@@ -94,6 +94,7 @@ public class Context {
 	private String skuType;
 	private String packConfig;
 	private String UPC;
+	private String projLoc;
 
 
 	public String getPalletID() {
@@ -799,5 +800,13 @@ public class Context {
 
 	public void setUPIMap(Map<String, Map<String, String>> uPIMap) {
 		UPIMap = uPIMap;
+	}
+
+	public String getProjLoc() {
+		return projLoc;
+	}
+
+	public void setProjLoc(String projLoc) {
+		this.projLoc = projLoc;
 	}
 }
