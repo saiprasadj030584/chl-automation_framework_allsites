@@ -34,7 +34,7 @@ public class ReportConversion {
 		for (int i=0; i <listOfFeatureReports.length;i++){
 			if (listOfFeatureReports[i].getName().contains("feature")&&(!listOfFeatureReports[i].getName().contains("features"))){
 //				System.out.println(listOfFeatureReports[i].getName());
-				extractScenarioMetrics.getFeatureDetails(folderPath+"\\"+listOfFeatureReports[i].getName());
+			//	extractScenarioMetrics.getFeatureDetails(folderPath+"\\"+listOfFeatureReports[i].getName());
 			}
 		}
 		

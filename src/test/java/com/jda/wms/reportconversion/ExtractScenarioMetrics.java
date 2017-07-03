@@ -66,6 +66,6 @@ public class ExtractScenarioMetrics {
 	private void getFeatureName(String fileContent) {
 		String [] fileSplit = fileContent.split("</title>");
 		String [] fileSplit1 = fileSplit[0].split("Feature: ");
-		featureName.add(fileSplit1[1]);
+		//featureName.add(fileSplit1[1]);
 	}
 }
