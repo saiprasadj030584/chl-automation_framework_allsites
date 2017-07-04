@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jz
+ @po_receive_hanging @po @complete
   Scenario Outline: Receiving process in JDA WMS for Hanging type
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -16,6 +16,7 @@ import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class PurchaseOrderPutawayStepDefs {
 	private PurchaseOrderPutawayPage purchaseOrderPutawayPage;
@@ -103,5 +104,12 @@ public class PurchaseOrderPutawayStepDefs {
 		verification.verifyData("From Location", context.getLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
 		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
+	}
+
+	@Then("^the  error message should be displayed$")
+	public void the_error_message_should_be_displayed() throws Throwable {
+		Assert.assertTrue(
+				" error message is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
 	}
 }

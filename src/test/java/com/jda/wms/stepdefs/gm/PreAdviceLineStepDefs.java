@@ -15,6 +15,7 @@ import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.SkuDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.pages.gm.preAdviceLinePage;
 
 import cucumber.api.java.en.Given;
 
@@ -25,15 +26,17 @@ public class PreAdviceLineStepDefs {
 	private PreAdviceLineDB preAdviceLineDB;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private SkuDB skuDB;
+	private preAdviceLinePage preAdviceLinePage;
 
 	@Inject
 	public PreAdviceLineStepDefs(Context context, Verification verification, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB) {
+			UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB, preAdviceLinePage preAdviceLinePage) {
 		this.context = context;
 		this.verification = verification;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.skuDB = skuDB;
+		this.preAdviceLinePage = preAdviceLinePage;
 	}
 
 	@Given("^the PO should have sku, quantity due details$")
@@ -102,6 +105,7 @@ public class PreAdviceLineStepDefs {
 	}
 
 	@Given("^the PO is lock with lockcode \"([^\"]*)\" in pre advice line$")
-	public void the_PO_is_lock_with_lockcode_in_pre_advice_line(String arg1) throws Throwable {
+	public void the_PO_is_lock_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
+		preAdviceLinePage.selectlockcode(lockCode);
 	}
 }
