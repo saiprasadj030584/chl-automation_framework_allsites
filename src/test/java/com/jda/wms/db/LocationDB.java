@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.Database;
 
 public class LocationDB {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -63,5 +64,16 @@ public class LocationDB {
 			}
 		}
 		return locationList;
+	}
+
+	public String getLocation(String status) throws SQLException, ClassNotFoundException {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select location_id from location where lock_status = '" + status + "'");
+			rs.next();
+			return rs.getString(1);
 	}
 }

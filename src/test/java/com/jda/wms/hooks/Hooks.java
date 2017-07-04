@@ -1,5 +1,6 @@
 package com.jda.wms.hooks;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import org.openqa.selenium.OutputType;
@@ -23,6 +24,7 @@ public class Hooks {
 	private final WebDriver webDriver;
 	Screen screen = new Screen();
 	private Context context;
+	String envVar = System.getProperty("user.dir");
 
 	@Inject
 	public Hooks(WebDriver webDriver, Context context) {
@@ -42,15 +44,13 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	// @After()
+	 @After()
 	public void tearDown(Scenario scenario) {
-
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
-
 		// clearing down webdriver object
 		if (webDriver != null) {
 			webDriver.close();
@@ -58,9 +58,10 @@ public class Hooks {
 		}
 	}
 
-//	 @After
-	public void logoutPutty() throws FindFailed, InterruptedException {
+	 @After
+	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag()==true){
+//			context.getPuttyProcess().waitFor();
 		while (screen.exists("/images/Putty/3Logout.png") == null) {
 			screen.type(Key.F12);
 		}
@@ -68,14 +69,23 @@ public class Hooks {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
+		
+		Process p = Runtime.getRuntime().exec("cmd /c "+envVar+"\\bin\\puttykillAdmin.lnk");
+//		//Process p = Runtime.getRuntime().exec("cmd /c C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
+//		p.waitFor();
+		
+		screen.type(Key.F4, Key.ALT);
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+		context.setPuttyLoginFlag(false);
+//		screen.wait("images/Putty/PuttyClose.png", 20);
+//		screen.click("images/Putty/PuttyClose.png", 25);
+//		Thread.sleep(1000);
 
-		screen.wait("images/Putty/PuttyClose.png", 20);
-		screen.click("images/Putty/PuttyClose.png", 25);
-		Thread.sleep(1000);
-
-		screen.wait("images/Putty/PuttyCloseOK.png", 20);
-		screen.click("images/Putty/PuttyCloseOK.png", 25);
-		Thread.sleep(1000);
+//		screen.wait("images/Putty/PuttyCloseOK.png", 20);
+//		screen.click("images/Putty/PuttyCloseOK.png", 25);
+//		Thread.sleep(1000);
 		}
 	}
 

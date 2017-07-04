@@ -7,13 +7,23 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+
 public class PuttyFunctionsPage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private Context context;
+
+	@Inject
+	public PuttyFunctionsPage(Context context) {
+		this.context = context;
+	}
 
 	public void invokePutty() throws IOException, InterruptedException {
 		Process putty = Runtime.getRuntime().exec("putty.exe");
+		context.setPuttyProcess(putty);
 		Thread.sleep(2000);
 	}
 
@@ -44,7 +54,7 @@ public class PuttyFunctionsPage {
 		screen.type(Key.TAB);
 		screen.type(pwd);
 		screen.type(Key.ENTER);
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 	}
 
 	public void mimimizePuty() throws FindFailed, InterruptedException {
@@ -62,9 +72,15 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
+	
+	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 
 	public void minimisePutty() throws FindFailed, InterruptedException {
-		System.out.println("Putty minimise");
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
 		screen.click("images/Putty/PuttyMinimise.png");
 		Match mStatus = screen.find("images/Putty/PuttyMinimise.png");
@@ -74,22 +90,31 @@ public class PuttyFunctionsPage {
 	}
 
 	public boolean isMainMenuDisplayed() {
-		if (screen.exists("images/Putty/MainMenu.png") != null)
+		if (screen.exists("images/Putty/MainMenu.png") != null){
+			context.setPuttyLoginFlag(true);
 			return true;
+		}
 		else
 			return false;
 	}
-	
-	public void pressTab() throws InterruptedException{
+
+	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
 	}
-	
-	public void pressEnter() throws InterruptedException{
+
+	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
 	
+	public boolean isUserMenuDisplayed() {
+		if (screen.exists("images/Putty/UserMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 	public void nextScreen() throws InterruptedException {
 		screen.type("x", Key.CTRL);
 		screen.type(Key.NUM4);

@@ -26,4 +26,9 @@ public class Utilities {
 	public static double getRoundOffToTwoDecimal(double a) {
 		return Math.round(a * 100.0) / 100.0;
 	}
+
+	public static String getFourDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(9000) + 1000);
+	}
 }

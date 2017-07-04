@@ -48,7 +48,7 @@ public class InventoryUpdatePage {
 	}
 
 	public void selectLockCode(String lockCode) throws FindFailed, InterruptedException {
-		Match mLockCode = screen.find("images/InventoryUpdate/Finish/lockCode.png");
+		Match mLockCode = screen.find("/images/InventoryUpdate/Finish/lockCode.png");
 		screen.click(mLockCode.getCenter().offset(70, 0));
 		screen.type(lockCode);
 		screen.type(Key.ENTER);
@@ -95,11 +95,5 @@ public class InventoryUpdatePage {
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type(reasonCode);
 		screen.type(Key.ENTER);
-	}
-
-	public void enterLocation(String location) throws FindFailed {
-		Match status = screen.find("images/InventoryUpdate/Search/Location.png");
-		screen.click(status.getCenter().offset(70, 0));
-		screen.type(location);
 	}
 }

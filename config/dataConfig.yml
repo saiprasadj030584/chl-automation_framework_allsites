@@ -1,0 +1,21 @@
+# Default settings
+##################
+#To map number of line items for the scenarios
+default:
+ po_receive_ambient: 2
+ po_receive_bws_bonded: 2
+ po_receive_bws_non_bonded: 2
+ po_receive_bws_new_vintage: 1
+ po_receive_bws_F23_bonded: 1
+ po_partial_receive_bws_bonded: 1
+ po_partial_receive_bws_non_bonded: 1
+ po_partial_receive_ambient: 1
+ po_putaway_ambient: 2
+ po_putaway_bws_bonded: 2
+ po_putaway_bws_non_bonded: 2
+ po_putaway_bws_new_vintage: 1
+ po_putaway_bws_F23_bonded: 1
+ po_partial_putaway_bws: 1
+ po_partial_putaway_ambient: 1
+ 
+
