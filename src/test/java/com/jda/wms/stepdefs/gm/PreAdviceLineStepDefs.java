@@ -27,16 +27,21 @@ public class PreAdviceLineStepDefs {
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private SkuDB skuDB;
 	private preAdviceLinePage preAdviceLinePage;
+	private JDAHomeStepDefs jdaHomeStepDefs;
+	private JDALoginStepDefs jdaLoginStepDefs;
 
 	@Inject
 	public PreAdviceLineStepDefs(Context context, Verification verification, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB, preAdviceLinePage preAdviceLinePage) {
+			UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB, preAdviceLinePage preAdviceLinePage,
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs) {
 		this.context = context;
 		this.verification = verification;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.skuDB = skuDB;
 		this.preAdviceLinePage = preAdviceLinePage;
+		this.jdaHomeStepDefs = jdaHomeStepDefs;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
 	}
 
 	@Given("^the PO should have sku, quantity due details$")
@@ -106,6 +111,9 @@ public class PreAdviceLineStepDefs {
 
 	@Given("^the PO is lock with lockcode \"([^\"]*)\" in pre advice line$")
 	public void the_PO_is_lock_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		preAdviceLinePage.selectlockcode(lockCode);
+
 	}
 }

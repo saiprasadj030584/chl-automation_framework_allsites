@@ -14,8 +14,9 @@ Feature: Purchase order Putaway
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
+
     #When I do normal putaway for all tags received for the lockcode "QAFTS"
     #Then the  error message should be displayed
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
-      |  2010002110 | 00050456000511235611 | 0000100509 | REC001   |
+      |  2010002119 | 00050456000511235614 | 0000100514 | REC001   |
