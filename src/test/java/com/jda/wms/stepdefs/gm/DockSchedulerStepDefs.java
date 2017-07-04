@@ -7,7 +7,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.utils.Utilities;
 
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 
 public class DockSchedulerStepDefs {
 	private DockSchedulerPage dockSchedulerPage;
@@ -88,5 +88,57 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectCreateNewBooking();
 		dockSchedulerPage.enterSiteID("5649");
 		jdaFooter.clickNextButton();
+	}
+	
+	@Given("^I have done the dock scheduler booking for the consignment$")
+	public void i_have_done_the_dock_scheduler_booking_for_the_consignment() throws Throwable {
+
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+//		
+//		trailerMaintenanceStepDefs.i_create_a_trailer_in_trailer_Maintenance_page();
+//
+//		i_create_new_dock_booking();
+//		i_select_booking_type_and_a_consignment();
+//		i_select_the_slot();
+//		i_enter_booking_details();
+//		inventoryUpdateStepDefs.i_proceed_to_complete_the_process();
+//		the_booking_details_should_be_appeared_in_the_dock_scheduler_booking();
+	}
+	
+	@When("^I select view existing bookings$")
+	public void i_select_view_existing_bookings() throws Throwable {
+//		dockSchedulerPage.enterSiteID();
+//		jdaFooter.clickNextButton();
+	}
+
+	@When("^I search the booking id$")
+	public void i_search_the_booking_id() throws Throwable {
+//		dockSchedulerPage.enterBookingId(context.getBookingID());
+//		screen.type(Key.ENTER);
+	}
+	
+	@Then("^the booking id details should be displayed$")
+	public void the_booking_id_details_should_be_displayed() throws Throwable {
+//		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayed());
+	}
+	
+	@When("^I delete the booking$")
+	public void i_delete_the_booking() throws Throwable {
+//		screen.rightClick();
+//		dockSchedulerPage.selectDeleteBooking();
+//		Assert.assertTrue("Delete confirmation message is not as expected",
+//				dockSchedulerPage.isDeleteBookingConfirmationMessageDisplayed());
+//		screen.type(Key.ENTER);
+	}
+
+	@Then("^the booking details should be deleted in the dock scheduler booking$")
+	public void the_booking_details_should_be_deleted_in_the_dock_scheduler_booking() throws Throwable {
+//		jdaHomePage.navigateToDockSchedulerBookingsPage();
+//		jdaFooter.clickQueryButton();
+//
+//		dockSchedulerBookingsPage.enterBookingID(context.getBookingID());
+//		jdaFooter.clickExecuteButton();
+//
+//		Assert.assertTrue("Records are not as expected", dockSchedulerBookingsPage.isNoRecords());
 	}
 }
