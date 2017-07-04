@@ -1,4 +1,4 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;

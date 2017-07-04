@@ -1,4 +1,4 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -25,15 +25,15 @@ public class DockSchedulerPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterSiteID() throws FindFailed, InterruptedException {
+	public void enterSiteID(String site) throws FindFailed, InterruptedException {
 		Match msiteId = screen.find("/images/DockScheduler/Start/SiteID.png");
 		screen.click(msiteId.getCenter().offset(70, 0));
-		screen.type("9771");
+		screen.type(site);
 		Thread.sleep(2000);
 	}
 
-	public void enterBookingType() throws FindFailed, InterruptedException {
-		screen.type("Consignment");
+	public void enterBookingType(String bookingType) throws FindFailed, InterruptedException {
+		screen.type(bookingType);
 		screen.type(Key.TAB);
 	}
 
@@ -45,7 +45,6 @@ public class DockSchedulerPage {
 		screen.wait("images/DockScheduler/Build/SearchIcon.png", timeoutInSec);
 		screen.click("images/DockScheduler/Build/SearchIcon.png");
 		Thread.sleep(2000);
-
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
@@ -78,7 +77,7 @@ public class DockSchedulerPage {
 		screen.type(bookingID);
 		Thread.sleep(1000);
 	}
-
+	
 	public boolean isBookingIdDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/DockScheduler/Schedule/Out.png") != null) {
 			return true;
@@ -195,5 +194,35 @@ public class DockSchedulerPage {
 		screen.wait("images/DockScheduler/Schedule/ShowLines.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/ShowLines.png");
 		Thread.sleep(2000);
+	}
+
+	public void enterASNId(String asnId) throws InterruptedException {
+		screen.type(asnId);
+		Thread.sleep(1000);
+	}
+
+	public void selectASN() throws FindFailed, InterruptedException {
+		screen.wait("images/DockScheduler/Build/ASNID.png", timeoutInSec);
+		Match mASN = screen.find("images/DockScheduler/Build/ASNID.png");
+		Thread.sleep(2000);
+		screen.click(mASN.below(10));
+		Thread.sleep(2000);
+//		Match mStatuscode = screen.find("images/DockScheduler/Build/FromSiteID1.png");
+		screen.doubleClick(mASN.below(10));
+	}
+	
+	public void pressTab() throws FindFailed, InterruptedException {
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+	}
+
+	public void enterCarrier(String carrier) throws InterruptedException {
+		screen.type(carrier);
+		Thread.sleep(1000);
+
+	}
+	public void enterServiceLevel(String serviceLevel) throws InterruptedException {
+		screen.type(serviceLevel);
+		Thread.sleep(1000);
 	}
 }
