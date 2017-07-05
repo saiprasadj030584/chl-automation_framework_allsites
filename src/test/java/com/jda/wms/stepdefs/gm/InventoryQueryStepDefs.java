@@ -68,7 +68,15 @@ public class InventoryQueryStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^I have tagID ,sku,Location in inventory with the status \"([^\"]*)\"$")
-	public void i_have_tagID_sku_Location_in_inventory_with_the_status(String arg1) throws Throwable {
+	@Given("^I have tagid\"([^\"]*)\",sku\"([^\"]*)\",locationid \"([^\"]*)\"in inventory with the status \"([^\"]*)\"$")
+	public void i_have_tagid_sku_locationid_in_inventory_with_the_status(String tagId, String skuId, String locationID,
+			String status) throws Throwable {
+		inventoryDB.getagId(status);
+		inventoryDB.getsku(status);
+		inventoryDB.getlocation(status);
+		context.setTagId(tagId);
+		context.setSkuId(skuId);
+		context.setlocationID(locationID);
+
 	}
 }

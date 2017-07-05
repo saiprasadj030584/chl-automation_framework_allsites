@@ -7,7 +7,7 @@ Feature: Inventory update
   @lock_to_Unlock
   Scenario Outline: Inventory update from lock to unlock
     Given I have tagid"<tagID> ",sku"<sku>",locationid "<Location>"in inventory with the status "LOCK"
-    When i navigate to inventory update page
+    When I navigate to inventory update page
     And i enter the tagID, SKU,location
     Then the record should be displayed
     And I select the status as "unlock"
