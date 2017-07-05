@@ -94,7 +94,9 @@ public class Context {
 	private String skuType;
 	private String packConfig;
 	private String UPC;
-
+	private String projLoc;
+	private String carrier;
+	private String serviceLevel;
 
 	public String getPalletID() {
 		return palletID;
@@ -799,5 +801,29 @@ public class Context {
 
 	public void setUPIMap(Map<String, Map<String, String>> uPIMap) {
 		UPIMap = uPIMap;
+	}
+
+	public String getProjLoc() {
+		return projLoc;
+	}
+
+	public void setProjLoc(String projLoc) {
+		this.projLoc = projLoc;
+	}
+
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
+
+	public String getServiceLevel() {
+		return serviceLevel;
+	}
+
+	public void setServiceLevel(String serviceLevel) {
+		this.serviceLevel = serviceLevel;
 	}
 }

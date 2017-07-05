@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class UPIReceiptLineDB {
 	

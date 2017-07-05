@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
+import com.jda.wms.db.gm.Database;
 import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
 
