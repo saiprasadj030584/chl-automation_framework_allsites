@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class PreAdviceHeaderDB {
 	private final Context context;

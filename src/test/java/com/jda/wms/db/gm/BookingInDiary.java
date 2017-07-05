@@ -7,48 +7,46 @@ import java.sql.Statement;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class UPIReceiptHeaderDB {
-	
+public class BookingInDiary {
 	private Context context;
 	private Database database;
 
 	@Inject
-	public UPIReceiptHeaderDB(Context context,Database database) {
+	public BookingInDiary(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}
-
-	public String getStatus(String upiId) throws SQLException, ClassNotFoundException {
+	
+	public String getTrailerID(String bookingId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
+		ResultSet rs = stmt.executeQuery(
+				"select trailer_id from booking_in_diary where bookref_id='"+bookingId+"'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public String getNumberOfLines(String upiId) throws SQLException, ClassNotFoundException {
+	public String getCarrier(String bookingID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
+		ResultSet rs = stmt.executeQuery(
+				"select CARRIER_ID from booking_in_diary where bookref_id='"+bookingID+"'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public void updateASN(String upiId, String asnId) throws SQLException, ClassNotFoundException {
+	public String getServiceLevel(String bookingID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("update upi_receipt_header set asn_id='"+asnId+"' where pallet_id='"+upiId+"'");
-		context.getConnection().commit();
+		ResultSet rs = stmt.executeQuery(
+				"select SERVICE_LEVEL from booking_in_diary where bookref_id='"+bookingID+"'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

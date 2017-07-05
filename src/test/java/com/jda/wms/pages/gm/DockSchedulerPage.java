@@ -225,4 +225,11 @@ public class DockSchedulerPage {
 		screen.type(serviceLevel);
 		Thread.sleep(1000);
 	}
+
+	public boolean isSiteExists() {
+		if (screen.exists("/images/DockScheduler/Start/SiteID.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 }
