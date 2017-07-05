@@ -65,15 +65,17 @@ public class DockSchedulerStepDefs {
 	public void i_create_a_booking_for_the_asn() throws Throwable {
 		String bookingID = Utilities.getFiveDigitRandomNumber();
 		String trailerNo = context.getTrailerNo();
-
+		
 		context.setBookingID(bookingID);
+		context.setCarrier("ALLPORT");
+		context.setServiceLevel("AIR");
 
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterCarrier("ALLPORT");
+		dockSchedulerPage.enterCarrier(context.getCarrier());
 		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterServiceLevel("AIR");
+		dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterTrailerType();
 		dockSchedulerPage.pressTab();
@@ -104,7 +106,9 @@ public class DockSchedulerStepDefs {
 	@When("^I create new dock booking$")
 	public void i_create_new_dock_booking() throws Throwable {
 		dockSchedulerPage.selectCreateNewBooking();
+		if (dockSchedulerPage.isSiteExists()){
 		dockSchedulerPage.enterSiteID("5649");
+		}
 		jdaFooter.clickNextButton();
 	}
 	

@@ -1,4 +1,4 @@
-package com.jda.wms.db;
+package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,27 +7,25 @@ import java.sql.Statement;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-public class SkuConfigDB {
+public class MoveTaskUpdateDB {
+
 	private Context context;
 	private Database database;
 
 	@Inject
-	public SkuConfigDB(Context context, Database database) {
+	public MoveTaskUpdateDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-
 	}
-	
-	public String getRatio1To2(String packConfig) throws SQLException, ClassNotFoundException {
-		String trackingLevel = null;
+
+	public void releaseTagId(String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select RATIO_1_TO_2 from SKU_CONFIG WHERE CONFIG_ID ='" + packConfig + "'");
+		ResultSet rs = stmt.executeQuery("update move_task set status = 'Released' where tag_id = '" + tagId + "'");
+		context.getConnection().commit();
 		rs.next();
-		trackingLevel = (rs.getString(1));
-		return trackingLevel;
 	}
 }

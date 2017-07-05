@@ -6,7 +6,6 @@ import java.sql.Statement;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class SkuDB {
 	private Context context;

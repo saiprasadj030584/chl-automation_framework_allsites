@@ -1,4 +1,4 @@
-package com.jda.wms.db;
+package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

@@ -95,7 +95,8 @@ public class Context {
 	private String packConfig;
 	private String UPC;
 	private String projLoc;
-
+	private String carrier;
+	private String serviceLevel;
 
 	public String getPalletID() {
 		return palletID;
@@ -808,5 +809,21 @@ public class Context {
 
 	public void setProjLoc(String projLoc) {
 		this.projLoc = projLoc;
+	}
+
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
+
+	public String getServiceLevel() {
+		return serviceLevel;
+	}
+
+	public void setServiceLevel(String serviceLevel) {
+		this.serviceLevel = serviceLevel;
 	}
 }
