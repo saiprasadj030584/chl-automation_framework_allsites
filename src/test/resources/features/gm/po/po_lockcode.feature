@@ -9,7 +9,7 @@ Feature: Purchase order Putaway
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    And the PO is lock with lockcode "QAFTS" in pre advice line
+    And the PO is locked with lockcode "QAFTS" in pre advice line
     When I receive all skus for the purchase order at location "<Location>"
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
@@ -18,5 +18,5 @@ Feature: Purchase order Putaway
     #When I do normal putaway for all tags received for the lockcode "QAFTS"
     #Then the  error message should be displayed
     Examples: 
-      | PreAdviceID | PalletId             | ASN        | Location |
-      |  2010002119 | 00050456000511235614 | 0000100514 | REC001   |
+      | PreAdviceID | PalletId            | ASN    | Location |
+      |   124124124 | 0055000290955260999 | 124124 | REC001   |

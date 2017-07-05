@@ -9,10 +9,11 @@ public class preAdviceLinePage {
 	int timeoutInSec = 20;
 
 	public void selectlockcode(String lockcode) throws FindFailed {
-		screen.wait("/images/GMPreAdviceLine/LockCode.png", timeoutInSec);
-		screen.click("/images/GMPreAdviceLine/LockCode.png");
+		screen.type(Key.F2);
+		screen.wait("/images/PreAdviceLine/LockCodegm.png", timeoutInSec);
+		screen.click("/images/PreAdviceLine/LockCodegm.png");
 		screen.type(lockcode);
-		screen.type(Key.ENTER);
+		screen.type(Key.F7);
 	}
 
 }

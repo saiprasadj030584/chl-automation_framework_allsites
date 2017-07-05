@@ -109,11 +109,11 @@ public class PreAdviceLineStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the PO is lock with lockcode \"([^\"]*)\" in pre advice line$")
-	public void the_PO_is_lock_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
-		preAdviceLinePage.selectlockcode(lockCode);
-
+	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
+	public void the_PO_is_locked_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
+		// preAdviceLinePage.selectlockcode(lockCode);
+		preAdviceLineDB.updatelockCode(context.getPreAdviceId(), lockCode);
 	}
 }
