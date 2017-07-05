@@ -84,6 +84,12 @@ public class DockSchedulerPage {
 		} else
 			return false;
 	}
+	public boolean isBookingIdDisplayedIn() throws FindFailed, InterruptedException {
+		if (screen.exists("/images/DockScheduler/Schedule/In.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 
 	public void enterTrailerType() throws FindFailed, InterruptedException {
 		screen.type("TRAILER");
@@ -138,6 +144,14 @@ public class DockSchedulerPage {
 
 	public boolean isDeleteBookingConfirmationMessageDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("images/DockScheduler/Schedule/DeleteBookingConfirmation.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	
+	public boolean isNoRecords() throws FindFailed, InterruptedException {
+		if (screen.exists("images/DockScheduleBookings/NoRecords.png") != null)
 			return true;
 		else
 			return false;

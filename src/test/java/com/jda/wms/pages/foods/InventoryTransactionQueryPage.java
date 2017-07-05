@@ -11,12 +11,12 @@ import com.google.inject.Inject;
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
+	/*private final JDAFooter jdaFooter;
 
 	@Inject
 	public InventoryTransactionQueryPage(JDAFooter jdaFooter) {
 		this.jdaFooter = jdaFooter;
-	}
+	}*/
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/TagIDs.png");
@@ -25,7 +25,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void selectCode(String code) throws FindFailed, InterruptedException {
-		jdaFooter.clickQueryButton();
+		//jdaFooter.clickQueryButton();
 		screen.type(code);
 		screen.type(Key.TAB);
 	}

@@ -11,12 +11,12 @@ import com.google.inject.Inject;
 public class StockAdjustmentsPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
+	/*private final JDAFooter jdaFooter;
 
 	@Inject
 	public StockAdjustmentsPage(JDAFooter jdaFooter) {
 		this.jdaFooter = jdaFooter;
-	}
+	}*/
 
 	public boolean isRecordExists() {
 		if (screen.exists("images/StockAdjustment/Results/ResultsRecord.png") != null)
@@ -41,14 +41,14 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 		screen.type(decrementQty);
 		Thread.sleep(3000);
-		jdaFooter.clickNextButton();
+		//jdaFooter.clickNextButton();
 	}
 
 	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(reasonCode);
 		Thread.sleep(2000);
-		jdaFooter.clickDoneButton();
+		//jdaFooter.clickDoneButton();
 	}
 
 	public boolean isStockAdjustmentHomeDisplayed() throws FindFailed {

@@ -11,12 +11,12 @@ import com.google.inject.Inject;
 public class CEConsignmentMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
+	/*private final JDAFooter jdaFooter;
 
 	@Inject
 	public CEConsignmentMaintenancePage(JDAFooter jdaFooter) {
 		this.jdaFooter = jdaFooter;
-	}
+	}*/
 
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ReceiptType.png", timeoutInSec);
