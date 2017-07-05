@@ -1,30 +1,41 @@
 package com.jda.wms.pages.gm;
 
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Match;
+import org.sikuli.script.Screen;
+
 public class InventoryUpdatePage {
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
 
-	public static void entertagID(String tagId) {
-		// TODO Auto-generated method stub
-
+	public void entertagID(String tagId) throws FindFailed {
+		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(tagId);
 	}
 
-	public static void entersku(String skuId) {
-		// TODO Auto-generated method stub
-
+	public void entersku(String skuId) throws FindFailed {
+		Match skuID = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		screen.click(skuID.getCenter().offset(70, 0));
+		screen.type(skuId);
 	}
 
-	public static void enterLocation(String getlocationID) {
-		// TODO Auto-generated method stub
-
+	public void enterLocation(String locationID) throws FindFailed {
+		Match Location = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		screen.click(Location.getCenter().offset(70, 0));
+		screen.type(locationID);
 	}
 
-	public static void isRecorddisplayed() {
-		// TODO Auto-generated method stub
-
+	public boolean isRecorddisplayed() throws FindFailed, InterruptedException {
+		if (screen.exists("/images/InventoryUpdate/Start/SelectType.png") != null) {
+			return true;
+		} else
+			return false;
 	}
 
-	public static void enterStatus(String status) {
-		// TODO Auto-generated method stub
-
+	public void enterStatus(String status) throws FindFailed {
+		Match Status = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		screen.click(Status.getCenter().offset(70, 0));
+		screen.type(status);
 	}
-
 }
