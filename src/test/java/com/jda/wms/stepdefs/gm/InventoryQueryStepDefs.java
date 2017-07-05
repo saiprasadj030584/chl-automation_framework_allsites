@@ -8,6 +8,7 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
 
@@ -21,12 +22,15 @@ public class InventoryQueryStepDefs {
 	private Context context;
 	private Verification verification;
 	private InventoryDB inventoryDB;
+	private JdaLoginPage jdaLoginPage;
 
 	@Inject
-	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB) {
+	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB,
+			JdaLoginPage jdaLoginPage) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryDB = inventoryDB;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	@Then("^the inventory should be displayed for all tags received$")
@@ -78,5 +82,16 @@ public class InventoryQueryStepDefs {
 		context.setSkuId(skuId);
 		context.setlocationID(locationID);
 
+	}
+
+	@Given("^I have a tag in inventory with \"([^\"]*)\" status$")
+	public void i_have_a_tag_in_inventory_with_status(String lockStatus) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetails(lockStatus);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		jdaLoginPage.login();
 	}
 }

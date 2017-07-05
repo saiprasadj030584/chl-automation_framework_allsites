@@ -28,27 +28,31 @@ public class InventoryUpdateStepDefs {
 
 	}
 
-	@When("^i enter the tagID, SKU,location$")
-	public void i_enter_the_tagID_SKU_location() throws Throwable {
-		jdafooter.clickQueryButton();
-		InventoryUpdatePage.entertagID(context.getTagId());
-		InventoryUpdatePage.entersku(context.getSkuId());
-		InventoryUpdatePage.enterLocation(context.getlocationID());
+	@When("^I select the update type as \"([^\"]*)\"$")
+	public void i_select_the_update_type_as(String updateType) throws Throwable {
+		inventoryUpdatePage.enterselectType(updateType);
 		jdafooter.clickNextButton();
 
 	}
 
-	@Then("^the record should be displayed$")
-	public void the_record_should_be_displayed() throws Throwable {
-		InventoryUpdatePage.isRecorddisplayed();
-		Assert.assertTrue("record not displayed as expected.InventoryUpdatePage.isRecorddisplayed()", false);
+	@When("^I search the inventory for locked tag$")
+	public void i_search_the_inventory_for_locked_tag() throws Throwable {
+		inventoryUpdatePage.entertagID(context.getTagId());
+		inventoryUpdatePage.entersku(context.getSkuId());
+		inventoryUpdatePage.enterLocation(context.getlocationID());
 		jdafooter.clickNextButton();
 
 	}
 
-	@Then("^I enter the status as \"([^\"]*)\"$")
-	public void i_enter_the_status_as(String status) throws Throwable {
-		InventoryUpdatePage.enterStatus(status);
+	@Then("^the tag details should be displayed$")
+	public void the_tag_details_should_be_displayed() throws Throwable {
+		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDdisplayed());
+		jdafooter.clickNextButton();
+	}
+
+	@Then("^I select the status as \"([^\"]*)\"$")
+	public void i_select_the_status_as(String status) throws Throwable {
+		inventoryUpdatePage.enterStatus(status);
 		jdafooter.clickDoneButton();
 
 	}

@@ -1,8 +1,10 @@
 package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.inject.Inject;
@@ -464,5 +466,22 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select location_ID FROM inventory WHERE lock_status='" + status + "'");
 		rs.next();
 		return rs.getString(1);
+	}
+
+	public ArrayList getTagIdDetails(String lockStatus) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='" + lockStatus + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
 	}
 }
