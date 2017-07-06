@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -103,5 +104,6 @@ public class PurchaseOrderPutawayStepDefs {
 		verification.verifyData("From Location", context.getLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
 		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
+		 Assert.assertTrue("SKU Attributes are not as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 	}
 }

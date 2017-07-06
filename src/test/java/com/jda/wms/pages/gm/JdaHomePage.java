@@ -529,4 +529,10 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
+
+	public void scrollRightBig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollRightBig.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollRightBig.png");
+		Thread.sleep(1000);
+	}
 }

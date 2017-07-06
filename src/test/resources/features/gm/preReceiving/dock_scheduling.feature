@@ -16,6 +16,7 @@ Feature: Dock Scheduling
     Then the booking details should appear in the dock scheduler booking
 
     Examples: 
+
       | PreAdviceID | UPIId               | ASNId    | Type    |
       | PO20170201  | PO40000000000000001 | PO111001 | Hanging |
 

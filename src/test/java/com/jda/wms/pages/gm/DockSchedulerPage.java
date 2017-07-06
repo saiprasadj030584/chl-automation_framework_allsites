@@ -259,4 +259,18 @@ public class DockSchedulerPage {
 		} else
 			return false;
 	}
+
+	public boolean isDockDoorExists() {
+		if (screen.exists("/images/DockScheduler/Schedule/DD010.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean isBookingErrorExists() {
+		if (screen.exists("/images/DockScheduler/Schedule/BookingError.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 }
