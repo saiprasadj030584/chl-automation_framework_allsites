@@ -77,6 +77,7 @@ public class Database {
 			connectionSucessful = true;
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
+			System.out.println("Database Connection Failure "+ex.getMessage());
 			logger.debug("Exception " + ex.getMessage());
 		}
 	}

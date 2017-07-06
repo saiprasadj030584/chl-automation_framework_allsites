@@ -87,6 +87,31 @@ public class DockSchedulerStepDefs {
 		jdaFooter.PressEnter();
 	}
 	
+	public void i_create_a_booking_for_the_asn_with_bookingid(String bookingid) throws Throwable {
+		String bookingID = bookingid;
+		String trailerNo = context.getTrailerNo();
+		
+		context.setBookingID(bookingID);
+		context.setCarrier("ALLPORT");
+		context.setServiceLevel("AIR");
+
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterCarrier(context.getCarrier());
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerType();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerNo(trailerNo);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
+	}
+
 	
 	public void i_enter_booking_details_with_bookingID(String bookingID)throws Throwable {
 		String trailerNo = context.getTrailerNo();
@@ -139,6 +164,20 @@ public class DockSchedulerStepDefs {
 //		the_booking_details_should_be_appeared_in_the_dock_scheduler_booking();
 	}
 	
+	@Given("^I have done the dock scheduler booking with the BookingId \"([^\"]*)\", PO \"([^\"]*)\", UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\"$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_BookingId_PO_UPI_ASN_of_type(String BookingId,String preAdviceId, String upiId, String asnId,
+			String type) throws Throwable {
+		
+		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(preAdviceId,upiId,asnId,type);
+		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
+		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
+		i_create_new_dock_booking();
+		i_select_the_booking_type_and_ASN();
+		i_select_the_slot();
+		i_create_a_booking_for_the_asn_with_bookingid(BookingId);
+		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+	}
+	
 	@When("^I select view existing bookings$")
 	public void i_select_view_existing_bookings() throws Throwable {
 		dockSchedulerPage.enterSiteID(context.getSiteId());
@@ -156,6 +195,11 @@ public class DockSchedulerStepDefs {
 		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayed());
 	}
 	
+	@Then("^the booking id details with updated time should be displayed on the page$")
+	public void the_booking_id_details_with_updated_time_should_be_displayed_on_the_page() throws Throwable {
+		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayed());
+	}
+	
 	@Then("^the booking id details should be displayed on the page$")
 	public void the_booking_id_details_should_be_displayed_on_the_page() throws Throwable {
 		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayedIn());
@@ -170,7 +214,14 @@ public class DockSchedulerStepDefs {
 				dockSchedulerPage.isDeleteBookingConfirmationMessageDisplayed());
 		screen.type(Key.ENTER);
 	}
-
+	
+	@When("^I change the booking time$")
+	public void i_change_the_booking_time() throws Throwable {
+		dockSchedulerPage.changeBookingTime();
+		jdaFooter.clickNextButton();
+	
+	}
+	
 	@Then("^the booking details should be deleted in the dock scheduler booking$")
 	public void the_booking_details_should_be_deleted_in_the_dock_scheduler_booking() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerBookingsPage();

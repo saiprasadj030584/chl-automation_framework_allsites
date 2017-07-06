@@ -95,6 +95,19 @@ public class DockSchedulerPage {
 		screen.type("TRAILER");
 		Thread.sleep(1000);
 	}
+	public void changeBookingTime() throws FindFailed, InterruptedException {
+		
+		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/In.png");
+		screen.rightClick();
+		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
+		
+		
+		Match mBookingID = screen.find("images/DockScheduler/Schedule/BookingDetails/In.png");
+		screen.click(mBookingID.getCenter().offset(10, 0));
+		Thread.sleep(2000);
+		
+	}
 
 	public void enterTrailerNo(String trailerNo) throws FindFailed, InterruptedException {
 		screen.type(trailerNo);

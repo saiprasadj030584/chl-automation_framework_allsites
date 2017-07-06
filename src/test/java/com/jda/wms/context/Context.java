@@ -66,7 +66,7 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private Connection connection = null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
