@@ -121,4 +121,10 @@ public class JDAFooter {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
+
+	public void deleteExistingContent() throws InterruptedException {
+		screen.type("a",Key.CTRL);
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(1000);
+	}
 }

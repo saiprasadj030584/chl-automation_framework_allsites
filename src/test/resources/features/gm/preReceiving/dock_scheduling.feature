@@ -17,4 +17,5 @@ Feature: Dock Scheduling
 
     Examples: 
       | PreAdviceID  | UPIId                | ASNId      | Type    |
-      | PO20170201 | PO40000000000000001 | PO111001 | Hanging |
+      #| PO20170201   | PO40000000000000001  | PO111001   | Hanging |
+      | PO2010002003 | PO000504560005112356 | PO00001015 | Hanging |
