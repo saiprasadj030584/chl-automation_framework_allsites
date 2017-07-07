@@ -6,6 +6,7 @@ import org.sikuli.script.Key;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.BookingInDiaryLog;
 import com.jda.wms.pages.gm.DockSchedulerBookingsPage;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -27,12 +28,13 @@ public class DockSchedulerStepDefs {
 	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
 	private JDAHomeStepDefs jDAHomeStepDefs;
 	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
+	private BookingInDiaryLog bookingInDiaryLog;
 	
 	Screen screen = new Screen();
 
 
 	@Inject
-	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage,JDAFooter jdaFooter,JdaHomePage jdaHomePage,Context context,PreReceivingStepDefs preReceivingStepDefs,TrailerMaintenanceStepDefs trailerMaintenanceStepDefs,JDAHomeStepDefs jDAHomeStepDefs,DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs) {
+	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage,JDAFooter jdaFooter,JdaHomePage jdaHomePage,Context context,PreReceivingStepDefs preReceivingStepDefs,TrailerMaintenanceStepDefs trailerMaintenanceStepDefs,JDAHomeStepDefs jDAHomeStepDefs,DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs,BookingInDiaryLog bookingInDiaryLog) {
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter=jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -41,6 +43,7 @@ public class DockSchedulerStepDefs {
 		this.trailerMaintenanceStepDefs=trailerMaintenanceStepDefs;
 		this.jDAHomeStepDefs=jDAHomeStepDefs;
 		this.dockScehdulerBookingStepDefs=dockScehdulerBookingStepDefs;
+		this.bookingInDiaryLog=bookingInDiaryLog;
 		
 	}
 	
@@ -159,6 +162,7 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectCreateNewBooking();
 		if (dockSchedulerPage.isSiteExists()){
 		dockSchedulerPage.enterSiteID("5649");
+		context.setSiteId("5649");
 		}
 		jdaFooter.clickNextButton();
 	}
@@ -206,7 +210,15 @@ public class DockSchedulerStepDefs {
 	
 	@When("^I select view existing bookings$")
 	public void i_select_view_existing_bookings() throws Throwable {
+		/*System.out.println("check1"+context.getSiteId());
 		dockSchedulerPage.enterSiteID(context.getSiteId());
+		System.out.println("check2"+context.getSiteId());*/
+		
+		if (dockSchedulerPage.isSiteExists()){
+		dockSchedulerPage.enterSiteID("5649");
+		}
+		
+		
 	jdaFooter.clickNextButton();
 	}
 
@@ -218,17 +230,22 @@ public class DockSchedulerStepDefs {
 	
 	@Then("^the booking id details should be displayed$")
 	public void the_booking_id_details_should_be_displayed() throws Throwable {
-		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayed());
+		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayedIn());
 	}
 	
-	@Then("^the booking id details with updated time should be displayed on the page$")
-	public void the_booking_id_details_with_updated_time_should_be_displayed_on_the_page() throws Throwable {
-		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayed());
-	}
 	
 	@Then("^the booking id details should be displayed on the page$")
 	public void the_booking_id_details_should_be_displayed_on_the_page() throws Throwable {
 		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayedIn());
+		String bookedtime=bookingInDiaryLog.getChangedBookingTime(context.getBookingID());
+		context.setBookingTime(bookedtime);
+		System.out.println("btime"+bookedtime);
+		String dockid=bookingInDiaryLog.getChangedDockId(context.getBookingID());
+		context.setDockId(dockid);
+		System.out.println("dockid"+dockid);
+		
+		
+		//get time from db;
 	}
 	
 	
@@ -244,8 +261,37 @@ public class DockSchedulerStepDefs {
 	@When("^I change the booking time$")
 	public void i_change_the_booking_time() throws Throwable {
 		dockSchedulerPage.changeBookingTime();
+		
+			
+//		}
+		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
+		//jdaFooter.clickNextButton();
 	
+	}
+	
+	@When("^I change the status of booking$")
+	public void i_change_the_status_of_booking() throws Throwable {
+		dockSchedulerPage.changeBookingStatus();
+		
+		
+		
+	
+	}
+	
+	@Then("^the booking id details with updated status should be displayed on the page$")
+	public void the_booking_id_details_with_updated_status_should_be_displayed_on_the_page() throws Throwable {
+		jdaHomePage.navigateToDockSchedulerPage();
+		if (dockSchedulerPage.isSiteExists()){
+			dockSchedulerPage.enterSiteID("5649");
+			}
+		jdaFooter.clickNextButton();
+		dockSchedulerPage.enterBookingId(context.getBookingID());
+		screen.type(Key.ENTER);
+		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingIdDisplayedIn());
+		dockSchedulerPage.checkBookingStatusUpdated();
+		Assert.assertTrue("Booking ID is not as expected. ",dockSchedulerPage.isBookingStatusUpdated());
+		jdaFooter.PressEnter();
 	}
 	
 	@Then("^the booking details should be deleted in the dock scheduler booking$")
