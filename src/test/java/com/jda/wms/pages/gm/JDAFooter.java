@@ -127,4 +127,8 @@ public class JDAFooter {
 		screen.type(Key.BACKSPACE);
 		Thread.sleep(1000);
 	}
+
+	public void pressBackSpace() {
+		screen.type(Key.BACKSPACE);
+	}
 }

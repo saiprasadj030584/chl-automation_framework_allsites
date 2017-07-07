@@ -163,13 +163,13 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at(String preAdviceId,String type,
 			String upiId, String asnId, String location) throws Throwable {
-		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,upiId, asnId, "Released");
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,upiId, asnId, "Complete");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		i_receive_all_skus_for_the_purchase_order_at_location(location);
-		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
-		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+//		i_receive_all_skus_for_the_purchase_order_at_location(location);
+//		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+//		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+//		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 	
 	
