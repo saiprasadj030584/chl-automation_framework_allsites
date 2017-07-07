@@ -8,7 +8,8 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
-import com.jda.wms.pages.gm.InventoryTransactionPage;
+import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
 
@@ -22,15 +23,18 @@ public class InventoryTransactionQueryStepDefs {
 	private Context context;
 	private Verification verification;
 	private InventoryTransactionDB inventoryTransactionDB;
-	private InventoryTransactionPage inventoryTransactionPage;
+	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
-			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionPage inventoryTransactionPage) {
+			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
+			JDAFooter jDAFooter) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
-		this.inventoryTransactionPage = inventoryTransactionPage;
+		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
+		this.jDAFooter = jDAFooter;
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -86,6 +90,25 @@ public class InventoryTransactionQueryStepDefs {
 	@When("^I choose the code as \"([^\"]*)\" and search the tag id$")
 	public void i_choose_the_code_as_and_search_the_tag_id(String code) throws Throwable {
 		// inventoryTransactionPage.se
-		inventoryTransactionPage.enterTagid(context.getTagId());
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
+
+	}
+
+	@Then("^the status should be updated$")
+	public void the_status_should_be_updated() throws Throwable {
+		Assert.assertEquals("updated inventory status are not as expected", context.getStatus(),
+				inventoryTransactionQueryPage.getStatus());
+
+	}
+
+	@Then("^the expiry date should be updated$")
+	public void the_expiry_date_should_be_updated() throws Throwable {
+		Assert.assertEquals("updated inventory Expiry date are not as expected", context.getFutureExpiryDate(),
+				inventoryTransactionQueryPage.getExpiryDate());
+
 	}
 }

@@ -1,4 +1,4 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -127,7 +127,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public String getStatus() throws FindFailed, InterruptedException {
-		Match mStatus = screen.find("/images/InventoryTransactionQuery/lockStatus.png");
+		Match mStatus = screen.find("images/InventoryTransactionQuery/General/LockStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);

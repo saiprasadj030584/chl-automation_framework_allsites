@@ -8,6 +8,8 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.pages.gm.InventoryQueryPage;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
@@ -23,14 +25,18 @@ public class InventoryQueryStepDefs {
 	private Verification verification;
 	private InventoryDB inventoryDB;
 	private JdaLoginPage jdaLoginPage;
+	private JDAFooter jDAFooter;
+	private InventoryQueryPage inventoryQueryPage;
 
 	@Inject
 	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB,
-			JdaLoginPage jdaLoginPage) {
+			JdaLoginPage jdaLoginPage, JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryDB = inventoryDB;
 		this.jdaLoginPage = jdaLoginPage;
+		this.jDAFooter = jDAFooter;
+		this.inventoryQueryPage = inventoryQueryPage;
 	}
 
 	@Then("^the inventory should be displayed for all tags received$")
@@ -92,6 +98,43 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		jdaLoginPage.login();
+		System.out.println(context.getSkuId());
+		System.out.println(context.getLocation());
+		System.out.println(context.getTagId());
+		// jdaLoginPage.login();
+	}
+
+	@Given("^I have tag in inventory with \"([^\"]*)\" status$")
+	public void i_have_tag_in_inventory_with_status(String Expiry) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.getTagIDDetails(Expiry);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+	}
+
+	@Given("^I have a tag in inventory with \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with(String origin) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.getTagIddetails(origin);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		System.out.println(context.getSkuId());
+		System.out.println(context.getLocation());
+		System.out.println(context.getTagId());
+	}
+
+	@Then("^the origin should be updated$")
+	public void the_origin_should_be_updated() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryQueryPage.enterTagId(context.getTagId());
+		inventoryQueryPage.enterSkuId(context.getSkuId());
+		inventoryQueryPage.enterlocation(context.getlocationID());
+		jDAFooter.clickExecuteButton();
+		inventoryQueryPage.getOrigin();
+
 	}
 }

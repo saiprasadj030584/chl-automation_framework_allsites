@@ -9,7 +9,7 @@ public class InventoryUpdatePage {
 	int timeoutInSec = 20;
 
 	public void entertagID(String tagId) throws FindFailed {
-		// TODO Change image
+		// TODO Change ima
 		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
@@ -17,14 +17,14 @@ public class InventoryUpdatePage {
 
 	public void entersku(String skuId) throws FindFailed {
 		// TODO Change image
-		Match skuID = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
 		screen.click(skuID.getCenter().offset(70, 0));
 		screen.type(skuId);
 	}
 
 	public void enterLocation(String locationID) throws FindFailed {
 		// TODO Change image
-		Match Location = screen.find("/images/InventoryUpdate/Search/TagId.png");
+		Match Location = screen.find("images/InventoryUpdate/Search/Location.png");
 		screen.click(Location.getCenter().offset(70, 0));
 		screen.type(locationID);
 	}
@@ -51,5 +51,18 @@ public class InventoryUpdatePage {
 		// screen.click(Status.getCenter().offset(70, 0));
 		screen.type(status);
 		Thread.sleep(1000);
+	}
+
+	public void enterExpiryDate(String futuredate) throws InterruptedException {
+		screen.type(futuredate);
+		Thread.sleep(1000);
+
+	}
+
+	public boolean isWarningPopUpPageExist() {
+		if (screen.exists("images/InventoryUpdate/Finish/Warning.png") != null) {
+			return true;
+		} else
+			return false;
 	}
 }

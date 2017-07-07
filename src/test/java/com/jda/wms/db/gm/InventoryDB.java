@@ -473,8 +473,46 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='" + lockStatus + "'");
+		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='" + lockStatus
+				+ "' order by sku_id desc");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='"
+				+ lockStatus + "' order by sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getTagIDDetails(String Expiry) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where expired='" + Expiry + "' order by sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getTagIddetails(String origin) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where ORIGIN_ID='" + origin
+				+ "' order by sku_id desc");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where ORIGIN_ID='" + origin
+				+ "' order by sku_id desc");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		rs.next();
