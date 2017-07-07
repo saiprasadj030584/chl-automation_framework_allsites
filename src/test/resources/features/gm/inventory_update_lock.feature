@@ -40,13 +40,13 @@ Feature: Inventory update
   @origin_update
   Scenario Outline: Inventory update for Lock Status Change
     Given I have a tag in inventory with "<Origin>"
-    #When I navigate to inventory update page
-    #And I select the update type as "Origin Update"
-    #And I search the inventory for the tag
-    #Then the tag details should be displayed
-    #And I select the status as "<UpdateOrigin>"
-    #When I navigate to inventory query page
-    #Then the origin should be updated
+    When I navigate to inventory update page
+    And I select the update type as "Origin Update"
+    And I search the inventory for the tag
+    Then the tag details should be displayed
+    And I select the status as "<UpdateOrigin>"
+    When I navigate to inventory query page
+    Then the origin should be updated
 
     Examples: 
       | Origin | UpdateOrigin |

@@ -45,7 +45,9 @@ public class InventoryUpdateStepDefs {
 	public void i_search_the_inventory_for_the_tag() throws Throwable {
 		inventoryUpdatePage.entertagID(context.getTagId());
 		inventoryUpdatePage.entersku(context.getSkuId());
-		inventoryUpdatePage.enterLocation(context.getlocationID());
+		inventoryUpdatePage.enterLocation(context.getLocation());
+
+		System.out.println(context.getlocationID());
 		jdafooter.clickNextButton();
 
 	}

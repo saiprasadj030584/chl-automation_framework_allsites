@@ -8,25 +8,25 @@ public class InventoryUpdatePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
-	public void entertagID(String tagId) throws FindFailed {
-		// TODO Change ima
+	public void entertagID(String tagId) throws FindFailed, InterruptedException {
 		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
+		Thread.sleep(1000);
 	}
 
-	public void entersku(String skuId) throws FindFailed {
-		// TODO Change image
+	public void entersku(String skuId) throws FindFailed, InterruptedException {
 		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
 		screen.click(skuID.getCenter().offset(70, 0));
 		screen.type(skuId);
+		Thread.sleep(1000);
 	}
 
-	public void enterLocation(String locationID) throws FindFailed {
-		// TODO Change image
-		Match Location = screen.find("images/InventoryUpdate/Search/Location.png");
+	public void enterLocation(String locationID) throws FindFailed, InterruptedException {
+		Match Location = screen.find("/images/InventoryUpdate/Search/locations.png");
 		screen.click(Location.getCenter().offset(70, 0));
 		screen.type(locationID);
+		Thread.sleep(2000);
 	}
 
 	public boolean isRecordDdisplayed() throws FindFailed, InterruptedException {
