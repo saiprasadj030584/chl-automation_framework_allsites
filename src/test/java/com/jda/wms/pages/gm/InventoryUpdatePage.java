@@ -65,4 +65,10 @@ public class InventoryUpdatePage {
 		} else
 			return false;
 	}
+
+	public void enterCondition(String condition) throws InterruptedException {
+		screen.type(condition);
+		Thread.sleep(1000);
+
+	}
 }

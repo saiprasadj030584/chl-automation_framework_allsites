@@ -521,4 +521,60 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+
+	public ArrayList gettagIddetails(String condition) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where condition_id='" + condition
+				+ "' order by sku_id desc");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where condition_id='"
+				+ condition + "' order by sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+
+	}
+
+	public ArrayList gettagIddetail(String pallet) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where  pallet_config='" + pallet
+				+ "' order by sku_id desc");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where  pallet_config='"
+				+ pallet + "' order by sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getStockDetails() throws ClassNotFoundException, SQLException {
+		ArrayList<String> StockDetails = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SKU_ID,config_id from INVENTORY");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,config_id from INVENTORY");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			StockDetails.add((rs.getString(j)));
+		}
+		return StockDetails;
+	}
 }

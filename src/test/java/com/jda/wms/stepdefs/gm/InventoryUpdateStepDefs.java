@@ -54,7 +54,7 @@ public class InventoryUpdateStepDefs {
 
 	@Then("^the tag details should be displayed$")
 	public void the_tag_details_should_be_displayed() throws Throwable {
-		Assert.assertFalse("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDdisplayed());
+		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDdisplayed());
 		jdafooter.clickNextButton();
 	}
 
@@ -80,4 +80,17 @@ public class InventoryUpdateStepDefs {
 
 	}
 
+	@Then("^I select the condition as \"([^\"]*)\"$")
+	public void i_select_the_condition_as(String condition) throws Throwable {
+		inventoryUpdatePage.enterCondition(condition);
+		jdafooter.clickDoneButton();
+		context.setCondition(condition);
+	}
+
+	@Then("^I select the pallet type as \"([^\"]*)\"$")
+	public void i_select_the_pallet_type_as(String pallet) throws Throwable {
+		inventoryUpdatePage.enterCondition(pallet);
+		jdafooter.clickDoneButton();
+		context.setPalletType(pallet);
+	}
 }

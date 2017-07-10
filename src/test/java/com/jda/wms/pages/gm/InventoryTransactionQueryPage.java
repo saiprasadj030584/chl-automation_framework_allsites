@@ -508,4 +508,12 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public String getcondition() throws FindFailed, InterruptedException {
+		Match status = screen.find("images/InventoryTransactionQuery/General/Condition.png");
+		screen.click(status.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }

@@ -137,4 +137,37 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.getOrigin();
 
 	}
+
+	@Given("^I have a tag in Inventory with\"([^\"]*)\"$")
+	public void i_have_a_tag_in_Inventory_with(String Condition) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.gettagIddetails(Condition);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		// jdaLoginPage.login();
+	}
+
+	@Given("^I have a tag in Inventory with \"([^\"]*)\"$")
+	public void I_have_a_tag_in_Inventory_with(String Pallet) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.gettagIddetail(Pallet);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		// jdaLoginPage.login();
+	}
+
+	@Given("^I have a Skuid and pack config$")
+	public void i_have_a_Skuid_and_pack_config() throws Throwable {
+		ArrayList StockDetailList = inventoryDB.getStockDetails();
+		if (!StockDetailList.isEmpty()) {
+			context.setSkuId((String) StockDetailList.get(0));
+			context.setPackConfig((String) StockDetailList.get(1));
+
+		}
+
+	}
 }

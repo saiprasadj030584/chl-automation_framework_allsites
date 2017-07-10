@@ -111,4 +111,45 @@ public class InventoryTransactionQueryStepDefs {
 				inventoryTransactionQueryPage.getExpiryDate());
 
 	}
+
+	@When("^I choose the code as \"([^\"]*)\" and I search the tag id$")
+	public void i_choose_the_code_as_and_I_search_the_tag_id(String code) throws Throwable {
+		// inventoryTransactionPage.se
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		jDAFooter.clickExecuteButton();
+
+	}
+
+	@Then("^the condition should be updated$")
+	public void the_condition_should_be_updated() throws Throwable {
+		String conditionToVerify = null;
+		switch (context.getCondition()) {
+		case "Black condition code":
+			conditionToVerify = "BLACK";
+			break;
+		case "Blue condition code":
+			conditionToVerify = "BLUE";
+			break;
+		case "Green condition code":
+			conditionToVerify = "GREEN";
+			break;
+		case "Pink condition code":
+			conditionToVerify = "PINK";
+			break;
+		case "Red condition code":
+			conditionToVerify = "RED";
+			break;
+
+		}
+		Assert.assertEquals("updated inventory condition are not as expected", conditionToVerify,
+				inventoryTransactionQueryPage.getcondition());
+	}
+
+	@Then("^the pallet should be updated$")
+	public void the_pallet_should_be_updated() throws Throwable {
+		Assert.assertEquals("updated inventory pallet are not as expected", context.getPalletType(),
+				inventoryTransactionQueryPage.getPalletType());
+	}
 }
