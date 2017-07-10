@@ -2,7 +2,7 @@
 ##################
 default:
  browser-name: ie
- username: 'P9120368'
+ username: 'P9134817'
  password: '1234'
 
  gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
@@ -10,12 +10,13 @@ default:
  gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html'
  gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
  putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
- putty-gm-port: '24002'
+ putty-gm-port: '24001'
  #putty-foods-host: 'hlxc0dc024.unix.marksandspencercate.com'
  #putty-foods-port: '20140'
  db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
  db-username: 'dcsdba'
  db-password: 'dcsabd'
+ 
 
       
 # Browser settings
@@ -42,7 +43,7 @@ st: &st
 
 sit: &sit
 
- username: 'p9135145'
+ username: 'p9134817'
  password: '12345'
 
  gm-jda-url: 'http://hlxc0dc012.unix.marksandspencercate.com:8880/#'
@@ -52,6 +53,7 @@ sit: &sit
  putty-foods-port: '20254'
  
 uat: &uat
+
  username: 'xxxxxxx'
  password: 'xxxxxxx' 
  gm-jda-url: 'http://hlxc0dc012.unix.marksandspencercate.com:8880/#'

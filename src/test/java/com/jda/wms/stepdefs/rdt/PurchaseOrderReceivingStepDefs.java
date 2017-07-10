@@ -163,6 +163,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at(String preAdviceId,String type,
 			String upiId, String asnId, String location) throws Throwable {
+		context.setPalletID(upiId);
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,upiId, asnId, "Released");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();

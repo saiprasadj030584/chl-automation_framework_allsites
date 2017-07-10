@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @move_booking_diff_time_sameday"})	
+"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @po_receipt_reversal_hanging_withoutlockcode"})	
 public class AllTest {
 }
 

@@ -1,4 +1,4 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -507,5 +507,12 @@ public class InventoryTransactionQueryPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+	
+	public boolean isNoRecords() throws FindFailed, InterruptedException {
+		if (screen.exists("images/DockScheduleBookings/NoRecords.png") != null)
+			return false;
+		else
+			return true;
 	}
 }

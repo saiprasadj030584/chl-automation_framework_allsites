@@ -28,6 +28,9 @@ public class PuttyFunctionsPage {
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
+		System.out.println(host);
+		System.out.println(port);
+		
 
 		// Clear pre-entered host name
 		screen.type("A", Key.CTRL);
