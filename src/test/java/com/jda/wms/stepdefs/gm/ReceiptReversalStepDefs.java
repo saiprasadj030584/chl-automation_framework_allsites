@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.gm;
 
 import org.junit.Assert;
 
+import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
@@ -21,6 +22,7 @@ public class ReceiptReversalStepDefs {
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private InventoryTransactionDB inventoryTransactionDB;
 	
+	@Inject
 	public ReceiptReversalStepDefs(ReceiptReversalPage receiptReversalPage,JDAFooter jDAFooter,UPIReceiptLineDB uPIReceiptLineDB,Context context,JdaHomePage jdaHomePage,InventoryTransactionQueryPage inventoryTransactionQueryPage,InventoryTransactionDB inventoryTransactionDB) {
 		this.receiptReversalPage = receiptReversalPage;
 		this.jDAFooter=jDAFooter;
@@ -48,6 +50,7 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickNextButton();
 		receiptReversalPage.check_the_checkbox();
 		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
@@ -58,13 +61,14 @@ public class ReceiptReversalStepDefs {
 	@When ("^the inventory transaction should be updated with reversed receipt tag$")
 	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
-		//receiptReversalPage.checkReversalUpdationInventory(context.getUpiId());
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
 		String code="Receipt Reverse";
 		String reference_Id=inventoryTransactionDB.getReferenceId(context.getUpiId(),code);
+		System.out.println(reference_Id);
+		System.out.println(context.getPreAdviceId());
 		Assert.assertTrue("Receipt Reversion failed",receiptReversalPage.check_RefeID_with_PreadviceID(reference_Id,context.getPreAdviceId()));
 	}
 }

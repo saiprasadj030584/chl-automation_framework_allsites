@@ -237,8 +237,8 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterCode(String code) throws FindFailed, InterruptedException {
-		Match mEnterCode = screen.find("images/InventoryTransactionQuery/Code.png");
-		screen.click(mEnterCode.getCenter().offset(70, 0));
+//		Match mEnterCode = screen.find("images/InventoryTransactionQuery/Code.png");
+//		screen.click(mEnterCode.getCenter().offset(70, 0));
 		screen.type(code);
 		screen.type(Key.TAB);
 		Thread.sleep(2000);

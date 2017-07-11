@@ -19,4 +19,17 @@ Feature: Purchase order receipt reversal
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       #| PO2010002004 | PO050456000511235613 | PO00100536 | REC001   |
       #| PO2010002033 | PO000504560005112377 | PO00100536 | REC001   |
+      | PO2010002048 | PO000504560005112388 | PO00100548 | REC001   |
+      
+      
+      @po_receipt_reversal_hanging_withQAFTSlockcode
+  Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
+    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
+    When I navigate to receipt reversal page
+    And I do receipt reversal for the tag received
+    Then the inventory transaction should be updated with reversed receipt tag
+
+    Examples: 
+      | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002045 | PO000504560005112385 | PO00100545 | REC001   |
+      
