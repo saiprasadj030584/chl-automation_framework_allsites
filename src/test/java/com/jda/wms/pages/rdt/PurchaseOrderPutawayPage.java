@@ -141,4 +141,18 @@ public class PurchaseOrderPutawayPage {
 		else
 			return false;
 	}
+
+	public boolean isLocationErrorDisplayed() {
+		if (screen.exists("images/Putty/Putaway/LocationError.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isQuantityErrorDisplayed() {
+		if (screen.exists("images/Putty/Putaway/QuantityError.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

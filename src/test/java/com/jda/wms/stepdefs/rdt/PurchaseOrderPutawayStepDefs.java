@@ -12,6 +12,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.hooks.Hooks;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 
@@ -28,11 +29,12 @@ public class PurchaseOrderPutawayStepDefs {
 	private InventoryDB inventoryDB;
 	private LocationDB locationDB;
 	private Hooks hooks;
+	private JDAFooter jdaFooter;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks) {
+			LocationDB locationDB, Hooks hooks,JDAFooter jdaFooter) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -40,6 +42,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.inventoryDB = inventoryDB;
 		this.locationDB = locationDB;
 		this.hooks = hooks;
+		this.jdaFooter = jdaFooter;
 	}
 
 	@When("^I select normal putaway$")
@@ -72,6 +75,50 @@ public class PurchaseOrderPutawayStepDefs {
 			}
 		}
 		hooks.logoutPutty();
+	}
+	
+	@When("^I choose normal putaway$")
+	public void i_choose_normal_putaway() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+		
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_urn_id_in_putaway();
+			the_tag_details_for_putaway_should_be_displayed();
+		}
+	}
+	
+	@When("^I proceed without entering location$")
+	public void i_proceed_without_entering_location() throws InterruptedException {
+		jdaFooter.PressEnter();
+	}
+	
+	@When("^the error message should be displayed as cannot find putaway location$")
+	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
+		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected" ,purchaseOrderPutawayPage.isLocationErrorDisplayed());
+		jdaFooter.PressEnter();
+	}
+	
+	@When("^I proceed without entering quantity$")
+	public void i_proceed_without_entering_quantity() throws InterruptedException {
+		jdaFooter.pressTab();
+		for (int i=0;i<25;i++){
+			jdaFooter.pressBackSpace();
+		}
+		jdaFooter.PressEnter();
+	}
+	
+	@When("^the error message should be displayed as invalid quantity exception$")
+	public void the_error_message_should_be_displayed_as_invalid_quantity_exception() throws InterruptedException {
+		Assert.assertTrue("Error message:Invalid Quantity Exception not displayed as expected" ,purchaseOrderPutawayPage.isQuantityErrorDisplayed());
+		jdaFooter.PressEnter();
 	}
 
 	@When("^I enter to location$")
