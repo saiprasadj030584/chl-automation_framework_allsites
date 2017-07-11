@@ -1,4 +1,4 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -19,8 +19,9 @@ public class PreAdviceLineMaintenancePage {
 		this.context = context;
 	}
 
-	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
+	public void enterPreAdviceID(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);
+		Thread.sleep(1000);
 	}
 
 	public String getSkuId() throws FindFailed {
@@ -222,5 +223,32 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+
+	public void updateUserDefinedType3(String userDefType3) throws FindFailed, InterruptedException {
+		screen.wait("images/PreAdviceLine/UserDefined/UserDefType3.png", timeoutInSec);
+		screen.click("images/PreAdviceLine/UserDefined/UserDefType3.png");
+		Thread.sleep(2000);
+		screen.type(userDefType3);
+		Thread.sleep(1000);
+	}
+
+	public void updateUserDefinedType4(String userDefType4) throws FindFailed, InterruptedException {
+		screen.wait("images/PreAdviceLine/UserDefined/UserDefType4.png", timeoutInSec);
+		screen.click("images/PreAdviceLine/UserDefined/UserDefType4.png");
+		Thread.sleep(2000);
+		screen.type(userDefType4);
+		Thread.sleep(1000);
+	}
+
+	public void updateUserDefinedCheck1()throws FindFailed, InterruptedException {
+		screen.wait("images/PreAdviceLine/UserDefined/UserDefCheck1.png", timeoutInSec);
+		screen.click("images/PreAdviceLine/UserDefined/UserDefCheck1.png");
+		Thread.sleep(2000);
+	}
+
+	public void pressTab() throws InterruptedException {
+		screen.type(Key.TAB);
+		Thread.sleep(2000);
 	}
 }

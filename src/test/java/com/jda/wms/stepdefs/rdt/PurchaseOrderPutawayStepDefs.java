@@ -87,12 +87,20 @@ public class PurchaseOrderPutawayStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_select_normal_putaway();
 		i_should_be_directed_to_putent_page();
-		
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_urn_id_in_putaway();
-			the_tag_details_for_putaway_should_be_displayed();
+			if (null==context.getLockCode()){
+				the_tag_details_for_putaway_should_be_displayed();
+			}
 		}
+	}
+	
+	@When("^I should not be able to putaway locked PO$")
+	public void i_should_not_be_able_to_putaway_locked_po() throws Throwable {
+		i_choose_normal_putaway();
+		Assert.assertFalse("Putaway details page should not be displayed as the PO is locked for putaway",purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 	}
 	
 	@When("^I proceed without entering location$")
@@ -117,6 +125,7 @@ public class PurchaseOrderPutawayStepDefs {
 	
 	@When("^the error message should be displayed as invalid quantity exception$")
 	public void the_error_message_should_be_displayed_as_invalid_quantity_exception() throws InterruptedException {
+		System.out.println("quantity check1");
 		Assert.assertTrue("Error message:Invalid Quantity Exception not displayed as expected" ,purchaseOrderPutawayPage.isQuantityErrorDisplayed());
 		jdaFooter.PressEnter();
 	}

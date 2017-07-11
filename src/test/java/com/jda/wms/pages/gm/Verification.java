@@ -13,8 +13,8 @@ public class Verification {
 	@Inject
 	public Verification() {
 	}
-
 	public ArrayList<String> verifyData(String fieldName, String expectedResults, String actualResults,
+
 			ArrayList<String> failureList) {
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
 		if (expectedResults.equalsIgnoreCase("Not Null")) {
