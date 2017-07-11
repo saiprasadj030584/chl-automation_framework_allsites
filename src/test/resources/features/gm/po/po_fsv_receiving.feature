@@ -23,7 +23,7 @@ Feature: Purchase order receiving
     Given the PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"  
     And the PO line should have sku, quantity due details
     And verify PO should not linked with UPI line "<PreAdviceID>" 
-    When I receive all skus for the purchase order at location "<Location>"
+    When I receive all skus for the FSV purchase order at location "<Location>"
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"

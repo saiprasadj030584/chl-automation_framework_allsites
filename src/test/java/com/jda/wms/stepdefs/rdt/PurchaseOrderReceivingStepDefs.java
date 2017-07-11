@@ -93,6 +93,36 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	} 
+//FSV receiving
+	
+	@When("^I receive all skus for the FSV purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_FSV_purchase_order_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		//upiMap = context.getUPIMap();
+		
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+		
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+				context.setSkuId(poMap.get(i).get("SKU"));
+				context.setPackConfig(poMap.get(context.getSkuId()).get("PACK CONFIG"));
+				context.setRcvQtyDue(Integer.parseInt(poMap.get(context.getSkuId()).get("QTY DUE")));
+				i_enter_urn_id();
+				the_tag_and_upc_details_should_be_displayed();
+				i_enter_the_location();
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				i_enter_urn_id();
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN "+context.getUpiId());
+					context.setFailureList(failureList);
+			}
+		}
+		hooks.logoutPutty();
+	} 
 
 	@Given("^I receive the PO with basic and pre-advice receiving$")
 	public void i_receive_the_po_with_basic_and_pre_advice_receiving() throws Throwable {
