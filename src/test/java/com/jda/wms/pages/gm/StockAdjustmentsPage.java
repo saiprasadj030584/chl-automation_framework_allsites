@@ -138,11 +138,17 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterLocation(String location) throws FindFailed, InterruptedException {
-		screen.wait("images/StockAdjustment/Search/Location.png", timeoutInSec);
-		screen.click("images/StockAdjustment/Search/Location.png");
-		Thread.sleep(1000);
+		Match mlocationId = screen.find("images/StockAdjustment/Search/Location.png");
+		screen.click(mlocationId.getCenter().offset(70, 0));
 		screen.type(location);
 		Thread.sleep(1000);
+
+		/*
+		 * screen.wait("images/StockAdjustment/Search/Location.png",
+		 * timeoutInSec);
+		 * screen.click("images/StockAdjustment/Search/Location.png");
+		 * Thread.sleep(1000); screen.type(location); Thread.sleep(1000);
+		 */
 	}
 
 	public void enterQuantityOnHand(String quantity) throws FindFailed, InterruptedException {
