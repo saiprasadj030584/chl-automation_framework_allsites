@@ -108,4 +108,16 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getUserDefType5(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select user_def_type_5 from pre_advice_header where pre_advice_id='"+preAdviceId+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

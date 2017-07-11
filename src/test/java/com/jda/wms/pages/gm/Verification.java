@@ -29,4 +29,19 @@ public class Verification {
 		}
 		return failureList;
 	}
+	public ArrayList<String> verifyDataempty(String fieldName, String expectedResults, String actualResults,
+			ArrayList<String> failureList) {
+		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
+		if (expectedResults.equalsIgnoreCase("Not Null")) {
+			if (null != actualResults) {
+				failureList.add(fieldName + ". Expected  [Null] but was [" + actualResults + "]");
+			}
+		} else {
+			if (expectedResults.contains(actualResults)) {
+				failureList.add(fieldName + " does match. Expected 'null' but was ["
+						+ actualResults + "]");
+			}
+		}
+		return failureList;
+	}
 }

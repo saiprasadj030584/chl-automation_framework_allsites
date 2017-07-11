@@ -97,6 +97,58 @@ public class PreAdviceLineStepDefs {
 
 @Given("^the PO line should have sku, quantity due details$")
 public void the_PO_line_should_have_sku_quantity_due_details() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
+	ArrayList failureList = new ArrayList();
+	ArrayList skuFromPO = new ArrayList();
+	//ArrayList skuFromUPI = new ArrayList();
+	Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
+	//Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
+	
+	skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
+	//skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
+	
+	if (skuFromPO == null ){
+						failureList.add("SKU id is not assgined to the PreAdvice id : " + context.getPreAdviceId());
+			}
+	else{
+		//Add SKU details to PO Map
+		for (int i=1;i<=context.getNoOfLines();i++){
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			context.setSkuId((String)skuFromPO.get(i-1));
+			lineItemsMap.put("SKU", context.getSkuId());
+			lineItemsMap.put("QTY DUE",preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
+			lineItemsMap.put("LINE ID",preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
+			POMap.put(i, lineItemsMap);
+		}
+		context.setPOMap(POMap);
+		
+		/*Add SKU details to UPI Map
+		    for (int i=1;i<=context.getNoOfLines();i++){
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			context.setSkuId((String)skuFromPO.get(i-1));
+			lineItemsMap.put("SKU", context.getSkuId());
+			lineItemsMap.put("QTY DUE",upiReceiptLineDB.getQtyDue(context.getUpiId(),context.getSkuId()));
+			lineItemsMap.put("LINE ID",upiReceiptLineDB.getLineId(context.getUpiId(),context.getSkuId()));
+			lineItemsMap.put("PACK CONFIG",upiReceiptLineDB.getPackConfig(context.getUpiId(),context.getSkuId()));
+			lineItemsMap.put("UPC", "");
+			UPIMap.put(context.getSkuId(), lineItemsMap);
+		}
+		context.setUPIMap(UPIMap);*/
+		
+		System.out.println("PO Map "+context.getPOMap());
+		//System.out.println("UPI Map "+context.getUPIMap());
+		
+		//To Validate Modularity,New Product Check for SKU
+		String type = null;
+		switch (context.getSKUType()){
+		case "Boxed": type="B";break;
+		case "Hanging": type="H";break;
+		}
+		verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+		verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+	}
+	
+	Assert.assertTrue("PO line item attributes not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
+
+}
 }
 }
