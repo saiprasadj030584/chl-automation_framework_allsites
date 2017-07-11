@@ -548,8 +548,6 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where  pallet_config='" + pallet
-				+ "' order by sku_id desc");
 		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where  pallet_config='"
 				+ pallet + "' order by sku_id desc");
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -562,19 +560,18 @@ public class InventoryDB {
 	}
 
 	public ArrayList getStockDetails() throws ClassNotFoundException, SQLException {
-		ArrayList<String> StockDetails = new ArrayList<String>();
+		ArrayList<String> stockDetails = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select SKU_ID,config_id from INVENTORY");
-		ResultSet rs = stmt.executeQuery("select SKU_ID,config_id from INVENTORY");
+		ResultSet rs = stmt.executeQuery("select SKU_ID,config_id from INVENTORY where qty_on_hand>100");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		rs.next();
 		for (int j = 1; j <= columns; j++) {
-			StockDetails.add((rs.getString(j)));
+			stockDetails.add((rs.getString(j)));
 		}
-		return StockDetails;
+		return stockDetails;
 	}
 }

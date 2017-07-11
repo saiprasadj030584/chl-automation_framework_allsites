@@ -119,6 +119,17 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
+
+	}
+
+	@When("^I choose the code as \"([^\"]*)\" and search the sku id$")
+	public void i_choose_the_code_as_and_search_the_sku_id(String code) throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 
 	}
 
@@ -151,5 +162,11 @@ public class InventoryTransactionQueryStepDefs {
 	public void the_pallet_should_be_updated() throws Throwable {
 		Assert.assertEquals("updated inventory pallet are not as expected", context.getPalletType(),
 				inventoryTransactionQueryPage.getPalletType());
+	}
+
+	@Then("^the reason code should be updated$")
+	public void the_reason_code_should_be_updated() throws Throwable {
+		Assert.assertEquals(" stock adjustment are not as expected", context.getReasonCode(),
+				inventoryTransactionQueryPage.getReasonCode());
 	}
 }

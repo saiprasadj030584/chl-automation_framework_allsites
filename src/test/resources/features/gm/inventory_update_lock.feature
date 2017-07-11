@@ -22,24 +22,20 @@ Feature: Inventory update
       | UnLocked   | Locked       | Inventory Lock   |
 
   @Expiry_date_update
-  Scenario Outline: Inventory update for expiry date
-    Given I have tag in inventory with "<Expiry>" status
+  Scenario: Inventory update for expiry date
+    Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
     And I select the update type as "Expiry Date Update"
     And I search the inventory for the tag
     Then the tag details should be displayed
     And I select the future date
     When I navigate to inventory transaction query
-    When I choose the code as "<Code>" and search the tag id
+    When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
-
-    Examples: 
-      | Expiry | Code          |
-      | Y      | Expiry Update |
 
   @origin_update
   Scenario Outline: Inventory update for origin
-    Given I have a tag in inventory with "<Origin>"
+    Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
     And I select the update type as "Origin Update"
     And I search the inventory for the tag
@@ -54,32 +50,32 @@ Feature: Inventory update
 
   @condition_code
   Scenario Outline: Inventory update for condition code
-    Given I have a tag in Inventory with"<condition>"
+    Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
     And I select the update type as "Condition Code Update"
     And I search the inventory for the tag
     Then the tag details should be displayed
     And I select the condition as "<UpdateCondition>"
     When I navigate to inventory transaction query
-    When I choose the code as "<Code>" and I search the tag id
+    When I choose the code as "Condition Update" and I search the tag id
     Then the condition should be updated
 
     Examples: 
-      | condition | UpdateCondition      | Code             |
-      | FIRST     | Black condition code | Condition Update |
+      | Condition | UpdateCondition      |
+      | FIRST     | Black condition code |
 
   @pallet_type
   Scenario Outline: Inventory update for pallet_type
-    Given I have a tag in Inventory with "<pallettype>"
+    Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
     And I select the update type as "Pallet Type Update"
     And I search the inventory for the tag
     Then the tag details should be displayed
     And I select the pallet type as "<UpdatePallet>"
     When I navigate to inventory transaction query
-    When I choose the code as "<Code>" and I search the tag id
+    When I choose the code as "Pallet Update" and I search the tag id
     Then the pallet should be updated
 
     Examples: 
-      | pallettype | UpdatePallet | Code          |
-      | PALLET     | AIR          | Pallet Update |
+      | PalletType | UpdatePallet |
+      | PALLET     | AIR          |

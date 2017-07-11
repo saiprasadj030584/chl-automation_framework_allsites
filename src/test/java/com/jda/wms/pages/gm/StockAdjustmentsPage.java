@@ -48,7 +48,43 @@ public class StockAdjustmentsPage {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(reasonCode);
 		Thread.sleep(2000);
-		jdaFooter.clickDoneButton();
+
+		switch (reasonCode) {
+		case "Dirty":
+			screen.type("Dirty");
+			Thread.sleep(2000);
+			break;
+		case "DMIT":
+			screen.type("DMIT");
+			Thread.sleep(2000);
+			break;
+		case "EXPD":
+			screen.type("EXPD");
+			Thread.sleep(2000);
+			break;
+		case "FOUND":
+			screen.type("FOUND");
+			Thread.sleep(2000);
+			break;
+		case "IE":
+			screen.type("'IE");
+			Thread.sleep(2000);
+			break;
+		case "INCOMPLETE":
+			screen.type("INCOMPLETE");
+			Thread.sleep(2000);
+			break;
+		case "LOST":
+			screen.type("LOST");
+			Thread.sleep(2000);
+			break;
+		case "SAMPLES":
+			screen.type("SAMPLES");
+			Thread.sleep(2000);
+			break;
+
+		}
+
 	}
 
 	public boolean isStockAdjustmentHomeDisplayed() throws FindFailed {
@@ -73,84 +109,73 @@ public class StockAdjustmentsPage {
 		return App.getClipboard();
 	}
 
-	public String enterSkuId(String skuId) throws FindFailed {
-
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-
+	public void enterSkuId(String skuId) throws FindFailed, InterruptedException {
+		screen.wait("images/StockAdjustment/Search/SkuId.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Search/SkuId.png");
+		screen.type(skuId);
+		Thread.sleep(1000);
 	}
 
-	public String enterOwnerId() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterOwnerId(String owner) throws FindFailed, InterruptedException {
+		Match mOwnerId = screen.find("images/StockAdjustment/Search/OwnerId.png");
+		screen.click(mOwnerId.getCenter().offset(70, 0));
+		screen.type(owner);
+		Thread.sleep(1000);
 	}
 
-	public String enterClientId() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterClientId(String clientid) throws FindFailed, InterruptedException {
+		Match mclientId = screen.find("images/StockAdjustment/Search/ClientId.png");
+		screen.click(mclientId.getCenter().offset(70, 0));
+		screen.type(clientid);
+		Thread.sleep(1000);
 	}
 
-	public String enterSiteId(String siteId) throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterSiteId(String siteId) throws FindFailed, InterruptedException {
+		Match msiteId = screen.find("images/StockAdjustment/Search/SiteId.png");
+		screen.click(msiteId.getCenter().offset(70, 0));
+		screen.type(siteId);
+		Thread.sleep(1000);
 	}
 
-	public String enterLocation(String location) throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterLocation(String location) throws FindFailed, InterruptedException {
+		screen.wait("images/StockAdjustment/Search/Location.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Search/Location.png");
+		Thread.sleep(1000);
+		screen.type(location);
+		Thread.sleep(1000);
 	}
 
-	public String enterQuantityOnHand() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterQuantityOnHand(String quantity) throws FindFailed, InterruptedException {
+		Match mquantity = screen.find("images/StockAdjustment/Search/Quantity.png");
+		screen.click(mquantity.getCenter().offset(70, 0));
+		screen.type(quantity);
+		Thread.sleep(1000);
 	}
 
-	public String enterPackConfig() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-
+	public void enterPackConfig(String packConfig) throws FindFailed, InterruptedException {
+		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
+		screen.click(mconfigId.getCenter().offset(70, 0));
+		screen.type(packConfig);
+		Thread.sleep(1000);
 	}
 
-	public String clickMiscellaneousTab() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void clickMiscellaneousTab() throws FindFailed, InterruptedException {
+		screen.wait("images/StockAdjustment/Miscellaneous.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Miscellaneous.png");
+		Thread.sleep(2000);
 	}
 
-	public String enterPallet() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModifySKUID/SASKUId.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
+	public void enterPallet(String pallet) throws FindFailed, InterruptedException {
+		Match mpallet = screen.find("images/StockAdjustment/Search/PalletId.png");
+		screen.click(mpallet.getCenter().offset(70, 0));
+		screen.type(pallet);
+		Thread.sleep(1000);
 	}
 
-	public void selectNewStock() {
-		// TODO Auto-generated method stub
-
+	public void selectNewStock() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/StockAdjustment/Start/NewStock.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		Thread.sleep(1000);
 	}
 
 	public boolean isPopUpDisplayed() throws InterruptedException, FindFailed {

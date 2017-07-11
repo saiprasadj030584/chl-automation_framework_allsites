@@ -516,4 +516,12 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void enterskuId(String skuId) throws FindFailed {
+		Match mskuId = screen.find("images/InventoryTransactionQuery/General/skuid.png");
+		screen.click(mskuId.getCenter().offset(70, 0));
+		screen.type(skuId);
+
+	}
+
 }

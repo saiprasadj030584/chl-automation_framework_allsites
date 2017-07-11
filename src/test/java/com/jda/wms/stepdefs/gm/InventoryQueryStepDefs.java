@@ -104,8 +104,8 @@ public class InventoryQueryStepDefs {
 		// jdaLoginPage.login();
 	}
 
-	@Given("^I have tag in inventory with \"([^\"]*)\" status$")
-	public void i_have_tag_in_inventory_with_status(String Expiry) throws Throwable {
+	@Given("^I have tag in inventory with expiry \"([^\"]*)\" status$")
+	public void i_have_tag_in_inventory_with_expiry_status(String Expiry) throws Throwable {
 		ArrayList inventoryDetailList = inventoryDB.getTagIDDetails(Expiry);
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
@@ -114,8 +114,8 @@ public class InventoryQueryStepDefs {
 		}
 	}
 
-	@Given("^I have a tag in inventory with \"([^\"]*)\"$")
-	public void i_have_a_tag_in_inventory_with(String origin) throws Throwable {
+	@Given("^I have a tag in inventory with origin \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_origin(String origin) throws Throwable {
 		ArrayList inventoryDetailList = inventoryDB.getTagIddetails(origin);
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
@@ -138,8 +138,8 @@ public class InventoryQueryStepDefs {
 
 	}
 
-	@Given("^I have a tag in Inventory with\"([^\"]*)\"$")
-	public void i_have_a_tag_in_Inventory_with(String Condition) throws Throwable {
+	@Given("^I have a tag in inventory with condition \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_condition(String Condition) throws Throwable {
 		ArrayList inventoryDetailList = inventoryDB.gettagIddetails(Condition);
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
@@ -149,9 +149,9 @@ public class InventoryQueryStepDefs {
 		// jdaLoginPage.login();
 	}
 
-	@Given("^I have a tag in Inventory with \"([^\"]*)\"$")
-	public void I_have_a_tag_in_Inventory_with(String Pallet) throws Throwable {
-		ArrayList inventoryDetailList = inventoryDB.gettagIddetail(Pallet);
+	@Given("^I have a tag in inventory with pallet type as \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_pallet_type_as(String pallet) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.gettagIddetail(pallet);
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
 			context.setLocation((String) inventoryDetailList.get(1));
@@ -160,14 +160,13 @@ public class InventoryQueryStepDefs {
 		// jdaLoginPage.login();
 	}
 
-	@Given("^I have a Skuid and pack config$")
-	public void i_have_a_Skuid_and_pack_config() throws Throwable {
+	@Given("^I have a sku to adjust the stock$")
+	public void i_have_a_sku_to_adjust_the_stock() throws Throwable {
 		ArrayList StockDetailList = inventoryDB.getStockDetails();
 		if (!StockDetailList.isEmpty()) {
 			context.setSkuId((String) StockDetailList.get(0));
 			context.setPackConfig((String) StockDetailList.get(1));
-
 		}
-
+		// jdaLoginPage.login();
 	}
 }
