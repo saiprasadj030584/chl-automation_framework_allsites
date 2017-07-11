@@ -91,4 +91,12 @@ public class PreAdviceLineStepDefs {
 		
 		Assert.assertTrue("PO line item attributes not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 
-	}}
+	}
+
+//FSV receiving
+
+@Given("^the PO line should have sku, quantity due details$")
+public void the_PO_line_should_have_sku_quantity_due_details() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+}
+}

@@ -95,6 +95,9 @@ public class Context {
 	private String packConfig;
 	private String UPC;
 	private String projLoc;
+	private String carrier;
+	private String serviceLevel;
+	private String supplierType;
 
 
 	public String getPalletID() {
@@ -777,7 +780,22 @@ public class Context {
 	public void setSKUType(String skuType) {
 		this.skuType = skuType;
 	}
+	
+	public String getsiteId() {
+		return siteId;
+	}
+	
+	public void setsiteid(String siteId) {
+		this.siteId= siteId;
+	}
 
+	public String getsupplierType() {
+		return supplierType;
+	}
+	
+	public void setsupplierType(String supplierType) {
+		this.supplierType= supplierType;
+	}
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -808,5 +826,21 @@ public class Context {
 
 	public void setProjLoc(String projLoc) {
 		this.projLoc = projLoc;
+	}
+
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
+
+	public String getServiceLevel() {
+		return serviceLevel;
+	}
+
+	public void setServiceLevel(String serviceLevel) {
+		this.serviceLevel = serviceLevel;
 	}
 }

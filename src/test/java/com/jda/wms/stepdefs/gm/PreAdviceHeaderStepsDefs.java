@@ -83,4 +83,34 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 		
 	}
+	// FSV Receiving
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" and site id \"([^\"]*)\"$")
+	public void the_PO_of_type_and_site_id(String preAdviceId, String siteId, String type,String status,String supplierType) throws Throwable {
+		context.setPreAdviceId(preAdviceId);
+		context.setSKUType(type);
+		context.setsiteid(siteId);
+		context.setsupplierType(supplierType);
+		logger.debug("PO ID: "+preAdviceId);
+		logger.debug("SITE ID: "+siteId);
+		logger.debug("Type: "+type);
+		logger.debug("SUPPLIER TYPE: "+supplierType);
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		
+		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
+		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
+		context.setNoOfLines(numLines);
+		logger.debug("Num of Lines: "+numLines);
+		
 	}
+
+	@Given("^verify PO should not linked with UPI line \"([^\"]*)\"$")
+	public void verify_PO_should_not_linked_with_UPI_line(String preAdviceId) throws Throwable {
+		
+}
+}
+
+
+
+
