@@ -92,4 +92,20 @@ public class ReceiptReversalPage {
 		else
 			return false;
 	}
+	public boolean check_RefeID_with_PreadviceID_lockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
+	{
+		if(refId.equals(preAdviceId))
+		{
+			if(lockcode1.equals(lockcode2))
+			{
+			return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+			return false;
+	}
 }

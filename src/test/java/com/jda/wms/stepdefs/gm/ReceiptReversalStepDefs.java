@@ -71,4 +71,18 @@ public class ReceiptReversalStepDefs {
 		System.out.println(context.getPreAdviceId());
 		Assert.assertTrue("Receipt Reversion failed",receiptReversalPage.check_RefeID_with_PreadviceID(reference_Id,context.getPreAdviceId()));
 	}
+	@When ("^the inventory transaction should be updated with reversed receipt tag with lockcode$")
+	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code="Receipt Reverse";
+		String reference_Id=inventoryTransactionDB.getReferenceId(context.getUpiId(),code);
+		String lockcode=inventoryTransactionDB.getLockCode(context.getUpiId(),code);
+		System.out.println(reference_Id);
+		System.out.println(context.getPreAdviceId());
+		Assert.assertTrue("Receipt Reversion failed",receiptReversalPage.check_RefeID_with_PreadviceID_lockcode(reference_Id,context.getPreAdviceId(),lockcode,context.getLockCode()));
+	}
 }

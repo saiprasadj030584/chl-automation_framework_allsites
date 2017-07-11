@@ -65,6 +65,12 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
 	}
+	@Given("^the pallet count should be updated in delivery, po to be linked with upi line$")
+	public void the_pallet_count_should_be_updated_in_delivery_po_to_be_linked_with_upi_line() throws Throwable {
+		deliveryStepDefs.the_pallet_count_should_be_updated_in_delivery();
+		//upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
+		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
+	}
 	
 	@When("^I receive all skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
@@ -162,11 +168,20 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterLocation(context.getLocation());
 	}
 
+	@When("^I enter pre advice id \"([^\"]*)\" and SKU id \"([^\"]*)\"$")
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
 		purchaseOrderReceivingPage.enterSKUId(skuId);
 	}
-
+	
+	
+	@When("^the PO should be received at location \"([^\"]*)\"$")
+	public void the_po_should_be_received_at_location(String location) throws Throwable {
+		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("complete");
+	}
 
 	@Then("^I should see the receiving completion$")
 	public void i_should_see_the_receiving_completion() throws Throwable {
@@ -177,8 +192,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at(String preAdviceId,String type,
 			String upiId, String asnId, String location) throws Throwable {
-
-
 		context.setUpiId(upiId);
 		context.setPreAdviceId(preAdviceId);
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,upiId, asnId, "Released");
@@ -188,8 +201,7 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocation(location);
 		i_receive_all_skus_for_the_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
-	inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 	
