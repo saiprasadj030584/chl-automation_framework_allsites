@@ -82,4 +82,14 @@ public class ReceiptReversalPage {
 			return true;
 
 	}
+	
+	public boolean check_RefeID_with_PreadviceID(String refId,String preAdviceId)
+	{
+		if(refId.equals(preAdviceId))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 }

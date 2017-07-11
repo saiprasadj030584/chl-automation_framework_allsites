@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.gm;
 import org.junit.Assert;
 
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -18,22 +19,24 @@ public class ReceiptReversalStepDefs {
 	private Context context;
 	private JdaHomePage jdaHomePage;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
+	private InventoryTransactionDB inventoryTransactionDB;
 	
-	public ReceiptReversalStepDefs(ReceiptReversalPage receiptReversalPage,JDAFooter jDAFooter,UPIReceiptLineDB uPIReceiptLineDB,Context context,JdaHomePage jdaHomePage,InventoryTransactionQueryPage inventoryTransactionQueryPage) {
+	public ReceiptReversalStepDefs(ReceiptReversalPage receiptReversalPage,JDAFooter jDAFooter,UPIReceiptLineDB uPIReceiptLineDB,Context context,JdaHomePage jdaHomePage,InventoryTransactionQueryPage inventoryTransactionQueryPage,InventoryTransactionDB inventoryTransactionDB) {
 		this.receiptReversalPage = receiptReversalPage;
 		this.jDAFooter=jDAFooter;
 		this.uPIReceiptLineDB=uPIReceiptLineDB;
 		this.context=context;
 		this.jdaHomePage=jdaHomePage;
 		this.inventoryTransactionQueryPage=inventoryTransactionQueryPage;
+		this.inventoryTransactionDB=inventoryTransactionDB;
 		
 	}
 
 	
 	
 	
-	@When ("^I do normal receipt reversal for the tag received$")
-	public void i_do_normal_receipt_reversal_for_the_tag_received() throws Throwable {
+	@When ("^I do receipt reversal for the tag received$")
+	public void i_do_receipt_reversal_for_the_tag_received() throws Throwable {
 		
 		
 				//String tagId=uPIReceiptLineDB.fetchTagId(context.getUpiId());
@@ -52,14 +55,16 @@ public class ReceiptReversalStepDefs {
 	
 	
 	
-	@When ("^the reversed receipt should be updated in inventory transaction page$")
-	public void the_reversed_receipt_should_be_updated_in_inventory_transaction_page() throws Throwable {
+	@When ("^the inventory transaction should be updated with reversed receipt tag$")
+	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
-		receiptReversalPage.checkReversalUpdationInventory(context.getUpiId());
+		//receiptReversalPage.checkReversalUpdationInventory(context.getUpiId());
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		Assert.assertTrue("Receipt Reversion failed", inventoryTransactionQueryPage.isNoRecords());
+		String code="Receipt Reverse";
+		String reference_Id=inventoryTransactionDB.getReferenceId(context.getUpiId(),code);
+		Assert.assertTrue("Receipt Reversion failed",receiptReversalPage.check_RefeID_with_PreadviceID(reference_Id,context.getPreAdviceId()));
 	}
 }

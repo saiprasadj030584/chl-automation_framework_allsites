@@ -402,4 +402,16 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	
+	public String getReferenceId(String upiId,String code) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where tag_id='"+upiId+"' and code = '"+code+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
