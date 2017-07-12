@@ -62,3 +62,45 @@ Feature: Dock Scheduling
     Examples: 
       | PreAdviceID  | UPIId                | ASNId      | DataType |
       | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |
+
+  @move_booking_diff_time_sameday_FSV_PO
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
+    Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | PreAdviceID  | DataType |
+      | PO2010002032 | Hanging  |
+
+  @delete_booking_FSV_PO
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
+    Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I delete the booking
+    Then the booking details should be deleted in the dock scheduler booking
+
+    Examples: 
+     | PreAdviceID  | DataType |
+      | PO2010002037 | Hanging  |
+
+  @change_status_of_booking_to_complete_FSV_PO
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
+    Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the status of booking
+    Then the booking id details with updated status should be displayed on the page
+
+    Examples: 
+      | PreAdviceID  | DataType |
+      | PO2010002039 | Hanging  |

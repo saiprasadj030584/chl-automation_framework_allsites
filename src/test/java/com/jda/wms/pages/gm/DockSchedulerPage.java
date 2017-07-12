@@ -173,6 +173,10 @@ public class DockSchedulerPage {
 		pressTab();
 		screen.type("1");
 		screen.click("images/DockScheduler/Schedule/BookingDetails/Ok.png");
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+		
 		
 		
 	}
@@ -299,6 +303,15 @@ public class DockSchedulerPage {
 	public void selectASN() throws FindFailed, InterruptedException {
 		screen.wait("images/DockScheduler/Build/ASNID.png", timeoutInSec);
 		Match mASN = screen.find("images/DockScheduler/Build/ASNID.png");
+		Thread.sleep(2000);
+		screen.click(mASN.below(10));
+		Thread.sleep(2000);
+//		Match mStatuscode = screen.find("images/DockScheduler/Build/FromSiteID1.png");
+		screen.doubleClick(mASN.below(10));
+	}
+	public void selectPreAdviceId() throws FindFailed, InterruptedException {
+		screen.wait("images/DockScheduler/Build/PreAdviceId.png", timeoutInSec);
+		Match mASN = screen.find("images/DockScheduler/Build/PreAdviceId.png");
 		Thread.sleep(2000);
 		screen.click(mASN.below(10));
 		Thread.sleep(2000);

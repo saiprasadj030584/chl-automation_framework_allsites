@@ -49,6 +49,21 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
+	
+	
+	public boolean validate_no_asn_error() throws FindFailed, InterruptedException {
+		Thread.sleep(1000);
+		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)){
+			return true;
+		}
+//		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
+//			puttyFunctionsPage.pressEnter();
+//			return true;
+//		}
+		else
+		return false;
+		
+	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.type(preAdviceId);

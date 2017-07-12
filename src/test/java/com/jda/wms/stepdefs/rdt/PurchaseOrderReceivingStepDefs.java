@@ -106,6 +106,51 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	} 
+	
+	@When("^I receive all skus for the purchase order with no asn at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_with_no_asn_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+		
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+				context.setSkuId(poMap.get(i).get("SKU"));
+				context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+				context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+				i_enter_urn_id();
+				
+//				the_tag_and_upc_details_should_be_displayed();
+//				i_enter_the_location();
+//				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+//				if (context.getLockCode().equals(null)){
+//					i_enter_urn_id();
+//				}
+//				else{
+//					i_enter_urn_id_for_locked_sku();
+//				}
+//				
+//				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+//					failureList.add("Receive not completed and Home page not displayed for URN "+context.getUpiId());
+//					context.setFailureList(failureList);
+//			}
+		}
+		//hooks.logoutPutty();
+	} 
+	
+	
+	@Given("^Error message should be displayed on the page$")
+	public void error_message_should_be_displayed_on_the_page() throws Throwable {
+		Assert.assertTrue("Error message not displayed as expected",purchaseOrderReceivingPage.validate_no_asn_error());
+		
+		hooks.logoutPutty();
+	
+	}
 
 	@Given("^I receive the PO with basic and pre-advice receiving$")
 	public void i_receive_the_po_with_basic_and_pre_advice_receiving() throws Throwable {

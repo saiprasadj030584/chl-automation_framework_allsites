@@ -57,6 +57,14 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectASN();
 		jdaFooter.clickNextButton();
 	}
+	@When("^I select the booking type preadvice$")
+	public void i_select_the_booking_type_preadvice() throws Throwable {
+		dockSchedulerPage.enterBookingType("Pre-Advice");
+		dockSchedulerPage.enterASNId(context.getPreAdviceId());
+		jdaFooter.clickSearch();
+		dockSchedulerPage.selectPreAdviceId();
+		jdaFooter.clickNextButton();
+	}
 
 	@When("^I select the slot$")
 	public void i_select_the_slot() throws Throwable {
@@ -192,6 +200,20 @@ public class DockSchedulerStepDefs {
 //		i_enter_booking_details();
 //		inventoryUpdateStepDefs.i_proceed_to_complete_the_process();
 //		the_booking_details_should_be_appeared_in_the_dock_scheduler_booking();
+	}
+	
+	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\" of type \"([^\"]*)\"$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type(String preAdviceId,
+			String type) throws Throwable {
+		
+		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(preAdviceId,type);
+		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
+		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
+		i_create_new_dock_booking();
+		i_select_the_booking_type_preadvice();
+		i_select_the_slot();
+		i_create_a_booking_for_the_asn();
+		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 	
 	@Given("^I have done the dock scheduler booking with the BookingId \"([^\"]*)\", PO \"([^\"]*)\", UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\"$")
