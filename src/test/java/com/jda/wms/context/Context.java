@@ -98,6 +98,8 @@ public class Context {
 	private String carrier;
 	private String serviceLevel;
 	private String supplierType;
+	private String generateBelCode;
+	private String belCode;
 	
 
 
@@ -843,5 +845,13 @@ public class Context {
 
 	public void setServiceLevel(String serviceLevel) {
 		this.serviceLevel = serviceLevel;
+	}
+
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getbelCode() {
+		return belCode;
 	}
 }

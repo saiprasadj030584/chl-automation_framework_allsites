@@ -128,6 +128,17 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	} 
+	public String getupc(String skuID) throws SQLException,ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
+		//select supplier_sku_id from supplier_sku where sku_id='000000060002992001';
+		rs.next();
+		return rs.getString(1);
+	}
 	public ArrayList<String> getConsignmentID(String preAdviceID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> consignmentIdList = new ArrayList<String>();
 

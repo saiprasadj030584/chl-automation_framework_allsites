@@ -242,6 +242,13 @@ public class PurchaseOrderReceivingPage {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);		
 	}
+	
+	public void enterbelCode(String getbelCode) throws InterruptedException {
+		screen.type(getbelCode);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
+	}
 
 	public boolean isLocationDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Location.png") != null)
@@ -292,4 +299,6 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+
+	
 }

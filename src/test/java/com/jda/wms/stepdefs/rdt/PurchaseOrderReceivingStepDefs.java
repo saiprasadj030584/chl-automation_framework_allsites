@@ -112,6 +112,7 @@ public class PurchaseOrderReceivingStepDefs {
 				context.setPackConfig(poMap.get(context.getSkuId()).get("PACK CONFIG"));
 				context.setRcvQtyDue(Integer.parseInt(poMap.get(context.getSkuId()).get("QTY DUE")));
 				i_enter_pallet_id();
+				i_enter_belCode();
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
 				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
@@ -125,6 +126,7 @@ public class PurchaseOrderReceivingStepDefs {
 	} 
 
 	
+
 
 
 
@@ -157,6 +159,10 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_pallet_id() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterPalletId(context.getPalletID());
 	}
+	@When("^I enter belCode$")
+	private void i_enter_belCode() throws InterruptedException {
+		purchaseOrderReceivingPage.enterbelCode(context.getbelCode());
+}
 	
 	
 	
