@@ -155,7 +155,7 @@ public class PurchaseOrderReceivingStepDefs {
 	
 	@When("^I enter pallet id$")
 	public void i_enter_pallet_id() throws FindFailed, InterruptedException {
-		purchaseOrderReceivingPage.enterPALLETID(context.getPalletID());
+		purchaseOrderReceivingPage.enterPalletId(context.getPalletID());
 	}
 	
 	

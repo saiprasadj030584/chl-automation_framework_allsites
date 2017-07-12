@@ -108,7 +108,15 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
+   public void getSupplierIdManipulation (String preAdviceId) throws ClassNotFoundException, SQLException
+   {
+	   String supplier = getSupplierId(preAdviceId);
+		String[] supplierSplit = supplier.split("M");
+		
+		for (int i=1; i< supplierSplit.length;i++){
+		System.out.println(supplierSplit[i]);
+		} 
+   }
 	public String getUserDefType5(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -144,6 +152,18 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public void getUSerDefType2Manipulation(String PreAdviceId) throws ClassNotFoundException, SQLException
+	{
+		String dept = getUserDefType2(PreAdviceId);
+		String[] deptSplit = dept.split("T");
+		
+		for (int i=1; i< deptSplit.length;i++){
+		System.out.println("0"+deptSplit[i]);
+		}
+	
+	}
+	
 	public String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -155,4 +175,6 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	
 }

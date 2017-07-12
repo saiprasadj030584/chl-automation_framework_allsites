@@ -107,10 +107,19 @@ public class PreAdviceHeaderStepsDefs {
 		context.setNoOfLines(numLines);
 		logger.debug("Num of Lines: "+numLines);
 		
-		
+		//To generate Pallet ID
+		context.setPalletID(generatePalletID());
 		Assert.assertTrue("FSV PO details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	//FSV receiving
+	private String generatePalletID() {
+		String palletID=null;
+		//First 3 digits
+		preAdviceHeaderDB.getsite
+		
+		return palletID;
+	}
+
+			//FSV receiving
 			@Given("^verify PO should not linked with UPI line \"([^\"]*)\"$")
 			public void verify_PO_should_not_linked_with_UPI_line(String preAdviceId) throws Throwable {
 				context.setPreAdviceId(preAdviceId);

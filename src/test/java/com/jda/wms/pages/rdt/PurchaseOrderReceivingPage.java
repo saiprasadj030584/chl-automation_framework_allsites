@@ -236,7 +236,7 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(4000);
 	}
 	
-	public void enterPALLETID(String palletID) throws InterruptedException {
+	public void enterPalletId(String palletID) throws InterruptedException {
 		screen.type(palletID);
 		Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();
