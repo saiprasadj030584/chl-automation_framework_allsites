@@ -15,11 +15,13 @@ public class PreAdviceLineDB {
 
 	private final Context context;
 	private final Database database;
+	private PreAdviceHeaderDB preAdviceHeaderDB;
 
 	@Inject
 	public PreAdviceLineDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+		this.preAdviceHeaderDB = preAdviceHeaderDB;
 	}
 
 	public HashMap<String, String> getPreAdviceLineDetails(String preAdviceID)
@@ -126,32 +128,6 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	} 
-	
-	public String sumgetQtyDue(String preAdviceID) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceID
-				+ "' ");
-		rs.next();
-		return rs.getString(1);
-	} 
-	
-	public String qtymanipulation(String preAdviceID) throws ClassNotFoundException, SQLException
-	{
-		String sum = sumgetQtyDue(preAdviceID);
-		String sumLength = String.valueOf(sum.length());
-		 if (sumLength.equals("1")){
-			sum = "00"+sum; 
-		 }
-		 else if (sumLength.equals("2")){
-			 sum = "0"+sum; 
-		 }
-				return sum;
-	}
-	
 	public ArrayList<String> getConsignmentID(String preAdviceID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> consignmentIdList = new ArrayList<String>();
 

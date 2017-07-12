@@ -1,5 +1,6 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,10 +15,12 @@ import com.jda.wms.context.Context;
 import com.jda.wms.dataload.gm.DataSetUp;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
+import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 
@@ -28,6 +31,7 @@ public class PreAdviceHeaderStepsDefs {
 	private Context context;
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private final PreAdviceHeaderDB preAdviceHeaderDB;
+	private final PreAdviceHeaderDB preAdviceLineDB;
 	private UPIReceiptHeaderDB  upiReceiptHeaderDB;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private Verification verification;
@@ -35,11 +39,12 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB, UPIReceiptLineDB upiReceiptLineDB) {
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB, UPIReceiptLineDB upiReceiptLineDB, PreAdviceHeaderDB preAdviceLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
+		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.verification = verification;
@@ -108,13 +113,47 @@ public class PreAdviceHeaderStepsDefs {
 		logger.debug("Num of Lines: "+numLines);
 		
 		//To generate Pallet ID
-		context.setPalletID(generatePalletID());
+		context.setPalletID(generatePalletID(preAdviceId));
 		Assert.assertTrue("FSV PO details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	private String generatePalletID() {
+	private String generatePalletID(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String palletID=null;
-		//First 3 digits
-		preAdviceHeaderDB.getsite
+		//First 4 digits - Site id
+		String siteid= preAdviceHeaderDB.getSiteID(preAdviceId);
+		//Hardcoded 3 digit
+		String barcode= "950";
+		//Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		//Get supplierid - 4 digit and manipulated to get only integer
+		String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
+		String[] supplierSplit = supplier.split("M");
+		for (int i=1; i< supplierSplit.length;i++){
+		System.out.println(supplierSplit[i]);
+		}
+		//Get dept - 3 digit 
+		String dept =preAdviceHeaderDB.getUserDefType2(preAdviceId);
+        String[] deptSplit = dept.split("T");
+		for (int i=1; i< deptSplit.length;i++){
+		System.out.println("0"+deptSplit[i]);
+		}
+		// Advice - 6 digit
+		String advice=preAdviceHeaderDB.getUserDefType1(preAdviceId);
+		// Sum of quantity from the line - 3 digit
+		String sumqty= preAdviceLineDB.getQtyDueSum(preAdviceId);
+		String sumLength = String.valueOf(sumqty.length());
+		 if (sumLength.equals("1")){
+			sumqty = "00"+sumqty; 
+		 }
+		 else if (sumLength.equals("2")){
+			 sumqty = "0"+sumqty; 
+		 }
+		 else
+		 {
+			 System.out.println(sumqty);
+		 }
+		 // checkbit - 2 digit
+		 String checkbit=Utilities.getTwoDigitRandomNumber();
+		palletID = siteid + barcode + URN; 		
 		
 		return palletID;
 	}
