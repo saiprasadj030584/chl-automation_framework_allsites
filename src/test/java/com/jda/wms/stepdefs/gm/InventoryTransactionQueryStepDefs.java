@@ -166,7 +166,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
-		Assert.assertEquals(" stock adjustment are not as expected", context.getReasonCode(),
-				inventoryTransactionQueryPage.getReasonCode());
+		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
+		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCode(context.getSkuId(), "Adjustment",
+				execDate, context.getReasonCode());
+		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
+				isRecordExists);
 	}
 }

@@ -16,10 +16,10 @@ Feature: Stock adjustments
 
     Examples: 
       | ReasonCode | SiteId | Location |
-      | Dirty      |   5649 | 1AA103   |
-     # | DMIT       |   5649 | 1AA103   |
-      #| EXPD       |   5649 | 1AA103   |
-      #| FOUND      |   5649 | 1AA103   |
+     # | DIRTY     |   5649 | 1AA103   |
+      #| DMIT       |   5649 | 1AA103   |
+    # | EXPD       |   5649 | 1AA103   |
+      | FOUND      |   5649 | 1AA103   |
       #| IE         | 	5649			|1AA103 |
       #| INCOMPLETE | 	5649			|1AA103 |
       #| LOST       |   5649       |1AA103 |

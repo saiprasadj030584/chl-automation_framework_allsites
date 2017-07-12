@@ -565,7 +565,8 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select SKU_ID,config_id from INVENTORY where qty_on_hand>100");
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.sku_id, inventory.config_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		rs.next();

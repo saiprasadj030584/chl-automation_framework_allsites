@@ -44,12 +44,12 @@ public class StockAdjustmentsPage {
 		jdaFooter.clickNextButton();
 	}
 
-	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
+	public void chooseReasonCode(String ReasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
-		screen.type(reasonCode);
+		screen.type(ReasonCode);
 		Thread.sleep(2000);
 
-		switch (reasonCode) {
+		switch (ReasonCode) {
 		case "Dirty":
 			screen.type("Dirty");
 			Thread.sleep(2000);
@@ -138,17 +138,20 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterLocation(String location) throws FindFailed, InterruptedException {
+
 		Match mlocationId = screen.find("images/StockAdjustment/Search/Location.png");
 		screen.click(mlocationId.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type(location);
 		Thread.sleep(1000);
 
-		/*
-		 * screen.wait("images/StockAdjustment/Search/Location.png",
-		 * timeoutInSec);
-		 * screen.click("images/StockAdjustment/Search/Location.png");
-		 * Thread.sleep(1000); screen.type(location); Thread.sleep(1000);
-		 */
+		// screen.wait("images/StockAdjustment/Search/Location.png",
+		// timeoutInSec);
+		// screen.click("images/StockAdjustment/Search/Location.png");
+		// Thread.sleep(1000);
+		// screen.type(location);
+		// Thread.sleep(1000);
+
 	}
 
 	public void enterQuantityOnHand(String quantity) throws FindFailed, InterruptedException {
