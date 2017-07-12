@@ -235,6 +235,13 @@ public class PurchaseOrderReceivingPage {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
 	}
+	
+	public void enterPALLETID(String palletID) throws InterruptedException {
+		screen.type(palletID);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);		
+	}
 
 	public boolean isLocationDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Location.png") != null)

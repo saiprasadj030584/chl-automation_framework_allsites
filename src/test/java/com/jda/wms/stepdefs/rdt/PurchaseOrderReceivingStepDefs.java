@@ -111,7 +111,7 @@ public class PurchaseOrderReceivingStepDefs {
 				context.setSkuId(poMap.get(i).get("SKU"));
 				context.setPackConfig(poMap.get(context.getSkuId()).get("PACK CONFIG"));
 				context.setRcvQtyDue(Integer.parseInt(poMap.get(context.getSkuId()).get("QTY DUE")));
-				i_enter_urn_id();
+				i_enter_pallet_id();
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
 				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
@@ -123,6 +123,10 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	} 
+
+	
+
+
 
 	@Given("^I receive the PO with basic and pre-advice receiving$")
 	public void i_receive_the_po_with_basic_and_pre_advice_receiving() throws Throwable {
@@ -147,6 +151,14 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 	}
+	//FSV receiving
+	
+	@When("^I enter pallet id$")
+	public void i_enter_pallet_id() throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterPALLETID(context.getPalletID());
+	}
+	
+	
 	
 	@When("^the tag and upc details should be displayed$")
 	public void the_tag_and_upc_details_should_be_displayed() throws FindFailed, InterruptedException {

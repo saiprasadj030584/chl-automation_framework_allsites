@@ -98,7 +98,7 @@ public class UPIReceiptLineDB {
 		return rs.getString(1);
 	}
 
-	public String getPreAdviceId(String preAdviceId) {
+	public String getPreAdviceId(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
