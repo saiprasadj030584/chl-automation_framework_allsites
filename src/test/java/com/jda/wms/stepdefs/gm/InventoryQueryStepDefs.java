@@ -20,14 +20,13 @@ public class InventoryQueryStepDefs {
 	private Context context;
 	private Verification verification;
 	private InventoryDB inventoryDB;
-	
+
 	@Inject
-	public InventoryQueryStepDefs(Context context,Verification verification,InventoryDB inventoryDB) {
+	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB) {
 		this.context = context;
-		this.verification =verification;
+		this.verification = verification;
 		this.inventoryDB = inventoryDB;
 	}
-	
 
 	@Then("^the inventory should be displayed for all tags received$")
 	public void the_inventory_should_be_displayed_for_all_tags_received() throws Throwable {
@@ -37,12 +36,17 @@ public class InventoryQueryStepDefs {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterReceive(context.getSkuId(),context.getUpiId(),date), failureList);
-			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(),date), failureList);
+			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getUpiId(), date), failureList);
+			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					failureList);
 		}
-		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
-		}
-	
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 	@Then("^the inventory should be displayed for all putaway tags$")
 	public void the_inventory_should_be_displayed_for_all_putaway_tags() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -51,9 +55,14 @@ public class InventoryQueryStepDefs {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("Location for SKU after Putaway"+context.getSkuId(), context.getToLocation(), inventoryDB.getLocationAfterPutaway(context.getSkuId(),date), failureList);
-//			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(),date), failureList);
+			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
+					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
+			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					failureList);
 		}
-		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
-		}
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 }

@@ -75,7 +75,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | PreAdviceID  | DataType |
-      | PO2010002032 | Hanging  |
+      | PO2010002049 | Hanging  |
 
   @delete_booking_FSV_PO
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO

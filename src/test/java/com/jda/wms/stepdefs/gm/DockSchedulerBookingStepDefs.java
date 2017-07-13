@@ -22,7 +22,7 @@ public class DockSchedulerBookingStepDefs {
 
 	@Inject
 	public DockSchedulerBookingStepDefs(Verification verification, Context context, BookingInDiary bookingInDiary,
-			JdaHomePage jdaHomePage, JDAFooter jdaFooter,DockSchedulerBookingsPage dockSchedulerBookingsPage) {
+			JdaHomePage jdaHomePage, JDAFooter jdaFooter, DockSchedulerBookingsPage dockSchedulerBookingsPage) {
 		this.verification = verification;
 		this.context = context;
 		this.bookingInDiary = bookingInDiary;
@@ -31,20 +31,18 @@ public class DockSchedulerBookingStepDefs {
 		this.dockSchedulerBookingsPage = dockSchedulerBookingsPage;
 	}
 
-	/*@Then("^the booking details should appear in the dock scheduler booking$")
+	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		jdaHomePage.navigateToDockSchedulerBookingsPage();
 		jdaFooter.clickQueryButton();
 		dockSchedulerBookingsPage.enterBookingID(context.getBookingID());
 		jdaFooter.clickExecuteButton();
-
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
 				failureList);
 		verification.verifyData("Service Level", context.getServiceLevel(),
 				bookingInDiary.getServiceLevel(context.getBookingID()), failureList);
-
-	}*/
+	}
 }
