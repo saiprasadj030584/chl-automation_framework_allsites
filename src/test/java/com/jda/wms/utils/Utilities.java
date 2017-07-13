@@ -25,11 +25,11 @@ public class Utilities {
 
 	public static String getFiveDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
-		return String.valueOf(r.nextInt(9000) + 10000);
+		return String.valueOf(r.nextInt(900) + 10000);
 	}
 	public static String getTwoDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
-		return String.valueOf(r.nextInt(9000) + 10);
+		return String.valueOf(r.nextInt(90) + 10);
 	}
 
 	public static double getRoundOffToTwoDecimal(double a) {

@@ -100,8 +100,8 @@ public class PreAdviceHeaderStepsDefs {
 	}
 
 	// FSV Receiving
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id \"([^\"]*)\"$")
-	public void the_PO_of_type_should_be_in_status_at_site_id(String preAdviceId, String type, String status,
+	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id \"([^\"]*)\"$")
+	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String preAdviceId, String type, String status,
 			String siteId) throws Throwable {
 		context.setPreAdviceId(preAdviceId);
 		context.setSKUType(type);
@@ -115,111 +115,21 @@ public class PreAdviceHeaderStepsDefs {
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
 		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
-		verification.verifyData("FSV/Direct PO", context.getsupplierType(),
-				preAdviceHeaderDB.getUserDefType5(preAdviceId), failureList);
+		verification.verifyData("FSV/Direct PO", context.getsupplierType(),preAdviceHeaderDB.getUserDefType5(preAdviceId), failureList);
 		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 		context.setNoOfLines(numLines);
 		logger.debug("Num of Lines: " + numLines);
-
-		// To generate Pallet ID
-		context.setPalletID(generatePalletID(preAdviceId));
-		context.setBelCode(generateBelCode(preAdviceId));
 		Assert.assertTrue("FSV PO details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-	}
-
-	private String generateBelCode(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String belCode = null;
-		// Checkdigit : 2 any random number
-		String checkdigit = Utilities.getEightDigitRandomNumber();
-		
-		// UPC : 8 digit
-		String upc = preAdviceLineDB.getupc(context.getSkuId());
-		// Checkbit hardcoded : 2 digit
-		String checkbit = "10";
-        belCode = checkdigit + suppliermanipulate(preAdviceId) + preAdviceLineDB.getupc(context.getSkuId())+skuqtymanipulate(preAdviceId)+checkbit;
-        
-		return belCode;
-	}
-	// individual sku qty assigned to pre advice id : 3 digit
-
-	public String skuqtymanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String qtydue = preAdviceLineDB.getQtyDue(preAdviceId,context.getSkuId());
-		String sumLength = String.valueOf(qtydue.length());
-		if (sumLength.equals("1")) {
-			qtydue = "00" + qtydue;
-			// System.out.println(sumqty);
-		} else if (sumLength.equals("2")) {
-			qtydue = "0" + qtydue;
-			// System.out.println(sumqty);
-		}
-		return qtydue;
-	}
-
-	private String generatePalletID(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String palletID = null;
-		// First 4 digits - Site id
-		String siteid = preAdviceHeaderDB.getSiteID(preAdviceId);
-		// Hardcoded 3 digit
-		String barcode = "950";
-		// Random generated 6 digit
-		String URN = Utilities.getSixDigitRandomNumber();
-
-		// Advice - 6 digit
-		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
-
-		// checkbit - 2 digit
-		String checkbit = Utilities.getTwoDigitRandomNumber();
-		palletID = siteid + barcode + URN + suppliermanipulate(preAdviceId) + deptmanipulate(preAdviceId) + advice
-				+ qtymanipulate(preAdviceId) + checkbit;
-
-		return palletID;
-	}
-
-	// Get supplierid - 4 digit and manipulated to get only integer
-	public String[] suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
-		String[] supplierSplit = supplier.split("M");
-		for (int i = 1; i < supplierSplit.length; i++) {
-			System.out.println(supplierSplit[i]);
-		}
-		return supplierSplit;
-	}
-
-	// Get dept - 3 digit
-	public String[] deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String dept = preAdviceHeaderDB.getUserDefType2(preAdviceId);
-		String[] deptSplit = dept.split("T");
-		for (int i = 1; i < deptSplit.length; i++) {
-			System.out.println("0" + deptSplit[i]);
-		}
-		return deptSplit;
-	}
-
-	// Sum of quantity from the line - 3 digit
-	public String qtymanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String sumqty = preAdviceLineDB.getQtyDue(preAdviceId,context.getSkuId());
-		String sumLength = String.valueOf(sumqty.length());
-		if (sumLength.equals("1")) {
-			sumqty = "00" + sumqty;
-			// System.out.println(sumqty);
-		} else if (sumLength.equals("2")) {
-			sumqty = "0" + sumqty;
-			// System.out.println(sumqty);
-		}
-		return sumqty;
 	}
 
 	// FSV receiving
 	@Given("^verify PO should not linked with UPI line \"([^\"]*)\"$")
 	public void verify_PO_should_not_linked_with_UPI_line(String preAdviceId) throws Throwable {
 		context.setPreAdviceId(preAdviceId);
+		boolean isUPIRecordExists = upiReceiptLineDB.isUPIRecordExists(preAdviceId);
 		logger.debug("PO ID: " + preAdviceId);
-		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		verification.verifyDataempty("Pre advice id is not linked with UPI", context.getPreAdviceId(),
-				upiReceiptLineDB.getPreAdviceId(context.getPreAdviceId()), failureList);
-
+		Assert.assertFalse("Pre Advice ID is linked to UPI for FSV PO",isUPIRecordExists);
 	}
 }

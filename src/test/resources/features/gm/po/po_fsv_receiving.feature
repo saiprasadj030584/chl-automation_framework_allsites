@@ -20,8 +20,8 @@ Feature: Purchase order receiving
   #| PO2420001464 | 5885   |  REC001   |
   @po_receive_boxed @po @inprogress
   Scenario Outline: Receiving process in JDA WMS for Boxed type
-    Given the PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
-    And the PO line should have sku, quantity due details
+    Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
+    And the FSV PO line should have sku, quantity due details
     And verify PO should not linked with UPI line "<PreAdviceID>"
     When I receive all skus for the FSV purchase order at location "<Location>"
     Then the inventory should be displayed for all tags received

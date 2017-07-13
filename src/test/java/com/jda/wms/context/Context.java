@@ -99,7 +99,6 @@ public class Context {
 	private String serviceLevel;
 	private String supplierType;
 	private String generateBelCode;
-	private String belCode;
 	
 
 
@@ -852,6 +851,6 @@ public class Context {
 	}
 
 	public String getbelCode() {
-		return belCode;
+		return generateBelCode;
 	}
 }
