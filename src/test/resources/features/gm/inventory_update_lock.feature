@@ -79,3 +79,19 @@ Feature: Inventory update
     Examples: 
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
+
+  @owner_update
+  Scenario Outline: Inventory update for pallet_type
+    Given I have a tag in inventory with owner as "<Owner>"
+    When I navigate to inventory update page
+    And I select the update type as "owner update"
+    And I search the inventory for the tag
+    Then the tag details should be displayed
+    And I select the owner type as "<updateowner>"
+    When I navigate to inventory transaction query
+    When I choose the code as "owner update" and I search the tag id
+    Then the owner should be updated
+
+    Examples: 
+      | owner | Updateowner|
+      | AOWN  | M+S          |

@@ -93,4 +93,11 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickDoneButton();
 		context.setPalletType(pallet);
 	}
+
+	@Then("^I select the owner type as \"([^\"]*)\"$")
+	public void i_select_the_owner_type_as(String owner) throws Throwable {
+		inventoryUpdatePage.enterowner(owner);
+		jdafooter.clickDoneButton();
+		context.setOwner(owner);
+	}
 }

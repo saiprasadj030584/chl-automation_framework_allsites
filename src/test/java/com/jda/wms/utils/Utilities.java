@@ -31,4 +31,9 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000) + 1000);
 	}
+
+	public static String getTwoDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(90) + 10);
+	}
 }

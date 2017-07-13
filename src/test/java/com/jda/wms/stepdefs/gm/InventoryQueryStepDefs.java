@@ -160,6 +160,16 @@ public class InventoryQueryStepDefs {
 		// jdaLoginPage.login();
 	}
 
+	@Given("^I have a tag in inventory with owner as \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_owner_as(String owner) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.getTagIddetail(owner);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+	}
+
 	@Given("^I have a sku to adjust the stock$")
 	public void i_have_a_sku_to_adjust_the_stock() throws Throwable {
 		ArrayList StockDetailList = inventoryDB.getStockDetails();

@@ -128,9 +128,19 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterUpdateQuantity(String.valueOf(context.getQtyOnHand()));
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		inventoryTransactionQueryPage.getReasonCode();
+		String conditionToVerify = null;
+		switch (context.getReasonCode()) {
+		case "Damaged in Transit-for the 'damaged pallet'":
+			conditionToVerify = "DMIT";
+			break;
 
+		}
 	}
 
 	@Then("^the condition should be updated$")
@@ -164,6 +174,12 @@ public class InventoryTransactionQueryStepDefs {
 				inventoryTransactionQueryPage.getPalletType());
 	}
 
+	@Then("^the owner should be updated$")
+	public void the_owner_should_be_updated() throws Throwable {
+		Assert.assertEquals("updated inventory pallet are not as expected", context.getPalletType(),
+				inventoryTransactionQueryPage.getPalletType());
+	}
+
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
@@ -171,5 +187,6 @@ public class InventoryTransactionQueryStepDefs {
 				execDate, context.getReasonCode());
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
+
 	}
 }

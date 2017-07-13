@@ -9,6 +9,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.PopUpPage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.When;
 
@@ -38,16 +39,19 @@ public class StockAdjustmentStepDefs {
 			throws FindFailed, InterruptedException {
 		String owner = "M+S";
 		String clientid = "M+S";
-		String quantity = "100";
+		String quantity = Utilities.getTwoDigitRandomNumber();
+		context.setQtyOnHand(Integer.parseInt(quantity));
 		String pallet = "PALLET";
 
 		stockAdjustmentsPage.selectNewStock();
 		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
 		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterLocation(location);
 		stockAdjustmentsPage.enterOwnerId(owner);
 		stockAdjustmentsPage.enterClientId(clientid);
 		stockAdjustmentsPage.enterSiteId(siteId);
-		stockAdjustmentsPage.enterLocation(location);
 		stockAdjustmentsPage.enterQuantityOnHand(quantity);
 		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
 		stockAdjustmentsPage.clickMiscellaneousTab();
@@ -57,7 +61,32 @@ public class StockAdjustmentStepDefs {
 
 	@When("^I choose the reason code as \"([^\"]*)\"$")
 	public void I_choose_the_reason_code_as(String reasonCode) throws Throwable {
-		stockAdjustmentsPage.chooseReasonCode(reasonCode);
+		String reasonCodeToChoose = null;
+		switch (reasonCode) {
+		case "Dirty":
+			reasonCodeToChoose = "Dirty";
+			break;
+		case "DMIT":
+			reasonCodeToChoose = "Damaged in Transit - for the 'damaged pallet'";
+			break;
+		case "EXPD":
+			reasonCodeToChoose = "Expired";
+			break;
+		case "FOUND":
+			reasonCodeToChoose = "FOUND";
+			break;
+		case "IE":
+			reasonCodeToChoose = "INCOMPLETE";
+			break;
+		case "LOST":
+			reasonCodeToChoose = "LOST";
+			break;
+		case "SAMPLES":
+			reasonCodeToChoose = "SAMPLES";
+			break;
+		}
+
+		stockAdjustmentsPage.chooseReasonCode(reasonCodeToChoose);
 		jDAFooter.clickDoneButton();
 		jDAFooter.PressEnter();
 		jDAFooter.PressEnter();

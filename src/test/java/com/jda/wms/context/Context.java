@@ -99,6 +99,7 @@ public class Context {
 	private String serviceLevel;
 	private String condition;
 	private String reasonCode;
+	private String owner;
 
 	public String getPalletID() {
 		return palletID;
@@ -843,5 +844,13 @@ public class Context {
 
 	public void setReasonCode(String reasonCode) {
 		this.reasonCode = reasonCode;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 }

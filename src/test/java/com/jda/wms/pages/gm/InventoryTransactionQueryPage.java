@@ -31,7 +31,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterTransactionDate() throws FindFailed, InterruptedException {
-		Match transactionDate = screen.find("images/InventoryTransactionQuery/TransactionDate.png");
+		Match transactionDate = screen.find("images/InventoryTransactionQuery/General/TransactionDate.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
 		screen.type("0");
 		Thread.sleep(1000);
@@ -521,7 +521,11 @@ public class InventoryTransactionQueryPage {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/skuid.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(skuId);
-
 	}
 
+	public void enterUpdateQuantity(String quantityUpdate) throws FindFailed {
+		Match mskuId = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");
+		screen.click(mskuId.getCenter().offset(70, 0));
+		screen.type(quantityUpdate);
+	}
 }

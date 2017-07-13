@@ -509,10 +509,9 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where ORIGIN_ID='" + origin
-				+ "' order by sku_id desc");
-		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where ORIGIN_ID='" + origin
-				+ "' order by sku_id desc");
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.origin_id='"
+						+ origin + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		rs.next();
@@ -574,5 +573,23 @@ public class InventoryDB {
 			stockDetails.add((rs.getString(j)));
 		}
 		return stockDetails;
+	}
+
+	public ArrayList getTagIddetail(String owner) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where owner_id=' " + owner
+				+ "' order by sku_id desc='");
+
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
 	}
 }

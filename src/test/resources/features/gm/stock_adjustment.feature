@@ -15,12 +15,13 @@ Feature: Stock adjustments
     Then the reason code should be updated
 
     Examples: 
-      | ReasonCode | SiteId | Location |
-     # | DIRTY     |   5649 | 1AA103   |
-      #| DMIT       |   5649 | 1AA103   |
-    # | EXPD       |   5649 | 1AA103   |
-      | FOUND      |   5649 | 1AA103   |
-      #| IE         | 	5649			|1AA103 |
+      | ReasonCode         | SiteId | Location |
+      #  | DIRTY     |   5649 | 1AA103   |
+      #|Damaged in Transit-for the'damaged pallet' |   5649 | 1AA103   |
+      |DMIT |   5649 | 1AA103   |
+      # | EXPD       |   5649 | 1AA103   |
+      # | FOUND      |   5649 | 1AA103   |
+      #| INCOMPLETE        | 	5649			|1AA103 |
       #| INCOMPLETE | 	5649			|1AA103 |
-      #| LOST       |   5649       |1AA103 |
-      #| SAMPLES    |   5649       |1AA103 |
+      # | LOST       |   5649       |1AA103 |
+      #| SAMPLES    |   5649 | 1AA103   |

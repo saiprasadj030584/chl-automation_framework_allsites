@@ -71,4 +71,10 @@ public class InventoryUpdatePage {
 		Thread.sleep(1000);
 
 	}
+
+	public void enterowner(String owner) throws InterruptedException {
+		screen.type(owner);
+		Thread.sleep(1000);
+
+	}
 }
