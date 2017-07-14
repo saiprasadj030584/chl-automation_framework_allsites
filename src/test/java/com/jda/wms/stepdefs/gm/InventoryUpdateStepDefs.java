@@ -47,7 +47,6 @@ public class InventoryUpdateStepDefs {
 		inventoryUpdatePage.entersku(context.getSkuId());
 		inventoryUpdatePage.enterLocation(context.getLocation());
 
-		System.out.println(context.getlocationID());
 		jdafooter.clickNextButton();
 
 	}
