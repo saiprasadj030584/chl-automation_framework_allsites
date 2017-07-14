@@ -515,4 +515,14 @@ public class InventoryTransactionQueryPage {
 		else
 			return true;
 	}
+	
+	public boolean check_Damaged_Receipt_LockCode(String code)
+	{
+		if(code.equals("DMGD"))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 }

@@ -109,6 +109,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_receipt_reversal_page() throws Throwable {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
+	
 
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {

@@ -246,6 +246,7 @@ public class PurchaseOrderReceivingPage {
 	public void enterURNID(String urn) throws FindFailed, InterruptedException {
 //		screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
 		screen.type(urn);
+		System.out.println(urn);
 		Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
