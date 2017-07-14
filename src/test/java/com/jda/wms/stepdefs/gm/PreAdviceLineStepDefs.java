@@ -66,6 +66,7 @@ public class PreAdviceLineStepDefs {
 		}
 		else{
 			//Add SKU details to PO Map
+			
 			for (int i=1;i<=context.getNoOfLines();i++){
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String)skuFromPO.get(i-1));
@@ -127,7 +128,6 @@ public class PreAdviceLineStepDefs {
 		jdaFooter.clickExecuteButton();
 		i_click_on_user_defined_tab();
 		jdaFooter.clickUpdateButton();
-//		preAdviceLineMaintenancePage.pressTab();
 		String userDefType3 = getUserDefinedType3(lockCode);
 		String userDefType4 = getUserDefinedType4(lockCode);
 		String fireWallCheck = isUserDefCheck1Required(lockCode);

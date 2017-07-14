@@ -178,7 +178,18 @@ public class PurchaseOrderReceivingStepDefs {
 	
 	@When("^I enter urn id for locked sku$")
 	public void i_enter_urn_id_for_locked_sku() throws FindFailed, InterruptedException {
-		String urn = "QA"+Utilities.getFourDigitRandomNumber();
+		String urn =null;
+		String[] rcvLockSplit = purchaseOrderReceivingPage.getPallet().split("_");
+		
+		if (rcvLockSplit[0].contains("QA")){
+			urn = "QA"+Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("FIREWALL")){
+			urn = "FWL"+Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("REWORK")){
+			urn = "RW"+Utilities.getFourDigitRandomNumber();
+		}
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
 	}
