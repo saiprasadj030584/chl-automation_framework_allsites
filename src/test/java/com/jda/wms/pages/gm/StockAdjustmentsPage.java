@@ -59,8 +59,7 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterTagId(String tagId) throws InterruptedException {
-		// screen.wait("images/StockAdjustment/Search/TagID.png",timeoutInSec);
-		// screen.click("images/StockAdjustment/Search/TagID.png");
+
 		screen.type(tagId);
 		Thread.sleep(2000);
 	}
@@ -105,9 +104,6 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterLocation(String location) throws FindFailed, InterruptedException {
-		// Match mlocationId =
-		// screen.find("images/StockAdjustment/Search/Location.png");
-		// screen.click(mlocationId.getCenter().offset(70, 0));
 		Thread.sleep(1000);
 		screen.type(location);
 		Thread.sleep(1000);

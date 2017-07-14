@@ -37,18 +37,13 @@ public class InventoryUpdatePage {
 	}
 
 	public void enterStatus(String status) throws FindFailed, InterruptedException {
-		// Match Status =
-		// screen.find("/images/InventoryUpdate/Search/TagId.png");
-		// screen.click(Status.getCenter().offset(70, 0));
+
 		screen.type(status);
 		Thread.sleep(1000);
 	}
 
 	public void enterselectType(String status) throws FindFailed, InterruptedException {
-		// TODO change image
-		// Match Status =
-		// screen.find("/images/InventoryUpdate/Search/TagId.png");
-		// screen.click(Status.getCenter().offset(70, 0));
+
 		screen.type(status);
 		Thread.sleep(1000);
 	}

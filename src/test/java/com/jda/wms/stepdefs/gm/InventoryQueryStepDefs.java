@@ -98,10 +98,8 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		System.out.println(context.getSkuId());
-		System.out.println(context.getLocation());
-		System.out.println(context.getTagId());
-		// jdaLoginPage.login();
+
+		jdaLoginPage.login();
 	}
 
 	@Given("^I have tag in inventory with expiry \"([^\"]*)\" status$")
@@ -112,6 +110,7 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
+		jdaLoginPage.login();
 	}
 
 	@Given("^I have a tag in inventory with origin \"([^\"]*)\"$")
@@ -122,9 +121,8 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		System.out.println(context.getSkuId());
-		System.out.println(context.getLocation());
-		System.out.println(context.getTagId());
+		jdaLoginPage.login();
+
 	}
 
 	@Then("^the origin should be updated$")
@@ -146,7 +144,7 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 	}
 
 	@Given("^I have a tag in inventory with pallet type as \"([^\"]*)\"$")
@@ -157,7 +155,7 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 	}
 
 	@Given("^I have a tag in inventory with owner as \"([^\"]*)\"$")
@@ -177,6 +175,6 @@ public class InventoryQueryStepDefs {
 			context.setSkuId((String) StockDetailList.get(0));
 			context.setPackConfig((String) StockDetailList.get(1));
 		}
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 	}
 }

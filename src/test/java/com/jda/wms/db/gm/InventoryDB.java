@@ -473,8 +473,6 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='" + lockStatus
-				+ "' order by sku_id desc");
 		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where lock_status='"
 				+ lockStatus + "' order by sku_id desc");
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -527,8 +525,6 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where condition_id='" + condition
-				+ "' order by sku_id desc");
 		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where condition_id='"
 				+ condition + "' order by sku_id desc");
 		ResultSetMetaData rsmd = rs.getMetaData();

@@ -89,7 +89,6 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^I choose the code as \"([^\"]*)\" and search the tag id$")
 	public void i_choose_the_code_as_and_search_the_tag_id(String code) throws Throwable {
-		// inventoryTransactionPage.se
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -114,7 +113,6 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^I choose the code as \"([^\"]*)\" and I search the tag id$")
 	public void i_choose_the_code_as_and_I_search_the_tag_id(String code) throws Throwable {
-		// inventoryTransactionPage.se
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -134,13 +132,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.getReasonCode();
-		String conditionToVerify = null;
-		switch (context.getReasonCode()) {
-		case "Damaged in Transit-for the 'damaged pallet'":
-			conditionToVerify = "DMIT";
-			break;
 
-		}
 	}
 
 	@Then("^the condition should be updated$")
