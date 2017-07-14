@@ -84,7 +84,7 @@ public class Context {
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
-	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
+	private Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
 	private String pickingType;
 	private String upiId;
@@ -101,6 +101,9 @@ public class Context {
 	private String updatedBookingTime;
 	private String dockId;
 	private String updatedDockId;
+	private String condition;
+	private String reasonCode;
+	private String owner;
 
 	public String getUpdatedBookingTime() {
 		return updatedBookingTime;
@@ -610,7 +613,7 @@ public class Context {
 	public void setFailureList(ArrayList<String> failureList) {
 		this.failureList = failureList;
 	}
-	
+
 	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
 		this.pickFaceMap = pickFaceMap;
 	}
@@ -618,7 +621,7 @@ public class Context {
 	public Map<String, String> getPutawayLocationMap() {
 		return pickFaceMap;
 	}
-	
+
 	public String getTrailerNo() {
 		return trailerNo;
 	}
@@ -734,7 +737,7 @@ public class Context {
 	public void setPackConfigID(String packConfigID) {
 		this.packConfigID = packConfigID;
 	}
-	
+
 	public void setDockSchedulerNotes(String dockSchedulerNotes) {
 		this.dockSchedulerNotes = dockSchedulerNotes;
 	}
@@ -742,7 +745,7 @@ public class Context {
 	public String getDockSchedulerNotes() {
 		return dockSchedulerNotes;
 	}
-	
+
 	public String[] getDockSchedulerBookingID() {
 		return dockSchedulerBookingIDList;
 	}
@@ -759,11 +762,11 @@ public class Context {
 		this.stoType = stoType;
 	}
 
-	public Map<String,Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
+	public Map<String, Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
 		return multipleOrderListIDMap;
 	}
 
-	public void setMultipleOrderListIDMap(Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
+	public void setMultipleOrderListIDMap(Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
 		this.multipleOrderListIDMap = multipleOrderListIDMap;
 	}
 
@@ -861,5 +864,29 @@ public class Context {
 
 	public void setServiceLevel(String serviceLevel) {
 		this.serviceLevel = serviceLevel;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public String getReasonCode() {
+		return reasonCode;
+	}
+
+	public void setReasonCode(String reasonCode) {
+		this.reasonCode = reasonCode;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 }

@@ -5,8 +5,9 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-import com.jda.wms.context.Context;
+
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 public class PreAdviceLineMaintenancePage {
 
@@ -55,8 +56,8 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("c", Key.CTRL);
 		String temp = App.getClipboard();
 		App.setClipboard("");
-		System.out.println("Current Clipboard value : " + App.getClipboard() );
-		System.out.println("Temp String value : " + temp );
+		System.out.println("Current Clipboard value : " + App.getClipboard());
+		System.out.println("Temp String value : " + temp);
 		return temp;
 	}
 
@@ -241,7 +242,7 @@ public class PreAdviceLineMaintenancePage {
 		Thread.sleep(1000);
 	}
 
-	public void updateUserDefinedCheck1()throws FindFailed, InterruptedException {
+	public void updateUserDefinedCheck1() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/UserDefined/UserDefCheck1.png", timeoutInSec);
 		screen.click("images/PreAdviceLine/UserDefined/UserDefCheck1.png");
 		Thread.sleep(2000);
@@ -250,5 +251,13 @@ public class PreAdviceLineMaintenancePage {
 	public void pressTab() throws InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
+	}
+
+	public void selectlockcode(String lockcode) throws FindFailed {
+		screen.type(Key.F2);
+		screen.wait("/images/PreAdviceLine/LockCodegm.png", timeoutInSec);
+		screen.click("/images/PreAdviceLine/LockCodegm.png");
+		screen.type(lockcode);
+		screen.type(Key.F7);
 	}
 }

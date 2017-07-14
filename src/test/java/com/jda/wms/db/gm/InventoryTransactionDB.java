@@ -444,4 +444,28 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public boolean isRecordExistsForReasonCode(String skuId, String code, String dstamp, String reasonCode)
+			throws ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select reason_id from inventory_transaction where sku_id='" + skuId + "' and code='"
+							+ code + "' and reason_id ='" + reasonCode + "' and dstamp like '" + dstamp + "%'");
+			rs.next();
+			if (rs.getString(1).equals(reasonCode)) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }
