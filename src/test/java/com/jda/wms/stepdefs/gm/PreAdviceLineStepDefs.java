@@ -136,6 +136,8 @@ public class PreAdviceLineStepDefs {
 				context.setPalletID(generatePalletID(context.getPreAdviceId(),context.getSkuId()));
 				// To generate Belcode
 				context.setBelCode(generateBelCode(context.getPreAdviceId(),context.getSkuId()));
+				// To generate newpallet
+				context.setnewpallet(generatenewpallet());
 			}
 
 			// To Validate Modularity,New Product Check for SKU
@@ -155,6 +157,11 @@ public class PreAdviceLineStepDefs {
 				failureList.isEmpty());
 	}
 	}
+	private String generatenewpallet() {
+		String newpallet = "RA" + Utilities.getFourDigitRandomNumber();
+ 		return newpallet;
+	}
+
 	private String generatePalletID(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 		String palletID = null;
 		// First 4 digits - Site id

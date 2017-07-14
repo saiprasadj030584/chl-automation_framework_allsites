@@ -84,7 +84,7 @@ public class Context {
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
-	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
+	private Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
 	private String pickingType;
 	private String upiId;
@@ -99,8 +99,7 @@ public class Context {
 	private String serviceLevel;
 	private String supplierType;
 	private String generateBelCode;
-	
-
+	private String enternewpallet;
 
 	public String getPalletID() {
 		return palletID;
@@ -578,7 +577,7 @@ public class Context {
 	public void setFailureList(ArrayList<String> failureList) {
 		this.failureList = failureList;
 	}
-	
+
 	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
 		this.pickFaceMap = pickFaceMap;
 	}
@@ -586,7 +585,7 @@ public class Context {
 	public Map<String, String> getPutawayLocationMap() {
 		return pickFaceMap;
 	}
-	
+
 	public String getTrailerNo() {
 		return trailerNo;
 	}
@@ -702,7 +701,7 @@ public class Context {
 	public void setPackConfigID(String packConfigID) {
 		this.packConfigID = packConfigID;
 	}
-	
+
 	public void setDockSchedulerNotes(String dockSchedulerNotes) {
 		this.dockSchedulerNotes = dockSchedulerNotes;
 	}
@@ -710,7 +709,7 @@ public class Context {
 	public String getDockSchedulerNotes() {
 		return dockSchedulerNotes;
 	}
-	
+
 	public String[] getDockSchedulerBookingID() {
 		return dockSchedulerBookingIDList;
 	}
@@ -727,11 +726,11 @@ public class Context {
 		this.stoType = stoType;
 	}
 
-	public Map<String,Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
+	public Map<String, Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
 		return multipleOrderListIDMap;
 	}
 
-	public void setMultipleOrderListIDMap(Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
+	public void setMultipleOrderListIDMap(Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
 		this.multipleOrderListIDMap = multipleOrderListIDMap;
 	}
 
@@ -782,22 +781,23 @@ public class Context {
 	public void setSKUType(String skuType) {
 		this.skuType = skuType;
 	}
-	
+
 	public String getsiteId() {
 		return siteId;
 	}
-	
+
 	public void setsiteid(String siteId) {
-		this.siteId= siteId;
+		this.siteId = siteId;
 	}
 
 	public String getsupplierType() {
 		return supplierType;
 	}
-	
+
 	public void setsupplierType(String supplierType) {
-		this.supplierType= supplierType;
+		this.supplierType = supplierType;
 	}
+
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -852,5 +852,13 @@ public class Context {
 
 	public String getbelCode() {
 		return generateBelCode;
+	}
+
+	public String enternewpallet() {
+		return enternewpallet;
+	}
+
+	public void setnewpallet(String enternewpallet) {
+		this.enternewpallet = enternewpallet;
 	}
 }

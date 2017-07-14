@@ -239,17 +239,26 @@ public class PurchaseOrderReceivingPage {
 	public void enterPalletId(String palletID) throws InterruptedException {
 		screen.type(palletID);
 		Thread.sleep(2000);
-		puttyFunctionsPage.pressEnter();
+		//screen.type(Key.TAB);
+		//puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);		
 	}
 	
 	public void enterbelCode(String getbelCode) throws InterruptedException {
+		//screen.type(Key.TAB);
 		screen.type(getbelCode);
 		Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
 	}
 
+	public void enternewpallet(String getnewpallet) throws InterruptedException {
+		screen.type(getnewpallet);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
+	}
+	
 	public boolean isLocationDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Location.png") != null)
 			return true;
@@ -299,6 +308,7 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+
 
 	
 }
