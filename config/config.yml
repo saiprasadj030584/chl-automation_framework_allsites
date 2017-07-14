@@ -13,10 +13,11 @@ default:
  putty-gm-port: '24003'
  
  #gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
-  #putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ #putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
  #putty-gm-port: '24003'
  #db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
-# db-password: 'jdadccate3'
+ #db-username: 'dcsdba'
+#db-password: 'jdadccate3'
 
       
 # Browser settings

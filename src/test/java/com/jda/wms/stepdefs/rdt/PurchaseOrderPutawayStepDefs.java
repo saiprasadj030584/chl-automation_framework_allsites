@@ -34,7 +34,7 @@ public class PurchaseOrderPutawayStepDefs {
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks,JDAFooter jdaFooter) {
+			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -76,7 +76,7 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		hooks.logoutPutty();
 	}
-	
+
 	@When("^I choose normal putaway$")
 	public void i_choose_normal_putaway() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -91,42 +91,45 @@ public class PurchaseOrderPutawayStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_urn_id_in_putaway();
-			if (null==context.getLockCode()){
+			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed();
 			}
 		}
 	}
-	
+
 	@When("^I should not be able to putaway locked PO$")
 	public void i_should_not_be_able_to_putaway_locked_po() throws Throwable {
 		i_choose_normal_putaway();
-		Assert.assertFalse("Putaway details page should not be displayed as the PO is locked for putaway",purchaseOrderPutawayPage.isPutCmpPageDisplayed());
+		Assert.assertFalse("Putaway details page should not be displayed as the PO is locked for putaway",
+				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 	}
-	
+
 	@When("^I proceed without entering location$")
 	public void i_proceed_without_entering_location() throws InterruptedException {
 		jdaFooter.PressEnter();
 	}
-	
+
 	@When("^the error message should be displayed as cannot find putaway location$")
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
-		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected" ,purchaseOrderPutawayPage.isLocationErrorDisplayed());
+		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected",
+				purchaseOrderPutawayPage.isLocationErrorDisplayed());
 		jdaFooter.PressEnter();
 	}
-	
+
 	@When("^I proceed without entering quantity$")
 	public void i_proceed_without_entering_quantity() throws InterruptedException {
 		jdaFooter.pressTab();
-		for (int i=0;i<25;i++){
+		for (int i = 0; i < 25; i++) {
 			jdaFooter.pressBackSpace();
 		}
 		jdaFooter.PressEnter();
 	}
-	
+
 	@When("^the error message should be displayed as invalid quantity exception$")
 	public void the_error_message_should_be_displayed_as_invalid_quantity_exception() throws InterruptedException {
 		System.out.println("quantity check1");
-		Assert.assertTrue("Error message:Invalid Quantity Exception not displayed as expected" ,purchaseOrderPutawayPage.isQuantityErrorDisplayed());
+		Assert.assertTrue("Error message:Invalid Quantity Exception not displayed as expected",
+				purchaseOrderPutawayPage.isQuantityErrorDisplayed());
 		jdaFooter.PressEnter();
 	}
 
@@ -160,6 +163,14 @@ public class PurchaseOrderPutawayStepDefs {
 		verification.verifyData("From Location", context.getLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
 		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
-		 Assert.assertTrue("SKU Attributes are not as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
+		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
+	@Then("^the  error message should be displayed$")
+	public void the_error_message_should_be_displayed() throws Throwable {
+		Assert.assertTrue(
+				" error message is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
 	}
 }
