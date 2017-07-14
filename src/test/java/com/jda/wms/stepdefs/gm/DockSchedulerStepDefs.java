@@ -2,18 +2,22 @@ package com.jda.wms.stepdefs.gm;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.pages.gm.DockSchedulerBookingsPage;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.utils.Utilities;
 
-import cucumber.api.java.en.*;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class DockSchedulerStepDefs {
 	private DockSchedulerPage dockSchedulerPage;
 	private JDAFooter jdaFooter;
 	private JdaHomePage jdaHomePage;
 	private Context context;
+	
 	@Inject
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage,JDAFooter jdaFooter,JdaHomePage jdaHomePage,Context context) {
 		this.dockSchedulerPage = dockSchedulerPage;
@@ -33,13 +37,15 @@ public class DockSchedulerStepDefs {
 
 	@When("^I select the slot$")
 	public void i_select_the_slot() throws Throwable {
-		//TODO include while loop
-		if (dockSchedulerPage.isSlotExists()) {
-			dockSchedulerPage.selectSlot();
-		} else {
-			jdaHomePage.scrollDown();
-			dockSchedulerPage.selectSlot();
-		}
+		Thread.sleep(3000);
+		//TODO Check the dock door where to book slot
+//		System.out.println(dockSchedulerPage.isDockDoorExists());
+//		while(!dockSchedulerPage.isDockDoorExists()){
+			for (int i=0;i<3;i++){
+			jdaHomePage.scrollRightBig();
+			}
+//		}
+		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
 	}
 
@@ -67,6 +73,24 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
+		
+		if (dockSchedulerPage.isBookingErrorExists()){
+			jdaFooter.PressEnter();
+			jdaFooter.clickNextButton();
+			bookingID = Utilities.getFiveDigitRandomNumber();
+			jdaFooter.deleteExistingContent();
+			dockSchedulerPage.enterBookingId(bookingID);
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedPallets();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedCartons();
+			jdaFooter.PressEnter();
+		}
 	}
 	
 	

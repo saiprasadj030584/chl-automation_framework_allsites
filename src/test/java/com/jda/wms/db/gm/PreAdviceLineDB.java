@@ -179,4 +179,16 @@ public class PreAdviceLineDB {
 				"update pre_advice_line set lock_code='" + lockCode + "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+
+	public String getLockCode(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select lock_code from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
