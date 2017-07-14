@@ -38,7 +38,6 @@ public class InventoryUpdateStepDefs {
 	public void i_select_the_update_type_as(String updateType) throws Throwable {
 		inventoryUpdatePage.enterselectType(updateType);
 		jdafooter.clickNextButton();
-
 	}
 
 	@When("^I search the inventory for the tag$")
@@ -46,9 +45,7 @@ public class InventoryUpdateStepDefs {
 		inventoryUpdatePage.entertagID(context.getTagId());
 		inventoryUpdatePage.entersku(context.getSkuId());
 		inventoryUpdatePage.enterLocation(context.getLocation());
-
 		jdafooter.clickNextButton();
-
 	}
 
 	@Then("^the tag details should be displayed$")
@@ -63,11 +60,8 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickDoneButton();
 		if (inventoryUpdatePage.isWarningPopUpPageExist()) {
 			warningPopUpPage.clickYes();
-
 		}
-
 		context.setStatus(status);
-
 	}
 
 	@Then("^I select the future date$")

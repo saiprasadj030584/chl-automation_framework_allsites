@@ -54,7 +54,7 @@ public class StockAdjustmentStepDefs {
 		stockAdjustmentsPage.enterSiteId(siteId);
 		stockAdjustmentsPage.enterQuantityOnHand(quantity);
 		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
-		stockAdjustmentsPage.clickMiscellaneousTab();
+		jDAFooter.clickNextButton();
 		stockAdjustmentsPage.enterPallet(pallet);
 		jDAFooter.clickNextButton();
 	}
@@ -75,7 +75,7 @@ public class StockAdjustmentStepDefs {
 		case "FOUND":
 			reasonCodeToChoose = "FOUND";
 			break;
-		case "IE":
+		case "INCOMPLETE":
 			reasonCodeToChoose = "INCOMPLETE";
 			break;
 		case "LOST":

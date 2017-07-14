@@ -98,7 +98,6 @@ public class InventoryQueryStepDefs {
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-
 		jdaLoginPage.login();
 	}
 

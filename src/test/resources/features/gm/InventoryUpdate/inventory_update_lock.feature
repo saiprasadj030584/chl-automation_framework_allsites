@@ -1,10 +1,9 @@
-@invetory_update
+@inventory_update
 Feature: Inventory update
   As a warehouse user
-  I want to update the inventory for the item 
-  So that I can be used for allocation
+  I want to update the stock in inventory for the required status
 
-  @lock_to_Unlock
+  @lock_status_change @complete
   Scenario Outline: Inventory update for Lock Status Change
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -21,8 +20,8 @@ Feature: Inventory update
       | Locked     | Unlocked     | Inventory Unlock |
       | UnLocked   | Locked       | Inventory Lock   |
 
-  @Expiry_date_update
-  Scenario: Inventory update for expiry date
+  @expiry_date_update @complete
+  Scenario: Inventory update for expiry date change
     Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
     And I select the update type as "Expiry Date Update"
@@ -33,8 +32,8 @@ Feature: Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @origin_update
-  Scenario Outline: Inventory update for origin
+  @origin_update @complete
+  Scenario Outline: Inventory update for origin change
     Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
     And I select the update type as "Origin Update"
@@ -48,8 +47,8 @@ Feature: Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @condition_code
-  Scenario Outline: Inventory update for condition code
+  @condition_code_update @complete
+  Scenario Outline: Inventory update for condition code change
     Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
     And I select the update type as "Condition Code Update"
@@ -64,8 +63,8 @@ Feature: Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @pallet_type
-  Scenario Outline: Inventory update for pallet_type
+  @pallet_type_update @complete
+  Scenario Outline: Inventory update for pallet type change
     Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
     And I select the update type as "Pallet Type Update"
@@ -80,18 +79,18 @@ Feature: Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-  @owner_update
-  Scenario Outline: Inventory update for pallet_type
+  @owner_update @hold
+  Scenario Outline: Inventory update for owner change
     Given I have a tag in inventory with owner as "<Owner>"
     When I navigate to inventory update page
-    And I select the update type as "owner update"
+    And I select the update type as "Owner Update"
     And I search the inventory for the tag
     Then the tag details should be displayed
-    And I select the owner type as "<updateowner>"
+    And I select the owner type as "<Updateowner>"
     When I navigate to inventory transaction query
-    When I choose the code as "owner update" and I search the tag id
+    When I choose the code as "Owner Update" and I search the tag id
     Then the owner should be updated
 
     Examples: 
-      | owner | Updateowner|
-      | AOWN  | M+S          |
+      | Owner | Updateowner |
+      | AOWN  | M+S         |

@@ -94,7 +94,6 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
-
 	}
 
 	@Then("^the status should be updated$")
