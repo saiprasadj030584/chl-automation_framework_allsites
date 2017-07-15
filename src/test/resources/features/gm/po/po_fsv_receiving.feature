@@ -29,6 +29,6 @@ Feature: Purchase order receiving
     Then the po status should be displayed as "Complete"
 
     Examples: 
-      | PreAdviceID  | SiteID | Location |
+      | PreAdviceID | SiteID | Location |
       # | 25300100302 |   5649 | REC001   |
-      | PO2420001464 |   5885 | REC001   |
+      | 25300100306 |   5649 | REC001   |

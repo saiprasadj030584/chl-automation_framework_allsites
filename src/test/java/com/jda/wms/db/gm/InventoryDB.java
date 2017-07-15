@@ -390,6 +390,18 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getQtyOnHand(String skuId, String location, String upiId, String date)  throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
