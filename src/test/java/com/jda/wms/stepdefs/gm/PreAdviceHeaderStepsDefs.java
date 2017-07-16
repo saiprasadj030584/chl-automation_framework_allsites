@@ -99,6 +99,21 @@ public class PreAdviceHeaderStepsDefs {
 
 	}
 
+	@Given("^the FSV po status should be displayed as \"([^\"]*)\"$")
+	public void the_FSV_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
+		ArrayList failureList = new ArrayList();
+
+		verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()),
+				failureList);
+		//verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
+		//verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
+
+		Assert.assertTrue(
+				"PO status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+
+	}
+
 	// FSV Receiving
 	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id \"([^\"]*)\"$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String preAdviceId, String type, String status,

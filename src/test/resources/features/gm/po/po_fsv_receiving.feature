@@ -24,11 +24,11 @@ Feature: Purchase order receiving
     And the FSV PO line should have sku, quantity due details
     And verify PO should not linked with UPI line "<PreAdviceID>"
     When I receive all skus for the FSV purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
+    Then the inventory should be displayed for all tags PO received
+    And the goods receipt should be generated for PO received stock in inventory transaction
+    Then the FSV po status should be displayed as "Complete"
 
     Examples: 
       | PreAdviceID | SiteID | Location |
       # | 25300100302 |   5649 | REC001   |
-      | 25300100306 |   5649 | REC001   |
+      | 25300100312 |   5649 | REC001   |

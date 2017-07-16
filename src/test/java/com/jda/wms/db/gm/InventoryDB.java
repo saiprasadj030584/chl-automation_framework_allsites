@@ -413,6 +413,17 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getQtyOnHandPO(String skuId, String location, String preAdviceId, String date)  throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and location_id = '"+location+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getPutawayLocation(String skuId, String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

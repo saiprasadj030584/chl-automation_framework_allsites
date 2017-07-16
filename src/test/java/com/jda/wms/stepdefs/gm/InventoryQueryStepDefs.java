@@ -53,9 +53,9 @@ public class InventoryQueryStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getPreAdviceId(),date), failureList);
-			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getPreAdviceId(),date), failureList);
+			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(),date), failureList);
 		}
-		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
+		Assert.assertFalse	("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 		}
 	
 	@Then("^the inventory should be displayed for all putaway tags$")
