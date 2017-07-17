@@ -81,7 +81,7 @@ Feature: Purchase order receiving
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002059 | PO000504560005112389 | PO00100549 | REC001   |
 
-  @receiving
+  @po_receiving_IMPERFECT_lock_code
   Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
     Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I navigate to inventory transaction query
