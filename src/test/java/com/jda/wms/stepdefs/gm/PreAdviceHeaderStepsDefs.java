@@ -74,6 +74,36 @@ public class PreAdviceHeaderStepsDefs {
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
 	
+	public void the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+			String upiId, String asnId, String status) throws Throwable {
+			//context.setPreAdviceId(preAdviceId);
+			context.setUpiId(upiId);
+			context.setAsnId(asnId);
+			//context.setSKUType(type);
+			//DataSetUp.setPOData();
+			//logger.debug("PO ID: "+preAdviceId);
+			logger.debug("UPI ID: "+upiId);
+			logger.debug("ASN ID: "+asnId);
+			//logger.debug("Type: "+type);
+			
+			ArrayList failureList = new ArrayList();
+			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+			
+			//verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+			
+			//context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
+			//int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
+			//Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),String.valueOf(numLines));
+			//context.setNoOfLines(numLines);
+			//logger.debug("Num of Lines: "+numLines);
+			
+			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+			
+}
+
+	
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
 	public void the_PO_of_type_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
 			String status) throws Throwable {

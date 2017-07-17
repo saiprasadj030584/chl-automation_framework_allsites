@@ -20,4 +20,8 @@ public class DeliveryStepDefs {
 	public void the_pallet_count_should_be_updated_in_delivery() throws Throwable {
 		deliveryDB.updatePalletCount(context.getAsnId(),context.getNoOfLines());
 	}
+	@Given("^the pallet count should be updated as \"([^\"]*)\" in delivery$")
+	public void the_pallet_count_should_be_updated_as_in_delivery(int count) throws Throwable {
+		deliveryDB.updatePalletCount(context.getAsnId(),count);
+	}
 }

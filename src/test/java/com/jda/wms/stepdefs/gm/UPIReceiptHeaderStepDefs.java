@@ -1,6 +1,8 @@
 
 package com.jda.wms.stepdefs.gm;
 
+import java.sql.SQLException;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
@@ -20,5 +22,11 @@ public class UPIReceiptHeaderStepDefs {
 @Given("^ASN to be linked with upi header$")
 public void asn_to_be_linked_with_upi_header() throws Throwable {
 	upiReceiptHeaderDB.updateASN(context.getUpiId(),context.getAsnId());
+}
+
+@Given("^SSSC_URN_to_be_updated_with_upi_header$")
+public void SSSC_URN_to_be_updated_with_upi_header() throws Throwable 
+{
+	upiReceiptHeaderDB.update_SSSC_URN(context.getUpiId());
 }
 }

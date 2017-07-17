@@ -23,6 +23,12 @@ public class InventoryTransactionQueryPage {
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}
+	
+	public void enterReferenceId(String tagId) throws InterruptedException, FindFailed {
+		Match mtagId = screen.find("images/InventoryTransactionQuery/Reference.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(tagId);
+	}
 
 	public void selectCode(String code) throws FindFailed, InterruptedException {
 		//jdaFooter.clickQueryButton();
@@ -519,6 +525,16 @@ public class InventoryTransactionQueryPage {
 	public boolean check_Damaged_Receipt_LockCode(String code)
 	{
 		if(code.equals("DMGD"))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public boolean check_Imperfect_Receipt_LockCode(String code)
+	{
+		if(code.equals("IMPERFECT"))
 		{
 			return true;
 		}

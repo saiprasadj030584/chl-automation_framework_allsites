@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
- @po_receive_hanging @po @complete
+  @po_receive_hanging @po @complete
   Scenario Outline: Receiving process in JDA WMS for Hanging type
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -18,7 +18,6 @@ Feature: Purchase order receiving
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002006 | PO050456000511235615 | PO00100505 | REC001   |
 
-  
   @po_receive_boxed @po @complete
   Scenario Outline: Receiving process in JDA WMS for Boxed type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
@@ -70,9 +69,8 @@ Feature: Purchase order receiving
       #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002069 | PO050456000511235619 | PO00100509 | REC001   |
-      
-      
-      @po_receipt_reversal_hanging_withoutlockcode
+
+  @po_receipt_reversal_hanging_withoutlockcode
   Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I navigate to receipt reversal page
@@ -82,3 +80,13 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002059 | PO000504560005112389 | PO00100549 | REC001   |
+
+  @receiving
+  Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated with lock code imperfect
+
+    Examples: 
+      | PalletId                         | ASN         | Location |
+      | 58850004886180077010048861800100 | 00004886181 | REC003   |

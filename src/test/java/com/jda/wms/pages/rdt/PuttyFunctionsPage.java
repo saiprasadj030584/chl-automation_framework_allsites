@@ -52,7 +52,15 @@ public class PuttyFunctionsPage {
 	}
 
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
+		if(screen.exists("images/Putty/Username.png") != null)
+		{
 		screen.wait("images/Putty/Username.png", timeoutInSec);
+		}
+		else if(screen.exists("images/Putty/User.png") != null)
+		{
+			screen.wait("images/Putty/User.png", timeoutInSec);
+		}
+		
 		screen.type(username);
 		screen.type(Key.TAB);
 		screen.type(pwd);
@@ -70,11 +78,12 @@ public class PuttyFunctionsPage {
 	}
 
 	public boolean isLoginScreenDisplayed() {
-		if (screen.exists("images/Putty/Username.png") != null)
+		if ((screen.exists("images/Putty/Username.png") != null)|| (screen.exists("images/Putty/User.png") != null))
 			return true;
 		else
 			return false;
 	}
+	
 	
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
 		screen.type("2");

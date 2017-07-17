@@ -53,4 +53,14 @@ public class UPIReceiptHeaderDB {
 				.executeQuery("update upi_receipt_header set asn_id='"+asnId+"' where pallet_id='"+upiId+"'");
 		context.getConnection().commit();
 	}
+	
+	public void update_SSSC_URN(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update upi_receipt_header set user_def_note_1='"+upiId+"' where pallet_id='"+upiId+"'");
+		context.getConnection().commit();
+	}
 }

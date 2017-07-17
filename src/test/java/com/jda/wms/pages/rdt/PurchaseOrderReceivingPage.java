@@ -7,15 +7,18 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 public class PurchaseOrderReceivingPage {
 	Screen screen = new Screen();
+	Context context=new Context();
 	int timeoutInSec = 20;
 	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
-	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage) {
+	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage,Context context) {
 	this.puttyFunctionsPage = puttyFunctionsPage;
+	this.context=context;
 	}
 
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
@@ -38,6 +41,13 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	
+	public void selectBlindReceive() throws FindFailed, InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
@@ -48,6 +58,46 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		}
 		return false;
+	}
+	public boolean isBlindEntryDisplayed() throws FindFailed, InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/BlindReceivingEntry.png") != null)){
+			return true;
+				}
+		return false;
+	}
+	
+	
+	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
+		Thread.sleep(10000);
+		screen.type(context.getUpiId());
+//		puttyFunctionsPage.pressTab();
+		screen.type(context.getUPC()+"01");
+		puttyFunctionsPage.pressTab();
+		screen.type(context.getUPC()+"01");
+//		puttyFunctionsPage.pressTab();
+		screen.type("1");
+		puttyFunctionsPage.pressTab();
+		screen.type("Y");
+		//puttyFunctionsPage.pressTab();
+		screen.type(context.getlocationID());
+		puttyFunctionsPage.pressTab();
+		screen.type(context.getSupplierID());
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		if ((screen.exists("images/Putty/Receiving/Imperfect_Y_error.png") != null)){
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)){
+				
+				puttyFunctionsPage.pressEnter();
+			return true;
+				}
+		}
+		return false;
+		
+		
+		
 	}
 	
 	

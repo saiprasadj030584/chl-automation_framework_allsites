@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.SupplierSkuDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 
@@ -14,13 +15,15 @@ public class UPIReceiptLineStepDefs {
 	
 	private Context context;
 	private UPIReceiptLineDB upiReceiptLineDB;
+	private SupplierSkuDB supplierSkuDb;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> upiMap;
 
 	@Inject
-	public UPIReceiptLineStepDefs(Context context,UPIReceiptLineDB upiReceiptLineDB) {
+	public UPIReceiptLineStepDefs(Context context,UPIReceiptLineDB upiReceiptLineDB,SupplierSkuDB supplierSkuDb) {
 		this.context = context;
 		this.upiReceiptLineDB = upiReceiptLineDB;
+		this.supplierSkuDb=supplierSkuDb;
 	}
 	@Given("^PO to be linked with upi line$")
 	public void po_to_be_linked_with_upi_line() throws Throwable {
@@ -35,4 +38,21 @@ public class UPIReceiptLineStepDefs {
 			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiId());
 		}
 	}
+	
+	public void container_to_be_updated_with_upi_line() throws Throwable {
+		upiReceiptLineDB.update_user_def_note2(context.getUpiId());
+		}
+	
+	@Given("^Container to be updated with upi line$")
+	public void i_fetch_supplier_id_UPC() throws Throwable {
+		context.setUPC(upiReceiptLineDB.fetchUPC(context.getUpiId()));
+		context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+		}
+	
+	@Given("^URN_to_be_updated_with_upi_line$")
+	public void urn_to_be_updated_with_upi_line() throws Throwable {
+		upiReceiptLineDB.updateContainerID(context.getUpiId());
+		}
+	
+	
 }

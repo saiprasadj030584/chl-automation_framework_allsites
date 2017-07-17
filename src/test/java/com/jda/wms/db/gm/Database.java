@@ -70,6 +70,9 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println(configuration.getStringProperty("db-username"));
+			System.out.println(configuration.getStringProperty("db-host"));
+			System.out.println(configuration.getStringProperty("db-password"));
 			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
 					configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
 			connection.setAutoCommit(true);
