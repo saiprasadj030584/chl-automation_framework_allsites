@@ -174,6 +174,6 @@ public class InventoryQueryStepDefs {
 			context.setSkuId((String) StockDetailList.get(0));
 			context.setPackConfig((String) StockDetailList.get(1));
 		}
-		jdaLoginPage.login();
+		//jdaLoginPage.login();
 	}
 }

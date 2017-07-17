@@ -1,8 +1,10 @@
 package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -38,4 +40,28 @@ public class DeliveryDB {
 				.executeQuery("update delivery set pallet_count='"+numLines+"' where asn_id='"+asnId+"'");
 		context.getConnection().commit();
 	}
-}
+
+		public  ArrayList getAsnidList() throws SQLException, ClassNotFoundException {
+		ArrayList<String> AsnidList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select asn_id from delivery where status ='"+"In Progress"+"'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			AsnidList.add((rs.getString(j)));
+		}
+		return AsnidList;
+	}
+
+		public boolean isRecordExistsForAsnId(String asnId, String status) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+	}
+

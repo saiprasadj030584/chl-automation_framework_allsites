@@ -172,4 +172,13 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
+	@When("^I navigate to Delivery Management page$")
+	public void i_navigate_to_Delivery_Management_page() throws Throwable {
+		jdaHomePage.navigatetoDeliveryManagementPage();
+	}
+	@When("^I navigate to Delivery page$")
+	public void i_navigate_to_Delivery_page() throws Throwable {
+		jdaHomePage.navigateToDeliveryPage();
+	}
+	}
 }

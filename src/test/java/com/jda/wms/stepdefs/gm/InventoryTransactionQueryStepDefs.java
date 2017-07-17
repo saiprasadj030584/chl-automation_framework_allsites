@@ -131,7 +131,6 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.getReasonCode();
-
 	}
 
 	@Then("^the condition should be updated$")
@@ -174,8 +173,9 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
+		String updatedQty= String.valueOf(context.getQtyOnHand());
 		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCode(context.getSkuId(), "Adjustment",
-				execDate, context.getReasonCode());
+				execDate,context.getReasonCode(),updatedQty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 

@@ -3,7 +3,7 @@ Feature: Stock adjustments
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @stock_adjustment @complete
+  @stock_adjustment
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -14,11 +14,12 @@ Feature: Stock adjustments
     Then the reason code should be updated
 
     Examples: 
-      | SiteId | Location | ReasonCode |
-      |   5649 | 1AA103   | DIRTY      |
-      |   5649 | 1AA103   | DMIT       |
-      |   5649 | 1AA103   | EXPD       |
-      |   5649 | 1AA103   | FOUND      |
-      |   5649 | 1AA103   | INCOMPLETE |
-      |   5649 | 1AA103   | LOST       |
-      |   5649 | 1AA103   | SAMPLES    |
+      | SiteId | Location | ReasonCode  |
+      #|   5649 | 1AA103   | DIRTY       |
+      #|   5649 | 1AA103   | DMIT        |
+      #|   5649 | 1AA103   | EXPD        |
+      #|   5649 | 1AA103   | FOUND       |
+      #|   5649 | 1AA103   | INCOMPLETE  |
+      #|   5649 | 1AA103   | LOST        |
+      #|   5649 | 1AA103   | SAMPLES     |
+      | 5649 | 1AA103 | SC |
