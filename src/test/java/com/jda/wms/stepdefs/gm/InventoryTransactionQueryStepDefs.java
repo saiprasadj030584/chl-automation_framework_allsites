@@ -10,6 +10,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
 
@@ -25,16 +26,20 @@ public class InventoryTransactionQueryStepDefs {
 	private InventoryTransactionDB inventoryTransactionDB;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private JDAFooter jDAFooter;
+	private JdaLoginPage jdaLoginPage;
+	private JDAHomeStepDefs jDAHomeStepDefs;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			JDAFooter jDAFooter) {
+			JDAFooter jDAFooter, JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.jDAFooter = jDAFooter;
+		this.jdaLoginPage = jdaLoginPage;
+		this.jDAHomeStepDefs = jDAHomeStepDefs;
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -42,7 +47,17 @@ public class InventoryTransactionQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+		String code = "Reciept";
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		// jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),

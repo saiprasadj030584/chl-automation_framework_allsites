@@ -55,7 +55,6 @@ public class PreAdviceLineStepDefs {
 		ArrayList skuFromUPI = new ArrayList();
 		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
 		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
-
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
 
@@ -66,6 +65,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
+		} else {
+			// Add SKU details to PO Map
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -110,6 +111,7 @@ public class PreAdviceLineStepDefs {
 		Assert.assertTrue(
 				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+
 	}
 
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
