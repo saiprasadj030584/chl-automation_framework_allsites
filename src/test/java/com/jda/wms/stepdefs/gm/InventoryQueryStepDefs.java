@@ -50,7 +50,7 @@ public class InventoryQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getPreAdviceId(),date), failureList);
 			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(),date), failureList);

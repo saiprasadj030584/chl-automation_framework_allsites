@@ -130,15 +130,24 @@ public class PreAdviceLineStepDefs {
 			context.setPOMap(POMap);
 
 			System.out.println("PO Map " + context.getPOMap());
+			ArrayList palletList = new ArrayList();
+			ArrayList<String> belCodeList = new ArrayList();
+			ArrayList newPalletList = new ArrayList();
 			for (int i = 1; i <= context.getNoOfLines(); i++){
-				context.setSkuId((String) skuFromPO.get(i - 1));
+				//context.setSkuId((String) skuFromPO.get(i - 1));
+				context.setSkuId((String) skuFromPO.get(i-1));
 				// To generate Pallet ID
-				context.setPalletID(generatePalletID(context.getPreAdviceId(),context.getSkuId()));
+				palletList.add(generatePalletID(context.getPreAdviceId(),context.getSkuId()));
 				// To generate Belcode
-				context.setBelCode(generateBelCode(context.getPreAdviceId(),context.getSkuId()));
-				// To generate newpallet
-				context.setnewpallet(generatenewpallet());
+				belCodeList.add(generateBelCode(context.getPreAdviceId(),context.getSkuId()));
+                // To generate newpallet
+				//context.setnewpallet(generatenewpallet());
+				newPalletList.add(generatenewpallet());
+				
 			}
+			context.setPalletIDList(palletList);
+			context.setBelCodeList(belCodeList);
+			context.setnewpallet(newPalletList);
 
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
@@ -157,6 +166,7 @@ public class PreAdviceLineStepDefs {
 				failureList.isEmpty());
 	}
 	}
+	
 	private String generatenewpallet() {
 		String newpallet = "RA" + Utilities.getFourDigitRandomNumber();
  		return newpallet;

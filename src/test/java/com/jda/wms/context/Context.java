@@ -99,7 +99,8 @@ public class Context {
 	private String serviceLevel;
 	private String supplierType;
 	private String generateBelCode;
-	private String enternewpallet;
+	private ArrayList<String> belCodeList;
+	private ArrayList<String> enternewpallet;
 
 	public String getPalletID() {
 		return palletID;
@@ -854,11 +855,19 @@ public class Context {
 		return generateBelCode;
 	}
 
-	public String enternewpallet() {
+	public ArrayList<String> enternewpallet() {
 		return enternewpallet;
 	}
 
-	public void setnewpallet(String enternewpallet) {
+	public void setnewpallet(ArrayList enternewpallet) {
 		this.enternewpallet = enternewpallet;
+	}
+
+	public ArrayList<String> getBelCodeList() {
+		return belCodeList;
+	}
+
+	public void setBelCodeList(ArrayList<String> belCodeList) {
+		this.belCodeList = belCodeList;
 	}
 }

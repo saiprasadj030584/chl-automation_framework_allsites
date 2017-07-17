@@ -309,6 +309,12 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
-
+	public String getPallet() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/PutawayForLock.png");
+		screen.click(mStatus.below(5));
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.below(1));
+		return App.getClipboard();
+	}
 	
 }

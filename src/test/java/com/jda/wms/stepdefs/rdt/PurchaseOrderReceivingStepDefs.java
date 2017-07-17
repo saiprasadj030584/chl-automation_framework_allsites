@@ -19,6 +19,7 @@ import com.jda.wms.stepdefs.gm.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceLineStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptHeaderStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptLineStepDefs;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -114,22 +115,15 @@ public class PurchaseOrderReceivingStepDefs {
 		i_receive_the_po_with_basic_and_pre_advice_receiving();
 		i_should_be_directed_to_pre_advice_entry_page();
 
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			// context.setPackConfig(poMap.get(context.getSkuId()).get("PACK
-			// CONFIG"));
-			// context.setRcvQtyDue(Integer.parseInt(poMap.get(context.getSkuId()).get("QTY
-			// DUE")));
-			i_enter_pallet_id();
-			// Scan a valid receiving combination
-			// Assert.assertTrue("", condition);
-			i_enter_belCode();
+			i_enter_pallet_id(context.getPalletIDList().get(i-1));
+			i_enter_belCode(context.getBelCodeList().get(i-1));
 			// the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
-			i_enter_the_newpallet();
+			i_enter_the_newpallet(context.enternewpallet().get(i-1));
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			//i_enter_urn_id();
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
 				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);
@@ -166,18 +160,24 @@ public class PurchaseOrderReceivingStepDefs {
 	// FSV receiving
 
 	@When("^I enter pallet id$")
-	public void i_enter_pallet_id() throws FindFailed, InterruptedException {
-		purchaseOrderReceivingPage.enterPalletId(context.getPalletID());
+	public void i_enter_pallet_id(String pallet) throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterPalletId(pallet);
 	}
 
 	@When("^I enter belCode$")
-	private void i_enter_belCode() throws InterruptedException {
-		purchaseOrderReceivingPage.enterbelCode(context.getbelCode());
+	private void i_enter_belCode(String belCode) throws InterruptedException {
+		purchaseOrderReceivingPage.enterbelCode(belCode);
 	}
 	
 	@When("^I enter the newpallet$")
-	private void i_enter_the_newpallet() throws InterruptedException {
-		purchaseOrderReceivingPage.enternewpallet(context.enternewpallet());
+	private void i_enter_the_newpallet(String newPallet) throws InterruptedException, FindFailed {
+	purchaseOrderReceivingPage.enternewpallet(newPallet);
+		/*String urn =null;
+		String[] rcvLockSplit = purchaseOrderReceivingPage.getPallet().split("_");
+		if (rcvLockSplit[0].contains("RACKING")){
+			urn = "RA"+Utilities.getFourDigitRandomNumber();
+		}
+		purchaseOrderReceivingPage.enterURNID(urn);*/
 	}
 
 	@When("^the tag and upc details should be displayed$")
@@ -264,5 +264,26 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue(
 				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
+	}
+	
+	@When("^I enter urn id for locked sku$")
+	public void i_enter_urn_id_for_locked_sku() throws FindFailed, InterruptedException {
+		String urn =null;
+		String[] rcvLockSplit = purchaseOrderReceivingPage.getPallet().split("_");
+		
+		if (rcvLockSplit[0].contains("QA")){
+			urn = "QA"+Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("FIREWALL")){
+			urn = "FWL"+Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("REWORK")){
+			urn = "RW"+Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("RACKING")){
+			urn = "RA"+Utilities.getFourDigitRandomNumber();
+		}
+		purchaseOrderReceivingPage.enterURNID(urn);
+		context.setPalletID(urn);
 	}
 }

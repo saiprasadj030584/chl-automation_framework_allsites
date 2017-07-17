@@ -50,12 +50,12 @@ public class InventoryTransactionQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("From Location for SKU "+context.getSkuId(), context.getLocation(), inventoryTransactionDB.getFromLocationPO(context.getSkuId(),context.getPreAdviceId(),date,"Receipt"), failureList);
 			verification.verifyData("To Location for SKU "+context.getSkuId(), context.getLocation(), inventoryTransactionDB.getToLocationPO(context.getSkuId(),context.getPreAdviceId(),date,"Receipt"), failureList);
 			verification.verifyData("Update Qty for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryTransactionDB.getUpdateQtyPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"), failureList);
-			verification.verifyData("Reference ID SKU "+context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getPalletID(), date, "Receipt"), failureList);
+			verification.verifyData("Reference ID SKU "+context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getPalletIDList().get(i-1), date, "Receipt"), failureList);
 		}
 		Assert.assertFalse("Inventory Transaction details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 	}

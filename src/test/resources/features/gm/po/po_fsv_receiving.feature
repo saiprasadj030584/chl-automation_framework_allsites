@@ -31,4 +31,4 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID | SiteID | Location |
       # | 25300100302 |   5649 | REC001   |
-      | 25300100312 |   5649 | REC001   |
+      | 25300100324 |   5649 | REC001   |
