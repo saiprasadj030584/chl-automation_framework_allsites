@@ -1,56 +1,18 @@
-@purchase_order
+@purchase_order_receiving_returns
 Feature: Purchase order receiving
   As a warehouse user
-  I want to receive the articles
-  So that I can putaway the purchase order
+  I want to receive the returned articles
 
-  @po_receive_hanging @po @complete
-  Scenario Outline: Receiving process in JDA WMS for Hanging type
-    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
-    And the PO should have sku, quantity due details
-    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
+  @po_receiving_returns_footwear @po @complete
+  Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" with perfect condition "<Condition>" and lockcode "<LockCode>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated with lock code "<LockCode>"
 
     Examples: 
-      | PreAdviceID  | PalletId             | ASN        | Location |
-      | PO2010002006 | PO050456000511235615 | PO00100505 | REC001   |
-      #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |
+      | PalletId                         | ASN         | Location | Condition | LockCode   |
+      | 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
+      | 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
+      | 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
+      | 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
       
-  @po_receive_boxed @po @complete
-  Scenario Outline: Receiving process in JDA WMS for Boxed type
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
-    And the PO should have sku, quantity due details
-    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
-
-    Examples: 
-      | PreAdviceID  | PalletId             | ASN        | Location |
-      #|   2010002111 | 00050456000511235601 | 0000100508 | REC001 |
-      #| PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
-      #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
-      #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
-      | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
-      
-      @rcv_boxed_po_qty_greaterthan_upi_qty @po @complete
-  Scenario Outline: Receiving when Pre advice line quantity is greater than the UPI line quantity
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
-    And the PO should have sku, quantity due details
-    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayxed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
-
-    Examples: 
-      | PreAdviceID  | PalletId             | ASN        | Location |
-      #|   2010002111 | 00050456000511235601 | 0000100508 | REC001 |
-      #| PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
-      #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
-      #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
-      | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |

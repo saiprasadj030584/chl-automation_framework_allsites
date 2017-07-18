@@ -64,7 +64,6 @@ public class JDAHomeStepDefs {
 		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
 		 * jdaHomePage.clickInventory();
 		 */
-		// jdaHomePage.navigateToInventoryQueryPage();
 		i_navigate_to_inventory_query_page();
 	}
 

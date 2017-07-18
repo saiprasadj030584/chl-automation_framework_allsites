@@ -122,24 +122,11 @@ public class DockSchedulerPage {
 		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
 		
 		Thread.sleep(3000);
-		//TODO Check the dock door where to book slot
-//		System.out.println(dockSchedulerPage.isDockDoorExists());
-//		while(!dockSchedulerPage.isDockDoorExists()){
-			
-		///searchfor mpty slot
-		//click next
-		//get time from db
-		
-		//Match mBookingID = screen.find("images/DockScheduler/Schedule/BookingDetails/In.png");
-		//screen.click(mBookingID.getCenter().offset(10, 0));
 		
 		
 	}
 	
 	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
-		System.out.println("final check");
-		System.out.println(context.getBookingTime()+"   .....    "+context.getUpdatedBookingTime());
-		System.out.println(context.getDockId()+"   .....    "+context.getUpdatedDockId());
 		if(context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9)))
 		{
 			if((context.getDockId().contains(context.getUpdatedDockId())))
@@ -164,7 +151,6 @@ public class DockSchedulerPage {
 		screen.rightClick();
 		screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
 		Thread.sleep(1000);
-		//screen.click("images/DockScheduler/Schedule/Trailer_Dropdown.png");
 		screen.type(context.getTrailerNo());
 		pressTab();
 		pressTab();
@@ -306,7 +292,6 @@ public class DockSchedulerPage {
 		Thread.sleep(2000);
 		screen.click(mASN.below(10));
 		Thread.sleep(2000);
-//		Match mStatuscode = screen.find("images/DockScheduler/Build/FromSiteID1.png");
 		screen.doubleClick(mASN.below(10));
 	}
 	public void selectPreAdviceId() throws FindFailed, InterruptedException {
@@ -315,7 +300,6 @@ public class DockSchedulerPage {
 		Thread.sleep(2000);
 		screen.click(mASN.below(10));
 		Thread.sleep(2000);
-//		Match mStatuscode = screen.find("images/DockScheduler/Build/FromSiteID1.png");
 		screen.doubleClick(mASN.below(10));
 	}
 	

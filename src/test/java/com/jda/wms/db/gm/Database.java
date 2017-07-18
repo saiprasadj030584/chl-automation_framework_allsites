@@ -70,9 +70,6 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println(configuration.getStringProperty("db-username"));
-			System.out.println(configuration.getStringProperty("db-host"));
-			System.out.println(configuration.getStringProperty("db-password"));
 			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
 					configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
 			connection.setAutoCommit(true);
@@ -80,7 +77,6 @@ public class Database {
 			connectionSucessful = true;
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
-			System.out.println("Database Connection Failure "+ex.getMessage());
 			logger.debug("Exception " + ex.getMessage());
 		}
 	}
@@ -439,9 +435,7 @@ public class Database {
 				seconds--;
 			}
 		} catch (SQLException ex) {
-			System.out.println("statement failed!!!" + ex.toString());
 		} catch (InterruptedException ex) {
-			System.out.println("Failed to wait!!");
 		}
 		return exists;
 	}
@@ -574,8 +568,6 @@ public class Database {
 	}
 
 	private void write(String string) {
-		// LogWriter.writeLogEntry(string);
-		System.out.println(string);
 	}
 
 	public boolean orderGroupIDIsNotBlank(String orderNumber) {

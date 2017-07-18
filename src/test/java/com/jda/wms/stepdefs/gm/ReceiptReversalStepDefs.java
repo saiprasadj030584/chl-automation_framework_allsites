@@ -74,11 +74,11 @@ public class ReceiptReversalStepDefs {
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
 		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
-		System.out.println(reference_Id);
-		System.out.println(context.getPreAdviceId());
 		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.check_RefeID_with_PreadviceID_lockcode(
 				reference_Id, context.getPreAdviceId(), lockcode, context.getLockCode()));
 	}
+	
+	
 	
 	
 	
@@ -94,15 +94,15 @@ public class ReceiptReversalStepDefs {
 		
 	}
 	
-	@When("^the inventory transaction should be updated with lock code imperfect$")
-	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect() throws Throwable {
+	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
-		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.check_Imperfect_Receipt_LockCode(lockCode));
+		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
+		
+		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.check_Receipt_LockCode(code,lockcode));
 		
 	}
 }

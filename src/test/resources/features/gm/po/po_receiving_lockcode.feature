@@ -1,12 +1,12 @@
 @purchase_order
-Feature: Purchase order receiving with LOck code
+Feature: Purchase order receiving with Lock code
   As a warehouse user
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @receive_boxed_lock_code @po @wip
-  Scenario Outline: Receiving process in JDA WMS for Hanging type with Lock Codes
-    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
+  @receive_boxed_lock_code @po @complete
+  Scenario Outline: Receiving process in JDA WMS for Hanging type with Lock Codes - Boxed
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     And I lock the product with lock code "<LockCode>"

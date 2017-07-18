@@ -22,14 +22,12 @@ public class StockCheckListGenerationPage {
 	public void selectGenerateByLocation() throws FindFailed, InterruptedException {
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png");
-		//jDAFooter.clickExecuteButton();
 	}
 
 	public void selectGenerateByInventory() throws FindFailed, InterruptedException {
 		Thread.sleep(1000);
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByInventory.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByInventory.png");
-		//jDAFooter.clickExecuteButton();
 	}
 
 	public void selectSiteId(String siteId) throws FindFailed, InterruptedException {

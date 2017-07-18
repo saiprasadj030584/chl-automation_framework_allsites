@@ -60,7 +60,7 @@ public class DockScehdulerBookingStepDefs {
 		Assert.assertTrue("Booking time not updated", dockSchedulerPage.isBookingTimeUpdated());
 		jdaHomePage.navigateToDockSchedulerPage();
 		if (dockSchedulerPage.isSiteExists()) {
-			dockSchedulerPage.enterSiteID("5649");
+			dockSchedulerPage.enterSiteID(context.getSiteId());
 		}
 		jdaFooter.clickNextButton();
 		dockSchedulerPage.enterBookingId(context.getBookingID());

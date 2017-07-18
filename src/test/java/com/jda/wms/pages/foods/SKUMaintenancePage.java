@@ -14,7 +14,6 @@ import com.jda.wms.config.Configuration;
 public class SKUMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	//private final JDAFooter jDAFooter;
 	private Configuration configuration;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 

@@ -29,7 +29,6 @@ public class ReceiptReversalPage {
 	
 	public void check_the_checkbox() throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/ReceiptReversal/Reversals/checkbox.png");
-		//screen.click(mtagId.getCenter().offset(70, 0));
 		screen.click(mtagId.getCenter());
 		
 	}

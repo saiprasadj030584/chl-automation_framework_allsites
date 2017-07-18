@@ -11,6 +11,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.stepdefs.gm.DeliveryStepDefs;
@@ -43,6 +44,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private InventoryQueryStepDefs inventoryQueryStepDefs;
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
+	private JDAFooter jdaFooter;
 	
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -50,7 +52,7 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs) {
+			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,JDAFooter jdaFooter) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -63,6 +65,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
+		this.jdaFooter=jdaFooter;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -77,8 +80,6 @@ public class PurchaseOrderReceivingStepDefs {
 		deliveryStepDefs.the_pallet_count_should_be_updated_as_in_delivery(1);
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
-		
-		
 		upiReceiptLineStepDefs.container_to_be_updated_with_upi_line();
 		upiReceiptLineStepDefs.urn_to_be_updated_with_upi_line();
 		
@@ -87,7 +88,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the pallet count should be updated in delivery, po to be linked with upi line$")
 	public void the_pallet_count_should_be_updated_in_delivery_po_to_be_linked_with_upi_line() throws Throwable {
 		deliveryStepDefs.the_pallet_count_should_be_updated_in_delivery();
-		// upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
 	}
 
@@ -147,12 +147,7 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_the_location();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			//if (context.getLockCode().equals(null)) {
 				i_enter_urn_id_damaged();
-			//}
-			// else{
-			// i_enter_urn_id_for_locked_sku();
-			// }
 
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
 				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
@@ -174,28 +169,6 @@ public class PurchaseOrderReceivingStepDefs {
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
 		i_enter_details_and_perform_blind_receive();
-
-//		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-//			context.setSkuId(poMap.get(i).get("SKU"));
-//			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
-//			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-//			i_enter_urn_id();
-//			the_tag_and_upc_details_should_be_displayed();
-//			i_enter_the_location();
-//			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
-//					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-//			//if (context.getLockCode().equals(null)) {
-//				i_enter_urn_id_damaged();
-			//}
-			// else{
-			// i_enter_urn_id_for_locked_sku();
-			// }
-
-//			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-//				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
-//				context.setFailureList(failureList);
-//			}
-//		}
 		hooks.logoutPutty();
 	}
 
@@ -218,24 +191,9 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			i_enter_urn_id();
 
-			// the_tag_and_upc_details_should_be_displayed();
-			// i_enter_the_location();
-			// Assert.assertTrue("Rcv Pallet Entry Page not
-			// displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			// if (context.getLockCode().equals(null)){
-			// i_enter_urn_id();
-			// }
-			// else{
-			// i_enter_urn_id_for_locked_sku();
-			// }
-			//
-			// if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-			// failureList.add("Receive not completed and Home page not
-			// displayed for URN "+context.getUpiId());
-			// context.setFailureList(failureList);
-			// }
+			
 		}
-		// hooks.logoutPutty();
+		 hooks.logoutPutty();
 	}
 
 	@Given("^Error message should be displayed on the page$")
@@ -284,21 +242,39 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.isBlindEntryDisplayed());
 	}
 	
+	@When("^I enter details and perform blind receive$")
 	public void i_enter_details_and_perform_blind_receive()  throws Throwable {
-	
-		Assert.assertTrue("Receive Blind Unsuccessfull.",
+		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC()+"01");
+		jdaFooter.pressTab();
+		if(context.getLockCode().equalsIgnoreCase("IMPERFECT"))
+		{
+			purchaseOrderReceivingPage.enterUPC2(context.getUPC()+"01");
+		}
+		else if(context.getLockCode().equalsIgnoreCase("SINGLESHOE"))
+		{
+			jdaFooter.pressTab();
+		}
+		purchaseOrderReceivingPage.enterQuantity("1");
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+		
+		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		Assert.assertTrue("Blind Receiving Unsuccessfull.",
 				purchaseOrderReceivingPage.isBlindReceivingDone());
 	}
 
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
-		System.out.println("CHECK1"+context.getUpiId());
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 	}
 
 	public void i_enter_urn_id_damaged() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID("SD" + Utilities.getFourDigitRandomNumber());
-		
 	}
 
 	@When("^I enter urn id for locked sku$")
@@ -390,26 +366,28 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 	
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
+	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\" with perfect condition \"([^\"]*)\" and lockcode \"([^\"]*)\"$")
 	public void the_UPI_and_ASN_should_be_received_at(String upiId,
-			String asnId, String location) throws Throwable {
+			String asnId, String location,String condition,String lockcode) throws Throwable {
 		context.setUpiId(upiId);
 		context.setlocationID(location);
 		context.setAsnId(asnId);
+		context.setPerfectCondition(condition);
+		context.setLockCode(lockcode);
 		
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 				upiId, asnId, "Released");
 
-		//preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
+		//TODO Supplier SKU Table
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		
 		i_blind_receive_all_skus_for_the_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
 	}
 
 

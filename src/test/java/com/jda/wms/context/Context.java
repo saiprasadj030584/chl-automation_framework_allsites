@@ -104,6 +104,15 @@ public class Context {
 	private String condition;
 	private String reasonCode;
 	private String owner;
+	private String perfectCondition;
+
+	public String getPerfectCondition() {
+		return perfectCondition;
+	}
+
+	public void setPerfectCondition(String perfectCondition) {
+		this.perfectCondition = perfectCondition;
+	}
 
 	public String getUpdatedBookingTime() {
 		return updatedBookingTime;

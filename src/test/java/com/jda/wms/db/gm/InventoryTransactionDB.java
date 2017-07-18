@@ -440,7 +440,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select LOCK_CODE from inventory_transaction where tag_id='" + upiId + "' and code = '" + code + "'");
+				"select LOCK_CODE from inventory_transaction where reference_id='" + upiId + "' and code = '" + code + "'");
 		rs.next();
 		return rs.getString(1);
 	}

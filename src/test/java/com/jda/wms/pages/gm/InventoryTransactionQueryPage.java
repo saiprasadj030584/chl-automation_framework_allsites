@@ -31,7 +31,6 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void selectCode(String code) throws FindFailed, InterruptedException {
-		//jdaFooter.clickQueryButton();
 		screen.type(code);
 		screen.type(Key.TAB);
 	}
@@ -243,8 +242,6 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterCode(String code) throws FindFailed, InterruptedException {
-//		Match mEnterCode = screen.find("images/InventoryTransactionQuery/Code.png");
-//		screen.click(mEnterCode.getCenter().offset(70, 0));
 		screen.type(code);
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
@@ -532,9 +529,9 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 	
-	public boolean check_Imperfect_Receipt_LockCode(String code)
+	public boolean check_Receipt_LockCode(String code,String lockcode)
 	{
-		if(code.equals("IMPERFECT"))
+		if(code.equals(lockcode))
 		{
 			return true;
 		}

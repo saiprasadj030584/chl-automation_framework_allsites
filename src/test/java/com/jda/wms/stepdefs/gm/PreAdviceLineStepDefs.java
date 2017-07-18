@@ -81,7 +81,6 @@ public class PreAdviceLineStepDefs {
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromPO.get(i - 1));
-				// lineItemsMap.put("SKU", context.getSkuId());
 				lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
@@ -90,8 +89,6 @@ public class PreAdviceLineStepDefs {
 			}
 			context.setUPIMap(UPIMap);
 
-			System.out.println("PO Map " + context.getPOMap());
-			System.out.println("UPI Map " + context.getUPIMap());
 
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;

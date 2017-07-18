@@ -69,35 +69,15 @@ public class PurchaseOrderReceivingPage {
 	
 	
 	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
-		Thread.sleep(10000);
-		screen.type(context.getUpiId());
-//		puttyFunctionsPage.pressTab();
-		screen.type(context.getUPC()+"01");
-		puttyFunctionsPage.pressTab();
-		screen.type(context.getUPC()+"01");
-//		puttyFunctionsPage.pressTab();
-		screen.type("1");
-		puttyFunctionsPage.pressTab();
-		screen.type("Y");
-		//puttyFunctionsPage.pressTab();
-		screen.type(context.getlocationID());
-		puttyFunctionsPage.pressTab();
-		screen.type(context.getSupplierID());
-		puttyFunctionsPage.pressEnter();
-		puttyFunctionsPage.pressEnter();
-		if ((screen.exists("images/Putty/Receiving/Imperfect_Y_error.png") != null)){
+		if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)){
 			puttyFunctionsPage.pressEnter();
 			puttyFunctionsPage.pressEnter();
-			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)){
-				
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null) || (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)||(screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null) ){
 				puttyFunctionsPage.pressEnter();
 			return true;
 				}
 		}
 		return false;
-		
-		
-		
 	}
 	
 	
@@ -106,10 +86,6 @@ public class PurchaseOrderReceivingPage {
 		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)){
 			return true;
 		}
-//		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
-//			puttyFunctionsPage.pressEnter();
-//			return true;
-//		}
 		else
 		return false;
 		
@@ -167,9 +143,26 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.NUM4);
 		Thread.sleep(2000);
 	}
+	public void enterQuantity(String count) throws InterruptedException {
+		screen.type(count);
+		
+		Thread.sleep(2000);
+	}
+	public void enterPerfectCondition(String condition) throws InterruptedException {
+		screen.type(condition);
+		
+		Thread.sleep(2000);
+	}
+	public void enterLocationInBlindReceive(String location) throws InterruptedException {
+		screen.type(location);
+		Thread.sleep(2000);
+	}
+	public void enterSupplierId(String id) throws InterruptedException {
+		screen.type(id);
+		Thread.sleep(2000);
+	}
 
 	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
-
 		if (Integer.parseInt(qtyToReceive) > 999) {
 			screen.type(qtyToReceive);
 			Thread.sleep(1000);
@@ -182,8 +175,6 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterCaseRatio(String caseRatio) throws InterruptedException {
 		screen.type(caseRatio);
-		// screen.type("x", Key.CTRL);
-		// screen.type(Key.NUM4);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB); // to navigate to Vintage
@@ -294,13 +285,21 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterURNID(String urn) throws FindFailed, InterruptedException {
-//		screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
 		screen.type(urn);
-		System.out.println(urn);
 		Thread.sleep(2000);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(4000);
 	}
+	
+	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
+		screen.type(upc);
+		
+		Thread.sleep(2000);
+	}
+	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
+		screen.type(upc);
+		
+		Thread.sleep(2000);
+	}
+
 
 	public boolean isLocationDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Location.png") != null)

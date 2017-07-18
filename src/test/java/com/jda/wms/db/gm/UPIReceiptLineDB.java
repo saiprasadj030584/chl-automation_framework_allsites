@@ -142,4 +142,17 @@ public class UPIReceiptLineDB {
 		
 		return rs.getString(1);
 	}
+	
+	public String getSkuId(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from upi_receipt_line where pallet_id ='" + upiId + "'");
+		rs.next();
+		
+		return rs.getString(1);
+	}
 }
+

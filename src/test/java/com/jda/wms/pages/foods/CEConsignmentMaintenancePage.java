@@ -51,9 +51,6 @@ public class CEConsignmentMaintenancePage {
 	}
 
 	public void enterConsignerExciseNumber(String ceWarehouseTax) throws FindFailed, InterruptedException {
-//		Match mceWarehouseTax = screen.find("images/CEConsignmentMaintenance/eadConsignerExciseNo.png");
-//		screen.click(mceWarehouseTax.getCenter().offset(90, 0));
-//		screen.wait("images/CEConsignmentMaintenance/eadConsignerExciseNo.png", timeoutInSec);
 		screen.type(ceWarehouseTax);
 		Thread.sleep(1000);
 	}

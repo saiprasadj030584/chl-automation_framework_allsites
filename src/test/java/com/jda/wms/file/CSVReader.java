@@ -83,7 +83,6 @@ public class CSVReader {
 		try {
 			File file = new File("csvData/" + createDay() + ".csv");
 			if (!file.exists()) {
-				// LogWriter.writeFile("01", "csvData/"+createDay()+".csv");
 			}
 			br = new BufferedReader(new FileReader("csvData/" + createDay() + ".csv"));
 			output = br.readLine();
@@ -94,7 +93,6 @@ public class CSVReader {
 			} else {
 				newTag = "" + (++asNumber);
 			}
-			// LogWriter.writeFile(newTag, "csvData/"+createDay()+".csv");
 			br.close();
 		} catch (Exception ex) {
 
@@ -191,7 +189,6 @@ public class CSVReader {
 			}
 			br.close();
 		} catch (Exception ex) {
-			System.out.println(ex.toString());
 		}
 
 		return output;
@@ -235,8 +232,6 @@ public class CSVReader {
 	}
 
 	private static void write(String string) {
-		// LogWriter.writeLogEntry(string);
-		System.out.println(string);
 	}
 
 	public static int getNumberOfPreAdviceHeaders() {

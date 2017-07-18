@@ -24,7 +24,6 @@ public class UPIReceiptHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		ResultSet rs = stmt
 				.executeQuery("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		rs.next();
@@ -37,7 +36,6 @@ public class UPIReceiptHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
 		ResultSet rs = stmt
 				.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
 		rs.next();
