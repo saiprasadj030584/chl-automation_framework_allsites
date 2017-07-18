@@ -43,7 +43,7 @@ public class ReceiptReversalStepDefs {
 		Thread.sleep(1000);
 		receiptReversalPage.enterTagId(context.getUpiId());
 		jDAFooter.clickNextButton();
-		receiptReversalPage.check_the_checkbox();
+		receiptReversalPage.checkTheCheckbox();
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
@@ -61,7 +61,7 @@ public class ReceiptReversalStepDefs {
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
 		Assert.assertTrue("Receipt Reversion failed",
-				receiptReversalPage.check_RefeID_with_PreadviceID(reference_Id, context.getPreAdviceId()));
+				receiptReversalPage.checkRefeIDwithPreadviceID(reference_Id, context.getPreAdviceId()));
 	}
 
 	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode$")
@@ -74,7 +74,7 @@ public class ReceiptReversalStepDefs {
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
 		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
-		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.check_RefeID_with_PreadviceID_lockcode(
+		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.checkRefeIDwithPreadviceIDlockcode(
 				reference_Id, context.getPreAdviceId(), lockcode, context.getLockCode()));
 	}
 	
@@ -90,7 +90,7 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickExecuteButton();
 		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
 		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.check_Damaged_Receipt_LockCode(lockCode));
+		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
 		
 	}
 	
@@ -102,7 +102,7 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickExecuteButton();
 		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
 		
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.check_Receipt_LockCode(code,lockcode));
+		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
 		
 	}
 }

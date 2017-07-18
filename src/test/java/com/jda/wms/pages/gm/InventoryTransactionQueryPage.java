@@ -519,7 +519,7 @@ public class InventoryTransactionQueryPage {
 			return true;
 	}
 	
-	public boolean check_Damaged_Receipt_LockCode(String code)
+	public boolean checkDamagedReceiptLockCode(String code)
 	{
 		if(code.equals("DMGD"))
 		{
@@ -529,7 +529,7 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 	
-	public boolean check_Receipt_LockCode(String code,String lockcode)
+	public boolean checkReceiptLockCode(String code,String lockcode)
 	{
 		if(code.equals(lockcode))
 		{

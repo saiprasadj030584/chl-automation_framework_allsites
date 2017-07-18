@@ -27,7 +27,7 @@ public class ReceiptReversalPage {
 		screen.type(tagId);
 	}
 	
-	public void check_the_checkbox() throws InterruptedException, FindFailed {
+	public void checkTheCheckbox() throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/ReceiptReversal/Reversals/checkbox.png");
 		screen.click(mtagId.getCenter());
 		
@@ -82,7 +82,7 @@ public class ReceiptReversalPage {
 
 	}
 	
-	public boolean check_RefeID_with_PreadviceID(String refId,String preAdviceId)
+	public boolean checkRefeIDwithPreadviceID(String refId,String preAdviceId)
 	{
 		if(refId.equals(preAdviceId))
 		{
@@ -91,7 +91,7 @@ public class ReceiptReversalPage {
 		else
 			return false;
 	}
-	public boolean check_RefeID_with_PreadviceID_lockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
+	public boolean checkRefeIDwithPreadviceIDlockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
 	{
 		if(refId.equals(preAdviceId))
 		{
