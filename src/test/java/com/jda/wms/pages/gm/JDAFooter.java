@@ -111,7 +111,7 @@ public class JDAFooter {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-	public void RightClick() throws InterruptedException {
+	public void rightClick() throws InterruptedException {
 		screen.rightClick();
 		Thread.sleep(2000);
 	}

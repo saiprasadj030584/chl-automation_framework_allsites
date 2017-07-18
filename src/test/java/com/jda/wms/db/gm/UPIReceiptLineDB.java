@@ -74,7 +74,7 @@ public class UPIReceiptLineDB {
 		context.getConnection().commit();
 	}
 	
-	public void update_user_def_note2(String upiId) throws SQLException, ClassNotFoundException {
+	public void updateuserdefnote2(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

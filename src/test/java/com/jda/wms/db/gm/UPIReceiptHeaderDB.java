@@ -52,7 +52,7 @@ public class UPIReceiptHeaderDB {
 		context.getConnection().commit();
 	}
 	
-	public void update_SSSC_URN(String upiId) throws SQLException, ClassNotFoundException {
+	public void updateSSSCURN(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

@@ -82,7 +82,7 @@ public class ReceiptReversalPage {
 
 	}
 	
-	public boolean checkRefeIDwithPreadviceID(String refId,String preAdviceId)
+	public boolean checkRefeIDWithPreadviceID(String refId,String preAdviceId)
 	{
 		if(refId.equals(preAdviceId))
 		{
@@ -91,7 +91,7 @@ public class ReceiptReversalPage {
 		else
 			return false;
 	}
-	public boolean checkRefeIDwithPreadviceIDlockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
+	public boolean checkRefeIDWithPreadviceIDlockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
 	{
 		if(refId.equals(preAdviceId))
 		{

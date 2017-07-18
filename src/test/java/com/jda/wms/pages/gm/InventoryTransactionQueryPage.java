@@ -11,12 +11,7 @@ import com.google.inject.Inject;
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	/*private final JDAFooter jdaFooter;
-
-	@Inject
-	public InventoryTransactionQueryPage(JDAFooter jdaFooter) {
-		this.jdaFooter = jdaFooter;
-	}*/
+	
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/TagIDs.png");
@@ -539,7 +534,7 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 
-	public String getcondition() throws FindFailed, InterruptedException {
+	public String getCondition() throws FindFailed, InterruptedException {
 		Match status = screen.find("images/InventoryTransactionQuery/General/Condition.png");
 		screen.click(status.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
@@ -547,7 +542,7 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public void enterskuId(String skuId) throws FindFailed {
+	public void enterSkuId(String skuId) throws FindFailed {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/skuid.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(skuId);

@@ -170,7 +170,7 @@ public class PreAdviceLineDB {
 		return rs.getString(1);
 	}
 
-	public void updatelockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
+	public void updateLockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
