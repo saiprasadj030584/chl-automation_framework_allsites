@@ -12,10 +12,6 @@ public class DeliveryPage {
 		screen.type(asnId);
 		Thread.sleep(1000);
 		jdaFooter.clickExecuteButton();
-		
 	}
-	
-		
-		
 	}
 

@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -19,7 +20,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class ReceivingMaintainanceStepDefs {
+public class DeliveryManagementStepDefs {
 	private Context context;
 	// private JdaLoginPage jdaLoginPage;
 	private JDAFooter jDAFooter;
@@ -29,7 +30,7 @@ public class ReceivingMaintainanceStepDefs {
 	private DeliveryPage deliveryPage;
 
 	@Inject
-	public ReceivingMaintainanceStepDefs(Context context, JDAFooter jDAFooterockAdjustmentsPage,
+	public DeliveryManagementStepDefs(Context context, JDAFooter jDAFooterockAdjustmentsPage,
 			 JdaHomePage jDAHomePage,DeliveryDB deliveryDB) {
 		this.context = context;
 		// this.jdaLoginPage = jdaLoginPage;
@@ -38,46 +39,36 @@ public class ReceivingMaintainanceStepDefs {
 		this.deliveryDB=deliveryDB;
 	}
 	
-	
-	@Given("^I have an ASN_ID with Delivery status as \"([^\"]*)\"$")
-	public void i_have_an_ASN_ID_with_Delivery_status_as(String arg1) throws Throwable {
-		ArrayList AsnidList = deliveryDB.getAsnidList();
-		if (!AsnidList.isEmpty()) {
-			context.setAsnId((String) AsnidList.get(0));
-		}
-		//jdaLoginPage.login();
-	}
-
-
-	@When("^I enter an ASN_ID as \"([^\"]*)\"$")
-	public void i_enter_an_ASN_ID_as(String arg1) throws Throwable {
+	@When("^I search ASN ID to update status")
+	public void i_search_ASN_ID_to_update_status() throws Throwable {
+		System.out.println("hey");
+		//deliveryManagementPage.clickNextButton();
 		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
+		System.out.println("ASN2=" + context.getAsnId());
 		deliveryManagementPage.enterAsnId(context.getAsnId());
-		Thread.sleep(2000);
-		
-
+		jDAFooter.clickNextButton();
+		deliveryManagementPage.clickDeliveryRecord();
+		deliveryManagementPage.isUpdateStatusExistAndClick();
 	}
 
-	@When("^I choose the Delivery status as \"([^\"]*)\"$")
-	public void i_choose_the_Delivery_status_as(String arg1) throws Throwable {
-		deliveryManagementPage.ChooseDeliveryStatus();
-		Thread.sleep(2000);
-
+	@When("^I choose the delivery status as \"([^\"]*)\"$")
+	public void i_choose_the_delivery_status_as(String status) throws Throwable {
+		deliveryManagementPage.chooseDeliveryStatus(status);
+		jDAFooter.pressTab();
+		jDAFooter.PressEnter();
+		deliveryManagementPage.isWarningPopUpExistsAndClickYes();
 	}
 
-	@When("^I enter an ASN_ID$")
-	public void i_enter_an_ASN_ID() throws Throwable {
+	@When("^I enter an ASN ID$")
+	public void I_enter_an_ASN_ID() throws Throwable {
 		deliveryPage.enterAsnId(context.getAsnId());
 	}
 
-	@Then("^the Delivery status should be update")
-	public void the_Delivery_status_should_be_update(String arg1) throws Throwable {
+	@Then("^the delivery status should be \"([^\"]*)\"$")
+	public void the_delivery_status_should_be_update(String status) throws Throwable {
 		boolean isRecordExists = deliveryDB.isRecordExistsForAsnId(context.getAsnId(),
-				context.getStatus());
-		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getStatus(),
+				status);
+		Assert.assertTrue("ITL does not exist for the ASN Closure " + status,
 				isRecordExists);
 	}
-
-
 }

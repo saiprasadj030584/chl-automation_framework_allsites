@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
 import com.google.inject.Inject;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 
 import cucumber.api.java.en.Given;
@@ -8,6 +9,7 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -172,13 +174,14 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
-	@When("^I navigate to Delivery Management page$")
-	public void i_navigate_to_Delivery_Management_page() throws Throwable {
+	@When("^I navigate to delivery management page$")
+	public void i_navigate_to_delivery_management_page() throws Throwable {
 		jdaHomePage.navigatetoDeliveryManagementPage();
+		
 	}
-	@When("^I navigate to Delivery page$")
-	public void i_navigate_to_Delivery_page() throws Throwable {
+	@When("^I navigate to delivery page$")
+	public void i_navigate_to_delivery_page() throws Throwable {
 		jdaHomePage.navigateToDeliveryPage();
 	}
 	}
-}
+

@@ -131,4 +131,6 @@ public class JDAFooter {
 	public void pressBackSpace() {
 		screen.type(Key.BACKSPACE);
 	}
+
+	
 }

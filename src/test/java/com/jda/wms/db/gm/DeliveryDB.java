@@ -30,6 +30,18 @@ public class DeliveryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getAsnId(String status) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("command=" +"Select asn_id from delivery where status ='"+status+"'");
+		ResultSet rs = stmt
+				.executeQuery("Select asn_id from delivery where status ='"+status+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public void updatePalletCount(String asnId, int numLines) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -59,8 +71,25 @@ public class DeliveryDB {
 	}
 
 		public boolean isRecordExistsForAsnId(String asnId, String status) {
-			// TODO Auto-generated method stub
-			return false;
+			boolean isRecordExists = false;
+			try {
+				if (context.getConnection() == null) {
+					database.connect();
+				}
+				
+				Statement stmt = context.getConnection().createStatement();
+				ResultSet rs = stmt
+						.executeQuery("select status from delivery where asn_id ='"+asnId+"'");
+				rs.next();
+				if (rs.getString(1).equals(status)) {
+					isRecordExists = true;
+				}
+			} catch (Exception e) {
+				if (e.getMessage().contains("Exhausted Resultset")) {
+					isRecordExists = false;
+				}
+			}
+			return isRecordExists;
 		}
 
 	}
