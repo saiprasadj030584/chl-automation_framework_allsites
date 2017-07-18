@@ -43,7 +43,7 @@ public class UPIReceiptLineStepDefs {
 	}
 	
 	public void container_to_be_updated_with_upi_line() throws Throwable {
-		upiReceiptLineDB.update_user_def_note2(context.getUpiId());
+		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
 		}
 	
 	@Given("^I fetch supplier id UPC$")

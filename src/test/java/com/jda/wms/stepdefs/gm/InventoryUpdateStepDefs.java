@@ -36,21 +36,21 @@ public class InventoryUpdateStepDefs {
 
 	@When("^I select the update type as \"([^\"]*)\"$")
 	public void i_select_the_update_type_as(String updateType) throws Throwable {
-		inventoryUpdatePage.enterselectType(updateType);
+		inventoryUpdatePage.enterSelectType(updateType);
 		jdafooter.clickNextButton();
 	}
 
 	@When("^I search the inventory for the tag$")
 	public void i_search_the_inventory_for_the_tag() throws Throwable {
-		inventoryUpdatePage.entertagID(context.getTagId());
-		inventoryUpdatePage.entersku(context.getSkuId());
+		inventoryUpdatePage.enterTagID(context.getTagId());
+		inventoryUpdatePage.enterSku(context.getSkuId());
 		inventoryUpdatePage.enterLocation(context.getLocation());
 		jdafooter.clickNextButton();
 	}
 
 	@Then("^the tag details should be displayed$")
 	public void the_tag_details_should_be_displayed() throws Throwable {
-		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDdisplayed());
+		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
 		jdafooter.clickNextButton();
 	}
 
@@ -89,7 +89,7 @@ public class InventoryUpdateStepDefs {
 
 	@Then("^I select the owner type as \"([^\"]*)\"$")
 	public void i_select_the_owner_type_as(String owner) throws Throwable {
-		inventoryUpdatePage.enterowner(owner);
+		inventoryUpdatePage.enterOwner(owner);
 		jdafooter.clickDoneButton();
 		context.setOwner(owner);
 	}

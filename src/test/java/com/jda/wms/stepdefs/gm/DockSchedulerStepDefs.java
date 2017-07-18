@@ -228,7 +228,7 @@ public class DockSchedulerStepDefs {
 
 	@When("^I delete the booking$")
 	public void i_delete_the_booking() throws Throwable {
-		jdaFooter.RightClick();
+		jdaFooter.rightClick();
 		dockSchedulerPage.selectDeleteBooking();
 		Assert.assertTrue("Delete confirmation message is not as expected",
 				dockSchedulerPage.isDeleteBookingConfirmationMessageDisplayed());

@@ -27,6 +27,6 @@ public void asn_to_be_linked_with_upi_header() throws Throwable {
 @Given("^SSSC_URN_to_be_updated_with_upi_header$")
 public void SSSC_URN_to_be_updated_with_upi_header() throws Throwable 
 {
-	upiReceiptHeaderDB.update_SSSC_URN(context.getUpiId());
+	upiReceiptHeaderDB.updateSSSCURN(context.getUpiId());
 }
 }

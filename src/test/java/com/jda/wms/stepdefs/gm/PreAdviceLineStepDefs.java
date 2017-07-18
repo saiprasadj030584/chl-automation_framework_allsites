@@ -114,7 +114,7 @@ public class PreAdviceLineStepDefs {
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		preAdviceLineMaintenancePage.selectlockcode(lockCode);
-		preAdviceLineDB.updatelockCode(context.getPreAdviceId(), lockCode);
+		preAdviceLineDB.updateLockCode(context.getPreAdviceId(), lockCode);
 	}
 
 	@Given("^I click on user defined tab$")

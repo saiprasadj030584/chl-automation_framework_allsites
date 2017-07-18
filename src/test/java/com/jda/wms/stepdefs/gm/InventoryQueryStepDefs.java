@@ -128,7 +128,7 @@ public class InventoryQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(context.getTagId());
 		inventoryQueryPage.enterSkuId(context.getSkuId());
-		inventoryQueryPage.enterlocation(context.getLocation());
+		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getOrigin();
 
