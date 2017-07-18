@@ -47,12 +47,11 @@ public class InventoryTransactionQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		String code = "Reciept";
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.selectCode("Receipt");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
 		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();

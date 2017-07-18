@@ -56,8 +56,8 @@ Feature: Purchase order receiving
       | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
 
   @po_validate_full_pallet
-  Scenario Outline: validate pallet build for full pallet
-    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
+  Scenario Outline: Validate pallet build for full pallet - Boxed type
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     When I receive all skus for the purchase order at location "<Location>" with full pallet "<FullPallet>"
@@ -67,6 +67,5 @@ Feature: Purchase order receiving
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location | FullPallet |
-     #  | PO2010002128| PO050456000511235636 | PO00100596 | REC001   | Y          |
-      #| PO2010002227 | PO050456000511235649| PO00100576| REC001   |  Y         |
-      | PO2010002339 | PO050456000511235653| PO00100189| REC001   |  N        |
+      | PO2010002227 | PO050456000511235649| PO00100576| REC001   |  N         |
+      | PO2010002003 | PO000504560005112357| PO00001005| REC001   |  Y      |

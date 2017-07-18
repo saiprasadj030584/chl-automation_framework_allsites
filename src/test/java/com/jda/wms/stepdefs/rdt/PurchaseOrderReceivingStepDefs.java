@@ -183,7 +183,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the location$")
 	public void i_enter_the_location() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterLocation(context.getLocation());
-		puttyFunctionsPage.pressEnter();
 	}
 
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
