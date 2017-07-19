@@ -6,13 +6,13 @@ Feature: Purchase order receiving
 
   @po_receive_hanging @po @wip
   Scenario Outline: Receiving process in JDA WMS for Hanging type
-    Given the PO "<PreAdviceID>" of type "Hanging" should be in 'Released" status at site id "<SiteID>"
-    And the PO line should have sku, quantity due details
+    Given the FSV PO "<PreAdviceID>" of type "Hanging" should be in "Released" status at site id "<SiteID>"
+    And the FSV PO line should have sku, quantity due details
     And verify PO should not linked with UPI line "<PreAdviceID>"
-    When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
+    When I receive all skus for the FSV purchase order at location "<Location>"
+    Then the inventory should be displayed for all tags PO received
+    And the goods receipt should be generated for PO received stock in inventory transaction
+    Then the FSV po status should be displayed as "Complete"
 
     Examples: 
       | PreAdviceID | SiteID | Location |
