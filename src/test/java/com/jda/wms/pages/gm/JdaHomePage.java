@@ -563,7 +563,7 @@ public class JdaHomePage extends PageObject {
 	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Delivery Maintainance");
+		screen.type("Delivery");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

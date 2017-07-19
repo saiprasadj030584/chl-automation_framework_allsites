@@ -4,10 +4,17 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+
 public class DeliveryManagementPage {
 	private JDAFooter jDAFooter;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	
+	@Inject
+	public DeliveryManagementPage(JDAFooter jDAFooter) {
+		this.jDAFooter = jDAFooter;
+	}
 	
 	public void enterAsnId(String asnId) throws InterruptedException, FindFailed {
 		System.out.println("ASN1="+asnId);
@@ -46,16 +53,13 @@ public class DeliveryManagementPage {
 	public void isWarningPopUpExistsAndClickYes() throws FindFailed, InterruptedException {
 		if (screen.exists("images/DeliveryManagement/WarningPopUp.png") != null){
 			jDAFooter.PressEnter();
-			Thread.sleep(2000);
 		}
 	}
 
-	public void clickNextButton() throws FindFailed, InterruptedException {
-		//Match mStatus = screen.find("images/DeliveryManagement/next_button.png");
-		//screen.click(mStatus.getCenter().offset(70, 0));
-		//Thread.sleep(1000);
-		screen.wait("images/DeliveryManagement/next_button.png", timeoutInSec);
-		jDAFooter.PressEnter();
-		Thread.sleep(5000);
+	public void clickStart() throws InterruptedException, FindFailed {
+		screen.wait("images/DeliveryManagement/Start.png", timeoutInSec);	
+		screen.click("images/DeliveryManagement/Start.png");
+		Thread.sleep(2000);
 	}
+
 }

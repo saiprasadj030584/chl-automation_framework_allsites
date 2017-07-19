@@ -3,7 +3,7 @@ Feature: Document Closure of ASN
   As a warehouse user
   I want to perform document closure of ASN in Delivery management
 
-  @manual_document_closure
+  @manual_document_closure @complete
   Scenario: Manual Document Closure of ASN
     Given I have an ASN Id with delivery status as "In Progress"
     When I navigate to delivery management page

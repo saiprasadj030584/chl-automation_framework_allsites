@@ -7,11 +7,11 @@ import org.sikuli.script.Screen;
 public class DeliveryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private JDAFooter jdaFooter;
+	
 	public void enterAsnId(String asnId) throws FindFailed, InterruptedException {
 		screen.type(asnId);
 		Thread.sleep(1000);
-		jdaFooter.clickExecuteButton();
 	}
+	
 	}
 
