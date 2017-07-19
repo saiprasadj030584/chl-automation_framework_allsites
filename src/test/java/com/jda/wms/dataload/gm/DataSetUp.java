@@ -25,7 +25,6 @@ public class DataSetUp {
 		deleteDataFromDB.deletePreAdviceHeader(context.getPreAdviceId());
 		insertDataIntoDB.insertPreAdviceHeader(context.getPreAdviceId());
 		Thread.sleep(3000);
-//		insertDataIntoDB.insertPreAdviceLine(preAdviceId, productCategory);
 		Thread.sleep(3000);
 	}
 	

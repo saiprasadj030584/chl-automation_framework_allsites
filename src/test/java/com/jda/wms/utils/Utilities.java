@@ -1,5 +1,4 @@
 package com.jda.wms.utils;
-
 import java.util.Random;
 
 public class Utilities {
@@ -30,5 +29,10 @@ public class Utilities {
 	public static String getFourDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000) + 1000);
+	}
+
+	public static String getTwoDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(90) + 10);
 	}
 }

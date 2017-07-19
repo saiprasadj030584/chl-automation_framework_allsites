@@ -20,7 +20,7 @@ public class PreAdviceHeaderDB {
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
 			throws ClassNotFoundException, SQLException {
-//		ResultSet resultSet = null;
+
 		HashMap<String, String> preAdviceHeaderMap = new HashMap<String, String>();
 
 		if (context.getConnection() == null) {
@@ -48,7 +48,6 @@ public class PreAdviceHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");

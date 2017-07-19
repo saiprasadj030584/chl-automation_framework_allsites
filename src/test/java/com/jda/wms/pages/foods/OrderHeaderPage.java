@@ -85,7 +85,6 @@ public class OrderHeaderPage extends PageObject {
 			screen.wait("images/OrderlineSaveYes.png", timeoutInSec);
 			screen.click("images/OrderlineSaveYes.png");
 		} else {
-			System.out.println("POC Failure");
 			Assert.fail();
 		}
 

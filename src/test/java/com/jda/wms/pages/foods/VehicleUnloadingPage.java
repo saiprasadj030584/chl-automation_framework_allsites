@@ -8,16 +8,20 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 public class VehicleUnloadingPage {
 
-	private final JdaHomePage jdaHomePage;
-	private final JDAFooter jdafooter;
+	/*private final JdaHomePage jdaHomePage;
+	private final JDAFooter jdafooter;*/
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public VehicleUnloadingPage(JdaHomePage jdaHomePage, JDAFooter jdafooter) {
+	public VehicleUnloadingPage()
+	{
+		
+	}
+	/*public VehicleUnloadingPage(JdaHomePage jdaHomePage, JDAFooter jdafooter) {
 		this.jdaHomePage = jdaHomePage;
 		this.jdafooter = jdafooter;
-	}
+	}*/
 
 	public void enterSiteId() throws FindFailed, InterruptedException {
 		screen.type("9771");
