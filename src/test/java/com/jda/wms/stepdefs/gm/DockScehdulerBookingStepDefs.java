@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.sikuli.script.Screen;
-import org.sikuli.script.Key;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -43,6 +42,7 @@ public class DockScehdulerBookingStepDefs {
 	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
+
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
