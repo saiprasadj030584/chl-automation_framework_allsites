@@ -68,10 +68,9 @@ public class InventoryQueryStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
 					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
-			// verification.verifyData("Qty on Hand for SKU
-			// "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-			// inventoryDB.getQtyOnHand(context.getSkuId(),
-			// context.getLocation(), context.getUpiId(),date), failureList);
+			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					failureList);
 		}
 		Assert.assertTrue(
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -129,7 +128,7 @@ public class InventoryQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryQueryPage.enterTagId(context.getTagId());
 		inventoryQueryPage.enterSkuId(context.getSkuId());
-		inventoryQueryPage.enterlocation(context.getLocation());
+		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getOrigin();
 

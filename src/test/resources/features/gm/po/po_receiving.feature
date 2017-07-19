@@ -1,4 +1,4 @@
-@purchase_order
+@purchase_order_receiving
 Feature: Purchase order receiving
   As a warehouse user
   I want to receive the articles
@@ -18,7 +18,10 @@ Feature: Purchase order receiving
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002006 | PO050456000511235615 | PO00100505 | REC001   |
 
+<<<<<<< HEAD
   #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |
+=======
+>>>>>>> 75ae8bba5647f0e6f37d97cb02aee1ee21700cb1
   @po_receive_boxed @po @complete
   Scenario Outline: Receiving process in JDA WMS for Boxed type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
@@ -55,6 +58,7 @@ Feature: Purchase order receiving
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
 
+<<<<<<< HEAD
   @po_validate_full_pallet
   Scenario Outline: Validate pallet build for full pallet - Boxed type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
@@ -69,3 +73,8 @@ Feature: Purchase order receiving
       | PreAdviceID  | PalletId             | ASN        | Location | FullPallet |
       | PO2010002227 | PO050456000511235649| PO00100576| REC001   |  N         |
       | PO2010002003 | PO000504560005112357| PO00001005| REC001   |  Y      |
+=======
+
+  
+
+>>>>>>> 75ae8bba5647f0e6f37d97cb02aee1ee21700cb1

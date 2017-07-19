@@ -56,8 +56,6 @@ public class PreAdviceLineMaintenancePage {
 		screen.type("c", Key.CTRL);
 		String temp = App.getClipboard();
 		App.setClipboard("");
-		System.out.println("Current Clipboard value : " + App.getClipboard());
-		System.out.println("Temp String value : " + temp);
 		return temp;
 	}
 

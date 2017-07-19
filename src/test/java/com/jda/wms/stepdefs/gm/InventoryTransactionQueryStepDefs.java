@@ -53,7 +53,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Receipt");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.clickExecuteButton();
 
@@ -138,7 +138,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_choose_the_code_as_and_search_the_sku_id(String code) throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
-		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterUpdateQuantity(String.valueOf(context.getQtyOnHand()));
 		inventoryTransactionQueryPage.enterTransactionDate();
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -170,7 +170,7 @@ public class InventoryTransactionQueryStepDefs {
 
 		}
 		Assert.assertEquals("updated inventory condition are not as expected", conditionToVerify,
-				inventoryTransactionQueryPage.getcondition());
+				inventoryTransactionQueryPage.getCondition());
 	}
 
 	@Then("^the pallet should be updated$")

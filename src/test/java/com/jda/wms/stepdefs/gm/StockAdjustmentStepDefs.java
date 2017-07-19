@@ -15,7 +15,6 @@ import cucumber.api.java.en.When;
 
 public class StockAdjustmentStepDefs {
 	private Context context;
-	// private JdaLoginPage jdaLoginPage;
 	private JDAFooter jDAFooter;
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private PopUpPage popUpPage;
@@ -27,7 +26,6 @@ public class StockAdjustmentStepDefs {
 	public StockAdjustmentStepDefs(Context context, JDAFooter jDAFooter, StockAdjustmentsPage stockAdjustmentsPage,
 			PopUpPage popUpPage, JdaHomePage jDAHomePage) {
 		this.context = context;
-		// this.jdaLoginPage = jdaLoginPage;
 		this.jDAFooter = jDAFooter;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.popUpPage = popUpPage;

@@ -10,4 +10,5 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { " @po_validate_full_pallet " })
 
 public class AllTest {
+
 }

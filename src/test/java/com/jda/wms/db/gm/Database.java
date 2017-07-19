@@ -435,9 +435,7 @@ public class Database {
 				seconds--;
 			}
 		} catch (SQLException ex) {
-			System.out.println("statement failed!!!" + ex.toString());
 		} catch (InterruptedException ex) {
-			System.out.println("Failed to wait!!");
 		}
 		return exists;
 	}
@@ -570,8 +568,6 @@ public class Database {
 	}
 
 	private void write(String string) {
-		// LogWriter.writeLogEntry(string);
-		System.out.println(string);
 	}
 
 	public boolean orderGroupIDIsNotBlank(String orderNumber) {
