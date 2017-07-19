@@ -97,6 +97,7 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
+	private boolean poQtyMoreThanUPIQty=false;
 
 	public String getPalletID() {
 		return palletID;
@@ -825,5 +826,13 @@ public class Context {
 
 	public void setServiceLevel(String serviceLevel) {
 		this.serviceLevel = serviceLevel;
+	}
+
+	public boolean isPoQtyMoreThanUPIQty() {
+		return poQtyMoreThanUPIQty;
+	}
+
+	public void setPoQtyMoreThanUPIQty(boolean poQtyMoreThanUPIQty) {
+		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
 	}
 }

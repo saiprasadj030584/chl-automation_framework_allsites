@@ -86,11 +86,12 @@ public class PurchaseOrderReceivingStepDefs {
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
 				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-				if (context.getLockCode().equals(null)){
-					i_enter_urn_id();
-				}
-				else{
+				if (null!=context.getLockCode()||(context.isPoQtyMoreThanUPIQty()==true)){
 					i_enter_urn_id_for_locked_sku();
+					
+				}
+				else {
+					i_enter_urn_id();
 				}
 				
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {

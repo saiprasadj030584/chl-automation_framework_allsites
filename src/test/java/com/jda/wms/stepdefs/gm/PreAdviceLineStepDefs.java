@@ -31,6 +31,8 @@ public class PreAdviceLineStepDefs {
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private PreAdviceLineMaintenancePage preAdviceLineMaintenancePage;
 	private JDAFooter jdaFooter;
+	Map<Integer, Map<String, String>> poMap;
+	Map<String, Map<String, String>> upiMap;
 	
 	@Inject
 	public PreAdviceLineStepDefs(Context context,Verification verification,PreAdviceLineDB  preAdviceLineDB,UPIReceiptLineDB  upiReceiptLineDB,SkuDB skuDB,JDALoginStepDefs jdaLoginStepDefs,JDAHomeStepDefs jdaHomeStepDefs,PreAdviceLineMaintenancePage preAdviceLineMaintenancePage,JDAFooter jdaFooter) {
@@ -81,7 +83,6 @@ public class PreAdviceLineStepDefs {
 			for (int i=1;i<=context.getNoOfLines();i++){
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String)skuFromPO.get(i-1));
-//				lineItemsMap.put("SKU", context.getSkuId());
 				lineItemsMap.put("QTY DUE",upiReceiptLineDB.getQtyDue(context.getUpiId(),context.getSkuId()));
 				lineItemsMap.put("LINE ID",upiReceiptLineDB.getLineId(context.getUpiId(),context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG",upiReceiptLineDB.getPackConfig(context.getUpiId(),context.getSkuId()));
@@ -90,10 +91,8 @@ public class PreAdviceLineStepDefs {
 			}
 			context.setUPIMap(UPIMap);
 			
-			System.out.println("PO Map "+context.getPOMap());
-			System.out.println("UPI Map "+context.getUPIMap());
-			
 			//To Validate Modularity,New Product Check for SKU
+			for (int i=1;i<=context.getNoOfLines();i++){
 			String type = null;
 			switch (context.getSKUType()){
 			case "Boxed": type="B";break;
@@ -101,10 +100,31 @@ public class PreAdviceLineStepDefs {
 			}
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+			}
 		}
-		
 		Assert.assertTrue("PO line item attributes not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 
+	}
+	
+	
+	@Given("^the PO should have sku, quantity due details with po quantity greater than upi quantity$")
+	public void the_PO_should_have_sku_quantity_due_details_with_po_quantity_greater_than_upi_quantity() throws Throwable {
+		the_PO_should_have_sku_quantity_due_details();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		ArrayList failureList = new ArrayList();
+		System.out.println(poMap);
+		System.out.println(upiMap);
+		
+		for (int i=1;i<=context.getNoOfLines();i++){
+			String sku = poMap.get(i).get("SKU");
+			if (Integer.parseInt(poMap.get(i).get("QTY DUE"))<Integer.parseInt(upiMap.get(sku).get("QTY DUE"))){
+				failureList.add("Pre Advice Qty is less than UPI Qty for SKU "+poMap.get(i).get("SKU"));
+			}
+		}
+		
+		Assert.assertTrue("Pre advcie and UPI quantity not displayed as expected [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		context.setPoQtyMoreThanUPIQty(true);
 	}
 	
 	@Given("^I click on user defined tab$")
@@ -121,7 +141,7 @@ public class PreAdviceLineStepDefs {
 	@Given("^I lock the product with lock code \"([^\"]*)\"$")
 	public void i_lock_the_product_with_lock_code(String lockCode) throws Throwable {
 		context.setLockCode(lockCode);
-//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());

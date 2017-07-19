@@ -384,7 +384,6 @@ public String getLocation(String tagId) throws ClassNotFoundException, SQLExcept
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-//		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='"+upiId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
 		rs.next();
 		return rs.getString(1);
