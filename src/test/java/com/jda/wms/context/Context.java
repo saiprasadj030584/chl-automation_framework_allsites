@@ -66,7 +66,7 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private Connection connection = null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -97,9 +97,54 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
+	private String bookingTime;
+	private String updatedBookingTime;
+	private String dockId;
+	private String updatedDockId;
 	private String condition;
 	private String reasonCode;
 	private String owner;
+	private String perfectCondition;
+
+	public String getPerfectCondition() {
+		return perfectCondition;
+	}
+
+	public void setPerfectCondition(String perfectCondition) {
+		this.perfectCondition = perfectCondition;
+	}
+
+	public String getUpdatedBookingTime() {
+		return updatedBookingTime;
+	}
+
+	public void setUpdatedBookingTime(String updatedBookingTime) {
+		this.updatedBookingTime = updatedBookingTime;
+	}
+
+	public String getDockId() {
+		return dockId;
+	}
+
+	public void setDockId(String dockId) {
+		this.dockId = dockId;
+	}
+
+	public String getUpdatedDockId() {
+		return updatedDockId;
+	}
+
+	public void setUpdatedDockId(String updatedDockId) {
+		this.updatedDockId = updatedDockId;
+	}
+
+	public String getBookingTime() {
+		return bookingTime;
+	}
+
+	public void setBookingTime(String bookingTime) {
+		this.bookingTime = bookingTime;
+	}
 
 	public String getPalletID() {
 		return palletID;

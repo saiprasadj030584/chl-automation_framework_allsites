@@ -308,7 +308,7 @@ public class InventoryQueryPage {
 
 	}
 
-	public void enterlocation(String locationID) throws FindFailed {
+	public void enterLocation(String locationID) throws FindFailed {
 		Match mtagId = screen.find("images/InventoryQuery/General/Location.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(locationID);

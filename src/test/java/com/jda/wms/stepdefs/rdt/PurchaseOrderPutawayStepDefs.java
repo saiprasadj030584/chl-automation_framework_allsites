@@ -127,7 +127,6 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^the error message should be displayed as invalid quantity exception$")
 	public void the_error_message_should_be_displayed_as_invalid_quantity_exception() throws InterruptedException {
-		System.out.println("quantity check1");
 		Assert.assertTrue("Error message:Invalid Quantity Exception not displayed as expected",
 				purchaseOrderPutawayPage.isQuantityErrorDisplayed());
 		jdaFooter.PressEnter();
