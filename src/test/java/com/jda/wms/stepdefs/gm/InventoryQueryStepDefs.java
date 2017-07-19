@@ -45,8 +45,8 @@ public class InventoryQueryStepDefs {
 	
 	//FSV PO receiving
 	
-	@Then("^the inventory should be displayed for all tags PO received$")
-	public void the_inventory_should_be_displayed_for_all_tags_PO_received() throws Throwable {
+	@Then("^the inventory should be displayed for all tags received for FSV PO$")
+	public void the_inventory_should_be_displayed_for_all_tags_received_for_fsv_po() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();

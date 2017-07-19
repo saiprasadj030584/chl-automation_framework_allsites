@@ -45,8 +45,8 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 	}
 	
-	@Then("^the goods receipt should be generated for PO received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_PO_received_stock_in_inventory_transaction() throws Throwable {
+	@Then("^the goods receipt should be generated for FSV PO received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_fsv_PO_received_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();

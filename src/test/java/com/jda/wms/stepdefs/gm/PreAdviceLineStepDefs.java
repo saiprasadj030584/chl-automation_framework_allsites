@@ -130,21 +130,20 @@ public class PreAdviceLineStepDefs {
 			context.setPOMap(POMap);
 
 			System.out.println("PO Map " + context.getPOMap());
+			
 			ArrayList palletList = new ArrayList();
 			ArrayList<String> belCodeList = new ArrayList();
 			ArrayList newPalletList = new ArrayList();
 			for (int i = 1; i <= context.getNoOfLines(); i++){
-				//context.setSkuId((String) skuFromPO.get(i - 1));
 				context.setSkuId((String) skuFromPO.get(i-1));
 				// To generate Pallet ID
 				palletList.add(generatePalletID(context.getPreAdviceId(),context.getSkuId()));
 				// To generate Belcode
 				belCodeList.add(generateBelCode(context.getPreAdviceId(),context.getSkuId()));
                 // To generate newpallet
-				//context.setnewpallet(generatenewpallet());
 				newPalletList.add(generatenewpallet());
-				
 			}
+			
 			context.setPalletIDList(palletList);
 			context.setBelCodeList(belCodeList);
 			context.setnewpallet(newPalletList);
@@ -177,88 +176,83 @@ public class PreAdviceLineStepDefs {
 		// First 4 digits - Site id
 		String siteid = preAdviceHeaderDB.getSiteID(preAdviceId);
 		// Hardcoded 3 digit
-		String barcode = "950";
+		String barcode = Utilities.getThreeDigitRandomNumber();
 		// Random generated 6 digit
-		String URN = Utilities.getFiveDigitRandomNumber();
+		String URN = Utilities.getSixDigitRandomNumber();
 		//Supplier id : 5 digit
-		String[] suppliermanipulate = suppliermanipulate(preAdviceId);
+		String supplier = suppliermanipulate(preAdviceId);
 		// Dept id : 3 digit
-		String[] deptmanipulate = deptmanipulate(preAdviceId);
+		String dept = deptmanipulate(preAdviceId);
 		// Sku quantity  : 3 digit
-		String skuqtymanipulate = skuqtymanipulate(preAdviceId,skuid);
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId,skuid);
 		// Advice - 6 digit
 		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
 		// checkbit - 2 digit
 		String checkbit = "10";
-		palletID = siteid + barcode + URN + '0'+ suppliermanipulate[1] + '0' + deptmanipulate[1] + advice
+		palletID = siteid + barcode + URN + supplier + '0' + dept + advice
 				+ skuqtymanipulate + checkbit;
 		System.out.println(palletID);
 		return palletID;
 	}
 
 	// Get supplierid - 4 digit and manipulated to get only integer
-	public String[] suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
+	public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
 		String[] supplierSplit = supplier.split("M");
-		for (int i = 0; i < supplierSplit.length; i++) {
-			System.out.println(supplierSplit[i]);
-		}
-		return supplierSplit;
+//		for (int i = 0; i < supplierSplit.length; i++) {
+//			System.out.println(supplierSplit[i]);
+//		}
+		return supplierSplit[1];
 	}
 
 	// Get dept - 3 digit
-	public String[] deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
+	public String deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String dept = preAdviceHeaderDB.getUserDefType2(preAdviceId);
 		String[] deptSplit = dept.split("T");
-		for (int i = 0; i < deptSplit.length; i++) {
-			System.out.println(deptSplit[i]);
-		}
-		return deptSplit;
+//		for (int i = 0; i < deptSplit.length; i++) {
+//			System.out.println(deptSplit[i]);
+//		}
+		return deptSplit[1];
 	}
 
-	/*// Sum of quantity from the line - 3 digit
-	public String qtymanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
+	public String qtyManipulateForUpi(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String sumqty = preAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
 		String sumLength = String.valueOf(sumqty.length());
 		if (sumLength.equals("1")) {
 			sumqty = "00" + sumqty;
-			// System.out.println(sumqty);
 		} else if (sumLength.equals("2")) {
 			sumqty = "0" + sumqty;
-			// System.out.println(sumqty);
 		}
 		return sumqty;
-	}*/
+	}
 
 	private String generateBelCode(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
 		String belCode = null;
 		// Checkdigit : 2 any random number
 		String checkdigit = Utilities.getTwoDigitRandomNumber();
 		// Supplier code : 5 digit
-		String[] suppliermanipulate = suppliermanipulate(preAdviceId);
+		String supplier = suppliermanipulate(preAdviceId);
 		// UPC : 8 digit
 		String upc = preAdviceLineDB.getupc(context.getSkuId());
 		//Quantity : 3 digit
-		String skuqtymanipulate= skuqtymanipulate(preAdviceId,skuid);
+		String skuqtymanipulate= skuQtyManipulate(preAdviceId,skuid);
 		// Checkbit hardcoded : 2 digit
 		String checkbit = "10";
-		belCode = checkdigit + suppliermanipulate[1]+ upc + skuqtymanipulate + checkbit;
+		belCode = checkdigit + supplier+ upc + skuqtymanipulate + checkbit;
         System.out.println(belCode);
 		return belCode;
 	}
 	// individual sku qty assigned to pre advice id : 3 digit
 
-	public String skuqtymanipulate(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
-		String qtydue = preAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
-		String sumLength = String.valueOf(qtydue.length());
-		if (sumLength.equals("1")) {
-			qtydue = "00" + qtydue;
-			// System.out.println(sumqty);
-		} else if (sumLength.equals("2")) {
-			qtydue = "0" + qtydue;
-			// System.out.println(sumqty);
+	public String skuQtyManipulate(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
+		String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
+		int sumLength = qtyDue.length();
+		if (sumLength==1) {
+			qtyDue = "00" + qtyDue;
+		} else if (sumLength==2) {
+			qtyDue = "0" + qtyDue;
 		}
-		return qtydue;
+		return qtyDue;
 	}
 
 }

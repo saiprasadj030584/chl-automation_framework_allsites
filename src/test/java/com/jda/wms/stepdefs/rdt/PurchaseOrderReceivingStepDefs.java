@@ -108,7 +108,6 @@ public class PurchaseOrderReceivingStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		poMap = context.getPOMap();
-		// upiMap = context.getUPIMap();
 
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
@@ -119,7 +118,6 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i-1));
 			i_enter_belCode(context.getBelCodeList().get(i-1));
-			// the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
 			i_enter_the_newpallet(context.enternewpallet().get(i-1));
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",

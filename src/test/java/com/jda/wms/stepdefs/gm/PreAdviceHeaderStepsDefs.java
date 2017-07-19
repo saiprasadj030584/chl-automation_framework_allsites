@@ -101,17 +101,7 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Given("^the FSV po status should be displayed as \"([^\"]*)\"$")
 	public void the_FSV_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
-		ArrayList failureList = new ArrayList();
-
-		verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()),
-				failureList);
-		//verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
-		//verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
-
-		Assert.assertTrue(
-				"PO status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
-
+		Assert.assertEquals("PO status not displayed as expected", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}
 
 	// FSV Receiving
@@ -127,11 +117,11 @@ public class PreAdviceHeaderStepsDefs {
 		logger.debug("Type: " + type);
 		logger.debug("SUPPLIER TYPE: " + context.getsupplierType());
 		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
 		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
 		verification.verifyData("FSV/Direct PO", context.getsupplierType(),preAdviceHeaderDB.getUserDefType5(preAdviceId), failureList);
 		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
+		
 		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 		context.setNoOfLines(numLines);
 		logger.debug("Num of Lines: " + numLines);
@@ -140,8 +130,8 @@ public class PreAdviceHeaderStepsDefs {
 	}
 
 	// FSV receiving
-	@Given("^verify PO should not linked with UPI line \"([^\"]*)\"$")
-	public void verify_PO_should_not_linked_with_UPI_line(String preAdviceId) throws Throwable {
+	@Given("^the PO should not be linked with UPI line \"([^\"]*)\"$")
+	public void the_PO_should_not_be_linked_with_UPI_line(String preAdviceId) throws Throwable {
 		context.setPreAdviceId(preAdviceId);
 		boolean isUPIRecordExists = upiReceiptLineDB.isUPIRecordExists(preAdviceId);
 		logger.debug("PO ID: " + preAdviceId);

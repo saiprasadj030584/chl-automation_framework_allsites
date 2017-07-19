@@ -20,7 +20,7 @@ public class Utilities {
 	
 	public static String getSixDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
-		return String.valueOf(r.nextInt(9000000) + 100000);
+		return String.valueOf(r.nextInt(900000) + 100000);
 	}
 
 	public static String getFiveDigitRandomNumber() {
@@ -39,5 +39,10 @@ public class Utilities {
 	public static String getFourDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000) + 1000);
+	}
+
+	public static String getThreeDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(900) + 100);
 	}
 }
