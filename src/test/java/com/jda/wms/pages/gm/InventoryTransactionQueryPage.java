@@ -524,16 +524,6 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 	
-	public boolean checkReceiptLockCode(String code,String lockcode)
-	{
-		if(code.equals(lockcode))
-		{
-			return true;
-		}
-		else
-			return false;
-	}
-
 	public String getCondition() throws FindFailed, InterruptedException {
 		Match status = screen.find("images/InventoryTransactionQuery/General/Condition.png");
 		screen.click(status.getCenter().offset(70, 0));

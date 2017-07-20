@@ -432,6 +432,18 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public int getReceiptCount(String upiId, String code) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from inventory_transaction where reference_id='" + upiId
+				+ "' and code = '" + code + "'");
+		rs.next();
+		return rs.getInt(1);
+	}
 
 	public String getLockCode(String upiId, String code) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {

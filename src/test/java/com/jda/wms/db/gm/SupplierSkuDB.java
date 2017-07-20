@@ -53,7 +53,21 @@ public class SupplierSkuDB {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select Supplier_Id from supplier_sku where supplier_sku_id='" + upc + "'");
+			ResultSet rs = stmt.executeQuery("select Supplier_Id from supplier_sku where supplier_sku_id='" + upc + "' and rownum=1");
+			rs.next();
+			return rs.getString(1);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	public String getSupplierIdWithSku(String sku) throws ClassNotFoundException {
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select Supplier_Id from supplier_sku where sku_id='" + sku + "' and rownum=1");
 			rs.next();
 			return rs.getString(1);
 		} catch (Exception e) {

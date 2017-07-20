@@ -151,22 +151,11 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the po status should be displayed as \"([^\"]*)\"$")
 	public void the_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		
 		verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()), failureList);
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
-		
 		Assert.assertTrue("PO , UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
-	@Given("^the po status should be displayed as \"([^\"]*)\" for blind receive$")
-	public void the_po_status_should_be_displayed_as_for_blind_receive(String rcvStatus) throws Throwable {
-		ArrayList failureList = new ArrayList();
-		
-		
-		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
-		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
-		
-		Assert.assertTrue("UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-	}
+	
 	}

@@ -1,5 +1,6 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,8 +50,8 @@ public class UPIReceiptLineStepDefs {
 	@Given("^I fetch supplier id UPC$")
 	public void i_fetch_supplier_id_UPC() throws Throwable {
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
-		context.setUPC(skuDb.getUPC(context.getSkuId()));
-		context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(),context.getSupplierID()));
 		}
 	
 	@Given("^URN_to_be_updated_with_upi_line$")
@@ -58,5 +59,12 @@ public class UPIReceiptLineStepDefs {
 		upiReceiptLineDB.updateContainerID(context.getUpiId());
 		}
 	
+	public void fetch_Qty_Details() throws Throwable
+	{
+				int qty_Due=Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+				context.setRcvQtyDue(qty_Due);
+	}
+	
 	
 }
+

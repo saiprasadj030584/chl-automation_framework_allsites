@@ -105,6 +105,15 @@ public class Context {
 	private String reasonCode;
 	private String owner;
 	private String perfectCondition;
+	private String partset;
+
+	public String getPartset() {
+		return partset;
+	}
+
+	public void setPartset(String partset) {
+		this.partset = partset;
+	}
 
 	public String getPerfectCondition() {
 		return perfectCondition;

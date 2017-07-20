@@ -58,6 +58,20 @@ public class UPIReceiptLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select qty_due from upi_receipt_line where pallet_id = '" + upiId
+				+ "'   and sku_id = '" + skuID + "' ");
+		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where pallet_id = '" + upiId
+				+ "'   and sku_id = '" + skuID + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getQtyReceived(String upiId, String skuID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();

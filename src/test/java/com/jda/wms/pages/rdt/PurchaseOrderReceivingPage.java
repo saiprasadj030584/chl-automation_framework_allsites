@@ -69,6 +69,12 @@ public class PurchaseOrderReceivingPage {
 	
 	
 	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
+		if(context.getLockCode().equalsIgnoreCase("IMPERFECT")||context.getLockCode().equalsIgnoreCase("SINGLESHOE"))
+		{
+			while((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null))
+			{
+				puttyFunctionsPage.pressEnter();
+			}
 		if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)){
 			puttyFunctionsPage.pressEnter();
 			puttyFunctionsPage.pressEnter();
@@ -78,8 +84,41 @@ public class PurchaseOrderReceivingPage {
 				}
 		}
 		return false;
+		}
+		else if(context.getLockCode().equalsIgnoreCase("DMGD"))
+		{
+			while(screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null)
+			{
+				puttyFunctionsPage.pressEnter();
+			}
+			if((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null))
+			{
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		}
+		return false;
 	}
 	
+	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
+		while(screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null)
+		{
+			puttyFunctionsPage.pressEnter();
+		}
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)){
+	return true;
+		}
+		return false;
+	}
+	
+	
+	public boolean checkNoOfSingles() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/QtySingles.png") != null)){
+	return true;
+		}
+		return false;
+	}
 	
 	public boolean validate_no_asn_error() throws FindFailed, InterruptedException {
 		Thread.sleep(1000);
@@ -159,6 +198,10 @@ public class PurchaseOrderReceivingPage {
 	}
 	public void enterSupplierId(String id) throws InterruptedException {
 		screen.type(id);
+		Thread.sleep(2000);
+	}
+	public void enterPartset(String partset) throws InterruptedException {
+		screen.type(partset);
 		Thread.sleep(2000);
 	}
 
