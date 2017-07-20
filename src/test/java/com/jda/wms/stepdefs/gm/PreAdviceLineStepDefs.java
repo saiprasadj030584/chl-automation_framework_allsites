@@ -270,7 +270,6 @@ public class PreAdviceLineStepDefs {
 	}
 	
 	// FSV receiving
-
 	@Given("^the FSV PO line should have sku, quantity due details$")
 	public void the_FSV_PO_line_should_have_sku_quantity_due_details() throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -292,7 +291,6 @@ public class PreAdviceLineStepDefs {
 				POMap.put(i, lineItemsMap);
 			}
 			context.setPOMap(POMap);
-
 			System.out.println("PO Map " + context.getPOMap());
 			
 			ArrayList palletList = new ArrayList();
@@ -310,7 +308,7 @@ public class PreAdviceLineStepDefs {
 			
 			context.setPalletIDList(palletList);
 			context.setBelCodeList(belCodeList);
-			context.setnewpallet(newPalletList);
+			context.setNewPallet(newPalletList);
 
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
@@ -364,9 +362,6 @@ public class PreAdviceLineStepDefs {
 	public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
 		String[] supplierSplit = supplier.split("M");
-//		for (int i = 0; i < supplierSplit.length; i++) {
-//			System.out.println(supplierSplit[i]);
-//		}
 		return supplierSplit[1];
 	}
 
@@ -374,9 +369,6 @@ public class PreAdviceLineStepDefs {
 	public String deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 		String dept = preAdviceHeaderDB.getUserDefType2(preAdviceId);
 		String[] deptSplit = dept.split("T");
-//		for (int i = 0; i < deptSplit.length; i++) {
-//			System.out.println(deptSplit[i]);
-//		}
 		return deptSplit[1];
 	}
 
@@ -409,7 +401,6 @@ public class PreAdviceLineStepDefs {
 	}
 	
 	// individual sku qty assigned to pre advice id : 3 digit
-
 	public String skuQtyManipulate(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
 		String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
 		int sumLength = qtyDue.length();

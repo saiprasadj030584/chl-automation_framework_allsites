@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.dataload.gm.DataSetUp;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.PreAdviceLineDB;
@@ -17,6 +18,7 @@ import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
 
@@ -33,10 +35,11 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
+	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB) {
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -47,6 +50,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
+		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 	}
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
@@ -80,25 +84,19 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the UPI and ASN should be in status with line items supplier details$")
 	public void the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 			String upiId, String asnId, String status) throws Throwable {
-			
 			context.setUpiId(upiId);
 			context.setAsnId(asnId);
 			logger.debug("UPI ID: "+upiId);
 			logger.debug("ASN ID: "+asnId);
-			
 			
 			ArrayList failureList = new ArrayList();
 			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 			
 			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
 			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
-			
-			
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-			
 }
 
-	
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
 	public void the_PO_of_type_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
 			String status) throws Throwable {
@@ -148,29 +146,24 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 		
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
-//		purchaseOrderReceivingStepDefs.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-//		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+		purchaseOrderReceivingStepDefs.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
 	}
 	
 	@Given("^the po status should be displayed as \"([^\"]*)\"$")
 	public void the_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		
 		verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()), failureList);
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
-		
 		Assert.assertTrue("PO , UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
 	@Given("^the po status should be displayed as \"([^\"]*)\" for blind receive$")
 	public void the_po_status_should_be_displayed_as_for_blind_receive(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		
-		
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
-		
 		Assert.assertTrue("UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
@@ -185,7 +178,7 @@ public class PreAdviceHeaderStepsDefs {
 			String siteId) throws Throwable {
 		context.setPreAdviceId(preAdviceId);
 		context.setSKUType(type);
-		context.setsiteid(siteId);
+		context.setSiteId(siteId);
 		context.setsupplierType("FSV");
 		logger.debug("PO ID: " + preAdviceId);
 		logger.debug("SITE ID: " + siteId);

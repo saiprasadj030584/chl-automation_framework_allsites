@@ -436,7 +436,7 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_pallet_id(context.getPalletIDList().get(i-1));
 			i_enter_belCode(context.getBelCodeList().get(i-1));
 			i_enter_the_location();
-			i_enter_the_newpallet(context.enternewpallet().get(i-1));
+			i_enter_the_newpallet(context.enterNewPallet().get(i-1));
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
@@ -456,7 +456,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter belCode$")
 	private void i_enter_belCode(String belCode) throws InterruptedException {
-		purchaseOrderReceivingPage.enterbelCode(belCode);
+		purchaseOrderReceivingPage.enterBelCode(belCode);
 	}
 	
 	@When("^I enter the newpallet$")

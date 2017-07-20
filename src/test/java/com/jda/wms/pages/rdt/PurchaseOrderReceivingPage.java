@@ -291,25 +291,20 @@ public class PurchaseOrderReceivingPage {
 	
 	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
-		
 		Thread.sleep(2000);
 	}
 	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
-		
 		Thread.sleep(2000);
 	}
 	
 	public void enterPalletId(String palletID) throws InterruptedException {
 		screen.type(palletID);
 		Thread.sleep(2000);
-		//screen.type(Key.TAB);
-		//puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);		
 	}
 	
-	public void enterbelCode(String getbelCode) throws InterruptedException {
-		//screen.type(Key.TAB);
+	public void enterBelCode(String getbelCode) throws InterruptedException {
 		screen.type(getbelCode);
 		Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();

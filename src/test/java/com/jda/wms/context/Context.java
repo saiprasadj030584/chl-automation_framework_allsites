@@ -831,13 +831,6 @@ public class Context {
 		this.skuType = skuType;
 	}
 
-	public String getsiteId() {
-		return siteId;
-	}
-
-	public void setsiteid(String siteId) {
-		this.siteId = siteId;
-	}
 
 	public String getsupplierType() {
 		return supplierType;
@@ -899,15 +892,15 @@ public class Context {
 		this.generateBelCode = generateBelCode;
 	}
 
-	public String getbelCode() {
+	public String getBelCode() {
 		return generateBelCode;
 	}
 
-	public ArrayList<String> enternewpallet() {
+	public ArrayList<String> enterNewPallet() {
 		return enternewpallet;
 	}
 
-	public void setnewpallet(ArrayList enternewpallet) {
+	public void setNewPallet(ArrayList enternewpallet) {
 		this.enternewpallet = enternewpallet;
 	}
 
