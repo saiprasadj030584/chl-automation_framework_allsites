@@ -12,12 +12,12 @@ public class LocationMaintenancePage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private JDAFooter jDAFooter;
+	/*private JDAFooter jDAFooter;
 
 	@Inject
 	public LocationMaintenancePage(JDAFooter jDAFooter) {
 		this.jDAFooter = jDAFooter;
-	}
+	}*/
 
 	public void enterLocation(String location) throws FindFailed {
 		screen.wait("/images/LocationMaintenance/Location.png", timeoutInSec);

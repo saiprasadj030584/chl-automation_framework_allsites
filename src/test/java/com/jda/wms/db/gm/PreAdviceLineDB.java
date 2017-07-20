@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class PreAdviceLineDB {
 
@@ -127,7 +126,8 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	} 
-	public String getupc(String skuID) throws SQLException,ClassNotFoundException {
+	
+	public String getUpc(String skuID) throws SQLException,ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -138,6 +138,7 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public ArrayList<String> getConsignmentID(String preAdviceID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> consignmentIdList = new ArrayList<String>();
 
@@ -146,8 +147,8 @@ public class PreAdviceLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select CE_CONSIGNMENT_ID from pre_advice_line where pre_advice_id = '" + preAdviceID + "'");
+		ResultSet rs = stmt.executeQuery(
+				"select CE_CONSIGNMENT_ID from pre_advice_line where pre_advice_id = '" + preAdviceID + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		while (rs.next()) {
@@ -164,8 +165,8 @@ public class PreAdviceLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select PALLET_CONFIG from pre_advice_line where pre_advice_id = '" + preAdviceID
-				+ "'   and sku_id = '" + skuID + "' ");
+		ResultSet rs = stmt.executeQuery("select PALLET_CONFIG from pre_advice_line where pre_advice_id = '"
+				+ preAdviceID + "'   and sku_id = '" + skuID + "' ");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -178,6 +179,28 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select line_id from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public void updateLockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_line set lock_code='" + lockCode + "' where pre_advice_id='" + preAdviceId + "'");
+		context.getConnection().commit();
+	}
+
+	public String getLockCode(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select lock_code from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}

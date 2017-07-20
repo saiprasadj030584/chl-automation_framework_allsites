@@ -6,7 +6,6 @@ import java.sql.Statement;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class SkuDB {
 	private Context context;
@@ -151,17 +150,7 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	// public String isSiteIdExist(String skuId) throws SQLException,
-	// ClassNotFoundException {
-	// if (context.getConnection() == null) {
-	// database.connect();
-	// }
-	// Statement stmt = context.getConnection().createStatement();
-	// ResultSet rs = stmt.executeQuery("select ce_vat_code from sku where
-	// sku_id = '" + skuId + "'");
-	// rs.next();
-	// return rs.getString(1);
-	// }
+	
 
 	public String ExpiryRequiredUncheckedValue(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

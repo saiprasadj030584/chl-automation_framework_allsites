@@ -49,8 +49,6 @@ public class JdaLoginPage extends PageObject {
 	}
 
 	private void enterPassword() throws FindFailed, InterruptedException {
-//		screen.wait("images/JDALogin/password.png", 20);
-//		screen.click("images/JDALogin/password.png", 25);
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(configuration.getStringProperty("password"));

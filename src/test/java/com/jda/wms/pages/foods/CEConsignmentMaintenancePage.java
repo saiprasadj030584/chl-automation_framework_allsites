@@ -11,12 +11,12 @@ import com.google.inject.Inject;
 public class CEConsignmentMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
+	/*private final JDAFooter jdaFooter;
 
 	@Inject
 	public CEConsignmentMaintenancePage(JDAFooter jdaFooter) {
 		this.jdaFooter = jdaFooter;
-	}
+	}*/
 
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ReceiptType.png", timeoutInSec);
@@ -51,9 +51,6 @@ public class CEConsignmentMaintenancePage {
 	}
 
 	public void enterConsignerExciseNumber(String ceWarehouseTax) throws FindFailed, InterruptedException {
-//		Match mceWarehouseTax = screen.find("images/CEConsignmentMaintenance/eadConsignerExciseNo.png");
-//		screen.click(mceWarehouseTax.getCenter().offset(90, 0));
-//		screen.wait("images/CEConsignmentMaintenance/eadConsignerExciseNo.png", timeoutInSec);
 		screen.type(ceWarehouseTax);
 		Thread.sleep(1000);
 	}

@@ -1,5 +1,4 @@
 package com.jda.wms.utils;
-
 import java.util.Random;
 
 public class Utilities {
