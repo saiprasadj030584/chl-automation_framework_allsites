@@ -367,4 +367,9 @@ public class PurchaseOrderReceivingPage {
 		screen.type(fullPallet);
 		Thread.sleep(2000);
 	}
+
+	public void enterTagid(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(1000);
+	}
 }

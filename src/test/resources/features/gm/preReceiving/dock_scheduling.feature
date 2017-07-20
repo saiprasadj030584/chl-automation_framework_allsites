@@ -12,13 +12,13 @@ Feature: Dock Scheduling
     When I create new dock booking at site "<SiteId>"
     When I select the booking type and ASN
     And I select the slot
-    And I create a booking for the asn
+    And I create a booking
     Then the booking details should appear in the dock scheduler booking
-    
+
     Examples: 
       | PreAdviceID  | UPIId                | ASNId      | Type    | SiteId |
       | PO2010002003 | PO000504560005112356 | PO00100506 | Hanging |   5649 |
-      
+
   @delete_booking_asn_direct_po @pre_receiving @complete
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - Direct PO
     Given I have done the dock scheduler booking with the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"

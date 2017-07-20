@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.BookingInDiary;
 import com.jda.wms.db.gm.BookingInDiaryLog;
+import com.jda.wms.pages.gm.DockSchedulerBookingsPage;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
@@ -23,13 +24,14 @@ public class DockScehdulerBookingStepDefs {
 	private BookingInDiary bookingInDiary;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private DockSchedulerPage dockSchedulerPage;
+	private DockSchedulerBookingsPage dockShedulerBookingPage;
 	private JdaHomePage jdaHomePage;
 	private JDAFooter jdaFooter;
 
 	@Inject
 	public DockScehdulerBookingStepDefs(Verification verification, Context context, BookingInDiary bookingInDiary,
 			BookingInDiaryLog bookingInDiaryLog, DockSchedulerPage dockSchedulerPage, JdaHomePage jdaHomePage,
-			JDAFooter jdaFooter) {
+			JDAFooter jdaFooter, DockSchedulerBookingsPage dockShedulerBookingPage) {
 		this.verification = verification;
 		this.context = context;
 		this.bookingInDiary = bookingInDiary;
@@ -37,12 +39,17 @@ public class DockScehdulerBookingStepDefs {
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
+		this.dockShedulerBookingPage = dockShedulerBookingPage;
 	}
 
 	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
-
+		jdaHomePage.navigateToDockSchedulerBookingsPage();
+		jdaFooter.clickQueryButton();
+		dockShedulerBookingPage.enterBookingID(context.getBookingID());
+		jdaFooter.clickExecuteButton();
+		System.out.println(context.getTrailerNo());
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),

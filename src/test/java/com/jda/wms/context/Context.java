@@ -105,6 +105,7 @@ public class Context {
 	private String reasonCode;
 	private String owner;
 	private String perfectCondition;
+	private String receiveType;
 
 	public String getPerfectCondition() {
 		return perfectCondition;
@@ -897,5 +898,13 @@ public class Context {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
 	}
 }

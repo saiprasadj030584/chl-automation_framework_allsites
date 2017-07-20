@@ -130,6 +130,67 @@ public class PurchaseOrderReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 
+	// @When("^I receive more quantity for all skus at location \"([^\"]*)\"$")
+	// public void i_receive_more_quantity_for_all_skus_at_location(String
+	// location) throws Throwable {
+	// System.out.println(context.getRcvQtyDue());
+	// System.out.println(context.getRcvQtyDue()+5);
+	// // i_receive_all_skus_at_location_with_modified_quantity(location,
+	// // (Integer.toString(context.getRcvQtyDue() + 5)));
+	// }
+
+	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\"$")
+	public void i_perform_for_all_skus_at_location(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			}
+			System.out.println(quantity);
+			i_enter_urn_id();
+			puttyFunctionsPage.pressEnter();
+			the_tag_and_upc_details_should_be_displayed();
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			i_enter_the_quantity(quantity);
+			i_enter_urn_id();
+			puttyFunctionsPage.pressEnter();
+		}
+	}
+
+	@When("^I enter the quantity")
+	public void i_enter_the_quantity(String quantity) throws Throwable {
+		// To navigate and enter the modified quantity
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.backspace();
+		puttyFunctionsPage.backspace();
+		puttyFunctionsPage.backspace();
+		purchaseOrderReceivingPage.enterQuantity(quantity);
+		puttyFunctionsPage.pressEnter();
+	}
+
 	@When("^I receive all skus for the purchase order at location \"([^\"]*)\" with damaged$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -459,6 +520,13 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue(
 				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
+	}
+
+	@When("^I enter tag id$")
+	public void i_enter_tag_id() throws FindFailed, InterruptedException {
+		String upiId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		purchaseOrderReceivingPage.enterTagid(upiId);
+		context.setTagId(upiId);
 	}
 
 }

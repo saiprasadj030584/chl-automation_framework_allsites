@@ -384,18 +384,22 @@ public class InventoryDB {
 
 	public String getLocationAfterReceive(String skuId, String upiId, String date)
 			throws SQLException, ClassNotFoundException {
+
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
+
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
+
 		rs.next();
 		return rs.getString(1);
 	}
 
 	public String getQtyOnHand(String skuId, String location, String upiId, String date)
+
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

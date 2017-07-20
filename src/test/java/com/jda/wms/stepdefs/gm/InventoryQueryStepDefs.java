@@ -13,6 +13,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -45,11 +46,13 @@ public class InventoryQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getUpiId(), date), failureList);
-			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+					Integer.toString(context.getRcvQtyDue() + 5),
 					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
 					failureList);
 		}
@@ -66,6 +69,17 @@ public class InventoryQueryStepDefs {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+
+			// To validate during over or under receiving
+			if (null != context.getReceiveType()) {
+				if (context.getReceiveType().equalsIgnoreCase("Over Receiving")) {
+					context.setRcvQtyDue(context.getRcvQtyDue() + 5);
+				} else if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+					context.setRcvQtyDue(context.getRcvQtyDue() - 5);
+				}
+			}
+
 			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
 					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
 			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
@@ -175,4 +189,5 @@ public class InventoryQueryStepDefs {
 		}
 		jdaLoginPage.login();
 	}
+
 }

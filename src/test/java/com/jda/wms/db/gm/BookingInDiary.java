@@ -16,14 +16,15 @@ public class BookingInDiary {
 		this.context = context;
 		this.database = database;
 	}
-	
+
 	public String getTrailerID(String bookingId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select trailer_id from booking_in_diary where bookref_id='"+bookingId+"'");
+		System.out.println("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
+		ResultSet rs = stmt
+				.executeQuery("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -33,8 +34,8 @@ public class BookingInDiary {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select CARRIER_ID from booking_in_diary where bookref_id='"+bookingID+"'");
+		ResultSet rs = stmt
+				.executeQuery("select CARRIER_ID from booking_in_diary where bookref_id='" + bookingID + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -44,8 +45,8 @@ public class BookingInDiary {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select SERVICE_LEVEL from booking_in_diary where bookref_id='"+bookingID+"'");
+		ResultSet rs = stmt
+				.executeQuery("select SERVICE_LEVEL from booking_in_diary where bookref_id='" + bookingID + "'");
 		rs.next();
 		return rs.getString(1);
 	}

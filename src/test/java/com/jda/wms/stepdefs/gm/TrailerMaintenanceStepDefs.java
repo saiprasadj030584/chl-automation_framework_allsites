@@ -7,6 +7,7 @@ import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.TrailerMaintenancePage;
 import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 
 public class TrailerMaintenanceStepDefs {

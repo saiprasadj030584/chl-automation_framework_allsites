@@ -90,7 +90,6 @@ public class PreAdviceLineStepDefs {
 			}
 			context.setUPIMap(UPIMap);
 
-
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
 			switch (context.getSKUType()) {
@@ -101,6 +100,7 @@ public class PreAdviceLineStepDefs {
 				type = "H";
 				break;
 			}
+			// TODO Check for multiple skus
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
