@@ -437,7 +437,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select count(*) from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
@@ -445,16 +444,22 @@ public class InventoryTransactionDB {
 		return rs.getInt(1);
 	}
 
-	public String getLockCode(String upiId, String code) throws ClassNotFoundException, SQLException {
+	public ArrayList<String> getLockCodeList(String upiId, String code) throws ClassNotFoundException, SQLException {
+		ArrayList<String> lockCodeList = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select LOCK_CODE from inventory_transaction where reference_id='" + upiId + "' and code = '" + code + "'");
-		rs.next();
-		return rs.getString(1);
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				lockCodeList.add((rs.getString(j)));
+			}
+		}
+		return lockCodeList;
 	}
 
 	public boolean isRecordExistsForReasonCode(String skuId, String code, String dstamp, String reasonCode)
@@ -479,5 +484,16 @@ public class InventoryTransactionDB {
 			}
 		}
 		return isRecordExists;
+	}
+
+	public String getLockCode(String upiId, String code) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select LOCK_CODE from inventory_transaction where reference_id='" + upiId + "' and code = '" + code + "'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

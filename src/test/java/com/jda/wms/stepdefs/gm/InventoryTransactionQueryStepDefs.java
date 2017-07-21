@@ -186,17 +186,25 @@ public class InventoryTransactionQueryStepDefs {
 	
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
+		ArrayList failureList = new ArrayList();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
-		Assert.assertEquals("ITL not displayed as expected - Lock Code mismatch", code, lockcode);
+		ArrayList lockCodeListForAllQuantity =inventoryTransactionDB.getLockCodeList(context.getUpiId(),"Inv Lock");
+		for(int l=0;l<lockCodeListForAllQuantity.size();l++){
+			if (!((String)lockCodeListForAllQuantity.get(l)).equalsIgnoreCase(lockcode)){
+				failureList.add("ITL Lock code does not match for Quantity number "+l);
+			}
+		}
 		Assert.assertEquals("ITL Records received mismatch with total qty",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(),"Inv Lock"));
+		Assert.assertTrue(
+				"ITL Lock codes are mismatching. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 	
-	@When("^the inventory transaction should be updated with lockcode Damaged$")
-	public void the_inventory_transaction_should_be_updated_with_lockcode_Damaged() throws Throwable {
+	@When("^the inventory transaction should be updated with lockcode damaged$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());

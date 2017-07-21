@@ -71,10 +71,28 @@ public class PurchaseOrderReceivingPage {
 	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
 		if(context.getLockCode().equalsIgnoreCase("IMPERFECT")||context.getLockCode().equalsIgnoreCase("SINGLESHOE"))
 		{
-			while((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null))
+			while((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null) && (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null) || (screen.exists("images/Putty/Receiving/IncorrectPartSet.png")==null))
 			{
 				puttyFunctionsPage.pressEnter();
 			}
+			
+			if((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null))
+			{
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)){
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter();
+					if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null) || (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)||(screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null) ){
+						puttyFunctionsPage.pressEnter();
+					return true;
+						}
+					return false;
+				}
+				return false;
+				}
+			
+			
 		if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)){
 			puttyFunctionsPage.pressEnter();
 			puttyFunctionsPage.pressEnter();
@@ -82,18 +100,59 @@ public class PurchaseOrderReceivingPage {
 				puttyFunctionsPage.pressEnter();
 			return true;
 				}
+			return false;
 		}
 		return false;
 		}
 		else if(context.getLockCode().equalsIgnoreCase("DMGD"))
 		{
-			while(screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null)
+			while(screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null && screen.exists("images/Putty/Receiving/IncorrectPartSet.png")==null)
 			{
 				puttyFunctionsPage.pressEnter();
+			}
+			if((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null))
+			{
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null))
+				{
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
 			}
 			if((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null))
 			{
 				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		}
+		else if(context.getLockCode().equalsIgnoreCase("IMPSET"))
+		{
+			
+			while(screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null && screen.exists("images/Putty/Receiving/IncorrectPartSet.png")==null)
+			{
+				System.out.println("3");
+				puttyFunctionsPage.pressEnter();
+			}
+			if((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null))
+			{
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null))
+				{
+					puttyFunctionsPage.pressEnter();
+					System.out.println("1");
+					return true;
+				}
+				return false;
+				
+			}
+			if((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null))
+			{
+				puttyFunctionsPage.pressEnter();
+				System.out.println("2");
 				return true;
 			}
 			return false;

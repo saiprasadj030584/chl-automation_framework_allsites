@@ -7,7 +7,7 @@ Feature: Purchase order receiving
   Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code - Boxed
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I navigate to inventory transaction query
-    Then the inventory transaction should be updated with lockcode Damaged
+    Then the inventory transaction should be updated with lockcode damaged
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |

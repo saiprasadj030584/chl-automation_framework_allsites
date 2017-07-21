@@ -82,16 +82,13 @@ public class PreAdviceHeaderStepsDefs {
 			logger.debug("UPI ID: "+upiId);
 			logger.debug("ASN ID: "+asnId);
 			
-			
 			ArrayList failureList = new ArrayList();
 			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 			
 			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
 			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
 			
-			
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-			
 }
 
 	

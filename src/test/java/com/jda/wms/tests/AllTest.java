@@ -9,19 +9,9 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @receiving_returns_with_partset"
+"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @receiving_returns_with_partset_and_lockcode"
 		+ ""})	
-
-
-
 public class AllTest {
-
-	
-	
-		
-	
-	
-	
 }
 
 

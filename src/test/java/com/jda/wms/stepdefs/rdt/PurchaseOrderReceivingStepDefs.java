@@ -326,19 +326,12 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_details_and_perform_blind_receive_with_partset() throws Throwable {
 		for (int i = 0; i < context.getRcvQtyDue(); i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
-			if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
-					|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")
-					|| context.getLockCode().equalsIgnoreCase("DMGD")) {
+			
 				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
-			}
+			
 			jdaFooter.pressTab();
-			if (context.getLockCode().equalsIgnoreCase("IMPERFECT")) {
-				purchaseOrderReceivingPage.enterUPC2(context.getUPC() + "01");
-			} else if (context.getLockCode().equalsIgnoreCase("DMGD")) {
-				purchaseOrderReceivingPage.enterUPC2(context.getUPC() + "02");
-			} else if (context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {
-				jdaFooter.pressTab();
-			}
+			jdaFooter.pressTab();
+			
 			purchaseOrderReceivingPage.enterQuantity("1");
 			jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
@@ -348,6 +341,7 @@ public class PurchaseOrderReceivingStepDefs {
 			purchaseOrderReceivingPage.enterPartset(context.getPartset());
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity "+i, purchaseOrderReceivingPage.isBlindReceivingDone());
+			System.out.println("4");
 			Thread.sleep(1000);
 			if (i != 0) {
 				Assert.assertTrue("verification of no of singles failed",
