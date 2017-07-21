@@ -292,5 +292,15 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		return App.getClipboard();
+		
+	}
+
+	public void enterlessQuantity(int lessQuantity) throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		//return App.getClipboard();
+		
 	}
 }
