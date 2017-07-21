@@ -27,8 +27,9 @@ public class UPIReceiptLineStepDefs {
 		//Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		for (int i=1;i<=
-				context.getNoOfLines();i++){
+		for (int i=1;i<=context.getNoOfLines();i++){
+			System.out.println(poMap.get(i).get("SKU")+"...................."+poMap.get(i).get("LINE ID"));
+			
 			String sku = poMap.get(i).get("SKU");
 			String poLineId= poMap.get(i).get("LINE ID");
 			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiId());

@@ -66,6 +66,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
+		}
+		else{
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -140,10 +142,13 @@ public class PreAdviceLineStepDefs {
 		jdaFooter.clickExecuteButton();
 		i_click_on_user_defined_tab();
 		jdaFooter.clickUpdateButton();
+		System.out.println("lockcode:"+lockCode);
 		String userDefType3 = getUserDefinedType3(lockCode);
+		System.out.println("userdefined3:"+userDefType3);
 		String userDefType4 = getUserDefinedType4(lockCode);
+		System.out.println("userDefType4:"+userDefType4);
 		String fireWallCheck = isUserDefCheck1Required(lockCode);
-
+		System.out.println("fireWallCheck:"+fireWallCheck);
 		if (null != userDefType3) {
 			preAdviceLineMaintenancePage.updateUserDefinedType3(userDefType3);
 		}
@@ -160,6 +165,7 @@ public class PreAdviceLineStepDefs {
 		i_click_on_general_tab();
 		Assert.assertEquals("Lock Code is not updated as expected", lockCode,
 				preAdviceLineDB.getLockCode(context.getPreAdviceId()));
+				
 	}
 
 	private String getUserDefinedType3(String lockCode) {

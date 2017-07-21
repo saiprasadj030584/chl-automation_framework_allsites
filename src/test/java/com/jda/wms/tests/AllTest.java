@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@manual_document_closure " })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@over_receiving_with_lock_code " })
 
 public class AllTest {
 }
