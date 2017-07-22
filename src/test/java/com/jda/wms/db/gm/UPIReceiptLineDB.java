@@ -167,8 +167,9 @@ public class UPIReceiptLineDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+        System.out.println("select sku_id from upi_receipt_line where pallet_id ='" + upiId + "'") ;
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select sku_id from upi_receipt_line where pallet_id ='" + upiId + "'") ;
 		ResultSet rs = stmt.executeQuery("select sku_id from upi_receipt_line where pallet_id ='" + upiId + "'");
 		rs.next();
 		

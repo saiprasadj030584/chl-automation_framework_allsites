@@ -78,7 +78,7 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
 	}
 	
-	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line()throws Throwable {
+	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line()throws Throwable {
 		deliveryStepDefs.the_pallet_count_should_be_updated_as_in_delivery(1);
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
@@ -290,6 +290,7 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 		jdaFooter.pressTab();
+		jdaFooter.pressTab();
 		/*if(context.getLockCode().equalsIgnoreCase("DMG"))
 		{
 			jdaFooter.pressTab();
@@ -301,13 +302,13 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterQuantity("1");
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+		//jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
-		jdaFooter.pressTab();
-		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
-		Assert.assertTrue("Blind Receiving Unsuccessfull.",
+		Assert.assertFalse("Blind Receiving Unsuccessfull.",
 				purchaseOrderReceivingPage.isBlindReceivingDone());
 	}
 	@When("^I enter urn id$")
@@ -420,7 +421,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 				upiId, asnId, "Released");
 
-		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
 		//Supplier SKU Table
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
@@ -445,7 +446,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 				upiId, asnId, "Released");
 
-		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
 		//Supplier SKU Tables
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
@@ -467,11 +468,12 @@ public class PurchaseOrderReceivingStepDefs {
 				isLockcodeExists= true;
 			}
 			}
-			
-		catch(NullPointerException e)
-			{
+		//catch(NullPointerException e)
+			catch(Exception e){
+				if (e.getMessage().contains("Exhausted Resultset"))
 			isLockcodeExists = false;
-			}
+			return isLockcodeExists;
+	}
 			return isLockcodeExists;
 	}
 

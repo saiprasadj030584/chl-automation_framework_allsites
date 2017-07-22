@@ -22,11 +22,7 @@ public class UPIReceiptHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-        System.out.println(upiId);
-        System.out.println("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
-		
 		ResultSet rs = stmt
 				.executeQuery("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		System.out.println("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");

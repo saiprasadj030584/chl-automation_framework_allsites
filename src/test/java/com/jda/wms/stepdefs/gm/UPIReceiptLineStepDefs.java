@@ -50,8 +50,9 @@ public class UPIReceiptLineStepDefs {
 	@Given("^I fetch supplier id UPC$")
 	public void i_fetch_supplier_id_UPC() throws Throwable {
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
-		context.setUPC(skuDb.getUPC(context.getSkuId()));
-		context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+		//context.setUPC(skuDb.getUPC(context.getSkuId()));
+		context.setUPC(supplierSkuDb.getUPC(context.getSkuId()));
+		context.setSupplierID(supplierSkuDb.getSupplierId(context.getSkuId()));
 		}
 	
 	@Given("^URN_to_be_updated_with_upi_line$")
