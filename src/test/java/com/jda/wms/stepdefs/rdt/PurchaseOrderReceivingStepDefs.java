@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.rdt;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -171,6 +173,21 @@ public class PurchaseOrderReceivingStepDefs {
 		i_enter_details_and_perform_blind_receive();
 		hooks.logoutPutty();
 	}
+	
+	@When("^I blind receive all normal skus for the purchase order at location \"([^\"]*)\"$")
+	public void i_blind_receive_all_normal_skus_for_the_purchase_order_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		upiMap = context.getUPIMap();
+		
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_blind_receiving_normal_upc();
+		hooks.logoutPutty();
+	}
+
 
 
 	@When("^I receive all skus for the purchase order with no asn at location \"([^\"]*)\"$")
@@ -268,6 +285,31 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.isBlindReceivingDone());
 	}
 
+	@When("^I enter details and perform blind receiving normal upc$")
+	public void i_enter_details_and_perform_blind_receiving_normal_upc()  throws Throwable {
+		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+		jdaFooter.pressTab();
+		/*if(context.getLockCode().equalsIgnoreCase("DMG"))
+		{
+			jdaFooter.pressTab();
+		}
+		else 
+		{
+			jdaFooter.pressTab();
+		}*/
+		purchaseOrderReceivingPage.enterQuantity("1");
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		Assert.assertTrue("Blind Receiving Unsuccessfull.",
+				purchaseOrderReceivingPage.isBlindReceivingDone());
+	}
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
@@ -339,7 +381,7 @@ public class PurchaseOrderReceivingStepDefs {
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("complete");
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 
 	@Then("^I should see the receiving completion$")
@@ -380,7 +422,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
-		//TODO Supplier SKU Table
+		//Supplier SKU Table
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		
 		i_blind_receive_all_skus_for_the_purchase_order_at_location(location);
@@ -389,7 +431,49 @@ public class PurchaseOrderReceivingStepDefs {
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
 	}
+	
+	//Returns receiving with normal upc
+	
+	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\" for normal upc with perfect condition \"([^\"]*)\" and lockcode \"([^\"]*)\"$")
+	public void the_UPI_and_ASN_should_be_received_at_for_normal_upc(String upiId,
+			String asnId, String location,String condition,String lockcode) throws Throwable {
+		context.setUpiId(upiId);
+		context.setlocationID(location);
+		context.setAsnId(asnId);
+		context.setPerfectCondition(condition);
+		validate(lockcode);
+		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+				upiId, asnId, "Released");
 
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		context.setLocation(location);
+		//Supplier SKU Tables
+		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		i_blind_receive_all_normal_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
+	}
+
+	
+
+	private boolean validate(String lockcode) {
+			boolean isLockcodeExists = false;
+			try{
+			if(lockcode.equals("DMG"))
+			{
+				context.setLockCode(lockcode);
+				isLockcodeExists= true;
+			}
+			}
+			
+		catch(NullPointerException e)
+			{
+			isLockcodeExists = false;
+			}
+			return isLockcodeExists;
+	}
 
 	@Then("^I should see that no valid preadvices found message$")
 	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
@@ -463,5 +547,14 @@ public class PurchaseOrderReceivingStepDefs {
 	private void i_enter_the_newpallet(String newPallet) throws InterruptedException, FindFailed {
 	purchaseOrderReceivingPage.enterNewPallet(newPallet);
 	}
+	
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,String type, String upiId,String asnId, String status, String lockCode) throws Throwable{
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,upiId,asnId,status);
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+	}
+	
 	
 }
