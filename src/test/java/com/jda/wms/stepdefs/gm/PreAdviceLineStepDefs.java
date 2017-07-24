@@ -66,6 +66,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
+		}
+		else{
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();

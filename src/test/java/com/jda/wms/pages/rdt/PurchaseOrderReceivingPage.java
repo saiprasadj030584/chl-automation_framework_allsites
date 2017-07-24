@@ -11,14 +11,14 @@ import com.jda.wms.context.Context;
 
 public class PurchaseOrderReceivingPage {
 	Screen screen = new Screen();
-	Context context=new Context();
+	Context context = new Context();
 	int timeoutInSec = 20;
 	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
-	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage,Context context) {
-	this.puttyFunctionsPage = puttyFunctionsPage;
-	this.context=context;
+	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage, Context context) {
+		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.context = context;
 	}
 
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
@@ -41,7 +41,7 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-	
+
 	public void selectBlindReceive() throws FindFailed, InterruptedException {
 		screen.type("1");
 		Thread.sleep(1000);
@@ -59,36 +59,56 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
+
 	public boolean isBlindEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
-		if ((screen.exists("images/Putty/Receiving/BlindReceivingEntry.png") != null)){
+		if ((screen.exists("images/Putty/Receiving/BlindReceivingEntry.png") != null)) {
 			return true;
-				}
-		return false;
-	}
-	
-	
-	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
-		if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null) || (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)){
-			puttyFunctionsPage.pressEnter();
-			puttyFunctionsPage.pressEnter();
-			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null) || (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)||(screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null) ){
-				puttyFunctionsPage.pressEnter();
-			return true;
-				}
 		}
 		return false;
 	}
-	
-	
+
+	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+				|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isFootWearDigitValdiationDone() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+
+			return false;
+			// } else if
+			// (screen.exists("images/Putty/Receiving/footwear_digit_error.png")
+			// != null) {
+			// Commented due to Application issues in Dispatcher - IK
+		} else {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			return true;
+		}
+
+	}
+
 	public boolean validate_no_asn_error() throws FindFailed, InterruptedException {
 		Thread.sleep(1000);
-		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)){
+		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)) {
 			return true;
-		}
-		else
-		return false;
-		
+		} else
+			return false;
+
 	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
@@ -143,20 +163,24 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.NUM4);
 		Thread.sleep(2000);
 	}
+
 	public void enterQuantity(String count) throws InterruptedException {
 		screen.type(count);
-		
+
 		Thread.sleep(2000);
 	}
+
 	public void enterPerfectCondition(String condition) throws InterruptedException {
 		screen.type(condition);
-		
+
 		Thread.sleep(2000);
 	}
+
 	public void enterLocationInBlindReceive(String location) throws InterruptedException {
 		screen.type(location);
 		Thread.sleep(2000);
 	}
+
 	public void enterSupplierId(String id) throws InterruptedException {
 		screen.type(id);
 		Thread.sleep(2000);
@@ -288,18 +312,17 @@ public class PurchaseOrderReceivingPage {
 		screen.type(urn);
 		Thread.sleep(2000);
 	}
-	
+
 	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
-		
-		Thread.sleep(2000);
-	}
-	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
-		screen.type(upc);
-		
 		Thread.sleep(2000);
 	}
 
+	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
+		screen.type(upc);
+
+		Thread.sleep(2000);
+	}
 
 	public boolean isLocationDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Location.png") != null)
@@ -317,7 +340,7 @@ public class PurchaseOrderReceivingPage {
 		screen.doubleClick(mTagId.below(1));
 		String tag2 = App.getClipboard();
 		Thread.sleep(1000);
-		return (tag1+tag2);
+		return (tag1 + tag2);
 	}
 
 	public String getPackConfig() throws FindFailed, InterruptedException {

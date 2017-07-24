@@ -11,6 +11,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.ReceiptReversalPage;
 
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ReceiptReversalStepDefs {
@@ -105,4 +106,18 @@ public class ReceiptReversalStepDefs {
 		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
 		
 	}
+	
+	@Then("^the inventory transaction should be updated$")
+	public void the_inventory_transaction_should_be_updated() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Receipt");
+		System.out.println("Code : "+ code);
+				
+		Assert.assertTrue("Footwear Receipt failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,""));
+		
+	}
+	
 }
