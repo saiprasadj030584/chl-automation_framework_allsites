@@ -204,6 +204,38 @@ public class PurchaseOrderReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 	
+	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\" with movement label field$")
+	public void i_blind_receive_all_skus_for_the_purchase_order_at_location_with_movement_label_field(String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_blind_receive_with_movement_label_field();
+		hooks.logoutPutty();
+	}
+	
+	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\" with incorrect quantity$")
+	public void i_blind_receive_all_skus_for_the_purchase_order_at_location_with_incorrect_quantity(String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_blind_receive_with_incorrect_qty_and_without_lockcode();
+		
+	}
+	
 	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\" without lockcode with partset$")
 	public void i_blind_receive_all_skus_for_the_purchase_order_at_location_without_lockcode_with_partset(String location)
 			throws Throwable {
@@ -375,6 +407,69 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	
+	@When("^I enter details and perform blind receive with movement label field$")
+	public void i_enter_details_and_perform_blind_receive_with_movement_label_field() throws Throwable {
+
+		
+			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity("1");
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.doConfigMovementLabel();
+			for (int i = 0; i < context.getRcvQtyDue(); i++) {
+			jdaFooter.clickUpdateButton();
+			jdaFooter.PressEnter();
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity "+i,
+					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+			jdaFooter.PressEnter();
+			Thread.sleep(1000);
+			if (i != 0) {
+				Assert.assertTrue("verification of no of singles failed",
+						purchaseOrderReceivingPage.checkNoOfSingles());
+			}
+		}
+	}
+	
+	
+	@When("^I enter details and perform blind receive with incorrect qty and without lockcode$")
+	public void i_enter_details_and_perform_blind_receive_with_incorrect_qty_and_without_lockcode() throws Throwable {
+
+			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(Integer.toString(context.getQtyReceivedFromPutty()));
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			//purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			
+	}
+	
+	@When("^The invalid quantity error message should be displayed on the screen$")
+	public void the_invalid_quantity_error_message_should_be_displayed_on_the_screen() throws Throwable 
+	{
+		
+		Assert.assertTrue("Quantity cannot be more than one",
+				purchaseOrderReceivingPage.isQuantityError());
+		jdaFooter.PressEnter();
+		Thread.sleep(1000);
+		hooks.logoutPutty();
+	}
+	
+	
+	
 	
 	@When("^I enter details and perform blind receive without lockcode with partset$")
 	public void i_enter_details_and_perform_blind_receive_without_lockcode_with_partset() throws Throwable {
@@ -578,6 +673,33 @@ public class PurchaseOrderReceivingStepDefs {
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
+	
+	@Given("^I receive all skus for the purchase order at \"([^\"]*)\" with movement label enabled$")
+	public void i_receive_all_skus_for_the_purchase_order_at_with_movement_label_enabled(String location)
+			throws Throwable {
+		context.setlocationID(location);
+		
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_for_the_purchase_order_at_location_without_lockcode(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
+	
+	
+	@Given("^I receive all skus for the purchase order at \"([^\"]*)\" with incorrect quantity \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_at_with_incorrect_quantity(String location, String quantity)
+			throws Throwable {
+		context.setlocationID(location);
+		context.setQtyReceivedFromPutty(Integer.parseInt(quantity));
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_for_the_purchase_order_at_location_with_incorrect_quantity(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		//upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
 	
 	@Given("^I receive all skus for the purchase order at \"([^\"]*)\" with perfect condition \"([^\"]*)\" and partset \"([^\"]*)\"$")

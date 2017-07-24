@@ -179,6 +179,18 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 	
+	public boolean isQuantityError() throws FindFailed, InterruptedException {
+		while(screen.exists("images/Putty/Receiving/QuantityError.png") == null)
+		{
+			puttyFunctionsPage.pressEnter();
+		}
+		
+		if ((screen.exists("images/Putty/Receiving/QuantityError.png") != null)){
+	return true;
+		}
+		return false;
+	}
+	
 	public boolean validate_no_asn_error() throws FindFailed, InterruptedException {
 		Thread.sleep(1000);
 		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)){
@@ -390,6 +402,24 @@ public class PurchaseOrderReceivingPage {
 		screen.type(urn);
 		Thread.sleep(2000);
 	}
+	
+	public void doConfigMovementLabel() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/Receiving/MovementLabel/PuttyTop.png") != null)
+		{
+			Match mStatus = screen.find("images/Putty/Receiving/MovementLabel/PuttyTop.png");
+			screen.click(mStatus.getCenter().offset(50, 0));	
+			screen.rightClick();
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/ChangeSettings.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Keyboard.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Xtem.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Apply.png");
+			
+		}
+			}
 	
 	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
