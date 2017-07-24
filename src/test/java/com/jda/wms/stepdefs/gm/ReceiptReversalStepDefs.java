@@ -96,13 +96,30 @@ public class ReceiptReversalStepDefs {
 	
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Inventory Lock");
-		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
-		
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
-		
+		validate(lockcode);
+		}
+	
+
+	private boolean validate(String lockcode) {
+		boolean isLockcodeExists = false;
+		try{
+		if(lockcode.equals("DMGD"))
+		{
+			context.setLockCode(lockcode);
+			isLockcodeExists= true;
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Inventory Lock");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
+			Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
+		}
+		}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset"))
+		isLockcodeExists = false;
+		return isLockcodeExists;
+}
+		return isLockcodeExists;		
 	}
 }

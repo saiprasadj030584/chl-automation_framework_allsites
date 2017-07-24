@@ -462,7 +462,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private boolean validate(String lockcode) {
 			boolean isLockcodeExists = false;
 			try{
-			if(lockcode.equals("DMG"))
+			if(lockcode.equals("DMGD"))
 			{
 				context.setLockCode(lockcode);
 				isLockcodeExists= true;
