@@ -169,6 +169,7 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_the_location();
 			puttyFunctionsPage.pressTab();
 			i_enter_tag_id();
+
 			i_enter_the_quantity(quantity);
 			i_enter_urn_id();
 			puttyFunctionsPage.pressEnter();
@@ -527,6 +528,15 @@ public class PurchaseOrderReceivingStepDefs {
 		String upiId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
 		purchaseOrderReceivingPage.enterTagid(upiId);
 		context.setTagId(upiId);
+
 	}
 
+	@Then("^the error message should be displayed as cannot over receipt$")
+	public void the_error_message_should_be_displayed_as_cannot_over_receipt() throws Throwable {
+		Assert.assertTrue("Error message:You can not over receipt this sscc",
+				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
+		// jdaFooter.PressEnter();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
 }

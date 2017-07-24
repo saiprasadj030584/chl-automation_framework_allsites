@@ -372,4 +372,11 @@ public class PurchaseOrderReceivingPage {
 		screen.type(tagId);
 		Thread.sleep(1000);
 	}
+
+	public boolean isOverReceiptErrorDisplayed() {
+		if (screen.exists("images/Putty/Receiving/OverReceiptError.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

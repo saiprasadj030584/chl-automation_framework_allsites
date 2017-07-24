@@ -47,13 +47,14 @@ public class InventoryQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		System.out.println("check1" + context.getUpiId());
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getUpiId(), date), failureList);
+					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
 			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
 					Integer.toString(context.getRcvQtyDue() + 5),
-					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
 					failureList);
 		}
 		Assert.assertTrue(
