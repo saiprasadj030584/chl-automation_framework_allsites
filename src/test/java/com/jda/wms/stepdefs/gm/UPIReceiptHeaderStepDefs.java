@@ -35,6 +35,14 @@ public void asn_to_be_linked_with_upi_header() throws Throwable {
 	upiReceiptHeaderDB.updateASN(context.getUpiId(),context.getAsnId());
 }
 
+@Given("^ASN to be linked with upi header list$")
+public void asn_to_be_linked_with_upi_header_list() throws Throwable {
+	for(int i=0;i<context.getUpiList().size();i++)
+	{
+	upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnId());
+	}
+}
+
 @Given("^SSSC_URN_to_be_updated_with_upi_header$")
 public void SSSC_URN_to_be_updated_with_upi_header() throws Throwable 
 {

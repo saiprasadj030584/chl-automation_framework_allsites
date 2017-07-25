@@ -43,6 +43,20 @@ public class UPIReceiptLineStepDefs {
 		}
 	}
 	
+	@Given("^PO to be linked with upi line for each line item$")
+	public void po_to_be_linked_with_upi_line_for_each_line_item() throws Throwable {
+		//Link PO ID and PO line DI with UPI for each line item
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		for (int i=1;i<=
+				context.getNoOfLines();i++){
+			String sku = poMap.get(i).get("SKU");
+			String poLineId= poMap.get(i).get("LINE ID");
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiList().get(i-1));
+			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(i-1));
+		}
+	}
+	
 	public void container_to_be_updated_with_upi_line() throws Throwable {
 		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
 		}

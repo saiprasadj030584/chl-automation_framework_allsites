@@ -9,12 +9,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "  @verification_movement_label_field_blind_receiving"
-		+ ""})	
+"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@po_receive_multiple_urn_single_trailer"})	
 public class AllTest {
-}
+}		
 
 	
 
-
+	
 

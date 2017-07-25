@@ -39,6 +39,29 @@ public class UPIReceiptLineDB {
 		}
 		return skuIdList;
 	}
+	
+	public ArrayList<String> getSkuIdList(ArrayList<String> upiList) throws SQLException, ClassNotFoundException {
+		ArrayList<String> skuIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		for(int i=0;i<upiList.size();i++)
+		{
+		ResultSet rs = stmt
+				.executeQuery("select sku_id from upi_receipt_line where pallet_id ='" + upiList.get(i) + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				skuIdList.add((rs.getString(j)));
+			}
+		}
+		}
+		return skuIdList;
+	}
 
 	public String getLineId(String upiId, String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
