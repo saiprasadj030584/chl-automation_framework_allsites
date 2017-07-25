@@ -13,7 +13,7 @@ Feature: Dock Scheduling
     When I select the booking type preadvice
     And I select the slot
     And I create a booking
-    Then the booking details should appear in the dock scheduler booking
+    Then booking details should appear in the dock scheduler booking
 
     Examples: 
       | PreAdviceID  | SiteId |

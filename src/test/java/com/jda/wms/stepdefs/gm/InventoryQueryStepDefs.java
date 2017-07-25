@@ -50,12 +50,14 @@ public class InventoryQueryStepDefs {
 		System.out.println("check1" + context.getUpiId());
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
-			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
-					Integer.toString(context.getRcvQtyDue() + 5),
-					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
-					failureList);
+			if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+						Integer.toString(context.getRcvQtyDue() + 5),
+						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
+						failureList);
+			}
 			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getUpiId(), date), failureList);
 			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),

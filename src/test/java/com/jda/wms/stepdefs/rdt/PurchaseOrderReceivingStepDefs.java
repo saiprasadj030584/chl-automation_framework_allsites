@@ -1,13 +1,19 @@
 package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.DeliveryDB;
+import com.jda.wms.db.gm.PreAdviceHeaderDB;
+import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
@@ -45,6 +51,10 @@ public class PurchaseOrderReceivingStepDefs {
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private JDAFooter jdaFooter;
+	private PreAdviceHeaderDB preAdviceHeaderDB;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private UPIReceiptHeaderDB upiReceiptHeaderDB;
+	private DeliveryDB deliveryDB;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -53,7 +63,8 @@ public class PurchaseOrderReceivingStepDefs {
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter,
-			PuttyFunctionsPage puttyFunctionsPage) {
+			PuttyFunctionsPage puttyFunctionsPage, PreAdviceHeaderDB preAdviceHeaderDB,
+			UPIReceiptHeaderDB upiReceiptHeaderDB, DeliveryDB deliveryDB) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -68,6 +79,9 @@ public class PurchaseOrderReceivingStepDefs {
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.jdaFooter = jdaFooter;
+		this.preAdviceHeaderDB = preAdviceHeaderDB;
+		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
+		this.deliveryDB = deliveryDB;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -172,7 +186,9 @@ public class PurchaseOrderReceivingStepDefs {
 
 			i_enter_the_quantity(quantity);
 			i_enter_urn_id();
-			puttyFunctionsPage.pressEnter();
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				puttyFunctionsPage.pressEnter();
+			}
 		}
 	}
 
@@ -531,8 +547,8 @@ public class PurchaseOrderReceivingStepDefs {
 
 	}
 
-	@Then("^the error message should be displayed as cannot over receipt$")
-	public void the_error_message_should_be_displayed_as_cannot_over_receipt() throws Throwable {
+	@Then("^the error message should be displayed as cannot do over receipt$")
+	public void the_error_message_should_be_displayed_as_cannot_do_over_receipt() throws Throwable {
 		Assert.assertTrue("Error message:You can not over receipt this sscc",
 				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
 		// jdaFooter.PressEnter();
@@ -584,6 +600,41 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter the newpallet$")
 	private void i_enter_the_newpallet(String newPallet) throws InterruptedException, FindFailed {
 		purchaseOrderReceivingPage.enterNewPallet(newPallet);
+	}
+
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,
+			String type, String upiId, String asnId, String status, String lockCode) throws Throwable {
+		context.setPreAdviceId(preAdviceId);
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		context.setSKUType(type);
+		context.setLockCode(lockCode);
+
+		logger.debug("PO ID: " + preAdviceId);
+		logger.debug("UPI ID: " + upiId);
+		logger.debug("ASN ID: " + asnId);
+		logger.debug("Type: " + type);
+
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+
+		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+
+		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
+		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
+		Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),
+				String.valueOf(numLines));
+		context.setNoOfLines(numLines);
+		logger.debug("Num of Lines: " + numLines);
+		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
 	}
 
 }

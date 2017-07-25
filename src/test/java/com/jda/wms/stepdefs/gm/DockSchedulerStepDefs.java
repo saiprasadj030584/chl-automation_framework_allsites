@@ -23,7 +23,7 @@ public class DockSchedulerStepDefs {
 	private PreReceivingStepDefs preReceivingStepDefs;
 	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
 	private JDAHomeStepDefs jDAHomeStepDefs;
-	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
+	private DockSchedulerBookingStepDefs dockScehdulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
 
 	Screen screen = new Screen();
@@ -32,7 +32,7 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
-			DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog) {
+			DockSchedulerBookingStepDefs dockScehdulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog) {
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
