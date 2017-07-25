@@ -40,6 +40,7 @@ public class PurchaseOrderReceivingStepDefs {
 	Map<String, Map<String, String>> upiMap;
 	private DeliveryStepDefs deliveryStepDefs;
 	private UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs;
+	private UPIReceiptLineDB upiReceiptLineDB;
 	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
 	private Verification verification;
 	private PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs;
@@ -51,7 +52,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
 			Hooks hooks, PuttyFunctionsStepDefs puttyFunctionsStepDefs, DeliveryStepDefs deliveryStepDefs,
-			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,
+			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,UPIReceiptLineDB upiReceiptLineDB,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,JDAFooter jdaFooter) {
@@ -62,6 +63,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.deliveryStepDefs = deliveryStepDefs;
 		this.upiReceiptHeaderStepDefs = upiReceiptHeaderStepDefs;
 		this.upiReceiptLineStepDefs = upiReceiptLineStepDefs;
+		this.upiReceiptLineDB= upiReceiptLineDB;
 		this.verification = verification;
 		this.preAdviceHeaderStepsDefs = preAdviceHeaderStepsDefs;
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
@@ -287,30 +289,29 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter details and perform blind receiving normal upc$")
 	public void i_enter_details_and_perform_blind_receiving_normal_upc()  throws Throwable {
+		for(int i = 0;i<context.getRcvQtyDue();i++){
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
-		/*if(context.getLockCode().equalsIgnoreCase("DMG"))
-		{
-			jdaFooter.pressTab();
-		}
-		else 
-		{
-			jdaFooter.pressTab();
-		}*/
 		purchaseOrderReceivingPage.enterQuantity("1");
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 		//jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.pressTab();
-		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+		//purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
 		Assert.assertFalse("Blind Receiving Unsuccessfull.",
 				purchaseOrderReceivingPage.isBlindReceivingDone());
-	}
+		jdaFooter.PressEnter();
+		Thread.sleep(1000);
+		/*if (i != 0) {
+		Assert.assertTrue("verification of no of singles failed",
+		purchaseOrderReceivingPage.checkNoOfSingles());
+		}*/
+	}}
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
@@ -454,7 +455,10 @@ public class PurchaseOrderReceivingStepDefs {
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
+		if((upiReceiptLineDB.getQtyDue(upiId,context.getSkuId()))==(upiReceiptLineDB.getRcvQty(upiId,context.getSkuId())))
+				{
+		preAdviceHeaderStepsDefs.the_upi_status_should_be_displayed_as_for_blind_receive("Complete");
+				}
 	}
 
 	

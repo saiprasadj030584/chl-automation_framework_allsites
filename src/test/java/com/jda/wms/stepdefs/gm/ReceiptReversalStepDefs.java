@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -77,49 +78,47 @@ public class ReceiptReversalStepDefs {
 		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.checkRefeIDWithPreadviceIDlockcode(
 				reference_Id, context.getPreAdviceId(), lockcode, context.getLockCode()));
 	}
-	
-	
-	
-	
-	
+
 	@When("^the inventory transaction should be updated with lockcode Damaged$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_Damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
+		String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
 		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
-		
+		Assert.assertTrue("Receipt Reversion failed",
+				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
+
 	}
-	
+
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
 		validate(lockcode);
-		}
-	
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+	}
 
-	private boolean validate(String lockcode) {
+	private boolean validate(String lockcode) throws FindFailed, InterruptedException {
 		boolean isLockcodeExists = false;
-		try{
-		if(lockcode.equals("DMGD"))
-		{
-			context.setLockCode(lockcode);
-			isLockcodeExists= true;
-			jDAFooter.clickQueryButton();
-			inventoryTransactionQueryPage.enterCode("Inventory Lock");
-			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-			jDAFooter.clickExecuteButton();
-			String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
-			Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
-		}
-		}
-		catch(Exception e){
+		try {
+			if (lockcode.equals("DMGD")) {
+				context.setLockCode(lockcode);
+				isLockcodeExists = true;
+				jDAFooter.clickQueryButton();
+				inventoryTransactionQueryPage.enterCode("Inventory Lock");
+				inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+				jDAFooter.clickExecuteButton();
+				String code = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+				Assert.assertTrue("Receipt Reversion failed",
+						inventoryTransactionQueryPage.checkReceiptLockCode(code, lockcode));
+			}
+		} catch (Exception e) {
 			if (e.getMessage().contains("Exhausted Resultset"))
-		isLockcodeExists = false;
+			isLockcodeExists = false;
+		}
 		return isLockcodeExists;
-}
-		return isLockcodeExists;		
 	}
 }

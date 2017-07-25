@@ -64,6 +64,17 @@ public class UPIReceiptLineDB {
 		return rs.getString(1);
 	}
 
+	public String getRcvQty(String upiId, String skuID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_received from upi_receipt_line where pallet_id = '" + upiId
+				+ "'   and sku_id = '" + skuID + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
 	public void updatePreAdviceID(String preAdviceId, String skuID, String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
