@@ -56,8 +56,35 @@ public class InventoryQueryStepDefs {
 					Integer.toString(context.getRcvQtyDue() + 5),
 					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
 					failureList);
+			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getUpiId(), date), failureList);
+			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					failureList);
 		}
 		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
+	// FSV PO receiving
+
+	@Then("^the inventory should be displayed for all tags received for FSV PO$")
+	public void the_inventory_should_be_displayed_for_all_tags_received_for_fsv_po() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getPreAdviceId(), date),
+					failureList);
+			verification.verifyData(
+					"Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB
+							.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(), date),
+					failureList);
+		}
+		Assert.assertFalse(
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
