@@ -573,7 +573,10 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			puttyFunctionsPage.pressEnter();
 			i_enter_the_location();
+			puttyFunctionsPage.pressEnter();
+
 			i_enter_the_newpallet(context.enterNewPallet().get(i - 1));
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
@@ -635,6 +638,20 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+	}
+
+	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be received at location  \"([^\"]*)\" and site id \"([^\"]*)\"$")
+	public void the_FSV_PO_of_type_should_be_received_at_location_and_site_id(String preAdviceId, String type,
+			String location, String siteId) throws Throwable {
+		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(preAdviceId, type, "Released",
+				siteId);
+		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
+		preAdviceHeaderStepsDefs.the_PO_should_not_be_linked_with_UPI_line(preAdviceId);
+		i_receive_all_skus_for_the_FSV_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received_for_fsv_po();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_fsv_PO_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_FSV_po_status_should_be_displayed_as("Complete");
 	}
 
 }

@@ -311,8 +311,6 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterBelCode(String getbelCode) throws InterruptedException {
 		screen.type(getbelCode);
-		Thread.sleep(2000);
-		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
 	}
 

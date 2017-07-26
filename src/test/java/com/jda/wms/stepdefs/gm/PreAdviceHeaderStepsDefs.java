@@ -34,6 +34,7 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
+	// private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
@@ -51,6 +52,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
+		// this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 	}
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
@@ -184,14 +186,16 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertFalse("Pre Advice ID is linked to UPI for FSV PO", isUPIRecordExists);
 	}
 
-	the FSV PO"<PreAdviceID>"
-	of type"Hanging"
-	should be
-	received at location"<Location">
-	and site id"<SiteID>"
-
-	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and site id \"([^\"]*)\"$")
-	public void the_FSV_PO_of_type_should_be_received_at_location_and_site_id(String preAdviceId, String type,
-			String location, String siteId) throws Throwable {
-	}
+	// @Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should received at
+	// location \"([^\"]*)\" and site id \"([^\"]*)\"$")
+	// public void
+	// the_FSV_PO_of_type_should_received_at_location_and_site_id(String
+	// preAdviceId, String type,
+	// String location, String siteId) throws Throwable {
+	// String status = "released";
+	// the_FSV_PO_of_type_should_be_in_status_at_site_id(preAdviceId, type,
+	// siteId, status);
+	// preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
+	// the_PO_should_not_be_linked_with_UPI_line(preAdviceId);
+	// purchaseOrderReceivingStepDefs.i_receive_all_skus_for_the_FSV_purchase_order_at_location(location);
 }

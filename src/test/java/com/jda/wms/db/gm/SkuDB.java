@@ -150,8 +150,6 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	
-
 	public String ExpiryRequiredUncheckedValue(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -181,12 +179,12 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getSKUType(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		rs.next();
@@ -202,5 +200,5 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("select new_product from sku where sku_id = '" + skuId + "' ");
 		rs.next();
 		return rs.getString(1);
-	} 
+	}
 }

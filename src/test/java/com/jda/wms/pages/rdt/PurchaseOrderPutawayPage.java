@@ -18,7 +18,7 @@ public class PurchaseOrderPutawayPage {
 
 	@Inject
 	public PurchaseOrderPutawayPage(PuttyFunctionsPage puttyFunctionsPage) {
-		this.puttyFunctionsPage =puttyFunctionsPage;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	public void selectPutawayMenu() throws FindFailed, InterruptedException {
@@ -105,11 +105,12 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterURNID(String urn) throws InterruptedException {
-		screen.type(urn);
+	public void enterURNID(String palletId) throws InterruptedException {
+		screen.type(palletId);
 		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
+		puttyFunctionsPage.pressEnter();
 	}
 
 	public boolean isPutCmpPageDisplayed() {
@@ -118,7 +119,7 @@ public class PurchaseOrderPutawayPage {
 		else
 			return false;
 	}
-	
+
 	public String getFromLocation() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Putaway/FromLocation.png");
 		screen.click(mStatus.getCenter().offset(50, 0));

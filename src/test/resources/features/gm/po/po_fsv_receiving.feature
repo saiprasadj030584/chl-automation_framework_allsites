@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @po_receive_hanging @po @wip
+  @po_receive_hanging @po @wiprg
   Scenario Outline: Receiving process in JDA WMS for Hanging type
     Given the FSV PO "<PreAdviceID>" of type "Hanging" should be in "Released" status at site id "<SiteID>"
     And the FSV PO line should have sku, quantity due details
@@ -16,7 +16,7 @@ Feature: Purchase order receiving
 
     Examples: 
       | PreAdviceID  | SiteID | Location |
-      | PO2420001464 |   5885 | REC001   |
+      | 25300100369 |   5885 | REC001   |
 
   @po_receive_boxed @po @inprogress
   Scenario Outline: Receiving process in JDA WMS for Boxed type

@@ -90,9 +90,13 @@ public class PurchaseOrderPutawayStepDefs {
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			i_enter_urn_id_in_putaway();
-			if (null == context.getLockCode()) {
-				the_tag_details_for_putaway_should_be_displayed();
+			if (context.getsupplierType().equalsIgnoreCase("FSV")) {
+				i_enter_pallet_id_in_putaway(context.getPalletIDList().get(i - 1));
+			} else {
+				i_enter_urn_id_in_putaway();
+				if (null == context.getLockCode()) {
+					the_tag_details_for_putaway_should_be_displayed();
+				}
 			}
 		}
 	}
@@ -113,7 +117,7 @@ public class PurchaseOrderPutawayStepDefs {
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
 		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected",
 				purchaseOrderPutawayPage.isLocationErrorDisplayed());
-		jdaFooter.PressEnter();
+		// jdaFooter.PressEnter();
 	}
 
 	@When("^I proceed without entering quantity$")
@@ -152,6 +156,11 @@ public class PurchaseOrderPutawayStepDefs {
 	@When("^I enter urn id in putaway$")
 	public void i_enter_urn_id_in_putaway() throws FindFailed, InterruptedException {
 		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
+	}
+
+	@When("^I enter pallet id in putaway$")
+	public void i_enter_pallet_id_in_putaway(String palletId) throws FindFailed, InterruptedException {
+		purchaseOrderPutawayPage.enterURNID(palletId);
 	}
 
 	@When("^the tag details for putaway should be displayed$")

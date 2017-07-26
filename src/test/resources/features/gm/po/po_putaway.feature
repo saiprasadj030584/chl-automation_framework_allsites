@@ -27,7 +27,7 @@ Feature: Purchase order Putaway
       | PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
 
   @po_putaway_hanging_field_validation @po @complete
-  Scenario Outline: Putaway process in JDA WMS for Boxed type
+  Scenario Outline: Putaway process - Field Validation in JDA WMS for Boxed type
     Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I choose normal putaway
     And I proceed without entering location
