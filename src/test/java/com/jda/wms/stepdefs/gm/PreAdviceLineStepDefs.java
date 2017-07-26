@@ -88,6 +88,8 @@ public class PreAdviceLineStepDefs {
 				UPIMap.put(context.getSkuId(),lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
+			
+			
 
 
 			// To Validate Modularity,New Product Check for SKU
@@ -109,26 +111,21 @@ public class PreAdviceLineStepDefs {
 				failureList.isEmpty());
 	}
 	
-	@Given("^the PO should have sku same as in UPI, quantity due details$")
-	public void the_PO_should_have_sku_same_as_in_UPI_quantity_due_details() throws Throwable {
+	@Given("^the PO with multiple upi should have sku, quantity due details$")
+	public void the_PO_with_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {
+		System.out.println("heyyy");
 		ArrayList failureList = new ArrayList();
 		ArrayList skuFromPO = new ArrayList();
 		ArrayList skuFromUPI = new ArrayList();
 		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
-		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
+		//Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
+		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
 
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiList());
 
-		if (!skuFromPO.containsAll(skuFromUPI)) {
-			for (int i = 0; i < skuFromPO.size(); i++) {
-				if (!skuFromPO.get(i).equals(skuFromUPI.get(i))) {
-					failureList.add("SKU id " + skuFromPO.get(i) + " from PreAdvice does not match with SKU id "
-							+ skuFromUPI + " from UPI for line item " + i);
-				}
-			}
-
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
+				
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromPO.get(i - 1));
 				lineItemsMap.put("SKU", context.getSkuId());
@@ -137,20 +134,19 @@ public class PreAdviceLineStepDefs {
 				POMap.put(i, lineItemsMap);
 			}
 			context.setPOMap(POMap);
-
-			// Add SKU details to UPI Map
-			for (int i = 1; i <= context.getNoOfLines(); i++) {
-				Map<String, String> lineItemsMap = new HashMap<String, String>();
-				context.setSkuId((String) skuFromPO.get(i - 1));
-				lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
-				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
-				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
-				lineItemsMap.put("UPC", "");
-				UPIMap.put(context.getSkuId(),lineItemsMap);
-			}
-			context.setUPIMap(UPIMap);
-
-
+			
+			for (int j = 0; j < context.getUpiList().size(); j++) {
+				Map<String, Map<String, String>> skuMap = new HashMap<String, Map<String, String>>();
+				for (int i = 1; i <= context.getNoOfLines(); i++) {
+					context.setSkuId((String) skuFromPO.get(i - 1));
+					Map<String, String> lineItemsMap = new HashMap<String, String>();
+					lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("UPC", "");
+					skuMap.put(context.getSkuId(), lineItemsMap);
+				}
+				MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
 			switch (context.getSKUType()) {
@@ -164,11 +160,10 @@ public class PreAdviceLineStepDefs {
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
-
-		Assert.assertTrue(
-				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
+			context.setMultipleUPIMap(MultipleUPIMap);
 	}
+
+
 
 
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")

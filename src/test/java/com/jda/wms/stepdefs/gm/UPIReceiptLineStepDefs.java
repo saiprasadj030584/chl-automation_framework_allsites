@@ -43,22 +43,29 @@ public class UPIReceiptLineStepDefs {
 		}
 	}
 	
-	@Given("^PO to be linked with upi line for each line item$")
-	public void po_to_be_linked_with_upi_line_for_each_line_item() throws Throwable {
+	@Given("^PO to be linked with upi line for multiple pallets$")
+	public void po_to_be_linked_with_upi_line_for_multiple_pallets() throws Throwable {
 		//Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+		System.out.println("POMAP"+poMap);
+		System.out.println("UPIMAP"+upiMap);
+		for (int j=0;j<context.getUpiList().size();j++)
+		{
 		for (int i=1;i<=
 				context.getNoOfLines();i++){
+			System.out.println("upi"+j+"lineitem"+i+poMap.get(i).get("SKU"));
+			System.out.println("upi"+j+"lineitem"+i+poMap.get(i).get("LINE ID"));
 			String sku = poMap.get(i).get("SKU");
 			String poLineId= poMap.get(i).get("LINE ID");
-			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiList().get(i-1));
-			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(i-1));
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiList().get(j));
+			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
+		}
 		}
 	}
 	
 	public void container_to_be_updated_with_upi_line() throws Throwable {
-		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
+		upiReceiptLineDB.updateUserDefNote2(context.getUpiId());
 		}
 	
 	@Given("^I fetch supplier id UPC$")

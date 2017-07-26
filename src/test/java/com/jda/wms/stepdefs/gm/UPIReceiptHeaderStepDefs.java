@@ -36,7 +36,7 @@ public void asn_to_be_linked_with_upi_header() throws Throwable {
 }
 
 @Given("^ASN to be linked with upi header list$")
-public void asn_to_be_linked_with_upi_header_list() throws Throwable {
+public void asn_to_be_linked_with_multiple_upi_header() throws Throwable {
 	for(int i=0;i<context.getUpiList().size();i++)
 	{
 	upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnId());
@@ -55,5 +55,7 @@ public void the_pallet_and_asn_status_should_be_displayed_as(String rcvStatus) t
 	verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
 	Assert.assertTrue("UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
+
+
 
 }

@@ -104,3 +104,48 @@ Feature: Dock Scheduling
     Examples: 
       | PreAdviceID  | DataType | SiteId |
       | PO2010002039 | Hanging  |   5649 |
+      
+      
+      @delete_booking_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I delete the booking
+    Then the booking details should be deleted in the dock scheduler booking
+
+    Examples: 
+      | UPIId                						 | ASNId      | DataType | SiteId |
+      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+
+  @move_booking_diff_time_sameday_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | UPIId                						 | ASNId      | DataType | SiteId |
+      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+
+  @change_status_of_booking_to_complete_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the status of booking
+    Then the booking id details with updated status should be displayed on the page
+
+    Examples: 
+      | UPIId                						 | ASNId      | DataType | SiteId |
+      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+
+      

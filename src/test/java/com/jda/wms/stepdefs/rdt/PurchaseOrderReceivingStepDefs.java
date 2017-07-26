@@ -9,6 +9,7 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
+import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -34,10 +35,12 @@ public class PurchaseOrderReceivingStepDefs {
 	private Context context;
 	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private UPIReceiptLineDB uPIReceiptLineDB;
+	private UPIReceiptHeaderDB uPIReceiptHeaderDB;
 	ArrayList<String> failureList = new ArrayList<String>();
 	private Hooks hooks;
 	Map<Integer, Map<String, String>> poMap;
 	Map<String, Map<String, String>> upiMap;
+	Map<String, Map<String, Map<String, String>>> multipleUpiMap;
 	private DeliveryStepDefs deliveryStepDefs;
 	private UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs;
 	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
@@ -54,7 +57,7 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter) {
+			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter,UPIReceiptHeaderDB uPIReceiptHeaderDB) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -68,6 +71,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
 		this.jdaFooter = jdaFooter;
+		this.uPIReceiptHeaderDB=uPIReceiptHeaderDB;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -82,8 +86,8 @@ public class PurchaseOrderReceivingStepDefs {
 	public void the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_list_and_po_to_be_linked_with_upi_line()
 			throws Throwable {
 		deliveryStepDefs.the_pallet_count_should_be_updated_in_delivery();
-		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header_list();
-		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line_for_each_line_item();
+		upiReceiptHeaderStepDefs.asn_to_be_linked_with_multiple_upi_header();
+		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line_for_multiple_pallets();
 	}
 
 	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line()
@@ -93,7 +97,10 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
 		upiReceiptLineStepDefs.container_to_be_updated_with_upi_line();
 		upiReceiptLineStepDefs.urn_to_be_updated_with_upi_line();
-
+		Assert.assertEquals("UPI Header is not as expected,Expected ZRET", "ZRET",
+				uPIReceiptHeaderDB.getUserDefinedType7(context.getUpiId()));
+		Assert.assertEquals("UPI Line is not as expected,Expected ZRET", "ZRET",
+				uPIReceiptLineDB.getUserDefinedType7(context.getUpiId()));
 	}
 
 	@Given("^the pallet count should be updated in delivery, po to be linked with upi line$")
@@ -136,6 +143,45 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
+	@When("^I receive all skus for the purchase order with multiple upi at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_with_multiple_upi_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		multipleUpiMap=context.getMultipleUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+		
+		for (int j =0; j <= context.getUpiList().size(); j++) {
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(multipleUpiMap.get(context.getUpiList().get(j)).get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(multipleUpiMap.get(context.getUpiList().get(j)).get(context.getSkuId()).get("QTY DUE")));
+			i_enter_urn_id();
+			the_tag_and_upc_details_should_be_displayed();
+			i_enter_the_location();
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (context.getLockCode().equals(null)) {
+				i_enter_urn_id();
+			} else {
+				i_enter_urn_id_for_locked_sku();
+			}
+
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+		}
+		}
+		hooks.logoutPutty();
+	}
+
 
 	@When("^I receive all skus for the purchase order at location \"([^\"]*)\" with damaged$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(String location) throws Throwable {

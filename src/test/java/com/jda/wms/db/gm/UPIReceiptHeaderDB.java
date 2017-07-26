@@ -60,6 +60,18 @@ public class UPIReceiptHeaderDB {
 		}
 		return Integer.toString(count);
 	}
+	
+	public String getUserDefinedType7(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEFINED_TYPE_7 from upi_receipt_header where pallet_id='" + upiId
+				+ "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public void updateASN(String upiId, String asnId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

@@ -73,23 +73,20 @@ public class PreAdviceHeaderStepsDefs {
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
 	
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
-			String upiId1,String upiId2,String upiId3,String asnId, String status) throws Throwable {
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
+	public void the_PO_of_type_with_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
+			String upiId,String asnId, String status) throws Throwable {
 			context.setPreAdviceId(preAdviceId);
-			ArrayList upiList = new ArrayList();
-			upiList.add(upiId1);
-			upiList.add(upiId2);
-			upiList.add(upiId3);
-			
-			//context.setUpiId(upiId);
+			ArrayList<String> upiList = new ArrayList<String>();
+			String[] multipleupi = upiId.split(",");
+			for(int i=0;i<multipleupi.length;i++)
+			{
+				upiList.add(multipleupi[i]);
+			}
 			context.setUpiList(upiList);
 			context.setAsnId(asnId);
 			context.setSKUType(type);
 			logger.debug("PO ID: "+preAdviceId);
-			logger.debug("UPI ID: "+upiList.get(0));
-			logger.debug("UPI ID: "+upiList.get(1));
-			logger.debug("UPI ID: "+upiList.get(2));
 			logger.debug("ASN ID: "+asnId);
 			logger.debug("Type: "+type);
 			
@@ -105,9 +102,13 @@ public class PreAdviceHeaderStepsDefs {
 			
 			context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 			int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
-			System.out.println("check1"+numLines);
-			System.out.println("check2"+upiReceiptHeaderDB.getNumberOfLines(context.getUpiList()));
-			Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(context.getUpiList()),String.valueOf(numLines));
+			for(int i=0;i<upiList.size();i++)
+			{
+				System.out.println("gygu"+upiReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)));
+				System.out.println("gyjk"+String.valueOf(numLines));
+				
+			Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)),String.valueOf(numLines));
+			}
 			context.setNoOfLines(numLines);
 			logger.debug("Num of Lines: "+numLines);
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());

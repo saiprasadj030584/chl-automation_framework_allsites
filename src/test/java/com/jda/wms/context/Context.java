@@ -100,6 +100,7 @@ public class Context {
 	private String asnId;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
+	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
@@ -916,4 +917,12 @@ public class Context {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
+		return MultipleUPIMap;
+	}
+
+	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
+		MultipleUPIMap = multipleUPIMap;
+	}
+
 }

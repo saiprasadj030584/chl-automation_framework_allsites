@@ -75,6 +75,8 @@ public class UPIReceiptLineDB {
 		return rs.getString(1);
 	}
 	
+	
+	
 	public String getQtyDue(String upiId, String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -100,6 +102,18 @@ public class UPIReceiptLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getUserDefinedType7(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEFINED_TYPE_7 from upi_receipt_line where pallet_id='" + upiId
+				+ "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public void updatePreAdviceID(String preAdviceId, String skuID, String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -111,7 +125,7 @@ public class UPIReceiptLineDB {
 		context.getConnection().commit();
 	}
 	
-	public void updateuserdefnote2(String upiId) throws SQLException, ClassNotFoundException {
+	public void updateUserDefNote2(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

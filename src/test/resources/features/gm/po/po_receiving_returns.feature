@@ -42,6 +42,7 @@ Feature: Purchase order receiving
   #| 58850006476470077010064764700400 | 0000647647 | REC003   | N         |       2 | DMGD     |
   #| 58850006376310077010063763100400 | 0000637631 | REC003   | Y         |       1 | IMPSET   |
   #| 58850006576270077010065762700400 | 0000657627 | REC003   | N         |       1 | IMPSET   |
+  
   @receiving_returns_qty_singles_verfication
   Scenario Outline: Returns receiving verification for number of singles per UPC
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
@@ -63,3 +64,6 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                         | ASN        | Location |
       | 95580085370650011050230212341238 | 0000838629 | REC003   |
+
+      
+      

@@ -56,14 +56,14 @@ Feature: Purchase order receiving
 
   @po_receive_multiple_urn_single_trailer
   Scenario Outline: Receiving process in JDA WMS for Hanging type
-    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId1>" "<PalletId2>" "<PalletId3>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
-    And the PO should have sku same as in UPI, quantity due details
+    Given the PO "<PreAdviceID>" of type "Hanging" with multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
+    And the PO with multiple upi should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header list and po to be linked with upi line
     When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
+    #Then the inventory should be displayed for all tags received
+    #And the goods receipt should be generated for received stock in inventory transaction
+    #Then the po status should be displayed as "Complete"
 
     Examples: 
-      | PreAdviceID  | PalletId1            | PalletId2           | PalletId3            | ASN        | Location |
-      | P02010002009 | PO050456000511235662 | PO000504569995112377 | 00050426009999999967 | PO00100507 | REC001   |
+      | PreAdviceID | PalletId                                  | ASN        | Location |
+      |  9090002070 | 00050456000249606127,00050456000248606127 | 0000004789 | REC001   |
