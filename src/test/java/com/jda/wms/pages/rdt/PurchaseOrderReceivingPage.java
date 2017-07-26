@@ -145,7 +145,6 @@ public class PurchaseOrderReceivingPage {
 	}
 	public void enterQuantity(String count) throws InterruptedException {
 		screen.type(count);
-		
 		Thread.sleep(2000);
 	}
 	public void enterPerfectCondition(String condition) throws InterruptedException {

@@ -86,7 +86,6 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
 		upiReceiptLineStepDefs.container_to_be_updated_with_upi_line();
 		upiReceiptLineStepDefs.urn_to_be_updated_with_upi_line();
-		
 	}
 
 	@Given("^the pallet count should be updated in delivery, po to be linked with upi line$")
@@ -181,7 +180,6 @@ public class PurchaseOrderReceivingStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		upiMap = context.getUPIMap();
-		
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_receive_the_po_with_basic_and_blind_receiving();
@@ -289,7 +287,10 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter details and perform blind receiving normal upc$")
 	public void i_enter_details_and_perform_blind_receiving_normal_upc()  throws Throwable {
-		for(int i = 0;i<context.getRcvQtyDue();i++){
+		int qtyDue = Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+		System.out.println(qtyDue);
+
+		for (int i = 0; i < qtyDue; i++) {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 		jdaFooter.pressTab();
@@ -305,7 +306,7 @@ public class PurchaseOrderReceivingStepDefs {
 		jdaFooter.PressEnter();
 		Assert.assertFalse("Blind Receiving Unsuccessfull.",
 				purchaseOrderReceivingPage.isBlindReceivingDone());
-		jdaFooter.PressEnter();
+         jdaFooter.PressEnter();
 		Thread.sleep(1000);
 		/*if (i != 0) {
 		Assert.assertTrue("verification of no of singles failed",
@@ -444,21 +445,22 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setAsnId(asnId);
 		context.setPerfectCondition(condition);
 		validate(lockcode);
+		
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 				upiId, asnId, "Released");
-
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
 		//Supplier SKU Tables
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+//		upiReceiptLineStepDefs.fetchQtyDetails();
 		i_blind_receive_all_normal_skus_for_the_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		if((upiReceiptLineDB.getQtyDue(upiId,context.getSkuId()))==(upiReceiptLineDB.getRcvQty(upiId,context.getSkuId())))
-				{
+		/*if((upiReceiptLineDB.getQtyDue(upiId,context.getSkuId()))==(upiReceiptLineDB.getRcvQty(upiId,context.getSkuId())))
+				{*/
 		preAdviceHeaderStepsDefs.the_upi_status_should_be_displayed_as_for_blind_receive("Complete");
-				}
+				//}
 	}
 
 	
