@@ -13,6 +13,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -38,17 +39,29 @@ public class InventoryQueryStepDefs {
 		this.jDAFooter = jDAFooter;
 		this.inventoryQueryPage = inventoryQueryPage;
 	}
-
+	
 	@Then("^the inventory should be displayed for all tags received$")
 	public void the_inventory_should_be_displayed_for_all_tags_received() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		System.out.println("Divya TAg ID Randomized " + tagId);
+		context.setTagId(tagId);
+		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+			if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+						Integer.toString(context.getRcvQtyDue() + 5),
+						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
+						failureList);
+			}
 			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-					inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getUpiId(), date), failureList);
+					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getUpiId(), date), failureList);
 			verification.verifyData("Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
 					failureList);
@@ -57,7 +70,7 @@ public class InventoryQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-
+	
 	@Then("^the inventory should be displayed for all putaway tags$")
 	public void the_inventory_should_be_displayed_for_all_putaway_tags() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();

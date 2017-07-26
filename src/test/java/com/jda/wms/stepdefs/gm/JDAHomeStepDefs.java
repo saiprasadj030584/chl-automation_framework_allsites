@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
+import org.sikuli.script.FindFailed;
+
 import com.google.inject.Inject;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
@@ -182,6 +184,10 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to delivery page$")
 	public void i_navigate_to_delivery_page() throws Throwable {
 		jdaHomePage.navigateToDeliveryPage();
+	}
+	@When("^i navigate to UPI receipt header page$")
+	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException{
+		jdaHomePage.navigateToUpiReceiptHeaderPage();
 	}
 	}
 

@@ -384,13 +384,15 @@ public class InventoryDB {
 
 	public String getLocationAfterReceive(String skuId, String upiId, String date)
 			throws SQLException, ClassNotFoundException {
+		System.out.println("UPI " + upiId);
+		System.out.println("SKU" + skuId);
+		System.out.println("Date" + date);
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
+				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
-		// ResultSet rs = stmt.executeQuery("select Location_id from inventory
-		// where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
@@ -588,4 +590,17 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+
+	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

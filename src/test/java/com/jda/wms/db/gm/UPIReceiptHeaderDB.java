@@ -51,4 +51,28 @@ public class UPIReceiptHeaderDB {
 				.executeQuery("update upi_receipt_header set asn_id='"+asnId+"' where pallet_id='"+upiId+"'");
 		context.getConnection().commit();
 	}
+
+		public boolean isRecordExistsForPalletId(String upiId) {
+		boolean isRecordExists = false;
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("Select * from upi_receipt_header where pallet_id ='"+upiId+"'");
+		rs.next();
+		if (rs.getString(1).equals(0)) {
+			isRecordExists = true;
+		}
+		}
+		catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+	
+		return isRecordExists;
+		
+	}
 }

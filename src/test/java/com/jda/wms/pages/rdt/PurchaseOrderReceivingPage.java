@@ -15,7 +15,7 @@ public class PurchaseOrderReceivingPage {
 
 	@Inject
 	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage) {
-	this.puttyFunctionsPage = puttyFunctionsPage;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
@@ -92,8 +92,7 @@ public class PurchaseOrderReceivingPage {
 		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
@@ -229,10 +228,8 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterURNID(String urn) throws FindFailed, InterruptedException {
-//		screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
+		// screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
 		screen.type(urn);
-		Thread.sleep(2000);
-		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
 	}
 
@@ -252,7 +249,7 @@ public class PurchaseOrderReceivingPage {
 		screen.doubleClick(mTagId.below(1));
 		String tag2 = App.getClipboard();
 		Thread.sleep(1000);
-		return (tag1+tag2);
+		return (tag1 + tag2);
 	}
 
 	public String getPackConfig() throws FindFailed, InterruptedException {
@@ -292,27 +289,56 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		return App.getClipboard();
-		
-	}
 
-	public void entermorequantity(String quantity ) throws InterruptedException {
-		puttyFunctionsPage.pressTab();
-		puttyFunctionsPage.pressTab();
-		puttyFunctionsPage.pressTab();
-		puttyFunctionsPage.pressTab();
-		puttyFunctionsPage.rightArrow();
-		puttyFunctionsPage.rightArrow();
-		puttyFunctionsPage.rightArrow();
-		puttyFunctionsPage.backSpace();
-		puttyFunctionsPage.backSpace();
-		puttyFunctionsPage.backSpace();
-		screen.type(quantity);
-		
 	}
 
 	public void entertagId(String tagId) throws InterruptedException {
-		puttyFunctionsPage.pressTab();
+		// puttyFunctionsPage.pressTab();
 		screen.type(tagId);
-		
 	}
+
+	public void enterQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
+		Thread.sleep(2000);
+	}
+
+	public void selectBlindReceive() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isBlindEntryDisplayed() throws InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/blindEnterPage.png") != null))
+			return true;
+
+		return false;
+	}
+
+	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+
+	public void enterURRN(String urrn) throws InterruptedException {
+		screen.type(urrn);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isURRNNotExistDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/urrnNotExist.png") != null))
+			return true;
+		else
+			return false;
+	}
+
 }

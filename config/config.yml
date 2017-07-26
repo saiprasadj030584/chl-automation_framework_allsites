@@ -9,8 +9,8 @@ default:
  db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
  db-username: 'dcsdba'
  db-password: 'dcsabd'
- putty-gm-host:'hlxc0dc035.unix.marksandspencercate.com'
- putty-gm-port:'24001'
+ putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ putty-gm-port: '24005'
  
  #gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
  #putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
