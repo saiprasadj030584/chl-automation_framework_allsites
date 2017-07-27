@@ -20,13 +20,14 @@ Feature: Purchase order receiving
   #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
   @returns_receiving @returns @wipr
   Scenario Outline: Returns receiving process in JDA WMS for Boxed type upc with single supplier without lock code
-    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" for normal upc with perfect condition "<Condition>" and lockcode "<LockCode>"
+    #Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" for normal upc with perfect condition "<Condition>" and lockcode "<LockCode>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lock code "<LockCode>"
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition | LockCode |
-      | 58850004385640077010027343300600 | 0000468916 | REC003   | N         | DMGD     |
+      #| 58850004395640077010027343300600 | 0000478916 | REC003   | N         | DMGD     |
+      | 58850004237640077010027343300600 | 0000512216 | REC003   | Y         |      |
       #| 58850002754330077010027343300600 | 0000254336 | REC003   | N         | DMG      |
       #| 58850002734330077010027343300600 | 0000214336 | REC003   | N         | DMG      |
       #| 58850002634330077010026343300600 | 0000234336 | REC003   | N         | DMG      |

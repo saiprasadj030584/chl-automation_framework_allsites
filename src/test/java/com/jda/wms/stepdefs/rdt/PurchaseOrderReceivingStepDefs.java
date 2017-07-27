@@ -1,7 +1,5 @@
 package com.jda.wms.stepdefs.rdt;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -10,7 +8,6 @@ import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -19,6 +16,7 @@ import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.stepdefs.gm.DeliveryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryQueryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryTransactionQueryStepDefs;
+import com.jda.wms.stepdefs.gm.JDALoginStepDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceLineStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptHeaderStepDefs;
@@ -48,6 +46,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private InventoryQueryStepDefs inventoryQueryStepDefs;
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
 	private JDAFooter jdaFooter;
+	private JDALoginStepDefs jdaLoginStepDefs;
 	
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -55,7 +54,7 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,UPIReceiptLineDB upiReceiptLineDB,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,JDAFooter jdaFooter) {
+			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,JDAFooter jdaFooter,JDALoginStepDefs jdaLoginStepDefs) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -70,6 +69,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
 		this.jdaFooter=jdaFooter;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -308,10 +308,6 @@ public class PurchaseOrderReceivingStepDefs {
 				purchaseOrderReceivingPage.isBlindReceivingDone());
          jdaFooter.PressEnter();
 		Thread.sleep(1000);
-		/*if (i != 0) {
-		Assert.assertTrue("verification of no of singles failed",
-		purchaseOrderReceivingPage.checkNoOfSingles());
-		}*/
 	}}
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
@@ -461,9 +457,8 @@ public class PurchaseOrderReceivingStepDefs {
 				{*/
 		preAdviceHeaderStepsDefs.the_upi_status_should_be_displayed_as_for_blind_receive("Complete");
 				//}
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
-
-	
 
 	private boolean validate(String lockcode) {
 			boolean isLockcodeExists = false;

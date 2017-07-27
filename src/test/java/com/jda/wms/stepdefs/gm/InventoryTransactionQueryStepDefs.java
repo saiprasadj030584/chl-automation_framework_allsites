@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -193,6 +194,41 @@ public class InventoryTransactionQueryStepDefs {
 				execDate, context.getReasonCode());
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
-
+	}
+	
+	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
+		context.setUpiId("58850004237640077010027343300600");
+		System.out.println(lockcode);
+		Assert.assertTrue("No ITL for Inventory Lock", validate(lockcode));;
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+	}
+	
+	private boolean validate(String lockCode) throws FindFailed, InterruptedException {
+		boolean isLockcodeExists = false;
+		System.out.println(lockCode);
+		try {
+			if (lockCode.equals("DMGD")) {
+				context.setLockCode(lockCode);
+				jDAFooter.clickQueryButton();
+				inventoryTransactionQueryPage.enterCode("Inventory Lock");
+				inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+				jDAFooter.clickExecuteButton();
+				String code = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+				Assert.assertTrue("ITL for lock code verification is not as expected",
+						inventoryTransactionQueryPage.checkReceiptLockCode(code, lockCode));
+				isLockcodeExists = true;
+			}
+			else if (null==lockCode){
+				isLockcodeExists=true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset"))
+			isLockcodeExists = false;
+		}
+		return isLockcodeExists;
 	}
 }

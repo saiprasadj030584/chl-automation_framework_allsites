@@ -9,8 +9,6 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features/gm/po/po_receiving_returns.feature", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@wipr"})
 public class AllTest {
-	
-	
 }
 
 
