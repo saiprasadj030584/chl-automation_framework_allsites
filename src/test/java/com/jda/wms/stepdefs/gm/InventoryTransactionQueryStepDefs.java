@@ -10,6 +10,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
@@ -28,11 +29,12 @@ public class InventoryTransactionQueryStepDefs {
 	private JDAFooter jDAFooter;
 	private JdaLoginPage jdaLoginPage;
 	private JDAHomeStepDefs jDAHomeStepDefs;
+	private JdaHomePage jdaHomePage;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			JDAFooter jDAFooter,JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs) {
+			JDAFooter jDAFooter,JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs,JdaHomePage jdaHomePage) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
@@ -40,6 +42,7 @@ public class InventoryTransactionQueryStepDefs {
 		this.jDAFooter = jDAFooter;
 		this.jdaLoginPage = jdaLoginPage;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
+		this.jdaHomePage=jdaHomePage;
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -195,4 +198,16 @@ public class InventoryTransactionQueryStepDefs {
 				isRecordExists);
 
 	}
+	@When("^the inventory transaction should be updated with reversed receipt tag$")
+	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt Reverse";
+		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
+		Assert.assertEquals("ITL not displayed for Receipt reversal without Lock Code",reference_Id,context.getPreAdviceId());
+	}
+	
 }

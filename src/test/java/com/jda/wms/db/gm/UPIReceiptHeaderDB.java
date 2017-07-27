@@ -62,9 +62,9 @@ public class UPIReceiptHeaderDB {
 		ResultSet rs = stmt
 				.executeQuery("Select * from upi_receipt_header where pallet_id ='"+upiId+"'");
 		rs.next();
-		if (rs.getString(1).equals(0)) {
+		/*if (rs.getString(1).equals(0)) {
 			isRecordExists = true;
-		}
+		}*/
 		}
 		catch (Exception e) {
 			if (e.getMessage().contains("Exhausted Resultset")) {

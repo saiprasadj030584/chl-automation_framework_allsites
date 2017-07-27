@@ -105,6 +105,11 @@ public class PreAdviceLineStepDefs {
 				type = "H";
 				break;
 			}
+			System.out.println("type " + type);
+			System.out.println("skuid " + context.getSkuId());
+			context.setSKUType(type);
+			
+
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
@@ -113,6 +118,7 @@ public class PreAdviceLineStepDefs {
 				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+
 
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
 	public void the_PO_is_locked_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {

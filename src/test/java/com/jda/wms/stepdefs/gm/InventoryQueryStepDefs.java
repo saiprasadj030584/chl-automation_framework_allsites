@@ -47,7 +47,6 @@ public class InventoryQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
-		System.out.println("Divya TAg ID Randomized " + tagId);
 		context.setTagId(tagId);
 		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {

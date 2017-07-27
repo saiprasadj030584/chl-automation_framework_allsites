@@ -292,12 +292,15 @@ public class PurchaseOrderReceivingStepDefs {
 				jDAFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
+				jDAFooter.PressEnter();
 				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
 				if (null!=context.getLockCode()){
 					i_enter_urn_id_for_locked_sku();
 				}
 				else {
 					i_enter_urn_id();
+					jDAFooter.PressEnter();
+					Thread.sleep(2000);
 				}
 				
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
