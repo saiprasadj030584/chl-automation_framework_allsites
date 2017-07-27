@@ -308,6 +308,10 @@ public class PreAdviceLineStepDefs {
 				newPalletList.add(generatenewpallet());
 			}
 
+			// ----------------
+			palletList.add("56499144590140845703521133516010");
+			palletList.add("56497977423970845703521133501010");
+
 			context.setPalletIDList(palletList);
 			context.setBelCodeList(belCodeList);
 			context.setNewPallet(newPalletList);

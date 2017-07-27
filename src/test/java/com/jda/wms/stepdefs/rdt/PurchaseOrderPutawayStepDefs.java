@@ -79,26 +79,10 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I choose normal putaway$")
 	public void i_choose_normal_putaway() throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_select_normal_putaway();
 		i_should_be_directed_to_putent_page();
-
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(poMap.get(i).get("SKU"));
-			if (context.getsupplierType().equalsIgnoreCase("FSV")) {
-				i_enter_pallet_id_in_putaway(context.getPalletIDList().get(i - 1));
-			} else {
-				i_enter_urn_id_in_putaway();
-				if (null == context.getLockCode()) {
-					the_tag_details_for_putaway_should_be_displayed();
-				}
-			}
-		}
 	}
 
 	@When("^I should not be able to putaway locked PO$")
@@ -109,15 +93,43 @@ public class PurchaseOrderPutawayStepDefs {
 	}
 
 	@When("^I proceed without entering location$")
-	public void i_proceed_without_entering_location() throws InterruptedException {
-		jdaFooter.PressEnter();
+	public void i_proceed_without_entering_location() throws InterruptedException, FindFailed {
+		ArrayList failureList1 = new ArrayList();
+		poMap = context.getPOMap();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			if (context.getsupplierType().equalsIgnoreCase("FSV")) {
+				i_enter_pallet_id_in_putaway(context.getPalletIDList().get(i - 1));
+				jdaFooter.PressEnter();
+				jdaFooter.PressEnter();
+				if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+					System.out.println("Check");
+					failureList1.add("Error message:Cannot find putaway location not displayed as expected for pallet"
+							+ context.getPalletIDList().get(i - 1));
+				}
+			} else {
+				i_enter_urn_id_in_putaway();
+				if (null == context.getLockCode()) {
+					the_tag_details_for_putaway_should_be_displayed();
+					jdaFooter.PressEnter();
+					if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+						failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+								+ context.getUpiId());
+					}
+				}
+			}
+
+			jdaFooter.PressEnter();
+			purchaseOrderPutawayPage.navigateToBackScreen();
+		}
+		context.setFailureList(failureList1);
+		System.out.println(context.getFailureList());
 	}
 
 	@When("^the error message should be displayed as cannot find putaway location$")
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
-		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected",
-				purchaseOrderPutawayPage.isLocationErrorDisplayed());
-		// jdaFooter.PressEnter();
+		Assert.assertTrue("Error message:Cannot find putaway location not displayed. ["
+				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
 	@When("^I proceed without entering quantity$")

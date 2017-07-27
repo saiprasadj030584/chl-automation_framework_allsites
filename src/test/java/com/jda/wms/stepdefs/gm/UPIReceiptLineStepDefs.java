@@ -57,4 +57,9 @@ public class UPIReceiptLineStepDefs {
 		upiReceiptLineDB.updateContainerID(context.getUpiId());
 	}
 
+	public void fetch_Qty_Details() throws Throwable {
+		int qty_Due = Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+		context.setRcvQtyDue(qty_Due);
+	}
+
 }

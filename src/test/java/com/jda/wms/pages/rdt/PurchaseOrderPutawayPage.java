@@ -107,10 +107,10 @@ public class PurchaseOrderPutawayPage {
 
 	public void enterURNID(String palletId) throws InterruptedException {
 		screen.type(palletId);
-		Thread.sleep(1000);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(4000);
-		puttyFunctionsPage.pressEnter();
+		Thread.sleep(2000);
+		// puttyFunctionsPage.pressEnter();
+		// Thread.sleep(4000);
+		// puttyFunctionsPage.pressEnter();
 	}
 
 	public boolean isPutCmpPageDisplayed() {
@@ -143,10 +143,14 @@ public class PurchaseOrderPutawayPage {
 			return false;
 	}
 
-	public boolean isLocationErrorDisplayed() {
-		if (screen.exists("images/Putty/Putaway/LocationError.png") != null)
+	public boolean isLocationErrorDisplayed() throws InterruptedException {
+		System.out.println("Check2");
+		Thread.sleep(5000);
+		System.out.println("Check3");
+		if (screen.exists("images/Putty/Putaway/LocationError.png") != null) {
+			System.out.println("true");
 			return true;
-		else
+		} else
 			return false;
 	}
 
@@ -155,5 +159,10 @@ public class PurchaseOrderPutawayPage {
 			return true;
 		else
 			return false;
+	}
+
+	public void navigateToBackScreen() throws InterruptedException {
+		screen.type(Key.F12);
+		Thread.sleep(1000);
 	}
 }

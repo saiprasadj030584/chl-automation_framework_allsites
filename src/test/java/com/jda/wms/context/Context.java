@@ -832,7 +832,6 @@ public class Context {
 		this.skuType = skuType;
 	}
 
-
 	public String getsupplierType() {
 		return supplierType;
 	}
@@ -912,6 +911,7 @@ public class Context {
 	public void setBelCodeList(ArrayList<String> belCodeList) {
 		this.belCodeList = belCodeList;
 	}
+
 	public String getCondition() {
 		return condition;
 	}

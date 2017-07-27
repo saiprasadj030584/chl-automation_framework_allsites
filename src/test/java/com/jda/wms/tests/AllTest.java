@@ -8,7 +8,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@po_putaway_fsv_field_validation" + "" })
+		"pretty",
+		"json:targ" + "et/cucumber-reports/cucumber.json" }, tags = { "  @po_putaway_returns_field_validation" + "" })
 
 public class AllTest {
 

@@ -395,4 +395,21 @@ public class PurchaseOrderReceivingPage {
 		else
 			return false;
 	}
+
+	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
+		while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
+			puttyFunctionsPage.pressEnter();
+		}
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean checkNoOfSingles() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/QtySingles.png") != null)) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -223,4 +223,16 @@ public class InventoryTransactionQueryStepDefs {
 				isRecordExists);
 
 	}
+
+	@When("^the inventory transaction should be updated$")
+	public void the_inventory_transaction_should_be_updated() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt";
+		Assert.assertEquals("ITL not updated", context.getRcvQtyDue(),
+				inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+	}
+
 }
