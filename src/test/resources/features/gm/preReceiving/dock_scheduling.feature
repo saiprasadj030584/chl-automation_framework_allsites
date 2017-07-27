@@ -118,7 +118,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+      | 58850008386760077010083867600300 | 0000838676 | Hanging  |   5885 |
 
   @move_booking_diff_time_sameday_returns_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
@@ -132,7 +132,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+      | 58850008386780077010083867800300 | 0000838678 | Hanging  |   5885 |
 
   @change_status_of_booking_to_complete_returns_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
@@ -146,6 +146,49 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386250077010083862500300 | 0000838625 | Hanging  |   5649 |
+      | 58850008386770077010083867700300 | 0000838677 | Hanging  |   5885 |
 
+      @delete_booking_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I delete the booking
+    Then the booking details should be deleted in the dock scheduler booking
+
+    Examples: 
+      | UPIId                | ASNId      | DataType | SiteId |
+      | 3000000000000000016 | 1220071 | Hanging  |   5885 |
+
+  @move_booking_diff_time_sameday_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | UPIId                | ASNId      | DataType | SiteId |
+      | 00050456000451234600 | 0000838625 | Hanging  |   5885 |
+
+  @change_status_of_booking_to_complete_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the status of booking
+    Then the booking id details with updated status should be displayed on the page
+
+    Examples: 
+      | UPIId                | ASNId      | DataType | SiteId |
+      | 00050456000451234600 | 0000838625 | Hanging  |   5885 |
+
+      
       
