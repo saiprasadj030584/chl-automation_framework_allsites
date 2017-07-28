@@ -15,6 +15,7 @@ import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
+import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -30,11 +31,12 @@ public class PurchaseOrderPutawayStepDefs {
 	private LocationDB locationDB;
 	private Hooks hooks;
 	private JDAFooter jdaFooter;
+	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter) {
+			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -43,6 +45,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.locationDB = locationDB;
 		this.hooks = hooks;
 		this.jdaFooter = jdaFooter;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	@When("^I select normal putaway$")
@@ -106,24 +109,25 @@ public class PurchaseOrderPutawayStepDefs {
 					System.out.println("Check");
 					failureList1.add("Error message:Cannot find putaway location not displayed as expected for pallet"
 							+ context.getPalletIDList().get(i - 1));
-				}
-			} else {
-				i_enter_urn_id_in_putaway();
-				if (null == context.getLockCode()) {
-					the_tag_details_for_putaway_should_be_displayed();
-					jdaFooter.PressEnter();
-					if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
-						failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
-								+ context.getUpiId());
+				} else {
+					i_enter_urn_id_in_putaway();
+					if (null == context.getLockCode()) {
+						the_tag_details_for_putaway_should_be_displayed();
+						jdaFooter.PressEnter();
+						if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+							failureList1
+									.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+											+ context.getUpiId());
+						}
 					}
 				}
-			}
 
-			jdaFooter.PressEnter();
-			purchaseOrderPutawayPage.navigateToBackScreen();
+				jdaFooter.PressEnter();
+				purchaseOrderPutawayPage.navigateToBackScreen();
+			}
+			context.setFailureList(failureList1);
+			System.out.println(context.getFailureList());
 		}
-		context.setFailureList(failureList1);
-		System.out.println(context.getFailureList());
 	}
 
 	@When("^the error message should be displayed as cannot find putaway location$")
@@ -137,6 +141,20 @@ public class PurchaseOrderPutawayStepDefs {
 		jdaFooter.pressTab();
 		for (int i = 0; i < 25; i++) {
 			jdaFooter.pressBackSpace();
+		}
+		jdaFooter.PressEnter();
+	}
+
+	@When("^I proceed without entering quantity for returns$")
+	public void i_proceed_without_entering_quantity_for_returns() throws InterruptedException, FindFailed {
+		i_enter_pallet_id_in_putaway(context.getTagId());
+		jdaFooter.PressEnter();
+		jdaFooter.pressTab();
+		for (int t = 0; t < 7; t++) {
+			puttyFunctionsPage.rightArrow();
+		}
+		for (int t = 0; t < 7; t++) {
+			puttyFunctionsPage.backspace();
 		}
 		jdaFooter.PressEnter();
 	}

@@ -534,4 +534,15 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getInt(1);
 	}
+
+	public String getTagId(String upiId, String code) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select TAG_ID from inventory_transaction where reference_id='" + upiId
+				+ "' and code = '" + code + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

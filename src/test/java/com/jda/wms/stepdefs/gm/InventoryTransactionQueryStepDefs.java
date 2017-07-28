@@ -230,9 +230,9 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterCode("Receipt");
 		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
+		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
 		String code = "Receipt";
 		Assert.assertEquals("ITL not updated", context.getRcvQtyDue(),
 				inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
-
 }

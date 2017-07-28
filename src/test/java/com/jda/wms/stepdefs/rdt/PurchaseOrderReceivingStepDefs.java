@@ -16,6 +16,7 @@ import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
@@ -57,6 +58,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private DeliveryDB deliveryDB;
 	private JDAHomeStepDefs jDAHomeStepDefs;
+	private JdaLoginPage jdaLoginPage;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -66,7 +68,8 @@ public class PurchaseOrderReceivingStepDefs {
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter,
 			PuttyFunctionsPage puttyFunctionsPage, PreAdviceHeaderDB preAdviceHeaderDB,
-			UPIReceiptHeaderDB upiReceiptHeaderDB, DeliveryDB deliveryDB, JDAHomeStepDefs jDAHomeStepDefs) {
+			UPIReceiptHeaderDB upiReceiptHeaderDB, DeliveryDB deliveryDB, JDAHomeStepDefs jDAHomeStepDefs,
+			JdaLoginPage jdaLoginPage) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -85,6 +88,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.deliveryDB = deliveryDB;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -722,9 +726,11 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void the_UPI_and_ASN_of_type_should_be_received_at_location_and(String upiId, String asnId, String type,
 			String location, String condition) throws Throwable {
+		context.setUpiId(upiId);
 		the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
 		i_receive_all_skus_for_the_returns_order_at_with_perfect_condition(location, condition);
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		// jdaLoginPage.login();
+		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		inventoryTransactionQueryStepDefs.the_inventory_transaction_should_be_updated();
 
 	}
