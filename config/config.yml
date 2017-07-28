@@ -2,26 +2,15 @@
 ##################
 default:
  browser-name: ie
-<<<<<<< HEAD
  username: 'P9136796'
-=======
- username: 'P9134817'
->>>>>>> 0ca2686f89d9548f43e716e1d7e76c82811208d3
  password: '1234'
 
  gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
- gm-foods-url: 'http://hlxc0dc023.unix.marksandspencercate.com:8880/wmsbac2/UserLogin.html'
- gm-xdoc-url: 'http://hlxc0dc020.unix.marksandspencercate.com:8880/#'
  putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
  putty-gm-port: '24001'
- #putty-foods-host: 'hlxc0dc024.unix.marksandspencercate.com'
- #putty-foods-port: '20140'
  db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
  db-username: 'dcsdba'
-<<<<<<< HEAD
  db-password: 'dcsabd'
- putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
- putty-gm-port: '24005'
  
  #gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
  #putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
@@ -29,9 +18,6 @@ default:
  #db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
  #db-username: 'dcsdba'
 #db-password: 'jdadccate3'
-=======
- db-password: 'jdadccate3'
->>>>>>> 0ca2686f89d9548f43e716e1d7e76c82811208d3
 
       
 # Browser settings
