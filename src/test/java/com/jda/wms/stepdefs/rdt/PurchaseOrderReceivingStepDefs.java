@@ -481,6 +481,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter details and perform blind receive with movement label field$")
 	public void i_enter_details_and_perform_blind_receive_with_movement_label_field() throws Throwable {
+		context.setPerfectCondition("Y");
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
