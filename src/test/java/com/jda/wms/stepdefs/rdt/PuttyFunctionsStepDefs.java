@@ -36,7 +36,6 @@ public class PuttyFunctionsStepDefs {
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(2000);
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
-
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
 				configuration.getStringProperty("password"));
 		Thread.sleep(3000);

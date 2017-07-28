@@ -9,6 +9,8 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
+import cucumber.api.java.en.When;
+
 public class JdaHomePage extends PageObject {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -545,5 +547,36 @@ public class JdaHomePage extends PageObject {
 		screen.wait("images/JDAHome/ScrollRightBig.png", timeoutInSec);
 		screen.click("images/JDAHome/ScrollRightBig.png");
 		Thread.sleep(1000);
+	}
+
+	public void navigatetoDeliveryManagementPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery Management");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+	
+
+	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("upi receipt header");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 	}
 }

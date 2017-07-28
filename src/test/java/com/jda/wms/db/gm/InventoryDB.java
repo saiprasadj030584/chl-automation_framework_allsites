@@ -387,7 +387,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
@@ -609,4 +608,7 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+
+	
+
 }

@@ -1,8 +1,6 @@
 package com.jda.wms.stepdefs.gm;
-
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
@@ -11,9 +9,7 @@ import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.ReceiptReversalPage;
-
 import cucumber.api.java.en.When;
-
 public class ReceiptReversalStepDefs {
 	private ReceiptReversalPage receiptReversalPage;
 	private JDAFooter jDAFooter;
@@ -50,19 +46,6 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
-	}
-
-	@When("^the inventory transaction should be updated with reversed receipt tag$")
-	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
-		jdaHomePage.navigateToInventoryTransactionPage();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code = "Receipt Reverse";
-		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
-		Assert.assertTrue("Receipt Reversion failed",
-				receiptReversalPage.checkRefeIDWithPreadviceID(reference_Id, context.getPreAdviceId()));
 	}
 
 	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode$")

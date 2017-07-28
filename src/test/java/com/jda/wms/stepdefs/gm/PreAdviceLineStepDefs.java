@@ -71,6 +71,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
+		}
+		else{
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -90,11 +92,68 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("UPC", "");
-				UPIMap.put(context.getSkuId(), lineItemsMap);
+				UPIMap.put(context.getSkuId(),lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
+			
+			
 
 
+			// To Validate Modularity,New Product Check for SKU
+			String type = null;
+			switch (context.getSKUType()) {
+			case "Boxed":
+				type = "B";
+				break;
+			case "Hanging":
+				type = "H";
+				break;
+			}
+			context.setSKUType(type);
+
+			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+		}
+
+		Assert.assertTrue(
+				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Given("^the PO with multiple upi should have sku, quantity due details$")
+	public void the_PO_with_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		ArrayList skuFromPO = new ArrayList();
+		ArrayList skuFromUPI = new ArrayList();
+		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
+		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
+
+		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
+		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiList());
+
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+				
+				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				context.setSkuId((String) skuFromPO.get(i - 1));
+				lineItemsMap.put("SKU", context.getSkuId());
+				lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
+				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
+				POMap.put(i, lineItemsMap);
+			}
+			context.setPOMap(POMap);
+			
+			for (int j = 0; j < context.getUpiList().size(); j++) {
+				Map<String, Map<String, String>> skuMap = new HashMap<String, Map<String, String>>();
+				for (int i = 1; i <= context.getNoOfLines(); i++) {
+					context.setSkuId((String) skuFromPO.get(i - 1));
+					Map<String, String> lineItemsMap = new HashMap<String, String>();
+					lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
+					lineItemsMap.put("UPC", "");
+					skuMap.put(context.getSkuId(), lineItemsMap);
+				}
+				MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
 			switch (context.getSKUType()) {
@@ -108,11 +167,12 @@ public class PreAdviceLineStepDefs {
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
-
-		Assert.assertTrue(
-				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
+			context.setMultipleUPIMap(MultipleUPIMap);
 	}
+
+
+
+
 
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
 	public void the_PO_is_locked_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
@@ -145,7 +205,6 @@ public class PreAdviceLineStepDefs {
 		String userDefType3 = getUserDefinedType3(lockCode);
 		String userDefType4 = getUserDefinedType4(lockCode);
 		String fireWallCheck = isUserDefCheck1Required(lockCode);
-
 		if (null != userDefType3) {
 			preAdviceLineMaintenancePage.updateUserDefinedType3(userDefType3);
 		}
@@ -162,6 +221,7 @@ public class PreAdviceLineStepDefs {
 		i_click_on_general_tab();
 		Assert.assertEquals("Lock Code is not updated as expected", lockCode,
 				preAdviceLineDB.getLockCode(context.getPreAdviceId()));
+				
 	}
 
 	private String getUserDefinedType3(String lockCode) {
