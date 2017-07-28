@@ -109,10 +109,7 @@ public class PreAdviceLineStepDefs {
 				type = "H";
 				break;
 			}
-			System.out.println("type " + type);
-			System.out.println("skuid " + context.getSkuId());
 			context.setSKUType(type);
-			
 
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
@@ -205,13 +202,9 @@ public class PreAdviceLineStepDefs {
 		jdaFooter.clickExecuteButton();
 		i_click_on_user_defined_tab();
 		jdaFooter.clickUpdateButton();
-		System.out.println("lockcode:"+lockCode);
 		String userDefType3 = getUserDefinedType3(lockCode);
-		System.out.println("userdefined3:"+userDefType3);
 		String userDefType4 = getUserDefinedType4(lockCode);
-		System.out.println("userDefType4:"+userDefType4);
 		String fireWallCheck = isUserDefCheck1Required(lockCode);
-		System.out.println("fireWallCheck:"+fireWallCheck);
 		if (null != userDefType3) {
 			preAdviceLineMaintenancePage.updateUserDefinedType3(userDefType3);
 		}

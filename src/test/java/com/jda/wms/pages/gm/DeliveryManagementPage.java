@@ -17,7 +17,6 @@ public class DeliveryManagementPage {
 	}
 	
 	public void enterAsnId(String asnId) throws InterruptedException, FindFailed {
-		System.out.println("ASN1="+asnId);
 		screen.type(asnId);
 		Thread.sleep(1000);
 	}

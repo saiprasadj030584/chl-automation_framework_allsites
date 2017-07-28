@@ -842,11 +842,9 @@ public class PurchaseOrderReceivingStepDefs {
 			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() - 5);
 			}
-			System.out.println(quantity);
 			i_enter_urn_id();
 			puttyFunctionsPage.pressEnter();
 			the_tag_and_upc_details_should_be_displayed();
-			System.out.println(context.getLocation());
 			i_enter_the_location();
 			puttyFunctionsPage.pressTab();
 			i_enter_tag_id();
@@ -946,8 +944,6 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^the error message should be displayed as cannot over receipt$")
 	public void the_error_message_should_be_displayed_as_cannot_over_receipt() throws Throwable {
-		System.out.println("purchaseOrderReceivingPage.isOverReceiptErrorDisplayed()"
-				+ purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
 		Assert.assertTrue("Error message:You can not over receipt this sscc",
 				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
 		puttyFunctionsPage.pressEnter();

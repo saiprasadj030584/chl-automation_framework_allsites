@@ -451,7 +451,7 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
-public String getReferenceIdPO(String skuId, String palletId, String date, String code) throws ClassNotFoundException, SQLException {
+    public String getReferenceIdPO(String skuId, String palletId, String date, String code) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -511,8 +511,6 @@ public String getReferenceIdPO(String skuId, String palletId, String date, Strin
 			if (context.getConnection() == null) {
 				database.connect();
 			}
-			System.out.println("select reason_id from inventory_transaction where sku_id='" + skuId + "' and code='"
-					+ code + "'and reason_id ='" + reasonCode + "' and update_qty = '"+updatedQty+"' and dstamp like '" + dstamp + "%'");
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt
 					.executeQuery("select reason_id from inventory_transaction where sku_id='" + skuId + "' and code='"

@@ -39,7 +39,6 @@ public class DeliveryDB {
 		ResultSet rs = stmt
 				.executeQuery("Select asn_id from delivery where status ='"+status+"'");
 		rs.next();
-		System.out.println("DB return" +rs.getString(1));
 		return rs.getString(1);
 	}
 
