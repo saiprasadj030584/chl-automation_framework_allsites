@@ -11,13 +11,13 @@ Feature: Validate goods error before putaway
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     When I receive all skus for the purchase order at location "<Location>"
     Then the inventory should be displayed for all tags received
-    #And the goods receipt should be generated for received stock in inventory transaction
+    And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    #When I navigate to receipt reversal page
-    #And I do receipt reversal for the tag received
-    #Then the inventory transaction should be updated with reversed receipt tag
+    When I navigate to receipt reversal page
+    And I do receipt reversal for the tag received
+    Then the inventory transaction should be updated with reversed receipt tag
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
-      | PO2010002410 | PO000504560005112450 | PO00100412 | REC001   |
+      | PO2010002415 | PO000504560005112450 | PO00100412 | REC001   |
       #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |

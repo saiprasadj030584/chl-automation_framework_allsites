@@ -60,19 +60,17 @@ public class UPIReceiptHeaderDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("Select * from upi_receipt_header where pallet_id ='"+upiId+"'");
+				.executeQuery("Select pallet_id from upi_receipt_header where pallet_id ='"+upiId+"'");
 		rs.next();
-		/*if (rs.getString(1).equals(0)) {
+		if (rs.getString(1).equals(upiId)) {
 			isRecordExists = true;
-		}*/
+		}
 		}
 		catch (Exception e) {
 			if (e.getMessage().contains("Exhausted Resultset")) {
 				isRecordExists = false;
 			}
 		}
-	
 		return isRecordExists;
-		
 	}
 }

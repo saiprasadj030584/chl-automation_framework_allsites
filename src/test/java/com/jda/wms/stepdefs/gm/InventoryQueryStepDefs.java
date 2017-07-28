@@ -46,8 +46,6 @@ public class InventoryQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
-		context.setTagId(tagId);
 		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));

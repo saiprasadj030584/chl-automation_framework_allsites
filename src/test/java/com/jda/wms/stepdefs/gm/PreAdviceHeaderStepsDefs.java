@@ -95,12 +95,9 @@ public class PreAdviceHeaderStepsDefs {
 
 	}
 
-	@Given("^i have UPI \"([^\"]*)\"$")
-	public void i_have_UPI(String upiId) throws Throwable {
+	@Given("^I have an invalid UPI \"([^\"]*)\"$")
+	public void i_have_an_invalid_UPI(String upiId) throws Throwable {
 		Assert.assertFalse("Record found not as expected",
 	     upiReceiptHeaderDB.isRecordExistsForPalletId(upiId));
-		//jdaLoginPage.login();
-	    
-	 		
 	}
 }

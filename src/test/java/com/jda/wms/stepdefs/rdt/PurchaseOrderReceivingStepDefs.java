@@ -51,7 +51,8 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,JDAFooter jDAFooter,PuttyFunctionsPage puttyFunctionsPage) {
+			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jDAFooter,
+			PuttyFunctionsPage puttyFunctionsPage) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -64,8 +65,8 @@ public class PurchaseOrderReceivingStepDefs {
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
-		this.jDAFooter= jDAFooter;
-		this.puttyFunctionsPage=puttyFunctionsPage;
+		this.jDAFooter = jDAFooter;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -128,7 +129,7 @@ public class PurchaseOrderReceivingStepDefs {
 		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
 		String packConfig = packConfigSplit[0];
 		verification.verifyData("Pack Config", context.getPackConfig(), packConfig, failureList);
-		
+
 		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
 				failureList);
 
@@ -139,22 +140,24 @@ public class PurchaseOrderReceivingStepDefs {
 		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
 		String upc = upcSplit[0];
 		context.setUPC(upc);
-		
+
 		Assert.assertTrue(
 				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-			}
+	}
 
 	@When("^I enter the location$")
 	public void i_enter_the_location() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterLocation(context.getLocation());
 	}
+
 	@When("^I enter tag id$")
 	public void i_enter_tag_id() throws FindFailed, InterruptedException {
-		String tagId= Utilities.getTenDigitRandomNumber()+Utilities.getTenDigitRandomNumber();
+		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		context.setTagId(tagId);
 		purchaseOrderReceivingPage.entertagId(tagId);
 	}
-	
+
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
 		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
 		purchaseOrderReceivingPage.enterSKUId(skuId);
@@ -206,8 +209,7 @@ public class PurchaseOrderReceivingStepDefs {
 				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
 	}
-	
-	
+
 	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\"$")
 	public void i_perform_for_all_skus_at_location(String receiveType, String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -235,15 +237,16 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_urn_id();
 			puttyFunctionsPage.pressEnter();
 			the_tag_and_upc_details_should_be_displayed();
+			System.out.println(context.getLocation());
 			i_enter_the_location();
 			puttyFunctionsPage.pressTab();
 			i_enter_tag_id();
 			i_enter_the_quantity(quantity);
-			if (receiveType.equalsIgnoreCase("Under Receiving")){
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
 				i_enter_urn_id();
 				puttyFunctionsPage.pressEnter();
 			}
-			}
+		}
 	}
 
 	@When("^I enter the quantity")
@@ -261,9 +264,7 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterQuantity(quantity);
 		puttyFunctionsPage.pressEnter();
 	}
-	
-	
-	
+
 	@When("^I receive all skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -280,39 +281,40 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-//			i_enter_urn_id();
-//			jDAFooter.PressEnter();
-//			the_tag_and_upc_details_should_be_displayed();
-//			i_enter_the_location();
-//			
-//			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
-//					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			if (null==context.getLockCode()) {
+			// i_enter_urn_id();
+			// jDAFooter.PressEnter();
+			// the_tag_and_upc_details_should_be_displayed();
+			// i_enter_the_location();
+			//
+			// Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+			// purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (null == context.getLockCode()) {
 				i_enter_urn_id();
 				jDAFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
 				jDAFooter.PressEnter();
-				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-				if (null!=context.getLockCode()){
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+						purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if (null != context.getLockCode()) {
 					i_enter_urn_id_for_locked_sku();
-				}
-				else {
+				} else {
 					i_enter_urn_id();
 					jDAFooter.PressEnter();
 					Thread.sleep(2000);
 				}
-				
+
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-					failureList.add("Receive not completed and Home page not displayed for URN "+context.getUpiId());
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
 					context.setFailureList(failureList);
+				}
 			}
-		}
-		hooks.logoutPutty();
+			hooks.logoutPutty();
 		}
 	}
-	@When("^i blind receive all upi \"([^\"]*)\"$")
-	public void i_blind_receive_all_upi(String upiId) throws Throwable {
+
+	@When("^I blind receive the invalid upi \"([^\"]*)\"$")
+	public void i_blind_receive_the_invalid_upi(String upiId) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setUpiId(upiId);
 		poMap = context.getPOMap();
@@ -322,15 +324,16 @@ public class PurchaseOrderReceivingStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
+		purchaseOrderReceivingPage.enterURRN(context.getUpiId());
 		jDAFooter.PressEnter();
-			}
-	
+	}
+
 	@Then("^the URN status should be displayed as URRN does not exist$")
 	public void the_URN_status_should_be_displayed_as_URRN_does_not_exist() throws Throwable {
 		Assert.assertTrue("URRN Status not displayed as expected",
 				purchaseOrderReceivingPage.isURRNNotExistDisplayed());
 	}
-	
+
 	@Given("^I receive the PO with basic and blind receiving$")
 	public void i_receive_the_po_with_basic_and_blind_receiving() throws Throwable {
 		purchaseOrderReceivingPage.selectReceiveMenu();
@@ -343,21 +346,21 @@ public class PurchaseOrderReceivingStepDefs {
 
 		purchaseOrderReceivingPage.selectBlindReceive();
 	}
+
 	@Then("^I should be directed to Blind entry page$")
 	public void i_should_be_directed_to_blind_entry_page() throws Throwable {
 		Assert.assertTrue("Receive pre-Advice entry not displayed as expected.",
 				purchaseOrderReceivingPage.isBlindEntryDisplayed());
-		        purchaseOrderReceivingPage.enterURRN(context.getUpiId());
 	}
 
-	
 	@Then("^the error message should be displayed as cannot over receipt$")
 	public void the_error_message_should_be_displayed_as_cannot_over_receipt() throws Throwable {
-		System.out.println("purchaseOrderReceivingPage.isOverReceiptErrorDisplayed()"+purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
-		Assert.assertTrue("Error message:You can not over receipt this sscc",purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
+		System.out.println("purchaseOrderReceivingPage.isOverReceiptErrorDisplayed()"
+				+ purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
+		Assert.assertTrue("Error message:You can not over receipt this sscc",
+				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
 	}
-	
-	
+
 }

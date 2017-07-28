@@ -14,10 +14,9 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "In Progress"
-    And I should not be able to putaway locked PO
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | LockCode | Location |
      # | PO2010002821  | PO050456000511235821 | PO00100821 | QAFTS    | REC001   |
       #| PO2010002901 | PO050456000511235901 | PO00100901 | QAFTS    | REC001   |
-      | PO2010002902   | PO050456000511235708 | PO00100902 | QAFTS   | REC001   |
+      | PO2010002905   | PO050456000511235709 | PO00100905 | QAFTS   | REC001   |

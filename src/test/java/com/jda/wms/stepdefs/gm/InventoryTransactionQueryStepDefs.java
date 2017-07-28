@@ -51,14 +51,14 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+//		jdaLoginPage.login();
+//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.selectCode("Receipt");
+//		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+//		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+//		inventoryTransactionQueryPage.enterTransactionDate();
+//		jDAFooter.clickExecuteButton();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
@@ -74,6 +74,12 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 					failureList);
+			
+			if (null!=context.getLockCode()){
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());

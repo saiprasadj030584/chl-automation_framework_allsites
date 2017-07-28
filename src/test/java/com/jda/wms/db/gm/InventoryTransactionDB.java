@@ -457,4 +457,16 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getLockCode(String skuId, String upiId, String date, String code) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where tag_id='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
