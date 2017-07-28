@@ -17,6 +17,7 @@ import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
 
@@ -31,10 +32,11 @@ public class PreAdviceHeaderStepsDefs {
 	private Verification verification;
 	private DeliveryDB deliveryDB;
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
+	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs) {
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs, PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -43,7 +45,8 @@ public class PreAdviceHeaderStepsDefs {
 		this.verification = verification;
 		this.deliveryDB = deliveryDB;
 		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
-	}
+		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
+			}
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
@@ -104,9 +107,6 @@ public class PreAdviceHeaderStepsDefs {
 			int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 			for(int i=0;i<upiList.size();i++)
 			{
-				System.out.println("gygu"+upiReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)));
-				System.out.println("gyjk"+String.valueOf(numLines));
-				
 			Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)),String.valueOf(numLines));
 			}
 			context.setNoOfLines(numLines);
@@ -183,8 +183,8 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 		
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
-//		purchaseOrderReceivingStepDefs.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-//		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+		purchaseOrderReceivingStepDefs.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
 	}
 	
 	@Given("^the po status should be displayed as \"([^\"]*)\"$")

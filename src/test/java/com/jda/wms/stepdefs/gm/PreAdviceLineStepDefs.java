@@ -113,12 +113,10 @@ public class PreAdviceLineStepDefs {
 	
 	@Given("^the PO with multiple upi should have sku, quantity due details$")
 	public void the_PO_with_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {
-		System.out.println("heyyy");
 		ArrayList failureList = new ArrayList();
 		ArrayList skuFromPO = new ArrayList();
 		ArrayList skuFromUPI = new ArrayList();
 		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
-		//Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
 		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
 
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());

@@ -94,7 +94,6 @@ public class PurchaseOrderReceivingStepDefs {
 
 	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line()
 			throws Throwable {
-		System.out.println("context check" + context.getUpiId());
 		deliveryStepDefs.the_pallet_count_should_be_updated_as_in_delivery(1);
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
@@ -108,7 +107,6 @@ public class PurchaseOrderReceivingStepDefs {
 	
 	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line_for_non_rms()
 			throws Throwable {
-		System.out.println("context check" + context.getUpiId());
 		deliveryStepDefs.the_pallet_count_should_be_updated_as_in_delivery(1);
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
@@ -447,7 +445,6 @@ public class PurchaseOrderReceivingStepDefs {
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
 					purchaseOrderReceivingPage.isBlindReceivingDone());
-			System.out.println("4");
 			Thread.sleep(1000);
 			if (i != 0) {
 				Assert.assertTrue("verification of no of singles failed",
@@ -525,7 +522,6 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterQuantity(Integer.toString(context.getQtyReceivedFromPutty()));
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
-		// purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
@@ -574,8 +570,6 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_details_and_perform_blind_receive_without_lockcode_and_verify_no_of_singles_per_UPC()
 			throws Throwable {
 		int qty_Due = Integer.parseInt(uPIReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
-		System.out.println(qty_Due);
-
 		for (int i = 0; i < qty_Due; i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
@@ -592,7 +586,6 @@ public class PurchaseOrderReceivingStepDefs {
 			Assert.assertTrue("Blind Receiving Unsuccessfull.",
 					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
 			jdaFooter.PressEnter();
-			System.out.println(i);
 		}
 	}
 

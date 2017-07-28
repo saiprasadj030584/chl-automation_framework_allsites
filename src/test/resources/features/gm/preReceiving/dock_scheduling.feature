@@ -118,7 +118,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386760077010083867600300 | 0000838676 | Hanging  |   5885 |
+      | 58850008387770077010083877700300 | 0000838777 | Hanging  |   5885 |
 
   @move_booking_diff_time_sameday_returns_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
@@ -132,7 +132,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386780077010083867800300 | 0000838678 | Hanging  |   5885 |
+      | 58850008388770077010083887700300 | 0000838877 | Hanging  |   5885 |
 
   @change_status_of_booking_to_complete_returns_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
@@ -146,7 +146,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                						 | ASNId      | DataType | SiteId |
-      | 58850008386770077010083867700300 | 0000838677 | Hanging  |   5885 |
+      | 58850008389770077010083897700300 | 0000838977 | Hanging  |   5885 |
 
       @delete_booking_returns_NON_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
@@ -160,7 +160,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                | ASNId      | DataType | SiteId |
-      | 3000000000000000016 | 1220071 | Hanging  |   5885 |
+      | 3000000000000000017 | 1220072 | Hanging  |   5885 |
 
   @move_booking_diff_time_sameday_returns_NON_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
@@ -174,7 +174,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                | ASNId      | DataType | SiteId |
-      | 00050456000451234600 | 0000838625 | Hanging  |   5885 |
+      | 3000000000000000018 | 1220073 | Hanging  |   5885 |
 
   @change_status_of_booking_to_complete_returns_NON_RMS
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
@@ -188,7 +188,7 @@ Feature: Dock Scheduling
 
     Examples: 
       | UPIId                | ASNId      | DataType | SiteId |
-      | 00050456000451234600 | 0000838625 | Hanging  |   5885 |
+      | 3000000000000000019 | 1220074 | Hanging  |   5885 |
 
       
       

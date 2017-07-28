@@ -394,7 +394,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; // setCaseRatioList
+		return caseRatiolist; 
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
