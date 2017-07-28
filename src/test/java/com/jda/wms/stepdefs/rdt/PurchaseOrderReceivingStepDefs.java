@@ -800,4 +800,51 @@ public class PurchaseOrderReceivingStepDefs {
 				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
 	}
+	
+	// FSV receiving
+
+	@When("^I receive all skus for the FSV purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_FSV_purchase_order_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_pallet_id(context.getPalletIDList().get(i-1));
+			i_enter_belCode(context.getBelCodeList().get(i-1));
+			i_enter_the_location();
+			i_enter_the_newpallet(context.enterNewPallet().get(i-1));
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+		}
+		hooks.logoutPutty();
+	}
+
+	// FSV receiving
+
+	@When("^I enter pallet id$")
+	public void i_enter_pallet_id(String pallet) throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterPalletId(pallet);
+	}
+
+	@When("^I enter belCode$")
+	private void i_enter_belCode(String belCode) throws InterruptedException {
+		purchaseOrderReceivingPage.enterBelCode(belCode);
+	}
+	
+	@When("^I enter the newpallet$")
+	private void i_enter_the_newpallet(String newPallet) throws InterruptedException, FindFailed {
+	purchaseOrderReceivingPage.enterNewPallet(newPallet);
+	}
+	
 }

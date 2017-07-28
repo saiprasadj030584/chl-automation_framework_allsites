@@ -107,6 +107,10 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
+	private String supplierType;
+	private String generateBelCode;
+	private ArrayList<String> belCodeList;
+	private ArrayList<String> enternewpallet;
 	private String bookingTime;
 	private String updatedBookingTime;
 	private String dockId;
@@ -846,6 +850,15 @@ public class Context {
 		this.skuType = skuType;
 	}
 
+
+	public String getsupplierType() {
+		return supplierType;
+	}
+
+	public void setsupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -894,6 +907,29 @@ public class Context {
 		this.serviceLevel = serviceLevel;
 	}
 
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getBelCode() {
+		return generateBelCode;
+	}
+
+	public ArrayList<String> enterNewPallet() {
+		return enternewpallet;
+	}
+
+	public void setNewPallet(ArrayList enternewpallet) {
+		this.enternewpallet = enternewpallet;
+	}
+
+	public ArrayList<String> getBelCodeList() {
+		return belCodeList;
+	}
+
+	public void setBelCodeList(ArrayList<String> belCodeList) {
+		this.belCodeList = belCodeList;
+	}
 	public String getCondition() {
 		return condition;
 	}

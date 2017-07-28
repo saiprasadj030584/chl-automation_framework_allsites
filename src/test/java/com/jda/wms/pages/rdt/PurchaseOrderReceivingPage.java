@@ -131,7 +131,6 @@ public class PurchaseOrderReceivingPage {
 
 			while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null
 					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
-				System.out.println("3");
 				puttyFunctionsPage.pressEnter();
 			}
 			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
@@ -139,7 +138,6 @@ public class PurchaseOrderReceivingPage {
 				puttyFunctionsPage.pressEnter();
 				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
 					puttyFunctionsPage.pressEnter();
-					System.out.println("1");
 					return true;
 				}
 				return false;
@@ -147,7 +145,6 @@ public class PurchaseOrderReceivingPage {
 			}
 			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
 				puttyFunctionsPage.pressEnter();
-				System.out.println("2");
 				return true;
 			}
 			return false;
@@ -426,10 +423,31 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
+	public void enterUPC2(String upc) throws FindFailed, InterruptedException 
+	{
 		screen.type(upc);
 
 		Thread.sleep(2000);
+	}
+	
+	public void enterPalletId(String palletID) throws InterruptedException {
+		screen.type(palletID);
+		Thread.sleep(2000);
+		Thread.sleep(4000);		
+	}
+	
+	public void enterBelCode(String getbelCode) throws InterruptedException {
+		screen.type(getbelCode);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
+	}
+
+	public void enterNewPallet(String getnewpallet) throws InterruptedException {
+		screen.type(getnewpallet);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(4000);
 	}
 
 	public boolean isLocationDisplayed() {

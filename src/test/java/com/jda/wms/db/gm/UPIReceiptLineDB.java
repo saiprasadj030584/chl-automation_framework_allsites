@@ -167,7 +167,27 @@ public class UPIReceiptLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
+	
+	public boolean isUPIRecordExists(String preAdviceId) throws ClassNotFoundException{
+		boolean isRecordExists = false;
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Pre_advice_id from upi_receipt_line where pallet_id = '" + preAdviceId + "'");
+		rs.next();
+		if (rs.getString(1).equals(preAdviceId)){
+		isRecordExists = true;
+		}
+		}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset"))
+				isRecordExists=false;
+		}
+		return isRecordExists;
+	}
+	
 	public String fetchTagId(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

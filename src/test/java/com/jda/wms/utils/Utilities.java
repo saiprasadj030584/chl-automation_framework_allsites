@@ -16,10 +16,19 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000000) + 10000000);
 	}
+	
+	public static String getSixDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(900000) + 100000);
+	}
 
 	public static String getFiveDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
-		return String.valueOf(r.nextInt(9000) + 10000);
+		return String.valueOf(r.nextInt(900) + 10000);
+	}
+	public static String getTwoDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(90) + 10);
 	}
 
 	public static double getRoundOffToTwoDecimal(double a) {
@@ -31,8 +40,8 @@ public class Utilities {
 		return String.valueOf(r.nextInt(9000) + 1000);
 	}
 
-	public static String getTwoDigitRandomNumber() {
+	public static String getThreeDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
-		return String.valueOf(r.nextInt(90) + 10);
+		return String.valueOf(r.nextInt(900) + 100);
 	}
 }
