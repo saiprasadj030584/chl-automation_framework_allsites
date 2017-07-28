@@ -511,4 +511,25 @@ public String getReferenceIdPO(String skuId, String palletId, String date, Strin
 		}
 		return isRecordExists;
 	}
+
+	public boolean getCode(String upiId, String code) {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select code from inventory_transaction where reference_id='"+upiId+"' and code='"+code+"'");
+			rs.next();
+			if (rs.getString(1).equals(code)) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

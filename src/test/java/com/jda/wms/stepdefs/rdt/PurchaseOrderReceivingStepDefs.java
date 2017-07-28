@@ -448,28 +448,21 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocation(location);
 		//Supplier SKU Tables
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
-//		upiReceiptLineStepDefs.fetchQtyDetails();
 		i_blind_receive_all_normal_skus_for_the_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		/*if((upiReceiptLineDB.getQtyDue(upiId,context.getSkuId()))==(upiReceiptLineDB.getRcvQty(upiId,context.getSkuId())))
-				{*/
 		preAdviceHeaderStepsDefs.the_upi_status_should_be_displayed_as_for_blind_receive("Complete");
-				//}
-//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 
 	private boolean validate(String lockcode) {
 			boolean isLockcodeExists = false;
-			try{
-			if(lockcode.equals("DMGD"))
-			{
+		try {
+			if (lockcode.equals("DMGD")) {
 				context.setLockCode(lockcode);
-				isLockcodeExists= true;
+				isLockcodeExists = true;
 			}
-			}
-		//catch(NullPointerException e)
+		}
 			catch(Exception e){
 				if (e.getMessage().contains("Exhausted Resultset"))
 			isLockcodeExists = false;
