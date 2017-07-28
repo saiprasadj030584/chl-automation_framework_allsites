@@ -1,10 +1,7 @@
 package com.jda.wms.stepdefs.gm;
-
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.junit.Assert;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
@@ -14,11 +11,9 @@ import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
-
 public class InventoryTransactionQueryStepDefs {
 	Map<Integer, Map<String, String>> poMap;
 	Map<String, Map<String, String>> upiMap;
@@ -43,6 +38,7 @@ public class InventoryTransactionQueryStepDefs {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
 		this.jdaHomePage=jdaHomePage;
+
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -85,6 +81,22 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
+	
+	@Then("^the goods receipt should be generated for FSV PO received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_fsv_PO_received_stock_in_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData("From Location for SKU "+context.getSkuId(), context.getLocation(), inventoryTransactionDB.getFromLocationPO(context.getSkuId(),context.getPreAdviceId(),date,"Receipt"), failureList);
+			verification.verifyData("To Location for SKU "+context.getSkuId(), context.getLocation(), inventoryTransactionDB.getToLocationPO(context.getSkuId(),context.getPreAdviceId(),date,"Receipt"), failureList);
+			verification.verifyData("Update Qty for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryTransactionDB.getUpdateQtyPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"), failureList);
+			verification.verifyData("Reference ID SKU "+context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getPalletIDList().get(i-1), date, "Receipt"), failureList);
+		}
+		Assert.assertFalse("Inventory Transaction details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
+	}
+	
 
 	@Then("^the goods receipt should be generated for putaway stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_putaway_stock_in_inventory_transaction() throws Throwable {
@@ -148,7 +160,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_choose_the_code_as_and_search_the_sku_id(String code) throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
-		inventoryTransactionQueryPage.enterskuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterUpdateQuantity(String.valueOf(context.getQtyOnHand()));
 		inventoryTransactionQueryPage.enterTransactionDate();
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -179,7 +191,7 @@ public class InventoryTransactionQueryStepDefs {
 
 		}
 		Assert.assertEquals("updated inventory condition are not as expected", conditionToVerify,
-				inventoryTransactionQueryPage.getcondition());
+				inventoryTransactionQueryPage.getCondition());
 	}
 
 	@Then("^the pallet should be updated$")
@@ -204,6 +216,40 @@ public class InventoryTransactionQueryStepDefs {
 				isRecordExists);
 
 	}
+
+	
+	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
+		ArrayList failureList = new ArrayList();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Inventory Lock");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		ArrayList lockCodeListForAllQuantity =inventoryTransactionDB.getLockCodeList(context.getUpiId(),"Inv Lock");
+		for(int l=0;l<lockCodeListForAllQuantity.size();l++){
+			if (!((String)lockCodeListForAllQuantity.get(l)).equalsIgnoreCase(lockcode)){
+				failureList.add("ITL Lock code does not match for Quantity number "+l);
+			}
+		}
+		Assert.assertEquals("ITL Records received mismatch with total qty",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(),"Inv Lock"));
+		Assert.assertTrue(
+				"ITL Lock codes are mismatching. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@When("^the inventory transaction should be updated with lockcode damaged$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Inventory Lock");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
+		context.setLockCode(lockCode);
+		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
+		
+	}
+	
+
 	@When("^the inventory transaction should be updated with reversed receipt tag$")
 	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
@@ -216,4 +262,30 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertEquals("ITL not displayed for Receipt reversal without Lock Code",reference_Id,context.getPreAdviceId());
 	}
 	
+	@When("^the inventory transaction should be updated$")
+	public void the_inventory_transaction_should_be_updated() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt";
+		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+	}
+
+	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode$")
+	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt Reverse";
+		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
+		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
+		boolean isItlExists =false;
+		if (reference_Id.equalsIgnoreCase(context.getPreAdviceId())&&(lockcode.equalsIgnoreCase(context.getLockCode()))){
+			isItlExists = true;
+		}
+		Assert.assertTrue("ITL not displayed for Receipt reversal with Lock Code",isItlExists);
+	}
 }

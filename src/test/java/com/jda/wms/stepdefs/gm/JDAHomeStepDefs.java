@@ -68,7 +68,6 @@ public class JDAHomeStepDefs {
 		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
 		 * jdaHomePage.clickInventory();
 		 */
-		// jdaHomePage.navigateToInventoryQueryPage();
 		i_navigate_to_inventory_query_page();
 	}
 
@@ -108,6 +107,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_receipt_reversal_page() throws Throwable {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
+	
 
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
@@ -176,6 +176,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
+
 	@When("^I navigate to delivery management page$")
 	public void i_navigate_to_delivery_management_page() throws Throwable {
 		jdaHomePage.navigatetoDeliveryManagementPage();
@@ -190,4 +191,9 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();
 	}
 	}
+
+
+	
+	
+
 

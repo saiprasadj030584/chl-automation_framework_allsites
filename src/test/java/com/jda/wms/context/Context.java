@@ -51,6 +51,7 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
+	private ArrayList<String> upiList;
 	private String orderId;
 	private String customer;
 	private String listID;
@@ -59,6 +60,14 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	public ArrayList<String> getUpiList() {
+		return upiList;
+	}
+
+	public void setUpiList(ArrayList<String> upiList) {
+		this.upiList = upiList;
+	}
+
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -66,7 +75,7 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private Connection connection = null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -91,17 +100,76 @@ public class Context {
 	private String asnId;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
+	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
+	private String supplierType;
+	private String generateBelCode;
+	private ArrayList<String> belCodeList;
+	private ArrayList<String> enternewpallet;
+	private String bookingTime;
+	private String updatedBookingTime;
+	private String dockId;
+	private String updatedDockId;
 	private String condition;
 	private String reasonCode;
 	private String owner;
 	private String receiveType;
 	private String Record;
+	private String perfectCondition;
+	private String partset;
+
+	public String getPartset() {
+		return partset;
+	}
+
+	public void setPartset(String partset) {
+		this.partset = partset;
+	}
+
+	public String getPerfectCondition() {
+		return perfectCondition;
+	}
+
+	public void setPerfectCondition(String perfectCondition) {
+		this.perfectCondition = perfectCondition;
+	}
+
+	public String getUpdatedBookingTime() {
+		return updatedBookingTime;
+	}
+
+	public void setUpdatedBookingTime(String updatedBookingTime) {
+		this.updatedBookingTime = updatedBookingTime;
+	}
+
+	public String getDockId() {
+		return dockId;
+	}
+
+	public void setDockId(String dockId) {
+		this.dockId = dockId;
+	}
+
+	public String getUpdatedDockId() {
+		return updatedDockId;
+	}
+
+	public void setUpdatedDockId(String updatedDockId) {
+		this.updatedDockId = updatedDockId;
+	}
+
+	public String getBookingTime() {
+		return bookingTime;
+	}
+
+	public void setBookingTime(String bookingTime) {
+		this.bookingTime = bookingTime;
+	}
 
 	public String getPalletID() {
 		return palletID;
@@ -332,7 +400,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; // setCaseRatioList
+		return caseRatiolist; 
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -784,6 +852,15 @@ public class Context {
 		this.skuType = skuType;
 	}
 
+
+	public String getsupplierType() {
+		return supplierType;
+	}
+
+	public void setsupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -832,6 +909,29 @@ public class Context {
 		this.serviceLevel = serviceLevel;
 	}
 
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getBelCode() {
+		return generateBelCode;
+	}
+
+	public ArrayList<String> enterNewPallet() {
+		return enternewpallet;
+	}
+
+	public void setNewPallet(ArrayList enternewpallet) {
+		this.enternewpallet = enternewpallet;
+	}
+
+	public ArrayList<String> getBelCodeList() {
+		return belCodeList;
+	}
+
+	public void setBelCodeList(ArrayList<String> belCodeList) {
+		this.belCodeList = belCodeList;
+	}
 	public String getCondition() {
 		return condition;
 	}
@@ -855,7 +955,6 @@ public class Context {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-
 	public String getReceiveType() {
 		return receiveType;
 	}
@@ -872,6 +971,13 @@ public class Context {
 		Record = record;
 	}
 
-	
-	
+	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
+		return MultipleUPIMap;
+	}
+
+	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
+		MultipleUPIMap = multipleUPIMap;
+	}
+
+
 }

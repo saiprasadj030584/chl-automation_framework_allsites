@@ -9,12 +9,7 @@ public class CEConsignmentLinkingPage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private final JDAFooter jdaFooter;
 
-	@Inject
-	public CEConsignmentLinkingPage(JDAFooter jdaFooter) {
-		this.jdaFooter = jdaFooter;
-	}
 	public void enterSiteID(String siteID) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentLinking/SiteID.png", timeoutInSec);
 		screen.type(siteID);

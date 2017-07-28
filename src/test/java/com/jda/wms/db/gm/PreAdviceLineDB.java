@@ -14,11 +14,13 @@ public class PreAdviceLineDB {
 
 	private final Context context;
 	private final Database database;
+	private PreAdviceHeaderDB preAdviceHeaderDB;
 
 	@Inject
 	public PreAdviceLineDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+		this.preAdviceHeaderDB = preAdviceHeaderDB;
 	}
 
 	public HashMap<String, String> getPreAdviceLineDetails(String preAdviceID)
@@ -118,10 +120,21 @@ public class PreAdviceLineDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
+		rs.next();
+		return rs.getString(1);
+	} 
+	
+	public String getUpc(String skuID) throws SQLException,ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
+		//select supplier_sku_id from supplier_sku where sku_id='000000060002992001';
 		rs.next();
 		return rs.getString(1);
 	}
@@ -170,7 +183,7 @@ public class PreAdviceLineDB {
 		return rs.getString(1);
 	}
 
-	public void updatelockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
+	public void updateLockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}

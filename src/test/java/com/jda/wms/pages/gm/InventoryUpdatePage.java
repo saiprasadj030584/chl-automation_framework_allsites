@@ -1,21 +1,19 @@
 package com.jda.wms.pages.gm;
-
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 public class InventoryUpdatePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
-	public void entertagID(String tagId) throws FindFailed, InterruptedException {
+	public void enterTagID(String tagId) throws FindFailed, InterruptedException {
 		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 		Thread.sleep(1000);
 	}
 
-	public void entersku(String skuId) throws FindFailed, InterruptedException {
+	public void enterSku(String skuId) throws FindFailed, InterruptedException {
 		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
 		screen.click(skuID.getCenter().offset(70, 0));
 		screen.type(skuId);
@@ -29,7 +27,7 @@ public class InventoryUpdatePage {
 		Thread.sleep(2000);
 	}
 
-	public boolean isRecordDdisplayed() throws FindFailed, InterruptedException {
+	public boolean isRecordDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/InventoryUpdate/Results/OneRecord.png") != null) {
 			return true;
 		} else
@@ -42,7 +40,7 @@ public class InventoryUpdatePage {
 		Thread.sleep(1000);
 	}
 
-	public void enterselectType(String status) throws FindFailed, InterruptedException {
+	public void enterSelectType(String status) throws FindFailed, InterruptedException {
 
 		screen.type(status);
 		Thread.sleep(1000);
@@ -67,7 +65,7 @@ public class InventoryUpdatePage {
 
 	}
 
-	public void enterowner(String owner) throws InterruptedException {
+	public void enterOwner(String owner) throws InterruptedException {
 		screen.type(owner);
 		Thread.sleep(1000);
 

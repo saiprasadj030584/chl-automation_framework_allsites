@@ -1,5 +1,4 @@
 package com.jda.wms.reportconversion;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,7 +31,6 @@ public class ExtractOverviewFeatures {
 				fileContent += line;
 			}
 		}
-		// System.out.println(fileContent);
 
 		// To get project and date of execution
 		getProjectDetails(fileContent);
@@ -51,42 +49,33 @@ public class ExtractOverviewFeatures {
 			String[] fileSplit4 = fileSplit3[i].split("</td>");
 			for (int r = 0; r < fileSplit4.length; r++) {
 				String[] fileSplit5 = fileSplit4[r].split(">");
-				System.out.println(fileSplit5[r]);
 			}
 
 			// To get the feature name
 			String[] splt1 = fileSplit4[0].split(".html");
-			// System.out.println(fileSplit4[i]);
 			String featureName = splt1[1].substring(2, splt1[1].length() - 4);
-			System.out.println(featureName);
 
 			// To get passed scenario
 			String[] splt2 = fileSplit4[7].split("<td >");
 			String passedScenario = splt2[0];
-			System.out.println(passedScenario);
 
 			// To get failed scenario
 			String[] splt3 = fileSplit4[8].split("<td >");
 			String failedScenario = splt2[0];
-			System.out.println(failedScenario);
 
 			// To get total scenarios
 			String[] splt4 = fileSplit4[9].split("<td >");
 			String totalScenario = splt2[0];
-			System.out.println(totalScenario);
 
 			// To get duration
 			String[] splt5 = fileSplit4[10].split("<td >");
 			String duration = splt2[0];
-			System.out.println(duration);
 
 			// To get scenario status
 			String[] splt6 = fileSplit4[11].split("<td >");
 			String status = splt2[0];
-			System.out.println(status);
 
 			// if (passedScenario.equals(" ")) {
-			// System.out.println("null");
 			// }
 			// Map<String, String> featureDetailsMap = new HashMap<String,
 			// String>();
@@ -107,7 +96,5 @@ public class ExtractOverviewFeatures {
 
 		String project = projectSplit[0];
 		String date = dateSplit[0];
-		System.out.println("|Project|Date|");
-		System.out.println("|" + project + "|" + date);
 	}
 }

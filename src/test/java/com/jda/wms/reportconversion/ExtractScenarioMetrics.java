@@ -34,7 +34,6 @@ public class ExtractScenarioMetrics {
 				fileContent += line;
 			}
 		}
-//		System.out.println(fileContent);
 		
 		//To get Feature Name
 		getFeatureName(fileContent);
@@ -51,14 +50,11 @@ public class ExtractScenarioMetrics {
 			if (tempLine.contains(">Scenario")){
 				String [] fileSplit2 = tempLine.split(">  <span class");
 					if (fileSplit2[0].contains("failed")){
-						System.out.println("Failed");
 					}
 					else if (fileSplit2[0].contains("passed")){
-						System.out.println("Passed");
 					}
 					String [] fileSplit3 = tempLine.split("\"name\">");
 					String [] fileSplit4 = fileSplit3[1].split("</span>");
-					System.out.println(fileSplit4[0]);
 			}
 		}
 	}

@@ -22,8 +22,6 @@ public class SupplierSKUMaintenancePage {
 	}
 
 	public void enterSkuId(String skuId) throws FindFailed {
-		// screen.wait("/images/JDASupplierSKU/SKU.png", timeoutInSec);
-		// screen.click("/images/JDASupplierSKU/SKU.png");
 		screen.type(skuId);
 	}
 

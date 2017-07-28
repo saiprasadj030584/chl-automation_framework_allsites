@@ -86,7 +86,6 @@ public class InventoryUpdatePage {
 
 	public void selectReasonCode(String reasonCode) throws FindFailed {
 		screen.type(Key.TAB);
-		// screen.type(Key.TAB);
 		screen.type(reasonCode);
 	}
 
