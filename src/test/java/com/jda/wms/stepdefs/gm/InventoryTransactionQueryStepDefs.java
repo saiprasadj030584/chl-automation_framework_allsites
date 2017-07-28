@@ -183,10 +183,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the inventory transaction should be updated for multi sourced SKU receipt$")
 	public void the_inventory_transaction_should_be_updated_for_multi_sourced_SKU_receipt() throws Throwable {
-//		jDAFooter.clickQueryButton();
-//		inventoryTransactionQueryPage.enterCode("Receipt");
-//		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-//		jDAFooter.clickExecuteButton();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
 		if (context.getPerfectCondition().equalsIgnoreCase("Y")){
 			Assert.assertTrue("ITL not generated for Recipt with Multi Supplier",inventoryTransactionDB.getCode(context.getUpiId(), "Receipt"));
 		}

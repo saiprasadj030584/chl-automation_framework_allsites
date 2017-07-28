@@ -31,7 +31,7 @@ Feature: Purchase order receiving
 
   @returns_receiving_perfect_condition
   Scenario Outline: Do detail receiving process by providing input as URRN and unique UPC with multi supplier , followed by quantity should be defaulted as '1' and perfect condition as 'y' / 'N'
-    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "In Progress" status for multi sourced SKU
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for multi sourced SKU
       When I perform receiving for all skus at "<Location>" with perfect condition "<Condition>"
      When I navigate to inventory transaction query
     Then the inventory transaction should be updated for multi sourced SKU receipt
