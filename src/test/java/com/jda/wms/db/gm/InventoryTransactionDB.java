@@ -468,4 +468,25 @@ public class InventoryTransactionDB {
 		}
 		return isRecordExists;
 	}
+
+	public boolean getCode(String upiId, String code) throws ClassNotFoundException {
+		boolean isRecordExists = false;
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select code from inventory_transaction where reference_id='"+upiId+"' and code='"+code+"'");
+		rs.next();
+		if (rs.getString(1).equalsIgnoreCase(code)){
+			isRecordExists=true;
+		}
+	}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

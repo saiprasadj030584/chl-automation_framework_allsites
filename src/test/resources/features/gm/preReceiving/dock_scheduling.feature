@@ -49,19 +49,20 @@ Feature: Dock Scheduling
       | PreAdviceID  | UPIId                | ASNId      | DataType | SiteId |
       | PO2010002032 | PO000504560005112376 | PO00100535 | Hanging  |   5649 |
 
-  @change_status_of_booking_to_complete_asn_direct_po @pre_receiving @complete
+  @change_status_of_booking_asn_direct_po @pre_receiving @complete
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - Direct PO
     Given I have done the dock scheduler booking with the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
     When I navigate to dock scheduler start page
     When I select view existing bookings
     When I search the booking id
     Then the booking id details should be displayed on the page
-    When I change the status of booking
-    Then the booking id details with updated status should be displayed on the page
+    When I change the status of booking to BookingStatus "<BookingStatus>"
+    Then the booking id details with updated status "<BookingStatus>" should be displayed on the page
 
     Examples: 
-      | PreAdviceID  | UPIId                | ASNId      | DataType | SiteId |
-      | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |   5649 |
+      | PreAdviceID  | UPIId                | ASNId      | DataType | SiteId | BookingStatus |
+      | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |   5649 | Complete      |
+      | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |   5649 | In Progress   |
 
   @move_booking_diff_time_sameday_FSV_PO @pre_receiving @complete
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
@@ -91,16 +92,31 @@ Feature: Dock Scheduling
       | PreAdviceID  | DataType | SiteId |
       | PO2010002037 | Hanging  |   5649 |
 
-  @change_status_of_booking_to_complete_FSV_PO @pre_receiving @complete
+  @change_status_of_booking_FSV_PO @pre_receiving @complete
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
     Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>" at site "<SiteId>"
     When I navigate to dock scheduler start page
     When I select view existing bookings
     When I search the booking id
     Then the booking id details should be displayed on the page
-    When I change the status of booking
-    Then the booking id details with updated status should be displayed on the page
+    When I change the status of booking to BookingStatus "<BookingStatus>"
+    Then the booking id details with updated status "<BookingStatus>" should be displayed on the page
 
     Examples: 
-      | PreAdviceID  | DataType | SiteId |
-      | PO2010002039 | Hanging  |   5649 |
+      | PreAdviceID  | DataType | SiteId | BookingStatus |
+      | PO2010002039 | Hanging  |   5649 | Complete      |
+
+  @move_booking_diff_date_Direct_PO
+  Scenario Outline: Validate whether Booking can be moved to different date for Direct PO - Boxed
+    Given I have done the dock scheduler booking with the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time to different date
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | PreAdviceID  | UPIId                | ASNId      | DataType | SiteId |
+      #| P02010002039 | P0000504560005112376 | P000100535 | Hanging  |   5649 |
+      | GM7010002039 | GM700504560005112376 | GM70100535 | Hanging  |   5649 |

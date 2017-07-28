@@ -21,33 +21,22 @@ Feature: Purchase order receiving
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
     When I provide eight digit UPC while receiving all skus at "<Location>" with perfect condition "<Condition>"
     Then footer UPC validation error message should be displayed
-   
-    Examples: 
-      | PalletId                         | ASN        | Location |
-      #| 58850003166280077010031662800300 | 0000316218 | REC003   |
-      #| 58850003166380077010031663800300 | 0000316318 | REC003   |
-      | 58850003166480077010031664800300 | 0000316418 | REC003   |
-
-  @returns_receiving_multisupplier_perfect_Y
-  Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
-    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" with perfect condition as Y
-    When I navigate to inventory transaction query
-    Then the inventory transaction should be updated
 
     Examples: 
-      | PalletId                         | ASN        | Location |
-      #| 58850003166280077010031662800300 | 0000316218 | REC003   |
-      #| 58850003166380077010031663800300 | 0000316318 | REC003   |
-      | 58850003166480077010031664800300 | 0000316418 | REC003   |
+      | PalletId                         | ASN        | Location | Condition |
+      #| 58850003166280077010031662800300 | 0000316218 | REC003   | Y         |
+      #| 58850003166380077010031663800300 | 0000316318 | REC003   | N         |
+      #| 58850003166480077010031664800300 | 0000316418 | REC003   | N        |
+      | 58850003166960077010031669600300 | 0000316158 | REC003   | Y         |
 
-  @returns_receiving_multisupplier_perfect_n
-  Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code
-    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" with perfect condition as N
-    When I navigate to inventory transaction query
-    Then the inventory transaction should be updated
-
+  @returns_receiving_perfect_condition
+  Scenario Outline: Do detail receiving process by providing input as URRN and unique UPC with multi supplier , followed by quantity should be defaulted as '1' and perfect condition as 'y' / 'N'
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "In Progress" status for multi sourced SKU
+      When I perform receiving for all skus at "<Location>" with perfect condition "<Condition>"
+     When I navigate to inventory transaction query
+    Then the inventory transaction should be updated for multi sourced SKU receipt
     Examples: 
-      | PalletId                         | ASN        | Location |
-      #| 58850003166280077010031662800300 | 0000316218 | REC003   |
-      #| 58850003166380077010031663800300 | 0000316318 | REC003   |
-      | 58850003166480077010031664800300 | 0000316418 | REC003   |
+      | PalletId                         | ASN        | Location | Condition |
+      #| 58850003166380077010031663800300 | 0000316318 | REC003   | Y         |
+      #| 58850003166990077010031669900300 | 0000316998 | REC003   | N         |
+      | 58850003566970077010035669700300 | 0000346978 | REC003   | Y         |

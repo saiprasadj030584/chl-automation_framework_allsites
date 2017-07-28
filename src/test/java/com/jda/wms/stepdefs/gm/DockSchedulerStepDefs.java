@@ -242,13 +242,22 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
-	@When("^I change the status of booking$")
-	public void i_change_the_status_of_booking() throws Throwable {
-		dockSchedulerPage.changeBookingStatus();
+	
+	@When("^I change the booking time to different date$")
+	public void i_change_the_booking_time_to_different_date() throws Throwable {
+		dockSchedulerPage.changeBookingTimeToDifferentDate();
+		dockSchedulerPage.selectSlot();
+		jdaFooter.clickNextButton();
+	}
+	 
+	
+	@When("^I change the status of booking to BookingStatus \"([^\"]*)\"$")
+	public void i_change_the_status_of_booking(String bookingStatus) throws Throwable {
+		dockSchedulerPage.changeBookingStatus(bookingStatus);
 	}
 
-	@Then("^the booking id details with updated status should be displayed on the page$")
-	public void the_booking_id_details_with_updated_status_should_be_displayed_on_the_page() throws Throwable {
+	@Then("^the booking id details with updated status \"([^\"]*)\" should be displayed on the page$")
+	public void the_booking_id_details_with_updated_status_should_be_displayed_on_the_page(String bookingStatus) throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 		if (dockSchedulerPage.isSiteExists()) {
 			dockSchedulerPage.enterSiteID(context.getSiteId());
@@ -258,7 +267,7 @@ public class DockSchedulerStepDefs {
 		jdaFooter.PressEnter();
 		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingIdDisplayedIn());
 		dockSchedulerPage.checkBookingStatusUpdated();
-		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingStatusUpdated());
+		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingStatusUpdated(bookingStatus));
 		jdaFooter.PressEnter();
 	}
 

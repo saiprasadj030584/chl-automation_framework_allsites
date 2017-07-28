@@ -78,46 +78,33 @@ public class ReceiptReversalStepDefs {
 		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.checkRefeIDWithPreadviceIDlockcode(
 				reference_Id, context.getPreAdviceId(), lockcode, context.getLockCode()));
 	}
-	
-	
-	
-	
-	
+
 	@When("^the inventory transaction should be updated with lockcode Damaged$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_Damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
+		String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
 		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
-		
+		Assert.assertTrue("Receipt Reversion failed",
+				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
+
 	}
-	
+
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
-		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
-		
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,lockcode));
-		
+		String code = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+
+		Assert.assertTrue("Receipt Reversion failed",
+				inventoryTransactionQueryPage.checkReceiptLockCode(code, lockcode));
+
 	}
+
 	
-	@Then("^the inventory transaction should be updated$")
-	public void the_inventory_transaction_should_be_updated() throws Throwable {
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Receipt");
-		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code=inventoryTransactionDB.getLockCode(context.getUpiId(),"Receipt");
-		System.out.println("Code : "+ code);
-				
-		Assert.assertTrue("Footwear Receipt failed",inventoryTransactionQueryPage.checkReceiptLockCode(code,""));
-		
-	}
-	
+
 }

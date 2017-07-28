@@ -23,7 +23,6 @@ public class DeliveryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.err.println("IK ASNID"+asnId);
 		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
 
 		rs.next();

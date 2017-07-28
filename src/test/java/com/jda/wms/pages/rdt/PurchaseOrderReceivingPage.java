@@ -83,6 +83,28 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 
+	public boolean isBlindReceivingDoneperfectCondition() throws FindFailed, InterruptedException {
+		boolean returnVal = false;
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+			returnVal=true;
+			
+		} else if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+				|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				returnVal=true;
+			}
+		}
+		else if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)){
+			returnVal=true;
+		}
+		return returnVal;
+	}
+
 	public boolean isFootWearDigitValdiationDone() throws FindFailed, InterruptedException {
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
 				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)

@@ -3,6 +3,8 @@ package com.jda.wms.stepdefs.gm;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.SkuDB;
@@ -52,8 +54,19 @@ public class UPIReceiptLineStepDefs {
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
 
 		context.setUPC(skuDb.getUPC(context.getSkuId()));
-		System.out.println("IK UPC 1"+skuDb.getUPC(context.getSkuId())+" FOR SKU "+context.getSkuId());
+
 		context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+	}
+
+	public void i_fetch_supplier_id_UPC_sourced_by_multi_supplier() throws Throwable {
+		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
+		context.setUPC(skuDb.getUPC(context.getSkuId()));
+		if (supplierSkuDb.isMultiSourced(context.getUPC())) {
+			context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+			System.out.println(context.getSupplierID());
+		}else{
+			Assert.assertFalse("SKU is not Multi Soured", supplierSkuDb.isMultiSourced(context.getUPC()));
+		}
 	}
 
 	@Given("^URN_to_be_updated_with_upi_line$")

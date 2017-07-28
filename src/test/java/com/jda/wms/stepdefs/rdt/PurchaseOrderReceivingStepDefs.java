@@ -173,6 +173,20 @@ public class PurchaseOrderReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 
+	public void i_blind_receive_all_skus_for_the_purchase_order_at_location_perfect_condition() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_blind_receive_perfect_condition();
+		hooks.logoutPutty();
+	}
+
 	public void i_blind_receive_all_skus_for_the_purchase_order_at_location_footwear_digit_valdiation(String location,
 			String condition) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -185,7 +199,7 @@ public class PurchaseOrderReceivingStepDefs {
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
 		i_enter_details_and_perform_blind_receive_footwear();
-		hooks.logoutPutty();
+		
 	}
 
 	@When("^I receive all skus for the purchase order with no asn at location \"([^\"]*)\"$")
@@ -279,6 +293,23 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue("Blind Receiving Unsuccessfull.", purchaseOrderReceivingPage.isBlindReceivingDone());
 	}
 
+	public void i_enter_details_and_perform_blind_receive_perfect_condition() throws Throwable {
+		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+		jdaFooter.pressTab();
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterQuantity("1");
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+
+		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getlocationID());
+		jdaFooter.pressTab();
+		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		Assert.assertTrue("Blind Receiving Unsuccessfull.", purchaseOrderReceivingPage.isBlindReceivingDoneperfectCondition());
+	}
+
 	public void i_enter_details_and_perform_blind_receive_footwear() throws Throwable {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
@@ -293,9 +324,9 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+		Thread.sleep(2000);
 		jdaFooter.PressEnter();
 
-		
 	}
 
 	@When("^I enter urn id$")
@@ -420,31 +451,6 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
 	}
 
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\" with perfect condition as Y After UPC Digit Validation$")
-	public void the_UPI_and_ASN_should_be_received_at_with_perfect_condition_as_Y_After_UPC_Digit_Validation(
-			String upiId, String asnId, String location) throws Throwable {
-
-		context.setUpiId(upiId);
-		context.setLocationID(location);
-		context.setAsnId(asnId);
-
-		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
-				"Released");
-
-		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
-		context.setLocation(location);
-		// TODO Supplier SKU Table
-		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
-
-//		i_blind_receive_all_skus_for_the_purchase_order_at_location_footwear_digit_valdiation(location);
-
-		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
-		inventoryTransactionQueryStepDefs
-				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
-
-	}
-
 	@When("^I provide eight digit UPC while receiving all skus at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
 	public void i_provide_eight_digit_UPC_while_receiving_all_skus_at_with_perfect_condition(String location,
 			String condition) throws Throwable {
@@ -453,11 +459,24 @@ public class PurchaseOrderReceivingStepDefs {
 
 	}
 
+	@When("^I perform receiving for all skus at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
+	public void i_perform_receiving_for_all_skus_at_with_perfect_condition(String location, String condition)
+			throws Throwable {
+		context.setPerfectCondition(condition);
+		context.setLocationID(location);
+		i_blind_receive_all_skus_for_the_purchase_order_at_location_perfect_condition();
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
+	}
+
 	@Then("^footer UPC validation error message should be displayed$")
 	public void footer_UPC_validation_error_message_should_be_displayed() throws Throwable {
 
-		Assert.assertTrue("UPC Digit Validation for FootWear Failed.",
+		Assert.assertFalse("UPC Digit Validation for FootWear Failed.",
 				purchaseOrderReceivingPage.isFootWearDigitValdiationDone());
+		hooks.logoutPutty();
 	}
 
 	@Then("^I should see that no valid preadvices found message$")
@@ -495,5 +514,15 @@ public class PurchaseOrderReceivingStepDefs {
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+	}
+	
+	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for multi sourced SKU$")
+	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String upiId, String asnId, String status) throws Throwable {
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
+				status);
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC_sourced_by_multi_supplier();
 	}
 }

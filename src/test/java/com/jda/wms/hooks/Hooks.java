@@ -44,7 +44,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	 @After()
+	@After()
 	public void tearDown(Scenario scenario) {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
@@ -58,34 +58,35 @@ public class Hooks {
 		}
 	}
 
-	 @After
+	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
-		if (context.isPuttyLoginFlag()==true){
-//			context.getPuttyProcess().waitFor();
-		while (screen.exists("/images/Putty/3Logout.png") == null) {
-			screen.type(Key.F12);
-		}
-		screen.type("3");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-		
-		Process p = Runtime.getRuntime().exec("cmd /c "+envVar+"\\bin\\puttykillAdmin.lnk");
-//		//Process p = Runtime.getRuntime().exec("cmd /c C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
-//		p.waitFor();
-		
-		screen.type(Key.F4, Key.ALT);
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-		context.setPuttyLoginFlag(false);
-//		screen.wait("images/Putty/PuttyClose.png", 20);
-//		screen.click("images/Putty/PuttyClose.png", 25);
-//		Thread.sleep(1000);
+		if (context.isPuttyLoginFlag() == true) {
+			// context.getPuttyProcess().waitFor();
+			while (screen.exists("/images/Putty/3Logout.png") == null) {
+				screen.type(Key.F12);
+			}
+			screen.type("3");
+			Thread.sleep(1000);
+			screen.type(Key.ENTER);
+			Thread.sleep(2000);
 
-//		screen.wait("images/Putty/PuttyCloseOK.png", 20);
-//		screen.click("images/Putty/PuttyCloseOK.png", 25);
-//		Thread.sleep(1000);
+			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
+			// //Process p = Runtime.getRuntime().exec("cmd /c
+			// C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
+			// p.waitFor();
+
+			screen.type(Key.F4, Key.ALT);
+			Thread.sleep(2000);
+			screen.type(Key.ENTER);
+			Thread.sleep(2000);
+			context.setPuttyLoginFlag(false);
+			// screen.wait("images/Putty/PuttyClose.png", 20);
+			// screen.click("images/Putty/PuttyClose.png", 25);
+			// Thread.sleep(1000);
+
+			// screen.wait("images/Putty/PuttyCloseOK.png", 20);
+			// screen.click("images/Putty/PuttyCloseOK.png", 25);
+			// Thread.sleep(1000);
 		}
 	}
 
@@ -97,16 +98,15 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 	}
-	
+
 	@After
-	public void closeDBConnection() throws SQLException{
-		if (!context.getConnection().equals(null)){
+	public void closeDBConnection() throws SQLException {
+		if (!context.getConnection().equals(null)) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
 	}
-	
-	
+
 	// @After
 	public void clickSignoutButton() throws FindFailed {
 		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
