@@ -8,13 +8,13 @@ import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
+import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.stepdefs.gm.DeliveryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryQueryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryTransactionQueryStepDefs;
@@ -50,6 +50,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private InventoryQueryStepDefs inventoryQueryStepDefs;
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
 	private JDAFooter jdaFooter;
+	private PuttyFunctionsPage puttyFunctionsPage;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -58,7 +59,7 @@ public class PurchaseOrderReceivingStepDefs {
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter,
-			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB) {
+			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,PuttyFunctionsPage puttyFunctionsPage) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -74,6 +75,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.jdaFooter = jdaFooter;
 		this.uPIReceiptHeaderDB = uPIReceiptHeaderDB;
 		this.uPIReceiptLineDB = uPIReceiptLineDB;
+			this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -119,41 +121,6 @@ public class PurchaseOrderReceivingStepDefs {
 	public void the_pallet_count_should_be_updated_in_delivery_po_to_be_linked_with_upi_line() throws Throwable {
 		deliveryStepDefs.the_pallet_count_should_be_updated_in_delivery();
 		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
-	}
-
-	@When("^I receive all skus for the purchase order at location \"([^\"]*)\"$")
-	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		context.setLocation(location);
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-
-		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
-		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
-		i_receive_the_po_with_basic_and_pre_advice_receiving();
-		i_should_be_directed_to_pre_advice_entry_page();
-
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(poMap.get(i).get("SKU"));
-			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
-			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
-			the_tag_and_upc_details_should_be_displayed();
-			i_enter_the_location();
-			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
-					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			if (context.getLockCode().equals(null)) {
-				i_enter_urn_id();
-			} else {
-				i_enter_urn_id_for_locked_sku();
-			}
-
-			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
-				context.setFailureList(failureList);
-			}
-		}
-		hooks.logoutPutty();
 	}
 
 	@When("^I receive all skus for the purchase order with multiple upi at location \"([^\"]*)\"$")
@@ -649,16 +616,6 @@ public class PurchaseOrderReceivingStepDefs {
 				failureList.isEmpty());
 	}
 
-	@When("^I enter the location$")
-	public void i_enter_the_location() throws FindFailed, InterruptedException {
-		purchaseOrderReceivingPage.enterLocation(context.getLocation());
-	}
-
-	@When("^I enter pre advice id \"([^\"]*)\" and SKU id \"([^\"]*)\"$")
-	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
-		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
-		purchaseOrderReceivingPage.enterSKUId(skuId);
-	}
 
 	@When("^the PO should be received at location \"([^\"]*)\"$")
 	public void the_po_should_be_received_at_location(String location) throws Throwable {
@@ -667,30 +624,6 @@ public class PurchaseOrderReceivingStepDefs {
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("complete");
-	}
-
-	@Then("^I should see the receiving completion$")
-	public void i_should_see_the_receiving_completion() throws Throwable {
-		Assert.assertTrue("Receive not completed and Home page not displayed.",
-				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-	}
-
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at(String preAdviceId, String type, String upiId,
-			String asnId, String location) throws Throwable {
-		context.setUpiId(upiId);
-		context.setPreAdviceId(preAdviceId);
-		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
-				preAdviceId, type, upiId, asnId, "Released");
-
-		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
-		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		context.setLocation(location);
-		i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
-		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
-		inventoryTransactionQueryStepDefs
-				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
-		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
@@ -775,32 +708,6 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
 
-	@Then("^I should see that no valid preadvices found message$")
-	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
-		Assert.assertTrue("No Valid Pre advices message is not displayed. ["
-				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
-		hooks.logoutPutty();
-	}
-
-	@Then("^I proceed to complete the receiving$")
-	public void i_proceed_to_complete_the_receiving() throws Throwable {
-		purchaseOrderReceivingPage.enterYes();
-	}
-
-	@Then("^the receiving should be completed$")
-	public void the_receiving_should_be_completed() throws Throwable {
-		Assert.assertTrue("Receive not completed and Home page not displayed",
-				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
-		Thread.sleep(3000);
-		hooks.logoutPutty();
-	}
-
-	@Then("^the error message should be displayed$")
-	public void the_error_message_should_be_displayed() throws Throwable {
-		Assert.assertTrue(
-				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
-				context.getFailureList().isEmpty());
-	}
 	
 	// FSV receiving
 
@@ -848,4 +755,199 @@ public class PurchaseOrderReceivingStepDefs {
 	purchaseOrderReceivingPage.enterNewPallet(newPallet);
 	}
 	
+	@When("^I enter the location$")
+	public void i_enter_the_location() throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterLocation(context.getLocation());
+	}
+
+	@When("^I enter tag id$")
+	public void i_enter_tag_id() throws FindFailed, InterruptedException {
+		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		context.setTagId(tagId);
+		purchaseOrderReceivingPage.entertagId(tagId);
+	}
+
+	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
+		purchaseOrderReceivingPage.enterPreAdvId(preAdviceId);
+		purchaseOrderReceivingPage.enterSKUId(skuId);
+	}
+
+	@Then("^I should see the receiving completion$")
+	public void i_should_see_the_receiving_completion() throws Throwable {
+		Assert.assertTrue("Receive not completed and Home page not displayed.",
+				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+	}
+
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at(String preAdviceId, String type, String upiId,
+			String asnId, String location) throws Throwable {
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+				preAdviceId, type, upiId, asnId, "Released");
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		context.setLocation(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+	}
+
+	@Then("^I should see that no valid preadvices found message$")
+	public void i_should_see_that_no_valid_preadvices_found_message() throws Throwable {
+		Assert.assertTrue("No Valid Pre advices message is not displayed. ["
+				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
+		hooks.logoutPutty();
+	}
+
+	@Then("^I proceed to complete the receiving$")
+	public void i_proceed_to_complete_the_receiving() throws Throwable {
+		purchaseOrderReceivingPage.enterYes();
+	}
+
+	@Then("^the receiving should be completed$")
+	public void the_receiving_should_be_completed() throws Throwable {
+		Assert.assertTrue("Receive not completed and Home page not displayed",
+				purchaseOrderReceivingPage.isPreAdviceEntryDisplayed());
+		Thread.sleep(3000);
+		hooks.logoutPutty();
+	}
+
+	@Then("^the error message should be displayed$")
+	public void the_error_message_should_be_displayed() throws Throwable {
+		Assert.assertTrue(
+				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
+				context.getFailureList().isEmpty());
+	}
+
+	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\"$")
+	public void i_perform_for_all_skus_at_location(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			}
+			i_enter_urn_id();
+			puttyFunctionsPage.pressEnter();
+			the_tag_and_upc_details_should_be_displayed();
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			i_enter_the_quantity(quantity);
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				i_enter_urn_id();
+				puttyFunctionsPage.pressEnter();
+			}
+		}
+	}
+
+	@When("^I enter the quantity")
+	public void i_enter_the_quantity(String quantity) throws Throwable {
+		// To navigate and enter the modified quantity
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.backSpace();
+		puttyFunctionsPage.backSpace();
+		puttyFunctionsPage.backSpace();
+		purchaseOrderReceivingPage.enterQuantity(quantity);
+		puttyFunctionsPage.pressEnter();
+	}
+
+	@When("^I receive all skus for the purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			// i_enter_urn_id();
+			// jDAFooter.PressEnter();
+			// the_tag_and_upc_details_should_be_displayed();
+			// i_enter_the_location();
+			//
+			// Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+			// purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (null == context.getLockCode()) {
+				i_enter_urn_id();
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed();
+				i_enter_the_location();
+				jdaFooter.PressEnter();
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+						purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if (null != context.getLockCode()) {
+					i_enter_urn_id_for_locked_sku();
+				} else {
+					i_enter_urn_id();
+					jdaFooter.PressEnter();
+					Thread.sleep(2000);
+				}
+
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+					context.setFailureList(failureList);
+				}
+			}
+			hooks.logoutPutty();
+		}
+	}
+
+	@When("^I blind receive the invalid upi \"([^\"]*)\"$")
+	public void i_blind_receive_the_invalid_upi(String upiId) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setUpiId(upiId);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		purchaseOrderReceivingPage.enterURRN(context.getUpiId());
+		jdaFooter.PressEnter();
+	}
+
+	@Then("^the URN status should be displayed as URRN does not exist$")
+	public void the_URN_status_should_be_displayed_as_URRN_does_not_exist() throws Throwable {
+		Assert.assertTrue("URRN Status not displayed as expected",
+				purchaseOrderReceivingPage.isURRNNotExistDisplayed());
+	}
+
+
+	@Then("^the error message should be displayed as cannot over receipt$")
+	public void the_error_message_should_be_displayed_as_cannot_over_receipt() throws Throwable {
+		Assert.assertTrue("Error message:You can not over receipt this sscc",
+				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+
 }

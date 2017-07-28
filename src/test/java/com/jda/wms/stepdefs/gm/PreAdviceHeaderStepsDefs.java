@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataObject.Inventory;
+import com.jda.wms.dataload.gm.DataSetUp;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
@@ -29,28 +30,34 @@ public class PreAdviceHeaderStepsDefs {
 	private Context context;
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private final PreAdviceHeaderDB preAdviceHeaderDB;
-	private UPIReceiptHeaderDB  upiReceiptHeaderDB;
+	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private Verification verification;
 	private DeliveryDB deliveryDB;
+	private JdaLoginPage jdaLoginPage;
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	
+	
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
 			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+
 		this.jdaFooter = jdaFooter;
+		this.jdaLoginStepDefs=jdaLoginStepDefs;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.verification = verification;
 		this.deliveryDB = deliveryDB;
-		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
-		this.preAdviceLineDB = preAdviceLineDB;
-		this.upiReceiptLineDB = upiReceiptLineDB;
-		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
+        this.preAdviceLineStepDefs=preAdviceLineStepDefs;
+        this.preAdviceLineDB=preAdviceLineDB;
+        this.upiReceiptLineDB=upiReceiptLineDB;
+		this.jdaLoginPage = jdaLoginPage;
+		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
 	}
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
@@ -159,18 +166,18 @@ public class PreAdviceHeaderStepsDefs {
 	
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,String type, String upiId,String asnId, String status, String lockCode) throws Throwable{
+
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		context.setSKUType(type);
 		context.setLockCode(lockCode);
-		
-		logger.debug("PO ID: "+preAdviceId);
-		logger.debug("UPI ID: "+upiId);
-		logger.debug("ASN ID: "+asnId);
-		logger.debug("Type: "+type);
-		
-		ArrayList failureList = new ArrayList();
+		// DataSetUp.setPOData();
+		logger.debug("PO ID: " + preAdviceId);
+		logger.debug("UPI ID: " + upiId);
+		logger.debug("ASN ID: " + asnId);
+		logger.debug("Type: " + type);
+    	ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		
 		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
@@ -244,4 +251,10 @@ public class PreAdviceHeaderStepsDefs {
 		logger.debug("PO ID: " + preAdviceId);
 		Assert.assertFalse("Pre Advice ID is linked to UPI for FSV PO",isUPIRecordExists);
 	}
+
+	@Given("^I have an invalid UPI \"([^\"]*)\"$")
+	public void i_have_an_invalid_UPI(String upiId) throws Throwable {
+		Assert.assertFalse("Record found not as expected",
+	     upiReceiptHeaderDB.isRecordExistsForPalletId(upiId));
 	}
+}

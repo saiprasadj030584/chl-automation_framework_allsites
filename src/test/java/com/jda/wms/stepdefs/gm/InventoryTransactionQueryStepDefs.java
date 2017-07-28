@@ -1,23 +1,19 @@
 package com.jda.wms.stepdefs.gm;
-
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.junit.Assert;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
-
 public class InventoryTransactionQueryStepDefs {
 	Map<Integer, Map<String, String>> poMap;
 	Map<String, Map<String, String>> upiMap;
@@ -26,18 +22,23 @@ public class InventoryTransactionQueryStepDefs {
 	private InventoryTransactionDB inventoryTransactionDB;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private JDAFooter jDAFooter;
+	private JdaLoginPage jdaLoginPage;
+	private JDAHomeStepDefs jDAHomeStepDefs;
 	private JdaHomePage jdaHomePage;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			JDAFooter jDAFooter,JdaHomePage jdaHomePage) {
+			JDAFooter jDAFooter,JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs,JdaHomePage jdaHomePage) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.jDAFooter = jDAFooter;
-		this.jdaHomePage = jdaHomePage;
+		this.jdaLoginPage = jdaLoginPage;
+		this.jDAHomeStepDefs = jDAHomeStepDefs;
+		this.jdaHomePage=jdaHomePage;
+
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -46,6 +47,15 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
@@ -60,10 +70,17 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 					failureList);
+			
+			if (null!=context.getLockCode()){
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+
 	
 	@Then("^the goods receipt should be generated for FSV PO received stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_fsv_PO_received_stock_in_inventory_transaction() throws Throwable {
@@ -80,6 +97,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertFalse("Inventory Transaction details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 	}
 	
+
 	@Then("^the goods receipt should be generated for putaway stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_putaway_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -149,7 +167,6 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.getReasonCode();
-
 	}
 
 	@Then("^the condition should be updated$")
@@ -192,12 +209,14 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
+		String updatedQty= String.valueOf(context.getQtyOnHand());
 		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCode(context.getSkuId(), "Adjustment",
-				execDate, context.getReasonCode());
+				execDate,context.getReasonCode(),updatedQty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 
 	}
+
 	
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
@@ -230,6 +249,7 @@ public class InventoryTransactionQueryStepDefs {
 		
 	}
 	
+
 	@When("^the inventory transaction should be updated with reversed receipt tag$")
 	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
@@ -251,7 +271,6 @@ public class InventoryTransactionQueryStepDefs {
 		String code = "Receipt";
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
-
 
 	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode$")
 	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode() throws Throwable {

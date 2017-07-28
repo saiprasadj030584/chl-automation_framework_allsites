@@ -118,6 +118,8 @@ public class Context {
 	private String condition;
 	private String reasonCode;
 	private String owner;
+	private String receiveType;
+	private String Record;
 	private String perfectCondition;
 	private String partset;
 
@@ -953,6 +955,22 @@ public class Context {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+
+	public String getRecord() {
+		return Record;
+	}
+
+	public void setRecord(String record) {
+		Record = record;
+	}
+
 	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
 		return MultipleUPIMap;
 	}
@@ -960,5 +978,6 @@ public class Context {
 	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
 		MultipleUPIMap = multipleUPIMap;
 	}
+
 
 }

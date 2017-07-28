@@ -1,38 +1,44 @@
 
 package com.jda.wms.stepdefs.gm;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.junit.Assert;
-
 import com.google.inject.Inject;
-
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
+import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
 import com.jda.wms.pages.gm.Verification;
-
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 public class UPIReceiptHeaderStepDefs {
 	private Context context;
 	private UPIReceiptHeaderDB upiReceiptHeaderDB;
+	private UpiReceiptHeaderPage upiReceiptHeaderPage;
 	private Verification verification;
 	private DeliveryDB deliveryDB;
 
 	@Inject
-	public UPIReceiptHeaderStepDefs(Context context,UPIReceiptHeaderDB upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB) {
+	public UPIReceiptHeaderStepDefs(Context context,UPIReceiptHeaderDB upiReceiptHeaderDB,UpiReceiptHeaderPage upiReceiptHeaderPage,Verification verification,DeliveryDB deliveryDB) {
 		this.context = context;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.verification=verification;
 		this.deliveryDB=deliveryDB;
+		this.upiReceiptHeaderPage=upiReceiptHeaderPage;
 	}
 
 @Given("^ASN to be linked with upi header$")
 public void asn_to_be_linked_with_upi_header() throws Throwable {
 	upiReceiptHeaderDB.updateASN(context.getUpiId(),context.getAsnId());
+}
+
+@When("^i enter palletId$")
+public void i_enter_palletId() throws Throwable {
+	upiReceiptHeaderPage.enterPallet(context.getPalletID());
+	Assert.assertTrue("Record not displayed as expected",
+			upiReceiptHeaderPage.isNoRecordExist());
 }
 
 @Given("^ASN to be linked with upi header list$")
@@ -55,7 +61,4 @@ public void the_pallet_and_asn_status_should_be_displayed_as(String rcvStatus) t
 	verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
 	Assert.assertTrue("UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
-
-
-
 }

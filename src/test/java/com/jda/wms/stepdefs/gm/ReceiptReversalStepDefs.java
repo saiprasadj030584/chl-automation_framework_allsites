@@ -1,7 +1,5 @@
 package com.jda.wms.stepdefs.gm;
-
 import org.junit.Assert;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
@@ -10,9 +8,7 @@ import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.ReceiptReversalPage;
-
 import cucumber.api.java.en.When;
-
 public class ReceiptReversalStepDefs {
 	private ReceiptReversalPage receiptReversalPage;
 	private JDAFooter jDAFooter;
@@ -51,3 +47,5 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.PressEnter();
 	}
 }
+
+

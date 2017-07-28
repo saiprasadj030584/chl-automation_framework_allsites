@@ -1,6 +1,9 @@
 package com.jda.wms.stepdefs.gm;
 
+import org.sikuli.script.FindFailed;
+
 import com.google.inject.Inject;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 
 import cucumber.api.java.en.Given;
@@ -8,6 +11,7 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -172,6 +176,24 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
+
+	@When("^I navigate to delivery management page$")
+	public void i_navigate_to_delivery_management_page() throws Throwable {
+		jdaHomePage.navigatetoDeliveryManagementPage();
+		
+	}
+	@When("^I navigate to delivery page$")
+	public void i_navigate_to_delivery_page() throws Throwable {
+		jdaHomePage.navigateToDeliveryPage();
+	}
+	@When("^i navigate to UPI receipt header page$")
+	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException{
+		jdaHomePage.navigateToUpiReceiptHeaderPage();
+	}
+	}
+
+
 	
 	
-}
+
+

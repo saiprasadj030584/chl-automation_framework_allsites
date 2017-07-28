@@ -71,6 +71,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
+		}
+		else{
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -107,6 +109,8 @@ public class PreAdviceLineStepDefs {
 				type = "H";
 				break;
 			}
+			context.setSKUType(type);
+
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
@@ -169,6 +173,7 @@ public class PreAdviceLineStepDefs {
 
 
 
+
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
 	public void the_PO_is_locked_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
@@ -200,7 +205,6 @@ public class PreAdviceLineStepDefs {
 		String userDefType3 = getUserDefinedType3(lockCode);
 		String userDefType4 = getUserDefinedType4(lockCode);
 		String fireWallCheck = isUserDefCheck1Required(lockCode);
-
 		if (null != userDefType3) {
 			preAdviceLineMaintenancePage.updateUserDefinedType3(userDefType3);
 		}
@@ -217,6 +221,7 @@ public class PreAdviceLineStepDefs {
 		i_click_on_general_tab();
 		Assert.assertEquals("Lock Code is not updated as expected", lockCode,
 				preAdviceLineDB.getLockCode(context.getPreAdviceId()));
+				
 	}
 
 	private String getUserDefinedType3(String lockCode) {

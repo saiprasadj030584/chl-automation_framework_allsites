@@ -1,5 +1,4 @@
 package com.jda.wms.pages.gm;
-
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -18,9 +17,7 @@ public class ReceiptReversalPage {
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
 		screen.type(receiptType);
 	}
-	
-	
-
+			
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/ReceiptReversal/Start/TagID.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
@@ -28,10 +25,12 @@ public class ReceiptReversalPage {
 	}
 	
 	public void checkTheCheckbox() throws InterruptedException, FindFailed {
+
 		Match mtagId = screen.find("images/ReceiptReversal/Reversals/checkbox.png");
 		screen.click(mtagId.getCenter());
 		
 	}
+
 
 	public boolean isRecordExists() throws InterruptedException, FindFailed {
 		if (!screen.find("images/ReceiptReversal/Reversals/Pallet.png").equals(null)) {
@@ -59,8 +58,7 @@ public class ReceiptReversalPage {
 	public void checkReversalUpdationInventory(String tagId) throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
 		Thread.sleep(3000);
-	
-		screen.type("Receipt Reversal");
+	    screen.type("Receipt Reversal");
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(Key.TAB);
@@ -70,7 +68,6 @@ public class ReceiptReversalPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(tagId);
-		
 		screen.type(Key.F7);
 	}
 
@@ -107,4 +104,5 @@ public class ReceiptReversalPage {
 		else
 			return false;
 	}
+
 }

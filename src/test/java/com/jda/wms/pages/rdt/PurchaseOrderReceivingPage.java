@@ -1,11 +1,9 @@
 package com.jda.wms.pages.rdt;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -14,8 +12,9 @@ public class PurchaseOrderReceivingPage {
 	Context context = new Context();
 	int timeoutInSec = 20;
 	private PuttyFunctionsPage puttyFunctionsPage;
-
+	
 	@Inject
+
 	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage, Context context) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.context = context;
@@ -42,27 +41,13 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 	}
 
-	public void selectBlindReceive() throws FindFailed, InterruptedException {
-		screen.type("1");
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-	}
-
+	
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
 		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
 			return true;
 		else if ((screen.exists("images/Putty/Receiving/PreAdvComplete.png") != null)) {
 			puttyFunctionsPage.pressEnter();
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isBlindEntryDisplayed() throws FindFailed, InterruptedException {
-		Thread.sleep(10000);
-		if ((screen.exists("images/Putty/Receiving/BlindReceivingEntry.png") != null)) {
 			return true;
 		}
 		return false;
@@ -228,23 +213,16 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
-		screen.click("images/Putty/Receiving/Location.png");
+//		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+//		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);
 		screen.type("x", Key.CTRL);
 		screen.type(Key.NUM4);
-		Thread.sleep(2000);
-	}
-
-	public void enterQuantity(String count) throws InterruptedException {
-		screen.type(count);
-
 		Thread.sleep(2000);
 	}
 
@@ -506,5 +484,56 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		return App.getClipboard();
+
 	}
+
+	public void entertagId(String tagId) throws InterruptedException {
+		// puttyFunctionsPage.pressTab();
+		screen.type(tagId);
+	}
+
+	public void enterQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
+		Thread.sleep(2000);
+	}
+
+	public void selectBlindReceive() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isBlindEntryDisplayed() throws InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/blindEnterPage.png") != null))
+			return true;
+
+		return false;
+	}
+
+	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+
+	public void enterURRN(String urrn) throws InterruptedException {
+		screen.type(urrn);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isURRNNotExistDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/urrnNotExist.png") != null))
+			return true;
+		else
+			return false;
+	}
+
 }
