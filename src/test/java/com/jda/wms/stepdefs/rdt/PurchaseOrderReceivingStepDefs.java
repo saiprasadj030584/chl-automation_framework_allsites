@@ -107,15 +107,19 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
-			the_tag_and_upc_details_should_be_displayed();
-			i_enter_the_location();
-			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
-					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			if (context.getLockCode().equals(null)) {
+//			i_enter_urn_id();
+//			
+//			the_tag_and_upc_details_should_be_displayed();
+//			i_enter_the_location();
+//			
+//			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+//					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (null==context.getLockCode()) {
 				i_enter_urn_id();
+				jdaFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed();
 				i_enter_the_location();
+				jdaFooter.PressEnter();
 				Assert.assertTrue("Rcv Pallet Entry Page not displayed",purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
 				if (null!=context.getLockCode()||(context.isPoQtyMoreThanUPIQty()==true)){
 					i_enter_urn_id_for_locked_sku();
@@ -424,5 +428,22 @@ public class PurchaseOrderReceivingStepDefs {
 		Assert.assertTrue(
 				"Appropriate error is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
+	}
+	
+	
+	@Given("the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be locked with code \"([^\"]*)\" and received at location \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_locked_with_code_and_received_at_location(String preAdviceId, String type, String upiId, String asnId, String lockCode, String location)
+			throws Throwable {
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,
+				upiId, asnId, "Released");
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
+		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 }

@@ -106,6 +106,7 @@ public class Context {
 	private String reasonCode;
 	private String owner;
 	private String perfectCondition;
+	private String supplierType;
 
 	public String getPerfectCondition() {
 		return perfectCondition;
@@ -906,5 +907,13 @@ public class Context {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getSupplierType() {
+		return supplierType;
+	}
+
+	public void setSupplierType(String supplierType) {
+		this.supplierType = supplierType;
 	}
 }

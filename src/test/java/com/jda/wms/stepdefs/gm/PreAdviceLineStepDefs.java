@@ -60,7 +60,6 @@ public class PreAdviceLineStepDefs {
 
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
-
 		if (!skuFromPO.containsAll(skuFromUPI)) {
 			for (int i = 0; i < skuFromPO.size(); i++) {
 				if (!skuFromPO.get(i).equals(skuFromUPI.get(i))) {
@@ -68,7 +67,8 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
-
+		}
+		else{
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromPO.get(i - 1));
@@ -77,6 +77,7 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
 				POMap.put(i, lineItemsMap);
 			}
+			
 			context.setPOMap(POMap);
 
 			// Add SKU details to UPI Map
@@ -155,7 +156,7 @@ public class PreAdviceLineStepDefs {
 	@Given("^I lock the product with lock code \"([^\"]*)\"$")
 	public void i_lock_the_product_with_lock_code(String lockCode) throws Throwable {
 		context.setLockCode(lockCode);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+//		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());

@@ -155,4 +155,9 @@ public class PurchaseOrderPutawayPage {
 		else
 			return false;
 	}
+
+	public void navigateToBackScreen() throws InterruptedException {
+		screen.type(Key.F12);
+		Thread.sleep(2000);
+	}
 }
