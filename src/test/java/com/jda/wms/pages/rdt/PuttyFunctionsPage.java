@@ -106,6 +106,11 @@ public class PuttyFunctionsPage {
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
 	}
+	
+	public void backSpace() throws InterruptedException {
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(2000);
+	}
 
 	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);

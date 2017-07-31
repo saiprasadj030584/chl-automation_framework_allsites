@@ -1,9 +1,7 @@
 package com.jda.wms.pages.gm;
-
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
-
 public class PopUpPage {
 	
 	Screen screen = new Screen();

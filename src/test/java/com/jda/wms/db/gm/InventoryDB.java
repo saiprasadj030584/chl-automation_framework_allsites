@@ -388,7 +388,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 
@@ -613,4 +612,7 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+
+	
+
 }

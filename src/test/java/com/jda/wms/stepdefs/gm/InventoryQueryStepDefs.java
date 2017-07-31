@@ -47,7 +47,6 @@ public class InventoryQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
-		System.out.println("check1" + context.getUpiId());
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
@@ -217,7 +216,7 @@ public class InventoryQueryStepDefs {
 			context.setSkuId((String) StockDetailList.get(0));
 			context.setPackConfig((String) StockDetailList.get(1));
 		}
-		jdaLoginPage.login();
+		// jdaLoginPage.login();
 	}
 
 }

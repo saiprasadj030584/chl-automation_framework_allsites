@@ -54,7 +54,22 @@ Feature: Purchase order receiving
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
 
-  @po_validate_full_pallet
+@po_receive_multiple_urn_single_trailer
+  Scenario Outline: Receiving process in JDA WMS for Hanging type
+    Given the PO "<PreAdviceID>" of type "Hanging" with multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
+    And the PO with multiple upi should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header list and po to be linked with upi line
+    When I receive all skus for the purchase order with multiple upi at location "<Location>"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
+
+    Examples: 
+      | PreAdviceID | PalletId                                  | ASN        | Location |
+      |  9090002070 | 00050456000249606127,00050456000248606127 | 0000004789 | REC001   |
+
+      
+       @po_validate_full_pallet
   Scenario Outline: Validate pallet build for full pallet - Boxed type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
