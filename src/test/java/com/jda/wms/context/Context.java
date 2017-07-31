@@ -51,6 +51,7 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
+	private ArrayList<String> upiList;
 	private String orderId;
 	private String customer;
 	private String listID;
@@ -59,6 +60,14 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	public ArrayList<String> getUpiList() {
+		return upiList;
+	}
+
+	public void setUpiList(ArrayList<String> upiList) {
+		this.upiList = upiList;
+	}
+
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -91,6 +100,7 @@ public class Context {
 	private String asnId;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
+	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
@@ -98,6 +108,9 @@ public class Context {
 	private String carrier;
 	private String serviceLevel;
 	private boolean poQtyMoreThanUPIQty=false;
+	private String generateBelCode;
+	private ArrayList<String> belCodeList;
+	private ArrayList<String> enternewpallet;
 	private String bookingTime;
 	private String updatedBookingTime;
 	private String dockId;
@@ -105,8 +118,19 @@ public class Context {
 	private String condition;
 	private String reasonCode;
 	private String owner;
+	private String receiveType;
+	private String Record;
 	private String perfectCondition;
 	private String supplierType;
+	private String partset;
+
+	public String getPartset() {
+		return partset;
+	}
+
+	public void setPartset(String partset) {
+		this.partset = partset;
+	}
 
 	public String getPerfectCondition() {
 		return perfectCondition;
@@ -377,7 +401,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; // setCaseRatioList
+		return caseRatiolist; 
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -829,6 +853,15 @@ public class Context {
 		this.skuType = skuType;
 	}
 
+
+	public String getsupplierType() {
+		return supplierType;
+	}
+
+	public void setsupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -885,6 +918,30 @@ public class Context {
 		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
 	}
 
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getBelCode() {
+		return generateBelCode;
+	}
+
+	public ArrayList<String> enterNewPallet() {
+		return enternewpallet;
+	}
+
+	public void setNewPallet(ArrayList enternewpallet) {
+		this.enternewpallet = enternewpallet;
+	}
+
+	public ArrayList<String> getBelCodeList() {
+		return belCodeList;
+	}
+
+	public void setBelCodeList(ArrayList<String> belCodeList) {
+		this.belCodeList = belCodeList;
+	}
+
 	public String getCondition() {
 		return condition;
 	}
@@ -915,5 +972,29 @@ public class Context {
 
 	public void setSupplierType(String supplierType) {
 		this.supplierType = supplierType;
+	}
+
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+
+	public String getRecord() {
+		return Record;
+	}
+
+	public void setRecord(String record) {
+		Record = record;
+	}
+
+	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
+		return MultipleUPIMap;
+	}
+
+	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
+		MultipleUPIMap = multipleUPIMap;
 	}
 }

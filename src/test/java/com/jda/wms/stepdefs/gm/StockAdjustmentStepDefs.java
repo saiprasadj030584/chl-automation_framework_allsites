@@ -82,6 +82,9 @@ public class StockAdjustmentStepDefs {
 		case "SAMPLES":
 			reasonCodeToChoose = "SAMPLES";
 			break;
+		case "SC":
+			reasonCodeToChoose = "Stock Count";
+			break;
 		}
 
 		stockAdjustmentsPage.chooseReasonCode(reasonCodeToChoose);

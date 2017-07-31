@@ -17,7 +17,7 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       #| PO2010002006 | PO050456000511235615 | PO00100505 | REC001   |
-        | PO2010002613 | PO050456000511235713 | PO00100733 | REC001   |
+      | PO2010002613 | PO050456000511235713 | PO00100733 | REC001   |
 
   @po_receive_boxed @po @complete @2
   Scenario Outline: Receiving process in JDA WMS for Boxed type
@@ -45,7 +45,22 @@ Feature: Purchase order receiving
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
-      | PO2010002813 | PO050456000511235813 | PO00100833 | REC001   |
-       | PO2010002613 | PO050456000511235713 | PO00100733 | REC001   |
-       #| PO2010002614 | PO050456000511235714 | PO00100734 | REC001   |
-      
+      #|   2010002111 | 00050456000511235601 | 0000100508 | REC001 |
+      #| PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
+      #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
+      #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
+      | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
+
+  @po_receive_multiple_urn_single_trailer
+  Scenario Outline: Receiving process in JDA WMS for Hanging type
+    Given the PO "<PreAdviceID>" of type "Hanging" with multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
+    And the PO with multiple upi should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header list and po to be linked with upi line
+    When I receive all skus for the purchase order with multiple upi at location "<Location>"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
+
+    Examples: 
+      | PreAdviceID | PalletId                                  | ASN        | Location |
+      |  9090002070 | 00050456000249606127,00050456000248606127 | 0000004789 | REC001   |
