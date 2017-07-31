@@ -1,4 +1,3 @@
-
 package com.jda.wms.utils;
 import java.util.Random;
 

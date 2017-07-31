@@ -22,7 +22,7 @@ public class DockSchedulerStepDefs {
 	private PreReceivingStepDefs preReceivingStepDefs;
 	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
 	private JDAHomeStepDefs jDAHomeStepDefs;
-	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
+	private DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
@@ -32,7 +32,7 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
-			DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -40,7 +40,7 @@ public class DockSchedulerStepDefs {
 		this.preReceivingStepDefs = preReceivingStepDefs;
 		this.trailerMaintenanceStepDefs = trailerMaintenanceStepDefs;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
-		this.dockScehdulerBookingStepDefs = dockScehdulerBookingStepDefs;
+		this.dockSchedulerBookingStepDefs = dockSchedulerBookingStepDefs;
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
 
@@ -180,7 +180,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
-		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 	
 	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
@@ -195,7 +195,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
-		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 	
 	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\" for NON RMS$")
@@ -210,7 +210,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
-		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
 	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
@@ -223,7 +223,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_booking_type_preadvice();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
-		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
 	@Given("^I have done the dock scheduler booking with the BookingId \"([^\"]*)\", PO \"([^\"]*)\", UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
@@ -237,7 +237,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn_with_bookingid(BookingId);
-		dockScehdulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
 	@When("^I select view existing bookings$")

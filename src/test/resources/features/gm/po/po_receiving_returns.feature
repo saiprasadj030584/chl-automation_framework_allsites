@@ -11,12 +11,25 @@ Feature: Purchase order receiving
     Then the inventory transaction should be updated with lock code "<LockCode>"
 
     Examples: 
-      | PalletId                         | ASN         | Location | Condition | LockCode |
-      #| 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
-      #| 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
-      #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
-      #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
-      | 58850008191683077010081916830400 | 00008191683 | REC003   | N         | DMGD     |
+      | PalletId                         | ASN         | Location | Condition | LockCode  |
+      | 58850006486180077010064861800200 | 00006486181 | REC003   | Y         | IMPERFECT |
+  #| 58850001231330077010012313300600 | 0000123133 | REC003   | Y         | IMPERFECT |
+  #| 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
+  #| 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
+  #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
+  #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
+  
+  
+  @returns_receiving @returns @wipr
+  Scenario Outline: Returns receiving process in JDA WMS for Boxed type upc with single supplier without lock code
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" for normal upc with perfect condition "<Condition>" and lockcode "<LockCode>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated for SKU with single supplier
+
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850004395640077010027343300600 | 0000478916 | REC003   | N         |
+      | 58850004220650077010027343300600 | 0000133216 | REC003   | Y         |
 
   @receiving_returns_with_partset
   Scenario Outline: Returns receiving for Part set without lock code
@@ -26,7 +39,6 @@ Feature: Purchase order receiving
     Then the inventory transaction should be updated
 
     Examples: 
-<<<<<<< HEAD
       | PreAdviceID  | PalletId             | ASN        | Location |
       #|   2010002111 | 00050456000511235601 | 0000100508 | REC001 |
       #| PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
@@ -34,18 +46,6 @@ Feature: Purchase order receiving
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
       
-      @rcv_boxed_po_qty_greaterthan_upi_qty @po @complete
-  Scenario Outline: Receiving when Pre advice line quantity is greater than the UPI line quantity
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
-    And the PO should have sku, quantity due details
-    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    When I receive all skus for the purchase order at location "<Location>"
-    Then the inventory should be displayed for all tags received
-    And the goods receipt should be generated for received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
-=======
-      | PalletId                         | ASN        | Location | Condition | Partset |
-      | 58850006276460077010062764600400 | 0000627646 | REC003   | Y         |       2 |
 
   @receiving_returns_with_partset_and_lockcode
   Scenario Outline: Returns receiving for Part set with lock code
@@ -53,7 +53,6 @@ Feature: Purchase order receiving
     And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>" and partset "<Partset>" and lockcode "<LockCode>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lock code "<LockCode>"
->>>>>>> 0ca2686f89d9548f43e716e1d7e76c82811208d3
 
     Examples: 
       | PalletId | ASN | Location | Condition | Partset | LockCode |
@@ -84,5 +83,3 @@ Feature: Purchase order receiving
       | PalletId                         | ASN        | Location |
       | 95580085370650011050230212341238 | 0000838629 | REC003   |
 
-      
-      

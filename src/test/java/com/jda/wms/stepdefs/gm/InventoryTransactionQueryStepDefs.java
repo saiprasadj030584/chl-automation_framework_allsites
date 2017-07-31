@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.gm;
 import java.util.ArrayList;
 import java.util.Map;
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
@@ -214,7 +215,62 @@ public class InventoryTransactionQueryStepDefs {
 				execDate,context.getReasonCode(),updatedQty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
-
+	}
+	
+//	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
+//	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
+//		Assert.assertFalse("No ITL for Inventory Lock", validate(lockcode));;
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.enterCode("Receipt");
+//		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+//		jDAFooter.clickExecuteButton();
+//	}
+	
+	@When("^the inventory transaction should be updated for SKU with single supplier$")
+	public void the_inventory_transaction_should_be_updated_for_sku_with_single_supplier() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		if (context.getPerfectCondition().equals("N")) {
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Inventory Lock");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+			if (!lockCode.equalsIgnoreCase("DMGD"))
+				failureList.add("ITL not generated with lock code DMGD");
+		}
+		else if (context.getPerfectCondition().equals("Y")) {
+			if (!inventoryTransactionDB.getCode(context.getUpiId(), "Receipt"))
+				failureList.add("ITL not generated with Receipt code");
+		}
+		Assert.assertTrue("ITL not generated as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+	}
+	
+	private boolean validate(String perfectCondition) throws FindFailed, InterruptedException {
+		boolean isLockcodeExists = false;
+		try {
+			if (perfectCondition.equals("N")) {
+				jDAFooter.clickQueryButton();
+				inventoryTransactionQueryPage.enterCode("Inventory Lock");
+				inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+				jDAFooter.clickExecuteButton();
+				String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+				isLockcodeExists = true;
+			}
+			else if (perfectCondition.equals("Y")){
+				String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+				isLockcodeExists=true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset"))
+			isLockcodeExists = false;
+		}
+		return isLockcodeExists;
 	}
 
 	

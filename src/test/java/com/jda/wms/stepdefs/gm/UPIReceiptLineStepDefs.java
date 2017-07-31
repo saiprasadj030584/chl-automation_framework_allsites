@@ -15,7 +15,7 @@ import com.jda.wms.db.gm.UPIReceiptLineDB;
 import cucumber.api.java.en.Given;
 
 public class UPIReceiptLineStepDefs {
-	
+
 	private Context context;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private SupplierSkuDB supplierSkuDb;
@@ -24,25 +24,37 @@ public class UPIReceiptLineStepDefs {
 	private Map<String, Map<String, String>> upiMap;
 
 	@Inject
-	public UPIReceiptLineStepDefs(Context context,UPIReceiptLineDB upiReceiptLineDB,SupplierSkuDB supplierSkuDb,SkuDB skuDb) {
+	public UPIReceiptLineStepDefs(Context context, UPIReceiptLineDB upiReceiptLineDB, SupplierSkuDB supplierSkuDb,
+			SkuDB skuDb) {
 		this.context = context;
 		this.upiReceiptLineDB = upiReceiptLineDB;
-		this.supplierSkuDb=supplierSkuDb;
-		this.skuDb=skuDb;
+		this.supplierSkuDb = supplierSkuDb;
+		this.skuDb = skuDb;
 	}
+
 	@Given("^PO to be linked with upi line$")
 	public void po_to_be_linked_with_upi_line() throws Throwable {
-		//Link PO ID and PO line DI with UPI for each line item
+		// Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		for (int i=1;i<=context.getNoOfLines();i++){
 			String sku = poMap.get(i).get("SKU");
-			String poLineId= poMap.get(i).get("LINE ID");
-			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiId());
-			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiId());
+			String poLineId = poMap.get(i).get("LINE ID");
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(), sku, context.getUpiId());
+			upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiId());
 		}
 	}
-	
+
+	@Given("^URN_to_be_updated_with_upi_line$")
+	public void urn_to_be_updated_with_upi_line() throws Throwable {
+		upiReceiptLineDB.updateContainerID(context.getUpiId());
+	}
+
+	public void fetchQtyDetails() throws Throwable {
+		int qtyDue = Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+		context.setRcvQtyDue(qtyDue);
+	}
+
 	@Given("^PO to be linked with upi line for multiple pallets$")
 	public void po_to_be_linked_with_upi_line_for_multiple_pallets() throws Throwable {
 		//Link PO ID and PO line DI with UPI for each line item
@@ -71,17 +83,10 @@ public class UPIReceiptLineStepDefs {
 		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(),context.getSupplierID()));
 		}
 	
-	@Given("^URN_to_be_updated_with_upi_line$")
-	public void urn_to_be_updated_with_upi_line() throws Throwable {
-		upiReceiptLineDB.updateContainerID(context.getUpiId());
-		}
-	
 	public void fetch_Qty_Details() throws Throwable
 	{
 				int qty_Due=Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
 				context.setRcvQtyDue(qty_Due);
 	}
-	
-	
 }
 

@@ -527,6 +527,26 @@ public class InventoryTransactionDB {
 		return isRecordExists;
 	}
 
+	public boolean getCode(String upiId, String code) {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select code from inventory_transaction where reference_id='"+upiId+"' and code='"+code+"'");
+			rs.next();
+			if (rs.getString(1).equals(code)) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+}
 	public String getLockCode(String skuId, String upiId, String date, String code) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
