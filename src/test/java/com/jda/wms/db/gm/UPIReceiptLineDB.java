@@ -67,6 +67,8 @@ public class UPIReceiptLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select line_id from upi_receipt_line where pallet_id = '" + upiId
+				+ "'   and sku_id = '" + skuID + "' ");
 		ResultSet rs = stmt.executeQuery("select line_id from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();

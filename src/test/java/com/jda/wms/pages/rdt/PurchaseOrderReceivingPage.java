@@ -68,6 +68,20 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 
+	public void entertagId(String tagId) throws InterruptedException {
+		// puttyFunctionsPage.pressTab();
+		screen.type(tagId);
+	}
+	
+	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+	
 	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
 		if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
 				|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {

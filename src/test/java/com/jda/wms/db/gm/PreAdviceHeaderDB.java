@@ -48,7 +48,9 @@ public class PreAdviceHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println(context.getConnection());
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		ResultSet rs = stmt
 				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		rs.next();

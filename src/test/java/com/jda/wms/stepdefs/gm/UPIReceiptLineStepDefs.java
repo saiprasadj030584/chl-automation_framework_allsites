@@ -49,14 +49,38 @@ public class UPIReceiptLineStepDefs {
 		//Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+		for (int k=0;k<context.getPreAdviceList().size();k++)
+		{
+		
 		for (int j=0;j<context.getUpiList().size();j++)
 		{
 		for (int i=1;i<=
-				context.getNoOfLines();i++){
+				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(k)));i++){
+			String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(k)).get(i).get("SKU");
+			String poLineId=context.getMultiplePOMap().get(context.getPreAdviceList().get(k)).get(i).get("LINE ID");
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(k),sku,context.getUpiList().get(j));
+			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
+		}
+		}
+		}
+	}
+	
+	@Given("^ Multiple PO to be linked with upi line for multiple pallets$")
+	public void multiple_po_to_be_linked_with_upi_line_for_multiple_pallets() throws Throwable {
+		//Link PO ID and PO line DI with UPI for each line item
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		for (int k=0;k<context.getPreAdviceList().size();k++)
+		{
+		for (int j=0;j<context.getUpiList().size();j++)
+		{
+		for (int i=1;i<=
+				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(k)));i++){
 			String sku = poMap.get(i).get("SKU");
 			String poLineId= poMap.get(i).get("LINE ID");
-			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiList().get(j));
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(k),sku,context.getUpiList().get(j));
 			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
+		}
 		}
 		}
 	}

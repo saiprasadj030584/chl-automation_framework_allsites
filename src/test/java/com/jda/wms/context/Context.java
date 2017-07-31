@@ -25,6 +25,15 @@ public class Context {
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private Map<String, ArrayList<String>> tagIDMap;
 	private int lineItem = 1;
+	private String receiveType;
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
@@ -52,6 +61,8 @@ public class Context {
 	private String siteId;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+	private ArrayList<String> preAdviceList;
+	private ArrayList<String> supplierIdList;
 	private String orderId;
 	private String customer;
 	private String listID;
@@ -60,14 +71,6 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
-	public ArrayList<String> getUpiList() {
-		return upiList;
-	}
-
-	public void setUpiList(ArrayList<String> upiList) {
-		this.upiList = upiList;
-	}
-
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -75,7 +78,7 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private static Connection connection = null;
+	private static Connection connection=null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -101,6 +104,16 @@ public class Context {
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
 	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
+	private Map<String, Map<Integer, Map<String, String>>> MultiplePOMap;
+	public Map<String, Map<Integer, Map<String, String>>> getMultiplePOMap() {
+		return MultiplePOMap;
+	}
+
+	public void setMultiplePOMap(Map<String, Map<Integer, Map<String, String>>> multiplePOMap) {
+		MultiplePOMap = multiplePOMap;
+	}
+
+	private Map<String,String> poNumLinesMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
@@ -120,6 +133,41 @@ public class Context {
 	private String owner;
 	private String perfectCondition;
 	private String partset;
+	
+	
+	
+	public Map<String, String> getPoNumLinesMap() {
+		return poNumLinesMap;
+	}
+
+	public void setPoNumLinesMap(Map<String, String> poNumLinesMap) {
+		this.poNumLinesMap = poNumLinesMap;
+	}
+
+	public ArrayList<String> getSupplierIdList() {
+		return supplierIdList;
+	}
+
+	public void setSupplierIdList(ArrayList<String> supplierIdList) {
+		this.supplierIdList = supplierIdList;
+	}
+
+
+	public ArrayList<String> getUpiList() {
+		return upiList;
+	}
+
+	public void setUpiList(ArrayList<String> upiList) {
+		this.upiList = upiList;
+	}
+
+	public ArrayList<String> getPreAdviceList() {
+		return preAdviceList;
+	}
+
+	public void setPreAdviceList(ArrayList<String> preAdviceList) {
+		this.preAdviceList = preAdviceList;
+	}
 
 	public String getPartset() {
 		return partset;

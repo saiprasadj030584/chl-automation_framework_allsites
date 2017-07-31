@@ -74,6 +74,16 @@ public class PuttyFunctionsPage {
 		screen.wait("/images/Putty/Minimize.png", timeoutInSec);
 		screen.click("/images/Putty/Minimize.png");
 	}
+	
+	public void rightArrow() throws InterruptedException {
+		screen.type(Key.RIGHT);
+		Thread.sleep(2000);
+	}
+	
+	public void backSpace() throws InterruptedException {
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(2000);
+	}
 
 	public boolean isLoginScreenDisplayed() {
 		if ((screen.exists("images/Putty/Username.png") != null)|| (screen.exists("images/Putty/User.png") != null))

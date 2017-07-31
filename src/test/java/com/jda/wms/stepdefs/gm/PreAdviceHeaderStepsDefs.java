@@ -24,6 +24,7 @@ import cucumber.api.java.en.Given;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
 	private JDAFooter jdaFooter;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private Context context;
@@ -35,11 +36,11 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
-	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -50,7 +51,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
-		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
+		
 	}
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
@@ -118,6 +119,64 @@ public class PreAdviceHeaderStepsDefs {
 			logger.debug("Num of Lines: "+numLines);
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
+	
+	@Given("^the multiple PO \"([^\"]*)\" of type \"([^\"]*)\" with multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
+	public void the_multiple_PO_of_type_with_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
+			String upiId,String asnId, String status) throws Throwable {
+		ArrayList<String> preAdviceList = new ArrayList<String>();
+		Map<String,String> PONumLinesMap = new HashMap<String,String>();
+		String[] multiplePreAdvice = preAdviceId.split(",");
+		for(int i=0;i<multiplePreAdvice.length;i++)
+		{
+			preAdviceList.add(multiplePreAdvice[i]);
+		}
+		context.setPreAdviceList(preAdviceList);
+			ArrayList<String> upiList = new ArrayList<String>();
+			String[] multipleupi = upiId.split(",");
+			for(int i=0;i<multipleupi.length;i++)
+			{
+				upiList.add(multipleupi[i]);
+			}
+			context.setUpiList(upiList);
+			context.setAsnId(asnId);
+			context.setSKUType(type);
+			logger.debug("ASN ID: "+asnId);
+			logger.debug("Type: "+type);
+			
+			ArrayList failureList = new ArrayList();
+			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+			for(int i=0;i<preAdviceList.size();i++)
+			{
+				System.out.println("predavice"+preAdviceList.get(i));
+			verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus((String)preAdviceList.get(i)), failureList);
+			}
+			for(int i=0;i<upiList.size();i++)
+			{
+			verification.verifyData("UPI "+i+" Status", status, upiReceiptHeaderDB.getStatus((String)upiList.get(i)), failureList);
+			}
+			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+			
+			ArrayList<String> supplierIdList = new ArrayList<String>();
+			for(int i=0;i<preAdviceList.size();i++)
+			{
+				String supplierId=preAdviceHeaderDB.getSupplierId(preAdviceList.get(i));
+				supplierIdList.add(supplierId);
+			}
+			context.setSupplierIdList(supplierIdList);
+			int numLines=0;
+			for(int i=0;i<preAdviceList.size();i++)
+			{
+			PONumLinesMap.put(context.getPreAdviceList().get(i),preAdviceHeaderDB.getNumberOfLines(preAdviceList.get(i)));
+			numLines+= Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceList.get(i)));
+			}
+			System.out.println("number of lines"+numLines);
+			context.setPoNumLinesMap(PONumLinesMap);
+			Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(context.getUpiList()),String.valueOf(numLines));
+			context.setNoOfLines(numLines);
+			logger.debug("Num of Lines: "+numLines);
+			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+}
+
 
 	
 	@Given("^the UPI and ASN should be in status with line items supplier details$")
@@ -157,37 +216,7 @@ public class PreAdviceHeaderStepsDefs {
 }
 
 	
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,String type, String upiId,String asnId, String status, String lockCode) throws Throwable{
-		context.setPreAdviceId(preAdviceId);
-		context.setUpiId(upiId);
-		context.setAsnId(asnId);
-		context.setSKUType(type);
-		context.setLockCode(lockCode);
-		
-		logger.debug("PO ID: "+preAdviceId);
-		logger.debug("UPI ID: "+upiId);
-		logger.debug("ASN ID: "+asnId);
-		logger.debug("Type: "+type);
-		
-		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		
-		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
-		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
-		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
-		
-		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
-		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
-		Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),String.valueOf(numLines));
-		context.setNoOfLines(numLines);
-		logger.debug("Num of Lines: "+numLines);
-		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-		
-		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
-		purchaseOrderReceivingStepDefs.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
-	}
+	
 	
 	@Given("^the po status should be displayed as \"([^\"]*)\"$")
 	public void the_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {

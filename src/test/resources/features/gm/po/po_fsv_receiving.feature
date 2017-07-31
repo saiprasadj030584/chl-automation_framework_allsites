@@ -18,7 +18,7 @@ Feature: Purchase order receiving
       | PreAdviceID  | SiteID | Location |
       | PO2420001464 |   5885 | REC001   |
 
-  @po_receive_boxed @po @inprogress
+  @po_receive_boxed 
   Scenario Outline: Receiving process in JDA WMS for Boxed type
     Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
     And the FSV PO line should have sku, quantity due details
@@ -31,4 +31,17 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID | SiteID | Location |
       # | 25300100302 |   5649 | REC001   |
-      | 25300100363 |   5649 | REC001   |
+      | 25300100365 |   5649 | REC001   |
+
+  
+  @FSV_po_over_receive_hanging
+  Scenario Outline: Over receiving process in JDA WMS for Hanging type with Lock Codes
+   Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
+    And the FSV PO line should have sku, quantity due details
+    And the PO should not be linked with UPI line "<PreAdviceID>"
+    When I perform "Over Receiving" for all skus at location "<Location>"
+    Then the error message should be displayed as cannot over receipt
+
+    Examples: 
+      | PreAdviceID  | ASN        | Location |
+      | PO2010002832 | PO00100832 | REC001   |

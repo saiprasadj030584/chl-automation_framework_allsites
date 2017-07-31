@@ -98,7 +98,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 	
-	@After
+	//@After
 	public void closeDBConnection() throws SQLException{
 		if (!context.getConnection().equals(null)){
 			context.getConnection().close();
