@@ -51,6 +51,7 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
+	private ArrayList<String> upiList;
 	private String orderId;
 	private String customer;
 	private String listID;
@@ -59,6 +60,14 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	public ArrayList<String> getUpiList() {
+		return upiList;
+	}
+
+	public void setUpiList(ArrayList<String> upiList) {
+		this.upiList = upiList;
+	}
+
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -66,7 +75,7 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private Connection connection = null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -84,18 +93,83 @@ public class Context {
 	private String dockSchedulerNotes;
 	private String[] dockSchedulerBookingIDList;
 	private String stoType;
-	private Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap;
+	private Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
 	private String pickingType;
 	private String upiId;
 	private String asnId;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
+	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
 	private String projLoc;
+	private String carrier;
+	private String serviceLevel;
+	private String supplierType;
+	private String generateBelCode;
+	private ArrayList<String> belCodeList;
+	private ArrayList<String> enternewpallet;
+	private String bookingTime;
+	private String updatedBookingTime;
+	private String dockId;
+	private String updatedDockId;
+	private String condition;
+	private String reasonCode;
+	private String owner;
+	private String receiveType;
+	private String Record;
+	private String perfectCondition;
+	private String partset;
 
+	public String getPartset() {
+		return partset;
+	}
+
+	public void setPartset(String partset) {
+		this.partset = partset;
+	}
+
+	public String getPerfectCondition() {
+		return perfectCondition;
+	}
+
+	public void setPerfectCondition(String perfectCondition) {
+		this.perfectCondition = perfectCondition;
+	}
+
+	public String getUpdatedBookingTime() {
+		return updatedBookingTime;
+	}
+
+	public void setUpdatedBookingTime(String updatedBookingTime) {
+		this.updatedBookingTime = updatedBookingTime;
+	}
+
+	public String getDockId() {
+		return dockId;
+	}
+
+	public void setDockId(String dockId) {
+		this.dockId = dockId;
+	}
+
+	public String getUpdatedDockId() {
+		return updatedDockId;
+	}
+
+	public void setUpdatedDockId(String updatedDockId) {
+		this.updatedDockId = updatedDockId;
+	}
+
+	public String getBookingTime() {
+		return bookingTime;
+	}
+
+	public void setBookingTime(String bookingTime) {
+		this.bookingTime = bookingTime;
+	}
 
 	public String getPalletID() {
 		return palletID;
@@ -326,7 +400,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; // setCaseRatioList
+		return caseRatiolist; 
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -573,7 +647,7 @@ public class Context {
 	public void setFailureList(ArrayList<String> failureList) {
 		this.failureList = failureList;
 	}
-	
+
 	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
 		this.pickFaceMap = pickFaceMap;
 	}
@@ -581,7 +655,7 @@ public class Context {
 	public Map<String, String> getPutawayLocationMap() {
 		return pickFaceMap;
 	}
-	
+
 	public String getTrailerNo() {
 		return trailerNo;
 	}
@@ -697,7 +771,7 @@ public class Context {
 	public void setPackConfigID(String packConfigID) {
 		this.packConfigID = packConfigID;
 	}
-	
+
 	public void setDockSchedulerNotes(String dockSchedulerNotes) {
 		this.dockSchedulerNotes = dockSchedulerNotes;
 	}
@@ -705,7 +779,7 @@ public class Context {
 	public String getDockSchedulerNotes() {
 		return dockSchedulerNotes;
 	}
-	
+
 	public String[] getDockSchedulerBookingID() {
 		return dockSchedulerBookingIDList;
 	}
@@ -722,11 +796,11 @@ public class Context {
 		this.stoType = stoType;
 	}
 
-	public Map<String,Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
+	public Map<String, Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {
 		return multipleOrderListIDMap;
 	}
 
-	public void setMultipleOrderListIDMap(Map<String,Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
+	public void setMultipleOrderListIDMap(Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap) {
 		this.multipleOrderListIDMap = multipleOrderListIDMap;
 	}
 
@@ -778,6 +852,14 @@ public class Context {
 		this.skuType = skuType;
 	}
 
+	public String getsupplierType() {
+		return supplierType;
+	}
+
+	public void setsupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
 	public String getPackConfig() {
 		return packConfig;
 	}
@@ -808,5 +890,93 @@ public class Context {
 
 	public void setProjLoc(String projLoc) {
 		this.projLoc = projLoc;
+	}
+
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
+
+	public String getServiceLevel() {
+		return serviceLevel;
+	}
+
+	public void setServiceLevel(String serviceLevel) {
+		this.serviceLevel = serviceLevel;
+	}
+
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getBelCode() {
+		return generateBelCode;
+	}
+
+	public ArrayList<String> enterNewPallet() {
+		return enternewpallet;
+	}
+
+	public void setNewPallet(ArrayList enternewpallet) {
+		this.enternewpallet = enternewpallet;
+	}
+
+	public ArrayList<String> getBelCodeList() {
+		return belCodeList;
+	}
+
+	public void setBelCodeList(ArrayList<String> belCodeList) {
+		this.belCodeList = belCodeList;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public String getReasonCode() {
+		return reasonCode;
+	}
+
+	public void setReasonCode(String reasonCode) {
+		this.reasonCode = reasonCode;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+
+	public String getRecord() {
+		return Record;
+	}
+
+	public void setRecord(String record) {
+		Record = record;
+	}
+
+	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
+		return MultipleUPIMap;
+	}
+
+	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
+		MultipleUPIMap = multipleUPIMap;
 	}
 }

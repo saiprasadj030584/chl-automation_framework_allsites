@@ -49,7 +49,12 @@ public class PuttyFunctionsPage {
 	}
 
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
-		screen.wait("images/Putty/Username.png", timeoutInSec);
+		if (screen.exists("images/Putty/Username.png") != null) {
+			screen.wait("images/Putty/Username.png", timeoutInSec);
+		} else if (screen.exists("images/Putty/User.png") != null) {
+			screen.wait("images/Putty/User.png", timeoutInSec);
+		}
+
 		screen.type(username);
 		screen.type(Key.TAB);
 		screen.type(pwd);
@@ -67,12 +72,12 @@ public class PuttyFunctionsPage {
 	}
 
 	public boolean isLoginScreenDisplayed() {
-		if (screen.exists("images/Putty/Username.png") != null)
+		if ((screen.exists("images/Putty/Username.png") != null) || (screen.exists("images/Putty/User.png") != null))
 			return true;
 		else
 			return false;
 	}
-	
+
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
 		screen.type("2");
 		Thread.sleep(1000);
@@ -90,11 +95,10 @@ public class PuttyFunctionsPage {
 	}
 
 	public boolean isMainMenuDisplayed() {
-		if (screen.exists("images/Putty/MainMenu.png") != null){
+		if (screen.exists("images/Putty/MainMenu.png") != null) {
 			context.setPuttyLoginFlag(true);
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
 
@@ -102,12 +106,17 @@ public class PuttyFunctionsPage {
 		screen.type(Key.TAB);
 		Thread.sleep(2000);
 	}
+	
+	public void backSpace() throws InterruptedException {
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(2000);
+	}
 
 	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public boolean isUserMenuDisplayed() {
 		if (screen.exists("images/Putty/UserMenu.png") != null)
 			return true;
@@ -121,4 +130,19 @@ public class PuttyFunctionsPage {
 		Thread.sleep(2000);
 	}
 
+	public void press() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+
+	}
+
+	public void backspace() throws InterruptedException {
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(2000);
+	}
+
+	public void rightArrow() throws InterruptedException {
+		screen.type(Key.RIGHT);
+		Thread.sleep(2000);
+	}
 }

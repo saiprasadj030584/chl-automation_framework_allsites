@@ -1,6 +1,9 @@
 package com.jda.wms.stepdefs.gm;
 
+import org.sikuli.script.FindFailed;
+
 import com.google.inject.Inject;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 
 import cucumber.api.java.en.Given;
@@ -8,6 +11,7 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -25,7 +29,7 @@ public class JDAHomeStepDefs {
 		jdaHomePage.hoverSKU();
 		jdaHomePage.clickSKUSubmenu();
 	}
-	
+
 	@When("^I navigate to Trailer Shipping page$")
 	public void i_navigate_to_Trailer_Shipping_page() throws Throwable {
 		jdaHomePage.navigateToTrailerShippingPage();
@@ -64,17 +68,11 @@ public class JDAHomeStepDefs {
 		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverDataInventory();
 		 * jdaHomePage.clickInventory();
 		 */
-		// jdaHomePage.navigateToInventoryQueryPage();
 		i_navigate_to_inventory_query_page();
 	}
 
 	@When("^I navigate to stock adjustments page$")
 	public void i_navigate_to_stock_adjustments_page() throws Throwable {
-		/*
-		 * jdaHomePage.clickOperations();
-		 * jdaHomePage.hoverOperationsInventory();
-		 * jdaHomePage.clickStockAdjustment();
-		 */
 		jdaHomePage.navigateToStockAdjustment();
 	}
 
@@ -109,6 +107,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_receipt_reversal_page() throws Throwable {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
+	
 
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
@@ -156,25 +155,45 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToMoveTaskListGenerationPage();
 		Thread.sleep(3000);
 	}
-	
+
 	@When("^I navigate to order management page$")
 	public void i_navigate_to_order_management_page() throws Throwable {
 		jdaHomePage.navigateToOrderManagementPage();
 	}
-	
+
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
 		jdaHomePage.navigateToSystemAllocationPage();
 		Thread.sleep(6000);
 	}
-	
+
 	@When("^I navigate to mannual clustering screen$")
 	public void i_navigate_to_mannual_clustering_screen() throws Throwable {
 		jdaHomePage.navigateToMannualClusteringPage();
 	}
-	
+
 	@When("^I navigate to dock scheduler start page$")
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
-}
+
+	@When("^I navigate to delivery management page$")
+	public void i_navigate_to_delivery_management_page() throws Throwable {
+		jdaHomePage.navigatetoDeliveryManagementPage();
+		
+	}
+	@When("^I navigate to delivery page$")
+	public void i_navigate_to_delivery_page() throws Throwable {
+		jdaHomePage.navigateToDeliveryPage();
+	}
+	@When("^i navigate to UPI receipt header page$")
+	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException{
+		jdaHomePage.navigateToUpiReceiptHeaderPage();
+	}
+	}
+
+
+	
+	
+
+

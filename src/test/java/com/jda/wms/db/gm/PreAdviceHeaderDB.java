@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Database;
 
 public class PreAdviceHeaderDB {
 	private final Context context;
@@ -21,14 +20,14 @@ public class PreAdviceHeaderDB {
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
 			throws ClassNotFoundException, SQLException {
-//		ResultSet resultSet = null;
 		HashMap<String, String> preAdviceHeaderMap = new HashMap<String, String>();
 
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet resultSet = stmt.executeQuery("select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
+		ResultSet resultSet = stmt.executeQuery(
+				"select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		resultSet.next();
 		preAdviceHeaderMap.put("STATUS", resultSet.getString(1));
@@ -49,7 +48,6 @@ public class PreAdviceHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
@@ -70,18 +68,17 @@ public class PreAdviceHeaderDB {
 	}
 
 	public String getPreAdviceId(String status) throws ClassNotFoundException {
-		try{
-		if (context.getConnection() == null) {
-			database.connect();
-		}
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
 
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select pre_advice_id from pre_advice_header WHERE status = '" + status + "' and num_lines='1'");
-		rs.next();
-		return rs.getString(1);
-		}
-		catch(Exception e){
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select pre_advice_id from pre_advice_header WHERE status = '" + status + "' and num_lines='1'");
+			rs.next();
+			return rs.getString(1);
+		} catch (Exception e) {
 			return e.getMessage();
 		}
 	}
@@ -92,8 +89,8 @@ public class PreAdviceHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
 
@@ -104,8 +101,70 @@ public class PreAdviceHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select supplier_id from pre_advice_header where pre_advice_id = '"+preAdviceId+"'");
+				.executeQuery("select supplier_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
+   
+	public String getUserDefType5(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_5 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUserDefType1(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_1 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getUserDefType2(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_2 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select site_id from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQtyDueSum(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceId
+				+ "' ");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	
 }

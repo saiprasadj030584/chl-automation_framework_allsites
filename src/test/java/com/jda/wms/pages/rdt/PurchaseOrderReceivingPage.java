@@ -1,21 +1,22 @@
 package com.jda.wms.pages.rdt;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 public class PurchaseOrderReceivingPage {
 	Screen screen = new Screen();
+	Context context = new Context();
 	int timeoutInSec = 20;
 	private PuttyFunctionsPage puttyFunctionsPage;
-
+	
 	@Inject
-	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage) {
-	this.puttyFunctionsPage = puttyFunctionsPage;
+	public PurchaseOrderReceivingPage(PuttyFunctionsPage puttyFunctionsPage, Context context) {
+		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.context = context;
 	}
 
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
@@ -39,6 +40,13 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 	}
 
+	public void selectBlindReceive() throws FindFailed, InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
 	public boolean isPreAdviceEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
 		if ((screen.exists("images/Putty/Receiving/PreAdvEntry.png") != null))
@@ -48,6 +56,51 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isBlindEntryDisplayed() throws InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/blindEnterPage.png") != null))
+			return true;
+
+		return false;
+	}
+
+	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
+	while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
+		puttyFunctionsPage.pressEnter();
+	}
+	if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+		return true;
+	}
+	return false;
+}
+
+	public boolean checkNoOfSingles() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/QtySingles.png") != null)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isQuantityError() throws FindFailed, InterruptedException {
+		while (screen.exists("images/Putty/Receiving/QuantityError.png") == null) {
+			puttyFunctionsPage.pressEnter();
+		}
+
+		if ((screen.exists("images/Putty/Receiving/QuantityError.png") != null)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean validate_no_asn_error() throws FindFailed, InterruptedException {
+		Thread.sleep(1000);
+		if ((screen.exists("images/Putty/Receiving/No_ASN_Error.png") != null)) {
+			return true;
+		} else
+			return false;
+
 	}
 
 	public void enterPreAdvId(String preAdviceId) throws FindFailed, InterruptedException {
@@ -89,11 +142,10 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
-		screen.click("images/Putty/Receiving/Location.png");
+//		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+//		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
@@ -103,8 +155,39 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
+	public void enterQuantity(String count) throws InterruptedException {
+		screen.type(count);
 
+		Thread.sleep(2000);
+	}
+	
+	public void enterPerfectCondition(String condition) throws InterruptedException {
+		screen.type(condition);
+
+		Thread.sleep(2000);
+	}
+
+	public void enterLocationInBlindReceive(String location) throws InterruptedException {
+		screen.type(location);
+		Thread.sleep(2000);
+	}
+
+	public void enterMovementLabel(String upiId) throws InterruptedException {
+		screen.type(upiId);
+		Thread.sleep(2000);
+	}
+
+	public void enterSupplierId(String id) throws InterruptedException {
+		screen.type(id);
+		Thread.sleep(2000);
+	}
+
+	public void enterPartset(String partset) throws InterruptedException {
+		screen.type(partset);
+		Thread.sleep(2000);
+	}
+
+	public void enterQtyToReceive(String qtyToReceive) throws InterruptedException {
 		if (Integer.parseInt(qtyToReceive) > 999) {
 			screen.type(qtyToReceive);
 			Thread.sleep(1000);
@@ -117,8 +200,6 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterCaseRatio(String caseRatio) throws InterruptedException {
 		screen.type(caseRatio);
-		// screen.type("x", Key.CTRL);
-		// screen.type(Key.NUM4);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(Key.TAB); // to navigate to Vintage
@@ -229,8 +310,52 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterURNID(String urn) throws FindFailed, InterruptedException {
-//		screen.wait("images/Putty/Receiving/URN.png", timeoutInSec);
 		screen.type(urn);
+		Thread.sleep(2000);
+	}
+
+	public void doConfigMovementLabel() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/Receiving/MovementLabel/PuttyTop.png") != null) {
+			Match mStatus = screen.find("images/Putty/Receiving/MovementLabel/PuttyTop.png");
+			screen.click(mStatus.getCenter().offset(50, 0));
+			screen.rightClick();
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/ChangeSettings.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Keyboard.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Xtem.png");
+			Thread.sleep(1000);
+			screen.click("images/Putty/Receiving/MovementLabel/Apply.png");
+		}
+	}
+
+	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
+		screen.type(upc);
+
+		Thread.sleep(2000);
+	}
+
+	public void enterUPC2(String upc) throws FindFailed, InterruptedException 
+	{
+		screen.type(upc);
+
+		Thread.sleep(2000);
+	}
+
+	public void enterPalletId(String palletID) throws InterruptedException {
+		screen.type(palletID);
+		Thread.sleep(2000);
+		Thread.sleep(4000);
+	}
+
+	public void enterBelCode(String getbelCode) throws InterruptedException {
+		screen.type(getbelCode);
+		Thread.sleep(4000);
+	}
+
+	public void enterNewPallet(String getnewpallet) throws InterruptedException {
+		screen.type(getnewpallet);
 		Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
@@ -252,7 +377,7 @@ public class PurchaseOrderReceivingPage {
 		screen.doubleClick(mTagId.below(1));
 		String tag2 = App.getClipboard();
 		Thread.sleep(1000);
-		return (tag1+tag2);
+		return (tag1 + tag2);
 	}
 
 	public String getPackConfig() throws FindFailed, InterruptedException {
@@ -284,5 +409,135 @@ public class PurchaseOrderReceivingPage {
 		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		Thread.sleep(2000);
 		return App.getClipboard();
+	}
+
+	public String getPallet() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/PutawayForLock.png");
+		screen.click(mStatus.below(5));
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.below(1));
+		return App.getClipboard();
+
+	}
+
+	public void entertagId(String tagId) throws InterruptedException {
+		screen.type(tagId);
+	}
+
+	public void enterFullPallet(String fullPallet) throws InterruptedException {
+		screen.type(fullPallet);
+		Thread.sleep(2000);
+	}
+
+	public void enterTagid(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(1000);
+	}
+
+	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
+		if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
+				|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {
+			while ((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null)
+					&& (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null)
+					|| (screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null)) {
+				puttyFunctionsPage.pressEnter();
+			}
+
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+						|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter();
+					if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+						puttyFunctionsPage.pressEnter();
+						return true;
+					}
+					return false;
+				}
+				return false;
+			}
+
+			if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+					|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+			}
+			return false;
+		} else if (context.getLockCode().equalsIgnoreCase("DMGD")) {
+			while (screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null
+					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
+				puttyFunctionsPage.pressEnter();
+			}
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+			}
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		} else if (context.getLockCode().equalsIgnoreCase("IMPSET")) {
+
+			while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null
+					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
+				puttyFunctionsPage.pressEnter();
+			}
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+
+			}
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
+	public void enterURRN(String urrn) throws InterruptedException {
+		screen.type(urrn);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isURRNNotExistDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/urrnNotExist.png") != null))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+			return true;
+		else
+			return false;
+
 	}
 }

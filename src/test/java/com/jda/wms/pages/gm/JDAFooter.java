@@ -111,6 +111,10 @@ public class JDAFooter {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void rightClick() throws InterruptedException {
+		screen.rightClick();
+		Thread.sleep(2000);
+	}
 
 	public void clickSearch() throws FindFailed, InterruptedException {
 		clickNextButton();
@@ -121,4 +125,16 @@ public class JDAFooter {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
+
+	public void deleteExistingContent() throws InterruptedException {
+		screen.type("a",Key.CTRL);
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(1000);
+	}
+
+	public void pressBackSpace() {
+		screen.type(Key.BACKSPACE);
+	}
+
+	
 }

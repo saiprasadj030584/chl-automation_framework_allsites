@@ -78,7 +78,6 @@ public class OrderLineMaintenancePage extends PageObject {
 			clickExecuteButton();
 			clickSaveButton();
 		} else {
-			System.out.println("POC Failure");
 			Assert.fail();
 		}
 	}

@@ -9,6 +9,8 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
+import cucumber.api.java.en.When;
+
 public class JdaHomePage extends PageObject {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -27,7 +29,7 @@ public class JdaHomePage extends PageObject {
 		clickOrderHeader();
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToTrailerShippingPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -37,7 +39,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToSystemAllocationPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -47,7 +49,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToMannualClusteringPage() throws InterruptedException, FindFailed {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -494,12 +496,13 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/ScrollRight.png");
 		Thread.sleep(2000);
 	}
+
 	public void scrollLeft() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/ScrollLeft.png", timeoutInSec);
 		screen.click("images/JDAHome/ScrollLeft.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public void navigateToVehicleUnloadingPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -519,7 +522,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToOrderManagementPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -528,5 +531,52 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
+	}
+
+	public void navigateToInventoryTransactionQueryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("(ILT)");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void scrollRightBig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollRightBig.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollRightBig.png");
+		Thread.sleep(1000);
+	}
+
+	public void navigatetoDeliveryManagementPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery Management");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+	
+
+	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("upi receipt header");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 	}
 }
