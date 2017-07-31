@@ -107,7 +107,7 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
-	private String supplierType;
+	private boolean poQtyMoreThanUPIQty=false;
 	private String generateBelCode;
 	private ArrayList<String> belCodeList;
 	private ArrayList<String> enternewpallet;
@@ -121,6 +121,7 @@ public class Context {
 	private String receiveType;
 	private String Record;
 	private String perfectCondition;
+	private String supplierType;
 	private String partset;
 
 	public String getPartset() {
@@ -909,6 +910,14 @@ public class Context {
 		this.serviceLevel = serviceLevel;
 	}
 
+	public boolean isPoQtyMoreThanUPIQty() {
+		return poQtyMoreThanUPIQty;
+	}
+
+	public void setPoQtyMoreThanUPIQty(boolean poQtyMoreThanUPIQty) {
+		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
+	}
+
 	public void setBelCode(String generateBelCode) {
 		this.generateBelCode = generateBelCode;
 	}
@@ -932,6 +941,7 @@ public class Context {
 	public void setBelCodeList(ArrayList<String> belCodeList) {
 		this.belCodeList = belCodeList;
 	}
+
 	public String getCondition() {
 		return condition;
 	}
@@ -955,6 +965,15 @@ public class Context {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+
+	public String getSupplierType() {
+		return supplierType;
+	}
+
+	public void setSupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
 	public String getReceiveType() {
 		return receiveType;
 	}
@@ -978,6 +997,4 @@ public class Context {
 	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
 		MultipleUPIMap = multipleUPIMap;
 	}
-
-
 }

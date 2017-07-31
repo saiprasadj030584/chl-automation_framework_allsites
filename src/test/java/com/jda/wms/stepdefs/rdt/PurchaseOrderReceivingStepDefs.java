@@ -167,7 +167,7 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 		hooks.logoutPutty();
-	}
+		}
 
 	@When("^I receive all skus for the purchase order at location \"([^\"]*)\" with damaged$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(String location) throws Throwable {
@@ -1081,5 +1081,21 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+	}
+	
+	@Given("the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be locked with code \"([^\"]*)\" and received at location \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_locked_with_code_and_received_at_location(String preAdviceId, String type, String upiId, String asnId, String lockCode, String location)
+			throws Throwable {
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(preAdviceId,type,
+				upiId, asnId, "Released");
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();
+		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 }

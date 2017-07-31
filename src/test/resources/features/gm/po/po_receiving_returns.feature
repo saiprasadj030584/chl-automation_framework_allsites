@@ -82,4 +82,4 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                         | ASN        | Location |
       | 95580085370650011050230212341238 | 0000838629 | REC003   |
-
+      
