@@ -210,6 +210,16 @@ public class InventoryQueryStepDefs {
 		}
 	}
 
+	@Given("^I have a tag in inventory with pack config as \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_pack_config_as(String packconfig) throws Throwable {
+		ArrayList inventoryDetailList = inventoryDB.getTagDetails(packconfig);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+	}
+
 	@Given("^I have a sku to adjust the stock$")
 	public void i_have_a_sku_to_adjust_the_stock() throws Throwable {
 		ArrayList StockDetailList = inventoryDB.getStockDetails();

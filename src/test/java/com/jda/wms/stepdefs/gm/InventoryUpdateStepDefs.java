@@ -93,4 +93,11 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickDoneButton();
 		context.setOwner(owner);
 	}
+
+	@Then("^I select the pack configuration type as \"([^\"]*)\"$")
+	public void i_select_the_pack_configuration_type_as(String packConfig) throws Throwable {
+		inventoryUpdatePage.enterPackConfig(packConfig);
+		jdafooter.clickDoneButton();
+		// context.setOwner(packConfig);
+	}
 }

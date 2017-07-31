@@ -72,4 +72,9 @@ public class InventoryUpdatePage {
 		Thread.sleep(1000);
 
 	}
+
+	public void enterPackConfig(String packConfig) throws InterruptedException {
+		screen.type(packConfig);
+		Thread.sleep(1000);
+	}
 }

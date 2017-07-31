@@ -214,6 +214,12 @@ public class InventoryTransactionQueryStepDefs {
 				inventoryTransactionQueryPage.getPalletType());
 	}
 
+	@Then("^the pack config should be updated$")
+	public void the_pack_config_should_be_updated() throws Throwable {
+		Assert.assertEquals("updated inventory pack config are not as expected", context.getPalletType(),
+				inventoryTransactionQueryPage.getPalletType());
+	}
+
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();

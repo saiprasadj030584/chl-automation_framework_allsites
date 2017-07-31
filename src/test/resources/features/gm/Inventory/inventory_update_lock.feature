@@ -95,4 +95,19 @@ Feature: Inventory update
       | Owner | Updateowner |
       | AOWN  | M+S         |
       
+      @pack_update 
+  Scenario Outline: Inventory update for owner change
+    Given I have a tag in inventory with pack config as "<Pack Configuration>"
+    When I navigate to inventory update page
+    And I select the update type as "Pack Configuration Update"
+    And I search the inventory for the tag
+    Then the tag details should be displayed
+    And I select the pack configuration type as "< UpdatePackConfiguration>"
+    When I navigate to inventory transaction query
+    When I choose the code as "Pack Configuration Update" and I search the tag id
+    Then the pack config should be updated
+    Examples: 
+      | Pack Configuration | UpdatePackConfiguration |
+      | AOWN               | M+S                     |
+      
      

@@ -546,4 +546,15 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/ScrollRightBig.png");
 		Thread.sleep(1000);
 	}
+
+	public void navigateToReportSelectionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Report Selection");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+
+	}
 }

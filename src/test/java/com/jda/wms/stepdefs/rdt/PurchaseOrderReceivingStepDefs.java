@@ -729,8 +729,8 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setUpiId(upiId);
 		the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
 		i_receive_all_skus_for_the_returns_order_at_with_perfect_condition(location, condition);
-		// jdaLoginPage.login();
-		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		inventoryTransactionQueryStepDefs.the_inventory_transaction_should_be_updated();
 
 	}

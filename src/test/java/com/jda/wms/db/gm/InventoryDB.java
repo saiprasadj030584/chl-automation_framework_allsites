@@ -397,15 +397,18 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date) throws SQLException, ClassNotFoundException {
+
+	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-//		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
-		ResultSet rs = stmt.executeQuery("select Location_id from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		// ResultSet rs = stmt.executeQuery("select Location_id from inventory
+		// where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where user_def_type_2='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -423,14 +426,17 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getQtyOnHandPO(String skuId, String location, String preAdviceId, String date)  throws SQLException, ClassNotFoundException {
+
+	public String getQtyOnHandPO(String skuId, String location, String preAdviceId, String date)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and location_id = '"+location+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery(
+				"select QTY_ON_HAND from inventory where user_def_type_2='" + preAdviceId + "' and sku_id = '" + skuId
+						+ "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -597,6 +603,24 @@ public class InventoryDB {
 	}
 
 	public ArrayList getTagIddetail(String owner) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where owner_id=' " + owner
+				+ "' order by sku_id desc='");
+
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getTagDetails(String owner) throws ClassNotFoundException, SQLException {
 		ArrayList<String> inventoryList = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
