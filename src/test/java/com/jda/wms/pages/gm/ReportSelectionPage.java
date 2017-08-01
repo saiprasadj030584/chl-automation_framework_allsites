@@ -35,7 +35,7 @@ public class ReportSelectionPage {
 	}
 
 	public boolean isReportDisplayed() throws InterruptedException {
-		Thread.sleep(6000);
+		Thread.sleep(8000);
 		if (screen.exists("images/ReportGeneration/Report.png") != null) {
 			return true;
 		} else

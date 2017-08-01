@@ -56,6 +56,8 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.clickExecuteButton();
+		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
+		context.setTagId(inventoryTransactionDB.getPallet(context.getUpiId(), "Receipt"));
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));

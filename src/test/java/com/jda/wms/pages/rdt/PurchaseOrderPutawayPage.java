@@ -165,4 +165,16 @@ public class PurchaseOrderPutawayPage {
 		screen.type(Key.F12);
 		Thread.sleep(1000);
 	}
+
+	public void enterQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
+		Thread.sleep(2000);
+	}
+
+	public void selectLocationFullMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 }

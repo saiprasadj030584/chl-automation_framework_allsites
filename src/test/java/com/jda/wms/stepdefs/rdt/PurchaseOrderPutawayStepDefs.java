@@ -211,4 +211,24 @@ public class PurchaseOrderPutawayStepDefs {
 				" error message is not displayed. [" + Arrays.asList(context.getFailureList().toArray()) + "].",
 				context.getFailureList().isEmpty());
 	}
+
+	@When("^I proceed by entering less quantity$")
+	public void i_proceed_by_entering_less_quantity() throws Throwable {
+		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
+		jdaFooter.PressEnter();
+		String quantity = null;
+		context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+		quantity = String.valueOf(context.getRcvQtyDue() - 2);
+		purchaseOrderPutawayPage.enterQuantity(quantity);
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		purchaseOrderPutawayPage.enterQuantity(quantity);
+		jdaFooter.PressEnter();
+		purchaseOrderPutawayPage.selectLocationFullMenu();
+		jdaFooter.PressEnter();
+		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+		hooks.logoutPutty();
+
+	}
 }
