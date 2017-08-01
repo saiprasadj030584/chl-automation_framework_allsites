@@ -77,6 +77,12 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		Thread.sleep(2000);
 	}
+	
+	@When("^I navigate to UPI Management screen$")
+	public void i_navigate_to_UPI_Management_screen() throws Throwable {
+		jdaHomePage.navigateToUpiManagementPage();
+		Thread.sleep(2000);
+	}
 
 	@When("^I navigate to SKU page$")
 	public void i_navigate_to_SKU_page() throws Throwable {

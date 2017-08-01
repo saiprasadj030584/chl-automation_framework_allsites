@@ -11,6 +11,7 @@ import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.DateUtils;
 
@@ -27,17 +28,20 @@ public class InventoryTransactionQueryStepDefs {
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 	private JDAFooter jDAFooter;
 	private JdaHomePage jdaHomePage;
+	private UpiReceiptHeaderPage upiReceiptHeaderPage;
+	
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
-			JDAFooter jDAFooter,JdaHomePage jdaHomePage) {
+			JDAFooter jDAFooter,JdaHomePage jdaHomePage,UpiReceiptHeaderPage upiReceiptHeaderPage) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.jDAFooter = jDAFooter;
 		this.jdaHomePage = jdaHomePage;
+		this.upiReceiptHeaderPage=upiReceiptHeaderPage;
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -250,6 +254,21 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		String code = "Receipt";
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+	}
+	@When("^I check the inventory for transaction update$")
+	public void i_check_the_inventory_for_transaction_update() throws Throwable {
+		jdaHomePage.navigateToUpiReceiptHeaderPage();
+		upiReceiptHeaderPage.fetchRecord(context.getUpiId());
+		context.setDueDate(upiReceiptHeaderPage.getDueDate());
+		jdaHomePage.navigateToInventoryTransactionPage();
+		Thread.sleep(2000);
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt";
+		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+		
 	}
 
 

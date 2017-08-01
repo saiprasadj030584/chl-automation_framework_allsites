@@ -373,6 +373,22 @@ public class PurchaseOrderReceivingStepDefs {
 		i_enter_details_and_perform_blind_receive_without_lockcode();
 		hooks.logoutPutty();
 	}
+	
+	@When("^I blind receive all skus for the returns order with mixed stock at location \"([^\"]*)\" without lockcode$")
+	public void i_blind_receive_all_skus_for_the_returns_order_with_mixed_stock_at_location_without_lockcode(String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_blind_receive_of_mixed_stock_without_lockcode();
+		hooks.logoutPutty();
+	}
 
 	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\" with movement label field$")
 	public void i_blind_receive_all_skus_for_the_returns_order_at_location_with_movement_label_field(String location)
@@ -611,6 +627,34 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	
+	@When("^I enter details and perform blind receive of mixed stock without lockcode$")
+	public void i_enter_details_and_perform_blind_receive_of_mixed_stock_without_lockcode() throws Throwable {
+		for (int j = 0; j < context.getNoOfLines(); j++) {
+		for (int i = 0; i < context.getRcvQtyDue(); i++) {
+			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity("1");
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
+					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+			jdaFooter.PressEnter();
+			Thread.sleep(1000);
+			if (i != 0) {
+				Assert.assertTrue("verification of no of singles failed",
+						purchaseOrderReceivingPage.checkNoOfSingles());
+			}
+		}
+		}
+	}
+
 
 	@When("^I enter details and perform blind receive with movement label field$")
 	public void i_enter_details_and_perform_blind_receive_with_movement_label_field() throws Throwable {
@@ -878,6 +922,16 @@ public class PurchaseOrderReceivingStepDefs {
 		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
+	
+	@Given("^I receive all skus for the returns order with mixed stock at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_returns_order_with_mixed_stock_at_with_perfect_condition(String location, String condition)
+			throws Throwable {
+		context.setlocationID(location);
+		context.setPerfectCondition(condition);
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_for_the_returns_order_with_mixed_stock_at_location_without_lockcode(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
 
 	@Given("^I receive all skus for the returns order at \"([^\"]*)\" with movement label enabled$")
 	public void i_receive_all_skus_for_the_returns_order_at_with_movement_label_enabled(String location)
@@ -999,6 +1053,41 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	
+	@When("^I perform \"([^\"]*)\" for all skus for the FSV purchase order at location \"([^\"]*)\"$")
+	public void i_perform_for_all_skus_for_the_FSV_purchase_order_at_location(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			}
+			i_enter_pallet_id(context.getPalletIDList().get(i-1));
+			i_enter_belCode(context.getBelCodeList().get(i-1));
+			i_enter_the_location();
+			i_enter_the_newpallet(context.enterNewPallet().get(i-1));
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+		}
+		hooks.logoutPutty();
+	}
+
 
 
 	// FSV receiving

@@ -26,6 +26,15 @@ public class Context {
 	private Map<String, ArrayList<String>> tagIDMap;
 	private int lineItem = 1;
 	private String receiveType;
+	private String dueDate;
+	public String getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
+
 	public String getReceiveType() {
 		return receiveType;
 	}

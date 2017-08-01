@@ -42,7 +42,6 @@ Feature: Purchase order receiving
   #| 58850006476470077010064764700400 | 0000647647 | REC003   | N         |       2 | DMGD     |
   #| 58850006376310077010063763100400 | 0000637631 | REC003   | Y         |       1 | IMPSET   |
   #| 58850006576270077010065762700400 | 0000657627 | REC003   | N         |       1 | IMPSET   |
-  
   @receiving_returns_qty_singles_verfication
   Scenario Outline: Returns receiving verification for number of singles per UPC
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
@@ -65,5 +64,25 @@ Feature: Purchase order receiving
       | PalletId                         | ASN        | Location |
       | 95580085370650011050230212341238 | 0000838629 | REC003   |
 
+  @receiving_returns_verify_due_receipt_date_upi_management
+  Scenario Outline: Returns receiving verification of ASN in the UPI management
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>"
+    And I check the inventory for transaction update
+    When I navigate to UPI Management screen
+    And I search with ASN in UPI Management screen
+    Then the due date should be displayed for the ASN
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850008386380077010083863800300 | 0000838638 | REC003   |  Y       |
       
-      
+    @receiving_returns_mixed_stock  
+    Scenario Outline: Verify receiving with URRN holds different dept UPC and mixed stock 
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated
+
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850008386250077010083862500300 | 0000838625 | REC003   | Y         |
