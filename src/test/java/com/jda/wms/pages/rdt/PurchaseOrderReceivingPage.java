@@ -248,6 +248,14 @@ public class PurchaseOrderReceivingPage {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(3000);
 	}
+	
+	public void enterLoc(String location) throws InterruptedException, FindFailed {
+		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+		screen.click("images/Putty/Receiving/Location.png");
+		screen.type(location);
+		puttyFunctionsPage.pressTab();
+		Thread.sleep(3000);
+	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);

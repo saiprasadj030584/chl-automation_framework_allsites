@@ -2,8 +2,8 @@
 Feature: Purchase order receiving
   As a warehouse user
   I want to receive the articles that are damaged
-  
-   @validate_damage_receipt_from_supplier_boxed @po @complete
+
+  @validate_damage_receipt_from_supplier_boxed @po @complete
   Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code - Boxed
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I navigate to inventory transaction query
@@ -12,8 +12,7 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002061 | PO000504560005112391 | PO00100551 | REC001   |
-  
-  
+
   @validate_not_received_ASN_hanging @po @complete
   Scenario Outline: Receiving when Pre advice line quantity is greater than the UPI line quantity - Hanging
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
@@ -29,8 +28,8 @@ Feature: Purchase order receiving
       #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002069 | PO050456000511235619 | PO00100509 | REC001   |
-      
-      @validate_not_received_ASN_boxed @po @complete
+
+  @validate_not_received_ASN_boxed @po @complete
   Scenario Outline: Receiving when Pre advice line quantity is greater than the UPI line quantity - Boxed
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -45,3 +44,16 @@ Feature: Purchase order receiving
       #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002069 | PO050456000511235619 | PO00100509 | REC001   |
+
+  @FSV_PO_validate_damage_receipt_from_supplier_boxed @boxed @fsv_po @receiving @complete
+  Scenario Outline: Validate damaged on receipt (From supplier) for FSV PO - Boxed
+    Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
+    And the FSV PO with "<LockCode>" should have sku, quantity due details
+    And the PO should not be linked with UPI line "<PreAdviceID>"
+    When I receive all skus for the FSV purchase order at location "<Location>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated with lockcode damaged
+
+    Examples: 
+      | PreAdviceID | SiteID | Location | LockCode |
+      | 25300720368 |   5649 | REC001   | DMGD     |

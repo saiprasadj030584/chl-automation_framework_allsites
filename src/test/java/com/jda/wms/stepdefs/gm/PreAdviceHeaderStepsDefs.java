@@ -17,6 +17,8 @@ import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
@@ -36,11 +38,13 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
+	private JdaHomePage jdaHomePage;
+	private PreAdviceHeaderPage preAdviceHeaderPage;
 	
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB) {
+			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB,JdaHomePage jdaHomePage) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -51,6 +55,7 @@ public class PreAdviceHeaderStepsDefs {
 		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
+		this.jdaHomePage=jdaHomePage;
 		
 	}
 
@@ -227,6 +232,8 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
+	
+	
 	@Given("^the po status should be displayed as \"([^\"]*)\" for blind receive$")
 	public void the_po_status_should_be_displayed_as_for_blind_receive(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -237,6 +244,8 @@ public class PreAdviceHeaderStepsDefs {
 	
 		@Given("^the FSV po status should be displayed as \"([^\"]*)\"$")
 	public void the_FSV_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
+			jdaHomePage.navigateToPreAdviceHeaderPage();
+			preAdviceHeaderPage.queryWithPreadviceId();
 		Assert.assertEquals("PO status not displayed as expected", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}
 	

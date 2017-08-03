@@ -538,6 +538,14 @@ public class PurchaseOrderReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 	
+	@Then("^the error message should be displayed as cannot over receipt failed$")
+	public void the_error_message_should_be_displayed_as_cannot_over_receipt_failed() throws Throwable {
+		Assert.assertFalse("Error message:You can not over receipt this sscc shown",
+				purchaseOrderReceivingPage.isOverReceiptErrorDisplayed());
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	
 	
 	
 	@When("^I enter details and perform blind receive$")
@@ -631,7 +639,12 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter details and perform blind receive of mixed stock without lockcode$")
 	public void i_enter_details_and_perform_blind_receive_of_mixed_stock_without_lockcode() throws Throwable {
 		for (int j = 0; j < context.getNoOfLines(); j++) {
-		for (int i = 0; i < context.getRcvQtyDue(); i++) {
+			context.setPartset(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("PART SET"));
+			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+		for (int i = 0; i < Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")); i++) {
+			if(j==0)
+			{
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 			jdaFooter.pressTab();
@@ -642,6 +655,36 @@ public class PurchaseOrderReceivingStepDefs {
 			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 			jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			
+			}
+			 if(j==1)
+			{
+				purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterUPC2(context.getUPC() + "02");
+				purchaseOrderReceivingPage.enterQuantity("1");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+				purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			}
+			else if(j==2)
+			{
+				purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
+				jdaFooter.pressTab();
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterQuantity("1");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+				purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+				purchaseOrderReceivingPage.enterPartset(context.getPartset());
+			}
+			
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
 					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
@@ -653,6 +696,7 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 		}
+		
 	}
 
 
@@ -830,6 +874,11 @@ public class PurchaseOrderReceivingStepDefs {
 	public void i_enter_the_location() throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterLocation(context.getLocation());
 	}
+	
+	@When("^I enter the loctn$")
+	public void i_enter_the_loctn() throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterLoc(context.getLocation());
+	}
 
 	@When("^I enter pre advice id \"([^\"]*)\" and SKU id \"([^\"]*)\"$")
 	public void i_enter_pre_advice_id_and_SKU_id(String preAdviceId, String skuId) throws Throwable {
@@ -877,7 +926,9 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
-		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		//upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
+		context.setNoOfLines(numLines);
 	}
 	
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for NON RMS$")
@@ -1069,6 +1120,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
 			if (receiveType.equalsIgnoreCase("Over Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() + 5);
 			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
@@ -1076,13 +1128,17 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 			i_enter_pallet_id(context.getPalletIDList().get(i-1));
 			i_enter_belCode(context.getBelCodeList().get(i-1));
-			i_enter_the_location();
+			i_enter_the_loctn();
+			i_enter_the_quantity(quantity);
 			i_enter_the_newpallet(context.enterNewPallet().get(i-1));
+			if(receiveType.equalsIgnoreCase("Under Receiving"))
+					{
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
 				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);
+			}
 			}
 		}
 		hooks.logoutPutty();

@@ -203,4 +203,16 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	} 
+	
+	public String getPartSet(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select USER_DEF_NUM_2 from sku where sku_id = '" + skuId + "' ");
+		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_2 from sku where sku_id = '" + skuId + "' ");
+		rs.next();
+		return rs.getString(1);
+	} 
 }

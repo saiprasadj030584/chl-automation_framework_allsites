@@ -230,7 +230,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
 		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
+		Assert.assertTrue("Lock code not displayed as expected",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
 		
 	}
 	
@@ -253,6 +253,9 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 		jDAFooter.clickExecuteButton();
 		String code = "Receipt";
+		System.out.println(context.getRcvQtyDue());
+		System.out.println(context.getRcvQtyDue());
+		inventoryTransactionDB.getReceiptCount(context.getUpiId(), code);
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
 	@When("^I check the inventory for transaction update$")

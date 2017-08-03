@@ -27,6 +27,15 @@ public class Context {
 	private int lineItem = 1;
 	private String receiveType;
 	private String dueDate;
+	private ArrayList<String> skuFromUPI;
+	public ArrayList<String> getSkuFromUPI() {
+		return skuFromUPI;
+	}
+
+	public void setSkuFromUPI(ArrayList<String> skuFromUPI) {
+		this.skuFromUPI = skuFromUPI;
+	}
+
 	public String getDueDate() {
 		return dueDate;
 	}

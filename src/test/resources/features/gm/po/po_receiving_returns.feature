@@ -72,17 +72,34 @@ Feature: Purchase order receiving
     When I navigate to UPI Management screen
     And I search with ASN in UPI Management screen
     Then the due date should be displayed for the ASN
+
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850008386380077010083863800300 | 0000838638 | REC003   |  Y       |
-      
-    @receiving_returns_mixed_stock  
-    Scenario Outline: Verify receiving with URRN holds different dept UPC and mixed stock 
+      | 58850008386380077010083863800300 | 0000838638 | REC003   | Y         |
+
+  @receiving_returns_mixed_stock
+  Scenario Outline: Verify receiving with URRN holds different dept UPC and mixed stock
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
-    And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>"
+    And the upi should have sku, quantity due details
+    And I receive all skus for the returns order with mixed stock at "<Location>" with perfect condition "<Condition>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850008386250077010083862500300 | 0000838625 | REC003   | Y         |
+      | 58850006536430077010065364301200 | 0000653643 | REC003   | Y         |
+      
+      
+      
+@receiving_returns_single_ASN_multiple_URRN
+  Scenario Outline: Verify receiving for single ASN holds many URRN
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
+    And I receive all skus for the returns order with mixed stock at "<Location>" with perfect condition "<Condition>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated
+
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850006536430077010065364301200 | 0000653643 | REC003   | Y         |
+      
