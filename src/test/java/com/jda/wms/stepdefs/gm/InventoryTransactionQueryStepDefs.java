@@ -48,7 +48,7 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		jdaLoginPage.login();
+		// jdaLoginPage.login();
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Receipt");
@@ -57,9 +57,12 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.clickExecuteButton();
 		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
-		context.setTagId(inventoryTransactionDB.getPallet(context.getUpiId(), "Receipt"));
-
+		// context.setPalletID(inventoryTransactionDB.getPallet(context.getUpiId(),
+		// "Receipt"));
+		// context.setSkuId(inventoryTransactionDB.getSkuId(context.getUpiId(),
+		// "Receipt"));
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),

@@ -8,12 +8,12 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class UPIReceiptHeaderDB {
-	
+
 	private Context context;
 	private Database database;
 
 	@Inject
-	public UPIReceiptHeaderDB(Context context,Database database) {
+	public UPIReceiptHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}
@@ -24,8 +24,7 @@ public class UPIReceiptHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
+		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -36,8 +35,7 @@ public class UPIReceiptHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
+		ResultSet rs = stmt.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -48,17 +46,30 @@ public class UPIReceiptHeaderDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("update upi_receipt_header set asn_id='"+asnId+"' where pallet_id='"+upiId+"'");
+				.executeQuery("update upi_receipt_header set asn_id='" + asnId + "' where pallet_id='" + upiId + "'");
 		context.getConnection().commit();
 	}
-	
+
 	public void updateSSSCURN(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("update upi_receipt_header set user_def_note_1='"+upiId+"' where pallet_id='"+upiId+"'");
+		ResultSet rs = stmt.executeQuery(
+				"update upi_receipt_header set user_def_note_1='" + upiId + "' where pallet_id='" + upiId + "'");
 		context.getConnection().commit();
 	}
+
+	public String getShippingType(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("SELECT user_def_type_7 FROM upi_receipt_header WHERE pallet_id = '" + upiId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

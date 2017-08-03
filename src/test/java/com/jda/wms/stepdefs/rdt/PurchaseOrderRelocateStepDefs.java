@@ -53,8 +53,8 @@ public class PurchaseOrderRelocateStepDefs {
 
 	@When("^I proceed with entering the palletid$")
 	public void i_proceed_with_entering_the_palletid() throws Throwable {
-		purchaseOrderRelocatePage.enterPalletId(context.getPalletID());
-		jdaFooter.PressEnter();
+		purchaseOrderRelocatePage.enterPalletId("00050456000253606176");
+		// purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
 		jdaFooter.PressEnter();
 		hooks.logoutPutty();
 	}

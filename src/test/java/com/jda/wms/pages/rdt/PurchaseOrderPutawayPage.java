@@ -85,7 +85,7 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException {
-		screen.type(Key.TAB);
+		// screen.type(Key.TAB);
 		screen.type(location);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -173,6 +173,13 @@ public class PurchaseOrderPutawayPage {
 
 	public void selectLocationFullMenu() throws InterruptedException {
 		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void selectOverride() throws InterruptedException {
+		screen.type("3");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);

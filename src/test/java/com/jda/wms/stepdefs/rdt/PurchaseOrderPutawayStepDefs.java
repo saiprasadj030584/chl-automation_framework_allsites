@@ -10,6 +10,7 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -32,11 +33,13 @@ public class PurchaseOrderPutawayStepDefs {
 	private Hooks hooks;
 	private JDAFooter jdaFooter;
 	private PuttyFunctionsPage puttyFunctionsPage;
+	private InventoryTransactionDB inventoryTransactionDB;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage) {
+			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
+			InventoryTransactionDB inventoryTransactionDB) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -46,6 +49,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.hooks = hooks;
 		this.jdaFooter = jdaFooter;
 		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.inventoryTransactionDB = inventoryTransactionDB;
 	}
 
 	@When("^I select normal putaway$")
@@ -214,21 +218,60 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I proceed by entering less quantity$")
 	public void i_proceed_by_entering_less_quantity() throws Throwable {
-		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
-		jdaFooter.PressEnter();
-		String quantity = null;
-		context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-		quantity = String.valueOf(context.getRcvQtyDue() - 2);
-		purchaseOrderPutawayPage.enterQuantity(quantity);
-		puttyFunctionsPage.rightArrow();
-		puttyFunctionsPage.rightArrow();
-		puttyFunctionsPage.rightArrow();
-		purchaseOrderPutawayPage.enterQuantity(quantity);
-		jdaFooter.PressEnter();
-		purchaseOrderPutawayPage.selectLocationFullMenu();
-		jdaFooter.PressEnter();
-		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
-		hooks.logoutPutty();
+		upiMap = context.getUPIMap();
+		poMap = context.getPOMap();
 
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			String quantity = String.valueOf(context.getRcvQtyDue() - 2);
+			Thread.sleep(2000);
+			purchaseOrderPutawayPage.enterURNID("10089671551008967155");
+			jdaFooter.PressEnter();
+			purchaseOrderPutawayPage.enterQuantity(quantity);
+			puttyFunctionsPage.rightArrow();
+			puttyFunctionsPage.rightArrow();
+			puttyFunctionsPage.rightArrow();
+			purchaseOrderPutawayPage.enterQuantity(quantity);
+			jdaFooter.PressEnter();
+			purchaseOrderPutawayPage.selectLocationFullMenu();
+			jdaFooter.PressEnter();
+			purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+		}
+		hooks.logoutPutty();
+	}
+
+	@When("^I proceed by overriding the location  \"([^\"]*)\"$")
+	public void i_proceed_by_overriding_the_location(String location) throws Throwable {
+		upiMap = context.getUPIMap();
+		poMap = context.getPOMap();
+
+		for (int i = context.getLineItem(); i <= 1; i++) {
+			// System.out.println("SKUUUUUUU" + poMap.get(i).get("SKU"));
+			context.setSkuId(poMap.get(i).get("SKU"));
+
+			purchaseOrderPutawayPage.enterURNID(context.getTagId());
+			jdaFooter.PressEnter();
+			puttyFunctionsPage.pressTab();
+			for (int k = 0; k < 8; k++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int j = 0; j < 8; j++) {
+				puttyFunctionsPage.backspace();
+			}
+			jdaFooter.PressEnter();
+			purchaseOrderPutawayPage.selectOverride();
+			jdaFooter.PressEnter();
+			jdaFooter.PressEnter();
+			puttyFunctionsPage.pressTab();
+			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
+			i_enter_to_location(context.getToLocation());
+			i_enter_the_check_string();
+			// purchaseOrderPutawayPage.enterLocation(location);
+			// jdaFooter.PressEnter();
+			// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+			jdaFooter.PressEnter();
+			hooks.logoutPutty();
+		}
 	}
 }

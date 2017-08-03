@@ -110,6 +110,7 @@ public class Context {
 	private String owner;
 	private String perfectCondition;
 	private String receiveType;
+	private ArrayList skuList;
 
 	public String getPerfectCondition() {
 		return perfectCondition;
@@ -943,4 +944,13 @@ public class Context {
 	public void setReceiveType(String receiveType) {
 		this.receiveType = receiveType;
 	}
+
+	public ArrayList getSkuList() {
+		return skuList;
+	}
+
+	public void setSkuList(ArrayList skuList) {
+		this.skuList = skuList;
+	}
+
 }

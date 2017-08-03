@@ -15,21 +15,17 @@ public class ReportSelectionPage {
 	}
 
 	public void enterStock(String stock) throws FindFailed, InterruptedException {
-		// screen.wait("images/StockAdjustment/Search/SkuId.png", timeoutInSec);
-		// screen.click("images/StockAdjustment/Search/SkuId.png");
 		screen.type(stock);
 		Thread.sleep(1000);
 	}
 
-	public void clickresult() throws FindFailed, InterruptedException {
+	public void clickResult() throws FindFailed, InterruptedException {
 		screen.wait("images/ReportGeneration/StockChecks.png", timeoutInSec);
 		screen.click("images/ReportGeneration/StockChecks.png");
 		Thread.sleep(3000);
 	}
 
 	public void enterSiteID(String siteID) throws FindFailed, InterruptedException {
-		// screen.wait("images/StockAdjustment/Search/SkuId.png", timeoutInSec);
-		// screen.click("images/StockAdjustment/Search/SkuId.png");
 		screen.type(siteID);
 		Thread.sleep(3000);
 	}

@@ -22,14 +22,13 @@ public class ReportSelectionStepDefs {
 		this.reportSelectionPage = reportSelectionPage;
 	}
 
-	@When("^I select the print to screen and I search for the stock$")
-	public void i_select_the_print_to_screen_and_I_search_for_the_stock() throws Throwable {
-		String stock = "stock";
+	@When("^I select print to screen and I search for the stock$")
+	public void i_select_print_to_screen_and_I_search_for_the_stock() throws Throwable {
 		reportSelectionPage.selectPrintToScreen();
 		jDAFooter.clickNextButton();
-		reportSelectionPage.enterStock(stock);
+		reportSelectionPage.enterStock("stock");
 		jDAFooter.clickNextButton();
-		reportSelectionPage.clickresult();
+		reportSelectionPage.clickResult();
 		jDAFooter.clickNextButton();
 	}
 
@@ -40,10 +39,10 @@ public class ReportSelectionStepDefs {
 		jDAFooter.clickDoneButton();
 	}
 
-	@Then("^the report should be generated$")
-	public void the_report_should_be_generated() throws Throwable {
-		Assert.assertTrue("Report not displayed as expected", reportSelectionPage.isReportDisplayed());
-		// Thread.sleep(8000);
+	@Then("^the report should be generated for stock in inventory")
+	public void the_report_should_be_generated_for_stock_in_inventory() throws Throwable {
+		Assert.assertTrue("Report not displayed as expected for stock in Inventory",
+				reportSelectionPage.isReportDisplayed());
 		jDAFooter.clickDoneButton();
 	}
 }

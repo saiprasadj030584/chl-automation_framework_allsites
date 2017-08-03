@@ -374,6 +374,8 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select from_loc_id from inventory_transaction where tag_id='" + upiId + "' and sku_id = '"
+				+ skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where tag_id='" + upiId
@@ -535,13 +537,13 @@ public class InventoryTransactionDB {
 		return rs.getInt(1);
 	}
 
-	public String getTagId(String upiId, String code) throws SQLException, ClassNotFoundException {
+	public String getTagId(String upiId, String String) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select TAG_ID from inventory_transaction where reference_id='" + upiId
-				+ "' and code = '" + code + "'");
+		ResultSet rs = stmt.executeQuery(
+				"select TAG_ID from inventory_transaction where reference_id='" + upiId + "' and code = 'Receipt'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -552,6 +554,19 @@ public class InventoryTransactionDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from inventory_transaction where reference_id='" + upiId
+				+ "' and code = '" + code + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getSkuId(String upiId, String code) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select sku_id from inventory_transaction where reference_id='" + upiId + "' and code = '"
+				+ code + "'");
+		ResultSet rs = stmt.executeQuery("select sku_id from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
 		rs.next();
 		return rs.getString(1);
