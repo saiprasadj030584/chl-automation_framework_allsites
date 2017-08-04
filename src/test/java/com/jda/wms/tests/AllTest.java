@@ -10,7 +10,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@FSV_PO_validate_damage_receipt_from_supplier_boxed"
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@multiple_po_receive_multiple_urn_single_trailer"
+				+ ""
 				+ ""
 				+ ""
 				+ " "

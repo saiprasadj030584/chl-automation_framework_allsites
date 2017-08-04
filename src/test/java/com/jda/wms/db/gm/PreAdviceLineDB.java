@@ -121,6 +121,8 @@ public class PreAdviceLineDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
+				+ "'   and sku_id = '" + skuID + "' ");
 		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();

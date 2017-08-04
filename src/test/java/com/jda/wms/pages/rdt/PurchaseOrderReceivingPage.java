@@ -168,9 +168,11 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
 		while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
+			System.out.println("1111111");
 			puttyFunctionsPage.pressEnter();
 		}
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+			System.out.println("1jdfhdjk1");
 			return true;
 		}
 		return false;
@@ -426,7 +428,7 @@ public class PurchaseOrderReceivingPage {
 	public void doConfigMovementLabel() throws FindFailed, InterruptedException {
 		if (screen.exists("images/Putty/Receiving/MovementLabel/PuttyTop.png") != null) {
 			Match mStatus = screen.find("images/Putty/Receiving/MovementLabel/PuttyTop.png");
-			screen.click(mStatus.getCenter().offset(50, 0));
+			screen.click(mStatus.getCenter().offset(30, 0));
 			screen.rightClick();
 			Thread.sleep(1000);
 			screen.click("images/Putty/Receiving/MovementLabel/ChangeSettings.png");
@@ -516,6 +518,13 @@ public class PurchaseOrderReceivingPage {
 
 	public String getQtyToReceive() throws FindFailed, InterruptedException {
 		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+	public String getPutAwayGrp() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/PutawayGroup.png");
 		screen.click(mSupplierId.getCenter().offset(50, 0));
 		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		Thread.sleep(2000);

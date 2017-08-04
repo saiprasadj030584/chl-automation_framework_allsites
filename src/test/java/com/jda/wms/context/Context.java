@@ -119,6 +119,15 @@ public class Context {
 	private String pickingType;
 	private String upiId;
 	private String asnId;
+	private ArrayList skuFromPO;
+	public ArrayList getSkuFromPO() {
+		return skuFromPO;
+	}
+
+	public void setSkuFromPO(ArrayList skuFromPO) {
+		this.skuFromPO = skuFromPO;
+	}
+
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
 	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
@@ -132,6 +141,15 @@ public class Context {
 	}
 
 	private Map<String,String> poNumLinesMap;
+	private Map<String,Integer> upiNumLinesMap;
+	public Map<String, Integer> getUpiNumLinesMap() {
+		return upiNumLinesMap;
+	}
+
+	public void setUpiNumLinesMap(Map<String, Integer> upiNumLinesMap) {
+		this.upiNumLinesMap = upiNumLinesMap;
+	}
+
 	private String skuType;
 	private String packConfig;
 	private String UPC;

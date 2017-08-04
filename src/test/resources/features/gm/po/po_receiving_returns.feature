@@ -88,18 +88,16 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
       | 58850006536430077010065364301200 | 0000653643 | REC003   | Y         |
-      
-      
-      
-@receiving_returns_single_ASN_multiple_URRN
+
+  @receiving_returns_single_ASN_multiple_URRN
   Scenario Outline: Verify receiving for single ASN holds many URRN
-    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
-    And the upi should have sku, quantity due details
-    And I receive all skus for the returns order with mixed stock at "<Location>" with perfect condition "<Condition>"
+    Given the multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the multiple upi should have sku, quantity due details
+    And I receive all skus of multiple upi for the returns order at "<Location>" with perfect condition "<Condition>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated
 
     Examples: 
-      | PalletId                         | ASN        | Location | Condition |
-      | 58850006536430077010065364301200 | 0000653643 | REC003   | Y         |
-      
+      | PalletId                                                          | ASN        | Location | Condition |
+      | 56490000369490536160009081800400,56490000369490536190009081900600 | 0000006498 | REC003   | Y         |
+     

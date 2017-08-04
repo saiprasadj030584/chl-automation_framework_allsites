@@ -79,4 +79,4 @@ Feature: Purchase order receiving
     Then the po status should be displayed as "Complete"
     Examples: 
       | PreAdviceID           | PalletId                                  | ASN        | Location |
-      | 9070002070,9040002070 | 00050456000247606127,00050456000243606127 | 0000007789 | REC001   |
+      | 5050008270,5050008290 | 00050456000253616188,00050456000253616198| 0000001989 | REC001   |

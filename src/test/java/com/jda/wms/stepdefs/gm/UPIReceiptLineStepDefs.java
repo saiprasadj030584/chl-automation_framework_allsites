@@ -89,6 +89,13 @@ public class UPIReceiptLineStepDefs {
 		upiReceiptLineDB.updateUserDefNote2(context.getUpiId());
 		}
 	
+	public void container_to_be_updated_with_upi_line_in_multiple_upi() throws Throwable {
+		for(int i=0;i<context.getUpiList().size();i++)
+		{
+		upiReceiptLineDB.updateUserDefNote2(context.getUpiList().get(i));
+		}
+		}
+	
 	@Given("^I fetch supplier id UPC$")
 	public void i_fetch_supplier_id_UPC() throws Throwable {
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
@@ -99,6 +106,14 @@ public class UPIReceiptLineStepDefs {
 	@Given("^URN_to_be_updated_with_upi_line$")
 	public void urn_to_be_updated_with_upi_line() throws Throwable {
 		upiReceiptLineDB.updateContainerID(context.getUpiId());
+		}
+	
+	@Given("^URN_to_be_updated_with_upi_line_in_multiple_upi$")
+	public void urn_to_be_updated_with_upi_line_in_multiple_upi() throws Throwable {
+		for(int i=0;i<context.getUpiList().size();i++)
+		{
+		upiReceiptLineDB.updateContainerID(context.getUpiList().get(i));
+		}
 		}
 	
 	public void fetch_Qty_Details() throws Throwable
