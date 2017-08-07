@@ -49,20 +49,24 @@ public class UPIReceiptLineStepDefs {
 		//Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		for (int k=0;k<context.getPreAdviceList().size();k++)
-		{
-		
+		int m=0;
 		for (int j=0;j<context.getUpiList().size();j++)
 		{
+			
 		for (int i=1;i<=
-				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(k)));i++){
-			String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(k)).get(i).get("SKU");
-			String poLineId=context.getMultiplePOMap().get(context.getPreAdviceList().get(k)).get(i).get("LINE ID");
-			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(k),sku,context.getUpiList().get(j));
+				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(m)));i++){
+			System.out.println("a1"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)));
+			System.out.println("a2"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i));
+			System.out.println("checkkkk"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU"));
+			String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU");
+			System.out.println("checookk"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("LINE ID"));
+			String poLineId=context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("LINE ID");
+			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(m),sku,context.getUpiList().get(j));
 			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
 		}
+		m++;
 		}
-		}
+		
 	}
 	
 	@Given("^ Multiple PO to be linked with upi line for multiple pallets$")

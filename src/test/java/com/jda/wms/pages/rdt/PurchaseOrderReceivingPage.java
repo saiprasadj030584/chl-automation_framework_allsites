@@ -242,6 +242,17 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+	
+	public String getPutawayGroup() throws FindFailed, InterruptedException {
+		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
+		//screen.click(putawayGroup.getCenter().offset(50, 0));
+		screen.click(putawayGroup.below(5));
+		screen.doubleClick(putawayGroup.below(1));
+		//screen.doubleClick(putawayGroup.getCenter().offset(50, 0));
+		//screen.doubleClick();
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
 		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
@@ -521,6 +532,22 @@ public class PurchaseOrderReceivingPage {
 		screen.click(mSupplierId.getCenter().offset(50, 0));
 		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		Thread.sleep(2000);
+		System.out.println("abba"+App.getClipboard());
+		System.out.println("ANS"+App.getClipboard().split("_"));
+		String[] qtySplit =App.getClipboard().split("_");
+		if(qtySplit.length==0)
+		{
+			for(int i=0;i<4;i++)
+			{
+				puttyFunctionsPage.pressTab();
+			}
+			screen.type(String.valueOf(context.getRcvQtyDue()));
+			puttyFunctionsPage.pressTab();
+			Match mSupplierId1 = screen.find("images/Putty/Receiving/QtyToReceive.png");
+			screen.click(mSupplierId1.getCenter().offset(50, 0));
+			screen.doubleClick(mSupplierId1.getCenter().offset(50, 0));
+			Thread.sleep(2000);
+		}
 		return App.getClipboard();
 	}
 	public String getPutAwayGrp() throws FindFailed, InterruptedException {

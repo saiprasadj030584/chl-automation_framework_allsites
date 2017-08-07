@@ -22,3 +22,14 @@ Feature: Stock adjustments
       |   5649 | 1AA103   | INCOMPLETE |
       |   5649 | 1AA103   | LOST       |
       |   5649 | 1AA103   | SAMPLES    |
+      
+      @stock_adjustment_returns_verify_reason_code_and_has_movement_label
+       Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    #And I receive all skus for the returns order at "<Location>" with movement label enabled
+    #When I navigate to inventory transaction query
+    #Then the inventory transaction should be updated
+
+    Examples: 
+      | PalletId                         | ASN        | Location |
+      | 56490000369490536120006181700900 | 0000004089 | REC003   |

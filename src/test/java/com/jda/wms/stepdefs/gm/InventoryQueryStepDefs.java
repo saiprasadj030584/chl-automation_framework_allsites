@@ -20,6 +20,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class InventoryQueryStepDefs {
 	Map<Integer, Map<String, String>> poMap;
+	Map<String, Map<Integer, Map<String, String>>> multiplePOMap;
 	Map<String, Map<String, String>> upiMap;
 	private Context context;
 	private Verification verification;
@@ -44,11 +45,33 @@ public class InventoryQueryStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+		multiplePOMap = context.getMultiplePOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getUpiId(),date), failureList);
 			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(),date), failureList);
+		}
+		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
+		}
+	
+	
+	@Then("^the inventory should be displayed for all multiple tags received$")
+	public void the_inventory_should_be_displayed_for_all_multiple_tags_received() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		multiplePOMap = context.getMultiplePOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for(int j=0;j<context.getPreAdviceList().size();j++)
+		{
+			context.setUpiId(context.getUpiList().get(j));
+		for (int i = context.getLineItem(); i <= Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
+			context.setSkuId(context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
+		
+			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getUpiId(),date), failureList);
+			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(),date), failureList);
+		}
 		}
 		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());
 		}

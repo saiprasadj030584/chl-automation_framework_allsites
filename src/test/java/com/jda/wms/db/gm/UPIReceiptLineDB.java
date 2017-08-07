@@ -120,6 +120,8 @@ public class UPIReceiptLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("update upi_receipt_line set PRE_ADVICE_ID = '" + preAdviceId
+				+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
 		ResultSet rs = stmt.executeQuery("update upi_receipt_line set PRE_ADVICE_ID = '" + preAdviceId
 				+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
 		context.getConnection().commit();
@@ -154,6 +156,8 @@ public class UPIReceiptLineDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("update upi_receipt_line set PRE_ADVICE_LINE_ID = '" + preAdviceLineId
+				+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
 		ResultSet rs = stmt.executeQuery("update upi_receipt_line set PRE_ADVICE_LINE_ID = '" + preAdviceLineId
 				+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
 		context.getConnection().commit();

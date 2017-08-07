@@ -69,6 +69,42 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
+	
+	
+		
+		@Then("^the goods receipt should be generated for all received stock in inventory transaction$")
+		public void the_goods_receipt_should_be_generated_for_all_received_stock_in_inventory_transaction() throws Throwable {
+			ArrayList<String> failureList = new ArrayList<String>();
+			context.setLocation("REC001");
+			poMap = context.getPOMap();
+			upiMap = context.getUPIMap();
+			String date = DateUtils.getCurrentSystemDateInDBFormat();
+			System.out.println("LOCC"+context.getlocationID());
+			for(int j=0;j<context.getPreAdviceList().size();j++)
+			{
+				context.setPreAdviceId(context.getPreAdviceList().get(j));
+				context.setUpiId(context.getUpiList().get(j));
+				
+				for (int i = context.getLineItem(); i <= Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
+					context.setRcvQtyDue(Integer.parseInt(context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("QTY DUE")));
+					context.setSkuId(context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+			}
+			}
+			Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+					+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		}
 	@Then("^the goods receipt should be generated for FSV PO received stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_fsv_PO_received_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();

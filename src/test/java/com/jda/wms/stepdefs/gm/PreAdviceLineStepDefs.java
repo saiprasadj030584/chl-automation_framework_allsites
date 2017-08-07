@@ -177,7 +177,7 @@ public class PreAdviceLineStepDefs {
 		ArrayList skuFromPO = new ArrayList();
 		ArrayList skuFromUPI = new ArrayList();
 		Map<String,String> poNumLinesMap=new HashMap<String,String>();
-		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
+		Map<Integer, Map<String, String>> POMap=new HashMap<Integer, Map<String, String>>();
 		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
 		Map<String, Map<Integer, Map<String, String>>> MultiplePOMap = new HashMap<String, Map<Integer, Map<String, String>>>();
 
@@ -194,22 +194,30 @@ public class PreAdviceLineStepDefs {
 		
 		}
 		context.setSkuFromUPI(skuFromUPI);
+		System.out.println("PREADVICELIST"+context.getPreAdviceList());
 		int m=0,n=0;
 		for (int j = 0; j <context.getPreAdviceList().size(); j++) {
 			for (int i = 1; i <=Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
 				m++;
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				//Map<Integer, Map<String, String>> POMap1 = new HashMap<Integer, Map<String, String>>();
+				POMap= new HashMap<Integer, Map<String, String>>();
+				System.out.println("SKU1"+(String) skuFromPO.get(m - 1));
 				context.setSkuId((String) skuFromPO.get(m - 1));
 				lineItemsMap.put("SKU", context.getSkuId());
 				lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceList().get(j), context.getSkuId()));
 				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceList().get(j), context.getSkuId()));
 				POMap.put(i, lineItemsMap);
+				System.out.println(lineItemsMap);
 			}
+			System.out.println(POMap);
 			MultiplePOMap.put(context.getPreAdviceList().get(j), POMap);
+			System.out.println(MultiplePOMap);
 		}
 			//context.setPOMap(POMap);
 		context.setMultiplePOMap(MultiplePOMap);
-			System.out.println(context.getMultiplePOMap());
+			System.out.println("MULPOSKU"+context.getMultiplePOMap());
+			String supplierId;
 			
 			for (int j = 0; j < context.getUpiList().size(); j++) {
 				
@@ -223,7 +231,10 @@ public class PreAdviceLineStepDefs {
 					lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
 					lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
 					lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
-					lineItemsMap.put("UPC", "");
+					lineItemsMap.put("PART SET", skuDB.getPartSet(context.getSkuId()));
+					supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+					lineItemsMap.put("SUPPLIER ID", supplierId);
+					lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
 					skuMap.put(context.getSkuId(), lineItemsMap);
 				}
 				MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
