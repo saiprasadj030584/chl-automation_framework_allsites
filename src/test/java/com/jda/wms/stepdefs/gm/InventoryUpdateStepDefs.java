@@ -7,9 +7,11 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.pages.gm.InventoryUpdatePage;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.gm.WarningPopUpPage;
 import com.jda.wms.utils.DateUtils;
+import org.sikuli.script.Screen;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -22,15 +24,18 @@ public class InventoryUpdateStepDefs {
 	private InventoryUpdatePage inventoryUpdatePage;
 	private DateUtils dateUtils;
 	private WarningPopUpPage warningPopUpPage;
+	private StockAdjustmentsPage stockAdjustmentsPage;
+	Screen screen = new Screen();
 
 	@Inject
 	public InventoryUpdateStepDefs(Context context, JDAFooter jdafooter, InventoryDB inventoryDB,
-			InventoryUpdatePage inventoryUpdatePage, DateUtils dateUtils, WarningPopUpPage warningPopUpPage) {
+			InventoryUpdatePage inventoryUpdatePage, DateUtils dateUtils, WarningPopUpPage warningPopUpPage,StockAdjustmentsPage stockAdjustmentsPage) {
 		this.context = context;
 		this.jdafooter = jdafooter;
 		this.inventoryUpdatePage = inventoryUpdatePage;
 		this.dateUtils = dateUtils;
 		this.warningPopUpPage = warningPopUpPage;
+		this.stockAdjustmentsPage=stockAdjustmentsPage;
 
 	}
 
@@ -93,4 +98,17 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickDoneButton();
 		context.setOwner(owner);
 	}
+	
+	@Then("^I change the lock status to unlocked$")
+	public void i_change_the_lock_status_to_unlocked() throws Throwable {
+		
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		stockAdjustmentsPage.enterReceiptId(context.getUpiId());
+		jdafooter.clickNextButton();
+		jdafooter.clickNextButton();
+		screen.type("Unlocked ");
+		jdafooter.clickDoneButton();
+		
+	}
+	
 }

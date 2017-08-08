@@ -239,6 +239,24 @@ public class InventoryTransactionQueryStepDefs {
 
 	}
 	
+	@When("^the inventory is updated with locked status$")
+	public void the_inventory_is_updated_with_locked_status() throws Throwable {
+		jdaHomePage.navigateToInventoryTransactionPage();
+		Thread.sleep(2000);
+		ArrayList failureList = new ArrayList();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Inventory Lock");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		ArrayList lockCodeListForAllQuantity =inventoryTransactionDB.getLockCodeList(context.getUpiId(),"Inv Lock");
+		for(int l=0;l<lockCodeListForAllQuantity.size();l++){
+			if (!((String)lockCodeListForAllQuantity.get(l)).equalsIgnoreCase("DMGD")){
+				failureList.add("ITL Lock code does not match for Quantity number "+l);
+			}
+		}
+	}
+	
+	
 	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -294,6 +312,16 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionDB.getReceiptCount(context.getUpiId(), code);
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
+	
+	@When("^I query with sku and reason code$")
+	public void i_query_with_sku_and_reason_code() throws Throwable {
+		jDAFooter.pressTab();
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		inventoryTransactionQueryPage.enterReasonCode("UPCOVERREC");
+		jDAFooter.clickExecuteButton();
+	}
+	
 	@When("^I check the inventory for transaction update$")
 	public void i_check_the_inventory_for_transaction_update() throws Throwable {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();

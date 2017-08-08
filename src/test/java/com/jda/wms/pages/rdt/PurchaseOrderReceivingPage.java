@@ -82,6 +82,15 @@ public class PurchaseOrderReceivingPage {
 
 	}
 	
+	public boolean isOverReceiptErrorReturnsDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/OverReceiptError.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+	
 	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
 		if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
 				|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {
@@ -180,6 +189,15 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean checkNoOfSingles() throws FindFailed, InterruptedException {
 		if ((screen.exists("images/Putty/Receiving/QtySingles.png") != null)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	public boolean isDamageReceiptDisplayed() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
 			return true;
 		}
 		return false;

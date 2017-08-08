@@ -115,6 +115,12 @@ public class StockAdjustmentsPage {
 		screen.type(quantity);
 		Thread.sleep(1000);
 	}
+	
+	public void enterReasonCode(String reason) throws FindFailed, InterruptedException {
+		
+		screen.type(reason);
+		Thread.sleep(1000);
+	}
 
 	public void enterPackConfig(String packConfig) throws FindFailed, InterruptedException {
 		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
@@ -137,11 +143,24 @@ public class StockAdjustmentsPage {
 		screen.type(pallet);
 		Thread.sleep(1000);
 	}
+	
+	public void enterReceiptId(String pallet) throws FindFailed, InterruptedException {
+		Match mpallet = screen.find("images/StockAdjustment/Search/ReceiptId.png");
+		screen.click(mpallet.getCenter().offset(70, 0));
+		screen.type(pallet);
+		Thread.sleep(1000);
+	}
 
 	public void selectNewStock() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/StockAdjustment/Start/NewStock.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		Thread.sleep(1000);
+	}
+	
+	public void selectExistingStock() throws FindFailed, InterruptedException {
+		//existing stock is pre selected
+		screen.type(Key.F7);
+		Thread.sleep(2000);
 	}
 
 	public boolean isPopUpDisplayed() throws InterruptedException, FindFailed {

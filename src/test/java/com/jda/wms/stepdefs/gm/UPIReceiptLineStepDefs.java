@@ -126,6 +126,15 @@ public class UPIReceiptLineStepDefs {
 				context.setRcvQtyDue(qty_Due);
 	}
 	
+	public void fetch_Qty_Details_and_upc() throws Throwable
+	{
+				int qty_Due=Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+				context.setRcvQtyDue(qty_Due);
+				String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+				String upc=supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId);
+				context.setUPC(upc);
+	}
+	
 	
 }
 

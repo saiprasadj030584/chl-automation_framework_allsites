@@ -678,6 +678,7 @@ jdaFooter.PressEnter();
 		}
 	}
 	
+		
 	@When("^I enter details of multiple upi and perform blind receive without lockcode in WT$")
 	public void i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_in_WT() throws Throwable {
 		int m=0;
@@ -1018,7 +1019,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
-		//upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
 		context.setNoOfLines(numLines);
 	}
@@ -1262,6 +1263,64 @@ for(int k=0;k<context.getUpiList().size();k++)
 			}
 			}
 		}
+		hooks.logoutPutty();
+	}
+
+	@When("^I perform \"([^\"]*)\" for all skus of the returns order for stock adjustment at location \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
+	public void i_perform_for_all_skus_for_the_returns_order_at_location_with_perfect_condition(String receiveType, String location,String condition) throws Throwable {
+		
+		context.setlocationID(location);
+		context.setPerfectCondition(condition);
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		String quantity="";
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			for(int j=0;j<2;j++)
+			{
+			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			if(j==0)
+			{
+			purchaseOrderReceivingPage.enterQuantity(String.valueOf(Integer.parseInt(quantity)-context.getRcvQtyDue()));
+			}
+			else if(j==1)
+			{
+				purchaseOrderReceivingPage.enterQuantity(quantity);
+			}
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			jdaFooter.pressTab();
+			if(j==0)
+			{
+			purchaseOrderReceivingPage.doConfigMovementLabel();
+			}
+			jdaFooter.clickUpdateButton();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if(j==1)
+			{
+			Assert.assertTrue("Over Receiving cant be done error not dispalyed for " + i,
+					purchaseOrderReceivingPage.isOverReceiptErrorReturnsDisplayed());
+			}
+			else if(j==0)
+			{
+				Assert.assertTrue("Receipt completed damaged not dispalyed " + i,
+						purchaseOrderReceivingPage.isDamageReceiptDisplayed());
+			}
+			}
+			}
+			
+			}
 		hooks.logoutPutty();
 	}
 

@@ -19,6 +19,12 @@ public class InventoryTransactionQueryPage {
 		screen.type(tagId);
 	}
 	
+	public void enterReasonCode(String reasonCode) throws InterruptedException, FindFailed {
+		Match mtagId = screen.find("images/InventoryTransactionQuery/Miscellaneous/ReasonCode.png");
+		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.type(reasonCode);
+	}
+	
 	public void enterReferenceId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/Reference.png");
 		screen.click(mtagId.getCenter().offset(70, 0));

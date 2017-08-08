@@ -288,6 +288,19 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getUpdateQtyUnlocked(String skuID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select update_qty from inventory_transaction where CODE = 'Inv UnLock' and reference_id = '"
+						+ tagID + "' and sku_id='"
+						+ skuID + "' DStamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getStatus(String tagId, String code, String lockCode, String dstamp)
 			throws ClassNotFoundException, SQLException {
