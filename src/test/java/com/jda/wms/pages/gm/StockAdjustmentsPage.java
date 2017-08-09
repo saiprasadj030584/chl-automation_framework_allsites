@@ -78,6 +78,13 @@ public class StockAdjustmentsPage {
 		screen.type(skuId);
 		Thread.sleep(1000);
 	}
+	
+	public void enterSku(String skuId) throws FindFailed, InterruptedException {
+		screen.wait("images/StockAdjustment/Search/General/SkuId.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Search/General/SkuId.png");
+		screen.type(skuId);
+		Thread.sleep(1000);
+	}
 
 	public void enterOwnerId(String owner) throws FindFailed, InterruptedException {
 		Match mOwnerId = screen.find("images/StockAdjustment/Search/OwnerId.png");

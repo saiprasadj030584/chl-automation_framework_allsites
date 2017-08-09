@@ -32,9 +32,10 @@ Feature: Stock adjustments
     When I navigate to stock adjustments page
     And I change on hand qty and reason code
     Then the inventory is updated with locked status
+    When I navigate to inventory update page
+    And I change the lock status to unlocked
+    Then the inventory is unlocked and the return stock is over received 
 
-    #When I navigate to inventory transaction query
-    #Then the inventory transaction should be updated
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 56490000369490536120006281700900 | 0000004089 | REC003   | N         |
+      | 95580085370650011050230212341538 | 0000848729 | REC003   | N         |

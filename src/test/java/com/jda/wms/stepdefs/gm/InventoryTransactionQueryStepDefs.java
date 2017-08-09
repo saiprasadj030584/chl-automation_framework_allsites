@@ -315,6 +315,7 @@ public class InventoryTransactionQueryStepDefs {
 	
 	@When("^I query with sku and reason code$")
 	public void i_query_with_sku_and_reason_code() throws Throwable {
+		jDAFooter.clickQueryButton();
 		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
@@ -327,6 +328,7 @@ public class InventoryTransactionQueryStepDefs {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();
 		upiReceiptHeaderPage.fetchRecord(context.getUpiId());
 		context.setDueDate(upiReceiptHeaderPage.getDueDate());
+		context.setReceiptDate(upiReceiptHeaderPage.getReceiptDate());
 		jdaHomePage.navigateToInventoryTransactionPage();
 		Thread.sleep(2000);
 		jDAFooter.clickQueryButton();

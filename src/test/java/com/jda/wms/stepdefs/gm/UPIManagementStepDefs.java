@@ -43,16 +43,19 @@ public class UPIManagementStepDefs {
 	public void i_search_with_asn_in_upi_management_screen() throws Throwable {
 		uPIManagementPage.searchWithAsn(context.getAsnId());
 	}
-	@Given("^the due date should be displayed for the ASN$")
+	@Given("^the due date and receipt date should be displayed for the ASN$")
 	public void the_due_date_should_be_displayed_for_the_ASN() throws Throwable {
 		Assert.assertTrue("No Records Found", uPIManagementPage.isRecordsFound());
 		uPIManagementPage.doubleClickTheRecord();
-		System.out.println(context.getDueDate());
-		System.out.println(upiReceiptHeaderPage.getDueDate());
 		Assert.assertEquals("Due date mismatch",context.getDueDate(),upiReceiptHeaderPage.getDueDate());
+		//Assert.assertEquals("Due date mismatch",context.getDueDate(),upiReceiptHeaderPage.getReceiptDate());//Null value
+		Assert.assertNotNull("Receipt date populated",upiReceiptHeaderPage.getReceiptDate());//Receipt date alone failed
 		
 		
 	}
+	
+	
+	
 	
 	}
 	

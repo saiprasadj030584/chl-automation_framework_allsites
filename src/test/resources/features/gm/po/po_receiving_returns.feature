@@ -71,11 +71,12 @@ Feature: Purchase order receiving
     And I check the inventory for transaction update
     When I navigate to UPI Management screen
     And I search with ASN in UPI Management screen
-    Then the due date should be displayed for the ASN
+    Then the due date and receipt date should be displayed for the ASN
+   
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850008386380077010083863800300 | 0000838638 | REC003   | Y         |
+      | 58850008387380077010083873800300 | 0000838738 | REC003   | Y         |
 
   @receiving_returns_mixed_stock
   Scenario Outline: Verify receiving with URRN holds different dept UPC and mixed stock
@@ -87,7 +88,7 @@ Feature: Purchase order receiving
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850006536430077010065364301200 | 0000653643 | REC003   | Y         |
+      | 58850006546430077010065464301200 | 0000654643 | REC003   | Y         |
 
   @receiving_returns_single_ASN_multiple_URRN
   Scenario Outline: Verify receiving for single ASN holds many URRN
@@ -99,5 +100,5 @@ Feature: Purchase order receiving
 
     Examples: 
       | PalletId                                                          | ASN        | Location | Condition |
-      | 56490000369490536160009081800400,56490000369490536190009081900600 | 0000006498 | REC003   | Y         |
+      | 56490000369590536160009081800400,56490000369590536190009081900600 | 0000006598 | REC003   | Y         |
      

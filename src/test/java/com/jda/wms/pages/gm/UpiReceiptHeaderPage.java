@@ -42,6 +42,14 @@ public class UpiReceiptHeaderPage {
 		return App.getClipboard();
 	}
 	
+	public String getReceiptDate() throws FindFailed {
+		Match mDueDate = screen.find("images/UpiReceiptHeader/ReceiptDate.png");
+		screen.click(mDueDate.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
 	public void fetchRecord(String upi) throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
 		Thread.sleep(1000);

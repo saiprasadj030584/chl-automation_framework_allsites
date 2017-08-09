@@ -100,6 +100,15 @@ public class Context {
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
+	private String receiptDate;
+	public String getReceiptDate() {
+		return receiptDate;
+	}
+
+	public void setReceiptDate(String receiptDate) {
+		this.receiptDate = receiptDate;
+	}
+
 	private String palletID;
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
