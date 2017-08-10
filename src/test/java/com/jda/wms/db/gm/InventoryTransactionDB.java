@@ -294,10 +294,26 @@ public class InventoryTransactionDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select update_qty from inventory_transaction where CODE = 'Inv UnLock' and reference_id = '"
+						+ tagID + "' and sku_id='"
+						+ skuID + "' DStamp like '" + dstamp + "%'");
 		ResultSet rs = stmt
 				.executeQuery("select update_qty from inventory_transaction where CODE = 'Inv UnLock' and reference_id = '"
 						+ tagID + "' and sku_id='"
-						+ skuID + "' DStamp like '" + dstamp + "%'");
+						+ skuID + "' and DStamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getTagID(String pallet, String code, String dstamp) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		
+		ResultSet rs = stmt
+				.executeQuery("select tag_id from inventory_transaction where CODE = 'Adjustment' and pallet_id= '"
+						+ pallet + "' and DStamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -322,8 +338,34 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where tag_id='" + tagId
+		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where reference_id='" + tagId
 				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getReasonCodeUnlocked(String palletId,String tagId, String code,String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where pallet_id='" + palletId
+				+ "' and code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getLockStatus(String tagId, String code,String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory_transaction where reference_id='" + tagId
+				+ "' and code='" + code + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -350,6 +392,20 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where tag_id='" + tagId
 				+ "' and code='" + code + "' and lock_code='" + lockCode + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getUploadedValueUnlocked(String palletId,String tagId, String code, String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+System.out.println("select uploaded from inventory_transaction where tag_id='" + tagId
+				+ "' and code='" + code + "' and dstamp like '" + dstamp + "%'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where pallet_id='" + palletId
+				+ "' and code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}

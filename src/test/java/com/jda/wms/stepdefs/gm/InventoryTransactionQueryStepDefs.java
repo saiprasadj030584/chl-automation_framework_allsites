@@ -1,9 +1,11 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -70,16 +72,50 @@ public class InventoryTransactionQueryStepDefs {
 	}
 	
 	
+	@When("^the inventory is unlocked and the return stock is over received$")
+	public void the_inventory_is_unlocked_and_the_return_stock_is_over_received()
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+ArrayList<String> failureList = new ArrayList<String>();
+
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Adjustment");
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterUpdateQuantity(String.valueOf(context.getQtyOnHand()));
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		jDAFooter.clickExecuteButton();
+		if (!inventoryTransactionQueryPage.isNoRecords()) {
+			failureList.add("No Records available for "+context.getUpiId()+"in adjustment");
+			
+		}
+		
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		context.setReasonCode(inventoryTransactionQueryPage.getReasonCode());
+		
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		verification.verifyData("Quantity not over received",String.valueOf(context.getQtyOnHand()),
+				inventoryTransactionDB.getUpdateQtyUnlocked(context.getSkuId(),context.getUpiId(),date),
+				failureList);
+		verification.verifyData("Inventory not unlocked","UnLocked",
+				inventoryTransactionDB.getLockStatus(context.getUpiId(),"Inv UnLock",date),
+				failureList);
+		verification.verifyData("Inventory lock code mismatch after adjustment","OVERHUMOV",
+				inventoryTransactionDB.getReasonCode(context.getUpiId(),"Adjustment","DMGD", date),
+				failureList);
+		Assert.assertTrue("Reason code and inventory lock is not as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+}
+
+	
 	
 		
-		@Then("^the goods receipt should be generated for all received stock in inventory transaction$")
-		public void the_goods_receipt_should_be_generated_for_all_received_stock_in_inventory_transaction() throws Throwable {
+		@Then("^the goods receipt should be generated for the multiple stock received in inventory transaction$")
+		public void the_goods_receipt_should_be_generated_for_the_multiple_stock_received_in_inventory_transaction() throws Throwable {
 			ArrayList<String> failureList = new ArrayList<String>();
-			context.setLocation("REC001");
 			poMap = context.getPOMap();
 			upiMap = context.getUPIMap();
 			String date = DateUtils.getCurrentSystemDateInDBFormat();
-			System.out.println("LOCC"+context.getlocationID());
 			for(int j=0;j<context.getPreAdviceList().size();j++)
 			{
 				context.setPreAdviceId(context.getPreAdviceList().get(j));
@@ -191,6 +227,23 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.getReasonCode();
 
 	}
+	
+	@When("^I choose the code as \"([^\"]*)\" and search the sku id and tag id$")
+	public void i_choose_the_code_as_and_search_the_sku_id_and_tag_id(String code) throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterUpdateQuantity(String.valueOf(context.getQtyOnHand()));
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		context.setReasonCode(inventoryTransactionQueryPage.getReasonCode());
+		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
+		context.setUploaded(inventoryTransactionQueryPage.getUploaded());
+		
+
+	}
 
 	@Then("^the condition should be updated$")
 	public void the_condition_should_be_updated() throws Throwable {
@@ -239,8 +292,29 @@ public class InventoryTransactionQueryStepDefs {
 
 	}
 	
-	@When("^the inventory is updated with locked status$")
-	public void the_inventory_is_updated_with_locked_status() throws Throwable {
+	@Then("^the reason code and uploaded should be updated$")
+	public void the_reason_code_and_uploaded_should_be_updated() throws Throwable {
+		
+		ArrayList<String> failureList = new ArrayList<String>();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
+		System.out.println(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
+		System.out.println(inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
+		if(!(context.getUploaded().equalsIgnoreCase("Y")))
+		{
+				failureList.add("Uploaded field not updated as expected "+context.getUpiId());
+		}
+		
+		//check reason code TODO
+		verification.verifyData("Reason code not updated as expected","NADVHUMOV",
+				inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date),
+				failureList);
+		Assert.assertTrue("Reason code and inventory lock is not as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@When("^the inventory transaction is updated with locked status$")
+	public void the_inventory_transaction_is_updated_with_locked_status() throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		Thread.sleep(2000);
 		ArrayList failureList = new ArrayList();
@@ -254,6 +328,10 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.add("ITL Lock code does not match for Quantity number "+l);
 			}
 		}
+		//TODO
+		Assert.assertTrue(
+				"ITL is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 	
 	
@@ -270,9 +348,11 @@ public class InventoryTransactionQueryStepDefs {
 				failureList.add("ITL Lock code does not match for Quantity number "+l);
 			}
 		}
-		Assert.assertEquals("ITL Records received mismatch with total qty",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(),"Inv Lock"));
+		if (context.getRcvQtyDue()==inventoryTransactionDB.getReceiptCount(context.getUpiId(),"Inv Lock")){
+			failureList.add("ITL Records received mismatch with total qty");
+		}
 		Assert.assertTrue(
-				"ITL Lock codes are mismatching. [" + Arrays.asList(failureList.toArray()) + "].",
+				"ITL is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
 	
@@ -285,7 +365,6 @@ public class InventoryTransactionQueryStepDefs {
 		String lockCode=inventoryTransactionDB.getLockCode(context.getUpiId(),"Inv Lock");
 		context.setLockCode(lockCode);
 		Assert.assertTrue("Lock code not displayed as expected",inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
-		
 	}
 	
 	@When("^the inventory transaction should be updated with reversed receipt tag$")
@@ -313,14 +392,15 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
 	
-	@When("^I query with sku and reason code$")
-	public void i_query_with_sku_and_reason_code() throws Throwable {
+	@When("^I search with sku and reason code$")
+	public void i_search_with_sku_and_reason_code() throws Throwable {
 		jDAFooter.clickQueryButton();
 		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.enterReasonCode("UPCOVERREC");
 		jDAFooter.clickExecuteButton();
+		Assert.assertTrue("Records are not as expected", inventoryTransactionQueryPage.isNoRecords());
 	}
 	
 	@When("^I check the inventory for transaction update$")

@@ -14,7 +14,7 @@ public class InventoryTransactionQueryPage {
 	
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-		Match mtagId = screen.find("images/InventoryTransactionQuery/TagIDs.png");
+		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}
@@ -539,7 +539,7 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterSkuId(String skuId) throws FindFailed {
-		Match mskuId = screen.find("images/InventoryTransactionQuery/General/skuid.png");
+		Match mskuId = screen.find("images/InventoryTransactionQuery/General/SkuId.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(skuId);
 	}

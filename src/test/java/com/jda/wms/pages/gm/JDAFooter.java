@@ -71,6 +71,12 @@ public class JDAFooter {
 		screen.type(Key.F7);
 		Thread.sleep(3000);
 	}
+	
+	public void navigateToNextScreen() throws FindFailed, InterruptedException {
+		screen.type("x", Key.CTRL);
+		screen.type(Key.NUM4);
+		Thread.sleep(2000);
+	}
 
 	public void clickDoneButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F12);

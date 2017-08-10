@@ -79,6 +79,7 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 	}
 	
+	//working for stock adjustment
 	public void enterSku(String skuId) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Search/General/SkuId.png", timeoutInSec);
 		screen.click("images/StockAdjustment/Search/General/SkuId.png");
@@ -151,8 +152,22 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 	}
 	
+	public void enterPalletId(String pallet) throws FindFailed, InterruptedException {
+		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletId.png");
+		screen.click(mpallet.getCenter().offset(70, 0));
+		screen.type(pallet);
+		Thread.sleep(1000);
+	}
+	
+	public void enterPalletType(String palletType) throws FindFailed, InterruptedException {
+		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
+		screen.click(mpallet.getCenter().offset(70, 0));
+		screen.type(palletType);
+		Thread.sleep(1000);
+	}
+	
 	public void enterReceiptId(String pallet) throws FindFailed, InterruptedException {
-		Match mpallet = screen.find("images/StockAdjustment/Search/ReceiptId.png");
+		Match mpallet = screen.find("images/StockAdjustment/Search/Miscellaneous/ReceiptId.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(pallet);
 		Thread.sleep(1000);

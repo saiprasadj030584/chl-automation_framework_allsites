@@ -8,6 +8,16 @@ import java.util.Map;
 public class Context {
 	private String preAdviceId;
 	private String skuId;
+	private String uploaded;
+	
+	public String getUploaded() {
+		return uploaded;
+	}
+
+	public void setUploaded(String uploaded) {
+		this.uploaded = uploaded;
+	}
+
 	private String productGroup;
 	private String cewarehousetype;
 	private String allocationGroup;

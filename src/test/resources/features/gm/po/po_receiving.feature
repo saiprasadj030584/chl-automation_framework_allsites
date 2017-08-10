@@ -74,8 +74,8 @@ Feature: Purchase order receiving
     And the multiple PO with multiple upi should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header list and po to be linked with upi line
     When I receive all skus for the multiple purchase order with multiple upi at location "<Location>"
-    And the goods receipt should be generated for all received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
+    And the goods receipt should be generated for the multiple stock received in inventory transaction
+    Then the po status should be displayed as "Complete" for all the po
 
     Examples: 
       | PreAdviceID           | PalletId                                  | ASN        | Location |

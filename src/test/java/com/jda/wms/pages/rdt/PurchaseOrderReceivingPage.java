@@ -177,11 +177,11 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
 		while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
-			System.out.println("1111111");
+			System.out.println("Inside loop");
 			puttyFunctionsPage.pressEnter();
 		}
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
-			System.out.println("1jdfhdjk1");
+			System.out.println("Inside IF");
 			return true;
 		}
 		return false;
@@ -263,11 +263,8 @@ public class PurchaseOrderReceivingPage {
 	
 	public String getPutawayGroup() throws FindFailed, InterruptedException {
 		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
-		//screen.click(putawayGroup.getCenter().offset(50, 0));
 		screen.click(putawayGroup.below(5));
 		screen.doubleClick(putawayGroup.below(1));
-		//screen.doubleClick(putawayGroup.getCenter().offset(50, 0));
-		//screen.doubleClick();
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
