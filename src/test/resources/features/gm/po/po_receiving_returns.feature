@@ -45,13 +45,15 @@ Feature: Purchase order receiving
   @receiving_returns_qty_singles_verfication
   Scenario Outline: Returns receiving verification for number of singles per UPC
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
     And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850008386250077010083862500300 | 0000838625 | REC003   | Y         |
+      
+      | 58850001251140077010012511400300 | 0000125114 | REC003   | Y         |
 
   @verification_movement_label_field_blind_receiving
   Scenario Outline: Returns receiving verification of movement label screen
@@ -72,7 +74,6 @@ Feature: Purchase order receiving
     When I navigate to UPI Management screen
     And I search with ASN in UPI Management screen
     Then the due date and receipt date should be displayed for the ASN
-   
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
@@ -101,4 +102,3 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                                                          | ASN        | Location | Condition |
       | 56490000359590536160009081800200,56490000369590536190009081900600 | 0000006298 | REC003   | Y         |
-     

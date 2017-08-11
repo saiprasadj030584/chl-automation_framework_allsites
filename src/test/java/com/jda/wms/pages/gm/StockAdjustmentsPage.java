@@ -158,6 +158,12 @@ public class StockAdjustmentsPage {
 		screen.type(pallet);
 		Thread.sleep(1000);
 	}
+	public void enterContainerId(String pallet) throws FindFailed, InterruptedException {
+		Match mpallet = screen.find("images/StockAdjustment/CreateModify/ContainerId.png");
+		screen.click(mpallet.getCenter().offset(70, 0));
+		screen.type(pallet);
+		Thread.sleep(1000);
+	}
 	
 	public void enterPalletType(String palletType) throws FindFailed, InterruptedException {
 		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");

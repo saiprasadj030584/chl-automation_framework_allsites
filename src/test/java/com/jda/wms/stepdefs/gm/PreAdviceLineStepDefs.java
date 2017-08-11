@@ -275,7 +275,13 @@ public class PreAdviceLineStepDefs {
 				UPIMap.put(context.getSkuId(),lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
-		}
+			
+			
+			Assert.assertTrue(
+					"PO & UPI line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+					failureList.isEmpty());
+	}
+		
 	
 	@Given("^the multiple upi should have sku, quantity due details$")
 	public void the_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {

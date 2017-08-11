@@ -310,6 +310,8 @@ public class InventoryTransactionDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select tag_id from inventory_transaction where CODE = 'Adjustment' and pallet_id= '"
+				+ pallet + "' and DStamp like '" + dstamp + "%'");
 		
 		ResultSet rs = stmt
 				.executeQuery("select tag_id from inventory_transaction where CODE = 'Adjustment' and pallet_id= '"

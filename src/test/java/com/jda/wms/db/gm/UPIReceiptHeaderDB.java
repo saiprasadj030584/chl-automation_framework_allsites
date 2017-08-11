@@ -24,6 +24,7 @@ public class UPIReceiptHeaderDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		ResultSet rs = stmt
 				.executeQuery("Select status from upi_receipt_header where pallet_id ='"+upiId+"'");
 		rs.next();

@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
-import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
@@ -24,6 +23,7 @@ import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.stepdefs.gm.DeliveryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryQueryStepDefs;
 import com.jda.wms.stepdefs.gm.InventoryTransactionQueryStepDefs;
+import com.jda.wms.stepdefs.gm.JDALoginStepDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceLineStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptHeaderStepDefs;
@@ -60,6 +60,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private DeliveryDB deliveryDB;
 	private PuttyFunctionsPage puttyFunctionsPage;
+	private JDALoginStepDefs jDALoginStepDefs;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -68,7 +69,7 @@ public class PurchaseOrderReceivingStepDefs {
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter,
-			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,PreAdviceHeaderDB preAdviceHeaderDB,DeliveryDB deliveryDB,PuttyFunctionsPage puttyFunctionsPage) {
+			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,PreAdviceHeaderDB preAdviceHeaderDB,DeliveryDB deliveryDB,PuttyFunctionsPage puttyFunctionsPage,JDALoginStepDefs jDALoginStepDefs) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -87,6 +88,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
 		this.deliveryDB=deliveryDB;
 		this.puttyFunctionsPage=puttyFunctionsPage;
+		this.jDALoginStepDefs = jDALoginStepDefs;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -647,7 +649,12 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter details and perform blind receive without lockcode$")
 	public void i_enter_details_and_perform_blind_receive_without_lockcode() throws Throwable {
-
+		
+for(int j=0;j<context.getNoOfLines();j++)
+{
+	context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+	context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+	context.setRcvQtyDue(Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
 		for (int i = 0; i < context.getRcvQtyDue(); i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
@@ -669,6 +676,7 @@ public class PurchaseOrderReceivingStepDefs {
 						purchaseOrderReceivingPage.checkNoOfSingles());
 			}
 		}
+}
 	}
 	
 		
@@ -1017,7 +1025,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
-		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		//upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
 		context.setNoOfLines(numLines);
 	}
@@ -1026,12 +1034,13 @@ for(int k=0;k<context.getUpiList().size();k++)
 	public void the_UPI_and_ASN_should_be_in_status_for_adjustment(String upiId, String asnId, String status) throws Throwable {
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
-//		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
-//				status);
-		//the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
+				status);
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC_qty();
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
 		context.setNoOfLines(numLines);
+		jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 	
 	@Given("^the multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
@@ -1090,7 +1099,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 			throws Throwable {
 		context.setlocationID(location);
 		context.setPerfectCondition(condition);
-		upiReceiptLineStepDefs.fetch_Qty_Details();
+		//upiReceiptLineStepDefs.fetch_Qty_Details();
 		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}

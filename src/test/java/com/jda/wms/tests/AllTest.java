@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@stock_adjustment_returns_verify_reason_code_without_any_URRN_or_movement_label" })	
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@stock_adjustment_returns_verify_reason_code_and_has_movement_label" })	
 public class AllTest {
 }
 

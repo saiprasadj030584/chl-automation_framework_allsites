@@ -77,19 +77,19 @@ public class StockAdjustmentStepDefs {
 			throws FindFailed, InterruptedException {
 		context.setQtyOnHand(context.getRcvQtyDue());
 
-//		stockAdjustmentsPage.selectNewStock();
-//		jDAFooter.clickNextButton();
-//		Thread.sleep(2000);
-//		stockAdjustmentsPage.enterSkuId(context.getSkuId());
-//		jDAFooter.pressTab();
-//		stockAdjustmentsPage.enterLocation(location);
-//		stockAdjustmentsPage.enterSiteId("5885");
-//		stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
-//		jDAFooter.clickNextButton();
-//		jDAFooter.clickNextButton();
-//		stockAdjustmentsPage.enterPalletId(context.getUpiId());
-//		stockAdjustmentsPage.enterPalletType("PALLET");
-//		jDAFooter.clickNextButton();
+		stockAdjustmentsPage.selectNewStock();
+		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterLocation(location);
+		stockAdjustmentsPage.enterSiteId(siteId);
+		stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
+		jDAFooter.clickNextButton();
+		stockAdjustmentsPage.enterContainerId(context.getUpiId());
+		stockAdjustmentsPage.enterPalletId(context.getUpiId());
+		stockAdjustmentsPage.enterPalletType("PALLET");
+		jDAFooter.clickNextButton();
 	}
 
 
@@ -118,15 +118,25 @@ public class StockAdjustmentStepDefs {
 		case "SAMPLES":
 			reasonCodeToChoose = "SAMPLES";
 			break;
-		case "RMS-Non advised receipt without movement label":
-			reasonCodeToChoose = "RMS-Non advised receipt without movement label";
+		case "RMS - Unexpected receipt with movement label":
+			reasonCodeToChoose = "RMS - Unexpected receipt with movement label";
 			break;
+		case "RMS - Unexpected receipt without movement label":
+			reasonCodeToChoose = "RMS - Unexpected receipt without movement label";
+			break;
+		case "RMS  Non advised receipt with movement label":
+			reasonCodeToChoose = "RMS  Non advised receipt with movement label";
+			break;
+		case "RMS - Non advised receipt without movement label":
+			reasonCodeToChoose = "RMS - Non advised receipt without movement label";
+			break;
+			
 		}
 
-//		stockAdjustmentsPage.chooseReasonCode(reasonCodeToChoose);
-//		jDAFooter.clickDoneButton();
-//		jDAFooter.PressEnter();
-//		jDAFooter.PressEnter();
+		stockAdjustmentsPage.chooseReasonCode(reasonCodeToChoose);
+		jDAFooter.clickDoneButton();
+		jDAFooter.PressEnter();
+		jDAFooter.PressEnter();
 		context.setReasonCode(reasonCode);
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Adjustment", date));
@@ -149,6 +159,7 @@ public class StockAdjustmentStepDefs {
 		jDAFooter.deleteExistingContent();
 		stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()+5));
 		jDAFooter.clickNextButton();
+		context.setReasonCode(reasonCode);
 		stockAdjustmentsPage.enterReasonCode(reasonCode);
 		jDAFooter.clickDoneButton();
 	}

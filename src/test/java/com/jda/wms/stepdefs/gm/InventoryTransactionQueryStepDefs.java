@@ -87,7 +87,6 @@ ArrayList<String> failureList = new ArrayList<String>();
 		jDAFooter.clickExecuteButton();
 		if (!inventoryTransactionQueryPage.isNoRecords()) {
 			failureList.add("No Records available for "+context.getUpiId()+"in adjustment");
-			
 		}
 		
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
@@ -100,9 +99,18 @@ ArrayList<String> failureList = new ArrayList<String>();
 		verification.verifyData("Inventory not unlocked","UnLocked",
 				inventoryTransactionDB.getLockStatus(context.getUpiId(),"Inv UnLock",date),
 				failureList);
+		if(context.getReasonCode().equalsIgnoreCase("RMS - Over receipt with movement label"))
+		{
 		verification.verifyData("Inventory lock code mismatch after adjustment","OVERHUMOV",
 				inventoryTransactionDB.getReasonCode(context.getUpiId(),"Adjustment","DMGD", date),
 				failureList);
+		}
+		else if(context.getReasonCode().equalsIgnoreCase("RMS - Over receipt without movement label"))
+		{
+			verification.verifyData("Inventory lock code mismatch after adjustment","OVERHUNOMV",
+					inventoryTransactionDB.getReasonCode(context.getUpiId(),"Adjustment","DMGD", date),
+					failureList);
+		}
 		Assert.assertTrue("Reason code and inventory lock is not as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
@@ -300,15 +308,39 @@ ArrayList<String> failureList = new ArrayList<String>();
 		context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
 		System.out.println(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
 		System.out.println(inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date));
-		if(!(context.getUploaded().equalsIgnoreCase("Y")))
+//		if(!(context.getUploaded().equalsIgnoreCase("Y")))
+//		{
+//				failureList.add("Uploaded field not updated as expected "+context.getUpiId());
+//		}
+//		
+		if(context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt with movement label"))
 		{
-				failureList.add("Uploaded field not updated as expected "+context.getUpiId());
-		}
-		
-		//check reason code TODO
-		verification.verifyData("Reason code not updated as expected","NADVHUMOV",
+		verification.verifyData("Reason code not updated as expected","NADVMVNOHU",
 				inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date),
 				failureList);
+		}
+		
+		else if(context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt without movement label"))
+		{
+			verification.verifyData("Reason code not updated as expected","NANOHUNMV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date),
+					failureList);
+		}
+		
+		else if(context.getReasonCode().equalsIgnoreCase("RMS  Non advised receipt with movement label"))
+		{
+			verification.verifyData("Reason code not updated as expected","NADVHUMOV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date),
+					failureList);
+		}
+		
+		//
+		else if(context.getReasonCode().equalsIgnoreCase("RMS - Non advised receipt without movement label"))
+		{
+			verification.verifyData("Reason code not updated as expected","NADVHUNOMV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getUpiId(),context.getTagId(),"Adjustment",date),
+					failureList);
+		}
 		Assert.assertTrue("Reason code and inventory lock is not as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
