@@ -38,3 +38,14 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010003010 | PO050456000511235711 | PO00100601 | REC001   |
+      
+      @po_putaway_validate_mezz_shelving_putaway
+  Scenario Outline: Validate Mezz/Shelving putaway
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be normal received at "<Location>"
+    Then I do relocation before performing putaway
+     When I do normal putaway for all tags received
+    Then the inventory should be displayed for all putaway tags
+    And the goods receipt should be generated for putaway stock in inventory transaction
+    Examples: 
+      | PreAdviceID  | PalletId             | ASN        | Location |
+      | PO2010003010 | PO050456000511235711 | PO00100601 | REC001   |

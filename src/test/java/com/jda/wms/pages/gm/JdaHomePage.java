@@ -47,6 +47,21 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
+	
+	public void navigateToSystemAllocationPageViaMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/Operations.png", timeoutInSec);
+		screen.click("images/Menu/Operations.png");
+		Thread.sleep(1000);
+		screen.wait("images/Menu/Operations/Order.png", timeoutInSec);
+		screen.click("images/Menu/Operations/Order.png");
+		Thread.sleep(1000);
+		screen.wait("images/Menu/Operations/Order/Allocation.png", timeoutInSec);
+		screen.click("images/Menu/Operations/Order/Allocation.png");
+		Thread.sleep(1000);
+		screen.wait("images/Menu/Operations/Order/Allocation/SystemAllocation.png", timeoutInSec);
+		screen.click("images/Menu/Operations/Order/Allocation/SystemAllocation.png");
+		Thread.sleep(1000);
+	}
 
 	public void navigateToMannualClusteringPage() throws InterruptedException, FindFailed {
 		clickSearchIcon();

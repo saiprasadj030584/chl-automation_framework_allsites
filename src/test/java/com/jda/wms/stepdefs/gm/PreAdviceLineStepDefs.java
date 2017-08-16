@@ -215,6 +215,7 @@ public class PreAdviceLineStepDefs {
 					n++;
 					context.setSkuId((String) skuFromUPI.get(n - 1));
 					Map<String, String> lineItemsMap = new HashMap<String, String>();
+					lineItemsMap.put("SKU",context.getSkuId());
 					lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
 					lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
 					lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
@@ -320,20 +321,27 @@ public class PreAdviceLineStepDefs {
 				skuMap.put(context.getSkuId(), lineItemsMap);
 			}
 			MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
-		// To Validate Modularity,New Product Check for SKU
-//		String type = null;
-//		switch (context.getSKUType()) {
-//		case "Boxed":
-//			type = "B";
-//			break;
-//		case "Hanging":
-//			type = "H";
-//			break;
-//		}
-//		verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
-//		verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+			context.setMultipleUPIMap(MultipleUPIMap);
+			System.out.println(context.getMultipleUPIMap());
+		
+			// To Validate Modularity,New Product Check for SKU
+			for (int i=0;i<skuFromUPI.size();i++){
+				String type = null;
+				switch (context.getSKUType()) {
+				case "Boxed":
+					type = "B";
+					break;
+				case "Hanging":
+					type = "H";
+					break;
+				}
+				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+			}
 	}
-		context.setMultipleUPIMap(MultipleUPIMap);
+		Assert.assertTrue(
+				"PO & UPI line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 			
 

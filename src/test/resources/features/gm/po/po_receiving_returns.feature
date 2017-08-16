@@ -93,12 +93,14 @@ Feature: Purchase order receiving
 
   @receiving_returns_single_ASN_multiple_URRN
   Scenario Outline: Verify receiving for single ASN holds many URRN
-    Given the multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    Given the multiple UPI "<PalletId>" of type "Boxed" and ASN "<ASN>" should be in "Released" status
     And the multiple upi should have sku, quantity due details
     And I receive all skus of multiple upi for the returns order at "<Location>" with perfect condition "<Condition>"
     When I navigate to inventory transaction query
-    Then the inventory transaction should be updated
+    Then the inventory transaction should be updated for multiple upi
 
     Examples: 
       | PalletId                                                          | ASN        | Location | Condition |
-      | 56490000359590536160009081800200,56490000369590536190009081900600 | 0000006298 | REC003   | Y         |
+     # | 56490000359590536160009081800200,56490000369590536190009081900600 | 0000006298 | REC003   | Y         | in wt
+     | 58850008387380077010083874800300,58850008387380077010083875800300 | 0000818738 | REC003   | Y         |
+     #| 58850008387380077010083872800300,58850001251140077010012512400300 | 0000828738 | REC003   | Y         | second upi 2 nd line item sku partset

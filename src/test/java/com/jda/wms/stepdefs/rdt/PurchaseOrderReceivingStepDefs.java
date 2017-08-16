@@ -701,10 +701,6 @@ for(int k=0;k<context.getUpiList().size();k++)
 			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 			jdaFooter.pressTab();
-//			if (k == 0) {
-//				purchaseOrderReceivingPage.doConfigMovementLabel();
-//			}
-//			jdaFooter.clickUpdateButton();
 			jdaFooter.navigateToNextScreen();
 			purchaseOrderReceivingPage.enterSupplierId(context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SUPPLIER ID"));
 			jdaFooter.PressEnter();
@@ -905,6 +901,8 @@ for(int k=0;k<context.getUpiList().size();k++)
 			urn = "FA" + Utilities.getFourDigitRandomNumber();
 		} else if (rcvLockSplit[0].contains("REWORK")) {
 			urn = "RW" + Utilities.getFourDigitRandomNumber();
+		}else if (rcvLockSplit[0].contains("MEZF2Z01")) {
+			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 		}else
 		{
 			urn=context.getUpiId();
@@ -1017,6 +1015,24 @@ for(int k=0;k<context.getUpiList().size();k++)
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
+	
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be normal received at \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_normal_received_at(String preAdviceId, String type, String upiId,
+			String asnId, String location) throws Throwable {
+		context.setUpiId(upiId);
+		context.setPreAdviceId(preAdviceId);
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+				preAdviceId, type, upiId, asnId, "Released");
+
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		context.setLocation(location);
+		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+	}
 
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
 	public void the_UPI_and_ASN_should_be_in_status(String upiId, String asnId, String status) throws Throwable {
@@ -1043,12 +1059,13 @@ for(int k=0;k<context.getUpiList().size();k++)
 		jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 	
-	@Given("^the multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
-	public void the_multiple_UPI_and_ASN_should_be_in_status(String upiId, String asnId, String status) throws Throwable {
+	@Given("^the multiple UPI \"([^\"]*)\" of type \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
+	public void the_multiple_UPI_of_type_and_ASN_should_be_in_status(String upiId,String skuType,String asnId, String status) throws Throwable {
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
-		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
-				status);
+		context.setSKUType(skuType);
+	preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
+			status);
 		the_multiple_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		Map<String,Integer> upiNumLines = new HashMap<String,Integer>();
 		int numLines=0;

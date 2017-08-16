@@ -55,17 +55,39 @@ public class UPIReceiptLineStepDefs {
 			
 		for (int i=1;i<=
 				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(m)));i++){
-			System.out.println("a1"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)));
-			System.out.println("a2"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i));
-			System.out.println("checkkkk"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU"));
 			String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU");
-			System.out.println("checookk"+context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("LINE ID"));
 			String poLineId=context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("LINE ID");
 			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(m),sku,context.getUpiList().get(j));
 			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
 		}
 		m++;
 		}
+		
+		
+//		hfbgj
+//		
+//		
+//			
+//		for (int i=1;i<=
+//				Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(m)));i++){
+//			String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU");
+//			String poLineId=context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("LINE ID");
+//			for (int j=0;j<context.getUpiList().size();j++)
+//			{
+//				context.setUpiId(context.getUpiList().get(j));
+//				for(int k = 0; k <context.getUpiNumLinesMap().get(context.getUpiList().get(j)); k++)
+//				{
+//				if(context.getMultipleUPIMap().get(context.getUpiList().get(j)).get("SKU").equals(sku))
+//				{
+//			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(m),sku,context.getUpiList().get(j));
+//			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
+//				}
+//				}
+//		}
+//		m++;
+//		}
+//		
+		
 		
 	}
 	

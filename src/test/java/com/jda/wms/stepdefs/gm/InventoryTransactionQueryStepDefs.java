@@ -424,6 +424,25 @@ ArrayList<String> failureList = new ArrayList<String>();
 		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
 	
+	@When("^the inventory transaction should be updated for multiple upi$")
+	public void the_inventory_transaction_should_be_updated_for_multiple_upi() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt";
+		System.out.println(context.getRcvQtyDue());
+		System.out.println(context.getRcvQtyDue());
+		inventoryTransactionDB.getReceiptCount(context.getUpiId(), code);
+		int receiptCount=0;
+		
+		for(int i=0;i<context.getUpiList().size();i++)
+		{
+			receiptCount+=inventoryTransactionDB.getReceiptCount(context.getUpiList().get(i), code);
+		}
+		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),receiptCount);
+	}
+	
 	@When("^I search with sku and reason code$")
 	public void i_search_with_sku_and_reason_code() throws Throwable {
 		jDAFooter.clickQueryButton();
