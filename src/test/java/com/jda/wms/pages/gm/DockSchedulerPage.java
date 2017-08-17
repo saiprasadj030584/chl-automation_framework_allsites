@@ -64,11 +64,10 @@ public class DockSchedulerPage {
 	}
 
 	public void selectSlot() throws FindFailed, InterruptedException {
-
-		for (int i = 0; i < 25; i++) {
-			jdaHomePage.scrollRight();
-		}
-
+//
+//		for (int i = 0; i < 25; i++) {
+//			jdaHomePage.scrollRight();
+//		}
 		screen.wait("images/DockScheduler/Schedule/Slot.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/Slot.png");
 		Thread.sleep(2000);

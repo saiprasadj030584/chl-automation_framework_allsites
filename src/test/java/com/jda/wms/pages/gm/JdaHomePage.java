@@ -472,6 +472,8 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	
+	
 	public void navigateToDockSchedulerBookingsPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);

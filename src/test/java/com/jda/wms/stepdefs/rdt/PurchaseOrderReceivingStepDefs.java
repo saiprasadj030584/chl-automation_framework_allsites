@@ -9,6 +9,7 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryTransactionDB;
+import com.jda.wms.db.gm.SkuDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -45,6 +46,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private InventoryQueryStepDefs inventoryQueryStepDefs;
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
 	private JDAFooter jdaFooter;
+	private SkuDB skuDb;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -52,7 +54,7 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, UPIReceiptLineStepDefs upiReceiptLineStepDefs,
 			Verification verification, PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
-			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter) {
+			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter, SkuDB skuDb) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -66,6 +68,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
 		this.jdaFooter = jdaFooter;
+		this.skuDb = skuDb;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -199,7 +202,7 @@ public class PurchaseOrderReceivingStepDefs {
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
 		i_enter_details_and_perform_blind_receive_footwear();
-		
+
 	}
 
 	@When("^I receive all skus for the purchase order with no asn at location \"([^\"]*)\"$")
@@ -294,20 +297,32 @@ public class PurchaseOrderReceivingStepDefs {
 	}
 
 	public void i_enter_details_and_perform_blind_receive_perfect_condition() throws Throwable {
-		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
-		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
-		jdaFooter.pressTab();
-		jdaFooter.pressTab();
-		purchaseOrderReceivingPage.enterQuantity("1");
-		jdaFooter.pressTab();
-		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 
-		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getlocationID());
-		jdaFooter.pressTab();
-		purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		Assert.assertTrue("Blind Receiving Unsuccessfull.", purchaseOrderReceivingPage.isBlindReceivingDoneperfectCondition());
+		String qtyString = skuDb.getQuantity(context.getSkuId(), context.getUpiId());
+
+		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+
+		for (int qtyTemp = 0; qtyTemp < Integer.valueOf(qtyString); qtyTemp++) {
+
+			if (qtyTemp > 0) {
+				jdaFooter.pressTab();
+
+			}
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity("1");
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getlocationID());
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Blind Receiving Unsuccessfull.",
+					purchaseOrderReceivingPage.isBlindReceivingDoneperfectCondition());
+		}
 	}
 
 	public void i_enter_details_and_perform_blind_receive_footwear() throws Throwable {
@@ -515,14 +530,37 @@ public class PurchaseOrderReceivingStepDefs {
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 	}
-	
+
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for multi sourced SKU$")
-	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String upiId, String asnId, String status) throws Throwable {
+	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String upiId, String asnId, String status)
+			throws Throwable {
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC_sourced_by_multi_supplier();
+
+	}
+
+	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for NON RMS$")
+	public void the_UPI_and_ASN_should_be_in_status_for_NON_RMS(String upiId, String asnId, String status)
+			throws Throwable {
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
+				status);
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line_for_non_rms();
+		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+	}
+
+	public void the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line_for_non_rms()
+			throws Throwable {
+		deliveryStepDefs.the_pallet_count_should_be_updated_as_in_delivery(1);
+		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
+		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
+		upiReceiptLineStepDefs.container_to_be_updated_with_upi_line();
+		upiReceiptLineStepDefs.urn_to_be_updated_with_upi_line();
+
 	}
 }

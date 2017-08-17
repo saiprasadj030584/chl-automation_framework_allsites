@@ -14,6 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
+import com.jda.wms.datasetup.gm.DbConnection;
+import com.jda.wms.pages.gm.JDAFooter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -25,6 +28,9 @@ public class Hooks {
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
+
+	private DataSetupRunner dataSetupRunner = new DataSetupRunner();;
+	public static DbConnection dataBase = new DbConnection();
 
 	@Inject
 	public Hooks(WebDriver webDriver, Context context) {
@@ -42,6 +48,20 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
+	}
+
+	 @Before
+	public void iniatateDataSetup() throws Exception {
+
+		logger.debug(
+				"###########################################################################################################################");
+		logger.debug("Iniatate Data Setup ");
+		logger.debug(
+				"###########################################################################################################################");
+
+		dataBase.getJdaAutomationDbDetails();
+		dataSetupRunner.getTagList();
+
 	}
 
 	@After()
@@ -93,8 +113,9 @@ public class Hooks {
 	@After
 	public void killBrowser(Scenario scenario) throws IOException {
 
-		Process killIE = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq %username%\"");
+		// Process killIE = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq
+		// %username%\"");
 		Process killChrome = Runtime.getRuntime()
 				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
 		Process killFirefox = Runtime.getRuntime()

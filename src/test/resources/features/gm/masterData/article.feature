@@ -11,7 +11,6 @@ Feature: Master Data ArticleSetup
     And Pack Config should be displayed for SKU in Pack Config Setting
 
     Examples: 
-      | SKU                              | TagVolume | TrackingLevel1 |
-      | 58850005786180077010057861800100 |         1 | EA             |
-      | 58850007286180077010072861800100 |         1 | SINGLES        |
-      | 58850006086180077010060861800100 |         1 | METRIC         |
+      | SKU         | TagVolume | TrackingLevel1 |
+      | 720024524001 |         1 | EA             |
+      | 722103014003 |         1 | SINGLES        |
