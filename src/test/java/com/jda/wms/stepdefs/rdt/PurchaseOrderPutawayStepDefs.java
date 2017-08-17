@@ -76,6 +76,27 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
+//	@When("^I choose normal putaway$")
+//	public void i_choose_normal_putaway() throws Throwable {
+//		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+//		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+//		i_select_normal_putaway();
+//		i_should_be_directed_to_putent_page();
+//	}
+	
+//	@When("^I select normal putaway$")
+//	public void i_select_normal_putaway() throws Throwable {
+//		purchaseOrderPutawayPage.selectPutawayMenu();
+//		purchaseOrderPutawayPage.selectNormalPutawayMenu();
+//	}
+	
+//	@Then("^I should be directed to putent page$")
+//	public void i_should_be_directed_to_putent_page() throws Throwable {
+//		Assert.assertTrue("Putaway Home page not displayed.", purchaseOrderPutawayPage.isPutEntDisplayed());
+//	}
+	
+	
 
 	@When("^I choose normal putaway$")
 	public void i_choose_normal_putaway() throws Throwable {

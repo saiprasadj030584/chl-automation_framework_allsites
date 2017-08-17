@@ -92,6 +92,16 @@ public class OrderLineDB {
 		}
 		return skuId;
 	}
+	
+	public String getsku(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SKU_ID from ORDER_LINE where order_id = '" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getPackConfig(String orderId, String skuID) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {

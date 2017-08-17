@@ -26,6 +26,7 @@ public class OrderHeaderDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderId + "'");
 		rs.next();
 		return rs.getString(1);
