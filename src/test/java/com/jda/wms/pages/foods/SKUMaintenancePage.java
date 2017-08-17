@@ -29,9 +29,7 @@ public class SKUMaintenancePage {
 
 	// TODO donot use this method and replace with enterSKUID() method
 	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {
-		//jDAFooter.clickQueryButton();
 		enterSKUID(skuId);
-		//jDAFooter.clickExecuteButton();
 	}
 
 	public void enterSKUID(String skuId) throws FindFailed, InterruptedException {

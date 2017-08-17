@@ -92,6 +92,35 @@ public class PurchaseOrderPutawayStepDefs {
 		i_should_be_directed_to_putent_page();
 	}
 
+	@When("^I choose normal putaway for returns$")
+	public void i_choose_normal_putaway_for_returns() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+
+		i_enter_urn_id_in_putaway();
+		jdaFooter.PressEnter();
+		jdaFooter.pressTab();
+		jdaFooter.pressTab();
+
+		// context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(),
+		// context.getLocation()));
+		String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
+		String toLocation = putawayLocation[0];
+		context.setToLocation(toLocation);
+		System.out.println("kk" + context.getToLocation());
+
+		// i_enter_to_location(context.getToLocation());
+		jdaFooter.PressEnter();
+		i_enter_the_check_string();
+		jdaFooter.PressEnter();
+		hooks.logoutPutty();
+
+	}
+
 	@When("^I should not be able to putaway locked PO$")
 	public void i_should_not_be_able_to_putaway_locked_po() throws Throwable {
 		i_choose_normal_putaway();
@@ -134,6 +163,22 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 	}
 
+	@When("^I proceed without entering IDT location$")
+	public void i_proceed_without_entering_IDT_location() throws InterruptedException, FindFailed {
+		// i_enter_pallet_id_in_putaway(context.getTagId());
+		i_enter_pallet_id_in_putaway("3884");
+
+		jdaFooter.PressEnter();
+		jdaFooter.pressTab();
+		for (int t = 0; t < 6; t++) {
+			puttyFunctionsPage.rightArrow();
+		}
+		for (int i = 0; i < 6; i++) {
+			jdaFooter.pressBackSpace();
+		}
+		jdaFooter.PressEnter();
+	}
+
 	@When("^the error message should be displayed as cannot find putaway location$")
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
 		Assert.assertTrue("Error message:Cannot find putaway location not displayed. ["
@@ -144,6 +189,48 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_proceed_without_entering_quantity() throws InterruptedException {
 		jdaFooter.pressTab();
 		for (int i = 0; i < 25; i++) {
+			jdaFooter.pressBackSpace();
+		}
+		jdaFooter.PressEnter();
+	}
+
+	@When("^I proceed without entering location for returns$")
+	public void i_proceed_without_entering_location_for_returns() throws Throwable {
+
+		i_enter_pallet_id_in_putaway(context.getTagId());
+
+		jdaFooter.PressEnter();
+		if (context.getSiteId().equalsIgnoreCase("5649")) {
+
+			for (int i = 0; i < 9; i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < 9; i++) {
+				jdaFooter.pressBackSpace();
+			}
+		} else if (context.getSiteId().equalsIgnoreCase("5885")) {
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			for (int i = 0; i < 9; i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < 9; i++) {
+				jdaFooter.pressBackSpace();
+			}
+		}
+
+		jdaFooter.PressEnter();
+	}
+
+	@When("^I proceed without entering IDT quantity$")
+	public void i_proceed_without_entering_IDT_quantity() throws InterruptedException, FindFailed {
+		i_enter_pallet_id_in_putaway(context.getTagId());
+
+		jdaFooter.PressEnter();
+		for (int i = 0; i < 9; i++) {
+			puttyFunctionsPage.rightArrow();
+		}
+		for (int i = 0; i < 9; i++) {
 			jdaFooter.pressBackSpace();
 		}
 		jdaFooter.PressEnter();
@@ -170,6 +257,23 @@ public class PurchaseOrderPutawayStepDefs {
 		jdaFooter.PressEnter();
 	}
 
+	@Then("^the warning message should be displayed$")
+	public void the_warning_message_should_be_displayed() throws Throwable {
+		Assert.assertTrue("warning message:Invalid location Exception not displayed as expected",
+				purchaseOrderPutawayPage.isLocationWarningrDisplayed());
+		puttyFunctionsPage.backscreen();
+		Thread.sleep(1000);
+
+	}
+
+	@Then("^the warning message should be displayed for returns$")
+	public void the_warning_message_should_be_displayed_for_returns() throws Throwable {
+		Assert.assertTrue("warning message:Invalid location Exception not displayed as expected",
+				purchaseOrderPutawayPage.isLocationWarningrDisplayed());
+		puttyFunctionsPage.backscreen();
+		Thread.sleep(1000);
+	}
+
 	@When("^I enter to location$")
 	public void i_enter_to_location(String location) throws InterruptedException {
 		purchaseOrderPutawayPage.enterLocation(location);
@@ -182,18 +286,22 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@Then("^I enter the check string$")
 	public void i_enter_the_check_string() throws Throwable {
-		Assert.assertTrue("Chk To Page not displayed to enter check string",
-				purchaseOrderPutawayPage.isChkToDisplayed());
+		// Assert.assertTrue("Chk To Page not displayed to enter check string",
+		// purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+		System.out.println("hiii" + context.getToLocation());
 	}
 
 	@When("^I enter urn id in putaway$")
 	public void i_enter_urn_id_in_putaway() throws FindFailed, InterruptedException {
-		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
+
+		purchaseOrderPutawayPage.enterURNID(context.getTagId());
+		purchaseOrderPutawayPage.enterURNID("761312");
 	}
 
 	@When("^I enter pallet id in putaway$")
 	public void i_enter_pallet_id_in_putaway(String palletId) throws FindFailed, InterruptedException {
+		System.out.println("hi " + palletId);
 		purchaseOrderPutawayPage.enterURNID(palletId);
 	}
 
@@ -226,17 +334,53 @@ public class PurchaseOrderPutawayStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			String quantity = String.valueOf(context.getRcvQtyDue() - 2);
 			Thread.sleep(2000);
-			purchaseOrderPutawayPage.enterURNID("10089671551008967155");
+			// purchaseOrderPutawayPage.enterURNID("00050453000258815129");
+
+			purchaseOrderPutawayPage.enterURNID(context.getTagId());
 			jdaFooter.PressEnter();
-			purchaseOrderPutawayPage.enterQuantity(quantity);
-			puttyFunctionsPage.rightArrow();
-			puttyFunctionsPage.rightArrow();
-			puttyFunctionsPage.rightArrow();
+			for (int j = 0; j < 10; j++) {
+				puttyFunctionsPage.rightArrow();
+			}
+
+			for (int k = 0; k < 10; k++) {
+				puttyFunctionsPage.backspace();
+
+			}
 			purchaseOrderPutawayPage.enterQuantity(quantity);
 			jdaFooter.PressEnter();
+			Assert.assertTrue("Location Full Message not displayed as expected",
+					purchaseOrderPutawayPage.isLocationFullDisplayed());
+
 			purchaseOrderPutawayPage.selectLocationFullMenu();
 			jdaFooter.PressEnter();
-			purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+
+			Assert.assertTrue("Searching for New putaway location not displayed as expected",
+					purchaseOrderPutawayPage.isSearchForNewPutawayDisplayed());
+			jdaFooter.PressEnter();
+
+			// To putaway location for first few quantity
+			context.setPutawayLocation1(inventoryDB.getPutawayLocation1(context.getSkuId()));
+			jdaFooter.pressTab();
+			purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
+			jdaFooter.PressEnter();
+
+			purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
+
+			jdaFooter.PressEnter();
+
+			// To putaway location for remaining quantity
+			context.setPutawayLocation2(inventoryDB.getPutawayLocation2(context.getSkuId()));
+			jdaFooter.pressTab();
+			purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
+			jdaFooter.PressEnter();
+
+			purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
+			System.out.println("hi");
+
+			jdaFooter.PressEnter();
+
+			Assert.assertTrue("PutAway completion is not as expected",
+					purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 		}
 		hooks.logoutPutty();
 	}
@@ -265,6 +409,7 @@ public class PurchaseOrderPutawayStepDefs {
 			jdaFooter.PressEnter();
 			puttyFunctionsPage.pressTab();
 			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
+			// context.setToLocation(purchaseOrderPutawayPage.getPutawayLocation());
 			i_enter_to_location(context.getToLocation());
 			i_enter_the_check_string();
 			// purchaseOrderPutawayPage.enterLocation(location);

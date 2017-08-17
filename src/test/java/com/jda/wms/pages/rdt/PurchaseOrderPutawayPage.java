@@ -77,17 +77,14 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void enterCheckString(String chkString) throws InterruptedException {
-		Thread.sleep(3000);
 		screen.type(chkString);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 
 	public void enterLocation(String location) throws InterruptedException {
 		// screen.type(Key.TAB);
 		screen.type(location);
-		screen.type(Key.ENTER);
+
 		Thread.sleep(3000);
 	}
 
@@ -108,9 +105,6 @@ public class PurchaseOrderPutawayPage {
 	public void enterURNID(String palletId) throws InterruptedException {
 		screen.type(palletId);
 		Thread.sleep(2000);
-		// puttyFunctionsPage.pressEnter();
-		// Thread.sleep(4000);
-		// puttyFunctionsPage.pressEnter();
 	}
 
 	public boolean isPutCmpPageDisplayed() {
@@ -174,8 +168,6 @@ public class PurchaseOrderPutawayPage {
 	public void selectLocationFullMenu() throws InterruptedException {
 		screen.type("2");
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
 	}
 
 	public void selectOverride() throws InterruptedException {
@@ -183,5 +175,34 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
+	}
+
+	public boolean isLocationWarningrDisplayed() {
+		if (screen.exists("images/Putty/Putaway/LocationWarningMsg.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public String getPutawayLocation() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Putaway/ToLocation.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public boolean isLocationFullDisplayed() {
+		if (screen.exists("images/Putty/Putaway/LocationFull.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isSearchForNewPutawayDisplayed() {
+		if (screen.exists("images/Putty/Putaway/SearchForNewPutawayLocation.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

@@ -49,20 +49,33 @@ public class UPIReceiptLineStepDefs {
 		}
 	}
 
-	public void container_to_be_updated_with_upi_line() throws Throwable {
-		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
-	}
-
-	@Given("^I fetch supplier id UPC$")
-	public void i_fetch_supplier_id_UPC() throws Throwable {
-		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
-		context.setUPC(skuDb.getUPC(context.getSkuId()));
-		context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
-	}
-
 	@Given("^URN_to_be_updated_with_upi_line$")
 	public void urn_to_be_updated_with_upi_line() throws Throwable {
 		upiReceiptLineDB.updateContainerID(context.getUpiId());
+	}
+
+	public void fetchQtyDetails() throws Throwable {
+		int qtyDue = Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+		context.setRcvQtyDue(qtyDue);
+	}
+
+	@Given("^PO to be linked with upi line for multiple pallets$")
+	public void po_to_be_linked_with_upi_line_for_multiple_pallets() throws Throwable {
+		// Link PO ID and PO line DI with UPI for each line item
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+				String sku = poMap.get(i).get("SKU");
+				String poLineId = poMap.get(i).get("LINE ID");
+				upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(), sku, context.getUpiList().get(j));
+				upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiList().get(j));
+			}
+		}
+	}
+
+	public void container_to_be_updated_with_upi_line() throws Throwable {
+		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
 	}
 
 	public void fetch_Qty_Details() throws Throwable {
@@ -86,10 +99,13 @@ public class UPIReceiptLineStepDefs {
 			lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 			lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
 			lineItemsMap.put("UPC", "");
-			lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId(), context.getSkuId()));
+			lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId()));
 			UPIMap.put(context.getSkuId(), lineItemsMap);
 		}
 		context.setUPIMap(UPIMap);
+		System.out.println(context.getUPIMap());
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+		System.out.println("supplier" + context.getSupplierID());
 
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId((String) skuFromUPI.get(i - 1));
@@ -100,4 +116,13 @@ public class UPIReceiptLineStepDefs {
 				failureList.isEmpty());
 	}
 
+	@Given("^I fetch supplier id UPC$")
+	public void i_fetch_supplier_id_UPC() throws Throwable {
+		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
+		System.out.println("sku" + context.getSkuId());
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+		System.out.println("supplier" + context.getSupplierID());
+		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
+		System.out.println("upc" + context.getUPC());
+	}
 }

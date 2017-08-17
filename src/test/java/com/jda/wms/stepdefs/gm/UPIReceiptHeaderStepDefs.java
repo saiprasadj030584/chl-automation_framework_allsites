@@ -10,28 +10,55 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
+import com.jda.wms.db.gm.UPIReceiptLineDB;
+import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 public class UPIReceiptHeaderStepDefs {
 	private Context context;
 	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private DeliveryDB deliveryDB;
 	private Verification verification;
+	private UpiReceiptHeaderPage upiReceiptHeaderPage;
+	private UPIReceiptLineDB uPIReceiptLineDB;
 
 	@Inject
 	public UPIReceiptHeaderStepDefs(Context context, UPIReceiptHeaderDB upiReceiptHeaderDB, DeliveryDB deliveryDB,
-			Verification verification) {
+			Verification verification, UpiReceiptHeaderPage upiReceiptHeaderPage, UPIReceiptLineDB uPIReceiptLineDB) {
 		this.context = context;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.deliveryDB = deliveryDB;
 		this.verification = verification;
+		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
+		this.uPIReceiptLineDB = uPIReceiptLineDB;
 	}
 
-	@Given("^ASN to be linked with upi header$")
-	public void asn_to_be_linked_with_upi_header() throws Throwable {
+	@Given("^ASN and container to be linked with upi header$")
+	public void asn_and_container_to_be_linked_with_upi_header() throws Throwable {
 		upiReceiptHeaderDB.updateASN(context.getUpiId(), context.getAsnId());
+
+		ArrayList skuList = uPIReceiptLineDB.getSkuIdList(context.getUpiId());
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String sku = (String) skuList.get(i - 1);
+			uPIReceiptLineDB.updateContainerID(context.getUpiId(), sku);
+		}
+		uPIReceiptLineDB.updateContainerID(context.getUpiId());
+	}
+
+	@When("^i enter palletId$")
+	public void i_enter_palletId() throws Throwable {
+		upiReceiptHeaderPage.enterPallet(context.getPalletID());
+		Assert.assertTrue("Record not displayed as expected", upiReceiptHeaderPage.isNoRecordExist());
+	}
+
+	@Given("^ASN to be linked with upi header list$")
+	public void asn_to_be_linked_with_multiple_upi_header() throws Throwable {
+		for (int i = 0; i < context.getUpiList().size(); i++) {
+			upiReceiptHeaderDB.updateASN(context.getUpiList().get(i), context.getAsnId());
+		}
 	}
 
 	@Given("^SSSC_URN_to_be_updated_with_upi_header$")

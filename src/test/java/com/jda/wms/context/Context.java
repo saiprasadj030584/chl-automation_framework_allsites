@@ -51,6 +51,7 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
+	private ArrayList<String> upiList;
 	private String orderId;
 	private String customer;
 	private String listID;
@@ -59,6 +60,19 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	private String supplier;
+	private ArrayList packConfigList;
+	private String putawayLocation1;
+	private String putawayLocation2;
+
+	public ArrayList<String> getUpiList() {
+		return upiList;
+	}
+
+	public void setUpiList(ArrayList<String> upiList) {
+		this.upiList = upiList;
+	}
+
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -91,6 +105,7 @@ public class Context {
 	private String asnId;
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
+	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
@@ -108,9 +123,19 @@ public class Context {
 	private String condition;
 	private String reasonCode;
 	private String owner;
-	private String perfectCondition;
 	private String receiveType;
 	private ArrayList skuList;
+	private String Record;
+	private String perfectCondition;
+	private String partset;
+
+	public String getPartset() {
+		return partset;
+	}
+
+	public void setPartset(String partset) {
+		this.partset = partset;
+	}
 
 	public String getPerfectCondition() {
 		return perfectCondition;
@@ -381,7 +406,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; // setCaseRatioList
+		return caseRatiolist;
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -953,4 +978,51 @@ public class Context {
 		this.skuList = skuList;
 	}
 
+	public String getRecord() {
+		return Record;
+	}
+
+	public void setRecord(String record) {
+		Record = record;
+	}
+
+	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
+		return MultipleUPIMap;
+	}
+
+	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
+		MultipleUPIMap = multipleUPIMap;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
+	public ArrayList getPackConfigList() {
+		return packConfigList;
+	}
+
+	public void setPackConfigList(ArrayList packConfigList) {
+		this.packConfigList = packConfigList;
+	}
+
+	public String getPutawayLocation1() {
+		return putawayLocation1;
+	}
+
+	public void setPutawayLocation1(String putawayLocation1) {
+		this.putawayLocation1 = putawayLocation1;
+	}
+
+	public String getPutawayLocation2() {
+		return putawayLocation2;
+	}
+
+	public void setPutawayLocation2(String putawayLocation2) {
+		this.putawayLocation2 = putawayLocation2;
+	}
 }

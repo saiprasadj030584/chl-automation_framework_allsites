@@ -48,9 +48,22 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickNextButton();
 	}
 
+	@When("^I search the inventory for the sku$")
+	public void i_search_the_inventory_for_the_sku() throws Throwable {
+		inventoryUpdatePage.enterTagID(context.getTagId());
+		inventoryUpdatePage.enterSku(context.getSkuId());
+		jdafooter.clickNextButton();
+	}
+
 	@Then("^the tag details should be displayed$")
 	public void the_tag_details_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
+		jdafooter.clickNextButton();
+	}
+
+	@Then("^the sku details should be displayed$")
+	public void the_sku_details_should_be_displayed() throws Throwable {
+		Assert.assertTrue("sku Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
 		jdafooter.clickNextButton();
 	}
 
@@ -94,10 +107,18 @@ public class InventoryUpdateStepDefs {
 		context.setOwner(owner);
 	}
 
-	@Then("^I select the pack configuration type as \"([^\"]*)\"$")
-	public void i_select_the_pack_configuration_type_as(String packConfig) throws Throwable {
-		inventoryUpdatePage.enterPackConfig(packConfig);
+	@Then("^I update the pack config$")
+	public void i_update_the_pack_config() throws Throwable {
+		for (int i = 0; i < context.getPackConfigList().size(); i++) {
+			System.out.println("list " + context.getPackConfigList().size());
+			System.out.println("Inside loop " + context.getPackConfig());
+			if (!context.getPackConfig().equalsIgnoreCase((String) context.getPackConfigList().get(i))) {
+				context.setPackConfig((String) context.getPackConfigList().get(i));
+				break;
+			}
+		}
+		System.out.println("New " + context.getPackConfig());
+		inventoryUpdatePage.enterPackConfig(context.getPackConfig());
 		jdafooter.clickDoneButton();
-		// context.setOwner(packConfig);
 	}
 }

@@ -132,9 +132,10 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterPallet(String pallet) throws FindFailed, InterruptedException {
-		Match mpallet = screen.find("images/StockAdjustment/Search/PalletId.png");
+		Match mpallet = screen.find("images/StockAdjustment/Search/pallet.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(pallet);
+		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
 

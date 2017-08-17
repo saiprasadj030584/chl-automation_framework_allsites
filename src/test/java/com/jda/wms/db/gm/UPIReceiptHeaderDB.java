@@ -3,6 +3,7 @@ package com.jda.wms.db.gm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -22,7 +23,6 @@ public class UPIReceiptHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
@@ -36,6 +36,33 @@ public class UPIReceiptHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getNumberOfLines(ArrayList<String> upiList) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		int count = 0;
+		for (int i = 0; i < upiList.size(); i++) {
+			ResultSet rs = stmt.executeQuery(
+					"select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiList.get(i) + "'");
+			rs.next();
+			count += Integer.parseInt(rs.getString(1));
+		}
+		return Integer.toString(count);
+	}
+
+	public String getUserDefinedType7(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select USER_DEF_TYPE_7 from upi_receipt_header where pallet_id='" + upiId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -72,4 +99,27 @@ public class UPIReceiptHeaderDB {
 		return rs.getString(1);
 	}
 
+	public boolean isRecordExistsForPalletId(String upiId) {
+		boolean isRecordExists = false;
+		try {
+
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+
+					.executeQuery("Select pallet_id from upi_receipt_header where pallet_id ='" + upiId + "'");
+			rs.next();
+			if (rs.getString(1).equals(upiId)) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+
+	}
 }

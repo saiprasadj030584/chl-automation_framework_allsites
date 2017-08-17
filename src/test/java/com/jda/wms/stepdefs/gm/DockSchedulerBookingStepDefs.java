@@ -1,10 +1,8 @@
 package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.sikuli.script.Screen;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.BookingInDiary;
@@ -14,7 +12,6 @@ import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.Verification;
-
 import cucumber.api.java.en.Then;
 
 public class DockSchedulerBookingStepDefs {
@@ -24,8 +21,8 @@ public class DockSchedulerBookingStepDefs {
 	private BookingInDiary bookingInDiary;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private DockSchedulerPage dockSchedulerPage;
-	private DockSchedulerBookingsPage dockShedulerBookingPage;
 	private JdaHomePage jdaHomePage;
+	private DockSchedulerBookingsPage dockShedulerBookingPage;
 	private JDAFooter jdaFooter;
 
 	@Inject
@@ -41,7 +38,7 @@ public class DockSchedulerBookingStepDefs {
 		this.jdaFooter = jdaFooter;
 		this.dockShedulerBookingPage = dockShedulerBookingPage;
 	}
-
+	
 	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -49,7 +46,6 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.clickQueryButton();
 		dockShedulerBookingPage.enterBookingID(context.getBookingID());
 		jdaFooter.clickExecuteButton();
-		System.out.println(context.getTrailerNo());
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
@@ -73,5 +69,4 @@ public class DockSchedulerBookingStepDefs {
 		dockSchedulerPage.enterBookingId(context.getBookingID());
 		jdaFooter.PressEnter();
 	}
-
 }

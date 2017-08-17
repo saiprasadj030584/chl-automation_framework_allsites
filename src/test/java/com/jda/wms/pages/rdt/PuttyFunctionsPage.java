@@ -107,6 +107,11 @@ public class PuttyFunctionsPage {
 		Thread.sleep(2000);
 	}
 
+	public void backSpace() throws InterruptedException {
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(2000);
+	}
+
 	public void pressEnter() throws InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -138,6 +143,11 @@ public class PuttyFunctionsPage {
 
 	public void rightArrow() throws InterruptedException {
 		screen.type(Key.RIGHT);
+		Thread.sleep(2000);
+	}
+
+	public void backscreen() throws InterruptedException {
+		screen.type(Key.F12);
 		Thread.sleep(2000);
 	}
 }
