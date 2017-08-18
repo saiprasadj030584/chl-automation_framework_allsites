@@ -50,7 +50,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	 @Before
+	// @Before
 	public void iniatateDataSetup() throws Exception {
 
 		logger.debug(

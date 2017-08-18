@@ -64,8 +64,8 @@ Feature: Dock Scheduling
       | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |   5649 | Complete      |
       | PO2010002026 | PO000504560005112370 | PO00100529 | Hanging  |   5649 | In Progress   |
 
-  @move_booking_diff_time_sameday_FSV_PO @pre_receiving @complete
-  Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
+  @boxed_pre_receiving_fsv_po_move_booking_diff_time_sameday @pre_receiving @complete @boxed @fsv_po
+  Scenario Outline: Validate whether Booking can be moved to different date
     Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>" at site "<SiteId>"
     When I navigate to dock scheduler start page
     When I select view existing bookings
@@ -105,6 +105,90 @@ Feature: Dock Scheduling
     Examples: 
       | PreAdviceID  | DataType | SiteId | BookingStatus |
       | PO2010002039 | Hanging  |   5649 | Complete      |
+
+  @delete_booking_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I delete the booking
+    Then the booking details should be deleted in the dock scheduler booking
+
+    Examples: 
+      | UPIId                            | ASNId      | DataType | SiteId |
+      | 58850008387770077010083877700300 | 0000838777 | Hanging  |   5885 |
+
+  @move_booking_diff_time_sameday_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | UPIId                            | ASNId      | DataType | SiteId |
+      | 58850008388770077010083887700300 | 0000838877 | Hanging  |   5885 |
+
+  @change_status_of_booking_to_complete_returns_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the status of booking
+    Then the booking id details with updated status should be displayed on the page
+
+    Examples: 
+      | UPIId                            | ASNId      | DataType | SiteId |
+      | 58850008389770077010083897700300 | 0000838977 | Hanging  |   5885 |
+
+  @delete_booking_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I delete the booking
+    Then the booking details should be deleted in the dock scheduler booking
+
+    Examples: 
+      | UPIId               | ASNId   | DataType | SiteId |
+      | 3000000000000000017 | 1220072 | Hanging  |   5885 |
+
+  @move_booking_diff_time_sameday_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the booking time
+    Then the booking id details with updated time should be displayed on the page
+
+    Examples: 
+      | UPIId               | ASNId   | DataType | SiteId |
+      | 3000000000000000018 | 1220073 | Hanging  |   5885 |
+
+  @change_status_of_booking_to_complete_returns_NON_RMS
+  Scenario Outline: Validate whether ASN can be assigned using the Container ID - returns NON RMS
+    Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
+    When I navigate to dock scheduler start page
+    When I select view existing bookings
+    When I search the booking id
+    Then the booking id details should be displayed on the page
+    When I change the status of booking
+    Then the booking id details with updated status should be displayed on the page
+
+    Examples: 
+      | UPIId               | ASNId   | DataType | SiteId |
+      | 3000000000000000019 | 1220074 | Hanging  |   5885 |
 
   @move_booking_diff_date_Direct_PO
   Scenario Outline: Validate whether Booking can be moved to different date for Direct PO - Boxed
@@ -169,7 +253,6 @@ Feature: Dock Scheduling
       | 3000000000000980018 | 1229873 | Boxed    |   5885 |
 
   #| 3000000000000990018 | 1229973 | Boxed    |   5885 |
-  
   @change_status_of_booking_asn_FSV_PO @pre_receiving
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - FSV PO
     Given I have done the dock scheduler booking with the PO "<PreAdviceID>" of type "<DataType>" at site "<SiteId>"
@@ -187,7 +270,6 @@ Feature: Dock Scheduling
       #| PO2019802039 | Boxed    |   5885 | In Progress   |
       | PO2011102039 | Boxed    |   5885 | In Progress   |
 
-  
   @change_status_of_booking_asn_non_rms_returns @pre_receiving @in_review
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - Direct PO
     Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>" for NON RMS
@@ -201,9 +283,9 @@ Feature: Dock Scheduling
     Examples: 
       | UPIId               | ASNId   | DataType | SiteId | BookingStatus |
       # | 3000000000000000019 | 1220074 | Hanging  |   5885 |Complete      |
-      | 3000000000000980019 | 1229874 | Boxed  |   5885 | In Progress      |
-      #| 3000000000000990019 | 1229974 | Boxed    |   5885 | In Progress   |
+      | 3000000000000980019 | 1229874 | Boxed    |   5885 | In Progress   |
 
+  #| 3000000000000990019 | 1229974 | Boxed    |   5885 | In Progress   |
   @change_status_of_booking_asn_rms_returns @pre_receiving @in_review
   Scenario Outline: Validate whether ASN can be assigned using the Container ID - Direct PO
     Given I have done the dock scheduler booking with the UPI "<UPIId>", ASN "<ASNId>" of type "<DataType>" at site "<SiteId>"

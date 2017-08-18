@@ -20,8 +20,8 @@ Feature: Purchase order receiving and putaway
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010002006 | PO050456000511235615 | PO00100505 | REC001   |
-      #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |
-      
+
+  #| PO2010002007 | PO050456000511235616 | PO00100506 | REC001   |
   @po_receive_putaway_boxed @po @complete
   Scenario Outline: Receiving and Putaway process in JDA WMS for Hanging type
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details

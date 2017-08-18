@@ -11,7 +11,6 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.ReceiptReversalPage;
 
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ReceiptReversalStepDefs {

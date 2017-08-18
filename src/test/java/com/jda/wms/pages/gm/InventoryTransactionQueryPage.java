@@ -1,5 +1,4 @@
 package com.jda.wms.pages.gm;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -524,16 +523,6 @@ public class InventoryTransactionQueryPage {
 			return false;
 	}
 	
-	public boolean checkReceiptLockCode(String code,String lockcode)
-	{
-		if(code.equals(lockcode))
-		{
-			return true;
-		}
-		else
-			return false;
-	}
-
 	public String getCondition() throws FindFailed, InterruptedException {
 		Match status = screen.find("images/InventoryTransactionQuery/General/Condition.png");
 		screen.click(status.getCenter().offset(70, 0));
@@ -552,5 +541,15 @@ public class InventoryTransactionQueryPage {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(quantityUpdate);
+	}
+	
+	public boolean checkReceiptLockCode(String code,String lockcode)
+	{
+		if(code.equals(lockcode))
+		{
+			return true;
+		}
+		else
+			return false;
 	}
 }

@@ -37,6 +37,8 @@ public class PreReceivingStepDefs {
 				.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		Assert.assertNotNull("Supplier ID not displayed as expected", preAdviceHeaderDB.getSupplierId(preAdviceId));
 	}
+	
+	
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" details should be displayed$")
 	public void the_PO_of_type_details_should_be_displayed(String preAdviceId, String type) throws Throwable {

@@ -13,6 +13,7 @@ public class Verification {
 	@Inject
 	public Verification() {
 	}
+
 	public ArrayList<String> verifyData(String fieldName, String expectedResults, String actualResults,
 
 			ArrayList<String> failureList) {
@@ -29,6 +30,7 @@ public class Verification {
 		}
 		return failureList;
 	}
+
 	public ArrayList<String> verifyDataEempty(String fieldName, String expectedResults, String actualResults,
 			ArrayList<String> failureList) {
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
@@ -38,8 +40,7 @@ public class Verification {
 			}
 		} else {
 			if (expectedResults.contains(actualResults)) {
-				failureList.add(fieldName + " does match. Expected 'null' but was ["
-						+ actualResults + "]");
+				failureList.add(fieldName + " does match. Expected 'null' but was [" + actualResults + "]");
 			}
 		}
 		return failureList;
