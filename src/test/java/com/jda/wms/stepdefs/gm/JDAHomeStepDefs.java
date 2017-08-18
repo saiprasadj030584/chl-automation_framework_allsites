@@ -198,8 +198,18 @@ public class JDAHomeStepDefs {
 
 	}
 
-	@When("^I navigate to stock check list Generation page$")
-	public void i_navigate_to_stock_check_list_Generation_page() throws Throwable {
+	@When("^I navigate to stock check list generation page$")
+	public void i_navigate_to_stock_check_list_generation_page() throws Throwable {
 		jdaHomePage.navigateToStockCheckListGeneration();
+	}
+
+	@When("^I navigate to stock check query page$")
+	public void i_navigate_to_stock_check_query_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckTaskQueryPage();
+	}
+
+	@When("^I navigate to stock check list completion page$")
+	public void i_navigate_to_stock_check_list_completion_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckListCompletionPage();
 	}
 }

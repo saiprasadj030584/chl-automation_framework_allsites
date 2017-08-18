@@ -296,7 +296,7 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_enter_urn_id_in_putaway() throws FindFailed, InterruptedException {
 
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
-		purchaseOrderPutawayPage.enterURNID("761312");
+		// purchaseOrderPutawayPage.enterURNID("761312");
 	}
 
 	@When("^I enter pallet id in putaway$")

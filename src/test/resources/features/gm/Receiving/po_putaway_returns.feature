@@ -12,7 +12,7 @@ Feature: Purchase order Putaway
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition | SiteId |
-      | 58850004175450077210083862500366 | 0000765655 | REC003   | Y         |   5885 |
+      | 58850004164350077210083862500366 |0000765624| REC003   | Y         |   5885 |
       
       @returns_boxed_putaway_location_full @boxed @returns @boxed @putaway
   Scenario Outline:Validate Putaway Logic for receiving singles when locations full

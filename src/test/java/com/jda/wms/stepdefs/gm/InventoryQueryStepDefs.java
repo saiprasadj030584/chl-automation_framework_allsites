@@ -277,4 +277,15 @@ public class InventoryQueryStepDefs {
 		System.out.println(context.getPackConfig());
 		// jdaLoginPage.login();
 	}
+
+	@Then("^the inventory should be generated$")
+	public void the_inventory_should_be_generated() throws Throwable {
+		jdaLoginPage.login();
+		jDAFooter.clickQueryButton();
+		inventoryQueryPage.enterTagId(context.getTagId());
+		inventoryQueryPage.enterLocation(context.getLocation());
+		jDAFooter.clickExecuteButton();
+		inventoryQueryPage.getQtyOnHand();
+
+	}
 }

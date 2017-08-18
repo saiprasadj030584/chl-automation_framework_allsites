@@ -48,7 +48,6 @@ public class PurchaseOrderRelocateStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderRelocatePage.selectRelocateMenu();
 		purchaseOrderRelocatePage.selectExistingRelocateMenu();
-
 	}
 
 	@When("^I proceed with entering the palletid$")

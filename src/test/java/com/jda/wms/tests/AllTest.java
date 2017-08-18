@@ -6,9 +6,10 @@ import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
+
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:targ" + "et/cucumber-reports/cucumber.json" }, tags = { "   @idt_over_receiving_lockcod	" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_inventory_stock_check_positive" })
 
 public class AllTest {
 

@@ -9,6 +9,7 @@ import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.StockCheckListGenerationPage;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -33,17 +34,26 @@ public class StockCheckListGenerationStepDefs {
 		this.locationDB = locationDB;
 	}
 
-	@When("^I select mode of list generation as 'Generate by inventory'$")
-	public void i_select_mode_of_list_generation_as_Generate_by_inventory() throws Throwable {
+	@When("^I select 'Generate by inventory'$")
+	public void i_select_Generate_by_inventory() throws Throwable {
 		stockCheckListGenerationPage.selectGenerateByInventory();
 		Thread.sleep(1000);
 		jdaFooter.clickNextButton();
 	}
 
-	@When("^I enter the total quantity on miscelloneus tab$")
-	public void i_enter_the_total_quantity_as_on_miscelloneus_tab() throws Throwable {
+	@When("^I enter total quantity in miscelloneus tab$")
+	public void i_enter_total_quantity_in_miscelloneus_tab() throws Throwable {
+		String quantity = String.valueOf(Utilities.randIntBetween2Values(1, 100));
 		stockCheckListGenerationPage.clickMiscelloneousTab();
-		stockCheckListGenerationPage.enterquantity("2");
+		stockCheckListGenerationPage.enterquantity(quantity);
+		jdaFooter.clickNextButton();
+	}
+
+	@When("^I enter the tag ID as on inventory tab$")
+	public void i_enter_the_tag_ID_as_on_inventory_tab() throws Throwable {
+		context.setTagId(inventoryDB.getTagId());
+		// stockCheckListGenerationPage.enterTagId(context.getTagId());
+		stockCheckListGenerationPage.enterTagId("1169");
 		jdaFooter.clickNextButton();
 	}
 
@@ -92,5 +102,4 @@ public class StockCheckListGenerationStepDefs {
 				stockCheckListGenerationPage.isListIdPopupDisplayed());
 		Thread.sleep(1000);
 	}
-
 }

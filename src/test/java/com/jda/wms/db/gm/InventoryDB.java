@@ -725,4 +725,32 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getQtyOnHand(String listID, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getlocation(String listID, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
 }

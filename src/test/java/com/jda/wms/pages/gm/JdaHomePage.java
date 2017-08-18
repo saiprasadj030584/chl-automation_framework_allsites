@@ -586,4 +586,24 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+
+	public void navigateToStockCheckTaskQueryPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToStockCheckListCompletionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task list completion screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 }
