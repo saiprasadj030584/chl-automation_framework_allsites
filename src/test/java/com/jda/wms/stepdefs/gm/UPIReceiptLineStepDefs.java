@@ -35,6 +35,8 @@ public class UPIReceiptLineStepDefs {
 		//Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+		System.out.println(poMap);
+		System.out.println(upiMap);
 		for (int i=1;i<=
 				context.getNoOfLines();i++){
 			String sku = poMap.get(i).get("SKU");

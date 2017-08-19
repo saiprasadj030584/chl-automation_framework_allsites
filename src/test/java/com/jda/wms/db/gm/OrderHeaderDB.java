@@ -226,6 +226,39 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getOrderType(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getUserDefinedType4(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_4 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getDestination(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select customer_id from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getDeliveryByDateUserDefinedTab(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {

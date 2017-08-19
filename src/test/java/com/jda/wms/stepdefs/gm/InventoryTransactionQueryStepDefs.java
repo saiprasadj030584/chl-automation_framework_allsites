@@ -72,6 +72,38 @@ public class InventoryTransactionQueryStepDefs {
 	}
 	
 	
+
+	
+	@Then("^the ITL should be generated for putaway relocated stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_putaway_relocated_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			for (int m = 1; m <= 2; m++) {
+				context.setSkuId(poMap.get(i).get("SKU"));
+				if (m == 1) {
+					context.setToLocation(context.getPutawayLocation1());
+					context.setRcvQtyDue((context.getRcvQtyDue() - 2));
+				} else if (m == 2) {
+					context.setToLocation(context.getPutawayLocation2());
+					context.setRcvQtyDue(2);
+				}
+
+				String isITLExists = inventoryTransactionDB.isITLExistsForRelocatedPutaway(context.getSkuId(),
+						context.getUpiId(), date, "Putaway", context.getToLocation(), context.getRcvQtyDue());
+				// if (isITLExists == false) {
+			}
+		}
+
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	
 	@When("^the inventory is unlocked and the return stock is over received$")
 	public void the_inventory_is_unlocked_and_the_return_stock_is_over_received()
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
@@ -172,7 +204,8 @@ ArrayList<String> failureList = new ArrayList<String>();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),

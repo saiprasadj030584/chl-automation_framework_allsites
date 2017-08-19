@@ -29,6 +29,7 @@ public class LocationDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select check_string from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select check_string from location where location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);

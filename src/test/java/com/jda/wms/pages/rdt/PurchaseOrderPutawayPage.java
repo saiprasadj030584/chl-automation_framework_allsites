@@ -126,6 +126,14 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+	public String getToLocation() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Putaway/ToLocation.png");
+		screen.click(mStatus.getCenter().offset(50, 0));
+		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		String[] rcvLockSplit =App.getClipboard().split("_");
+		return rcvLockSplit[0];
+	}
 
 	public String getTagId() throws FindFailed, InterruptedException {
 		Match mTagId = screen.find("images/Putty/Putaway/TagId.png");

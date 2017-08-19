@@ -359,6 +359,23 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public boolean isSkuInSuspenseLocation(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
+		ResultSet rs = stmt.executeQuery("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
+		rs.next();
+		if(rs.getString(1)==null)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+
 
 	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

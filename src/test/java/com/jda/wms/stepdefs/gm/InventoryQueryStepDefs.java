@@ -48,8 +48,14 @@ public class InventoryQueryStepDefs {
 		multiplePOMap = context.getMultiplePOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			System.out.println(poMap.get(i).get("SKU"));
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getUpiId(),date), failureList);
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			//check
+			//verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getUpiId(),date), failureList);
+				
+			verification.verifyData("Location for SKU after receive"+context.getSkuId(), context.getLocation(), inventoryDB.getLocationAfterPOReceive(context.getSkuId(),context.getPreAdviceId(),date), failureList);
+			
 			verification.verifyData("Qty on Hand for SKU "+context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(),date), failureList);
 		}
 		Assert.assertTrue("Inventory details are not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].",failureList.isEmpty());

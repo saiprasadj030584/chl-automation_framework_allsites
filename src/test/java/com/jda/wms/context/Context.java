@@ -38,6 +38,48 @@ public class Context {
 	private String receiveType;
 	private String dueDate;
 	private ArrayList<String> skuFromUPI;
+	private ArrayList<String> skuFromOrder;
+	private String PutawayLocation1;
+	private String PutawayLocation2;
+	private String fromLocation;
+	
+	
+	
+	
+	
+
+	public String getFromLocation() {
+		return fromLocation;
+	}
+
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
+	}
+
+	public String getPutawayLocation1() {
+		return PutawayLocation1;
+	}
+
+	public void setPutawayLocation1(String putawayLocation1) {
+		PutawayLocation1 = putawayLocation1;
+	}
+
+	public String getPutawayLocation2() {
+		return PutawayLocation2;
+	}
+
+	public void setPutawayLocation2(String putawayLocation2) {
+		PutawayLocation2 = putawayLocation2;
+	}
+
+	public ArrayList<String> getSkuFromOrder() {
+		return skuFromOrder;
+	}
+
+	public void setSkuFromOrder(ArrayList<String> skuFromOrder) {
+		this.skuFromOrder = skuFromOrder;
+	}
+
 	public ArrayList<String> getSkuFromUPI() {
 		return skuFromUPI;
 	}

@@ -71,16 +71,6 @@ public class SystemAllocationStepsDefs {
 		this.orderLineDB=orderLineDB;
 		
 	}
-	@Given("^the order number \"([^\"]*)\" should be in \"([^\"]*)\" status$")
-	public void the_order_number_should_be_in_status(String orderNumber, String status) throws Throwable {
-		context.setStatus(status);
-		context.setOrderId(orderNumber);
-//		orderHeaderStepsDefs.the_order_id_should_be_in_status(orderNumber,
-//				status);
-		//jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-	}
-	
-	
 	
 	@Given("^I allocate the stocks$")
 	public void i_allocate_the_stocks() throws Throwable {
@@ -103,12 +93,11 @@ public class SystemAllocationStepsDefs {
 		systemAllocationPage.enterOrderID();
 		jdaFooter.clickExecuteButton();
 		ArrayList skuFromOrder = new ArrayList();
+		skuFromOrder=context.getSkuFromOrder();
 		verification.verifyData("Order Status", "Released", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-		for(int i=0;i<skuFromOrder.size();i++)
-		{
+		for(int i=0;i<skuFromOrder.size();i++){
 		if (orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i))!=null) {
 			failureList.add("Quantity Tasked updated " + (String) skuFromOrder.get(i));
-			//context.setFailureList(failureList);
 		}
 		}
 		Assert.assertTrue("Allocation of stock in suspense location is not as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
@@ -127,7 +116,7 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickExecuteButton();
 		
 		ArrayList skuFromOrder = new ArrayList();
-		skuFromOrder=orderLineDB.getskuList(context.getOrderId());
+		skuFromOrder=context.getSkuFromOrder();
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
 		for(int i=0;i<skuFromOrder.size();i++)
 		{

@@ -1,7 +1,10 @@
 package com.jda.wms.pages.rdt;
 
+import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
+
+import com.jda.wms.utils.Utilities;
 
 public class PurchaseOrderRelocatePage {
 	Screen screen = new Screen();
@@ -26,5 +29,47 @@ public class PurchaseOrderRelocatePage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
+	}
+	
+	public void enterLocation(String location) throws InterruptedException, FindFailed  {
+			screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+			screen.click("images/Putty/Receiving/Location.png");
+			screen.type(location);
+			Thread.sleep(1000);
+		}
+	
+	
+	public void enterUPC(String upc) throws InterruptedException, FindFailed {
+		screen.wait("images/Putty/Receiving/UPC.png", timeoutInSec);
+		screen.click("images/Putty/Receiving/UPC.png");
+		screen.type(upc);
+		Thread.sleep(1000);
+	}
+	
+
+	public void enterChks(String chk) throws InterruptedException, FindFailed {
+		
+		screen.type(chk);
+		Thread.sleep(1000);
+	}
+	
+	public boolean isRelPalCmpDisplayed() {
+		if (screen.exists("images/Putty/Relocation/RelPalCmp.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isChkToDisplayed() {
+		if (screen.exists("images/Putty/Relocation/ChkTo.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isRelEntDisplayed() {
+		if (screen.exists("images/Putty/Relocation/RelEnt.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

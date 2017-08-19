@@ -59,6 +59,7 @@ public class PreAdviceLineStepDefs {
 
 	@Given("^the PO should have sku, quantity due details$")
 	public void the_PO_should_have_sku_quantity_due_details() throws Throwable {
+		System.out.println("entered");
 		ArrayList failureList = new ArrayList();
 		ArrayList skuFromPO = new ArrayList();
 		ArrayList skuFromUPI = new ArrayList();
@@ -66,15 +67,9 @@ public class PreAdviceLineStepDefs {
 		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
 
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
+		context.setSkuFromPO(skuFromPO);
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
-
-		if (!skuFromPO.containsAll(skuFromUPI)) {
-			for (int i = 0; i < skuFromPO.size(); i++) {
-				if (!skuFromPO.get(i).equals(skuFromUPI.get(i))) {
-					failureList.add("SKU id " + skuFromPO.get(i) + " from PreAdvice does not match with SKU id "
-							+ skuFromUPI + " from UPI for line item " + i);
-				}
-			}
+		context.setSkuFromUPI(skuFromUPI);
 
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -85,6 +80,7 @@ public class PreAdviceLineStepDefs {
 				POMap.put(i, lineItemsMap);
 			}
 			context.setPOMap(POMap);
+			System.out.println(context.getPOMap());
 
 			// Add SKU details to UPI Map
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
@@ -93,10 +89,13 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
-				lineItemsMap.put("UPC", "");
+				String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+				lineItemsMap.put("SUPPLIER ID", supplierId);
+				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
 				UPIMap.put(context.getSkuId(),lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
+			System.out.println(context.getUPIMap());
 			
 			
 
@@ -113,7 +112,7 @@ public class PreAdviceLineStepDefs {
 			}
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
-		}
+		
 
 		Assert.assertTrue(
 				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",

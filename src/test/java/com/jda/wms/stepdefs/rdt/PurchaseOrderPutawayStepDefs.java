@@ -15,6 +15,7 @@ import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
+import com.jda.wms.pages.rdt.PurchaseOrderRelocatePage;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -30,11 +31,12 @@ public class PurchaseOrderPutawayStepDefs {
 	private LocationDB locationDB;
 	private Hooks hooks;
 	private JDAFooter jdaFooter;
+	private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter) {
+			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter,PurchaseOrderRelocatePage purchaseOrderRelocatePage) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -43,6 +45,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.locationDB = locationDB;
 		this.hooks = hooks;
 		this.jdaFooter = jdaFooter;
+		this.purchaseOrderRelocatePage=purchaseOrderRelocatePage;
 	}
 
 	@When("^I select normal putaway$")
@@ -112,9 +115,39 @@ public class PurchaseOrderPutawayStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_urn_id_in_putaway();
+			jdaFooter.PressEnter();
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed();
 			}
+			jdaFooter.PressEnter();
+		}
+	}
+	
+	@When("^I perform normal putaway after relocation$")
+	public void i_choose_normal_putaway_after_relocation() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_urn_id_in_putaway();
+			if (null == context.getLockCode()) {
+				the_tag_details_for_putaway_should_be_displayed();
+				
+			}
+			jdaFooter.PressEnter();
+			Assert.assertTrue("ChkTo page not displayed",
+					purchaseOrderRelocatePage.isChkToDisplayed());
+			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+			jdaFooter.PressEnter();
+			i_should_be_directed_to_putent_page();
+			
 		}
 	}
 
@@ -180,9 +213,10 @@ public class PurchaseOrderPutawayStepDefs {
 		ArrayList failureList = new ArrayList();
 		Assert.assertTrue("PutCmp page not displayed to enter To Location",
 				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
-		verification.verifyData("From Location", context.getLocation(), purchaseOrderPutawayPage.getFromLocation(),
+		verification.verifyData("From Location", context.getFromLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
 		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
+		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}

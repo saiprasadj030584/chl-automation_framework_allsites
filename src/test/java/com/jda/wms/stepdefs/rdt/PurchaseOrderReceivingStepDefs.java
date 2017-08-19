@@ -208,17 +208,19 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
-			the_tag_and_upc_details_should_be_displayed();
+			i_enter_urn_id(context.getUpiId());
+			jdaFooter.PressEnter();
+			//the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			if (context.getLockCode().equals(null)) {
-				i_enter_urn_id();
+			
+			if (context.getLockCode()==null) {
+			i_enter_urn_id();
 			} else {
 				i_enter_urn_id_for_locked_sku();
 			}
-
+			jdaFooter.PressEnter();
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
 				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);
@@ -226,6 +228,7 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
 
 	@When("^I receive all skus for the purchase order with multiple upi at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_with_multiple_upi_at_location(String location)
@@ -893,20 +896,28 @@ for(int k=0;k<context.getUpiList().size();k++)
 
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
+		System.out.println("entered 77777");
 		String urn = null;
 		String[] rcvLockSplit =purchaseOrderReceivingPage.getPutawayGroup().split("_");
+		System.out.println(rcvLockSplit[0]);
 		if (rcvLockSplit[0].contains("QA")) {
+			System.out.println("entered 7008");
 			urn = "QA" + Utilities.getFourDigitRandomNumber();
 		} else if (rcvLockSplit[0].contains("FIREWALL")) {
+			System.out.println("entered 7018");
 			urn = "FA" + Utilities.getFourDigitRandomNumber();
 		} else if (rcvLockSplit[0].contains("REWORK")) {
+			System.out.println("entered 7028");
 			urn = "RW" + Utilities.getFourDigitRandomNumber();
 		}else if (rcvLockSplit[0].contains("MEZF2Z01")) {
+			System.out.println("entered 77788");
 			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 		}else
 		{
+			System.out.println("entered 7078");
 			urn=context.getUpiId();
 		}
+		System.out.println("entered 7079");
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
 	}
@@ -938,33 +949,33 @@ for(int k=0;k<context.getUpiList().size();k++)
 
 	@When("^the tag and upc details should be displayed$")
 	public void the_tag_and_upc_details_should_be_displayed() throws FindFailed, InterruptedException {
-//		ArrayList failureList = new ArrayList();
-//		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
-//				purchaseOrderReceivingPage.isLocationDisplayed());
-//		String[] tagSplit = purchaseOrderReceivingPage.getTagId().split("_");
-//		String tagID = tagSplit[0];
-//
-//		verification.verifyData("Tag ID", context.getUpiId(), tagID, failureList);
-//
-//		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
-//		String packConfig = packConfigSplit[0];
-//		verification.verifyData("Pack Config", context.getPackConfig(), packConfig, failureList);
-//
-//		System.out.println(context.getSupplierID()+"????????"+purchaseOrderReceivingPage.getSupplierId());
-//		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
-//				failureList);
+		ArrayList failureList = new ArrayList();
+		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
+				purchaseOrderReceivingPage.isLocationDisplayed());
+		String[] tagSplit = purchaseOrderReceivingPage.getTagId().split("_");
+		String tagID = tagSplit[0];
+
+		verification.verifyData("Tag ID", context.getUpiId(), tagID, failureList);
+
+		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
+		String packConfig = packConfigSplit[0];
+		verification.verifyData("Pack Config", context.getPackConfig(), packConfig, failureList);
+
+		System.out.println(context.getSupplierID()+"????????"+purchaseOrderReceivingPage.getSupplierId());
+		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
+				failureList);
 
 		String[] qtySplit = purchaseOrderReceivingPage.getQtyToReceive().split("_");
 		String qtyToRcv = qtySplit[0];
 		
 		verification.verifyData("Qty to Receive", String.valueOf(context.getRcvQtyDue()), qtyToRcv, failureList);
 
-//		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
-//		String upc = upcSplit[0];
-//		context.setUPC(upc);
-//		Assert.assertTrue(
-//				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-//				failureList.isEmpty());
+		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
+		String upc = upcSplit[0];
+		context.setUPC(upc);
+		Assert.assertTrue(
+				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 
 	@When("^I enter the location$")
@@ -1033,6 +1044,9 @@ for(int k=0;k<context.getUpiList().size();k++)
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
+	
+	
+	
 
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
 	public void the_UPI_and_ASN_should_be_in_status(String upiId, String asnId, String status) throws Throwable {
