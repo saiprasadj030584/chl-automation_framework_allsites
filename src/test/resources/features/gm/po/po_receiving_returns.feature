@@ -1,11 +1,8 @@
 @purchase_order_receiving_returns
 Feature: Purchase order receiving
-<<<<<<< HEAD
-  As a warehouse user
-=======
-  As a warehouse user
->>>>>>> 84b75c3726b2745d9ecd4d7fc62a8c91d9dc90da
-  I want to receive the returned articles
+
+As a warehouse user
+I want to receive the returned articles
 
   @receiving_returns_footwear @po @complete
   Scenario Outline: Returns receiving for Footwear with lock code
@@ -15,13 +12,15 @@ Feature: Purchase order receiving
     Then the inventory transaction should be updated with lock code "<LockCode>"
 
     Examples: 
-<<<<<<< HEAD
-      | PalletId                         | ASN         | Location | Condition | LockCode   |
-      | 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
-      | 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
-      | 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
-      | 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
-
+      | PalletId                         | ASN         | Location | Condition | LockCode  |
+      | 58850006486180077010064861800200 | 00006486181 | REC003   | Y         | IMPERFECT |
+  #| 58850001231330077010012313300600 | 0000123133 | REC003   | Y         | IMPERFECT |
+  #| 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
+  #| 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
+  #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
+  #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
+  
+  
   @returns_receiving_footwear_digit_validation
   Scenario Outline: Returns receiving for Footwear - UPC Digit validation
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
@@ -48,14 +47,7 @@ Feature: Purchase order receiving
       #| 58850003566970077010035669700300 | 0000346978 | REC003   | Y         |
       #| 58850001166990077010011669900300 | 0000116998 | REC003   | N         |
       | 58850001366990077010013669900300 | 0000136998 | REC003   | N         |
-=======
-      | PalletId                         | ASN         | Location | Condition | LockCode  |
-      | 58850006486180077010064861800200 | 00006486181 | REC003   | Y         | IMPERFECT |
-  #| 58850001231330077010012313300600 | 0000123133 | REC003   | Y         | IMPERFECT |
-  #| 58850005786180077010057861800100 | 00005786181 | REC003   | Y         | IMPERFECT  |
-  #| 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
-  #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
-  #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
+
   
   
   @returns_receiving @returns @wipr
@@ -120,5 +112,3 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                         | ASN        | Location |
       | 95580085370650011050230212341238 | 0000838629 | REC003   |
->>>>>>> 84b75c3726b2745d9ecd4d7fc62a8c91d9dc90da
-      
