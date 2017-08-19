@@ -280,20 +280,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 	}
 
-	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\"$")
-	public void i_blind_receive_all_skus_for_the_purchase_order_atlocation(String location) throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		context.setLocation(location);
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-
-		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
-		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
-		i_receive_the_po_with_basic_and_blind_receiving();
-		i_should_be_directed_to_blind_entry_page();
-		i_enter_details_and_perform_blind_receive();
-		hooks.logoutPutty();
-	}
+	
 
 	@When("^I receive all skus for the purchase order with no asn at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_with_no_asn_at_location(String location) throws Throwable {
@@ -995,6 +982,7 @@ public class PurchaseOrderReceivingStepDefs {
 		i_enter_details_and_perform_blind_receive();
 		hooks.logoutPutty();
 	}
+		
 
 	@When("^I blind receive all normal skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_blind_receive_all_normal_skus_for_the_purchase_order_at_location(String location) throws Throwable {
@@ -1199,15 +1187,7 @@ public class PurchaseOrderReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,
-			String type, String upiId, String asnId, String status, String lockCode) throws Throwable {
-		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
-				preAdviceId, type, upiId, asnId, status);
-		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
-		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
-	}
+	
 
 	@Given("the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be locked with code \"([^\"]*)\" and received at location \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_locked_with_code_and_received_at_location(String preAdviceId,

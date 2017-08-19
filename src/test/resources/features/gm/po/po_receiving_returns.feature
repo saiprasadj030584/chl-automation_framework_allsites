@@ -1,8 +1,8 @@
 @purchase_order_receiving_returns
 Feature: Purchase order receiving
-
-As a warehouse user
-I want to receive the returned articles
+  
+  As a warehouse user
+  I want to receive the returned articles
 
   @receiving_returns_footwear @po @complete
   Scenario Outline: Returns receiving for Footwear with lock code
@@ -20,7 +20,6 @@ I want to receive the returned articles
   #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
   #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
   
-  
   @returns_receiving_footwear_digit_validation
   Scenario Outline: Returns receiving for Footwear - UPC Digit validation
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
@@ -34,12 +33,13 @@ I want to receive the returned articles
       #| 58850003166480077010031664800300 | 0000316418 | REC003   | N        |
       | 58850003166960077010031669600300 | 0000316158 | REC003   | Y         |
 
-  @returns_receiving_perfect_condition 
+  @returns_receiving_perfect_condition
   Scenario Outline: Do detail receiving process by providing input as URRN and unique UPC with multi supplier , followed by quantity should be defaulted as '1' and perfect condition as 'y' / 'N'
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for multi sourced SKU
-      When I perform receiving for all skus at "<Location>" with perfect condition "<Condition>"
-     When I navigate to inventory transaction query
+    When I perform receiving for all skus at "<Location>" with perfect condition "<Condition>"
+    When I navigate to inventory transaction query
     Then the inventory transaction should be updated for multi sourced SKU receipt
+
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
       #| 58850003166380077010031663800300 | 0000316318 | REC003   | Y         |
@@ -48,8 +48,6 @@ I want to receive the returned articles
       #| 58850001166990077010011669900300 | 0000116998 | REC003   | N         |
       | 58850001366990077010013669900300 | 0000136998 | REC003   | N         |
 
-  
-  
   @returns_receiving @returns @wipr
   Scenario Outline: Returns receiving process in JDA WMS for Boxed type upc with single supplier without lock code
     Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" for normal upc with perfect condition "<Condition>" and lockcode "<LockCode>"
@@ -75,7 +73,6 @@ I want to receive the returned articles
       #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
-      
 
   @receiving_returns_with_partset_and_lockcode
   Scenario Outline: Returns receiving for Part set with lock code
@@ -90,7 +87,6 @@ I want to receive the returned articles
   #| 58850006476470077010064764700400 | 0000647647 | REC003   | N         |       2 | DMGD     |
   #| 58850006376310077010063763100400 | 0000637631 | REC003   | Y         |       1 | IMPSET   |
   #| 58850006576270077010065762700400 | 0000657627 | REC003   | N         |       1 | IMPSET   |
-  
   @receiving_returns_qty_singles_verfication
   Scenario Outline: Returns receiving verification for number of singles per UPC
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status

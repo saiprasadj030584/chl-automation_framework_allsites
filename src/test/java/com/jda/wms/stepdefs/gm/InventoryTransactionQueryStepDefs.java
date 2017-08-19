@@ -216,16 +216,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 	}
-	
-//	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
-//	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
-//		Assert.assertFalse("No ITL for Inventory Lock", validate(lockcode));;
-//		jDAFooter.clickQueryButton();
-//		inventoryTransactionQueryPage.enterCode("Receipt");
-//		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-//		jDAFooter.clickExecuteButton();
-//	}
-	
+		
 	@When("^the inventory transaction should be updated for SKU with single supplier$")
 	public void the_inventory_transaction_should_be_updated_for_sku_with_single_supplier() throws Throwable {
 		ArrayList failureList = new ArrayList();
