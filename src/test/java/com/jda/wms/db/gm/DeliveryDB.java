@@ -10,12 +10,12 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class DeliveryDB {
-	
+
 	private Context context;
 	private Database database;
 
 	@Inject
-	public DeliveryDB(Context context,Database database) {
+	public DeliveryDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
 	}
@@ -25,8 +25,8 @@ public class DeliveryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("Select status from delivery where asn_id ='"+asnId+"'");
+		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
+
 		rs.next();
 		return rs.getString(1);
 	}
@@ -48,7 +48,7 @@ public class DeliveryDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("update delivery set pallet_count='"+numLines+"' where asn_id='"+asnId+"'");
+				.executeQuery("update delivery set pallet_count='" + numLines + "' where asn_id='" + asnId + "'");
 		context.getConnection().commit();
 	}
 

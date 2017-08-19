@@ -117,7 +117,7 @@ public class InventoryQueryStepDefs {
 		inventoryDB.getlocation(status);
 		context.setTagId(tagId);
 		context.setSkuId(skuId);
-		context.setlocationID(locationID);
+		context.setLocationID(locationID);
 
 	}
 

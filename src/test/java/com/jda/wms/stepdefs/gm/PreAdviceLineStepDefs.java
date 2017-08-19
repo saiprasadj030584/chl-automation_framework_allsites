@@ -82,7 +82,6 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
 				POMap.put(i, lineItemsMap);
 			}
-			
 			context.setPOMap(POMap);
 
 			// Add SKU details to UPI Map
@@ -93,7 +92,7 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("UPC", "");
-				UPIMap.put(context.getSkuId(),lineItemsMap);
+				UPIMap.put(context.getSkuId(), lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
 			
@@ -237,7 +236,6 @@ public class PreAdviceLineStepDefs {
 		i_click_on_general_tab();
 		Assert.assertEquals("Lock Code is not updated as expected", lockCode,
 				preAdviceLineDB.getLockCode(context.getPreAdviceId()));
-				
 	}
 
 	private String getUserDefinedType3(String lockCode) {

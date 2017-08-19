@@ -107,7 +107,6 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_receipt_reversal_page() throws Throwable {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
-	
 
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
@@ -180,20 +179,16 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to delivery management page$")
 	public void i_navigate_to_delivery_management_page() throws Throwable {
 		jdaHomePage.navigatetoDeliveryManagementPage();
-		
+
 	}
+
 	@When("^I navigate to delivery page$")
 	public void i_navigate_to_delivery_page() throws Throwable {
 		jdaHomePage.navigateToDeliveryPage();
 	}
+
 	@When("^i navigate to UPI receipt header page$")
-	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException{
+	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();
 	}
-	}
-
-
-	
-	
-
-
+}

@@ -58,7 +58,6 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
-
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
@@ -475,6 +474,8 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
+	
+	
 	public void navigateToDockSchedulerBookingsPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);

@@ -12,5 +12,3 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@complete"})
 public class AllTest {
 }
-
-

@@ -542,4 +542,14 @@ public class InventoryTransactionQueryPage {
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(quantityUpdate);
 	}
+	
+	public boolean checkReceiptLockCode(String code,String lockcode)
+	{
+		if(code.equals(lockcode))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 }

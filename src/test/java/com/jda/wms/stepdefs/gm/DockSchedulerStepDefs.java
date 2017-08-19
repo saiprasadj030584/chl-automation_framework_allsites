@@ -23,6 +23,7 @@ public class DockSchedulerStepDefs {
 	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
 	private JDAHomeStepDefs jDAHomeStepDefs;
 	private DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs;
+	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
@@ -32,7 +33,10 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
-			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs,
+			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
@@ -41,9 +45,9 @@ public class DockSchedulerStepDefs {
 		this.trailerMaintenanceStepDefs = trailerMaintenanceStepDefs;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
 		this.dockSchedulerBookingStepDefs = dockSchedulerBookingStepDefs;
+		this.dockScehdulerBookingStepDefs = dockScehdulerBookingStepDefs;
 		this.bookingInDiaryLog = bookingInDiaryLog;
-		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
-
+		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 	}
 
 	@When("^I select the booking type and ASN$")
@@ -68,14 +72,22 @@ public class DockSchedulerStepDefs {
 	public void i_select_the_slot() throws Throwable {
 		Thread.sleep(3000);
 		// TODO Check the dock door where to book slot
-		if(context.getSiteId().equals("5649"))
-		{
-		for (int i = 0; i < 3; i++) {
-			jdaHomePage.scrollRightBig();
-		}
+		if (context.getSiteId().equals("5649")) {
+			for (int i = 0; i < 3; i++) {
+				jdaHomePage.scrollRightBig();
+			}
 		}
 		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
+	}
+
+	@When("^I move to the slot$")
+	public void i_move_to_the_slot() throws Throwable {
+		Thread.sleep(3000);
+		// TODO Check the dock door where to book slot
+		for (int i = 0; i < 3; i++) {
+			jdaHomePage.scrollRightBig();
+		}
 	}
 
 	@When("^I create a booking for the asn$")
@@ -88,14 +100,12 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		if(context.getSiteId().equals("5469"))
-		{
-		dockSchedulerPage.enterCarrier(context.getCarrier());
+		if (context.getSiteId().equals("5469")) {
+			dockSchedulerPage.enterCarrier(context.getCarrier());
 		}
 		dockSchedulerPage.pressTab();
-		if(context.getSiteId().equals("5469"))
-		{
-		dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+		if (context.getSiteId().equals("5469")) {
+			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		}
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterTrailerType();
@@ -171,8 +181,8 @@ public class DockSchedulerStepDefs {
 	}
 
 	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\", UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String preAdviceId, String upiId,
-			String asnId, String type, String site) throws Throwable {
+	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String preAdviceId,
+			String upiId, String asnId, String type, String site) throws Throwable {
 		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(preAdviceId, upiId, asnId, type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
@@ -182,13 +192,13 @@ public class DockSchedulerStepDefs {
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
-	
+
 	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site(String upiId,
-			String asnId, String type, String site) throws Throwable {
+	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site(String upiId, String asnId,
+			String type, String site) throws Throwable {
 		context.setSiteId(site);
 		context.setSKUType(type);
-		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status(upiId, asnId,"Released");
+		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
 		i_create_new_dock_booking_at_site(site);
@@ -197,13 +207,13 @@ public class DockSchedulerStepDefs {
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
-	
+
 	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\" for NON RMS$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_NON_RMS(String upiId,
 			String asnId, String type, String site) throws Throwable {
 		context.setSiteId(site);
 		context.setSKUType(type);
-		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status_for_NON_RMS(upiId, asnId,"Released");
+		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status_for_NON_RMS(upiId, asnId, "Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
 		i_create_new_dock_booking_at_site(site);
@@ -214,8 +224,8 @@ public class DockSchedulerStepDefs {
 	}
 
 	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String preAdviceId, String type, String site)
-			throws Throwable {
+	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String preAdviceId, String type,
+			String site) throws Throwable {
 		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(preAdviceId, type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
@@ -284,13 +294,23 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
-	@When("^I change the status of booking$")
-	public void i_change_the_status_of_booking() throws Throwable {
-		dockSchedulerPage.changeBookingStatus();
+	@When("^I change the booking time to different date$")
+	public void i_change_the_booking_time_to_different_date() throws Throwable {
+		dockSchedulerPage.changeBookingTimeToDifferentDate();
+		dockSchedulerPage.selectSlot();
+		// i_select_the_slot();
+		// i_move_to_the_slot();
+		jdaFooter.clickNextButton();
 	}
 
-	@Then("^the booking id details with updated status should be displayed on the page$")
-	public void the_booking_id_details_with_updated_status_should_be_displayed_on_the_page() throws Throwable {
+	@When("^I change the status of booking to BookingStatus \"([^\"]*)\"$")
+	public void i_change_the_status_of_booking(String bookingStatus) throws Throwable {
+		dockSchedulerPage.changeBookingStatus(bookingStatus);
+	}
+
+	@Then("^the booking id details with updated status \"([^\"]*)\" should be displayed on the page$")
+	public void the_booking_id_details_with_updated_status_should_be_displayed_on_the_page(String bookingStatus)
+			throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 		if (dockSchedulerPage.isSiteExists()) {
 			dockSchedulerPage.enterSiteID(context.getSiteId());
@@ -300,7 +320,7 @@ public class DockSchedulerStepDefs {
 		jdaFooter.PressEnter();
 		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingIdDisplayedIn());
 		dockSchedulerPage.checkBookingStatusUpdated();
-		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingStatusUpdated());
+		Assert.assertTrue("Booking ID is not as expected. ", dockSchedulerPage.isBookingStatusUpdated(bookingStatus));
 		jdaFooter.PressEnter();
 	}
 
@@ -312,4 +332,6 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickExecuteButton();
 		Assert.assertTrue("Records are not as expected", dockSchedulerPage.isNoRecords());
 	}
+
+	
 }

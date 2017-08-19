@@ -200,7 +200,7 @@ public class Context {
 		return locationID;
 	}
 
-	public void setlocationID(String locationID) {
+	public void setLocationID(String locationID) {
 		this.locationID = locationID;
 	}
 
@@ -997,4 +997,5 @@ public class Context {
 	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
 		MultipleUPIMap = multipleUPIMap;
 	}
+	
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.SkuDB;
@@ -37,7 +39,7 @@ public class UPIReceiptLineStepDefs {
 		// Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		for (int i=1;i<=context.getNoOfLines();i++){
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			String sku = poMap.get(i).get("SKU");
 			String poLineId = poMap.get(i).get("LINE ID");
 			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(), sku, context.getUpiId());
@@ -57,35 +59,47 @@ public class UPIReceiptLineStepDefs {
 
 	@Given("^PO to be linked with upi line for multiple pallets$")
 	public void po_to_be_linked_with_upi_line_for_multiple_pallets() throws Throwable {
-		//Link PO ID and PO line DI with UPI for each line item
+		// Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		for (int j=0;j<context.getUpiList().size();j++)
-		{
-		for (int i=1;i<=context.getNoOfLines();i++){
-			String sku = poMap.get(i).get("SKU");
-			String poLineId= poMap.get(i).get("LINE ID");
-			upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(),sku,context.getUpiList().get(j));
-			upiReceiptLineDB.updatePreAdviceLineID(poLineId,sku,context.getUpiList().get(j));
-		}
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+				String sku = poMap.get(i).get("SKU");
+				String poLineId = poMap.get(i).get("LINE ID");
+				upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(), sku, context.getUpiList().get(j));
+				upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiList().get(j));
+			}
 		}
 	}
-	
+
 	public void container_to_be_updated_with_upi_line() throws Throwable {
-		upiReceiptLineDB.updateUserDefNote2(context.getUpiId());
-		}
-	
+		upiReceiptLineDB.updateuserdefnote2(context.getUpiId());
+	}
+
 	@Given("^I fetch supplier id UPC$")
 	public void i_fetch_supplier_id_UPC() throws Throwable {
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
-		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
-		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(),context.getSupplierID()));
-		}
-	
-	public void fetch_Qty_Details() throws Throwable
-	{
-				int qty_Due=Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
-				context.setRcvQtyDue(qty_Due);
-	}
-}
 
+		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(), context.getSupplierID()));
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+
+		// context.setUPC(skuDb.getUPC(context.getSkuId()));
+		// context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+	}
+
+	public void fetch_Qty_Details() throws Throwable {
+		int qty_Due = Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+		context.setRcvQtyDue(qty_Due);
+	}
+
+	public void i_fetch_supplier_id_UPC_sourced_by_multi_supplier() throws Throwable {
+		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
+		context.setUPC(skuDb.getUPC(context.getSkuId()));
+		if (supplierSkuDb.isMultiSourced(context.getUPC())) {
+			context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+		} else {
+			Assert.assertFalse("SKU is not Multi Soured", supplierSkuDb.isMultiSourced(context.getUPC()));
+		}
+	}
+
+}
