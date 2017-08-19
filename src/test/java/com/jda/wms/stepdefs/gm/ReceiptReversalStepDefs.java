@@ -51,33 +51,6 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.PressEnter();
 	}
 
-	@When("^the inventory transaction should be updated with reversed receipt tag$")
-	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag() throws Throwable {
-		jdaHomePage.navigateToInventoryTransactionPage();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code = "Receipt Reverse";
-		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
-		Assert.assertTrue("Receipt Reversion failed",
-				receiptReversalPage.checkRefeIDWithPreadviceID(reference_Id, context.getPreAdviceId()));
-	}
-
-	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode$")
-	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode() throws Throwable {
-		jdaHomePage.navigateToInventoryTransactionPage();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code = "Receipt Reverse";
-		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
-		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
-		Assert.assertTrue("Receipt Reversion failed", receiptReversalPage.checkRefeIDWithPreadviceIDlockcode(
-				reference_Id, context.getPreAdviceId(), lockcode, context.getLockCode()));
-	}
-
 	@When("^the inventory transaction should be updated with lockcode Damaged$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_Damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
@@ -90,20 +63,5 @@ public class ReceiptReversalStepDefs {
 				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
 
 	}
-
-	@When("^the inventory transaction should be updated with lock code \"([^\"]*)\"$")
-	public void the_inventory_transaction_should_be_updated_with_lockcode_imperfect(String lockcode) throws Throwable {
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Inventory Lock");
-		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
-
-		Assert.assertTrue("Receipt Reversion failed",
-				inventoryTransactionQueryPage.checkReceiptLockCode(code, lockcode));
-
-	}
-
-	
 
 }
