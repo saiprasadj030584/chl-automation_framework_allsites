@@ -49,19 +49,4 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
-	}
-
-	@When("^the inventory transaction should be updated with lockcode Damaged$")
-	public void the_inventory_transaction_should_be_updated_with_lockcode_Damaged() throws Throwable {
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Inventory Lock");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
-		context.setLockCode(lockCode);
-		Assert.assertTrue("Receipt Reversion failed",
-				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
-
-	}
-
-}
+	}}
