@@ -17,11 +17,11 @@ public class StockCheckTaskDB {
 		this.database = database;
 	}
 
-	public Object getListId(String TagId) throws SQLException, ClassNotFoundException {
+	public String getListId(String TagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select list_id from stock_check_tasks where tag_id ='" + TagId + "' ");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select list_id from stock_check_tasks where tag_id ='" + TagId + "' ");
 		rs.next();

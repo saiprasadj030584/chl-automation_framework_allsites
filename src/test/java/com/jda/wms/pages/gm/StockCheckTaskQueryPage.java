@@ -46,9 +46,9 @@ public class StockCheckTaskQueryPage {
 	}
 
 	public void enterTagId(String tagId) throws FindFailed {
-		screen.wait("images/StockCheckQuery/TextBoxTagId.png", timeoutInSec);
-		screen.click("images/StockCheckQuery/TextBoxTagId.png");
+		// screen.wait("images/StockCheckTask/TagId.png", timeoutInSec);
+		// screen.click("images/StockCheckTask/TagId.png");
 		screen.type(tagId);
 	}
-	
+
 }

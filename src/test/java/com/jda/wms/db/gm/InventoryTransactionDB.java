@@ -697,7 +697,9 @@ public class InventoryTransactionDB {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select Supplier_Id from supplier_sku where sku_id='" + skuId + "'");
+			ResultSet rs = stmt.executeQuery("select SUPPLIER_ID  from inventory_transaction where sku_id='" + skuId
+					+ " and pallet_id='" + upiId + " and code='Putaway'  and  update_qty='" + rcvQtyDue
+					+ "and TO_LOC_ID ='" + toLocation + "'");
 			rs.next();
 			return rs.getString(1);
 		} catch (Exception e) {

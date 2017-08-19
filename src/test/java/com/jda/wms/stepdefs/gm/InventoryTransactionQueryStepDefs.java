@@ -209,7 +209,7 @@ public class InventoryTransactionQueryStepDefs {
 
 				String isITLExists = inventoryTransactionDB.isITLExistsForRelocatedPutaway(context.getSkuId(),
 						context.getUpiId(), date, "Putaway", context.getToLocation(), context.getRcvQtyDue());
-				// if (isITLExists == false) {
+
 			}
 		}
 

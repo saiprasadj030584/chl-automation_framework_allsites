@@ -720,8 +720,9 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='" + skuId
-				+ "' and location_id not like '%REC%' and location_id not like '%STAGE%' and location_id not like '%DEFAULTLANE%' and location_id not like '%SINBOX%' and location_id not like '"
+				+ "' and location_id not like '%REC%' and location_id not like '%STAGE%' and location_id not like '%DEFAULTLANE%' and location_id not like '%SINBOX%'and location_id not like'"
 				+ context.getPutawayLocation1() + "'");
+
 		rs.next();
 		return rs.getString(1);
 	}
@@ -730,11 +731,27 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println(
+				"Select qty_on_hand from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+				"Select qty_on_hand from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
 						+ listID + "' ) and tag_id='" + tagId + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQty(String tagId, String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");
 
 		rs.next();
 		return rs.getString(1);

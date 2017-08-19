@@ -369,7 +369,7 @@ public class PurchaseOrderPutawayStepDefs {
 			jdaFooter.PressEnter();
 
 			// To putaway location for remaining quantity
-			context.setPutawayLocation2(inventoryDB.getPutawayLocation2(context.getSkuId()));
+			// context.setPutawayLocation2(inventoryDB.getPutawayLocation2(context.getSkuId()));
 			jdaFooter.pressTab();
 			purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
 			jdaFooter.PressEnter();

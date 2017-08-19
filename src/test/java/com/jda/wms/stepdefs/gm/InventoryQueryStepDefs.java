@@ -30,11 +30,12 @@ public class InventoryQueryStepDefs {
 	private JDAFooter jDAFooter;
 	private InventoryQueryPage inventoryQueryPage;
 	private SkuSkuConfigDB skuSkuConfigDB;
+	private JDAHomeStepDefs jDAHomeStepDefs;
 
 	@Inject
 	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB,
 			JdaLoginPage jdaLoginPage, JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage,
-			SkuSkuConfigDB skuSkuConfigDB) {
+			SkuSkuConfigDB skuSkuConfigDB, JDAHomeStepDefs jDAHomeStepDefs) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryDB = inventoryDB;
@@ -42,6 +43,7 @@ public class InventoryQueryStepDefs {
 		this.jDAFooter = jDAFooter;
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.skuSkuConfigDB = skuSkuConfigDB;
+		this.jDAHomeStepDefs = jDAHomeStepDefs;
 	}
 
 	@Then("^the inventory should be displayed for all tags received$")
@@ -280,12 +282,17 @@ public class InventoryQueryStepDefs {
 
 	@Then("^the inventory should be generated$")
 	public void the_inventory_should_be_generated() throws Throwable {
-		jdaLoginPage.login();
+		// jdaLoginPage.login();
+		jDAHomeStepDefs.i_am_on_inventory_query_page();
 		jDAFooter.clickQueryButton();
-		inventoryQueryPage.enterTagId(context.getTagId());
+		// inventoryQueryPage.enterTagId(context.getTagId());
+		inventoryQueryPage.enterTagId("11170");
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getQtyOnHand();
+		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQty("11170", context.getLocation())));
+		Assert.assertEquals("updated quantity on hand is not as expected", context.getQtyOnHand(),
+				Integer.parseInt(inventoryQueryPage.getQtyOnHand()));
 
 	}
 }

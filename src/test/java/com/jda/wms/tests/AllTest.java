@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_inventory_stock_check_positive" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_direct_po_putaway_location_full"})
 
 public class AllTest {
 

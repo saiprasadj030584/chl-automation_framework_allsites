@@ -16,7 +16,7 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
       #|  1090009006 | 00050456000253606176 | 0000002809 | REC001   |
-      |1040009045 |00050453000258815148|0000003869| REC001   |
+      |1040019011 |00050473210258814145|0000002760| REC001   |
 
   @boxed_direct_po_putaway_location_override @boxed @direct_po @putaway
   Scenario Outline: Validate Override Putaway Location
