@@ -543,6 +543,12 @@ public class InventoryTransactionQueryPage {
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(skuId);
 	}
+	
+	public void enterPalletId(String palletId) throws FindFailed {
+		Match mskuId = screen.find("images/InventoryTransactionQuery/General/PalletId.png");
+		screen.click(mskuId.getCenter().offset(70, 0));
+		screen.type(palletId);
+	}
 
 	public void enterUpdateQuantity(String quantityUpdate) throws FindFailed {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");

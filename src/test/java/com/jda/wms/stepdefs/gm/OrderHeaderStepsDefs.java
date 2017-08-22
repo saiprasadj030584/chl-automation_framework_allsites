@@ -85,18 +85,68 @@ public class OrderHeaderStepsDefs {
 		System.out.println(orderNumber);
 		System.out.println(status);
 		context.setOrderId(orderNumber);
+		ArrayList<String> failureList = new ArrayList<String>();
 		context.setStatus(status);
 		//suspense
 		ArrayList skuFromOrder = new ArrayList();
 		skuFromOrder=orderLineDB.getskuList(context.getOrderId());
 		context.setSkuFromOrder(skuFromOrder);
+		System.out.println(skuFromOrder);
 		for(int i=0;i<skuFromOrder.size();i++){
-		Assert.assertTrue("sku"+skuFromOrder.get(i)+" is not in suspense location", inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i))));
+			System.out.println((inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i)))));
+			System.out.println(!(inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i)))));
+					if(!(inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i)))))
+							{
+						Assert.assertTrue("Sku not in suspense location " + (String) skuFromOrder.get(i), inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i))));
+							}
 		}
-		//order type
-		Assert.assertEquals("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(orderNumber));
-		Assert.assertEquals("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber));
-		//jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+				//order type
+				if(orderType.equalsIgnoreCase("International"))
+				{
+					verification.verifyData("Order Type Mismatch","Retail",
+							 orderHeaderDB.getOrderType(orderNumber),
+							failureList);
+					verification.verifyData("Destination is not as expected","8468",
+							 orderHeaderDB.getCustomer(orderNumber),
+							failureList);
+					verification.verifyData("User defined Type 4 is not as expected","Franchise",
+							 orderHeaderDB.getUserDefinedType4(orderNumber),
+							failureList);
+				}
+				else if(orderType.equalsIgnoreCase("Ecom"))
+				{
+					verification.verifyData("Order Type Mismatch","IDT",
+							 orderHeaderDB.getOrderType(orderNumber),
+							failureList);
+					verification.verifyData("Destination is not as expected","4624",
+							 orderHeaderDB.getCustomer(orderNumber),
+							failureList);
+				}
+				else if(orderType.equalsIgnoreCase("Outlet"))
+				{
+					verification.verifyData("Order Type Mismatch","IDT",
+							 orderHeaderDB.getOrderType(orderNumber),
+							failureList);
+					verification.verifyData("Destination is not as expected","2862",
+							 orderHeaderDB.getCustomer(orderNumber),
+							failureList);
+				}
+				else
+				{
+				verification.verifyData("Order Type Mismatch",orderType,
+						 orderHeaderDB.getOrderType(orderNumber),
+						failureList);
+				}
+				
+//				//Order status
+//				verification.verifyData("Order Status not displayed as expected",status,
+//						 orderHeaderDB.getStatus(orderNumber),
+//						failureList);
+				
+				//jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+				Assert.assertTrue("Order Details is not as expected. ["
+						+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+
 	}
 	
 	@Given("^the order id \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status$")
@@ -112,7 +162,7 @@ public class OrderHeaderStepsDefs {
 		context.setSkuFromOrder(skuFromOrder);
 		for(int i=0;i<skuFromOrder.size();i++){
 		//Assert.assertFalse("sku"+skuFromOrder.get(i)+" is in suspense location", inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i))));
-			if(!(inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i)))))
+			if((inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i)))))
 					{
 				failureList.add("Sku in suspense location " + (String) skuFromOrder.get(i));
 					}
@@ -128,6 +178,24 @@ public class OrderHeaderStepsDefs {
 					failureList);
 			verification.verifyData("User defined Type 4 is not as expected","Franchise",
 					 orderHeaderDB.getUserDefinedType4(orderNumber),
+					failureList);
+		}
+		else if(orderType.equalsIgnoreCase("Ecom"))
+		{
+			verification.verifyData("Order Type Mismatch","IDT",
+					 orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+			verification.verifyData("Destination is not as expected","4624",
+					 orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+		}
+		else if(orderType.equalsIgnoreCase("Outlet"))
+		{
+			verification.verifyData("Order Type Mismatch","IDT",
+					 orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+			verification.verifyData("Destination is not as expected","2862",
+					 orderHeaderDB.getCustomer(orderNumber),
 					failureList);
 		}
 		else

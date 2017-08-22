@@ -1064,13 +1064,13 @@ for(int k=0;k<context.getUpiList().size();k++)
 	public void the_UPI_and_ASN_should_be_in_status_for_adjustment(String upiId, String asnId, String status) throws Throwable {
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
-		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
-				status);
+//		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
+//				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC_qty();
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
 		context.setNoOfLines(numLines);
-		jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		//jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 	
 	@Given("^the multiple UPI \"([^\"]*)\" of type \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status$")
@@ -1239,6 +1239,36 @@ for(int k=0;k<context.getUpiList().size();k++)
 		hooks.logoutPutty();
 	}
 	
+	
+	
+	@When("^I receive all skus for the FSV purchase order at location \"([^\"]*)\" for MEZZ putaway$")
+	public void i_receive_all_skus_for_the_FSV_purchase_order_at_location_for_MEZZ_putaway(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_pallet_id(context.getPalletIDList().get(i-1));
+			i_enter_belCode(context.getBelCodeList().get(i-1));
+			i_enter_the_location();
+			i_enter_urn_id();
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+		}
+		hooks.logoutPutty();
+	}
+
+	
 	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\"$")
 	public void i_perform_for_all_skus_at_location(String receiveType, String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -1330,27 +1360,17 @@ for(int k=0;k<context.getUpiList().size();k++)
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
 		context.setPerfectCondition(condition);
-		for (int i = 0; i <2; i++) {
+		for (int i = 0; i <context.getRcvQtyDue()+1; i++) {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
-		if(i==0){
 			purchaseOrderReceivingPage.enterQuantity("1");
-		}
-		if(i==1){
-			purchaseOrderReceivingPage.enterQuantity(String.valueOf(context.getRcvQtyDue()+5));
-		}
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 		jdaFooter.navigateToNextScreen();
-//		if(i==0)
-//		{
-//		purchaseOrderReceivingPage.doConfigMovementLabel();
-//		}
-//			jdaFooter.clickUpdateButton(); // Click F4
 			// Press tab 7 times to navigate to movement label field
 			for (int j = 0; j < 7; j++) {
 				jdaFooter.pressTab();
@@ -1358,7 +1378,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 			purchaseOrderReceivingPage.enterMovementLabel(context.getUpiId());
 			jdaFooter.PressEnter();
 			jdaFooter.PressEnter();
-			if(i==0){
+			if(i<context.getRcvQtyDue()){
 			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
 					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
 			}
@@ -1387,19 +1407,12 @@ for(int k=0;k<context.getUpiList().size();k++)
 		i_receive_the_po_with_basic_and_blind_receiving();
 		i_should_be_directed_to_blind_entry_page();
 		context.setPerfectCondition(condition);
-		for (int i = 0; i <2; i++) {
+		for (int i = 0; i <context.getRcvQtyDue()+1; i++) {
 		purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 		purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
-		if(i==0)
-		{
 			purchaseOrderReceivingPage.enterQuantity("1");
-		}
-		if(i==1)
-		{
-			purchaseOrderReceivingPage.enterQuantity(String.valueOf(context.getRcvQtyDue()+5));
-		}
 		jdaFooter.pressTab();
 		purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
 		purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
@@ -1408,7 +1421,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 		
 		jdaFooter.PressEnter();
 		
-			if(i==0)
+			if(i<context.getRcvQtyDue())
 			{
 			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
 					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());

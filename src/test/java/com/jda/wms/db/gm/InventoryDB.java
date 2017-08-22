@@ -361,6 +361,8 @@ public class InventoryDB {
 	}
 	
 	public boolean isSkuInSuspenseLocation(String skuId) throws SQLException, ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -368,12 +370,15 @@ public class InventoryDB {
 		System.out.println("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
 		ResultSet rs = stmt.executeQuery("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
 		rs.next();
-		if(rs.getString(1)==null)
-		{
-			return false;
+		if (rs.getString(1)!=null){
+			isRecordExists = true;
 		}
-		
-		return true;
+	} catch (Exception e) {
+		if (e.getMessage().contains("Exhausted Resultset")) {
+			isRecordExists = false;
+		}
+	}
+	return isRecordExists;
 	}
 
 

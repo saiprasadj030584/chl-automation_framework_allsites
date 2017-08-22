@@ -95,12 +95,19 @@ public class SystemAllocationStepsDefs {
 		ArrayList skuFromOrder = new ArrayList();
 		skuFromOrder=context.getSkuFromOrder();
 		verification.verifyData("Order Status", "Released", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-		for(int i=0;i<skuFromOrder.size();i++){
-		if (orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i))!=null) {
-			failureList.add("Quantity Tasked updated " + (String) skuFromOrder.get(i));
-		}
-		}
-		Assert.assertTrue("Allocation of stock in suspense location is not as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+				for(int i=0;i<skuFromOrder.size();i++)
+				{
+					context.setRcvQtyDue(Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),(String) skuFromOrder.get(i))));
+					
+				if ((orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i))!=null)) {
+					if(!(orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i)).equals("0")))
+					{
+					failureList.add("Quantity Tasked got updated " + (String) skuFromOrder.get(i));
+					//context.setFailureList(failureList);
+					}
+				}
+				}
+				Assert.assertTrue("Allocation of stock is not as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
 	@Given("^the stock should get allocated")

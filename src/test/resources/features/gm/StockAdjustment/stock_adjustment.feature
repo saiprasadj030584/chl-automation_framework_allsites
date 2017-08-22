@@ -23,7 +23,7 @@ Feature: Stock adjustments
       |   5649 | 1AA103   | LOST       |
       |   5649 | 1AA103   | SAMPLES    |
 
-  @stock_adjustment @returns @Boxed @stock_adjustment_returns_verify_reason_code_and_has_movement_label
+  @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_and_has_movement_label
   Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>" and movement label enabled
@@ -38,9 +38,9 @@ Feature: Stock adjustments
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |Reason Code														 |
-      | 95580085370650011050230212343738 | 0000852729 | REC003   | N         |RMS - Over receipt with movement label |
+      | 95580085370650011050230212453758 | 0000854749 | REC003   | N         |RMS - Over receipt with movement label |
 
-  @stock_adjustment @returns @Boxed @stock_adjustment_returns_verify_reason_code_without_movement_label
+  @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_movement_label
   Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>"
@@ -55,9 +55,9 @@ Feature: Stock adjustments
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |Reason Code																|
-      | 58850008448480077010084484800300 | 0000844848 | REC003   | N         |RMS - Over receipt without movement label |
+      | 58850008448480077010083484800300 | 0000844858 | REC003   | N         |RMS - Over receipt without movement label |
 
-  @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_product_not_listed_for_URRN_and_has_movement_label @complete
+  @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_product_not_listed_for_URRN_and_has_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent a product not listed for the URRN and has a movement label' (unexpected)
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     When I navigate to stock adjustments page

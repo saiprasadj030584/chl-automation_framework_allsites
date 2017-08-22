@@ -10,12 +10,14 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
 import com.jda.wms.pages.rdt.PurchaseOrderRelocatePage;
+import com.jda.wms.utils.DateUtils;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -28,6 +30,7 @@ public class PurchaseOrderPutawayStepDefs {
 	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private Verification verification;
 	private InventoryDB inventoryDB;
+	private InventoryTransactionDB inventoryTransactionDB;
 	private LocationDB locationDB;
 	private Hooks hooks;
 	private JDAFooter jdaFooter;
@@ -36,7 +39,7 @@ public class PurchaseOrderPutawayStepDefs {
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter,PurchaseOrderRelocatePage purchaseOrderRelocatePage) {
+			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter,PurchaseOrderRelocatePage purchaseOrderRelocatePage,InventoryTransactionDB inventoryTransactionDB) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -46,6 +49,7 @@ public class PurchaseOrderPutawayStepDefs {
 		this.hooks = hooks;
 		this.jdaFooter = jdaFooter;
 		this.purchaseOrderRelocatePage=purchaseOrderRelocatePage;
+		this.inventoryTransactionDB=inventoryTransactionDB;
 	}
 
 	@When("^I select normal putaway$")
@@ -123,6 +127,39 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 	}
 	
+	
+	
+	@When("^I perform normal putaway after relocation for FSV PO$")
+	public void i_choose_normal_putaway_after_relocation_for_fsv_po() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
+			context.setUpiId(context.getTagId());
+			i_enter_urn_id_in_putaway_for_fsv_po(context.getTagId());
+			if (null == context.getLockCode()) {
+				the_tag_details_for_putaway_should_be_displayed();
+				
+			}
+			jdaFooter.PressEnter();
+			Assert.assertTrue("ChkTo page not displayed",
+					purchaseOrderRelocatePage.isChkToDisplayed());
+			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+			jdaFooter.PressEnter();
+			i_should_be_directed_to_putent_page();
+			
+		}
+	}
+
+	
 	@When("^I perform normal putaway after relocation$")
 	public void i_choose_normal_putaway_after_relocation() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -133,10 +170,12 @@ public class PurchaseOrderPutawayStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_select_normal_putaway();
 		i_should_be_directed_to_putent_page();
-
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			i_enter_urn_id_in_putaway();
+			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
+			context.setUpiId(context.getTagId());
+			i_enter_urn_id_in_putaway(context.getTagId());
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed();
 				
@@ -207,9 +246,23 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_enter_urn_id_in_putaway() throws FindFailed, InterruptedException {
 		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
 	}
+	
+	public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, InterruptedException {
+		purchaseOrderPutawayPage.enterURNID(tagId);
+	}
+	
+	@When("^I enter urn id in putaway for FSV PO$")
+	public void i_enter_urn_id_in_putaway_for_fsv_po() throws FindFailed, InterruptedException {
+		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
+	}
+	
+	public void i_enter_urn_id_in_putaway_for_fsv_po(String tagId) throws FindFailed, InterruptedException {
+		purchaseOrderPutawayPage.enterURNID(tagId);
+	}
 
 	@When("^the tag details for putaway should be displayed$")
 	public void the_tag_details_for_putaway_should_be_displayed() throws FindFailed, InterruptedException {
+		//context.setFromLocation("MEZF2"); //remove
 		ArrayList failureList = new ArrayList();
 		Assert.assertTrue("PutCmp page not displayed to enter To Location",
 				purchaseOrderPutawayPage.isPutCmpPageDisplayed());

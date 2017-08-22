@@ -140,12 +140,13 @@ public class StockAdjustmentStepDefs {
 		context.setReasonCode(reasonCode);
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Adjustment", date));
+		System.out.println(context.getTagId());
 	}
 	
 			
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")
 	public void i_change_on_hand_qty_and_raeson_code(String reasonCode)
-			throws FindFailed, InterruptedException {
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
 		stockAdjustmentsPage.enterSku(context.getSkuId());
@@ -162,5 +163,8 @@ public class StockAdjustmentStepDefs {
 		context.setReasonCode(reasonCode);
 		stockAdjustmentsPage.enterReasonCode(reasonCode);
 		jDAFooter.clickDoneButton();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Adjustment", date));
+		System.out.println(context.getTagId());
 	}
 }

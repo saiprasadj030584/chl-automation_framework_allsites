@@ -94,4 +94,34 @@ public class PurchaseOrderRelocateStepDefs {
 
 	hooks.logoutPutty();
 }
+	
+	@When("^I proceed with entering the upc and location of FSV PO$")
+	public void i_proceed_with_entering_the_upc_and_location_of_FSV_PO() throws Throwable {
+		
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+		context.setSkuId((String) context.getSkuFromPO().get(i - 1));
+		String upc=context.getPOMap().get(i).get("UPC");
+		jdaFooter.pressTab();
+		jdaFooter.pressTab();
+		purchaseOrderRelocatePage.enterLocation(context.getLocation());
+		jdaFooter.pressTab();
+		purchaseOrderRelocatePage.enterUPC(upc);
+		jdaFooter.PressEnter();
+		Assert.assertTrue("RecPalCmp page not displayed",
+				purchaseOrderRelocatePage.isRelPalCmpDisplayed());
+		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		context.setFromLocation(context.getToLocation());
+		jdaFooter.PressEnter();
+		Assert.assertTrue("ChkTo page not displayed",
+				purchaseOrderRelocatePage.isChkToDisplayed());
+		purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+		jdaFooter.PressEnter();
+		Assert.assertTrue("RelEnt page not displayed",
+				purchaseOrderRelocatePage.isRelEntDisplayed());
+		}
+		
+
+	hooks.logoutPutty();
+}
+
 }

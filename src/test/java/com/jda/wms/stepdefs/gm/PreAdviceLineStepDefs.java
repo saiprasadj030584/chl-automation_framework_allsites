@@ -525,6 +525,7 @@ public class PreAdviceLineStepDefs {
 		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
 
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
+		context.setSkuFromPO(skuFromPO);
 
 		if (skuFromPO == null) {
 			failureList.add("SKU id is not assgined to the PreAdvice id : " + context.getPreAdviceId());
@@ -536,6 +537,9 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("SKU", context.getSkuId());
 				lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
 				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
+				String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+				lineItemsMap.put("SUPPLIER ID", supplierId);
+				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
 				POMap.put(i, lineItemsMap);
 			}
 			context.setPOMap(POMap);

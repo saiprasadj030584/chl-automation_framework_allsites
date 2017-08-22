@@ -108,7 +108,7 @@ public class InventoryUpdateStepDefs {
 		stockAdjustmentsPage.enterReceiptId(context.getUpiId());
 		jdafooter.clickNextButton();
 		jdafooter.clickNextButton();
-		screen.type("Unlocked ");
+		screen.type("Unlocked");
 		jdafooter.clickDoneButton();
 		
 	}
