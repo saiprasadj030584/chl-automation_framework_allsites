@@ -31,7 +31,6 @@ public class DeliveryStepDefs {
 	public void the_pallet_count_should_be_updated_in_delivery() throws Throwable {
 		deliveryDB.updatePalletCount(context.getAsnId(),context.getNoOfLines());
 	}
-
 	
 	@Given("^I have an ASN Id with delivery status as \"([^\"]*)\"$")
 	public void i_have_an_ASN_Id_with_delivery_status_as(String status) throws Throwable {

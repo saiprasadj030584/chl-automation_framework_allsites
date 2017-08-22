@@ -35,6 +35,8 @@ public class PreAdviceLineStepDefs {
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private PreAdviceLineMaintenancePage preAdviceLineMaintenancePage;
 	private JDAFooter jdaFooter;
+	Map<Integer, Map<String, String>> poMap;
+	Map<String, Map<String, String>> upiMap;
 
 	@Inject
 	public PreAdviceLineStepDefs(Context context, Verification verification, PreAdviceLineDB preAdviceLineDB,
@@ -62,7 +64,6 @@ public class PreAdviceLineStepDefs {
 		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
-
 		if (!skuFromPO.containsAll(skuFromUPI)) {
 			for (int i = 0; i < skuFromPO.size(); i++) {
 				if (!skuFromPO.get(i).equals(skuFromUPI.get(i))) {
@@ -70,8 +71,7 @@ public class PreAdviceLineStepDefs {
 							+ skuFromUPI + " from UPI for line item " + i);
 				}
 			}
-		}
-		else{
+		} else {
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromPO.get(i - 1));
@@ -90,27 +90,29 @@ public class PreAdviceLineStepDefs {
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("UPC", "");
-				UPIMap.put(context.getSkuId(),lineItemsMap);
+				UPIMap.put(context.getSkuId(), lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
-			
-			
 
 			// To Validate Modularity,New Product Check for SKU
-			String type = null;
-			switch (context.getSKUType()) {
-			case "Boxed":
-				type = "B";
-				break;
-			case "Hanging":
-				type = "H";
-				break;
-			}
-			// TODO Check for multiple skus
-			context.setSKUType(type);
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
 
-			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
-			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+				String type = null;
+				switch (context.getSKUType()) {
+				case "Boxed":
+					type = "B";
+					break;
+				case "Hanging":
+					type = "H";
+					break;
+				}
+				// TODO Check for multiple skus
+				context.setSKUType(type);
+
+				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
+						failureList);
+			}
 		}
 
 		Assert.assertTrue(
@@ -118,7 +120,30 @@ public class PreAdviceLineStepDefs {
 				failureList.isEmpty());
 
 	}
-	
+
+	@Given("^the PO should have sku, quantity due details with po quantity greater than upi quantity$")
+	public void the_PO_should_have_sku_quantity_due_details_with_po_quantity_greater_than_upi_quantity()
+			throws Throwable {
+		the_PO_should_have_sku_quantity_due_details();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		ArrayList failureList = new ArrayList();
+		System.out.println(poMap);
+		System.out.println(upiMap);
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			String sku = poMap.get(i).get("SKU");
+			if (Integer.parseInt(poMap.get(i).get("QTY DUE")) < Integer.parseInt(upiMap.get(sku).get("QTY DUE"))) {
+				failureList.add("Pre Advice Qty is less than UPI Qty for SKU " + poMap.get(i).get("SKU"));
+			}
+		}
+
+		Assert.assertTrue(
+				"Pre advcie and UPI quantity not displayed as expected [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		context.setPoQtyMoreThanUPIQty(true);
+	}
+
 	@Given("^the PO with multiple upi should have sku, quantity due details$")
 	public void the_PO_with_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -130,29 +155,32 @@ public class PreAdviceLineStepDefs {
 		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiList());
 
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			context.setSkuId((String) skuFromPO.get(i - 1));
+			lineItemsMap.put("SKU", context.getSkuId());
+			lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
+			lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
+			POMap.put(i, lineItemsMap);
+		}
+		context.setPOMap(POMap);
+
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			Map<String, Map<String, String>> skuMap = new HashMap<String, Map<String, String>>();
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
-				
-				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromPO.get(i - 1));
-				lineItemsMap.put("SKU", context.getSkuId());
-				lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
-				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
-				POMap.put(i, lineItemsMap);
+				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				lineItemsMap.put("QTY DUE",
+						upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("LINE ID",
+						upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("PACK CONFIG",
+						upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("UPC", "");
+				skuMap.put(context.getSkuId(), lineItemsMap);
 			}
-			context.setPOMap(POMap);
-			
-			for (int j = 0; j < context.getUpiList().size(); j++) {
-				Map<String, Map<String, String>> skuMap = new HashMap<String, Map<String, String>>();
-				for (int i = 1; i <= context.getNoOfLines(); i++) {
-					context.setSkuId((String) skuFromPO.get(i - 1));
-					Map<String, String> lineItemsMap = new HashMap<String, String>();
-					lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
-					lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
-					lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
-					lineItemsMap.put("UPC", "");
-					skuMap.put(context.getSkuId(), lineItemsMap);
-				}
-				MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
+			MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
 			// To Validate Modularity,New Product Check for SKU
 			String type = null;
 			switch (context.getSKUType()) {
@@ -166,12 +194,8 @@ public class PreAdviceLineStepDefs {
 			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
 		}
-			context.setMultipleUPIMap(MultipleUPIMap);
+		context.setMultipleUPIMap(MultipleUPIMap);
 	}
-
-
-
-
 
 	@Given("^the PO is locked with lockcode \"([^\"]*)\" in pre advice line$")
 	public void the_PO_is_locked_with_lockcode_in_pre_advice_line(String lockCode) throws Throwable {
@@ -194,7 +218,7 @@ public class PreAdviceLineStepDefs {
 	@Given("^I lock the product with lock code \"([^\"]*)\"$")
 	public void i_lock_the_product_with_lock_code(String lockCode) throws Throwable {
 		context.setLockCode(lockCode);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
@@ -220,7 +244,6 @@ public class PreAdviceLineStepDefs {
 		i_click_on_general_tab();
 		Assert.assertEquals("Lock Code is not updated as expected", lockCode,
 				preAdviceLineDB.getLockCode(context.getPreAdviceId()));
-				
 	}
 
 	private String getUserDefinedType3(String lockCode) {

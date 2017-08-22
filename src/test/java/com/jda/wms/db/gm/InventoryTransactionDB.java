@@ -458,6 +458,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where tag_id='" + upiId
+
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
@@ -483,6 +484,18 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where tag_id='" + upiId
+				+ "' and code = '" + code + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getLockCode(String upiId, String code) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
 		rs.next();
 		return rs.getString(1);
@@ -524,6 +537,7 @@ public class InventoryTransactionDB {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
+
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where sku_id='" + skuId
 					+ "' and code='" + code + "'and reason_id ='" + reasonCode + "' and update_qty = '" + updatedQty
@@ -540,7 +554,7 @@ public class InventoryTransactionDB {
 		return isRecordExists;
 	}
 
-	public boolean getCode(String upiId, String code) {
+	public boolean getCode(String upiId, String code) throws ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
 			if (context.getConnection() == null) {
@@ -550,7 +564,7 @@ public class InventoryTransactionDB {
 			ResultSet rs = stmt.executeQuery("select code from inventory_transaction where reference_id='" + upiId
 					+ "' and code='" + code + "'");
 			rs.next();
-			if (rs.getString(1).equals(code)) {
+			if (rs.getString(1).equalsIgnoreCase(code)) {
 				isRecordExists = true;
 			}
 		} catch (Exception e) {
@@ -570,18 +584,6 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where tag_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
-	}
-
-	public String getLockCode(String upiId, String code) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + upiId
-				+ "' and code = '" + code + "'");
-
 		rs.next();
 		return rs.getString(1);
 	}

@@ -45,6 +45,7 @@ public class Context {
 	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
+
 	private String palletType;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
@@ -112,7 +113,7 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
-	private String supplierType;
+	private boolean poQtyMoreThanUPIQty = false;
 	private String generateBelCode;
 	private ArrayList<String> belCodeList;
 	private ArrayList<String> enternewpallet;
@@ -127,6 +128,7 @@ public class Context {
 	private ArrayList skuList;
 	private String Record;
 	private String perfectCondition;
+	private String supplierType;
 	private String partset;
 	private String toLocation2;
 
@@ -202,11 +204,11 @@ public class Context {
 		this.orderStatus = orderStatus;
 	}
 
-	public String getlocationID() {
+	public String getLocationID() {
 		return locationID;
 	}
 
-	public void setlocationID(String locationID) {
+	public void setLocationID(String locationID) {
 		this.locationID = locationID;
 	}
 
@@ -915,6 +917,14 @@ public class Context {
 		this.serviceLevel = serviceLevel;
 	}
 
+	public boolean isPoQtyMoreThanUPIQty() {
+		return poQtyMoreThanUPIQty;
+	}
+
+	public void setPoQtyMoreThanUPIQty(boolean poQtyMoreThanUPIQty) {
+		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
+	}
+
 	public void setBelCode(String generateBelCode) {
 		this.generateBelCode = generateBelCode;
 	}
@@ -961,6 +971,14 @@ public class Context {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getSupplierType() {
+		return supplierType;
+	}
+
+	public void setSupplierType(String supplierType) {
+		this.supplierType = supplierType;
 	}
 
 	public String getReceiveType() {
@@ -1034,4 +1052,5 @@ public class Context {
 	public void setToLocation2(String toLocation2) {
 		this.toLocation2 = toLocation2;
 	}
+
 }

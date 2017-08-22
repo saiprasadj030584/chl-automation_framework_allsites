@@ -63,6 +63,18 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2010003010 | PO050456000511235711 | PO00100601 | REC001   |
+
       
       
       
+
+
+  @putaway_qc_goods @direct_po @wip
+  Scenario Outline: Validate Putaway QC goods - Boxed
+    Given the PO "<PreAdviceID>" of type "Hanging" with UPI "<PalletId>" and ASN "<ASN>" should be locked with code "<LockCode>" and received at location "<Location>"
+    #When I choose normal putaway
+    #And I should not be able to putaway locked PO
+
+    Examples: 
+      | PreAdviceID  | PalletId             | ASN        | LockCode | Location |
+      | PO2010002710 | PO050456000511235610 | PO00100710 | FWLRW    | REC001   |

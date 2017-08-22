@@ -49,6 +49,7 @@ public class ReceiptReversalStepDefs {
 		jDAFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
+
 	}
 
 	@When("^the Inventory transaction should be updated with reversed receipt tag with lockcode$")

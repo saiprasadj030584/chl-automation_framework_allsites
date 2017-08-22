@@ -19,6 +19,7 @@ import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
 
@@ -36,14 +37,15 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
-	// private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB) {
+
+			UPIReceiptLineDB upiReceiptLineDB, PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
 
 		this.jdaFooter = jdaFooter;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
@@ -167,8 +169,8 @@ public class PreAdviceHeaderStepsDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be In \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_In_status_and_locked_with_code(String preAdviceId,
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String preAdviceId,
 			String type, String upiId, String asnId, String status, String lockCode) throws Throwable {
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
@@ -180,7 +182,6 @@ public class PreAdviceHeaderStepsDefs {
 		logger.debug("UPI ID: " + upiId);
 		logger.debug("ASN ID: " + asnId);
 		logger.debug("Type: " + type);
-
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
@@ -212,24 +213,29 @@ public class PreAdviceHeaderStepsDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the idt status should be displayed as \"([^\"]*)\"$")
-	public void the_idt_status_should_be_displayed_as(String rcvStatus) throws Throwable {
+	@Given("^the po status should be \"([^\"]*)\" while upi and asn status should \"([^\"]*)\"$")
+	public void the_po_status_should_be_while_upi_and_asn_status_should(String poStatus, String rcvStatus)
+			throws Throwable {
 		ArrayList failureList = new ArrayList();
 
+		verification.verifyData("Pre-Advice Status", poStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()),
+				failureList);
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
+
 		Assert.assertTrue(
-				" UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				"PO , UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
 
 	@Given("^the po status should be displayed as \"([^\"]*)\" for blind receive$")
 	public void the_po_status_should_be_displayed_as_for_blind_receive(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
+
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
 		Assert.assertTrue(
-				"UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				" UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
 
@@ -249,6 +255,7 @@ public class PreAdviceHeaderStepsDefs {
 	}
 
 	// FSV Receiving
+
 	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id \"([^\"]*)\"$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String preAdviceId, String type, String status,
 			String siteId) throws Throwable {
@@ -287,4 +294,16 @@ public class PreAdviceHeaderStepsDefs {
 	public void i_have_an_invalid_UPI(String upiId) throws Throwable {
 		Assert.assertFalse("Record found not as expected", upiReceiptHeaderDB.isRecordExistsForPalletId(upiId));
 	}
+
+	@Given("^the idt status should be displayed as \"([^\"]*)\"$")
+	public void the_idt_status_should_be_displayed_as(String rcvStatus) throws Throwable {
+		ArrayList failureList = new ArrayList();
+
+		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
+		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
+		Assert.assertTrue(
+				" UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 }

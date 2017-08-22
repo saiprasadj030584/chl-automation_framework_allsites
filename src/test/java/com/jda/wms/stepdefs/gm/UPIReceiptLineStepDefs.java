@@ -123,10 +123,22 @@ public class UPIReceiptLineStepDefs {
 		context.setSkuList(skuFromUPI);
 
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
+
 		System.out.println("sku" + context.getSkuId());
 		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
 		System.out.println("supplier" + context.getSupplierID());
 		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
 		System.out.println("upc" + context.getUPC());
 	}
+
+	public void i_fetch_supplier_id_UPC_sourced_by_multi_supplier() throws Throwable {
+		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
+		context.setUPC(skuDb.getUPC(context.getSkuId()));
+		if (supplierSkuDb.isMultiSourced(context.getUPC())) {
+			context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
+		} else {
+			Assert.assertFalse("SKU is not Multi Soured", supplierSkuDb.isMultiSourced(context.getUPC()));
+		}
+	}
+
 }

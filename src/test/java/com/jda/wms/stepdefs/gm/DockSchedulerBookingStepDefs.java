@@ -3,6 +3,8 @@ package com.jda.wms.stepdefs.gm;
 import java.util.ArrayList;
 import org.junit.Assert;
 import org.sikuli.script.Screen;
+import org.sikuli.script.Key;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.BookingInDiary;
@@ -48,10 +50,13 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.clickExecuteButton();
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
+	if(context.getSiteId().equals("5649"))
+		{
 		verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
 				failureList);
 		verification.verifyData("Service Level", context.getServiceLevel(),
 				bookingInDiary.getServiceLevel(context.getBookingID()), failureList);
+}
 	}
 
 	@Then("^the booking id details with updated time should be displayed on the page$")

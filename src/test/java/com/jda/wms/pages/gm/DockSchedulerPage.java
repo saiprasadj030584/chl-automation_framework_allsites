@@ -13,10 +13,12 @@ public class DockSchedulerPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final Context context;
+	private JdaHomePage jdaHomePage;
 
 	@Inject
-	public DockSchedulerPage(Context context) {
+	public DockSchedulerPage(Context context, JdaHomePage jdaHomePage) {
 		this.context = context;
+		this.jdaHomePage = jdaHomePage;
 	}
 
 	public void selectCreateNewBooking() throws FindFailed, InterruptedException {
@@ -62,6 +64,10 @@ public class DockSchedulerPage {
 	}
 
 	public void selectSlot() throws FindFailed, InterruptedException {
+		//
+		// for (int i = 0; i < 25; i++) {
+		// jdaHomePage.scrollRight();
+		// }
 		screen.wait("images/DockScheduler/Schedule/Slot.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/Slot.png");
 		Thread.sleep(2000);
@@ -100,11 +106,22 @@ public class DockSchedulerPage {
 		selectBookingDetails();
 	}
 
-	public boolean isBookingStatusUpdated() throws FindFailed, InterruptedException {
-		if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusComplete.png") != null) {
-			return true;
-		} else
-			return false;
+	public boolean isBookingStatusUpdated(String bookingStatus) throws FindFailed, InterruptedException {
+
+		if (bookingStatus.equalsIgnoreCase("Complete")) {
+
+			if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusComplete.png") != null) {
+				return true;
+			} else
+				return false;
+
+		} else {
+			if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusInProgress.png") != null) {
+				return true;
+			} else
+				return false;
+		}
+
 	}
 
 	public void enterTrailerType() throws FindFailed, InterruptedException {
@@ -124,7 +141,29 @@ public class DockSchedulerPage {
 
 	}
 
+	public void changeBookingTimeToDifferentDate() throws FindFailed, InterruptedException {
+
+		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/In.png");
+		screen.rightClick();
+		Thread.sleep(2000);
+		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
+
+		Thread.sleep(3000);
+		screen.click("images/DockScheduler/Schedule/SelectDate1.png");
+		Thread.sleep(2000);
+	}
+
 	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
+
+		System.out.println("context.getBookingTime() " + context.getBookingTime());
+		System.out.println(
+				"context.getUpdatedBookingTime().substring(9)) " + context.getUpdatedBookingTime().substring(9));
+		System.out.println("context.getUpdatedBookingTime() " + context.getUpdatedBookingTime());
+		System.out.println("context.getDockId()  " + context.getDockId());
+		System.out.println("context.getUpdatedDockId()  " + context.getUpdatedDockId());
+
 		if (context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9))) {
 			if ((context.getDockId().contains(context.getUpdatedDockId()))) {
 				return false;
@@ -136,24 +175,36 @@ public class DockSchedulerPage {
 
 	}
 
-	public void changeBookingStatus() throws FindFailed, InterruptedException {
+	public void changeBookingStatus(String bookingStatus) throws FindFailed, InterruptedException {
 
 		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
-		screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
-		Thread.sleep(1000);
-		screen.type(context.getTrailerNo());
-		pressTab();
-		pressTab();
-		pressTab();
-		screen.type("1");
-		pressTab();
-		screen.type("1");
-		screen.click("images/DockScheduler/Schedule/BookingDetails/Ok.png");
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+
+		if (bookingStatus.equalsIgnoreCase("Complete")) {
+			screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
+			Thread.sleep(1000);
+			screen.type(context.getTrailerNo());
+			pressTab();
+			pressTab();
+			pressTab();
+			screen.type("1");
+			pressTab();
+			screen.type("1");
+			screen.click("images/DockScheduler/Schedule/BookingDetails/Ok.png");
+			Thread.sleep(2000);
+			screen.type(Key.ENTER);
+			Thread.sleep(2000);
+		} else {
+			screen.click("images/DockScheduler/Schedule/ChangeBookingStatus.png");
+			Thread.sleep(1000);
+			screen.type("i");
+			Thread.sleep(1000);
+			pressTab();
+			pressTab();
+			screen.type(Key.ENTER);
+			// screen.click("images/DockScheduler/Schedule/ChangeBookingStatusOKButton.png");
+		}
 
 	}
 

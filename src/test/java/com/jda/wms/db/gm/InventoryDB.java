@@ -389,8 +389,8 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 
 		rs.next();

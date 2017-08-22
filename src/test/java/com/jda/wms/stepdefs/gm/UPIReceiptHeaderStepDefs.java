@@ -36,6 +36,11 @@ public class UPIReceiptHeaderStepDefs {
 		this.uPIReceiptLineDB = uPIReceiptLineDB;
 	}
 
+	@Given("^ASN to be linked with upi header$")
+	public void asn_to_be_linked_with_upi_header() throws Throwable {
+		upiReceiptHeaderDB.updateASN(context.getUpiId(), context.getAsnId());
+	}
+
 	@Given("^ASN and container to be linked with upi header$")
 	public void asn_and_container_to_be_linked_with_upi_header() throws Throwable {
 		upiReceiptHeaderDB.updateASN(context.getUpiId(), context.getAsnId());

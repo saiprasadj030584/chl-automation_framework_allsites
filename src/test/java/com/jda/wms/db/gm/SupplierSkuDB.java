@@ -51,6 +51,21 @@ public class SupplierSkuDB {
 			return rs.getString(1);
 		} catch (Exception e) {
 			return e.getMessage();
+
+		}
+	}
+
+	public boolean isMultiSourced(String upc) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from supplier_sku where supplier_sku_id='" + upc + "'");
+		rs.next();
+		if (Integer.valueOf(rs.getString(1)) > 1) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -68,7 +83,7 @@ public class SupplierSkuDB {
 		}
 	}
 
-	public String getSupplierIdWithSku(String skuId) throws ClassNotFoundException {
+	public String getSupplierSKU(String skuId) {
 		try {
 			if (context.getConnection() == null) {
 				database.connect();
@@ -82,7 +97,7 @@ public class SupplierSkuDB {
 		}
 	}
 
-	public String getSupplierSKU(String skuId) {
+	public String getSupplierIdWithSku(String skuId) throws ClassNotFoundException {
 		try {
 			if (context.getConnection() == null) {
 				database.connect();

@@ -211,5 +211,6 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to stock check list completion page$")
 	public void i_navigate_to_stock_check_list_completion_page() throws Throwable {
 		jdaHomePage.navigateToStockCheckListCompletionPage();
+
 	}
 }

@@ -60,11 +60,11 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 
-	public boolean isBlindEntryDisplayed() throws InterruptedException {
+	public boolean isBlindEntryDisplayed() throws FindFailed, InterruptedException {
 		Thread.sleep(10000);
-		if ((screen.exists("images/Putty/Receiving/blindEnterPage.png") != null))
+		if ((screen.exists("images/Putty/Receiving/BlindReceivingEntry.png") != null)) {
 			return true;
-
+		}
 		return false;
 	}
 
@@ -76,6 +76,46 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isBlindReceivingDoneperfectCondition() throws FindFailed, InterruptedException {
+		boolean returnVal = false;
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+			returnVal = true;
+
+		} else if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+				|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				returnVal = true;
+			}
+		} else if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+			returnVal = true;
+		}
+		return returnVal;
+	}
+
+	public boolean isFootWearDigitValdiationDone() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+
+			return false;
+			// } else if
+			// (screen.exists("images/Putty/Receiving/footwear_digit_error.png")
+			// != null) {
+			// Commented due to Application issues in Dispatcher - IK
+		} else {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			return true;
+		}
+
 	}
 
 	public boolean checkNoOfSingles() throws FindFailed, InterruptedException {
@@ -147,7 +187,8 @@ public class PurchaseOrderReceivingPage {
 		// screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		// screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		Thread.sleep(1000);
+
+		Thread.sleep(3000);
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
@@ -334,7 +375,6 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
-
 		Thread.sleep(2000);
 	}
 
@@ -418,7 +458,6 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		return App.getClipboard();
-
 	}
 
 	public void entertagId(String tagId) throws InterruptedException {

@@ -90,6 +90,20 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
+	public String getQuantity(String skuId, String pallet_id) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		// ResultSet rs = stmt.executeQuery("select (qty_due - qty_received) as
+		// qty from upi_receipt_line where sku_id = '" + skuId + "' and
+		// pallet_id='"+ pallet_id + "'");
+		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where sku_id = '" + skuId
+				+ "' and pallet_id='" + pallet_id + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public String getIsTagMergeUnchecked(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -201,4 +215,19 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public boolean validateSku(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from sku where sku_id = '" + skuId + "'");
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }

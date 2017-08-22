@@ -26,6 +26,7 @@ public class DeliveryDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
+
 		rs.next();
 		return rs.getString(1);
 	}
