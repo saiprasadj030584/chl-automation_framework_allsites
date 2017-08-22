@@ -53,7 +53,7 @@ public class StockCheckListGenerationStepDefs {
 	public void i_enter_the_tag_ID_as_on_inventory_tab() throws Throwable {
 		context.setTagId(inventoryDB.getTagId());
 		// stockCheckListGenerationPage.enterTagId(context.getTagId());
-		stockCheckListGenerationPage.enterTagId("11170");
+		stockCheckListGenerationPage.enterTagId("11079");
 		jdaFooter.clickNextButton();
 	}
 

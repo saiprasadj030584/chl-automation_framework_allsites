@@ -100,14 +100,14 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+		// jdaLoginPage.login();
+		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		// jDAFooter.clickQueryButton();
+		// inventoryTransactionQueryPage.selectCode("Receipt");
+		// inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		// inventoryTransactionQueryPage.enterTransactionDate();
+		// jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId((String) context.getSkuList().get(i - 1));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
@@ -189,11 +189,12 @@ public class InventoryTransactionQueryStepDefs {
 	}
 
 	@Then("^the ITL should be generated for putaway relocated stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_putaway_relocated_stock_in_inventory_transaction()
-			throws Throwable {
+	public void the_ITL_should_be_generated_for_putaway_relocated_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
@@ -205,6 +206,67 @@ public class InventoryTransactionQueryStepDefs {
 				} else if (m == 2) {
 					context.setToLocation(context.getPutawayLocation2());
 					context.setRcvQtyDue(2);
+				}
+
+				String isITLExists = inventoryTransactionDB.isITLExistsForRelocatedPutaway(context.getSkuId(),
+						context.getUpiId(), date, "Putaway", context.getToLocation(), context.getRcvQtyDue());
+
+			}
+		}
+
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@Then("^the ITL should be generated for putaway stock in inventory transaction$")
+	public void the_ITL_receipt_should_be_generated_for_putaway_stock_in_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		upiMap = context.getUPIMap();
+		skuList = context.getSkuList();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+
+			for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+				for (int m = 1; m <= 2; m++) {
+					if (m == 1) {
+						context.setToLocation(context.getToLocation());
+						context.setRcvQtyDue((context.getRcvQtyDue() - 10));
+					} else if (m == 2) {
+						context.setToLocation(context.getToLocation2());
+						context.setRcvQtyDue(5);
+					}
+
+					String isITLExists = inventoryTransactionDB.isITLExistsForRelocatedPutaway(context.getSkuId(),
+							context.getUpiId(), date, "Putaway", context.getToLocation(), context.getRcvQtyDue());
+
+				}
+			}
+
+			Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
+					+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		}
+	}
+
+	@Then("^the iTL should be generated for putaway stock in inventory transaction$")
+	public void the_iTL_receipt_should_be_generated_for_putaway_stock_in_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		// ArrayList<String> skuList = new ArrayList<String>();
+		upiMap = context.getUPIMap();
+		// skuList = context.getSkuList();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		// for (int s = 0; s < skuList.size(); s++) {
+		// context.setSkuId(skuList.get(s));
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			for (int m = 1; m <= 2; m++) {
+				if (m == 1) {
+					context.setToLocation(context.getToLocation());
+					context.setRcvQtyDue((context.getRcvQtyDue() - 1));
+				} else if (m == 2) {
+					context.setToLocation(context.getToLocation2());
+					context.setRcvQtyDue(1);
 				}
 
 				String isITLExists = inventoryTransactionDB.isITLExistsForRelocatedPutaway(context.getSkuId(),

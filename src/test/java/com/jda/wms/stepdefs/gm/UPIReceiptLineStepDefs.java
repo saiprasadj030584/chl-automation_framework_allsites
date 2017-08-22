@@ -118,6 +118,10 @@ public class UPIReceiptLineStepDefs {
 
 	@Given("^I fetch supplier id UPC$")
 	public void i_fetch_supplier_id_UPC() throws Throwable {
+		ArrayList skuFromUPI = new ArrayList();
+		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
+		context.setSkuList(skuFromUPI);
+
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
 		System.out.println("sku" + context.getSkuId());
 		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));

@@ -282,15 +282,15 @@ public class InventoryQueryStepDefs {
 
 	@Then("^the inventory should be generated$")
 	public void the_inventory_should_be_generated() throws Throwable {
-		// jdaLoginPage.login();
+
 		jDAHomeStepDefs.i_am_on_inventory_query_page();
 		jDAFooter.clickQueryButton();
 		// inventoryQueryPage.enterTagId(context.getTagId());
-		inventoryQueryPage.enterTagId("11170");
+		inventoryQueryPage.enterTagId("11079");
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getQtyOnHand();
-		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQty("11170", context.getLocation())));
+		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQty("11079", context.getLocation())));
 		Assert.assertEquals("updated quantity on hand is not as expected", context.getQtyOnHand(),
 				Integer.parseInt(inventoryQueryPage.getQtyOnHand()));
 

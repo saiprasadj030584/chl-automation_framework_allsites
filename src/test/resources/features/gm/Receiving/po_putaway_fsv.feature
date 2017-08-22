@@ -10,6 +10,7 @@ Feature: Purchase order Putaway
     When I choose normal putaway
     And I proceed without entering location
     Then the error message should be displayed as cannot find putaway location
+     Examples: 
       | PreAdviceID | Location | SiteID |
       | 25300100914 | REC001   |   5649 |
 
@@ -33,3 +34,15 @@ Feature: Purchase order Putaway
     Examples: 
       | PalletId                         | ASN        | Location | Condition | SiteId |
       | 58850004134450077210063862500366 | 0000765627 | REC003   | Y         |   5885 |
+      
+       @boxed_fsv_putaway_location_full @boxed @fsv @putaway
+  Scenario Outline: Validate Putaway Logic for receiving singles when locations full
+     Given the FSV PO "<PreAdviceID>" of type "Boxed" should be received at location "<Location>" and site id "<SiteID>"
+     When I choose normal putaway
+     And I proceed by entering less quantity for FSV
+     Then the ITL should be generated for putaway stock in inventory transaction
+     Examples: 
+      | PreAdviceID | Location | SiteID |
+      | 25300100918| REC001   |   5649 |
+     
+    

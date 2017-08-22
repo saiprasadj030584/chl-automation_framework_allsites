@@ -128,6 +128,7 @@ public class Context {
 	private String Record;
 	private String perfectCondition;
 	private String partset;
+	private String toLocation2;
 
 	public String getPartset() {
 		return partset;
@@ -1024,5 +1025,13 @@ public class Context {
 
 	public void setPutawayLocation2(String putawayLocation2) {
 		this.putawayLocation2 = putawayLocation2;
+	}
+
+	public String getToLocation2() {
+		return toLocation2;
+	}
+
+	public void setToLocation2(String toLocation2) {
+		this.toLocation2 = toLocation2;
 	}
 }

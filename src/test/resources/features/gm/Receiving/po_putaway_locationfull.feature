@@ -4,7 +4,7 @@ Feature: Purchase order Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @boxed_direct_po_putaway_location_full @boxed @direct_po @putaway
+  @boxed_direct_po_putaway_location_full @boxed @direct_po @putaway @review
   Scenario Outline: Validate Putaway Logic for receiving singles when locations full
   	Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I choose existing relocate
@@ -16,7 +16,7 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
       #|  1090009006 | 00050456000253606176 | 0000002809 | REC001   |
-      |1040019011 |00050473210258814145|0000002760| REC001   |
+      |1040019012 |00050473610258814145|0000002763| REC001   |
 
   @boxed_direct_po_putaway_location_override @boxed @direct_po @putaway
   Scenario Outline: Validate Override Putaway Location

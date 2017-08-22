@@ -180,8 +180,11 @@ public class IDTReceivingStepDefs {
 		for (int s = 0; s < skuList.size(); s++) {
 			context.setSkuId(skuList.get(s));
 			context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
+
 			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			System.out.println(context.getRcvQtyDue());
+
 			if (receiveType.equalsIgnoreCase("Over Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() + 5);
 			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {

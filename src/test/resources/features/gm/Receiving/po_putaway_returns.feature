@@ -17,14 +17,14 @@ Feature: Purchase order Putaway
       @returns_boxed_putaway_location_full @boxed @returns @boxed @putaway
   Scenario Outline:Validate Putaway Logic for receiving singles when locations full
     Given the UPI "<PalletId>" and ASN "<ASN>" of type "Boxed" should be received at location "<Location>" and "<Condition>" at site "<SiteId>"
-    When I choose existing relocate
-    And I proceed with entering the palletid
+   # When I choose existing relocate
+   # And I proceed with entering the palletid
     When I choose normal putaway
-    And I proceed by entering less quantity
-    Then the ITL should be generated for putaway relocated stock in inventory transaction
+    And I proceed by enterin less quantity for IDT
+    Then the ITL should be generated for putaway stock in inventory transaction
     
       Examples: 
       | PalletId                         | ASN        | Location | Condition | SiteId |
-      | 58850004175450077210083862500366 | 0000765655 | REC003   | Y         |   5885 |
+      |58850004254250077210083862500362 | 0000765567 | REC003   | Y         |   5885 |
       
     

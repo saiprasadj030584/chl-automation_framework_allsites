@@ -30,11 +30,11 @@ public class StockCheckTaskQueryStepDefs {
 	public void i_get_the_list_id() throws Throwable {
 		jdaFooter.clickQueryButton();
 		// stockCheckTaskQueryPage.enterTagId(context.getTagId());
-		stockCheckTaskQueryPage.enterTagId("11170");
+		stockCheckTaskQueryPage.enterTagId("11079");
 		jdaFooter.clickExecuteButton();
 		// context.setListID((String)
 		// stockCheckTaskDB.getListId(context.getTagId()));
-		context.setListID((String) stockCheckTaskDB.getListId("11170"));
+		context.setListID((String) stockCheckTaskDB.getListId("11079"));
 
 	}
 }

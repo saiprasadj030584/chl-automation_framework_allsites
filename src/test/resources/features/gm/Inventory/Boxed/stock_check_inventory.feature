@@ -29,8 +29,8 @@ Feature: Report generation
       | SiteId |
       |   5649 |
 
-  @boxed_inventory_stock_check_positive @boxed @inventory
-  Scenario: Validate the stock available in any location. Check Empty and Low Volume Slots
+  @boxed @stock_adjustment @inventory_stock_check_positive @boxed @review
+  Scenario: Positive proof of stock check
     # Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
     And I select 'Generate by inventory'

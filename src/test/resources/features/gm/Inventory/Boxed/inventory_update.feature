@@ -95,7 +95,7 @@ Feature: Inventory update
       | Owner | Updateowner |
       | AOWN  | M+S         |
 
-  @pack_config_update
+  @boxed @inventory_update @pack_config_update
   Scenario: Inventory update for packConfig
     Given I have a sku in inventory with more than one pack config
     When I navigate to inventory update page
@@ -106,5 +106,3 @@ Feature: Inventory update
     When I navigate to inventory transaction query
     When I choose the code as config update and I search the sku id
     Then the pack config should be updated
-
-   

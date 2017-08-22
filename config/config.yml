@@ -3,7 +3,7 @@
 default:
  browser-name: ie
 
- username: 'P9135235'
+ username: 'p9135235'
  password: '1234'
 
  gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
@@ -15,10 +15,10 @@ default:
  
  #gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
 # putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
-# putty-gm-port: '22902'
+ #putty-gm-port: '22902'
  #db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
 # db-username: 'dcsdba'
- #db-password: 'jdadccate5'
+# db-password: 'jdadccate5'
 
  
       

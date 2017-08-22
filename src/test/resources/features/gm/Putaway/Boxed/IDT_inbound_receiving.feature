@@ -22,7 +22,7 @@ Feature: Purchase order receiving IDT
     And ASN and container to be linked with upi header
     When I perform "Over Receiving" for all Locked skus at location "<Location>" for IDT
     Then the error message should be displayed as excess over receipt
-    And the ITL should be generated for IDT received stock in inventory transaction.
+    And the ITL should be generated for IDT received stock in inventory transaction
 
     Examples: 
       | PalletId                          | ASN         | Location |
@@ -63,4 +63,15 @@ Feature: Purchase order receiving IDT
     Examples: 
       | PalletId                         | ASN         | Location |
       | 56490001339579299900395756000210| PO0917862083 | REC001   |
+      
+   @boxed_idt_putaway_location_full @boxed @idt @putaway @review
+  Scenario Outline: Validate Putaway Logic for receiving singles when locations full
+    Given the UPI "<PalletId>" and ASN "<ASN>" of type "Boxed" should be received at location "<Location>" for IDT
+    When I choose normal putaway
+    And I proceed by entering less quantity for IDT
+    Then the ITL should be generated for putaway stock in inventory transaction
+    
+    Examples: 
+      | PalletId                         | ASN         | Location |
+      | 56490001335578299900395756000210|PO0915231058 | REC001   |
       
