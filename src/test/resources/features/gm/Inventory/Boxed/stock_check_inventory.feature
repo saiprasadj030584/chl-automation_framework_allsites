@@ -3,7 +3,7 @@ Feature: Report generation
   As a warehouse user
   I want to validate stock in inventory
 
-  @boxed_inventory_stock_check_low_and_empty_volume @boxed @inventory
+  @boxed_inventory_stock_check_low_and_empty_volume @boxed @inventory @complete
   Scenario: Validate the stock available in any location. Check Empty and Low Volume Slots
     #Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page

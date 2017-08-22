@@ -3,7 +3,7 @@ Feature: Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @lock_status_change @complete
+  @boxed @inventory_update @lock_status_change @complete
   Scenario Outline: Inventory update for Lock Status Change
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -20,7 +20,7 @@ Feature: Inventory update
       | Locked     | Unlocked     | Inventory Unlock |
       | UnLocked   | Locked       | Inventory Lock   |
 
-  @expiry_date_update @complete
+   @boxed @inventory_update @expiry_date_update @complete
   Scenario: Inventory update for expiry date change
     Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
@@ -32,7 +32,7 @@ Feature: Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @origin_update @complete
+  @boxed @inventory_update @origin_update @complete
   Scenario Outline: Inventory update for origin change
     Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
@@ -47,7 +47,7 @@ Feature: Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @condition_code_update @complete
+  @boxed @inventory_update @condition_code_update @complete
   Scenario Outline: Inventory update for condition code change
     Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
@@ -63,7 +63,7 @@ Feature: Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @pallet_type_update @complete
+   @boxed @inventory_update @pallet_type_update @complete
   Scenario Outline: Inventory update for pallet type change
     Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
@@ -79,7 +79,7 @@ Feature: Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-  @owner_update @hold
+   @boxed @inventory_update @owner_update @hold
   Scenario Outline: Inventory update for owner change
     Given I have a tag in inventory with owner as "<Owner>"
     When I navigate to inventory update page
@@ -95,7 +95,7 @@ Feature: Inventory update
       | Owner | Updateowner |
       | AOWN  | M+S         |
 
-  @boxed @inventory_update @pack_config_update
+  @boxed @inventory_update @pack_config_update @wip
   Scenario: Inventory update for packConfig
     Given I have a sku in inventory with more than one pack config
     When I navigate to inventory update page
