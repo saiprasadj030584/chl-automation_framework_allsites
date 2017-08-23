@@ -307,7 +307,7 @@ public class PurchaseOrderPutawayStepDefs {
 		// Assert.assertTrue("Chk To Page not displayed to enter check string",
 		// purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
-		System.out.println("hiii" + context.getToLocation());
+
 	}
 
 	@Then("^I enter the check string for location$")
@@ -315,7 +315,7 @@ public class PurchaseOrderPutawayStepDefs {
 		// Assert.assertTrue("Chk To Page not displayed to enter check string",
 		// purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation2()));
-		System.out.println("hiii" + context.getToLocation2());
+
 	}
 
 	@When("^I enter urn id in putaway$")
@@ -360,7 +360,6 @@ public class PurchaseOrderPutawayStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			String quantity = String.valueOf(context.getRcvQtyDue() - 2);
 			Thread.sleep(2000);
-			// purchaseOrderPutawayPage.enterURNID("00050453000258815129");
 
 			purchaseOrderPutawayPage.enterURNID(context.getTagId());
 			jdaFooter.PressEnter();
@@ -447,28 +446,14 @@ public class PurchaseOrderPutawayStepDefs {
 			purchaseOrderPutawayPage.selectLocationFullMenu();
 			jdaFooter.PressEnter();
 
-			// Assert.assertTrue("Searching for New putaway location not
-			// displayed as expected",
-			// purchaseOrderPutawayPage.isSearchForNewPutawayDisplayed());
-			// jdaFooter.PressEnter();
-
-			// To putaway location for first few quantity
-			// context.setPutawayLocation1(inventoryDB.getPutawayLocation1(context.getSkuId()));
-			// jdaFooter.pressTab();
-			// purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
 			String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 			String toLocation = putawayLocation[0];
 			context.setToLocation(toLocation);
 			jdaFooter.PressEnter();
 
-			// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
 			i_enter_the_check_string();
 			jdaFooter.PressEnter();
 
-			// To putaway location for remaining quantity
-			// context.setPutawayLocation2(inventoryDB.getPutawayLocation2(context.getSkuId()));
-			// jdaFooter.pressTab();
-			// purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
 			String[] putawayLocation2 = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 			String toLocation2 = putawayLocation2[0];
 			context.setToLocation2(toLocation2);
@@ -477,11 +462,6 @@ public class PurchaseOrderPutawayStepDefs {
 			i_enter_the_check_string_for_location();
 
 			jdaFooter.PressEnter();
-
-			// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
-			System.out.println("hi");
-
-			// jdaFooter.PressEnter();
 
 			Assert.assertTrue("PutAway completion is not as expected",
 					purchaseOrderPutawayPage.isPutCmpPageDisplayed());
@@ -493,20 +473,12 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_proceed_by_entering_less_quantity_for_IDT() throws Throwable {
 		ArrayList<String> skuList = new ArrayList<String>();
 		upiMap = context.getUPIMap();
-		// poMap = context.getPOMap();
-		skuList = context.getSkuList();
 
-		// for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++)
-		// {
-		// context.setSkuId(poMap.get(i).get("SKU"));
-		// for (int s = 0; s < skuList.size(); s++) {
-		// context.setSkuId(skuList.get(s));
+		skuList = context.getSkuList();
 
 		context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 		String quantity = String.valueOf(context.getRcvQtyDue() - 10);
 		Thread.sleep(2000);
-		System.out.println(context.getRcvQtyDue() - 10);
-		// purchaseOrderPutawayPage.enterURNID("4413");
 
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
 		jdaFooter.PressEnter();
@@ -526,28 +498,14 @@ public class PurchaseOrderPutawayStepDefs {
 		purchaseOrderPutawayPage.selectLocationFullMenu();
 		jdaFooter.PressEnter();
 
-		// Assert.assertTrue("Searching for New putaway location not
-		// displayed as expected",
-		// purchaseOrderPutawayPage.isSearchForNewPutawayDisplayed());
-		// jdaFooter.PressEnter();
-
-		// To putaway location for first few quantity
-		// context.setPutawayLocation1(inventoryDB.getPutawayLocation1(context.getSkuId()));
-		// jdaFooter.pressTab();
-		// purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
 		String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 		String toLocation = putawayLocation[0];
 		context.setToLocation(toLocation);
 		jdaFooter.PressEnter();
 
-		// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
 		i_enter_the_check_string();
 		jdaFooter.PressEnter();
 
-		// To putaway location for remaining quantity
-		// context.setPutawayLocation2(inventoryDB.getPutawayLocation2(context.getSkuId()));
-		// jdaFooter.pressTab();
-		// purchaseOrderPutawayPage.enterLocation(context.getPutawayLocation1());
 		String[] putawayLocation2 = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 		String toLocation2 = putawayLocation2[0];
 		context.setToLocation2(toLocation2);
@@ -556,11 +514,6 @@ public class PurchaseOrderPutawayStepDefs {
 		i_enter_the_check_string_for_location();
 
 		jdaFooter.PressEnter();
-
-		// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
-		System.out.println("hi");
-
-		// jdaFooter.PressEnter();
 
 		Assert.assertTrue("PutAway completion is not as expected", purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 
@@ -572,7 +525,7 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_proceed_by_enterin_less_quantity_for_returns() throws Throwable {
 		ArrayList<String> skuList = new ArrayList<String>();
 		upiMap = context.getUPIMap();
-		// poMap = context.getPOMap();
+
 		skuList = context.getSkuList();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {

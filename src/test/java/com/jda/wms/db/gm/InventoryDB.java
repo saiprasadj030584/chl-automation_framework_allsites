@@ -371,13 +371,12 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-	public String getTagId() throws SQLException, ClassNotFoundException {
+	public String getTagID(String siteID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select tag_id from inventory");
+		ResultSet rs = stmt.executeQuery("select tag_id from inventory Where site_id='" + siteID + "'");
 		rs.next();
 		return rs.getString(1);
 	}

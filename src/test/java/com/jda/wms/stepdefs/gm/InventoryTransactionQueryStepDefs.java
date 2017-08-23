@@ -243,7 +243,6 @@ public class InventoryTransactionQueryStepDefs {
 
 				}
 			}
-
 			Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
 					+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 		}
