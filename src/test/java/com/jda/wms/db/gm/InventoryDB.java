@@ -380,6 +380,28 @@ public class InventoryDB {
 	}
 	return isRecordExists;
 	}
+	
+	public boolean isSkuInMezz(String skuId) throws SQLException, ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select sku_id from Inventory where sku_id='" + skuId + "'");
+		ResultSet rs = stmt.executeQuery("select sku_id from Inventory where sku_id='" + skuId + "' and config_id like '%MEZZ%'");
+		rs.next();
+		if (rs.getString(1)!=null){
+			isRecordExists = true;
+		}
+	} catch (Exception e) {
+		if (e.getMessage().contains("Exhausted Resultset")) {
+			isRecordExists = false;
+		}
+	}
+	return isRecordExists;
+	}
+
 
 
 	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {

@@ -102,6 +102,7 @@ public class InventoryUpdateStepDefs {
 	@Then("^I change the lock status to unlocked$")
 	public void i_change_the_lock_status_to_unlocked() throws Throwable {
 		screen.type("Lock Status Change");
+		Thread.sleep(1000);
 		jdafooter.clickNextButton();
 		stockAdjustmentsPage.enterSku(context.getSkuId());
 		
@@ -109,8 +110,7 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickNextButton();
 		jdafooter.clickNextButton();
 		screen.type("Unlocked");
+		Thread.sleep(1000);
 		jdafooter.clickDoneButton();
-		
 	}
-	
 }

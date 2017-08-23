@@ -55,7 +55,7 @@ Feature: Stock adjustments
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |Reason Code																|
-      | 58850008448480077010083484800300 | 0000844858 | REC003   | N         |RMS - Over receipt without movement label |
+      | 58850008448480077010082484800300 | 0000844868 | REC003   | N         |RMS - Over receipt without movement label |
 
   @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_product_not_listed_for_URRN_and_has_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent a product not listed for the URRN and has a movement label' (unexpected)

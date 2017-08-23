@@ -87,6 +87,23 @@ public class PreAdviceHeaderStepsDefs {
 			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
 	
+	@Given("^the PO  should be in \"([^\"]*)\" status with line items,supplier details$")
+	public void the_PO_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String status) throws Throwable {
+			context.setPreAdviceId(preAdviceId);
+			
+			ArrayList failureList = new ArrayList();
+			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+			
+			verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+			
+			context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
+			int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
+			context.setNoOfLines(numLines);
+			
+			Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+}
+
+	
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
 	public void the_PO_of_type_with_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
 			String upiId,String asnId, String status) throws Throwable {

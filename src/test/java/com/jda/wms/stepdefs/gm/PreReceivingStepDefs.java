@@ -38,6 +38,12 @@ public class PreReceivingStepDefs {
 		Assert.assertNotNull("Supplier ID not displayed as expected", preAdviceHeaderDB.getSupplierId(preAdviceId));
 	}
 	
+	@Given("^the PO \"([^\"]*)\" should be in \"([^\"]*)\" status$")
+	public void the_PO_should_be_in_status(String preAdviceId,String status) throws Throwable {
+		preAdviceHeaderStepsDefs.the_PO_should_be_in_status_with_line_items_supplier_details(
+				preAdviceId, "Released");
+	}
+	
 	
 
 	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" details should be displayed$")

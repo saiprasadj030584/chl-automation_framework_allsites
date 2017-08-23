@@ -139,9 +139,9 @@ public class OrderHeaderStepsDefs {
 				}
 				
 //				//Order status
-//				verification.verifyData("Order Status not displayed as expected",status,
-//						 orderHeaderDB.getStatus(orderNumber),
-//						failureList);
+				verification.verifyData("Order Status not displayed as expected",status,
+						 orderHeaderDB.getStatus(orderNumber),
+						failureList);
 				
 				//jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 				Assert.assertTrue("Order Details is not as expected. ["

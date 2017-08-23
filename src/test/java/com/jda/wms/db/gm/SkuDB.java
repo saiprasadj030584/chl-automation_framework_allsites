@@ -186,7 +186,7 @@ public class SkuDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		rs.next();

@@ -209,6 +209,7 @@ if (!inventoryTransactionQueryPage.isNoRecords()) {
 	@Then("^the goods receipt should be generated for putaway stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_putaway_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
+		
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
@@ -233,6 +234,33 @@ if (!inventoryTransactionQueryPage.isNoRecords()) {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
+	@Then("^the goods receipt should be generated for putaway returns stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_putaway_returns_stock_in_inventory_transaction() throws Throwable {
+		
+		ArrayList<String> failureList = new ArrayList<String>();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(context.getSkuFromUPI().get(i-1));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Receipt",context.getSkuId(), date));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(),"1",
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getUpiId(),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
 	@Then("^the goods receipt should be generated for putaway FSV stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_putaway_fsv_stock_in_inventory_transaction() throws Throwable {
 		//context.setFromLocation("MEZF2");
@@ -249,7 +277,7 @@ if (!inventoryTransactionQueryPage.isNoRecords()) {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), "1",
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
@@ -498,21 +526,27 @@ if (!inventoryTransactionQueryPage.isNoRecords()) {
 	
 	@When("^the inventory transaction should be updated for multiple upi$")
 	public void the_inventory_transaction_should_be_updated_for_multiple_upi() throws Throwable {
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterCode("Receipt");
-		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-		jDAFooter.clickExecuteButton();
-		String code = "Receipt";
-		System.out.println(context.getRcvQtyDue());
-		System.out.println(context.getRcvQtyDue());
-		inventoryTransactionDB.getReceiptCount(context.getUpiId(), code);
 		int receiptCount=0;
-		
+		int origQtyDue=0;
+		int m=0;
 		for(int i=0;i<context.getUpiList().size();i++)
 		{
-			receiptCount+=inventoryTransactionDB.getReceiptCount(context.getUpiList().get(i), code);
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiList().get(i));
+		jDAFooter.clickExecuteButton();
+		String code = "Receipt";
+		receiptCount+=inventoryTransactionDB.getReceiptCount(context.getUpiList().get(i), code);
+		for(int j=0;j<context.getUpiNumLinesMap().get(context.getUpiList().get(i));j++)
+		{
+			m++;
+			context.setSkuId(context.getSkuFromUPI().get(m - 1));
+			origQtyDue+=Integer.parseInt(context.getMultipleUPIMap().get(context.getUpiList().get(i)).get(context.getSkuId()).get("QTY DUE"));
 		}
-		Assert.assertEquals("ITL not updated",context.getRcvQtyDue(),receiptCount);
+		}
+		
+		
+		Assert.assertEquals("ITL not updated",origQtyDue,receiptCount);
 	}
 	
 	@When("^I search with sku and reason code$")

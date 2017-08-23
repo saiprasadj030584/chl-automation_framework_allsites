@@ -194,6 +194,28 @@ public class PreAdviceLineDB {
 				"update pre_advice_line set lock_code='" + lockCode + "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+	
+	public String getComplianceFlag(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select user_def_type_3 from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public void updateComplianceFlag(String preAdviceId,String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_line set user_def_type_3='COMP' where pre_advice_id='" + preAdviceId + "' and sku_id='" + skuId + "'");
+		context.getConnection().commit();
+	}
 
 	public String getLockCode(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

@@ -590,7 +590,12 @@ public class PurchaseOrderReceivingStepDefs {
 	
 	@When("^I enter details and perform blind receive$")
 	public void i_enter_details_and_perform_blind_receive() throws Throwable {
-		for (int i = 0; i < context.getRcvQtyDue(); i++) {
+		for(int j=0;j<context.getNoOfLines();j++)
+		{
+			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+			context.setRcvQtyDue(Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+				for (int i = 0; i < context.getRcvQtyDue(); i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 			if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
 					|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")
@@ -619,12 +624,18 @@ public class PurchaseOrderReceivingStepDefs {
 				Assert.assertTrue("verification of no of singles failed",
 						purchaseOrderReceivingPage.checkNoOfSingles());
 			}
+				}
 		}
 	}
 
 	@When("^I enter details and perform blind receive with partset$")
 	public void i_enter_details_and_perform_blind_receive_with_partset() throws Throwable {
-		for (int i = 0; i < context.getRcvQtyDue(); i++) {
+		for(int j=0;j<context.getNoOfLines();j++)
+		{
+			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+			context.setRcvQtyDue(Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+				for (int i = 0; i < context.getRcvQtyDue(); i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
@@ -647,6 +658,7 @@ public class PurchaseOrderReceivingStepDefs {
 				Assert.assertTrue("verification of no of singles failed",
 						purchaseOrderReceivingPage.checkNoOfSingles());
 			}
+		}
 		}
 	}
 
@@ -845,8 +857,12 @@ for(int k=0;k<context.getUpiList().size();k++)
 
 	@When("^I enter details and perform blind receive without lockcode with partset$")
 	public void i_enter_details_and_perform_blind_receive_without_lockcode_with_partset() throws Throwable {
-
-		for (int i = 0; i < context.getRcvQtyDue(); i++) {
+		for(int j=0;j<context.getNoOfLines();j++)
+		{
+			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+			context.setRcvQtyDue(Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+				for (int i = 0; i < context.getRcvQtyDue(); i++) {
 			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC() + "01");
 			jdaFooter.pressTab();
@@ -868,6 +884,7 @@ for(int k=0;k<context.getUpiList().size();k++)
 				Assert.assertTrue("verification of no of singles failed",
 						purchaseOrderReceivingPage.checkNoOfSingles());
 			}
+		}
 		}
 	}
 
@@ -1027,15 +1044,15 @@ for(int k=0;k<context.getUpiList().size();k++)
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 	
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be normal received at \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_normal_received_at(String preAdviceId, String type, String upiId,
+	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" containing \"([^\"]*)\" sku and ASN \"([^\"]*)\" should be normal received at \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_containing_sku_and_ASN_should_be_normal_received_at(String preAdviceId, String type, String upiId,String packConfig,
 			String asnId, String location) throws Throwable {
 		context.setUpiId(upiId);
 		context.setPreAdviceId(preAdviceId);
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
 				preAdviceId, type, upiId, asnId, "Released");
 
-		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		preAdviceLineStepDefs.the_PO_should_have_mezz_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		context.setLocation(location);
 		i_receive_all_skus_for_the_purchase_order_at_location(location);
@@ -1055,7 +1072,6 @@ for(int k=0;k<context.getUpiList().size();k++)
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId, asnId,
 				status);
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
-		//upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
 		context.setNoOfLines(numLines);
 	}
@@ -1130,9 +1146,8 @@ for(int k=0;k<context.getUpiList().size();k++)
 			throws Throwable {
 		context.setlocationID(location);
 		context.setPerfectCondition(condition);
-		//upiReceiptLineStepDefs.fetch_Qty_Details();
-		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
-		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+//		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
+//		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
 	
 	@Given("^I receive all skus of multiple upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")

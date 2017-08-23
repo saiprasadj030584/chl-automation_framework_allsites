@@ -12,7 +12,7 @@ Feature: Allocation
 
     Examples: 
       | OrderNumber |
-      #|  3764200879 |
+     |  3764200879 |
       
       
       @allocation @retail @boxed @boxed_allocation_retail_allocation_rules @complete

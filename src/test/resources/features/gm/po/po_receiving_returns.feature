@@ -6,6 +6,7 @@ Feature: Purchase order receiving
   @receiving_returns_footwear @po @complete
   Scenario Outline: Returns receiving for Footwear with lock code
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
     And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>" and lockcode "<LockCode>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lock code "<LockCode>"
@@ -16,11 +17,12 @@ Feature: Purchase order receiving
       #| 58850007286180077010072861800100 | 00007286181 | REC003   | N         | IMPERFECT  |
       #| 58850006086180077010060861800100 | 00006086181 | REC003   | Y         | SINGLESHOE |
       #| 58850007186180077010071861800100 | 00007186181 | REC003   | N         | SINGLESHOE |
-      | 58850008191683077010081916830400 | 00008191683 | REC003   | N         | DMGD     |
+      | 58850008192683077010081926830400 | 00008192683 | REC003   | N         | DMGD     |
 
   @receiving_returns_with_partset
   Scenario Outline: Returns receiving for Part set without lock code
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
     And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>" and partset "<Partset>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated
@@ -32,6 +34,7 @@ Feature: Purchase order receiving
   @receiving_returns_with_partset_and_lockcode
   Scenario Outline: Returns receiving for Part set with lock code
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
     And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>" and partset "<Partset>" and lockcode "<LockCode>"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lock code "<LockCode>"
@@ -102,5 +105,5 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                                                          | ASN        | Location | Condition |
      # | 56490000359590536160009081800200,56490000369590536190009081900600 | 0000006298 | REC003   | Y         |
-     | 58850008387380077010083865800300,58850008387380077010083855800300 | 0000828748 | REC003   | Y         |
+     | 58850008387380077010083865900300,58850008387380077010083856100300 | 0000838748 | REC003   | Y         |
      #| 58850008387380077010083872800300,58850001251140077010012512400300 | 0000828738 | REC003   | Y         | second upi 2 nd line item sku partset

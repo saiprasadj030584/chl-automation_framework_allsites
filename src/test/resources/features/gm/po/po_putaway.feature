@@ -41,7 +41,7 @@ Feature: Purchase order Putaway
 
   @boxed @putaway @direct_po @boxed_putaway_direct_po_putaway_validate_mezz_shelving_putaway @review
   Scenario Outline: Validate Mezz/Shelving putaway
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be normal received at "<Location>"
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" containing "MEZZ" sku and ASN "<ASN>" should be normal received at "<Location>"
     When I choose existing relocate
     And I proceed with entering the upc and location
     When I perform normal putaway after relocation
@@ -54,7 +54,7 @@ Feature: Purchase order Putaway
   @boxed @putaway @fsv_po @boxed_putaway_fsv_po_putaway_validate_mezz_shelving_putaway @review
   Scenario Outline: Validate Mezz/Shelving putaway
     Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
-    And the FSV PO line should have sku, quantity due details
+    And the FSV PO line should have MEZZ sku, quantity due details
     And the PO should not be linked with UPI line "<PreAdviceID>"
     When I receive all skus for the FSV purchase order at location "<Location>" for MEZZ putaway
     When I choose existing relocate
@@ -68,7 +68,7 @@ Feature: Purchase order Putaway
 
   @boxed @putaway @idt @boxed_putaway_idt_putaway_validate_mezz_shelving_putaway
   Scenario Outline: Validate Mezz/Shelving putaway
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be normal received at "<Location>"
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" containing "MEZZ" sku and ASN "<ASN>" should be normal received at "<Location>"
     When I choose existing relocate
     And I proceed with entering the upc and location
     When I perform normal putaway after relocation
@@ -77,6 +77,18 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
       | PO2138924910 | PO050341140823935610 | PO01476610 | REC002   |
+
+  @boxed @putaway @returns @boxed_putaway_returns_putaway
+  Scenario Outline: Validate Returns Putaway type
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
+    And the upi should have sku, quantity due details
+    And I receive all skus for the returns order at "<Location>" with perfect condition "<Condition>"
+    When I perform normal returns putaway
+    Then the goods receipt should be generated for putaway returns stock in inventory transaction
+
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850008387380077010083856200300 | 0000838758 | REC002   | Y         |
 
   @boxed @putaway @returns @boxed_putaway_returns_putaway_validate_mezz_shelving_putaway
   Scenario Outline: Validate Mezz/Shelving putaway
@@ -90,4 +102,4 @@ Feature: Purchase order Putaway
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850001251140077010012511400300 | 0000125124 | REC002   | Y         |
+      | 58850000233660024310017051800200 | 0000003295 | REC002   | Y         |
