@@ -5,7 +5,7 @@ Feature: Allocation
 
   
 
-  @allocation @idt @boxed @boxed_allocation_idt_stock_in_suspense_location_not_allocated @review
+  @allocation @outlet @boxed @boxed_allocation_outlet_stock_in_suspense_location_not_allocated @review
   Scenario Outline: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id "<OrderNumber>" of type "IDT" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page

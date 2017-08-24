@@ -1146,8 +1146,8 @@ for(int k=0;k<context.getUpiList().size();k++)
 			throws Throwable {
 		context.setlocationID(location);
 		context.setPerfectCondition(condition);
-//		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
-//		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+		i_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
 	
 	@Given("^I receive all skus of multiple upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")

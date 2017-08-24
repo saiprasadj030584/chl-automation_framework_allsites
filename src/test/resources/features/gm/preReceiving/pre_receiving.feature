@@ -3,7 +3,7 @@ Feature: Dock Scheduling
   As a warehouse user
   I want to pre receive the stock
 
-  @boxed_pre_receiving_direct_po_validate_complinace_flag_uploaded
+  @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_complinace_flag_uploaded @review
   Scenario Outline: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO "<PreAdviceID>" should be in "Released" status
     And the PO line should have sku, quantity due details
@@ -14,7 +14,7 @@ Feature: Dock Scheduling
       | PreAdviceID  |
       | PO2138927931 |
       
-      @boxed_pre_receiving_fsv_po_validate_complinace_flag_uploaded
+    @boxed @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_complinace_flag_uploaded @review
   Scenario Outline: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO "<PreAdviceID>" should be in "Released" status
     And the PO line should have sku, quantity due details

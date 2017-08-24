@@ -48,6 +48,26 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(5000);
 	}
 	
+	public void navigateToOrderContainerPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order Container");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
+	public void navigateToUnpickingAndUnshippingPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Unpicking and Unshipping");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
 	public void navigateToSystemAllocationPageViaMenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Operations.png", timeoutInSec);
 		screen.click("images/Menu/Operations.png");

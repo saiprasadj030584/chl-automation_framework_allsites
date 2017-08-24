@@ -165,6 +165,20 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+		Thread.sleep(6000);
+	}
+	
+	
+
+	@When("^I navigate to unpicking and unshipping page$")
+	public void i_navigate_to_unpicking_and_unshipping_page() throws Throwable {
+		jdaHomePage.navigateToUnpickingAndUnshippingPage();
+		Thread.sleep(6000);
+	}
+	
+	@When("^I navigate to order container page$")
+	public void i_navigate_to_order_container_page() throws Throwable {
 		jdaHomePage.navigateToSystemAllocationPage();
 		Thread.sleep(6000);
 	}

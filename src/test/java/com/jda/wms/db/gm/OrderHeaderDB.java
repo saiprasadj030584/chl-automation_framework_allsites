@@ -233,6 +233,7 @@ public class OrderHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		rs.next();
 		return rs.getString(1);

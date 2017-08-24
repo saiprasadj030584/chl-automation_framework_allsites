@@ -23,7 +23,7 @@ Feature: Stock adjustments
       |   5649 | 1AA103   | LOST       |
       |   5649 | 1AA103   | SAMPLES    |
 
-  @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_and_has_movement_label
+  @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_and_has_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>" and movement label enabled
@@ -40,7 +40,7 @@ Feature: Stock adjustments
       | PalletId                         | ASN        | Location | Condition |Reason Code														 |
       | 95580085370650011050230212453758 | 0000854749 | REC003   | N         |RMS - Over receipt with movement label |
 
-  @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_movement_label
+  @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>"
@@ -71,7 +71,7 @@ Feature: Stock adjustments
       | PalletId                         | ASN        | SiteId | Location | ReasonCode                                   |
       | 58850008548480077010085484800300 | 0000854848 | 5885   | REC003   | RMS - Unexpected receipt with movement label |
       
-   @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_without_movement_label_not_listed_for_URRN_and_does_not_have_movement_label @complete
+   @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_movement_label_not_listed_for_URRN_and_does_not_have_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent a product not listed for the URRN and does not have a movement label'  (unexpected)
    Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     When I navigate to stock adjustments page
@@ -85,7 +85,7 @@ Feature: Stock adjustments
       | PalletId                         | ASN        | SiteId | Location | ReasonCode                                      |
       | 58850008648480077010086484800300 | 0000864848 | 5885   | REC003   | RMS - Unexpected receipt without movement label |
       
-   @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_without_movement_label_stock_without_URRN_has_movement_label @complete
+   @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_movement_label_stock_without_URRN_has_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent stock without any URRN but has a movement label' (Non adviced)
      Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     When I navigate to stock adjustments page
@@ -99,7 +99,7 @@ Feature: Stock adjustments
       | PalletId                         | ASN        | SiteId | Location | ReasonCode                                   |
       | 58850008748480077010087484800300 | 0000874848 | 5885   | REC003   | RMS  Non advised receipt with movement label |
 
-   @stock_adjustment @returns @boxed @stock_adjustment_returns_verify_reason_code_without_any_URRN_or_movement_label @complete
+   @stock_adjustment @returns @boxed @boxed_stock_adjustment_returns_verify_reason_code_without_any_URRN_or_movement_label @complete
   Scenario Outline: Verify reason code available for 'Store has sent stock without any URRN or movement label' (Non adviced)
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status for adjustment
     When I navigate to stock adjustments page

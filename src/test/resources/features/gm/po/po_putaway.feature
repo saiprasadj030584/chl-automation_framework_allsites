@@ -88,7 +88,7 @@ Feature: Purchase order Putaway
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850008387380077010083856200300 | 0000838758 | REC002   | Y         |
+      | 58850008387380077010083856400300 | 0000838858 | REC002   | Y         |
 
   @boxed @putaway @returns @boxed_putaway_returns_putaway_validate_mezz_shelving_putaway
   Scenario Outline: Validate Mezz/Shelving putaway
@@ -98,8 +98,8 @@ Feature: Purchase order Putaway
     When I choose existing relocate
     And I proceed with entering the upc and location
     When I perform normal putaway after relocation
-    Then the goods receipt should be generated for putaway stock in inventory transaction
+    Then the goods receipt should be generated for putaway returns stock in inventory transaction
 
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
-      | 58850000233660024310017051800200 | 0000003295 | REC002   | Y         |
+      | 58850000133660024310011346600700 | 0000004786 | REC002   | Y         |

@@ -32,6 +32,17 @@ public class MoveTaskDB {
 		}
 		return tagID;
 	}
+	
+	public String getListID(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select list_id from move_task where task_id ='" + orderId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select list_id from move_task where task_id ='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public ArrayList<String> getListId(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> listId = new ArrayList<String>();
