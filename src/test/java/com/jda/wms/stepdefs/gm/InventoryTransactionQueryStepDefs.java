@@ -58,14 +58,14 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-		// jdaLoginPage.login();
-		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		// jDAFooter.clickQueryButton();
-		// inventoryTransactionQueryPage.selectCode("Receipt");
-		// inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		// inventoryTransactionQueryPage.enterTransactionDate();
-		// jDAFooter.clickExecuteButton();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
@@ -100,14 +100,14 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-		// jdaLoginPage.login();
-		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		// jDAFooter.clickQueryButton();
-		// inventoryTransactionQueryPage.selectCode("Receipt");
-		// inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		// inventoryTransactionQueryPage.enterTransactionDate();
-		// jDAFooter.clickExecuteButton();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId((String) context.getSkuList().get(i - 1));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
@@ -511,12 +511,12 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^the inventory transaction should be updated$")
 	public void the_inventory_transaction_should_be_updated() throws Throwable {
-		// jdaLoginPage.login();
-		// jdaHomePage.navigateToInventoryTransactionPage();
-		// jDAFooter.clickQueryButton();
-		// inventoryTransactionQueryPage.enterCode("Receipt");
-		// inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-		// jDAFooter.clickExecuteButton();
+		jdaLoginPage.login();
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Receipt");
+		inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+		jDAFooter.clickExecuteButton();
 		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
 		String code = "Receipt";
 		Assert.assertEquals("ITL not updated", context.getRcvQtyDue(),
@@ -525,12 +525,12 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Given("^the ITL should be generated for IDT received stock in inventory transaction$")
 	public void the_ITL_should_be_generated_for_IDT_received_stock_in_inventory_transaction() throws Throwable {
-		// jdaLoginPage.login();
-		// jdaHomePage.navigateToInventoryTransactionPage();
-		// jDAFooter.clickQueryButton();
-		// inventoryTransactionQueryPage.enterNotes("Custom ITL");
-		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		// jDAFooter.clickExecuteButton();
+		jdaLoginPage.login();
+		jdaHomePage.navigateToInventoryTransactionPage();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterNotes("Custom ITL");
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		jDAFooter.clickExecuteButton();
 		Assert.assertEquals("ITL not updated", "Receiving Error",
 				inventoryTransactionDB.getCodeIdt(context.getSkuId(), "Custom ITL"));
 	}

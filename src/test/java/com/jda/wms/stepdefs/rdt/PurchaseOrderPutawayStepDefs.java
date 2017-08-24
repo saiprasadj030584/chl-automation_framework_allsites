@@ -107,14 +107,11 @@ public class PurchaseOrderPutawayStepDefs {
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 
-		// context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(),
-		// context.getLocation()));
 		String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 		String toLocation = putawayLocation[0];
 		context.setToLocation(toLocation);
 		System.out.println("kk" + context.getToLocation());
 
-		// i_enter_to_location(context.getToLocation());
 		jdaFooter.PressEnter();
 		i_enter_the_check_string();
 		jdaFooter.PressEnter();
@@ -304,16 +301,16 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@Then("^I enter the check string$")
 	public void i_enter_the_check_string() throws Throwable {
-		// Assert.assertTrue("Chk To Page not displayed to enter check string",
-		// purchaseOrderPutawayPage.isChkToDisplayed());
+		Assert.assertTrue("Chk To Page not displayed to enter check string",
+				purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
 
 	}
 
 	@Then("^I enter the check string for location$")
 	public void i_enter_the_check_string_for_location() throws Throwable {
-		// Assert.assertTrue("Chk To Page not displayed to enter check string",
-		// purchaseOrderPutawayPage.isChkToDisplayed());
+		Assert.assertTrue("Chk To Page not displayed to enter check string",
+				purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation2()));
 
 	}
@@ -322,7 +319,7 @@ public class PurchaseOrderPutawayStepDefs {
 	public void i_enter_urn_id_in_putaway() throws FindFailed, InterruptedException {
 
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
-		// purchaseOrderPutawayPage.enterURNID("761312");
+
 	}
 
 	@When("^I enter pallet id in putaway$")
@@ -400,7 +397,6 @@ public class PurchaseOrderPutawayStepDefs {
 			jdaFooter.PressEnter();
 
 			purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getPutawayLocation1()));
-			System.out.println("hi");
 
 			jdaFooter.PressEnter();
 
