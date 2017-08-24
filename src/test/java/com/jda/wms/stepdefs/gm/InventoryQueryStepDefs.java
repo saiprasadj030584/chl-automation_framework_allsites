@@ -277,7 +277,7 @@ public class InventoryQueryStepDefs {
 			context.setPackConfig((String) inventoryDetails.get(1));
 		}
 		System.out.println(context.getPackConfig());
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 	}
 
 	@Then("^the inventory should be generated$")
@@ -285,12 +285,12 @@ public class InventoryQueryStepDefs {
 
 		jDAHomeStepDefs.i_am_on_inventory_query_page();
 		jDAFooter.clickQueryButton();
-		// inventoryQueryPage.enterTagId(context.getTagId());
-		inventoryQueryPage.enterTagId("11079");
+
+		inventoryQueryPage.enterTagId(context.getTagId());
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getQtyOnHand();
-		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQty("11079", context.getLocation())));
+		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQty(context.getTagId(), context.getLocation())));
 		Assert.assertEquals("updated quantity on hand is not as expected", context.getQtyOnHand(),
 				Integer.parseInt(inventoryQueryPage.getQtyOnHand()));
 

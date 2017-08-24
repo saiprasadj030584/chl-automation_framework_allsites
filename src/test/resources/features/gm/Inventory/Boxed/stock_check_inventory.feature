@@ -31,7 +31,7 @@ Feature: Report generation
 
   @boxed @stock_adjustment @boxed_stock_adjustment_stock_check_positive_proof @boxed @review
  Scenario Outline: Positive proof of stock check
-    # Given I have logged in as warehouse user in JDA dispatcher GM application
+     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
     And I select 'Generate by inventory'
     And I enter the tag ID as on inventory tab for site id "<SiteId>"

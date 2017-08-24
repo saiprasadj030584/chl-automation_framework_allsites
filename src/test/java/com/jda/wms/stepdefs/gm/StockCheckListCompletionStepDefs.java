@@ -35,8 +35,8 @@ public class StockCheckListCompletionStepDefs {
 	public void i_enter_the_list_id_and_update_the_quantity() throws Throwable {
 		stockCheckListCompletionPage.enterListID(context.getListID());
 		jdaFooter.clickNextButton();
-		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQtyOnHand(context.getListID(), "11079")));
-		context.setLocation(inventoryDB.getlocation(context.getListID(), "11079"));
+		context.setQtyOnHand(Integer.parseInt(inventoryDB.getQtyOnHand(context.getListID(), context.getTagId())));
+		context.setLocation(inventoryDB.getlocation(context.getListID(), context.getTagId()));
 		stockCheckListCompletionPage.enterUpdateQty(String.valueOf(context.getQtyOnHand() + 1));
 		Thread.sleep(3000);
 		jdaFooter.clickNextButton();
