@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 
+import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.LocationDB;
@@ -30,6 +31,7 @@ public class PurchaseOrderMarshallingStepDefs {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private MoveTaskDB moveTaskDB;
 
+	@Inject
 	public PurchaseOrderMarshallingStepDefs(PurchaseOrderMarshallingPage purchaseOrderMarshallingPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
@@ -47,8 +49,8 @@ public class PurchaseOrderMarshallingStepDefs {
 
 	}
 
-	@When("^I Perfom marshalling$")
-	public void i_Perfom_marshalling() throws Throwable {
+	@When("^I perfom marshalling$")
+	public void i_perfom_marshalling() throws Throwable {
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderMarshallingPage.selectMarshallMenu();

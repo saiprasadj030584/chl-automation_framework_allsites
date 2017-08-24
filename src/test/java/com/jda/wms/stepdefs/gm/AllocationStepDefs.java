@@ -51,17 +51,14 @@ public class AllocationStepDefs {
 		System.out.println("orderType=" + orderType);
 		System.out.println("status=" + status);
 		context.setOrderId(orderId);
-		// System.out.println("order ID " + context.getOrderId());
 		// context.setOrderType(orderType);
-		// logger.debug("Order ID: "+orderId);
-		// logger.debug("Type: "+orderType);
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(orderId), failureList);
-		System.out.println("db status " + orderHeaderDB.getStatus(orderId));
-		context.setSkuId(orderLineDB.getSkuId(orderId));
-		System.out.println("divya3");
-		System.out.println("skuid" + context.getSkuId());
+		// System.out.println("db status " + orderHeaderDB.getStatus(orderId));
+		// context.setSkuId(orderLineDB.getSkuId(orderId));
+		// System.out.println("divya3");
+		// System.out.println("skuid" + context.getSkuId());
 		Assert.assertTrue(
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
@@ -76,7 +73,7 @@ public class AllocationStepDefs {
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		jDAFooter.clickDoneButton();
 	}
 

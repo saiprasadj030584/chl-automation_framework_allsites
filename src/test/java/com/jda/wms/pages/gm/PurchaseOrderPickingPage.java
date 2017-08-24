@@ -45,10 +45,10 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(5000);
 	}
 
-	public String getPutawayLocation() throws FindFailed, InterruptedException {
-		Match mSupplierId = screen.find("images/Putty/Putaway/ToLocation.png");
-		screen.click(mSupplierId.getCenter().offset(50, 0));
-		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+	public String getPickingLocation() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Picking/ToLoctn.png");
+		Thread.sleep(2000);
+		screen.doubleClick((mSupplierId.below(10)));
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
@@ -59,7 +59,7 @@ public class PurchaseOrderPickingPage {
 	}
 
 	public boolean isPickCmpPageDisplayed() {
-		if (screen.exists("images/Putty/Putaway/PutCmp.png") != null)
+		if (screen.exists("images/Putty/Picking/pickcmp.png") != null)
 			return true;
 		else
 			return false;
