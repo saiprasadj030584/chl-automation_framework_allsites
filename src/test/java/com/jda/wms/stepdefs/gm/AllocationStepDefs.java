@@ -54,7 +54,8 @@ public class AllocationStepDefs {
 		// context.setOrderType(orderType);
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(orderId), failureList);
+		// verification.verifyData("Order Status", status,
+		// orderHeaderDB.getStatus(orderId), failureList);
 		// System.out.println("db status " + orderHeaderDB.getStatus(orderId));
 		// context.setSkuId(orderLineDB.getSkuId(orderId));
 		// System.out.println("divya3");

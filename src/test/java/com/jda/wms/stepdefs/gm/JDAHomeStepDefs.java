@@ -213,4 +213,10 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToStockCheckListCompletionPage();
 
 	}
+
+	@When("^I navigate to order container page$")
+	public void i_navigate_to_order_container_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+
+	}
 }

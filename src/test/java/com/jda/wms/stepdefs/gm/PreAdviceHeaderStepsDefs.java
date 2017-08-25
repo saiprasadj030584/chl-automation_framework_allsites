@@ -19,7 +19,6 @@ import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
 
@@ -37,7 +36,6 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
-	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
@@ -45,7 +43,7 @@ public class PreAdviceHeaderStepsDefs {
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
 
-			UPIReceiptLineDB upiReceiptLineDB, PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			UPIReceiptLineDB upiReceiptLineDB) {
 
 		this.jdaFooter = jdaFooter;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;

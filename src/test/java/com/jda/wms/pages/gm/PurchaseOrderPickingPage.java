@@ -65,4 +65,18 @@ public class PurchaseOrderPickingPage {
 			return false;
 	}
 
+	public void enterNumber(String string) throws InterruptedException {
+		screen.type(string);
+		Thread.sleep(2000);
+	}
+
+	public boolean isInvalidSkuDetailsDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Picking/ErrorMessage.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+
 }
