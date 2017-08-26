@@ -28,4 +28,4 @@ Feature: Purchase order Putaway
     And the goods receipt should be generated for putaway stock in inventory transaction
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
-      | 1040009049 | 00050456000253606117 |0000003862| REC001   |
+      | 1040009028 | 00050472420258814144 |0000003771| REC001   |

@@ -301,8 +301,8 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@Then("^I enter the check string$")
 	public void i_enter_the_check_string() throws Throwable {
-		Assert.assertTrue("Chk To Page not displayed to enter check string",
-				purchaseOrderPutawayPage.isChkToDisplayed());
+		// Assert.assertTrue("Chk To Page not displayed to enter check string",
+		// purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
 
 	}
@@ -599,35 +599,43 @@ public class PurchaseOrderPutawayStepDefs {
 	@When("^I proceed by overriding the location  \"([^\"]*)\"$")
 	public void i_proceed_by_overriding_the_location(String location) throws Throwable {
 		upiMap = context.getUPIMap();
-		poMap = context.getPOMap();
+		// poMap = context.getPOMap();
 
-		for (int i = context.getLineItem(); i <= 1; i++) {
-			// System.out.println("SKUUUUUUU" + poMap.get(i).get("SKU"));
-			context.setSkuId(poMap.get(i).get("SKU"));
+		// for (int i = context.getLineItem(); i <= 1; i++) {
+		// System.out.println("SKUUUUUUU" + poMap.get(i).get("SKU"));
+		// context.setSkuId(poMap.get(i).get("SKU"));
+		// context.setTagId(inventoryTransactionDB.getTagID("Receipt",context.getSkuId(),
+		// date));
 
-			purchaseOrderPutawayPage.enterURNID(context.getTagId());
-			jdaFooter.PressEnter();
-			puttyFunctionsPage.pressTab();
-			for (int k = 0; k < 8; k++) {
-				puttyFunctionsPage.rightArrow();
-			}
-			for (int j = 0; j < 8; j++) {
-				puttyFunctionsPage.backspace();
-			}
-			jdaFooter.PressEnter();
-			purchaseOrderPutawayPage.selectOverride();
-			jdaFooter.PressEnter();
-			jdaFooter.PressEnter();
-			puttyFunctionsPage.pressTab();
-			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
-			// context.setToLocation(purchaseOrderPutawayPage.getPutawayLocation());
-			i_enter_to_location(context.getToLocation());
-			i_enter_the_check_string();
-			// purchaseOrderPutawayPage.enterLocation(location);
-			// jdaFooter.PressEnter();
-			// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
-			jdaFooter.PressEnter();
-			hooks.logoutPutty();
+		purchaseOrderPutawayPage.enterURNID(context.getTagId());
+		// purchaseOrderPutawayPage.enterURNID("770576");
+		jdaFooter.PressEnter();
+		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
+		for (int k = 0; k < 10; k++) {
+			puttyFunctionsPage.rightArrow();
 		}
+		for (int j = 0; j < 10; j++) {
+			puttyFunctionsPage.backspace();
+		}
+		jdaFooter.PressEnter();
+		purchaseOrderPutawayPage.selectOverride();
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		// puttyFunctionsPage.pressTab();
+		// context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(),
+		// context.getLocation()));
+		// context.setToLocation(purchaseOrderPutawayPage.getPutawayLocation());
+		// i_enter_to_location(context.getToLocation());
+		String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
+		String toLocation = putawayLocation[0];
+		context.setToLocation(toLocation);
+		// jdaFooter.PressEnter();
+		i_enter_the_check_string();
+		// purchaseOrderPutawayPage.enterLocation(location);
+		// jdaFooter.PressEnter();
+		// purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
+		jdaFooter.PressEnter();
+		hooks.logoutPutty();
 	}
 }

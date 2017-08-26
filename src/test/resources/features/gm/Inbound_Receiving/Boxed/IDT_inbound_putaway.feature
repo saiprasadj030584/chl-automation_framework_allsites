@@ -36,5 +36,14 @@ Feature: Inbound Putaway IDT
       | PalletId                         | ASN         | Location |
       | 56490001335578299900395756000210|PO0915231058 | REC001   |
       
-      
+        @boxed_idt_putaway_location_override @boxed @idt @putaway
+    Scenario Outline: Validate Override Putaway Location
+     Given the UPI "<PalletId>" and ASN "<ASN>" of type "Boxed" should be received at location "<Location>" for IDT
+     When I choose normal putaway
+     And I proceed by overriding the location  "<Location>"
+     And the goods receipt should be generated for putaway stock in inventory transaction for override
+     
+     Examples: 
+      | PalletId                         | ASN         | Location |
+      |56490001061220299900398756000810|0000003309| REC001   |
       

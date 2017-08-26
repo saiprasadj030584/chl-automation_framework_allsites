@@ -31,9 +31,9 @@ Feature: Purchase order receiving and putaway
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    When I do normal putaway for all tags received
-    Then the inventory should be displayed for all putaway tags
-    And the goods receipt should be generated for putaway stock in inventory transaction
+   # When I do normal putaway for all tags received
+    #Then the inventory should be displayed for all putaway tags
+   # And the goods receipt should be generated for putaway stock in inventory transaction
 
     Examples: 
       | PreAdviceID  | PalletId             | ASN        | Location |
@@ -41,4 +41,4 @@ Feature: Purchase order receiving and putaway
       #| PO2010002001 | PO050456000511235610 | PO00100500 | REC001   |
       #| PO2010002002 | PO050456000511235611 | PO00100501 | REC001   |
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
-      | PO2010002004 | PO050456000511235613 | PO00100503 | REC001   |
+      | PO2010002004 | PO050456000511235613 | PO00100597 | REC001   |

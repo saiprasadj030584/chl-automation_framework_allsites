@@ -24,5 +24,18 @@ Feature: Purchase order Putaway
      Examples: 
       | PreAdviceID | Location | SiteID |
       | 25300100918| REC001   |   5649 |
+      
+      
+         @boxed_fsv_putaway_location_override @boxed @idt @putaway
+    Scenario Outline: Validate Override Putaway Location
+     Given the FSV PO "<PreAdviceID>" of type "Boxed" should be received at location "<Location>" and site id "<SiteID>"
+     When I choose normal putaway
+     And I proceed by overriding the location  "<Location>"
+     And the goods receipt should be generated for putaway stock in inventory transaction for override
+     
+      Examples: 
+      | PreAdviceID | Location | SiteID |
+      |25300100108| REC001   |   5649 |
+      
      
     

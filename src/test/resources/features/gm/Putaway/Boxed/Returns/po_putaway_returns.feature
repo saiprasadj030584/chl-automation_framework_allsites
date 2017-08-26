@@ -14,6 +14,18 @@ Feature: Purchase order Putaway
       | PalletId                         | ASN        | Location | Condition | SiteId |
       | 58850004164350077210083862500366 |0000765624| REC003   | Y         |   5885 |
       
+         @boxed_returns_putaway_location_override @boxed @idt @putaway
+    Scenario Outline: Validate Override Putaway Location
+    Given the UPI "<PalletId>" and ASN "<ASN>" of type "Boxed" should be received at location "<Location>" and "<Condition>" at site "<SiteId>"
+     When I choose normal putaway
+     And I proceed by overriding the location  "<Location>"
+     And the goods receipt should be generated for putaway stock in inventory transaction for override
+     
+     Examples: 
+      | PalletId                         | ASN        | Location | Condition | SiteId |
+      | 58850004143340077210083862500366 |0000765569| REC003   | Y         |   5885 |
+      
+  
       @returns_boxed_putaway_location_full @boxed @returns @boxed @putaway
   Scenario Outline:Validate Putaway Logic for receiving singles when locations full
     Given the UPI "<PalletId>" and ASN "<ASN>" of type "Boxed" should be received at location "<Location>" and "<Condition>" at site "<SiteId>"
