@@ -74,7 +74,7 @@ public class AllocationStepDefs {
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 		jDAFooter.clickDoneButton();
 	}
 

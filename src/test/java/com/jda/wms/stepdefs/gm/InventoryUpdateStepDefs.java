@@ -110,14 +110,11 @@ public class InventoryUpdateStepDefs {
 	@Then("^I update the pack config$")
 	public void i_update_the_pack_config() throws Throwable {
 		for (int i = 0; i < context.getPackConfigList().size(); i++) {
-			System.out.println("list " + context.getPackConfigList().size());
-			System.out.println("Inside loop " + context.getPackConfig());
 			if (!context.getPackConfig().equalsIgnoreCase((String) context.getPackConfigList().get(i))) {
 				context.setPackConfig((String) context.getPackConfigList().get(i));
 				break;
 			}
 		}
-		System.out.println("New " + context.getPackConfig());
 		inventoryUpdatePage.enterPackConfig(context.getPackConfig());
 		jdafooter.clickDoneButton();
 	}

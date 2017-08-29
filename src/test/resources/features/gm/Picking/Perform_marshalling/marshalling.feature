@@ -17,8 +17,8 @@ Feature: Perform Marshalling
       | OrderID    |
       | 4764300831 |
 
-  @boxed @retail @jz @boxed_marshalling_retail_perform_marshalling
-  Scenario Outline: perform marshalling
+  @boxed @retail @picking @boxed_picking_retail_validating_URN_label_generated
+  Scenario Outline: Validate the size of the URN Label Generated
     Given the OrderID "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I enter OrderID as "<OrderID>" for allocation
@@ -28,10 +28,11 @@ Feature: Perform Marshalling
 
     Examples: 
       | OrderID    |
-      | 3764200470 |
+      | 3764200480 |
       
-       @boxed @retail @js @boxed_marshalling_retail_perform_marshalling
-  Scenario Outline: perform marshalling
+       @boxed @retail @picking @boxed_picking_retail_Validate_keying_wrong_UPC
+       
+  Scenario Outline: Validate keying wrong UPC
     Given the OrderID "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I enter OrderID as "<OrderID>" for allocation
@@ -42,4 +43,4 @@ Feature: Perform Marshalling
 
     Examples: 
       | OrderID    |
-      | 3764200490 |
+      |4764300800 |

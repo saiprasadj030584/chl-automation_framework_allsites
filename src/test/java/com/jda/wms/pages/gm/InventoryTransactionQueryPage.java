@@ -551,4 +551,13 @@ public class InventoryTransactionQueryPage {
 			return false;
 
 	}
+
+	public void enterTransactionTime(String currentSystemTimeLessThan2Minutes) throws FindFailed, InterruptedException {
+		System.out.println("Time " + currentSystemTimeLessThan2Minutes);
+		Match transactionDate = screen.find("images/InventoryTransactionQuery/General/TransactionTimeToEnter.png");
+		screen.click(transactionDate.getCenter().offset(70, 0));
+		screen.type(">" + currentSystemTimeLessThan2Minutes);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+	}
 }

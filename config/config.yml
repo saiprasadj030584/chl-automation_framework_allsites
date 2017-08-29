@@ -19,7 +19,7 @@ default:
 # putty-gm-port: '22902'
 # db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
 # db-username: 'dcsdba'
- #db-password: 'jdadccate5'
+# db-password: 'jdadccate5'
 
  
 

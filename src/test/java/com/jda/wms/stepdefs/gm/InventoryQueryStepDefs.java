@@ -260,23 +260,19 @@ public class InventoryQueryStepDefs {
 			context.setSkuId((String) StockDetailList.get(0));
 			context.setPackConfig((String) StockDetailList.get(1));
 		}
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 	}
 
 	@Given("^I have a sku in inventory with more than one pack config$")
 	public void i_have_a_sku_in_inventory_with_more_than_one_packConfig() throws Throwable {
 		String sku = skuSkuConfigDB.getSkuIdWithMoreThanOnePackConfig();
 		context.setSkuId(sku);
-		// System.out.println("list " + context.getPackConfigList().size());
-
 		context.setPackConfigList(skuSkuConfigDB.getPackConfigList(sku));
-		System.out.println("list " + context.getPackConfigList().size());
 		ArrayList inventoryDetails = inventoryDB.getInventoryDetailsForSku(sku);
 		if (!inventoryDetails.isEmpty()) {
 			context.setTagId((String) inventoryDetails.get(0));
 			context.setPackConfig((String) inventoryDetails.get(1));
 		}
-		System.out.println(context.getPackConfig());
 		jdaLoginPage.login();
 	}
 

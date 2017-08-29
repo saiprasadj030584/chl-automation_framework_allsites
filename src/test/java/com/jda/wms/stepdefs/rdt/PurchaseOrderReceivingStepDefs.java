@@ -1114,7 +1114,7 @@ public class PurchaseOrderReceivingStepDefs {
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		context.setLocation(location);
 		i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
-		// inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");

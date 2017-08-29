@@ -1,7 +1,6 @@
 package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -38,13 +37,9 @@ public class SkuSkuConfigDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select config_id from sku_sku_config where sku_id='" + sku + "'");
-		ResultSetMetaData rsmd = rs.getMetaData();
-		int columns = rsmd.getColumnCount();
-		rs.next();
-		for (int j = 1; j <= columns; j++) {
-			packConfigList.add((rs.getString(j)));
+		while (rs.next()) {
+			packConfigList.add(rs.getString(1));
 		}
 		return packConfigList;
-
 	}
 }

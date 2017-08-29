@@ -13,8 +13,8 @@ public class DateUtils {
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.format(cal.getTime());
 	}
-	
-	public static String getCurrentSystemDateInDBFormat(){
+
+	public static String getCurrentSystemDateInDBFormat() {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.format(cal.getTime()).toUpperCase();
@@ -88,5 +88,12 @@ public class DateUtils {
 		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(expDate);
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.toString();
+	}
+
+	public static String getCurrentSystemTimeLessThan2Minutes() throws ParseException {
+		DateFormat dateFormat = new SimpleDateFormat("kk:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MINUTE, -2);
+		return dateFormat.format(cal.getTime());
 	}
 }

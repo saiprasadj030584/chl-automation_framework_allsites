@@ -131,6 +131,7 @@ public class Context {
 	private String supplierType;
 	private String partset;
 	private String toLocation2;
+	private String relocateLoctn;
 
 	public String getPartset() {
 		return partset;
@@ -1051,6 +1052,14 @@ public class Context {
 
 	public void setToLocation2(String toLocation2) {
 		this.toLocation2 = toLocation2;
+	}
+
+	public String getRelocateLoctn() {
+		return relocateLoctn;
+	}
+
+	public void setRelocateLoctn(String relocateLoctn) {
+		this.relocateLoctn = relocateLoctn;
 	}
 
 }
