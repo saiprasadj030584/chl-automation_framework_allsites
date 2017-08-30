@@ -413,8 +413,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select Location_id from inventory where pallet_id='" + preAdviceId + "' and sku_id = '"
-				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		// ResultSet rs = stmt.executeQuery("select Location_id from inventory
 		// where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
@@ -472,8 +470,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select location_id from inventory where sku_id = '" + skuId
-				+ "' and location_id  not like '" + location + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id = '" + skuId
 				+ "' and location_id  not like '" + location + "'");
@@ -730,9 +726,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"Select qty_on_hand from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
-						+ listID + "' ) and tag_id='" + tagId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"Select qty_on_hand from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
@@ -746,8 +739,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");

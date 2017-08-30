@@ -294,8 +294,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select  update_qty from inventory_transaction where tag_id='" + tagID + "'  and code = '"
-				+ code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  update_qty from inventory_transaction where tag_id='" + tagID
@@ -389,8 +387,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select from_loc_id from inventory_transaction where tag_id='" + tagId + "' and sku_id = '"
-				+ skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where sku_id = '" + skuId
@@ -403,8 +399,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select from_loc_id from inventory_transaction where tag_id='" + tagId + "'  and code = '"
-				+ code + "' and DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
@@ -431,8 +425,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select to_loc_id from inventory_transaction where reference_id ='" + preadviceId
-				+ "' and code = '" + code + "' and DSTAMP like'" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where sku_id ='" + preadviceId
 				+ "' and code = '" + code + "' and DSTAMP like'" + date + "%'");
@@ -634,8 +626,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"select TAG_ID from inventory_transaction where reference_id='" + upiId + "' and code = 'Receipt'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select TAG_ID from inventory_transaction where reference_id='" + upiId + "' and code = 'Receipt'");
@@ -659,8 +649,6 @@ public class InventoryTransactionDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select sku_id from inventory_transaction where reference_id='" + upiId + "' and code = '"
-				+ code + "'");
 		ResultSet rs = stmt.executeQuery("select sku_id from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
 		rs.next();
@@ -698,8 +686,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select UPDATE_QTY from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where  reference_id='" + upiId
@@ -725,8 +711,6 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"SELECT CONFIG_ID FROM  inventory_transaction  where code = '" + code + " and sku_id ='" + skuId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				" SELECT CONFIG_ID FROM  inventory_transaction  where code = '" + code + " and sku_id =" + skuId + "'");

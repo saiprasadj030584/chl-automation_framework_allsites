@@ -103,9 +103,7 @@ public class UPIReceiptLineStepDefs {
 			UPIMap.put(context.getSkuId(), lineItemsMap);
 		}
 		context.setUPIMap(UPIMap);
-		System.out.println(context.getUPIMap());
 		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
-		System.out.println("supplier" + context.getSupplierID());
 
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId((String) skuFromUPI.get(i - 1));
@@ -124,11 +122,8 @@ public class UPIReceiptLineStepDefs {
 
 		context.setSkuId(upiReceiptLineDB.getSkuId(context.getUpiId()));
 
-		System.out.println("sku" + context.getSkuId());
 		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
-		System.out.println("supplier" + context.getSupplierID());
 		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
-		System.out.println("upc" + context.getUPC());
 	}
 
 	public void i_fetch_supplier_id_UPC_sourced_by_multi_supplier() throws Throwable {

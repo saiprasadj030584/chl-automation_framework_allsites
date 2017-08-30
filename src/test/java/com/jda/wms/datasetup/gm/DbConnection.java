@@ -12,21 +12,19 @@ import java.util.Map;
 public class DbConnection {
 
 	public Connection dbConnection = null;
-	
+
 	public static String dbURL = null;
 	public static String userId = null;
 	public static String pwd = null;
-	
-	
 
 	public void connectAutomationDB() {
-		
+
 		Map<String, String> DBDetails = getJdaAutomationDbDetails();
-		
+
 		dbURL = DBDetails.get("dbURL");
 		userId = DBDetails.get("userId");
 		pwd = DBDetails.get("pwd");
-		
+
 		try {
 			Class.forName(System.getProperty("dbDriver", "com.microsoft.sqlserver.jdbc.SQLServerDriver")).newInstance();
 			DriverManager.setLoginTimeout(30);
@@ -43,10 +41,9 @@ public class DbConnection {
 			if (this.dbConnection != null && !this.dbConnection.isClosed())
 				this.dbConnection.close();
 		} catch (SQLException ex) {
-			System.out.println("Exception in db disconnection:" + ex.toString());
 		}
 	}
-	
+
 	public static Map<String, String> getJdaAutomationDbDetails() {
 		String filePath = ".\\files";
 		String FILENAME = "databaseDetails.txt";
@@ -56,7 +53,7 @@ public class DbConnection {
 			while (!((sCurrentLine = br.readLine()).contains("***end of file***"))) {
 				if (sCurrentLine.contains("dbURL")) {
 					String[] temp = sCurrentLine.split("::-");
-					System.err.println("temp[temp.length - 1].trim()  "+ temp[temp.length - 1].trim());
+					System.err.println("temp[temp.length - 1].trim()  " + temp[temp.length - 1].trim());
 					DBDetails.put("dbURL", temp[(temp.length) - 1].trim());
 				}
 				if (sCurrentLine.contains("userId")) {
@@ -71,9 +68,8 @@ public class DbConnection {
 		} catch (IOException e) {
 			e.getStackTrace().toString();
 		}
-		
-		return DBDetails ;
+
+		return DBDetails;
 	}
 
-	
 }

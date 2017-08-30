@@ -771,7 +771,6 @@ public class PurchaseOrderReceivingStepDefs {
 			puttyFunctionsPage.pressEnter();
 
 			i_enter_the_newpallet(context.enterNewPallet().get(i - 1));
-			System.out.println(context.enterNewPallet().get(i - 1));
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {

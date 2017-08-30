@@ -183,7 +183,6 @@ public class IDTReceivingStepDefs {
 
 			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			System.out.println(context.getRcvQtyDue());
 
 			if (receiveType.equalsIgnoreCase("Over Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() + 5);

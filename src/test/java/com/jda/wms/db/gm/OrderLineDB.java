@@ -106,7 +106,6 @@ public class OrderLineDB {
 	}
 
 	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
-		System.out.println("select SKU_ID from order_line where order_id='" + orderId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -115,7 +114,6 @@ public class OrderLineDB {
 
 		ResultSet rs = stmt.executeQuery("select SKU_ID from order_line where order_id='" + orderId + "'");
 		rs.next();
-		System.out.println("return data" + rs.getString(1));
 		return rs.getString(1);
 	}
 }

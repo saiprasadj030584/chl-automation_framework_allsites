@@ -62,8 +62,6 @@ public class PurchaseOrderPickingStepDefs {
 		purchaseOrderPickingPage.selectContainerPick();
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		purchaseOrderPickingPage.enterListId(context.getListID());
-		System.out.println(context.getListID());
-		System.out.println(context.getOrderId());
 		puttyFunctionsPage.pressEnter();
 		purchaseOrderPickingPage.enterPrinterNO("P2003");
 		puttyFunctionsPage.pressEnter();
@@ -86,8 +84,6 @@ public class PurchaseOrderPickingStepDefs {
 
 	@Then("^I enter the check string for marshalling$")
 	public void i_enter_the_check_string_for_marshalling() throws Throwable {
-		// Assert.assertTrue("Chk To Page not displayed to enter check string",
-		// purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPickingPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
 
 	}
@@ -102,8 +98,6 @@ public class PurchaseOrderPickingStepDefs {
 		purchaseOrderPickingPage.selectContainerPick();
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		purchaseOrderPickingPage.enterListId(context.getListID());
-		System.out.println(context.getListID());
-		System.out.println(context.getOrderId());
 		puttyFunctionsPage.pressEnter();
 		purchaseOrderPickingPage.enterPrinterNO("P2003");
 		puttyFunctionsPage.pressEnter();

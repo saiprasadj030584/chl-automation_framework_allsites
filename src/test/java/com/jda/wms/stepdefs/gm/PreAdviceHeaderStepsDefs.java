@@ -133,13 +133,10 @@ public class PreAdviceHeaderStepsDefs {
 		context.setAsnId(asnId);
 		logger.debug("UPI ID: " + upiId);
 		logger.debug("ASN ID: " + asnId);
-		System.out.println(context.getSupplier());
 
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		System.out.println(context.getSupplier());
 		context.setSupplier(deliveryDB.getSupplier(asnId));
-		System.out.println(context.getSupplier());
 		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
 		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
 		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. ["

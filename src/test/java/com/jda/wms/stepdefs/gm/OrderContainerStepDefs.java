@@ -38,7 +38,7 @@ public class OrderContainerStepDefs {
 
 	@Then("^the container id should be generated$")
 	public void the_container_id_should_be_generated() throws Throwable {
-		// jdaLoginPage.login();
+		jdaLoginPage.login();
 		jDAHomeStepDefs.i_navigate_to_order_container_page();
 		jDAFooter.clickQueryButton();
 		orderContainerPage.enterOrderId(context.getOrderId());

@@ -553,7 +553,6 @@ public class InventoryTransactionQueryPage {
 	}
 
 	public void enterTransactionTime(String currentSystemTimeLessThan2Minutes) throws FindFailed, InterruptedException {
-		System.out.println("Time " + currentSystemTimeLessThan2Minutes);
 		Match transactionDate = screen.find("images/InventoryTransactionQuery/General/TransactionTimeToEnter.png");
 		screen.click(transactionDate.getCenter().offset(70, 0));
 		screen.type(">" + currentSystemTimeLessThan2Minutes);

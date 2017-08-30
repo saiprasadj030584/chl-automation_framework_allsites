@@ -22,7 +22,6 @@ public class BookingInDiary {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		ResultSet rs = stmt
 				.executeQuery("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		rs.next();

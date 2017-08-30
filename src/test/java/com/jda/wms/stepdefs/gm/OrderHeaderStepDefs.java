@@ -43,8 +43,6 @@ public class OrderHeaderStepDefs {
 		ArrayList failureList = new ArrayList();
 		// String status="Allocated";
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		System.out.println("Divya allocation");
-		System.out.println("allocation order" + orderid);
 
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(orderid), failureList);
 		Assert.assertTrue("Order Status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",

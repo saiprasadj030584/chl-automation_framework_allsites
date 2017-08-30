@@ -156,14 +156,6 @@ public class DockSchedulerPage {
 	}
 
 	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
-
-		System.out.println("context.getBookingTime() " + context.getBookingTime());
-		System.out.println(
-				"context.getUpdatedBookingTime().substring(9)) " + context.getUpdatedBookingTime().substring(9));
-		System.out.println("context.getUpdatedBookingTime() " + context.getUpdatedBookingTime());
-		System.out.println("context.getDockId()  " + context.getDockId());
-		System.out.println("context.getUpdatedDockId()  " + context.getUpdatedDockId());
-
 		if (context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9))) {
 			if ((context.getDockId().contains(context.getUpdatedDockId()))) {
 				return false;
@@ -172,7 +164,6 @@ public class DockSchedulerPage {
 			}
 		} else
 			return true;
-
 	}
 
 	public void changeBookingStatus(String bookingStatus) throws FindFailed, InterruptedException {

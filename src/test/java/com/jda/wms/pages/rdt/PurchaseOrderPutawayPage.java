@@ -138,11 +138,8 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public boolean isLocationErrorDisplayed() throws InterruptedException {
-		System.out.println("Check2");
 		Thread.sleep(5000);
-		System.out.println("Check3");
 		if (screen.exists("images/Putty/Putaway/LocationError.png") != null) {
-			System.out.println("true");
 			return true;
 		} else
 			return false;

@@ -128,8 +128,6 @@ public class PreAdviceLineStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		ArrayList failureList = new ArrayList();
-		System.out.println(poMap);
-		System.out.println(upiMap);
 
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			String sku = poMap.get(i).get("SKU");
@@ -373,7 +371,6 @@ public class PreAdviceLineStepDefs {
 				POMap.put(i, lineItemsMap);
 			}
 			context.setPOMap(POMap);
-			System.out.println("PO Map " + context.getPOMap());
 
 			ArrayList palletList = new ArrayList();
 			ArrayList<String> belCodeList = new ArrayList();
@@ -400,7 +397,6 @@ public class PreAdviceLineStepDefs {
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				context.setSkuId((String) skuFromPO.get(i - 1));
 				String type = null;
-				System.out.println(context.getSKUType());
 				switch (context.getSKUType()) {
 				case "Boxed":
 					type = "B";
@@ -409,8 +405,6 @@ public class PreAdviceLineStepDefs {
 					type = "H";
 					break;
 				}
-				System.out.println(type);
-				System.out.println(skuDB.getSKUType(context.getSkuId()));
 				verification.verifyData("SKU Type for SKU " + context.getSkuId(), type,
 						skuDB.getSKUType(context.getSkuId()), failureList);
 				verification.verifyData("New Product check for SKU " + context.getSkuId(), "N",
@@ -445,7 +439,6 @@ public class PreAdviceLineStepDefs {
 		// checkbit - 2 digit
 		String checkbit = "10";
 		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		System.out.println(palletID);
 		return palletID;
 	}
 
@@ -487,7 +480,6 @@ public class PreAdviceLineStepDefs {
 		// Checkbit hardcoded : 2 digit
 		String checkbit = "10";
 		belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
-		System.out.println(belCode);
 		return belCode;
 	}
 

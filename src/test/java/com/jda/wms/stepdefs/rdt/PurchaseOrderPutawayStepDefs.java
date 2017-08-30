@@ -110,7 +110,6 @@ public class PurchaseOrderPutawayStepDefs {
 		String[] putawayLocation = purchaseOrderPutawayPage.getPutawayLocation().split("_");
 		String toLocation = putawayLocation[0];
 		context.setToLocation(toLocation);
-		System.out.println("kk" + context.getToLocation());
 
 		jdaFooter.PressEnter();
 		i_enter_the_check_string();
@@ -138,7 +137,6 @@ public class PurchaseOrderPutawayStepDefs {
 				jdaFooter.PressEnter();
 				jdaFooter.PressEnter();
 				if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
-					System.out.println("Check");
 					failureList1.add("Error message:Cannot find putaway location not displayed as expected for pallet"
 							+ context.getPalletIDList().get(i - 1));
 				} else {
@@ -158,7 +156,6 @@ public class PurchaseOrderPutawayStepDefs {
 				purchaseOrderPutawayPage.navigateToBackScreen();
 			}
 			context.setFailureList(failureList1);
-			System.out.println(context.getFailureList());
 		}
 	}
 
@@ -324,7 +321,6 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I enter pallet id in putaway$")
 	public void i_enter_pallet_id_in_putaway(String palletId) throws FindFailed, InterruptedException {
-		System.out.println("hi " + palletId);
 		purchaseOrderPutawayPage.enterURNID(palletId);
 	}
 
@@ -418,7 +414,6 @@ public class PurchaseOrderPutawayStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
 			String quantity = String.valueOf(context.getRcvQtyDue() - 10);
 			Thread.sleep(2000);
-			System.out.println(context.getRcvQtyDue() - 10);
 
 			purchaseOrderPutawayPage.enterURNID(context.getTagId());
 			jdaFooter.PressEnter();

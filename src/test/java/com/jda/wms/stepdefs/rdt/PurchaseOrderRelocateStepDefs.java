@@ -65,8 +65,6 @@ public class PurchaseOrderRelocateStepDefs {
 	@Given("^I proceed with entering the location and upc$")
 	public void i_proceed_with_entering_the_location_and_upc() throws Throwable {
 		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
-		System.out.println(context.getUPC());
-		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterlocation(context.getLocation());

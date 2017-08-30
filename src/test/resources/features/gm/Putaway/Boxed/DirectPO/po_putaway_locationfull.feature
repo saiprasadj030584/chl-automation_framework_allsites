@@ -6,7 +6,7 @@ Feature: Purchase order Putaway
 
   @boxed_direct_po_putaway_location_full @boxed @direct_po @putaway @compete
   Scenario Outline: Validate Putaway Logic for receiving singles when locations full
-  	Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I choose existing relocate
     And I proceed with entering the palletid
     When I choose normal putaway
@@ -16,16 +16,17 @@ Feature: Purchase order Putaway
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
       #|  1090009006 | 00050456000253606176 | 0000002809 | REC001   |
-      |1040019012 |00050473610258814145|0000002763| REC001   |
+      |  1040019012 | 00050473610258814145 | 0000002763 | REC001   |
 
   @boxed_direct_po_putaway_location_override @boxed @direct_po @putaway
   Scenario Outline: Validate Override Putaway Location
-    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" 
+    Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I choose existing relocate
-   And I proceed with entering the palletid
+    And I proceed with entering the palletid
     When I choose normal putaway
     And I proceed by overriding the location  "<Location>" for PO
-  And the ITL should be generated for putaway stock in inventory transaction for override
+    And the ITL should be generated for putaway stock in inventory transaction for override
+
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
-      | 1040009029 | 00050472420258814146 |0000003775| REC001   |
+      |  1040009029 | 00050472420258814146 | 0000003775 | REC001   |
