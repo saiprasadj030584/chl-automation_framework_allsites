@@ -21,6 +21,15 @@ public class PurchaseOrderReceivingPage {
 		this.context = context;
 	}
 
+	public boolean isExcessReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/ExcessError.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+	
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
 		screen.type("1");
 		Thread.sleep(1000);

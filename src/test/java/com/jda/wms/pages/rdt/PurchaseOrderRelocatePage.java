@@ -66,6 +66,14 @@ public class PurchaseOrderRelocatePage {
 		else
 			return false;
 	}
+	
+	public boolean isNoRelocationDisplayed() {
+		if (screen.exists("images/Putty/Relocation/NoRelocation.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean isRelEntDisplayed() {
 		if (screen.exists("images/Putty/Relocation/RelEnt.png") != null)
 			return true;

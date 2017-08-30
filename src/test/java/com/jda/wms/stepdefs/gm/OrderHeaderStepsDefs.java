@@ -21,6 +21,7 @@ import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.OrderHeaderPage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
@@ -46,13 +47,14 @@ public class OrderHeaderStepsDefs {
 	private OrderHeaderDB orderHeaderDB;
 	private InventoryDB inventoryDB;
 	private OrderLineDB orderLineDB;
+	private OrderHeaderPage orderHeaderPage;
 
 	@Inject
 	public OrderHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
 			Context context, PreAdviceHeaderDB preAdviceHeaderDB, UPIReceiptHeaderDB upiReceiptHeaderDB,
 			Verification verification, DeliveryDB deliveryDB, PreAdviceLineStepDefs preAdviceLineStepDefs,
 			PreAdviceLineDB preAdviceLineDB, UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage,
-			OrderHeaderDB orderHeaderDB,InventoryDB inventoryDB,OrderLineDB orderLineDB) {
+			OrderHeaderDB orderHeaderDB,InventoryDB inventoryDB,OrderLineDB orderLineDB,OrderHeaderPage orderHeaderPage) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -67,6 +69,7 @@ public class OrderHeaderStepsDefs {
 		this.orderHeaderDB = orderHeaderDB;
 		this.inventoryDB=inventoryDB;
 		this.orderLineDB=orderLineDB;
+		this.orderHeaderPage=orderHeaderPage;
 
 	}
 
@@ -82,11 +85,21 @@ public class OrderHeaderStepsDefs {
 	
 	@Given("^order header should be updated for picked stock$")
 	public void order_header_should_be_updated_for_picked_stock() throws Throwable {
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+		jdaFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Order header not displayed as expected", "Picked", orderHeaderDB.getStatus(context.getOrderId()));
 	}
 	
 	@Given("^order header should be updated for unpicked stock$")
 	public void order_header_should_be_updated_for_unpicked_stock() throws Throwable {
+		Thread.sleep(2000);
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+		jdaFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickExecuteButton();
+		
 		Assert.assertEquals("Order header not displayed as expected", "Released", orderHeaderDB.getStatus(context.getOrderId()));
 	}
 	

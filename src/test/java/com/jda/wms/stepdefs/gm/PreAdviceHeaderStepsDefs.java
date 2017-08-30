@@ -74,10 +74,10 @@ public class PreAdviceHeaderStepsDefs {
 			ArrayList failureList = new ArrayList();
 			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 			
-			verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
-			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
-			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
-			
+//			verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+//			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+//			verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+//			
 			context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 			int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 			Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),String.valueOf(numLines));
@@ -272,7 +272,7 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the po status should be displayed as \"([^\"]*)\"$")
 	public void the_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
 		ArrayList failureList = new ArrayList();
-		verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()), failureList);
+		//verification.verifyData("Pre-Advice Status", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()), failureList);
 		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
 		Assert.assertTrue("PO , UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
@@ -303,8 +303,8 @@ public class PreAdviceHeaderStepsDefs {
 	
 		@Given("^the FSV po status should be displayed as \"([^\"]*)\"$")
 	public void the_FSV_po_status_should_be_displayed_as(String rcvStatus) throws Throwable {
-			jdaHomePage.navigateToPreAdviceHeaderPage();
-			preAdviceHeaderPage.queryWithPreadviceId();
+//			jdaHomePage.navigateToPreAdviceHeaderPage();
+//			preAdviceHeaderPage.queryWithPreadviceId();
 		Assert.assertEquals("PO status not displayed as expected", rcvStatus, preAdviceHeaderDB.getStatus(context.getPreAdviceId()));
 	}
 	
@@ -322,7 +322,7 @@ public class PreAdviceHeaderStepsDefs {
 		logger.debug("SUPPLIER TYPE: " + context.getsupplierType());
 		ArrayList failureList = new ArrayList();
 
-		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+		//verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
 		verification.verifyData("FSV/Direct PO", context.getsupplierType(),preAdviceHeaderDB.getUserDefType5(preAdviceId), failureList);
 		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 		
@@ -340,5 +340,16 @@ public class PreAdviceHeaderStepsDefs {
 		boolean isUPIRecordExists = upiReceiptLineDB.isUPIRecordExists(preAdviceId);
 		logger.debug("PO ID: " + preAdviceId);
 		Assert.assertFalse("Pre Advice ID is linked to UPI for FSV PO",isUPIRecordExists);
+	}
+	
+	@Given("^the idt status should be displayed as \"([^\"]*)\"$")
+	public void the_idt_status_should_be_displayed_as(String rcvStatus) throws Throwable {
+		ArrayList failureList = new ArrayList();
+
+		verification.verifyData("UPI Status", rcvStatus, upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
+		verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
+		Assert.assertTrue(
+				" UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 	}

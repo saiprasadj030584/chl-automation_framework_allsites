@@ -74,6 +74,7 @@ public class PurchaseOrderRelocateStepDefs {
 			//context.setLocation("REC002");
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
+		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterLocation(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterUPC(upc);
@@ -83,10 +84,13 @@ public class PurchaseOrderRelocateStepDefs {
 		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 		context.setFromLocation(context.getToLocation());
 		jdaFooter.PressEnter();
+		if(purchaseOrderRelocatePage.isChkToDisplayed())
+		{
 		Assert.assertTrue("ChkTo page not displayed",
 				purchaseOrderRelocatePage.isChkToDisplayed());
 		purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
 		jdaFooter.PressEnter();
+		}
 		Assert.assertTrue("RelEnt page not displayed",
 				purchaseOrderRelocatePage.isRelEntDisplayed());
 		}
@@ -102,25 +106,38 @@ public class PurchaseOrderRelocateStepDefs {
 		//for (int i = 1; i <=1; i++) {
 		context.setSkuId((String) context.getSkuFromUPI().get(i - 1));
 		String upc=context.getUPIMap().get(context.getSkuId()).get("UPC");
+		//String upc="05682409";
 			//context.setLocation("REC002");
+		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterLocation(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterUPC(upc);
 		jdaFooter.PressEnter();
+		if(!purchaseOrderRelocatePage.isNoRelocationDisplayed())
+		{
 		Assert.assertTrue("RecPalCmp page not displayed",
 				purchaseOrderRelocatePage.isRelPalCmpDisplayed());
 		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 		context.setFromLocation(context.getToLocation());
 		jdaFooter.PressEnter();
+		if(purchaseOrderRelocatePage.isChkToDisplayed())
+		{
 		Assert.assertTrue("ChkTo page not displayed",
 				purchaseOrderRelocatePage.isChkToDisplayed());
 		purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
 		jdaFooter.PressEnter();
+		}
 		Assert.assertTrue("RelEnt page not displayed",
 				purchaseOrderRelocatePage.isRelEntDisplayed());
 		}
+		else
+		{
+			context.setFromLocation(context.getLocation());
+		}
+		}
+		
 		
 
 	hooks.logoutPutty();
@@ -136,6 +153,43 @@ public class PurchaseOrderRelocateStepDefs {
 		String upc=context.getPOMap().get(i).get("UPC");
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
+		jdaFooter.pressTab();
+		purchaseOrderRelocatePage.enterLocation(context.getLocation());
+		jdaFooter.pressTab();
+		purchaseOrderRelocatePage.enterUPC(upc);
+		jdaFooter.PressEnter();
+		Assert.assertTrue("RecPalCmp page not displayed",
+				purchaseOrderRelocatePage.isRelPalCmpDisplayed());
+		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		context.setFromLocation(context.getToLocation());
+		jdaFooter.PressEnter();
+		if(purchaseOrderRelocatePage.isChkToDisplayed())
+		{
+		Assert.assertTrue("ChkTo page not displayed",
+				purchaseOrderRelocatePage.isChkToDisplayed());
+		purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+		jdaFooter.PressEnter();
+		}
+		else
+		{
+		}
+		Assert.assertTrue("RelEnt page not displayed",
+				purchaseOrderRelocatePage.isRelEntDisplayed());
+		}
+		
+
+	hooks.logoutPutty();
+}
+
+	@When("^I proceed with entering the pallet id,upc and location$")
+	public void i_proceed_with_entering_the_pallet_id() throws Throwable {
+		
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+		context.setSkuId((String) context.getSkuFromUPI().get(i - 1));
+		String upc=context.getUPIMap().get(context.getSkuId()).get("UPC");
+		purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
+		jdaFooter.pressTab();
+		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterLocation(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterUPC(upc);
@@ -157,4 +211,5 @@ public class PurchaseOrderRelocateStepDefs {
 	hooks.logoutPutty();
 }
 
+	
 }

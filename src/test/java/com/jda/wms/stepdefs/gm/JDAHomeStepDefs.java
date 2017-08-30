@@ -131,6 +131,8 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToOrderHeaderMaintenance();
 
 	}
+	
+	
 
 	@When("^I navigate to move task update$")
 	public void i_navigate_to_move_task_update() throws Throwable {
@@ -165,7 +167,8 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
-		jdaHomePage.navigateToOrderContainerPage();
+		jdaHomePage.navigateToSystemAllocationPage();
+		
 		Thread.sleep(6000);
 	}
 	
@@ -179,7 +182,7 @@ public class JDAHomeStepDefs {
 	
 	@When("^I navigate to order container page$")
 	public void i_navigate_to_order_container_page() throws Throwable {
-		jdaHomePage.navigateToSystemAllocationPage();
+		jdaHomePage.navigateToOrderContainerPage();
 		Thread.sleep(6000);
 	}
 

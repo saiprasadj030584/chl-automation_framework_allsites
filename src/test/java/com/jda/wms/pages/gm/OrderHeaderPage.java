@@ -1,6 +1,6 @@
-package com.jda.wms.pages.foods;
+package com.jda.wms.pages.gm;
 
-/*import org.junit.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -39,12 +39,13 @@ public class OrderHeaderPage extends PageObject {
 		Thread.sleep(2000);
 	}
 
-	public void enterOrderNo(String OrderNo) throws FindFailed {
-		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
-		screen.click("images/OrderHeaderNo.png");
+	public void enterOrderNo(String OrderNo) throws FindFailed, InterruptedException {
+//		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
+//		screen.click("images/OrderHeaderNo.png");
 		screen.type(OrderNo);
-		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
-		screen.click("images/OrderHeaderExecute.png");
+		Thread.sleep(1000);
+//		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
+//		screen.click("images/OrderHeaderExecute.png");
 	}
 
 	public void navigateToOrderLineList() throws FindFailed, InterruptedException {
@@ -119,4 +120,4 @@ public class OrderHeaderPage extends PageObject {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-}*/
+}

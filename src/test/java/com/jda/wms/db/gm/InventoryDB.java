@@ -401,7 +401,34 @@ public class InventoryDB {
 	}
 	return isRecordExists;
 	}
+	
+	public String getQtyOnHandreturns(String skuId, String containerID)
 
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select QTY_ON_HAND from inventory where  receipt_id='" + containerID + "' and sku_id = '"
+
+						+ skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getLocationAfterReceiveIdt(String skuId, String containerID)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where receipt_id='" + containerID
+				+ "' and sku_id = '" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 
 	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {

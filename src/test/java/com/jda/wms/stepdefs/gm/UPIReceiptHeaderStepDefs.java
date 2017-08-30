@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
+import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.Verification;
 
 import cucumber.api.java.en.Given;
@@ -21,13 +22,15 @@ public class UPIReceiptHeaderStepDefs {
 	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private Verification verification;
 	private DeliveryDB deliveryDB;
+	private UPIReceiptLineDB uPIReceiptLineDB;
 
 	@Inject
-	public UPIReceiptHeaderStepDefs(Context context,UPIReceiptHeaderDB upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB) {
+	public UPIReceiptHeaderStepDefs(Context context,UPIReceiptHeaderDB upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,UPIReceiptLineDB uPIReceiptLineDB) {
 		this.context = context;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.verification=verification;
 		this.deliveryDB=deliveryDB;
+		this.uPIReceiptLineDB=uPIReceiptLineDB;
 	}
 
 @Given("^ASN to be linked with upi header$")
@@ -66,6 +69,19 @@ public void the_pallet_and_asn_status_should_be_displayed_as(String rcvStatus) t
 	verification.verifyData("Delivery Status", rcvStatus, deliveryDB.getStatus(context.getAsnId()), failureList);
 	Assert.assertTrue("UPI , ASN statuss not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 }
+
+@Given("^ASN and container to be linked with upi header$")
+public void asn_and_container_to_be_linked_with_upi_header() throws Throwable {
+	upiReceiptHeaderDB.updateASN(context.getUpiId(), context.getAsnId());
+
+	ArrayList skuList = uPIReceiptLineDB.getSkuIdList(context.getUpiId());
+	for (int i = 1; i <= context.getNoOfLines(); i++) {
+		String sku = (String) skuList.get(i - 1);
+		uPIReceiptLineDB.updateContainerID(context.getUpiId(), sku);
+	}
+	uPIReceiptLineDB.updateContainerID(context.getUpiId());
+}
+
 
 
 

@@ -104,6 +104,12 @@ public class PurchaseOrderPutawayPage {
 		screen.type("2");
 		Thread.sleep(2000);
 	}
+	
+	public void enterToLocation(String location) throws InterruptedException {
+		screen.type(Key.TAB);
+		screen.type(location);
+		Thread.sleep(2000);
+	}
 
 	public void enterURNID(String urn) throws InterruptedException {
 		screen.type(urn);
@@ -132,8 +138,14 @@ public class PurchaseOrderPutawayPage {
 		screen.doubleClick(mStatus.getCenter().offset(50, 0));
 		Thread.sleep(2000);
 		String[] rcvLockSplit =App.getClipboard().split("_");
+		if(!(rcvLockSplit.length>0))
+		{
+			return null;
+		}
 		return rcvLockSplit[0];
 	}
+	
+	
 
 	public String getTagId() throws FindFailed, InterruptedException {
 		Match mTagId = screen.find("images/Putty/Putaway/TagId.png");

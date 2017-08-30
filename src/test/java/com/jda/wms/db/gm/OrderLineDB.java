@@ -82,6 +82,7 @@ public class OrderLineDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SKU_ID from ORDER_LINE where order_id = '" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("select SKU_ID from ORDER_LINE where order_id = '" + orderId + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();

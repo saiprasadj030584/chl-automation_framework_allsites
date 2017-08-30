@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import com.jda.wms.pages.gm.Verification;
+import org.junit.Assert;
+import java.util.Arrays;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.SkuDB;
@@ -20,15 +22,18 @@ public class UPIReceiptLineStepDefs {
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private SupplierSkuDB supplierSkuDb;
 	private SkuDB skuDb;
+	private Verification verification;
+	
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> upiMap;
 
 	@Inject
-	public UPIReceiptLineStepDefs(Context context,UPIReceiptLineDB upiReceiptLineDB,SupplierSkuDB supplierSkuDb,SkuDB skuDb) {
+	public UPIReceiptLineStepDefs(Context context,UPIReceiptLineDB upiReceiptLineDB,SupplierSkuDB supplierSkuDb,SkuDB skuDb,Verification verification) {
 		this.context = context;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.supplierSkuDb=supplierSkuDb;
 		this.skuDb=skuDb;
+		this.verification=verification;
 	}
 	@Given("^PO to be linked with upi line$")
 	public void po_to_be_linked_with_upi_line() throws Throwable {
@@ -166,6 +171,44 @@ public class UPIReceiptLineStepDefs {
 				String upc=supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId);
 				context.setUPC(upc);
 	}
+	
+	@Given("^the UPI should have sku, quantity due details$")
+	public void the_UPI_should_have_sku_quantity_due_details() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		ArrayList skuFromUPI = new ArrayList();
+		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
+		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
+		context.setSkuList(skuFromUPI);
+
+		// Add SKU details to UPI Map
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) skuFromUPI.get(i - 1));
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+			lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
+			lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
+			
+			String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+			lineItemsMap.put("SUPPLIER ID", supplierId);
+			String upc=supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId);
+			lineItemsMap.put("UPC", upc);
+			lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId()));
+			UPIMap.put(context.getSkuId(), lineItemsMap);
+		}
+		context.setUPIMap(UPIMap);
+		System.out.println(context.getUPIMap());
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+		System.out.println("supplier" + context.getSupplierID());
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) skuFromUPI.get(i - 1));
+			verification.verifyData("Shipping Type", "ZIDC",
+					upiReceiptLineDB.getShippingType(context.getUpiId(), context.getSkuId()), failureList);
+		}
+		Assert.assertTrue("UPI details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 	
 	
 }

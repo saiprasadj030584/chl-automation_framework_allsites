@@ -369,6 +369,15 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
+	private ArrayList skuList;
+
+	public ArrayList getSkuList() {
+		return skuList;
+	}
+
+	public void setSkuList(ArrayList skuList) {
+		this.skuList = skuList;
+	}
 
 	public String getEAN() {
 		return ean;

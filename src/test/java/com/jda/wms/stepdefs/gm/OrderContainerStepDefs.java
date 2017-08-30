@@ -76,16 +76,45 @@ public class OrderContainerStepDefs {
 
 	}
 
-	@Given("^the picked stock details should be updated$")
-	public void the_order_id_should_be_in_status(String orderNumber, String status) throws Throwable {
+	@Given("^the urn id and pallet id should be updated in order container page$")
+	public void the_urn_id_and_pallet_id_should_be_updated_in_order_container_page() throws Throwable {
 		jdaFooter.clickQueryButton();
 		orderContainerPage.queryWithOrderId(context.getOrderId());
-		Assert.assertEquals("OrderContainer not updated as expected", "Open",
-				orderContainerDB.getStatus(context.getOrderId()));
+		ArrayList<String> failureList = new ArrayList<String>();
+		if(!orderContainerDB.getStatus(context.getOrderId()).equalsIgnoreCase("Open"))
+		{
+			failureList.add("Status field not updated as expected "+context.getOrderId());
+		}
+		if(orderContainerDB.getPalletId(context.getOrderId())==null)
+				{
+			failureList.add("PalletID field not updated as expected "+context.getOrderId());
+				}
+		if(orderContainerDB.getContainerId(context.getOrderId())==null)
+				{
+			failureList.add("32 digit urn  field not updated as expected "+context.getOrderId());
+				}
 		//order haeder picked
-		
+		Assert.assertTrue("Order Container is not as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 		
 	}
 	
+	@Given("^the urn id should be updated in order container page$")
+	public void the_urn_id_should_be_updated_in_order_container_page() throws Throwable {
+		jdaFooter.clickQueryButton();
+		orderContainerPage.queryWithOrderId(context.getOrderId());
+		ArrayList<String> failureList = new ArrayList<String>();
+		if(!orderContainerDB.getStatus(context.getOrderId()).equalsIgnoreCase("Open"))
+		{
+			failureList.add("Status field not updated as expected "+context.getOrderId());
+		}
+		if(orderContainerDB.getContainerId(context.getOrderId())==null)
+				{
+			failureList.add("32 digit urn ID field not updated as expected "+context.getOrderId());
+				}
+		Assert.assertTrue("Order Container is not as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		
+	}
 	
 }

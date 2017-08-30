@@ -2,12 +2,13 @@ package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
 import java.util.Map;
-
+import com.jda.wms.utils.Utilities;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.pages.gm.InventoryQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaLoginPage;
@@ -28,16 +29,18 @@ public class InventoryQueryStepDefs {
 	private JdaLoginPage jdaLoginPage;
 	private JDAFooter jDAFooter;
 	private InventoryQueryPage inventoryQueryPage;
+	private InventoryTransactionDB inventoryTransactionDB;
 
 	@Inject
 	public InventoryQueryStepDefs(Context context, Verification verification, InventoryDB inventoryDB,
-			JdaLoginPage jdaLoginPage, JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage) {
+			JdaLoginPage jdaLoginPage, JDAFooter jDAFooter, InventoryQueryPage inventoryQueryPage,InventoryTransactionDB inventoryTransactionDB) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryDB = inventoryDB;
 		this.jdaLoginPage = jdaLoginPage;
 		this.jDAFooter = jDAFooter;
 		this.inventoryQueryPage = inventoryQueryPage;
+		this.inventoryTransactionDB=inventoryTransactionDB;
 	}
 
 	@Then("^the inventory should be displayed for all tags received$")
@@ -214,4 +217,34 @@ public class InventoryQueryStepDefs {
 		}
 		jdaLoginPage.login();
 	}
+	
+	@Then("^the inventory should be displayed for all tags received idt$")
+	public void the_inventory_should_be_displayed_for_all_tags_received_idt() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+						inventoryDB.getLocationAfterReceiveIdt(context.getSkuId(), context.getContainerId()),
+						failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+						Integer.toString(context.getRcvQtyDue()),
+						inventoryDB.getQtyOnHandreturns(context.getSkuId(), context.getContainerId()), failureList);
+			}
+		}
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	
+
+
+
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +22,7 @@ import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.PreAdviceLineMaintenancePage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
@@ -39,13 +41,14 @@ public class PreAdviceLineStepDefs {
 	private JDAFooter jdaFooter;
 	private SupplierSkuDB supplierSkuDb;
 	private InventoryDB inventoryDB;
+	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	
 
 	@Inject
 	public PreAdviceLineStepDefs(Context context, Verification verification, PreAdviceLineDB preAdviceLineDB,
 			UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB, JDALoginStepDefs jdaLoginStepDefs,
 			JDAHomeStepDefs jdaHomeStepDefs, PreAdviceLineMaintenancePage preAdviceLineMaintenancePage,
-			JDAFooter jdaFooter,PreAdviceHeaderDB preAdviceHeaderDB,SupplierSkuDB supplierSkuDb,InventoryDB inventoryDB) {
+			JDAFooter jdaFooter,PreAdviceHeaderDB preAdviceHeaderDB,SupplierSkuDB supplierSkuDb,InventoryDB inventoryDB,PurchaseOrderReceivingPage purchaseOrderReceivingPage) {
 		this.context = context;
 		this.verification = verification;
 		this.preAdviceLineDB = preAdviceLineDB;
@@ -58,6 +61,7 @@ public class PreAdviceLineStepDefs {
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
 		this.supplierSkuDb=supplierSkuDb;
 		this.inventoryDB=inventoryDB;
+		this.purchaseOrderReceivingPage=purchaseOrderReceivingPage;
 	}
 
 	@Given("^the PO should have sku, quantity due details$")
@@ -316,6 +320,43 @@ public class PreAdviceLineStepDefs {
 					failureList.isEmpty());
 	}
 
+	@Given("^the UPI should have MEZZ sku, quantity due details IDT$")
+	public void the_UPI_should_have_sku_quantity_due_details_idt() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		ArrayList skuFromUPI = new ArrayList();
+		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
+		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
+		context.setSkuFromUPI(skuFromUPI);
+		context.setSkuList(skuFromUPI);
+
+		// Add SKU details to UPI Map
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) skuFromUPI.get(i - 1));
+			Map<String, String> lineItemsMap = new HashMap<String, String>();
+			Assert.assertTrue("The Sku is not of MEZZ Type",inventoryDB.isSkuInMezz(context.getSkuId()));
+			lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
+			lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
+			lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
+			String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+			lineItemsMap.put("SUPPLIER ID", supplierId);
+			lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
+			lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId()));
+			UPIMap.put(context.getSkuId(), lineItemsMap);
+		}
+		context.setUPIMap(UPIMap);
+		System.out.println(context.getUPIMap());
+		context.setSupplierID(supplierSkuDb.getSupplierIdWithSku(context.getSkuId()));
+		System.out.println("supplier" + context.getSupplierID());
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) skuFromUPI.get(i - 1));
+			verification.verifyData("Shipping Type", "ZIDC",
+					upiReceiptLineDB.getShippingType(context.getUpiId(), context.getSkuId()), failureList);
+		}
+		Assert.assertTrue("UPI details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 	
 	@Given("^the upi should have sku, quantity due details$")
 	public void the_upi_should_have_sku_quantity_due_details() throws Throwable {
@@ -340,9 +381,11 @@ public class PreAdviceLineStepDefs {
 				supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
 				lineItemsMap.put("SUPPLIER ID", supplierId);
 				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
+				lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId()));
 				UPIMap.put(context.getSkuId(),lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
+			System.out.println(context.getUPIMap());
 			
 			
 			Assert.assertTrue(
@@ -701,6 +744,69 @@ public class PreAdviceLineStepDefs {
 	}
 	}
 	
+	@Given("^the FSV PO line should have sku, quantity due and qa details$")
+	public void the_FSV_PO_line_should_have_sku_quantity_due_qa_details() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		ArrayList skuFromPO = new ArrayList();
+		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
+
+		skuFromPO = preAdviceLineDB.getSkuIdList(context.getPreAdviceId());
+		context.setSkuFromPO(skuFromPO);
+
+		if (skuFromPO == null) {
+			failureList.add("SKU id is not assgined to the PreAdvice id : " + context.getPreAdviceId());
+		} else {
+			// Add SKU details to PO Map
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				context.setSkuId((String) skuFromPO.get(i - 1));
+				lineItemsMap.put("SKU", context.getSkuId());
+				lineItemsMap.put("QTY DUE", preAdviceLineDB.getQtyDue(context.getPreAdviceId(), context.getSkuId()));
+				lineItemsMap.put("LINE ID", preAdviceLineDB.getLineId(context.getPreAdviceId(), context.getSkuId()));
+				String supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+				lineItemsMap.put("SUPPLIER ID", supplierId);
+				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
+				POMap.put(i, lineItemsMap);
+			}
+			context.setPOMap(POMap);
+			System.out.println("PO Map " + context.getPOMap());
+			
+			ArrayList palletList = new ArrayList();
+			ArrayList<String> belCodeList = new ArrayList();
+			ArrayList newPalletList = new ArrayList();
+			for (int i = 1; i <= context.getNoOfLines(); i++){
+				context.setSkuId((String) skuFromPO.get(i-1));
+				// To generate Pallet ID
+				palletList.add(generatePalletID(context.getPreAdviceId(),context.getSkuId()));
+				// To generate Belcode
+				belCodeList.add(generateBelCode(context.getPreAdviceId(),context.getSkuId()));
+                // To generate newpallet
+				newPalletList.add(generateNewPalletLockCode());
+			}
+			
+			context.setPalletIDList(palletList);
+			context.setBelCodeList(belCodeList);
+			context.setNewPallet(newPalletList);
+
+			// To Validate Modularity,New Product Check for SKU
+			String type = null;
+			switch (context.getSKUType()) {
+			case "Boxed":
+				type = "B";
+				break;
+			case "Hanging":
+				type = "H";
+				break;
+			}
+			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+		Assert.assertTrue(
+				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	}
+	
+
 	
 	@Given("^the FSV PO line should have MEZZ sku, quantity due details$")
 	public void the_FSV_PO_line_should_have_mezz_sku_quantity_due_details() throws Throwable {
@@ -866,7 +972,7 @@ public class PreAdviceLineStepDefs {
 
 	
 		
-	private String generateNewPallet() {
+	private String generateNewPallet() throws FindFailed, InterruptedException {
 		String newpallet = "RA" + Utilities.getFourDigitRandomNumber();
  		return newpallet;
 	}
