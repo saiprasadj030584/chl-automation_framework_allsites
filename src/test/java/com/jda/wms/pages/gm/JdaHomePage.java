@@ -9,8 +9,6 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-import cucumber.api.java.en.When;
-
 public class JdaHomePage extends PageObject {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -474,8 +472,6 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	
-	
 	public void navigateToDockSchedulerBookingsPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -550,6 +546,16 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 	}
 
+	public void navigateToReportSelectionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Report Selection");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
 	public void navigatetoDeliveryManagementPage() throws InterruptedException, FindFailed {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -559,7 +565,6 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
-	
 
 	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -580,4 +585,35 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+
+	public void navigateToStockCheckTaskQueryPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToStockCheckListCompletionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task list completion screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToOrderContainerPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order container maintence/query");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
 }

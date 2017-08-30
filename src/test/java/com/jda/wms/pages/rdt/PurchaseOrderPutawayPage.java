@@ -18,7 +18,7 @@ public class PurchaseOrderPutawayPage {
 
 	@Inject
 	public PurchaseOrderPutawayPage(PuttyFunctionsPage puttyFunctionsPage) {
-		this.puttyFunctionsPage =puttyFunctionsPage;
+		this.puttyFunctionsPage = puttyFunctionsPage;
 	}
 
 	public void selectPutawayMenu() throws FindFailed, InterruptedException {
@@ -77,17 +77,14 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void enterCheckString(String chkString) throws InterruptedException {
-		Thread.sleep(3000);
 		screen.type(chkString);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 
 	public void enterLocation(String location) throws InterruptedException {
-		screen.type(Key.TAB);
+		// screen.type(Key.TAB);
 		screen.type(location);
-		screen.type(Key.ENTER);
+
 		Thread.sleep(3000);
 	}
 
@@ -105,11 +102,9 @@ public class PurchaseOrderPutawayPage {
 		Thread.sleep(2000);
 	}
 
-	public void enterURNID(String urn) throws InterruptedException {
-		screen.type(urn);
-		Thread.sleep(1000);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(4000);
+	public void enterURNID(String palletId) throws InterruptedException {
+		screen.type(palletId);
+		Thread.sleep(2000);
 	}
 
 	public boolean isPutCmpPageDisplayed() {
@@ -118,7 +113,7 @@ public class PurchaseOrderPutawayPage {
 		else
 			return false;
 	}
-	
+
 	public String getFromLocation() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Putaway/FromLocation.png");
 		screen.click(mStatus.getCenter().offset(50, 0));
@@ -142,10 +137,11 @@ public class PurchaseOrderPutawayPage {
 			return false;
 	}
 
-	public boolean isLocationErrorDisplayed() {
-		if (screen.exists("images/Putty/Putaway/LocationError.png") != null)
+	public boolean isLocationErrorDisplayed() throws InterruptedException {
+		Thread.sleep(5000);
+		if (screen.exists("images/Putty/Putaway/LocationError.png") != null) {
 			return true;
-		else
+		} else
 			return false;
 	}
 
@@ -158,6 +154,53 @@ public class PurchaseOrderPutawayPage {
 
 	public void navigateToBackScreen() throws InterruptedException {
 		screen.type(Key.F12);
+
+		Thread.sleep(1000);
+	}
+
+	public void enterQuantity(String quantity) throws InterruptedException {
+		screen.type(quantity);
 		Thread.sleep(2000);
+	}
+
+	public void selectLocationFullMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+	}
+
+	public void selectOverride() throws InterruptedException {
+		screen.type("3");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public boolean isLocationWarningrDisplayed() {
+		if (screen.exists("images/Putty/Putaway/LocationWarningMsg.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public String getPutawayLocation() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Putaway/ToLocation.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
+	public boolean isLocationFullDisplayed() {
+		if (screen.exists("images/Putty/Putaway/LocationFull.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isSearchForNewPutawayDisplayed() {
+		if (screen.exists("images/Putty/Putaway/SearchForNewPutawayLocation.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

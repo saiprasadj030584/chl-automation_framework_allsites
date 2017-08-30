@@ -198,7 +198,6 @@ public class SkuDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		rs.next();
@@ -229,4 +228,5 @@ public class SkuDB {
 		}
 
 	}
+
 }

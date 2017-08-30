@@ -45,6 +45,7 @@ public class Context {
 	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
+
 	private String palletType;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
@@ -60,6 +61,11 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	private String supplier;
+	private ArrayList packConfigList;
+	private String putawayLocation1;
+	private String putawayLocation2;
+
 	public ArrayList<String> getUpiList() {
 		return upiList;
 	}
@@ -107,7 +113,7 @@ public class Context {
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
-	private boolean poQtyMoreThanUPIQty=false;
+	private boolean poQtyMoreThanUPIQty = false;
 	private String generateBelCode;
 	private ArrayList<String> belCodeList;
 	private ArrayList<String> enternewpallet;
@@ -119,10 +125,13 @@ public class Context {
 	private String reasonCode;
 	private String owner;
 	private String receiveType;
+	private ArrayList skuList;
 	private String Record;
 	private String perfectCondition;
 	private String supplierType;
 	private String partset;
+	private String toLocation2;
+	private String relocateLoctn;
 
 	public String getPartset() {
 		return partset;
@@ -196,7 +205,7 @@ public class Context {
 		this.orderStatus = orderStatus;
 	}
 
-	public String getlocationID() {
+	public String getLocationID() {
 		return locationID;
 	}
 
@@ -401,7 +410,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; 
+		return caseRatiolist;
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -853,7 +862,6 @@ public class Context {
 		this.skuType = skuType;
 	}
 
-
 	public String getsupplierType() {
 		return supplierType;
 	}
@@ -982,6 +990,14 @@ public class Context {
 		this.receiveType = receiveType;
 	}
 
+	public ArrayList getSkuList() {
+		return skuList;
+	}
+
+	public void setSkuList(ArrayList skuList) {
+		this.skuList = skuList;
+	}
+
 	public String getRecord() {
 		return Record;
 	}
@@ -997,5 +1013,53 @@ public class Context {
 	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
 		MultipleUPIMap = multipleUPIMap;
 	}
-	
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
+	public ArrayList getPackConfigList() {
+		return packConfigList;
+	}
+
+	public void setPackConfigList(ArrayList packConfigList) {
+		this.packConfigList = packConfigList;
+	}
+
+	public String getPutawayLocation1() {
+		return putawayLocation1;
+	}
+
+	public void setPutawayLocation1(String putawayLocation1) {
+		this.putawayLocation1 = putawayLocation1;
+	}
+
+	public String getPutawayLocation2() {
+		return putawayLocation2;
+	}
+
+	public void setPutawayLocation2(String putawayLocation2) {
+		this.putawayLocation2 = putawayLocation2;
+	}
+
+	public String getToLocation2() {
+		return toLocation2;
+	}
+
+	public void setToLocation2(String toLocation2) {
+		this.toLocation2 = toLocation2;
+	}
+
+	public String getRelocateLoctn() {
+		return relocateLoctn;
+	}
+
+	public void setRelocateLoctn(String relocateLoctn) {
+		this.relocateLoctn = relocateLoctn;
+	}
+
 }

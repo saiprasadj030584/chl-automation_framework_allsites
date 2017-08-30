@@ -64,10 +64,10 @@ public class DockSchedulerPage {
 	}
 
 	public void selectSlot() throws FindFailed, InterruptedException {
-//
-//		for (int i = 0; i < 25; i++) {
-//			jdaHomePage.scrollRight();
-//		}
+		//
+		// for (int i = 0; i < 25; i++) {
+		// jdaHomePage.scrollRight();
+		// }
 		screen.wait("images/DockScheduler/Schedule/Slot.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/Slot.png");
 		Thread.sleep(2000);
@@ -121,6 +121,7 @@ public class DockSchedulerPage {
 			} else
 				return false;
 		}
+
 	}
 
 	public void enterTrailerType() throws FindFailed, InterruptedException {
@@ -155,14 +156,6 @@ public class DockSchedulerPage {
 	}
 
 	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
-
-		System.out.println("context.getBookingTime() " + context.getBookingTime());
-		System.out.println(
-				"context.getUpdatedBookingTime().substring(9)) " + context.getUpdatedBookingTime().substring(9));
-		System.out.println("context.getUpdatedBookingTime() " + context.getUpdatedBookingTime());
-		System.out.println("context.getDockId()  " + context.getDockId());
-		System.out.println("context.getUpdatedDockId()  " + context.getUpdatedDockId());
-
 		if (context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9))) {
 			if ((context.getDockId().contains(context.getUpdatedDockId()))) {
 				return false;
@@ -171,7 +164,6 @@ public class DockSchedulerPage {
 			}
 		} else
 			return true;
-
 	}
 
 	public void changeBookingStatus(String bookingStatus) throws FindFailed, InterruptedException {
@@ -179,6 +171,7 @@ public class DockSchedulerPage {
 		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
+
 		if (bookingStatus.equalsIgnoreCase("Complete")) {
 			screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
 			Thread.sleep(1000);
@@ -374,6 +367,13 @@ public class DockSchedulerPage {
 
 	public boolean isBookingErrorExists() {
 		if (screen.exists("/images/DockScheduler/Schedule/BookingError.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean isNoDockErrorExists() {
+		if (screen.exists("/images/DockScheduler/Schedule/NoDockError.png") != null) {
 			return true;
 		} else
 			return false;

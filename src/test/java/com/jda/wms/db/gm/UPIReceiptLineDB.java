@@ -108,7 +108,6 @@ public class UPIReceiptLineDB {
 		return rs.getString(1);
 	}
 
-
 	public void updatePreAdviceID(String preAdviceId, String skuID, String upiId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -167,27 +166,39 @@ public class UPIReceiptLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public boolean isUPIRecordExists(String preAdviceId) throws ClassNotFoundException{
+
+	public boolean isUPIRecordExists(String preAdviceId) throws ClassNotFoundException {
 		boolean isRecordExists = false;
-		try{
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select Pre_advice_id from upi_receipt_line where pallet_id = '" + preAdviceId + "'");
-		rs.next();
-		if (rs.getString(1).equals(preAdviceId)){
-		isRecordExists = true;
-		}
-		}
-		catch(Exception e){
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select Pre_advice_id from upi_receipt_line where pallet_id = '" + preAdviceId + "'");
+			rs.next();
+			if (rs.getString(1).equals(preAdviceId)) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
 			if (e.getMessage().contains("Exhausted Resultset"))
-				isRecordExists=false;
+				isRecordExists = false;
 		}
 		return isRecordExists;
 	}
-	
+
+	public String fetchTagId(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select TAG_ID from upi_receipt_line where pallet_id = '" + upiId + "'");
+		rs.next();
+
+		return rs.getString(1);
+	}
+
 	public String fetchUPC(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -212,40 +223,71 @@ public class UPIReceiptLineDB {
 
 		return rs.getString(1);
 	}
-	
+
 	public String getRcvQty(String upiId, String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select qty_received from upi_receipt_line where pallet_id = '" + upiId
-				+ "'   and sku_id = '" + skuID + "' ");
+		ResultSet rs = stmt
+				.executeQuery("select User_def_type_4 from upi_receipt_line where pallet_id = '" + upiId + "'");
 		rs.next();
+
 		return rs.getString(1);
 	}
-	
+
+	// public String getSkuId(String upiId) throws SQLException,
+	// ClassNotFoundException {
+	// ResultSet rs = stmt.executeQuery("select qty_received from
+	// upi_receipt_line where pallet_id = '" + upiId
+	// + "' and sku_id = '" + skuID + "' ");
+	// rs.next();
+	// return rs.getString(1);
+	// }
+
 	public void updateuserdefnote2(String upiId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update upi_receipt_line set user_def_note_2 = '"+upiId+"' where pallet_id = '" + upiId+ "'");
+		ResultSet rs = stmt.executeQuery(
+				"update upi_receipt_line set user_def_note_2 = '" + upiId + "' where pallet_id = '" + upiId + "'");
 		context.getConnection().commit();
 	}
-	
-	public String fetchTagId(String upiId) throws SQLException, ClassNotFoundException {
+
+	public String getShippingType(String upiId, String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select TAG_ID from upi_receipt_line where pallet_id = '" + upiId
-				+ "'");
+		ResultSet rs = stmt.executeQuery("SELECT user_def_type_7 FROM upi_receipt_line WHERE pallet_id = '" + upiId
+				+ "' and sku_id='" + skuId + "'");
 		rs.next();
-		
 		return rs.getString(1);
 	}
-	
+
+	public String getContainer(String upiId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT container_id FROM upi_receipt_line WHERE pallet_id = '" + upiId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public void updateContainerID(String upiId, String sku) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update upi_receipt_line set CONTAINER_ID = '" + upiId
+				+ "' where pallet_id = '" + upiId + "' and sku_id='" + sku + "'");
+		context.getConnection().commit();
+	}
 }

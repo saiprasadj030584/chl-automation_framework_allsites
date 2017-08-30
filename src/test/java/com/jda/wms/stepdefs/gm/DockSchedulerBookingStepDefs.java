@@ -1,7 +1,6 @@
 package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.sikuli.script.Screen;
 import org.sikuli.script.Key;
@@ -10,11 +9,11 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.BookingInDiary;
 import com.jda.wms.db.gm.BookingInDiaryLog;
+import com.jda.wms.pages.gm.DockSchedulerBookingsPage;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.Verification;
-
 import cucumber.api.java.en.Then;
 
 public class DockSchedulerBookingStepDefs {
@@ -25,12 +24,13 @@ public class DockSchedulerBookingStepDefs {
 	private BookingInDiaryLog bookingInDiaryLog;
 	private DockSchedulerPage dockSchedulerPage;
 	private JdaHomePage jdaHomePage;
+	private DockSchedulerBookingsPage dockShedulerBookingPage;
 	private JDAFooter jdaFooter;
 
 	@Inject
 	public DockSchedulerBookingStepDefs(Verification verification, Context context, BookingInDiary bookingInDiary,
 			BookingInDiaryLog bookingInDiaryLog, DockSchedulerPage dockSchedulerPage, JdaHomePage jdaHomePage,
-			JDAFooter jdaFooter) {
+			JDAFooter jdaFooter, DockSchedulerBookingsPage dockShedulerBookingPage) {
 		this.verification = verification;
 		this.context = context;
 		this.bookingInDiary = bookingInDiary;
@@ -38,11 +38,16 @@ public class DockSchedulerBookingStepDefs {
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
+		this.dockShedulerBookingPage = dockShedulerBookingPage;
 	}
-
+	
 	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
+		jdaHomePage.navigateToDockSchedulerBookingsPage();
+		jdaFooter.clickQueryButton();
+		dockShedulerBookingPage.enterBookingID(context.getBookingID());
+		jdaFooter.clickExecuteButton();
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 	if(context.getSiteId().equals("5649"))
@@ -69,5 +74,4 @@ public class DockSchedulerBookingStepDefs {
 		dockSchedulerPage.enterBookingId(context.getBookingID());
 		jdaFooter.PressEnter();
 	}
-
 }

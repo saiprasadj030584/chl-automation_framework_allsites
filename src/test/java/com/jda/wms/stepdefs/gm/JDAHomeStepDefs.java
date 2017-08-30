@@ -176,6 +176,11 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
 
+	@When("^I navigate to report selection page$")
+	public void i_navigate_to_report_selection_page() throws Throwable {
+		jdaHomePage.navigateToReportSelectionPage();
+	}
+
 	@When("^I navigate to delivery management page$")
 	public void i_navigate_to_delivery_management_page() throws Throwable {
 		jdaHomePage.navigatetoDeliveryManagementPage();
@@ -190,5 +195,28 @@ public class JDAHomeStepDefs {
 	@When("^i navigate to UPI receipt header page$")
 	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();
+
+	}
+
+	@When("^I navigate to stock check list generation page$")
+	public void i_navigate_to_stock_check_list_generation_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckListGeneration();
+	}
+
+	@When("^I navigate to stock check query page$")
+	public void i_navigate_to_stock_check_query_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckTaskQueryPage();
+	}
+
+	@When("^I navigate to stock check list completion page$")
+	public void i_navigate_to_stock_check_list_completion_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckListCompletionPage();
+
+	}
+
+	@When("^I navigate to order container page$")
+	public void i_navigate_to_order_container_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+
 	}
 }

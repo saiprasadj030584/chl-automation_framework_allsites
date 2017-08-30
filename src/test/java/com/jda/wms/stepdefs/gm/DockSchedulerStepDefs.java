@@ -1,7 +1,8 @@
 package com.jda.wms.stepdefs.gm;
 
-import org.sikuli.script.Screen;
 import org.junit.Assert;
+import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.BookingInDiaryLog;
@@ -10,6 +11,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -118,6 +120,23 @@ public class DockSchedulerStepDefs {
 		jdaFooter.PressEnter();
 		if (dockSchedulerPage.isBookingErrorExists()) {
 			jdaFooter.PressEnter();
+			jdaFooter.clickNextButton();
+			bookingID = Utilities.getFiveDigitRandomNumber();
+			jdaFooter.deleteExistingContent();
+			dockSchedulerPage.enterBookingId(bookingID);
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedPallets();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedCartons();
+			jdaFooter.PressEnter();
+		} else if (dockSchedulerPage.isNoDockErrorExists()) {
+			jdaFooter.PressEnter();
+			dockSchedulerPage.selectSlot();
 			jdaFooter.clickNextButton();
 			bookingID = Utilities.getFiveDigitRandomNumber();
 			jdaFooter.deleteExistingContent();
@@ -333,5 +352,4 @@ public class DockSchedulerStepDefs {
 		Assert.assertTrue("Records are not as expected", dockSchedulerPage.isNoRecords());
 	}
 
-	
 }
