@@ -33,9 +33,9 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select check_string from location where location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
-		 
+
 	}
-	
+
 	public String getLocationZone(String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -45,8 +45,8 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
-	} 
-	
+	}
+
 	public ArrayList<String> getLocation() throws SQLException, ClassNotFoundException {
 		ArrayList<String> locationList = new ArrayList<String>();
 
@@ -67,13 +67,13 @@ public class LocationDB {
 	}
 
 	public String getLocation(String status) throws SQLException, ClassNotFoundException {
-			if (context.getConnection() == null) {
-				database.connect();
-			}
+		if (context.getConnection() == null) {
+			database.connect();
+		}
 
-			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select location_id from location where lock_status = '" + status + "'");
-			rs.next();
-			return rs.getString(1);
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from location where lock_status = '" + status + "'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

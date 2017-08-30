@@ -29,13 +29,14 @@ public class InventoryUpdateStepDefs {
 
 	@Inject
 	public InventoryUpdateStepDefs(Context context, JDAFooter jdafooter, InventoryDB inventoryDB,
-			InventoryUpdatePage inventoryUpdatePage, DateUtils dateUtils, WarningPopUpPage warningPopUpPage,StockAdjustmentsPage stockAdjustmentsPage) {
+			InventoryUpdatePage inventoryUpdatePage, DateUtils dateUtils, WarningPopUpPage warningPopUpPage,
+			StockAdjustmentsPage stockAdjustmentsPage) {
 		this.context = context;
 		this.jdafooter = jdafooter;
 		this.inventoryUpdatePage = inventoryUpdatePage;
 		this.dateUtils = dateUtils;
 		this.warningPopUpPage = warningPopUpPage;
-		this.stockAdjustmentsPage=stockAdjustmentsPage;
+		this.stockAdjustmentsPage = stockAdjustmentsPage;
 
 	}
 
@@ -53,9 +54,22 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickNextButton();
 	}
 
+	@When("^I search the inventory for the sku$")
+	public void i_search_the_inventory_for_the_sku() throws Throwable {
+		inventoryUpdatePage.enterTagID(context.getTagId());
+		inventoryUpdatePage.enterSku(context.getSkuId());
+		jdafooter.clickNextButton();
+	}
+
 	@Then("^the tag details should be displayed$")
 	public void the_tag_details_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
+		jdafooter.clickNextButton();
+	}
+
+	@Then("^the sku details should be displayed$")
+	public void the_sku_details_should_be_displayed() throws Throwable {
+		Assert.assertTrue("sku Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
 		jdafooter.clickNextButton();
 	}
 
@@ -98,14 +112,26 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickDoneButton();
 		context.setOwner(owner);
 	}
-	
+
+	@Then("^I update the pack config$")
+	public void i_update_the_pack_config() throws Throwable {
+		for (int i = 0; i < context.getPackConfigList().size(); i++) {
+			if (!context.getPackConfig().equalsIgnoreCase((String) context.getPackConfigList().get(i))) {
+				context.setPackConfig((String) context.getPackConfigList().get(i));
+				break;
+			}
+		}
+		inventoryUpdatePage.enterPackConfig(context.getPackConfig());
+		jdafooter.clickDoneButton();
+	}
+
 	@Then("^I change the lock status to unlocked$")
 	public void i_change_the_lock_status_to_unlocked() throws Throwable {
 		screen.type("Lock Status Change");
 		Thread.sleep(1000);
 		jdafooter.clickNextButton();
 		stockAdjustmentsPage.enterSku(context.getSkuId());
-		
+
 		stockAdjustmentsPage.enterReceiptId(context.getUpiId());
 		jdafooter.clickNextButton();
 		jdafooter.clickNextButton();

@@ -4,6 +4,8 @@ import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -24,7 +26,7 @@ public class UpiReceiptHeaderPage {
 		screen.type(palletId);
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(2000);
-		
+
 	}
 
 	public boolean isNoRecordExist() {
@@ -33,7 +35,7 @@ public class UpiReceiptHeaderPage {
 		else
 			return false;
 	}
-	
+
 	public String getDueDate() throws FindFailed {
 		Match mDueDate = screen.find("images/UpiReceiptHeader/DueDate.png");
 		screen.click(mDueDate.getCenter().offset(70, 0));
@@ -41,7 +43,7 @@ public class UpiReceiptHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public String getReceiptDate() throws FindFailed {
 		Match mDueDate = screen.find("images/UpiReceiptHeader/ReceiptDate.png");
 		screen.click(mDueDate.getCenter().offset(70, 0));
@@ -49,7 +51,7 @@ public class UpiReceiptHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public void fetchRecord(String upi) throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
 		Thread.sleep(1000);
@@ -58,15 +60,14 @@ public class UpiReceiptHeaderPage {
 		screen.type(Key.F7);
 		Thread.sleep(1000);
 	}
-	
+
 	public boolean isDueDateExists() throws FindFailed {
 		Match mDueDate = screen.find("images/UpiReceiptHeader/DueDate.png");
 		screen.click(mDueDate.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
-		String duedate=App.getClipboard();
-		if(duedate!=null)
-		{
+		String duedate = App.getClipboard();
+		if (duedate != null) {
 			return true;
 		}
 		return false;

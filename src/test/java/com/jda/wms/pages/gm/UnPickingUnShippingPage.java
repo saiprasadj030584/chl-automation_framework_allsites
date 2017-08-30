@@ -19,7 +19,6 @@ public class UnPickingUnShippingPage {
 		this.context = context;
 	}
 
-	
 	public void performUnpick() throws FindFailed, InterruptedException {
 		screen.type("5649");
 		screen.type(Key.F7);
@@ -32,4 +31,4 @@ public class UnPickingUnShippingPage {
 		screen.type(Key.F12);
 	}
 
-	}
+}

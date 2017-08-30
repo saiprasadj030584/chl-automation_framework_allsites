@@ -8,7 +8,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
 public class LocationPage {
-	
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
@@ -23,7 +23,7 @@ public class LocationPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public void enterLocation(String location) {
 		screen.type(location);
 	}

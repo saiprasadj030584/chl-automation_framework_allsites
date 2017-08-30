@@ -17,16 +17,19 @@ public class CEConsignmentLinkingPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
+
 	public void enterPreAdviceId(String preAdviceId) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentLinking/PreAdviceID.png", timeoutInSec);
 		screen.type(preAdviceId);
 		Thread.sleep(1000);
 	}
+
 	public void enterConsignmentID(String consignmentID) throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentLinking/ConsignmentID.png", timeoutInSec);
 		screen.type(consignmentID);
 		Thread.sleep(1000);
 	}
+
 	public boolean isNoRowsDisplayed() {
 		if (screen.exists("images/CEConsignmentLinking/NoRowsSelected.png") != null)
 			return true;

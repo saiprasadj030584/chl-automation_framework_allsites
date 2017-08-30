@@ -11,16 +11,17 @@ import com.google.inject.Inject;
 public class KitLineMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	/*private JdaHomePage jdaHomePage;
-
-	@Inject
-	public KitLineMaintenancePage(JdaHomePage jdaHomePage) {
-		this.jdaHomePage = jdaHomePage;
-	}*/
+	/*
+	 * private JdaHomePage jdaHomePage;
+	 * 
+	 * @Inject public KitLineMaintenancePage(JdaHomePage jdaHomePage) {
+	 * this.jdaHomePage = jdaHomePage; }
+	 */
 
 	public void navigateToKitLine() throws FindFailed, InterruptedException {
-		/*jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverSKU();*/
+		/*
+		 * jdaHomePage.clickDataMenu(); jdaHomePage.hoverSKU();
+		 */
 		hoverKit();
 		clickKitLine();
 	}

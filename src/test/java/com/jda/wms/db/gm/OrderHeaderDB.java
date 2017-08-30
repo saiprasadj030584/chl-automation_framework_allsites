@@ -143,7 +143,6 @@ public class OrderHeaderDB {
 		return rs.getString(1);
 	}
 
-
 	public String getShipdock(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -226,7 +225,7 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getOrderType(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -238,7 +237,7 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getUserDefinedType4(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -249,7 +248,7 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getDestination(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -304,7 +303,7 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getSoftAllocated(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();

@@ -15,29 +15,31 @@ public class DeleteDataFromDB {
 	private SelectDataFromDB selectDataFromDB;
 
 	@Inject
-	public DeleteDataFromDB(Context context,Database database,SelectDataFromDB selectDataFromDB) {
+	public DeleteDataFromDB(Context context, Database database, SelectDataFromDB selectDataFromDB) {
 		this.context = context;
 		this.database = database;
 		this.selectDataFromDB = selectDataFromDB;
 	}
+
 	public void deletePreAdviceHeader(String preAdviceId) throws ClassNotFoundException, SQLException {
-		if (selectDataFromDB.isPreAdviceRecordExists(preAdviceId)){
+		if (selectDataFromDB.isPreAdviceRecordExists(preAdviceId)) {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+preAdviceId+"'");
+			ResultSet rs = stmt
+					.executeQuery("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '" + preAdviceId + "'");
 			context.getConnection().commit();
 		}
 	}
-	
+
 	public void deleteOrderHeader(String orderId) throws ClassNotFoundException, SQLException {
-		if (selectDataFromDB.isPreAdviceRecordExists(orderId)){
+		if (selectDataFromDB.isPreAdviceRecordExists(orderId)) {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '"+orderId+"'");
+			ResultSet rs = stmt.executeQuery("delete FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '" + orderId + "'");
 			context.getConnection().commit();
 		}
 	}

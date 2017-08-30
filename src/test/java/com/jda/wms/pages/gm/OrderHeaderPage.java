@@ -40,12 +40,8 @@ public class OrderHeaderPage extends PageObject {
 	}
 
 	public void enterOrderNo(String OrderNo) throws FindFailed, InterruptedException {
-//		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
-//		screen.click("images/OrderHeaderNo.png");
 		screen.type(OrderNo);
 		Thread.sleep(1000);
-//		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
-//		screen.click("images/OrderHeaderExecute.png");
 	}
 
 	public void navigateToOrderLineList() throws FindFailed, InterruptedException {

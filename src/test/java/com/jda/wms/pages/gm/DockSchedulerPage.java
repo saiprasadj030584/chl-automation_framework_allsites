@@ -13,10 +13,12 @@ public class DockSchedulerPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final Context context;
+	private JdaHomePage jdaHomePage;
 
 	@Inject
-	public DockSchedulerPage(Context context) {
+	public DockSchedulerPage(Context context, JdaHomePage jdaHomePage) {
 		this.context = context;
+		this.jdaHomePage = jdaHomePage;
 	}
 
 	public void selectCreateNewBooking() throws FindFailed, InterruptedException {
@@ -29,7 +31,7 @@ public class DockSchedulerPage {
 		Match msiteId = screen.find("/images/DockScheduler/Start/SiteID.png");
 		screen.click(msiteId.getCenter().offset(70, 0));
 		screen.type(site);
-		
+
 		Thread.sleep(2000);
 	}
 
@@ -62,6 +64,10 @@ public class DockSchedulerPage {
 	}
 
 	public void selectSlot() throws FindFailed, InterruptedException {
+		//
+		// for (int i = 0; i < 25; i++) {
+		// jdaHomePage.scrollRight();
+		// }
 		screen.wait("images/DockScheduler/Schedule/Slot.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/Slot.png");
 		Thread.sleep(2000);
@@ -78,93 +84,119 @@ public class DockSchedulerPage {
 		screen.type(bookingID);
 		Thread.sleep(1000);
 	}
-	
+
 	public boolean isBookingIdDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/DockScheduler/Schedule/Out.png") != null) {
 			return true;
 		} else
 			return false;
 	}
+
 	public boolean isBookingIdDisplayedIn() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/DockScheduler/Schedule/In.png") != null) {
 			return true;
 		} else
 			return false;
 	}
-	
-	
-	
-	
+
 	public void checkBookingStatusUpdated() throws FindFailed, InterruptedException {
 		Thread.sleep(1000);
 		screen.rightClick();
 		Thread.sleep(2000);
 		selectBookingDetails();
 	}
-	
-	public boolean isBookingStatusUpdated() throws FindFailed, InterruptedException {
-		if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusComplete.png") != null) {
-			return true;
-		} else
-			return false;
+
+	public boolean isBookingStatusUpdated(String bookingStatus) throws FindFailed, InterruptedException {
+
+		if (bookingStatus.equalsIgnoreCase("Complete")) {
+
+			if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusComplete.png") != null) {
+				return true;
+			} else
+				return false;
+
+		} else {
+			if (screen.exists("/images/DockScheduler/Schedule/BookingDetails/StatusInProgress.png") != null) {
+				return true;
+			} else
+				return false;
+		}
+
 	}
 
 	public void enterTrailerType() throws FindFailed, InterruptedException {
 		screen.type("TRAILER");
 		Thread.sleep(1000);
 	}
+
 	public void changeBookingTime() throws FindFailed, InterruptedException {
-		
+
 		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
 		Thread.sleep(2000);
 		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
-		
+
 		Thread.sleep(3000);
-		
-		
+
 	}
-	
-	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
-		if(context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9)))
-		{
-			if((context.getDockId().contains(context.getUpdatedDockId())))
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		 return true;
-		
-	}
-	
-	
-	public void changeBookingStatus() throws FindFailed, InterruptedException {
-		
+
+	public void changeBookingTimeToDifferentDate() throws FindFailed, InterruptedException {
+
 		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
-		screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
-		Thread.sleep(1000);
-		screen.type(context.getTrailerNo());
-		pressTab();
-		pressTab();
-		pressTab();
-		screen.type("1");
-		pressTab();
-		screen.type("1");
-		screen.click("images/DockScheduler/Schedule/BookingDetails/Ok.png");
 		Thread.sleep(2000);
-		screen.type(Key.ENTER);
+		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
+
+		Thread.sleep(3000);
+		screen.click("images/DockScheduler/Schedule/SelectDate1.png");
 		Thread.sleep(2000);
-		
-		
-		
+	}
+
+	public boolean isBookingTimeUpdated() throws FindFailed, InterruptedException {
+		if (context.getBookingTime().contains(context.getUpdatedBookingTime().substring(9))) {
+			if ((context.getDockId().contains(context.getUpdatedDockId()))) {
+				return false;
+			} else {
+				return true;
+			}
+		} else
+			return true;
+	}
+
+	public void changeBookingStatus(String bookingStatus) throws FindFailed, InterruptedException {
+
+		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/In.png");
+		screen.rightClick();
+
+		if (bookingStatus.equalsIgnoreCase("Complete")) {
+			screen.click("images/DockScheduler/Schedule/CompleteBooking.png");
+			Thread.sleep(1000);
+			screen.type(context.getTrailerNo());
+			pressTab();
+			pressTab();
+			pressTab();
+			screen.type("1");
+			pressTab();
+			screen.type("1");
+			screen.click("images/DockScheduler/Schedule/BookingDetails/Ok.png");
+			Thread.sleep(2000);
+			screen.type(Key.ENTER);
+			Thread.sleep(2000);
+		} else {
+			screen.click("images/DockScheduler/Schedule/ChangeBookingStatus.png");
+			Thread.sleep(1000);
+			screen.type("i");
+			Thread.sleep(1000);
+			pressTab();
+			pressTab();
+			screen.type(Key.ENTER);
+			// screen.click("images/DockScheduler/Schedule/ChangeBookingStatusOKButton.png");
+		}
+
 	}
 
 	public void enterTrailerNo(String trailerNo) throws FindFailed, InterruptedException {
@@ -206,7 +238,7 @@ public class DockSchedulerPage {
 		screen.click("images/DockScheduler/Schedule/DeleteBooking.png");
 		Thread.sleep(2000);
 	}
-	
+
 	public void selectMoveBooking() throws FindFailed, InterruptedException {
 		screen.wait("images/DockScheduler/Schedule/MoveBooking.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
@@ -219,8 +251,7 @@ public class DockSchedulerPage {
 		else
 			return false;
 	}
-	
-	
+
 	public boolean isNoRecords() throws FindFailed, InterruptedException {
 		if (screen.exists("images/DockScheduleBookings/NoRecords.png") != null)
 			return true;
@@ -269,10 +300,10 @@ public class DockSchedulerPage {
 	}
 
 	public boolean isErrorMessageDisplayed() throws FindFailed, InterruptedException {
-		if (screen.exists("images/DockScheduler/Schedule/OverrunsExistingBooking.png")!=(null))
+		if (screen.exists("images/DockScheduler/Schedule/OverrunsExistingBooking.png") != (null))
 			return true;
 		else
-		return false;
+			return false;
 	}
 
 	public void clickElseWhere() throws FindFailed, InterruptedException {
@@ -294,6 +325,7 @@ public class DockSchedulerPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mASN.below(10));
 	}
+
 	public void selectPreAdviceId() throws FindFailed, InterruptedException {
 		screen.wait("images/DockScheduler/Build/PreAdviceId.png", timeoutInSec);
 		Match mASN = screen.find("images/DockScheduler/Build/PreAdviceId.png");
@@ -302,7 +334,7 @@ public class DockSchedulerPage {
 		Thread.sleep(2000);
 		screen.doubleClick(mASN.below(10));
 	}
-	
+
 	public void pressTab() throws FindFailed, InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
@@ -313,6 +345,7 @@ public class DockSchedulerPage {
 		Thread.sleep(1000);
 
 	}
+
 	public void enterServiceLevel(String serviceLevel) throws InterruptedException {
 		screen.type(serviceLevel);
 		Thread.sleep(1000);
@@ -334,6 +367,13 @@ public class DockSchedulerPage {
 
 	public boolean isBookingErrorExists() {
 		if (screen.exists("/images/DockScheduler/Schedule/BookingError.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean isNoDockErrorExists() {
+		if (screen.exists("/images/DockScheduler/Schedule/NoDockError.png") != null) {
 			return true;
 		} else
 			return false;

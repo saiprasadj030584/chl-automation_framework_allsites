@@ -18,7 +18,8 @@ public class ShippingManifestDB {
 		this.database = database;
 	}
 
-	public HashMap<String, String> getShipmentManifestDetails(String tagId, String orderId) throws SQLException, ClassNotFoundException {
+	public HashMap<String, String> getShipmentManifestDetails(String tagId, String orderId)
+			throws SQLException, ClassNotFoundException {
 
 		ResultSet resultSet = null;
 		HashMap<String, String> shipmentManifestMap = new HashMap<String, String>();
@@ -29,7 +30,8 @@ public class ShippingManifestDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		resultSet = stmt.executeQuery(
-				"select SKU_ID,CONTAINER_ID,PALLET_ID,CONFIG_ID,CONSIGNMENT,QTY_PICKED,QTY_SHIPPED,PICK_LABEL_ID,SHIPPED_DSTAMP,PICKED_DSTAMP,UPLOADED,UPLOADED_FILENAME,PALLET_CONFIG,CE_ROTATION_ID,CE_CONSIGNMENT_ID,CE_RECEIPT_TYPE,CE_ORIGINATOR,CE_ORIGINATOR_REFERENCE,SHIPMENT_NUMBER,CUSTOMER_ID,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_5,USER_DEF_TYPE_8,USER_DEF_TYPE_7,USER_DEF_DATE_2 from SHIPPING_MANIFEST where ORDER_ID='"+orderId+"' AND TAG_ID='"+tagId+"'");
+				"select SKU_ID,CONTAINER_ID,PALLET_ID,CONFIG_ID,CONSIGNMENT,QTY_PICKED,QTY_SHIPPED,PICK_LABEL_ID,SHIPPED_DSTAMP,PICKED_DSTAMP,UPLOADED,UPLOADED_FILENAME,PALLET_CONFIG,CE_ROTATION_ID,CE_CONSIGNMENT_ID,CE_RECEIPT_TYPE,CE_ORIGINATOR,CE_ORIGINATOR_REFERENCE,SHIPMENT_NUMBER,CUSTOMER_ID,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_5,USER_DEF_TYPE_8,USER_DEF_TYPE_7,USER_DEF_DATE_2 from SHIPPING_MANIFEST where ORDER_ID='"
+						+ orderId + "' AND TAG_ID='" + tagId + "'");
 		resultSet.next();
 
 		shipmentManifestMap.put("SKU", resultSet.getString(1));
@@ -49,15 +51,15 @@ public class ShippingManifestDB {
 		shipmentManifestMap.put("Uploaded Filename", resultSet.getString(12));
 		shipmentManifestMap.put("Pallet Type", resultSet.getString(13));
 		shipmentManifestMap.put("CE Rotation ID", resultSet.getString(14));
-		
+
 		shipmentManifestMap.put("CE Consignment ID", resultSet.getString(15));
 		shipmentManifestMap.put("CE Receipt Type", resultSet.getString(16));
 		shipmentManifestMap.put("CE Originator", resultSet.getString(17));
 		shipmentManifestMap.put("CE Originator Reference", resultSet.getString(18));
-		
+
 		shipmentManifestMap.put("Shipment Number", resultSet.getString(19));
 		shipmentManifestMap.put("Customer", resultSet.getString(20));
-		
+
 		shipmentManifestMap.put("IFOS Order Number", resultSet.getString(21));
 		shipmentManifestMap.put("UPC", resultSet.getString(22));
 		shipmentManifestMap.put("DWS EDN Reference", resultSet.getString(23));

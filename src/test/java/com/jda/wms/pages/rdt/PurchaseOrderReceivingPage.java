@@ -21,15 +21,6 @@ public class PurchaseOrderReceivingPage {
 		this.context = context;
 	}
 
-	public boolean isExcessReceiptErrorDisplayed() throws InterruptedException {
-		Thread.sleep(2000);
-		if ((screen.exists("images/Putty/Receiving/ExcessError.png") != null))
-			return true;
-		else
-			return false;
-
-	}
-	
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
 		screen.type("1");
 		Thread.sleep(1000);
@@ -77,19 +68,47 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 
-	public void entertagId(String tagId) throws InterruptedException {
-		// puttyFunctionsPage.pressTab();
-		screen.type(tagId);
+
+	public boolean isBlindReceivingDoneperfectCondition() throws FindFailed, InterruptedException {
+		boolean returnVal = false;
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+			returnVal = true;
+
+		} else if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+				|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+					|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				returnVal = true;
+			}
+		} else if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+			returnVal = true;
+		}
+		return returnVal;
 	}
-	
-	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
-		Thread.sleep(2000);
-		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
-			return true;
-		else
+
+	public boolean isFootWearDigitValdiationDone() throws FindFailed, InterruptedException {
+		if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+				|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+			puttyFunctionsPage.pressEnter();
+
 			return false;
+			// } else if
+			// (screen.exists("images/Putty/Receiving/footwear_digit_error.png")
+			// != null) {
+			// Commented due to Application issues in Dispatcher - IK
+		} else {
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			return true;
+		}
 
 	}
+	
 	
 	public boolean isOverReceiptErrorReturnsDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
@@ -100,89 +119,6 @@ public class PurchaseOrderReceivingPage {
 
 	}
 	
-	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
-		if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
-				|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {
-			while ((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null)
-					&& (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null)
-					|| (screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null)) {
-				puttyFunctionsPage.pressEnter();
-			}
-
-			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				puttyFunctionsPage.pressEnter();
-				if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
-						|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
-					puttyFunctionsPage.pressEnter();
-					puttyFunctionsPage.pressEnter();
-					if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
-							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
-							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
-						puttyFunctionsPage.pressEnter();
-						return true;
-					}
-					return false;
-				}
-				return false;
-			}
-
-			if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
-					|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				puttyFunctionsPage.pressEnter();
-				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
-						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
-						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
-					puttyFunctionsPage.pressEnter();
-					return true;
-				}
-				return false;
-			}
-			return false;
-		} else if (context.getLockCode().equalsIgnoreCase("DMGD")) {
-			while (screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null
-					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
-				puttyFunctionsPage.pressEnter();
-			}
-			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				puttyFunctionsPage.pressEnter();
-				if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
-					puttyFunctionsPage.pressEnter();
-					return true;
-				}
-				return false;
-			}
-			if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				return true;
-			}
-			return false;
-		} else if (context.getLockCode().equalsIgnoreCase("IMPSET")) {
-
-			while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null
-					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
-				puttyFunctionsPage.pressEnter();
-			}
-			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				puttyFunctionsPage.pressEnter();
-				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
-					puttyFunctionsPage.pressEnter();
-					return true;
-				}
-				return false;
-
-			}
-			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
-				puttyFunctionsPage.pressEnter();
-				return true;
-			}
-			return false;
-		}
-		return false;
-	}
 
 	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
 		while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
@@ -202,8 +138,6 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
-	
-	
 	
 	public boolean isDamageReceiptDisplayed() throws FindFailed, InterruptedException {
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
@@ -269,7 +203,6 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
-	
 	public String getPutawayGroup() throws FindFailed, InterruptedException {
 		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
 		screen.click(putawayGroup.below(5));
@@ -279,10 +212,10 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
-		screen.click("images/Putty/Receiving/Location.png");
+		// screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
+		// screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressEnter();
+puttyFunctionsPage.pressEnter();
 		Thread.sleep(3000);
 	}
 	
@@ -293,6 +226,7 @@ public class PurchaseOrderReceivingPage {
 		puttyFunctionsPage.pressTab();
 		Thread.sleep(3000);
 	}
+
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);
@@ -463,7 +397,7 @@ public class PurchaseOrderReceivingPage {
 	public void doConfigMovementLabel() throws FindFailed, InterruptedException {
 		if (screen.exists("images/Putty/Receiving/MovementLabel/PuttyTop.png") != null) {
 			Match mStatus = screen.find("images/Putty/Receiving/MovementLabel/PuttyTop.png");
-			screen.click(mStatus.getCenter().offset(30, 0));
+			screen.click(mStatus.getCenter().offset(50, 0));
 			screen.rightClick();
 			Thread.sleep(1000);
 			screen.click("images/Putty/Receiving/MovementLabel/ChangeSettings.png");
@@ -478,26 +412,24 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterUPC1BEL(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
-
 		Thread.sleep(2000);
 	}
 
-	public void enterUPC2(String upc) throws FindFailed, InterruptedException 
-	{
+	public void enterUPC2(String upc) throws FindFailed, InterruptedException {
 		screen.type(upc);
 
 		Thread.sleep(2000);
 	}
-	
+
 	public void enterPalletId(String palletID) throws InterruptedException {
 		screen.type(palletID);
 		Thread.sleep(2000);
-		Thread.sleep(4000);		
+		Thread.sleep(4000);
 	}
-	
+
 	public void enterBelCode(String getbelCode) throws InterruptedException {
 		screen.type(getbelCode);
-		Thread.sleep(2000);
+	Thread.sleep(2000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(4000);
 	}
@@ -556,7 +488,7 @@ public class PurchaseOrderReceivingPage {
 		screen.click(mSupplierId.getCenter().offset(50, 0));
 		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
 		Thread.sleep(2000);
-		System.out.println("abba"+App.getClipboard());
+	System.out.println("abba"+App.getClipboard());
 		System.out.println("ANS"+App.getClipboard().split("_"));
 		String[] qtySplit =App.getClipboard().split("_");
 		if(qtySplit.length==0)
@@ -582,11 +514,150 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 
+
 	public String getPallet() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/PutawayForLock.png");
 		screen.click(mStatus.below(5));
 		Thread.sleep(2000);
 		screen.doubleClick(mStatus.below(1));
 		return App.getClipboard();
+	}
+
+	public void entertagId(String tagId) throws InterruptedException {
+		screen.type(tagId);
+	}
+
+	public void enterFullPallet(String fullPallet) throws InterruptedException {
+		screen.type(fullPallet);
+		Thread.sleep(2000);
+	}
+
+	public void enterTagid(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(1000);
+	}
+
+	public boolean isBlindReceivingDone() throws FindFailed, InterruptedException {
+		if (context.getLockCode().equalsIgnoreCase("IMPERFECT")
+				|| context.getLockCode().equalsIgnoreCase("SINGLESHOE")) {
+			while ((screen.exists("images/Putty/Receiving/Imperfect_error.png") == null)
+					&& (screen.exists("images/Putty/Receiving/Singleshoe_error.png") == null)
+					|| (screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null)) {
+				puttyFunctionsPage.pressEnter();
+			}
+
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+						|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter();
+					if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+							|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+						puttyFunctionsPage.pressEnter();
+						return true;
+					}
+					return false;
+				}
+				return false;
+			}
+
+			if ((screen.exists("images/Putty/Receiving/Imperfect_error.png") != null)
+					|| (screen.exists("images/Putty/Receiving/Singleshoe_error.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)
+						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedImperfect_N.png") != null)
+						|| (screen.exists("images/Putty/Receiving/ReturnsCompletedSingleshoe_N.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+			}
+			return false;
+		} else if (context.getLockCode().equalsIgnoreCase("DMGD")) {
+			while (screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") == null
+					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
+				puttyFunctionsPage.pressEnter();
+			}
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+			}
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		} else if (context.getLockCode().equalsIgnoreCase("IMPSET")) {
+
+			while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null
+					&& screen.exists("images/Putty/Receiving/IncorrectPartSet.png") == null) {
+				puttyFunctionsPage.pressEnter();
+			}
+			if ((screen.exists("images/Putty/Receiving/IncorrectPartSet.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+					puttyFunctionsPage.pressEnter();
+					return true;
+				}
+				return false;
+
+			}
+			if ((screen.exists("images/Putty/Receiving/ReturnsCompleted.png") != null)) {
+				puttyFunctionsPage.pressEnter();
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
+	public void enterURRN(String urrn) throws InterruptedException {
+		screen.type(urrn);
+		Thread.sleep(2000);
+
+	}
+
+	public boolean isURRNNotExistDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/urrnNotExist.png") != null))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+
+	public boolean isExcessReceiptErrorDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/ExcessError.png") != null))
+			return true;
+		else
+			return false;
+
+	}
+
+	public boolean isReceiveCompleted() {
+		if ((screen.exists("images/Putty/Receiving/receiptcompleted.png") != null))
+			return true;
+		else
+			return false;
+
 	}
 }

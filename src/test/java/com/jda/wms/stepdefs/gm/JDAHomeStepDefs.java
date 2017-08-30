@@ -1,6 +1,9 @@
 package com.jda.wms.stepdefs.gm;
 
+import org.sikuli.script.FindFailed;
+
 import com.google.inject.Inject;
+import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 
 import cucumber.api.java.en.Given;
@@ -8,6 +11,7 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
+	private JDAFooter jDAFooter;
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -77,12 +81,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		Thread.sleep(2000);
 	}
-	
-	@When("^I navigate to UPI Management screen$")
-	public void i_navigate_to_UPI_Management_screen() throws Throwable {
-		jdaHomePage.navigateToUpiManagementPage();
-		Thread.sleep(2000);
-	}
 
 	@When("^I navigate to SKU page$")
 	public void i_navigate_to_SKU_page() throws Throwable {
@@ -109,7 +107,6 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_receipt_reversal_page() throws Throwable {
 		jdaHomePage.navigateToReceiptReversalPage();
 	}
-	
 
 	@Given("^I am on to pick face maintenance page$")
 	public void i_am_on_to_pick_face_maintenance_page() throws Throwable {
@@ -131,8 +128,6 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToOrderHeaderMaintenance();
 
 	}
-	
-	
 
 	@When("^I navigate to move task update$")
 	public void i_navigate_to_move_task_update() throws Throwable {
@@ -168,22 +163,13 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
 		jdaHomePage.navigateToSystemAllocationPage();
-		
 		Thread.sleep(6000);
 	}
-	
-	
 
-	@When("^I navigate to unpicking and unshipping page$")
-	public void i_navigate_to_unpicking_and_unshipping_page() throws Throwable {
-		jdaHomePage.navigateToUnpickingAndUnshippingPage();
-		Thread.sleep(6000);
-	}
-	
-	@When("^I navigate to order container page$")
-	public void i_navigate_to_order_container_page() throws Throwable {
-		jdaHomePage.navigateToOrderContainerPage();
-		Thread.sleep(6000);
+	@When("^I navigate to UPI Management screen$")
+	public void i_navigate_to_UPI_Management_screen() throws Throwable {
+		jdaHomePage.navigateToUpiManagementPage();
+		Thread.sleep(2000);
 	}
 
 	@When("^I navigate to mannual clustering screen$")
@@ -195,6 +181,54 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 	}
-	
-	
+
+	@When("^I navigate to report selection page$")
+	public void i_navigate_to_report_selection_page() throws Throwable {
+		jdaHomePage.navigateToReportSelectionPage();
+	}
+
+	@When("^I navigate to delivery management page$")
+	public void i_navigate_to_delivery_management_page() throws Throwable {
+		jdaHomePage.navigatetoDeliveryManagementPage();
+
+	}
+
+	@When("^I navigate to delivery page$")
+	public void i_navigate_to_delivery_page() throws Throwable {
+		jdaHomePage.navigateToDeliveryPage();
+	}
+
+	@When("^i navigate to UPI receipt header page$")
+	public void i_navigate_to_UPI_receipt_header_page() throws FindFailed, InterruptedException {
+		jdaHomePage.navigateToUpiReceiptHeaderPage();
+
+	}
+
+	@When("^I navigate to stock check list generation page$")
+	public void i_navigate_to_stock_check_list_generation_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckListGeneration();
+	}
+
+	@When("^I navigate to stock check query page$")
+	public void i_navigate_to_stock_check_query_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckTaskQueryPage();
+	}
+
+	@When("^I navigate to stock check list completion page$")
+	public void i_navigate_to_stock_check_list_completion_page() throws Throwable {
+		jdaHomePage.navigateToStockCheckListCompletionPage();
+
+	}
+
+	@When("^I navigate to unpicking and unshipping page$")
+	public void i_navigate_to_unpicking_and_unshipping_page() throws Throwable {
+		jdaHomePage.navigateToUnpickingAndUnshippingPage();
+		Thread.sleep(6000);
+	}
+
+	@When("^I navigate to order container page$")
+	public void i_navigate_to_order_container_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+		Thread.sleep(6000);
+	}
 }

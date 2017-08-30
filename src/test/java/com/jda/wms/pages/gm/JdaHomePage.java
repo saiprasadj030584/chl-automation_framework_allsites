@@ -47,7 +47,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToOrderContainerPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -57,7 +57,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToUnpickingAndUnshippingPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -67,7 +67,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void navigateToSystemAllocationPageViaMenu() throws FindFailed, InterruptedException {
 		screen.wait("images/Menu/Operations.png", timeoutInSec);
 		screen.click("images/Menu/Operations.png");
@@ -91,7 +91,6 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
-
 	}
 
 	public void navigateToSKUMaintanence() throws FindFailed, InterruptedException {
@@ -313,7 +312,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
 	}
-	
+
 	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -323,6 +322,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
 	}
+
 	public void navigateToUpiManagementPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -600,4 +600,65 @@ public class JdaHomePage extends PageObject {
 		screen.click("images/JDAHome/ScrollRightBig.png");
 		Thread.sleep(1000);
 	}
+
+	public void navigateToReportSelectionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Report Selection");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+	public void navigatetoDeliveryManagementPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery Management");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToStockCheckTaskQueryPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToStockCheckListCompletionPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Stock check task list completion screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
+	public void navigateToOrderContainerMaintenancePage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Order container maintence/query");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+
 }

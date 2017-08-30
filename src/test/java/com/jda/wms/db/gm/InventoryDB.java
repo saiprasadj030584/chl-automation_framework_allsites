@@ -359,49 +359,49 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public boolean isSkuInSuspenseLocation(String skuId) throws SQLException, ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
-		if (context.getConnection() == null) {
-			database.connect();
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
+			rs.next();
+			if (rs.getString(1) != null) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
 		}
-		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
-		ResultSet rs = stmt.executeQuery("select sku_id from Inventory where location_id='SUSPENSE' and sku_id='" + skuId + "'");
-		rs.next();
-		if (rs.getString(1)!=null){
-			isRecordExists = true;
-		}
-	} catch (Exception e) {
-		if (e.getMessage().contains("Exhausted Resultset")) {
-			isRecordExists = false;
-		}
+		return isRecordExists;
 	}
-	return isRecordExists;
-	}
-	
+
 	public boolean isSkuInMezz(String skuId) throws SQLException, ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
-		if (context.getConnection() == null) {
-			database.connect();
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select sku_id from Inventory where sku_id='" + skuId + "' and config_id like '%MEZZ%'");
+			rs.next();
+			if (rs.getString(1) != null) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
 		}
-		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select sku_id from Inventory where sku_id='" + skuId + "'");
-		ResultSet rs = stmt.executeQuery("select sku_id from Inventory where sku_id='" + skuId + "' and config_id like '%MEZZ%'");
-		rs.next();
-		if (rs.getString(1)!=null){
-			isRecordExists = true;
-		}
-	} catch (Exception e) {
-		if (e.getMessage().contains("Exhausted Resultset")) {
-			isRecordExists = false;
-		}
+		return isRecordExists;
 	}
-	return isRecordExists;
-	}
-	
+
 	public String getQtyOnHandreturns(String skuId, String containerID)
 
 			throws SQLException, ClassNotFoundException {
@@ -430,7 +430,6 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-
 	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -442,50 +441,49 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-	public String getTagId() throws SQLException, ClassNotFoundException {
+	public String getTagID(String siteID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select tag_id from inventory");
+		ResultSet rs = stmt.executeQuery("select tag_id from inventory Where site_id='" + siteID + "'");
 		rs.next();
 		return rs.getString(1);
 	}
 
 	public String getLocationAfterReceive(String skuId, String upiId, String date)
 			throws SQLException, ClassNotFoundException {
+
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
+
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
+
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date) throws SQLException, ClassNotFoundException {
+
+	public String getLocationAfterPOReceive(String skuId, String preAdviceId, String date)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select Location_id from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
-//		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
-		ResultSet rs = stmt.executeQuery("select Location_id from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where pallet_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
 
 	public String getQtyOnHand(String skuId, String location, String upiId, String date)
+
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
-				+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
@@ -493,14 +491,17 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getQtyOnHandPO(String skuId, String location, String preAdviceId, String date)  throws SQLException, ClassNotFoundException {
+
+	public String getQtyOnHandPO(String skuId, String location, String preAdviceId, String date)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where user_def_type_2='"+preAdviceId+"' and sku_id = '"+skuId+"' and location_id = '"+location+"' and RECEIPT_DSTAMP like '"+date+"%'");
+		ResultSet rs = stmt.executeQuery(
+				"select QTY_ON_HAND from inventory where user_def_type_2='" + preAdviceId + "' and sku_id = '" + skuId
+						+ "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -509,7 +510,6 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id = '" + skuId
 				+ "' and location_id  not like '" + location + "'");
@@ -682,5 +682,122 @@ public class InventoryDB {
 			inventoryList.add((rs.getString(j)));
 		}
 		return inventoryList;
+	}
+
+	public ArrayList getTagDetails(String owner) throws ClassNotFoundException, SQLException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SKU_ID,LOCATION_ID,TAG_ID from INVENTORY where owner_id=' " + owner
+				+ "' order by sku_id desc='");
+
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getSkuIdWithMoreThanOnePackConfig() throws ClassNotFoundException, SQLException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"SELECT sku_id FROM SKU_SKU_CONFIG GROUP BY sku_id HAVING COUNT( SKU_SKU_CONFIG.sku_id) > 1");
+
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public ArrayList getInventoryDetailsForSku(String sku) throws ClassNotFoundException, SQLException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("Select tag_id,config_id from inventory where sku_id='" + sku + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+
+	public String getPutawayLocation1(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='" + skuId
+				+ "' and location_id not like '%REC%' and location_id not like '%STAGE%' and location_id not like '%DEFAULTLANE%' and location_id not like '%SINBOX%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPutawayLocation2(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='" + skuId
+				+ "' and location_id not like '%REC%' and location_id not like '%STAGE%' and location_id not like '%DEFAULTLANE%' and location_id not like '%SINBOX%'and location_id not like'"
+				+ context.getPutawayLocation1() + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQtyOnHand(String listID, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"Select qty_on_hand from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQty(String tagId, String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");
+
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getlocation(String listID, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
+
+		rs.next();
+		return rs.getString(1);
 	}
 }

@@ -18,14 +18,15 @@ public class SKUMaintenancePage {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Inject
-	public SKUMaintenancePage( Configuration configuration) {
-		
+	public SKUMaintenancePage(Configuration configuration) {
+
 		this.configuration = configuration;
 	}
-	/*public SKUMaintenancePage(JDAFooter jDAFooter, Configuration configuration) {
-		this.jDAFooter = jDAFooter;
-		this.configuration = configuration;
-	}*/
+	/*
+	 * public SKUMaintenancePage(JDAFooter jDAFooter, Configuration
+	 * configuration) { this.jDAFooter = jDAFooter; this.configuration =
+	 * configuration; }
+	 */
 
 	// TODO donot use this method and replace with enterSKUID() method
 	public void searchSKUid(String skuId) throws FindFailed, InterruptedException {

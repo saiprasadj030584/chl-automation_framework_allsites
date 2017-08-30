@@ -1,0 +1,4 @@
+dbURL ::- jdbc:sqlserver://MSHSRMNSUKC0117;databaseName=NPS_JDA_GM_TEST
+userId ::- NPS_TEST
+pwd ::- Webservice2017
+***end of file***

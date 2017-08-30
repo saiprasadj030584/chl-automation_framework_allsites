@@ -19,7 +19,6 @@ public class SystemAllocationPage {
 		this.context = context;
 	}
 
-	
 	public void enterOrderID() throws FindFailed {
 		screen.type(context.getOrderId());
 	}

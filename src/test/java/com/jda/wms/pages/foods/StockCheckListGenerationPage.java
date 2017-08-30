@@ -6,19 +6,17 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
-import com.google.inject.Inject;
-
 public class StockCheckListGenerationPage {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	/*private JDAFooter jDAFooter;
+	/*
+	 * private JDAFooter jDAFooter;
+	 * 
+	 * @Inject public StockCheckListGenerationPage(JDAFooter jDAFooter) {
+	 * this.jDAFooter = jDAFooter; }
+	 */
 
-	@Inject
-	public StockCheckListGenerationPage(JDAFooter jDAFooter) {
-		this.jDAFooter = jDAFooter;
-	}*/
-	
 	public void selectGenerateByLocation() throws FindFailed, InterruptedException {
 		screen.wait("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/RadiobuttonGenerateByLocation.png");
@@ -96,5 +94,11 @@ public class StockCheckListGenerationPage {
 		screen.wait("/images/StockCheckListGeneration/EnterTagId.png", timeoutInSec);
 		screen.click("/images/StockCheckListGeneration/EnterTagId.png");
 		screen.type(tagId);
+	}
+
+	public void enterquantity(String string) throws FindFailed {
+		screen.wait("/images/StockCheckListGeneration/EnterTagId.png", timeoutInSec);
+		screen.click("/images/StockCheckListGeneration/EnterTagId.png");
+		screen.type("2");
 	}
 }

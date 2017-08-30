@@ -8,4 +8,3 @@ public class Constants {
 	public static final String CONFIG1 = System.getProperty("dataConfig", "default");
 	public static final String IMAGE_PATH = USER_DIR + "/images/";
 }
-

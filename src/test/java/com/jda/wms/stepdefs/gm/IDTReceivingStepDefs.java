@@ -89,8 +89,8 @@ public class IDTReceivingStepDefs {
 		context.setAsnId(asnId);
 		String ShippingType = "ZIDC";
 		ArrayList failureList = new ArrayList();
-//		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
-//		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
 		verification.verifyData("Shipping Type", ShippingType, upiReceiptHeaderDB.getShippingType(upiId), failureList);
 
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
@@ -169,7 +169,7 @@ public class IDTReceivingStepDefs {
 		ArrayList<String> skuList = new ArrayList<String>();
 		skuList = context.getSkuList();
 		context.setLocation(location);
-		context.setlocationID(location);
+		context.setLocationID(location);
 		context.setReceiveType(receiveType);
 		upiMap = context.getUPIMap();
 		String quantity = null;
@@ -178,14 +178,13 @@ public class IDTReceivingStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
 		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
-		for (int s = 0; s < context.getNoOfLines(); s++) {
+		for (int s = 0; s < skuList.size(); s++) {
 			context.setSkuId(skuList.get(s));
 			context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
 
 			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			context.setSupplierID(upiMap.get(context.getSkuId()).get("SUPPLIER ID"));
-			System.out.println(context.getRcvQtyDue());
 
 			if (receiveType.equalsIgnoreCase("Over Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() + 5);
@@ -196,7 +195,7 @@ public class IDTReceivingStepDefs {
 			}
 			context.setRcvQtyDue(Integer.parseInt(quantity));
 			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
-			 jdaFooter.pressTab();
+			// jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
@@ -217,13 +216,12 @@ public class IDTReceivingStepDefs {
 		hooks.logoutPutty();
 	}
 
-	
 	@When("^I perform receiving for all skus at location \"([^\"]*)\" for IDT$")
 	public void i_perform_receiving_for_all_skus_at_location_for_IDT(String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		ArrayList<String> skuList = new ArrayList<String>();
 		context.setLocation(location);
-		context.setlocationID(location);
+		context.setLocationID(location);
 		upiMap = context.getUPIMap();
 		String quantity = null;
 
@@ -231,24 +229,20 @@ public class IDTReceivingStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
 		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
-		for(int j=0;j<context.getNoOfLines();j++)
-		{
+		for (int j = 0; j < context.getNoOfLines(); j++) {
 			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
 			context.setContainerId(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("CONTAINER"));
 			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
-			context.setRcvQtyDue(Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+			context.setRcvQtyDue(
+					Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
 			context.setRcvQtyDue((context.getRcvQtyDue()));
-			if(context.getContainerId().length()>=32)
-			{
-			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
-			}
-			else
-			{
+			if (context.getContainerId().length() >= 32) {
+				purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			} else {
 				purchaseOrderReceivingPage.enterURNID(context.getContainerId());
 				jdaFooter.pressTab();
 			}
-			
-			
+
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
@@ -256,12 +250,11 @@ public class IDTReceivingStepDefs {
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
-		jdaFooter.navigateToNextScreen();
+			jdaFooter.navigateToNextScreen();
 			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
 			jdaFooter.PressEnter();
 			if (!purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode()) {
-				failureList.add(
-						"Error message:Receiving not completed " + context.getSkuId());
+				failureList.add("Error message:Receiving not completed " + context.getSkuId());
 			}
 			puttyFunctionsPage.pressEnter();
 		}
@@ -278,6 +271,7 @@ public class IDTReceivingStepDefs {
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" for IDT$")
 	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String upiId, String asnId, String Type,
 			String location) throws Throwable {
+
 		the_UPI_and_ASN_should_be_in_status_for_IDT(upiId, asnId, "Released");
 		uPIReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
 		uPIReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();

@@ -32,7 +32,7 @@ public class MoveTaskDB {
 		}
 		return tagID;
 	}
-	
+
 	public String getListID(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -337,4 +337,28 @@ public class MoveTaskDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+
+	public String getPalletId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where task_id ='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getTaskType(String date) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Task_TYPE from move_task where DSTAMP like'" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

@@ -5,7 +5,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 public class PopUpPage {
-	
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
@@ -13,7 +13,5 @@ public class PopUpPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
 	}
-		
-	}
 
-
+}

@@ -9,15 +9,6 @@ public class Context {
 	private String preAdviceId;
 	private String skuId;
 	private String uploaded;
-	
-	public String getUploaded() {
-		return uploaded;
-	}
-
-	public void setUploaded(String uploaded) {
-		this.uploaded = uploaded;
-	}
-
 	private String productGroup;
 	private String cewarehousetype;
 	private String allocationGroup;
@@ -35,75 +26,12 @@ public class Context {
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private Map<String, ArrayList<String>> tagIDMap;
 	private int lineItem = 1;
-	private String receiveType;
 	private String dueDate;
 	private ArrayList<String> skuFromUPI;
 	private ArrayList<String> skuFromOrder;
 	private String PutawayLocation1;
 	private String PutawayLocation2;
 	private String fromLocation;
-	
-	
-	
-	
-	
-
-	public String getFromLocation() {
-		return fromLocation;
-	}
-
-	public void setFromLocation(String fromLocation) {
-		this.fromLocation = fromLocation;
-	}
-
-	public String getPutawayLocation1() {
-		return PutawayLocation1;
-	}
-
-	public void setPutawayLocation1(String putawayLocation1) {
-		PutawayLocation1 = putawayLocation1;
-	}
-
-	public String getPutawayLocation2() {
-		return PutawayLocation2;
-	}
-
-	public void setPutawayLocation2(String putawayLocation2) {
-		PutawayLocation2 = putawayLocation2;
-	}
-
-	public ArrayList<String> getSkuFromOrder() {
-		return skuFromOrder;
-	}
-
-	public void setSkuFromOrder(ArrayList<String> skuFromOrder) {
-		this.skuFromOrder = skuFromOrder;
-	}
-
-	public ArrayList<String> getSkuFromUPI() {
-		return skuFromUPI;
-	}
-
-	public void setSkuFromUPI(ArrayList<String> skuFromUPI) {
-		this.skuFromUPI = skuFromUPI;
-	}
-
-	public String getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public String getReceiveType() {
-		return receiveType;
-	}
-
-	public void setReceiveType(String receiveType) {
-		this.receiveType = receiveType;
-	}
-
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
@@ -141,6 +69,10 @@ public class Context {
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
+	private String supplier;
+	private ArrayList packConfigList;
+	private String putawayLocation1;
+	private String putawayLocation2;
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -148,19 +80,11 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private static Connection connection=null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
 	private String receiptDate;
-	public String getReceiptDate() {
-		return receiptDate;
-	}
-
-	public void setReceiptDate(String receiptDate) {
-		this.receiptDate = receiptDate;
-	}
-
 	private String palletID;
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
@@ -181,43 +105,19 @@ public class Context {
 	private String upiId;
 	private String asnId;
 	private ArrayList skuFromPO;
-	public ArrayList getSkuFromPO() {
-		return skuFromPO;
-	}
-
-	public void setSkuFromPO(ArrayList skuFromPO) {
-		this.skuFromPO = skuFromPO;
-	}
-
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> UPIMap;
 	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
 	private Map<String, Map<Integer, Map<String, String>>> MultiplePOMap;
-	public Map<String, Map<Integer, Map<String, String>>> getMultiplePOMap() {
-		return MultiplePOMap;
-	}
-
-	public void setMultiplePOMap(Map<String, Map<Integer, Map<String, String>>> multiplePOMap) {
-		MultiplePOMap = multiplePOMap;
-	}
-
-	private Map<String,String> poNumLinesMap;
-	private Map<String,Integer> upiNumLinesMap;
-	public Map<String, Integer> getUpiNumLinesMap() {
-		return upiNumLinesMap;
-	}
-
-	public void setUpiNumLinesMap(Map<String, Integer> upiNumLinesMap) {
-		this.upiNumLinesMap = upiNumLinesMap;
-	}
-
+	private Map<String, String> poNumLinesMap;
+	private Map<String, Integer> upiNumLinesMap;
 	private String skuType;
 	private String packConfig;
 	private String UPC;
 	private String projLoc;
 	private String carrier;
 	private String serviceLevel;
-	private String supplierType;
+	private boolean poQtyMoreThanUPIQty = false;
 	private String generateBelCode;
 	private ArrayList<String> belCodeList;
 	private ArrayList<String> enternewpallet;
@@ -228,11 +128,14 @@ public class Context {
 	private String condition;
 	private String reasonCode;
 	private String owner;
+	private String receiveType;
+	private String Record;
 	private String perfectCondition;
+	private String supplierType;
 	private String partset;
-	
-	
-	
+	private String toLocation2;
+	private String relocateLoctn;
+
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
 	}
@@ -248,7 +151,6 @@ public class Context {
 	public void setSupplierIdList(ArrayList<String> supplierIdList) {
 		this.supplierIdList = supplierIdList;
 	}
-
 
 	public ArrayList<String> getUpiList() {
 		return upiList;
@@ -338,11 +240,11 @@ public class Context {
 		this.orderStatus = orderStatus;
 	}
 
-	public String getlocationID() {
+	public String getLocationID() {
 		return locationID;
 	}
 
-	public void setlocationID(String locationID) {
+	public void setLocationID(String locationID) {
 		this.locationID = locationID;
 	}
 
@@ -369,15 +271,8 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
+
 	private ArrayList skuList;
-
-	public ArrayList getSkuList() {
-		return skuList;
-	}
-
-	public void setSkuList(ArrayList skuList) {
-		this.skuList = skuList;
-	}
 
 	public String getEAN() {
 		return ean;
@@ -552,7 +447,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist; 
+		return caseRatiolist;
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -1004,7 +899,6 @@ public class Context {
 		this.skuType = skuType;
 	}
 
-
 	public String getsupplierType() {
 		return supplierType;
 	}
@@ -1061,6 +955,14 @@ public class Context {
 		this.serviceLevel = serviceLevel;
 	}
 
+	public boolean isPoQtyMoreThanUPIQty() {
+		return poQtyMoreThanUPIQty;
+	}
+
+	public void setPoQtyMoreThanUPIQty(boolean poQtyMoreThanUPIQty) {
+		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
+	}
+
 	public void setBelCode(String generateBelCode) {
 		this.generateBelCode = generateBelCode;
 	}
@@ -1084,6 +986,7 @@ public class Context {
 	public void setBelCodeList(ArrayList<String> belCodeList) {
 		this.belCodeList = belCodeList;
 	}
+
 	public String getCondition() {
 		return condition;
 	}
@@ -1107,12 +1010,165 @@ public class Context {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+
+	public String getSupplierType() {
+		return supplierType;
+	}
+
+	public void setSupplierType(String supplierType) {
+		this.supplierType = supplierType;
+	}
+
+	public String getReceiveType() {
+		return receiveType;
+	}
+
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+
+	public ArrayList getSkuList() {
+		return skuList;
+	}
+
+	public void setSkuList(ArrayList skuList) {
+		this.skuList = skuList;
+	}
+
+	public String getRecord() {
+		return Record;
+	}
+
+	public void setRecord(String record) {
+		Record = record;
+	}
+
 	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
 		return MultipleUPIMap;
 	}
 
 	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
 		MultipleUPIMap = multipleUPIMap;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
+	public ArrayList getPackConfigList() {
+		return packConfigList;
+	}
+
+	public void setPackConfigList(ArrayList packConfigList) {
+		this.packConfigList = packConfigList;
+	}
+
+	public String getPutawayLocation1() {
+		return putawayLocation1;
+	}
+
+	public void setPutawayLocation1(String putawayLocation1) {
+		this.putawayLocation1 = putawayLocation1;
+	}
+
+	public String getPutawayLocation2() {
+		return putawayLocation2;
+	}
+
+	public void setPutawayLocation2(String putawayLocation2) {
+		this.putawayLocation2 = putawayLocation2;
+	}
+
+	public String getToLocation2() {
+		return toLocation2;
+	}
+
+	public void setToLocation2(String toLocation2) {
+		this.toLocation2 = toLocation2;
+	}
+
+	public String getRelocateLoctn() {
+		return relocateLoctn;
+	}
+
+	public void setRelocateLoctn(String relocateLoctn) {
+		this.relocateLoctn = relocateLoctn;
+	}
+
+	public String getUploaded() {
+		return uploaded;
+	}
+
+	public void setUploaded(String uploaded) {
+		this.uploaded = uploaded;
+	}
+
+	public Map<String, Integer> getUpiNumLinesMap() {
+		return upiNumLinesMap;
+	}
+
+	public void setUpiNumLinesMap(Map<String, Integer> upiNumLinesMap) {
+		this.upiNumLinesMap = upiNumLinesMap;
+	}
+
+	public Map<String, Map<Integer, Map<String, String>>> getMultiplePOMap() {
+		return MultiplePOMap;
+	}
+
+	public void setMultiplePOMap(Map<String, Map<Integer, Map<String, String>>> multiplePOMap) {
+		MultiplePOMap = multiplePOMap;
+	}
+
+	public ArrayList getSkuFromPO() {
+		return skuFromPO;
+	}
+
+	public void setSkuFromPO(ArrayList skuFromPO) {
+		this.skuFromPO = skuFromPO;
+	}
+
+	public String getReceiptDate() {
+		return receiptDate;
+	}
+
+	public void setReceiptDate(String receiptDate) {
+		this.receiptDate = receiptDate;
+	}
+
+	public String getFromLocation() {
+		return fromLocation;
+	}
+
+	public void setFromLocation(String fromLocation) {
+		this.fromLocation = fromLocation;
+	}
+
+	public ArrayList<String> getSkuFromOrder() {
+		return skuFromOrder;
+	}
+
+	public void setSkuFromOrder(ArrayList<String> skuFromOrder) {
+		this.skuFromOrder = skuFromOrder;
+	}
+
+	public ArrayList<String> getSkuFromUPI() {
+		return skuFromUPI;
+	}
+
+	public void setSkuFromUPI(ArrayList<String> skuFromUPI) {
+		this.skuFromUPI = skuFromUPI;
+	}
+
+	public String getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
 	}
 
 }

@@ -17,15 +17,14 @@ public class SkuConfigDB {
 		this.database = database;
 
 	}
-	
+
 	public String getRatio1To2(String packConfig) throws SQLException, ClassNotFoundException {
 		String trackingLevel = null;
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select RATIO_1_TO_2 from SKU_CONFIG WHERE CONFIG_ID ='" + packConfig + "'");
+		ResultSet rs = stmt.executeQuery("select RATIO_1_TO_2 from SKU_CONFIG WHERE CONFIG_ID ='" + packConfig + "'");
 		rs.next();
 		trackingLevel = (rs.getString(1));
 		return trackingLevel;

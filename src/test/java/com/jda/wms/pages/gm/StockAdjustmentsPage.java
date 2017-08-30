@@ -78,8 +78,8 @@ public class StockAdjustmentsPage {
 		screen.type(skuId);
 		Thread.sleep(1000);
 	}
-	
-	//working for stock adjustment
+
+	// working for stock adjustment
 	public void enterSku(String skuId) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Search/General/SkuId.png", timeoutInSec);
 		screen.click("images/StockAdjustment/Search/General/SkuId.png");
@@ -123,9 +123,9 @@ public class StockAdjustmentsPage {
 		screen.type(quantity);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterReasonCode(String reason) throws FindFailed, InterruptedException {
-		
+
 		screen.type(reason);
 		Thread.sleep(1000);
 	}
@@ -146,32 +146,34 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterPallet(String pallet) throws FindFailed, InterruptedException {
-		Match mpallet = screen.find("images/StockAdjustment/Search/PalletId.png");
+		Match mpallet = screen.find("images/StockAdjustment/Search/pallet.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(pallet);
+		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterPalletId(String pallet) throws FindFailed, InterruptedException {
 		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletId.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(pallet);
 		Thread.sleep(1000);
 	}
+
 	public void enterContainerId(String pallet) throws FindFailed, InterruptedException {
 		Match mpallet = screen.find("images/StockAdjustment/CreateModify/ContainerId.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(pallet);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterPalletType(String palletType) throws FindFailed, InterruptedException {
 		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(palletType);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterReceiptId(String pallet) throws FindFailed, InterruptedException {
 		Match mpallet = screen.find("images/StockAdjustment/Search/Miscellaneous/ReceiptId.png");
 		screen.click(mpallet.getCenter().offset(70, 0));
@@ -184,9 +186,9 @@ public class StockAdjustmentsPage {
 		screen.click(mStatus.getCenter().offset(70, 0));
 		Thread.sleep(1000);
 	}
-	
+
 	public void selectExistingStock() throws FindFailed, InterruptedException {
-		//existing stock is pre selected
+		// existing stock is pre selected
 		screen.type(Key.F7);
 		Thread.sleep(2000);
 	}

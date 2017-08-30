@@ -19,7 +19,7 @@ public class PuttyFunctionsStepDefs {
 	private Context context;
 
 	@Inject
-	public PuttyFunctionsStepDefs(PuttyFunctionsPage puttyFunctionsPage, Configuration configuration,Context context) {
+	public PuttyFunctionsStepDefs(PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.configuration = configuration;
 		this.context = context;
@@ -36,7 +36,6 @@ public class PuttyFunctionsStepDefs {
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(2000);
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
-
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
 				configuration.getStringProperty("password"));
 		Thread.sleep(3000);
@@ -47,10 +46,10 @@ public class PuttyFunctionsStepDefs {
 
 		Assert.assertTrue("Putty Login not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-		
+
 		context.setPuttyLoginFlag(true);
 	}
-	
+
 	@When("^I select user directed option in main menu$")
 	public void i_select_user_directed_option_in_main_menu() throws Throwable {
 		puttyFunctionsPage.selectUserDirectedMenu();

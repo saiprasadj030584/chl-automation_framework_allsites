@@ -90,6 +90,17 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
+	public String getQuantity(String skuId, String pallet_id) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where sku_id = '" + skuId
+				+ "' and pallet_id='" + pallet_id + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public String getIsTagMergeUnchecked(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -150,8 +161,6 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	
-
 	public String ExpiryRequiredUncheckedValue(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -181,12 +190,11 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getSKUType(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-System.out.println("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		rs.next();
@@ -202,17 +210,31 @@ System.out.println("select user_def_type_8 from sku where sku_id = '" + skuId + 
 		ResultSet rs = stmt.executeQuery("select new_product from sku where sku_id = '" + skuId + "' ");
 		rs.next();
 		return rs.getString(1);
-	} 
-	
+	}
+
 	public String getPartSet(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select USER_DEF_NUM_2 from sku where sku_id = '" + skuId + "' ");
 		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_2 from sku where sku_id = '" + skuId + "' ");
 		rs.next();
 		return rs.getString(1);
-	} 
+	}
+
+	public boolean validateSku(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from sku where sku_id = '" + skuId + "'");
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }

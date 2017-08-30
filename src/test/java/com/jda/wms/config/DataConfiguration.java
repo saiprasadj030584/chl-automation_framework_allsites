@@ -34,7 +34,8 @@ public class DataConfiguration {
 			Yaml yaml = new Yaml();
 			Map<?, ?> configData = (Map<?, ?>) yaml.load(inputStream);
 			if (configData.get(Constants.CONFIG1) == null) {
-				throw new ConfigException("Config - '" + Constants.CONFIG1 + "' is not present in the config.yml file.");
+				throw new ConfigException(
+						"Config - '" + Constants.CONFIG1 + "' is not present in the config.yml file.");
 			}
 			for (Map.Entry<String, Object> entry : ((Map<String, Object>) configData.get(Constants.CONFIG1))
 					.entrySet()) {

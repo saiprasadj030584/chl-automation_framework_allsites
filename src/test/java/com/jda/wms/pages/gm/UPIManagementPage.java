@@ -9,7 +9,6 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-
 public class UPIManagementPage {
 
 	Screen screen = new Screen();
@@ -20,8 +19,6 @@ public class UPIManagementPage {
 	public UPIManagementPage(Context context) {
 		this.context = context;
 	}
-	
-	
 
 	public void searchWithAsn(String asn) throws FindFailed, InterruptedException {
 		screen.click("images/UpiManagement/Add.png");
@@ -35,14 +32,14 @@ public class UPIManagementPage {
 		screen.type(Key.F7);
 		Thread.sleep(1000);
 	}
-	
+
 	public boolean isRecordsFound() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/UpiManagement/OnePalletFound.png") != null) {
 			return true;
 		} else
 			return false;
 	}
-	
+
 	public void doubleClickTheRecord() throws FindFailed, InterruptedException {
 		screen.wait("images/UpiManagement/Pallet.png", timeoutInSec);
 		Match mASN = screen.find("images/UpiManagement/Pallet.png");
@@ -50,12 +47,7 @@ public class UPIManagementPage {
 		screen.click(mASN.below(10));
 		Thread.sleep(1000);
 		screen.doubleClick(mASN.below(10));
-		
+
 	}
 
-	
-
-	
 }
-
-

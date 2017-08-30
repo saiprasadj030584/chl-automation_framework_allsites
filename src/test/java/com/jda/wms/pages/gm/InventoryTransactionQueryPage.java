@@ -6,25 +6,22 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
-import com.google.inject.Inject;
-
 public class InventoryTransactionQueryPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}
-	
+
 	public void enterReasonCode(String reasonCode) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/Miscellaneous/ReasonCode.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(reasonCode);
 	}
-	
+
 	public void enterReferenceId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/Reference.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
@@ -512,24 +509,21 @@ public class InventoryTransactionQueryPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public boolean isNoRecords() throws FindFailed, InterruptedException {
 		if (screen.exists("images/DockScheduleBookings/NoRecords.png") != null)
 			return false;
 		else
 			return true;
 	}
-	
-	public boolean checkDamagedReceiptLockCode(String code)
-	{
-		if(code.equals("DMGD"))
-		{
+
+	public boolean checkDamagedReceiptLockCode(String code) {
+		if (code.equals("DMGD")) {
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
-	
+
 	public String getCondition() throws FindFailed, InterruptedException {
 		Match status = screen.find("images/InventoryTransactionQuery/General/Condition.png");
 		screen.click(status.getCenter().offset(70, 0));
@@ -543,7 +537,7 @@ public class InventoryTransactionQueryPage {
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(skuId);
 	}
-	
+
 	public void enterPalletId(String palletId) throws FindFailed {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/PalletId.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
@@ -554,5 +548,27 @@ public class InventoryTransactionQueryPage {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/UpdateQty.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
 		screen.type(quantityUpdate);
+	}
+
+	public void enterNotes(String notes) throws FindFailed {
+		Match mskuId = screen.find("images/InventoryTransactionQuery/Notes.png");
+		screen.click(mskuId.getCenter().offset(70, 0));
+		screen.type(notes);
+	}
+
+	public boolean checkReceiptLockCode(String code, String lockcode) {
+		if (code.equals(lockcode)) {
+			return true;
+		} else
+			return false;
+
+	}
+
+	public void enterTransactionTime(String currentSystemTimeLessThan2Minutes) throws FindFailed, InterruptedException {
+		Match transactionDate = screen.find("images/InventoryTransactionQuery/General/TransactionTimeToEnter.png");
+		screen.click(transactionDate.getCenter().offset(70, 0));
+		screen.type(">" + currentSystemTimeLessThan2Minutes);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
 	}
 }

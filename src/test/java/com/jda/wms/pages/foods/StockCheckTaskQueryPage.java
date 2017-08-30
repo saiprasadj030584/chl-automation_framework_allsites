@@ -50,5 +50,5 @@ public class StockCheckTaskQueryPage {
 		screen.click("images/StockCheckQuery/TextBoxTagId.png");
 		screen.type(tagId);
 	}
-	
+
 }

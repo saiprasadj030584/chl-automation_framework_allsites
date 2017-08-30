@@ -15,12 +15,11 @@ public class JDAFooter {
 	public JDAFooter() {
 	}
 
-	 public void clickOrderHeaderFooterButton() throws FindFailed,
-	 InterruptedException {
-	 screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
-	 screen.click("images/OrderHeaderFooter.png");
-	 Thread.sleep(3000);
-	 }
+	public void clickOrderHeaderFooterButton() throws FindFailed, InterruptedException {
+		screen.wait("images/OrderHeaderFooter.png", timeoutInSec);
+		screen.click("images/OrderHeaderFooter.png");
+		Thread.sleep(3000);
+	}
 
 	public void clickQueryButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
@@ -71,7 +70,7 @@ public class JDAFooter {
 		screen.type(Key.F7);
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToNextScreen() throws FindFailed, InterruptedException {
 		screen.type("x", Key.CTRL);
 		screen.type(Key.NUM4);
@@ -117,6 +116,7 @@ public class JDAFooter {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+
 	public void rightClick() throws InterruptedException {
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -133,7 +133,7 @@ public class JDAFooter {
 	}
 
 	public void deleteExistingContent() throws InterruptedException {
-		screen.type("a",Key.CTRL);
+		screen.type("a", Key.CTRL);
 		screen.type(Key.BACKSPACE);
 		Thread.sleep(1000);
 	}
@@ -141,4 +141,5 @@ public class JDAFooter {
 	public void pressBackSpace() {
 		screen.type(Key.BACKSPACE);
 	}
+
 }

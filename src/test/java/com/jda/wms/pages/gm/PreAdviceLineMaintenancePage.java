@@ -171,7 +171,7 @@ public class PreAdviceLineMaintenancePage {
 		screen.click("images/PreAdviceLine/UserDefined.png");
 		Thread.sleep(3000);
 	}
-	
+
 	public void clickNextInScroll() throws FindFailed, InterruptedException {
 		screen.wait("images/PreAdviceLine/NextLineItem.png", timeoutInSec);
 		screen.click("images/PreAdviceLine/NextLineItem.png");
@@ -231,15 +231,12 @@ public class PreAdviceLineMaintenancePage {
 	}
 
 	public void updateUserDefinedType3(String userDefType3) throws FindFailed, InterruptedException {
-		if(screen.exists("images/PreAdviceLine/UserDefined/UserDefType3.png") != null)
-		{
-		screen.click("images/PreAdviceLine/UserDefined/UserDefType3.png");
-		}
-		else if(screen.exists("images/PreAdviceLine/UserDefined/AuditRequired.png") != null)
-		{
+		if (screen.exists("images/PreAdviceLine/UserDefined/UserDefType3.png") != null) {
+			screen.click("images/PreAdviceLine/UserDefined/UserDefType3.png");
+		} else if (screen.exists("images/PreAdviceLine/UserDefined/AuditRequired.png") != null) {
 			Match mDate = screen.find("images/PreAdviceLine/UserDefined/AuditRequired.png");
 			screen.click(mDate.getCenter().offset(90, 0));
-			
+
 		}
 		Thread.sleep(2000);
 		screen.type(userDefType3);
@@ -247,13 +244,9 @@ public class PreAdviceLineMaintenancePage {
 	}
 
 	public void updateUserDefinedType4(String userDefType4) throws FindFailed, InterruptedException {
-		if(screen.exists("images/PreAdviceLine/UserDefined/UserDefType4.png") != null)
-		{
-		//screen.wait("images/PreAdviceLine/UserDefined/UserDefType4.png", timeoutInSec);
-		screen.click("images/PreAdviceLine/UserDefined/UserDefType4.png");
-		}
-		else if(screen.exists("images/PreAdviceLine/UserDefined/Rework.png") != null)
-		{
+		if (screen.exists("images/PreAdviceLine/UserDefined/UserDefType4.png") != null) {
+			screen.click("images/PreAdviceLine/UserDefined/UserDefType4.png");
+		} else if (screen.exists("images/PreAdviceLine/UserDefined/Rework.png") != null) {
 			Match mDate = screen.find("images/PreAdviceLine/UserDefined/Rework.png");
 			screen.click(mDate.getCenter().offset(90, 0));
 		}
@@ -263,13 +256,9 @@ public class PreAdviceLineMaintenancePage {
 	}
 
 	public void updateUserDefinedCheck1() throws FindFailed, InterruptedException {
-		if(screen.exists("images/PreAdviceLine/UserDefined/UserDefCheck1.png") != null)
-		{
-		//screen.wait("images/PreAdviceLine/UserDefined/UserDefCheck1.png", timeoutInSec);
-		screen.click("images/PreAdviceLine/UserDefined/UserDefCheck1.png");
-		}
-		else if(screen.exists("images/PreAdviceLine/UserDefined/Firewall.png") != null)
-		{
+		if (screen.exists("images/PreAdviceLine/UserDefined/UserDefCheck1.png") != null) {
+			screen.click("images/PreAdviceLine/UserDefined/UserDefCheck1.png");
+		} else if (screen.exists("images/PreAdviceLine/UserDefined/Firewall.png") != null) {
 			screen.click("images/PreAdviceLine/UserDefined/Firewall.png");
 		}
 		Thread.sleep(2000);

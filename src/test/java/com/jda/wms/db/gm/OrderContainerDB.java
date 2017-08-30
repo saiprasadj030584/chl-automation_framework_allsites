@@ -9,7 +9,6 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class OrderContainerDB {
-	
 	private Context context;
 	private Database database;
 
@@ -18,6 +17,7 @@ public class OrderContainerDB {
 		this.context = context;
 		this.database = database;
 	}
+
 
 	public String getStatus(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -30,26 +30,25 @@ public class OrderContainerDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getPalletId(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select pallet_id from order_container where order_id='"+orderId+"'");
+		ResultSet rs = stmt.executeQuery("select pallet_id from order_container where order_id='" + orderId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getContainerId(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select container_id from order_container where order_id='"+orderId+"'");
+		ResultSet rs = stmt.executeQuery("select container_id from order_container where order_id='" + orderId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-
-	
 }
+

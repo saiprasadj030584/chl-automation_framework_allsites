@@ -22,8 +22,7 @@ public class AddressDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select USER_DEF_CHK_3 from address WHERE ADDRESS_ID ='" + customer + "'");
+		ResultSet rs = stmt.executeQuery("select USER_DEF_CHK_3 from address WHERE ADDRESS_ID ='" + customer + "'");
 		rs.next();
 		return rs.getString(1);
 	}

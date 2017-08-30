@@ -18,19 +18,18 @@ public class ReceiptReversalPage {
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
 		screen.type(receiptType);
 	}
-	
-	
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/ReceiptReversal/Start/TagID.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}
-	
+
 	public void checkTheCheckbox() throws InterruptedException, FindFailed {
+
 		Match mtagId = screen.find("images/ReceiptReversal/Reversals/checkbox.png");
 		screen.click(mtagId.getCenter());
-		
+
 	}
 
 	public boolean isRecordExists() throws InterruptedException, FindFailed {
@@ -56,10 +55,10 @@ public class ReceiptReversalPage {
 	public void enterReasonCode(String reasonCode) throws FindFailed {
 		screen.type(reasonCode);
 	}
+
 	public void checkReversalUpdationInventory(String tagId) throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
 		Thread.sleep(3000);
-	
 		screen.type("Receipt Reversal");
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
@@ -70,7 +69,6 @@ public class ReceiptReversalPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(tagId);
-		
 		screen.type(Key.F7);
 	}
 
@@ -81,30 +79,24 @@ public class ReceiptReversalPage {
 			return true;
 
 	}
-	
-	public boolean checkRefeIDWithPreadviceID(String refId,String preAdviceId)
-	{
-		if(refId.equals(preAdviceId))
-		{
+
+	public boolean checkRefeIDWithPreadviceID(String refId, String preAdviceId) {
+		if (refId.equals(preAdviceId)) {
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
-	public boolean checkRefeIDWithPreadviceIDlockcode(String refId,String preAdviceId,String lockcode1,String lockcode2)
-	{
-		if(refId.equals(preAdviceId))
-		{
-			if(lockcode1.equals(lockcode2))
-			{
-			return true;
-			}
-			else
-			{
+
+	public boolean checkRefeIDWithPreadviceIDlockcode(String refId, String preAdviceId, String lockcode1,
+			String lockcode2) {
+		if (refId.equals(preAdviceId)) {
+			if (lockcode1.equals(lockcode2)) {
+				return true;
+			} else {
 				return false;
 			}
-		}
-		else
+		} else
 			return false;
 	}
+
 }

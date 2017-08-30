@@ -19,12 +19,14 @@ public class OrderContainerPage {
 		this.context = context;
 	}
 
-	
-	public void queryWithOrderId(String orderId) throws FindFailed, InterruptedException 
-	{
+	public void queryWithOrderId(String orderId) throws FindFailed, InterruptedException {
 		screen.type(orderId);
 		Thread.sleep(1000);
 		screen.type(Key.F7);
 	}
-	
+
+	public void enterOrderId(String orderId) throws FindFailed {
+		screen.type(orderId);
+	}
+
 }

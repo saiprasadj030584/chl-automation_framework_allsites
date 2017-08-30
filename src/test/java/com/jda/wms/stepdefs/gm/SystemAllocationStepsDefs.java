@@ -29,13 +29,13 @@ import cucumber.api.java.en.Given;
 
 public class SystemAllocationStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	private JDAFooter jdaFooter;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private Context context;
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private final PreAdviceHeaderDB preAdviceHeaderDB;
-	private UPIReceiptHeaderDB  upiReceiptHeaderDB;
+	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private Verification verification;
 	private DeliveryDB deliveryDB;
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
@@ -48,11 +48,15 @@ public class SystemAllocationStepsDefs {
 	private SystemAllocationPage systemAllocationPage;
 	private OrderHeaderDB orderHeaderDB;
 	private OrderLineDB orderLineDB;
-	
 
 	@Inject
-	public SystemAllocationStepsDefs(JDAFooter jdaFooter,
-			JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,UPIReceiptHeaderDB  upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,PreAdviceLineStepDefs preAdviceLineStepDefs,PreAdviceLineDB preAdviceLineDB,UPIReceiptLineDB upiReceiptLineDB,JdaHomePage jdaHomePage,OrderHeaderStepsDefs orderHeaderStepsDefs,JDALoginStepDefs jDALoginStepDefs,SystemAllocationPage systemAllocationPage,OrderHeaderDB orderHeaderDB,OrderLineDB orderLineDB) {
+	public SystemAllocationStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
+			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
+			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
+			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
+			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage, OrderHeaderStepsDefs orderHeaderStepsDefs,
+			JDALoginStepDefs jDALoginStepDefs, SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB,
+			OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -60,18 +64,18 @@ public class SystemAllocationStepsDefs {
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.verification = verification;
 		this.deliveryDB = deliveryDB;
-		this.preAdviceLineStepDefs=preAdviceLineStepDefs;
+		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
-		this.jdaHomePage=jdaHomePage;
-		this.orderHeaderStepsDefs=orderHeaderStepsDefs;
-		this.jDALoginStepDefs=jDALoginStepDefs;
-		this.systemAllocationPage=systemAllocationPage;
-		this.orderHeaderDB=orderHeaderDB;
-		this.orderLineDB=orderLineDB;
-		
+		this.jdaHomePage = jdaHomePage;
+		this.orderHeaderStepsDefs = orderHeaderStepsDefs;
+		this.jDALoginStepDefs = jDALoginStepDefs;
+		this.systemAllocationPage = systemAllocationPage;
+		this.orderHeaderDB = orderHeaderDB;
+		this.orderLineDB = orderLineDB;
+
 	}
-	
+
 	@Given("^I allocate the stocks$")
 	public void i_allocate_the_stocks() throws Throwable {
 		jdaFooter.clickNextButton();
@@ -80,7 +84,7 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickNextButton();
 		jdaFooter.clickDoneButton();
 	}
-	
+
 	@Given("^the stock should not get allocated")
 	public void the_stock_should_not_get_allocated() throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -93,23 +97,23 @@ public class SystemAllocationStepsDefs {
 		systemAllocationPage.enterOrderID();
 		jdaFooter.clickExecuteButton();
 		ArrayList skuFromOrder = new ArrayList();
-		skuFromOrder=context.getSkuFromOrder();
+		skuFromOrder = context.getSkuFromOrder();
 		verification.verifyData("Order Status", "Released", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-				for(int i=0;i<skuFromOrder.size();i++)
-				{
-					context.setRcvQtyDue(Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),(String) skuFromOrder.get(i))));
-					
-				if ((orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i))!=null)) {
-					if(!(orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i)).equals("0")))
-					{
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			context.setRcvQtyDue(
+					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
+
+			if ((orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i)) != null)) {
+				if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i)).equals("0"))) {
 					failureList.add("Quantity Tasked got updated " + (String) skuFromOrder.get(i));
-					//context.setFailureList(failureList);
-					}
+					// context.setFailureList(failureList);
 				}
-				}
-				Assert.assertTrue("Allocation of stock is not as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+			}
+		}
+		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
-	
+
 	@Given("^the stock should get allocated")
 	public void the_stock_should_get_allocated() throws Throwable {
 		ArrayList failureList = new ArrayList();
@@ -121,18 +125,21 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickQueryButton();
 		systemAllocationPage.enterOrderID();
 		jdaFooter.clickExecuteButton();
-		
+
 		ArrayList skuFromOrder = new ArrayList();
-		skuFromOrder=context.getSkuFromOrder();
-		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-		for(int i=0;i<skuFromOrder.size();i++)
-		{
-			context.setRcvQtyDue(Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),(String) skuFromOrder.get(i))));
-		if (!(orderLineDB.getQtyTasked(context.getOrderId(),(String) skuFromOrder.get(i)).equals(String.valueOf(context.getRcvQtyDue())))) {
-			failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
-			//context.setFailureList(failureList);
+		skuFromOrder = context.getSkuFromOrder();
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			context.setRcvQtyDue(
+					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
+			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+					.equals(String.valueOf(context.getRcvQtyDue())))) {
+				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
+				// context.setFailureList(failureList);
+			}
 		}
-		}
-		Assert.assertTrue("Allocation of stock is not as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
-	}
+}

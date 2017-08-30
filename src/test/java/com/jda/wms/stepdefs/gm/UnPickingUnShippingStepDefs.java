@@ -22,22 +22,21 @@ public class UnPickingUnShippingStepDefs {
 	private UPIReceiptHeaderDB upiReceiptHeaderDB;
 	private Verification verification;
 	private DeliveryDB deliveryDB;
-	private UnPickingUnShippingPage unPickingUnShippingPage; 
+	private UnPickingUnShippingPage unPickingUnShippingPage;
 
 	@Inject
-	public UnPickingUnShippingStepDefs(Context context,UPIReceiptHeaderDB upiReceiptHeaderDB,Verification verification,DeliveryDB deliveryDB,UnPickingUnShippingPage unPickingUnShippingPage) {
+	public UnPickingUnShippingStepDefs(Context context, UPIReceiptHeaderDB upiReceiptHeaderDB,
+			Verification verification, DeliveryDB deliveryDB, UnPickingUnShippingPage unPickingUnShippingPage) {
 		this.context = context;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
-		this.verification=verification;
-		this.deliveryDB=deliveryDB;
-		this.unPickingUnShippingPage=unPickingUnShippingPage;
+		this.verification = verification;
+		this.deliveryDB = deliveryDB;
+		this.unPickingUnShippingPage = unPickingUnShippingPage;
 	}
 
-@Given("^I perform unpicking$")
-public void i_perform_unpicking() throws Throwable {
-	unPickingUnShippingPage.performUnpick();
-}
-
-
+	@Given("^I perform unpicking$")
+	public void i_perform_unpicking() throws Throwable {
+		unPickingUnShippingPage.performUnpick();
+	}
 
 }

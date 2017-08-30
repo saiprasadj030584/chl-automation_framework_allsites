@@ -19,5 +19,5 @@ public class DockSchedulerBookingsPage {
 		screen.type(bookingID);
 		Thread.sleep(1000);
 	}
-	
+
 }

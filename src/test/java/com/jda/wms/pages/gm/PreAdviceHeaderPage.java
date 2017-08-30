@@ -19,16 +19,14 @@ public class PreAdviceHeaderPage {
 		this.context = context;
 	}
 
-	
-	public void queryWithPreadviceId() throws FindFailed, InterruptedException 
-	{
+	public void queryWithPreadviceId() throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
 		Thread.sleep(1000);
 		screen.type(context.getPreAdviceId());
 		Thread.sleep(1000);
 		screen.type(Key.F7);
 	}
-	
+
 	int timeoutInSec = 20;
 
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
@@ -42,7 +40,7 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
- 
+
 	public String getDuedate() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/DueDate.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
@@ -66,7 +64,7 @@ public class PreAdviceHeaderPage {
 			return false;
 		}
 	}
-	
+
 	public String getOrderType() throws FindFailed {
 		Match mOrderType = screen.find("images/PreAdviceHeader/Type.png");
 		screen.click(mOrderType.getCenter().offset(70, 0));
@@ -74,7 +72,6 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
 
 	public String getSupplier() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/Supplier.png");

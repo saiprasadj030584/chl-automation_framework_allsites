@@ -121,22 +121,19 @@ public class PreAdviceLineDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
-				+ "'   and sku_id = '" + skuID + "' ");
 		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();
 		return rs.getString(1);
-	} 
-	
-	public String getUpc(String skuID) throws SQLException,ClassNotFoundException {
+	}
+
+	public String getUpc(String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
-		//select supplier_sku_id from supplier_sku where sku_id='000000060002992001';
 		rs.next();
 		return rs.getString(1);
 	}
@@ -194,26 +191,26 @@ public class PreAdviceLineDB {
 				"update pre_advice_line set lock_code='" + lockCode + "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-	
+
 	public String getComplianceFlag(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select user_def_type_3 from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_3 from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public void updateComplianceFlag(String preAdviceId,String skuId) throws SQLException, ClassNotFoundException {
+
+	public void updateComplianceFlag(String preAdviceId, String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"update pre_advice_line set user_def_type_3='COMP' where pre_advice_id='" + preAdviceId + "' and sku_id='" + skuId + "'");
+		ResultSet rs = stmt.executeQuery("update pre_advice_line set user_def_type_3='COMP' where pre_advice_id='"
+				+ preAdviceId + "' and sku_id='" + skuId + "'");
 		context.getConnection().commit();
 	}
 

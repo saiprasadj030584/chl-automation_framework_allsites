@@ -107,7 +107,7 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-   
+
 	public String getUserDefType5(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -131,7 +131,7 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getUserDefType2(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -143,15 +143,15 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select site_id from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		ResultSet rs = stmt
+				.executeQuery("select site_id from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -162,11 +162,10 @@ public class PreAdviceHeaderDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceId
-				+ "' ");
+		ResultSet rs = stmt
+				.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceId + "' ");
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	
+
 }
