@@ -197,7 +197,7 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			verification.verifyData("From Location for SKU ", context.getRelocateLoctn(),
+			verification.verifyData("From Location for SKU ", context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("To Location for SKU ", context.getToLocation(),

@@ -583,6 +583,7 @@ public class PurchaseOrderPutawayStepDefs {
 
 	@When("^I proceed by overriding the location  \"([^\"]*)\" for PO$")
 	public void i_proceed_by_overriding_the_location_for_PO(String location) throws Throwable {
+		context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
 		upiMap = context.getUPIMap();
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
 		jdaFooter.PressEnter();

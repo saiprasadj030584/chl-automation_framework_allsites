@@ -21,12 +21,12 @@ Feature: Purchase order Putaway
   @boxed_direct_po_putaway_location_override @boxed @direct_po @putaway
   Scenario Outline: Validate Override Putaway Location
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
-    When I choose existing relocate
-    And I proceed with entering the palletid
+   # When I choose existing relocate
+   # And I proceed with entering the palletid
     When I choose normal putaway
     And I proceed by overriding the location  "<Location>" for PO
     And the ITL should be generated for putaway stock in inventory transaction for override
 
     Examples: 
       | PreAdviceID | PalletId             | ASN        | Location |
-      |  1040009029 | 00050472420258814146 | 0000003775 | REC001   |
+      |  1040009057 |00050472420258814137 | 0000003772 | REC001   |
