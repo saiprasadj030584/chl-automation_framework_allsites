@@ -3,7 +3,7 @@ Feature: Purchase order receiving
   As a warehouse user
   I want to receive the articles that are damaged
 
-  @validate_damage_receipt_from_supplier_boxed @po @complete
+  @boxed_receiving_direct_po_validate_damage_receipt_from_supplier_boxed @direct_po @boxed @receiving @complete
   Scenario Outline: Receipt reversal process in JDA WMS for Hanging type without lock code - Boxed
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>"
     When I navigate to inventory transaction query
@@ -29,7 +29,7 @@ Feature: Purchase order receiving
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002069 | PO050456000511235619 | PO00100509 | REC001   |
 
-  @validate_not_received_ASN_boxed @po @complete
+  @boxed_receiving_direct_po_validate_not_received_ASN_boxed @direct_po @boxed @receiving @complete
   Scenario Outline: Receiving when Pre advice line quantity is greater than the UPI line quantity - Boxed
     Given the PO "<PreAdviceID>" of type "Boxed" with UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -45,15 +45,4 @@ Feature: Purchase order receiving
       #| PO2010003001 | PO050456000511235710 | PO00100600 | REC001   |
       | PO2010002069 | PO050456000511235619 | PO00100509 | REC001   |
 
-  @FSV_PO_validate_damage_receipt_from_supplier_boxed @boxed @fsv_po @receiving @complete
-  Scenario Outline: Validate damaged on receipt (From supplier) for FSV PO - Boxed
-    Given the FSV PO "<PreAdviceID>" of type "Boxed" should be in "Released" status at site id "<SiteID>"
-    And the FSV PO with "<LockCode>" should have sku, quantity due details
-    And the PO should not be linked with UPI line "<PreAdviceID>"
-    When I receive all skus for the FSV purchase order at location "<Location>"
-    When I navigate to inventory transaction query
-    Then the inventory transaction should be updated with lockcode damaged
-
-    Examples: 
-      | PreAdviceID | SiteID | Location | LockCode |
-      | 25300720368 |   5649 | REC001   | DMGD     |
+  

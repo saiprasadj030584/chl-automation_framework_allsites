@@ -3,7 +3,7 @@ Feature: order allocation and picking
   As a warehouse user
   I want to pick the allocated stocks
 
-  @boxed @picking @picking @boxed_picking_picking_retail_urn_generated @complete
+  @boxed @picking  @boxed_picking_picking_retail_urn_generated @complete
   Scenario Outline: Validate whether Retail URN is generated for Tote Cage or Pallet
     Given the order id "<OrderNumber>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -17,7 +17,7 @@ Feature: order allocation and picking
       | OrderNumber |
       |  4764300919 |
 
-  @boxed @picking @picking @boxed_picking_picking_urn_associate_master_urn @complete
+  @boxed @picking  @boxed_picking_picking_urn_associate_master_urn @complete
   Scenario Outline: Validate whether URN  are associated to Master URN automatically 
     Given the order id "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -30,7 +30,7 @@ Feature: order allocation and picking
       | OrderID    |
       | 4764300861 |
 
-  @boxed @picking @picking @boxed_picking_picking_unpick @complete
+  @boxed @picking  @boxed_picking_picking_unpick @complete
   Scenario Outline: Validate the Unpick process
     Given the order id "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page

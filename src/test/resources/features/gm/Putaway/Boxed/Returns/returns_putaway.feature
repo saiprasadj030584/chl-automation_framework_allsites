@@ -35,7 +35,7 @@ Feature: Purchase order Putaway
 
 
 
-  @boxed @putaway @returns @boxed_putaway_returns_sampling_qa_build @complete
+  @boxed @putaway @returns @boxed_putaway_returns_sampling_qa_build @hold
   Scenario Outline: Validate Sampling/QA Pallet build
     Given the UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status
     And the upi should have sku, quantity due details

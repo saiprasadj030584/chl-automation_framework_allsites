@@ -5,7 +5,7 @@ Feature: Allocation
 
 
       
-      @allocation @ecom @boxed @boxed_allocation_ecom_allocation_rules @review
+      @allocation @e_com @boxed @boxed_allocation_e_com_allocation_rules @complete
   Scenario Outline: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
     Given the order id "<OrderNumber>" of type "Ecom" should be in "Released" status
     When I navigate to system allocation page

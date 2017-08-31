@@ -65,7 +65,6 @@ Feature: Purchase order receiving
       | PreAdviceID | PalletId                                  | ASN        | Location |
       |  9090002070 | 00050456000249606127,00050456000248606127 | 0000004789 | REC001   |
 
-<<<<<<< HEAD:src/test/resources/features/gm/po/po_receiving.feature
   @multiple_po_receive_multiple_urn_single_trailer
   Scenario Outline: Receiving process in JDA WMS for Hanging type
     Given the multiple PO "<PreAdviceID>" of type "Hanging" with multiple UPI "<PalletId>" and ASN "<ASN>" should be in "Released" status with line items,supplier details
@@ -78,7 +77,6 @@ Feature: Purchase order receiving
     Examples: 
       | PreAdviceID           | PalletId                                  | ASN        | Location |
       | 5050008870,5050008890 | 00050456000259616198,00050456000259616188 | 0000002099 | REC001   |
-=======
       
        @po_validate_full_pallet
   Scenario Outline: Validate pallet build for full pallet - Boxed type
@@ -97,4 +95,3 @@ Feature: Purchase order receiving
       
       
     
->>>>>>> 2a2ded89c086c96c6d08a74c8623187f9ad88044:src/test/resources/features/gm/Receiving/Boxed/DirectPO/po_receiving.feature

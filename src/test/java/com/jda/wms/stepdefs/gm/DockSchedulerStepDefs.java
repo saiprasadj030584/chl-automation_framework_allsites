@@ -60,6 +60,8 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectASN();
 		jdaFooter.clickNextButton();
 	}
+	
+
 
 	@When("^I select the booking type preadvice$")
 	public void i_select_the_booking_type_preadvice() throws Throwable {
@@ -82,6 +84,8 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
 	}
+	
+	
 
 	@When("^I move to the slot$")
 	public void i_move_to_the_slot() throws Throwable {
