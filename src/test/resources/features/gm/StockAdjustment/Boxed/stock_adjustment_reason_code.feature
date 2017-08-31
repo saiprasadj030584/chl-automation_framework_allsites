@@ -14,7 +14,6 @@ Feature: Stock adjustments
     Then the reason code should be updated
 
     Examples: 
-<<<<<<< HEAD
       | SiteId | Location | ReasonCode |
       |   5649 | 1AA103   | DIRTY      |
       |   5649 | 1AA103   | DMIT       |
@@ -113,14 +112,3 @@ Feature: Stock adjustments
     Examples: 
       | PalletId                         | ASN        | SiteId | Location | ReasonCode                                       |
       | 58850008848480077010088484800300 | 0000884848 | 5885   | REC003   | RMS - Non advised receipt without movement label |
-=======
-      | SiteId | Location | ReasonCode  |
-      #|   5649 | 1AA103   | DIRTY       |
-      #|   5649 | 1AA103   | DMIT        |
-      #|   5649 | 1AA103   | EXPD        |
-      #|   5649 | 1AA103   | FOUND       |
-      #|   5649 | 1AA103   | INCOMPLETE  |
-      #|   5649 | 1AA103   | LOST        |
-      #|   5649 | 1AA103   | SAMPLES     |
-      | 5649 | 1AA103 | SC |
->>>>>>> 2a2ded89c086c96c6d08a74c8623187f9ad88044
