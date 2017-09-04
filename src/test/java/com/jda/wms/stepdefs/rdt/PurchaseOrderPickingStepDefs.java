@@ -82,7 +82,7 @@ public class PurchaseOrderPickingStepDefs {
 		purchaseOrderPickingPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
 	}
 
-	@When("^I enter the  invalid  UPC$")
+	@When("^I enter the invalid  UPC$")
 	public void i_enter_the_invalid_UPC() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();

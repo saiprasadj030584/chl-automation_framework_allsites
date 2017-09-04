@@ -59,3 +59,13 @@ Feature: Purchase order receiving
     Examples: 
       | PalletId                         | ASN        | Location | Condition |
       | 58850004395640077010027343300600 | 0000478916 | REC003   | N         |
+      
+       @boxed_receiving_returns_receiving_upi_status_update @returns @receiving @returns @boxed @complete
+  Scenario Outline: Verify able to see the progress of URRN using status update in the UPI header screen 
+    Given the UPI "<PalletId>" and ASN "<ASN>" should be received at "<Location>" for normal upc with perfect condition "<Condition>" and lockcode "<LockCode>"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated for SKU with single supplier
+
+    Examples: 
+      | PalletId                         | ASN        | Location | Condition |
+      | 58850004220650077010027343300600 | 0000133216 | REC003   | Y         |

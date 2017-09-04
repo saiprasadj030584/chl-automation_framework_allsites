@@ -3,7 +3,7 @@ Feature: order allocation and picking
   As a warehouse user
   I want to pick the allocated stocks
 
-  @boxed @picking  @boxed_picking_picking_retail_urn_generated @complete
+  @boxed @picking @boxed_picking_picking_retail_urn_generated @complete
   Scenario Outline: Validate whether Retail URN is generated for Tote Cage or Pallet
     Given the order id "<OrderNumber>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -17,7 +17,7 @@ Feature: order allocation and picking
       | OrderNumber |
       |  4764300919 |
 
-  @boxed @picking  @boxed_picking_picking_urn_associate_master_urn @complete
+  @boxed @picking @boxed_picking_picking_urn_associate_master_urn @complete
   Scenario Outline: Validate whether URN  are associated to Master URN automatically 
     Given the order id "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -30,7 +30,7 @@ Feature: order allocation and picking
       | OrderID    |
       | 4764300861 |
 
-  @boxed @picking  @boxed_picking_picking_unpick @onhold
+  @boxed @picking @boxed_picking_picking_unpick @onhold
   Scenario Outline: Validate the Unpick process
     Given the order id "<OrderID>" of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -46,3 +46,16 @@ Feature: order allocation and picking
     Examples: 
       | OrderID    |
       | 4764300784 |
+
+  @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_UPC @complete
+  Scenario Outline: Validate keying wrong UPC
+    Given the OrderID "<OrderID>" of type "Retail" should be in "Released" status
+    When I navigate to system allocation page
+    And I enter OrderID as "<OrderID>" for allocation
+    Then the order should be allocated for the orderID "<OrderID>"
+    When I enter the invalid  UPC
+    Then the error message should be displayed as invalid details
+
+    Examples: 
+      | OrderID    |
+      | 4764300800 |
