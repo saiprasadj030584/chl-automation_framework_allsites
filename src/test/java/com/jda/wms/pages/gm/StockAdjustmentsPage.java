@@ -201,5 +201,52 @@ public class StockAdjustmentsPage {
 		} else
 			return false;
 	}
+	
+	public void enterOrigin(String origin) throws FindFailed, InterruptedException {
+		Match morigin = screen.find("images/StockAdjustment/Search/origin.png");
+		screen.click(morigin.getCenter().offset(70, 0));
+		screen.type(origin);
+		Thread.sleep(1000);
+	}
 
+	public void enterReasonCode() throws InterruptedException {
+		screen.type("Found");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		
+	}
+
+	public void handlePopUp() throws InterruptedException {
+		screen.type(Key.ENTER);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		
+	}
+	
+	public void enterSiteIdExisting(String siteId) throws FindFailed, InterruptedException {
+		Match msiteId = screen.find("images/StockAdjustment/Search/siteIdExisting.png");
+		screen.click(msiteId.getCenter().offset(70, 0));
+		screen.type(siteId);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+	
+public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedException {
+		screen.type(skuId);
+		Thread.sleep(1000);
+//		Match msiteId = screen.find("images/StockAdjustment/Search/skuId.png");
+//		screen.click(msiteId.getCenter().offset(70, 0));
+//		screen.type(skuId);
+//		Thread.sleep(1000);
+	}
+
+	public void enterQuantityOnHand(int quantityAdj)throws FindFailed, InterruptedException {
+		Match mquantity = screen.find("images/StockAdjustment/Search/Quantity.png");
+		screen.click(mquantity.getCenter().offset(70, 0));
+		screen.type("a",Key.CTRL);
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(1000);
+		screen.type(Integer.toString(quantityAdj));
+		Thread.sleep(1000);
+	}
 }

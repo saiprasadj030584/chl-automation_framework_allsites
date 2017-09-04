@@ -157,6 +157,68 @@ public class DockSchedulerStepDefs {
 			jdaFooter.PressEnter();
 		}
 	}
+	
+	@When("^I create a booking$")
+	public void i_create_a_booking() throws Throwable {
+		String bookingID = Utilities.getFiveDigitRandomNumber();
+		String trailerNo = context.getTrailerNo();
+		context.setBookingID(bookingID);
+		context.setCarrier("ALLPORT");
+		context.setServiceLevel("AIR");
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		if (context.getSiteId().equals("5469")) {
+			dockSchedulerPage.enterCarrier(context.getCarrier());
+		}
+		dockSchedulerPage.pressTab();
+		if (context.getSiteId().equals("5469")) {
+			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+		}
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerType();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerNo(trailerNo);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
+		if (dockSchedulerPage.isBookingErrorExists()) {
+			jdaFooter.PressEnter();
+			jdaFooter.clickNextButton();
+			bookingID = Utilities.getFiveDigitRandomNumber();
+			jdaFooter.deleteExistingContent();
+			dockSchedulerPage.enterBookingId(bookingID);
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedPallets();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedCartons();
+			jdaFooter.PressEnter();
+		} else if (dockSchedulerPage.isNoDockErrorExists()) {
+			jdaFooter.PressEnter();
+			dockSchedulerPage.selectSlot();
+			jdaFooter.clickNextButton();
+			bookingID = Utilities.getFiveDigitRandomNumber();
+			jdaFooter.deleteExistingContent();
+			dockSchedulerPage.enterBookingId(bookingID);
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedPallets();
+			dockSchedulerPage.pressTab();
+			dockSchedulerPage.enterEstimatedCartons();
+			jdaFooter.PressEnter();
+		}
+	}
 
 	public void i_create_a_booking_for_the_asn_with_bookingid(String bookingid) throws Throwable {
 		String bookingID = bookingid;
@@ -356,4 +418,10 @@ public class DockSchedulerStepDefs {
 		Assert.assertTrue("Records are not as expected", dockSchedulerPage.isNoRecords());
 	}
 
+	@Given("^the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" details should be displayed$")
+	public void the_UPI_ASN_of_type_details_should_be_displayed(String upiId, String asnId, String type)
+			throws Throwable {
+		context.setSKUType(type);
+		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
+	}
 }

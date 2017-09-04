@@ -1089,4 +1089,25 @@ for( int i=0;i<context.getNoOfLines();i++)
 		}
 		return qtyDue;
 	}
+	
+	@Given("^the PO should have sku, quantity due details with po quantity \"([^\"]*)\" than upi quantity$")
+	public void the_PO_should_have_sku_quantity_due_details_with_po_quantity_greater_than_upi_quantity(
+			String quantityType) throws Throwable {
+		the_PO_should_have_sku_quantity_due_details();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		ArrayList failureList = new ArrayList();
+
+		 for (int i=1;i<=context.getNoOfLines();i++){
+		 String sku = poMap.get(i).get("SKU");
+		 if (quantityType.equalsIgnoreCase("greater")){
+		 if (Integer.parseInt(poMap.get(i).get("QTY DUE"))<Integer.parseInt(upiMap.get(sku).get("QTY DUE"))){
+			 failureList.add("Pre Advice Qty is less than UPI Qty for SKU"+poMap.get(i).get("SKU"));
+		 }}
+		 else if (quantityType.equalsIgnoreCase("less")){
+		 if (Integer.parseInt(poMap.get(i).get("QTY DUE"))>Integer.parseInt(upiMap.get(sku).get("QTY DUE"))){
+			 failureList.add("Pre Advice Qty is more than UPI Qty for SKU"+poMap.get(i).get("SKU"));
+		 }}
+	}
+	}
 }

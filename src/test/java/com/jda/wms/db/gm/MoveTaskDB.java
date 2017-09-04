@@ -360,5 +360,70 @@ public class MoveTaskDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList getListIDList(String taskId, String skuId) throws ClassNotFoundException {
+		ArrayList<String> listIDList = new ArrayList<String>();
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select LIST_ID FROM move_task where task_id ='" + taskId + "' and sku_id = '" + skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				listIDList.add((rs.getString(j)));
+			}
+		}
+		}
+		catch(Exception e){
+			System.out.println("Exception in fetching List ID "+e.getMessage());
+		}
+		finally{
+		return listIDList;}
+	}
 
+	public Integer getMoveTaskRecordCountBySkuID(String taskID,String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from MOVE_TASK where TASK_ID = '" + taskID + "' AND sku_id = '" + skuId + "'");
+		rs.next();
+		return Integer.parseInt(rs.getString(1));
+	}
+	
+	public String getQtyTasked(String orderId, String skuId, String listID) throws SQLException, ClassNotFoundException {
+		String qty=null;
+		try{
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select QTY_TO_MOVE from MOVE_TASK where TASK_ID = '" + orderId + "' and sku_id ='" + skuId + "' and list_id='"+listID+"'");
+		rs.next();
+		qty = rs.getString(1);
+		if(null==qty){
+			qty="0";}
+		}
+		catch(Exception e){
+			qty="0";
+		}
+		finally{
+			return qty;
+		}
+	}
+	
+	public void updateStatus(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update move_task set status = 'Released' where task_id = '" + orderId + "'");
+		context.getConnection().commit();
+		rs.next();
+	}
 }

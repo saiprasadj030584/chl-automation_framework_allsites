@@ -57,4 +57,9 @@ public class Utilities {
 		int max = (int) Math.max(bound1, bound2);
 		return (int) (min + (Math.random() * (max - min)));
 	}
+	
+	public static String getSevenDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(900000) + 1000000);
+	}
 }

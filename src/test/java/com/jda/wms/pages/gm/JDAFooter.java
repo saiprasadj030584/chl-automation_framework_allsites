@@ -141,5 +141,15 @@ public class JDAFooter {
 	public void pressBackSpace() {
 		screen.type(Key.BACKSPACE);
 	}
+	
+	public void pressF12() throws InterruptedException {
+		screen.type(Key.F12);
+		Thread.sleep(1000);
+	}
 
+	public void clickReceiptReversalDoneButton() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/receiptreversaldone.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/receiptreversaldone.png");
+		Thread.sleep(3000);
+	}
 }

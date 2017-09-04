@@ -660,4 +660,32 @@ puttyFunctionsPage.pressEnter();
 			return false;
 
 	}
+	
+	public boolean isReceiptCompleteDisplayed() throws InterruptedException {
+		Thread.sleep(2000);
+		if ((screen.exists("images/Putty/Receiving/ReceivingComplete.png") != null))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isRCVLinEnt() throws InterruptedException {
+		Thread.sleep(10000);
+		if ((screen.exists("images/Putty/Receiving/RcvLinEnt.png") != null))
+			return true;
+
+		return false;
+	}
+	
+	public boolean isLabelPrintedPageDisplayed() {
+		if (screen.exists("images/Putty/Receiving/Labelprinted.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void enterUPC(String skuId)throws FindFailed, InterruptedException {
+		screen.type(skuId);
+		Thread.sleep(2000);
+}
 }

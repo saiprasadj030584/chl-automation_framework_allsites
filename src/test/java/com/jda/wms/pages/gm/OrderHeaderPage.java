@@ -116,4 +116,12 @@ public class OrderHeaderPage extends PageObject {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
+	
+	public String getStatus() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }

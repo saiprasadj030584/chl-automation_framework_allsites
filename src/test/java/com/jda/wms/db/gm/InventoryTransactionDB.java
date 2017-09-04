@@ -842,4 +842,78 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getLockCodebyUpid(String upiId, String skuId, String date, String code)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where reference_id='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+		}
+	
+	public String getNotes(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select notes from inventory_transaction where Reference_Id='" + orderId
+				+ "' and code = 'Order Status'and Notes = 'Released --> Cancelled' ");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getFromLocationWithPo(String skuId, String preAdviceId, String date, String code)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		
+		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getToLocationWithPo(String skuId, String preAdviceId, String date, String code)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getUpdateQtyWithPo(String skuId, String preAdviceId, String date, String code) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getPutawayTagId(String siteID,String preAdviceID)throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+        System.out.println("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"+ preAdviceID +"' and site_id ='"+siteID+"'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"+ preAdviceID +"' and site_id ='"+siteID+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

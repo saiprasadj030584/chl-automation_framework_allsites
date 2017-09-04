@@ -5,8 +5,12 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.pages.gm.JDAFooter;
+import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.ReportSelectionPage;
+import com.jda.wms.utils.DateUtils;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -14,12 +18,16 @@ public class ReportSelectionStepDefs {
 	private Context context;
 	private JDAFooter jDAFooter;
 	private ReportSelectionPage reportSelectionPage;
+	private JdaLoginPage jdaLoginPage;
+	private JdaHomePage jdaHomePage;
 
 	@Inject
-	public ReportSelectionStepDefs(Context context, JDAFooter jDAFooter, ReportSelectionPage reportSelectionPage) {
+	public ReportSelectionStepDefs(Context context, JDAFooter jDAFooter, ReportSelectionPage reportSelectionPage,JdaLoginPage jdaLoginPage,JdaHomePage jdaHomePage) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.reportSelectionPage = reportSelectionPage;
+		this.jdaLoginPage =jdaLoginPage;
+		this.jdaHomePage = jdaHomePage;
 	}
 
 	@When("^I select print to screen and I search for the stock$")
@@ -43,6 +51,45 @@ public class ReportSelectionStepDefs {
 	public void the_report_should_be_generated_for_stock_in_inventory() throws Throwable {
 		Assert.assertTrue("Report not displayed as expected for stock in Inventory",
 				reportSelectionPage.isReportDisplayed());
+		jDAFooter.clickDoneButton();
+	}
+	
+	@Given("^I am on report selection page$")
+	public void i_am_on_report_seletion_page() throws Throwable {
+		jdaLoginPage.login();
+		jdaHomePage.navigateToReportSelectionPage();
+	}
+	
+	@When("^I choose the print to screen option$")
+	public void i_choose_the_print_to_screen_option() throws Throwable {
+		reportSelectionPage.choosePrintToScreen();
+		jDAFooter.clickNextButton();
+	}
+	
+	@When("^I search for \"([^\"]*)\" report$")
+	public void i_search_for_report(String reportType) throws Throwable {
+		reportSelectionPage.searchReportType(reportType);
+		jDAFooter.clickNextButton();
+	}
+	
+	@When("^I choose M&S-Receiving summary as report type at site id \"([^\"]*)\" for \"([^\"]*)\" type$")
+	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_id(String siteId,String dataType) throws Throwable {
+		context.setSiteId(siteId);
+		reportSelectionPage.chooseReport();
+		jDAFooter.clickNextButton();
+		reportSelectionPage.chooseSiteId(siteId);
+		reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
+		reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
+		jDAFooter.pressTab();
+		reportSelectionPage.chooseModularity(dataType);
+		jDAFooter.clickNextButton();
+		jDAFooter.clickDoneButton();
+	}
+	
+	@Then("^the receiving progress report should be generated$")
+	public void the_receiving_progress_report_should_be_generated() throws Throwable {
+		reportSelectionPage.isReportGeneratedExist();
+		Thread.sleep(4000);
 		jDAFooter.clickDoneButton();
 	}
 }

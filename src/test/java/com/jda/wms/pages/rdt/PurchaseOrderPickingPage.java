@@ -6,9 +6,16 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.jda.wms.context.Context;
+
 public class PurchaseOrderPickingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private Context context;
+	
+	public PurchaseOrderPickingPage(Context context) {
+		this.context = context;
+	}
 
 	public void selectPickingMenu() throws InterruptedException {
 		screen.type("3");
@@ -74,4 +81,80 @@ public class PurchaseOrderPickingPage {
 
 	}
 
+	public boolean isPartSetQtyDisplayed() {
+		if (screen.exists("images/Putty/Picking/PartSetQty.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isPartSetInstructionDisplayed() {
+		if (screen.exists("images/Putty/Picking/PartSetInstructions.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isMsgMenuDisplayed() {
+		if (screen.exists("images/Putty/Picking/MsgMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void getQuantity() throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		Match mStatus = screen.find("images/Putty/Picking/Qty.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		Thread.sleep(2000);
+		//context.setQtyReceivedFromPutty(Integer.parseInt(App.getClipboard()));
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+//		return App.getClipboard();
+	}
+	
+	public void enterMinimumQty() throws InterruptedException {
+//		screen.type(Key.ENTER);
+//		Thread.sleep(3000);
+//		screen.type(Key.TAB);
+//		Thread.sleep(2000);
+		screen.type("1");
+		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(5000);
+	} 
+	
+	public boolean isPickEnt() {
+		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void getTagId() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Picking/GetTagId.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		Thread.sleep(5000);
+		context.setTagId(App.getClipboard());
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
+	public void enterContainerId() throws FindFailed, InterruptedException {
+		screen.wait("images/Putty/Picking/Cont.png", timeoutInSec);
+		Match mQty = screen.find("images/Putty/Picking/Cont.png");
+		Thread.sleep(5000);
+		screen.rightClick(mQty.below(10));
+		Thread.sleep(3000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+	
+	public void selectReason() throws InterruptedException {
+		screen.type("6");
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 }

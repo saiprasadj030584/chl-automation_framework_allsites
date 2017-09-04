@@ -571,4 +571,15 @@ public class InventoryTransactionQueryPage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 	}
+	
+	public void enterSkuIdExisting(String skuId) {
+		screen.type(skuId);
+		
+	}
+
+	public void enterToLocation(String toLocation) throws FindFailed {
+		Match mlocId = screen.find("images/InventoryTransactionQuery/General/enterToLocation.png");
+		screen.click(mlocId.getCenter().offset(70, 0));
+		screen.type(toLocation);
+	}
 }

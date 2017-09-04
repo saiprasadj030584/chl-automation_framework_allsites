@@ -5,6 +5,7 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -12,6 +13,7 @@ import cucumber.api.java.en.When;
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
 	private JDAFooter jDAFooter;
+	
 
 	@Inject
 	public JDAHomeStepDefs(JdaHomePage jdaHomePage) {
@@ -231,4 +233,14 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToOrderContainerPage();
 		Thread.sleep(6000);
 	}
+	
+	@When("^I navigate to move task management$")
+	public void i_navigate_to_move_task_management() throws Throwable {
+		jdaHomePage.navigatetoMoveTaskManagementPage();
+	} 
+	
+	@When("^I navigate to Order mangagement$")
+	public void i_navigate_to_Order_mangagement() throws Throwable {
+		jdaHomePage.navigateToOrderManagementPage();
+	} 
 }

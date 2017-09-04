@@ -77,4 +77,29 @@ public class ReceiptReversalStepDefs {
 		Assert.assertTrue("Receipt Reversion failed",
 				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
 	}
+	
+	@When("^I do receipt reversal for the random palletId received$")
+	public void i_do_receipt_reversal_for_the_random_palletId_received() throws Throwable {
+		receiptReversalPage.selectReceiptType("Pre-Advice");
+		Thread.sleep(1000);
+		receiptReversalPage.enterTagId(context.getPalletIDList().get(0));
+		jDAFooter.clickNextButton();
+		receiptReversalPage.checkTheCheckbox();
+		jDAFooter.clickNextButton();
+		Thread.sleep(1000);
+		jDAFooter.clickReceiptReversalDoneButton();
+		Thread.sleep(2000);
+		jDAFooter.PressEnter();
+	}
+	@When("^I do receipt reversal for the random tag received$")
+	public void i_do_receipt_reversal_for_the__random_tag_received() throws Throwable {
+		receiptReversalPage.selectReceiptType("Pre-Advice");
+		Thread.sleep(1000);
+		receiptReversalPage.enterTagId(context.getTagId());
+		jDAFooter.clickNextButton();
+		receiptReversalPage.checkTheCheckbox();
+		jDAFooter.clickNextButton();
+		jDAFooter.clickReceiptReversalDoneButton();
+		jDAFooter.PressEnter();
+	}
 }

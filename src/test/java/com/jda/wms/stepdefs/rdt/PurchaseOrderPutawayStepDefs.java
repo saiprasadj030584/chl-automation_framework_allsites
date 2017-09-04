@@ -373,9 +373,24 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	@When("^I should not be able to putaway locked PO$")
 	public void i_should_not_be_able_to_putaway_locked_po() throws Throwable {
+		ArrayList failureList = new ArrayList();
 		i_choose_normal_putaway();
-		Assert.assertFalse("Putaway details page should not be displayed as the PO is locked for putaway",
-				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_urn_id_in_putaway();
+			jdaFooter.PressEnter();
+			if(purchaseOrderPutawayPage.isPutCmpPageDisplayed()){
+				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"+context.getSkuId());	
+				jdaFooter.PressEnter();
+			}
+			else if (purchaseOrderPutawayPage.isPutGrpPageDisplayed()){
+				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"+context.getSkuId());
+				jdaFooter.pressF12();
+			}
+			
+		}
+		Assert.assertTrue("Putaway for Locked PO is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 
 

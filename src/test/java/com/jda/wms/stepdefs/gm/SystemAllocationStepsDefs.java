@@ -2,8 +2,6 @@ package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -23,9 +21,9 @@ import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.SystemAllocationPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 public class SystemAllocationStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -136,10 +134,23 @@ public class SystemAllocationStepsDefs {
 			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
 					.equals(String.valueOf(context.getRcvQtyDue())))) {
 				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
-				// context.setFailureList(failureList);
+				 context.setFailureList(failureList);
 			}
 		}
 		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+	
+	@When("^I enter OrderID for allocation$")
+	public void i_enter_OrderID_for_allocation() throws Throwable {
+		jdaFooter.clickNextButton();
+		systemAllocationPage.enterOrderId(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		jdaFooter.clickDoneButton();
+		Thread.sleep(2000);
+		jdaFooter.clickDoneButton();
 	}
 }

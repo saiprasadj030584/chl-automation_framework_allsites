@@ -96,4 +96,11 @@ public class DateUtils {
 		cal.add(Calendar.MINUTE, -2);
 		return dateFormat.format(cal.getTime());
 	}
+	
+	public static String getPrevSystemMonth() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		return dateFormat.format(cal.getTime());
+	}
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -797,6 +798,114 @@ public class InventoryDB {
 				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
 						+ listID + "' ) and tag_id='" + tagId + "'");
 
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getNoOforigins(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from inventory where sku_id='"+skuId+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public HashMap<Integer,List<String>> getQtyOnHandBySkuId(String skuId) throws SQLException, ClassNotFoundException {
+		int i=0;
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		HashMap<Integer, List<String>> inventoryList = new HashMap<Integer, List<String>>();
+		
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select origin_id,qty_on_hand from inventory where sku_id='"+skuId+"'");
+		while (rs.next()) {
+			i++;
+			List<String> countList = new ArrayList<String>();
+			countList.clear();
+			countList.add(rs.getString("qty_on_hand"));
+			countList.add(rs.getString("origin_id"));
+			inventoryList.put(i,countList);
+		}
+		return inventoryList;
+	}
+	
+	public  String getStockAvailablityRecords(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from inventory where sku_id='" + skuId + "' and location_id not like 'SUSPENSE'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPackConfig(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select config_id from inventory where sku_id='" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getLocationAfterPOReceiveForNewPalletID(String skuId, String newpallet, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + newpallet + "' and RECEIPT_DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getLocationAfterReceiveForRandomTag(String skuId,String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getQtyOnHandForRandomTag(String skuId, String location, String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
+						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
+						+ "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getLocationAfterPOReceiveForRandomTag(String skuId, String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}

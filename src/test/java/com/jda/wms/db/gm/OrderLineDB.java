@@ -127,4 +127,48 @@ public class OrderLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList<String> getSkuList(String orderId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> skuId = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select SKU_ID from ORDER_LINE where order_id = '" + orderId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				skuId.add((rs.getString(j)));
+			}
+		}
+		return skuId;
+	}
+	
+	public Integer getRecordCountByOrderId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select count(*) from order_line where order_id = '" + orderId + "'");
+		rs.next();
+		return Integer.parseInt(rs.getString(1));
+	}
+	
+	public ArrayList<String> getLocationList(String orderId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> locationId = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select origin_id from ORDER_LINE where order_id = '" + orderId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				locationId.add((rs.getString(j)));
+			}
+		}
+		return locationId;
+	}
 }

@@ -2,6 +2,7 @@ package com.jda.wms.context;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -135,6 +136,11 @@ public class Context {
 	private String partset;
 	private String toLocation2;
 	private String relocateLoctn;
+	private ArrayList<String> qtyTaskedList;
+	private int noOfMoveTaskRecords;
+	private int skuSize;
+	private HashMap<Integer,String> qtyOnHandList;
+	private String orderType;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1169,6 +1175,46 @@ public class Context {
 
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public ArrayList<String> getQtyTaskedList() {
+		return qtyTaskedList;
+	}
+
+	public void setQtyTaskedList(ArrayList<String> qtyTaskedList) {
+		this.qtyTaskedList = qtyTaskedList;
+	}
+
+	public int getNoOfMoveTaskRecords() {
+		return noOfMoveTaskRecords;
+	}
+
+	public void setNoOfMoveTaskRecords(int noOfMoveTaskRecords) {
+		this.noOfMoveTaskRecords = noOfMoveTaskRecords;
+	}
+
+	public int getSkuSize() {
+		return skuSize;
+	}
+
+	public void setSkuSize(int skuSize) {
+		this.skuSize = skuSize;
+	}
+
+	public HashMap<Integer,String> getQtyOnHandList() {
+		return qtyOnHandList;
+	}
+
+	public void setQtyOnHandList(HashMap<Integer,String> qtyOnHandList) {
+		this.qtyOnHandList = qtyOnHandList;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
 
 }

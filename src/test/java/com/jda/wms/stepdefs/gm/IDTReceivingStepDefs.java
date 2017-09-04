@@ -281,4 +281,108 @@ public class IDTReceivingStepDefs {
 				.the_goods_receipt_should_be_generated_for_IDT_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_idt_status_should_be_displayed_as("In Progress");
 	}
+	
+	@When("^I perform \"([^\"]*)\" for all the skus at location \"([^\"]*)\" for IDT$")
+	public void i_perform_for_all_the_skus_at_location_for_IDT(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
+		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
+			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setSupplierID(supplierSkuDb.getSupplierId((context.getSkuId())));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			} else if (receiveType.equalsIgnoreCase("Full Receiving")) {
+				System.out.println("qty" + String.valueOf(context.getRcvQtyDue()));
+				quantity = String.valueOf(context.getRcvQtyDue());
+			}
+			context.setRcvQtyDue(Integer.parseInt(quantity));
+			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			// jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition("N");
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if (!purchaseOrderReceivingPage.isReceiptCompleteDisplayed()) {
+				failureList.add("Error message:receipt completed-Locked Damaged not displayed " + context.getSkuId());
+			}
+			puttyFunctionsPage.pressEnter();
+		}
+		context.setFailureList(failureList);
+		hooks.logoutPutty();
+	}
+	
+	@When("^I perform normal urn \"([^\"]*)\" for \"([^\"]*)\" at location \"([^\"]*)\" for IDT$")
+	public void i_perform_normal_urn_for_all_the_skus_at_location_for_IDT(String receiveType, String type,
+			String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
+		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
+			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setSupplierID(supplierSkuDb.getSupplierId((context.getSkuId())));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			} else if (receiveType.equalsIgnoreCase("Full Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue());
+			}
+			context.setRcvQtyDue(Integer.parseInt(quantity));
+			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			System.out.println("Type"+type);
+			if (type.equalsIgnoreCase("multiple line item")) {
+				jdaFooter.pressTab();
+			}
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if (!purchaseOrderReceivingPage.isReceiptCompleteDisplayed()) {
+				failureList.add("Error message:receipt completed-Locked Damaged not displayed " + context.getSkuId());
+			}
+			puttyFunctionsPage.pressEnter();
+		}
+		context.setFailureList(failureList);
+		hooks.logoutPutty();
+	}
+
 }

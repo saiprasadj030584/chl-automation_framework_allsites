@@ -1603,14 +1603,12 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Then("^footer UPC validation error message should be displayed$")
 	public void footer_UPC_validation_error_message_should_be_displayed() throws Throwable {
-
 		Assert.assertFalse("UPC Digit Validation for FootWear Failed.",
 				purchaseOrderReceivingPage.isFootWearDigitValdiationDone());
 		hooks.logoutPutty();
 	}
 
 	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at \"([^\"]*)\" for normal upc with perfect condition \"([^\"]*)\" and lockcode \"([^\"]*)\"$")
-
 	public void the_UPI_and_ASN_should_be_received_at_for_normal_upc(String upiId, String asnId, String location,
 			String condition, String lockcode) throws Throwable {
 		context.setUpiId(upiId);
@@ -1926,5 +1924,51 @@ public class PurchaseOrderReceivingStepDefs {
 	private void i_enter_the_newpallet(String newPallet) throws InterruptedException, FindFailed {
 		purchaseOrderReceivingPage.enterNewPallet(newPallet);
 	}
+	
+	@When("^I receive all skus having different putaway group for the FSV purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_having_different_putaway_group_for_the_FSV_purchase_order_at_location(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			i_enter_pallet_id(context.getPalletIDList().get(i-1));
+			i_enter_belCode(context.getBelCodeList().get(i-1));
+			i_enter_the_location();
+			puttyFunctionsPage.pressEnter();
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if(!purchaseOrderReceivingPage.getPallet().split("_").equals(null)){
+				String urn = null;
+				String[] rcvPutSplit = purchaseOrderReceivingPage.getPallet().split("_");
+
+				if (rcvPutSplit[0].contains("MEZF")) {
+					urn = "M2Z01" + Utilities.getSevenDigitRandomNumber();
+				}
+				else if(rcvPutSplit[0].contains("RA")){
+					urn = "RA" + Utilities.getFourDigitRandomNumber();
+				}
+				else{
+					urn = rcvPutSplit[0].substring(1, 2) + Utilities.getSevenDigitRandomNumber();
+				}
+				purchaseOrderReceivingPage.enterURNID(urn);
+				puttyFunctionsPage.pressEnter();
+				context.setPalletID(urn);
+				}
+			
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+		}
+		hooks.logoutPutty();
+	}
+	
 
 }

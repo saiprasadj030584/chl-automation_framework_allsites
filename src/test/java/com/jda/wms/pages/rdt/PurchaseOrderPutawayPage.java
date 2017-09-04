@@ -220,4 +220,11 @@ public class PurchaseOrderPutawayPage {
 		else
 			return false;
 	}
+	
+	public boolean isPutGrpPageDisplayed() {
+		if (screen.exists("images/Putty/Putaway/PutGrp.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

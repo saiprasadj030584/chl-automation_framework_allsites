@@ -125,4 +125,97 @@ public class PurchaseOrderPickingStepDefs {
 
 	}
 
+	@Then("^I proceed with picking$")
+	public void i_proceed_with_picking() throws Throwable {
+		moveTaskDB.updateStatus(context.getOrderId());
+		Thread.sleep(4000);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPrinterNO("PR003");
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+	}
+	
+	@Then("^the picking should be completed$")
+	public void the_picking_should_be_completed() throws Throwable {
+		String[] putawayLocation = purchaseOrderPickingPage.getPickingLocation().split("_");
+		String toLocation = putawayLocation[0];
+		context.setToLocation(toLocation);
+		puttyFunctionsPage.pressEnter();
+		i_enter_the_check_string_for_marshalling();
+		puttyFunctionsPage.pressEnter();
+		Assert.assertTrue("Picking Entry is not as expected",purchaseOrderPickingPage.isPckEntPageDisplayed());
+		hooks.logoutPutty();
+	}
+	
+	@Then("^the part set warning should be displayed$")
+	public void the_part_set_warning_should_be_displayed() throws Throwable {
+		purchaseOrderPickingPage.isPartSetQtyDisplayed();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+	}
+	
+	@Then("^the part set instruction should be displayed$")
+	public void the_part_set_instruction_should_be_displayed() throws Throwable {
+		Assert.assertTrue("Message Menu page not displayed as expected",  purchaseOrderPickingPage.isMsgMenuDisplayed());
+		Assert.assertTrue("Part set Instruction page is not displayed as expected",purchaseOrderPickingPage.isPartSetInstructionDisplayed());
+	}
+	
+	@Then("^I proceed with picking to validate multi part set instruction$")
+	public void i_proceed_with_picking_to_validate_multi_part_set_instruction() throws Throwable {
+		moveTaskDB.updateStatus(context.getOrderId());
+		Thread.sleep(4000);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		the_part_set_instruction_should_be_displayed();
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPrinterNO("PR003");
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+	}
+	
+	@Then("^I should be directed to pickent page$")
+	public void i_should_be_directed_to_pickent_page() throws Throwable {
+		Assert.assertTrue("Picking Process not completed and Home page not displayed.",
+				purchaseOrderPickingPage.isPickEnt());
+	}
+
+	@Given("^I select container picking$")
+	public void i_select_container_picking() throws Throwable {
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+	}
+
+	@Given("^I perform picking for discrepancy$")
+	public void i_perform_picking_for_discrepancy() throws Throwable {
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		purchaseOrderPickingPage.getQuantity();
+		purchaseOrderPickingPage.enterMinimumQty();
+		purchaseOrderPickingPage.getTagId();
+		purchaseOrderPickingPage.selectReason();
+		purchaseOrderPickingPage.enterContainerId();
+		String[] putawayLocation = purchaseOrderPickingPage.getPickingLocation().split("_");
+		String toLocation = putawayLocation[0];
+		context.setToLocation(toLocation);
+		puttyFunctionsPage.pressEnter();
+		i_enter_the_check_string_for_marshalling();
+		puttyFunctionsPage.pressEnter();
+	}
 }

@@ -19,8 +19,9 @@ public class SystemAllocationPage {
 		this.context = context;
 	}
 
-	public void enterOrderID() throws FindFailed {
+	public void enterOrderID() throws InterruptedException {
 		screen.type(context.getOrderId());
+		Thread.sleep(1000);
 	}
 
 	public String getConsignmentID() throws FindFailed {
@@ -29,5 +30,10 @@ public class SystemAllocationPage {
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
+	}
+	
+	public void enterOrderId(String orderId) throws InterruptedException {
+		screen.type(orderId);
+		Thread.sleep(1000);
 	}
 }
