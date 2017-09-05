@@ -69,3 +69,14 @@ Feature: Allocation
     Examples: 
       | OrderID    | SiteId |
       | 3170002491 |   5649 |
+
+  @boxed @allocation @retail @allocation_boxed_retail_auto_allocation_while_qty_on_hand @complete
+  Scenario Outline: Validate  whether stocks are automatically allocated to orders -Auto Allocation
+    Given the order "<Order>" is of type "RETAIL"  and it is in "Released" status
+    And the order sku details are verified
+    When the inventory is available for the given SKU
+    Then the order status should be changed to "Allocated" status
+
+    Examples: 
+      | Order      |
+      | 6600010733 |

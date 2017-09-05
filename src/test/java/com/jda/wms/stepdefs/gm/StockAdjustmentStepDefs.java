@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.gm;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 

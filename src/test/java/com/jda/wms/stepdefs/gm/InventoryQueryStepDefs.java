@@ -440,4 +440,16 @@ public class InventoryQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	@When("^the inventory is available for the given SKU$")
+	public void the_inventory_is_available_for_the_given_SKU() throws Throwable {
+		context.setSkuSize(orderLineDB.getskuList(context.getOrderId()).size());
+		for (int i = 0; i < context.getSkuSize(); i++) {
+			int qtyOnHandNotInSuspense = inventoryDB
+					.getQtyOnHandNotInSuspense(orderLineDB.getskuList(context.getOrderId()).get(i));
+			Assert.assertTrue("Ordered Qty Not available for SKU_ID : " + orderLineDB.getskuList(context.getOrderId()).get(i),
+					qtyOnHandNotInSuspense > Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),
+							orderLineDB.getskuList(context.getOrderId()).get(i))));
+		}
+	}
 }

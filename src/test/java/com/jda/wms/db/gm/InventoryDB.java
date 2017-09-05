@@ -909,4 +909,24 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public int getQtyOnHandNotInSuspense(String sku) throws SQLException, ClassNotFoundException {
+		ArrayList<String> qtyOnHandNotInSuspense = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();	
+		ResultSet rs = stmt.executeQuery(
+				"SELECT QTY_ON_HAND FROM INVENTORY WHERE SKU_ID = '" + sku + "' and LOCATION_ID NOT IN ('SUSPENSE')");
+
+		while (rs.next()) {
+			qtyOnHandNotInSuspense.add(rs.getString(1));
+		}
+		int i;
+		int totalQtyOnHand = 0;
+		for (i = 0; i < qtyOnHandNotInSuspense.size(); i++) {
+			totalQtyOnHand += Integer.parseInt(qtyOnHandNotInSuspense.get(i));
+		}
+		return totalQtyOnHand;
+	}
 }

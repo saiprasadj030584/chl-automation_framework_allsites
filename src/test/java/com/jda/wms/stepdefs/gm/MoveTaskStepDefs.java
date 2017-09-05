@@ -13,10 +13,10 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.pages.rdt.MoveTaskPage;
+import com.jda.wms.pages.gm.MoveTaskPage;
 import com.jda.wms.utils.DateUtils;
 
-import cucumber.api.java.en.Then;
+import cucumber.api.java.en.*;
 
 public class MoveTaskStepDefs {
 	private MoveTaskPage moveTaskPage;
@@ -47,7 +47,18 @@ public class MoveTaskStepDefs {
 	public void the_move_task_should_be_updated() throws Throwable {
 		String Date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated move task task type are not as expected", "M", moveTaskDB.getTaskType(Date));
+	}
+	
+	@When("^I enter OrderID as \"([^\"]*)\" in move task$")
+	public void i_enter_OrderID_as_in_move_task(String orderId) throws Throwable {
+		jDAFooter.clickQueryButton();
+		moveTaskPage.enterOrderId(orderId);
+		jDAFooter.clickExecuteButton();
+	}
 
+	@Then("^the list Id should be generated$")
+	public void the_list_Id_should_be_generated() throws Throwable {
+		moveTaskPage.getListId();
 	}
 
 }

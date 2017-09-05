@@ -243,4 +243,9 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_Order_mangagement() throws Throwable {
 		jdaHomePage.navigateToOrderManagementPage();
 	} 
+	
+	@When("^I navigate to move task query page$")
+	public void i_navigate_to_move_task_query_page() throws Throwable {
+		jdaHomePage.navigateToMoveTaskQuery();
+	}
 }

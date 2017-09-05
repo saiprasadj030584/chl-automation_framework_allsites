@@ -180,4 +180,10 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);		
 	  	Assert.assertTrue("Order Status not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Then("^the order status should be changed to \"([^\"]*)\" status$")
+	public void the_order_status_should_be_changed_to_status(String status) throws Throwable {
+		Assert.assertTrue("Order is not in Allocated status",
+				status.equals(orderHeaderDB.getStatus(context.getOrderId())));
+	}
 }

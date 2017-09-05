@@ -1,0 +1,25 @@
+package com.jda.wms.pages.gm;
+
+import org.sikuli.script.App;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
+import org.sikuli.script.Screen;
+
+public class MoveTaskPage {
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
+
+	public void enterOrderId(String orderId) throws InterruptedException {
+		screen.type(orderId);
+		Thread.sleep(1000);
+	}
+
+	public String getListId() throws FindFailed {
+		Match mSkuId = screen.find("images/MoveTaskUpdate/ListID.png");
+		screen.click(mSkuId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+}

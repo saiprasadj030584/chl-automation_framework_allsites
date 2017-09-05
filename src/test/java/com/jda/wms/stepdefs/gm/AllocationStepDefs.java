@@ -67,5 +67,20 @@ public class AllocationStepDefs {
 		Thread.sleep(6000);
 		jDAFooter.clickDoneButton();
 	}
+	
+	@When("^I enter OrderID as \"([^\"]*)\" for clustering$")
+	public void i_enter_OrderID_as_for_clustering(String orderid) throws Throwable {
+		jDAFooter.clickNextButton();
+		allocationPage.enterOrderId(orderid);
+		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
+		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
+		allocationPage.clickClusteringCheckBox();
+		Thread.sleep(2000);
+		jDAFooter.clickDoneButton();
+		Thread.sleep(9000);
+		jDAFooter.clickDoneButton();
+	}
 
 }
