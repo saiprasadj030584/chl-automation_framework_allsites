@@ -54,9 +54,11 @@ public class StockAdjustmentStepDefs {
 		this.inventoryDB = inventoryDB;
 	}
 
-	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\"$")
-	public void i_create_a_new_stock_with_siteid_and_location(String siteId, String location)
+	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
+	public void i_create_a_new_stock_with_siteid_and_location(String location)
 			throws FindFailed, InterruptedException {
+		String siteId = context.getSiteId();
+		if (siteId.equals("5649")){
 		String owner = "M+S";
 		String clientid = "M+S";
 		String quantity = Utilities.getTwoDigitRandomNumber();
@@ -77,26 +79,24 @@ public class StockAdjustmentStepDefs {
 		jDAFooter.clickNextButton();
 		stockAdjustmentsPage.enterPallet(pallet);
 		jDAFooter.clickNextButton();
-	}
+		}
+		else if (siteId.equals("5885")){
+			context.setQtyOnHand(context.getRcvQtyDue());
 
-	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\" in stoke$")
-	public void i_create_a_new_stock_with_siteid_and_location_in_stoke(String siteId, String location)
-			throws FindFailed, InterruptedException {
-		context.setQtyOnHand(context.getRcvQtyDue());
-
-		stockAdjustmentsPage.selectNewStock();
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		stockAdjustmentsPage.enterSkuId(context.getSkuId());
-		jDAFooter.pressTab();
-		stockAdjustmentsPage.enterLocation(location);
-		stockAdjustmentsPage.enterSiteId(siteId);
-		stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
-		jDAFooter.clickNextButton();
-		stockAdjustmentsPage.enterContainerId(context.getUpiId());
-		stockAdjustmentsPage.enterPalletId(context.getUpiId());
-		stockAdjustmentsPage.enterPalletType("PALLET");
-		jDAFooter.clickNextButton();
+			stockAdjustmentsPage.selectNewStock();
+			jDAFooter.clickNextButton();
+			Thread.sleep(2000);
+			stockAdjustmentsPage.enterSkuId(context.getSkuId());
+			jDAFooter.pressTab();
+			stockAdjustmentsPage.enterLocation(location);
+			stockAdjustmentsPage.enterSiteId(siteId);
+			stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
+			jDAFooter.clickNextButton();
+			stockAdjustmentsPage.enterContainerId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletType("PALLET");
+			jDAFooter.clickNextButton();
+		}
 	}
 
 	@When("^I choose the reason code as \"([^\"]*)\"$")

@@ -40,8 +40,9 @@ public class ReportSelectionStepDefs {
 		jDAFooter.clickNextButton();
 	}
 
-	@When("^I enter the siteID \"([^\"]*)\"$")
-	public void i_enter_the_siteID(String siteID) throws Throwable {
+	@When("^I enter the siteID$")
+	public void i_enter_the_siteID() throws Throwable {
+		String siteID = context.getSiteId();
 		reportSelectionPage.enterSiteID(siteID);
 		jDAFooter.clickNextButton();
 		jDAFooter.clickDoneButton();
@@ -72,12 +73,12 @@ public class ReportSelectionStepDefs {
 		jDAFooter.clickNextButton();
 	}
 	
-	@When("^I choose M&S-Receiving summary as report type at site id \"([^\"]*)\" for \"([^\"]*)\" type$")
-	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_id(String siteId,String dataType) throws Throwable {
-		context.setSiteId(siteId);
+	@When("^I choose M&S-Receiving summary as report type at site for \"([^\"]*)\" type$")
+	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_(String dataType) throws Throwable {
+		String site = context.getSiteId();
 		reportSelectionPage.chooseReport();
 		jDAFooter.clickNextButton();
-		reportSelectionPage.chooseSiteId(siteId);
+		reportSelectionPage.chooseSiteId(site);
 		reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
 		reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
 		jDAFooter.pressTab();

@@ -8,6 +8,7 @@ import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.LocationDB;
@@ -54,6 +55,7 @@ public class ReceiptCorrectionStepDefs {
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private JDAHomeStepDefs JDAHomeStepDefs;
 	private StockAdjustmentStepDefs stockAdjustmentStepDefs;
+	private GetTcData getTcData;
 
 	@Inject
 	public ReceiptCorrectionStepDefs(Context context, Verification verification,
@@ -65,7 +67,7 @@ public class ReceiptCorrectionStepDefs {
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, PurchaseOrderPutawayPage purchaseOrderPutawayPage,
 			Hooks hooks, LocationDB locationDB, PurchaseOrderPutawayStepDefs purchaseOrderPutawayStepDefs,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, JDAHomeStepDefs JDAHomeStepDefs,
-			StockAdjustmentStepDefs stockAdjustmentStepDefs, InventoryTransactionDB inventoryTransactionDB) {
+			StockAdjustmentStepDefs stockAdjustmentStepDefs, InventoryTransactionDB inventoryTransactionDB,GetTcData getTcData) {
 		this.context = context;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 		this.verification = verification;
@@ -88,13 +90,20 @@ public class ReceiptCorrectionStepDefs {
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.JDAHomeStepDefs = JDAHomeStepDefs;
 		this.stockAdjustmentStepDefs = stockAdjustmentStepDefs;
+		this.getTcData = getTcData;
 	}
 
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be received at location \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_location(String preAdviceId, String type,
-			String upiId, String asnId, String location) throws Throwable {
-		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
-				preAdviceId, type, upiId, asnId, "Released");
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at location \"([^\"]*)\"$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_location(String type,String location) throws Throwable {
+		String preAdviceId = getTcData.getPo();
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
+		context.setPreAdviceId(preAdviceId);
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		purchaseOrderReceivingStepDefs
 				.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
@@ -187,9 +196,10 @@ public class ReceiptCorrectionStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
-	@When("^I do stock adjustments after putaway for receipt reversal with siteId \"([^\"]*)\" and PO \"([^\"]*)\"$")
-	public void i_do_stock_adjustments_after_putaway_for_receipt_reversal_with_siteId_and_PO(String siteID,
-			String preAdviceId) throws Throwable {
+	@When("^I do stock adjustments after putaway for receipt reversal with siteId and PO$")
+	public void i_do_stock_adjustments_after_putaway_for_receipt_reversal_with_siteId_and_PO() throws Throwable {
+		String siteID = context.getSiteId();
+		String preAdviceId = context.getPreAdviceId();
 		JDAHomeStepDefs.i_navigate_to_stock_adjustments_page();
 		String putawayTagId = inventoryTransactionDB.getPutawayTagId(siteID, preAdviceId);
 		stockAdjustmentStepDefs.i_select_a_existing_stock_with_siteid_location_and_tag_id(siteID,

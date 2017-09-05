@@ -5,6 +5,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.BookingInDiaryLog;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -28,6 +29,7 @@ public class DockSchedulerStepDefs {
 	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
+	private GetTcData getTcData;
 
 	Screen screen = new Screen();
 
@@ -37,7 +39,7 @@ public class DockSchedulerStepDefs {
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,GetTcData getTcData) {
 
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
@@ -50,6 +52,7 @@ public class DockSchedulerStepDefs {
 		this.dockScehdulerBookingStepDefs = dockScehdulerBookingStepDefs;
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
+		this.getTcData = getTcData;
 	}
 
 	@When("^I select the booking type and ASN$")
@@ -255,8 +258,9 @@ public class DockSchedulerStepDefs {
 		jdaFooter.PressEnter();
 	}
 
-	@When("^I create new dock booking at site \"([^\"]*)\"$")
-	public void i_create_new_dock_booking_at_site(String site) throws Throwable {
+	@When("^I create new dock booking at site$")
+	public void i_create_new_dock_booking_at_site() throws Throwable {
+		String site = context.getSiteId();
 		dockSchedulerPage.selectCreateNewBooking();
 		if (dockSchedulerPage.isSiteExists()) {
 			dockSchedulerPage.enterSiteID(site);
@@ -265,56 +269,69 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
-	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\", UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String preAdviceId,
-			String upiId, String asnId, String type, String site) throws Throwable {
-		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(preAdviceId, upiId, asnId, type);
+	@Given("^I have done the dock scheduler booking with the PO, UPI, ASN of type \"([^\"]*)\" at site$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String type)
+			throws Throwable {
+//		String preAdviceId = getTcData.getPo();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+		String site = context.getSiteId();
+		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
+		i_create_new_dock_booking_at_site();
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
-	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site(String upiId, String asnId,
-			String type, String site) throws Throwable {
+	@Given("^I have done the dock scheduler booking with the UPI, ASN of type \"([^\"]*)\" at site$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site(String type) throws Throwable {
+
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		String site = context.getSiteId();
+		
 		context.setSiteId(site);
 		context.setSKUType(type);
-		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
+		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status("Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
+		i_create_new_dock_booking_at_site();
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
-	@Given("^I have done the dock scheduler booking with the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\" for NON RMS$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_NON_RMS(String upiId,
-			String asnId, String type, String site) throws Throwable {
+	@Given("^I have done the dock scheduler booking with the UPI, ASN of type \"([^\"]*)\" at site for NON RMS$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_NON_RMS(String type)
+			throws Throwable {
+
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		String site = context.getSiteId();
 		context.setSiteId(site);
 		context.setSKUType(type);
 		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status_for_NON_RMS(upiId, asnId, "Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
+		i_create_new_dock_booking_at_site();
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 
-	@Given("^I have done the dock scheduler booking with the PO \"([^\"]*)\" of type \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String preAdviceId, String type,
-			String site) throws Throwable {
-		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(preAdviceId, type);
+	@Given("^I have done the dock scheduler booking with the PO of type \"([^\"]*)\" at site$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String type) throws Throwable {
+//		String preAdviceId = getTcData.getPo();
+		String site = context.getSiteId();
+		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
+		i_create_new_dock_booking_at_site();
 		i_select_the_booking_type_preadvice();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
@@ -325,10 +342,10 @@ public class DockSchedulerStepDefs {
 	public void i_have_done_the_dock_scheduler_booking_with_the_BookingId_PO_UPI_ASN_of_type(String BookingId,
 			String preAdviceId, String upiId, String asnId, String type, String site) throws Throwable {
 
-		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(preAdviceId, upiId, asnId, type);
+		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
+		i_create_new_dock_booking_at_site();
 		i_select_the_booking_type_and_ASN();
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn_with_bookingid(BookingId);
@@ -418,10 +435,14 @@ public class DockSchedulerStepDefs {
 		Assert.assertTrue("Records are not as expected", dockSchedulerPage.isNoRecords());
 	}
 
-	@Given("^the UPI \"([^\"]*)\", ASN \"([^\"]*)\" of type \"([^\"]*)\" details should be displayed$")
-	public void the_UPI_ASN_of_type_details_should_be_displayed(String upiId, String asnId, String type)
+	@Given("^the UPI , ASN of type \"([^\"]*)\" details should be displayed$")
+	public void the_UPI_ASN_of_type_details_should_be_displayed(String type)
 			throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		String site = context.getSiteId();
+		
 		context.setSKUType(type);
-		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status(upiId, asnId, "Released");
+		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status("Released");
 	}
 }

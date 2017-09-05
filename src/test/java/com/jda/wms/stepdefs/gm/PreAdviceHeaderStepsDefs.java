@@ -11,17 +11,17 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
-import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 
 import cucumber.api.java.en.Given;
 
@@ -39,16 +39,16 @@ public class PreAdviceHeaderStepsDefs {
 	private PreAdviceLineStepDefs preAdviceLineStepDefs;
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
-		private JdaHomePage jdaHomePage;
+	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
+	private GetTcData getTcData;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
-
-			UPIReceiptLineDB upiReceiptLineDB,JdaHomePage jdaHomePage) {
+			UPIReceiptLineDB upiReceiptLineDB,JdaHomePage jdaHomePage,GetTcData getTcData) {
 
 		this.jdaFooter = jdaFooter;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
@@ -61,12 +61,18 @@ public class PreAdviceHeaderStepsDefs {
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
-	this.jdaHomePage=jdaHomePage;
+		this.jdaHomePage=jdaHomePage;
+		this.getTcData = getTcData;
 	}
 
-	@Given("^the PO \"([^\"]*)\" of type \"([^\"]*)\" with UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,
-			String type, String upiId, String asnId, String status) throws Throwable {
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be in \"([^\"]*)\" status with line items,supplier details$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
+			String status) throws Throwable {
+
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		String preAdviceId = getTcData.getPo();
+		
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
@@ -146,10 +152,13 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-@Given("^the multiple PO \"([^\"]*)\" of type \"([^\"]*)\" with multiple UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status with line items,supplier details$")
-	public void the_multiple_PO_of_type_with_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String preAdviceId,String type,
-			String upiId,String asnId, String status) throws Throwable {
-		ArrayList<String> preAdviceList = new ArrayList<String>();
+@Given("^the multiple PO of type \"([^\"]*)\" with multiple UPI and ASN should be in \"([^\"]*)\" status with line items,supplier details$")
+	public void the_multiple_PO_of_type_with_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type, String status) throws Throwable {
+	String preAdviceId = getTcData.getPo();
+	String upiId = getTcData.getUpi();
+	String asnId = getTcData.getAsn();	
+	
+	ArrayList<String> preAdviceList = new ArrayList<String>();
 		Map<String,String> PONumLinesMap = new HashMap<String,String>();
 		Map<String,Integer> upiNumLines = new HashMap<String,Integer>();
 		String[] multiplePreAdvice = preAdviceId.split(",");
@@ -212,8 +221,10 @@ public class PreAdviceHeaderStepsDefs {
 }
 
 	@Given("^the UPI and ASN should be in status with line items supplier details$")
-	public void the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String upiId, String asnId,
-			String status) throws Throwable {
+	public void the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String status) throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		logger.debug("UPI ID: " + upiId);
@@ -341,9 +352,12 @@ public class PreAdviceHeaderStepsDefs {
 
 	// FSV Receiving
 
-	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id \"([^\"]*)\"$")
-	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String preAdviceId, String type, String status,
-			String siteId) throws Throwable {
+	@Given("^the FSV PO of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id$")
+	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String type, String status) throws Throwable {
+
+		String preAdviceId = getTcData.getPo();
+		String siteId = context.getSiteId();
+		
 		context.setPreAdviceId(preAdviceId);
 		context.setSKUType(type);
 		context.setSiteId(siteId);
@@ -367,16 +381,18 @@ public class PreAdviceHeaderStepsDefs {
 	}
 
 	// FSV receiving
-	@Given("^the PO should not be linked with UPI line \"([^\"]*)\"$")
-	public void the_PO_should_not_be_linked_with_UPI_line(String preAdviceId) throws Throwable {
-		context.setPreAdviceId(preAdviceId);
+	@Given("^the PO should not be linked with UPI line$")
+	public void the_PO_should_not_be_linked_with_UPI_line() throws Throwable {
+		String preAdviceId = context.getPreAdviceId();
 		boolean isUPIRecordExists = upiReceiptLineDB.isUPIRecordExists(preAdviceId);
 		logger.debug("PO ID: " + preAdviceId);
 		Assert.assertFalse("Pre Advice ID is linked to UPI for FSV PO", isUPIRecordExists);
 	}
 
-	@Given("^I have an invalid UPI \"([^\"]*)\"$")
-	public void i_have_an_invalid_UPI(String upiId) throws Throwable {
+	@Given("^I have an invalid UPI$")
+	public void i_have_an_invalid_UPI() throws Throwable {
+		String upiId = getTcData.getUpi();
+		context.setUpiId(upiId);
 		Assert.assertFalse("Record found not as expected", upiReceiptHeaderDB.isRecordExistsForPalletId(upiId));
 	}
 

@@ -49,11 +49,11 @@ public class StockCheckListGenerationStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
-	@When("^I enter the tag ID as on inventory tab for site id \"([^\"]*)\"$")
-	public void i_enter_the_tag_ID_as_on_inventory_tab_for_site_id(String siteID) throws Throwable {
+	@When("^I enter the tag ID as on inventory tab for site id$")
+	public void i_enter_the_tag_ID_as_on_inventory_tab_for_site_id() throws Throwable {
+		String siteID = context.getSiteId();
 		context.setTagId(inventoryDB.getTagID(siteID));
 		stockCheckListGenerationPage.enterTagId(context.getTagId());
-
 		jdaFooter.clickNextButton();
 	}
 

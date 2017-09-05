@@ -2,6 +2,7 @@ package com.jda.wms.hooks;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,10 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.DbReporting.UpdateRequestToAutomationDb;
+import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
-import com.jda.wms.pages.gm.JDAFooter;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -29,13 +31,21 @@ public class Hooks {
 	private Context context;
 	String envVar = System.getProperty("user.dir");
 
-	private DataSetupRunner dataSetupRunner = new DataSetupRunner();;
-	public static DbConnection dataBase = new DbConnection();
+	private DataSetupRunner dataSetupRunner;
+	public static DbConnection dataBase;
+	static UpdateTcToAutomationDb updateTcToAutomationDb;
+	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 
 	@Inject
-	public Hooks(WebDriver webDriver, Context context) {
+	public Hooks(WebDriver webDriver, Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
+			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb) {
 		this.webDriver = webDriver;
 		this.context = context;
+		this.dataSetupRunner = dataSetupRunner;
+		this.dataBase = dataBase;
+		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
+		this.updateTcToAutomationDb = updateTcToAutomationDb;
+
 	}
 
 	@Before
@@ -48,10 +58,21 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
+
 	}
 
 	// @Before
-	public void iniatateDataSetup() throws Exception {
+	public void updateAutoDBRequestStart(Scenario scenario) throws IOException {
+
+		updateRequestToAutomationDb.updateRequestStartTime();
+
+		updateRequestToAutomationDb.updateRequestTcCount();
+
+		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
+	}
+
+	// @Before
+	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		logger.debug(
 				"###########################################################################################################################");
@@ -59,8 +80,24 @@ public class Hooks {
 		logger.debug(
 				"###########################################################################################################################");
 
-		dataBase.getJdaAutomationDbDetails();
-		dataSetupRunner.getTagList();
+		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
+
+		// dataSetupRunner.getTagListFromAutoDb();
+
+		dataSetupRunner.getParentRequestIdFromDB();
+
+		dataSetupRunner.getJdaSiteIdFromDB();
+
+		dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+
+	}
+
+	// @Before
+	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
+
+		updateTcToAutomationDb.updateTcStartTime();
+
+		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 
 	}
 
@@ -70,6 +107,7 @@ public class Hooks {
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
+
 		}
 		// clearing down webdriver object
 		if (webDriver != null) {
@@ -110,7 +148,7 @@ public class Hooks {
 		}
 	}
 
-	@After
+	// @After
 	public void killBrowser(Scenario scenario) throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
@@ -131,16 +169,6 @@ public class Hooks {
 	}
 
 	@After
-	public void afterDetails(Scenario scenario) throws IOException {
-
-		logger.debug(
-				"###########################################################################################################################");
-		logger.debug("End of Scenario: " + scenario.getName());
-		logger.debug(
-				"###########################################################################################################################");
-	}
-
-	@After
 	public void closeDBConnection() throws SQLException {
 		if (!context.getConnection().equals(null)) {
 			context.getConnection().close();
@@ -154,4 +182,43 @@ public class Hooks {
 		screen.click("images/JDAHeader/Singout.png", 25);
 		logger.debug("Signed off JDA WMS Application");
 	}
+
+	// @After
+	public void updateAutoDBTcEnd(Scenario scenario) throws IOException {
+		if (scenario.isFailed()) {
+
+			updateTcToAutomationDb.updateTcComments("Comments");
+
+			updateTcToAutomationDb.updateTcStatus("FAIL");
+
+		} else {
+			updateTcToAutomationDb.updateTcStatus("PASS");
+		}
+		updateTcToAutomationDb.updateTcEndTime();
+		updateTcToAutomationDb.updateTcTimeTaken();
+
+		logger.debug(
+				"###########################################################################################################################");
+		logger.debug("End of Scenario: " + scenario.getName());
+		logger.debug(
+				"###########################################################################################################################");
+	}
+
+	// @After
+	public void updateAutoDBRequestEnd() throws IOException {
+
+		updateRequestToAutomationDb.updateRequestFailCountExcScripErrors();
+
+		updateRequestToAutomationDb.updateRequestFailCountIncScripErrors();
+
+		updateRequestToAutomationDb.updateRequestPassCount();
+
+		updateRequestToAutomationDb.updateRequestEndTime();
+
+		updateRequestToAutomationDb.updateRequestTimeTaken();
+
+		updateRequestToAutomationDb.updateRequestStatus("Request Status");
+
+	}
+
 }

@@ -3,7 +3,7 @@ Feature: Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_status_change @complete
+  @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_status_change @complete @ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | Unlocked     | Inventory Unlock |
       
-      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_status_change @complete
+      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_status_change @complete @ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -35,7 +35,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | UnLocked   | Locked       | Inventory Lock   |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_expiry_date_update @complete
+   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_expiry_date_update @complete @ds
   Scenario: Inventory update for expiry date change
     Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
@@ -47,7 +47,7 @@ Feature: Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete
+  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds
   Scenario Outline: Inventory update for origin change
     Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
@@ -62,7 +62,7 @@ Feature: Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_condition_code_update @complete
+  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_condition_code_update @complete @ds
   Scenario Outline: Inventory update for condition code change
     Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
@@ -78,7 +78,7 @@ Feature: Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete
+   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds
   Scenario Outline: Inventory update for pallet type change
     Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
@@ -110,7 +110,7 @@ Feature: Inventory update
       | Owner | Updateowner |
       | AOWN  | M+S         |
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @wip
+  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds
   Scenario: Inventory update for packConfig
     Given I have a sku in inventory with more than one pack config
     When I navigate to inventory update page

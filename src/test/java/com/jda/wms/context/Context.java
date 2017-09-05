@@ -141,6 +141,8 @@ public class Context {
 	private int skuSize;
 	private HashMap<Integer,String> qtyOnHandList;
 	private String orderType;
+	private String parentRequestId;
+	private String uniqueTag;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1215,6 +1217,22 @@ public class Context {
 
 	public void setOrderType(String orderType) {
 		this.orderType = orderType;
+	}
+
+	public String getParentRequestId() {
+		return parentRequestId;
+	}
+
+	public void setParentRequestId(String parentRequestId) {
+		this.parentRequestId = parentRequestId;
+	}
+
+	public String getUniqueTag() {
+		return uniqueTag;
+	}
+
+	public void setUniqueTag(String uniqueTag) {
+		this.uniqueTag = uniqueTag;
 	}
 
 }

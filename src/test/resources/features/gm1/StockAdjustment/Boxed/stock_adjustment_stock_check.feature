@@ -3,12 +3,12 @@ Feature: Report generation
   As a warehouse user
   I want to validate stock in inventory
 
-  @boxed @stock_check @stock_adjustment @boxed_stock_adjustment_stock_check_positive_proof @complete
-  Scenario Outline: Positive proof of stock check
+  @boxed @stock_check @stock_adjustment @boxed_stock_adjustment_stock_check_positive_proof @complete @ds
+  Scenario: Positive proof of stock check
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
     And I select 'Generate by inventory'
-    And I enter the tag ID as on inventory tab for site id "<SiteId>"
+    And I enter the tag ID as on inventory tab for site id 
     Then the available list should be displayed
     When I select the record from the available list
     Then the record should be added in the selected list
@@ -22,7 +22,3 @@ Feature: Report generation
     And I enter the list id and update the quantity
     Then I should see the confirmation for number of items generated
     And the inventory should be generated
-
-    Examples: 
-      | SiteId |
-      |   5649 |

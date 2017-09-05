@@ -36,11 +36,12 @@ public class DbConnection {
 		}
 	}
 
-	public void disconnectDB() {
+	public void disconnectAutomationDB() {
 		try {
 			if (this.dbConnection != null && !this.dbConnection.isClosed())
 				this.dbConnection.close();
 		} catch (SQLException ex) {
+			System.out.println("Exception in db disconnection:" + ex.toString());
 		}
 	}
 
@@ -53,7 +54,6 @@ public class DbConnection {
 			while (!((sCurrentLine = br.readLine()).contains("***end of file***"))) {
 				if (sCurrentLine.contains("dbURL")) {
 					String[] temp = sCurrentLine.split("::-");
-					System.err.println("temp[temp.length - 1].trim()  " + temp[temp.length - 1].trim());
 					DBDetails.put("dbURL", temp[(temp.length) - 1].trim());
 				}
 				if (sCurrentLine.contains("userId")) {

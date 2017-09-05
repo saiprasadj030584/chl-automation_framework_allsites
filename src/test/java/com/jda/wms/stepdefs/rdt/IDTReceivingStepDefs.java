@@ -1,4 +1,4 @@
-package com.jda.wms.stepdefs.gm;
+package com.jda.wms.stepdefs.rdt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.SupplierSkuDB;
@@ -20,8 +21,13 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
-import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
-import com.jda.wms.stepdefs.rdt.PuttyFunctionsStepDefs;
+import com.jda.wms.stepdefs.gm.InventoryQueryStepDefs;
+import com.jda.wms.stepdefs.gm.InventoryTransactionQueryStepDefs;
+import com.jda.wms.stepdefs.gm.JDAHomeStepDefs;
+import com.jda.wms.stepdefs.gm.JDALoginStepDefs;
+import com.jda.wms.stepdefs.gm.PreAdviceHeaderStepsDefs;
+import com.jda.wms.stepdefs.gm.UPIReceiptHeaderStepDefs;
+import com.jda.wms.stepdefs.gm.UPIReceiptLineStepDefs;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -50,6 +56,7 @@ public class IDTReceivingStepDefs {
 	private InventoryQueryStepDefs inventoryQueryStepDefs;
 	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
 	private PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs;
+	private GetTcData getTcData;
 
 	@Inject
 	public IDTReceivingStepDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
@@ -61,7 +68,7 @@ public class IDTReceivingStepDefs {
 			SupplierSkuDB supplierSkuDb, Hooks hooks, UPIReceiptHeaderStepDefs uPIReceiptHeaderStepDefs,
 			UPIReceiptLineStepDefs uPIReceiptLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,
-			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs) {
+			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,GetTcData getTcData) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -80,11 +87,16 @@ public class IDTReceivingStepDefs {
 		this.inventoryQueryStepDefs = inventoryQueryStepDefs;
 		this.inventoryTransactionQueryStepDefs = inventoryTransactionQueryStepDefs;
 		this.preAdviceHeaderStepsDefs = preAdviceHeaderStepsDefs;
+		this.getTcData = getTcData;
 	}
 
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for IDT$")
-	public void the_UPI_and_ASN_should_be_in_status_for_IDT(String upiId, String asnId, String status)
+	@Given("^the UPI and ASN should be in \"([^\"]*)\" status for IDT$")
+	public void the_UPI_and_ASN_should_be_in_status_for_IDT(String status)
 			throws Throwable {
+		
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		String ShippingType = "ZIDC";
@@ -101,8 +113,8 @@ public class IDTReceivingStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
-	@When("^I perform \"([^\"]*)\" for all Locked skus at location \"([^\"]*)\" for IDT$")
-	public void i_perform_for_all_Locked_skus_at_location_for_IDT(String receiveType, String location)
+	@When("^I perform \"([^\"]*)\" for all locked skus at location \"([^\"]*)\" for IDT$")
+	public void i_perform_for_all_locked_skus_at_location_for_IDT(String receiveType, String location)
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		ArrayList<String> skuList = new ArrayList<String>();
@@ -272,7 +284,7 @@ public class IDTReceivingStepDefs {
 	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String upiId, String asnId, String Type,
 			String location) throws Throwable {
 
-		the_UPI_and_ASN_should_be_in_status_for_IDT(upiId, asnId, "Released");
+		the_UPI_and_ASN_should_be_in_status_for_IDT("Released");
 		uPIReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
 		uPIReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();
 		i_perform_for_all_skus_at_location_for_IDT("Under Receiving", location);
