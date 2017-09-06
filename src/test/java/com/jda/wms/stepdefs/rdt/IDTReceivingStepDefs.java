@@ -280,10 +280,11 @@ public class IDTReceivingStepDefs {
 				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" for IDT$")
-	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String upiId, String asnId, String Type,
+	@Given("^the UPI and ASN of type \"([^\"]*)\" should be received at location \"([^\"]*)\" for IDT$")
+	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String Type,
 			String location) throws Throwable {
-
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
 		the_UPI_and_ASN_should_be_in_status_for_IDT("Released");
 		uPIReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
 		uPIReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();

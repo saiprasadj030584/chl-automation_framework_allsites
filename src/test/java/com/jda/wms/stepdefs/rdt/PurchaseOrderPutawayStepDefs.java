@@ -798,7 +798,7 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 		hooks.logoutPutty();
 	}
 
-	@When("^I proceed by overriding the location  \"([^\"]*)\" for FSV$")
+	@When("^I proceed by overriding the location \"([^\"]*)\" for FSV$")
 	public void i_proceed_by_overriding_the_location_for_FSV(String location) throws Throwable {
 		upiMap = context.getUPIMap();
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());

@@ -983,4 +983,21 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Then("^the ITL should be generated for putaway in inventory transaction for override$")
+	public void the_ITL_should_be_generated_for_putaway_in_inventory_transaction_for_override() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			verification.verifyData("From Location for SKU ", context.getRelocateLoctn(), inventoryTransactionDB
+					.getFromLocation(context.getPreAdviceId(), context.getUpiId(), date, "Putaway"), failureList);
+			verification.verifyData("To Location for SKU ", context.getToLocation(),
+					inventoryTransactionDB.getToLocation(context.getPreAdviceId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
 }

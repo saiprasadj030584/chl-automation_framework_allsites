@@ -1739,9 +1739,12 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 	}
 
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and \"([^\"]*)\" at site \"([^\"]*)\"$")
-	public void the_UPI_and_ASN_of_type_should_be_received_at_location_and_at_site(String upiId, String asnId,
-			String type, String location, String condition, String siteId) throws Throwable {
+	@Given("^the UPI and ASN of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and \"([^\"]*)\" at site$")
+	public void the_UPI_and_ASN_of_type_should_be_received_at_location_and_at_site(String type, String location, String condition) throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		String siteId = context.getSiteId();
+		
 		context.setUpiId(upiId);
 		context.setLocationID(location);
 		context.setAsnId(asnId);
@@ -1775,9 +1778,13 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as_for_blind_receive("Complete");
 	}
 
-	@Given("^the FSV PO \"([^\"]*)\" of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and site id \"([^\"]*)\"$")
-	public void the_FSV_PO_of_type_should_be_received_at_location_and_site_id(String preAdviceId, String type,
-			String location, String siteId) throws Throwable {
+	@Given("^the FSV PO of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and site id$")
+	public void the_FSV_PO_of_type_should_be_received_at_location_and_site_id(String type,
+			String location) throws Throwable {
+		
+		String preAdviceId = getTcData.getPo();
+		String siteId = context.getSiteId();
+		
 		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
 		preAdviceHeaderStepsDefs.the_PO_should_not_be_linked_with_UPI_line();
