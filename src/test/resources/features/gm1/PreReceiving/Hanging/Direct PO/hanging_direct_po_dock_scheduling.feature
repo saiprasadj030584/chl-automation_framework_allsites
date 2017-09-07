@@ -32,10 +32,10 @@ Feature: Dock Scheduling
 
   @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_dock_schedule_service_level_info @review
   Scenario Outline: Validate whether Booking details can be captured - Service level information
-    Given the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<Type>" details should be displayed
+    Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
-    When I create new dock booking at site "<SiteId>"
+    When I create new dock booking at site
     When I select the booking type and ASN
     And I select the slot
     And I create a booking for the asn
@@ -47,10 +47,10 @@ Feature: Dock Scheduling
 
   @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_dock_schedule_trailer_type_info @review
   Scenario Outline: Validate whether Booking details can be captured - Trailer Type information
-    Given the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<Type>" details should be displayed
+    Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
-    When I create new dock booking at site "<SiteId>"
+    When I create new dock booking at site
     When I select the booking type and ASN
     And I select the slot
     And I create a booking for the asn
@@ -62,10 +62,10 @@ Feature: Dock Scheduling
 
   @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_assign_dock_door_to_unload @review
   Scenario Outline: Assign dock door for each trailer to unload it
-    Given the PO "<PreAdviceID>", UPI "<UPIId>", ASN "<ASNId>" of type "<Type>" details should be displayed
+    Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
-    When I create new dock booking at site "<SiteId>"
+    When I create new dock booking at site
     When I select the booking type and ASN
     And I select the slot
     And I create a booking for the asn
