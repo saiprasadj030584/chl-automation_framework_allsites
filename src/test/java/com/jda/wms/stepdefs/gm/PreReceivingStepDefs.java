@@ -47,6 +47,7 @@ public class PreReceivingStepDefs {
 	@Given("^the PO should be in \"([^\"]*)\" status$")
 	public void the_PO_should_be_in_status(String status) throws Throwable {
 		String preAdviceId = getTcData.getPo();
+		System.out.println("preAdviceId "+preAdviceId);
 		preAdviceHeaderStepsDefs.the_PO_should_be_in_status_with_line_items_supplier_details(preAdviceId, "Released");
 	}
 

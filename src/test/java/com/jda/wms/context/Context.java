@@ -143,6 +143,8 @@ public class Context {
 	private String orderType;
 	private String parentRequestId;
 	private String uniqueTag;
+	private String adviceId;
+	private boolean uniqueTagInRunStatus;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1235,4 +1237,19 @@ public class Context {
 		this.uniqueTag = uniqueTag;
 	}
 
+	public String getAdviceId() {
+		return adviceId;
+	}
+
+	public void setAdviceId(String adviceId) {
+		this.adviceId = adviceId;
+	}
+
+	public boolean getUniqueTagInRunStatus() {
+		return uniqueTagInRunStatus;
+	}
+
+	public void setUniqueTagInRunStatus(boolean uniqueTagInRunStatus) {
+		this.uniqueTagInRunStatus = uniqueTagInRunStatus;
+	}
 }

@@ -225,4 +225,15 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public void updateAdviceForSku(String preAdviceId, String skuId, String adviceId)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update pre_advice_line set user_def_type_1='" + adviceId
+				+ "' where pre_advice_id='" + preAdviceId + "' and sku_id='" + skuId + "'");
+		context.getConnection().commit();
+	}
 }

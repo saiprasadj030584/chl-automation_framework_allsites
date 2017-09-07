@@ -9,6 +9,7 @@ Feature: Purchase order Putaway
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have MEZZ sku, quantity due details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
     When I receive all skus for the FSV purchase order at location "REC002" for MEZZ putaway
     When I choose existing relocate
     And I proceed with entering the upc and location of FSV PO
@@ -20,6 +21,8 @@ Feature: Purchase order Putaway
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due and qa details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
+    And I lock the product with lock code "QACOMP"
     When I receive all skus for the FSV sampling purchase order at location "REC002"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
@@ -53,3 +56,18 @@ Feature: Purchase order Putaway
     When I choose normal putaway
     And I proceed by overriding the location "REC001" for FSV
     And the ITL should be generated for putaway in inventory transaction for override
+    
+    @boxed @putaway @fsv_po @boxed_putaway_fsv_putaway_process @complete @ds
+  Scenario: Validate Putaway Process
+    Given the FSV PO of type "Boxed" should be in "Released" status at site id
+    And the FSV PO line should have sku, quantity due and qa details
+    And the PO should not be linked with UPI line
+    And I update the advice id for all line items
+    When I receive all skus for the FSV sampling purchase order at location "<Location>REC002"
+    Then the inventory should be displayed for all tags received for FSV PO
+    And the goods receipt should be generated for FSV PO received stock in inventory transaction
+    Then the FSV po status should be displayed as "Complete"
+    When I choose existing relocate
+    And I proceed with entering the upc and location of FSV PO
+    When I perform normal putaway
+    Then the goods receipt should be generated for putaway FSV stock in inventory transaction

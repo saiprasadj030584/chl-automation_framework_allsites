@@ -113,7 +113,7 @@ public class UpdateTcToAutomationDb {
 		}
 	}
 
-	public void updateTcTestData(String testData) {
+	public void updateTcTestDataReference(String testData) {
 
 		testData = testData.trim().toUpperCase();
 

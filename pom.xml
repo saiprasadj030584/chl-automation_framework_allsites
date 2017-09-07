@@ -236,6 +236,15 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/ojdbc6-11.2.0.3.jar</systemPath>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.sqljdbc42</groupId>
+			<artifactId>com.sqljdbc42</artifactId>
+			<version>42.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/sqljdbc4.jar</systemPath>
+		</dependency>
+		
 		<dependency>
 			<groupId>jcifs</groupId>
 			<artifactId>com.jcifs.smb</artifactId>

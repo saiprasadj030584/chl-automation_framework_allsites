@@ -48,7 +48,6 @@ public class PreAdviceHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(context.getConnection());
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		ResultSet rs = stmt
@@ -166,6 +165,16 @@ public class PreAdviceHeaderDB {
 				.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceId + "' ");
 		rs.next();
 		return rs.getString(1);
+	}
+	
+	public void updateAdviceForSku(String preAdviceId, String adviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update pre_advice_header set user_def_type_1='" + adviceId
+				+ "' where pre_advice_id='" + preAdviceId + "'");
+		context.getConnection().commit();
 	}
 
 }

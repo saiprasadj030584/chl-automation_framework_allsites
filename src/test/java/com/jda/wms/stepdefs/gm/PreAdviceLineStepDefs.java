@@ -25,6 +25,7 @@ import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderReceivingPage;
 import com.jda.wms.utils.Utilities;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
 public class PreAdviceLineStepDefs {
@@ -1109,5 +1110,15 @@ for( int i=0;i<context.getNoOfLines();i++)
 			 failureList.add("Pre Advice Qty is more than UPI Qty for SKU"+poMap.get(i).get("SKU"));
 		 }}
 	}
+	}
+	
+	@And("^I update the advice id for all line items$")
+	public void i_update_the_advice_id_for_all_line_items() throws ClassNotFoundException, SQLException {
+		poMap = context.getPOMap();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			preAdviceLineDB.updateAdviceForSku(context.getPreAdviceId(), context.getSkuId(),
+					context.getAdviceId());
+		}
 	}
 }

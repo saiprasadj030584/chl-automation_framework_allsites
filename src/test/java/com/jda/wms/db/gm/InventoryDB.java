@@ -473,7 +473,7 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select Location_id from inventory where pallet_id='" + preAdviceId
+		ResultSet rs = stmt.executeQuery("select Location_id from inventory where receipt_id='" + preAdviceId
 				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
@@ -501,7 +501,7 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select QTY_ON_HAND from inventory where user_def_type_2='" + preAdviceId + "' and sku_id = '" + skuId
+				"select QTY_ON_HAND from inventory where receipt_id='" + preAdviceId + "' and sku_id = '" + skuId
 						+ "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);

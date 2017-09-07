@@ -22,6 +22,7 @@ import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 
@@ -376,6 +377,11 @@ public class PreAdviceHeaderStepsDefs {
 		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
 		context.setNoOfLines(numLines);
 		logger.debug("Num of Lines: " + numLines);
+		
+		//Updating advice ID
+		context.setAdviceId(Utilities.getSixDigitRandomNumber());
+		preAdviceHeaderDB.updateAdviceForSku(context.getPreAdviceId(),context.getAdviceId());
+				
 		Assert.assertTrue("FSV PO details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}

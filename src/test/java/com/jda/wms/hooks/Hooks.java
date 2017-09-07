@@ -1,7 +1,9 @@
 package com.jda.wms.hooks;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.openqa.selenium.OutputType;
@@ -19,6 +21,7 @@ import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
+import com.jda.wms.db.gm.Database;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -32,19 +35,22 @@ public class Hooks {
 	String envVar = System.getProperty("user.dir");
 
 	private DataSetupRunner dataSetupRunner;
-	public static DbConnection dataBase;
+	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
+	private Database jdaJdatabase;
 
 	@Inject
 	public Hooks(WebDriver webDriver, Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
-			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb) {
+			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
+			Database jdaJdatabase) {
 		this.webDriver = webDriver;
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
-		this.dataBase = dataBase;
+		this.NPSdataBase = dataBase;
 		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
 		this.updateTcToAutomationDb = updateTcToAutomationDb;
+		this.jdaJdatabase = jdaJdatabase;
 
 	}
 
@@ -71,7 +77,7 @@ public class Hooks {
 		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
 	}
 
-	// @Before
+	@Before
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		logger.debug(
@@ -170,7 +176,9 @@ public class Hooks {
 
 	@After
 	public void closeDBConnection() throws SQLException {
+		System.out.println("At close db connection");
 		if (!context.getConnection().equals(null)) {
+			System.out.println("inside if");
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
@@ -186,9 +194,7 @@ public class Hooks {
 	// @After
 	public void updateAutoDBTcEnd(Scenario scenario) throws IOException {
 		if (scenario.isFailed()) {
-
 			updateTcToAutomationDb.updateTcComments("Comments");
-
 			updateTcToAutomationDb.updateTcStatus("FAIL");
 
 		} else {
@@ -206,19 +212,12 @@ public class Hooks {
 
 	// @After
 	public void updateAutoDBRequestEnd() throws IOException {
-
 		updateRequestToAutomationDb.updateRequestFailCountExcScripErrors();
-
 		updateRequestToAutomationDb.updateRequestFailCountIncScripErrors();
-
 		updateRequestToAutomationDb.updateRequestPassCount();
-
 		updateRequestToAutomationDb.updateRequestEndTime();
-
 		updateRequestToAutomationDb.updateRequestTimeTaken();
-
 		updateRequestToAutomationDb.updateRequestStatus("Request Status");
-
 	}
 
 }

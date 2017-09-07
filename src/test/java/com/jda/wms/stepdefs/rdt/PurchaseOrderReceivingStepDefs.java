@@ -1281,7 +1281,12 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(4000);
+			Assert.assertFalse("No Valid Pre-Advice found",purchaseOrderReceivingPage.isNoValidPreAdviceFound());
 			i_enter_the_location();
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(3000);
 			i_enter_urn_id();
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
@@ -1311,6 +1316,7 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
 
 			puttyFunctionsPage.pressEnter();
+			Assert.assertFalse("No Valid Pre-Advice found",purchaseOrderReceivingPage.isNoValidPreAdviceFound());
 			i_enter_the_location();
 			puttyFunctionsPage.pressEnter();
 
@@ -1340,7 +1346,12 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+			Assert.assertTrue("No Valid Pre-Advice found",purchaseOrderReceivingPage.isNoValidPreAdviceDisplayed());
 			i_enter_the_location();
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
 			i_enter_urn_id();
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
@@ -1788,6 +1799,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
 		preAdviceHeaderStepsDefs.the_PO_should_not_be_linked_with_UPI_line();
+		preAdviceLineStepDefs.i_update_the_advice_id_for_all_line_items();
 		i_receive_all_skus_for_the_FSV_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received_for_fsv_po();
 		inventoryTransactionQueryStepDefs

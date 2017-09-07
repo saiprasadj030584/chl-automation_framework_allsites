@@ -215,8 +215,6 @@ public class PurchaseOrderReceivingPage {
 		// screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		// screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-puttyFunctionsPage.pressEnter();
-		Thread.sleep(3000);
 	}
 	
 	public void enterLoc(String location) throws InterruptedException, FindFailed {
@@ -347,6 +345,13 @@ puttyFunctionsPage.pressEnter();
 		} else
 			return false;
 	}
+	
+	public boolean isNoValidPreAdviceFound() throws InterruptedException {
+		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 
 	public void enterYes() throws InterruptedException {
 		screen.type("y");
@@ -430,8 +435,6 @@ puttyFunctionsPage.pressEnter();
 	public void enterBelCode(String getbelCode) throws InterruptedException {
 		screen.type(getbelCode);
 	Thread.sleep(2000);
-		puttyFunctionsPage.pressEnter();
-		Thread.sleep(4000);
 	}
 
 	public void enterNewPallet(String getnewpallet) throws InterruptedException {

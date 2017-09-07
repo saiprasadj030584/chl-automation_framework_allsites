@@ -92,7 +92,7 @@ public class SupplierSkuDB {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select Supplier_sku_Id from supplier_sku where sku_id='" + skuId + "'");
+			ResultSet rs = stmt.executeQuery("select Supplier_Id from supplier_sku where sku_id='" + skuId + "'");
 			rs.next();
 			return rs.getString(1);
 		} catch (Exception e) {
