@@ -19,25 +19,14 @@ Feature: Dock Scheduling, Receiving , Putaway
     When I perform normal putaway
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @11thSep_demo2
-  Scenario: Validate whether ASN can be assigned using the Container ID
-    Given the PO, UPI, ASN of type "Boxed" details should be displayed
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @11thSep_demo2
+  Scenario: Validate whether PO can be assigned using the Pre advice ID
+    Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
     When I create new dock booking at site
-    When I select the booking type and ASN
+    When I select the booking type preadvice
     And I select the slot
-    And I create a booking for the asn
+    And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @allocation @retail @boxed @boxed_allocation_retail_allocation_rules @complete
-  Scenario Outline: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
-    Given the order id "<OrderNumber>" of type "Retail" should be in "Released" status
-    When I navigate to system allocation page
-    And I allocate the stocks
-    Then the stock should get allocated
-
-    Examples: 
-      | OrderNumber |
-      #|  8964210898 |
-      |  8964210858 |
