@@ -21,6 +21,7 @@ public class BookingInDiary {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
@@ -32,6 +33,7 @@ public class BookingInDiary {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select CARRIER_ID from booking_in_diary where bookref_id='" + bookingID + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select CARRIER_ID from booking_in_diary where bookref_id='" + bookingID + "'");
@@ -43,6 +45,7 @@ public class BookingInDiary {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select SERVICE_LEVEL from booking_in_diary where bookref_id='" + bookingID + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select SERVICE_LEVEL from booking_in_diary where bookref_id='" + bookingID + "'");

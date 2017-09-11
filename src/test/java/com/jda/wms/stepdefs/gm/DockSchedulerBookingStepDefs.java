@@ -41,6 +41,23 @@ public class DockSchedulerBookingStepDefs {
 		this.dockShedulerBookingPage = dockShedulerBookingPage;
 	}
 
+	@Then("^the booking details should appear in the dock scheduler booking for the ASN$")
+	public void the_booking_details_should_appear_in_the_dock_scheduler_booking_for_the_asn() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		jdaHomePage.navigateToDockSchedulerBookingsPage();
+		jdaFooter.clickQueryButton();
+		dockShedulerBookingPage.enterBookingID(context.getBookingID());
+		jdaFooter.clickExecuteButton();
+		verification.verifyData("Trailer ID", context.getTrailerNo(),
+				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
+		if (context.getSiteId().equals("5649")) {
+			verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
+					failureList);
+			verification.verifyData("Service Level", context.getServiceLevel(),
+					bookingInDiary.getServiceLevel(context.getBookingID()), failureList);
+		}
+	}
+	
 	@Then("^the booking details should appear in the dock scheduler booking$")
 	public void the_booking_details_should_appear_in_the_dock_scheduler_booking() throws Throwable {
 		ArrayList failureList = new ArrayList();
