@@ -618,10 +618,11 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select reference_id from inventory_transaction where sku_id = '" + skuId
+				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+upiId+"'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reference_id from inventory_transaction where sku_id = '" + skuId
-				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+upiId+"'");
 		rs.next();
 		return rs.getString(1);
 	}
