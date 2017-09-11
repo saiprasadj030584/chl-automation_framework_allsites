@@ -19,7 +19,7 @@ Feature: Dock Scheduling, Receiving , Putaway
     When I perform normal putaway
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @8thSep_demo
+  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @11thSep_demo2
   Scenario: Validate whether ASN can be assigned using the Container ID
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
