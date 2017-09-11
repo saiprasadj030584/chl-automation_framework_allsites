@@ -236,7 +236,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
 			context.setUpiId(context.getTagId());
 			i_enter_urn_id_in_putaway(context.getTagId());
-			
+			jdaFooter.PressEnter();
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
 				
