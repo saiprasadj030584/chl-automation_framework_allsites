@@ -126,7 +126,27 @@ public class DockSchedulerStepDefs {
 	dockSchedulerPage.pressTab();
 	dockSchedulerPage.enterEstimatedCartons();
 	jdaFooter.PressEnter();
-	if(dockSchedulerPage.isBookingErrorExists())
+	if (dockSchedulerPage.isNoDockErrorExists()) {
+		while (dockSchedulerPage.isNoDockErrorExists()) {
+	jdaFooter.PressEnter();
+	dockSchedulerPage.selectSlot();
+	jdaFooter.clickNextButton();
+	bookingID = Utilities.getFiveDigitRandomNumber();
+	jdaFooter.deleteExistingContent();
+	dockSchedulerPage.enterBookingId(bookingID);
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.enterEstimatedPallets();
+	dockSchedulerPage.pressTab();
+	dockSchedulerPage.enterEstimatedCartons();
+	jdaFooter.PressEnter();
+	}
+	}
+	else if(dockSchedulerPage.isBookingErrorExists())
 	{
 	while (dockSchedulerPage.isBookingErrorExists()) {
 	jdaFooter.PressEnter();
@@ -145,25 +165,8 @@ public class DockSchedulerStepDefs {
 	dockSchedulerPage.enterEstimatedCartons();
 	jdaFooter.PressEnter();
 	} 
-	}else if
-	(dockSchedulerPage.isNoDockErrorExists()) {
-	jdaFooter.PressEnter();
-	dockSchedulerPage.selectSlot();
-	jdaFooter.clickNextButton();
-	bookingID = Utilities.getFiveDigitRandomNumber();
-	jdaFooter.deleteExistingContent();
-	dockSchedulerPage.enterBookingId(bookingID);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedPallets();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedCartons();
-	jdaFooter.PressEnter();
 	}
+	
 	}
 	
 	@When("^I create a booking$")
