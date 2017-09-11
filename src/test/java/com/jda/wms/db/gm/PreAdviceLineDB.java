@@ -236,4 +236,16 @@ public class PreAdviceLineDB {
 				+ "' where pre_advice_id='" + preAdviceId + "' and sku_id='" + skuId + "'");
 		context.getConnection().commit();
 	}
+
+	public String getUserDefType2(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_2 from pre_advice_line where pre_advice_id='" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

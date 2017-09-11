@@ -990,6 +990,7 @@ public class PurchaseOrderReceivingStepDefs {
 			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 		} else {
 			urn = context.getUpiId();
+			System.out.println("urn "+urn);
 		}
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
@@ -1280,6 +1281,7 @@ public class PurchaseOrderReceivingStepDefs {
 		for (int i = 1; i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
+			context.setUpiId(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
 			puttyFunctionsPage.pressEnter();
 			Thread.sleep(4000);

@@ -1047,7 +1047,8 @@ for( int i=0;i<context.getNoOfLines();i++)
 
 	// Get dept - 3 digit
 	public String deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-		String dept = preAdviceHeaderDB.getUserDefType2(preAdviceId);
+		String dept = preAdviceLineDB.getUserDefType2(preAdviceId);
+		System.out.println("Dept"+dept);
 		String[] deptSplit = dept.split("T");
 		return deptSplit[1];
 	}

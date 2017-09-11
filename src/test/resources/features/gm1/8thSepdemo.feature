@@ -5,12 +5,12 @@ Feature: Dock Scheduling, Receiving , Putaway
   So that I can complete the purchase order
 
   @boxed @putaway @fsv_po @boxed_putaway_fsv_po_validate_putaway_process @complete @8thSep_demo1
-  Scenario Outline: Validate Putaway Process
+  Scenario: Validate Putaway Process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due and qa details
     And the PO should not be linked with UPI line
     And I update the advice id for all line items
-    When I receive all skus for the FSV sampling purchase order at location "<Location>"
+    When I receive all skus for the FSV sampling purchase order at location "REC002"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
@@ -19,11 +19,7 @@ Feature: Dock Scheduling, Receiving , Putaway
     When I perform normal putaway
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-    Examples: 
-      | PreAdviceID | Location | SiteID |
-      |  1040009129 | REC002   |   5649 |
-
-  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @8thSep_demo1
+  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @8thSep_demo
   Scenario: Validate whether ASN can be assigned using the Container ID
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
