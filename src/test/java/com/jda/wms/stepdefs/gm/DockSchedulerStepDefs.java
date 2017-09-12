@@ -110,6 +110,7 @@ public class DockSchedulerStepDefs {
 	dockSchedulerPage.enterBookingId(bookingID);
 	dockSchedulerPage.pressTab();
 	dockSchedulerPage.pressTab();
+	System.out.println("site id "+context.getSiteId());
 	if (context.getSiteId().equals("5649")) {
 	dockSchedulerPage.enterCarrier(context.getCarrier());
 	}
@@ -127,7 +128,9 @@ public class DockSchedulerStepDefs {
 	dockSchedulerPage.enterEstimatedCartons();
 	jdaFooter.PressEnter();
 	if (dockSchedulerPage.isNoDockErrorExists()) {
+		System.out.println("inside while - dock error");
 		while (dockSchedulerPage.isNoDockErrorExists()) {
+			System.out.println("inside while - dock error");
 	jdaFooter.PressEnter();
 	dockSchedulerPage.selectSlot();
 	jdaFooter.clickNextButton();
@@ -148,7 +151,9 @@ public class DockSchedulerStepDefs {
 	}
 	else if(dockSchedulerPage.isBookingErrorExists())
 	{
+		System.out.println("inside if - booking error");
 	while (dockSchedulerPage.isBookingErrorExists()) {
+		System.out.println("inside while - booking error");
 	jdaFooter.PressEnter();
 	jdaFooter.clickNextButton();
 	bookingID = Utilities.getFiveDigitRandomNumber();

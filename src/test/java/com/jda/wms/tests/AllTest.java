@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@11thSep_demo1" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_pre_receiving_fsv_po_dock_schedule" })
 
 public class AllTest {
 }

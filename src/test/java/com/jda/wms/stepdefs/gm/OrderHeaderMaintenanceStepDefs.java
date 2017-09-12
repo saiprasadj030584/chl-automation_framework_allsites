@@ -9,6 +9,8 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
+import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.OrderHeaderDB;
 import com.jda.wms.db.gm.OrderLineDB;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -32,10 +34,13 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderPage orderHeaderPage;
 	private JdaLoginPage jdaLoginPage;
 	private OrderLineDB orderLineDB;
+	private GetTcData getTcData;
+	private InventoryDB inventoryDB;
+	private JDALoginStepDefs jdaLoginStepDefs;
 
 	@Inject
 	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
-			OrderHeaderDB orderHeaderDB, Verification verification,OrderHeaderPage orderHeaderPage,JdaLoginPage jdaLoginPage,OrderLineDB orderLineDB) {
+			OrderHeaderDB orderHeaderDB, Verification verification,OrderHeaderPage orderHeaderPage,JdaLoginPage jdaLoginPage,OrderLineDB orderLineDB,GetTcData getTcData,InventoryDB inventoryDB,JDALoginStepDefs jdaLoginStepDefs) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.jDAHomePage = jDAHomePage;
@@ -44,6 +49,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.orderHeaderPage=orderHeaderPage;
 		this.jdaLoginPage = jdaLoginPage;
 		this.orderLineDB = orderLineDB;
+		this.getTcData = getTcData;
+		this.inventoryDB = inventoryDB;
+		this.jdaLoginStepDefs = jdaLoginStepDefs;
 	}
 
 	@Given("^the \"([^\"]*)\" of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
@@ -122,8 +130,10 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertEquals("Order status does not match", status, orderStatus);
 	}
 	
-	@Given("^the order \"([^\"]*)\" is of type \"([^\"]*)\"  and it is in \"([^\"]*)\" status$")
-	public void the_order_status_is_in_status(String orderId,String type, String status) throws Throwable {
+	@Given("^the order is of type \"([^\"]*)\" and it is in \"([^\"]*)\" status$")
+	public void the_order_status_is_in_status(String type, String status) throws Throwable {
+		String orderId = getTcData.getSto();
+		
 		context.setOrderId(orderId);
 		context.setSKUType(type);
 		if (status.contains(orderHeaderDB.getStatus(orderId)) && orderHeaderDB.getType(orderId).contains(type)){
@@ -138,8 +148,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		}	
 	}
 	
-	@Given("^the order \"([^\"]*)\" status is in \"([^\"]*)\" status raised for the country of origin \"([^\"]*)\"$")
-	public void the_order_status_is_in_status_raised_for_the_country_of_origin(String orderId, String status,String origin) throws Throwable {
+	@Given("^the order status is in \"([^\"]*)\" status raised for the country of origin \"([^\"]*)\"$")
+	public void the_order_status_is_in_status_raised_for_the_country_of_origin(String status,String origin) throws Throwable {
+		String orderId = getTcData.getSto();
 		context.setOrderId(orderId);
 		
 		Assert.assertTrue("status is not in released status",status.equals(orderHeaderDB.getStatus(orderId)));
@@ -185,5 +196,132 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_status_should_be_changed_to_status(String status) throws Throwable {
 		Assert.assertTrue("Order is not in Allocated status",
 				status.equals(orderHeaderDB.getStatus(context.getOrderId())));
+	}
+	
+	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status and skus should be in \"([^\"]*)\" location$")
+	public void the_order_id_of_type_should_be_in_status_and_sku_should_be_in_location(String orderType, String status, String locationId) throws Throwable {
+		String orderNumber = getTcData.getSto();
+		
+		context.setOrderId(orderNumber);
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setStatus(status);
+		// suspense
+		ArrayList skuFromOrder = new ArrayList();
+		skuFromOrder = orderLineDB.getskuList(context.getOrderId());
+		context.setSkuFromOrder(skuFromOrder);
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			if (!(inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))))) {
+				Assert.assertTrue("Sku not in suspense location " + (String) skuFromOrder.get(i),
+						inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))));
+			}
+		}
+		// order type
+		if (orderType.equalsIgnoreCase("International")) {
+			verification.verifyData("Order Type Mismatch", "Retail", orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+			verification.verifyData("Destination is not as expected", "8468", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+			verification.verifyData("User defined Type 4 is not as expected", "Franchise",
+					orderHeaderDB.getUserDefinedType4(orderNumber), failureList);
+		} else if (orderType.equalsIgnoreCase("Ecom")) {
+			verification.verifyData("Order Type Mismatch", "IDT", orderHeaderDB.getOrderType(orderNumber), failureList);
+			verification.verifyData("Destination is not as expected", "4624", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+		} else if (orderType.equalsIgnoreCase("Outlet")) {
+			verification.verifyData("Order Type Mismatch", "IDT", orderHeaderDB.getOrderType(orderNumber), failureList);
+			verification.verifyData("Destination is not as expected", "2862", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+		} else {
+			verification.verifyData("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+		}
+
+		// //Order status
+		verification.verifyData("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber),
+				failureList);
+
+		 jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status$")
+	public void the_order_id_of_type_should_be_in_status(String orderType, String status)
+			throws Throwable {
+		String orderNumber = getTcData.getSto();
+		
+		context.setOrderId(orderNumber);
+		context.setStatus(status);
+		ArrayList<String> failureList = new ArrayList<String>();
+		// suspense
+		ArrayList skuFromOrder = new ArrayList();
+		skuFromOrder = orderLineDB.getskuList(context.getOrderId());
+		context.setSkuFromOrder(skuFromOrder);
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			// Assert.assertFalse("sku"+skuFromOrder.get(i)+" is in suspense
+			// location",
+			// inventoryDB.isSkuInSuspenseLocation((String)(skuFromOrder.get(i))));
+			if ((inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))))) {
+				failureList.add("Sku in suspense location " + (String) skuFromOrder.get(i));
+			}
+		}
+		// order type
+		if (orderType.equalsIgnoreCase("International")) {
+			verification.verifyData("Order Type Mismatch", "Retail", orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+			verification.verifyData("Destination is not as expected", "8468", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+			verification.verifyData("User defined Type 4 is not as expected", "Franchise",
+					orderHeaderDB.getUserDefinedType4(orderNumber), failureList);
+		} else if (orderType.equalsIgnoreCase("Ecom")) {
+			verification.verifyData("Order Type Mismatch", "IDT", orderHeaderDB.getOrderType(orderNumber), failureList);
+			verification.verifyData("Destination is not as expected", "4624", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+		} else if (orderType.equalsIgnoreCase("Outlet")) {
+			verification.verifyData("Order Type Mismatch", "IDT", orderHeaderDB.getOrderType(orderNumber), failureList);
+			verification.verifyData("Destination is not as expected", "2862", orderHeaderDB.getCustomer(orderNumber),
+					failureList);
+		} else {
+			verification.verifyData("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(orderNumber),
+					failureList);
+		}
+
+		// Order status
+		verification.verifyData("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber),
+				failureList);
+
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Given("^the order id \"([^\"]*)\" should be in \"([^\"]*)\" status$")
+	public void the_order_id_should_be_in_status(String orderNumber, String status) throws Throwable {
+		context.setOrderId(orderNumber);
+		context.setStatus(status);
+		Assert.assertEquals("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber));
+		// jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+	}
+
+	@Given("^order header should be updated for picked stock$")
+	public void order_header_should_be_updated_for_picked_stock() throws Throwable {
+		jDAHomePage.navigateToOrderHeaderMaintenance();
+		jDAFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(context.getOrderId());
+		jDAFooter.clickExecuteButton();
+		Assert.assertEquals("Order header not displayed as expected", "Picked",
+				orderHeaderDB.getStatus(context.getOrderId()));
+	}
+
+	@Given("^order header should be updated for unpicked stock$")
+	public void order_header_should_be_updated_for_unpicked_stock() throws Throwable {
+		Thread.sleep(2000);
+		jDAHomePage.navigateToOrderHeaderMaintenance();
+		jDAFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(context.getOrderId());
+		jDAFooter.clickExecuteButton();
+
+		Assert.assertEquals("Order header not displayed as expected", "Released",
+				orderHeaderDB.getStatus(context.getOrderId()));
 	}
 }

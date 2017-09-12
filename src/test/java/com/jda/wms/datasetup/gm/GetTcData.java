@@ -370,6 +370,20 @@ public class GetTcData {
 		}
 		return value;
 	}
-
+	
+	public void setOdn(String value) {
+		context.setOrderId(value);
+		if (!context.getUniqueTagInRunStatus()) {
+			dataBase.connectAutomationDB();
+			try {
+				dataBase.dbConnection.createStatement()
+						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET STO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+				dataBase.dbConnection.commit();
+				dataBase.disconnectAutomationDB();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
-// SKU_ID,QTY,LOCK_CODE,LOCATION,PERFECT_CONDITION,REASON_CODE,SUPPLIER_ID,FROM_SITE,TO_SITE,DEPT,ADDRESS_ID
