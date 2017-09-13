@@ -54,8 +54,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
 	}
 
-	@Given("^the \"([^\"]*)\" of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
-	public void the_should_be_in_status_in_order_header_maintenance(String orderId, String orderType,String status) throws Throwable {
+	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
+	public void the_order_should_be_in_status_in_order_header_maintenance(String orderType,String status) throws Throwable {
+		String orderId=  getTcData.getSto();
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
 		Assert.assertEquals("Status is not displayed as expected", status, orderHeaderDB.getStatus(orderId));
@@ -65,8 +66,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		jdaLoginPage.login();
 	}
 	
-	@Given("^the \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
-	public void the_should_be_in_status_in_order_header_maintenance(String orderId, String status) throws Throwable {
+	@Given("^the order should be in \"([^\"]*)\" status in order header maintenance$")
+	public void the_order_should_be_in_status_in_order_header_maintenance(String status) throws Throwable {
+		String orderId = getTcData.getSto();
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
 		System.out.println(orderHeaderDB.getStatus(orderId));
@@ -98,12 +100,12 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertEquals("Status is not displayed as expected",status, orderHeaderPage.getStatus());
 	}
 	
-	@Then("^the order should be allocated for the orderID \"([^\"]*)\"$")
-	public void the_order_should_be_allocated_for_the_orderID(String orderid) throws Throwable {
+	@Then("^the order should be allocated$")
+	public void the_order_should_be_allocated() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
-		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(orderid), failureList);
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
 		Assert.assertTrue("Order Status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
@@ -162,8 +164,10 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue("status is not in released status",status.equals(orderHeaderDB.getStatus(context.getOrderId())));
 	}
 	
-	@Given("^the OrderID \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site \"([^\"]*)\"$")
-	public void the_OrderID_of_type_should_be_in_status(String orderId, String orderType, String status, String siteId) throws Throwable {
+	@Given("^the OrderID of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
+	public void the_OrderID_of_type_should_be_in_status(String orderType, String status) throws Throwable {
+		String orderId = getTcData.getSto();
+		String siteId = context.getSiteId();
 		jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);

@@ -49,10 +49,10 @@ public class MoveTaskStepDefs {
 		Assert.assertEquals("updated move task task type are not as expected", "M", moveTaskDB.getTaskType(Date));
 	}
 	
-	@When("^I enter OrderID as \"([^\"]*)\" in move task$")
-	public void i_enter_OrderID_as_in_move_task(String orderId) throws Throwable {
+	@When("^I enter OrderID in move task$")
+	public void i_enter_OrderID_in_move_task() throws Throwable {
 		jDAFooter.clickQueryButton();
-		moveTaskPage.enterOrderId(orderId);
+		moveTaskPage.enterOrderId(context.getOrderId());
 		jDAFooter.clickExecuteButton();
 	}
 

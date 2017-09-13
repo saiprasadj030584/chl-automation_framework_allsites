@@ -25,35 +25,23 @@ Feature: Allocation
     When the inventory is available for the "<AgainstLocation>" and unavailable for "<OriginLocation>"
     Then the order status should be in "Released" status
 
-  @allocation @boxed @idt @boxed_allocation_idt_validate_prohibition_rule @complete
-  Scenario Outline: Validating prohibition rule while allocation
-    Given the OrderID "<OrderID>" of type "IDT" should be in "Released" status at site "<SiteId>"
+  @allocation @boxed @idt @boxed_allocation_idt_validate_prohibition_rule @complete @ds
+  Scenario: Validating prohibition rule while allocation
+    Given the OrderID of type "IDT" should be in "Released" status at site
     And I have inventory available for the order line items
     When I navigate to system allocation page
     And I enter OrderID for allocation
     Then the order should be allocated
 
-    Examples: 
-      | OrderID    | SiteId |
-      | 5470000421 |   5649 |
-
-  @allocation @boxed @idt @boxed_allocation_idt_validate_stock_availability @complete
-  Scenario Outline: Validating availability of stock for allocation
-    Given the OrderID "<OrderID>" of type "IDT" should be in "Released" status at site "<SiteId>"
+  @allocation @boxed @idt @boxed_allocation_idt_validate_stock_availability @complete @ds
+  Scenario: Validating availability of stock for allocation
+    Given the OrderID of type "IDT" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-    Examples: 
-      | OrderID    | SiteId |
-      | 5470000521 |   5649 |
-
-  @boxed @allocation @idt @allocation_boxed_idt_auto_allocation_while_qty_on_hand @onhold
-  Scenario Outline: Validate  whether stocks are automatically allocated to orders -Auto Allocation
-    Given the order "<Order>" is of type "TRANSFER" and it is in "Released" status
+  @boxed @allocation @idt @allocation_boxed_idt_auto_allocation_while_qty_on_hand @onhold @ds
+  Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
+    Given the order is of type "TRANSFER" and it is in "Released" status
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
-
-    Examples: 
-      | Order      |
-      | 6600013018 |

@@ -26,10 +26,10 @@ public class MoveTaskListGenerationStepDefs {
 		this.moveTaskListGenerationPage = moveTaskListGenerationPage;
 	}
 
-	@When("^I enter OrderID as \"([^\"]*)\"$")
-	public void i_enter_OrderID_as(String orderid) throws Throwable {
+	@When("^I enter OrderID$")
+	public void i_enter_OrderID_as() throws Throwable {
 		jDAFooter.clickNextButton();
-		moveTaskListGenerationPage.enterOrderId(orderid);
+		moveTaskListGenerationPage.enterOrderId(context.getOrderId());
 	}
 
 	@Then("^I create the list Id$")

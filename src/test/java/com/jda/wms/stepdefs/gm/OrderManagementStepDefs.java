@@ -27,13 +27,13 @@ public class OrderManagementStepDefs {
 		this.context = context;
 	}
 
-	@When("^I search the \"([^\"]*)\"$")
-	public void i_search_the(String orderId) throws Throwable {
+	@When("^I search the order$")
+	public void i_search_the_order() throws Throwable {
 		Thread.sleep(3000);
 		orderManagementPage.clickOrderManagement();
 		jdaFooter.clickNextButton();
 		jdaFooter.clickQueryButton();
-		orderManagementPage.enterOrderId(orderId);
+		orderManagementPage.enterOrderId(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 	}
 
