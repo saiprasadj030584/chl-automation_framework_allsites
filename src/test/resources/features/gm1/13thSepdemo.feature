@@ -30,3 +30,9 @@ Feature: Dock Scheduling, Receiving , Putaway
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
+  @boxed_putaway_fsv_po_validate_putaway_location @fsv_po @complete @putaway @boxed @ds @13thSep_demo3
+  Scenario: Validate Putaway Location
+    Given the FSV PO of type "Boxed" should be received at location "REC001" and site id
+    When I choose normal putaway
+    And I proceed without entering location
+    Then the error message should be displayed as cannot find putaway location

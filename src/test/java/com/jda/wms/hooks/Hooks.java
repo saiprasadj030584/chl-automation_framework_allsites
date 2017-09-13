@@ -176,9 +176,7 @@ public class Hooks {
 
 	@After
 	public void closeDBConnection() throws SQLException {
-		System.out.println("At close db connection");
 		if (!context.getConnection().equals(null)) {
-			System.out.println("inside if");
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}

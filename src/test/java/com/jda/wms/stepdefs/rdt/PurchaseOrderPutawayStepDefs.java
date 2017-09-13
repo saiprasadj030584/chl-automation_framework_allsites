@@ -137,19 +137,19 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 				if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
 					failureList1.add("Error message:Cannot find putaway location not displayed as expected for pallet"
 							+ context.getPalletIDList().get(i - 1));
-				} else {
-					i_enter_urn_id_in_putaway();
-					if (null == context.getLockCode()) {
-						the_tag_details_for_putaway_should_be_displayed();
-						jdaFooter.PressEnter();
-						if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
-							failureList1
-									.add("Error message:Cannot find putaway location not displayed as expected for UPI"
-											+ context.getUpiId());
-						}
-					}
-				}
-
+				} 
+//				else {
+//					i_enter_urn_id_in_putaway();
+//					if (null == context.getLockCode()) {
+//						the_tag_details_for_putaway_should_be_displayed();
+//						jdaFooter.PressEnter();
+//						if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+//							failureList1
+//									.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+//											+ context.getUpiId());
+//						}
+//					}
+//				}
 				jdaFooter.PressEnter();
 				purchaseOrderPutawayPage.navigateToBackScreen();
 			}
@@ -396,9 +396,8 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	@When("^the error message should be displayed as cannot find putaway location$")
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
-		Assert.assertTrue("Error message:Cannot find putaway location not displayed as expected",
-				purchaseOrderPutawayPage.isLocationErrorDisplayed());
-	jdaFooter.PressEnter();
+		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(context.getFailureList().toArray()) + "].", context.getFailureList().isEmpty());
 	}
 
 	@When("^I proceed without entering quantity$")
@@ -567,8 +566,8 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 	@When("^the tag details for putaway should be displayed$")
 	public void the_tag_details_for_putaway_should_be_displayed() throws FindFailed, InterruptedException {
 		ArrayList failureList = new ArrayList();
-		Assert.assertTrue("PutCmp page not displayed to enter To Location",
-				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
+//		Assert.assertTrue("PutCmp page not displayed to enter To Location",
+//				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 		verification.verifyData("From Location", context.getLocationID(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
 	context.setFromLocation(context.getLocationID());
