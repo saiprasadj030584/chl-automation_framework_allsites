@@ -41,7 +41,7 @@ public class SystemAllocationStepsDefs {
 	private final PreAdviceLineDB preAdviceLineDB;
 	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
-	private OrderHeaderStepsDefs orderHeaderStepsDefs;
+	private OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs;
 	private JDALoginStepDefs jDALoginStepDefs;
 	private SystemAllocationPage systemAllocationPage;
 	private OrderHeaderDB orderHeaderDB;
@@ -52,7 +52,7 @@ public class SystemAllocationStepsDefs {
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage, OrderHeaderStepsDefs orderHeaderStepsDefs,
+			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage, OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs,
 			JDALoginStepDefs jDALoginStepDefs, SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB,
 			OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
@@ -66,7 +66,7 @@ public class SystemAllocationStepsDefs {
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.jdaHomePage = jdaHomePage;
-		this.orderHeaderStepsDefs = orderHeaderStepsDefs;
+		this.orderHeaderMaintenanceStepsDefs = orderHeaderMaintenanceStepsDefs;
 		this.jDALoginStepDefs = jDALoginStepDefs;
 		this.systemAllocationPage = systemAllocationPage;
 		this.orderHeaderDB = orderHeaderDB;
