@@ -39,7 +39,7 @@ Feature: order allocation and picking
   Scenario: Validate keying wrong UPC
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
-    And I enter OrderID as "<OrderID>" for allocation
-    Then the order should be allocated for the orderID "<OrderID>"
+    And I enter OrderID for allocation
+    Then the status should be allocated for the orderID
     When I enter the invalid  UPC
     Then the error message should be displayed as invalid details

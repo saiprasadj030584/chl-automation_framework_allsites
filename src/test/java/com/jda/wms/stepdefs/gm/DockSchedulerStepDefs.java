@@ -179,16 +179,22 @@ public class DockSchedulerStepDefs {
 		String bookingID = Utilities.getFiveDigitRandomNumber();
 		String trailerNo = context.getTrailerNo();
 		context.setBookingID(bookingID);
+		System.out.println(context.getSiteId());
 		context.setCarrier("ALLPORT");
 		context.setServiceLevel("AIR");
+		System.out.println(context.getCarrier());
+		System.out.println(context.getServiceLevel());
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		if (context.getSiteId().equals("5469")) {
+		System.out.println(context.getSiteId().equals("5649"));
+		if (context.getSiteId().equals("5649")) {
+			System.out.println("in carrier");
 			dockSchedulerPage.enterCarrier(context.getCarrier());
 		}
 		dockSchedulerPage.pressTab();
-		if (context.getSiteId().equals("5469")) {
+		if (context.getSiteId().equals("5649")) {
+			System.out.println("in service");
 			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		}
 		dockSchedulerPage.pressTab();
@@ -200,39 +206,52 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
-		if (dockSchedulerPage.isBookingErrorExists()) {
-			jdaFooter.PressEnter();
-			jdaFooter.clickNextButton();
-			bookingID = Utilities.getFiveDigitRandomNumber();
-			jdaFooter.deleteExistingContent();
-			dockSchedulerPage.enterBookingId(bookingID);
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedPallets();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedCartons();
-			jdaFooter.PressEnter();
-		} else if (dockSchedulerPage.isNoDockErrorExists()) {
-			jdaFooter.PressEnter();
-			dockSchedulerPage.selectSlot();
-			jdaFooter.clickNextButton();
-			bookingID = Utilities.getFiveDigitRandomNumber();
-			jdaFooter.deleteExistingContent();
-			dockSchedulerPage.enterBookingId(bookingID);
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedPallets();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedCartons();
-			jdaFooter.PressEnter();
+		if (dockSchedulerPage.isNoDockErrorExists()) {
+			System.out.println("inside while - dock error");
+			while (dockSchedulerPage.isNoDockErrorExists()) {
+				System.out.println("inside while - dock error");
+		jdaFooter.PressEnter();
+		for (int k=0;k<3;k++){
+		dockSchedulerPage.clickLeftArrowSlide();
+		}
+		dockSchedulerPage.selectSlot();
+		jdaFooter.clickNextButton();
+//		bookingID = Utilities.getFiveDigitRandomNumber();
+		jdaFooter.deleteExistingContent();
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
+		}
+		}
+		else if(dockSchedulerPage.isBookingErrorExists())
+		{
+			System.out.println("inside if - booking error");
+		while (dockSchedulerPage.isBookingErrorExists()) {
+			System.out.println("inside while - booking error");
+		jdaFooter.PressEnter();
+		jdaFooter.clickNextButton();
+		bookingID = Utilities.getFiveDigitRandomNumber();
+		jdaFooter.deleteExistingContent();
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
+		} 
 		}
 	}
 

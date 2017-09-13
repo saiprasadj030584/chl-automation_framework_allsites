@@ -54,19 +54,6 @@ public class AllocationStepDefs {
 //				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 //				failureList.isEmpty());
 //	}
-
-	@When("^I enter OrderID for allocation$")
-	public void i_enter_OrderID_for_allocation() throws Throwable {
-		jDAFooter.clickNextButton();
-		allocationPage.enterOrderId(context.getOrderId());
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		jDAFooter.clickNextButton();
-		Thread.sleep(2000);
-		jDAFooter.clickDoneButton();
-		Thread.sleep(6000);
-		jDAFooter.clickDoneButton();
-	}
 	
 	@When("^I enter OrderID for clustering$")
 	public void i_enter_OrderID_for_clustering() throws Throwable {

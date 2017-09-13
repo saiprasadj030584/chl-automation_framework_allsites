@@ -100,8 +100,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertEquals("Status is not displayed as expected",status, orderHeaderPage.getStatus());
 	}
 	
-	@Then("^the order should be allocated$")
-	public void the_order_should_be_allocated() throws Throwable {
+	@Then("^the status should be allocated for the orderID$")
+	public void the_status_should_be_allocated_for_the_orderID() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 

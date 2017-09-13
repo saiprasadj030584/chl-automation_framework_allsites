@@ -343,7 +343,6 @@ public class DockSchedulerPage {
 	public void enterCarrier(String carrier) throws InterruptedException {
 		screen.type(carrier);
 		Thread.sleep(1000);
-
 	}
 
 	public void enterServiceLevel(String serviceLevel) throws InterruptedException {
@@ -377,5 +376,11 @@ public class DockSchedulerPage {
 			return true;
 		} else
 			return false;
+	}
+
+	public void clickLeftArrowSlide() throws FindFailed, InterruptedException {
+		screen.wait("images/DockScheduler/Schedule/LeftArrow.png", timeoutInSec);
+		screen.click("images/DockScheduler/Schedule/LeftArrow.png");
+		Thread.sleep(2000);
 	}
 }
