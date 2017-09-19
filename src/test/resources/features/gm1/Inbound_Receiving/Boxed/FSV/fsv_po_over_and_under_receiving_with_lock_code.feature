@@ -13,7 +13,7 @@ Feature: Purchase order receiving
     When I perform "Over Receiving" for all skus for the FSV purchase order at location "<Location>"
     Then the error message should be displayed as cannot over receipt failed
 
-  @boxed_inbound_receiving_fsv_po_over_receiving_with_lock_code @boxed @inbound_receiving @fsv_po @complete @ds @jenkins_check
+  @boxed_inbound_receiving_fsv_po_under_receiving_with_lock_code @boxed @inbound_receiving @fsv_po @complete @ds @jenkins_check
   Scenario: Validate Under receiving with lock code
      Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO with "<Lockcode>" should have sku, quantity due details

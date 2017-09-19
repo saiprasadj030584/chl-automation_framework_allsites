@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_putaway_fsv_po_validate_putaway_location" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_putaway_fsv_po_validate_putaway_process" })
 
 public class AllTest {
 }

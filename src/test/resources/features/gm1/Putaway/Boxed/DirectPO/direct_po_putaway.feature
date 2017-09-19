@@ -4,7 +4,7 @@ Feature: Purchase order Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @boxed_putaway_direct_po_validate_putaway @direct_po @complete @putaway @boxed @ds
+  @boxed_putaway_direct_po_validate_putaway_process @direct_po @complete @putaway @boxed @ds
   Scenario: Validate Putaway Process
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001"
     When I do normal putaway for all tags received
@@ -29,7 +29,7 @@ Feature: Purchase order Putaway
     And I proceed without entering quantity
     Then the error message should be displayed as invalid quantity exception
 
-  @boxed @putaway @direct_po @boxed_putaway_direct_po_putaway_validate_mezz_shelving_putaway @complete @ds
+  @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_mezz/shelving_putaway @complete @ds
   Scenario: Validate Mezz/Shelving putaway
     Given the PO of type "Boxed" with UPI containing "MEZZ" sku and ASN should be normal received at "REC002"
     When I choose existing relocate
@@ -37,7 +37,7 @@ Feature: Purchase order Putaway
     When I perform normal putaway after relocation
     Then the goods receipt should be generated for putaway stock in inventory transaction
 
-  @boxed @putaway @direct_po @boxed_putaway_direct_po_sampling_qa_build @complete @ds
+  @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_sampling/qa_pallet_build @complete @ds
   Scenario: Validate Sampling/QA Pallet build
     Given the PO of type "Boxed" with UPI and ASN should be received at "<Location>" for qa build
     When I choose existing relocate
@@ -45,7 +45,7 @@ Feature: Purchase order Putaway
     When I perform normal putaway after relocation
     Then the goods receipt should be generated for putaway stock in inventory transaction
 
-  @boxed_direct_po_putaway_location_full @boxed @direct_po @putaway @compete @ds
+  @boxed_putaway_direct_po_validate_putaway_logic_for_receiving_singles_when_locations_full @boxed @direct_po @putaway @compete @ds
   Scenario: Validate Putaway Logic for receiving singles when locations full
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001"
     When I choose existing relocate
@@ -54,7 +54,7 @@ Feature: Purchase order Putaway
     And I proceed by entering less quantity
     Then the ITL should be generated for putaway relocated stock in inventory transaction
 
-  @boxed_direct_po_putaway_location_override @boxed @direct_po @putaway @compete @ds
+  @boxed_putaway_direct_po_validate_override_putaway_location @boxed @direct_po @putaway @compete @ds
   Scenario: Validate Override Putaway Location
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001"
     When I choose normal putaway

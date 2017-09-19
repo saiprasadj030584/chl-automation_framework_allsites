@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @boxed_inbound_receiving_direct_po_over_receiving_without_lock_code @complete @boxed @inbound_receiving @complete @ds
+  @boxed_inbound_receiving_direct_po_over_receiving @complete @boxed @inbound_receiving @complete @ds
   Scenario: Validate Over receiving without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Purchase order receiving
     When I perform "Over Receiving" for all skus at location "REC001"
     Then the error message should be displayed as cannot over receipt
 
-  @boxed_inbound_receiving_direct_po_under_receiving_without_lock_code @complete @boxed @inbound_receiving @complete @ds
+  @boxed_inbound_receiving_direct_po_under_receiving @complete @boxed @inbound_receiving @complete @ds
   Scenario: Validate Under receiving without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

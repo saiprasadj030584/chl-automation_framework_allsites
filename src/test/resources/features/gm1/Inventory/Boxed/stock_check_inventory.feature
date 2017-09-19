@@ -3,7 +3,7 @@ Feature: Report generation
   As a warehouse user
   I want to validate stock in inventory
 
-  @boxed_inventory_inventory_stock_check_low_and_empty_volume @boxed @inventory @complete @ds
+  @boxed_inventory_inventory_validate_the_stock_available_in_any_location_check_empty_and_low_volume_slots @boxed @inventory @complete @ds
   Scenario: Validate the stock available in any location.Check Empty and Low Volume Slots
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
@@ -17,7 +17,7 @@ Feature: Report generation
     When I proceed to generate the stock check list
     Then I should see the created list
 
-  @boxed_inventory_inventory_stock_report_generation @boxed @inventory @complete @ds
+  @boxed_inventory_inventory_validate_whether_report_is_generated_based_on_stock_accuracy_by_location @boxed @inventory @complete @ds
   Scenario Outline: Validate whether report is generated based on Stock Accuracy by Location
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to report selection page

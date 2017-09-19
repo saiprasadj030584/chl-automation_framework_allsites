@@ -3,7 +3,7 @@ Feature: Inbound receiving IDT
   As a warehouse user
   I want to receive the returned articles
 
-  @boxed_receiving_idt_validate_receiving_with_lockcode @idt @receiving @boxed @complete @ds
+  @boxed_receiving_idt_validate_idt_receiving_process_with_lock_code @idt @receiving @boxed @complete @ds
   Scenario: Validate IDT receiving process with lock code
     Given the UPI and ASN should be in "Released" status for IDT
     And the UPI should have sku, quantity due details

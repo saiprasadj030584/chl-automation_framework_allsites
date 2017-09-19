@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @boxed_inbound_receiving_fsv_po_over_receive_without_lock_code @boxed @inbound_receiving @fsv_po @complete @ds
+  @boxed_inbound_receiving_fsv_po_over_receiving @boxed @inbound_receiving @fsv_po @complete @ds
   Scenario: Validate Over receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Purchase order receiving
     When I perform "Over Receiving" for all skus for the FSV purchase order at location "<Location>"
     Then the error message should be displayed as cannot over receipt failed
 
-  @boxed_inbound_receiving_fsv_po_under_receive_without_lock_code @boxed @inbound_receiving @fsv_po @complete @ds
+  @boxed_inbound_receiving_fsv_po_under_receiving @boxed @inbound_receiving @fsv_po @complete @ds
   Scenario: Valdiate Under receiving
    Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_receiving @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_fsv_receipt_process @complete @ds
   Scenario: Validate the FSV Receipt process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -24,7 +24,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_automatic_document_closure @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds
   Scenario: Validate automatic document closure PO
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -34,7 +34,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_automatic_document_closure_multiple_line_items @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_automatic_document_closure_po_multiple_line_items @complete @ds
   Scenario: Validate automatic document closure PO_multiple_line items
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -44,7 +44,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @complete @boxed_fsv_po_receiving_articles_with_different_putaway_group @ds
+  @boxed @fsv_po @receiving @complete @boxed_receiving_fsv_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds
   Scenario: Validate receiving process for boxed when two putaway group involved
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

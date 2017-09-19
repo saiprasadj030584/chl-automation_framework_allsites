@@ -3,7 +3,7 @@ Feature: Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_status_change @complete @ds
+  @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | Unlocked     | Inventory Unlock |
       
-      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_status_change @complete @ds
+      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -35,8 +35,8 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | UnLocked   | Locked       | Inventory Lock   |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_expiry_date_update @complete @ds
-  Scenario: Inventory update for expiry date change
+   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds
+  Scenario: Update Expiry date
     Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
     And I select the update type as "Expiry Date Update"
@@ -48,7 +48,7 @@ Feature: Inventory update
     Then the expiry date should be updated
 
   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds
-  Scenario Outline: Inventory update for origin change
+  Scenario Outline: Origin update
     Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
     And I select the update type as "Origin Update"
@@ -62,8 +62,8 @@ Feature: Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_condition_code_update @complete @ds
-  Scenario Outline: Inventory update for condition code change
+  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_condition_code @complete @ds
+  Scenario Outline: Update condition code
     Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
     And I select the update type as "Condition Code Update"
@@ -79,7 +79,7 @@ Feature: Inventory update
       | FIRST     | Black condition code |
 
    @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds
-  Scenario Outline: Inventory update for pallet type change
+  Scenario Outline: Pallet type update
     Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
     And I select the update type as "Pallet Type Update"
@@ -95,7 +95,7 @@ Feature: Inventory update
       | PALLET     | AIR          |
 
    @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_owner_update @hold
-  Scenario Outline: Inventory update for owner change
+  Scenario Outline: Owner update
     Given I have a tag in inventory with owner as "<Owner>"
     When I navigate to inventory update page
     And I select the update type as "Owner Update"
@@ -111,7 +111,7 @@ Feature: Inventory update
       | AOWN  | M+S         |
 
   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds
-  Scenario: Inventory update for packConfig
+  Scenario: Pack config update
     Given I have a sku in inventory with more than one pack config
     When I navigate to inventory update page
     And I select the update type as "Pack Configuration Update"
