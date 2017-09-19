@@ -716,8 +716,9 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
 		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterReferenceId(context.getPreAdviceId());
 		jDAFooter.clickExecuteButton();
-		String lockCode = inventoryTransactionDB.getLockCode(context.getUpiId(), "Inv Lock");
+		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
 		context.setLockCode(lockCode);
 		Assert.assertTrue("Lock code not displayed as expected",
 				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));

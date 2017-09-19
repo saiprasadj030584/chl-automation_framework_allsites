@@ -652,13 +652,13 @@ public class InventoryTransactionDB {
 		return rs.getString(1);
 	}
 
-	public String getLockCode(String upiId, String code) throws ClassNotFoundException, SQLException {
+	public String getLockCode(String preAdviceId, String code) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + upiId
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
 				+ "' and code = '" + code + "'");
 		rs.next();
 		return rs.getString(1);

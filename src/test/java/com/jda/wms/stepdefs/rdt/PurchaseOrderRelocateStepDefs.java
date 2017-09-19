@@ -124,6 +124,7 @@ public class PurchaseOrderRelocateStepDefs {
 			purchaseOrderRelocatePage.enterUPC(upc);
 			jdaFooter.PressEnter();
 			if (!purchaseOrderRelocatePage.isNoRelocationDisplayed()) {
+				System.out.println("Inside Loop");
 				Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
 				context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 				context.setFromLocation(context.getToLocation());
@@ -155,6 +156,7 @@ public class PurchaseOrderRelocateStepDefs {
 			jdaFooter.pressTab();
 			purchaseOrderRelocatePage.enterUPC(upc);
 			jdaFooter.PressEnter();
+			if (!purchaseOrderRelocatePage.isNoRelocationDisplayed()) {
 			Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
 			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 			context.setFromLocation(context.getToLocation());
@@ -166,6 +168,7 @@ public class PurchaseOrderRelocateStepDefs {
 			} else {
 			}
 			Assert.assertTrue("RelEnt page not displayed", purchaseOrderRelocatePage.isRelEntDisplayed());
+			}
 		}
 
 		hooks.logoutPutty();

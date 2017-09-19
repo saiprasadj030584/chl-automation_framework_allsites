@@ -89,7 +89,7 @@ public class ReportSelectionStepDefs {
 	
 	@Then("^the receiving progress report should be generated$")
 	public void the_receiving_progress_report_should_be_generated() throws Throwable {
-		reportSelectionPage.isReportGeneratedExist();
+		Assert.assertTrue("Report generation is not as expected", reportSelectionPage.isReportGeneratedExist());;
 		Thread.sleep(4000);
 		jDAFooter.clickDoneButton();
 	}

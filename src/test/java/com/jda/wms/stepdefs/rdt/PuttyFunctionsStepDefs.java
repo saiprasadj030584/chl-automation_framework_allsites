@@ -35,6 +35,10 @@ public class PuttyFunctionsStepDefs {
 		String port = configuration.getStringProperty("putty-gm-port");
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(2000);
+		
+		if (puttyFunctionsPage.isLoginFailureExists()){
+			puttyFunctionsPage.pressEnter();
+		}
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());
 		puttyFunctionsPage.enterJdaLogin(configuration.getStringProperty("username"),
 				configuration.getStringProperty("password"));

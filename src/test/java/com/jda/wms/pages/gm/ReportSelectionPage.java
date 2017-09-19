@@ -86,9 +86,11 @@ public class ReportSelectionPage {
 		Thread.sleep(2000);
 	}
 	
-	public void isReportGeneratedExist() throws InterruptedException, FindFailed {
-		Thread.sleep(3000);
-		screen.wait("images/ReportSelection/generatedreport.png", timeoutInSec);
+	public boolean isReportGeneratedExist() throws InterruptedException, FindFailed {
+		if (screen.exists("images/ReportGeneration/Report.png") != null) {
+			return true;
+		} else
+			return false;
     }
 	
 	public void chooseModularity(String dataType) throws InterruptedException {

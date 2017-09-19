@@ -1,5 +1,6 @@
 package com.jda.wms.stepdefs.rdt;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -12,12 +13,13 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.LocationDB;
+import com.jda.wms.db.gm.SkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPutawayPage;
-import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.pages.rdt.PurchaseOrderRelocatePage;
+import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.utils.DateUtils;
 
 import cucumber.api.java.en.Then;
@@ -37,12 +39,13 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 	private JDAFooter jdaFooter;
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private InventoryTransactionDB inventoryTransactionDB;
+	private SkuDB skuDB;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
-			InventoryTransactionDB inventoryTransactionDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage) {
+			InventoryTransactionDB inventoryTransactionDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage,SkuDB skuDB) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -54,6 +57,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 			this.purchaseOrderRelocatePage=purchaseOrderRelocatePage;
+			this.skuDB = skuDB;
 	}
 
 	@When("^I select normal putaway$")
@@ -542,7 +546,7 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 	}
 
 	@When("^the tag details for putaway should be displayed after relocation$")
-	public void the_tag_details_for_putaway_should_be_displayed_after_relocation() throws FindFailed, InterruptedException {
+	public void the_tag_details_for_putaway_should_be_displayed_after_relocation() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		ArrayList failureList = new ArrayList();
 		Assert.assertTrue("PutCmp page not displayed to enter To Location",
 				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
@@ -555,10 +559,16 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 		}
 		else
+		{if(context.getSKUType().equalsIgnoreCase("Hanging"))
 		{
-			context.setToLocation("REC003");
-			purchaseOrderPutawayPage.enterToLocation("REC003");
-		}
+			context.setToLocation(inventoryDB.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
+			}
+			else if(context.getSKUType().equalsIgnoreCase("Boxed"))
+			{
+			context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
+			}
+			jdaFooter.pressTab();
+			i_enter_to_location(context.getToLocation());}
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}

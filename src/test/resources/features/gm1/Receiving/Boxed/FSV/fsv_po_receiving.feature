@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_fsv_receipt_process @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_fsv_receipt_process @complete @ds @boxed_jenkins
   Scenario: Validate the FSV Receipt process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -24,7 +24,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds @boxed_jenkins
   Scenario: Validate automatic document closure PO
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

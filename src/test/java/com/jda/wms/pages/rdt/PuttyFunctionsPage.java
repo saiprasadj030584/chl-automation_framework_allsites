@@ -150,4 +150,11 @@ public class PuttyFunctionsPage {
 		screen.type(Key.F12);
 		Thread.sleep(2000);
 	}
+
+	public boolean isLoginFailureExists() {
+		if (screen.exists("images/Putty/LoginFailure.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

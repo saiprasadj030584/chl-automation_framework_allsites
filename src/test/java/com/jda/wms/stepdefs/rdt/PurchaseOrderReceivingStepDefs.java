@@ -1844,6 +1844,7 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			jdaFooter.PressEnter();
 			i_enter_the_loctn();
 			i_enter_the_quantity(quantity);
 			i_enter_the_newpallet(context.enterNewPallet().get(i - 1));

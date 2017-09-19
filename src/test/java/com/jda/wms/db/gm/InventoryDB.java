@@ -929,4 +929,26 @@ public class InventoryDB {
 		}
 		return totalQtyOnHand;
 	}
+	
+	public String getToLocationForPutaway(String skuType,String department) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getToLocationForPutawayBoxed(String skuType) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
