@@ -4,7 +4,7 @@ Feature: Dock Scheduling, Receiving , Putaway
   I want to receive and putaway the articles
   So that I can complete the purchase order
 
-  @boxed @putaway @fsv_po @boxed_putaway_fsv_po_validate_putaway_process1 @complete @13thSep_demo1
+  @boxed @putaway @fsv_po @boxed_putaway_fsv_po_validate_putaway_process1 @complete @22ndSep_demo1
   Scenario: Validate Putaway Process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due and qa details
