@@ -145,6 +145,9 @@ public class Context {
 	private String uniqueTag;
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
+	private String totQtyOnHand;
+	public static Connection connectionSQLDB = null;
+	private String childStartTime;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1251,5 +1254,29 @@ public class Context {
 
 	public void setUniqueTagInRunStatus(boolean uniqueTagInRunStatus) {
 		this.uniqueTagInRunStatus = uniqueTagInRunStatus;
+	}
+
+	public String getTotQtyOnHand() {
+		return totQtyOnHand;
+	}
+
+	public void setTotQtyOnHand(String totQtyOnHand) {
+		this.totQtyOnHand = totQtyOnHand;
+	}
+	
+	public Connection getSQLDBConnection() {
+		return connectionSQLDB;
+	}
+
+	public void setSQLDBConnection(Connection connectionSQLDB) {
+		this.connectionSQLDB = connectionSQLDB;
+	} 
+	
+	public void setChildStartTime(String childStartTime) {
+		this.childStartTime = childStartTime;
+	}
+	
+	public String getChildStartTime() {
+		return childStartTime;
 	}
 }

@@ -248,4 +248,10 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_move_task_query_page() throws Throwable {
 		jdaHomePage.navigateToMoveTaskQuery();
 	}
+	
+	@When("^I navigate to pack config linking screen$")
+	public void i_navigate_to_pack_config_linking_screen() throws Throwable {
+		jdaHomePage.navigateToPackConfigLinking();
+		Thread.sleep(6000);
+	}
 }

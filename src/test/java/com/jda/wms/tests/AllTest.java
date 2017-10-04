@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@22ndSep_demo1"
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line"
 				+ "" })
 
 public class AllTest {

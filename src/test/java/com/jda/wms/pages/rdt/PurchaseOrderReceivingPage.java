@@ -691,4 +691,19 @@ public class PurchaseOrderReceivingPage {
 		screen.type(skuId);
 		Thread.sleep(2000);
 }
+	
+	public void enterTrlId(String trlId) throws InterruptedException {
+		screen.type(trlId);
+		Thread.sleep(2000);
+	}
+	
+	public void enterHangingValue() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(2000);
+	}
+	
+	public void enterAsn(String asn) throws InterruptedException {
+		screen.type(asn);
+		Thread.sleep(2000);
+	}
 }

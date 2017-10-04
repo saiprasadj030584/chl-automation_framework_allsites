@@ -325,4 +325,15 @@ public class OrderHeaderDB {
 		context.getConnection().commit();
 		rs.next();
 	}
+	
+	public String getStockModularity(String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select user_def_type_8 from order_header where order_id='" + orderId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_8 from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

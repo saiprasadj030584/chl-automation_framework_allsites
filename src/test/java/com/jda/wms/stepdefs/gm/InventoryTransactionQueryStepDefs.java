@@ -1001,4 +1001,33 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected for putaway. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Then("^the goods receipt should be generated for putaway stock after relocation in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_putaway_stock_after_relocation_in_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
 }

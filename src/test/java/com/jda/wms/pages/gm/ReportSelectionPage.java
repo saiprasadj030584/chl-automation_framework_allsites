@@ -97,4 +97,18 @@ public class ReportSelectionPage {
 		screen.type(dataType);
 		Thread.sleep(2000);
 	}
+	
+	public void clickPreReceivingUpcFomResult() throws FindFailed, InterruptedException {
+		screen.wait("images/ReportGeneration/PreReceivingUpcDetails.png", timeoutInSec);
+		screen.click("images/ReportGeneration/PreReceivingUpcDetails.png");
+		Thread.sleep(3000);
+	}
+	
+	public boolean isReportDisplayedForPreReceivingUpc() throws InterruptedException {
+		Thread.sleep(11000);
+		if (screen.exists("images/ReportGeneration/ReportPreReceivingUpc.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 }

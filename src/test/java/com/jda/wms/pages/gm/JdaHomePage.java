@@ -671,4 +671,14 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(1000);
 	}
 	
+	public void navigateToPackConfigLinking() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pack configuration Linking screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
+	
 }

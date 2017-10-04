@@ -1,6 +1,5 @@
 package com.jda.wms.stepdefs.gm;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,6 +7,7 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.DeliveryDB;
 import com.jda.wms.db.gm.UPIReceiptHeaderDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
@@ -24,16 +24,18 @@ public class UPIReceiptHeaderStepDefs {
 	private Verification verification;
 	private UpiReceiptHeaderPage upiReceiptHeaderPage;
 	private UPIReceiptLineDB uPIReceiptLineDB;
+	private GetTcData getTcData;
 
 	@Inject
 	public UPIReceiptHeaderStepDefs(Context context, UPIReceiptHeaderDB upiReceiptHeaderDB, DeliveryDB deliveryDB,
-			Verification verification, UpiReceiptHeaderPage upiReceiptHeaderPage, UPIReceiptLineDB uPIReceiptLineDB) {
+			Verification verification, UpiReceiptHeaderPage upiReceiptHeaderPage, UPIReceiptLineDB uPIReceiptLineDB,GetTcData getTcData) {
 		this.context = context;
 		this.upiReceiptHeaderDB = upiReceiptHeaderDB;
 		this.deliveryDB = deliveryDB;
 		this.verification = verification;
 		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
 		this.uPIReceiptLineDB = uPIReceiptLineDB;
+		this.getTcData = getTcData;
 	}
 
 	@Given("^ASN to be linked with upi header$")
@@ -86,5 +88,26 @@ public class UPIReceiptHeaderStepDefs {
 		Assert.assertTrue(
 				"UPI , ASN statuss not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
+	}
+
+	@Given("^the UPI and ASN of type \"([^\"]*)\" should be in \"([^\"]*)\" status for IDT$")
+	public void the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(String datatype, String status) throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		context.setSKUType(datatype);
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		String ShippingType = "ZIDC";
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		verification.verifyData("Shipping Type", ShippingType, upiReceiptHeaderDB.getShippingType(upiId), failureList);
+
+		int numLines = Integer.parseInt(upiReceiptHeaderDB.getNumberOfLines(upiId));
+		Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),
+				String.valueOf(numLines));
+		context.setNoOfLines(numLines);
+		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 }

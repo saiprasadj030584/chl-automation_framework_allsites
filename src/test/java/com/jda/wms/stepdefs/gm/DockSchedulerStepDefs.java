@@ -26,10 +26,11 @@ public class DockSchedulerStepDefs {
 	private TrailerMaintenanceStepDefs trailerMaintenanceStepDefs;
 	private JDAHomeStepDefs jDAHomeStepDefs;
 	private DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs;
-	private DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private GetTcData getTcData;
+	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
+	private UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs;
 
 	Screen screen = new Screen();
 
@@ -37,7 +38,6 @@ public class DockSchedulerStepDefs {
 	public DockSchedulerStepDefs(DockSchedulerPage dockSchedulerPage, JDAFooter jdaFooter, JdaHomePage jdaHomePage,
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
-			DockScehdulerBookingStepDefs dockScehdulerBookingStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData) {
 
@@ -49,7 +49,6 @@ public class DockSchedulerStepDefs {
 		this.trailerMaintenanceStepDefs = trailerMaintenanceStepDefs;
 		this.jDAHomeStepDefs = jDAHomeStepDefs;
 		this.dockSchedulerBookingStepDefs = dockSchedulerBookingStepDefs;
-		this.dockScehdulerBookingStepDefs = dockScehdulerBookingStepDefs;
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.getTcData = getTcData;
@@ -304,9 +303,9 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking with the PO, UPI, ASN of type \"([^\"]*)\" at site$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String type)
 			throws Throwable {
-		// String preAdviceId = getTcData.getPo();
-		// String upiId = getTcData.getUpi();
-		// String asnId = getTcData.getAsn();
+		 String preAdviceId = getTcData.getPo();
+		 String upiId = getTcData.getUpi();
+		 String asnId = getTcData.getAsn();
 		String site = context.getSiteId();
 		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
@@ -475,5 +474,23 @@ public class DockSchedulerStepDefs {
 
 		context.setSKUType(type);
 		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status("Released");
+	}
+	
+	@Given("^I have done the dock scheduler booking with the UPI, ASN of type \"([^\"]*)\" at site for IDT$")
+	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_idt(String type) throws Throwable {
+		String site = context.getSiteId();
+		context.setSiteId(site);
+		context.setSKUType(type);
+		upiReceiptHeaderStepDefs.the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(type, "Released");
+		upiReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();
+		upiReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
+		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
+
+		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
+		i_create_new_dock_booking_at_site();
+		i_select_the_booking_type_and_ASN();
+		i_select_the_slot();
+		i_create_a_booking_for_the_asn();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
 }

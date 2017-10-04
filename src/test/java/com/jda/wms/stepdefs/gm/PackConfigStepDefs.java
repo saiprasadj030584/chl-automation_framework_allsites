@@ -10,10 +10,13 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.PreAdviceLineDB;
 import com.jda.wms.db.gm.SkuDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
+import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.PackConfigMaintenancePage;
 import com.jda.wms.pages.gm.PreAdviceLineMaintenancePage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -33,12 +36,14 @@ public class PackConfigStepDefs {
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private PreAdviceLineMaintenancePage preAdviceLineMaintenancePage;
 	private JDAFooter jdaFooter;
+	private PackConfigMaintenancePage packConfigMaintenancePage;
+	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 
 	@Inject
 	public PackConfigStepDefs(Context context, Verification verification, PreAdviceLineDB preAdviceLineDB,
 			JdaHomePage jdaHomePage, UPIReceiptLineDB upiReceiptLineDB, SkuDB skuDB, JDALoginStepDefs jdaLoginStepDefs,
 			JDAHomeStepDefs jdaHomeStepDefs, PreAdviceLineMaintenancePage preAdviceLineMaintenancePage,
-			JDAFooter jdaFooter) {
+			JDAFooter jdaFooter,PackConfigMaintenancePage packConfigMaintenancePage,InventoryTransactionQueryPage inventoryTransactionQueryPage) {
 		this.context = context;
 		this.jdaHomePage = jdaHomePage;
 		this.verification = verification;
@@ -49,6 +54,8 @@ public class PackConfigStepDefs {
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.preAdviceLineMaintenancePage = preAdviceLineMaintenancePage;
 		this.jdaFooter = jdaFooter;
+		this.packConfigMaintenancePage=packConfigMaintenancePage;
+		this.inventoryTransactionQueryPage=inventoryTransactionQueryPage;
 	}
 
 	@Given("^the SKU \"([^\"]*)\" is loaded in warehouse$")
@@ -58,19 +65,50 @@ public class PackConfigStepDefs {
 		jdaHomePage.navigateToPackConfigPage();
 	}
 
-	@When("^I create config with TagVolume  \"([^\"]*)\" and TrackingLevel(\\d+)  \"([^\"]*)\"$")
-	public void i_create_config_with_TagVolume_and_TrackingLevel(String arg1, int arg2, String arg3) throws Throwable {
-
+	@When("^I create config with TagVolume \"([^\"]*)\" and TrackingLevel \"([^\"]*)\"$")
+	public void i_create_config_with_TagVolume_and_TrackingLevel(String arg1,String arg2) throws Throwable {
+		String sku=context.getSkuId();
+//		 int i = 0;
+//	        while (sku.charAt(i) == '0')
+//	            i++;
+//	 
+//	        // Convert str into StringBuffer as Strings
+//	        // are immutable.
+//	        StringBuffer sb = new StringBuffer(sku);
+//	 
+//	        // The  StringBuffer replace function removes
+//	        // i characters from given index (0 here)
+//	        sb.replace(0, i, "");
+	 
+	        String packConfig=Utilities.getFiveDigitRandomNumber()+"EA";
+	        context.setPackConfigID(packConfig);
+	        jdaHomePage.navigateToPackConfigMaintenance();
+	        jdaFooter.clickAddButton();
+	        packConfigMaintenancePage.enterPackConfigId(context.getPackConfigID());
+	        
+	        packConfigMaintenancePage.enterTagVolume(arg1);
+	        packConfigMaintenancePage.clickTrackingLevelsTab();
+	        packConfigMaintenancePage.enterTrackingLevel(arg2);
+	        packConfigMaintenancePage.clickRDTTab();
+	        packConfigMaintenancePage.clickRDTDisplayLevel1();
+	        jdaFooter.clickExecuteButton();
+	        jdaFooter.PressEnter();
+	        	
+	        }
+	
+	@Then("^I delete the pack config$")
+	public void i_delete_the_pack_config() throws Throwable {
+		
+		jdaHomePage.navigateToPackConfigMaintenance();
+        jdaFooter.clickQueryButton();
+        packConfigMaintenancePage.enterPackConfigId(context.getPackConfigID());
+        jdaFooter.clickExecuteButton();
+        jdaFooter.clickDeleteButton();
+        jdaFooter.PressEnter();
+        jdaFooter.clickQueryButton();
+        packConfigMaintenancePage.enterPackConfigId(context.getPackConfigID());
+        jdaFooter.clickExecuteButton();
+        Assert.assertTrue("Records Available-Deletion Failed" ,inventoryTransactionQueryPage.isNoRecordsExists());
+        
 	}
-
-	@Then("^I link SKU \"([^\"]*)\" with configId in Pack Config Linking$")
-	public void i_link_SKU_with_configId_in_Pack_Config_Linking(String arg1) throws Throwable {
-
-	}
-
-	@Then("^Pack Config should be displayed for SKU in Pack Config Setting$")
-	public void pack_Config_should_be_displayed_for_SKU_in_Pack_Config_Setting() throws Throwable {
-
-	}
-
 }

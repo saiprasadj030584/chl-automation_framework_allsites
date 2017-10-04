@@ -951,4 +951,36 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList getLocationsForSku(String skuId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select location_id from inventory where sku_id='"
+				+ skuId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='"
+				+ skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		System.out.println("Col"+columns);
+		while(rs.next()) {
+			System.out.println(rs.getString(columns));
+			inventoryList.add((rs.getString(columns)));
+		}
+		return inventoryList;
+	}
+	
+	public String getQtyForSkuInLocation(String skuId,String location) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select qty_on_hand from inventory where sku_id='"+skuId+"' and location_id='"+location+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

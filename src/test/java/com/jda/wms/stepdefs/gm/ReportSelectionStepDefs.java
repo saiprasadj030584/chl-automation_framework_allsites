@@ -93,4 +93,23 @@ public class ReportSelectionStepDefs {
 		Thread.sleep(4000);
 		jDAFooter.clickDoneButton();
 	}
+	
+	@When("^I select print to screen and I search for the pre receiving$")
+	public void i_select_print_to_screen_and_I_search_for_the_pre_receiving() throws Throwable {
+		reportSelectionPage.selectPrintToScreen();
+		jDAFooter.clickNextButton();
+		reportSelectionPage.enterStock("M&S");
+		jDAFooter.pressTab();
+		reportSelectionPage.enterStock("PRE-RECEIVING");
+		jDAFooter.clickNextButton();
+		reportSelectionPage.clickPreReceivingUpcFomResult();
+		jDAFooter.clickNextButton();
+	}
+	
+	@Then("^the report should be generated for pre receiving upc in inventory")
+	public void the_report_should_be_generated_for_pre_receiving_upc__in_inventory() throws Throwable {
+		Assert.assertTrue("Report not displayed as expected for pre receiving upc in Inventory",
+				reportSelectionPage.isReportDisplayedForPreReceivingUpc());
+		jDAFooter.clickDoneButton();
+	}
 }

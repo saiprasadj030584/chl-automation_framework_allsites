@@ -1,9 +1,9 @@
 package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.sikuli.script.Screen;
-import org.sikuli.script.Key;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -14,6 +14,8 @@ import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.Verification;
+
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class DockSchedulerBookingStepDefs {
@@ -90,4 +92,6 @@ public class DockSchedulerBookingStepDefs {
 		dockSchedulerPage.enterBookingId(context.getBookingID());
 		jdaFooter.PressEnter();
 	}
+	
+	
 }

@@ -236,5 +236,29 @@ public class SkuDB {
 		}
 
 	}
+	
+	public String getSKU(String skuType) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from sku where user_def_type_8='" + skuType + "' and new_product='N'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public boolean isSkuExistsForPackConfig(String skuId,String packConfig) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
+
+}
 
 }
