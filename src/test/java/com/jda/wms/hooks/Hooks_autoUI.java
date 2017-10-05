@@ -57,6 +57,9 @@ public class Hooks_autoUI {
 	public void setup(Scenario scenario) throws ClassNotFoundException, IOException, SQLException {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
+		System.out.println("PREQ_ID "+context.getParentRequestId());
+		System.out.println("Site ID from sys prop "+System.getProperty(SITEID));
+		insertSiteID();
 		getSiteID();
 		insertDetails(scenario.getName());
 	}
@@ -183,7 +186,6 @@ public class Hooks_autoUI {
 				}
 
 				insertReqID();
-				insertSiteID();
 				String projName = configuration.getStringProperty("tbl-parentprojectname");
 				stmt = context.getSQLDBConnection().createStatement();
 				String query = "SELECT top 1 (P_REQ_ID) FROM [dbo].[NPS_AUTO_UI_RUN_REQUEST] where Project_Name = '"
