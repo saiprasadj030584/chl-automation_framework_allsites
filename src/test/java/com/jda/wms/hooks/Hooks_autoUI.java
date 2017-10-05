@@ -58,7 +58,7 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
-		System.out.println("Site ID from sys prop "+System.getProperty(SITEID));
+		System.out.println("Site ID from sys prop "+System.getProperty("SITEID"));
 		insertSiteID();
 		getSiteID();
 		insertDetails(scenario.getName());
