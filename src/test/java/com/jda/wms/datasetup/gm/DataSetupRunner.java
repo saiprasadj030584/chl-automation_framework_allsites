@@ -94,6 +94,8 @@ public class DataSetupRunner {
 		boolean UniqueTagInTestData = false;
 		try {
 			npsDataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "'");
