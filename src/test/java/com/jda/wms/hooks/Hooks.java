@@ -89,13 +89,11 @@ public class Hooks {
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 
 		// dataSetupRunner.getTagListFromAutoDb();
-
 		dataSetupRunner.getParentRequestIdFromDB();
-
 		dataSetupRunner.getJdaSiteIdFromDB();
-
-		dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-
+		if (!(scenario.getName().contains("Triggering automation email"))){
+			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+		}
 	}
 
 	// @Before
