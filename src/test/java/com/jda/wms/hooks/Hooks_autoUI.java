@@ -211,8 +211,8 @@ public class Hooks_autoUI {
 
 	private void insertSiteID() {
 		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty(SITEID)+"')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty(SITEID)+"')";
+			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')");
+			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')";
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
 		} catch (Exception exception) {
