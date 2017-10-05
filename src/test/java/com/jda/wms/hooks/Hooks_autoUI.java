@@ -44,24 +44,27 @@ public class Hooks_autoUI {
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
 	public static int fail = 0;
+	private Hooks hooks;
 
 	@Inject
-	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration) {
+	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration,Hooks hooks) {
 		this.webDriver = webDriver;
 		this.context = context;
 		this.configuration = configuration;
-
+		this.hooks = hooks;
 	}
 
 	@Before("~@Email")
-	public void setup(Scenario scenario) throws ClassNotFoundException, IOException, SQLException {
+	public void setup(Scenario scenario) throws Exception {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
+//		System.setProperty("SITEID", "5649");
 		System.out.println("Site ID from sys prop "+System.getProperty("SITEID"));
 		insertSiteID();
 		getSiteID();
 		insertDetails(scenario.getName());
+		hooks.iniatateDataSetup(scenario);
 	}
 
 	private void getSiteID() throws ClassNotFoundException {
@@ -71,6 +74,7 @@ public class Hooks_autoUI {
 				}
 				Statement stmt = null;
 				stmt = context.getSQLDBConnection().createStatement();
+				System.out.println("SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'");
 				String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'";
 				ResultSet rs = stmt.executeQuery(query);
 
