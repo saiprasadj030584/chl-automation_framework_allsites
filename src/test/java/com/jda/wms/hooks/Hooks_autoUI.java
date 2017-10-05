@@ -75,8 +75,7 @@ public class Hooks_autoUI {
 				ResultSet rs = stmt.executeQuery(query);
 
 				while (rs.next()) {
-					PRQID = rs.getString("P_REQ_ID");
-					System.setProperty("ID", PRQID);
+					context.setSiteId(rs.getString("SITE_ID"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
