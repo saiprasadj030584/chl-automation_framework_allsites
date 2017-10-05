@@ -89,9 +89,9 @@ public class Hooks {
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 
 		// dataSetupRunner.getTagListFromAutoDb();
-//		dataSetupRunner.getParentRequestIdFromDB();
-//		dataSetupRunner.getJdaSiteIdFromDB();
-		if (!(scenario.getName().contains("Triggering automation email"))){
+		// dataSetupRunner.getParentRequestIdFromDB();
+		// dataSetupRunner.getJdaSiteIdFromDB();
+		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
 	}
@@ -105,7 +105,7 @@ public class Hooks {
 
 	}
 
-//	@After()
+	// @After()
 	public void tearDown(Scenario scenario) {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
@@ -115,7 +115,7 @@ public class Hooks {
 		// clearing down webdriver object
 		if (webDriver != null) {
 			System.out.println("WEBDRIVER CLOSE");
-//			webDriver.close();
+			// webDriver.close();
 			webDriver.quit();
 		}
 	}
