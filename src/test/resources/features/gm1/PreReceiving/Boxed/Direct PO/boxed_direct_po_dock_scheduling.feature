@@ -95,7 +95,7 @@ Feature: Dock Scheduling
     When I update the compliance flag in database
     Then the compliance details should be updated
 
-  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds
+  @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
   Scenario: Assign dock door for each trailer to unload it
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
