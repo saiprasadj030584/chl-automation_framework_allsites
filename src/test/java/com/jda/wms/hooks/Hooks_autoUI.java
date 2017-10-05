@@ -347,6 +347,7 @@ public class Hooks_autoUI {
 			FileOutputStream outputStream = new FileOutputStream(fileName);
 			outputStream.write(buffer);
 			outputStream.close();
+			context.setParentRequestId(parentReqId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
