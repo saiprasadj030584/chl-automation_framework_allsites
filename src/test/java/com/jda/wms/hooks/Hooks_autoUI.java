@@ -38,6 +38,7 @@ public class Hooks_autoUI {
 	private final WebDriver webDriver;
 	private final Configuration configuration;
 	public static String PRQID = System.getProperty("ID");
+	public static String SITEID = System.getProperty("SITEID");
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -56,7 +57,27 @@ public class Hooks_autoUI {
 	public void setup(Scenario scenario) throws ClassNotFoundException, IOException, SQLException {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
+		getSiteID();
 		insertDetails(scenario.getName());
+	}
+
+	private void getSiteID() throws ClassNotFoundException {
+			try {
+				if (context.getSQLDBConnection() == null) {
+					sqlConnectOpen();
+				}
+				Statement stmt = null;
+				stmt = context.getSQLDBConnection().createStatement();
+				String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'";
+				ResultSet rs = stmt.executeQuery(query);
+
+				while (rs.next()) {
+					PRQID = rs.getString("P_REQ_ID");
+					System.setProperty("ID", PRQID);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
 
 	@After("~@Email")
@@ -162,6 +183,7 @@ public class Hooks_autoUI {
 				}
 
 				insertReqID();
+				insertSiteID();
 				String projName = configuration.getStringProperty("tbl-parentprojectname");
 				stmt = context.getSQLDBConnection().createStatement();
 				String query = "SELECT top 1 (P_REQ_ID) FROM [dbo].[NPS_AUTO_UI_RUN_REQUEST] where Project_Name = '"
@@ -184,6 +206,16 @@ public class Hooks_autoUI {
 		}
 
 	}
+
+	private void insertSiteID() {
+		try {
+			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty(SITEID)+"')");
+			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty(SITEID)+"')";
+			context.getSQLDBConnection().createStatement().execute(insertQuery);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}}
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {
