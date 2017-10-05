@@ -141,13 +141,13 @@ public class Context {
 	private int skuSize;
 	private HashMap<Integer,String> qtyOnHandList;
 	private String orderType;
-	private String parentRequestId;
+	private static String parentRequestId;
 	private String uniqueTag;
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
-	private String childStartTime;
+	private static String childStartTime;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
