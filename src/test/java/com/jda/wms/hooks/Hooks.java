@@ -77,7 +77,7 @@ public class Hooks {
 		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
 	}
 
-//	@Before
+	@Before
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		logger.debug(
@@ -87,7 +87,7 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-
+		context.setSiteId(System.getProperty("SITEID"));
 		// dataSetupRunner.getTagListFromAutoDb();
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
