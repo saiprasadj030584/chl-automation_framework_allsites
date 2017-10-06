@@ -88,10 +88,7 @@ public class EmailStepDefs {
 	@Then("^I trigger email to all the stakeholders$")
 	public void i_trigger_email_to_all_the_stakeholders() throws Throwable { 
 		hooks_autoUI.fileReadValueFromText();
-		System.out.println("EMAIL CHeck 1");
 		htmlCreator.htmlWriter(context.getParentRequestId());
-		System.out.println("EMAIL CHeck 2");
 		sendEmail.triggerEmailAutomatedTestResults();
-		System.out.println("EMAIL CHeck 3");
 	}
 }
