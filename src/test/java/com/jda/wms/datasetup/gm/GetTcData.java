@@ -135,9 +135,13 @@ public class GetTcData {
 
 			try {
 				dataBase.connectAutomationDB();
+				System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+				
 				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+						.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 
 				while (resultSet.next()) {
 					value = resultSet.getString("SKU_ID");
@@ -159,6 +163,8 @@ public class GetTcData {
 		if (!context.getUniqueTagInRunStatus()) {
 			dataBase.connectAutomationDB();
 			try {
+				System.out.println("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 				dataBase.dbConnection.createStatement()
 						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
 								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");

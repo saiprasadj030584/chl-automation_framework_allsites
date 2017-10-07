@@ -82,7 +82,7 @@ public class DataSetupRunner {
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
-		context.setUniqueTagInRunStatus(validateUniqueTagInRunStatus());
+//		context.setUniqueTagInRunStatus(validateUniqueTagInRunStatus());
 		// gettcdata.insertTcInRunStatus();
 		// Assert.assertTrue("UniqueTag Not Found in Run Status Table",
 		// context.getUniqueTagInRunStatus());
@@ -119,8 +119,12 @@ public class DataSetupRunner {
 		boolean UniqueTagInRunStatus = false;
 		try {
 			npsDataBase.connectAutomationDB();
+//			resultSet = npsDataBase.dbConnection.createStatement()
+//					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
+//							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
+//							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
 			resultSet = npsDataBase.dbConnection.createStatement()
-					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
+					.executeQuery("Select * from dbo.NPS_AUTO_UI_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
 			while (resultSet.next()) {
@@ -219,11 +223,11 @@ public class DataSetupRunner {
 				npsDataBase.connectAutomationDB();
 				String po = newPoId();
 				String sku = gettcdata.getSkuListFromTestData();
+				System.out.println("sku "+sku);
 				String po_header_qry = "Insert into INTERFACE_PRE_ADVICE_HEADER values ((Select max (Key)  from Interface_Pre_advice_header)+ 1,'M+S', '"
 						+ po + "' ,'PO','" + context.getSiteId()
 						+ "','M+S', (Select SUPPLIER_ID from supplier_sku where sku_id='" + sku
-						+ "' and ROWNUM = 1),'Released',null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,'SEA',null, null, (select product_group from sku where sku_id='"
-						+ gettcdata.getSkuList()
+						+ "' and ROWNUM = 1),'Released',null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,'SEA',null, null, (select product_group from sku where sku_id='"+ gettcdata.getSkuListFromTestData()
 						+ "' and ROWNUM = 1 ) ,null,null,'FSV', (select user_def_type_8 from sku where sku_id='" + sku
 						+ "' and ROWNUM = 1) ,null,null,null,'N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,null,null,'N',null,null,null,null,null,'Europe/London','Europe/London',null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(po_header_qry);
