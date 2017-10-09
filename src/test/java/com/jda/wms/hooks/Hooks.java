@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -88,8 +90,9 @@ public class Hooks {
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		context.setSiteId("5649");
-		context.setSiteId(System.getProperty("SITEID"));
-		
+		System.out.println("SITE ID "+context.getSiteId());
+//		context.setSiteId(System.getProperty("SITEID"));
+//		System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
