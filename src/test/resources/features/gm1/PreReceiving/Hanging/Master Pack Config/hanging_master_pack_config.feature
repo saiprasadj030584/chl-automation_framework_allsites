@@ -4,7 +4,7 @@ Feature: Master pack Config
   I want to perform certain 
   modifications on sku
 
-  @pre_receiving @master_pack_config @hanging @hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config @complete @ds
+  @jenkins_analysis @pre_receiving @master_pack_config @hanging @hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config @complete @ds @no_ds
   Scenario: Validate whether pack config can be created for SKUs and Amend existing pack config
     Given the sku of type "Hanging" and not new product
     And I create config with TagVolume "1" and TrackingLevel "EA"
