@@ -87,7 +87,7 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-//		context.setSiteId("5649");
+		context.setSiteId("5649");
 		context.setSiteId(System.getProperty("SITEID"));
 		
 		// dataSetupRunner.getTagListFromAutoDb();

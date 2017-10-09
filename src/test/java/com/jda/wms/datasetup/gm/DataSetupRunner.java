@@ -246,7 +246,7 @@ public class DataSetupRunner {
 				System.out.println(po_line_qry);
 				rinsert = stmt.executeQuery(po_line_qry);
 				context.getConnection().commit();
-				gettcdata.setSkuQtySupplier();
+//				gettcdata.setSkuQtySupplier();
 				validatePoDataSetup(po);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {

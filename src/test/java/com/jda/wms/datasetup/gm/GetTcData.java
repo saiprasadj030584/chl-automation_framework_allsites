@@ -160,20 +160,20 @@ public class GetTcData {
 	public void setPo(String value) {
 		context.setPreAdviceId(value);
 		System.out.println("inside Set po "+context.getPreAdviceId());
-		if (!context.getUniqueTagInRunStatus()) {
-			dataBase.connectAutomationDB();
-			try {
-				System.out.println("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-				dataBase.dbConnection.createStatement()
-						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-				dataBase.dbConnection.commit();
-				dataBase.disconnectAutomationDB();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (!context.getUniqueTagInRunStatus()) {
+//			dataBase.connectAutomationDB();
+//			try {
+//				System.out.println("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//				dataBase.dbConnection.createStatement()
+//						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET PO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//				dataBase.dbConnection.commit();
+//				dataBase.disconnectAutomationDB();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 	public void setSto(String value) {
