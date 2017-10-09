@@ -19,7 +19,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | Unlocked     | Inventory Unlock |
       
-      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @jenkins1 @no_ds
+      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page

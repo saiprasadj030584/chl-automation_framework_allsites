@@ -4,7 +4,7 @@ Feature: Dock Scheduling
   I want to schedult a dock door for FSV PO
   So that I can receive the same in the scheduled dock door
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @boxed_jenkins
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkins1
   Scenario: Validate whether PO can be assigned using the Pre advice ID
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
