@@ -195,37 +195,37 @@ public class GetTcData {
 
 	public void setPalletId(String value) {
 
-		if (!context.getUniqueTagInRunStatus()) {
-			dataBase.connectAutomationDB();
-			try {
-				dataBase.dbConnection.createStatement()
-						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET PALLET_ID= '" + value
-								+ "' WHERE PARENT_REQUEST_ID ='" + context.getParentRequestId() + "' AND UNIQUE_TAG ='"
-								+ context.getUniqueTag() + "'");
-				dataBase.dbConnection.commit();
-				dataBase.disconnectAutomationDB();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (!context.getUniqueTagInRunStatus()) {
+//			dataBase.connectAutomationDB();
+//			try {
+//				dataBase.dbConnection.createStatement()
+//						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET PALLET_ID= '" + value
+//								+ "' WHERE PARENT_REQUEST_ID ='" + context.getParentRequestId() + "' AND UNIQUE_TAG ='"
+//								+ context.getUniqueTag() + "'");
+//				dataBase.dbConnection.commit();
+//				dataBase.disconnectAutomationDB();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		context.setPalletID(value);
 
 	}
 
 	public void setAsnId(String value) {
 
-		if (!context.getUniqueTagInRunStatus()) {
-			dataBase.connectAutomationDB();
-			try {
-				dataBase.dbConnection.createStatement()
-						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET ASN_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-				dataBase.dbConnection.commit();
-				dataBase.disconnectAutomationDB();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (!context.getUniqueTagInRunStatus()) {
+//			dataBase.connectAutomationDB();
+//			try {
+//				dataBase.dbConnection.createStatement()
+//						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET ASN_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//				dataBase.dbConnection.commit();
+//				dataBase.disconnectAutomationDB();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		context.setAsnId(value);
 
 	}

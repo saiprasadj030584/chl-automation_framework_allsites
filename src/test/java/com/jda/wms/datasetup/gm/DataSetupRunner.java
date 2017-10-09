@@ -210,7 +210,7 @@ public class DataSetupRunner {
 				rinsert = stmt.executeQuery(po_line_qry);
 				context.getConnection().commit();
 				gettcdata.setPalletId(upi);
-				gettcdata.setSkuQtySupplier();
+//				gettcdata.setSkuQtySupplier();
 				validateAsnDataSetup(asn);
 				validatePoDataSetup(po);
 				validateUpiDataSetup(upi);
@@ -751,13 +751,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ASN in Delivery : " + asn);
 				HashMap<String, Boolean> presenceMap = validateAsnPresenceinJdaTable(asn);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + asn);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + asn,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + asn,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted ASN : " + asn);
 			}
 		}
@@ -775,13 +775,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Header : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoPresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted PO : " + po);
 			}
 		}
@@ -793,13 +793,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Line : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoLinePresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted PO : " + po);
 			}
 		}
@@ -817,13 +817,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted Pallet_Id in  UPI Header : " + upi);
 				HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(upi);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + upi);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted Pallet_Id : " + upi);
 			}
 		}
@@ -835,13 +835,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted Pallet_Id in UPI Line : " + upi);
 				HashMap<String, Boolean> presenceMap = validateUpiLinePresenceinJdaTable(upi);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + upi);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 				System.err.println("Found Inserted Pallet_Id : " + upi);
 				}
 		}
@@ -858,13 +858,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ODN in  Order Header : " + odn);
 				HashMap<String, Boolean> presenceMap = validateStoPresenceinJdaTable(odn);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + odn);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted Pallet_Id : " + odn);
 			}
 		}
@@ -876,13 +876,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ODN in Order Line : " + odn);
 				HashMap<String, Boolean> presenceMap = validateStoLinePresenceinJdaTable(odn);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + odn);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted Pallet_Id : " + odn);
 			}
 		}
