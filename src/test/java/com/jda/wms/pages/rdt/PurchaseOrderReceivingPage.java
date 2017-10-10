@@ -210,6 +210,8 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+	
+	
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
 		// screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
@@ -705,5 +707,12 @@ public class PurchaseOrderReceivingPage {
 	public void enterAsn(String asn) throws InterruptedException {
 		screen.type(asn);
 		Thread.sleep(2000);
+	}
+
+	public boolean isPutAwayGroupExists() {
+		if (screen.exists("images/Putty/Receiving/PutawayGroup.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

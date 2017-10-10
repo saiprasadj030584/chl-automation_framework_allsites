@@ -4,7 +4,7 @@ Feature: Purchase order Putaway Receipt correction
   I want to putaway the received articles and do the receipt correction for the putaway stock
   So that I can correct the inventory stock which updated through putaway
 
-  @boxed @direct_po @inbound_receiving @receipt_correction @boxed_direct_po_inbound_receiving_receipt_correction @complete @ds
+  @jenkins_analysis @boxed @direct_po @inbound_receiving @receipt_correction @boxed_direct_po_inbound_receiving_receipt_correction @complete @ds
   Scenario: Perform a receipt correction (stock adjustment function) after putaway of receipt
     Given the PO of type "Boxed" with UPI and ASN should be received at location "REC002"
     When I receive all skus for the purchase order at location "REC002"

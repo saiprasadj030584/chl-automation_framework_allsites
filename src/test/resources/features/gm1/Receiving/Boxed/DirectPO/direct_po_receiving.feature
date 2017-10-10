@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds
   Scenario: Validate receipting process without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -14,7 +14,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @boxed_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @boxed @complete @ds
+  @jenkins_analysis @boxed_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @boxed @complete @ds
   Scenario: Validate automatic document closure ASN
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -44,7 +44,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "Complete" while upi and asn status should "Complete"
 
-  @boxed @direct_po @receiving @complete @boxed_receiving_direct_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds 
+  @jenkins_analysis @boxed @direct_po @receiving @complete @boxed_receiving_direct_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds 
   Scenario: Receiving process in JDA WMS for Boxed type having different putaway group
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -4,7 +4,7 @@ Feature: Dock Scheduling
   I want to schedult a dock door for FSV PO
   So that I can receive the same in the scheduled dock door
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @boxed_jenkins
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkins1
   Scenario: Validate whether PO can be assigned using the Pre advice ID
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -99,7 +99,7 @@ Feature: Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @boxed @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds @boxed_jenkins
+  @jenkins_analysis @boxed @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds @boxed_jenkins
   Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO should be in "Released" status
     And the PO line should have sku, quantity due details
