@@ -154,6 +154,8 @@ public class PuttyFunctionsPage {
 	public boolean isLoginFailureExists() {
 		if (screen.exists("images/Putty/LoginFailure.png") != null)
 			return true;
+		else if (screen.exists("images/Putty/ReconnectError.png") != null)
+			return true;
 		else
 			return false;
 	}

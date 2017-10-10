@@ -1,5 +1,5 @@
 @purchase_order_receiving
-Feature: Purchase order receiving
+Feature: Inbound Receiving - Over & Under Receiving with Lock code
   As a warehouse user
   I want to receive the articles
   So that I can putaway the purchase order

@@ -983,6 +983,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
 		String urn = null;
+		if (purchaseOrderReceivingPage.isPutAwayGroupExists()){
 		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
 		if (rcvLockSplit[0].contains("QA")) {
 			urn = "QA" + Utilities.getFourDigitRandomNumber();
@@ -998,7 +999,7 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
-
+		}
 	}
 
 	@When("^I enter urn id \"([^\"]*)\"$")
@@ -1393,7 +1394,7 @@ public class PurchaseOrderReceivingStepDefs {
 			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
 				quantity = String.valueOf(context.getRcvQtyDue() - 5);
 			}
-			i_enter_urn_id();
+			i_enter_urn_id(context.getPalletID());
 			puttyFunctionsPage.pressEnter();
 			the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
@@ -1404,6 +1405,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_urn_id();
 				puttyFunctionsPage.pressEnter();
 			}
+			hooks.logoutPutty();
 		}
 	}
 

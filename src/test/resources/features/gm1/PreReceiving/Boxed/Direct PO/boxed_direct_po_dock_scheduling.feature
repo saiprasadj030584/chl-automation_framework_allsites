@@ -1,5 +1,5 @@
 @dock_scheduler
-Feature: Dock Scheduling
+Feature: Boxed - Direct PO - Dock Scheduling
   As a warehouse user
   I want to schedult a dock door for Direct PO
   So that I can receive the same in the scheduled dock door

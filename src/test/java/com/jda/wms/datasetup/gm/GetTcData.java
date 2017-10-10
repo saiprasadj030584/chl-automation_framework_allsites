@@ -22,21 +22,21 @@ public class GetTcData {
 		String value = null;
 		value = context.getPreAdviceId();
 		if (!context.getUniqueTagInRunStatus()) {
-			ResultSet resultSet = null;
-			try {
-				dataBase.connectAutomationDB();
-				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-
-				while (resultSet.next()) {
-					value = resultSet.getString("PO_ID");
-				}
-				dataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				System.out.println("AT exception");
-				exception.printStackTrace();
-			}
+//			ResultSet resultSet = null;
+//			try {
+//				dataBase.connectAutomationDB();
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//
+//				while (resultSet.next()) {
+//					value = resultSet.getString("PO_ID");
+//				}
+//				dataBase.disconnectAutomationDB();
+//			} catch (Exception exception) {
+//				System.out.println("AT exception");
+//				exception.printStackTrace();
+//			}
 		} 
 		return value;
 	}
@@ -45,23 +45,21 @@ public class GetTcData {
 
 		String value = null;
 		if (!context.getUniqueTagInRunStatus()) {
-
-			ResultSet resultSet = null;
-
-			try {
-				dataBase.connectAutomationDB();
-				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-
-				while (resultSet.next()) {
-					value = resultSet.getString("STO_ID");
-
-				}
-				dataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
+//			ResultSet resultSet = null;
+//			try {
+//				dataBase.connectAutomationDB();
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//
+//				while (resultSet.next()) {
+//					value = resultSet.getString("STO_ID");
+//
+//				}
+//				dataBase.disconnectAutomationDB();
+//			} catch (Exception exception) {
+//				exception.printStackTrace();
+//			}
 		} else {
 			value = context.getOrderId();
 		}
@@ -73,23 +71,21 @@ public class GetTcData {
 		String value = null;
 		value = context.getPalletID();
 		if (!context.getUniqueTagInRunStatus()) {
-
-			ResultSet resultSet = null;
-
-			try {
-				dataBase.connectAutomationDB();
-				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-
-				while (resultSet.next()) {
-					value = resultSet.getString("PALLET_ID");
-
-				}
-				dataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
+//			ResultSet resultSet = null;
+//			try {
+//				dataBase.connectAutomationDB();
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//
+//				while (resultSet.next()) {
+//					value = resultSet.getString("PALLET_ID");
+//
+//				}
+//				dataBase.disconnectAutomationDB();
+//			} catch (Exception exception) {
+//				exception.printStackTrace();
+//			}
 		} 
 //		else {
 //			value = context.getPalletID();
@@ -102,22 +98,22 @@ public class GetTcData {
 		value = context.getAsnId();
 		if (!context.getUniqueTagInRunStatus()) {
 
-			ResultSet resultSet = null;
-
-			try {
-				dataBase.connectAutomationDB();
-				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-
-				while (resultSet.next()) {
-					value = resultSet.getString("ASN_ID");
-
-				}
-				dataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
+//			ResultSet resultSet = null;
+//
+//			try {
+//				dataBase.connectAutomationDB();
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//
+//				while (resultSet.next()) {
+//					value = resultSet.getString("ASN_ID");
+//
+//				}
+//				dataBase.disconnectAutomationDB();
+//			} catch (Exception exception) {
+//				exception.printStackTrace();
+//			}
 
 		} 
 		else {
@@ -178,16 +174,16 @@ public class GetTcData {
 
 	public void setSto(String value) {
 		if (!context.getUniqueTagInRunStatus()) {
-			dataBase.connectAutomationDB();
-			try {
-				dataBase.dbConnection.createStatement()
-						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET STO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-				dataBase.dbConnection.commit();
-				dataBase.disconnectAutomationDB();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+//			dataBase.connectAutomationDB();
+//			try {
+//				dataBase.dbConnection.createStatement()
+//						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET STO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//				dataBase.dbConnection.commit();
+//				dataBase.disconnectAutomationDB();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
 		}
 		context.setOrderId(value);
 
@@ -344,6 +340,8 @@ public class GetTcData {
 		String value = null;
 		try {
 			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "'");
@@ -391,5 +389,24 @@ public class GetTcData {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public String getQtyFromTestData() {
+		ResultSet resultSet = null;
+		String value = null;
+		try {
+			dataBase.connectAutomationDB();
+			resultSet = dataBase.dbConnection.createStatement()
+					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+
+			while (resultSet.next()) {
+				value = resultSet.getString("QTY");
+			}
+			dataBase.disconnectAutomationDB();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return value;
 	}
 }

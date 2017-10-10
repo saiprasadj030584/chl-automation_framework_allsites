@@ -149,8 +149,11 @@ public class DataSetupRunner {
 					npsDataBase.connectAutomationDB();
 					String asn = newAsnId();
 					String po = newPoId();
-					String upi = newPalletdId();
+//					String upi = newPalletdId();
+					String upi = newPalletdId_directPO();
 					String sku = gettcdata.getSkuListFromTestData();
+					String qty = gettcdata.getQtyFromTestData();
+					System.out.println("SKU "+sku);
 					String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) from Interface_Delivery)+1, '"
 							+ asn + "' ,'" + context.getSiteId()
 							+ "', 'MX180160' ,'Released',null,'M+S',(Select SUPPLIER_ID from supplier_sku where sku_id='"
@@ -175,7 +178,7 @@ public class DataSetupRunner {
 							+ "' and ROWNUM = 1 ),(Select TRACK_LEVEL_1 from sku_config where CONFIG_ID in (Select CONFIG_ID from sku_sku_config where sku_id='"
 							+ sku
 							+ "' and ROWNUM = 1) and ROWNUM = 1),null,null,null,null, (Select SUPPLIER_ID from supplier_sku where sku_id='"
-							+ sku + "' and ROWNUM = 1),null,null,null,null, 20 ,'" + po
+							+ sku + "' and ROWNUM = 1),null,null,null,null, "+qty+" ,'" + po
 							+ "', 10 ,'N', '7112244962000010' ,'" + po
 							+ "' ,null, (Select SUPPLIER_SKU_ID from supplier_sku where sku_id='" + sku
 							+ "' and ROWNUM = 1), '" + asn
@@ -199,7 +202,7 @@ public class DataSetupRunner {
 					context.getConnection().commit();
 					String po_line_qry = "Insert into INTERFACE_PRE_ADVICE_LINE values ((Select max (Key) from Interface_Pre_advice_line) + 1,'M+S', '"
 							+ po + "', 10 ,null,null, '" + sku
-							+ "' ,null,null,null,null,null,null,null,null,null,null,40,null,null,null,'N', null, (select product_group from sku where sku_id='"
+							+ "' ,null,null,null,null,null,null,null,null,null,null,"+qty+",null,null,null,'N', null, (select product_group from sku where sku_id='"
 							+ sku
 							+ "' and ROWNUM = 1 ) ,null,null, (Select SUPPLIER_SKU_ID from supplier_sku where sku_id='"
 							+ sku + "' and ROWNUM = 1) ,null,null, (select user_def_type_8 from sku where sku_id='" + sku
@@ -210,7 +213,7 @@ public class DataSetupRunner {
 					rinsert = stmt.executeQuery(po_line_qry);
 					context.getConnection().commit();
 					gettcdata.setPalletId(upi);
-					gettcdata.setSkuQtySupplier();
+//					gettcdata.setSkuQtySupplier();
 					validateAsnDataSetup(asn);
 					validatePoDataSetup(po);
 					validateUpiDataSetup(upi);
@@ -628,6 +631,32 @@ public class DataSetupRunner {
 			int tempInt = ThreadLocalRandom.current().nextInt(10000, 99999);
 			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
 					+ String.valueOf(tempInt);
+			HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(tempValue);
+			mainTable = presenceMap.get("mainTable");
+			interfaceTable = presenceMap.get("interfaceTable");
+		} while (mainTable || interfaceTable);
+		return tempValue;
+	}
+	
+	public String newPalletdId_directPO() throws ClassNotFoundException, SQLException, InterruptedException {
+		long value1, value2, value3, max = 999999999;
+		boolean mainTable = true, interfaceTable = true;
+		String tempValue;
+		if (context.getConnection() == null) {
+			jdaJdatabase.connect();
+		}
+		do {
+			value1 = ThreadLocalRandom.current().nextLong(100000000, max);
+			System.out.println("value 1 "+value1);
+			value2 = ThreadLocalRandom.current().nextLong(100000000, max);
+			System.out.println("value 2 "+value2);
+//			value3 = ThreadLocalRandom.current().nextLong(100000000, max);
+//			System.out.println("value 3 "+value3);
+			int tempInt = ThreadLocalRandom.current().nextInt(10, 99);
+//			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
+//					+ String.valueOf(tempInt);
+			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(tempInt);
+			System.out.println("temp value "+tempValue);
 			HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(tempValue);
 			mainTable = presenceMap.get("mainTable");
 			interfaceTable = presenceMap.get("interfaceTable");
