@@ -89,7 +89,7 @@ public class InventoryTransactionQueryStepDefs {
 
 			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getLockCode(),
-						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						inventoryTransactionDB.getLockCodeWithPORef(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
 						failureList);
 			}
 		}

@@ -82,7 +82,7 @@ public class InventoryQueryStepDefs {
 						failureList);
 				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
 						String.valueOf(context.getRcvQtyDue()),
-						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+						inventoryDB.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(), date),
 						failureList);
 			}
 		}

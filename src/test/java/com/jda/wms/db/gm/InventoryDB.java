@@ -487,7 +487,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
+				+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");

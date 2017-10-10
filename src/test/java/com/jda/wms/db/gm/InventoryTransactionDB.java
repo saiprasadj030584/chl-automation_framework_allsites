@@ -756,6 +756,19 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getLockCodeWithPORef(String skuId, String preAdviceId, String date, String code)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 
 	public String getPallet(String upiId, String code) throws SQLException, ClassNotFoundException {

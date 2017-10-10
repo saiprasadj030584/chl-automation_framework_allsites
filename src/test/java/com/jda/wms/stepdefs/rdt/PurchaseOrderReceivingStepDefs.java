@@ -2038,14 +2038,14 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I receive all \"([^\"]*)\" skus for the purchase order at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_at_location(String type,String location) throws Throwable {
-		context.setLockCode("QAFTS");
+//		context.setLockCode("QAFTS");
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		context.setLocationID(location);
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		System.out.println("gdhgfsgh"+context.getSKUType());
-		Thread.sleep(10000);
+//		Thread.sleep(10000);
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 	i_receive_the_po_with_basic_and_pre_advice_receiving();
