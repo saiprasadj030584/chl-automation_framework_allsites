@@ -642,7 +642,7 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
-		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null)||(screen.exists("images/Putty/Receiving/canNotOverReceiptHanging.png") != null))
 			return true;
 		else
 			return false;

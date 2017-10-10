@@ -62,14 +62,15 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+		//jdaLoginPage.login();
+//		context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
+//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.selectCode("Receipt");
+//		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+//		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+//		inventoryTransactionQueryPage.enterTransactionDate();
+//		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
@@ -79,16 +80,29 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+			if(context.getReceiveType()!=null)
+			{
+			if(context.getReceiveType().equalsIgnoreCase("Under Receiving"))
+			{
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()-5),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
+			}
+			}
+			else
+			{
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+			}
+			
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 
 			if (null != context.getLockCode()) {
-				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
-						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getLockCode(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
 			}
 		}

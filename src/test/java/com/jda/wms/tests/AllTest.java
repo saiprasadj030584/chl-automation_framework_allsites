@@ -11,7 +11,8 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_allocation_international_validate_whether_all_the_stocks_are_allocated_allocation_rules"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
+				+ "@hanging_inbound_receiving_direct_po_under_receiving"})
 
 
 public class AllTest {

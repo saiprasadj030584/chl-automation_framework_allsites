@@ -365,8 +365,10 @@ public class PurchaseOrderReceivingStepDefs {
 			jdaFooter.PressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-			i_enter_urn_id_damaged();
-			jdaFooter.PressEnter();
+			
+//						i_enter_urn_id_damaged();
+//			jdaFooter.PressEnter();
+			
 
 			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
 				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
@@ -993,6 +995,8 @@ public class PurchaseOrderReceivingStepDefs {
 			urn = "RW" + Utilities.getFourDigitRandomNumber();
 		} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
 			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
+		}else if (rcvLockSplit[0].contains("LOC")) {
+			urn =Utilities.getSixDigitRandomNumber();
 		} else {
 			urn = context.getUpiId();
 			System.out.println("urn "+urn);

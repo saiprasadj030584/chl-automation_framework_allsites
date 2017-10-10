@@ -472,6 +472,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select Location_id from inventory where receipt_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where receipt_id='" + preAdviceId
 				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
