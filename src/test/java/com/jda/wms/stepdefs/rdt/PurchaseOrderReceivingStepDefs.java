@@ -358,7 +358,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
+			i_enter_urn_id(context.getUpiId());
 			jdaFooter.PressEnter();
 			the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
@@ -501,7 +501,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
+			i_enter_urn_id(context.getUpiId());
 
 		}
 		hooks.logoutPutty();

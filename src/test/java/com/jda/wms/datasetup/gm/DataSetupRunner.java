@@ -43,9 +43,11 @@ public class DataSetupRunner {
 	}
 
 	public void getParentRequestIdFromDB() {
+		System.out.println("getting parent request ID");
 		ResultSet resultSet = null;
 		try {
 			npsDataBase.connectAutomationDB();
+			System.out.println("SELECT TOP 1 PARENT_REQUEST_ID FROM DBO.JDA_GM_RUN_REQUESTS where REQUEST_STATUS='NO_RUN' ORDER BY PARENT_REQUEST_ID ASC");
 			resultSet = npsDataBase.dbConnection.createStatement().executeQuery(
 					"SELECT TOP 1 PARENT_REQUEST_ID FROM DBO.JDA_GM_RUN_REQUESTS where REQUEST_STATUS='NO_RUN' ORDER BY PARENT_REQUEST_ID ASC");
 			while (resultSet.next()) {
@@ -119,6 +121,9 @@ public class DataSetupRunner {
 		boolean UniqueTagInRunStatus = false;
 		try {
 			npsDataBase.connectAutomationDB();
+			System.out.println("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
+							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
@@ -747,13 +752,13 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ASN in Delivery : " + asn);
 				HashMap<String, Boolean> presenceMap = validateAsnPresenceinJdaTable(asn);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + asn);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + asn,count==21);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<2){
 			System.err.println("Found Inserted ASN : " + asn);
 			}
 		}
@@ -771,7 +776,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Header : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoPresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==21);
 //					break;
@@ -789,13 +794,14 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Line : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoLinePresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
-				if (count>20){
+				System.out.println("MainTABLE"+mainTable);
+				if (count>30){
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
-					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==21);
+					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po,count==31);
 //					break;
 				}
 			} while (!(mainTable));
-			if(count<20){
+			if(count<30){
 			System.err.println("Found Inserted PO : " + po);
 			}
 		}

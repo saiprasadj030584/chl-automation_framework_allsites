@@ -44,18 +44,22 @@ public class GetTcData {
 	public String getSto() {
 
 		String value = null;
+		System.out.println("UNIQ TAGG"+context.getUniqueTagInRunStatus());
 		if (!context.getUniqueTagInRunStatus()) {
 
 			ResultSet resultSet = null;
 
 			try {
 				dataBase.connectAutomationDB();
+				System.out.println("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 				resultSet = dataBase.dbConnection.createStatement()
 						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
 								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 
 				while (resultSet.next()) {
 					value = resultSet.getString("STO_ID");
+					System.out.println("C!!!!!!!!"+value);
 
 				}
 				dataBase.disconnectAutomationDB();
@@ -65,6 +69,7 @@ public class GetTcData {
 		} else {
 			value = context.getOrderId();
 		}
+		System.out.println("COOOOOOOO"+value);
 		return value;
 	}
 

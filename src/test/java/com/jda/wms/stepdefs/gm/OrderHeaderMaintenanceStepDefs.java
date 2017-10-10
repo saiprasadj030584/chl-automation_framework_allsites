@@ -272,6 +272,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		String orderNumber = getTcData.getSto();
 		context.setOrderId(orderNumber);
 		context.setStatus(status);
+		System.out.println("CHECKKKKK"+context.getOrderId());
+		System.out.println("CHECKKKKK0000"+context.getStatus());
 		ArrayList<String> failureList = new ArrayList<String>();
 		ArrayList skuFromOrder = new ArrayList();
 		skuFromOrder = orderLineDB.getskuList(context.getOrderId());
