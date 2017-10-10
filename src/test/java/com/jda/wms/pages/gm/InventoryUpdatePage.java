@@ -1,6 +1,7 @@
 package com.jda.wms.pages.gm;
 
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
@@ -16,8 +17,10 @@ public class InventoryUpdatePage {
 	}
 
 	public void enterSku(String skuId) throws FindFailed, InterruptedException {
-		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
-		screen.click(skuID.getCenter().offset(70, 0));
+//		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
+//		screen.click(skuID.getCenter().offset(70, 0));
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
 		screen.type(skuId);
 		Thread.sleep(1000);
 	}
@@ -77,4 +80,9 @@ public class InventoryUpdatePage {
 		screen.type(packConfig);
 		Thread.sleep(1000);
 	}
+	
+	public void enterLockcode(String string) throws FindFailed, InterruptedException {
+		screen.type(string);
+		Thread.sleep(1000);
+		}
 }

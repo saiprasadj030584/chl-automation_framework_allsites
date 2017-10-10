@@ -582,4 +582,10 @@ public class InventoryTransactionQueryPage {
 		screen.click(mlocId.getCenter().offset(70, 0));
 		screen.type(toLocation);
 	}
+	
+	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/UserDefined/UserDefinedTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/UserDefined/UserDefinedTab.png");
+		Thread.sleep(2000);
+		}
 }

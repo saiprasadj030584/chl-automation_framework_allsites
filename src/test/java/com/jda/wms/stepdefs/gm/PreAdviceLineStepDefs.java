@@ -570,7 +570,7 @@ public class PreAdviceLineStepDefs {
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
 		jdaFooter.clickExecuteButton();
-for( int i=0;i<context.getNoOfLines();i++)
+		for( int i=0;i<context.getNoOfLines();i++)
 		{
 			if(i!=0)
 			{

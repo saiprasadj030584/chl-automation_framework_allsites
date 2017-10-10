@@ -1,9 +1,9 @@
 @stock_adjustments
-Feature: Stock adjustments
+Feature: Boxed - Stock adjustments with Reason Code
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -17,7 +17,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | DIRTY      |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -31,7 +31,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | DMIT       |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_expd @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_expd @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -45,7 +45,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | EXPD       |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_found @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_found @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -59,7 +59,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | FOUND      |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -73,7 +73,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | INCOMPLETE |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_lost @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_lost @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -87,7 +87,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | LOST       |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_samples @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_samples @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -101,7 +101,7 @@ Feature: Stock adjustments
        | Location | ReasonCode |
        | 1AA103   | SAMPLES    |
 
-  @boxed @stock_adjustment @boxed_stock_adjustment_stock_adjustment_reason_code_stock_count @complete @ds @jenkins1 @no_ds
+  @boxed @jenkins_analysis @stock_adjustment @boxed_stock_adjustment_stock_adjustment_reason_code_stock_count @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page

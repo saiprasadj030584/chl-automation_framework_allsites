@@ -1,5 +1,5 @@
 @direct_po_receiving_lock_code
-Feature: Purchase order receiving with Lock code
+Feature: Boxed - Direct PO - Receiving with Lock code
   As a warehouse user
   I want to receive the locked articles
   But i cannot putaway the purchase order
@@ -14,7 +14,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacomp @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QACOMP lock code
@@ -26,7 +25,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapc @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAPC lock code
@@ -38,7 +36,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_fwl @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with FWL lock code
@@ -50,7 +47,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_rework @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with REWORK lock code
@@ -62,7 +58,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qaftsfwl @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAFTSFWL lock code
@@ -74,7 +69,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacnifwl @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QACNIFWL lock code
@@ -86,7 +80,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapcfwl @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAPCFWL lock code
@@ -98,7 +91,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qaftsrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAFTSRW lock code
@@ -110,7 +102,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacomprw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QACOMPRW lock code
@@ -122,7 +113,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapcrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAPCRW lock code
@@ -134,7 +124,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_fwlrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with FWLRW lock code
@@ -146,7 +135,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qaftsfwlrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAFTSFWLRW lock code
@@ -158,7 +146,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacomfwlrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QACOMFWLRW lock code
@@ -170,7 +157,6 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO
 
   @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapcfwlrw @boxed @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAPCFWLRW lock code
@@ -182,4 +168,3 @@ Feature: Purchase order receiving with Lock code
     Then the inventory should be displayed for all tags received
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
-    And I should not be able to putaway locked PO

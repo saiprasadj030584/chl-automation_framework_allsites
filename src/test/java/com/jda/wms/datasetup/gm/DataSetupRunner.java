@@ -227,6 +227,7 @@ public class DataSetupRunner {
 				npsDataBase.connectAutomationDB();
 				String po = newPoId();
 				String sku = gettcdata.getSkuListFromTestData();
+				String qty = gettcdata.getQtyFromTestData();
 				System.out.println("sku "+sku);
 				String po_header_qry = "Insert into INTERFACE_PRE_ADVICE_HEADER values ((Select max (Key)  from Interface_Pre_advice_header)+ 1,'M+S', '"
 						+ po + "' ,'PO','" + context.getSiteId()
@@ -240,7 +241,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				String po_line_qry = "Insert into INTERFACE_PRE_ADVICE_LINE values ((Select max (Key) from Interface_Pre_advice_line) + 1,'M+S', '"
 						+ po + "', 10 ,null,null, '" + sku
-						+ "' ,null,null,null,null,null,null,null,null,null,null,40,null,null,null,'N', null, (select product_group from sku where sku_id='"
+						+ "' ,null,null,null,null,null,null,null,null,null,null,"+qty+",null,null,null,'N', null, (select product_group from sku where sku_id='"
 						+ sku
 						+ "' and ROWNUM = 1 ) ,null,null, (Select SUPPLIER_SKU_ID from supplier_sku where sku_id='"
 						+ sku + "' and ROWNUM = 1) ,null,null, (select user_def_type_8 from sku where sku_id='" + sku

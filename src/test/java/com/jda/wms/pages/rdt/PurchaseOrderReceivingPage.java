@@ -644,6 +644,8 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
 			return true;
+		else if ((screen.exists("images/Putty/Receiving/canNotOverReceipt1.png") != null))
+			return true;
 		else
 			return false;
 
@@ -711,6 +713,13 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isPutAwayGroupExists() {
 		if (screen.exists("images/Putty/Receiving/PutawayGroup.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isPalletExists() {
+		if (screen.exists("images/Putty/Receiving/PutawayForLock.png") != null)
 			return true;
 		else
 			return false;

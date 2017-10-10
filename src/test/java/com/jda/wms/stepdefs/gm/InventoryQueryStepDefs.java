@@ -78,7 +78,7 @@ public class InventoryQueryStepDefs {
 						failureList);
 			} else if (null == context.getReceiveType()) {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-						inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getUpiId(), date),
+						inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getPreAdviceId(), date),
 						failureList);
 				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
 						String.valueOf(context.getRcvQtyDue()),

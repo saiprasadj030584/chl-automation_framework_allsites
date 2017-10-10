@@ -62,14 +62,15 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+//		jdaLoginPage.login();
+//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.selectCode("Receipt");
+//		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+//		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+//		inventoryTransactionQueryPage.enterTransactionDate();
+//		jDAFooter.clickExecuteButton();
+		System.out.println("Tag ID "+context.getTagId());
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
@@ -80,14 +81,14 @@ public class InventoryTransactionQueryStepDefs {
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 
 			if (null != context.getLockCode()) {
-				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getLockCode(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
 			}
@@ -424,7 +425,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jDAFooter.clickExecuteButton();
-		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		//inventoryTransactionQueryPage.clickMiscellaneousTab();
 	}
 
 	@Then("^the status should be updated$")
@@ -436,9 +437,9 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the expiry date should be updated$")
 	public void the_expiry_date_should_be_updated() throws Throwable {
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		Assert.assertEquals("updated inventory Expiry date are not as expected", context.getFutureExpiryDate(),
 				inventoryTransactionQueryPage.getExpiryDate());
-
 	}
 
 	@When("^I choose the code as \"([^\"]*)\" and I search the tag id$")
@@ -447,8 +448,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		jDAFooter.clickExecuteButton();
-		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
-
+		inventoryTransactionQueryPage.clickUserDefinedTab();
 	}
 
 	@When("^I choose the code as config update and I search the sku id$")

@@ -4,7 +4,7 @@ Feature: Purchase order receiving with Lock code
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @complete @ds
+  @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @complete @ds
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -73,14 +73,31 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickNextButton();
 	}
 
+//	@Then("^I select the status as \"([^\"]*)\"$")
+//	public void i_select_the_status_as(String status) throws Throwable {
+//		inventoryUpdatePage.enterStatus(status);
+//		jdafooter.clickDoneButton();
+//		if (inventoryUpdatePage.isWarningPopUpPageExist()) {
+//			warningPopUpPage.clickYes();
+//		}
+//		context.setStatus(status);
+//	}
+
 	@Then("^I select the status as \"([^\"]*)\"$")
-	public void i_select_the_status_as(String status) throws Throwable {
-		inventoryUpdatePage.enterStatus(status);
+	public void i_select_the_status_as(String updateOrigin) throws Throwable {
+		if (updateOrigin.equalsIgnoreCase("UK origin")) {
+			context.setOrigin("UK");
+		}
+		inventoryUpdatePage.enterStatus(updateOrigin);
+		if (updateOrigin.equalsIgnoreCase("Locked")) {
+			jdafooter.pressTab();
+			inventoryUpdatePage.enterLockcode("1Damaged");
+		}
 		jdafooter.clickDoneButton();
 		if (inventoryUpdatePage.isWarningPopUpPageExist()) {
 			warningPopUpPage.clickYes();
 		}
-		context.setStatus(status);
+		context.setStatus(updateOrigin);
 	}
 
 	@Then("^I select the future date$")

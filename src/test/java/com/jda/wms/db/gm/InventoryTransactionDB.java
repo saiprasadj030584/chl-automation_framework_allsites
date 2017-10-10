@@ -618,16 +618,16 @@ public class InventoryTransactionDB {
 		return rs.getString(1);
 	}
 
-	public String getReferenceId(String skuId, String upiId, String date, String code)
+	public String getReferenceId(String skuId, String tagId, String date, String code)
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		System.out.println("select reference_id from inventory_transaction where sku_id = '" + skuId
-				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+upiId+"'");
+				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+tagId+"'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reference_id from inventory_transaction where sku_id = '" + skuId
-				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+upiId+"'");
+				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+tagId+"'");
 		rs.next();
 		return rs.getString(1);
 	}

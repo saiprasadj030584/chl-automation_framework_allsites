@@ -1,5 +1,5 @@
 @purchase_order_putaway
-Feature: Purchase order Putaway
+Feature: Boxed - Direct PO - Putaway
   As a warehouse user
   I want to putaway the received articles
   So that I can complete the purchase order

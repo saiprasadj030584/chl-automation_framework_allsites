@@ -1,9 +1,9 @@
 @inventory_update
-Feature: Inventory update
+Feature: Boxed - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update  @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | Unlocked     | Inventory Unlock |
       
-      @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
+      @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status
     When I navigate to inventory update page
@@ -35,7 +35,7 @@ Feature: Inventory update
       | LockStatus | UpdateStatus | Code             |
       | UnLocked   | Locked       | Inventory Lock   |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds
+   @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds
   Scenario: Update Expiry date
     Given I have tag in inventory with expiry "Y" status
     When I navigate to inventory update page
@@ -47,7 +47,7 @@ Feature: Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Origin update
     Given I have a tag in inventory with origin "<Origin>"
     When I navigate to inventory update page
@@ -62,7 +62,7 @@ Feature: Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds
   Scenario Outline: Update condition code
     Given I have a tag in inventory with condition "<Condition>"
     When I navigate to inventory update page
@@ -78,7 +78,7 @@ Feature: Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds
+   @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Pallet type update
     Given I have a tag in inventory with pallet type as "<PalletType>"
     When I navigate to inventory update page
@@ -94,23 +94,7 @@ Feature: Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-   @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_owner_update @hold
-  Scenario Outline: Owner update
-    Given I have a tag in inventory with owner as "<Owner>"
-    When I navigate to inventory update page
-    And I select the update type as "Owner Update"
-    And I search the inventory for the tag
-    Then the tag details should be displayed
-    And I select the owner type as "<Updateowner>"
-    When I navigate to inventory transaction query
-    When I choose the code as "Owner Update" and I search the tag id
-    Then the owner should be updated
-
-    Examples: 
-      | Owner | Updateowner |
-      | AOWN  | M+S         |
-
-  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds
   Scenario: Pack config update
     Given I have a sku in inventory with more than one pack config
     When I navigate to inventory update page
