@@ -93,7 +93,7 @@ public class Hooks_autoUI {
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
-
+			
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
@@ -101,7 +101,6 @@ public class Hooks_autoUI {
 				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 				scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
-				// TODO Auto-generated catch block
 				if (!(webDriver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
