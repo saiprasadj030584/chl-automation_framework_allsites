@@ -88,7 +88,7 @@ public class Hooks_autoUI {
 	}
 
 	@After("~@Email")
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
@@ -131,6 +131,7 @@ public class Hooks_autoUI {
 		// clearing down webdriver object
 		if (webDriver != null) {
 			webDriver.close();
+			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
 			// webDriver.quit();
 		}
 	}

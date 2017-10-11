@@ -81,7 +81,7 @@ public class Hooks {
 
 	@Before("~@no_ds")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
-
+		
 		logger.debug(
 				"###########################################################################################################################");
 		logger.debug("Iniatate Data Setup ");
