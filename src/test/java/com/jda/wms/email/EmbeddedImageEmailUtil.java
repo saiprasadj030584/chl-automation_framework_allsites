@@ -21,6 +21,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 
 public class EmbeddedImageEmailUtil {
@@ -28,11 +29,13 @@ public class EmbeddedImageEmailUtil {
 	private final Context context;
 	private final RequestDetailsRetriever requestDetailsRetriever;
 	String envVar = System.getProperty("user.dir");
+	private Configuration configuration;
 
 	@Inject
-	public EmbeddedImageEmailUtil(Context context, RequestDetailsRetriever requestDetailsRetriever) {
+	public EmbeddedImageEmailUtil(Context context, RequestDetailsRetriever requestDetailsRetriever,Configuration configuration) {
 		this.context = context;
 		this.requestDetailsRetriever = requestDetailsRetriever;
+		this.configuration = configuration;
 	}
 
 	public void send(String host, String port, final String userName, final String password, String subject,
@@ -118,7 +121,8 @@ public class EmbeddedImageEmailUtil {
 			}
 		}
 
-		String filePath = envVar+"/files";
+//		String filePath = envVar+"/files";
+		String filePath = configuration.getStringProperty("cucumber-zip-path");
 		String fileName = "Cucumber_Report.zip";
 		MimeBodyPart attachmentBodyPart = new MimeBodyPart();
 		attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));

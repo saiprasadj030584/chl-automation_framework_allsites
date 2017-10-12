@@ -110,18 +110,15 @@ public class EmailStepDefs {
 		String replaceChartMinURL = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js";
 		String replaceBootStrapURL = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
 
-		File reportPath = new File("D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\Cucumber-Reports");
+		File reportPath = new File(configuration.getStringProperty("cucumber-zip-path"));
 		File[] listOfFiles = reportPath.listFiles();
 		int numberOfFiles = reportPath.listFiles().length;
 		System.out.println("---------Cucumber Reports----------");
-		System.out.println(reportPath);
-		System.out.println(numberOfFiles);
 		if (numberOfFiles!=0){
 			for (int f=0; f<numberOfFiles;f++){
 				System.out.println("HTML Report "+f+" "+listOfFiles[f].getName());
 				if (listOfFiles[f].isFile()&&listOfFiles[f].getName().contains(".html")){
 					String repFilePath = reportPath+"\\"+listOfFiles[f].getName();
-					System.out.println(repFilePath);
 					File repFile=new File(repFilePath);
 					String fileContent = null;
 					FileReader fr=new FileReader(repFile);
@@ -147,7 +144,8 @@ public class EmailStepDefs {
 			}
 		}
 		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Process p1 = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		Thread.sleep(5000);
 	}
 }
