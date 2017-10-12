@@ -99,7 +99,6 @@ public class EmailStepDefs {
 	
 	@Then("^I update the cucumber reports for the js files$")
 	public void i_update_the_cucumber_reports_for_the_js_files() throws Throwable { 
-		//TODO need to update workspace path
 		//Copying Cucumber reports to separate folder and deleting the JS folder since it cannot be attached in mail
 //		System.out.println("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
 //		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
@@ -110,8 +109,8 @@ public class EmailStepDefs {
 		String replaceTableSorterURL = "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/js/jquery.tablesorter.min.js";
 		String replaceChartMinURL = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js";
 		String replaceBootStrapURL = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-		System.out.println(envVar+ "\\Cucumber-Reports");
-		File reportPath = new File(envVar+ "\\Cucumber-Reports");
+
+		File reportPath = new File("D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\Cucumber-Reports");
 		File[] listOfFiles = reportPath.listFiles();
 		int numberOfFiles = reportPath.listFiles().length;
 		System.out.println("---------Cucumber Reports----------");
