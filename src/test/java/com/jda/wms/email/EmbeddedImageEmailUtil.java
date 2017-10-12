@@ -60,26 +60,9 @@ public class EmbeddedImageEmailUtil {
 		Message msg = new MimeMessage(session);
 
 		msg.setFrom(new InternetAddress("NPS-AUTOMATION"));
-		// InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
-		// msg.setRecipients(Message.RecipientType.TO, toAddresses);
-		// **********************
 
 		String[] mailAddressTo = requestDetailsRetriever.getmailAddress(context.getParentRequestId());
 
-//		String[] mailAddressTo2 = new String[1];
-
-//		mailAddressTo2[0] = "Santhaseelan.Shanmugam@mnscorp.net";
-//		mailAddressTo2[1] = "Santhaseelan.Shanmugam@mnscorp.net";
-//		mailAddressTo2[2] = "Aktharunissa.Abdulrahman@mnscorp.net";
-//		mailAddressTo2[3]= "Allen.Eapachen@marks-and-spencer.com";
-//		mailAddressTo2[4]= "Nandakumar.Sivalingam@marks-and-spencer.com";
-//		mailAddressTo2[5]= "Vignesh.Ganapathy@marks-and-spencer.com";
-//		mailAddressTo2[6]= "Vamsi.Krishnareddy@marks-and-spencer.com";
-//		mailAddressTo2[7]= "Gokulraj.Matheswaran@marks-and-spencer.com";
-//		mailAddressTo2[8]= "Shanmuganathan.Murugan@marks-and-spencer.com";
-//		mailAddressTo2[9]= "Kiran.Porwal@marks-and-spencer.com";
-//		mailAddressTo2[10]= "Abirami.Sivakumar@marks-and-spencer.com";
-//		mailAddressTo2[11]= "Badrinath.Jeeva@marks-and-spencer.com";
 
 		InternetAddress[] mailAddress_TO = new InternetAddress[mailAddressTo.length];
 
@@ -87,7 +70,6 @@ public class EmbeddedImageEmailUtil {
 			mailAddress_TO[i] = new InternetAddress(mailAddressTo[i]);
 		}
 		msg.addRecipients(Message.RecipientType.TO, mailAddress_TO);
-		// msg.addRecipients(Message.RecipientType.TO, mailAddress_TO);
 
 		// **********************
 		msg.setSubject(subject);
@@ -121,21 +103,20 @@ public class EmbeddedImageEmailUtil {
 			}
 		}
 
-//		String filePath = envVar+"/files";
-		File reportPath = new File(configuration.getStringProperty("cucumber-zip-path"));
-		System.out.println("EMAIL "+reportPath.listFiles().length);
-		if (reportPath.listFiles().length!=0){
-		String filePath = configuration.getStringProperty("cucumber-zip-path");
-		String fileName = "Cucumber_Report.zip";
-		MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-		attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));
-		multipart.addBodyPart(attachmentBodyPart);
-		}
-		else{
-			System.out.println("Cucumber report not found and so not attached in Email");
+		File reportZipPath = new File(configuration.getStringProperty("cucumber-zip-path"));
+		File[] listOfFiles = reportZipPath.listFiles();
+		if (reportZipPath.listFiles().length!=0){
+			for(int r=0;r<listOfFiles.length;r++){
+				if(listOfFiles[r].getName().contains(".zip")){
+					String filePath = configuration.getStringProperty("cucumber-zip-path");
+					String fileName = "Cucumber_Report.zip";
+					MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+					attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));
+					multipart.addBodyPart(attachmentBodyPart);
+				}
+			}
 		}
 		msg.setContent(multipart);
-
 		Transport.send(msg);
 	}
 }
