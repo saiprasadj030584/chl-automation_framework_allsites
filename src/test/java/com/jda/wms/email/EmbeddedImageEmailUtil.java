@@ -123,6 +123,7 @@ public class EmbeddedImageEmailUtil {
 
 //		String filePath = envVar+"/files";
 		File reportPath = new File(configuration.getStringProperty("cucumber-zip-path"));
+		System.out.println("EMAIL "+reportPath.listFiles().length);
 		if (reportPath.listFiles().length!=0){
 		String filePath = configuration.getStringProperty("cucumber-zip-path");
 		String fileName = "Cucumber_Report.zip";
