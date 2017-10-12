@@ -128,6 +128,15 @@ public class Hooks_autoUI {
 		}
 
 		// clearing down webdriver object
+//		if (webDriver != null) {
+//			webDriver.close();
+//			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
+//			// webDriver.quit();
+//		}
+	}
+	
+	@After
+	public void killIE(Scenario scenario) throws IOException {
 		if (webDriver != null) {
 			webDriver.close();
 			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");

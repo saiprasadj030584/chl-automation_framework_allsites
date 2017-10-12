@@ -1,5 +1,6 @@
 package com.jda.wms.email;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class EmbeddedImageEmailUtil {
 
 	private final Context context;
 	private final RequestDetailsRetriever requestDetailsRetriever;
+	String envVar = System.getProperty("user.dir");
 
 	@Inject
 	public EmbeddedImageEmailUtil(Context context, RequestDetailsRetriever requestDetailsRetriever) {
@@ -34,7 +36,7 @@ public class EmbeddedImageEmailUtil {
 	}
 
 	public void send(String host, String port, final String userName, final String password, String subject,
-			String htmlBody, Map<String, String> mapInlineImages) throws AddressException, MessagingException {
+			String htmlBody, Map<String, String> mapInlineImages) throws AddressException, MessagingException, IOException {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", host);
 		properties.put("mail.smtp.port", port);
@@ -116,6 +118,12 @@ public class EmbeddedImageEmailUtil {
 			}
 		}
 
+		String filePath = envVar+"/files";
+		String fileName = "Cucumber_Report.zip";
+		MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+		attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));
+		multipart.addBodyPart(attachmentBodyPart);
+		
 		msg.setContent(multipart);
 
 		Transport.send(msg);
