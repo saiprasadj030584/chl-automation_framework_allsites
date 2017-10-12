@@ -101,8 +101,8 @@ public class EmailStepDefs {
 	public void i_update_the_cucumber_reports_for_the_js_files() throws Throwable { 
 		//TODO need to update workspace path
 		//Copying Cucumber reports to separate folder and deleting the JS folder since it cannot be attached in mail
-		System.out.println("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
-		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
+//		System.out.println("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
+//		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\copyCucumberReports.bat");
 		Thread.sleep(5000);
 		
 		//Replacing the JS code lines in HTML files to cloud URLs
@@ -146,7 +146,7 @@ public class EmailStepDefs {
 				}
 			}
 		}
-		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+//		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
 		Thread.sleep(5000);
 		Process p1 = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
 	}
