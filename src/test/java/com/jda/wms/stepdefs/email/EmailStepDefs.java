@@ -110,11 +110,12 @@ public class EmailStepDefs {
 		String replaceTableSorterURL = "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/js/jquery.tablesorter.min.js";
 		String replaceChartMinURL = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js";
 		String replaceBootStrapURL = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-		
+		System.out.println(envVar+ "\\Cucumber-Reports");
 		File reportPath = new File(envVar+ "\\Cucumber-Reports");
 		File[] listOfFiles = reportPath.listFiles();
 		int numberOfFiles = reportPath.listFiles().length;
 		System.out.println("---------Cucumber Reports----------");
+		System.out.println(reportPath);
 		System.out.println(numberOfFiles);
 		if (numberOfFiles!=0){
 			for (int f=0; f<numberOfFiles;f++){
@@ -146,7 +147,7 @@ public class EmailStepDefs {
 				}
 			}
 		}
-//		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
 		Thread.sleep(5000);
 		Process p1 = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
 	}
