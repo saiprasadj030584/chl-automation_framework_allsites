@@ -39,6 +39,7 @@ public class Hooks_autoUI {
 	private final Configuration configuration;
 	public static String PRQID = System.getProperty("ID");
 	public static String SITEID = System.getProperty("SITEID");
+	public static String BUILD_NUM = System.getProperty("BUILD");
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -59,13 +60,19 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
-		System.setProperty("SITEID", "5649");
+//		System.setProperty("SITEID", "5649");
 		System.out.println("Site ID from sys prop "+System.getProperty("SITEID"));
+		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
 		insertSiteID();
 		getSiteID();
+		updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
-//		hooks.iniatateDataSetup(scenario);
+	}
+
+	private void updateBuildNumberInRequestTable() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void getSiteID() throws ClassNotFoundException {
