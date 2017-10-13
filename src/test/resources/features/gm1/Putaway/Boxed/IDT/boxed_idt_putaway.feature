@@ -1,5 +1,5 @@
-@purchase_order_putaway
-Feature: Purchase order Putaway
+@boxed_idt_putaway
+Feature: Boxed - IDT - Putaway
   As a warehouse user
   I want to putaway the received articles
   So that I can complete the purchase order

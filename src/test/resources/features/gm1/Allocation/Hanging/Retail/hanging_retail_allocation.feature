@@ -1,5 +1,5 @@
 @allocation
-Feature: Allocation
+Feature: Hanging - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
@@ -27,3 +27,17 @@ Feature: Allocation
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated
+
+  @hanging @allocation @retail @hanging_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+  Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    And the order sku details are verified
+    When the inventory is available for the given SKU
+    Then the order status should be changed to "Allocated" status
+    
+    @hanging @allocation @retail @hanging_allocation_retail_validate_the_allocations_rules_for_hanging @complete @ds
+  Scenario: Validate the allocations Rules for Hanging 
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    And the order sku details are verified
+    When the inventory is available for the given SKU
+    Then the order status should be changed to "Allocated" status

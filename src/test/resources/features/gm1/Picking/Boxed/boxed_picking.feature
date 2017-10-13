@@ -35,7 +35,7 @@ Feature: order allocation and picking
     And I perform unpicking
     Then order header should be updated for unpicked stock
 
-  @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_UPC @complete @ds
+  @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_upc @complete @ds
   Scenario: Validate keying wrong UPC
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

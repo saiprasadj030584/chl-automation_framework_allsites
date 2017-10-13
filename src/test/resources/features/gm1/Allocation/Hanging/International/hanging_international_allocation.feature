@@ -1,5 +1,5 @@
 @hanging_international_allocation
-Feature:Hanging - Allocation - International orders
+Feature: Hanging - International - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 

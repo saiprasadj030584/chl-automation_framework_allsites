@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -986,4 +988,170 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList getTagIdDetailsForLockStatus(String lockStatus, String dataType)
+			throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.lock_status='"
+							+ lockStatus + "' and sku.user_def_type_8 = '" + dataType
+							+ "' order by inventory.sku_id desc");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			rs.next();
+			for (int j = 1; j <= columns; j++) {
+				inventoryList.add((rs.getString(j)));
+			}
+		} catch (Exception e) {
+			Assert.assertFalse("Test Data tag not found - For Lock Status change",
+					e.getMessage().contains("Exhausted Resultset"));
+		}
+		return inventoryList;
+	}
+	
+	public ArrayList getTagIdDetailsforExpiry(String expiry, String dataType)
+			throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.expired ='"
+							+ expiry + "' and sku.user_def_type_8 ='" + dataType + "' order by inventory.sku_id desc");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			rs.next();
+			for (int j = 1; j <= columns; j++) {
+				inventoryList.add((rs.getString(j)));
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				inventoryList.add("Exhausted Resultset");
+			}
+		}
+		return inventoryList;
+	}
+	
+	public ArrayList<String> getSKUFromInventoryFordDataType(String type) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.sku_id,inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.qty_allocated='0' and inventory.pick_face is not null and and sku.user_def_type_8 ='"
+						+ type + "' order by inventory.sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+	
+	public void updateExpiryForTag(String sku, String tag) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update inventory set expired='Y', expiry_dstamp= current_timestamp- 10 where sku_id='"
+						+ sku + "' and tag_id='" + tag + "'");
+		context.getConnection().commit();
+	}
+	
+	public ArrayList getTagIdDetailsForOrigin(String origin, String dataType)
+			throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			System.out.println(
+					"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.origin_id ='"
+							+ origin
+							+ "' and inventory.qty_allocated='0' and inventory.pick_face is null and sku.user_def_type_8 ='"
+							+ dataType + "' order by inventory.sku_id desc");
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.origin_id ='"
+							+ origin
+							+ "' and inventory.qty_allocated='0' and inventory.pick_face is null and sku.user_def_type_8 ='"
+							+ dataType + "' order by inventory.sku_id desc");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columns = rsmd.getColumnCount();
+			rs.next();
+			for (int j = 1; j <= columns; j++) {
+				inventoryList.add((rs.getString(j)));
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				inventoryList.add("Exhausted Resultset");
+			}
+		}
+		return inventoryList;
+	}
+	
+	public void updateOriginForTag(String sku, String tag, String origin) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"update inventory set origin_id='" + origin + "'where sku_id='" + sku + "' and tag_id='" + tag + "'");
+		context.getConnection().commit();
+	}
+	
+	public ArrayList getTagIdDetailsForCondition(String condition, String dataType)
+			throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.condition_id ='"
+						+ condition + "' and sku.user_def_type_8 ='" + dataType + "' order by inventory.sku_id desc");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.condition_id ='"
+						+ condition + "' and sku.user_def_type_8 ='" + dataType + "' order by inventory.sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+	
+	public ArrayList getTagIdDetailsForPallet(String pallet, String dataType)
+			throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.pallet_config= '"
+						+ pallet + "'and sku.user_def_type_8 ='" + dataType + "' order by inventory.sku_id desc");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.sku_id, inventory.LOCATION_ID, inventory.tag_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.pallet_config= '"
+						+ pallet + "'and sku.user_def_type_8 ='" + dataType + "' order by inventory.sku_id desc");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+	}
+	
 }

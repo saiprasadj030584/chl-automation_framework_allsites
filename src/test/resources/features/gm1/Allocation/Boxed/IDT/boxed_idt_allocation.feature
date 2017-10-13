@@ -39,9 +39,9 @@ Feature: Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @boxed @allocation @idt @allocation_boxed_idt_auto_allocation_while_qty_on_hand @onhold @ds
+     @boxed @allocation @idt @boxed_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds 
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
-    Given the order is of type "TRANSFER" and it is in "Released" status
+    Given the order is of type "IDT" and it is in "Released" status
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status

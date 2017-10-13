@@ -1,5 +1,5 @@
-@purchase_order_putaway
-Feature: Purchase order Putaway
+@boxed_returns_putaway
+Feature: Boxed - Returns - Putaway
   As a warehouse user
   I want to putaway the received articles
   So that I can complete the purchase order
@@ -45,13 +45,13 @@ Feature: Purchase order Putaway
     When I perform normal returns putaway
     Then the goods receipt should be generated for putaway returns stock in inventory transaction
 
-  @returns_boxed_putaway_to_preferred_aisle @returns @boxed @putaway @complete @ds
+  @boxed_putaway_returns_validate_returns_putaway_to_preferred_aisle @returns @boxed @putaway @complete @ds
   Scenario: Validate Returns Putaway to preferred aisle
     Given the UPI and ASN of type "Boxed" should be received at location "REC003" and "Y" at site
     When I choose normal putaway for returns
     And the goods receipt should be generated for putaway stock in inventory transaction
 
-  @boxed_returns_putaway_location_override @boxed @idt @putaway @complete @ds
+  @boxed_putaway_returns_validate_override_putaway_location @boxed @returns @putaway @complete @ds
   Scenario: Validate Override Putaway Location
     Given the UPI and ASN of type "Boxed" should be received at location "REC003" and "Y" at site
     When I choose normal putaway
