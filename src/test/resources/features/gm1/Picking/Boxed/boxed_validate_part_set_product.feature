@@ -1,5 +1,5 @@
 @picking
-Feature: Picking
+Feature: Boxed - Retail - Validae Part Set products
   As a warehouse user
   I want to receive the returned articles
 

@@ -1,8 +1,8 @@
-Feature: Perform Clustering
+Feature: Boxed - Manual Clustering
   As a warehouse user
   I want to perform manual clustering
 
-  @boxed @picking @retail @boxed_picking_retail_manual_clustering @complete @ds
+  @boxed @picking @retail @boxed_picking_retail_validate_whether_clustering_is_done_manually @complete @ds
   Scenario: Validate whether Clustering is done manually
     Given I have logged in as warehouse user in JDA dispatcher GM application
     Given the order id of type "Retail" should be in "Released" status

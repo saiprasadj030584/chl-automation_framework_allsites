@@ -1030,4 +1030,16 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@When("^I choose the code as \"([^\"]*)\" and I search the tag id for condition$")
+	public void i_choose_the_code_as_and_I_search_the_tag_id_for_condition(String code) throws Throwable {
+		// String execDate = DateUtils.getCurrentSystemDate();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTransactionTime(DateUtils.getCurrentSystemTimeLessThan2Minutes());
+		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickUserDefinedTab();
+	}
 }

@@ -42,4 +42,16 @@ public class SkuSkuConfigDB {
 		}
 		return packConfigList;
 	}
+	
+	public String getSkuIdWithMoreThanOnePackConfig(String dataType) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"Select inventory.sku_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id where inventory.sku_id  in (select sku_sku_config.sku_id from sku_sku_config inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=sku_sku_config.sku_id and sku.user_def_type_8 ='"
+						+ dataType + "' group by sku_sku_config.sku_id having count(sku_sku_config.sku_id) > 1 )");
+		rs.next();
+		return rs.getString(1);
+	}
 }

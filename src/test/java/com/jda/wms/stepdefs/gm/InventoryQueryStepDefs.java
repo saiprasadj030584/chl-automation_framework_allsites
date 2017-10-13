@@ -216,6 +216,33 @@ public class InventoryQueryStepDefs {
 		}
 		jdaLoginPage.login();
 	}
+	
+	@Given("^I have a tag in inventory with \"([^\"]*)\" status for \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_status(String lockStatus, String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		case "Flatpack":
+			type = "P";
+			break;
+		case "GOH":
+			type = "C";
+			break;
+		}
+
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForLockStatus(lockStatus, type);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		// jdaLoginPage.login();
+	}
 
 	@Given("^I have tag in inventory with expiry \"([^\"]*)\" status$")
 	public void i_have_tag_in_inventory_with_expiry_status(String Expiry) throws Throwable {
@@ -451,5 +478,169 @@ public class InventoryQueryStepDefs {
 					qtyOnHandNotInSuspense > Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),
 							orderLineDB.getskuList(context.getOrderId()).get(i))));
 		}
+	}
+	
+	@Given("^I have tag in inventory with expiry \"([^\"]*)\" status for \"([^\"]*)\"$")
+	public void i_have_tag_in_inventory_with_expiry_status_(String expiry, String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		}
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsforExpiry(expiry, type);
+		if (!inventoryDetailList.isEmpty()) {
+			String tempData = (String) inventoryDetailList.get(0);
+			if (!tempData.equalsIgnoreCase("Exhausted Resultset")) {
+				context.setSkuId((String) inventoryDetailList.get(0));
+				context.setLocation((String) inventoryDetailList.get(1));
+				context.setTagId((String) inventoryDetailList.get(2));
+			} else {
+				ArrayList skuList = inventoryDB.getSKUFromInventoryFordDataType(type);
+				if (!skuList.isEmpty()) {
+					inventoryDB.updateExpiryForTag((String) skuList.get(0), (String) skuList.get(1));
+					inventoryDetailList = inventoryDB.getTagIdDetailsforExpiry(expiry, type);
+					if (!inventoryDetailList.isEmpty()) {
+						context.setSkuId((String) inventoryDetailList.get(0));
+						context.setLocation((String) inventoryDetailList.get(1));
+						context.setTagId((String) inventoryDetailList.get(2));
+					}
+				}
+			}
+		}
+		 jdaLoginPage.login();
+	}
+	
+	@Given("^I have a tag in inventory with origin \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_origin(String origin, String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		case "Flatpack":
+			type = "P";
+			break;
+		case "GOH":
+			type = "C";
+			break;
+		}
+		System.out.println("hello");
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForOrigin(origin, type);
+		if (!inventoryDetailList.isEmpty()) {
+			String tempData = (String) inventoryDetailList.get(0);
+			System.out.println(tempData);
+			if (!tempData.equalsIgnoreCase("Exhausted Resultset")) {
+				context.setSkuId((String) inventoryDetailList.get(0));
+				System.out.println("SKU" + context.getSkuId());
+				context.setLocation((String) inventoryDetailList.get(1));
+				System.out.println("Location" + context.getLocation());
+				context.setTagId((String) inventoryDetailList.get(2));
+				System.out.println("Tag" + context.getTagId());
+			} else {
+				ArrayList skuList = inventoryDB.getSKUFromInventoryFordDataType(type);
+				if (!skuList.isEmpty()) {
+					inventoryDB.updateOriginForTag((String) skuList.get(0), (String) skuList.get(1), origin);
+					inventoryDetailList = inventoryDB.getTagIdDetailsForOrigin(origin, type);
+					if (!inventoryDetailList.isEmpty()) {
+						context.setSkuId((String) inventoryDetailList.get(0));
+						System.out.println(context.getSkuId());
+						context.setLocation((String) inventoryDetailList.get(1));
+						System.out.println(context.getLocation());
+						context.setTagId((String) inventoryDetailList.get(2));
+						System.out.println(context.getTagId());
+					}
+				}
+			}
+		}
+		 jdaLoginPage.login();
+	}
+	
+	@Given("^I have a tag in inventory with condition \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_condition(String Condition, String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		case "Flatpack":
+			type = "P";
+			break;
+
+		case "GOH":
+			type = "C";
+			break;
+		}
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForCondition(Condition, type);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		 jdaLoginPage.login();
+	}
+	
+	@Given("^I have a tag in inventory with pallet type as \"([^\"]*)\" for \"([^\"]*)\"$")
+	public void i_have_a_tag_in_inventory_with_pallet_type_as(String pallet, String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		case "Flatpack":
+			type = "P";
+			break;
+		case "GOH":
+			type = "C";
+			break;
+
+		}
+		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForPallet(pallet, type);
+		if (!inventoryDetailList.isEmpty()) {
+			context.setSkuId((String) inventoryDetailList.get(0));
+			context.setLocation((String) inventoryDetailList.get(1));
+			context.setTagId((String) inventoryDetailList.get(2));
+		}
+		 jdaLoginPage.login();
+	}
+	
+	@Given("^I have a sku in inventory with more than one pack config for \"([^\"]*)\"$")
+	public void i_have_a_sku_in_inventory_with_more_than_one_packConfig(String dataType) throws Throwable {
+		String type = null;
+		switch (dataType) {
+		case "Boxed":
+			type = "B";
+			break;
+		case "Hanging":
+			type = "H";
+			break;
+		case "GOH":
+			type = "C";
+			break;
+		case "Flatpack":
+			type = "P";
+			break;
+		}
+		String sku = skuSkuConfigDB.getSkuIdWithMoreThanOnePackConfig(type);
+		context.setSkuId(sku);
+		context.setPackConfigList(skuSkuConfigDB.getPackConfigList(sku));
+		ArrayList inventoryDetails = inventoryDB.getInventoryDetailsForSku(sku);
+		if (!inventoryDetails.isEmpty()) {
+			context.setTagId((String) inventoryDetails.get(0));
+			context.setPackConfig((String) inventoryDetails.get(1));
+		}
+		 jdaLoginPage.login();
 	}
 }
