@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 
 		
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-				+ "@hanging_inbound_receiving_direct_po_under_receiving"})
+				+ "@boxed_stock_adjustment_returns_verify_reason_code_available_for_store_has_sent_greater_quantity_than_the_expected_volume_for_a_product_within_the_urrn_and_has_a_movement_label_over_receipt"})
 
 
 public class AllTest {
