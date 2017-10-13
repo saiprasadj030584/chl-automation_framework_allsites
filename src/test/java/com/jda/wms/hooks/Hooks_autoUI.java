@@ -65,14 +65,20 @@ public class Hooks_autoUI {
 		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
 		insertSiteID();
 		getSiteID();
-		updateBuildNumberInRequestTable();
+//		updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 	}
 
 	private void updateBuildNumberInRequestTable() {
-		// TODO Auto-generated method stub
-		
+		try {
+
+			String insertQuery = "UPDATE INTO NPS_Auto_UI_Run_Request (JENKINS_BUILD_NO) VALUES ('')";
+			context.getSQLDBConnection().createStatement().execute(insertQuery);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	private void getSiteID() throws ClassNotFoundException {
