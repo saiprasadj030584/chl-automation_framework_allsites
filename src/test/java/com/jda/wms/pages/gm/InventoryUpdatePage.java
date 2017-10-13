@@ -10,15 +10,17 @@ public class InventoryUpdatePage {
 	int timeoutInSec = 20;
 
 	public void enterTagID(String tagId) throws FindFailed, InterruptedException {
-		Match mtagId = screen.find("/images/InventoryUpdate/Search/TagId.png");
-		screen.click(mtagId.getCenter().offset(70, 0));
+		// Match mtagId =
+		// screen.find("/images/InventoryUpdate/Search/TagId.png");
+		// screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 		Thread.sleep(1000);
 	}
 
 	public void enterSku(String skuId) throws FindFailed, InterruptedException {
-//		Match skuID = screen.find("images/InventoryUpdate/Search/GmSkuID.png");
-//		screen.click(skuID.getCenter().offset(70, 0));
+		// Match skuID =
+		// screen.find("images/InventoryUpdate/Search/GmSkuID.png");
+		// screen.click(skuID.getCenter().offset(70, 0));
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(skuId);
@@ -80,9 +82,9 @@ public class InventoryUpdatePage {
 		screen.type(packConfig);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterLockcode(String string) throws FindFailed, InterruptedException {
 		screen.type(string);
 		Thread.sleep(1000);
-		}
+	}
 }

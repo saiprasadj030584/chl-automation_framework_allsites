@@ -1,5 +1,5 @@
 @receiving_progress_report
-Feature: Receiving progress report validation
+Feature: Boxed - Direct PO - Receiving progress report validation
   As a warehouse user
   I want to validate receiving progress report
 
