@@ -12,3 +12,6 @@ Feature: Purchase order receiving
     When I have logged in as warehouse user in JDA dispatcher food application
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lockcode damaged
+    
+    
+     

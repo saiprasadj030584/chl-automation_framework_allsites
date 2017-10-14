@@ -12,7 +12,7 @@ Feature: Allocation
 
   @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
-    Given the order id of type "Retail" should be in "Released" status
+  Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated
