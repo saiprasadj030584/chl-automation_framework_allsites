@@ -917,4 +917,30 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+
+	public boolean isRecordExistsForReasonCodeForTransactionTime(String skuId, String code, String transactionTime)
+			throws ClassNotFoundException {
+		boolean isRecordExists = false;
+		System.out.println("query"+ "select reason_id from inventory_transaction where sku_id='" + skuId + "' and code='"
+							+ code + "' and dstamp like '%" +transactionTime+ "%'");
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt
+					.executeQuery("select reason_id from inventory_transaction where sku_id='" + skuId + "' and code='"
+							+ code +"' and dstamp like '%" +transactionTime+ "%'");
+			rs.next();
+			if (rs.getString(1).equals(context.getReasonCode())) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

@@ -54,9 +54,10 @@ public class StockAdjustmentStepDefs {
 		this.inventoryDB = inventoryDB;
 	}
 
-	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
-	public void i_create_a_new_stock_with_siteid_and_location(String location)
+	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\"$")
+	public void i_create_a_new_stock_with_siteid_and_location(String siteID,String location)
 			throws FindFailed, InterruptedException {
+		context.setSiteId(siteID);
 		String siteId = context.getSiteId();
 		if (siteId.equals("5649")){
 		String owner = "M+S";
@@ -64,7 +65,6 @@ public class StockAdjustmentStepDefs {
 		String quantity = Utilities.getTwoDigitRandomNumber();
 		context.setQtyOnHand(Integer.parseInt(quantity));
 		String pallet = "PALLET";
-
 		stockAdjustmentsPage.selectNewStock();
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
@@ -104,13 +104,13 @@ public class StockAdjustmentStepDefs {
 		String reasonCodeToChoose = null;
 		switch (reasonCode) {
 		case "Dirty":
-			reasonCodeToChoose = "Dirty";
+			reasonCodeToChoose = "DIRTY";
 			break;
 		case "DMIT":
-			reasonCodeToChoose = "Damaged in Transit - for the 'damaged pallet'";
+			reasonCodeToChoose = "DMIT";
 			break;
 		case "EXPD":
-			reasonCodeToChoose = "Expired";
+			reasonCodeToChoose = "EXPD";
 			break;
 		case "FOUND":
 			reasonCodeToChoose = "FOUND";
@@ -124,10 +124,12 @@ public class StockAdjustmentStepDefs {
 		case "SAMPLES":
 			reasonCodeToChoose = "SAMPLES";
 			break;
-		case "SC":
+		case "Stock Count":
 			reasonCodeToChoose = "Stock Count";
 			break;
-
+		case "Receiving Correction":
+			reasonCodeToChoose = "Receiving Correction";
+			break;
 		case "RMS - Unexpected receipt with movement label":
 			reasonCodeToChoose = "RMS - Unexpected receipt with movement label";
 			break;
@@ -146,9 +148,12 @@ public class StockAdjustmentStepDefs {
 		jDAFooter.clickDoneButton();
 		jDAFooter.PressEnter();
 		jDAFooter.PressEnter();
-		context.setReasonCode(reasonCode);
-		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
+		context.setReasonCode(reasonCodeToChoose);
+		//String date = DateUtils.getCurrentSystemDateInDBFormat();
+		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
+		if (reasonCodeToChoose.equalsIgnoreCase("Stock Count")){
+			context.setReasonCode("SC");
+		}
 	}
 
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")

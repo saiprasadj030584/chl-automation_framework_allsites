@@ -983,4 +983,15 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getDstamp(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}		
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select DSTAMP from inventory_transaction where sku_id='" + skuId + "'"
+				+ "order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
 }

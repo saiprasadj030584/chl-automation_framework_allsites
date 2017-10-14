@@ -36,6 +36,7 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
+	private String transactionTime;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
 	private List<String> caseRatiolist;
@@ -1279,4 +1280,14 @@ public class Context {
 	public String getChildStartTime() {
 		return childStartTime;
 	}
+
+	public String getTransactionTime() {
+		return transactionTime;
+	}
+
+	public void setTransactionTime(String transactionTime) {
+		this.transactionTime = transactionTime;
+	}
+
+	
 }

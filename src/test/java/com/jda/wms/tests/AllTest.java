@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed1","@complete2"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_stock_adjustment_stock_adjustment_reason_code_stock_count"})
 
 public class AllTest {
 }

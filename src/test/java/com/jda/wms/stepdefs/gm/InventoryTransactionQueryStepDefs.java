@@ -9,6 +9,7 @@ import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
@@ -37,12 +38,13 @@ public class InventoryTransactionQueryStepDefs {
 	private JdaHomePage jdaHomePage;
 	private UPIReceiptLineDB uPIReceiptLineDB;
 	private UpiReceiptHeaderPage upiReceiptHeaderPage;
+	private InventoryDB inventoryDB;
 
 	@Inject
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			JDAFooter jDAFooter, JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs, JdaHomePage jdaHomePage,
-			UPIReceiptLineDB uPIReceiptLineDB, UpiReceiptHeaderPage upiReceiptHeaderPage) {
+			UPIReceiptLineDB uPIReceiptLineDB, UpiReceiptHeaderPage upiReceiptHeaderPage,InventoryDB inventoryDB) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
@@ -53,6 +55,7 @@ public class InventoryTransactionQueryStepDefs {
 		this.jdaHomePage = jdaHomePage;
 		this.uPIReceiptLineDB = uPIReceiptLineDB;
 		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
+		this.inventoryDB=inventoryDB;
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction$")
@@ -462,6 +465,22 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
 	}
+	@When("^I choose the code as \"([^\"]*)\" and search the sku id at specific transaction time$")      
+	public void i_choose_the_code_as_and_search_the_sku_id_at_particular_transaction_time(String code) throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode(code);
+		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		String dstamp=inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		context.setTransactionTime(transactionTime);
+		System.out.println("transactionTime"+transactionTime);
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.pressTab();
+		inventoryTransactionQueryPage.enterTransactionTime(transactionTime);
+		jDAFooter.clickExecuteButton();
+		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		inventoryTransactionQueryPage.getReasonCode();
+	}
 
 	@When("^I choose the code as \"([^\"]*)\" and search the sku id$")
 	public void i_choose_the_code_as_and_search_the_sku_id(String code) throws Throwable {
@@ -544,6 +563,16 @@ public class InventoryTransactionQueryStepDefs {
 				execDate, context.getReasonCode(), updatedQty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
+	}
+	@Then("^the reason code should be updated for specific transaction time$")
+	public void the_reason_code_should_be_updated_for_specific_transaction_time() throws Throwable {
+		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
+	    String transactionTime=context.getTransactionTime();
+		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCodeForTransactionTime(context.getSkuId(), "Adjustment",
+				transactionTime);
+		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
+				isRecordExists);
+
 	}
 
 	@When("^the inventory transaction should be updated for SKU with single supplier$")
