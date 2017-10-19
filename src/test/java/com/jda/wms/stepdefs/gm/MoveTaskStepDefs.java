@@ -11,12 +11,13 @@ import com.jda.wms.db.gm.OrderLineDB;
 import com.jda.wms.pages.gm.AllocationPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.MoveTaskPage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.pages.gm.MoveTaskPage;
 import com.jda.wms.utils.DateUtils;
 
-import cucumber.api.java.en.*;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class MoveTaskStepDefs {
 	private MoveTaskPage moveTaskPage;
@@ -48,11 +49,13 @@ public class MoveTaskStepDefs {
 		String Date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated move task task type are not as expected", "M", moveTaskDB.getTaskType(Date));
 	}
-	
+
 	@When("^I enter OrderID in move task$")
 	public void i_enter_OrderID_in_move_task() throws Throwable {
 		jDAFooter.clickQueryButton();
+		System.out.println("VALUE OF ORDERID =" + context.getOrderId());
 		moveTaskPage.enterOrderId(context.getOrderId());
+		System.out.println("VALUE OF ORDERID =" + context.getOrderId());
 		jDAFooter.clickExecuteButton();
 	}
 

@@ -70,9 +70,18 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
 			String status) throws Throwable {
 
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		String preAdviceId = getTcData.getPo();
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
+		// String preAdviceId = getTcData.getPo();
+
+		// String preAdviceId = "PO20117112135";
+		// String upiId = "PO000504563005122790";
+		// String asnId = "0001118128";
+
+		String preAdviceId = "1305377865";
+		String upiId = "56490000532760246410022051700100";
+		// 000000060002987001
+		String asnId = "0000001234";
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
@@ -362,9 +371,10 @@ public class PreAdviceHeaderStepsDefs {
 
 	@Given("^the FSV PO of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String type, String status) throws Throwable {
-
-		String preAdviceId = getTcData.getPo();
+		context.setSiteId("5649");
+		// String preAdviceId = getTcData.getPo();
 		String siteId = context.getSiteId();
+		String preAdviceId = "9317010310";
 
 		context.setPreAdviceId(preAdviceId);
 		context.setSKUType(type);

@@ -1,12 +1,8 @@
 package com.jda.wms.hooks;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -81,7 +77,7 @@ public class Hooks {
 
 	@Before("~@no_ds")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
-		
+
 		logger.debug(
 				"###########################################################################################################################");
 		logger.debug("Iniatate Data Setup ");
@@ -89,15 +85,15 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-//		context.setSiteId("5649");
-		System.out.println("SITE ID "+context.getSiteId());
-		context.setSiteId(System.getProperty("SITEID"));
-//		System.out.println("SITE ID 1 "+context.getSiteId());
+		// context.setSiteId("5649");
+		System.out.println("SITE ID " + context.getSiteId());
+		// context.setSiteId(System.getProperty("SITEID"));
+		// System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
-			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			// dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
 	}
 

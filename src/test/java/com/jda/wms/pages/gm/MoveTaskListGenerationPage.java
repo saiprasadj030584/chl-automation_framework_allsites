@@ -63,8 +63,8 @@ public class MoveTaskListGenerationPage {
 	}
 
 	public void enterOrderId(String orderid) throws FindFailed, InterruptedException {
-		screen.wait("images/MoveTaskListGeneration/TaskID.png", timeoutInSec);
-		screen.click("images/MoveTaskListGeneration/TaskID.png");
+		screen.wait("images/MoveTaskListGeneration/TaskID_1.png", timeoutInSec);
+		screen.click("images/MoveTaskListGeneration/TaskID_1.png");
 		screen.type(orderid);
 		Thread.sleep(1000);
 	}

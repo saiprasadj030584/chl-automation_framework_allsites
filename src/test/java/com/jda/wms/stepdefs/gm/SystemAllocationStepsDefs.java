@@ -52,9 +52,9 @@ public class SystemAllocationStepsDefs {
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage, OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs,
-			JDALoginStepDefs jDALoginStepDefs, SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB,
-			OrderLineDB orderLineDB) {
+			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage,
+			OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs, JDALoginStepDefs jDALoginStepDefs,
+			SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB, OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -134,13 +134,13 @@ public class SystemAllocationStepsDefs {
 			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
 					.equals(String.valueOf(context.getRcvQtyDue())))) {
 				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
-				 context.setFailureList(failureList);
+				context.setFailureList(failureList);
 			}
 		}
 		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@When("^I enter OrderID for allocation$")
 	public void i_enter_OrderID_for_allocation() throws Throwable {
 		jdaFooter.clickNextButton();
@@ -152,5 +152,6 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();
+		Thread.sleep(8000);
 	}
 }

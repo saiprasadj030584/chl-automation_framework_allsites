@@ -37,7 +37,8 @@ Feature: order allocation and picking
 
   @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_upc @complete @ds
   Scenario: Validate keying wrong UPC
-    Given the order id of type "Retail" should be in "Released" status
+    Given the order of "Retail" should be in "Released" status in order header maintenance 
+   # Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I enter OrderID for allocation
     Then the status should be allocated for the orderID

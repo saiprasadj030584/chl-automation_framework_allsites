@@ -68,7 +68,7 @@ public class IDTReceivingStepDefs {
 			SupplierSkuDB supplierSkuDb, Hooks hooks, UPIReceiptHeaderStepDefs uPIReceiptHeaderStepDefs,
 			UPIReceiptLineStepDefs uPIReceiptLineStepDefs, InventoryQueryStepDefs inventoryQueryStepDefs,
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,
-			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,GetTcData getTcData) {
+			PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs, GetTcData getTcData) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -91,16 +91,20 @@ public class IDTReceivingStepDefs {
 	}
 
 	@Given("^the UPI and ASN should be in \"([^\"]*)\" status for IDT$")
-	public void the_UPI_and_ASN_should_be_in_status_for_IDT(String status)
-			throws Throwable {
-		
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		
+	public void the_UPI_and_ASN_should_be_in_status_for_IDT(String status) throws Throwable {
+
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
+
+		String upiId = "56490001384579299100395756000210";
+		String asnId = "0000003194";
+
 		context.setUpiId(upiId);
+
 		context.setAsnId(asnId);
 		String ShippingType = "ZIDC";
 		ArrayList failureList = new ArrayList();
+		System.out.println("entered here");
 		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
 		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
 		verification.verifyData("Shipping Type", ShippingType, upiReceiptHeaderDB.getShippingType(upiId), failureList);
@@ -215,7 +219,8 @@ public class IDTReceivingStepDefs {
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
-			jdaFooter.pressTab();
+
+			puttyFunctionsPage.nextScreen();
 			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
 			jdaFooter.PressEnter();
 			if (!purchaseOrderReceivingPage.isExcessReceiptErrorDisplayed()) {
@@ -281,8 +286,8 @@ public class IDTReceivingStepDefs {
 	}
 
 	@Given("^the UPI and ASN of type \"([^\"]*)\" should be received at location \"([^\"]*)\" for IDT$")
-	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String Type,
-			String location) throws Throwable {
+	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String Type, String location)
+			throws Throwable {
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
 		the_UPI_and_ASN_should_be_in_status_for_IDT("Released");
@@ -294,7 +299,7 @@ public class IDTReceivingStepDefs {
 				.the_goods_receipt_should_be_generated_for_IDT_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_idt_status_should_be_displayed_as("In Progress");
 	}
-	
+
 	@When("^I perform \"([^\"]*)\" for all the skus at location \"([^\"]*)\" for IDT$")
 	public void i_perform_for_all_the_skus_at_location_for_IDT(String receiveType, String location) throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -344,7 +349,7 @@ public class IDTReceivingStepDefs {
 		context.setFailureList(failureList);
 		hooks.logoutPutty();
 	}
-	
+
 	@When("^I perform normal urn \"([^\"]*)\" for \"([^\"]*)\" at location \"([^\"]*)\" for IDT$")
 	public void i_perform_normal_urn_for_all_the_skus_at_location_for_IDT(String receiveType, String type,
 			String location) throws Throwable {
@@ -375,7 +380,7 @@ public class IDTReceivingStepDefs {
 			}
 			context.setRcvQtyDue(Integer.parseInt(quantity));
 			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
-			System.out.println("Type"+type);
+			System.out.println("Type" + type);
 			if (type.equalsIgnoreCase("multiple line item")) {
 				jdaFooter.pressTab();
 			}

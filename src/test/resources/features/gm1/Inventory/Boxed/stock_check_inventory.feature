@@ -10,7 +10,7 @@ Feature: Report generation
     And I select 'Generate by inventory'
     And I enter total quantity in miscelloneus tab
     Then the available list should be displayed
-    When I select the record from the available list
+  When I select the record from the available list
     Then the record should be added in the selected list
     And I proceed to next tab
     Then I should see the confirmation for number of items checked

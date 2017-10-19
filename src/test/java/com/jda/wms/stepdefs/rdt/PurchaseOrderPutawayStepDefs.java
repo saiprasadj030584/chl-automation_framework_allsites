@@ -33,7 +33,7 @@ public class PurchaseOrderPutawayStepDefs {
 	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private Verification verification;
 	private InventoryDB inventoryDB;
-private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
+	private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 	private LocationDB locationDB;
 	private Hooks hooks;
 	private JDAFooter jdaFooter;
@@ -45,7 +45,8 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
-			InventoryTransactionDB inventoryTransactionDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage,SkuDB skuDB) {
+			InventoryTransactionDB inventoryTransactionDB, PurchaseOrderRelocatePage purchaseOrderRelocatePage,
+			SkuDB skuDB) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -56,8 +57,8 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		this.jdaFooter = jdaFooter;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.inventoryTransactionDB = inventoryTransactionDB;
-			this.purchaseOrderRelocatePage=purchaseOrderRelocatePage;
-			this.skuDB = skuDB;
+		this.purchaseOrderRelocatePage = purchaseOrderRelocatePage;
+		this.skuDB = skuDB;
 	}
 
 	@When("^I select normal putaway$")
@@ -79,8 +80,10 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+
 			i_enter_urn_id_in_putaway();
-			the_tag_details_for_putaway_should_be_displayed();
+			jdaFooter.PressEnter();
+			// the_tag_details_for_putaway_should_be_displayed();
 			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
 			i_enter_to_location(context.getToLocation());
 			i_enter_the_check_string();
@@ -126,7 +129,6 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	}
 
-
 	@When("^I proceed without entering location$")
 	public void i_proceed_without_entering_location() throws InterruptedException, FindFailed {
 		ArrayList failureList1 = new ArrayList();
@@ -141,19 +143,20 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 				if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
 					failureList1.add("Error message:Cannot find putaway location not displayed as expected for pallet"
 							+ context.getPalletIDList().get(i - 1));
-				} 
-//				else {
-//					i_enter_urn_id_in_putaway();
-//					if (null == context.getLockCode()) {
-//						the_tag_details_for_putaway_should_be_displayed();
-//						jdaFooter.PressEnter();
-//						if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
-//							failureList1
-//									.add("Error message:Cannot find putaway location not displayed as expected for UPI"
-//											+ context.getUpiId());
-//						}
-//					}
-//				}
+				}
+				// else {
+				// i_enter_urn_id_in_putaway();
+				// if (null == context.getLockCode()) {
+				// the_tag_details_for_putaway_should_be_displayed();
+				// jdaFooter.PressEnter();
+				// if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+				// failureList1
+				// .add("Error message:Cannot find putaway location not
+				// displayed as expected for UPI"
+				// + context.getUpiId());
+				// }
+				// }
+				// }
 				jdaFooter.PressEnter();
 				purchaseOrderPutawayPage.navigateToBackScreen();
 			}
@@ -192,7 +195,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		context.setFailureList(failureList1);
 
 	}
-		
+
 	@When("^I perform normal putaway after relocation for FSV PO$")
 	public void i_perform_normal_putaway_after_relocation_for_fsv_po() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -206,24 +209,23 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			context.setUpiId(context.getTagId());
 			i_enter_urn_id_in_putaway_for_fsv_po(context.getTagId());
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
-				
+
 			}
 			jdaFooter.PressEnter();
-			Assert.assertTrue("ChkTo page not displayed",
-					purchaseOrderRelocatePage.isChkToDisplayed());
+			Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
 			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
 			jdaFooter.PressEnter();
 			i_should_be_directed_to_putent_page();
-			
+
 		}
 	}
 
-	
 	@When("^I perform normal putaway$")
 	public void i_perform_normal_putaway() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -237,31 +239,28 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			context.setUpiId(context.getTagId());
 			i_enter_urn_id_in_putaway(context.getTagId());
 			jdaFooter.PressEnter();
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
-				
+
 			}
 			jdaFooter.PressEnter();
-			if(purchaseOrderRelocatePage.isChkToDisplayed())
-			{
-			Assert.assertTrue("ChkTo page not displayed",
-					purchaseOrderRelocatePage.isChkToDisplayed());
-			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
-			jdaFooter.PressEnter();
-			}
-			else
-			{
-				
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			} else {
+
 			}
 			i_should_be_directed_to_putent_page();
-			
+
 		}
 	}
-	
+
 	@When("^I perform normal putaway after relocation$")
 	public void i_perform_normal_putaway_after_relocation() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -275,34 +274,31 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(),"Receipt",context.getSkuId(), date));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			context.setUpiId(context.getTagId());
 			i_enter_urn_id_in_putaway(context.getTagId());
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
-				
+
 			}
 			jdaFooter.PressEnter();
-			if(purchaseOrderRelocatePage.isChkToDisplayed())
-			{
-			Assert.assertTrue("ChkTo page not displayed",
-					purchaseOrderRelocatePage.isChkToDisplayed());
-			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
-			jdaFooter.PressEnter();
-			}
-			else
-			{
-				
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			} else {
+
 			}
 			i_should_be_directed_to_putent_page();
-			
+
 		}
 	}
-	
+
 	@When("^I perform normal returns putaway after relocation$")
 	public void i_perform_normal_returns_putaway_after_relocation() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
-		//poMap = context.getPOMap();
+		// poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
@@ -311,38 +307,31 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		i_should_be_directed_to_putent_page();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(context.getSkuFromUPI().get(i-1));
+			context.setSkuId(context.getSkuFromUPI().get(i - 1));
 			System.out.println(context.getSkuId());
-			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Receipt",context.getSkuId(), date));
+			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Receipt", context.getSkuId(), date));
 			i_enter_urn_id_in_putaway(context.getTagId());
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
-				
+
 			}
 			jdaFooter.PressEnter();
-			if(purchaseOrderRelocatePage.isChkToDisplayed())
-			{
-			Assert.assertTrue("ChkTo page not displayed",
-					purchaseOrderRelocatePage.isChkToDisplayed());
-			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
-			jdaFooter.PressEnter();
-			}
-			else
-			{
-				
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			} else {
+
 			}
 			i_should_be_directed_to_putent_page();
-			
+
 		}
 	}
 
-	
-
-	
 	@When("^I perform normal returns putaway$")
 	public void i_perform_normal_returns_putaway() throws Throwable {
 		System.out.println(context.getUpiId());
-		
+
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
@@ -353,27 +342,24 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		i_should_be_directed_to_putent_page();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(context.getSkuFromUPI().get(i-1));
+			context.setSkuId(context.getSkuFromUPI().get(i - 1));
 			System.out.println(context.getSkuId());
-			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(),"Receipt",context.getSkuId(), date));
+			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Receipt", context.getSkuId(), date));
 			i_enter_urn_id_in_putaway(context.getTagId());
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed();
-				
+
 			}
 			jdaFooter.PressEnter();
-			if(purchaseOrderRelocatePage.isChkToDisplayed())
-			{
-			Assert.assertTrue("ChkTo page not displayed",
-					purchaseOrderRelocatePage.isChkToDisplayed());
-			purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
-			jdaFooter.PressEnter();
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
 			}
 			i_should_be_directed_to_putent_page();
-			
+
 		}
 	}
-	
 
 	@When("^I should not be able to putaway locked PO$")
 	public void i_should_not_be_able_to_putaway_locked_po() throws Throwable {
@@ -383,20 +369,20 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_urn_id_in_putaway();
 			jdaFooter.PressEnter();
-			if(purchaseOrderPutawayPage.isPutCmpPageDisplayed()){
-				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"+context.getSkuId());	
+			if (purchaseOrderPutawayPage.isPutCmpPageDisplayed()) {
+				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"
+						+ context.getSkuId());
 				jdaFooter.PressEnter();
-			}
-			else if (purchaseOrderPutawayPage.isPutGrpPageDisplayed()){
-				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"+context.getSkuId());
+			} else if (purchaseOrderPutawayPage.isPutGrpPageDisplayed()) {
+				failureList.add("Putaway details page should not be displayed as the PO is locked for putaway for SKU"
+						+ context.getSkuId());
 				jdaFooter.pressF12();
 			}
-			
+
 		}
 		Assert.assertTrue("Putaway for Locked PO is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-
 
 	@When("^the error message should be displayed as cannot find putaway location$")
 	public void the_error_message_should_be_displayed_as_cannot_find_putaway_location() throws InterruptedException {
@@ -505,8 +491,8 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	@Then("^I enter the check string$")
 	public void i_enter_the_check_string() throws Throwable {
-		 Assert.assertTrue("Chk To Page not displayed to enter check string",
-		 purchaseOrderPutawayPage.isChkToDisplayed());
+		Assert.assertTrue("Chk To Page not displayed to enter check string",
+				purchaseOrderPutawayPage.isChkToDisplayed());
 		purchaseOrderPutawayPage.enterCheckString(locationDB.getCheckString(context.getToLocation()));
 
 	}
@@ -531,58 +517,58 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		purchaseOrderPutawayPage.enterURNID(palletId);
 	}
 
-public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, InterruptedException {
+	public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, InterruptedException {
 		purchaseOrderPutawayPage.enterURNID(tagId);
-		
+
 	}
-	
+
 	@When("^I enter urn id in putaway for FSV PO$")
 	public void i_enter_urn_id_in_putaway_for_fsv_po() throws FindFailed, InterruptedException {
 		purchaseOrderPutawayPage.enterURNID(context.getUpiId());
 	}
-	
+
 	public void i_enter_urn_id_in_putaway_for_fsv_po(String tagId) throws FindFailed, InterruptedException {
 		purchaseOrderPutawayPage.enterURNID(tagId);
 	}
 
 	@When("^the tag details for putaway should be displayed after relocation$")
-	public void the_tag_details_for_putaway_should_be_displayed_after_relocation() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	public void the_tag_details_for_putaway_should_be_displayed_after_relocation()
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		ArrayList failureList = new ArrayList();
 		Assert.assertTrue("PutCmp page not displayed to enter To Location",
 				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 		verification.verifyData("From Location", context.getFromLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
-		//TODO-Check this verification
-//		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
-		if(purchaseOrderPutawayPage.getToLocation()!=null)
-		{
-		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
-		}
-		else
-		{if(context.getSKUType().equalsIgnoreCase("Hanging"))
-		{
-			context.setToLocation(inventoryDB.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
-			}
-			else if(context.getSKUType().equalsIgnoreCase("Boxed"))
-			{
-			context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
+		// TODO-Check this verification
+		// verification.verifyData("Tag ID", context.getUpiId(),
+		// purchaseOrderPutawayPage.getTagId(), failureList);
+		if (purchaseOrderPutawayPage.getToLocation() != null) {
+			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		} else {
+			if (context.getSKUType().equalsIgnoreCase("Hanging")) {
+				context.setToLocation(
+						inventoryDB.getToLocationForPutaway("HANG", skuDB.getProductGroup(context.getSkuId())));
+			} else if (context.getSKUType().equalsIgnoreCase("Boxed")) {
+				context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
 			}
 			jdaFooter.pressTab();
-			i_enter_to_location(context.getToLocation());}
+			i_enter_to_location(context.getToLocation());
+		}
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@When("^the tag details for putaway should be displayed$")
 	public void the_tag_details_for_putaway_should_be_displayed() throws FindFailed, InterruptedException {
 		ArrayList failureList = new ArrayList();
-//		Assert.assertTrue("PutCmp page not displayed to enter To Location",
-//				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
+		// Assert.assertTrue("PutCmp page not displayed to enter To Location",
+		// purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 		verification.verifyData("From Location", context.getLocationID(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
-	context.setFromLocation(context.getLocationID());
-		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
-	context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		context.setFromLocation(context.getLocationID());
+		// verification.verifyData("Tag ID", context.getUpiId(),
+		// purchaseOrderPutawayPage.getTagId(), failureList);
+		// context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}

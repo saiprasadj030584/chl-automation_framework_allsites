@@ -50,9 +50,9 @@ Feature: Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @boxed @allocation @retail @allocation_boxed_retail_auto_allocation_while_qty_on_hand @complete @ds
+  @boxed @allocation @retail @boxed_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
-    Given the order is of type "RETAIL" and it is in "Released" status
+    Given the order of "Retail" should be in "Released" status in order header maintenance 
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status

@@ -48,7 +48,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
 			OrderHeaderDB orderHeaderDB, Verification verification, OrderHeaderPage orderHeaderPage,
 			JdaLoginPage jdaLoginPage, OrderLineDB orderLineDB, GetTcData getTcData, InventoryDB inventoryDB,
-			JDALoginStepDefs jdaLoginStepDefs,InventoryQueryPage inventoryQueryPage) {
+			JDALoginStepDefs jdaLoginStepDefs, InventoryQueryPage inventoryQueryPage) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.jDAHomePage = jDAHomePage;
@@ -66,21 +66,25 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
 	public void the_order_should_be_in_status_in_order_header_maintenance(String orderType, String status)
 			throws Throwable {
-		String orderId = getTcData.getSto();
+		// String orderId = getTcData.getSto();
+		String orderId = "5471054001";
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
-		Assert.assertEquals("Status is not displayed as expected", status, orderHeaderDB.getStatus(orderId));
-		verification.verifyData("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(orderId), failureList);
+		Assert.assertEquals("Status is not displayed as expected", status,
+				orderHeaderDB.getStatus(context.getOrderId()));
+		verification.verifyData("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(context.getOrderId()),
+				failureList);
 		jdaLoginPage.login();
 	}
 
 	@Given("^the order should be in \"([^\"]*)\" status in order header maintenance$")
 	public void the_order_should_be_in_status_in_order_header_maintenance(String status) throws Throwable {
-		String orderId = getTcData.getSto();
+		// String orderId = getTcData.getSto();
 		Thread.sleep(8000);
-		context.setOrderId(orderId);
-		System.out.println(orderHeaderDB.getStatus(orderId));
-		Assert.assertEquals("Status is not displayed as expected", status, orderHeaderDB.getStatus(orderId));
+		context.setOrderId(context.getOrderId());
+		System.out.println(orderHeaderDB.getStatus(context.getOrderId()));
+		Assert.assertEquals("Status is not displayed as expected", status,
+				orderHeaderDB.getStatus(context.getOrderId()));
 	}
 
 	@Then("^the order should be in \"([^\"]*)\" status$")
@@ -145,7 +149,8 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the order is of type \"([^\"]*)\" and it is in \"([^\"]*)\" status$")
 	public void the_order_status_is_in_status(String type, String status) throws Throwable {
-		String orderId = getTcData.getSto();
+		// String orderId = getTcData.getSto();
+		String orderId = "5471000155";
 
 		context.setOrderId(orderId);
 		context.setSKUType(type);
@@ -269,7 +274,8 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status$")
 	public void the_order_id_of_type_should_be_in_status(String orderType, String status) throws Throwable {
-		String orderNumber = getTcData.getSto();
+		// String orderNumber = getTcData.getSto();
+		String orderNumber = "4764300801";
 		context.setOrderId(orderNumber);
 		context.setStatus(status);
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -305,7 +311,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		verification.verifyData("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber),
 				failureList);
 
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		// jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
@@ -343,7 +349,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order id of type \"([^\"]*)\" with \"([^\"]*)\" skus should be in \"([^\"]*)\" status$")
 	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
-		String orderNumber = getTcData.getSto();
+		// String orderNumber = getTcData.getSto();
+		String orderNumber = "4704313844";
 
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
@@ -540,20 +547,17 @@ public class OrderHeaderMaintenanceStepDefs {
 		orderHeaderPage.enterOrderNo(context.getOrderId());
 		jDAFooter.clickExecuteButton();
 	}
-	
+
 	@Then("^the order stock modularity should be visible$")
 	public void the_Order_stock_modularity_should_be_visible() throws Throwable {
 		inventoryQueryPage.clickUserDefinedTab();
-		
-		if(context.getSKUType().equalsIgnoreCase("Boxed"))
-		{
-		Assert.assertEquals("No of Lines in PO and UPI Header do not match","BOX",
-				orderHeaderDB.getStockModularity(context.getOrderId()));
+
+		if (context.getSKUType().equalsIgnoreCase("Boxed")) {
+			Assert.assertEquals("No of Lines in PO and UPI Header do not match", "BOX",
+					orderHeaderDB.getStockModularity(context.getOrderId()));
+		} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
+			Assert.assertEquals("No of Lines in PO and UPI Header do not match", "HANG",
+					orderHeaderDB.getStockModularity(context.getOrderId()));
 		}
-		else if(context.getSKUType().equalsIgnoreCase("Hanging"))
-		{
-		Assert.assertEquals("No of Lines in PO and UPI Header do not match","HANG",
-				orderHeaderDB.getStockModularity(context.getOrderId()));
-	 }
 	}
 }
