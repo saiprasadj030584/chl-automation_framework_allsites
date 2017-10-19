@@ -37,7 +37,8 @@ Feature: Hanging - Retail - Allocation
     
     @hanging @allocation @retail @hanging_allocation_retail_validate_the_allocations_rules_for_hanging @complete @ds
   Scenario: Validate the allocations Rules for Hanging 
-    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    #Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    Given the order of "Retail" should be in "Released" status in order header maintenance 
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status

@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
 import org.junit.Assert;
+import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -30,6 +31,7 @@ public class MoveTaskStepDefs {
 	private JDAFooter jDAFooter;
 	private JdaHomePage jdaHomePage;
 	private MoveTaskDB moveTaskDB;
+	
 
 	@Inject
 	public MoveTaskStepDefs(MoveTaskPage moveTaskPage, JDAFooter jDAFooter, AllocationPage allocationPage,
@@ -42,6 +44,7 @@ public class MoveTaskStepDefs {
 		this.context = context;
 		this.inventoryDB = inventoryDB;
 		this.moveTaskDB = moveTaskDB;
+		this.moveTaskPage = moveTaskPage;
 	}
 
 	@Then("^the move task should be updated$")
@@ -53,8 +56,10 @@ public class MoveTaskStepDefs {
 	@When("^I enter OrderID in move task$")
 	public void i_enter_OrderID_in_move_task() throws Throwable {
 		jDAFooter.clickQueryButton();
-		System.out.println("VALUE OF ORDERID =" + context.getOrderId());
-		moveTaskPage.enterOrderId(context.getOrderId());
+		String orderid=context.getOrderId();
+		System.out.println("step 1 VALUE OF ORDERID =" + orderid);
+		//screen.type(orderid);
+		moveTaskPage.enterOrderId(orderid);
 		System.out.println("VALUE OF ORDERID =" + context.getOrderId());
 		jDAFooter.clickExecuteButton();
 	}

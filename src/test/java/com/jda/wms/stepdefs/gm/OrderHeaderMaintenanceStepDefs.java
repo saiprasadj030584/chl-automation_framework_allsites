@@ -67,7 +67,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_be_in_status_in_order_header_maintenance(String orderType, String status)
 			throws Throwable {
 		// String orderId = getTcData.getSto();
-		String orderId = "5471054001";
+		String orderId = "5471000504";
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
 		Assert.assertEquals("Status is not displayed as expected", status,
@@ -350,7 +350,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
 		// String orderNumber = getTcData.getSto();
-		String orderNumber = "4704313844";
+		String orderNumber = "4704313644";
 
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);

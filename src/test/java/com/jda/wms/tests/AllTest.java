@@ -10,6 +10,6 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_inbound_receiving_fsv_po_under_receiving" })
+		"json:target/cucumber-reports/cucumber.json" }, tags = { "@hanging_allocation_retail_validate_the_allocations_rules_for_hanging" })
 public class AllTest {
 }
