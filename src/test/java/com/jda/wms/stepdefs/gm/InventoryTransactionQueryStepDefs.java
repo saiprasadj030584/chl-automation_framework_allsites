@@ -424,6 +424,8 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTransactionTime(DateUtils.getCurrentSystemTimeLessThan2Minutes());
 		jDAFooter.clickExecuteButton();
 		//inventoryTransactionQueryPage.clickMiscellaneousTab();
 	}
@@ -447,6 +449,8 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		inventoryTransactionQueryPage.enterTransactionTime(DateUtils.getCurrentSystemTimeLessThan2Minutes());
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickUserDefinedTab();
 	}
@@ -513,7 +517,7 @@ public class InventoryTransactionQueryStepDefs {
 			break;
 
 		}
-		Assert.assertEquals("updated inventory condition are not as expected", conditionToVerify,
+		Assert.assertEquals("Updated inventory condition are not as expected", conditionToVerify,
 				inventoryTransactionQueryPage.getCondition());
 	}
 
@@ -531,9 +535,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the pack config should be updated$")
 	public void the_pack_config_should_be_updated() throws Throwable {
+//		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("Updated inventory pack config are not as expected", context.getPackConfig(),
 				inventoryTransactionQueryPage.getPackConfig());
-		inventoryTransactionDB.getConfigId(context.getSkuId(), "Config Update");
+//		inventoryTransactionDB.getConfigIdFromITL(context.getSkuId(), "Config Update");
 	}
 
 	@Then("^the reason code should be updated$")

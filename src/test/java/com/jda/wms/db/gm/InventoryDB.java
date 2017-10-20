@@ -1007,9 +1007,11 @@ public class InventoryDB {
 			for (int j = 1; j <= columns; j++) {
 				inventoryList.add((rs.getString(j)));
 			}
-		} catch (Exception e) {
-			Assert.assertFalse("Test Data tag not found - For Lock Status change",
-					e.getMessage().contains("Exhausted Resultset"));
+		}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - "+lockStatus+" status update - "+dataType);
+			}
 		}
 		return inventoryList;
 	}
@@ -1031,9 +1033,10 @@ public class InventoryDB {
 			for (int j = 1; j <= columns; j++) {
 				inventoryList.add((rs.getString(j)));
 			}
-		} catch (Exception e) {
-			if (e.getMessage().contains("Exhausted Resultset")) {
-				inventoryList.add("Exhausted Resultset");
+		} 
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - Expiry date update - "+dataType);
 			}
 		}
 		return inventoryList;
@@ -1046,7 +1049,7 @@ public class InventoryDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select inventory.sku_id,inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.qty_allocated='0' and inventory.pick_face is not null and and sku.user_def_type_8 ='"
+				"select inventory.sku_id,inventory.tag_id from inventory inner join sku on sku.sku_id=inventory.sku_id and inventory.qty_allocated='0' and inventory.pick_face is not null and sku.user_def_type_8 ='"
 						+ type + "' order by inventory.sku_id desc");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
@@ -1092,9 +1095,10 @@ public class InventoryDB {
 			for (int j = 1; j <= columns; j++) {
 				inventoryList.add((rs.getString(j)));
 			}
-		} catch (Exception e) {
-			if (e.getMessage().contains("Exhausted Resultset")) {
-				inventoryList.add("Exhausted Resultset");
+		} 
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - Origin update - "+dataType);
 			}
 		}
 		return inventoryList;
@@ -1113,6 +1117,7 @@ public class InventoryDB {
 	public ArrayList getTagIdDetailsForCondition(String condition, String dataType)
 			throws SQLException, ClassNotFoundException {
 		ArrayList<String> inventoryList = new ArrayList<String>();
+		try{
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1128,6 +1133,12 @@ public class InventoryDB {
 		rs.next();
 		for (int j = 1; j <= columns; j++) {
 			inventoryList.add((rs.getString(j)));
+		}
+		}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - Condition type update - "+dataType);
+			}
 		}
 		return inventoryList;
 	}
@@ -1135,6 +1146,7 @@ public class InventoryDB {
 	public ArrayList getTagIdDetailsForPallet(String pallet, String dataType)
 			throws SQLException, ClassNotFoundException {
 		ArrayList<String> inventoryList = new ArrayList<String>();
+		try{
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1150,8 +1162,12 @@ public class InventoryDB {
 		rs.next();
 		for (int j = 1; j <= columns; j++) {
 			inventoryList.add((rs.getString(j)));
+		}}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - Pallet type update - "+dataType);
+			}
 		}
 		return inventoryList;
 	}
-	
 }

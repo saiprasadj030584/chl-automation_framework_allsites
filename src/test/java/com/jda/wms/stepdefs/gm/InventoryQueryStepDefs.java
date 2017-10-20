@@ -236,12 +236,13 @@ public class InventoryQueryStepDefs {
 		}
 
 		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForLockStatus(lockStatus, type);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - "+lockStatus,inventoryDetailList.isEmpty());
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
 			context.setLocation((String) inventoryDetailList.get(1));
 			context.setTagId((String) inventoryDetailList.get(2));
 		}
-		// jdaLoginPage.login();
+		 jdaLoginPage.login();
 	}
 
 	@Given("^I have tag in inventory with expiry \"([^\"]*)\" status$")
@@ -275,6 +276,8 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getOrigin();
+		Assert.assertEquals("Updated Origin is not as expected", context.getOrigin(),
+				inventoryQueryPage.getOrigin());
 
 	}
 
@@ -490,8 +493,15 @@ public class InventoryQueryStepDefs {
 		case "Hanging":
 			type = "H";
 			break;
+		case "Flatpack":
+			type = "P";
+			break;
+		case "GOH":
+			type = "C";
+			break;
 		}
 		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsforExpiry(expiry, type);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - Expiry date",inventoryDetailList.isEmpty());
 		if (!inventoryDetailList.isEmpty()) {
 			String tempData = (String) inventoryDetailList.get(0);
 			if (!tempData.equalsIgnoreCase("Exhausted Resultset")) {
@@ -533,6 +543,7 @@ public class InventoryQueryStepDefs {
 		}
 		System.out.println("hello");
 		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForOrigin(origin, type);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - Origin ",inventoryDetailList.isEmpty());
 		if (!inventoryDetailList.isEmpty()) {
 			String tempData = (String) inventoryDetailList.get(0);
 			System.out.println(tempData);
@@ -581,6 +592,7 @@ public class InventoryQueryStepDefs {
 			break;
 		}
 		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForCondition(Condition, type);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - Condition Code",inventoryDetailList.isEmpty());
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
 			context.setLocation((String) inventoryDetailList.get(1));
@@ -608,6 +620,7 @@ public class InventoryQueryStepDefs {
 
 		}
 		ArrayList inventoryDetailList = inventoryDB.getTagIdDetailsForPallet(pallet, type);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - Pallet Type",inventoryDetailList.isEmpty());
 		if (!inventoryDetailList.isEmpty()) {
 			context.setSkuId((String) inventoryDetailList.get(0));
 			context.setLocation((String) inventoryDetailList.get(1));
@@ -637,6 +650,7 @@ public class InventoryQueryStepDefs {
 		context.setSkuId(sku);
 		context.setPackConfigList(skuSkuConfigDB.getPackConfigList(sku));
 		ArrayList inventoryDetails = inventoryDB.getInventoryDetailsForSku(sku);
+		Assert.assertFalse("Test Data Not found - for "+dataType+ " - Pack Config",inventoryDetails.isEmpty());
 		if (!inventoryDetails.isEmpty()) {
 			context.setTagId((String) inventoryDetails.get(0));
 			context.setPackConfig((String) inventoryDetails.get(1));

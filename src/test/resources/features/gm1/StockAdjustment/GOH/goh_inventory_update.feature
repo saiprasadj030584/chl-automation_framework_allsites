@@ -1,9 +1,9 @@
 @inventory_update
-Feature: Hanging - Inventory update
+Feature: GOH - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Hanging - Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | Unlocked     | Inventory Unlock |
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
     When I navigate to inventory update page
@@ -35,19 +35,7 @@ Feature: Hanging - Inventory update
       | LockStatus | UpdateStatus | Code           |
       | UnLocked   | Locked       | Inventory Lock |
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_expiry_date @complete @ds @no_ds
-  Scenario: Update Expiry date
-    Given I have tag in inventory with expiry "Y" status for "Hanging"
-    When I navigate to inventory update page
-    And I select the update type as "Expiry Date Update"
-    And I search the inventory for the tag
-    Then the tag details should be displayed
-    And I select the future date
-    When I navigate to inventory transaction query
-    When I choose the code as "Expiry Update" and search the tag id
-    Then the expiry date should be updated
-
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_origin_update @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_origin_update @complete @ds @no_ds
   Scenario Outline: Origin update
     Given I have a tag in inventory with origin "<Origin>" for "Hanging"
     When I navigate to inventory update page
@@ -62,7 +50,7 @@ Feature: Hanging - Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_condition_code @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_update_condition_code @complete @ds @no_ds
   Scenario Outline: Update condition code
     Given I have a tag in inventory with condition "<Condition>" for "Hanging"
     When I navigate to inventory update page
@@ -78,7 +66,7 @@ Feature: Hanging - Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_pallet_type_update @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pallet_type_update @complete @ds @no_ds
   Scenario Outline: Pallet type update
     Given I have a tag in inventory with pallet type as "<PalletType>" for "Hanging"
     When I navigate to inventory update page
@@ -94,7 +82,7 @@ Feature: Hanging - Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_pack_config_update @complete @ds @no_ds
+   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pack_config_update @complete @ds @no_ds
   Scenario: Pack config update
     Given I have a sku in inventory with more than one pack config for "Hanging"
     When I navigate to inventory update page

@@ -70,9 +70,13 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
 			String status) throws Throwable {
 
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		String preAdviceId = getTcData.getPo();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		String preAdviceId = getTcData.getPo();
+		
+		String upiId = "00051453000258616235";
+		String asnId = "0000012280";
+		String preAdviceId = "1110002033";
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);

@@ -6,7 +6,7 @@ Feature: Auto clustering
 
   @boxed_picking_retail_auto_clustering @boxed @picking @complete @retail @ds
   Scenario Outline: Validate whether auto clustering process is done after the allocation process
-     Given the order id of type "Retail" should be in "Released" status
+    Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     Then the order should be in "Allocated" status in order header maintenance

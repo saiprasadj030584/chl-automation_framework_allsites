@@ -3,7 +3,7 @@ Feature: order allocation and picking
   As a warehouse user
   I want to pick the allocated stocks
 
-  @boxed @picking @boxed_picking_picking_retail_urn_generated @complete @ds @retail
+  @boxed @picking @boxed_picking_retail_validate_whether_retail_urn_is_generated_for_tote_cage_or_pallet @complete @ds @retail
   Scenario: Validate whether Retail URN is generated for Tote Cage or Pallet
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -13,7 +13,7 @@ Feature: order allocation and picking
     When I navigate to order container page
     Then the urn id should be updated in order container page
 
-  @boxed @picking @boxed_picking_retail_urn_associate_master_urn @complete @ds
+  @boxed @picking @retail @boxed_picking_retail_validate_whether_urn_are_associated_to_master_urn_automatically @complete @ds
   Scenario: Validate whether URN  are associated to Master URN automatically 
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

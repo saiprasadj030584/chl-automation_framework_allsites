@@ -108,6 +108,7 @@ public class EmailStepDefs {
 		String replaceBootStrapURL = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
 		Thread.sleep(5000);
 		File reportPath = new File(configuration.getStringProperty("cucumber-path"));
+		System.out.println(reportPath);
 		File[] listOfFiles = reportPath.listFiles();
 		int numberOfFiles = reportPath.listFiles().length;
 		System.out.println("---------Cucumber Reports----------");

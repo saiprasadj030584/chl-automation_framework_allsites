@@ -831,6 +831,17 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getConfigIdFromITL(String tagId, String code,String date) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				" SELECT CONFIG_ID FROM  inventory_transaction  where code = '" + code + " and tag_id =" + tagId + "' and DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String isITLExistsForRelocatedPutaway(String skuId, String upiId, String date, String string,
 			String toLocation, int rcvQtyDue) {

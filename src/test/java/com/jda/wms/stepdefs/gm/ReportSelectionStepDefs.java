@@ -44,6 +44,8 @@ public class ReportSelectionStepDefs {
 	public void i_enter_the_siteID() throws Throwable {
 		String siteID = context.getSiteId();
 		reportSelectionPage.enterSiteID(siteID);
+		reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
+		reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
 		jDAFooter.clickNextButton();
 		jDAFooter.clickDoneButton();
 	}

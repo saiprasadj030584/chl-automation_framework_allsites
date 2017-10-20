@@ -1025,6 +1025,9 @@ public class PurchaseOrderReceivingStepDefs {
 		} else if (rcvLockSplit[0].contains("REWORK")) {
 			urn = "RW" + Utilities.getFourDigitRandomNumber();
 		}
+		else {
+			urn = context.getUpiId();
+		}
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
 		}
@@ -1768,6 +1771,10 @@ public class PurchaseOrderReceivingStepDefs {
 		String asnId = getTcData.getAsn();
 		String siteId = context.getSiteId();
 		
+//		String upiId = "";
+//		String asnId = "";
+//		String siteId = "";
+		
 		context.setUpiId(upiId);
 		context.setLocationID(location);
 		context.setAsnId(asnId);
@@ -2044,8 +2051,6 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocationID(location);
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		System.out.println("gdhgfsgh"+context.getSKUType());
-//		Thread.sleep(10000);
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 	i_receive_the_po_with_basic_and_pre_advice_receiving();
