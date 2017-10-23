@@ -84,9 +84,12 @@ public class PurchaseOrderPutawayStepDefs {
 			i_enter_urn_id_in_putaway();
 			jdaFooter.PressEnter();
 			// the_tag_details_for_putaway_should_be_displayed();
+			// context.setToLocation(locationDB.getLocation("UnLocked"));
+
 			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
 			i_enter_to_location(context.getToLocation());
-			i_enter_the_check_string();
+			jdaFooter.PressEnter();
+			// i_enter_the_check_string();
 			if (!purchaseOrderPutawayPage.isPutEntDisplayed()) {
 				failureList.add("Putaway not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);

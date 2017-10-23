@@ -527,14 +527,14 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-	public String getLocationAfterPutaway(String skuId, String date) throws SQLException, ClassNotFoundException {
+	public String getLocationAfterPutaway(String skuId, String date ,String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '" + skuId
-				+ "' and MOVE_DSTAMP like '" + date + "%'");
+				+ "' and MOVE_DSTAMP like '" + date + "%'and receipt_id ='" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}

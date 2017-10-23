@@ -78,10 +78,10 @@ public class PreAdviceHeaderStepsDefs {
 		// String upiId = "PO000504563005122790";
 		// String asnId = "0001118128";
 
-		String preAdviceId = "1305377865";
-		String upiId = "56490000532760246410022051700100";
-		// 000000060002987001
-		String asnId = "0000001234";
+		String preAdviceId = "PO21118902138";
+		String upiId = "00050453012168618170";
+		String asnId = "0001019328";
+
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
@@ -374,7 +374,7 @@ public class PreAdviceHeaderStepsDefs {
 		context.setSiteId("5649");
 		// String preAdviceId = getTcData.getPo();
 		String siteId = context.getSiteId();
-		String preAdviceId = "9317010310";
+		String preAdviceId = "25400900903";
 
 		context.setPreAdviceId(preAdviceId);
 		context.setSKUType(type);

@@ -128,7 +128,7 @@ public class InventoryTransactionQueryStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
 			context.setTagId(
 					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
-			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),

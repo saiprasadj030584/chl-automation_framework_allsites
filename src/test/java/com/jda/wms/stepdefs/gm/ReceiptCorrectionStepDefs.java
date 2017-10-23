@@ -155,7 +155,7 @@ public class ReceiptCorrectionStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
-					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
+					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date,context.getPreAdviceId()), failureList);
 			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(), context.getUpiId(), date),
 					failureList);

@@ -184,9 +184,10 @@ public class InventoryQueryStepDefs {
 			}
 
 			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
-					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
+					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date, context.getPreAdviceId()),
+					failureList);
 			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getUpiId(), date),
+					inventoryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(), context.getTagId(), date),
 					failureList);
 		}
 		Assert.assertTrue(

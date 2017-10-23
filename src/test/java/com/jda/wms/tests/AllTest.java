@@ -10,6 +10,6 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = { "@hanging_allocation_retail_validate_the_allocations_rules_for_hanging" })
+		"json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_putaway_direct_po_validate_putaway_process" })
 public class AllTest {
 }
