@@ -278,7 +278,6 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.getOrigin();
 		Assert.assertEquals("Updated Origin is not as expected", context.getOrigin(),
 				inventoryQueryPage.getOrigin());
-
 	}
 
 	@Given("^I have a tag in inventory with condition \"([^\"]*)\"$")
@@ -656,5 +655,25 @@ public class InventoryQueryStepDefs {
 			context.setPackConfig((String) inventoryDetails.get(1));
 		}
 		 jdaLoginPage.login();
+	}
+	
+	@Then("^the inventory should be displayed for all tags received for hazardous FSV PO$")
+	public void the_inventory_should_be_displayed_for_all_tags_received_for_hazardous_fsv_po() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getPalletID(), date),
+					failureList);
+			verification.verifyData(
+					"Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB
+							.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(), date),
+					failureList);
+		}
+		Assert.assertFalse(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 }

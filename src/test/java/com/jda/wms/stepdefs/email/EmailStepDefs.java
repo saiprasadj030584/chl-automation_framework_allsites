@@ -99,7 +99,10 @@ public class EmailStepDefs {
 	
 	@Then("^I update the cucumber reports for the js files$")
 	public void i_update_the_cucumber_reports_for_the_js_files() throws Throwable { 
-		
+		//Triggering the Copy_files Bat file 
+		System.out.println("cmd /c \"" + envVar + "\\Copy_Files_GMAdmin.lnk\"");
+		Thread.sleep(2000);
+		Process p1 = Runtime.getRuntime().exec("cmd /c \"" + envVar + "\\Copy_Files_GMAdmin.lnk\"");
 		
 		//Replacing the JS code lines in HTML files to cloud URLs
 		String replaceJqueryURL = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";
@@ -141,9 +144,9 @@ public class EmailStepDefs {
 				}
 			}
 		}
-		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		System.out.println("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
 		Thread.sleep(2000);
-		Process p1 = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		Process p2 = Runtime.getRuntime().exec("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
 		Thread.sleep(5000);
 	}
 }

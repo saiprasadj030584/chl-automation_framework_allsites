@@ -426,4 +426,15 @@ public class MoveTaskDB {
 		context.getConnection().commit();
 		rs.next();
 	}
+	
+	public String getTaskType(String date,String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select Task_id from move_task where DSTAMP like'" + date + "%' and tag_id='"+tagId+"' and status='Released'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

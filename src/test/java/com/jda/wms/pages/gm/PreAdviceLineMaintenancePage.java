@@ -276,4 +276,10 @@ public class PreAdviceLineMaintenancePage {
 		screen.type(lockcode);
 		screen.type(Key.F7);
 	}
+	
+	public void markAsUrgentPo() throws FindFailed, InterruptedException {
+		screen.wait("/images/PreAdviceLine/UserDefined/UrgentPO.png", timeoutInSec);
+		screen.click("/images/PreAdviceLine/UserDefined/UrgentPO.png");
+		Thread.sleep(1000);
+	}
 }

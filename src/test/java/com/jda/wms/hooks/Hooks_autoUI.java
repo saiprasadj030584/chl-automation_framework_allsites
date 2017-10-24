@@ -101,15 +101,16 @@ public class Hooks_autoUI {
 	}
 
 	@After("~@Email")
-	public void tearDown(Scenario scenario) throws IOException {
+	public void tearDown(Scenario scenario, Throwable th) throws IOException {
 		// attaching the screenshot in cucumber report
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
-			
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
+			System.out.println("------------------------");
+			System.out.println(th.getMessage());
 			try {
 				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 				scenario.embed(screenshot, "image/png");

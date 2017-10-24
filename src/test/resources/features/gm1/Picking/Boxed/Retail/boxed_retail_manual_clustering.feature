@@ -1,4 +1,4 @@
-Feature: Boxed - Manual Clustering
+Feature: Boxed - Retail - Manual Clustering
   As a warehouse user
   I want to perform manual clustering
 

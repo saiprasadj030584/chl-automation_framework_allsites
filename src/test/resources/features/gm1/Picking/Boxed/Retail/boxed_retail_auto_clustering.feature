@@ -1,5 +1,5 @@
 @picking_auto_clustering
-Feature: Auto clustering
+Feature: Picking - Retail - Auto clustering
   As a warehouse user
   I want to validate the auto clustering 
   So that the generated list id can be used for picking

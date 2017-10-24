@@ -1,5 +1,5 @@
-@picking
-Feature: order allocation and picking
+@boxed_retail_picking
+Feature: Boxed - Retail - Picking
   As a warehouse user
   I want to pick the allocated stocks
 
@@ -22,11 +22,12 @@ Feature: order allocation and picking
     When I navigate to order container page
     Then the urn id and pallet id should be updated in order container page
 
-  @boxed @picking @boxed_picking_retail_unpick @onhold @ds @retail
+  @boxed @picking @boxed_picking_retail_validate_the_unpick_process @complete @ds @retail
   Scenario: Validate the Unpick process
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
+    Then the stock should get allocated
     And I perform picking
     When I navigate to order container page
     Then the urn id and pallet id should be updated in order container page

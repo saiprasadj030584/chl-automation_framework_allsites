@@ -114,6 +114,5 @@ public class AddressMaintenancePage {
 		screen.type("c", Key.CTRL);
 		Thread.sleep(1000);
 		return App.getClipboard();
-
 	}
 }

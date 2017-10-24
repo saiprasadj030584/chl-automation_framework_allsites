@@ -13,6 +13,7 @@ public class PreAdviceHeaderPage {
 
 	Screen screen = new Screen();
 	private Context context;
+	int timeoutInSec = 20;
 
 	@Inject
 	public PreAdviceHeaderPage(Context context) {
@@ -26,8 +27,6 @@ public class PreAdviceHeaderPage {
 		Thread.sleep(1000);
 		screen.type(Key.F7);
 	}
-
-	int timeoutInSec = 20;
 
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
 		screen.type(preAdviceId);

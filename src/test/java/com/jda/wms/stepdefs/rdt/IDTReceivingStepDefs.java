@@ -397,5 +397,30 @@ public class IDTReceivingStepDefs {
 		context.setFailureList(failureList);
 		hooks.logoutPutty();
 	}
+	
+
+	@Given("^the UPI with \"([^\"]*)\" skus and ASN should be in \"([^\"]*)\" status for IDT$")
+	public void the_UPI_with_skus_and_ASN_should_be_in_status_for_IDT(String skuType,String status)
+			throws Throwable {
+		
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		context.setSKUType(skuType);
+		String ShippingType = "ZIDC";
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		verification.verifyData("Shipping Type", ShippingType, upiReceiptHeaderDB.getShippingType(upiId), failureList);
+
+		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
+		Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),
+				String.valueOf(numLines));
+		context.setNoOfLines(numLines);
+		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
 
 }

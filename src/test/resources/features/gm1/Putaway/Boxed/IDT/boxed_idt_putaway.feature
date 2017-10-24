@@ -55,7 +55,7 @@ Feature: Boxed - IDT - Putaway
     And I proceed by overriding the location  "REC001" for IDT
     And the goods receipt should be generated for putaway stock in inventory transaction for override
 
-    @boxed @putaway @idt @boxed_putaway_idt_validate_putaway_process @complete @ds
+  @boxed @putaway @idt @boxed_putaway_idt_validate_putaway_process @complete @ds
   Scenario: Validate Putaway Process
     Given the UPI and ASN should be in "Released" status for IDT
     And ASN and container to be linked with upi header
@@ -64,4 +64,15 @@ Feature: Boxed - IDT - Putaway
     When I choose existing relocate
     And I proceed with entering the returns upc and location
     When I perform normal returns putaway after relocation
+    Then the goods receipt should be generated for putaway IDT stock in inventory transaction
+
+  @boxed @putaway @idt @boxed_putaway_idt_validate_hazardous_putaway_location @complete @ds
+  Scenario Outline: Validate Hazardous Putaway location
+    Given the UPI with "Boxed" skus and ASN should be in "Released" status for IDT
+    And ASN and container to be linked with upi header
+    And the upi should have hazardous sku, quantity due details
+    When I perform receiving for all skus at location "REC002" for IDT
+    When I choose existing relocate
+    And I proceed with entering the returns upc and location
+    When I perform normal returns putaway after relocation for hazardous product
     Then the goods receipt should be generated for putaway IDT stock in inventory transaction

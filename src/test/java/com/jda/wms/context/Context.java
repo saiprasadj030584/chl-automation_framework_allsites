@@ -149,6 +149,7 @@ public class Context {
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private String origin;
+	private String assertString = null;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1287,5 +1288,13 @@ public class Context {
 
 	public void setOrigin(String origin) {
 		this.origin = origin;
+	}
+
+	public String getAssertString() {
+		return assertString;
+	}
+
+	public void setAssertString(String assertString) {
+		this.assertString = assertString;
 	}
 }
