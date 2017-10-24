@@ -72,7 +72,7 @@ public class Hooks_autoUI {
 
 	private void updateBuildNumberInRequestTable() {
 		try {
-			String insertQuery = "UPDATE INTO NPS_AUTO_UI_RUN_REQUEST (JENKINS_BUILD_NO) VALUES ('"+BUILD_NUM+"')";
+			String insertQuery = "UPDATE NPS_AUTO_UI_RUN_REQUEST set JENKINS_BUILD_NO='"+BUILD_NUM+"' where P_REQ_ID='"+context.getParentRequestId()+"'";
 			System.out.println(insertQuery);
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
@@ -101,7 +101,7 @@ public class Hooks_autoUI {
 	}
 
 	@After("~@Email")
-	public void tearDown(Scenario scenario, Throwable th) throws IOException {
+	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
@@ -109,8 +109,6 @@ public class Hooks_autoUI {
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
-			System.out.println("------------------------");
-			System.out.println(th.getMessage());
 			try {
 				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 				scenario.embed(screenshot, "image/png");
