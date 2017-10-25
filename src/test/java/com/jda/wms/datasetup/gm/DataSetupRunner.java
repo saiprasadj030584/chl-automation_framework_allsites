@@ -119,13 +119,13 @@ public class DataSetupRunner {
 				String upiReference = gettcdata.getUpiFromTestData();
 				
 				//Call JDA Login
-				//jdaLoginPage.login();
+				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference,asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
 				validateUpiDataSetup(upi);
 				dataLoadFromUI.duplicatePO(poReference,po);
-				//dataLoadFromUI.killBrowser();
+				dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
