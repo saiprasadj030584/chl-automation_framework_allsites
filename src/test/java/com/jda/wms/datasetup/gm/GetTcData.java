@@ -409,4 +409,9 @@ public class GetTcData {
 		}
 		return value;
 	}
+
+	public String getOdnFromTestData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -983,28 +983,37 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
 		String urn = null;
-		if (purchaseOrderReceivingPage.isPutAwayGroupExists()) {
-			String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
-			if (rcvLockSplit[0].contains("QA")) {
-				urn = "QA" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("FIREWALL")) {
-				urn = "FW" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("REWORK")) {
-				urn = "RW" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
-				urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
-			} else {
-				urn = context.getUpiId();
-				System.out.println("urn " + urn);
-			}
-			purchaseOrderReceivingPage.enterURNID(urn);
-			context.setPalletID(urn);
+		System.out.println("without lock code"+purchaseOrderReceivingPage.isPutAwayGroupExists());
+		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
+		if(rcvLockSplit.length!=0)
+		{
+		if (rcvLockSplit[0].contains("QA")) {
+		urn = "QA" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("FIREWALL")) {
+		urn = "FW" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("REWORK")) {
+		urn = "RW" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
+		urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
+		}else if (rcvLockSplit[0].contains("LOC")) {
+		urn =Utilities.getSixDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
+		} else {
+		urn = context.getUpiId();
+		System.out.println("urn "+urn);
 		}
-	}
-
+		}
+		else
+		{
+		urn = context.getUpiId();
+		System.out.println("urn "+urn);
+		}
+		purchaseOrderReceivingPage.enterURNID(urn);
+		context.setPalletID(urn);
+		}
 	@When("^I enter urn id \"([^\"]*)\"$")
 	public void i_enter_urn_id(String urn) throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID(urn);
+	
 	}
 
 	public void i_enter_urn_id_damaged() throws FindFailed, InterruptedException {
@@ -1399,18 +1408,19 @@ public class PurchaseOrderReceivingStepDefs {
 				quantity = String.valueOf(context.getRcvQtyDue() - 5);
 			}
 			context.setRcvQtyDue(Integer.valueOf(quantity));
-			i_enter_urn_id(context.getPalletID());
+			i_enter_urn_id(context.getUpiId());
 			puttyFunctionsPage.pressEnter();
 			the_tag_and_upc_details_should_be_displayed();
 			i_enter_the_location();
 			puttyFunctionsPage.pressTab();
 			i_enter_tag_id();
-			i_enter_the_quantity(quantity);
+			//i_enter_the_quantity(quantity);
+			puttyFunctionsPage.pressEnter();
 			if (receiveType.equalsIgnoreCase("Under Receiving")) {
 				i_enter_urn_id();
 				puttyFunctionsPage.pressEnter();
 			}
-			hooks.logoutPutty();
+			//hooks.logoutPutty();
 		}
 	}
 
@@ -1587,12 +1597,16 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-		String preAdviceId = "PO21118902138";
-		String upiId = "00050453012168618170";
-		String asnId = "0001019328";
+//		String preAdviceId = "PO21113712138";
+//		String upiId = "00050453005258618170";
+//		String asnId = "0006215224";
 
-		context.setUpiId(upiId);
-		context.setPreAdviceId(preAdviceId);
+		//String preAdviceId = "PO21113712138";
+	//	String upiId = "56490000552760077010022051700100";
+	//	String asnId = "0006215224";
+		
+//		context.setUpiId(upiId);
+//		context.setPreAdviceId(preAdviceId);
 		context.setLocation(location);
 		preAdviceHeaderStepsDefs
 				.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type, "Released");
@@ -1600,7 +1614,8 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		context.setLocation(location);
-		i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
+		//i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
+		 i_receive_all_skus_for_the_purchase_order_at_location(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
@@ -2249,7 +2264,8 @@ public class PurchaseOrderReceivingStepDefs {
 			i_enter_the_location();
 			puttyFunctionsPage.pressTab();
 			i_enter_tag_id();
-			i_enter_the_quantity(quantity);
+			jdaFooter.PressEnter();
+			//i_enter_the_quantity(quantity);
 			if (receiveType.equalsIgnoreCase("Under Receiving")) {
 				i_enter_urn_id();
 				puttyFunctionsPage.pressEnter();

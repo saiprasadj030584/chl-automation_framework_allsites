@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.gm;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.pages.gm.JdaLoginPage;
@@ -18,18 +19,20 @@ public class PreReceivingStepDefs {
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private GetTcData getTcData;
 	private JdaLoginPage jdaLoginPage;
+	private Context context;
 
 	@Inject
 	public PreReceivingStepDefs(PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, JdaLoginPage jdaLoginPage,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, PreAdviceHeaderDB preAdviceHeaderDB,
-			Verification verification, GetTcData getTcData) {
+			Verification verification, GetTcData getTcData,Context context) {
 		this.preAdviceHeaderStepsDefs = preAdviceHeaderStepsDefs;
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
 		this.getTcData = getTcData;
 		this.jdaLoginPage = jdaLoginPage;
+		this.context = context;
 	}
 
 	@Given("^the PO, UPI, ASN of type \"([^\"]*)\" details should be displayed$")
@@ -50,7 +53,7 @@ public class PreReceivingStepDefs {
 	@Given("^the PO should be in \"([^\"]*)\" status$")
 	public void the_PO_should_be_in_status(String status) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
-		String preAdviceId = "9317110312";
+		String preAdviceId = context.getPreAdviceId();
 
 		System.out.println("preAdviceId " + preAdviceId);
 		preAdviceHeaderStepsDefs.the_PO_should_be_in_status_with_line_items_supplier_details(preAdviceId, "Released");
@@ -59,7 +62,7 @@ public class PreReceivingStepDefs {
 	@Given("^the PO of type \"([^\"]*)\" details should be displayed$")
 	public void the_PO_of_type_details_should_be_displayed(String type) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
-		String preAdviceId = "9317010307";
+		String preAdviceId = context.getPreAdviceId();
 
 		preAdviceHeaderStepsDefs.the_PO_of_type_should_be_in_status_with_line_items_supplier_details(preAdviceId, type,
 				"Released");

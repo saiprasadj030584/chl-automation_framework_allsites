@@ -78,10 +78,9 @@ public class PreAdviceHeaderStepsDefs {
 		// String upiId = "PO000504563005122790";
 		// String asnId = "0001118128";
 
-		String preAdviceId = "PO21118902138";
-		String upiId = "00050453012168618170";
-		String asnId = "0001019328";
-
+		String preAdviceId = "1010082616";
+		String upiId = "00050453073287737128";
+		String asnId = "0006282680";
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);

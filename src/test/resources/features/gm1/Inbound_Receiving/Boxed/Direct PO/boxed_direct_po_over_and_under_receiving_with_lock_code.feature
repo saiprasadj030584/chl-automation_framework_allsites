@@ -6,7 +6,7 @@ Feature: Inbound Receiving - Over & Under Receiving with Lock code
 
   @jenkins_analysis @boxed_inbound_receiving_direct_po_over_receiving_with_lock_code @complete @ds @boxed @inbound_receiving @complete @ds
   Scenario: Validate Over receiving with lock code
-  Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
+    Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     And I lock the product with lock code "QAFTS"

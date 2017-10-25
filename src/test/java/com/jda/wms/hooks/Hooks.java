@@ -93,7 +93,7 @@ public class Hooks {
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
-			// dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			 dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
 	}
 

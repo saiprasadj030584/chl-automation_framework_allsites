@@ -87,9 +87,10 @@ public class PurchaseOrderPutawayStepDefs {
 			// context.setToLocation(locationDB.getLocation("UnLocked"));
 
 			context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId(), context.getLocation()));
+			jdaFooter.pressTab();
 			i_enter_to_location(context.getToLocation());
 			jdaFooter.PressEnter();
-			// i_enter_the_check_string();
+			 i_enter_the_check_string();
 			if (!purchaseOrderPutawayPage.isPutEntDisplayed()) {
 				failureList.add("Putaway not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);

@@ -176,5 +176,15 @@ public class PreAdviceHeaderDB {
 				+ "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+	public Object getPreAdviceIdForPO(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
 
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select pre_advice_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
 }

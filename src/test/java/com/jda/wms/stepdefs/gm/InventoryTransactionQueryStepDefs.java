@@ -80,7 +80,7 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()-1),
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),

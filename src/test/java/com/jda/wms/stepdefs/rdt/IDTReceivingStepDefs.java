@@ -96,9 +96,12 @@ public class IDTReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-		String upiId = "56490001384579299100395756000210";
-		String asnId = "0000003194";
+	//	String upiId = "56490001384579299100395756000210";
+	//	String asnId = "0000003184";
 
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
+			
 		context.setUpiId(upiId);
 
 		context.setAsnId(asnId);

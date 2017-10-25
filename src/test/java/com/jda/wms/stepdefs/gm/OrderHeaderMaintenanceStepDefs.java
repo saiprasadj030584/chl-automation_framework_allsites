@@ -67,7 +67,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_should_be_in_status_in_order_header_maintenance(String orderType, String status)
 			throws Throwable {
 		// String orderId = getTcData.getSto();
-		String orderId = "5471000504";
+		String orderId = context.getOrderId();
+
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
 		Assert.assertEquals("Status is not displayed as expected", status,

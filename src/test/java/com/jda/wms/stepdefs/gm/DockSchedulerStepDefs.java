@@ -354,7 +354,7 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking with the PO of type \"([^\"]*)\" at site$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String type) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
-		String preAdviceId = "9317010356";
+		String preAdviceId = context.getPreAdviceId();
 		String site = context.getSiteId();
 		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();

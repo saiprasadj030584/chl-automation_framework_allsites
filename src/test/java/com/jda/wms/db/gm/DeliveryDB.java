@@ -97,5 +97,17 @@ public class DeliveryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public Object getAsnIdForASN(String asn) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("Select asn_id from delivery where asn_id ='" + asn + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("Select asn_id from delivery where asn_id ='" + asn + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 }
+
+

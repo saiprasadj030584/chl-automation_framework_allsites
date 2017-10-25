@@ -73,7 +73,7 @@ public class InventoryQueryStepDefs {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
 				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
-						Integer.toString(context.getRcvQtyDue() + 5),
+						Integer.toString(context.getRcvQtyDue()- 1), 
 						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
 						failureList);
 			} else if (null == context.getReceiveType()) {
