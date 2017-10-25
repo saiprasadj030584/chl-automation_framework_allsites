@@ -72,4 +72,18 @@ public class UpiReceiptHeaderPage {
 		}
 		return false;
 	}
+
+	public boolean isNoRecordFound() throws FindFailed {
+		
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		return true;
+		else
+			return false;
+		
+	}
+
+	public void enterPalletWithReference(String upiReference) throws InterruptedException {
+		screen.type(upiReference);
+		Thread.sleep(2000);
+	}
 }

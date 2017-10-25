@@ -13,7 +13,7 @@ Feature: Purchase order receipt reversal
 
   @boxed_receiving_direct_po_validate_receipt_reversal_process_with_qafts_lock_code @boxed @direct_po @receiving @complete @ds
   Scenario: Receipt reversal process in JDA WMS for Boxed type with lock code
-    Given the PO of type "Boxed" with UPI and ASN should be in "Complete" status and locked with code "QAFTS"
+    Given the PO of type "Boxed" with UPI and ASN should be in "Released" status and locked with code "QAFTS"
     And the PO should be received at location "REC001"
     When I navigate to receipt reversal page
     And I do receipt reversal for the tag received

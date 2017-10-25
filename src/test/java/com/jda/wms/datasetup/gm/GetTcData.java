@@ -3,11 +3,13 @@ package com.jda.wms.datasetup.gm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+
+
 
 public class GetTcData {
 	public static DbConnection dataBase = new DbConnection();
@@ -263,6 +265,10 @@ public class GetTcData {
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
+			//TODO include assertion statements
+			if (exception.getMessage().contains("Exhausted Resultset")) {
+				Assert.assertTrue("No PO reference data present in DB ", false);
+			}
 		}
 		return value;
 	}
@@ -307,28 +313,35 @@ public class GetTcData {
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
+			//TODO include assertion statements
+			if (exception.getMessage().contains("Exhausted Resultset")) {
+				Assert.assertTrue("No UPI reference data present in DB ", false);
+			}
 		}
 		return value;
 	}
 
 	public String getAsnFromTestData() {
-
 		ResultSet resultSet = null;
 		String value = null;
-
 		try {
 			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("ASN_ID");
-
 			}
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
+			//TODO include assertion statements
+			if (exception.getMessage().contains("Exhausted Resultset")) {
+				Assert.assertTrue("No ASN reference data present in DB ", false);
+			}
 		}
 		return value;
 	}
@@ -386,4 +399,38 @@ public class GetTcData {
 			}
 		}
 	}
+
+	public String getReferenceUpi() {
+		String value = null;
+		value = context.getPalletID();
+		if (!context.getUniqueTagInRunStatus()) {
+
+			ResultSet resultSet = null;
+
+			try {
+				dataBase.connectAutomationDB();
+				resultSet = dataBase.dbConnection.createStatement()
+						.executeQuery("SELECT PALLET_ID FROM DBO.JDA_GM_TEST_DATA where UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+
+				while (resultSet.next()) {
+					value = resultSet.getString("PALLET_ID");
+
+				}
+				dataBase.disconnectAutomationDB();
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+		} 
+//		else {
+//			value = context.getPalletID();
+//		}
+		return value;
+	}
+
+	public String getOdnFromTestData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

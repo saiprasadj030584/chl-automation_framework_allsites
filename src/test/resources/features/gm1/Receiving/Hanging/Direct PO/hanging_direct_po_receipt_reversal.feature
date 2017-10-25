@@ -16,5 +16,7 @@ Feature: Receipt reversal
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status and locked with code "QAFTS"
     And the PO of type "Hanging" should be received at location "REC001"
     When I navigate to receipt reversal page
-    And I do receipt reversal for the tag received
-    Then the inventory transaction should be updated with reversed receipt tag with lockcode
+    And I do receipt reversal for the random tag received
+    #Then the inventory transaction should be updated with reversed receipt tag for random tags received
+    #And I do receipt reversal for the tag received
+    Then the inventory transaction should be updated with reversed receipt tag with lockcode 

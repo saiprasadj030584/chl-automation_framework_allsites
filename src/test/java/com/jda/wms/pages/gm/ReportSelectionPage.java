@@ -87,7 +87,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isReportGeneratedExist() throws InterruptedException, FindFailed {
-		if (screen.exists("images/ReportGeneration/Report.png") != null) {
+		if (screen.exists("images/ReportSelection/newReceivingSummaryReport.png") != null) {
 			return true;
 		} else
 			return false;

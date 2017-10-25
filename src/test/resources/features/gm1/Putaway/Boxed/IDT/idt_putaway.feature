@@ -27,28 +27,28 @@ Feature: Purchase order Putaway
     When I perform normal returns putaway after relocation
     Then the goods receipt should be generated for putaway IDT stock in inventory transaction
 
-  @boxed_putaway_idt_validate_putaway_quantity @boxed @putaway @idt @complete @ds
+  @boxed_putaway_idt_validate_putaway_quantity @boxed @putaway @idt @complete @ds @maven_check_1
   Scenario: Validate Putaway quantity
     Given the UPI and ASN of type "Boxed" should be received at location "REC001" for IDT
     When I choose normal putaway
     And I proceed without entering IDT quantity
     Then the error message should be displayed as invalid quantity exception
 
-  @boxed_putaway_idt_validate_putaway_location @boxed @putaway @idt @complete @ds
+  @boxed_putaway_idt_validate_putaway_location @boxed @putaway @idt @complete @ds @maven_check_1
   Scenario: Validate Putaway Location
     Given the UPI and ASN of type "Boxed" should be received at location "REC001" for IDT
     When I choose normal putaway
     And I proceed without entering IDT location
     Then the warning message should be displayed
 
-  @boxed_putaway_idt_validate_putaway_logic_for_receiving_singles_when_locations_full @boxed @idt @putaway @compete @ds
+  @boxed_putaway_idt_validate_putaway_logic_for_receiving_singles_when_locations_full @boxed @idt @putaway @compete @ds @maven_check_1
   Scenario: Validate Putaway Logic for receiving singles when locations full
     Given the UPI and ASN of type "Boxed" should be received at location "REC001" for IDT
     When I choose normal putaway
     And I proceed by entering less quantity for IDT
     Then the ITL should be generated for putaway stock in inventory transaction
 
-  @boxed_putaway_idt_validate_override_putaway_location @boxed @idt @putaway @compete @ds
+  @boxed_putaway_idt_validate_override_putaway_location @boxed @idt @putaway @compete @ds @maven_check_1
   Scenario: Validate Override Putaway Location for IDT-Boxed
     Given the UPI and ASN of type "Boxed" should be received at location "REC001" for IDT
     When I choose normal putaway

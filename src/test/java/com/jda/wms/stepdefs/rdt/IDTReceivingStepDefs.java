@@ -94,9 +94,12 @@ public class IDTReceivingStepDefs {
 	public void the_UPI_and_ASN_should_be_in_status_for_IDT(String status)
 			throws Throwable {
 		
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		String upiId = "56490001389579299900395756884183";
+//		String asnId = "PO0918778352";
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		String ShippingType = "ZIDC";
@@ -215,7 +218,8 @@ public class IDTReceivingStepDefs {
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
-			jdaFooter.pressTab();
+			//jdaFooter.pressTab();
+			puttyFunctionsPage.nextScreen();
 			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
 			jdaFooter.PressEnter();
 			if (!purchaseOrderReceivingPage.isExcessReceiptErrorDisplayed()) {
@@ -283,8 +287,12 @@ public class IDTReceivingStepDefs {
 	@Given("^the UPI and ASN of type \"([^\"]*)\" should be received at location \"([^\"]*)\" for IDT$")
 	public void the_UPI_and_ASN_of_type_should_be_received_at_location_for_IDT(String Type,
 			String location) throws Throwable {
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		String upiId = "56490001389579299900395756884183";
+//		String asnId = "PO0918778352";
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		the_UPI_and_ASN_should_be_in_status_for_IDT("Released");
 		uPIReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
 		uPIReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();

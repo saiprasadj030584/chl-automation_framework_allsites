@@ -943,4 +943,20 @@ public class InventoryTransactionDB {
 		}
 		return isRecordExists;
 	}
+
+
+	public String getTagIdForSpecificTime(String skuId, String code, String transactionTime) throws SQLException, ClassNotFoundException {
+		System.out.println("select tag_id from inventory_transaction where sku_id='" + skuId + "' and code='"
+						+ code +"' and dstamp like '%" +transactionTime+ "%'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+       
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select tag_id from inventory_transaction where sku_id='" + skuId + "' and code='"
+						+ code +"' and dstamp like '%" +transactionTime+ "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

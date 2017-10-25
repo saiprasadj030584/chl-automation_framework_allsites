@@ -21,6 +21,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
+import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.Utilities;
 
@@ -43,6 +44,7 @@ public class PreAdviceHeaderStepsDefs {
 	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private GetTcData getTcData;
+	private UpiReceiptHeaderPage upiReceiptHeaderPage;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
@@ -70,10 +72,16 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
 			String status) throws Throwable {
 
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		String preAdviceId = getTcData.getPo();
-
+//	String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		String preAdviceId = getTcData.getPo();
+//		String preAdviceId = "1110007653";
+//		String upiId = "00051453000258678675";
+//		String asnId = "0000067321";
+		
+        String preAdviceId = context.getPreAdviceId();
+	    String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
@@ -363,10 +371,11 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the FSV PO of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String type, String status) throws Throwable {
 
-		String preAdviceId = getTcData.getPo();
-		String siteId = context.getSiteId();
-
+//		String preAdviceId = getTcData.getPo();
+//		String siteId = context.getSiteId();
+        String preAdviceId="9317010312";
 		context.setPreAdviceId(preAdviceId);
+		String siteId="5649";
 		context.setSKUType(type);
 		context.setSiteId(siteId);
 		context.setsupplierType("FSV");

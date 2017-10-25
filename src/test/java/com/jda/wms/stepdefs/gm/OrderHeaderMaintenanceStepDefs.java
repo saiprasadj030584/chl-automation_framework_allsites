@@ -179,9 +179,13 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the OrderID of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
 	public void the_OrderID_of_type_should_be_in_status(String orderType, String status) throws Throwable {
-		String orderId = getTcData.getSto();
-		String siteId = context.getSiteId();
-		jdaLoginPage.login();
+//		String orderId = getTcData.getSto();
+//		String siteId = context.getSiteId();
+		
+		String orderId = "6600010733";
+		String siteId = "5649";
+		
+		//jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);
 		context.setSiteId(siteId);
@@ -436,7 +440,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_id_of_type_should_be_in_status_and_skus_should_be_in_location(String orderType, String status,
 			String skuType, String locationId) throws Throwable {
 
-		String orderNumber = getTcData.getSto();
+		//String orderNumber = getTcData.getSto();
+		String orderNumber="5170201466";
+		context.setSiteId("5649");
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -524,7 +530,7 @@ public class OrderHeaderMaintenanceStepDefs {
 					failureList);
 		}
 
-		// //Order status
+		 //Order status
 		verification.verifyData("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber),
 				failureList);
 

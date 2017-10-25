@@ -291,6 +291,7 @@ public class DockSchedulerStepDefs {
 
 	@When("^I create new dock booking at site$")
 	public void i_create_new_dock_booking_at_site() throws Throwable {
+		context.setSiteId("5649");
 		String site = context.getSiteId();
 		dockSchedulerPage.selectCreateNewBooking();
 		if (dockSchedulerPage.isSiteExists()) {
@@ -358,6 +359,7 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking with the PO of type \"([^\"]*)\" at site$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String type) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
+		context.setSiteId("5649");
 		String site = context.getSiteId();
 		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
@@ -468,10 +470,11 @@ public class DockSchedulerStepDefs {
 
 	@Given("^the UPI , ASN of type \"([^\"]*)\" details should be displayed$")
 	public void the_UPI_ASN_of_type_details_should_be_displayed(String type) throws Throwable {
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
-
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		String site = context.getSiteId();
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		context.setSKUType(type);
 		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status("Released");
 	}

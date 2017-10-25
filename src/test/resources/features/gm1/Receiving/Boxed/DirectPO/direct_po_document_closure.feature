@@ -3,7 +3,7 @@ Feature: Document Closure of ASN
   As a warehouse user
   I want to perform document closure of ASN in Delivery management
 
-  @boxed_receiving_direct_po_validate_manual_document_closure_asn @complete @boxed @direct_po @receiving @ds
+  @boxed_receiving_direct_po_validate_manual_document_closure_asn @complete @boxed @direct_po @receiving @ds @maven_check_2
   Scenario: Validate manual document closure ASN
     Given I have an ASN Id with delivery status as "In Progress"
     When I navigate to delivery management page

@@ -87,8 +87,9 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		context.setSiteId(System.getProperty("SITEID"));
-		// dataSetupRunner.getTagListFromAutoDb();
+		//context.setSiteId(System.getProperty("SITEID"));
+		 dataSetupRunner.getTagListFromAutoDb();
+		 context.setSiteId("5885");
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
@@ -153,7 +154,7 @@ public class Hooks {
 	}
 
 	// @After
-	public void killBrowser(Scenario scenario) throws IOException {
+	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
 		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq

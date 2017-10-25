@@ -11,8 +11,8 @@ public class InventoryTransactionQueryPage {
 	int timeoutInSec = 20;
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
-		screen.click(mtagId.getCenter().offset(70, 0));
+//		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
+//		screen.click(mtagId.getCenter().offset(70, 0));
 		screen.type(tagId);
 	}
 
