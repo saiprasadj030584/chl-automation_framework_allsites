@@ -174,7 +174,7 @@ public class DataSetupRunner {
 				String upi=formReturnsUPIID(supplierIdRef,qty);
 				
 				//Call JDA Login
-				//jdaLoginPage.login();
+				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference,asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
