@@ -104,7 +104,7 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//jdaLoginPage.login();
+		///jdaLoginPage.login();
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Receipt");

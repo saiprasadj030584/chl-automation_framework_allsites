@@ -125,7 +125,7 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
 				validateUpiDataSetup(upi);
 				dataLoadFromUI.duplicatePO(poReference,po);
-				dataLoadFromUI.killBrowser();
+				//dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
