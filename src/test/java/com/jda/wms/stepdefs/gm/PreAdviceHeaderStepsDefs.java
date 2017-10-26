@@ -75,13 +75,13 @@ public class PreAdviceHeaderStepsDefs {
 //		String asnId = getTcData.getAsn();
 //		String preAdviceId = getTcData.getPo();
 		
-		String preAdviceId ="1010002245";
-		String upiId = "00050453000258618212";
-		String asnId ="0000003728";
+//		String preAdviceId ="1010002245";
+//		String upiId = "00050453000258618212";
+//		String asnId ="0000003728";
 		
-//		String preAdviceId =context.getPreAdviceId();
-//		String upiId = context.getUpiId();
-//	String asnId =context.getAsnId();
+		String preAdviceId =context.getPreAdviceId();
+		String upiId = context.getUpiId();
+	String asnId =context.getAsnId();
 		
 		
 

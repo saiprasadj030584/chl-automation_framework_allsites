@@ -89,9 +89,10 @@ Feature: Boxed - Direct PO - Dock Scheduling
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
   @jenkins_analysis @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_compliance_flag_uploaded @complete @ds @maven_check_1
-  Scenario: Validate whether compliance flag can be uploaded for Pre advice line
-    Given the PO should be in "Released" status
-    And the PO line should have sku, quantity due details
+ Scenario: Validate whether compliance flag can be uploaded for Pre advice line
+    Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     When I update the compliance flag in database
     Then the compliance details should be updated
 
