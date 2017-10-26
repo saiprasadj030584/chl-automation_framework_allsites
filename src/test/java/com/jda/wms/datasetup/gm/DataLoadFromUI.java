@@ -74,7 +74,7 @@ public class DataLoadFromUI {
 		jdaFooter.PressEnter();
 		
 		context.setAsnId(asn);
-		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB.getAsnId(context.getAsnId()));
+		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB. getAsnIdForASN(context.getAsnId()));
 	}
 
 	public void duplicateUPI(String upiReference, String upi) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
