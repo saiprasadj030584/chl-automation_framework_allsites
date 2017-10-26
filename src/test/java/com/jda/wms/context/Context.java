@@ -149,6 +149,7 @@ public class Context {
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
+	private boolean jdaLoginFlag=false;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1287,6 +1288,14 @@ public class Context {
 
 	public void setTransactionTime(String transactionTime) {
 		this.transactionTime = transactionTime;
+	}
+
+	public boolean isJdaLoginFlag() {
+		return jdaLoginFlag;
+	}
+
+	public void setJdaLoginFlag(boolean jdaLoginFlag) {
+		this.jdaLoginFlag = jdaLoginFlag;
 	}
 
 	

@@ -47,6 +47,7 @@ default:
  #db-password: 'jdadccate5'
 
 
+
 # Browser settings
 ##################
 chrome: &chrome

@@ -1,5 +1,6 @@
 package com.jda.wms.pages.gm;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
@@ -8,6 +9,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.PageObject;
 
 public class JdaLoginPage extends PageObject {
@@ -15,15 +17,18 @@ public class JdaLoginPage extends PageObject {
 	private final WebDriver webDriver;
 	private final Configuration configuration;
 	Screen screen = new Screen();
+	private Context context;
 
 	@Inject
-	public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
+	public JdaLoginPage(WebDriver webDriver, Configuration configuration,Context context) {
 		super(webDriver);
 		this.webDriver = webDriver;
 		this.configuration = configuration;
+		this.context = context;
 	}
 
 	public void login() throws FindFailed, InterruptedException {
+		if(context.isJdaLoginFlag()==false){
 		webDriver.manage().window().maximize();
 		webDriver.navigate().to(configuration.getStringProperty("gm-jda-url"));
 
@@ -31,6 +36,7 @@ public class JdaLoginPage extends PageObject {
 		enterPassword();
 		clickConnectButton();
 		Thread.sleep(5000);
+		}
 	}
 
 	private void enterUsername() throws FindFailed, InterruptedException {
@@ -58,5 +64,9 @@ public class JdaLoginPage extends PageObject {
 	private void clickConnectButton() throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
+		if (screen.exists("images/JDAHome/JDAHomePage.png") == null) {
+			Assert.fail("Login Not successful");
+		}
+		context.setJdaLoginFlag(true);
 	}
 }
