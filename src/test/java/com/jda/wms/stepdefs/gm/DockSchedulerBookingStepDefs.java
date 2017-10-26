@@ -67,6 +67,7 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.clickQueryButton();
 		dockShedulerBookingPage.enterBookingID(context.getBookingID());
 		jdaFooter.clickExecuteButton();
+		System.out.println("TRAILER"+context.getTrailerNo());
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		if (context.getSiteId().equals("5649")) {

@@ -123,7 +123,7 @@ public class PreAdviceLineStepDefs {
 					break;
 				}
 				// TODO Check for multiple skus
-				context.setSKUType(type);
+				
 
 				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),

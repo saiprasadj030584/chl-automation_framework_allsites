@@ -903,7 +903,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "

@@ -39,7 +39,7 @@ Feature: Purchase order Putaway
 
   @jenkins_analysis @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_sampling/qa_pallet_build @complete @ds
   Scenario: Validate Sampling/QA Pallet build
-    Given the PO of type "Boxed" with UPI and ASN should be received at "<Location>" for qa build
+    Given the PO of type "Boxed" with UPI and ASN should be received at "REC001" for qa build
     When I choose existing relocate
     And I proceed with entering the upc and location
     When I perform normal putaway after relocation

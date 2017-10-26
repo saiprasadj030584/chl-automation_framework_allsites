@@ -80,6 +80,17 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public void updateAdviceNumber(String adviceNumber,String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_line set USER_DEF_TYPE_1= '" + adviceNumber + "' where pre_advice_id = '" + preAdviceId + "'");
+		context.getConnection().commit();
+	}
 
 	public String getCaseRatio(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

@@ -204,9 +204,10 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 	public String getPutawayGroup() throws FindFailed, InterruptedException {
+		System.out.println("entered putwaay grp");
 		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
 		screen.click(putawayGroup.below(5));
-		screen.doubleClick(putawayGroup.below(1));
+		screen.doubleClick(putawayGroup.below(5));
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}

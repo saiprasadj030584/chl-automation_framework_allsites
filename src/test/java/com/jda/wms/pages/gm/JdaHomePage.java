@@ -274,10 +274,10 @@ public class JdaHomePage extends PageObject {
 
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		clickSearchIcon();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.type("Stock Adjustment");
 		screen.type(Key.ENTER);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
@@ -353,14 +353,16 @@ public class JdaHomePage extends PageObject {
 		Thread.sleep(3000);
 	}
 
-	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+	
+		public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
+			clickSearchIcon();
+			Thread.sleep(1000);
+			screen.type("Pack configuration maintenance/query screen");
+			screen.type(Key.ENTER);
+			Thread.sleep(1000);
+			screen.type(Key.ENTER);
+			Thread.sleep(3000);
+		
 	}
 
 	public void enterTabKey() {
@@ -598,6 +600,12 @@ public class JdaHomePage extends PageObject {
 	public void scrollRightBig() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/ScrollRightBig.png", timeoutInSec);
 		screen.click("images/JDAHome/ScrollRightBig.png");
+		Thread.sleep(1000);
+	}
+	
+	public void scrollLeftBig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollLeftBig.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollLeftBig.png");
 		Thread.sleep(1000);
 	}
 

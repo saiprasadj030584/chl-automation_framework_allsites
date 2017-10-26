@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.gm;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.TrailerDB;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
@@ -16,15 +17,17 @@ public class TrailerMaintenanceStepDefs {
 	private JdaHomePage jdaHomePage;
 	private JdaLoginPage jdaLoginPage;
 	private Context context;
+	private TrailerDB trailerDB;
 
 	@Inject
 	public TrailerMaintenanceStepDefs(JDAFooter jdaFooter, TrailerMaintenancePage trailerMaintenancePage,
-			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context) {
+			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context,TrailerDB trailerDB) {
 		this.jdaFooter = jdaFooter;
 		this.trailerMaintenancePage = trailerMaintenancePage;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaLoginPage = jdaLoginPage;
 		this.context = context;
+		this.trailerDB=trailerDB;
 	}
 
 	@Given("^I create a trailer to receive at the dock door$")
@@ -33,10 +36,28 @@ public class TrailerMaintenanceStepDefs {
 		jdaHomePage.navigateToTrailerMaintanencePage();
 		jdaFooter.clickAddButton();
 		String trailerNo = Utilities.getFiveDigitRandomNumber();
+		while(trailerDB.isTrailerExists(trailerNo))
+		{
+			trailerNo = Utilities.getFiveDigitRandomNumber();
+		}
 		trailerMaintenancePage.enterTrailerNo(trailerNo);
 		trailerMaintenancePage.enterTrailerType();
 		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
+		
+//		if(trailerDB.isTrailerExists())
+//		{
+//		while(trailerDB.isTrailerExists())
+//		{
+//			jdaHomePage.navigateToTrailerMaintanencePage();
+//			jdaFooter.clickAddButton();
+//			trailerNo = Utilities.getFiveDigitRandomNumber();
+//			trailerMaintenancePage.enterTrailerNo(trailerNo);
+//			trailerMaintenancePage.enterTrailerType();
+//			jdaFooter.clickExecuteButton();
+//			jdaFooter.PressEnter();
+//		}
+//		}
 		context.setTrailerNo(trailerNo);
 	}
 

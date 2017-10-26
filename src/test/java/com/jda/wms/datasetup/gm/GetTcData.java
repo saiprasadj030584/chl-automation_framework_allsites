@@ -226,7 +226,6 @@ public class GetTcData {
 //			}
 //		}
 		context.setAsnId(value);
-
 	}
 
 	public void setSkuQtySupplier() {
@@ -412,4 +411,10 @@ public class GetTcData {
 		}
 		return value;
 	}
+	
+	public String getOdnFromTestData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -19,6 +19,7 @@ public class InventoryTransactionQueryPage {
 	public void enterReasonCode(String reasonCode) throws InterruptedException, FindFailed {
 		Match mtagId = screen.find("images/InventoryTransactionQuery/Miscellaneous/ReasonCode.png");
 		screen.click(mtagId.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type(reasonCode);
 	}
 
@@ -30,7 +31,7 @@ public class InventoryTransactionQueryPage {
 
 	public void selectCode(String code) throws FindFailed, InterruptedException {
 		screen.type(code);
-		screen.type(Key.TAB);
+		Thread.sleep(2000);
 	}
 
 	public void enterTransactionDate() throws FindFailed, InterruptedException {
@@ -538,9 +539,10 @@ public class InventoryTransactionQueryPage {
 		screen.type(skuId);
 	}
 
-	public void enterPalletId(String palletId) throws FindFailed {
+	public void enterPalletId(String palletId) throws FindFailed, InterruptedException {
 		Match mskuId = screen.find("images/InventoryTransactionQuery/General/PalletId.png");
 		screen.click(mskuId.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type(palletId);
 	}
 
@@ -572,8 +574,9 @@ public class InventoryTransactionQueryPage {
 		screen.type(Key.ENTER);
 	}
 	
-	public void enterSkuIdExisting(String skuId) {
+	public void enterSkuIdExisting(String skuId) throws InterruptedException {
 		screen.type(skuId);
+		Thread.sleep(2000);
 		
 	}
 

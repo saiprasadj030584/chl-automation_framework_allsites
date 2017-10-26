@@ -75,6 +75,7 @@ public class DockSchedulerStepDefs {
 	@When("^I select the slot$")
 	public void i_select_the_slot() throws Throwable {
 		Thread.sleep(3000);
+		int count=0;
 		// TODO Check the dock door where to book slot
 		if (context.getSiteId().equals("5649")) {
 			for (int i = 0; i < 3; i++) {
@@ -84,9 +85,25 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
 		while (dockSchedulerPage.isNoDockErrorExists()) {
+			count++;
 			jdaFooter.PressEnter();
 			dockSchedulerPage.selectSlot();
 			jdaFooter.clickNextButton();
+			if(count==7)
+			{
+				jdaFooter.PressEnter();
+				for(int i=0;i<5;i++)
+				{
+				jdaHomePage.scrollLeft();
+				}
+				dockSchedulerPage.selectSlot();
+				jdaFooter.clickNextButton();
+				
+			}
+			else if(count==15)
+			{
+				break;
+			}
 		}
 	}
 
@@ -303,10 +320,17 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking with the PO, UPI, ASN of type \"([^\"]*)\" at site$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_PO_UPI_ASN_of_type_at_site(String type)
 			throws Throwable {
-		 String preAdviceId = getTcData.getPo();
-		 String upiId = getTcData.getUpi();
-		 String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
+//		 String preAdviceId = getTcData.getPo();
+//		 String upiId = getTcData.getUpi();
+//		 String asnId = getTcData.getAsn();
+		
+		
+	//String site = "5649";
+		
+		String site=context.getSiteId();
+		
+		
+		
 		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
@@ -430,8 +454,8 @@ public class DockSchedulerStepDefs {
 	@When("^I change the booking time to different date$")
 	public void i_change_the_booking_time_to_different_date() throws Throwable {
 		dockSchedulerPage.changeBookingTimeToDifferentDate();
-		dockSchedulerPage.selectSlot();
-		// i_select_the_slot();
+		//dockSchedulerPage.selectSlot();
+		 i_select_the_slot();
 		// i_move_to_the_slot();
 		jdaFooter.clickNextButton();
 	}
@@ -468,8 +492,8 @@ public class DockSchedulerStepDefs {
 
 	@Given("^the UPI , ASN of type \"([^\"]*)\" details should be displayed$")
 	public void the_UPI_ASN_of_type_details_should_be_displayed(String type) throws Throwable {
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
 		String site = context.getSiteId();
 
 		context.setSKUType(type);

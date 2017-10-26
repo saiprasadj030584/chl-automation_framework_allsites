@@ -65,11 +65,12 @@ public class InventoryQueryStepDefs {
 		upiMap = context.getUPIMap();
 		multiplePOMap = context.getMultiplePOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		context.setTagId(
-				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			if ((!(null == context.getReceiveType())) && context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
@@ -417,9 +418,13 @@ public class InventoryQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-
+//		context.setTagId(
+//				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			if ((null!=context.getReceiveType())&&(context.getReceiveType().equalsIgnoreCase("Under Receiving"))) {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterReceiveForRandomTag(context.getSkuId(), context.getTagId(), date), failureList);

@@ -189,7 +189,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		
 		//hard coded
 		
-		String orderId ="5670000633";
+		String orderId ="3170001592";
 		String siteId = "5649";
 		System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
 		
@@ -363,7 +363,9 @@ public class OrderHeaderMaintenanceStepDefs {
 			throws Throwable {
 		//String orderNumber = getTcData.getSto();
 		//hard coded
-		String orderNumber="6603012160";
+		//String orderNumber="6603012160";
+		
+		String orderNumber=context.getOrderId();
 		
 		
 		context.setOrderId(orderNumber);

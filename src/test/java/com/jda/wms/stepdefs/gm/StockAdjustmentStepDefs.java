@@ -75,7 +75,7 @@ public class StockAdjustmentStepDefs {
 		stockAdjustmentsPage.enterClientId(clientid);
 		stockAdjustmentsPage.enterSiteId(siteId);
 		stockAdjustmentsPage.enterQuantityOnHand(quantity);
-		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
+		//stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
 		jDAFooter.clickNextButton();
 		stockAdjustmentsPage.enterPallet(pallet);
 		jDAFooter.clickNextButton();
@@ -148,7 +148,10 @@ public class StockAdjustmentStepDefs {
 		jDAFooter.PressEnter();
 		context.setReasonCode(reasonCode);
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
+		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
+		
+		context.setTagId(inventoryTransactionDB.getTagIDWithQty(String.valueOf(context.getQtyOnHand()), "Adjustment",context.getSkuId(), date));
+		System.out.println(context.getTagId());
 	}
 
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")
