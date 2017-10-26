@@ -4,7 +4,7 @@ Feature: Purchase order receiving with Lock code
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_1
+  @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_3
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -15,7 +15,7 @@ Feature: Purchase order receiving with Lock code
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_1
+  @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_3
   Scenario: Validate receiving process with QACOMP lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -26,7 +26,7 @@ Feature: Purchase order receiving with Lock code
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_1
+  @hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_3
   Scenario: Validate receiving process with QAPC lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -37,7 +37,7 @@ Feature: Purchase order receiving with Lock code
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_1
+  @hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_3
   Scenario: Validate receiving process with FWL lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -48,7 +48,7 @@ Feature: Purchase order receiving with Lock code
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @hanging_receiving_direct_po_validate_receiving_process_with_rework_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_1
+  @hanging_receiving_direct_po_validate_receiving_process_with_rework_lock_code @hanging @receiving @direct_po @complete @ds @maven_check_3
   Scenario: Validate receiving process with REWORK lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

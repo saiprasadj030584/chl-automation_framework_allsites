@@ -375,7 +375,7 @@ public class DataSetupRunner {
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
+							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN'; ");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
 				UniqueTagInRunStatus = true;

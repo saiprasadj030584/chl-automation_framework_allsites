@@ -37,7 +37,7 @@ Feature: Dock Scheduling
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds @boxed_jenkins 
   Scenario: Validate whether Booking details can be captured - Trailer Type information
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -48,7 +48,7 @@ Feature: Dock Scheduling
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds @boxed_jenkins 
   Scenario: Assign dock door for each trailer to unload it
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -89,7 +89,7 @@ Feature: Dock Scheduling
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
 
-  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds @boxed_jenkins 
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
