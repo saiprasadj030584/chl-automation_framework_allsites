@@ -148,6 +148,7 @@ public class Context {
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
+	private int updatedQty;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1278,5 +1279,13 @@ public class Context {
 	
 	public String getChildStartTime() {
 		return childStartTime;
+	}
+	
+	public int getUpdatedQty() {
+		return updatedQty;
+	}
+
+	public void setUpdatedQty(int updatedQty) {
+		this.updatedQty = updatedQty;
 	}
 }

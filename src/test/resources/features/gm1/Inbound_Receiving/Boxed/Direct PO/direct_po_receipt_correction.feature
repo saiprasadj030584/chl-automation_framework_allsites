@@ -13,7 +13,7 @@ Feature: Purchase order Putaway Receipt correction
     #And I proceed with entering the upc and location
     #When I perform normal putaway after relocation
     #Then the inventory should be displayed for all putaway tags received
-    When I have logged in as warehouse user in JDA dispatcher GM application
+    #When I have logged in as warehouse user in JDA dispatcher GM application
    And I do stock adjustments after putaway for receipt reversal with siteId and PO
     And I choose the reason code as "IE"
     When I navigate to inventory transaction query

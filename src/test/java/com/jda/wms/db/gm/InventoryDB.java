@@ -986,4 +986,17 @@ System.out.println("select inventory.Location_id from inventory inner join sku o
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getQtynHand(String skuId, String location)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }
