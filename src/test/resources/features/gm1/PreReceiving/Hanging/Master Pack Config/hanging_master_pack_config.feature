@@ -4,7 +4,7 @@ Feature: Master pack Config
   I want to perform certain 
   modifications on sku
 
-  @jenkins_analysis @pre_receiving @master_pack_config @hanging @hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config @complete @ds @no_ds
+  @jenkins_analysis @pre_receiving @master_pack_config @hanging @hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config @complete @ds @no_ds @maven_check_1
   Scenario: Validate whether pack config can be created for SKUs and Amend existing pack config
     Given the sku of type "Hanging" and not new product
     When I have logged in as warehouse user in JDA dispatcher GM application
