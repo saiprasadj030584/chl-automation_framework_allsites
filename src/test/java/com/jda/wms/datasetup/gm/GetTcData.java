@@ -320,7 +320,11 @@ public class GetTcData {
 
 		try {
 			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+			+ "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
+//					System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+//							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 

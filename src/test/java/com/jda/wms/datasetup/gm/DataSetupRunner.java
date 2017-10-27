@@ -107,13 +107,13 @@ public class DataSetupRunner {
 				String asn = newAsnId();
 				String po = newPoId();
 				String upi = newPalletdId_directPO();
-				String order = newOdnId();
+				String odn = newOdnId();
 				
 				//Fetching Refernce Test Data from Test data table
 				String asnReference = gettcdata.getAsnFromTestData();
 				String poReference = gettcdata.getPoFromTestData();
 				String upiReference = gettcdata.getUpiFromTestData();
-				String orderReference = gettcdata.getOdnFromTestData();
+				//String orderReference = gettcdata.getOdnFromTestData();
 				
 				//Call JDA Login
 				jdaLoginPage.login();
@@ -122,16 +122,17 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
 				validateUpiDataSetup(upi);
 				dataLoadFromUI.duplicatePO(poReference,po);
-				//dataLoadFromUI.killBrowser();
-				validatePoDataSetup(po);
-				dataLoadFromUI.duplicateOdn(orderReference,order);
-				validateOdnDataSetup(order);
-				
 				dataLoadFromUI.killBrowser();
+				validatePoDataSetup(po);
+			//	dataLoadFromUI.duplicateOdn(orderReference,odn);
+				validateOdnDataSetup(odn);
+				
+			//	dataLoadFromUI.killBrowser();
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
 				gettcdata.setPalletId(upi);
-				gettcdata.setOdn(order);
+				//gettcdata.setSto(odn);
+				
 				
 //				validateAsnDataSetup(asn);
 //				validatePoDataSetup(po);

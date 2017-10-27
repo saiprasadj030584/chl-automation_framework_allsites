@@ -85,7 +85,7 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		// context.setSiteId("5649");
+		 context.setSiteId("5649");
 		System.out.println("SITE ID " + context.getSiteId());
 		// context.setSiteId(System.getProperty("SITEID"));
 		// System.out.println("SITE ID 1 "+context.getSiteId());
