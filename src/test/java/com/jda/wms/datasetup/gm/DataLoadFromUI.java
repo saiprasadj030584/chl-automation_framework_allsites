@@ -144,8 +144,11 @@ public class DataLoadFromUI {
 		preAdviceHeaderPage.enterPreAdviceID(po);;
 		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
+		Thread.sleep(3000);
 		jdaFooter.PressEnter();
+		Thread.sleep(3000);
 		jdaFooter.PressEnter();
+		Thread.sleep(3000);
 		
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
