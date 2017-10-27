@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
@@ -23,18 +25,20 @@ public class DataSetupRunner {
 	private Database jdaJdatabase;
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
+	private final WebDriver webDriver;
 	
 	
 
 	@Inject
 	public DataSetupRunner(Context context, DbConnection dataBase, Database jdaJdatabase,
-			JdaLoginPage jdaLoginPage,GetTcData gettcdata,DataLoadFromUI dataLoadFromUI) {
+			JdaLoginPage jdaLoginPage,GetTcData gettcdata,DataLoadFromUI dataLoadFromUI,WebDriver webDriver) {
 		this.context = context;
 		this.npsDataBase = dataBase;
 		this.gettcdata = gettcdata;
 		this.jdaJdatabase = jdaJdatabase;
 		this.dataLoadFromUI = dataLoadFromUI;
 		this.jdaLoginPage=jdaLoginPage;
+		this.webDriver = webDriver;
 		
 	}
 
@@ -102,6 +106,7 @@ public class DataSetupRunner {
 		//insertData();
 		//insertTempTestdata();
 		createTestDataFromUI();
+		
 	}
 
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
@@ -120,21 +125,19 @@ public class DataSetupRunner {
 				
 				//Call JDA Login
 				jdaLoginPage.login();
+				
 				dataLoadFromUI.duplicateASN(asnReference,asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
 				validateUpiDataSetup(upi);
 				dataLoadFromUI.duplicatePO(poReference,po);
-				dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
 				gettcdata.setPalletId(upi);
 				
-//				validateAsnDataSetup(asn);
-//				validatePoDataSetup(po);
-//				validateUpiDataSetup(upi);
 				npsDataBase.disconnectAutomationDB();
+								
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -151,7 +154,6 @@ public class DataSetupRunner {
 				//Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicatePO(poReference,po);
-				//dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 			    gettcdata.setPo(po);
 				npsDataBase.disconnectAutomationDB();
@@ -174,11 +176,10 @@ public class DataSetupRunner {
 				String upi=formReturnsUPIID(supplierIdRef,qty);
 				
 				//Call JDA Login
-				//jdaLoginPage.login();
+				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference,asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
-				//dataLoadFromUI.killBrowser();
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -198,11 +199,10 @@ public class DataSetupRunner {
 				
 				String asnReference = gettcdata.getAsnFromTestData();
 				//Call JDA Login
-				//jdaLoginPage.login();
+				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference,asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
-				//dataLoadFromUI.killBrowser();
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);

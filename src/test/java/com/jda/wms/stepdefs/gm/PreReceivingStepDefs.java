@@ -34,6 +34,7 @@ public class PreReceivingStepDefs {
 
 	@Given("^the PO, UPI, ASN of type \"([^\"]*)\" details should be displayed$")
 	public void the_PO_UPI_ASN_of_type_details_should_be_displayed(String type) throws Throwable {
+	System.out.println("ENTERED STEP1");
 
 //		String preAdviceId = getTcData.getPo();
 //		String upiId = getTcData.getUpi();

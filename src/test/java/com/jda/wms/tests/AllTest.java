@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@boxed_pre_receiving_direct_po_validate_compliance_flag_uploaded"})
+				+ "cucumber.json" }, tags = { "@boxed_pre_receiving_direct_po_dock_schedule_asn"})
 
 
 public class AllTest {

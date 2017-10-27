@@ -105,6 +105,7 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
 	public void the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line()
 			throws Throwable {
+		System.out.println("ENTERED STEP3");
 		deliveryStepDefs.the_pallet_count_should_be_updated_in_delivery();
 		upiReceiptHeaderStepDefs.asn_to_be_linked_with_upi_header();
 		upiReceiptLineStepDefs.po_to_be_linked_with_upi_line();

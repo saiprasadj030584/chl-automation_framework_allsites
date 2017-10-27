@@ -141,18 +141,18 @@ public class DataLoadFromUI {
 		// Process killIE = Runtime.getRuntime()
 		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq
 		// %username%\"");
-		Process killChrome = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
-		Process killFirefox = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq %username%\"");
-
-		Process killGeckoDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq %username%\"");
-		Process killChromeDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq %username%\"");
-
-		Process killIeDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
+//		Process killChrome = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
+//		Process killFirefox = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq %username%\"");
+//
+//		Process killGeckoDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq %username%\"");
+//		Process killChromeDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq %username%\"");
+//
+//		Process killIeDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
 	}
 		
 	

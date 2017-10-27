@@ -70,6 +70,8 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be in \"([^\"]*)\" status with line items,supplier details$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
 			String status) throws Throwable {
+		
+		System.out.println("ENTERED STEP2");
 
 //		String upiId = getTcData.getUpi();
 //		String asnId = getTcData.getAsn();

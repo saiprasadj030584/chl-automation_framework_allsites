@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cucumber.runtime.java.guice.ScenarioScope;
+
 public class Context {
 	private String preAdviceId;
 	private String skuId;
@@ -149,6 +151,15 @@ public class Context {
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private int updatedQty;
+	private ScenarioScope scenario;
+
+	public ScenarioScope getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(ScenarioScope scenario) {
+		this.scenario = scenario;
+	}
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -235,6 +246,7 @@ public class Context {
 	}
 
 	public void setPalletID(String palletID) {
+		System.out.println("Pallet Id SET HO GAYA");
 		this.palletID = palletID;
 	}
 
