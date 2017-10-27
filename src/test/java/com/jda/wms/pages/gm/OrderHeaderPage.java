@@ -124,4 +124,23 @@ public class OrderHeaderPage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void enterOrderID(String orderReference) throws InterruptedException {
+		screen.type(orderReference);
+		Thread.sleep(1000);
+	}
+
+	public boolean isNoRecordFound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
+
+	public boolean isEJBerrorfound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

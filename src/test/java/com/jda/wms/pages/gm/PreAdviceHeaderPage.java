@@ -126,4 +126,23 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public void enterOrderID(String orderReference) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isNoRecordFound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
+
+	public boolean isEJBerrorfound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

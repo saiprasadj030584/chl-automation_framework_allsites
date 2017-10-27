@@ -19,4 +19,11 @@ public class DeliveryPage {
 			else
 				return false;
 	}
+
+	public boolean isEJBerrorfound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

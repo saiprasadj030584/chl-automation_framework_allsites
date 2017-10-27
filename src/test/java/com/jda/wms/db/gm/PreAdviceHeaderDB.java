@@ -187,4 +187,9 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public Object getorderForOdn(String order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
