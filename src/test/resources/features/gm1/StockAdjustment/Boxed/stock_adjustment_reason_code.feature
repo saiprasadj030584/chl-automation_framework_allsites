@@ -3,7 +3,7 @@ Feature: Stock adjustments
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -17,7 +17,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | Dirty      |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -31,7 +31,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | DMIT       |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_expd @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_expd @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -45,7 +45,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | EXPD       |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_found @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_found @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -59,7 +59,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | FOUND      |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -73,7 +73,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | INCOMPLETE |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_lost @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_lost @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -87,7 +87,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | LOST       |   5649 |
 
-  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_samples @complete @ds @maven_check_2
+  @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_samples @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
@@ -101,7 +101,7 @@ Feature: Stock adjustments
       | Location | ReasonCode | SiteId |
       | 1AA103   | SAMPLES    |   5649 |
 
-  @boxed @stock_adjustment @boxed_stock_adjustment_stock_adjustment_reason_code_stock_count @complete @ds @maven_check_2
+  @boxed @stock_adjustment @boxed_stock_adjustment_stock_adjustment_reason_code_stock_count @complete @ds @maven_check_3
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page
