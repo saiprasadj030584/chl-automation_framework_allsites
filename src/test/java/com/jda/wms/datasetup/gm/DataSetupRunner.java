@@ -122,10 +122,10 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateUPI(upiReference,upi);
 				validateUpiDataSetup(upi);
 				dataLoadFromUI.duplicatePO(poReference,po);
-				dataLoadFromUI.killBrowser();
+			//	dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 			//	dataLoadFromUI.duplicateOdn(orderReference,odn);
-				validateOdnDataSetup(odn);
+				//validateOdnDataSetup(odn);
 				
 			//	dataLoadFromUI.killBrowser();
 				gettcdata.setAsnId(asn);
