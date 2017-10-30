@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@boxed_pre_receiving_direct_po_dock_schedule_asn"})
+				+ "cucumber.json" }, tags = { "@putty_check"})
 
 
 public class AllTest {
