@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
   I want to schedult a dock door for Direct PO
   So that I can receive the same in the scheduled dock door
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @ds @maven_check_1
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_dock_schedule_asn @complete @ds @maven_check_1 @dock_check
   Scenario: Validate whether ASN can be assigned using the Container ID
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
