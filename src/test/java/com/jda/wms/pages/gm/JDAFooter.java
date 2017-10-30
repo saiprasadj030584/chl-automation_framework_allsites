@@ -79,7 +79,7 @@ public class JDAFooter {
 
 	public void clickDoneButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F12);
-		Thread.sleep(3000);
+		
 	}
 
 	public void clickPackConfig() throws FindFailed, InterruptedException {
