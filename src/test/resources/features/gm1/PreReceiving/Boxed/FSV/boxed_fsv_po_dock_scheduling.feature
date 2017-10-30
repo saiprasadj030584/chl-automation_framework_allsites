@@ -4,7 +4,7 @@ Feature: Dock Scheduling
   I want to schedult a dock door for FSV PO
   So that I can receive the same in the scheduled dock door
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkins1 @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkins1 @group_2
   Scenario: Validate whether PO can be assigned using the Pre advice ID
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -15,7 +15,7 @@ Feature: Dock Scheduling
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether Booking details can be captured - Carrier Information
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -26,7 +26,7 @@ Feature: Dock Scheduling
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether Booking details can be captured - Service level information
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -59,7 +59,7 @@ Feature: Dock Scheduling
     And I create a booking
     Then the booking details should appear in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -69,7 +69,7 @@ Feature: Dock Scheduling
     When I change the booking time
     Then the booking id details with updated time should be displayed on the page
 
-  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether the Booking can be deleted
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -79,7 +79,7 @@ Feature: Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds @boxed_jenkins @maven_check_1
+  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether booking can be made to Complete status
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -99,7 +99,7 @@ Feature: Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @jenkins_analysis @boxed @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds @boxed_jenkins
+  @jenkins_analysis @boxed @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds @boxed_jenkins @group_2
   Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO should be in "Released" status
     And the PO line should have sku, quantity due details
