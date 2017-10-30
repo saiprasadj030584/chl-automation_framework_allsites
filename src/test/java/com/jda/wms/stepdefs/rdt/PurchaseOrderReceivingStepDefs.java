@@ -1403,9 +1403,9 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			if (receiveType.equalsIgnoreCase("Over Receiving")) {
-				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
 			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
-				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+				quantity = String.valueOf(context.getRcvQtyDue() - 1);
 			}
 			context.setRcvQtyDue(Integer.valueOf(quantity));
 			i_enter_urn_id(context.getUpiId());

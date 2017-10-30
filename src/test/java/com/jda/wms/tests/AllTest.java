@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_inbound_receiving_direct_po_over_receiving" })
+		"json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_inventory_inventory_validate_the_stock_available_in_any_location_check_empty_and_low_volume_slots" })
 public class AllTest {
 }
 
