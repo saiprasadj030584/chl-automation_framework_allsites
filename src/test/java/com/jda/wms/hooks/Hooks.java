@@ -77,7 +77,7 @@ public class Hooks {
 		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
 	}
 
-	@Before
+	@Before("~@no_ds")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		logger.debug(
