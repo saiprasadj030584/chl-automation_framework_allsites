@@ -90,7 +90,7 @@ public class Hooks {
 		//context.setSiteId(System.getProperty("SITEID"));
 		 dataSetupRunner.getTagListFromAutoDb();
 		 context.setSiteId("5649");
-		 dataSetupRunner.getParentRequestIdFromDB();
+		// dataSetupRunner.getParentRequestIdFromDB();
 		 //dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
