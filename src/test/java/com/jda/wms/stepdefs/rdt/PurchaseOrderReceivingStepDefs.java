@@ -222,40 +222,40 @@ public class PurchaseOrderReceivingStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 
-//		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
-//		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
-//		i_receive_the_po_with_basic_and_pre_advice_receiving();
-//		i_should_be_directed_to_pre_advice_entry_page();
-//		System.out.println("NUMOFLINES" + context.getNoOfLines());
-//		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-//			context.setSkuId(poMap.get(i).get("SKU"));
-//			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
-//			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-//
-//			i_enter_urn_id(context.getUpiId());
-//			jdaFooter.PressEnter();
-//			the_tag_and_upc_details_should_be_displayed();
-//			i_enter_the_location();
-//			jdaFooter.PressEnter();
-//			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
-//					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
-//			if (null != context.getLockCode()) {
-//				i_enter_urn_id_for_locked_sku();
-//				jdaFooter.PressEnter();
-//				Thread.sleep(2000);
-//			} else {
-//				i_enter_urn_id();
-//				jdaFooter.PressEnter();
-//				Thread.sleep(2000);
-//			}
-//
-//			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-//				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
-//				context.setFailureList(failureList);
-//			}
-//
-//			hooks.logoutPutty();
-//		}
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+		System.out.println("NUMOFLINES" + context.getNoOfLines());
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+
+			i_enter_urn_id(context.getUpiId());
+			jdaFooter.PressEnter();
+			the_tag_and_upc_details_should_be_displayed();
+			i_enter_the_location();
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (null != context.getLockCode()) {
+				i_enter_urn_id_for_locked_sku();
+				jdaFooter.PressEnter();
+				Thread.sleep(2000);
+			} else {
+				i_enter_urn_id();
+				jdaFooter.PressEnter();
+				Thread.sleep(2000);
+			}
+
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+
+			hooks.logoutPutty();
+		}
 	}
 
 	@When("^I receive all skus for the purchase order with multiple upi at location \"([^\"]*)\"$")
