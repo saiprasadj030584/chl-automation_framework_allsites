@@ -41,7 +41,7 @@ public class DockSchedulerStepDefs {
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData ,BookingInDiary bookingInDiary) {
 
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
@@ -54,6 +54,7 @@ public class DockSchedulerStepDefs {
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.getTcData = getTcData;
+		this.bookingInDiary=bookingInDiary;
 	}
 
 	@When("^I select the booking type and ASN$")
@@ -126,7 +127,9 @@ public class DockSchedulerStepDefs {
 	{
 		bookingID = Utilities.getFiveDigitRandomNumber();
 	}
+	System.out.println(" CHECKKK "+context.getTrailerNo());
 	String trailerNo = context.getTrailerNo();
+	System.out.println(" CHECKKK00000"+bookingID);
 	context.setBookingID(bookingID);
 	context.setCarrier("ALLPORT");
 	context.setServiceLevel("AIR");
