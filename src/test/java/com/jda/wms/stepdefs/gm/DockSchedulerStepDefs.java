@@ -6,6 +6,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
+import com.jda.wms.db.gm.BookingInDiary;
 import com.jda.wms.db.gm.BookingInDiaryLog;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
@@ -27,6 +28,7 @@ public class DockSchedulerStepDefs {
 	private JDAHomeStepDefs jDAHomeStepDefs;
 	private DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs;
 	private BookingInDiaryLog bookingInDiaryLog;
+	private BookingInDiary bookingInDiary;
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private GetTcData getTcData;
 	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
@@ -118,7 +120,12 @@ public class DockSchedulerStepDefs {
 
 	@When("^I create a booking for the asn$")
 	public void i_create_a_booking_for_the_asn() throws Throwable {
+		int count=0;
 	String bookingID = Utilities.getFiveDigitRandomNumber();
+	while(bookingInDiary.isBookingExists(bookingID))
+	{
+		bookingID = Utilities.getFiveDigitRandomNumber();
+	}
 	String trailerNo = context.getTrailerNo();
 	context.setBookingID(bookingID);
 	context.setCarrier("ALLPORT");
@@ -146,11 +153,20 @@ public class DockSchedulerStepDefs {
 	if (dockSchedulerPage.isNoDockErrorExists()) {
 		System.out.println("inside while - dock error");
 		while (dockSchedulerPage.isNoDockErrorExists()) {
+			count++;
 			System.out.println("inside while - dock error");
+			if(count!=7)
+			{
 	jdaFooter.PressEnter();
+			}
 	dockSchedulerPage.selectSlot();
 	jdaFooter.clickNextButton();
 	bookingID = Utilities.getFiveDigitRandomNumber();
+	while(bookingInDiary.isBookingExists(bookingID))
+	{
+		bookingID = Utilities.getFiveDigitRandomNumber();
+	}
+	context.setBookingID(bookingID);
 	jdaFooter.deleteExistingContent();
 	dockSchedulerPage.enterBookingId(bookingID);
 	dockSchedulerPage.pressTab();
@@ -163,6 +179,22 @@ public class DockSchedulerStepDefs {
 	dockSchedulerPage.pressTab();
 	dockSchedulerPage.enterEstimatedCartons();
 	jdaFooter.PressEnter();
+	
+	if(count==7)
+	{
+		jdaFooter.PressEnter();
+		for(int i=0;i<5;i++)
+		{
+		jdaHomePage.scrollLeft();
+		}
+		
+		
+	}
+	else if(count==15)
+	{
+		break;
+	}
+	
 	}
 	}
 	else if(dockSchedulerPage.isBookingErrorExists())
