@@ -132,7 +132,9 @@ public class InventoryTransactionQueryPage {
 	public String getStatus() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/General/LockStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type("a", Key.CTRL);
+		Thread.sleep(2000);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
