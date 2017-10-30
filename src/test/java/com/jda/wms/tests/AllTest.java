@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_inventory_inventory_validate_the_stock_available_in_any_location_check_empty_and_low_volume_slots" })
+		"json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_stock_adjustment_inventory_update_pallet_type_update" })
 public class AllTest {
 }
 
