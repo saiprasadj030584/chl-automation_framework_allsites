@@ -66,7 +66,7 @@ public class Hooks_autoUI {
 		updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
-		getChildRequestID();
+//		getChildRequestID();
 //		updateTestDataIntoRunStatusTable();
 	}
 	
