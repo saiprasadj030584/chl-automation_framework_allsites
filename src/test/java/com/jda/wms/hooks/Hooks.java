@@ -92,9 +92,9 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		context.setSiteId("5649");
+//		context.setSiteId("5649");
+		context.setSiteId(System.getProperty("SITEID"));
 		System.out.println("SITE ID "+context.getSiteId());
-//		context.setSiteId(System.getProperty("SITEID"));
 		//System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
 		// dataSetupRunner.getParentRequestIdFromDB();
@@ -106,18 +106,6 @@ public class Hooks {
 //		updateTestDataIntoRunStatusTable();
 	}
 
-	private void updateTestDataIntoRunStatusTable() {
-		try {
-			if (context.getSQLDBConnection() == null) {
-				hooksautoUI.sqlConnectOpen();
-			}
-			System.out.println("Parent Id --->" + context.getParentRequestId());
-			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE C_REQ_ID='"+context.getChildRequestId()+"'";
-			context.getSQLDBConnection().createStatement().execute(query);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
 
 	// @Before
 	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
@@ -170,6 +158,7 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
+		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
 
 	// @After

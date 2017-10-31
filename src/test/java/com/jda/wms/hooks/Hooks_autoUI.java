@@ -58,15 +58,29 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
-		System.setProperty("SITEID", "5649");
+//		System.setProperty("SITEID", "5649");
 		System.out.println("Site ID from sys prop "+SITEID);
 		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
 		insertSiteID();
 		getSiteID();
 		updateBuildNumberInRequestTable();
-//		context.setSiteId(System.getProperty("SITEID"));
+		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 		getChildRequestID();
+		updateTestDataIntoRunStatusTable();
+	}
+	
+	private void updateTestDataIntoRunStatusTable() {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			System.out.println("update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE P_REQ_ID='"+context.getParentRequestId()+"' and status='INPROGRESS'");
+			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE P_REQ_ID='"+context.getParentRequestId()+"' and status='INPROGRESS'";
+			context.getSQLDBConnection().createStatement().execute(query);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	private void getChildRequestID() {

@@ -122,7 +122,7 @@ public class DataSetupRunner {
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
 				gettcdata.setPalletId(upi);
-
+				context.setTestData("PO:"+po+";UPI:"+upi+";ASN:"+asn);
 				// validateAsnDataSetup(asn);
 				// validatePoDataSetup(po);
 				// validateUpiDataSetup(upi);
@@ -146,6 +146,7 @@ public class DataSetupRunner {
 				// dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setPo(po);
+				context.setTestData("PO:"+po);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -174,6 +175,7 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
+				context.setTestData("UPI:"+upi+";ASN:"+asn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -198,6 +200,7 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
+				context.setTestData("UPI:"+upi+";ASN:"+asn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -215,6 +218,7 @@ public class DataSetupRunner {
 				validateAsnDataSetup(asn);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
+				context.setTestData("UPI:"+upi+";ASN:"+asn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -228,6 +232,7 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -241,6 +246,7 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -254,6 +260,7 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -267,6 +274,7 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -280,6 +288,7 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -293,10 +302,10 @@ public class DataSetupRunner {
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:"+odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
-
 			}
 		}
 	}

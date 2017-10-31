@@ -109,19 +109,15 @@ public class DataLoadFromUI {
 		upiReceiptHeaderPage.enterPalletWithReference(upi);
 		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
-		System.out.println("CHECKKKKK2222");
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
 		context.setUpiId(upi);
-		System.out.println("oooooooooooooooooooooooooooooooooooooooo"+context.getUpiId());
 		Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
-		System.out.println("CHRFFKl");
 	}
 		
 	
 
 	public void duplicatePO(String poReference, String po) throws ClassNotFoundException, FindFailed, InterruptedException, SQLException {
-		System.out.println("CHECK333333");
 		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
 		jdaFooter.clickQueryButton();
 		preAdviceHeaderPage.enterPreAdviceID(poReference);
@@ -174,7 +170,6 @@ public class DataLoadFromUI {
 //	}
 
 	public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
-		System.out.println("CHECK333433");
 		jdaHomePage.navigateToOrderHeaderMaintenance();
 		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(orderReference);
