@@ -58,7 +58,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1 @maven_check_2
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -68,7 +68,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I change the booking time
     Then the booking id details with updated time should be displayed on the page
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds @maven_check_1
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds @maven_check_1 @maven_check_2
   Scenario: Validate whether booking can be made to Complete status
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -78,7 +78,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
     
-    @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds @maven_check_1
+    @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds @maven_check_1 @maven_check_2
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -88,7 +88,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @jenkins_analysis @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_compliance_flag_uploaded @complete @ds @maven_check_1
+  @jenkins_analysis @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_compliance_flag_uploaded @complete @ds @maven_check_1 @maven_check_2
  Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -96,7 +96,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I update the compliance flag in database
     Then the compliance details should be updated
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds @maven_check_1
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds @maven_check_1 @maven_check_2
   Scenario: Assign dock door for each trailer to unload it
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -107,7 +107,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkins_analysis @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @pre_receiving @direct_po @boxed @complete @ds @maven_check_1
+  @jenkins_analysis @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @pre_receiving @direct_po @boxed @complete @ds @maven_check_1 @maven_check_2
   Scenario: Validate whether Booking can be moved to different date
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
