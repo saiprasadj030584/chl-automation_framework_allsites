@@ -158,10 +158,9 @@ public class DockSchedulerStepDefs {
 		while (dockSchedulerPage.isNoDockErrorExists()) {
 			count++;
 			System.out.println("inside while - dock error");
-			if(count!=7)
-			{
+			
 	jdaFooter.PressEnter();
-			}
+			
 	dockSchedulerPage.selectSlot();
 	jdaFooter.clickNextButton();
 	bookingID = Utilities.getFiveDigitRandomNumber();
@@ -190,6 +189,26 @@ public class DockSchedulerStepDefs {
 		{
 		jdaHomePage.scrollLeft();
 		}
+		dockSchedulerPage.selectSlot();
+		jdaFooter.clickNextButton();
+		bookingID = Utilities.getFiveDigitRandomNumber();
+		while(bookingInDiary.isBookingExists(bookingID))
+		{
+			bookingID = Utilities.getFiveDigitRandomNumber();
+		}
+		context.setBookingID(bookingID);
+		jdaFooter.deleteExistingContent();
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
 		
 		
 	}
