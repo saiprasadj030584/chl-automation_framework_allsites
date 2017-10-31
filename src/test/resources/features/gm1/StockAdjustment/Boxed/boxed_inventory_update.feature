@@ -17,7 +17,7 @@ Feature: Boxed - Inventory update
 
     Examples: 
       | LockStatus | UpdateStatus | Code             |
-      | Locked     | Unlocked     | Inventory Unlock |
+      | Locked     | UnLocked     | Inventory Unlock |
 
   @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds @group_1
   Scenario Outline: Lock the stock from unlock
