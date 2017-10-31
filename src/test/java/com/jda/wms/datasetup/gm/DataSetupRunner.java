@@ -304,6 +304,8 @@ public class DataSetupRunner {
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				// Call JDA Login
+				System.out.println("Ecom Order creation");
+				System.out.println("order "+odn);
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);

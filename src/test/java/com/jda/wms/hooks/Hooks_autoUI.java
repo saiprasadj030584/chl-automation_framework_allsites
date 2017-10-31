@@ -67,7 +67,7 @@ public class Hooks_autoUI {
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 		getChildRequestID();
-		updateTestDataIntoRunStatusTable();
+//		updateTestDataIntoRunStatusTable();
 	}
 	
 	private void updateTestDataIntoRunStatusTable() {
