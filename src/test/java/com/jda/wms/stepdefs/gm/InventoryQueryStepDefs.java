@@ -73,7 +73,7 @@ public class InventoryQueryStepDefs {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
 				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
-						Integer.toString(context.getRcvQtyDue()- 1), 
+						Integer.toString(context.getRcvQtyDue() - 1),
 						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
 						failureList);
 			} else if (null == context.getReceiveType()) {
@@ -276,7 +276,8 @@ public class InventoryQueryStepDefs {
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getOrigin();
-
+		String updateOrigin = inventoryDB.getOrigin(context.getTagId());
+		Assert.assertEquals("Origin Update is not as expeccted in Inventory", context.getOrigin(), updateOrigin);
 	}
 
 	@Given("^I have a tag in inventory with condition \"([^\"]*)\"$")

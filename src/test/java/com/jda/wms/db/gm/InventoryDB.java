@@ -527,7 +527,8 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-	public String getLocationAfterPutaway(String skuId, String date ,String preAdviceId) throws SQLException, ClassNotFoundException {
+	public String getLocationAfterPutaway(String skuId, String date, String preAdviceId)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1161,6 +1162,19 @@ public class InventoryDB {
 			inventoryList.add((rs.getString(j)));
 		}
 		return inventoryList;
+	}
+
+	public String getOrigin(String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select origin_id from inventory where tag_id= '" + tagId + "' ");
+
+		rs.next();
+		return rs.getString(1);
+
 	}
 
 }

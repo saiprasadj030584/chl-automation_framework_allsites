@@ -80,7 +80,8 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()-1),
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+					String.valueOf(context.getRcvQtyDue() - 1),
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
@@ -431,16 +432,20 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the status should be updated$")
 	public void the_status_should_be_updated() throws Throwable {
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated inventory status are not as expected", context.getStatus(),
-				inventoryTransactionQueryPage.getStatus());
+				// inventoryTransactionQueryPage.getStatus());
+				inventoryTransactionDB.getlockstatus(date, context.getTagId()));
 
 	}
 
 	@Then("^the expiry date should be updated$")
 	public void the_expiry_date_should_be_updated() throws Throwable {
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated inventory Expiry date are not as expected", context.getFutureExpiryDate(),
-				inventoryTransactionQueryPage.getExpiryDate());
+				// inventoryTransactionQueryPage.getExpiryDate());
+				inventoryTransactionDB.getExpiryDate(date, context.getTagId()));
 	}
 
 	@When("^I choose the code as \"([^\"]*)\" and I search the tag id$")
@@ -515,14 +520,19 @@ public class InventoryTransactionQueryStepDefs {
 			break;
 
 		}
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated inventory condition are not as expected", conditionToVerify,
-				inventoryTransactionQueryPage.getCondition());
+				// inventoryTransactionQueryPage.getCondition());
+				inventoryTransactionDB.getConditionfromDB(date, context.getTagId()));
 	}
 
 	@Then("^the pallet should be updated$")
 	public void the_pallet_should_be_updated() throws Throwable {
+
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated inventory pallet are not as expected", context.getPalletType(),
-				inventoryTransactionQueryPage.getPalletType());
+				// inventoryTransactionQueryPage.getPalletType());
+				inventoryTransactionDB.getPalletfromDB(date, context.getTagId()));
 	}
 
 	@Then("^the owner should be updated$")
@@ -533,8 +543,10 @@ public class InventoryTransactionQueryStepDefs {
 
 	@Then("^the pack config should be updated$")
 	public void the_pack_config_should_be_updated() throws Throwable {
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("Updated inventory pack config are not as expected", context.getPackConfig(),
-				inventoryTransactionQueryPage.getPackConfig());
+				// inventoryTransactionQueryPage.getPackConfig());
+				inventoryTransactionDB.getPackConfigfromDB(date, context.getTagId()));
 
 	}
 

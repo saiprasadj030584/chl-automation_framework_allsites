@@ -21,7 +21,6 @@ public class InventoryTransactionDB {
 		this.database = database;
 	}
 
-
 	public String getToLocationIDT(String skuId, String upiId, String date, String code)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -63,7 +62,6 @@ public class InventoryTransactionDB {
 		return rs.getString(1);
 	}
 
-
 	public ArrayList<String> getVehicleLoadITLRecords() throws SQLException, ClassNotFoundException {
 		ArrayList<String> palletIdList = new ArrayList<String>();
 		if (context.getConnection() == null) {
@@ -84,8 +82,6 @@ public class InventoryTransactionDB {
 		context.setPalletIDList(palletIdList);
 		return palletIdList;
 	}
-
-
 
 	public String getDescription(String tagId, String code, String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -517,8 +513,9 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-//		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where sku_id = '" + skuId
-//				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		// ResultSet rs = stmt.executeQuery("select from_loc_id from
+		// inventory_transaction where sku_id = '" + skuId
+		// + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
@@ -556,8 +553,9 @@ public class InventoryTransactionDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-//		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where sku_id ='" + preadviceId
-//				+ "' and code = '" + code + "' and DSTAMP like'" + date + "%'");
+		// ResultSet rs = stmt.executeQuery("select to_loc_id from
+		// inventory_transaction where sku_id ='" + preadviceId
+		// + "' and code = '" + code + "' and DSTAMP like'" + date + "%'");
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
@@ -591,7 +589,7 @@ public class InventoryTransactionDB {
 	}
 
 	public String getUpdateQty(String skuId, String tagId, String date, String code)
-	
+
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -623,11 +621,11 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("select reference_id from inventory_transaction where sku_id = '" + skuId
-				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+tagId+"'");
+		System.out.println("select reference_id from inventory_transaction where sku_id = '" + skuId + "' and code = '"
+				+ code + "' and DSTAMP like '" + date + "%' and tag_id='" + tagId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reference_id from inventory_transaction where sku_id = '" + skuId
-				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='"+tagId+"'");
+				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='" + tagId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -663,8 +661,8 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
-				+ "' and code = '" + code + "'");
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='"
+				+ preAdviceId + "' and code = '" + code + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -722,7 +720,6 @@ public class InventoryTransactionDB {
 		return isRecordExists;
 	}
 
-
 	public boolean getCode(String upiId, String code) throws ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
@@ -756,7 +753,7 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getLockCodeWithPORef(String skuId, String preAdviceId, String date, String code)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -764,12 +761,12 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where reference_id='" + preAdviceId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		ResultSet rs = stmt
+				.executeQuery("select lock_code from inventory_transaction where reference_id='" + preAdviceId
+						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
-
 
 	public String getPallet(String upiId, String code) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -805,8 +802,6 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
-
 
 	public String getReferenceIdIDT(String skuId, String upiId, String date, String code)
 			throws SQLException, ClassNotFoundException {
@@ -861,7 +856,7 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getLockCodebyUpid(String upiId, String skuId, String date, String code)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -873,8 +868,8 @@ public class InventoryTransactionDB {
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
-		}
-	
+	}
+
 	public String getNotes(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -886,20 +881,21 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getFromLocationWithPo(String skuId, String preAdviceId, String date, String code)
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		
-		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where reference_id='" + preAdviceId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+
+		ResultSet rs = stmt
+				.executeQuery("select from_loc_id from inventory_transaction where reference_id='" + preAdviceId
+						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getToLocationWithPo(String skuId, String preAdviceId, String date, String code)
 			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -907,31 +903,91 @@ public class InventoryTransactionDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where reference_id='" + preAdviceId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		ResultSet rs = stmt
+				.executeQuery("select to_loc_id from inventory_transaction where reference_id='" + preAdviceId
+						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public String getUpdateQtyWithPo(String skuId, String preAdviceId, String date, String code) throws ClassNotFoundException, SQLException {
+	public String getUpdateQtyWithPo(String skuId, String preAdviceId, String date, String code)
+			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where reference_id='" + preAdviceId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		ResultSet rs = stmt
+				.executeQuery("select UPDATE_QTY from inventory_transaction where reference_id='" + preAdviceId
+						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getPutawayTagId(String siteID,String preAdviceID)throws SQLException, ClassNotFoundException {
+
+	public String getPutawayTagId(String siteID, String preAdviceID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-        System.out.println("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"+ preAdviceID +"' and site_id ='"+siteID+"'");
+		System.out.println("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"
+				+ preAdviceID + "' and site_id ='" + siteID + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"+ preAdviceID +"' and site_id ='"+siteID+"'");
+				.executeQuery("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"
+						+ preAdviceID + "' and site_id ='" + siteID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getlockstatus(String date, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT lock_status  FROM inventory_transaction where dstamp like '" + date
+				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getExpiryDate(String date, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT  expiry_dstamp  FROM inventory_transaction where dstamp like '" + date
+				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getConditionfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT  condition_id  FROM inventory_transaction where dstamp like '" + date
+				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public Object getPalletfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT  PALLET_CONFIG  FROM inventory_transaction where dstamp like '" + date
+				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public Object getPackConfigfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT  config_id  FROM inventory_transaction where dstamp like '" + date
+				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
 		rs.next();
 		return rs.getString(1);
 	}
