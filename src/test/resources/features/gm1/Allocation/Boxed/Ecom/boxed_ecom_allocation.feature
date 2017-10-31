@@ -1,5 +1,5 @@
-@allocation
-Feature: Allocation
+@boxed_ecom_allocation
+Feature: Boxed - ECom - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 

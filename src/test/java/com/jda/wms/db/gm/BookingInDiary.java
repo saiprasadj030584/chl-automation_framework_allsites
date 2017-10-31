@@ -49,4 +49,15 @@ public class BookingInDiary {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String selectDockDoor(String bookingID) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select LOCATION_ID from booking_in_diary where bookref_id='"+bookingID+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

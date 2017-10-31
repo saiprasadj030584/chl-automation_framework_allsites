@@ -159,4 +159,33 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
+	
+	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isVehicleUnloadEntryPageDisplayed() throws FindFailed {
+		if (screen.exists("images/Putty/VehicleLoading/UnLodEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isTrailerEnterPageDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/TrailerEnterPage.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isinvalidpalletIdPageDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/invalidPallet.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

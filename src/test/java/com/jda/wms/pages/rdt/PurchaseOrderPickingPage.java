@@ -157,4 +157,25 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	
+	public boolean isPickEntPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void enterContainerId(String containerId) throws InterruptedException {
+		screen.type(containerId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+
+	public void enterTagId(String tagid) throws InterruptedException {
+		screen.type(tagid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
 }

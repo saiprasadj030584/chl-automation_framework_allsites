@@ -1,5 +1,5 @@
-@allocation
-Feature: Allocation
+@boxed_international_allocation
+Feature: Boxed - International - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 

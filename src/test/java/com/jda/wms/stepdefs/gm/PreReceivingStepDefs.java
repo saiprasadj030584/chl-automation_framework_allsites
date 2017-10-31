@@ -54,7 +54,7 @@ public class PreReceivingStepDefs {
 	@Given("^the PO of type \"([^\"]*)\" details should be displayed$")
 	public void the_PO_of_type_details_should_be_displayed(String type) throws Throwable {
 		String preAdviceId = getTcData.getPo();
-		preAdviceHeaderStepsDefs.the_PO_of_type_should_be_in_status_with_line_items_supplier_details(preAdviceId, type,
+		preAdviceHeaderStepsDefs.the_PO_of_type_should_be_in_status_with_line_items_supplier_details(type,
 				"Released");
 		Assert.assertNotNull("Supplier ID not displayed as expected", preAdviceHeaderDB.getSupplierId(preAdviceId));
 	}

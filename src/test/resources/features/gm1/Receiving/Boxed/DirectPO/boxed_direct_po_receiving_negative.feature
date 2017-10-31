@@ -1,5 +1,5 @@
-@po_receiving_negative
-Feature: Purchase order receiving
+@boxed_direct_po_receiving_negative
+Feature: Boxed - Receiving - Direct PO - Negative
   As a warehouse user
   I want to receive the articles that are damaged
 

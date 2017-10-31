@@ -28,4 +28,15 @@ public class MoveTaskUpdateDB {
 		context.getConnection().commit();
 		rs.next();
 	}
+	
+	public void releaseOrderId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update move_task set status = 'Released' where task_id = '" + orderId + "'");
+		context.getConnection().commit();
+		rs.next();
+	}
 }

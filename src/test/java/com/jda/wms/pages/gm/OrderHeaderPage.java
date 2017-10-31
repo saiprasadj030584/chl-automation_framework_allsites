@@ -124,4 +124,18 @@ public class OrderHeaderPage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public boolean isNoRecordFound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
+
+	public boolean isEJBerrorfound() {
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

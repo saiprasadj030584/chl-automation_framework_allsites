@@ -25,8 +25,17 @@ public class OrderContainerPage {
 		screen.type(Key.F7);
 	}
 
-	public void enterOrderId(String orderId) throws FindFailed {
-		screen.type(orderId);
+	public void enterOrderID(String orderID) throws InterruptedException {
+		screen.type(orderID);
+		Thread.sleep(1000);
+	}
+	
+	public String getBuildMasterURN() throws FindFailed {
+		Match mmaster = screen.find("images/OrderContainer/PalletId.png");
+		screen.click(mmaster.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 
 }

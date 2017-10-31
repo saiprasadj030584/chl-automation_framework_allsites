@@ -120,6 +120,18 @@ public class UPIReceiptHeaderDB {
 			}
 		}
 		return isRecordExists;
+	}
+	
+	public Object getUpiIdForUPI(String upi) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
 
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+		ResultSet rs = stmt
+				.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

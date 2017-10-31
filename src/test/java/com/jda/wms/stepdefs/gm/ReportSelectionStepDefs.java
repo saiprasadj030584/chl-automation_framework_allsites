@@ -114,4 +114,84 @@ public class ReportSelectionStepDefs {
 				reportSelectionPage.isReportDisplayedForPreReceivingUpc());
 		jDAFooter.clickDoneButton();
 	}
+	
+	@When("^I Select M&S Repack report$")
+	public void i_select_M_S_Repack_report() throws Throwable {
+		reportSelectionPage.chooseRepackingReport();
+		jDAFooter.clickNextButton();
+		reportSelectionPage.chooseSiteId();
+		jDAFooter.clickNextButton();
+		jDAFooter.clickDoneButton();
+	}
+	
+	@Then("^the repacking report should be generated$")
+	public void the_repacking_report_should_be_generated() throws Throwable {
+		Assert.assertTrue("Repacking Report is not generated",reportSelectionPage.isRepackingReportExist());
+		Thread.sleep(4000);
+		jDAFooter.clickDoneButton();
+	}
+	
+	@When("^I choose M&S-Discrepancies summary as report type of type \"([^\"]*)\"$")
+	public void i_choose_M_S_Discrpancies_summary_as_report_type_of_type(String type) throws Throwable {
+		reportSelectionPage.chooseDiscrepanciesReport();
+		jDAFooter.clickNextButton();
+		reportSelectionPage.chooseSiteId();
+		jDAFooter.pressTab();
+		jDAFooter.pressTab();
+		jDAFooter.pressTab();
+		jDAFooter.pressTab();
+		jDAFooter.pressTab();
+		reportSelectionPage.chooseModularityType(type);
+		jDAFooter.clickNextButton();
+		jDAFooter.clickDoneButton();
+	}
+	
+	 @Then("^the trailor level discrepancy report should be generated$")
+		public void the_trailor_level_discrepancy_report_should_be_generated() throws Throwable {
+			Assert.assertTrue("Receiving Discrepancies Report not displayed as expected",reportSelectionPage.isReceivingDiscrepanciesReportExist());
+			Thread.sleep(4000);
+			jDAFooter.clickDoneButton();
+		}
+	 
+	 @When("^I Select M&S internal exception report of type \"([^\"]*)\"$")
+		public void i_select_M_S_internal_exception_report_of_type(String type) throws Throwable {
+			reportSelectionPage.chooseInternalExceptionReport();
+			jDAFooter.clickNextButton();
+			reportSelectionPage.chooseSiteId();
+			jDAFooter.pressTab();
+			reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
+			jDAFooter.pressTab();
+			reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
+			jDAFooter.pressTab();
+			jDAFooter.pressTab();
+			jDAFooter.pressTab();
+			String Type="pick";
+			reportSelectionPage.enterType(Type);
+			jDAFooter.PressEnter();
+			jDAFooter.pressTab();
+			reportSelectionPage.chooseModularityType(type);
+			jDAFooter.PressEnter();
+			jDAFooter.clickNextButton();
+			jDAFooter.clickDoneButton();
+		}
+	 
+	 @Then("^the internal exception report should be generated$")
+		public void the_internal_exception_report_should_be_generated() throws Throwable {
+		 Assert.assertTrue("Internal exception report not displayed as expected",reportSelectionPage.isInternalExceptionReportExist());
+			Thread.sleep(4000);
+			jDAFooter.clickDoneButton();
+		}
+	 
+	 @When("^I choose M&S-Receiving summary of type \"([^\"]*)\"$")
+		public void i_choose_M_S_Receiving_summary_of_type(String type) throws Throwable {
+			reportSelectionPage.chooseReportForType();
+			jDAFooter.clickNextButton();
+			reportSelectionPage.chooseSiteId();
+			reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
+			reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
+			jDAFooter.pressTab();
+			reportSelectionPage.chooseModularityType(type);
+			jDAFooter.clickNextButton();
+			jDAFooter.clickDoneButton();
+		}
 }

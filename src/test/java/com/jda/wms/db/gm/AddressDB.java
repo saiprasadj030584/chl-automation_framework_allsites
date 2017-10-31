@@ -26,4 +26,27 @@ public class AddressDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getLowerTagValue() throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select user_def_type_6 from address where Address_id = '" + context.getCustomer() + "'");
+		ResultSet rs = stmt
+				.executeQuery("select user_def_type_6 from address where Address_id = '" + context.getCustomer() + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getHigherTagValue() throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select user_def_type_7 from address where Address_id = '" + context.getCustomer() + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

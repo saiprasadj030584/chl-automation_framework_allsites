@@ -15,6 +15,7 @@ import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.db.gm.MoveTaskDB;
 import com.jda.wms.db.gm.SkuDB;
+import com.jda.wms.db.gm.UPIReceiptLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
@@ -43,12 +44,13 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 	private SkuDB skuDB;
 	private MoveTaskDB moveTaskDB;
 	private PurchaseOrderRelocateStepDefs purchaseOrderRelocateStepDefs;
+	private UPIReceiptLineDB uPIReceiptLineDB;
 
 	@Inject
 	public PurchaseOrderPutawayStepDefs(PurchaseOrderPutawayPage purchaseOrderPutawayPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
-			InventoryTransactionDB inventoryTransactionDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage,SkuDB skuDB,MoveTaskDB moveTaskDB,PurchaseOrderRelocateStepDefs purchaseOrderRelocateStepDefs) {
+			InventoryTransactionDB inventoryTransactionDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage,SkuDB skuDB,MoveTaskDB moveTaskDB,PurchaseOrderRelocateStepDefs purchaseOrderRelocateStepDefs,UPIReceiptLineDB uPIReceiptLineDB) {
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -63,6 +65,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 		this.skuDB = skuDB;
 		this.moveTaskDB = moveTaskDB;
 		this.purchaseOrderRelocateStepDefs = purchaseOrderRelocateStepDefs;
+		this.uPIReceiptLineDB = uPIReceiptLineDB;
 	}
 
 	@When("^I select normal putaway$")
@@ -1023,6 +1026,30 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 			i_should_be_directed_to_putent_page();
 		}
 		hooks.logoutPutty();
+	}
+	
+	@When("^I proceed with normal putaway for GOH type$")
+	public void i_proceed_with_normal_putaway_for_GOH_type() throws Throwable {
+		i_enter_urn_id_for_GOH_putaway();		
+		context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId()));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();		
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(inventoryDB.getPutawayLocation(context.getSkuId())));	
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter urn id for GOH putaway$")
+	public void i_enter_urn_id_for_GOH_putaway() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		String skuId=uPIReceiptLineDB.getSkuID(context.getUpiId());
+		context.setSkuId(skuId);
+		String dstamp=inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		context.setTransactionTime(transactionTime);
+		String type="P";
+		String urn=moveTaskDB.getPalletId(context.getSkuId(),context.getTransactionTime(),type);
+		context.setUpiId(urn);
+		purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
 	}
 
 

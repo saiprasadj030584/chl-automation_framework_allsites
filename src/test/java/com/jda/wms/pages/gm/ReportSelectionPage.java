@@ -4,9 +4,18 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+
 public class ReportSelectionPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	private Context context;
+	
+	@Inject
+	public ReportSelectionPage(Context context) {
+		this.context = context;
+	}
 
 	public void selectPrintToScreen() throws InterruptedException, FindFailed {
 		Match mStatus = screen.find("images/ReportGeneration/PrintToScreen.png");
@@ -111,4 +120,72 @@ public class ReportSelectionPage {
 		} else
 			return false;
 	}
+	
+	public void chooseRepackingReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/selectRepackingReport.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);
+	}
+	
+	public void chooseSiteId() throws InterruptedException {
+		screen.type(context.getSiteId());
+		Thread.sleep(1000);
+	}
+	
+	public boolean isRepackingReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		if (screen.exists("images/ReportSelection/generatedRepackingReport.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public void chooseDiscrepanciesReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/receivingDiscrepancies.png");
+		Thread.sleep(2000);
+		screen.click(mReport.getCenter().offset(70, 0));
+		Thread.sleep(3000);
+	}
+	
+	public void chooseModularityType(String type) throws InterruptedException {
+		screen.type(type);
+		Thread.sleep(2000);
+	}
+	
+	public boolean isReceivingDiscrepanciesReportExist() throws InterruptedException, FindFailed {
+		Thread.sleep(3000);
+		if (screen.exists("images/ReportSelection/generatedDiscrepanciesReport.png") != null) {
+			return true;
+		} else
+			return false;
+    }
+	
+	public void chooseInternalExceptionReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/InternalException.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);
+	}
+	
+	public void enterType(String type) throws InterruptedException {
+		screen.type(type);
+		Thread.sleep(2000);
+	}
+	
+	public boolean isInternalExceptionReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		if (screen.exists("images/ReportSelection/generatedInternalExceptions.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public void chooseReportForType() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/receivingsummary.png");		
+		Thread.sleep(2000);
+		screen.click(mReport.getCenter().offset(70, 0));
+		Thread.sleep(2000);
+	}
+	
 }

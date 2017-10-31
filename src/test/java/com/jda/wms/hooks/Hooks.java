@@ -23,6 +23,7 @@ import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.Database;
 
 import cucumber.api.Scenario;
@@ -35,17 +36,18 @@ public class Hooks {
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
-
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
+	private GetTcData gettcdata;
+	private Hooks_autoUI hooksautoUI;
 
 	@Inject
 	public Hooks(WebDriver webDriver, Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
-			Database jdaJdatabase) {
+			Database jdaJdatabase,GetTcData gettcdata,Hooks_autoUI hooksautoUI) {
 		this.webDriver = webDriver;
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
@@ -53,8 +55,9 @@ public class Hooks {
 		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
 		this.updateTcToAutomationDb = updateTcToAutomationDb;
 		this.jdaJdatabase = jdaJdatabase;
-
-	}
+		this.gettcdata = gettcdata;
+		this.hooksautoUI = hooksautoUI;
+	}	
 
 	@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
@@ -89,9 +92,9 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-//		context.setSiteId("5649");
+		context.setSiteId("5649");
 		System.out.println("SITE ID "+context.getSiteId());
-		context.setSiteId(System.getProperty("SITEID"));
+//		context.setSiteId(System.getProperty("SITEID"));
 		//System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
 		// dataSetupRunner.getParentRequestIdFromDB();
@@ -99,12 +102,27 @@ public class Hooks {
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
+		System.out.println(context.getTestData());
+//		updateTestDataIntoRunStatusTable();
+	}
+
+	private void updateTestDataIntoRunStatusTable() {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				hooksautoUI.sqlConnectOpen();
+			}
+			System.out.println("Parent Id --->" + context.getParentRequestId());
+			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE C_REQ_ID='"+context.getChildRequestId()+"'";
+			context.getSQLDBConnection().createStatement().execute(query);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	// @Before
 	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
 		updateTcToAutomationDb.updateTcStartTime();
-		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
+		 updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 	}
 
 	// @After()

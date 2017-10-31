@@ -45,14 +45,12 @@ public class Hooks_autoUI {
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
 	public static int fail = 0;
-	private Hooks hooks;
 
 	@Inject
-	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration,Hooks hooks) {
+	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration) {
 		this.webDriver = webDriver;
 		this.context = context;
 		this.configuration = configuration;
-		this.hooks = hooks;
 	}
 
 	@Before("~@Email")
@@ -60,14 +58,35 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
-//		System.setProperty("SITEID", "5649");
+		System.setProperty("SITEID", "5649");
 		System.out.println("Site ID from sys prop "+SITEID);
 		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
 		insertSiteID();
 		getSiteID();
 		updateBuildNumberInRequestTable();
-		context.setSiteId(System.getProperty("SITEID"));
+//		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
+		getChildRequestID();
+	}
+
+	private void getChildRequestID() {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			Statement stmt = null;
+			stmt = context.getSQLDBConnection().createStatement();
+			
+			String selectQuery = "select C_REQ_ID from NPS_AUTO_UI_RUN_REQUEST where P_REQ_ID='"+context.getParentRequestId()+"' and STATUS='INPROGRESS'";
+			System.out.println(selectQuery);
+			context.getSQLDBConnection().createStatement().execute(selectQuery);
+			ResultSet rs = stmt.executeQuery(selectQuery);
+			while (rs.next()) {
+				context.setChildRequestId(rs.getString("C_REQ_ID"));
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	private void updateBuildNumberInRequestTable() {
@@ -127,15 +146,15 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+//				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+//				scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
-				// TODO Auto-generated catch block
-				if (!(webDriver instanceof TakesScreenshot)) {
-					logger.error(
-							"Could not capture screenshot - selected web driver does not support taking screenshots");
-					return;
-				}
+//				if (!(webDriver instanceof TakesScreenshot)) {
+//					logger.error(
+//							"Could not capture screenshot - selected web driver does not support taking screenshots");
+//					return;
+//				}
+				e.printStackTrace();
 			}
 		}
 
@@ -151,13 +170,12 @@ public class Hooks_autoUI {
 	public void killIE(Scenario scenario) throws IOException {
 		if (webDriver != null) {
 			webDriver.close();
-			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
+			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKillAdmin.lnk");
 			// webDriver.quit();
 		}
 	}
 
 	public void insertDetails(String testName) {
-
 		try {
 			if (context.getSQLDBConnection() == null) {
 				sqlConnectOpen();

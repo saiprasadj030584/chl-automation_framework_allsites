@@ -150,6 +150,10 @@ public class Context {
 	private static String childStartTime;
 	private String origin;
 	private String assertString = null;
+	private static String childRequestId;
+	private static String testData;
+	private boolean vehicleLoadRequired = false;
+	private String transactionTime;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1296,5 +1300,37 @@ public class Context {
 
 	public void setAssertString(String assertString) {
 		this.assertString = assertString;
+	}
+
+	public static String getChildRequestId() {
+		return childRequestId;
+	}
+
+	public static void setChildRequestId(String childRequestId) {
+		Context.childRequestId = childRequestId;
+	}
+
+	public static String getTestData() {
+		return testData;
+	}
+
+	public static void setTestData(String testData) {
+		Context.testData = testData;
+	}
+
+	public boolean isVehicleLoadRequired() {
+		return vehicleLoadRequired;
+	}
+
+	public void setVehicleLoadRequired(boolean vehicleLoadRequired) {
+		this.vehicleLoadRequired = vehicleLoadRequired;
+	}
+
+	public String getTransactionTime() {
+		return transactionTime;
+	}
+
+	public void setTransactionTime(String transactionTime) {
+		this.transactionTime = transactionTime;
 	}
 }

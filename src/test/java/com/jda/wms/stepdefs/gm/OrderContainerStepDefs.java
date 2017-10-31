@@ -86,7 +86,7 @@ public class OrderContainerStepDefs {
 		jdaLoginPage.login();
 		jDAHomeStepDefs.i_navigate_to_order_container_page();
 		jDAFooter.clickQueryButton();
-		orderContainerPage.enterOrderId(context.getOrderId());
+		orderContainerPage.enterOrderID(context.getOrderId());
 		jDAFooter.clickExecuteButton();
 		orderContainerDB.getContainerId(context.getOrderId());
 
@@ -125,7 +125,17 @@ public class OrderContainerStepDefs {
 		}
 		Assert.assertTrue("Order Container is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
-
 	}
-
+	
+	@Then("^master URN should build$")
+	public void master_URN_should_build() throws Throwable {
+		jDAFooter.clickQueryButton();
+		System.out.println("0rder" + context.getOrderId());
+		orderContainerPage.enterOrderID(context.getOrderId());
+		jDAFooter.clickExecuteButton();
+		Thread.sleep(2000);
+		//Assert.assertTrue("Master URN not displayed as expected", orderContainerPage.BuildMasterURN());
+		orderContainerPage.getBuildMasterURN();
+		Thread.sleep(2000);
+	}
 }

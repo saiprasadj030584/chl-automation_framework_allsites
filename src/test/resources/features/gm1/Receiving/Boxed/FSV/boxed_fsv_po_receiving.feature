@@ -8,6 +8,7 @@ Feature: Purchase order receiving
   Scenario: Validate the FSV Receipt process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
+    And I update the advice id for all line items
     And the PO should not be linked with UPI line
     When I receive all skus for the FSV purchase order at location "REC001"
     Then the inventory should be displayed for all tags received for FSV PO
@@ -19,6 +20,7 @@ Feature: Purchase order receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
     When I receive all skus for the FSV purchase order at location "REC001"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
@@ -29,6 +31,7 @@ Feature: Purchase order receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
     When I receive all skus for the FSV purchase order at location "REC001"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
@@ -39,6 +42,7 @@ Feature: Purchase order receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
     When I receive all skus for the FSV purchase order at location "REC001"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
@@ -49,6 +53,7 @@ Feature: Purchase order receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
     And the PO should not be linked with UPI line
+    And I update the advice id for all line items
     When I receive all skus having different putaway group for the FSV purchase order at location "REC001"
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction

@@ -9,8 +9,8 @@ Feature: Boxed - Returns - Receiving - Negative validations
     When I receive all skus for the returns order at "REC001" with incorrect quantity "2"
     Then the invalid quantity error message should be displayed on the screen
 
-  @boxed_receiving_returns_invalid_URRN @returns @boxed @receiving @complete @ds
-  Scenario Outline: Return receiving validation with invalid URRN
+  @boxed_receiving_returns_urrn_entered_in_the_receiving_screen_which_is_not_in_the_system_negative_test @returns @boxed @receiving @complete @ds @no_ds
+  Scenario: URRN entered in the receiving screen which is not in the system_negative test
     Given I have an invalid UPI
     When I blind receive the invalid upi
     Then the URN status should be displayed as URRN does not exist

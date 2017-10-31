@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.BookingInDiaryLog;
+import com.jda.wms.db.gm.OrderHeaderDB;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
@@ -31,6 +32,7 @@ public class DockSchedulerStepDefs {
 	private GetTcData getTcData;
 	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
 	private UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs;
+	private OrderHeaderDB orderHeaderDB;
 
 	Screen screen = new Screen();
 
@@ -39,7 +41,7 @@ public class DockSchedulerStepDefs {
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData,OrderHeaderDB orderHeaderDB) {
 
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
@@ -52,6 +54,7 @@ public class DockSchedulerStepDefs {
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.getTcData = getTcData;
+		this.orderHeaderDB =orderHeaderDB;
 	}
 
 	@When("^I select the booking type and ASN$")
@@ -492,5 +495,28 @@ public class DockSchedulerStepDefs {
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+	}
+	
+	@When("^I select the booking type for consignment$")
+	public void i_select_the_booking_type_for_consignment() throws Throwable {
+		//context.setOrderId("5104628740");
+		dockSchedulerPage.enterBookingType("Consignment");
+		String cons=orderHeaderDB.selectConsignment(context.getOrderId());
+		context.setConsignmentID(cons);
+		jdaFooter.pressTab();
+		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
+		jdaFooter.clickSearch();
+		dockSchedulerPage.selectConsignment();
+		jdaFooter.clickNextButton();
+	}
+	@When("^I select the booking type for flatpack consignment$")
+	public void i_select_the_booking_type_for_flatpack_consignment() throws Throwable {
+		//context.setOrderId("5104628740");
+		dockSchedulerPage.enterBookingType("Consignment");
+		jdaFooter.pressTab();
+		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
+		jdaFooter.clickSearch();
+		dockSchedulerPage.selectConsignment();
+		jdaFooter.clickNextButton();
 	}
 }

@@ -336,4 +336,62 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
+			rs.next();
+			return rs.getString(1);
+	}
+	
+	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select consignment from order_header where order_id='" + orderId + "'");
+			rs.next();
+			return rs.getString(1);
+	}
+	
+	public String getOrderedQuantityWithOrderId(String orderID) throws SQLException, ClassNotFoundException {
+		System.out.println("qty order"+ "select qty_ordered from order_line where  order_id='" + orderID + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_ordered from order_line where  order_id='" + orderID + "'");
+		context.getConnection().commit();
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getQtyTaskedWithOrderID(String orderid) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_tasked from order_line where order_id='" + orderid + "' ");
+
+		context.getConnection().commit();
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public   Object getOrderIdForOdn(String order) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
 }

@@ -44,7 +44,7 @@ public class MoveTaskDB {
 		return rs.getString(1);
 	}
 
-	public ArrayList<String> getListId(String orderID) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getListIdList(String orderID) throws SQLException, ClassNotFoundException {
 		ArrayList<String> listId = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
@@ -59,6 +59,19 @@ public class MoveTaskDB {
 			}
 		}
 		return listId;
+	}
+	
+	public String getListId(String orderID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> listId = new ArrayList<String>();
+		System.out.println("list id"+ "select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		rs.next();
+		return rs.getString(1);
 	}
 
 	public ArrayList<String> getQtyToMoveList(String orderID) throws SQLException, ClassNotFoundException {
@@ -436,5 +449,64 @@ public class MoveTaskDB {
 		ResultSet rs = stmt.executeQuery("select Task_id from move_task where DSTAMP like'" + date + "%' and tag_id='"+tagId+"' and status='Released'");
 		rs.next();
 		return rs.getString(1);
+	}
+	
+	public String getListIdString(String orderID) throws SQLException, ClassNotFoundException {
+		ArrayList<String> listId = new ArrayList<String>();
+		System.out.println("list id"+ "select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getContainerId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select TO_CONTAINER_ID FROM move_task where task_id = '" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public  String selectPalletId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where task_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public  String selectURN(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select container_id from move_task where task_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getPalletId(String skuId, String transactionTime, String type) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where sku_id='" + skuId + "' and task_type='"
+				+ type +"' and dstamp like '%" +transactionTime+ "%'" );
+		rs.next();
+		return rs.getString(1);
+
 	}
 }

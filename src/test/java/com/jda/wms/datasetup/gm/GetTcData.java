@@ -409,4 +409,25 @@ public class GetTcData {
 		}
 		return value;
 	}
+	
+	public String getOdnFromTestData() {
+		ResultSet resultSet = null;
+		String value = null;
+		try {
+			dataBase.connectAutomationDB();
+			resultSet = dataBase.dbConnection.createStatement()
+					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+
+			while (resultSet.next()) {
+				value = resultSet.getString("QTY");
+			}
+			dataBase.disconnectAutomationDB();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return value;
+	}
 }
+
+
