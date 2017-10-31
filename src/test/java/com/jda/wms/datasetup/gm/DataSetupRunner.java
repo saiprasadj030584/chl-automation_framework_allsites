@@ -5,13 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
 import com.jda.wms.pages.gm.JdaLoginPage;
-import com.jda.wms.utils.DateUtils;
-import java.util.concurrent.ThreadLocalRandom;
 import com.jda.wms.utils.Utilities;
 
 public class DataSetupRunner {
@@ -23,12 +24,13 @@ public class DataSetupRunner {
 	private DataLoadFromUI dataLoadFromUI;
 
 	@Inject
-	public DataSetupRunner(Context context, DataLoadFromUI dataLoadFromUI ,JdaLoginPage jdaLoginPage, DbConnection dataBase, Database jdaJdatabase, GetTcData gettcdata) {
+	public DataSetupRunner(Context context, DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage,
+			DbConnection dataBase, Database jdaJdatabase, GetTcData gettcdata) {
 		this.context = context;
 		this.npsDataBase = dataBase;
 		this.gettcdata = gettcdata;
 		this.jdaJdatabase = jdaJdatabase;
-		this.jdaLoginPage=jdaLoginPage;
+		this.jdaLoginPage = jdaLoginPage;
 		this.dataLoadFromUI = dataLoadFromUI;
 	}
 
@@ -93,50 +95,47 @@ public class DataSetupRunner {
 		// Assert.assertTrue("UniqueTag Not Found in Run Status Table",
 		// context.getUniqueTagInRunStatus());
 		// insertData();
-		//insertTempTestdata();
+		// insertTempTestdata();
 		createTestDataFromUI();
 	}
-
-
 
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
 		if (context.getUniqueTag().contains("direct")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String asn = newAsnId();
 				String po = newPoId();
 				String upi = newPalletdId_directPO();
 				String odn = newOdnId();
-				
-				//Fetching Refernce Test Data from Test data table
+
+				// Fetching Refernce Test Data from Test data table
 				String asnReference = gettcdata.getAsnFromTestData();
 				String poReference = gettcdata.getPoFromTestData();
 				String upiReference = gettcdata.getUpiFromTestData();
-				//String orderReference = gettcdata.getOdnFromTestData();
-				
-				//Call JDA Login
+				// String orderReference = gettcdata.getOdnFromTestData();
+
+				// Call JDA Login
 				jdaLoginPage.login();
-				dataLoadFromUI.duplicateASN(asnReference,asn);
+				dataLoadFromUI.duplicateASN(asnReference, asn);
 				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference,upi);
+				dataLoadFromUI.duplicateUPI(upiReference, upi);
 				validateUpiDataSetup(upi);
-				dataLoadFromUI.duplicatePO(poReference,po);
-			//	dataLoadFromUI.killBrowser();
+				dataLoadFromUI.duplicatePO(poReference, po);
+				// dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
-			//	dataLoadFromUI.duplicateOdn(orderReference,odn);
-				//validateOdnDataSetup(odn);
-				
-			//	dataLoadFromUI.killBrowser();
+				// dataLoadFromUI.duplicateOdn(orderReference,odn);
+				// validateOdnDataSetup(odn);
+
+				// dataLoadFromUI.killBrowser();
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
 				gettcdata.setPalletId(upi);
-				//gettcdata.setSto(odn);
-				
-				
-//				validateAsnDataSetup(asn);
-//				validatePoDataSetup(po);
-//				validateUpiDataSetup(upi);
+				// gettcdata.setSto(odn);
+
+				// validateAsnDataSetup(asn);
+				// validatePoDataSetup(po);
+				// validateUpiDataSetup(upi);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -144,19 +143,19 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("fsv")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
-				   String po = newPoId();
-				   
-				//Fetching Refernce Test Data from Test data table
-				
+				// Generate Random New values to load
+				String po = newPoId();
+
+				// Fetching Refernce Test Data from Test data table
+
 				String poReference = gettcdata.getPoFromTestData();
-				
-				//Call JDA Login
-				//jdaLoginPage.login();
-				dataLoadFromUI.duplicatePO(poReference,po);
-				//dataLoadFromUI.killBrowser();
+
+				// Call JDA Login
+				jdaLoginPage.login();
+				dataLoadFromUI.duplicatePO(poReference, po);
+				// dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
-			    gettcdata.setPo(po);
+				gettcdata.setPo(po);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -164,24 +163,24 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String asn = newAsnId();
-//				String upi = newPalletdId(); //32 digit number
-              //Fetching Refernce Test Data from Test data table
+				// String upi = newPalletdId(); //32 digit number
+				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
 				String asnReference = gettcdata.getAsnFromTestData();
-				
-				//To form the UPI ID for returns
+
+				// To form the UPI ID for returns
 				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
 				String qty = gettcdata.getQtyListFromTestData();
-				String upi=formReturnsUPIID(supplierIdRef,qty);
-				
-				//Call JDA Login
-				//jdaLoginPage.login();
-				dataLoadFromUI.duplicateASN(asnReference,asn);
+				String upi = formReturnsUPIID(supplierIdRef, qty);
+
+				// Call JDA Login
+				// jdaLoginPage.login();
+				dataLoadFromUI.duplicateASN(asnReference, asn);
 				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference,upi);
-				//dataLoadFromUI.killBrowser();
+				dataLoadFromUI.duplicateUPI(upiReference, upi);
+				// dataLoadFromUI.killBrowser();
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -193,19 +192,19 @@ public class DataSetupRunner {
 				&& context.getUniqueTag().contains("non")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
-				String asn = newAsnId();				
+				// Generate Random New values to load
+				String asn = newAsnId();
 				String upi = newPalletdId();
-	            //Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
-				
+
 				String asnReference = gettcdata.getAsnFromTestData();
-				//Call JDA Login
-				//jdaLoginPage.login();
-				dataLoadFromUI.duplicateASN(asnReference,asn);
+				// Call JDA Login
+				// jdaLoginPage.login();
+				dataLoadFromUI.duplicateASN(asnReference, asn);
 				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference,upi);
-				//dataLoadFromUI.killBrowser();
+				dataLoadFromUI.duplicateUPI(upiReference, upi);
+				// dataLoadFromUI.killBrowser();
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -216,14 +215,14 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && !context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String asn = newAsnId();
 				String upi = newPalletdId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
 				validateUpiDataSetup(upi);
 				String asnReference = gettcdata.getAsnFromTestData();
-				validateAsnDataSetup(asn);	
+				validateAsnDataSetup(asn);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
 				npsDataBase.disconnectAutomationDB();
@@ -233,9 +232,9 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("retail")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -246,9 +245,9 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("idt") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -259,9 +258,9 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("store") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -272,9 +271,9 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("outlet") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -285,9 +284,9 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("e_com")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -298,56 +297,53 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("international")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
-			
-			}
-		}}
-		
-	
-	
 
-		private String formReturnsUPIID(String supplierIdRef, String qty) throws ClassNotFoundException, SQLException, InterruptedException {
-	  
-			//manipulate supplier
-			String[] supplierSplit = supplierIdRef.split("M");
-			String supplier =supplierSplit[1];	
-	      
-			//manipulate quantity
-			int sumLength = qty.length();
-			if (sumLength == 1) {
-				qty = "00" + qty;
-			} else if (sumLength == 2) {
-				qty = "0" + qty;
 			}
-			qty=qty;
-			String upi = context.getSiteId()+"000"+Utilities.getSixDigitRandomNumber()+supplier +"100"+Utilities.getSixDigitRandomNumber()+qty+"00";		
-			return upi;
 		}
-	
-			
-		
+	}
 
-		private String getSupplierIDFromJDADB(String upiReference) throws SQLException, ClassNotFoundException {
-			if (context.getConnection() == null) {
-				jdaJdatabase.connect();
-			}
-			String supplierId=null;
-			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select SUPPLIER_ID from upi_receipt_header where pallet_id='"+upiReference+"'");
-			while(rs.next()){
-				supplierId = rs.getString("SUPPLIER_ID");
-			}
-			return supplierId;
+	private String formReturnsUPIID(String supplierIdRef, String qty)
+			throws ClassNotFoundException, SQLException, InterruptedException {
+
+		// manipulate supplier
+		String[] supplierSplit = supplierIdRef.split("M");
+		String supplier = supplierSplit[1];
+
+		// manipulate quantity
+		int sumLength = qty.length();
+		if (sumLength == 1) {
+			qty = "00" + qty;
+		} else if (sumLength == 2) {
+			qty = "0" + qty;
 		}
+		qty = qty;
+		String upi = context.getSiteId() + "000" + Utilities.getSixDigitRandomNumber() + supplier + "100"
+				+ Utilities.getSixDigitRandomNumber() + qty + "00";
+		return upi;
+	}
+
+	private String getSupplierIDFromJDADB(String upiReference) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			jdaJdatabase.connect();
+		}
+		String supplierId = null;
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
+		while (rs.next()) {
+			supplierId = rs.getString("SUPPLIER_ID");
+		}
+		return supplierId;
+	}
 
 	public void insertTempTestdata() {
 
@@ -376,21 +372,19 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving")) {
 			context.setAsnId("0000403194");
 			context.setUpiId("56490001384577299100395756000210");
-		}
-		else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving_with_lock_code")) {
+		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving_with_lock_code")) {
 			context.setAsnId("0000003184");
 			context.setUpiId("56490001384379299100395756000210");
-		}
-		else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_under_receiving")) {
+		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_under_receiving")) {
 			context.setAsnId("0000083194");
 			context.setUpiId("56490001383579299100395756000210");
 		}
 
-		
 		else if (context.getUniqueTag().equals("@boxed_picking_retail_validate_whether_clustering_is_done_manually")) {
 			context.setOrderId("4170001326");
+		}
 	}
-	}
+
 	private boolean validateUniqueTagInTestData() {
 		ResultSet resultSet = null;
 		boolean UniqueTagInTestData = false;

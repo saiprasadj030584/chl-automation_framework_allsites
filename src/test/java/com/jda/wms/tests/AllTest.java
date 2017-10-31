@@ -10,6 +10,6 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@boxed_stock_adjustment_inventory_update_pallet_type_update" })
+				"@boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information" })
 public class AllTest {
 }
