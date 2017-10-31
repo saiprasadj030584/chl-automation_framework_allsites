@@ -112,12 +112,12 @@ public class ReceiptReversalPage {
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
 		Thread.sleep(2000);
-		if(screen.find("/images/ReceiptReversal/Start1.png").equals(null)) {
-		screen.type(Key.F12);
-		Thread.sleep(2000);
-		jDAFooter.PressEnter();
-		Thread.sleep(2000);
-		}
+//		if(screen.find("/images/ReceiptReversal/Start1.png").equals(null)) {
+//		screen.type(Key.F12);
+//		Thread.sleep(2000);
+//		jDAFooter.PressEnter();
+//		Thread.sleep(2000);
+//		}
 	}
 
 }
