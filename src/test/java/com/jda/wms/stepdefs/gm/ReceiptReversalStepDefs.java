@@ -46,7 +46,9 @@ public class ReceiptReversalStepDefs {
 		receiptReversalPage.checkTheCheckbox();
 		jDAFooter.clickNextButton();
 		Thread.sleep(3000);
-		jDAFooter.clickReceiptReversalDoneButton();
+		receiptReversalPage.clickReceiptId();
+		Thread.sleep(1000);
+		jDAFooter.clickDoneButton();;
 		Thread.sleep(2000);
 		jDAFooter.PressEnter();
 

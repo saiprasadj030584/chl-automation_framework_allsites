@@ -78,11 +78,7 @@ public class JDAFooter {
 	}
 
 	public void clickDoneButton() throws FindFailed, InterruptedException {
-		
-//		
-//		screen.wait("images/JDAFooter/Screen.png", timeoutInSec);
-//		screen.click("images/JDAFooter/Screen.png");
-		Thread.sleep(1000);
+			
 		screen.type(Key.F12);
 		Thread.sleep(2000);
 		

@@ -98,5 +98,11 @@ public class ReceiptReversalPage {
 		} else
 			return false;
 	}
+	
+	public void clickReceiptId() throws FindFailed, InterruptedException {
+		screen.wait("images/ReceiptReversal/ReceiptId.png", timeoutInSec);
+		screen.click("images/ReceiptReversal/ReceiptId.png");
+		Thread.sleep(1000);
+	}
 
 }
