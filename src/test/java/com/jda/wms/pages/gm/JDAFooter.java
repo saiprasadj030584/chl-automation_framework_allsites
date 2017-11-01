@@ -148,16 +148,13 @@ public class JDAFooter {
 		screen.type(Key.F12);
 		Thread.sleep(1000);
 	}
-
+	
 	public void clickReceiptReversalDoneButton() throws FindFailed, InterruptedException {
-//		screen.wait("images/InventoryTransactionQuery/receiptreversaldone.png", timeoutInSec);
-//		screen.click("images/InventoryTransactionQuery/receiptreversaldone.png");
-//		Thread.sleep(3000);
+		screen.wait("images/JDAFooter/Done.png", timeoutInSec);
+		screen.click("images/JDAFooter/Done.png");
+		Thread.sleep(3000);
 		
-		screen.wait("images/ReceiptReversal/ReceiptId.png", timeoutInSec);
-		screen.click("images/ReceiptReversal/ReceiptId.png");
-		Thread.sleep(1000);
-		screen.type(Key.F12);
-		Thread.sleep(2000);
 	}
+
+	
 }
