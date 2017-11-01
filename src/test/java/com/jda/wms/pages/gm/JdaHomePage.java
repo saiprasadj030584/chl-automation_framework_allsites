@@ -317,7 +317,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("UPI Receipt Header");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
@@ -337,7 +338,8 @@ public class JdaHomePage extends PageObject {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -347,7 +349,7 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.click("images/JDAHome/Welcome.png");
+		screen.click("images/JDAHome/Search_button.png");
 
 		// screen.type(Key.ENTER);
 		Thread.sleep(2000);
@@ -359,7 +361,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -373,7 +376,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Update");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -383,7 +387,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Query");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -393,7 +398,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Address");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -403,7 +409,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment maintenance");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -413,7 +420,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pick face maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -423,7 +431,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("pack configuration maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -433,7 +442,8 @@ public class JdaHomePage extends PageObject {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
 		screen.type("Location maintenance/query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -443,7 +453,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment linking");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -453,7 +464,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice line maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -463,7 +475,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Line Maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -473,7 +486,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Receipt Reversal");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -483,7 +497,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Ship dock reassignment screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -493,7 +508,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Header Maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -503,7 +519,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Preparation");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -513,7 +530,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Trailer maintenance/query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -523,7 +541,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock scheduler screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -533,7 +552,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock Scheduler entries query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -561,7 +581,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Vehicle Unloading*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -571,7 +592,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move task list generation screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -581,7 +603,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -591,7 +614,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("(ILT)");
-		screen.type(Key.ENTER);
+		// screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -607,7 +631,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Report Selection");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -617,7 +642,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -627,7 +653,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -637,7 +664,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -647,7 +675,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task list completion screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -657,7 +686,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order container maintence/query");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -667,7 +697,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -677,7 +708,8 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pack configuration Linking screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
