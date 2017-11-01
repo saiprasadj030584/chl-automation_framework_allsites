@@ -59,13 +59,12 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID "+context.getParentRequestId());
-//		System.setProperty("SITEID", "5649");
+		context.setSiteId("5649");
 		System.out.println("Site ID from sys prop "+System.getProperty("SITEID"));
 		insertSiteID();
 		getSiteID();
-		context.setSiteId(System.getProperty("SITEID"));
+//		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
-//		hooks.iniatateDataSetup(scenario);
 	}
 
 	private void getSiteID() throws ClassNotFoundException {

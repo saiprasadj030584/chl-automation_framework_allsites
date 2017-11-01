@@ -95,10 +95,6 @@ public class DataSetupRunner {
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		System.out.println("unique tag"+ context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
-//		context.setUniqueTagInRunStatus(validateUniqueTagInRunStatus());
-		// gettcdata.insertTcInRunStatus();
-		// Assert.assertTrue("UniqueTag Not Found in Run Status Table",
-		// context.getUniqueTagInRunStatus());
 		//insertData();
 		//insertTempTestdata();
 		createTestDataFromUI();
@@ -130,10 +126,6 @@ public class DataSetupRunner {
 				gettcdata.setAsnId(asn);
 				gettcdata.setPo(po);
 				gettcdata.setPalletId(upi);
-				
-//				validateAsnDataSetup(asn);
-//				validatePoDataSetup(po);
-//				validateUpiDataSetup(upi);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();

@@ -90,8 +90,6 @@ public class Hooks {
 		//context.setSiteId(System.getProperty("SITEID"));
 		 dataSetupRunner.getTagListFromAutoDb();
 		 context.setSiteId("5649");
-		// dataSetupRunner.getParentRequestIdFromDB();
-		 //dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
@@ -151,6 +149,7 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
+		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
 
 	// @After
