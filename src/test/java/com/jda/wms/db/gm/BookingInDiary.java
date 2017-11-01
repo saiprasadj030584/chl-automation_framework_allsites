@@ -49,4 +49,24 @@ public class BookingInDiary {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public boolean isBookingExists(String bookingNo) throws SQLException, ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select BOOKREF_ID from trailer where BOOKREF_ID='" + bookingNo + "'");
+			rs.next();
+			if (rs.getString(1) != null) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

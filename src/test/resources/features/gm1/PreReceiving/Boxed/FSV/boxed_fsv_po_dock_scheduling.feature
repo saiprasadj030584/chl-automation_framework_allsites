@@ -12,7 +12,7 @@ Feature: Dock Scheduling
     When I create new dock booking at site
     When I select the booking type preadvice
     And I select the slot
-    And I create a booking
+    And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
   @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @boxed_jenkins @group_2
@@ -23,7 +23,7 @@ Feature: Dock Scheduling
     When I create new dock booking at site
     When I select the booking type preadvice
     And I select the slot
-    And I create a booking
+    And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
   @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds @boxed_jenkins @group_2

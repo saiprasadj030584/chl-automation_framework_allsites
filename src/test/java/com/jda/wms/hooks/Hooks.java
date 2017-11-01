@@ -85,7 +85,7 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		 context.setSiteId("5649");
+		context.setSiteId("5649");
 		System.out.println("SITE ID " + context.getSiteId());
 		// context.setSiteId(System.getProperty("SITEID"));
 		// System.out.println("SITE ID 1 "+context.getSiteId());
@@ -93,7 +93,7 @@ public class Hooks {
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
-			 dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
 	}
 
@@ -107,18 +107,20 @@ public class Hooks {
 	}
 
 	// @After()
-	public void tearDown(Scenario scenario) {
+	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
 		// clearing down webdriver object
-		if (webDriver != null) {
-			System.out.println("WEBDRIVER CLOSE");
-			// webDriver.close();
-			webDriver.quit();
-		}
+		// if (webDriver != null) {
+		// System.out.println("WEBDRIVER CLOSE");
+		// // webDriver.close();
+		// webDriver.quit();
+		// Process killIeDriver =
+		// Runtime.getRuntime().exec("/bin/puttykillAdmin.lnk");
+		// }
 	}
 
 	@After

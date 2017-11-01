@@ -347,8 +347,10 @@ public class JdaHomePage extends PageObject {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
+		screen.click("images/JDAHome/Welcome.png");
+
+		// screen.type(Key.ENTER);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
@@ -670,7 +672,7 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
-	
+
 	public void navigateToPackConfigLinking() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -680,5 +682,5 @@ public class JdaHomePage extends PageObject {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 }
