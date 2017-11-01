@@ -115,8 +115,8 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+//				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+//				scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
 				if (!(webDriver instanceof TakesScreenshot)) {
