@@ -107,7 +107,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkins_analysis @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @pre_receiving @direct_po @boxed @complete @ds @maven_check_1 @maven_check_2
+  @jenkins_analysis @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @pre_receiving @direct_po @boxed @complete @ds @maven_check_1 @maven_check_2 @check7
   Scenario: Validate whether Booking can be moved to different date
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
