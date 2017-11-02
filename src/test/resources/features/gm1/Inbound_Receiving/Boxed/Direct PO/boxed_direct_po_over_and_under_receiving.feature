@@ -4,7 +4,7 @@ Feature: Inbound Receiving - Over & Under Receiving without Lock code
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jenkins_analysis @boxed_inbound_receiving_direct_po_over_receiving @complete @boxed @inbound_receiving @complete @ds
+  @jenkins_analysis @boxed_inbound_receiving_direct_po_over_receiving @complete @boxed @inbound_receiving @complete @ds @group_1
   Scenario: Validate Over receiving without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Inbound Receiving - Over & Under Receiving without Lock code
     When I perform "Over Receiving" for all skus at location "REC001"
     Then the error message should be displayed as cannot over receipt
 
-  @jenkins_analysis @boxed_inbound_receiving_direct_po_under_receiving @complete @boxed @inbound_receiving @complete @ds
+  @jenkins_analysis @boxed_inbound_receiving_direct_po_under_receiving @complete @boxed @inbound_receiving @complete @ds @group_1
   Scenario: Validate Under receiving without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
