@@ -17,7 +17,6 @@ import java.util.Date;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
@@ -47,12 +46,9 @@ public class Hooks_autoUI {
 	public static int fail = 0;
 
 	@Inject
-<<<<<<< HEAD
-	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration, Hooks hooks) {
-		this.webDriver = webDriver;
-=======
+
 	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
+
 		this.context = context;
 		this.configuration = configuration;
 		this.jdaLoginPage = jdaLoginPage;
@@ -147,14 +143,7 @@ public class Hooks_autoUI {
 				}
 			}
 		}
-<<<<<<< HEAD
-		if (webDriver != null) {
-			System.out.println("WEBDRIVER CLOSE");
-			// webDriver.close();
-			webDriver.quit();
-			Process killIeDriver = Runtime.getRuntime()
-					.exec("cmd /c D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
-=======
+
 		if (jdaLoginPage.driver != null) {
 			System.out.println("WEBDRIVER CLOSE");
 			// webDriver.close();
@@ -162,7 +151,7 @@ public class Hooks_autoUI {
 			// Process killIeDriver = Runtime.getRuntime()
 			// .exec("cmd /c
 			// D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
+
 		}
 
 		// clearing down webdriver object

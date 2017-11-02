@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
@@ -38,7 +35,7 @@ public class Hooks {
 	private Database jdaJdatabase;
 
 	@Inject
-	public Hooks( Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
+	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
 			Database jdaJdatabase) {
 		this.context = context;
@@ -103,31 +100,6 @@ public class Hooks {
 		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 
 	}
-
-<<<<<<< HEAD
-	// @After()
-=======
-	/*// @After()
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
-	public void tearDown(Scenario scenario) throws IOException {
-		// attaching the screenshot in cucumber report
-		if (scenario.isFailed()) {
-			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-			scenario.embed(screenshot, "image/png");
-		}
-		// clearing down webdriver object
-		// if (webDriver != null) {
-		// System.out.println("WEBDRIVER CLOSE");
-		// // webDriver.close();
-		// webDriver.quit();
-		// Process killIeDriver =
-		// Runtime.getRuntime().exec("/bin/puttykillAdmin.lnk");
-		// }
-<<<<<<< HEAD
-	}
-=======
-	}*/
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 
 	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {

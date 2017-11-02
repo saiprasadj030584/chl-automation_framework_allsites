@@ -1,13 +1,9 @@
 package com.jda.wms.pages.gm;
 
-<<<<<<< HEAD
-import org.junit.Assert;
-=======
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
-import org.openqa.selenium.WebDriver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,62 +12,31 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
-import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
-<<<<<<< HEAD
-=======
 import com.jda.wms.config.Constants;
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 import com.jda.wms.context.Context;
-import com.jda.wms.pages.PageObject;
 
 public class JdaLoginPage {
 	WebElement webElement;
-<<<<<<< HEAD
-	private final WebDriver webDriver;
-	private final Configuration configuration;
-	private Context context;
+
 	Screen screen = new Screen();
 
-	@Inject
-	public JdaLoginPage(WebDriver webDriver, Configuration configuration, Context context) {
-		super(webDriver);
-		this.webDriver = webDriver;
-		this.configuration = configuration;
-		this.context = context;
-	}
-=======
-	Screen screen = new Screen(); 
-	
 	public static RemoteWebDriver driver;
 	Configuration configuration = new Configuration();
 	Context context = new Context();
 
-//	@Inject
-//	public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
-//		super(webDriver);
-//		this.webDriver = webDriver;
-//		this.configuration = configuration;
-//	}
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
+	// @Inject
+	// public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
+	// super(webDriver);
+	// this.webDriver = webDriver;
+	// this.configuration = configuration;
+	// }
 
 	public JdaLoginPage() {
 
 	}
-	
-	
-	public void login() throws FindFailed, InterruptedException {
-<<<<<<< HEAD
-		if (context.isJdaLoginFlag() == false) {
-			webDriver.manage().window().maximize();
-			webDriver.navigate().to(configuration.getStringProperty("gm-jda-url"));
-			enterUsername();
-			enterPassword();
-			clickConnectButton();
-			Thread.sleep(5000);
-		}
 
-=======
+	public void login() throws FindFailed, InterruptedException {
 
 		if (driver == null) {
 
@@ -119,38 +84,36 @@ public class JdaLoginPage {
 			Thread.sleep(2000);
 			screen.type(Key.ENTER);
 			/*
-
-			screen.rightClick("/images/JDAHome/Welcomed.png", 25);
-			Thread.sleep(2000);
-
-			if (screen.exists("/images/JDAHome/FreezedCloseAll.png") != null) {
-				screen.click("/images/JDAHome/CloseAll.png", 120);
-				Thread.sleep(3000);
-				if (screen.exists("/images/JDAHome/BlueCloseAll.png") != null) {
-					screen.type(Key.ENTER);
-					screen.click("/images/JDAHome/BlueCloseAll.png", 25);
-					
-					System.out.println("Blue clicked");
-				}
-				screen.wait("/images/JDAHome/EST.png", 20);
-				screen.click("/images/JDAHome/EST.png", 25);
-				System.out.println("Welcomed if loop");
-
-			} else {
-
-				screen.wait("/images/JDAHome/CloseAll.png", 20);
-				screen.click("/images/JDAHome/CloseAll.png", 25);
-				System.out.println("Welcomed if loop");
-			}
-		*/}
+			 * 
+			 * screen.rightClick("/images/JDAHome/Welcomed.png", 25);
+			 * Thread.sleep(2000);
+			 * 
+			 * if (screen.exists("/images/JDAHome/FreezedCloseAll.png") != null)
+			 * { screen.click("/images/JDAHome/CloseAll.png", 120);
+			 * Thread.sleep(3000); if
+			 * (screen.exists("/images/JDAHome/BlueCloseAll.png") != null) {
+			 * screen.type(Key.ENTER);
+			 * screen.click("/images/JDAHome/BlueCloseAll.png", 25);
+			 * 
+			 * System.out.println("Blue clicked"); }
+			 * screen.wait("/images/JDAHome/EST.png", 20);
+			 * screen.click("/images/JDAHome/EST.png", 25); System.out.println(
+			 * "Welcomed if loop");
+			 * 
+			 * } else {
+			 * 
+			 * screen.wait("/images/JDAHome/CloseAll.png", 20);
+			 * screen.click("/images/JDAHome/CloseAll.png", 25);
+			 * System.out.println("Welcomed if loop"); }
+			 */}
 
 		else if (screen.exists("/images/JDAHome/Welcome.png") != null) {
 			screen.rightClick("/images/JDAHome/Welcome.png", 25);
 			Thread.sleep(4000);
 			screen.click("/images/JDAHome/CloseAll.png", 25);
 		}
-	} 
-	
+	}
+
 	public static void setDriver() {
 		DesiredCapabilities capabilities = null;
 		capabilities = DesiredCapabilities.internetExplorer();
@@ -161,7 +124,7 @@ public class JdaLoginPage {
 		// "org.apache.commons.logging.impl.Jdk14Logger");
 		System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
->>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
+
 	}
 
 	private void enterUsername() throws FindFailed, InterruptedException {
