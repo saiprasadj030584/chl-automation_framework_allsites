@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @hanging @inbound_receiving @direct_po @hanging_inbound_receiving_direct_po_over_receiving @complete @ds @group_1
+  @hanging @inbound_receiving @direct_po @hanging_inbound_receiving_direct_po_over_receiving @complete @ds 
   Scenario: Over receiving
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

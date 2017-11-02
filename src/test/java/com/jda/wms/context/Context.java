@@ -20,6 +20,7 @@ public class Context {
 	private int qtyOnHandBfrAdjustment;
 	private int caseRatio;
 	private String code;
+	private boolean jdaLoginFlag;
 	private String adjustmentType;
 	private String supplierID;
 	private String expiryDate;
@@ -139,7 +140,7 @@ public class Context {
 	private ArrayList<String> qtyTaskedList;
 	private int noOfMoveTaskRecords;
 	private int skuSize;
-	private HashMap<Integer,String> qtyOnHandList;
+	private HashMap<Integer, String> qtyOnHandList;
 	private String orderType;
 	private static String parentRequestId;
 	private String uniqueTag;
@@ -1209,11 +1210,11 @@ public class Context {
 		this.skuSize = skuSize;
 	}
 
-	public HashMap<Integer,String> getQtyOnHandList() {
+	public HashMap<Integer, String> getQtyOnHandList() {
 		return qtyOnHandList;
 	}
 
-	public void setQtyOnHandList(HashMap<Integer,String> qtyOnHandList) {
+	public void setQtyOnHandList(HashMap<Integer, String> qtyOnHandList) {
 		this.qtyOnHandList = qtyOnHandList;
 	}
 
@@ -1264,19 +1265,19 @@ public class Context {
 	public void setTotQtyOnHand(String totQtyOnHand) {
 		this.totQtyOnHand = totQtyOnHand;
 	}
-	
+
 	public Connection getSQLDBConnection() {
 		return connectionSQLDB;
 	}
 
 	public void setSQLDBConnection(Connection connectionSQLDB) {
 		this.connectionSQLDB = connectionSQLDB;
-	} 
-	
+	}
+
 	public void setChildStartTime(String childStartTime) {
 		this.childStartTime = childStartTime;
 	}
-	
+
 	public String getChildStartTime() {
 		return childStartTime;
 	}
@@ -1287,5 +1288,13 @@ public class Context {
 
 	public void setOrigin(String origin) {
 		this.origin = origin;
+	}
+
+	public boolean isJdaLoginFlag() {
+		return jdaLoginFlag;
+	}
+
+	public void setJdaLoginFlag(boolean jdaLoginFlag) {
+		this.jdaLoginFlag = jdaLoginFlag;
 	}
 }
