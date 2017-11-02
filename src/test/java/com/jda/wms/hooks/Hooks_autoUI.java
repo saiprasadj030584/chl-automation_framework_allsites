@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -34,8 +35,8 @@ import cucumber.api.java.en.Given;
 
 public class Hooks_autoUI {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private final WebDriver webDriver;
 	private final Configuration configuration;
+	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD");
@@ -44,14 +45,17 @@ public class Hooks_autoUI {
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
 	public static int fail = 0;
-	private Hooks hooks;
 
 	@Inject
+<<<<<<< HEAD
 	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration, Hooks hooks) {
 		this.webDriver = webDriver;
+=======
+	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
+>>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 		this.context = context;
 		this.configuration = configuration;
-		this.hooks = hooks;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	@Before("~@Email")
@@ -112,10 +116,12 @@ public class Hooks_autoUI {
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
-				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+				if (jdaLoginPage.driver != null) {
+					final byte[] screenshot = ((TakesScreenshot) jdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+					scenario.embed(screenshot, "image/png");
+				}
 			} catch (WebDriverException e) {
-				if (!(webDriver instanceof TakesScreenshot)) {
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
 					return;
@@ -134,19 +140,29 @@ public class Hooks_autoUI {
 				// scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
-				if (!(webDriver instanceof TakesScreenshot)) {
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
 					return;
 				}
 			}
 		}
+<<<<<<< HEAD
 		if (webDriver != null) {
 			System.out.println("WEBDRIVER CLOSE");
 			// webDriver.close();
 			webDriver.quit();
 			Process killIeDriver = Runtime.getRuntime()
 					.exec("cmd /c D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
+=======
+		if (jdaLoginPage.driver != null) {
+			System.out.println("WEBDRIVER CLOSE");
+			// webDriver.close();
+			// jdaLoginPage.driver.quit();
+			// Process killIeDriver = Runtime.getRuntime()
+			// .exec("cmd /c
+			// D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
+>>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 		}
 
 		// clearing down webdriver object

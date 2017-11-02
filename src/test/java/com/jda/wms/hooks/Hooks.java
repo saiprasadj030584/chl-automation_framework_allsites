@@ -27,7 +27,6 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private final WebDriver webDriver;
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -39,10 +38,9 @@ public class Hooks {
 	private Database jdaJdatabase;
 
 	@Inject
-	public Hooks(WebDriver webDriver, Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
+	public Hooks( Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
 			Database jdaJdatabase) {
-		this.webDriver = webDriver;
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
@@ -106,7 +104,11 @@ public class Hooks {
 
 	}
 
+<<<<<<< HEAD
 	// @After()
+=======
+	/*// @After()
+>>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
@@ -121,7 +123,11 @@ public class Hooks {
 		// Process killIeDriver =
 		// Runtime.getRuntime().exec("/bin/puttykillAdmin.lnk");
 		// }
+<<<<<<< HEAD
 	}
+=======
+	}*/
+>>>>>>> c1fbb8a43c9f1609121997ca2ba813b4bea35177
 
 	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
