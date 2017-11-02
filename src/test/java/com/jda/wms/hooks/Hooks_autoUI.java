@@ -26,8 +26,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.pages.gm.JdaLoginPage;
 
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -35,8 +35,8 @@ import cucumber.api.java.en.Given;
 
 public class Hooks_autoUI {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private final WebDriver webDriver;
 	private final Configuration configuration;
+	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD");
@@ -45,27 +45,25 @@ public class Hooks_autoUI {
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
 	public static int fail = 0;
-	private Hooks hooks;
 
 	@Inject
-	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration,Hooks hooks) {
-		this.webDriver = webDriver;
+	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
 		this.context = context;
 		this.configuration = configuration;
-		this.hooks = hooks;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	@Before("~@Email")
 	public void setup(Scenario scenario) throws Exception {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
-		System.out.println("PREQ_ID "+context.getParentRequestId());
+		System.out.println("PREQ_ID " + context.getParentRequestId());
 		System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop "+System.getProperty("SITEID"));
-		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
+		System.out.println("Site ID from sys prop " + System.getProperty("SITEID"));
+		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
 		insertSiteID();
 		getSiteID();
-//		updateBuildNumberInRequestTable();
+		// updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 	}
@@ -82,22 +80,24 @@ public class Hooks_autoUI {
 	}
 
 	private void getSiteID() throws ClassNotFoundException {
-			try {
-				if (context.getSQLDBConnection() == null) {
-					sqlConnectOpen();
-				}
-				Statement stmt = null;
-				stmt = context.getSQLDBConnection().createStatement();
-				System.out.println("SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'");
-				String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'";
-				ResultSet rs = stmt.executeQuery(query);
-
-				while (rs.next()) {
-					context.setSiteId(rs.getString("SITE_ID"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
 			}
+			Statement stmt = null;
+			stmt = context.getSQLDBConnection().createStatement();
+			System.out.println(
+					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
+			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
+					+ "'";
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				context.setSiteId(rs.getString("SITE_ID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@After("~@Email")
@@ -106,15 +106,17 @@ public class Hooks_autoUI {
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
-			
+
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
-				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+				if (jdaLoginPage.driver != null) {
+					final byte[] screenshot = ((TakesScreenshot) jdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+					scenario.embed(screenshot, "image/png");
+				}
 			} catch (WebDriverException e) {
-				if (!(webDriver instanceof TakesScreenshot)) {
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
 					return;
@@ -128,34 +130,45 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-				//final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-			//	scenario.embed(screenshot, "image/png");
+				// final byte[] screenshot = ((TakesScreenshot)
+				// webDriver).getScreenshotAs(OutputType.BYTES);
+				// scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
-				if (!(webDriver instanceof TakesScreenshot)) {
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
 					return;
 				}
 			}
 		}
+		if (jdaLoginPage.driver != null) {
+			System.out.println("WEBDRIVER CLOSE");
+			// webDriver.close();
+			// jdaLoginPage.driver.quit();
+			// Process killIeDriver = Runtime.getRuntime()
+			// .exec("cmd /c
+			// D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
+		}
 
 		// clearing down webdriver object
-//		if (webDriver != null) {
-//			webDriver.close();
-//			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
-//			// webDriver.quit();
-//		}
+		// if (webDriver != null) {
+		// webDriver.close();
+		// Process p = Runtime.getRuntime().exec("cmd /c " + envVar +
+		// "\\bin\\IEKill.bat");
+		// // webDriver.quit();
+		// }
 	}
-	
-//	@After
-//	public void killIE(Scenario scenario) throws IOException {
-//		if (webDriver != null) {
-//			webDriver.close();
-//			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
-//			// webDriver.quit();
-//		}
-//	}
+
+	// @After
+	// public void killIE(Scenario scenario) throws IOException {
+	// if (webDriver != null) {
+	// webDriver.close();
+	// Process p = Runtime.getRuntime().exec("cmd /c " + envVar +
+	// "\\bin\\IEKill.bat");
+	// // webDriver.quit();
+	// }
+	// }
 
 	public void insertDetails(String testName) {
 
@@ -229,7 +242,7 @@ public class Hooks_autoUI {
 		} else {
 			context.setParentRequestId(PRQID);
 			System.setProperty("ID", PRQID);
-//			parentStartTime();
+			// parentStartTime();
 			fileSaveValueInText();
 		}
 
@@ -237,13 +250,16 @@ public class Hooks_autoUI {
 
 	private void insertSiteID() {
 		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')";
+			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + System.getProperty("SITEID") + "')");
+			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + System.getProperty("SITEID") + "')";
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
 		} catch (Exception exception) {
 			exception.printStackTrace();
-		}}
+		}
+	}
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {

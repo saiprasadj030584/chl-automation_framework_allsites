@@ -1,24 +1,20 @@
 package com.jda.wms.pages.gm;
 
-import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-import com.jda.wms.pages.PageObject;
 
-public class JdaHomePage extends PageObject {
+public class JdaHomePage{
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	Region reg = new Region(0, 0, 4000, 1000);
 
 	@Inject
-	public JdaHomePage(WebDriver webDriver) {
-		super(webDriver);
-		this.webDriver = webDriver;
+	public JdaHomePage() {
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {

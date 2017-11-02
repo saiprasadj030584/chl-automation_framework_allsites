@@ -27,7 +27,6 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private final WebDriver webDriver;
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -39,10 +38,9 @@ public class Hooks {
 	private Database jdaJdatabase;
 
 	@Inject
-	public Hooks(WebDriver webDriver, Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
+	public Hooks( Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
 			Database jdaJdatabase) {
-		this.webDriver = webDriver;
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
@@ -85,7 +83,7 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		 context.setSiteId("5649");
+		context.setSiteId("5649");
 		System.out.println("SITE ID " + context.getSiteId());
 		// context.setSiteId(System.getProperty("SITEID"));
 		// System.out.println("SITE ID 1 "+context.getSiteId());
@@ -93,7 +91,7 @@ public class Hooks {
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
-			 dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 		}
 	}
 
@@ -106,20 +104,22 @@ public class Hooks {
 
 	}
 
-	// @After()
-	public void tearDown(Scenario scenario) {
+	/*// @After()
+	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
 		if (scenario.isFailed()) {
 			final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		}
 		// clearing down webdriver object
-		if (webDriver != null) {
-			System.out.println("WEBDRIVER CLOSE");
-			// webDriver.close();
-			webDriver.quit();
-		}
-	}
+		// if (webDriver != null) {
+		// System.out.println("WEBDRIVER CLOSE");
+		// // webDriver.close();
+		// webDriver.quit();
+		// Process killIeDriver =
+		// Runtime.getRuntime().exec("/bin/puttykillAdmin.lnk");
+		// }
+	}*/
 
 	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
