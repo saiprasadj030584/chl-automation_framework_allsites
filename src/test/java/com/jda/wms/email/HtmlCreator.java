@@ -43,6 +43,7 @@ public class HtmlCreator {
 
 		requestSummaryDetailsMap = requestDetailsRetriever.getFailedList(context.getParentRequestId());
 		ArrayList totalStepList = (ArrayList) requestSummaryDetailsMap.get("totalStepList");
+		ArrayList datascenarioList = (ArrayList) requestSummaryDetailsMap.get("totalStepList");
 		ArrayList commentsList = (ArrayList) requestSummaryDetailsMap.get("commentsList");
 		ArrayList startTime = (ArrayList) requestSummaryDetailsMap.get("startTime");
 		ArrayList endTime = (ArrayList) requestSummaryDetailsMap.get("endTime");
@@ -168,6 +169,9 @@ public class HtmlCreator {
 					bw.write("<tr><th bgcolor='#33B5FF'>\n");
 					bw.write("<p style='color: #060606;'>&nbsp;S.No</p>\n");
 
+//					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
+//					bw.write("<p style='color: #060606;'>&nbsp;Data Type - Sub Scenario</p>\n");
+					
 					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
 					bw.write("<p style='color: #060606;'>&nbsp;Test Case Name</p>\n");
 
@@ -183,9 +187,9 @@ public class HtmlCreator {
 					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
 					bw.write("<p style='color: #060606;'>&nbsp;Total Time</p>\n");
 
-					bw.write("</th>\n<th bgcolor='#33B5FF'  >\n");
-					bw.write("<p style='color: #060606;'>&nbsp;Remarks</p>\n");
-					bw.write("</th>\n</tr>\n");
+//					bw.write("</th>\n<th bgcolor='#33B5FF'  >\n");
+//					bw.write("<p style='color: #060606;'>&nbsp;Remarks</p>\n");
+//					bw.write("</th>\n</tr>\n");
 
 					for (int rowCount = 0; rowCount < totalCount; rowCount++) {
 						System.out.println("" + totalStepList);
@@ -193,7 +197,13 @@ public class HtmlCreator {
 						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
 								+ (rowCount + 1) + "</font><font face= Copperplate Gothic Bold></font> </p>\n");
 						bw.write("</td>\n");
-
+						
+//						bw.write("<td>\n");
+//						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
+//								+ totalStepList.get(rowCount)
+//								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
+//						bw.write("</td>\n");
+						
 						bw.write("<td>\n");
 						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
 								+ totalStepList.get(rowCount)
@@ -230,11 +240,11 @@ public class HtmlCreator {
 								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
 						bw.write("</td>\n");
 
-						bw.write("<td colspan=2>\n");
-						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
-								+ commentsList.get(rowCount)
-								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
-						bw.write("</td>\n");
+//						bw.write("<td colspan=2>\n");
+//						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
+//								+ commentsList.get(rowCount)
+//								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
+//						bw.write("</td>\n");
 						bw.write("</tr>\n");
 					}
 					bw.write("</table>\n");

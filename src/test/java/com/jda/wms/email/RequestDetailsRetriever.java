@@ -125,6 +125,8 @@ public class RequestDetailsRetriever {
 		ArrayList<String> executionDate = new ArrayList<String>();
 		ArrayList<String> totalTime = new ArrayList<String>();
 		ArrayList<String> statusList = new ArrayList<String>();
+		ArrayList<String> dataTypeList = new ArrayList<String>();
+		ArrayList<String> subScenarioList = new ArrayList<String>();
 		ResultSet resultSet = null;
 
 		try {
