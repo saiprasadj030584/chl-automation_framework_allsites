@@ -151,15 +151,8 @@ public class Context {
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private int updatedQty;
-	private ScenarioScope scenario;
+	private boolean jdaLoginFlag=false;
 
-	public ScenarioScope getScenario() {
-		return scenario;
-	}
-
-	public void setScenario(ScenarioScope scenario) {
-		this.scenario = scenario;
-	}
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1299,5 +1292,13 @@ public class Context {
 
 	public void setUpdatedQty(int updatedQty) {
 		this.updatedQty = updatedQty;
+	}
+	
+	public boolean isJdaLoginFlag() {
+		return jdaLoginFlag;
+	}
+	
+	public void setJdaLoginFlag(boolean jdaLoginFlag) {
+		this.jdaLoginFlag = jdaLoginFlag;
 	}
 }
