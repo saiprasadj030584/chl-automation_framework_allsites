@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 
 public class ReceiptReversalPage {
 	Screen screen = new Screen();
+	private JDAFooter jDAFooter;
 	int timeoutInSec = 20;
 
 	@Inject
@@ -97,6 +98,26 @@ public class ReceiptReversalPage {
 			}
 		} else
 			return false;
+	}
+	
+	public void clickReceiptId() throws FindFailed, InterruptedException {
+		screen.wait("images/ReceiptReversal/ReceiptId.png", timeoutInSec);
+		screen.click("images/ReceiptReversal/ReceiptId.png");
+		Thread.sleep(1000);
+	}
+	
+	public void clickReceiptReversalDoneButton() throws FindFailed, InterruptedException {
+		screen.wait("images/ReceiptReversal/Done.png", timeoutInSec);
+		screen.click("images/ReceiptReversal/Done.png");
+		Thread.sleep(1000);
+		jDAFooter.PressEnter();
+		Thread.sleep(1000);
+//		if(screen.find("/images/ReceiptReversal/Start1.png").equals(null)) {
+//		screen.type(Key.F12);
+//		Thread.sleep(2000);
+//		jDAFooter.PressEnter();
+//		Thread.sleep(2000);
+//		}
 	}
 
 }

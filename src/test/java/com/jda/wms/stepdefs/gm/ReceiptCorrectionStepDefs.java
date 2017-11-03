@@ -95,13 +95,13 @@ public class ReceiptCorrectionStepDefs {
 
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at location \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_location(String type,String location) throws Throwable {
-		String preAdviceId = getTcData.getPo();
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		
-		context.setPreAdviceId(preAdviceId);
-		context.setUpiId(upiId);
-		context.setAsnId(asnId);
+//		String preAdviceId = getTcData.getPo();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		
+//		context.setPreAdviceId(preAdviceId);
+//		context.setUpiId(upiId);
+//		context.setAsnId(asnId);
 		
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();

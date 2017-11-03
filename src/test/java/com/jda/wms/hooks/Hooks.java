@@ -24,6 +24,7 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -38,6 +39,7 @@ public class Hooks {
 	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
 			Database jdaJdatabase) {
+
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
@@ -80,16 +82,24 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
+
 		context.setSiteId("5649");
 		System.out.println("SITE ID " + context.getSiteId());
 		// context.setSiteId(System.getProperty("SITEID"));
 		// System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
+
+		//context.setSiteId(System.getProperty("SITEID"));
+		//below line included frm indira code while merging f_M1
+		 dataSetupRunner.getTagListFromAutoDb();
+
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			
 		}
+		
 	}
 
 	// @Before
@@ -100,6 +110,7 @@ public class Hooks {
 		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 
 	}
+
 
 	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
@@ -131,6 +142,7 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
+		
 	}
 
 	// @After
@@ -139,18 +151,18 @@ public class Hooks {
 		// Process killIE = Runtime.getRuntime()
 		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq
 		// %username%\"");
-		Process killChrome = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
-		Process killFirefox = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq %username%\"");
-
-		Process killGeckoDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq %username%\"");
-		Process killChromeDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq %username%\"");
-
-		Process killIeDriver = Runtime.getRuntime()
-				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
+//		Process killChrome = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
+//		Process killFirefox = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq %username%\"");
+//
+//		Process killGeckoDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq %username%\"");
+//		Process killChromeDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq %username%\"");
+//
+//		Process killIeDriver = Runtime.getRuntime()
+//				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
 	}
 
 	@After

@@ -37,9 +37,9 @@ Feature: Boxed - Direct PO - Putaway
     When I perform normal putaway after relocation
     Then the goods receipt should be generated for putaway stock in inventory transaction
 
-  @jenkins_analysis @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_sampling/qa_pallet_build @complete @ds
+  @jenkins_analysis @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_sampling/qa_pallet_build @complete @ds @maven_check_1 @putty_check @maven_check_2 @check9
   Scenario: Validate Sampling/QA Pallet build
-    Given the PO of type "Boxed" with UPI and ASN should be received at "<Location>" for qa build
+    Given the PO of type "Boxed" with UPI and ASN should be received at "REC001" for qa build
     When I choose existing relocate
     And I proceed with entering the upc and location
     When I perform normal putaway after relocation

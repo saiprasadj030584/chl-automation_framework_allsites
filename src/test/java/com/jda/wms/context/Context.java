@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cucumber.runtime.java.guice.ScenarioScope;
+
 public class Context {
 	private String preAdviceId;
 	private String skuId;
@@ -149,7 +151,13 @@ public class Context {
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
+
 	private String origin;
+
+	private int updatedQty;
+
+
+
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -236,6 +244,7 @@ public class Context {
 	}
 
 	public void setPalletID(String palletID) {
+		System.out.println("Pallet Id SET HO GAYA");
 		this.palletID = palletID;
 	}
 
@@ -1282,6 +1291,7 @@ public class Context {
 		return childStartTime;
 	}
 
+
 	public String getOrigin() {
 		return origin;
 	}
@@ -1293,6 +1303,19 @@ public class Context {
 	public boolean isJdaLoginFlag() {
 		return jdaLoginFlag;
 	}
+
+
+	
+	public int getUpdatedQty() {
+		return updatedQty;
+	}
+
+	public void setUpdatedQty(int updatedQty) {
+		this.updatedQty = updatedQty;
+	}
+	
+
+	
 
 	public void setJdaLoginFlag(boolean jdaLoginFlag) {
 		this.jdaLoginFlag = jdaLoginFlag;

@@ -283,6 +283,7 @@ public class PurchaseOrderPutawayStepDefs {
 					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			context.setUpiId(context.getTagId());
 			i_enter_urn_id_in_putaway(context.getTagId());
+			jdaFooter.PressEnter();
 			if (null == context.getLockCode()) {
 				the_tag_details_for_putaway_should_be_displayed_after_relocation();
 
@@ -544,17 +545,26 @@ public class PurchaseOrderPutawayStepDefs {
 				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
 		verification.verifyData("From Location", context.getFromLocation(), purchaseOrderPutawayPage.getFromLocation(),
 				failureList);
-		// TODO-Check this verification
-		// verification.verifyData("Tag ID", context.getUpiId(),
-		// purchaseOrderPutawayPage.getTagId(), failureList);
-		if (purchaseOrderPutawayPage.getToLocation() != null) {
-			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
-		} else {
-			if (context.getSKUType().equalsIgnoreCase("Hanging")) {
-				context.setToLocation(
-						inventoryDB.getToLocationForPutaway("HANG", skuDB.getProductGroup(context.getSkuId())));
-			} else if (context.getSKUType().equalsIgnoreCase("Boxed")) {
-				context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
+
+		//TODO-Check this verification
+//		verification.verifyData("Tag ID", context.getUpiId(), purchaseOrderPutawayPage.getTagId(), failureList);
+		if(purchaseOrderPutawayPage.getToLocation()!=null)
+		{
+		context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		}
+		else
+		{
+			System.out.println("CHECKKKKK"+context.getSKUType());
+			if(context.getSKUType().equalsIgnoreCase("Hanging"))
+		{
+				System.out.println("Entered !!!!!!!");
+			context.setToLocation(inventoryDB.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
+			}
+			else if(context.getSKUType().equalsIgnoreCase("Boxed"))
+			{
+				System.out.println("Entered 2222222");
+			context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
+
 			}
 			jdaFooter.pressTab();
 			i_enter_to_location(context.getToLocation());

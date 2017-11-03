@@ -65,10 +65,12 @@ public class InventoryQueryStepDefs {
 		upiMap = context.getUPIMap();
 		multiplePOMap = context.getMultiplePOMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
+		
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 			if ((!(null == context.getReceiveType())) && context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
@@ -78,11 +80,13 @@ public class InventoryQueryStepDefs {
 						failureList);
 			} else if (null == context.getReceiveType()) {
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-						inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getPreAdviceId(), date),
+
+						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date),
 						failureList);
 				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
-						String.valueOf(context.getRcvQtyDue()), inventoryDB.getQtyOnHandPO(context.getSkuId(),
-								context.getLocation(), context.getPreAdviceId(), date),
+						String.valueOf(context.getRcvQtyDue()),
+						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
+
 						failureList);
 			}
 		}
@@ -443,18 +447,15 @@ public class InventoryQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-
+//		context.setTagId(
+//				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			if ((null != context.getReceiveType()) && (context.getReceiveType().equalsIgnoreCase("Under Receiving"))) {
-				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
-						inventoryDB.getLocationAfterReceiveForRandomTag(context.getSkuId(), context.getTagId(), date),
-						failureList);
-				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
-						Integer.toString(context.getRcvQtyDue() + 5), inventoryDB.getQtyOnHandForRandomTag(
-								context.getSkuId(), context.getLocation(), context.getTagId(), date),
-						failureList);
-			} else {
+
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			if ((null!=context.getReceiveType())&&(context.getReceiveType().equalsIgnoreCase("Under Receiving"))) {
 
 				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
 						inventoryDB.getLocationAfterPOReceiveForRandomTag(context.getSkuId(), context.getTagId(), date),

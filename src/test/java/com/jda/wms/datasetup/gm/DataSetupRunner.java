@@ -9,29 +9,44 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Assert;
 
+import org.openqa.selenium.WebDriver;
+
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
+
+
 import com.jda.wms.pages.gm.JdaLoginPage;
+import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
+
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class DataSetupRunner {
 	private Context context;
 	public static DbConnection npsDataBase;
 	private GetTcData gettcdata;
 	private Database jdaJdatabase;
-	private JdaLoginPage jdaLoginPage;
+
 	private DataLoadFromUI dataLoadFromUI;
+	private JdaLoginPage jdaLoginPage;
+	
+	
 
 	@Inject
-	public DataSetupRunner(Context context, DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage,
-			DbConnection dataBase, Database jdaJdatabase, GetTcData gettcdata) {
+	public DataSetupRunner(Context context, DbConnection dataBase, Database jdaJdatabase,
+			JdaLoginPage jdaLoginPage,GetTcData gettcdata,DataLoadFromUI dataLoadFromUI) {
+
 		this.context = context;
 		this.npsDataBase = dataBase;
 		this.gettcdata = gettcdata;
 		this.jdaJdatabase = jdaJdatabase;
+
 		this.jdaLoginPage = jdaLoginPage;
 		this.dataLoadFromUI = dataLoadFromUI;
+
 	}
 
 	public void getTagListFromAutoDb() {
@@ -89,20 +104,25 @@ public class DataSetupRunner {
 			}
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
+		System.out.println("unique tag"+ context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		// context.setUniqueTagInRunStatus(validateUniqueTagInRunStatus());
 		// gettcdata.insertTcInRunStatus();
 		// Assert.assertTrue("UniqueTag Not Found in Run Status Table",
 		// context.getUniqueTagInRunStatus());
-		// insertData();
-		// insertTempTestdata();
+
+		//insertData();
+		//insertTempTestdata();
 		createTestDataFromUI();
+		
+
 	}
 
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
 		if (context.getUniqueTag().contains("direct")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String asn = newAsnId();
 				String po = newPoId();
@@ -137,12 +157,14 @@ public class DataSetupRunner {
 				// validatePoDataSetup(po);
 				// validateUpiDataSetup(upi);
 				npsDataBase.disconnectAutomationDB();
+
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("fsv")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String po = newPoId();
 
@@ -156,6 +178,7 @@ public class DataSetupRunner {
 				// dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setPo(po);
+
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -163,6 +186,7 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String asn = newAsnId();
 				// String upi = newPalletdId(); //32 digit number
@@ -181,6 +205,7 @@ public class DataSetupRunner {
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference, upi);
 				// dataLoadFromUI.killBrowser();
+
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -192,6 +217,7 @@ public class DataSetupRunner {
 				&& context.getUniqueTag().contains("non")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String asn = newAsnId();
 				String upi = newPalletdId();
@@ -205,6 +231,7 @@ public class DataSetupRunner {
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference, upi);
 				// dataLoadFromUI.killBrowser();
+
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -215,6 +242,7 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && !context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String asn = newAsnId();
 				String upi = newPalletdId();
@@ -223,6 +251,7 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				String asnReference = gettcdata.getAsnFromTestData();
 				validateAsnDataSetup(asn);
+
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
 				npsDataBase.disconnectAutomationDB();
@@ -232,9 +261,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("retail")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -245,9 +276,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("idt") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -258,9 +291,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("store") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -271,9 +306,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("outlet") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -284,9 +321,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("e_com")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				// Generate Random New values to load
+
+				//Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
+				//Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -297,9 +336,11 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("international")) {
 			try {
 				npsDataBase.connectAutomationDB();
-				// Generate Random New values to load
+
+				//Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
+				//Fetching Refernce Test Data from Test data table
+
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
@@ -309,32 +350,36 @@ public class DataSetupRunner {
 
 			}
 		}
+	
 	}
 
-	private String formReturnsUPIID(String supplierIdRef, String qty)
-			throws ClassNotFoundException, SQLException, InterruptedException {
-
-		// manipulate supplier
+	private String formReturnsUPIID(String supplierIdRef, String qty) throws ClassNotFoundException, SQLException, InterruptedException {
+  
+		//manipulate supplier
 		String[] supplierSplit = supplierIdRef.split("M");
-		String supplier = supplierSplit[1];
+		String supplier =supplierSplit[1];	
+      
+		//manipulate quantity
 
-		// manipulate quantity
 		int sumLength = qty.length();
 		if (sumLength == 1) {
 			qty = "00" + qty;
 		} else if (sumLength == 2) {
 			qty = "0" + qty;
 		}
-		qty = qty;
-		String upi = context.getSiteId() + "000" + Utilities.getSixDigitRandomNumber() + supplier + "100"
-				+ Utilities.getSixDigitRandomNumber() + qty + "00";
+
+		qty=qty;
+		String upi = context.getSiteId()+"000"+Utilities.getSixDigitRandomNumber()+supplier +"100"+Utilities.getSixDigitRandomNumber()+qty+"00";		
 		return upi;
+		
+
 	}
 
 	private String getSupplierIDFromJDADB(String upiReference) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			jdaJdatabase.connect();
 		}
+
 		String supplierId = null;
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
@@ -345,45 +390,46 @@ public class DataSetupRunner {
 		return supplierId;
 	}
 
-	public void insertTempTestdata() {
-
-		if (context.getUniqueTag().equals(
-				"@boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information")) {
-			context.setPreAdviceId("9317010300");
-
-		} else if (context.getUniqueTag().equals("@boxed_pre_receiving_fsv_po_dock_schedule")) {
-			context.setPreAdviceId("9317010200");
-
-		} else if (context.getUniqueTag().equals(
-				"@boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_carrier_information")) {
-			context.setPreAdviceId("9317010210");
-		} else if (context.getUniqueTag().equals(
-				"@boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day")) {
-			context.setPreAdviceId("9317010354");
-		} else if (context.getUniqueTag().equals(
-				" @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line")) {
-			context.setPreAdviceId("9317110319");
-		} else if (context.getUniqueTag()
-				.equals("@boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status")) {
-			context.setPreAdviceId("9317000356");
-		} else if (context.getUniqueTag()
-				.equals("@boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted")) {
-			context.setPreAdviceId("9317010356");
-		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving")) {
-			context.setAsnId("0000403194");
-			context.setUpiId("56490001384577299100395756000210");
-		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving_with_lock_code")) {
-			context.setAsnId("0000003184");
-			context.setUpiId("56490001384379299100395756000210");
-		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_under_receiving")) {
-			context.setAsnId("0000083194");
-			context.setUpiId("56490001383579299100395756000210");
-		}
-
-		else if (context.getUniqueTag().equals("@boxed_picking_retail_validate_whether_clustering_is_done_manually")) {
-			context.setOrderId("4170001326");
-		}
-	}
+//	public void insertTempTestdata() {
+//
+//		if (context.getUniqueTag().equals(
+//				"@boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_service_level_information")) {
+//			context.setPreAdviceId("9317010300");
+//
+//		} else if (context.getUniqueTag().equals("@boxed_pre_receiving_fsv_po_dock_schedule")) {
+//			context.setPreAdviceId("9317010200");
+//
+//		} else if (context.getUniqueTag().equals(
+//				"@boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_carrier_information")) {
+//			context.setPreAdviceId("9317010210");
+//		} else if (context.getUniqueTag().equals(
+//				"@boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day")) {
+//			context.setPreAdviceId("9317010354");
+//		} else if (context.getUniqueTag().equals(
+//				" @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line")) {
+//			context.setPreAdviceId("9317110319");
+//		} else if (context.getUniqueTag()
+//				.equals("@boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status")) {
+//			context.setPreAdviceId("9317000356");
+//		} else if (context.getUniqueTag()
+//				.equals("@boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted")) {
+//			context.setPreAdviceId("9317010356");
+//		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving")) {
+//			context.setAsnId("0000403194");
+//			context.setUpiId("56490001384577299100395756000210");
+//		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_over_receiving_with_lock_code")) {
+//			context.setAsnId("0000003184");
+//			context.setUpiId("56490001384379299100395756000210");
+//		} else if (context.getUniqueTag().equals("@boxed_inbound_receiving_idt_under_receiving")) {
+//			context.setAsnId("0000083194");
+//			context.setUpiId("56490001383579299100395756000210");
+//		}
+//
+//		else if (context.getUniqueTag().equals("@boxed_picking_retail_validate_whether_clustering_is_done_manually")) {
+//			context.setOrderId("4170001326");
+//		}
+//
+//	}
 
 	private boolean validateUniqueTagInTestData() {
 		ResultSet resultSet = null;
@@ -415,6 +461,7 @@ public class DataSetupRunner {
 		boolean UniqueTagInRunStatus = false;
 		try {
 			npsDataBase.connectAutomationDB();
+
 			// resultSet = npsDataBase.dbConnection.createStatement()
 			// .executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where
 			// PARENT_REQUEST_ID='"
@@ -422,8 +469,9 @@ public class DataSetupRunner {
 			// context.getUniqueTag()
 			// + "' AND SITE_NO='" + context.getSiteId() + "' and
 			// TC_STATUS='NO_RUN' ; ");
+
 			resultSet = npsDataBase.dbConnection.createStatement()
-					.executeQuery("Select * from dbo.NPS_AUTO_UI_RUN_STATUS where PARENT_REQUEST_ID='"
+					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
 			while (resultSet.next()) {
@@ -448,11 +496,13 @@ public class DataSetupRunner {
 				npsDataBase.connectAutomationDB();
 				String asn = newAsnId();
 				String po = newPoId();
+
 				// String upi = newPalletdId();
 				String upi = newPalletdId_directPO();
 				String sku = gettcdata.getSkuListFromTestData();
 				String qty = gettcdata.getQtyFromTestData();
 				System.out.println("SKU " + sku);
+
 				String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) from Interface_Delivery)+1, '"
 						+ asn + "' ,'" + context.getSiteId()
 						+ "', 'MX180160' ,'Released',null,'M+S',(Select SUPPLIER_ID from supplier_sku where sku_id='"
@@ -477,7 +527,9 @@ public class DataSetupRunner {
 						+ "' and ROWNUM = 1 ),(Select TRACK_LEVEL_1 from sku_config where CONFIG_ID in (Select CONFIG_ID from sku_sku_config where sku_id='"
 						+ sku
 						+ "' and ROWNUM = 1) and ROWNUM = 1),null,null,null,null, (Select SUPPLIER_ID from supplier_sku where sku_id='"
-						+ sku + "' and ROWNUM = 1),null,null,null,null, " + qty + " ,'" + po
+
+						+ sku + "' and ROWNUM = 1),null,null,null,null, 20 ,'" + po
+
 						+ "', 10 ,'N', '7112244962000010' ,'" + po
 						+ "' ,null, (Select SUPPLIER_SKU_ID from supplier_sku where sku_id='" + sku
 						+ "' and ROWNUM = 1), '" + asn
@@ -500,8 +552,11 @@ public class DataSetupRunner {
 				gettcdata.setPo(po);
 				context.getConnection().commit();
 				String po_line_qry = "Insert into INTERFACE_PRE_ADVICE_LINE values ((Select max (Key) from Interface_Pre_advice_line) + 1,'M+S', '"
-						+ po + "', 10 ,null,null, '" + sku + "' ,null,null,null,null,null,null,null,null,null,null,"
-						+ qty + ",null,null,null,'N', null, (select product_group from sku where sku_id='" + sku
+
+						+ po + "', 10 ,null,null, '" + sku
+						+ "' ,null,null,null,null,null,null,null,null,null,null,40,null,null,null,'N', null, (select product_group from sku where sku_id='"
+						+ sku
+
 						+ "' and ROWNUM = 1 ) ,null,null, (Select SUPPLIER_SKU_ID from supplier_sku where sku_id='"
 						+ sku + "' and ROWNUM = 1) ,null,null, (select user_def_type_8 from sku where sku_id='" + sku
 						+ "' and ROWNUM = 1 ),null,null,null,null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,2017,22222,null,null,(Select TRACK_LEVEL_1 from sku_config where CONFIG_ID in (Select CONFIG_ID from sku_sku_config where sku_id='"
@@ -511,7 +566,9 @@ public class DataSetupRunner {
 				rinsert = stmt.executeQuery(po_line_qry);
 				context.getConnection().commit();
 				gettcdata.setPalletId(upi);
-				// gettcdata.setSkuQtySupplier();
+
+				gettcdata.setSkuQtySupplier();
+
 				validateAsnDataSetup(asn);
 				validatePoDataSetup(po);
 				validateUpiDataSetup(upi);
@@ -525,13 +582,19 @@ public class DataSetupRunner {
 				npsDataBase.connectAutomationDB();
 				String po = newPoId();
 				String sku = gettcdata.getSkuListFromTestData();
+
 				String qty = gettcdata.getQtyFromTestData();
 				System.out.println("sku " + sku);
+
 				String po_header_qry = "Insert into INTERFACE_PRE_ADVICE_HEADER values ((Select max (Key)  from Interface_Pre_advice_header)+ 1,'M+S', '"
 						+ po + "' ,'PO','" + context.getSiteId()
 						+ "','M+S', (Select SUPPLIER_ID from supplier_sku where sku_id='" + sku
 						+ "' and ROWNUM = 1),'Released',null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,'SEA',null, null, (select product_group from sku where sku_id='"
+
 						+ gettcdata.getSkuListFromTestData()
+
+						+ gettcdata.getSkuList()
+
 						+ "' and ROWNUM = 1 ) ,null,null,'FSV', (select user_def_type_8 from sku where sku_id='" + sku
 						+ "' and ROWNUM = 1) ,null,null,null,'N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,null,null,'N',null,null,null,null,null,'Europe/London','Europe/London',null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(po_header_qry);
@@ -549,7 +612,9 @@ public class DataSetupRunner {
 				System.out.println(po_line_qry);
 				rinsert = stmt.executeQuery(po_line_qry);
 				context.getConnection().commit();
-				// gettcdata.setSkuQtySupplier();
+
+				gettcdata.setSkuQtySupplier();
+
 				validatePoDataSetup(po);
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -937,6 +1002,7 @@ public class DataSetupRunner {
 		return tempValue;
 	}
 
+
 	public String newPalletdId_directPO() throws ClassNotFoundException, SQLException, InterruptedException {
 		long value1, value2, value3, max = 999999999;
 		boolean mainTable = true, interfaceTable = true;
@@ -963,6 +1029,7 @@ public class DataSetupRunner {
 		} while (mainTable || interfaceTable);
 		return tempValue;
 	}
+
 
 	public String newRmsPalletdId() throws ClassNotFoundException, SQLException, InterruptedException {
 		long value1, value2, value3, max = 999999999;
@@ -1082,6 +1149,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ASN in Delivery : " + asn);
 				HashMap<String, Boolean> presenceMap = validateAsnPresenceinJdaTable(asn);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + asn);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + asn, count == 31);
@@ -1090,6 +1158,7 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted ASN : " + asn);
+
 			}
 		}
 	}
@@ -1106,6 +1175,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Header : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoPresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po, count == 31);
@@ -1114,6 +1184,7 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted PO : " + po);
+
 			}
 		}
 		if (!(finalPoLineStatus)) {
@@ -1124,6 +1195,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted PO in Pre Advice Line : " + po);
 				HashMap<String, Boolean> presenceMap = validatePoLinePresenceinJdaTable(po);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + po);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + po, count == 31);
@@ -1132,11 +1204,14 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted PO : " + po);
+
 			}
 		}
 	}
 
 	private void validateUpiDataSetup(String upi) throws InterruptedException, ClassNotFoundException, SQLException {
+		
+		System.out.println("BNVGHYKU");
 		boolean mainTable = true;
 		boolean finalUpiStatus = false, finalUpiLineStatus = false;
 
@@ -1148,6 +1223,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted Pallet_Id in  UPI Header : " + upi);
 				HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(upi);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + upi);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi, count == 31);
@@ -1156,6 +1232,7 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted Pallet_Id : " + upi);
+
 			}
 		}
 		if (!(finalUpiLineStatus)) {
@@ -1166,6 +1243,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted Pallet_Id in UPI Line : " + upi);
 				HashMap<String, Boolean> presenceMap = validateUpiLinePresenceinJdaTable(upi);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + upi);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi, count == 31);
@@ -1173,6 +1251,7 @@ public class DataSetupRunner {
 				}
 			} while (!(mainTable));
 			if (count < 30) {
+
 				System.err.println("Found Inserted Pallet_Id : " + upi);
 			}
 		}
@@ -1189,6 +1268,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ODN in  Order Header : " + odn);
 				HashMap<String, Boolean> presenceMap = validateStoPresenceinJdaTable(odn);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + odn);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn, count == 31);
@@ -1197,6 +1277,7 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted Pallet_Id : " + odn);
+
 			}
 		}
 		if (!(finalStoLineStatus)) {
@@ -1207,6 +1288,7 @@ public class DataSetupRunner {
 				System.out.println("Validating Inserted ODN in Order Line : " + odn);
 				HashMap<String, Boolean> presenceMap = validateStoLinePresenceinJdaTable(odn);
 				mainTable = presenceMap.get("mainTable");
+
 				if (count > 30) {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + odn);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + odn, count == 31);
@@ -1215,6 +1297,7 @@ public class DataSetupRunner {
 			} while (!(mainTable));
 			if (count < 30) {
 				System.err.println("Found Inserted Pallet_Id : " + odn);
+
 			}
 		}
 	}
@@ -1334,4 +1417,144 @@ public class DataSetupRunner {
 		presenceMap.put("interfaceTable", interfaceTable);
 		return presenceMap;
 	}
+	
+//	public String newPalletdId_directPO() throws ClassNotFoundException, SQLException, InterruptedException {
+//		long value1, value2, value3, max = 999999999;
+//		boolean mainTable = true, interfaceTable = true;
+//		String tempValue;
+//		if (context.getConnection() == null) {
+//			jdaJdatabase.connect();
+//		}
+//		do {
+//			value1 = ThreadLocalRandom.current().nextLong(100000000, max);
+//			System.out.println("value 1 "+value1);
+//			value2 = ThreadLocalRandom.current().nextLong(100000000, max);
+//			System.out.println("value 2 "+value2);
+////			value3 = ThreadLocalRandom.current().nextLong(100000000, max);
+////			System.out.println("value 3 "+value3);
+//			int tempInt = ThreadLocalRandom.current().nextInt(10, 99);
+////			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
+////					+ String.valueOf(tempInt);
+//			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(tempInt);
+//			System.out.println("temp value "+tempValue);
+//			HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(tempValue);
+//			mainTable = presenceMap.get("mainTable");
+//			interfaceTable = presenceMap.get("interfaceTable");
+//		} while (mainTable || interfaceTable);
+//		return tempValue;
+//	}
+
+
+	public void insertTempTestdata() {
+		// TODO Auto-generated method stub
+		if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code")){
+		context.setPreAdviceId("1110009381");
+		context.setAsnId("0000832279");
+		context.setUpiId("00051453008358615234");
+		context.setSiteId("5649");
+		}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code")){
+		context.setPreAdviceId("1110098032");
+		context.setAsnId("0000019479");
+		context.setUpiId("00051453000931615234");
+		context.setSiteId("5649");
+		}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code")){
+			context.setPreAdviceId("1110083032");
+			context.setAsnId("0000018279");
+			context.setUpiId("00051453000284115234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code")){
+			context.setPreAdviceId("1110009532");
+			context.setAsnId("0000842279");
+			context.setUpiId("00051453093158615234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_rework_lock_code")){
+			context.setPreAdviceId("1110831032");
+			context.setAsnId("0000831279");
+			context.setUpiId("00051453084128615234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsfwl_lock_code")){
+			context.setPreAdviceId("1110098232");
+			context.setAsnId("0000093179");
+			context.setUpiId("00051453000296415234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcfwl_lock_code")){
+			context.setPreAdviceId("1110953432");
+			context.setAsnId("0000005239");
+			context.setUpiId("00051987000258615234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsrw_lock_code")){
+			context.setPreAdviceId("1110098732");
+			context.setAsnId("0000019429");
+			context.setUpiId("00051453000258056434");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomprw_lock_code")){
+			context.setPreAdviceId("1110084232");
+			context.setAsnId("0000731279");
+			context.setUpiId("00051453000259564234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcrw_lock_code")){
+			context.setPreAdviceId("1110074232");
+			context.setAsnId("0000016312");
+			context.setUpiId("00051453000284215234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code")){
+			context.setPreAdviceId("1110073132");
+			context.setAsnId("0000094329");
+			context.setUpiId("00051453000258412234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsfwlrw_lock_code")){
+			context.setPreAdviceId("1110095232");
+			context.setAsnId("0000095319");
+			context.setUpiId("00051453000285125234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomfwlrw_lock_code")){
+			context.setPreAdviceId("1110096422");
+			context.setAsnId("0000017379");
+			context.setUpiId("00051453000258420234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code")){
+			context.setPreAdviceId("1110087332");
+			context.setAsnId("0008842279");
+			context.setUpiId("00051453000284615234");
+			context.setSiteId("5649");
+			}
+		else if(context.getUniqueTag().equals("@boxed_putaway_idt_validate_putaway_location")){
+			context.setAsnId("PO0918836083");
+			context.setUpiId("56490001389579276900395756000210");
+			}
+		else if(context.getUniqueTag().equals("@boxed_putaway_idt_validate_putaway_quantity")){
+			context.setAsnId("PO0918316083");
+			context.setUpiId("56490001389579293900395756000210");
+			}
+		else if(context.getUniqueTag().equals("@boxed_putaway_idt_validate_putaway_logic_for_receiving_singles_when_locations_full")){
+			context.setAsnId("PO0919031058");
+			context.setUpiId("56490001335578291900395756000210");
+			}
+		else if(context.getUniqueTag().equals("@boxed_putaway_idt_validate_override_putaway_location")){
+			context.setAsnId("PO0919131058");
+			context.setUpiId("56490001042930299900398756000810");
+			}
+		else if(context.getUniqueTag().equals("@boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_trailer_type_information")){
+			context.setPreAdviceId("9317010312");
+			}
+		else if(context.getUniqueTag().equals("@boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress")){
+			context.setPreAdviceId("9317010312");
+			}
+		else if(context.getUniqueTag().equals("@boxed_pre_receiving_fsv_po_assign_dock_door_for_each_trailer_to_unload_it")){
+			context.setPreAdviceId("9317010312");
+			}
+		}
 }

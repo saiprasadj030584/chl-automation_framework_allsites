@@ -8,6 +8,8 @@ import org.sikuli.script.Screen;
 
 import com.jda.wms.context.Context;
 
+
+
 public class PurchaseOrderPickingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;

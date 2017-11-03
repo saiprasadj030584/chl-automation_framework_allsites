@@ -97,6 +97,7 @@ public class DeliveryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public Object getAsnIdForASN(String asn) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

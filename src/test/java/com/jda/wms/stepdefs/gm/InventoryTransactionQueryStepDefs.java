@@ -62,6 +62,7 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
+
 		// jdaLoginPage.login();
 		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		// jDAFooter.clickQueryButton();
@@ -116,6 +117,7 @@ public class InventoryTransactionQueryStepDefs {
 		// inventoryTransactionQueryPage.enterTransactionDate();
 		// jDAFooter.clickExecuteButton();
 		System.out.println("Tag ID " + context.getTagId());
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
@@ -125,17 +127,33 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+
+			if(context.getReceiveType()!=null)
+			{
+			if(context.getReceiveType().equalsIgnoreCase("Under Receiving"))
+			{
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()-5),
+
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
+			}
+			}
+			else
+			{
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+			}
+			
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 
 			if (null != context.getLockCode()) {
-				verification.verifyData(
-						"Lock Code SKU " + context.getSkuId(), context.getLockCode(), inventoryTransactionDB
-								.getLockCodeWithPORef(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
+
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getLockCode(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
+
 						failureList);
 			}
 		}
@@ -277,7 +295,8 @@ public class InventoryTransactionQueryStepDefs {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Adjustment");
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		inventoryTransactionQueryPage.enterSkuIdExisting(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -291,7 +310,9 @@ public class InventoryTransactionQueryStepDefs {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Inventory Unlock");
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		inventoryTransactionQueryPage.enterSkuIdExisting(context.getSkuId());
+		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -654,8 +675,8 @@ public class InventoryTransactionQueryStepDefs {
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(), context.getTagId(),
-				"Adjustment", date));
+//		context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(), context.getTagId(),
+//				"Adjustment", date));
 		// if(!(context.getUploaded().equalsIgnoreCase("Y")))
 		// {
 		// failureList.add("Uploaded field not updated as expected
@@ -664,23 +685,23 @@ public class InventoryTransactionQueryStepDefs {
 		//
 		if (context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt with movement label")) {
 			verification.verifyData("Reason code not updated as expected", "NADVMVNOHU", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getUpiId(), context.getTagId(), "Adjustment", date), failureList);
+					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		else if (context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt without movement label")) {
 			verification.verifyData("Reason code not updated as expected", "NANOHUNMV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getUpiId(), context.getTagId(), "Adjustment", date), failureList);
+					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		else if (context.getReasonCode().equalsIgnoreCase("RMS  Non advised receipt with movement label")) {
 			verification.verifyData("Reason code not updated as expected", "NADVHUMOV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getUpiId(), context.getTagId(), "Adjustment", date), failureList);
+					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		//
 		else if (context.getReasonCode().equalsIgnoreCase("RMS - Non advised receipt without movement label")) {
 			verification.verifyData("Reason code not updated as expected", "NADVHUNOMV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getUpiId(), context.getTagId(), "Adjustment", date), failureList);
+					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 		Assert.assertTrue(
 				"Reason code and inventory lock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -805,6 +826,7 @@ public class InventoryTransactionQueryStepDefs {
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
 		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
+		System.out.println("LOCKKK CODE"+context.getLockCode());
 		boolean isItlExists = false;
 		if (reference_Id.equalsIgnoreCase(context.getPreAdviceId())
 				&& (lockcode.equalsIgnoreCase(context.getLockCode()))) {
@@ -881,7 +903,10 @@ public class InventoryTransactionQueryStepDefs {
 	public void i_search_with_sku_and_reason_code() throws Throwable {
 		jDAFooter.clickQueryButton();
 		jDAFooter.pressTab();
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterSkuIdExisting(context.getSkuId());
+		//comment below line
+		jDAFooter.pressTab();
+		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterPalletId(context.getUpiId());
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.enterReasonCode("UPCOVERREC");

@@ -204,9 +204,10 @@ public class PurchaseOrderReceivingPage {
 		return App.getClipboard();
 	}
 	public String getPutawayGroup() throws FindFailed, InterruptedException {
+		System.out.println("entered putwaay grp");
 		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
 		screen.click(putawayGroup.below(5));
-		screen.doubleClick(putawayGroup.below(1));
+		screen.doubleClick(putawayGroup.below(5));
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
@@ -690,7 +691,7 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
-		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null))
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null)||(screen.exists("images/Putty/Receiving/canNotOverReceiptHanging.png") != null))
 			return true;
 		else if ((screen.exists("images/Putty/Receiving/canNotOverReceipt1.png") != null))
 			return true;

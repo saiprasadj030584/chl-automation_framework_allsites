@@ -16,8 +16,13 @@ public class WebDriverProvider implements Provider<WebDriver> { //implements Pro
 		this.configuration = configuration;
 	}
 
+
 	private WebDriver getWebDriver() {
 		/*String browserName = configuration.getStringProperty("browser-name");
+=======
+	private WebDriver getWebDriver() {/*
+		String browserName = configuration.getStringProperty("browser-name");
+>>>>>>> 67531263016304a2f1097a830b347e399c0c5090
 		switch (browserName) {
 
 		case "chrome":
@@ -41,7 +46,9 @@ public class WebDriverProvider implements Provider<WebDriver> { //implements Pro
 		default:
 			System.setProperty("webdriver.chrome.driver", Constants.USER_DIR + "/bin/chromedriver/chromedriver.exe");
 			return new ChromeDriver();
+<<<<<<< HEAD
 		}*/ 
+
 		return new InternetExplorerDriver();
 	}
 

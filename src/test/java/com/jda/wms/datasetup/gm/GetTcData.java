@@ -43,7 +43,9 @@ public class GetTcData {
 	public String getSto() {
 
 		String value = null;
+		System.out.println("UNIQ TAGG"+context.getUniqueTagInRunStatus());
 		if (!context.getUniqueTagInRunStatus()) {
+
 			// ResultSet resultSet = null;
 			// try {
 			// dataBase.connectAutomationDB();
@@ -61,9 +63,28 @@ public class GetTcData {
 			// } catch (Exception exception) {
 			// exception.printStackTrace();
 			// }
+
+
+//			ResultSet resultSet = null;
+//			try {
+//				dataBase.connectAutomationDB();
+//				resultSet = dataBase.dbConnection.createStatement()
+//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
+//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+//
+//				while (resultSet.next()) {
+//					value = resultSet.getString("STO_ID");
+//
+//				}
+//				dataBase.disconnectAutomationDB();
+//			} catch (Exception exception) {
+//				exception.printStackTrace();
+//			}
+
 		} else {
 			value = context.getOrderId();
 		}
+		System.out.println("COOOOOOOO"+value);
 		return value;
 	}
 
@@ -239,7 +260,6 @@ public class GetTcData {
 		// }
 		// }
 		context.setAsnId(value);
-
 	}
 
 	public void setSkuQtySupplier() {
@@ -434,6 +454,7 @@ public class GetTcData {
 		}
 		return value;
 	}
+
 
 	public String getOdnFromTestData() {
 		ResultSet resultSet = null;

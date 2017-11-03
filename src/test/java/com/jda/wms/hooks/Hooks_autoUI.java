@@ -47,10 +47,12 @@ public class Hooks_autoUI {
 
 	@Inject
 
+
 	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
 
 		this.context = context;
 		this.configuration = configuration;
+
 		this.jdaLoginPage = jdaLoginPage;
 	}
 
@@ -112,11 +114,13 @@ public class Hooks_autoUI {
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
+
 				if (jdaLoginPage.driver != null) {
 					final byte[] screenshot = ((TakesScreenshot) jdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
 					scenario.embed(screenshot, "image/png");
 				}
 			} catch (WebDriverException e) {
+
 				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
@@ -131,9 +135,8 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-				// final byte[] screenshot = ((TakesScreenshot)
-				// webDriver).getScreenshotAs(OutputType.BYTES);
-				// scenario.embed(screenshot, "image/png");
+
+
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
 				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
@@ -144,23 +147,7 @@ public class Hooks_autoUI {
 			}
 		}
 
-		if (jdaLoginPage.driver != null) {
-			System.out.println("WEBDRIVER CLOSE");
-			// webDriver.close();
-			// jdaLoginPage.driver.quit();
-			// Process killIeDriver = Runtime.getRuntime()
-			// .exec("cmd /c
-			// D:\\fathimajz_ws\\JDA_UPDATED_FATHIMA\\bin\\IEKill_admin.lnk");
 
-		}
-
-		// clearing down webdriver object
-		// if (webDriver != null) {
-		// webDriver.close();
-		// Process p = Runtime.getRuntime().exec("cmd /c " + envVar +
-		// "\\bin\\IEKill.bat");
-		// // webDriver.quit();
-		// }
 	}
 
 	// @After

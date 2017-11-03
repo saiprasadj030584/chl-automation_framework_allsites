@@ -474,6 +474,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select Location_id from inventory where receipt_id='" + preAdviceId
+				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select Location_id from inventory where receipt_id='" + preAdviceId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
@@ -915,7 +917,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
@@ -1000,6 +1003,7 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 
 	public ArrayList getTagIdDetailsForLockStatus(String lockStatus, String dataType)
 			throws SQLException, ClassNotFoundException {
@@ -1177,6 +1181,21 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 
+	}
+
+
+	
+	public String getQtynHand(String skuId, String location)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where sku_id = '"+ skuId + "' and location_id = '"+ location +"'");
+		rs.next();
+		return rs.getString(1);
 	}
 
 }

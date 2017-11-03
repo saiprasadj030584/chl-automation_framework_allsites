@@ -21,6 +21,7 @@ public class BookingInDiary {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
@@ -57,7 +58,9 @@ public class BookingInDiary {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
+
 			ResultSet rs = stmt.executeQuery("select BOOKREF_ID from trailer where BOOKREF_ID='" + bookingNo + "'");
+
 			rs.next();
 			if (rs.getString(1) != null) {
 				isRecordExists = true;

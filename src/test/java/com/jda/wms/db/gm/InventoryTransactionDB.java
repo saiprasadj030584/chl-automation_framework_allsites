@@ -373,6 +373,21 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getTagIDWithQty(String qtyDue, String code, String sku, String dstamp)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select tag_id from inventory_transaction where CODE ='" + code
+				+ "'and update_qty= '" + qtyDue + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
+
+		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code
+				+ "'and update_qty= '" + qtyDue + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getUpdateQuantity(String tagID, String code, String date)
 			throws SQLException, ClassNotFoundException {
@@ -422,6 +437,19 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where pallet_id='" + palletId
 				+ "' and code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getReasonCodeUnlocked(String tagId, String code, String dstamp)
+			throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where"
+				+ " code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -665,10 +693,14 @@ System.out.println("select UPDATE_QTY from inventory_transaction where tag_id='"
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
+		+ "' and code = '" + code + "'");
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='"
-				+ preAdviceId + "' and code = '" + code + "'");
+
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
+				+ "' or pallet_id='" + preAdviceId
+				+ "' and code = '" + code + "'");
+
 		rs.next();
 		return rs.getString(1);
 	}

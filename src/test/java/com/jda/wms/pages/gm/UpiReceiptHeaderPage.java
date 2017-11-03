@@ -28,14 +28,6 @@ public class UpiReceiptHeaderPage {
 		Thread.sleep(2000);
 
 	}
-public boolean isNoRecordFound() throws FindFailed {
-		
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
-		return true;
-		else
-			return false;
-		
-	}
 
 	public void enterPalletWithReference(String upiReference) throws InterruptedException {
 		screen.type(upiReference);
@@ -86,11 +78,22 @@ public boolean isNoRecordFound() throws FindFailed {
 		return false;
 	}
 
+
 	public boolean isEJBerrorfound() {
 		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
 			return true;
 			else
 				return false;
+	}
+	
+	
+public boolean isNoRecordFound() throws FindFailed {
+		
+		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		return true;
+		else
+			return false;
+
 	}
 }
 

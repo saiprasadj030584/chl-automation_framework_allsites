@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @check9
   Scenario: Validate receipting process without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

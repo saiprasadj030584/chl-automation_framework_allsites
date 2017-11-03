@@ -37,6 +37,7 @@ public class DbConnection {
 	}
 
 	public void disconnectAutomationDB() {
+		System.out.println("IN DISCOONECTION AUTOMATION DB");
 		try {
 			if (this.dbConnection != null && !this.dbConnection.isClosed())
 				this.dbConnection.close();

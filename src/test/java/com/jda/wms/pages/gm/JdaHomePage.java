@@ -7,7 +7,9 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 
+
 public class JdaHomePage{
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
@@ -270,10 +272,10 @@ public class JdaHomePage{
 
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		clickSearchIcon();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.type("Stock Adjustment");
 		screen.type(Key.ENTER);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
@@ -362,6 +364,7 @@ public class JdaHomePage{
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
+
 	}
 
 	public void enterTabKey() {
@@ -620,6 +623,12 @@ public class JdaHomePage{
 	public void scrollRightBig() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/ScrollRightBig.png", timeoutInSec);
 		screen.click("images/JDAHome/ScrollRightBig.png");
+		Thread.sleep(1000);
+	}
+	
+	public void scrollLeftBig() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ScrollLeftBig.png", timeoutInSec);
+		screen.click("images/JDAHome/ScrollLeftBig.png");
 		Thread.sleep(1000);
 	}
 

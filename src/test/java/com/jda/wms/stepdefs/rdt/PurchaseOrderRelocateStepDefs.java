@@ -95,6 +95,21 @@ public class PurchaseOrderRelocateStepDefs {
 			jdaFooter.pressTab();
 			purchaseOrderRelocatePage.enterUPC(upc);
 			jdaFooter.PressEnter();
+//			Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
+//			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+//			context.setFromLocation(context.getToLocation());
+//			jdaFooter.PressEnter();
+//			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+//				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+//				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+//				jdaFooter.PressEnter();
+//			}
+//			Assert.assertTrue("RelEnt page not displayed", purchaseOrderRelocatePage.isRelEntDisplayed());
+//		}
+//
+//		hooks.logoutPutty();
+			if(!(purchaseOrderRelocatePage.isNoRelocationDisplayed()))
+			{
 			Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
 			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
 			context.setFromLocation(context.getToLocation());
@@ -105,9 +120,16 @@ public class PurchaseOrderRelocateStepDefs {
 				jdaFooter.PressEnter();
 			}
 			Assert.assertTrue("RelEnt page not displayed", purchaseOrderRelocatePage.isRelEntDisplayed());
+			}
+			else
+			{
+				context.setFromLocation(context.getLocation());
+			}
 		}
+		
 
 		hooks.logoutPutty();
+
 	}
 
 	@When("^I proceed with entering the returns upc and location$")

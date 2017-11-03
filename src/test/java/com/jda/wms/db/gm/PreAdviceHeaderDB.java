@@ -94,6 +94,17 @@ public class PreAdviceHeaderDB {
 				"update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+	
+	public void updateAdviceNumber(String adviceNumber,String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_header set USER_DEF_TYPE_1= '" + adviceNumber + "' where pre_advice_id = '" + preAdviceId + "'");
+		context.getConnection().commit();
+	}
 
 	public String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -176,6 +187,7 @@ public class PreAdviceHeaderDB {
 				+ "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+
 	public Object getPreAdviceIdForPO(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

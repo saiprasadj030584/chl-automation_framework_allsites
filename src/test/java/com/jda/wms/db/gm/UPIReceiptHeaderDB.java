@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.jboss.netty.util.internal.SystemPropertyUtil;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -27,6 +29,7 @@ public class UPIReceiptHeaderDB {
 
 		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
 		return rs.getString(1);

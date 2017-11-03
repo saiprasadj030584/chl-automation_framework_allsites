@@ -131,8 +131,8 @@ public class DockSchedulerPage {
 
 	public void changeBookingTime() throws FindFailed, InterruptedException {
 
-		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
-		screen.click("images/DockScheduler/Schedule/In.png");
+//		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+//		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
 		Thread.sleep(2000);
 		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
@@ -143,11 +143,11 @@ public class DockSchedulerPage {
 
 	public void changeBookingTimeToDifferentDate() throws FindFailed, InterruptedException {
 
-		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
-		screen.click("images/DockScheduler/Schedule/In.png");
+//		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+//		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
 		Thread.sleep(2000);
-		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+		//screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
 		screen.click("images/DockScheduler/Schedule/MoveBooking.png");
 
 		Thread.sleep(3000);
@@ -168,8 +168,8 @@ public class DockSchedulerPage {
 
 	public void changeBookingStatus(String bookingStatus) throws FindFailed, InterruptedException {
 
-		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
-		screen.click("images/DockScheduler/Schedule/In.png");
+//		screen.wait("images/DockScheduler/Schedule/In.png", timeoutInSec);
+//		screen.click("images/DockScheduler/Schedule/In.png");
 		screen.rightClick();
 
 		if (bookingStatus.equalsIgnoreCase("Complete")) {
