@@ -13,16 +13,13 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-public class OrderHeaderPage extends PageObject {
+public class OrderHeaderPage{
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private WebDriver webDriver;
 
 	@Inject
-	public OrderHeaderPage(WebDriver webDriver) {
-		super(webDriver);
-		this.webDriver = webDriver;
+	public OrderHeaderPage() {
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {

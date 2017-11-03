@@ -25,20 +25,18 @@ public class DataSetupRunner {
 	private Database jdaJdatabase;
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
-	private final WebDriver webDriver;
 	
 	
 
 	@Inject
 	public DataSetupRunner(Context context, DbConnection dataBase, Database jdaJdatabase,
-			JdaLoginPage jdaLoginPage,GetTcData gettcdata,DataLoadFromUI dataLoadFromUI,WebDriver webDriver) {
+			JdaLoginPage jdaLoginPage,GetTcData gettcdata,DataLoadFromUI dataLoadFromUI) {
 		this.context = context;
 		this.npsDataBase = dataBase;
 		this.gettcdata = gettcdata;
 		this.jdaJdatabase = jdaJdatabase;
 		this.dataLoadFromUI = dataLoadFromUI;
 		this.jdaLoginPage=jdaLoginPage;
-		this.webDriver = webDriver;
 		
 	}
 

@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@putty_check"})
+				+ "cucumber.json" }, tags = { "@done_check"})
 
 
 public class AllTest {

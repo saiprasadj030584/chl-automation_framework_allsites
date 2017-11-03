@@ -20,7 +20,7 @@ public class WebDriverProvider implements Provider<WebDriver> {
 		this.configuration = configuration;
 	}
 
-	private WebDriver getWebDriver() {
+	private WebDriver getWebDriver() {/*
 		String browserName = configuration.getStringProperty("browser-name");
 		switch (browserName) {
 
@@ -45,7 +45,8 @@ public class WebDriverProvider implements Provider<WebDriver> {
 		default:
 			System.setProperty("webdriver.chrome.driver", Constants.USER_DIR + "/bin/chromedriver/chromedriver.exe");
 			return new ChromeDriver();
-		}
+		}*/
+		return new InternetExplorerDriver();
 	}
 
 	public WebDriver get() {
