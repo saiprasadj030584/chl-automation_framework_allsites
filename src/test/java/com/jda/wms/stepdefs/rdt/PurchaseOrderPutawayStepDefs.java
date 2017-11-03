@@ -91,6 +91,7 @@ public class PurchaseOrderPutawayStepDefs {
 			i_enter_to_location(context.getToLocation());
 			jdaFooter.PressEnter();
 			 i_enter_the_check_string();
+			 jdaFooter.PressEnter();
 			if (!purchaseOrderPutawayPage.isPutEntDisplayed()) {
 				failureList.add("Putaway not completed and Home page not displayed for URN " + context.getUpiId());
 				context.setFailureList(failureList);

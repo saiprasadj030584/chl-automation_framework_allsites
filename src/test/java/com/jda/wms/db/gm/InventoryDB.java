@@ -493,7 +493,7 @@ public class InventoryDB {
 				+ "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
-				+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
+				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -532,10 +532,12 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select Location_id from inventory where sku_id = '" + skuId
+				+ "' and MOVE_DSTAMP like '" + date + "%'and receipt_id ='" + preAdviceId + "'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '" + skuId
-				+ "' and MOVE_DSTAMP like '" + date + "%'and receipt_id ='" + preAdviceId + "'");
+				+ "' and MOVE_DSTAMP like '" + date + "%'");
 		rs.next();
 		return rs.getString(1);
 	}

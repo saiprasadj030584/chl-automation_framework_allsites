@@ -183,7 +183,7 @@ public class InventoryQueryStepDefs {
 				}
 			}
 
-			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
+			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getLocation(),
 					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date, context.getPreAdviceId()),
 					failureList);
 			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
