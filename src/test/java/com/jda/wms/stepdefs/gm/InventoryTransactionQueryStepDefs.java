@@ -498,6 +498,7 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the status should be updated$")
 	public void the_status_should_be_updated() throws Throwable {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		Thread.sleep(3000);
 		Assert.assertEquals("updated inventory status are not as expected", context.getStatus(),
 				// inventoryTransactionQueryPage.getStatus());
 				inventoryTransactionDB.getlockstatus(date, context.getTagId()));

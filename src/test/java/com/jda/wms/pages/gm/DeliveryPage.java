@@ -23,7 +23,7 @@ public class DeliveryPage {
 	}
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if(screen.exists("images/DuplicateOption/ejberror.png")!= null)
 			return true;
 			else
 				return false;
