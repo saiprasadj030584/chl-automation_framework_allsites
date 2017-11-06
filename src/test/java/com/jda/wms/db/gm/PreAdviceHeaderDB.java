@@ -200,8 +200,4 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public Object getorderForOdn(String order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

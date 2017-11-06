@@ -13,8 +13,6 @@ public class DeliveryPage {
 		Thread.sleep(1000);
 	}
 	
-
-
 	public boolean isNoRecordFound() {
 		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
 			return true;

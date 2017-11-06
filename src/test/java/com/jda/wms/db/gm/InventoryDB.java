@@ -1183,6 +1183,44 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select origin_id from inventory where tag_id= '" + tagId + "' ");
 
 		rs.next();
+		return rs.getString(1); 
+	} 
+	
+	public String getDstamp(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}		
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select DSTAMP from inventory_transaction where sku_id='" + skuId + "'"
+				+ "order by dstamp desc");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getLocationAfterReceiveForHanging(String skuId, String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
+						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQtyOnHandForHanging(String skuId, String location, String tagId, String date)
+			throws SQLException, ClassNotFoundException { 
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
+						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
+						+ "%'");
+		rs.next();
 		return rs.getString(1);
 
 	}

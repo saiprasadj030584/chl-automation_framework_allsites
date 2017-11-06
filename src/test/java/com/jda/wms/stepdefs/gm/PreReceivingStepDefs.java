@@ -18,27 +18,23 @@ public class PreReceivingStepDefs {
 	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private GetTcData getTcData;
+	private Context context;
 
 	private JdaLoginPage jdaLoginPage;
 
-	private Context context;
-
 	@Inject
 	public PreReceivingStepDefs(PreAdviceHeaderStepsDefs preAdviceHeaderStepsDefs,
-
 			PreAdviceLineStepDefs preAdviceLineStepDefs, JdaLoginPage jdaLoginPage,
 			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, PreAdviceHeaderDB preAdviceHeaderDB,
-			Verification verification, GetTcData getTcData,Context context) {
+			Verification verification, GetTcData getTcData, Context context) {
 
 		this.preAdviceHeaderStepsDefs = preAdviceHeaderStepsDefs;
 		this.preAdviceLineStepDefs = preAdviceLineStepDefs;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.preAdviceHeaderDB = preAdviceHeaderDB;
 		this.getTcData = getTcData;
-
 		this.jdaLoginPage = jdaLoginPage;
 		this.context = context;
-
 	}
 
 	@Given("^the PO, UPI, ASN of type \"([^\"]*)\" details should be displayed$")
@@ -52,6 +48,7 @@ public class PreReceivingStepDefs {
 
 		preAdviceHeaderStepsDefs
 				.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type, "Released");
+
 
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		purchaseOrderReceivingStepDefs

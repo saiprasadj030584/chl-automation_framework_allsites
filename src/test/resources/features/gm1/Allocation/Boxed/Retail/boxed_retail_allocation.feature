@@ -45,7 +45,7 @@ Feature: Allocation
     Then the order should be allocated
 
   @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
-  Scenario Outline: Validate whether stock is available for allocation 
+  Scenario: Validate whether stock is available for allocation 
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory

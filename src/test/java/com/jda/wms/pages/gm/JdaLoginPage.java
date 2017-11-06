@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,6 +17,7 @@ import org.sikuli.script.Screen;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.config.Constants;
 import com.jda.wms.context.Context;
+
 
 public class JdaLoginPage {
 	WebElement webElement;
@@ -35,13 +37,11 @@ public class JdaLoginPage {
 	// }
 
 	public JdaLoginPage() {
-
 	}
 
 
 		
 	public void login() throws FindFailed, InterruptedException {
-
 
 		if (driver == null) {
 
@@ -128,6 +128,7 @@ public class JdaLoginPage {
 
 		System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
+
 	}
 
 	private void enterUsername() throws FindFailed, InterruptedException {
@@ -179,8 +180,6 @@ public class JdaLoginPage {
 			
 				Assert.fail("Login Not successful");
 			}
-			
-
 		}
 		context.setJdaLoginFlag(true);
 	}

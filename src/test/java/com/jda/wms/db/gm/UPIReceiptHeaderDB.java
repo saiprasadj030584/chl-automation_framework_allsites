@@ -128,6 +128,19 @@ public class UPIReceiptHeaderDB {
 		return isRecordExists;
 
 	}
+
+	public Object getUpiId(String status) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE STATUS = '" + status + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public Object getUpiIdForUPI(String upi) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

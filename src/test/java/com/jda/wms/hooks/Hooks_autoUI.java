@@ -47,12 +47,10 @@ public class Hooks_autoUI {
 
 	@Inject
 
-
 	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
 
 		this.context = context;
 		this.configuration = configuration;
-
 		this.jdaLoginPage = jdaLoginPage;
 	}
 
@@ -60,15 +58,16 @@ public class Hooks_autoUI {
 	public void setup(Scenario scenario) throws Exception {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
+
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		System.setProperty("SITEID", "5885");
 		System.out.println("Site ID from sys prop " + "5885");
 		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
+		context.setSiteId("5649");
+		System.out.println("Site ID from sys prop " + System.getProperty("SITEID"));
 		insertSiteID();
 		getSiteID();
-		// updateBuildNumberInRequestTable();
-		context.setSiteId(System.getProperty("SITEID"));
-		System.out.println("Site Id---->" + context.getSiteId());
+		// context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 	}
 
@@ -137,8 +136,8 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-
-
+//				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+//				scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
 				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
@@ -148,7 +147,6 @@ public class Hooks_autoUI {
 				}
 			}
 		}
-
 
 	}
 
@@ -174,8 +172,8 @@ public class Hooks_autoUI {
 			fileReadValueFromText();
 			System.out.println("Parent Id --->" + context.getParentRequestId());
 			String query = "INSERT INTO [dbo].[NPS_AUTO_UI_RUN_STATUS] ([P_REQ_ID],[TC_NAME],[EXEC_START_DATE_TIME],[STATUS])VALUES ('"
-					+ context.getParentRequestId() + "','" + testName + "','" + startTime + "','INPROGRESS')"; 
-			
+					+ context.getParentRequestId() + "','" + testName + "','" + startTime + "','INPROGRESS')";
+
 			System.out.println("Insert Query" + query);
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {

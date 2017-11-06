@@ -215,9 +215,9 @@ public class PurchaseOrderReceivingPage {
 	
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		// screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
-		// screen.click("images/Putty/Receiving/Location.png");
+		System.out.println("loc"+location);
 		screen.type(location);
+		Thread.sleep(1000);
 	}
 	
 	public void enterLoc(String location) throws InterruptedException, FindFailed {

@@ -170,11 +170,15 @@ public class PurchaseOrderPutawayStepDefs {
 	}
 
 	@When("^I proceed without entering IDT location$")
-	public void i_proceed_without_entering_IDT_location() throws InterruptedException, FindFailed {
-		// i_enter_pallet_id_in_putaway(context.getTagId());
+	public void i_proceed_without_entering_IDT_location() throws InterruptedException, FindFailed, ClassNotFoundException, SQLException {
+		String dstamp=inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		context.setTransactionTime(transactionTime);
+		context.setTagId(inventoryTransactionDB.getTagIdForSpecificTime(context.getSkuId(), "Receipt",
+				context.getTransactionTime()));
+		System.out.println("tag id" + context.getTagId());
+		i_enter_pallet_id_in_putaway(context.getTagId());
 		ArrayList failureList1 = new ArrayList();
-		i_enter_pallet_id_in_putaway("3884");
-
 		jdaFooter.PressEnter();
 		jdaFooter.pressTab();
 		for (int t = 0; t < 6; t++) {
@@ -185,19 +189,20 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		jdaFooter.PressEnter();
 
-		i_enter_urn_id_in_putaway();
-		if (null == context.getLockCode()) {
-			the_tag_details_for_putaway_should_be_displayed();
-			jdaFooter.PressEnter();
-			if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
-				failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
-						+ context.getUpiId());
-			}
-		}
-		jdaFooter.PressEnter();
-		purchaseOrderPutawayPage.navigateToBackScreen();
-
-		context.setFailureList(failureList1);
+		
+//		if (null == context.getLockCode()) {
+//			i_enter_urn_id_in_putaway();
+//			the_tag_details_for_putaway_should_be_displayed();
+//			jdaFooter.PressEnter();
+//			if (!purchaseOrderPutawayPage.isLocationErrorDisplayed()) {
+//				failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+//						+ context.getUpiId());
+//			}
+//		}
+//		jdaFooter.PressEnter();
+//		purchaseOrderPutawayPage.navigateToBackScreen();
+//
+//		context.setFailureList(failureList1);
 
 	}
 
@@ -434,7 +439,9 @@ public class PurchaseOrderPutawayStepDefs {
 	}
 
 	@When("^I proceed without entering IDT quantity$")
-	public void i_proceed_without_entering_IDT_quantity() throws InterruptedException, FindFailed {
+	public void i_proceed_without_entering_IDT_quantity() throws InterruptedException, FindFailed, ClassNotFoundException, SQLException {
+		context.setTagId(inventoryTransactionDB.getTagIdForSpecificTime(context.getSkuId(), "Receipt",
+				context.getTransactionTime()));
 		i_enter_pallet_id_in_putaway(context.getTagId());
 
 		jdaFooter.PressEnter();
@@ -718,7 +725,8 @@ public class PurchaseOrderPutawayStepDefs {
 		context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 		String quantity = String.valueOf(context.getRcvQtyDue() - 10);
 		Thread.sleep(2000);
-
+		context.setTagId(inventoryTransactionDB.getTagIdForSpecificTime(context.getSkuId(), "Receipt",
+				context.getTransactionTime()));
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
 		jdaFooter.PressEnter();
 		for (int j = 0; j < 11; j++) {
@@ -788,6 +796,8 @@ public class PurchaseOrderPutawayStepDefs {
 	@When("^I proceed by overriding the location  \"([^\"]*)\" for IDT$")
 	public void i_proceed_by_overriding_the_location_for_IDT(String location) throws Throwable {
 		upiMap = context.getUPIMap();
+		context.setTagId(inventoryTransactionDB.getTagIdForSpecificTime(context.getSkuId(), "Receipt",
+				context.getTransactionTime()));
 		purchaseOrderPutawayPage.enterURNID(context.getTagId());
 		jdaFooter.PressEnter();
 		puttyFunctionsPage.pressTab();

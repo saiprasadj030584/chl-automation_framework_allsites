@@ -22,7 +22,6 @@ public class Context {
 	private int qtyOnHandBfrAdjustment;
 	private int caseRatio;
 	private String code;
-	private boolean jdaLoginFlag;
 	private String adjustmentType;
 	private String supplierID;
 	private String expiryDate;
@@ -39,6 +38,7 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
+	private String transactionTime;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
 	private List<String> caseRatiolist;
@@ -151,6 +151,7 @@ public class Context {
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
+	private boolean jdaLoginFlag=false;
 
 	private String origin;
 
@@ -1299,13 +1300,18 @@ public class Context {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+	public String getTransactionTime() {
+		return transactionTime;
+	}
+
+	public void setTransactionTime(String transactionTime) {
+		this.transactionTime = transactionTime;
+	}
 
 	public boolean isJdaLoginFlag() {
 		return jdaLoginFlag;
 	}
 
-
-	
 	public int getUpdatedQty() {
 		return updatedQty;
 	}
@@ -1314,10 +1320,8 @@ public class Context {
 		this.updatedQty = updatedQty;
 	}
 	
-
-	
-
 	public void setJdaLoginFlag(boolean jdaLoginFlag) {
 		this.jdaLoginFlag = jdaLoginFlag;
 	}
+
 }

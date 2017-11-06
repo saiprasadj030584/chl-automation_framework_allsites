@@ -344,6 +344,7 @@ public class JdaHomePage{
 	}
 
 	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		System.out.println("787tygjggjgfvmmbmb");
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");

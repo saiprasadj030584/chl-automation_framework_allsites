@@ -21,6 +21,7 @@ import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
+import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.utils.Utilities;
 
@@ -43,7 +44,8 @@ public class PreAdviceHeaderStepsDefs {
 	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private GetTcData getTcData;
-	
+
+	private UpiReceiptHeaderPage upiReceiptHeaderPage;
 
 	@Inject
 	public PreAdviceHeaderStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
@@ -71,22 +73,16 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(String type,
 			String status) throws Throwable {
 
-		System.out.println("ENTERED STEP2");
-
-//		String upiId = getTcData.getUpi();
+//	String upiId = getTcData.getUpi();
 //		String asnId = getTcData.getAsn();
 //		String preAdviceId = getTcData.getPo();
+//		String preAdviceId = "1110007653";
+//		String upiId = "00051453000258678675";
+//		String asnId = "0000067321";
 		
-//		String preAdviceId ="1010002245";
-//		String upiId = "00050453000258618212";
-//		String asnId ="0000003728";
-		
-		String preAdviceId =context.getPreAdviceId();
-		String upiId = context.getUpiId();
-	String asnId =context.getAsnId();
-		
-
-
+        String preAdviceId = context.getPreAdviceId();
+	    String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
@@ -402,15 +398,19 @@ public class PreAdviceHeaderStepsDefs {
 
 		context.setSiteId("5649");
 		// String preAdviceId = getTcData.getPo();
+//		String preAdviceId = "25400900903"; 
+		
+		String preAdviceId = context.getPreAdviceId();
 		String siteId = context.getSiteId();
-		String preAdviceId = "25400900903";
 
 
 //		String preAdviceId = getTcData.getPo();
 //		String siteId = context.getSiteId();
 	
 
+
 		context.setPreAdviceId(preAdviceId);
+//		String siteId ="5649";
 		context.setSKUType(type);
 		context.setSiteId(siteId);
 		context.setsupplierType("FSV");

@@ -135,6 +135,7 @@ public class PurchaseOrderReceivingStepDefs {
 		String upiId = context.getUpiId();
 	String asnId =context.getAsnId();
 
+
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
@@ -998,17 +999,18 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
+		System.out.println("enterpp");
 		String urn = null;
 		System.out.println("without lock code" + purchaseOrderReceivingPage.isPutAwayGroupExists());
 
 		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
 		if (rcvLockSplit.length != 0) {
 			if (rcvLockSplit[0].contains("QA")) {
-				urn = "QA" + Utilities.getFourDigitRandomNumber();
+				urn = "QA" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
 			} else if (rcvLockSplit[0].contains("FIREWALL")) {
-				urn = "FW" + Utilities.getFourDigitRandomNumber();
+				urn = "FW" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
 			} else if (rcvLockSplit[0].contains("REWORK")) {
-				urn = "RW" + Utilities.getFourDigitRandomNumber();
+				urn = "RW" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
 			} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
 				urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 			} else if (rcvLockSplit[0].contains("LOC")) {
@@ -1022,6 +1024,7 @@ public class PurchaseOrderReceivingStepDefs {
 		} else {
 			urn = context.getUpiId();
 			System.out.println("urn " + urn);
+
 		}
 
 		purchaseOrderReceivingPage.enterURNID(urn);
@@ -1043,22 +1046,21 @@ public class PurchaseOrderReceivingStepDefs {
 		System.out.println("with lock code");
 		String urn = null;
 
-// include this code from indira f_M1
-		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
-		if (rcvLockSplit.length != 0) {
+		String[] rcvLockSplit = purchaseOrderReceivingPage.getPallet().split("_");
 
-
-			if (rcvLockSplit[0].contains("QA")) {
-				urn = "QA" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("FIREWALL")) {
-				urn = "FWL" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("REWORK")) {
-				urn = "RW" + Utilities.getFourDigitRandomNumber();
-			}
-			// include this code from indira f_M1
+		if (rcvLockSplit[0].contains("QA")) {
+			urn = "QA" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("FIREWALL")) {
+			urn = "FW" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("REWORK")) {
+			urn = "RW" + Utilities.getFourDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
+			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("LOC")) {
+			// urn = Utilities.getSixDigitRandomNumber();
+			urn = Utilities.getSixDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
 		} else {
 			urn = context.getUpiId();
-			System.out.println("urn " + urn);
 		}
 
 		purchaseOrderReceivingPage.enterURNID(urn);
@@ -1135,9 +1137,10 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@Given("^the UPI and ASN should be in \"([^\"]*)\" status$")
 	public void the_UPI_and_ASN_should_be_in_status(String status) throws Throwable {
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(status);
@@ -1152,11 +1155,11 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-//		String upiId = "95580085370650011050230212465758";
-//		String asnId = "0000844973";
+		// String upiId = "95580085370650011050230212465758";
+		// String asnId = "0000844973";
 
-		 String upiId = context.getUpiId();
-		 String asnId = context.getAsnId();
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 
 		System.out.println("CORRECT SCENARIO");
 		context.setUpiId(upiId);
@@ -1292,6 +1295,8 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter the location$")
 	public void i_enter_the_location() throws FindFailed, InterruptedException {
+		System.out.println("jsjclklnjckhkhlcndklc");
+		System.out.println(context.getLocation());
 		purchaseOrderReceivingPage.enterLocation(context.getLocation());
 	}
 
@@ -1634,7 +1639,6 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-
 		// String preAdviceId = "PO21113712138";
 		// String upiId = "00050453005258618170";
 		// String asnId = "0006215224";
@@ -1824,8 +1828,8 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the UPI and ASN of type \"([^\"]*)\" should be received at location \"([^\"]*)\" and \"([^\"]*)\" at site$")
 	public void the_UPI_and_ASN_of_type_should_be_received_at_location_and_at_site(String type, String location,
 			String condition) throws Throwable {
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 		String siteId = context.getSiteId();
 
 		context.setUpiId(upiId);
@@ -1865,10 +1869,8 @@ public class PurchaseOrderReceivingStepDefs {
 	public void the_FSV_PO_of_type_should_be_received_at_location_and_site_id(String type, String location)
 			throws Throwable {
 
-
 		String preAdviceId = getTcData.getPo();
 		String siteId = context.getSiteId();
-
 
 		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
@@ -2103,7 +2105,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
-		context.setLocationID(location);
+		// context.setLocationID(location);
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		System.out.println("gdhgfsgh" + context.getSKUType());
@@ -2111,6 +2113,7 @@ public class PurchaseOrderReceivingStepDefs {
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_receive_the_po_with_basic_and_pre_advice_receiving();
+
 		i_should_be_directed_to_pre_advice_entry_page();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
@@ -2254,9 +2257,17 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^the PO of type \"([^\"]*)\" should be received at location \"([^\"]*)\"$")
 	public void the_po_of_type_should_be_received_at_location(String type, String location) throws Throwable {
 		i_receive_all_skus_for_the_purchase_order_at_location(type, location);
-		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
-		inventoryTransactionQueryStepDefs
-				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+
+		if (type.contains("Hanging")) {
+			inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received_of_hanging_type();
+			inventoryTransactionQueryStepDefs
+					.the_goods_receipt_should_be_generated_for_hanging_received_stock_in_inventory_transaction();
+		} else {
+			inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+			inventoryTransactionQueryStepDefs
+					.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		}
+
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
 

@@ -12,7 +12,9 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
 
+
 import com.jda.wms.db.gm.OrderHeaderDB;
+
 
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.PreAdviceLineDB;
@@ -22,7 +24,9 @@ import com.jda.wms.pages.gm.DeliveryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 
+
 import com.jda.wms.pages.gm.OrderHeaderPage;
+
 
 import com.jda.wms.pages.gm.PreAdviceHeaderPage;
 import com.jda.wms.pages.gm.UpiReceiptHeaderPage;
@@ -42,16 +46,20 @@ public class DataLoadFromUI {
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private Context context;
 
+
 	private OrderHeaderPage orderHeaderPage;
 	private OrderHeaderDB orderHeaderDB;
+
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	@Inject
 	public DataLoadFromUI(JdaHomePage jdaHomePage,JDAFooter jdaFooter,DeliveryPage deliveryPage,
 
+
 			DeliveryDB deliveryDB,Context context,UpiReceiptHeaderPage upiReceiptHeaderPage,
 			PreAdviceHeaderDB preAdviceHeaderDB,PreAdviceHeaderPage  preAdviceHeaderPage,UPIReceiptHeaderDB  uPIReceiptHeaderDB) {
+
 
 
 		this.jdaHomePage=jdaHomePage;
@@ -64,8 +72,10 @@ public class DataLoadFromUI {
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
 		this.uPIReceiptHeaderDB =uPIReceiptHeaderDB;
 
+
 		this.orderHeaderPage = orderHeaderPage;
 		this.orderHeaderDB = orderHeaderDB;
+
 
 	}
 
@@ -78,9 +88,11 @@ public class DataLoadFromUI {
 			Assert.assertTrue("No ASN data present in UI ", false);
 		}
 
+
 		if(deliveryPage.isEJBerrorfound()){
 			Assert.assertTrue("EJB error found", false);
 		}
+
 
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -96,7 +108,9 @@ public class DataLoadFromUI {
 		
 		context.setAsnId(asn);
 
+
 		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB. getAsnIdForASN(context.getAsnId()));
+
 
 	}
 
@@ -110,9 +124,11 @@ public class DataLoadFromUI {
 			Assert.assertTrue("No upi data present in UI ", false);
 		}
 
+
 		if(upiReceiptHeaderPage.isEJBerrorfound()){
 			Assert.assertTrue("EJB error found", false);
 		}
+
 
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -143,6 +159,7 @@ public class DataLoadFromUI {
 		preAdviceHeaderPage.enterPreAdviceID(poReference);
 		jdaFooter.clickExecuteButton();
 
+
 		if(preAdviceHeaderPage.isNoRecordFound()){
 			Assert.assertTrue("No po data present in UI ", false);
 		}
@@ -153,6 +170,7 @@ public class DataLoadFromUI {
 		if(deliveryPage.isNoRecordFound()){
 			Assert.assertTrue("No po data present in UI ", false);
 		}
+
 
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -167,17 +185,20 @@ public class DataLoadFromUI {
 		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
 
+
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
 
+
 		
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 	}
 	
+
 
 
 	public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
@@ -213,6 +234,7 @@ public class DataLoadFromUI {
 
 
 	
+
 	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
@@ -232,8 +254,7 @@ public class DataLoadFromUI {
 				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
 	}
 
-	}
 		
 	
-
+}
 

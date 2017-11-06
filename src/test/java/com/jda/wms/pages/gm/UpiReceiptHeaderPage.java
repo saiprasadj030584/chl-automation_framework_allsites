@@ -78,22 +78,19 @@ public class UpiReceiptHeaderPage {
 		return false;
 	}
 
-
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
-			else
-				return false;
+		else
+			return false;
 	}
-	
-	
-public boolean isNoRecordFound() throws FindFailed {
-		
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
-		return true;
+
+	public boolean isNoRecordFound() throws FindFailed {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
 		else
 			return false;
 
 	}
-}
 
+}

@@ -95,6 +95,7 @@ public class Hooks {
 
 		// dataSetupRunner.getParentRequestIdFromDB();
 		// dataSetupRunner.getJdaSiteIdFromDB();
+
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 			
@@ -142,11 +143,12 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
-		
+
+		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
 
 	// @After
-	public void killBrowser(Scenario scenario) throws IOException {
+	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
 		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq

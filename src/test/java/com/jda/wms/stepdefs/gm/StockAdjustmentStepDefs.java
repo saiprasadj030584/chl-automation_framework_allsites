@@ -106,14 +106,15 @@ public class StockAdjustmentStepDefs {
 	public void I_choose_the_reason_code_as(String reasonCode) throws Throwable {
 		String reasonCodeToChoose = null;
 		switch (reasonCode) {
-		case "DIRTY":
-			reasonCodeToChoose = "Dirty";
+
+		case "Dirty":
+			reasonCodeToChoose = "DIRTY";
 			break;
 		case "DMIT":
-			reasonCodeToChoose = "Damaged in Transit - for the 'damaged pallet'";
+			reasonCodeToChoose = "DMIT";
 			break;
 		case "EXPD":
-			reasonCodeToChoose = "Expired";
+			reasonCodeToChoose = "EXPD";
 			break;
 		case "FOUND":
 			reasonCodeToChoose = "FOUND";
@@ -127,10 +128,12 @@ public class StockAdjustmentStepDefs {
 		case "SAMPLES":
 			reasonCodeToChoose = "SAMPLES";
 			break;
-		case "SC":
+		case "Stock Count":
 			reasonCodeToChoose = "Stock Count";
 			break;
-
+		case "Receiving Correction":
+			reasonCodeToChoose = "Receiving Correction";
+			break;
 		case "RMS - Unexpected receipt with movement label":
 			reasonCodeToChoose = "RMS - Unexpected receipt with movement label";
 			break;
@@ -149,12 +152,13 @@ public class StockAdjustmentStepDefs {
 		jDAFooter.clickDoneButton();
 		jDAFooter.PressEnter();
 		jDAFooter.PressEnter();
-		context.setReasonCode(reasonCode);
-		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		context.setReasonCode(reasonCodeToChoose);
+		//String date = DateUtils.getCurrentSystemDateInDBFormat();
 		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
-		
-		context.setTagId(inventoryTransactionDB.getTagIDWithQty(String.valueOf(context.getQtyOnHand()), "Adjustment",context.getSkuId(), date));
-		System.out.println(context.getTagId());
+		if (reasonCodeToChoose.equalsIgnoreCase("Stock Count")){
+			context.setReasonCode("SC");
+		}
 	}
 
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")

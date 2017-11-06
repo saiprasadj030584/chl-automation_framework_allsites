@@ -9,19 +9,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Assert;
 
-import org.openqa.selenium.WebDriver;
-
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
-
-
 import com.jda.wms.pages.gm.JdaLoginPage;
-import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class DataSetupRunner {
@@ -29,9 +21,11 @@ public class DataSetupRunner {
 	public static DbConnection npsDataBase;
 	private GetTcData gettcdata;
 	private Database jdaJdatabase;
-
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
+	
+	
+
 	
 	
 
@@ -44,8 +38,10 @@ public class DataSetupRunner {
 		this.gettcdata = gettcdata;
 		this.jdaJdatabase = jdaJdatabase;
 
+
 		this.jdaLoginPage = jdaLoginPage;
 		this.dataLoadFromUI = dataLoadFromUI;
+
 
 	}
 
@@ -104,6 +100,7 @@ public class DataSetupRunner {
 			}
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
+
 		System.out.println(context.getSiteId());
 		System.out.println("unique tag"+ context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
@@ -117,12 +114,14 @@ public class DataSetupRunner {
 		createTestDataFromUI();
 		
 
+
 	}
 
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
 		if (context.getUniqueTag().contains("direct")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 
 				// Generate Random New values to load
 				String asn = newAsnId();
@@ -159,12 +158,14 @@ public class DataSetupRunner {
 				// validateUpiDataSetup(upi);
 				npsDataBase.disconnectAutomationDB();
 
+
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("fsv")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 
 				// Generate Random New values to load
 				String po = newPoId();
@@ -180,6 +181,7 @@ public class DataSetupRunner {
 				validatePoDataSetup(po);
 				gettcdata.setPo(po);
 
+
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -187,6 +189,7 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 
 				// Generate Random New values to load
 				String asn = newAsnId();
@@ -207,6 +210,7 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateUPI(upiReference, upi);
 				// dataLoadFromUI.killBrowser();
 
+
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -218,6 +222,7 @@ public class DataSetupRunner {
 				&& context.getUniqueTag().contains("non")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 
 				// Generate Random New values to load
 				String asn = newAsnId();
@@ -233,6 +238,7 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateUPI(upiReference, upi);
 				// dataLoadFromUI.killBrowser();
 
+
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
@@ -243,6 +249,7 @@ public class DataSetupRunner {
 		} else if (context.getUniqueTag().contains("returns") && !context.getUniqueTag().contains("rms")) {
 			try {
 				npsDataBase.connectAutomationDB();
+
 
 				// Generate Random New values to load
 				String asn = newAsnId();
@@ -260,6 +267,7 @@ public class DataSetupRunner {
 //				String asnReference = gettcdata.getAsnFromTestData();
 				validateAsnDataSetup(asn);
 
+
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
 				npsDataBase.disconnectAutomationDB();
@@ -270,9 +278,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -285,9 +295,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -300,9 +312,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -315,9 +329,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				// Generate Random New values to load
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -330,9 +346,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				//Generate Random New values to load
 				String odn = newOdnId();
 				//Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -345,9 +363,11 @@ public class DataSetupRunner {
 			try {
 				npsDataBase.connectAutomationDB();
 
+
 				//Generate Random New values to load
 				String odn = newOdnId();
 				//Fetching Refernce Test Data from Test data table
+
 
 				String odnReference = gettcdata.getOdnFromTestData();
 				validateOdnDataSetup(odn);
@@ -388,11 +408,13 @@ public class DataSetupRunner {
 			jdaJdatabase.connect();
 		}
 
+
 		String supplierId = null;
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
 		while (rs.next()) {
+
 			supplierId = rs.getString("SUPPLIER_ID");
 		}
 		return supplierId;
@@ -481,7 +503,7 @@ public class DataSetupRunner {
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN' ; ");
+							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN'; ");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
 				UniqueTagInRunStatus = true;
@@ -1008,8 +1030,8 @@ public class DataSetupRunner {
 			interfaceTable = presenceMap.get("interfaceTable");
 		} while (mainTable || interfaceTable);
 		return tempValue;
-	}
-
+	} 
+	
 
 	public String newPalletdId_directPO() throws ClassNotFoundException, SQLException, InterruptedException {
 		long value1, value2, value3, max = 999999999;
@@ -1236,6 +1258,7 @@ public class DataSetupRunner {
 					System.err.println("Data Not inserted till now - Slow Insertion - Failing : " + upi);
 					Assert.assertFalse("Data Not inserted till now - Slow Insertion - Failing : " + upi, count == 31);
 					// break;
+
 				}
 			} while (!(mainTable));
 			if (count < 30) {
@@ -1426,31 +1449,9 @@ public class DataSetupRunner {
 		return presenceMap;
 	}
 	
-//	public String newPalletdId_directPO() throws ClassNotFoundException, SQLException, InterruptedException {
-//		long value1, value2, value3, max = 999999999;
-//		boolean mainTable = true, interfaceTable = true;
-//		String tempValue;
-//		if (context.getConnection() == null) {
-//			jdaJdatabase.connect();
-//		}
-//		do {
-//			value1 = ThreadLocalRandom.current().nextLong(100000000, max);
-//			System.out.println("value 1 "+value1);
-//			value2 = ThreadLocalRandom.current().nextLong(100000000, max);
-//			System.out.println("value 2 "+value2);
-////			value3 = ThreadLocalRandom.current().nextLong(100000000, max);
-////			System.out.println("value 3 "+value3);
-//			int tempInt = ThreadLocalRandom.current().nextInt(10, 99);
-////			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
-////					+ String.valueOf(tempInt);
-//			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(tempInt);
-//			System.out.println("temp value "+tempValue);
-//			HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(tempValue);
-//			mainTable = presenceMap.get("mainTable");
-//			interfaceTable = presenceMap.get("interfaceTable");
-//		} while (mainTable || interfaceTable);
-//		return tempValue;
-//	}
+
+
+
 
 
 	public void insertTempTestdata() {
@@ -1566,3 +1567,4 @@ public class DataSetupRunner {
 			}
 		}
 }
+
