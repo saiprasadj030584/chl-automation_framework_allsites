@@ -1,4 +1,4 @@
-@inventory_update
+@inventory_update_boxed
 Feature: Boxed - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
