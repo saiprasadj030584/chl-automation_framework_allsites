@@ -4,7 +4,7 @@ Feature: Stock adjustments
   I want to adjust the stock in inventory
 
   @stock_adjustment @returns @boxed @complete @ds @boxed_stock_adjustment_returns_verify_reason_code_available_for_store_has_sent_greater_quantity_than_the_expected_volume_for_a_product_within_the_urrn_and_has_a_movement_label_over_receipt @stock_adj_check
-  Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
+  Scenario Outline: Verify reason code available for "Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label."
     Given the UPI and ASN should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>" and movement label enabled
     When I have logged in as warehouse user in JDA dispatcher GM application
@@ -22,7 +22,7 @@ Feature: Stock adjustments
       | Location | Condition | Reason Code                            |
       | REC003   | N         | RMS - Over receipt with movement label |
 
-  @stock_adjustment @returns @boxed @complete @ds @boxed_stock_adjustment_returns_verify_reason_code_available_for_store_has_sent_greater_quantity_than_the_expected_volume_for_a_product_within_the_urrn_and_does_not_have_a_movement_label_over_receipt @stock_adj_check
+  @stock_adjustment1 @returns @boxed @complete @ds @boxed_stock_adjustment_returns_verify_reason_code_available_for_store_has_sent_greater_quantity_than_the_expected_volume_for_a_product_within_the_urrn_and_does_not_have_a_movement_label_over_receipt @stock_adj_check
   Scenario Outline: Verify reason code available for 'Store has sent greater quantity than the expected volume for a product within the URRN and has a movement label.'
     Given the UPI and ASN should be in "Released" status for adjustment
     And I perform "Over Receiving" for all skus of the returns order for stock adjustment at location "<Location>" with perfect condition "<Condition>"

@@ -104,6 +104,7 @@ public class DataSetupRunner {
 			}
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
+		System.out.println(context.getSiteId());
 		System.out.println("unique tag"+ context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		// context.setUniqueTagInRunStatus(validateUniqueTagInRunStatus());
@@ -248,8 +249,15 @@ public class DataSetupRunner {
 				String upi = newPalletdId();
 				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
-				validateUpiDataSetup(upi);
+
 				String asnReference = gettcdata.getAsnFromTestData();
+				// Call JDA Login
+				 jdaLoginPage.login();
+				dataLoadFromUI.duplicateASN(asnReference, asn);
+				validateAsnDataSetup(asn);
+				dataLoadFromUI.duplicateUPI(upiReference, upi);
+				validateUpiDataSetup(upi);
+//				String asnReference = gettcdata.getAsnFromTestData();
 				validateAsnDataSetup(asn);
 
 				gettcdata.setAsnId(asn);

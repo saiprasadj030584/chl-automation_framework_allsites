@@ -1152,11 +1152,11 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-		String upiId = "95580085370650011050230212465758";
-		String asnId = "0000844973";
+//		String upiId = "95580085370650011050230212465758";
+//		String asnId = "0000844973";
 
-		// String upiId = context.getUpiId();
-		// String asnId = context.getAsnId();
+		 String upiId = context.getUpiId();
+		 String asnId = context.getAsnId();
 
 		System.out.println("CORRECT SCENARIO");
 		context.setUpiId(upiId);

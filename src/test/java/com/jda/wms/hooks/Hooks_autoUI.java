@@ -61,13 +61,14 @@ public class Hooks_autoUI {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
-		System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop " + System.getProperty("SITEID"));
+		System.setProperty("SITEID", "5885");
+		System.out.println("Site ID from sys prop " + "5885");
 		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
 		insertSiteID();
 		getSiteID();
 		// updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
+		System.out.println("Site Id---->" + context.getSiteId());
 		insertDetails(scenario.getName());
 	}
 
@@ -97,6 +98,7 @@ public class Hooks_autoUI {
 
 			while (rs.next()) {
 				context.setSiteId(rs.getString("SITE_ID"));
+				System.out.println("" + context.getSiteId());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,7 +174,9 @@ public class Hooks_autoUI {
 			fileReadValueFromText();
 			System.out.println("Parent Id --->" + context.getParentRequestId());
 			String query = "INSERT INTO [dbo].[NPS_AUTO_UI_RUN_STATUS] ([P_REQ_ID],[TC_NAME],[EXEC_START_DATE_TIME],[STATUS])VALUES ('"
-					+ context.getParentRequestId() + "','" + testName + "','" + startTime + "','INPROGRESS')";
+					+ context.getParentRequestId() + "','" + testName + "','" + startTime + "','INPROGRESS')"; 
+			
+			System.out.println("Insert Query" + query);
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {
 			exception.printStackTrace();
