@@ -5,7 +5,7 @@ Feature: Purchase order receiving
   So that I can putaway the purchase order
 
 
-  @hanging @inbound_receiving @direct_po @hanging_inbound_receiving_direct_po_over_receiving @complete @ds @group_1
+  @hanging @inbound_receiving @direct_po @hanging_inbound_receiving_direct_po_over_receiving @complete @ds @group_0
 
   Scenario: Over receiving
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details

@@ -509,6 +509,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void the_expiry_date_should_be_updated() throws Throwable {
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		Thread.sleep(1000);
 		Assert.assertEquals("updated inventory Expiry date are not as expected", context.getFutureExpiryDate(),
 				// inventoryTransactionQueryPage.getExpiryDate());
 				inventoryTransactionDB.getExpiryDate(date, context.getTagId()));

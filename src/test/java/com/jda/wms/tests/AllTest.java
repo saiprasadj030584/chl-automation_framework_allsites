@@ -17,7 +17,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@jenkins_analysis1" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_stock_adjustment_inventory_update_update_expiry_date" })
 
 public class AllTest {
 }

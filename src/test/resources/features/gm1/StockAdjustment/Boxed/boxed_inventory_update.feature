@@ -35,10 +35,10 @@ Feature: Boxed - Inventory update
       | LockStatus | UpdateStatus | Code           |
       | UnLocked   | Locked       | Inventory Lock |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds 
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds @group_1
   Scenario: Update Expiry date
     #Given I have tag in inventory with expiry "Y" status
-    Given I have tag in inventory with expiry "Y" status for "Boxed"
+    Given I have tag in inventory with expiry "Y" status for "Boxed" and siteId "5649"
     When I navigate to inventory update page
     And I select the update type as "Expiry Date Update"
     And I search the inventory for the tag
