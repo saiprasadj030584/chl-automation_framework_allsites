@@ -1,5 +1,8 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Assert;
 
 import com.google.inject.Inject;
@@ -60,5 +63,37 @@ public class MoveTaskStepDefs {
 	public void the_list_Id_should_be_generated() throws Throwable {
 		moveTaskPage.getListId();
 	}
+	
+	@Then("^the orders should get consolidated$")
+	public void the_orders_should_get_consolidated() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> listId=new ArrayList<String>();
+		String consolidatedListId="";
+		for (int k = 0; k < context.getOrderList().size(); k++) {
+			context.setOrderId(context.getOrderList().get(k));
+		listId.add(moveTaskDB.getConsolidatedListID(context.getConsignmentID(),context.getOrderId()));
+		}
+		
+		if(listId!=null)
+		{
+		consolidatedListId=listId.get(0);
+		}
+		for(int j=0;j<listId.size();j++)
+		{
+			if(!(listId.get(j).equalsIgnoreCase(consolidatedListId)))
+			{
+				verification.verifyData("List ID mismatch" + listId.get(j),consolidatedListId,
+						listId.get(j),
+						failureList);
+				
+			}
+		}
+		Assert.assertTrue(
+				"Move task management is not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+			}
+		 
+
+
 
 }

@@ -999,4 +999,15 @@ System.out.println("select inventory.Location_id from inventory inner join sku o
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getLockStatus (String locationId,String sku) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+System.out.println("select lock_status from inventory where location_id='" + locationId + "' and sku_id='"+sku+"'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where location_id='" + locationId + "' and sku_id='"+sku+"'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

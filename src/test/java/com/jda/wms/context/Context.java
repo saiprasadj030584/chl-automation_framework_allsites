@@ -152,7 +152,45 @@ public class Context {
 	private static String childStartTime;
 	private int updatedQty;
 	private boolean jdaLoginFlag=false;
+	private boolean vehicleLoadRequired;
+	private String orderId1;
+	
+	
+	public String getOrderId1() {
+		return orderId1;
+	}
 
+	public void setOrderId1(String orderId1) {
+		this.orderId1 = orderId1;
+	}
+
+	public boolean isVehicleLoadRequired() {
+		return vehicleLoadRequired;
+	}
+
+	public void setVehicleLoadRequired(boolean vehicleLoadRequired) {
+		this.vehicleLoadRequired = vehicleLoadRequired;
+	}
+
+	private ArrayList<String> orderList;
+	private static String testData;
+
+
+	public static String getTestData() {
+		return testData;
+	}
+
+	public static void setTestData(String testData) {
+		Context.testData = testData;
+	}
+
+	public ArrayList<String> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(ArrayList<String> orderList) {
+		this.orderList = orderList;
+	}
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;

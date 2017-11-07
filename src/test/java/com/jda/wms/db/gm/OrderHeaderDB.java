@@ -336,4 +336,41 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+	}
+	
+	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
+			rs.next();
+			return rs.getString(1);
+		
+	
+
+	}
+	
+	public Object getOrderIdForOdn(String order) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
+		rs.next();
+		return rs.getString(1);
+	}
+
+
 }

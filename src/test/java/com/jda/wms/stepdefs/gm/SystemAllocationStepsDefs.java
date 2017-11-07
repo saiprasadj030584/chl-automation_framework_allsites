@@ -1,7 +1,10 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -41,7 +44,7 @@ public class SystemAllocationStepsDefs {
 	private final PreAdviceLineDB preAdviceLineDB;
 	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
-	private OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs;
+
 	private JDALoginStepDefs jDALoginStepDefs;
 	private SystemAllocationPage systemAllocationPage;
 	private OrderHeaderDB orderHeaderDB;
@@ -52,7 +55,7 @@ public class SystemAllocationStepsDefs {
 			JDAHomeStepDefs jdaHomeStepDefs, Context context, PreAdviceHeaderDB preAdviceHeaderDB,
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
-			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage, OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs,
+			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage,
 			JDALoginStepDefs jDALoginStepDefs, SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB,
 			OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
@@ -66,7 +69,7 @@ public class SystemAllocationStepsDefs {
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.jdaHomePage = jdaHomePage;
-		this.orderHeaderMaintenanceStepsDefs = orderHeaderMaintenanceStepsDefs;
+		
 		this.jDALoginStepDefs = jDALoginStepDefs;
 		this.systemAllocationPage = systemAllocationPage;
 		this.orderHeaderDB = orderHeaderDB;
@@ -153,4 +156,97 @@ public class SystemAllocationStepsDefs {
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();
 	}
+	
+	@Given("^I allocate the stocks using consignment in system allocation page$")
+	public void i_allocate_the_stocks_using_consignment_in_system_allocation_page() throws Throwable {
+		DateFormat sdf = new SimpleDateFormat(
+			    "HH:mm:ss");
+	String minimumTime="";
+	Date first=new Date();
+	ArrayList failureList = new ArrayList();
+	
+
+	for (int k = 0; k < context.getOrderList().size(); k++) {
+		context.setOrderId(context.getOrderList().get(k));
+	
+		if(k==0)
+		{
+			minimumTime=orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19);
+			first = sdf.parse(minimumTime);
+			
+		}
+	System.out.println(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19));
+	if(!(first.before(sdf.parse(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19)))))
+			{
+		minimumTime=orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19);
+		first=sdf.parse(minimumTime);
+			}
+	}
+	
+	
+
+
+	//In UI
+	
+	jdaHomePage.navigateToSystemAllocationPage();
+	Thread.sleep(6000);
+
+jdaFooter.clickNextButton();
+//systemAllocationPage.enterOrderDate("0");
+systemAllocationPage.enterOrderTime(">="+minimumTime);
+systemAllocationPage.enterConsignmentID(context.getConsignmentID());
+jdaFooter.clickNextButton();
+systemAllocationPage.selectAllRecords();
+jdaFooter.clickNextButton();
+jdaFooter.clickDoneButton();
+
+	}
+
+	
+	@Given("^the multiple stocks should get allocated")
+	public void the_multiple_stocks_should_get_allocated() throws Throwable {
+		
+		
+		ArrayList failureList = new ArrayList();
+		for (int k = 0; k < context.getOrderList().size(); k++) {
+			context.setOrderId(context.getOrderList().get(k));
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+		jdaFooter.clickQueryButton();
+		systemAllocationPage.enterOrderID();
+		jdaFooter.clickExecuteButton();
+		jdaHomePage.navigateToOrderLineMaintenance();
+		jdaFooter.clickQueryButton();
+		systemAllocationPage.enterOrderID();
+		jdaFooter.clickExecuteButton();
+		
+		
+			
+			
+			
+			
+			ArrayList<String> skuFromOrder = new ArrayList<String>();
+			skuFromOrder = orderLineDB.getskuList(context.getOrderId());
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			context.setRcvQtyDue(
+					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
+
+			
+			System.out.println(!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+					.equals(String.valueOf(context.getRcvQtyDue()))));
+			
+			System.out.println(String.valueOf(context.getRcvQtyDue()));
+			System.out.println((orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))));
+			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+					.equals(String.valueOf(context.getRcvQtyDue())))) {
+				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
+				// context.setFailureList(failureList);
+			}
+		}
+		}
+		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 }

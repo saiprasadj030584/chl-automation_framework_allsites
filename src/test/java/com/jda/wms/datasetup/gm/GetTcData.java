@@ -413,8 +413,23 @@ public class GetTcData {
 	}
 	
 	public String getOdnFromTestData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		ResultSet resultSet = null;
+		String value = null;
+		try {
+			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+			resultSet = dataBase.dbConnection.createStatement()
+					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 
+			while (resultSet.next()) {
+				value = resultSet.getString("STO_ID");
+			}
+			dataBase.disconnectAutomationDB();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return value;
+	}
 }

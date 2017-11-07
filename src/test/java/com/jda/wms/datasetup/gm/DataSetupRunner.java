@@ -108,6 +108,7 @@ public class DataSetupRunner {
 	}
 
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
+		System.out.println(context.getUniqueTag());
 		if (context.getUniqueTag().contains("direct")) {
 			try {
 				npsDataBase.connectAutomationDB();
@@ -226,31 +227,109 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("retail")) {
+			if(context.getUniqueTag().contains("consolidate"))
+			{
+				try {
+					npsDataBase.connectAutomationDB();
+
+					// Generate Random New values to load
+					String odn = newOdnId();
+					String odn1 = newOdnId();
+					// Fetching Refernce Test Data from Test data table
+					String odnReference = gettcdata.getOdnFromTestData();
+					// Call JDA Login
+					jdaLoginPage.login();
+					dataLoadFromUI.duplicateOdn(odnReference, odn);
+					context.setOrderId(context.getOrderId());
+					dataLoadFromUI.duplicateOdn(odnReference, odn1);
+					context.setOrderId1(context.getOrderId());
+					validateOdnDataSetup(odn);
+					validateOdnDataSetup(odn1);
+					gettcdata.setOdn(odn+","+odn1);
+					context.setTestData("STO:" + odn);
+
+					npsDataBase.disconnectAutomationDB();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+				
+			}
+			else
+			{
 			try {
 				npsDataBase.connectAutomationDB();
-				//Generate Random New values to load
+
+				// Generate Random New values to load
 				String odn = newOdnId();
-				//Fetching Refernce Test Data from Test data table
+				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				// Call JDA Login
+				jdaLoginPage.login();
+				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				context.setTestData("STO:" + odn);
+
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
+			}
 			}
 		} else if (context.getUniqueTag().contains("idt") && context.getUniqueTag().contains("order")) {
+			if(context.getUniqueTag().contains("consolidate"))
+			{
+				try {
+					npsDataBase.connectAutomationDB();
+
+					// Generate Random New values to load
+					String odn = newOdnId();
+					String odn1 = newOdnId();
+					// Fetching Refernce Test Data from Test data table
+					String odnReference = gettcdata.getOdnFromTestData();
+					// Call JDA Login
+					jdaLoginPage.login();
+					dataLoadFromUI.duplicateOdn(odnReference, odn);
+					context.setOrderId(context.getOrderId());
+					dataLoadFromUI.duplicateOdn(odnReference, odn1);
+					context.setOrderId1(context.getOrderId());
+					validateOdnDataSetup(odn);
+					validateOdnDataSetup(odn1);
+					gettcdata.setOdn(odn+","+odn1);
+					context.setTestData("STO:" + odn);
+
+					npsDataBase.disconnectAutomationDB();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+				
+			}
+			else
+			{
+
+			System.out.println("entered IDT");
 			try {
 				npsDataBase.connectAutomationDB();
 				//Generate Random New values to load
 				String odn = newOdnId();
 				//Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				
+				//Call JDA Login
+				jdaLoginPage.login();
+				
+				dataLoadFromUI.duplicateOdn(odnReference,odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
+				
+				context.setTestData("STO:" + odn);
 				npsDataBase.disconnectAutomationDB();
+				
+								
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
+			}
+		
 		} else if (context.getUniqueTag().contains("store") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();

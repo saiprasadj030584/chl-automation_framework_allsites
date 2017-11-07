@@ -121,4 +121,38 @@ public class OrderHeaderPage{
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	public void enterOrderID(String orderid) throws FindFailed, InterruptedException {
+//		Match morderid = screen.find("images/StockAdjustment/Search/pallet.png");
+//		screen.click(morderid.getCenter().offset(70, 0));
+		screen.type(orderid);
+		Thread.sleep(1000);
+	}
+	
+	public boolean isNoRecordFound() {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isEJBerrorfound() {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException
+	{
+		screen.wait("images/OrderHeaderMaintenance/DeliveryAddress.png", timeoutInSec);
+		screen.click("images/OrderHeaderMaintenance/DeliveryAddress.png");
+		Thread.sleep(1000);
+	}
+	
+	public void clickGLN() throws FindFailed, InterruptedException
+	{
+		Match morderid = screen.find("images/OrderHeaderMaintenance/DeliveryAddress/GLN.png");
+		screen.click(morderid.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+	}
 }
