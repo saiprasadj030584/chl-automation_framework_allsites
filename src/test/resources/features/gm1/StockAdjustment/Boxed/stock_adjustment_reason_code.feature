@@ -59,7 +59,7 @@ Feature: Boxed - Stock adjustments with Reason Code
       | Location | ReasonCode | SiteId |
       | 1AA103   | FOUND      |   5649 |
 
-  @jenkins_analysis @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @jenkins1 @no_ds
+  @jenkins_analysis67 @stock_adjustment @boxed @boxed_stock_adjustment_stock_adjustment_reason_code_incomplete @complete @ds @jenkins1 @no_ds
   Scenario Outline: stock adjustment process
     Given I have a sku to adjust the stock
     When I navigate to stock adjustments page

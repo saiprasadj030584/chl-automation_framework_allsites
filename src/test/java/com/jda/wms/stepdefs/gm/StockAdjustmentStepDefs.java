@@ -101,6 +101,51 @@ public class StockAdjustmentStepDefs {
 			jDAFooter.clickNextButton();
 		}
 	}
+	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\"$")
+	public void i_create_a_new_stock_with_siteid_and_location(String siteID,String location)
+			throws FindFailed, InterruptedException {
+		context.setSiteId(siteID);
+		String siteId = context.getSiteId();
+		if (siteId.equals("5649")){
+		String owner = "M+S";
+		String clientid = "M+S";
+		String quantity = Utilities.getTwoDigitRandomNumber();
+		context.setQtyOnHand(Integer.parseInt(quantity));
+		String pallet = "PALLET";
+		stockAdjustmentsPage.selectNewStock();
+		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterLocation(location);
+		stockAdjustmentsPage.enterOwnerId(owner);
+		stockAdjustmentsPage.enterClientId(clientid);
+		stockAdjustmentsPage.enterSiteId(siteId);
+		stockAdjustmentsPage.enterQuantityOnHand(quantity);
+		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
+		jDAFooter.clickNextButton();
+		stockAdjustmentsPage.enterPallet(pallet);
+		jDAFooter.clickNextButton();
+		}
+		else if (siteId.equals("5885")){
+			context.setQtyOnHand(context.getRcvQtyDue());
+
+			stockAdjustmentsPage.selectNewStock();
+			jDAFooter.clickNextButton();
+			Thread.sleep(2000);
+			stockAdjustmentsPage.enterSkuId(context.getSkuId());
+			jDAFooter.pressTab();
+			stockAdjustmentsPage.enterLocation(location);
+			stockAdjustmentsPage.enterSiteId(siteId);
+			stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
+			jDAFooter.clickNextButton();
+			stockAdjustmentsPage.enterContainerId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletType("PALLET");
+			jDAFooter.clickNextButton();
+		}
+	}
+
 
 	@When("^I choose the reason code as \"([^\"]*)\"$")
 	public void I_choose_the_reason_code_as(String reasonCode) throws Throwable {
