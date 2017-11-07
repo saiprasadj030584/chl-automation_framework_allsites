@@ -65,7 +65,7 @@ public class Hooks_autoUI {
 		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
 		insertSiteID();
 		getSiteID();
-		updateBuildNumberInRequestTable();
+//		updateBuildNumberInRequestTable();
 		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
 		// getChildRequestID();
