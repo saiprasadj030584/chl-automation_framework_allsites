@@ -85,8 +85,8 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-//		context.setSiteId("5649");
-		context.setSiteId(System.getProperty("SITEID"));
+		context.setSiteId("5649");
+//		context.setSiteId(System.getProperty("SITEID"));
 		System.out.println("SITE ID "+context.getSiteId());
 		//System.out.println("SITE ID 1 "+context.getSiteId());
 
@@ -103,10 +103,8 @@ public class Hooks {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 			
 		}
-
 		System.out.println(context.getTestData());
 //		updateTestDataIntoRunStatusTable();
-
 	}
 
 
