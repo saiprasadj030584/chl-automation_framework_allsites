@@ -60,7 +60,7 @@ public class Hooks_autoUI {
 		getParentRequestID();
 
 		System.out.println("PREQ_ID " + context.getParentRequestId());
-		// System.setProperty("SITEID", "5649");
+		 System.setProperty("SITEID", "5649");
 		System.out.println("Site ID from sys prop " + SITEID);
 		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
 		insertSiteID();

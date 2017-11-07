@@ -3,7 +3,7 @@ Feature: Hanging - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
+  @jenkins_analysis @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
     When I navigate to inventory update page
@@ -17,7 +17,7 @@ Feature: Hanging - Inventory update
 
     Examples: 
       | LockStatus | UpdateStatus | Code             |
-      | Locked     | Unlocked     | Inventory Unlock |
+      | Locked     | UnLocked     | Inventory Unlock |
 
   @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
@@ -37,7 +37,8 @@ Feature: Hanging - Inventory update
 
   @jenkins_analysis2 @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_expiry_date @complete @ds @no_ds
   Scenario: Update Expiry date
-    Given I have tag in inventory with expiry "Y" status for "Hanging"
+    #Given I have tag in inventory with expiry "Y" status for "Hanging"
+    Given I have tag in inventory with expiry "Y" status for "Hanging" and siteId "5649"
     When I navigate to inventory update page
     And I select the update type as "Expiry Date Update"
     And I search the inventory for the tag

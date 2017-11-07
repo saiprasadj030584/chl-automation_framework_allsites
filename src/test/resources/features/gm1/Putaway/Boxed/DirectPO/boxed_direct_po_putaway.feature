@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @jenkins_analysis @boxed_putaway_direct_po_validate_putaway_process @direct_po @complete @putaway @boxed @ds
+  @0jenkins_analysis @boxed_putaway_direct_po_validate_putaway_process @direct_po @complete @putaway @boxed @ds
   Scenario: Validate Putaway Process
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001"
     When I do normal putaway for all tags received

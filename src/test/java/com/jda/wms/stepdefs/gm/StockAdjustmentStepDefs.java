@@ -59,7 +59,9 @@ public class StockAdjustmentStepDefs {
 
 	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
 	public void i_create_a_new_stock_with_siteid_and_location(String location) throws FindFailed, InterruptedException {
+
 		String siteId = context.getSiteId();
+		System.out.println( "print" + siteId);
 		if (siteId.equals("5649")) {
 			String owner = "M+S";
 			String clientid = "M+S";
@@ -77,7 +79,7 @@ public class StockAdjustmentStepDefs {
 		stockAdjustmentsPage.enterClientId(clientid);
 		stockAdjustmentsPage.enterSiteId(siteId);
 		stockAdjustmentsPage.enterQuantityOnHand(quantity);
-		//stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
+		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
 		jDAFooter.clickNextButton();
 		stockAdjustmentsPage.enterPallet(pallet);
 		jDAFooter.clickNextButton();
@@ -173,7 +175,7 @@ public class StockAdjustmentStepDefs {
 		case "SAMPLES":
 			reasonCodeToChoose = "SAMPLES";
 			break;
-		case "Stock Count":
+		case "SC":
 			reasonCodeToChoose = "Stock Count";
 			break;
 		case "Receiving Correction":
@@ -200,7 +202,8 @@ public class StockAdjustmentStepDefs {
 
 		context.setReasonCode(reasonCodeToChoose);
 		//String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
+		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date)); 
+		System.out.println("Reason Code" + reasonCodeToChoose);
 		if (reasonCodeToChoose.equalsIgnoreCase("Stock Count")){
 			context.setReasonCode("SC");
 		}
