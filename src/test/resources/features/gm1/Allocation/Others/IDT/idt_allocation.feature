@@ -18,7 +18,7 @@ Feature: Allocation
     Then the order stock modularity should be visible
 
 
-  @allocation @idt @goh @goh_allocation_idt_consolidate_orders @complete @new_script
+  @allocation @idt @goh @goh_allocation_idt_validate_whether_different_orders_of_same_store_are_grouped_together_for_one_pick_consolidate_orders @complete @new_script
   Scenario: Validate whether different orders of  same store are grouped together for one pick -  Consolidate Orders
     Given the multiple order id of type "IDT" with "GOH" skus should be in "Released" status
     And I allocate the stocks using consignment in system allocation page
