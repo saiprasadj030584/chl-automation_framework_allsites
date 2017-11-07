@@ -33,5 +33,10 @@ public class MoveTaskUpdateDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update move_task set status = 'Released' where task_id = '" + orderId + "'");
+		context.getConnection().commit();
+		rs.next();
 	}
 }

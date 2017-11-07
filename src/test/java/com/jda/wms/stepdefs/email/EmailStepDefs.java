@@ -99,8 +99,6 @@ public class EmailStepDefs {
 	
 	@Then("^I update the cucumber reports for the js files$")
 	public void i_update_the_cucumber_reports_for_the_js_files() throws Throwable { 
-		
-		
 		//Replacing the JS code lines in HTML files to cloud URLs
 		String replaceJqueryURL = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";
 		String replaceTableSorterURL = "https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/js/jquery.tablesorter.min.js";
@@ -108,6 +106,7 @@ public class EmailStepDefs {
 		String replaceBootStrapURL = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
 		Thread.sleep(5000);
 		File reportPath = new File(configuration.getStringProperty("cucumber-path"));
+		System.out.println(reportPath);
 		File[] listOfFiles = reportPath.listFiles();
 		int numberOfFiles = reportPath.listFiles().length;
 		System.out.println("---------Cucumber Reports----------");
@@ -140,9 +139,9 @@ public class EmailStepDefs {
 				}
 			}
 		}
-		System.out.println("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		System.out.println("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
 		Thread.sleep(2000);
-		Process p1 = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\zipCucumberReport.bat");
+		Process p2 = Runtime.getRuntime().exec("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
 		Thread.sleep(5000);
 	}
 }

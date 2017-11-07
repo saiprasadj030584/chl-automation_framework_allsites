@@ -154,6 +154,11 @@ public class Context {
 	private boolean jdaLoginFlag=false;
 
 	private String origin;
+	private String assertString = null;
+	private static String childRequestId;
+	private static String testData;
+	private boolean vehicleLoadRequired = false;
+//	private String transactionTime;
 
 	private int updatedQty;
 
@@ -1322,6 +1327,39 @@ public class Context {
 	
 	public void setJdaLoginFlag(boolean jdaLoginFlag) {
 		this.jdaLoginFlag = jdaLoginFlag;
+	}
+
+
+	public String getAssertString() {
+		return assertString;
+	}
+
+	public void setAssertString(String assertString) {
+		this.assertString = assertString;
+	}
+
+	public static String getChildRequestId() {
+		return childRequestId;
+	}
+
+	public static void setChildRequestId(String childRequestId) {
+		Context.childRequestId = childRequestId;
+	}
+
+	public static String getTestData() {
+		return testData;
+	}
+
+	public static void setTestData(String testData) {
+		Context.testData = testData;
+	}
+
+	public boolean isVehicleLoadRequired() {
+		return vehicleLoadRequired;
+	}
+
+	public void setVehicleLoadRequired(boolean vehicleLoadRequired) {
+		this.vehicleLoadRequired = vehicleLoadRequired;
 	}
 
 }

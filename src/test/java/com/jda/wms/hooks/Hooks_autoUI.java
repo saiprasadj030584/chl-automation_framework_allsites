@@ -38,7 +38,7 @@ public class Hooks_autoUI {
 	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String SITEID = System.getProperty("SITEID");
-	public static String BUILD_NUM = System.getProperty("BUILD");
+	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -46,12 +46,12 @@ public class Hooks_autoUI {
 	public static int fail = 0;
 
 	@Inject
-
 	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
 
 		this.context = context;
 		this.configuration = configuration;
 		this.jdaLoginPage = jdaLoginPage;
+
 	}
 
 	@Before("~@Email")
@@ -60,21 +60,59 @@ public class Hooks_autoUI {
 		getParentRequestID();
 
 		System.out.println("PREQ_ID " + context.getParentRequestId());
-		System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop " + "5649");
+		// System.setProperty("SITEID", "5649");
+		System.out.println("Site ID from sys prop " + SITEID);
 		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
-		context.setSiteId("5649");
-		System.out.println("Site ID from sys prop " + System.getProperty("SITEID"));
 		insertSiteID();
 		getSiteID();
-		// context.setSiteId(System.getProperty("SITEID"));
+		updateBuildNumberInRequestTable();
+		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
+		// getChildRequestID();
+		// updateTestDataIntoRunStatusTable();
+	}
+
+	private void updateTestDataIntoRunStatusTable() {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			System.out.println("update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'");
+			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'";
+			context.getSQLDBConnection().createStatement().execute(query);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+
+	private void getChildRequestID() {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			Statement stmt = null;
+			stmt = context.getSQLDBConnection().createStatement();
+
+			String selectQuery = "select C_REQ_ID from NPS_AUTO_UI_RUN_REQUEST where P_REQ_ID='"
+					+ context.getParentRequestId() + "' and STATUS='INPROGRESS'";
+			System.out.println(selectQuery);
+			context.getSQLDBConnection().createStatement().execute(selectQuery);
+			ResultSet rs = stmt.executeQuery(selectQuery);
+			while (rs.next()) {
+				context.setChildRequestId(rs.getString("C_REQ_ID"));
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	private void updateBuildNumberInRequestTable() {
 		try {
-
-			String insertQuery = "UPDATE INTO NPS_Auto_UI_Run_Request (JENKINS_BUILD_NO) VALUES ('')";
+			String insertQuery = "UPDATE NPS_AUTO_UI_RUN_REQUEST set JENKINS_BUILD_NO='" + BUILD_NUM
+					+ "' where P_REQ_ID='" + context.getParentRequestId() + "'";
+			System.out.println(insertQuery);
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
 		} catch (Exception exception) {
@@ -110,7 +148,6 @@ public class Hooks_autoUI {
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
-
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
@@ -136,8 +173,9 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-//				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-//				scenario.embed(screenshot, "image/png");
+				// final byte[] screenshot = ((TakesScreenshot)
+				// webDriver).getScreenshotAs(OutputType.BYTES);
+				// scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
 				// TODO Auto-generated catch block
 				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
@@ -147,21 +185,9 @@ public class Hooks_autoUI {
 				}
 			}
 		}
-
 	}
 
-	// @After
-	// public void killIE(Scenario scenario) throws IOException {
-	// if (webDriver != null) {
-	// webDriver.close();
-	// Process p = Runtime.getRuntime().exec("cmd /c " + envVar +
-	// "\\bin\\IEKill.bat");
-	// // webDriver.quit();
-	// }
-	// }
-
 	public void insertDetails(String testName) {
-
 		try {
 			if (context.getSQLDBConnection() == null) {
 				sqlConnectOpen();

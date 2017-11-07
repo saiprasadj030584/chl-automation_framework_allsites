@@ -1,9 +1,11 @@
-@inventory_update_boxed
+
+@boxed_inventory_update
+
 Feature: Boxed - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkins_analysis1 @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds @group_1
+  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds @group_1
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Boxed"
     When I navigate to inventory update page

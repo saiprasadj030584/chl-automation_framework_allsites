@@ -594,4 +594,74 @@ public class OrderHeaderMaintenanceStepDefs {
 					orderHeaderDB.getStockModularity(context.getOrderId()));
 		}
 	}
+	
+	@Then("^the order should be picked$")
+	public void the_order_should_be_picked() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer,ArrayList<String>>();
+		verification.verifyData("Order Status", "Picked", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Given("^the OrderID of type \"([^\"]*)\" for sku \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
+	public void the_OrderID_of_type_for_sku_should_be_in_status(String orderType, String skuType,String status) throws Throwable {
+		String orderId = getTcData.getSto();
+		String siteId = context.getSiteId();
+		jdaLoginPage.login();
+		context.setOrderId(orderId);
+		context.setOrderType(orderType);
+		context.setSiteId(siteId);
+		String Type=null;
+		switch(skuType){
+		case "GOH":
+			Type="C";
+			break;
+		case "Flatpack":
+			Type="P";
+			break;
+		case "Boxed":
+			Type="B";
+			break;
+		case "Hanging":
+			Type="H";
+			break;			
+		}		
+		context.setSKUType(Type);
+		context.setSkuId(orderHeaderDB.getSkuId(orderId));
+		jDAHomePage.navigateToOrderHeaderMaintenance();
+		jDAFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(orderId);
+		jDAFooter.clickExecuteButton();
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer,ArrayList<String>>();
+		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(orderId), failureList);
+		verification.verifyData("Order Type", orderType, orderHeaderDB.getOrderType(orderId), failureList);
+		verification.verifyData("SKU Type", context.getSKUType(), skuDB.getSKUType(context.getSkuId()), failureList);
+		verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
+	    context.setSkuId(orderLineDB.getSkuId(orderId));
+	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the order should be Ready to Load$")
+	public void the_order_should_be_Ready_to_Load() throws Throwable {
+		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the order should be allocated with prohibition flag$")
+	public void the_order_should_be_allocated_for_prohibition_flag() throws Throwable {
+		jDAHomePage.navigateToOrderHeaderMaintenance();
+		jDAFooter.clickQueryButton();
+		orderHeaderPage.enterOrderNo(context.getOrderId());
+		jDAFooter.clickExecuteButton();
+		ArrayList failureList = new ArrayList();
+		Thread.sleep(6000);
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);	
+		verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);	
+	  	Assert.assertTrue("Order Status not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	  	String sku_id=orderLineDB.getSkuId(context.getOrderId());
+	  	context.setSkuId(sku_id);
+	  	Assert.assertEquals("Prohibition flag not displayed as expected", "PROHIBITION",inventoryDB.getProhibitionFlag(context.getSkuId()));
+	}
+	
 }

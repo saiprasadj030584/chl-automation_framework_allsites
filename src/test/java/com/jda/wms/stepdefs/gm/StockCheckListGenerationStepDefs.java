@@ -102,4 +102,21 @@ public class StockCheckListGenerationStepDefs {
 				stockCheckListGenerationPage.isListIdPopupDisplayed());
 		Thread.sleep(1000);
 	}
+	
+	@When("^I enter the tag ID as on inventory tab for site id for \"([^\"]*)\"$")
+	public void i_enter_the_tag_ID_as_on_inventory_tab_for_site_id(String dataType) throws Throwable {
+		String siteID = context.getSiteId();
+		if (dataType.equalsIgnoreCase("Boxed")) {
+			context.setTagId(inventoryDB.getTagID(siteID, "B"));
+		} else if (dataType.equalsIgnoreCase("Hanging")) {
+			context.setTagId(inventoryDB.getTagID(siteID, "H"));
+		} else if (dataType.equalsIgnoreCase("Flatpack")) {
+			context.setTagId(inventoryDB.getTagID(siteID, "P"));
+		} else if (dataType.equalsIgnoreCase("GOH")) {
+			context.setTagId(inventoryDB.getTagID(siteID, "C"));
+		}
+
+		stockCheckListGenerationPage.enterTagId(context.getTagId());
+		jdaFooter.clickNextButton();
+	}
 }

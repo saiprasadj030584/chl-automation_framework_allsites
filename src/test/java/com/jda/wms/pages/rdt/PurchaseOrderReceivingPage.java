@@ -768,7 +768,7 @@ public class PurchaseOrderReceivingPage {
 	}
 
 	public boolean isPalletExists() {
-		if (screen.exists("images/Putty/Receiving/PutawayForLock.png") != null)
+		if (screen.exists("images/Putty/Receiving/PutawayGroup.png") != null)
 			return true;
 		else
 			return false;

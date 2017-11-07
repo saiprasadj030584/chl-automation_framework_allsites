@@ -259,4 +259,17 @@ public class PreAdviceLineDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public boolean isUrgentDeliveryPo(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_chk_4 from pre_advice_line where pre_advice_id='"+preAdviceId+"' and user_def_chk_4='Y'");
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
+}
 }

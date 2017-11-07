@@ -174,6 +174,13 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
+	
+	public boolean isPickEntPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
+			return true;
+		else
+			return false;
+	}
 
 	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
 		// TODO take new image for EnTTagid
@@ -187,5 +194,6 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(3000);
 
 	}
+
 
 }

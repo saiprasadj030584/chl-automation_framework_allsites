@@ -1,6 +1,8 @@
 package com.jda.wms.utils;
 
+import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utilities {
 
@@ -61,5 +63,18 @@ public class Utilities {
 	public static String getSevenDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(900000) + 1000000);
+	}
+	
+	public static String get32DigitRandomNumber(){
+		long value1, value2, value3, max = 999999999;
+		boolean mainTable = true, interfaceTable = true;
+		String tempValue;
+			value1 = ThreadLocalRandom.current().nextLong(100000000, max);
+			value2 = ThreadLocalRandom.current().nextLong(100000000, max);
+			value3 = ThreadLocalRandom.current().nextLong(100000000, max);
+			int tempInt = ThreadLocalRandom.current().nextInt(10000, 99999);
+			tempValue = String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
+					+ String.valueOf(tempInt);
+		return tempValue;
 	}
 }

@@ -1,4 +1,4 @@
-@dock_scheduler
+@boxed_direct_po_dock_scheduler
 Feature: Boxed - Direct PO - Dock Scheduling
   As a warehouse user
   I want to schedult a dock door for Direct PO
@@ -77,8 +77,10 @@ Feature: Boxed - Direct PO - Dock Scheduling
     Then the booking id details should be displayed on the page
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
-    
-    @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds @maven_check_1 @allocation_check
+
+
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds
+
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -96,7 +98,15 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I update the compliance flag in database
     Then the compliance details should be updated
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds @maven_check_1 @allocation_check
+
+  @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_header @complete @ds
+  Scenario: Validate whether compliance flag can be uploaded for Pre advice header
+    Given the PO of type "Boxed" should be in "Released" status with line items,supplier details
+    When I update the compliance flag in pre advice header
+    Then the compliance details should be updated
+
+  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
+
   Scenario: Assign dock door for each trailer to unload it
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door

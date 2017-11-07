@@ -2,11 +2,9 @@ package com.jda.wms.stepdefs.gm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
@@ -23,7 +21,7 @@ import com.jda.wms.pages.gm.SystemAllocationPage;
 import com.jda.wms.pages.gm.Verification;
 
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 
 public class SystemAllocationStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -153,5 +151,16 @@ public class SystemAllocationStepsDefs {
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();
 		Thread.sleep(8000);
+	}
+	
+	@Then("^Allocation should be updated$")
+	public void allocation_should_be_updated() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Thread.sleep(10000);
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		//verification.verifyData("Quantity Tasked",orderHeaderDB.getOrderedQuantity(context.getOrderId()), orderHeaderDB.getQuantitytaskedStatus(context.getOrderId()), failureList);
+		//verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);
+		Assert.assertTrue("order and qty task is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 }

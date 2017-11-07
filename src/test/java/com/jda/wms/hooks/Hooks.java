@@ -16,6 +16,7 @@ import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.Database;
 
 import cucumber.api.Scenario;
@@ -28,17 +29,19 @@ public class Hooks {
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
-
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
+	private GetTcData gettcdata;
+	private Hooks_autoUI hooksautoUI;
 
 	@Inject
 	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
-			Database jdaJdatabase) {
+			Database jdaJdatabase,GetTcData gettcdata,Hooks_autoUI hooksautoUI) {
+
 
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
@@ -46,8 +49,9 @@ public class Hooks {
 		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
 		this.updateTcToAutomationDb = updateTcToAutomationDb;
 		this.jdaJdatabase = jdaJdatabase;
-
-	}
+		this.gettcdata = gettcdata;
+		this.hooksautoUI = hooksautoUI;
+	}	
 
 	@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
@@ -59,7 +63,6 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
-
 	}
 
 	// @Before
@@ -82,11 +85,11 @@ public class Hooks {
 				"###########################################################################################################################");
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
+//		context.setSiteId("5649");
+		context.setSiteId(System.getProperty("SITEID"));
+		System.out.println("SITE ID "+context.getSiteId());
+		//System.out.println("SITE ID 1 "+context.getSiteId());
 
-		context.setSiteId("5649");
-		System.out.println("SITE ID " + context.getSiteId());
-		// context.setSiteId(System.getProperty("SITEID"));
-		// System.out.println("SITE ID 1 "+context.getSiteId());
 		// dataSetupRunner.getTagListFromAutoDb();
 
 		//context.setSiteId(System.getProperty("SITEID"));
@@ -100,16 +103,17 @@ public class Hooks {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 			
 		}
-		
+
+		System.out.println(context.getTestData());
+//		updateTestDataIntoRunStatusTable();
+
 	}
+
 
 	// @Before
 	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
-
 		updateTcToAutomationDb.updateTcStartTime();
-
-		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
-
+		 updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 	}
 
 

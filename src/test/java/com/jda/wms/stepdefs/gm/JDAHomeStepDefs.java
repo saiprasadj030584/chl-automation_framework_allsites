@@ -254,4 +254,15 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToPackConfigLinking();
 		Thread.sleep(6000);
 	}
+	
+	@When("^I navigate to Order Container Maintainance page$")
+	public void i_navigate_to_Order_Container_Maintainance_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+		Thread.sleep(2000);
+	}
+	
+	@When("^I navigate to scheduler program page$")
+	public void i_navigate_scheduler_program_page() throws Throwable {
+		jdaHomePage.navigateToSchedulerProgramPage();
+	}
 }

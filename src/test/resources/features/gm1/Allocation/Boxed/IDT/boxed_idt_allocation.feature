@@ -1,5 +1,5 @@
-@allocation
-Feature: Allocation
+@boxed_idt_allocation
+Feature: Boxed - IDT - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
@@ -33,8 +33,8 @@ Feature: Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-  @allocation @boxed @idt @boxed_allocation_idt_validate_stock_availability @complete @ds
-  Scenario: Validating availability of stock for allocation
+  @allocation @boxed @idt @boxed_allocation_idt_validate_whether_stock_is_available_for_allocation @complete @ds
+  Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "IDT" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory

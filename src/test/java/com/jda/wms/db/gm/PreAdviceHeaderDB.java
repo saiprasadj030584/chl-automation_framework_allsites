@@ -187,7 +187,19 @@ public class PreAdviceHeaderDB {
 				+ "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-
+	
+	public void updateComplianceFlag(String preAdviceId) throws SQLException, ClassNotFoundException {
+		System.out.println("update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='"
+				+ preAdviceId + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='"
+				+ preAdviceId + "'");
+		context.getConnection().commit();
+	}
+	
 	public Object getPreAdviceIdForPO(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -199,5 +211,7 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	
 
 }

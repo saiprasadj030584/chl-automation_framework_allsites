@@ -4,8 +4,6 @@ import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -78,19 +76,19 @@ public class UpiReceiptHeaderPage {
 		return false;
 	}
 
-	public boolean isEJBerrorfound() {
-		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
-			return true;
-		else
-			return false;
-	}
-
 	public boolean isNoRecordFound() throws FindFailed {
 		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
 		else
 			return false;
 
+	}
+
+	public boolean isEJBerrorfound() {
+		if (screen.exists("images/DuplicateOption/ejberror.png") != null)
+			return true;
+		else
+			return false;
 	}
 
 }

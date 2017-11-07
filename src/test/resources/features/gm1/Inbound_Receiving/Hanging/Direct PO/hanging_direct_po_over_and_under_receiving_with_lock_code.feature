@@ -1,5 +1,5 @@
 @hanging_direct_po_over_and_under_receiving_with_lock_code
-Feature: Purchase order receiving
+Feature: Hanging - Direct PO - Inbound receiving with Lock code
   As a warehouse user
   I want to receive the articles
   So that I can putaway the purchase order

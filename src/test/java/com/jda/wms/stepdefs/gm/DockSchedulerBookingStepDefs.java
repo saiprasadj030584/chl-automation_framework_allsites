@@ -17,6 +17,7 @@ import com.jda.wms.pages.gm.Verification;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class DockSchedulerBookingStepDefs {
 	Screen screen = new Screen();
@@ -58,6 +59,7 @@ public class DockSchedulerBookingStepDefs {
 			verification.verifyData("Service Level", context.getServiceLevel(),
 					bookingInDiary.getServiceLevel(context.getBookingID()), failureList);
 		}
+		Assert.assertTrue("Booking details does not display as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 	
 	@Then("^the booking details should appear in the dock scheduler booking$")
@@ -94,5 +96,11 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.PressEnter();
 	}
 	
-	
+	@Then("^the booking details should appear$")
+	public void the_booking_details_should_appear() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("Trailer ID", context.getTrailerNo(),
+				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
+		Assert.assertTrue("Booking details does not display as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
 }

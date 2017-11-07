@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-
-public class OrderHeaderPage  {
+public class OrderHeaderPage {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
@@ -115,7 +114,7 @@ public class OrderHeaderPage  {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-	
+
 	public String getStatus() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
@@ -130,16 +129,16 @@ public class OrderHeaderPage  {
 	}
 
 	public boolean isNoRecordFound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
-			else
-				return false;
+		else
+			return false;
 	}
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
-			else
-				return false;
+		else
+			return false;
 	}
 }

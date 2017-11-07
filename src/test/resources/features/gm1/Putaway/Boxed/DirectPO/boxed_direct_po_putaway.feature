@@ -1,4 +1,4 @@
-@purchase_order_putaway
+@boxed_direct_po_putaway
 Feature: Boxed - Direct PO - Putaway
   As a warehouse user
   I want to putaway the received articles
@@ -60,3 +60,11 @@ Feature: Boxed - Direct PO - Putaway
     When I choose normal putaway
     And I proceed by overriding the location  "<Location>" for PO
     And the ITL should be generated for putaway stock in inventory transaction for override
+
+  @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_hazardous_putaway_location @compete
+  Scenario: Validate Hazardous Putaway location
+    Given the PO of type "Boxed" with UPI and ASN should be received at "REC002" for hazardous putaway
+    When I choose existing relocate
+    And I proceed with entering the upc and location
+    When I perform normal putaway of hazardous product after relocation
+    Then the goods receipt should be generated for putaway stock in inventory transaction

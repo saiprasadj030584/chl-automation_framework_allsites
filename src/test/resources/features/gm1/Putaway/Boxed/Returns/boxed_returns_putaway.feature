@@ -4,7 +4,7 @@ Feature: Boxed - Returns - Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @boxed @putaway @returns @boxed_putaway_returns_putaway_validate_mezz_shelving_putaway @complete @ds
+  @boxed @putaway @returns @boxed_putaway_returns_validate_mezz/shelving_putaway @complete @ds
   Scenario: Validate Mezz/Shelving putaway
     Given the UPI and ASN should be in "Released" status
     And the upi should have MEZZ sku, quantity due details
@@ -15,7 +15,7 @@ Feature: Boxed - Returns - Putaway
     When I perform normal putaway after relocation
     Then the goods receipt should be generated for putaway returns stock in inventory transaction
 
-  @boxed @putaway @returns @boxed_putaway_returns_putaway @complete @ds
+  @boxed @putaway @returns @boxed_putaway_returns_validate_returns_putaway_type @complete @ds
   Scenario: Validate Returns Putaway type
     Given the UPI and ASN should be in "Released" status
     And the upi should have sku, quantity due details
@@ -66,3 +66,13 @@ Feature: Boxed - Returns - Putaway
     When I choose normal putaway
     And I proceed by entering less quantity for IDT
     Then the ITL should be generated for putaway stock in inventory transaction
+
+  @boxed @putaway @returns @boxed_putaway_returns_validate_putaway_qc_goods @complete @ds
+  Scenario: Validate Putaway QC goods
+    Given the UPI and ASN should be in "Released" status
+    And the upi should have sku, quantity due details
+    And I receive all skus for the returns order at "REC002" with perfect condition "N"
+    When I choose existing relocate
+    And I proceed with entering the returns upc and location
+    When I perform normal returns putaway after relocation
+    Then the goods receipt should be generated for putaway returns stock in inventory transaction

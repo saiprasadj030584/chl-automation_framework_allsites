@@ -13,6 +13,7 @@ public class PreAdviceHeaderPage {
 
 	Screen screen = new Screen();
 	private Context context;
+	int timeoutInSec = 20;
 
 	@Inject
 	public PreAdviceHeaderPage(Context context) {
@@ -26,8 +27,6 @@ public class PreAdviceHeaderPage {
 		Thread.sleep(1000);
 		screen.type(Key.F7);
 	}
-
-	int timeoutInSec = 20;
 
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
 		screen.type(preAdviceId);
@@ -127,11 +126,6 @@ public class PreAdviceHeaderPage {
 		return App.getClipboard();
 	}
 
-	public void enterOrderID(String orderReference) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public boolean isNoRecordFound() {
 		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
 			return true;
@@ -140,7 +134,7 @@ public class PreAdviceHeaderPage {
 	}
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if(screen.exists("images/DuplicateOption/ejberror.png")!= null)
 			return true;
 			else
 				return false;

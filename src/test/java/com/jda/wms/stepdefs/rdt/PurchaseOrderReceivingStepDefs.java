@@ -2101,13 +2101,15 @@ public class PurchaseOrderReceivingStepDefs {
 	}
 
 	@When("^I receive all \"([^\"]*)\" skus for the purchase order at location \"([^\"]*)\"$")
-	public void i_receive_all_skus_for_the_purchase_order_at_location(String type, String location) throws Throwable {
+
+	public void i_receive_all_skus_for_the_purchase_order_at_location(String type,String location) throws Throwable {
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		// context.setLocationID(location);
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
+
 		System.out.println("gdhgfsgh" + context.getSKUType());
 
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
@@ -2321,4 +2323,57 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" for hazardous putaway$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_hazardous_putaway(String type,String location) throws Throwable {
+		
+		String preAdviceId = getTcData.getPo();
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
+		context.setLocation(location);
+		context.setUpiId(upiId);
+		context.setPreAdviceId(preAdviceId);
+		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
+		preAdviceLineStepDefs.the_PO_should_have_hazardous_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		i_receive_all_hazardous_skus_for_the_purchase_order_at_location(type,location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I receive all \"([^\"]*)\" hazardous skus for the purchase order at location \"([^\"]*)\"$")
+	public void i_receive_all_hazardous_skus_for_the_purchase_order_at_location(String type,String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setLocationID(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		System.out.println("gdhgfsgh"+context.getSKUType());
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+	i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) 
+		{
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+				i_enter_urn_id(context.getUpiId());
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_receiving();
+				i_enter_the_location();
+				jdaFooter.PressEnter();
+					Thread.sleep(2000);
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+					context.setFailureList(failureList);
+				}
+			}
+			hooks.logoutPutty();
+		}
 }

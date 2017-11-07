@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -44,6 +46,8 @@ public class SkuSkuConfigDB {
 	}
 	
 	public String getSkuIdWithMoreThanOnePackConfig(String dataType) throws SQLException, ClassNotFoundException {
+		String packConfig = null;
+		try{
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -52,6 +56,13 @@ public class SkuSkuConfigDB {
 				"Select inventory.sku_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id where inventory.sku_id  in (select sku_sku_config.sku_id from sku_sku_config inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=sku_sku_config.sku_id and sku.user_def_type_8 ='"
 						+ dataType + "' group by sku_sku_config.sku_id having count(sku_sku_config.sku_id) > 1 )");
 		rs.next();
-		return rs.getString(1);
+		packConfig = rs.getString(1);
+		}
+		catch(Exception e){
+			if (e.getMessage().contains("Exhausted Resultset")){
+				Assert.fail("No Test Data available - Pack Config update - "+dataType);
+			}
+		}
+		return packConfig;
 	}
 }

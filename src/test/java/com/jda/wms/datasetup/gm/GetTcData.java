@@ -473,7 +473,6 @@ public class GetTcData {
 		return value;
 	}
 
-
 	public String getOdnFromTestData() {
 		ResultSet resultSet = null;
 		String value = null;
@@ -519,6 +518,6 @@ public class GetTcData {
 //		}
 		return value;
 	}
-
-
 }
+
+
