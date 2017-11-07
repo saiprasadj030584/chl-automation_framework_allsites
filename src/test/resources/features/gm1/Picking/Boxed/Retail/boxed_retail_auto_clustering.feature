@@ -4,7 +4,7 @@ Feature: Picking - Retail - Auto clustering
   I want to validate the auto clustering 
   So that the generated list id can be used for picking
 
-  @boxed_picking_retail_auto_clustering @boxed @picking @complete @retail @ds
+  @boxed_picking_retail_validate_whether_clustering_is_done_manually @boxed @picking @complete @retail @ds
   Scenario Outline: Validate whether auto clustering process is done after the allocation process
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

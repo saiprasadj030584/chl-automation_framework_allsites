@@ -90,7 +90,7 @@ public class DataSetupRunner {
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		Assert.assertTrue("Unique Tag Not Found in Test Data Table", validateUniqueTagInTestData());
-		// insertData();
+//		 insertData();
 		createTestDataFromUI();
 	}
 

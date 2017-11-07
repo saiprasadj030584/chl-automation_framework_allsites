@@ -188,4 +188,31 @@ public class ReportSelectionPage {
 		Thread.sleep(2000);
 	}
 	
+	public void choosePickingAndReplenishWorkloadReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/pickingAndReplen.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);		
+	}
+	
+	public boolean isPickingAndReplenishWorkloadReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		
+		if (screen.exists("images/ReportSelection/replenWorkload.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public void chooseProactiveAllocationShortageReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/proactiveShortage.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);
+	}
+	
+	public void isAllocationShortageReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/ReportSelection/proactiveShortageReport.png", timeoutInSec);
+	}
 }

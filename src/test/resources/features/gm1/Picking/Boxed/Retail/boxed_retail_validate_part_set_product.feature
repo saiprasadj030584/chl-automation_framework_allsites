@@ -1,9 +1,9 @@
-@picking
+@boxed_picking_retail_validate_part_set
 Feature: Boxed - Retail - Validate Part Set products
   As a warehouse user
   I want to receive the returned articles
 
-  @boxed_picking_retail_validate_multi_part_set_warning @picking @boxed @complete @retail @ds
+  @boxed_picking_picking_validate_multi_part_setwarning_is_displayed_when_picking_the_part_set_product @picking @boxed @complete @retail @ds
   Scenario: Validate Multi Part setWarning is displayed when picking the part set product
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
@@ -13,7 +13,7 @@ Feature: Boxed - Retail - Validate Part Set products
     Then the part set warning should be displayed
     And the picking should be completed
 
-  @boxed_picking_retail_validate_multi_part_set_instruction @picking @boxed @complete @retail @ds
+  @boxed_picking_picking_validate_multi_part_set_instructions_is_displayed_when_picking_the_part_set_product @picking @boxed @complete @retail @ds
   Scenario: Validate Multi Part set Instruction is displayed when picking the part set product
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

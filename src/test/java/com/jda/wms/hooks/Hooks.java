@@ -69,7 +69,6 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
-
 	}
 
 	// @Before

@@ -422,5 +422,91 @@ public class IDTReceivingStepDefs {
 		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Given("^the UPI and ASN of \"([^\"]*)\" type should be in \"([^\"]*)\" status for IDT$")
+	public void the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(String type, String status)
+			throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+		
+		context.setUpiId(upiId);
+		context.setAsnId(asnId);
+		context.setSKUType(type);
+		String ShippingType = "ZIDC";
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		verification.verifyData("Shipping Type", ShippingType, upiReceiptHeaderDB.getShippingType(upiId), failureList);
+
+		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(upiId));
+		Assert.assertEquals("No of Lines in PO and UPI Header do not match", upiReceiptHeaderDB.getNumberOfLines(upiId),
+				String.valueOf(numLines));
+		context.setNoOfLines(numLines);
+		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@When("^I perform \"([^\"]*)\" for all Locked skus at location \"([^\"]*)\" for IDT$")
+	public void i_perform_for_all_Locked_skus_at_location_for_IDT(String receiveType, String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
+		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
+			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setSupplierID(supplierSkuDb.getSupplierId((context.getSkuId())));
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() - 5);
+			} else if (receiveType.equalsIgnoreCase("Full Receiving")) {
+				System.out.println("qty" + String.valueOf(context.getRcvQtyDue()));
+				quantity = String.valueOf(context.getRcvQtyDue());
+			}
+			context.setRcvQtyDue(Integer.parseInt(quantity));
+			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			// jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition("N");
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			jdaFooter.PressEnter();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition("N");
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if (!purchaseOrderReceivingPage.isExcessReceiptErrorDisplayed()) {
+				failureList.add(
+						"Error message:You can not over receipt this sscc not displayed for sku " + context.getSkuId());
+			}
+			puttyFunctionsPage.pressEnter();
+		}
+		context.setFailureList(failureList);
+		hooks.logoutPutty();
+	}
 
 }

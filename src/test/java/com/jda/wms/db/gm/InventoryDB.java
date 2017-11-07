@@ -1282,4 +1282,16 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getTagID(String siteID, String dataType) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("select inventory.tag_id from inventory inner join sku on sku.user_def_type_8 ='"
+						+ dataType + "' and site_id='" + siteID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

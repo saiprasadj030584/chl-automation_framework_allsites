@@ -1,4 +1,4 @@
-@inventory_update
+@hanging_inventory_update
 Feature: Hanging - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status

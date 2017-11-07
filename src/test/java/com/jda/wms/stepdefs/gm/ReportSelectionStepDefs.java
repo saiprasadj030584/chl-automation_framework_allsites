@@ -194,4 +194,38 @@ public class ReportSelectionStepDefs {
 			jDAFooter.clickNextButton();
 			jDAFooter.clickDoneButton();
 		}
+	 
+	 @When("^I select M&S picking and replenish workload report for \"([^\"]*)\" type$")
+		public void i_select_M_S_picking_and_replenish_workload_report_for_type(String type) throws Throwable {
+			reportSelectionPage.choosePickingAndReplenishWorkloadReport();
+			jDAFooter.clickNextButton();
+			reportSelectionPage.chooseSiteId();
+			jDAFooter.pressTab();
+			reportSelectionPage.chooseModularityType(type);
+			jDAFooter.clickNextButton();
+			jDAFooter.clickDoneButton();
+			Thread.sleep(4000);
+		}
+	 
+	 @Then("^the picking and replenish workload report should be generated$")
+		public void the_picking_and_replenish_workload_report_should_be_generated() throws Throwable {	
+		 Assert.assertTrue("Picking & Replenishment Worload report not displayed as expected",reportSelectionPage.isPickingAndReplenishWorkloadReportExist());	
+			Thread.sleep(1000);
+			jDAFooter.clickDoneButton();
+		}
+	 @When("^I select M&S proactive allocation shortage report$")
+		public void i_select_M_S_proactive_allocation_shortage_report() throws Throwable {
+			reportSelectionPage.chooseProactiveAllocationShortageReport();
+			jDAFooter.clickNextButton();
+			reportSelectionPage.chooseSiteId();
+			jDAFooter.clickNextButton();
+			jDAFooter.clickDoneButton();
+			Thread.sleep(4000);
+		}
+	 
+	 @Then("^the proactive allocation shortage report should be generated$")
+		public void the_proactive_allocation_shortage_report_should_be_generated() throws Throwable {
+			reportSelectionPage.isAllocationShortageReportExist();
+			jDAFooter.clickDoneButton();
+		}
 }
