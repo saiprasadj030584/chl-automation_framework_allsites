@@ -17,7 +17,7 @@ Feature: GOH - Inventory update
 
     Examples: 
       | LockStatus | UpdateStatus | Code             |
-      | Locked     | Unlocked     | Inventory Unlock |
+      | Locked     | UnLocked     | Inventory Unlock |
 
   @jenkins_analysis @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock

@@ -483,7 +483,7 @@ public class GetTcData {
 							+ "' AND SITE_NO='" + context.getSiteId() + "'");
 
 			while (resultSet.next()) {
-				value = resultSet.getString("QTY");
+				value = resultSet.getString("STO_ID");
 			}
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {

@@ -158,11 +158,51 @@ public class DataLoadFromUI {
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 	}
+	public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		System.out.println("CHECK333433");
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+		jdaFooter.clickQueryButton();
+		Thread.sleep(2000);
+		System.out.println("Order Reference"+orderReference);
+		orderHeaderPage.enterOrderID(orderReference);
+
+		jdaFooter.clickExecuteButton();
+		if(orderHeaderPage.isNoRecordFound()){
+			Assert.assertTrue("No Order data present in UI ", false);
+		}
+		if(orderHeaderPage.isEJBerrorfound()){
+			Assert.assertTrue("EJB error found", false);
+		}
+		screen.rightClick();
+		Thread.sleep(2000);
+		screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
+		screen.click("images/DuplicateOption/duplicate.png");
+		Thread.sleep(2000);
+		screen.type("a", Key.CTRL);
+		jdaFooter.pressBackSpace();
+		
+		
+		orderHeaderPage.enterOrderID(order);
+		
+		orderHeaderPage.clickDeliveryAddressTab();
+		orderHeaderPage.clickGLN();
+		Thread.sleep(1000);
+		screen.type("a", Key.CTRL);
+		jdaFooter.pressBackSpace();
+
+		jdaFooter.clickExecuteButton();
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		
+		context.setOrderId(order);
+		Assert.assertEquals("No PO ID in Oracle DB",order, orderHeaderDB.getOrderIdForOdn(order));
+	}
 	
 
 
 
-	public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	/*public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		System.out.println("CHECK333433");
 		jdaHomePage.navigateToOrderHeaderMaintenance();
 		jdaFooter.clickQueryButton();
@@ -194,7 +234,7 @@ public class DataLoadFromUI {
 		context.setOrderId(order);
 		Assert.assertEquals("No PO ID in Oracle DB",order, orderHeaderDB.getOrderIdForOdn(order));
 	}
-
+*/
 	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()

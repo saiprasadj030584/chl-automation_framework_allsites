@@ -13,11 +13,9 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
-
 import com.jda.wms.config.Configuration;
 import com.jda.wms.config.Constants;
 import com.jda.wms.context.Context;
-
 
 public class JdaLoginPage {
 	WebElement webElement;
@@ -39,12 +37,10 @@ public class JdaLoginPage {
 	public JdaLoginPage() {
 	}
 
-
-		
 	public void login() throws FindFailed, InterruptedException {
-
+		System.out.println("Login function");
 		if (driver == null) {
-
+			System.out.println("Driver is null");
 			try {
 				Process p = Runtime.getRuntime()
 						.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
@@ -57,31 +53,26 @@ public class JdaLoginPage {
 			setDriver();
 			driver.manage().window().maximize();
 
-			driver.navigate().to(configuration.getStringProperty("gm-jda-url")); 
+			driver.navigate().to(configuration.getStringProperty("gm-jda-url"));
 			Thread.sleep(30000);
-			
+
 			if (screen.exists("images/JDALogin/username.png") == null) {
-				//Assert.fail("Login Not successful");
-					if(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-					{
-					while(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-					{
-						
+				// Assert.fail("Login Not successful");
+				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+
 						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
 						screen.click("images/JDALogin/DoNotAsk.png");
 						screen.wait("images/JDALogin/Later.png", timeoutInSec);
 						screen.click("images/JDALogin/Later.png");
-						
+
 					}
-					
-					}
-					else
-					{
-						Assert.fail("URL Not successful");
-					}
-					
+
+				} else {
+					Assert.fail("URL Not successful");
 				}
 
+			}
 
 			enterUsername();
 			enterPassword();
@@ -96,7 +87,6 @@ public class JdaLoginPage {
 			Thread.sleep(15000);
 			waitTime = waitTime + 3;
 		} while (waitTime < 60);
-
 
 		if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
 			screen.rightClick("/images/JDAHome/Welcomed.png", 25);
@@ -118,7 +108,8 @@ public class JdaLoginPage {
 			Thread.sleep(4000);
 			screen.click("/images/JDAHome/CloseAll.png", 25);
 		}
-	}	
+	}
+
 	public static void setDriver() {
 		DesiredCapabilities capabilities = null;
 		capabilities = DesiredCapabilities.internetExplorer();
@@ -131,7 +122,7 @@ public class JdaLoginPage {
 
 	}
 
-	private void enterUsername() throws FindFailed, InterruptedException {
+	public void enterUsername() throws FindFailed, InterruptedException {
 		int waitTime = 15;
 		do {
 			if (screen.exists("images/JDALogin/username.png") != null) {
@@ -146,42 +137,38 @@ public class JdaLoginPage {
 		screen.type(configuration.getStringProperty("username"));
 	}
 
-	private void enterPassword() throws FindFailed, InterruptedException {
+	public void enterPassword() throws FindFailed, InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(configuration.getStringProperty("password"));
 		Thread.sleep(1000);
 	}
 
-	private void clickConnectButton() throws FindFailed, InterruptedException {
+	public void clickConnectButton() throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
 
 		if (screen.exists("images/JDAHome/JDAHomePage.png") == null) {
 			Assert.fail("Login Not successful");
 
-		if (screen.exists("images/JDAHome/searchScreenButton.png") == null) {
-		//Assert.fail("Login Not successful");
-			if(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-			{
-			while(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-			{
-				
-				screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
-				screen.click("images/JDALogin/DoNotAsk.png");
-				screen.wait("images/JDALogin/Later.png", timeoutInSec);
-				screen.click("images/JDALogin/Later.png");
-				
+			if (screen.exists("images/JDAHome/searchScreenButton.png") == null) {
+				// Assert.fail("Login Not successful");
+				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+
+						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
+						screen.click("images/JDALogin/DoNotAsk.png");
+						screen.wait("images/JDALogin/Later.png", timeoutInSec);
+						screen.click("images/JDALogin/Later.png");
+
+					}
+
+				} else {
+
+					Assert.fail("Login Not successful");
+				}
 			}
-			
-			}
-			else
-			{
-			
-				Assert.fail("Login Not successful");
-			}
+			context.setJdaLoginFlag(true);
 		}
-		context.setJdaLoginFlag(true);
 	}
-}
 }

@@ -3,7 +3,7 @@ Feature: Hanging - Stock adjustments with Reason Code
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @hanging @stock_adjustment @stock_adjustment_reason_code @hanging_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dirty_ @complete @ds @no_ds @group_3
+  @hanging @stock_adjustment @stock_adjustment_reason_code1 @hanging_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dirty_ @complete @ds @no_ds @group_3
   Scenario Outline: Do stock adjustment by selecting reason code as Dirty
     Given I have a sku of type "Hanging" to adjust the stock
     When I navigate to stock adjustments page

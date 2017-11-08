@@ -558,7 +558,7 @@ public class InventoryQueryStepDefs {
 			}
 
 			else if (tempData.equalsIgnoreCase("Exhausted Resultset")) {
-				Assert.fail("No records found for the site Id ");
+				Assert.fail("No records found for the site Id it is a valid failure");
 			}
 
 			else {
