@@ -68,13 +68,13 @@ public class InventoryTransactionQueryStepDefs {
 
 
 		//jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.selectCode("Receipt");
+//		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+//		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+//		inventoryTransactionQueryPage.enterTransactionDate();
+//		jDAFooter.clickExecuteButton();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
@@ -86,7 +86,7 @@ public class InventoryTransactionQueryStepDefs {
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(),
-					String.valueOf(context.getRcvQtyDue() - 1),
+					String.valueOf(context.getRcvQtyDue()),
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),

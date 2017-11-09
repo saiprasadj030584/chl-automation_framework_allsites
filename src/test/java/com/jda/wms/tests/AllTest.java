@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_receiving_direct_po_receiving_with_lock_code_qafts"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code"})
 
 public class AllTest {
 }	
