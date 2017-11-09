@@ -1,14 +1,14 @@
-@inventory_stock_check
-Feature: Report generation
+@boxed_inventory_stock_check
+Feature: Boxed - Stock Check Positive Proof
   As a warehouse user
   I want to validate stock in inventory
 
-  @boxed @stock_check @stock_adjustment @boxed_stock_adjustment_stock_check_positive_proof_of_stock_check @complete @ds @jenkins1 @no_ds
+  @boxed @stock_check @stock_adjustment @boxed_stock_adjustment_stock_check_positive_proof_of_stock_check @complete @ds @jenkins1 @no_ds @jenkinssc
   Scenario: Positive proof of stock check
-   # Given I have logged in as warehouse user in JDA dispatcher GM application
+    Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
     And I select 'Generate by inventory'
-    And I enter the tag ID as on inventory tab for site id 
+    And I enter the tag ID as on inventory tab for site id for "Boxed" 
     Then the available list should be displayed
     When I select the record from the available list
     Then the record should be added in the selected list

@@ -1337,8 +1337,7 @@ public class InventoryDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
-				.executeQuery("select inventory.tag_id from inventory inner join sku on sku.user_def_type_8 ='"
-						+ dataType + "' and site_id='" + siteID + "'");
+				.executeQuery("select A.tag_id from inventory A inner join sku B on B.sku_id=A.sku_id where B.user_def_type_8='"+dataType+"' and A.site_id='"+siteID+"'");
 		rs.next();
 		return rs.getString(1);
 	}

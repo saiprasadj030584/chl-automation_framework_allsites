@@ -393,6 +393,7 @@ public class InventoryQueryStepDefs {
 		jDAFooter.clickQueryButton();
 
 		inventoryQueryPage.enterTagId(context.getTagId());
+		Thread.sleep(2000);
 		inventoryQueryPage.enterLocation(context.getLocation());
 		jDAFooter.clickExecuteButton();
 		inventoryQueryPage.getQtyOnHand();
