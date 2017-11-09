@@ -154,7 +154,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isReceivingDiscrepanciesReportExist() throws InterruptedException, FindFailed {
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		if (screen.exists("images/ReportSelection/generatedDiscrepanciesReport.png") != null) {
 			return true;
 		} else
@@ -174,7 +174,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isInternalExceptionReportExist() throws FindFailed, InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(20000);
 		if (screen.exists("images/ReportSelection/generatedInternalExceptions.png") != null) {
 			return true;
 		} else

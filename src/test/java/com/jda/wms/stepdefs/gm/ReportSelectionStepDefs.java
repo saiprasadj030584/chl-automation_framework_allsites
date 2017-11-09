@@ -151,7 +151,7 @@ public class ReportSelectionStepDefs {
 	 @Then("^the trailor level discrepancy report should be generated$")
 		public void the_trailor_level_discrepancy_report_should_be_generated() throws Throwable {
 			Assert.assertTrue("Receiving Discrepancies Report not displayed as expected",reportSelectionPage.isReceivingDiscrepanciesReportExist());
-			Thread.sleep(4000);
+			Thread.sleep(10000);
 			jDAFooter.clickDoneButton();
 		}
 	 
@@ -180,7 +180,7 @@ public class ReportSelectionStepDefs {
 	 @Then("^the internal exception report should be generated$")
 		public void the_internal_exception_report_should_be_generated() throws Throwable {
 		 Assert.assertTrue("Internal exception report not displayed as expected",reportSelectionPage.isInternalExceptionReportExist());
-			Thread.sleep(4000);
+			Thread.sleep(10000);
 			jDAFooter.clickDoneButton();
 		}
 	 
