@@ -3,7 +3,7 @@ Feature: Receiving progress report validation
   As a warehouse user
   I want to validate receiving progress report
 
-  @boxed_receiving_fsv_po_validate_the_receiving_progress_report @boxed @receiving @fsv_po @complete @ds @boxed_jenkins @no_ds
+  @boxed_receiving_fsv_po_validate_the_receiving_progress_report @boxed @receiving @fsv_po @complete @ds @jenkinssc @no_ds 
   Scenario: Validating Receiving progress report
     Given I am on report selection page
     When I choose the print to screen option

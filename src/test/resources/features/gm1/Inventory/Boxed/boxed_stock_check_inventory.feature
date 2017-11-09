@@ -4,8 +4,7 @@ Feature: Report generation
   I want to validate stock in inventory
 
 
-  @jenkins_analysis2 @boxed_inventory_inventory_validate_the_stock_available_in_any_location_check_empty_and_low_volume_slots @boxed @inventory @complete @ds @jenkins1 @no_ds
-
+  @jenkins_analysis2 @boxed_inventory_inventory_validate_the_stock_available_in_any_location_check_empty_and_low_volume_slots @boxed @inventory @complete @ds @jenkins1 @no_ds @jenkinssc
   Scenario: Validate the stock available in any location.Check Empty and Low Volume Slots
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
@@ -20,7 +19,7 @@ Feature: Report generation
     Then I should see the created list
 
 
-@boxed_inventory_inventory_validate_whether_report_is_generated_based_on_stock_accuracy_by_location @boxed @inventory @complete @ds @jenkins1 @no_ds
+@boxed_inventory_inventory_validate_whether_report_is_generated_based_on_stock_accuracy_by_location @boxed @inventory @complete @ds @jenkins1 @no_ds @jenkinssc
 
   Scenario: Validate whether report is generated based on Stock Accuracy by Location
     Given I have logged in as warehouse user in JDA dispatcher GM application
