@@ -1254,8 +1254,8 @@ public class InventoryTransactionQueryStepDefs {
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Receipt");
-		jDAFooter.pressTab();
-		jDAFooter.pressTab();
+//		jDAFooter.pressTab();
+//		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.clickExecuteButton();

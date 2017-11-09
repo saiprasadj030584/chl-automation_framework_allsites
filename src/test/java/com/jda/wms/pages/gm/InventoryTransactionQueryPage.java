@@ -13,7 +13,10 @@ public class InventoryTransactionQueryPage {
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
 //		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
 //		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.wait("images/InventoryTransactionQuery/general/TagID.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/general/TagID.png");
 		screen.type(tagId);
+		Thread.sleep(1000);
 	}
 
 	public void enterReasonCode(String reasonCode) throws InterruptedException, FindFailed {
