@@ -806,7 +806,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+						+ listID + "' ) and tag_id='" + tagId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"

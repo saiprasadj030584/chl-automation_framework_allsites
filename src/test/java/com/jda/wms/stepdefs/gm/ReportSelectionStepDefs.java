@@ -59,7 +59,7 @@ public class ReportSelectionStepDefs {
 	
 	@Given("^I am on report selection page$")
 	public void i_am_on_report_seletion_page() throws Throwable {
-		//jdaLoginPage.login();
+		jdaLoginPage.login();
 		jdaHomePage.navigateToReportSelectionPage();
 	}
 	
@@ -75,9 +75,8 @@ public class ReportSelectionStepDefs {
 		jDAFooter.clickNextButton();
 	}
 	
-	@When("^I choose M&S-Receiving summary as report type at site \"([^\"]*)\" for \"([^\"]*)\" type$")
-	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_(String siteid,String dataType) throws Throwable {
-		context.setSiteId(siteid);
+	@When("^I choose M&S-Receiving summary as report type at site for \"([^\"]*)\" type$")
+	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_(String dataType) throws Throwable {
 		String site = context.getSiteId();
 		reportSelectionPage.chooseReport();
 		jDAFooter.clickNextButton();
@@ -93,7 +92,7 @@ public class ReportSelectionStepDefs {
 	
 	@Then("^the receiving progress report should be generated$")
 	public void the_receiving_progress_report_should_be_generated() throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		Assert.assertTrue("Report generation is not as expected", reportSelectionPage.isReportGeneratedExist());;
 		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
