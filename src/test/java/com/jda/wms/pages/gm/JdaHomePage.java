@@ -404,7 +404,7 @@ public class JdaHomePage {
 	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Pre-advice header maintenance/query screen");
+		screen.type("Pack configuration maintenance/query screen");
 		screen.click("images/JDAHome/Search_button.png");
 		// screen.type(Key.ENTER);
 		Thread.sleep(1000);

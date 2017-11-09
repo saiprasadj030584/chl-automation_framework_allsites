@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { "@all_data_picking_picking_validate_picking_and_replenishment_workload_report"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config"})
 
 public class AllTest {
 }	

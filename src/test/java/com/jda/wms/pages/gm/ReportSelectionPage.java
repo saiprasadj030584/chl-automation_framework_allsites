@@ -196,7 +196,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isPickingAndReplenishWorkloadReportExist() throws FindFailed, InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		
 		if (screen.exists("images/ReportSelection/replenWorkload.png") != null) {
 			return true;

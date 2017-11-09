@@ -212,7 +212,7 @@ public class ReportSelectionStepDefs {
 	 @Then("^the picking and replenish workload report should be generated$")
 		public void the_picking_and_replenish_workload_report_should_be_generated() throws Throwable {	
 		 Assert.assertTrue("Picking & Replenishment Worload report not displayed as expected",reportSelectionPage.isPickingAndReplenishWorkloadReportExist());	
-			Thread.sleep(1000);
+			Thread.sleep(10000);
 			jDAFooter.clickDoneButton();
 		}
 	 @When("^I select M&S proactive allocation shortage report$")
