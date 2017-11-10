@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @check9
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -14,7 +14,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @boxed @complete @ds
+  @jenkins_analysis @boxed_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @boxed @complete @ds @jenkinsbr
   Scenario: Validate automatic document closure ASN
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -54,7 +54,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction for two putaway group
     Then the po status should be displayed as "Complete"
 
-  @boxed_receiving_direct_po_validate_the_urgent_delivery_po @boxed @direct_po @receiving @complete @ds
+  @boxed_receiving_direct_po_validate_the_urgent_delivery_po @boxed @direct_po @receiving @complete @ds @jenkinsbr
   Scenario: Validate the urgent delivery PO
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

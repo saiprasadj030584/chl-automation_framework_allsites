@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @jenkins_analysis90 @boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -15,7 +15,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis90 @boxed_receiving_direct_po_receiving_with_lock_code_qacomp @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacomp @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QACOMP lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -37,7 +37,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_fwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_fwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with FWL lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -48,7 +48,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_rework @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_rework @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with REWORK lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -59,7 +59,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qaftsfwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qaftsfwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTSFWL lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -70,7 +70,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacnifwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qacnifwl @boxed @receiving @direct_po @not_applciable @ds
   Scenario: Validate receiving process with QACNIFWL lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -81,7 +81,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapcfwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_receiving_with_lock_code_qapcfwl @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAPCFWL lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -115,7 +115,6 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     Then the po status should be displayed as "Complete"
 
   @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_qapcrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
- 
   Scenario: Validate receiving process with QAPCRW lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -126,7 +125,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with FWLRW lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -137,7 +136,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTSFWLRW lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -159,7 +158,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsbr @jenkins_analysis @boxed_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAPCFWLRW lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
