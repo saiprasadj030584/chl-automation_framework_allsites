@@ -43,6 +43,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	private LocationDB locationDb;
 	private SkuDB skuDB;
 	private InventoryQueryPage inventoryQueryPage;
+	private LocationDB locationDB;
 
 	@Inject
 	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
@@ -50,7 +51,7 @@ public class OrderHeaderMaintenanceStepDefs {
 			JdaLoginPage jdaLoginPage, OrderLineDB orderLineDB, GetTcData getTcData, InventoryDB inventoryDB,
 
 			JDALoginStepDefs jdaLoginStepDefs, InventoryQueryPage inventoryQueryPage, LocationDB locationDb,
-			SkuDB skuDB) {
+			SkuDB skuDB,LocationDB locationDB) {
 
 		this.context = context;
 		this.jDAFooter = jDAFooter;
@@ -66,6 +67,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.inventoryQueryPage = inventoryQueryPage;
 		this.locationDb = locationDb;
 		this.skuDB = skuDB;
+		this.locationDB = locationDB;
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
@@ -473,11 +475,8 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status and \"([^\"]*)\" skus should be in \"([^\"]*)\" location$")
 	public void the_order_id_of_type_should_be_in_status_and_skus_should_be_in_location(String orderType, String status,
-			String skuType, String locationId) throws Throwable {
-
-		// String orderNumber = getTcData.getSto();
-		String orderNumber = "5170201466";
-		context.setSiteId("5649");
+		String skuType, String locationId) throws Throwable {
+		String orderNumber = getTcData.getSto();
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -664,4 +663,12 @@ public class OrderHeaderMaintenanceStepDefs {
 	  	Assert.assertEquals("Prohibition flag not displayed as expected", "PROHIBITION",inventoryDB.getProhibitionFlag(context.getSkuId()));
 	}
 	
+
+	@Given("^check the loc type for the boxed preffered zones$")
+	public void check_the_loc_type_for_the_boxed_preffered_zones() throws Throwable {
+		System.out.println("Count of boxed preffered zones without tag-FIFO"+locationDB.checkBoxZone());
+		int check = Integer.parseInt(locationDB.checkBoxZone ());
+		if (check!=0)
+			Assert.fail("Box location is not boxed preferable location");
+	}
 }

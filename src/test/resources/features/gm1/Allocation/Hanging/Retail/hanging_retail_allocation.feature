@@ -14,9 +14,9 @@ Feature: Hanging - Retail - Allocation
       | OrderNumber |
       |  5170201467 |
 
-  @hanging_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @hanging @complete @ds
+   @jenkinspr @hanging_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @hanging @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
-    Given the order id of type "Retail" should be in "Released" status and "Hanging" skus should be in "Suspense" location
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     When I navigate to order header
     And I query with Order Id
     Then the order stock modularity should be visible

@@ -77,4 +77,16 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+public String checkBoxZone() throws ClassNotFoundException, SQLException  {
+		
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT COUNT(LOC_TYPE) as loc_count FROM LOCATION WHERE LOC_TYPE != 'Tag-FIFO' AND ZONE_1 LIKE 'BOXPREF%'");
+		rs.next();
+		return rs.getString("loc_count");
+			
+		}
 }
