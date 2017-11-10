@@ -212,6 +212,16 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	
+	public String getComplianceFlag(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_1 from pre_advice_header where pre_advice_id = '" + preAdviceId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 }

@@ -97,11 +97,11 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I update the compliance flag in database
     Then the compliance details should be updated
 
-  @jenkinsdb @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_header @complete @ds
+  @jenkinsdb1 @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_header @complete @ds
   Scenario: Validate whether compliance flag can be uploaded for Pre advice header
     Given the PO of type "Boxed" should be in "Released" status with line items,supplier details
     When I update the compliance flag in pre advice header
-    Then the compliance details should be updated
+    Then the compliance details should be updated in preadvice header
 
   @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
   Scenario: Assign dock door for each trailer to unload it

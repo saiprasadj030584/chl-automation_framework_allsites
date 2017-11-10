@@ -1,5 +1,5 @@
-@dock_scheduler
-Feature: Dock Scheduling
+@hanging_direct_po_dock_scheduler
+Feature: Hanging - Direct PO - Dock Scheduling
   As a warehouse user
   I want to schedult a dock door for Direct PO
   So that I can receive the same in the scheduled dock door
@@ -109,7 +109,7 @@ Feature: Dock Scheduling
     When I change the booking time to different date
     Then the booking id details with updated time should be displayed on the page
 
-  @jenkinsdb @hanging @pre_receiving @direct_po @hanging_pre_receiving_direct_po_validate_compliance_flag_uploaded @complete @ds
+  @jenkinsdb1 @hanging @pre_receiving @direct_po @hanging_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds
   Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO should be in "Released" status
     And the PO line should have sku, quantity due details

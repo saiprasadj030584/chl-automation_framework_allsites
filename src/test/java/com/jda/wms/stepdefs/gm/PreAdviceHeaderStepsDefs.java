@@ -509,5 +509,11 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertTrue("PO , UPI header , Delivery details not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Given("^the compliance details should be updated in preadvice header$")
+	public void the_compliance_flag_details_should_be_updated_in_preadvice_header () throws Throwable {
+		Assert.assertEquals("Compliance Flag not updated", "COMP",
+				preAdviceHeaderDB.getComplianceFlag(context.getPreAdviceId()));
+	}
 
 }
