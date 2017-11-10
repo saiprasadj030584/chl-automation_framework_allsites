@@ -19,3 +19,6 @@ Feature: Purchase order Putaway Receipt correction
     When I navigate to inventory transaction query
     And I choose the code as "Adjustment" and search the sku id with IE reason code
     Then the reason code should be updated
+    
+    
+     

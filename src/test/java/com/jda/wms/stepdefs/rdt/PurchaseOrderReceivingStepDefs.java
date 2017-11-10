@@ -994,30 +994,26 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
+		System.out.println("enterpp");
 		String urn = null;
-		System.out.println("without lock code" + purchaseOrderReceivingPage.isPutAwayGroupExists());
-
 		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
-		if (rcvLockSplit.length != 0) {
-			if (rcvLockSplit[0].contains("QA")) {
-				urn = "QA" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("FIREWALL")) {
-				urn = "FW" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("REWORK")) {
-				urn = "RW" + Utilities.getFourDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
-				urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
-			} else if (rcvLockSplit[0].contains("LOC")) {
-				urn = Utilities.getSixDigitRandomNumber();
-			} else {
-				urn = context.getUpiId();
-				System.out.println("urn " + urn);
-			}
-		} else {
-			urn = context.getUpiId();
-			System.out.println("urn " + urn);
+		if (rcvLockSplit[0].contains("QA")) {
+			urn = "QA" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("FIREWALL")) {
+			urn = "FW" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("REWORK")) {
+			urn = "RW" + Utilities.getFourDigitRandomNumber();
+		} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
+			urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 		}
-
+		else if (rcvLockSplit[0].contains("RACKING")) {
+			urn = "RA" + Utilities.getFourDigitRandomNumber();
+		}
+		else if (rcvLockSplit[0].contains("LOC")) {
+			urn = Utilities.getNineDigitRandomNumber();
+		}else {
+			urn = context.getUpiId();
+		}
 		purchaseOrderReceivingPage.enterURNID(urn);
 		context.setPalletID(urn);
 	}
@@ -2092,7 +2088,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			if (type.equalsIgnoreCase("Boxed")) {
+			if (type.equalsIgnoreCase("Boxed") || type.equalsIgnoreCase("Flatpack") || type.equalsIgnoreCase("GOH")) {
 				i_enter_urn_id(context.getUpiId());
 				jdaFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed_for_receiving();

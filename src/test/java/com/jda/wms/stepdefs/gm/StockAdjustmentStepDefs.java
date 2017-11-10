@@ -253,17 +253,18 @@ public class StockAdjustmentStepDefs {
 		context.setUpdatedQty(quantityAdj-Integer.parseInt(quantityInv));
 		System.out.println("uppp"+context.getUpdatedQty());
 		stockAdjustmentsPage.selectExistingStock();
-		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
 		stockAdjustmentsPage.enterSiteIdExisting(siteId);
 		jDAFooter.pressTab();
 		stockAdjustmentsPage.enterSkuIDExisting(context.getSkuId());
 		jDAFooter.pressTab();
+		jDAFooter.pressTab();
+		jDAFooter.pressTab();
 
 		stockAdjustmentsPage.enterLocation(toLocation);
-		jDAFooter.pressTab();
-		System.out.println("qty ij inv"+quantityInv);
 		
+		System.out.println("qty ij inv"+quantityInv);
+		jDAFooter.pressTab();
 		//stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getUpdatedQty()));
 		stockAdjustmentsPage.enterQuantityOnHand(quantityInv);
 		

@@ -298,6 +298,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 			i_should_be_directed_to_putent_page();
 			
 		}
+		hooks.logoutPutty();
 	}
 	
 	@When("^I perform normal returns putaway after relocation$")
@@ -335,6 +336,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 			i_should_be_directed_to_putent_page();
 			
 		}
+		hooks.logoutPutty();
 	}
 
 	
@@ -373,6 +375,7 @@ private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 			i_should_be_directed_to_putent_page();
 			
 		}
+		hooks.logoutPutty();
 	}
 	
 

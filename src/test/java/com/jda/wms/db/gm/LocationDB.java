@@ -77,4 +77,45 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList<String> getLocationForZone(String zone) throws SQLException, ClassNotFoundException {
+		ArrayList<String> locationList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from location where zone_1 LIKE '%"+zone+"%' and lock_status='UnLocked'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+
+		while (rs.next()) {
+			for (int j = 1; j <= rsmd.getColumnCount(); j++) {
+				locationList.add((rs.getString(j)));
+			}
+		}
+		return locationList;
+	}
+	
+	public String getUserDefType2(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_2 from location where location_id = '" + location + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getUserDefType3(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_3 from location where location_id = '" + location + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

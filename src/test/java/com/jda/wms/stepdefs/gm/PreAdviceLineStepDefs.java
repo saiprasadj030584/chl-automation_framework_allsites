@@ -121,6 +121,12 @@ public class PreAdviceLineStepDefs {
 				case "Hanging":
 					type = "H";
 					break;
+				case "Flatpack":
+					type = "P";
+					break;
+				case "GOH":
+					type = "C";
+					break;
 				}
 				// TODO Check for multiple skus
 				

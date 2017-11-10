@@ -22,6 +22,11 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(900000) + 100000);
 	}
+	
+	public static String getNineDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(9000000) + 100000000);
+	}
 
 	public static String getFiveDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());

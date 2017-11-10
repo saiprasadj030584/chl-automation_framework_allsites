@@ -694,7 +694,7 @@ System.out.println("select LOCK_CODE from inventory_transaction where reference_
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
 				+ "' or pallet_id='" + preAdviceId
-				+ "' and code = '" + code + "'");
+				+ "' and code = '" + code + "' order by dSTAMP desc");
 		rs.next();
 		return rs.getString(1);
 	}

@@ -232,11 +232,11 @@ jdaFooter.clickDoneButton();
 			context.setRcvQtyDue(
 					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
 
-			
+			System.out.println("QTY DUEEE11"+String.valueOf(context.getRcvQtyDue()));
 			System.out.println(!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
 					.equals(String.valueOf(context.getRcvQtyDue()))));
 			
-			System.out.println(String.valueOf(context.getRcvQtyDue()));
+			System.out.println("QTY DUEEE"+String.valueOf(context.getRcvQtyDue()));
 			System.out.println((orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))));
 			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
 					.equals(String.valueOf(context.getRcvQtyDue())))) {

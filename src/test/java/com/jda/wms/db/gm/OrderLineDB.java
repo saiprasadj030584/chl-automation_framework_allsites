@@ -35,6 +35,7 @@ public class OrderLineDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");

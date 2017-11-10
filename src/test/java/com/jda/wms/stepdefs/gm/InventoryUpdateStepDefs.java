@@ -139,4 +139,16 @@ public class InventoryUpdateStepDefs {
 		Thread.sleep(1000);
 		jdafooter.clickDoneButton();
 	}
+	
+	@Then("^I select the status as \"([^\"]*)\" and lock code as \"([^\"]*)\"$")
+	public void i_select_the_status_as_and_lock_code_as(String status,String lockCode) throws Throwable {
+		inventoryUpdatePage.enterStatus(status);
+		jdafooter.pressTab();
+		inventoryUpdatePage.enterStatus(lockCode);
+		jdafooter.clickDoneButton();
+		if (inventoryUpdatePage.isWarningPopUpPageExist()) {
+			warningPopUpPage.clickYes();
+		}
+		context.setStatus(status);
+	}
 }

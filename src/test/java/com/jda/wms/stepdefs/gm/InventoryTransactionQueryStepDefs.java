@@ -732,7 +732,7 @@ public class InventoryTransactionQueryStepDefs {
 	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		//inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		inventoryTransactionQueryPage.enterReferenceId(context.getPreAdviceId());
 		jDAFooter.clickExecuteButton();
 		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
