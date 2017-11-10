@@ -3,7 +3,7 @@ Feature: Hanging - Direct PO - Receiving
   As a warehouse user
   I want to validate trailor_level_discrepancy
 
-  @hanging_receiving_direct_po_trailer_level_discrepancy @hanging @receiving @direct_po @complete @ds @no_ds
+  @jenkinsB @hanging_receiving_direct_po_trailer_level_discrepancy @hanging @receiving @direct_po @complete @ds @no_ds
   Scenario: Trailer level discrepancy
     Given I am on report selection page
     When I choose the print to screen option

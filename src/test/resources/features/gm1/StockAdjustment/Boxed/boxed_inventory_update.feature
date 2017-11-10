@@ -1,11 +1,10 @@
 
 @boxed_inventory_update
-
 Feature: Boxed - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds @group_1
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Boxed"
     When I navigate to inventory update page
@@ -21,7 +20,7 @@ Feature: Boxed - Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | UnLocked     | Inventory Unlock |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds @group_1
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status for "Boxed"
     When I navigate to inventory update page
@@ -37,7 +36,7 @@ Feature: Boxed - Inventory update
       | LockStatus | UpdateStatus | Code           |
       | UnLocked   | Locked       | Inventory Lock |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds @group_1
+  @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_expiry_date @complete @ds @jenkins1 @no_ds @group_1
    Scenario: Update Expiry date
     #Given I have tag in inventory with expiry "Y" status
     Given I have tag in inventory with expiry "Y" status for "Boxed" and siteId "5649"
@@ -50,7 +49,7 @@ Feature: Boxed - Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds @group_1
   Scenario Outline: Origin update
     #Given I have a tag in inventory with origin "<Origin>"
     Given I have a tag in inventory with origin "<Origin>" for "Boxed"
@@ -66,7 +65,7 @@ Feature: Boxed - Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds @group_1
   Scenario Outline: Update condition code
     #Given I have a tag in inventory with condition "<Condition>"
     Given I have a tag in inventory with condition "<Condition>" for "Boxed"
@@ -83,7 +82,7 @@ Feature: Boxed - Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds @group_1
   Scenario Outline: Pallet type update
     #Given I have a tag in inventory with pallet type as "<PalletType>"
     Given I have a tag in inventory with pallet type as "<PalletType>" for "Boxed"
@@ -100,7 +99,7 @@ Feature: Boxed - Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-  @jenkins_analysis @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds @group_1
   Scenario: Pack config update
     #Given I have a sku in inventory with more than one pack config
     Given I have a sku in inventory with more than one pack config for "Boxed"

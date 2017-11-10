@@ -3,7 +3,7 @@ Feature: GOH - Picking - Report Generation
   As a warehouse user
   I want to generate internal exception report
 
-  @GOH @picking @goh_picking_picking_validate_pick_internal_exception_reports @ds @complete @no_ds
+  @jenkinsC @goh @picking @goh_picking_picking_validate_pick_internal_exception_reports @ds @complete @no_ds
   Scenario: Validate Pick Internal Exception Reports
     Given I am on report selection page
     When I choose the print to screen option

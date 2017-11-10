@@ -46,6 +46,6 @@ Feature: Boxed - Retail - Picking
     When I enter the invalid  UPC
     Then the error message should be displayed as invalid details
 
-  @jenkinspr @boxed @retail @picking @boxed_picking_retail_validate_whether_boxed_location_is_made_as_pickable_preferred_location @complete @ds @no_ds
+  @jenkinsA @boxed @retail @picking @boxed_picking_retail_validate_whether_boxed_location_is_made_as_pickable_preferred_location @complete @ds @no_ds
   Scenario: Validate whether Boxed location is made as Pickable Preferred Location
     Given check the loc type for the boxed preffered zones

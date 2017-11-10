@@ -3,7 +3,7 @@ Feature: Flatpack - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Flatpack"
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Flatpack - Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | UnLocked     | Inventory Unlock |
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status for "Flatpack"
     When I navigate to inventory update page
@@ -35,7 +35,7 @@ Feature: Flatpack - Inventory update
       | LockStatus | UpdateStatus | Code           |
       | UnLocked   | Locked       | Inventory Lock |
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Origin update
     #Given I have a tag in inventory with origin "<Origin>"
     Given I have a tag in inventory with origin "<Origin>" for "Flatpack"
@@ -51,7 +51,7 @@ Feature: Flatpack - Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds
   Scenario Outline: Update condition code
     #Given I have a tag in inventory with condition "<Condition>"
     Given I have a tag in inventory with condition "<Condition>" for "Flatpack"
@@ -68,7 +68,7 @@ Feature: Flatpack - Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Pallet type update
     #Given I have a tag in inventory with pallet type as "<PalletType>"
     Given I have a tag in inventory with pallet type as "<PalletType>" for "Flatpack"
@@ -85,7 +85,7 @@ Feature: Flatpack - Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-  @jenkins_analysis @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds
+  @jenkinsC @flatpack @stock_adjustment @inventory_update @flatpack_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds
   Scenario: Pack config update
     #Given I have a sku in inventory with more than one pack config
     Given I have a sku in inventory with more than one pack config for "Flatpack"
