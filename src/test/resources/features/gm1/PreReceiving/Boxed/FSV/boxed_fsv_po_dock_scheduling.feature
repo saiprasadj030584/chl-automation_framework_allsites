@@ -1,5 +1,5 @@
-@dock_scheduler
-Feature: Dock Scheduling
+@boxed_fsv_po_dock_scheduling
+Feature: Boxed - FSV PO - Dock Scheduling
   As a warehouse user
   I want to schedult a dock door for FSV PO
   So that I can receive the same in the scheduled dock door

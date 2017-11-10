@@ -122,10 +122,14 @@ public class PreAdviceLineStepDefs {
 				case "Hanging":
 					type = "H";
 					break;
+				case "Flatpack":
+					type = "P";
+					break;
+				case "GOH":
+					type = "C";
+					break;
 				}
 				// TODO Check for multiple skus
-				
-
 				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
 						failureList);
