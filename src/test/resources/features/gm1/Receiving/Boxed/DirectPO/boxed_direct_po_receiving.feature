@@ -54,7 +54,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction for two putaway group
     Then the po status should be displayed as "Complete"
 
-  @boxed_receiving_direct_po_validate_the_urgent_delivery_po @boxed @direct_po @receiving @complete @ds @jenkinsbr1
+  @boxed_receiving_direct_po_validate_the_urgent_delivery_po @boxed @direct_po @receiving @complete @ds @jenkinsbr
   Scenario: Validate the urgent delivery PO
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
