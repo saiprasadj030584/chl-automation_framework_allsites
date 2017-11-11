@@ -121,5 +121,5 @@ Feature: Hanging - Direct PO - Dock Scheduling
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to report selection page
     And I select print to screen and I search for the pre receiving
-    And I enter the siteID
+    And I enter the siteID for hanging
     Then the report should be generated for pre receiving upc in inventory

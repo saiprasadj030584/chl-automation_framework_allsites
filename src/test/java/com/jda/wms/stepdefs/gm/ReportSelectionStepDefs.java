@@ -49,6 +49,16 @@ public class ReportSelectionStepDefs {
 		jDAFooter.clickNextButton();
 		jDAFooter.clickDoneButton();
 	}
+	@When("^I enter the siteID for hanging$")
+	public void i_enter_the_siteID_for_hanging() throws Throwable {
+		String siteID = context.getSiteId();
+		reportSelectionPage.enterSiteID(siteID);
+		//reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
+	//	reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
+		jDAFooter.clickNextButton();
+		jDAFooter.clickDoneButton();
+	}
+
 
 	@Then("^the report should be generated for stock in inventory")
 	public void the_report_should_be_generated_for_stock_in_inventory() throws Throwable {
@@ -111,7 +121,9 @@ public class ReportSelectionStepDefs {
 	}
 	
 	@Then("^the report should be generated for pre receiving upc in inventory")
-	public void the_report_should_be_generated_for_pre_receiving_upc__in_inventory() throws Throwable {
+	public void the_report_should_be_generated_for_pre_receiving_upc__in_inventory() throws Throwable
+	{
+		Thread.sleep(10000);
 		Assert.assertTrue("Report not displayed as expected for pre receiving upc in Inventory",
 				reportSelectionPage.isReportDisplayedForPreReceivingUpc());
 		jDAFooter.clickDoneButton();

@@ -115,7 +115,7 @@ public class ReportSelectionPage {
 	
 	public boolean isReportDisplayedForPreReceivingUpc() throws InterruptedException {
 		Thread.sleep(11000);
-		if (screen.exists("images/ReportGeneration/ReportPreReceivingUpc.png") != null) {
+		if (screen.exists("images/ReportGeneration/Reports.png") != null) {
 			return true;
 		} else
 			return false;
