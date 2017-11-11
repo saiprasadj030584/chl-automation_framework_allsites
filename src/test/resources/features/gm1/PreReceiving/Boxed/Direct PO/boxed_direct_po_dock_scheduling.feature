@@ -26,7 +26,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds @maven_check_1 @allocation_check
+    @jenkinshpr @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds @maven_check_1 @allocation_check
   Scenario: Validate whether Booking details can be captured - Service level information
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -58,7 +58,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1 @dock @allocation_check
+  @jenkinshpr  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1 @dock @allocation_check
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -103,7 +103,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I update the compliance flag in pre advice header
     Then the compliance details should be updated in preadvice header
 
-  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
+  @jenkinshpr @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
   Scenario: Assign dock door for each trailer to unload it
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door

@@ -4,7 +4,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
   I want to schedult a dock door for Direct PO
   So that I can receive the same in the scheduled dock door
 
-  @jenkinshpr @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_dock_schedule_asn @complete @ds
+ @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_dock_schedule_asn @complete @ds
   Scenario: Validate whether ASN can be assigned using the Container ID
     Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
@@ -26,7 +26,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinshpr @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds
+ @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds
   Scenario: Validate whether Booking details can be captured - Service level information
     Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
@@ -37,7 +37,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinshpr @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds
+  @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds
   Scenario: Validate whether Booking details can be captured - Trailer Type information
     Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
@@ -48,7 +48,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinshpr @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
+ @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
   Scenario: Assign dock door for each trailer to unload it
     Given the PO, UPI, ASN of type "Hanging" details should be displayed
     And I create a trailer to receive at the dock door
@@ -99,7 +99,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @jenkinshpr @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @complete @ds
+  @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_date @complete @ds
   Scenario: Validate whether Booking can be moved to different date
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Hanging" at site
     When I navigate to dock scheduler start page

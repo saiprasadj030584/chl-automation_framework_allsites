@@ -59,7 +59,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinsfsvpr @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds 
+  @jenkinshpr @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds 
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -89,7 +89,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
 
-  @jenkinsfsvpr @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds  
+  @jenkinshpr @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds  
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
