@@ -1251,14 +1251,14 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		///jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
+//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+//		jDAFooter.clickQueryButton();
+//		inventoryTransactionQueryPage.selectCode("Receipt");
 //		jDAFooter.pressTab();
 //		jDAFooter.pressTab();
-		inventoryTransactionQueryPage.enterTagId(context.getTagId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
+//		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+//		inventoryTransactionQueryPage.enterTransactionDate();
+//		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),

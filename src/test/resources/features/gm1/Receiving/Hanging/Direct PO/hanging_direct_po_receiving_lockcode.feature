@@ -15,7 +15,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @jenkinshrl @direct_po @complete @ds @group_3
+  @jenkinshr1 @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @jenkinshrl @direct_po @complete @ds @group_3
   Scenario: Validate receiving process with QACOMP lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -26,7 +26,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-   @jenkinshrl @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code @hanging @receiving @direct_po @complete @ds @group_3
+   @jenkinshr1 @jenkinshrl @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code @hanging @receiving @direct_po @complete @ds @group_3
   Scenario: Validate receiving process with QAPC lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -37,7 +37,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkinshrl @hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code @hanging @receiving @direct_po @complete @ds @maven_group_2 @group_3
+  @jenkinshr1 @jenkinshrl @hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code @hanging @receiving @direct_po @complete @ds @maven_group_2 @group_3
   Scenario: Validate receiving process with FWL lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -70,7 +70,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-   @jenkinshrl @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qacnifwl_lock_code @hanging @receiving @direct_po @complete @ds @group_3
+   @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_qacnifwl_lock_code @hanging @receiving @direct_po @not_applicable @ds @group_3
   Scenario: Validate receiving process with QACNIFWL lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -125,7 +125,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-   @jenkinshrl @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code @hanging @receiving @direct_po @complete @ds @group_3
+   @jenkinshr1 @jenkinshrl @jenkins_analysis @hanging_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code @hanging @receiving @direct_po @complete @ds @group_3
   Scenario: Validate receiving process with FWLRW lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
