@@ -34,7 +34,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I create new dock booking at site
     When I select the booking type preadvice
     And I select the slot
-    And I create a booking
+    And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
   @jenkinsfsvpr @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds  
@@ -45,7 +45,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I create new dock booking at site
     When I select the booking type preadvice
     And I select the slot
-    And I create a booking
+    And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
   @jenkinsfsvpr @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds  
@@ -56,7 +56,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I create new dock booking at site
     When I select the booking type preadvice
     And I select the slot
-    And I create a booking
+    And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
   @jenkinsfsvpr @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds 

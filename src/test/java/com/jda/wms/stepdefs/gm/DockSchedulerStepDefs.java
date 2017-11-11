@@ -211,7 +211,7 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
 		
-		if(count==7)
+		if(count==4)
 		{
 			jdaFooter.PressEnter();
 			for(int i=0;i<5;i++)
@@ -241,7 +241,7 @@ public class DockSchedulerStepDefs {
 			
 			
 		}
-		else if(count==15)
+		else if(count==7)
 		{
 			break;
 		}
