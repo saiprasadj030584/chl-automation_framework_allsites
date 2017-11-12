@@ -25,7 +25,7 @@ default:
  tbl-parentprojectcode: 'CNH001'
  tbl-parentprojectname: 'JDA Dispatcher Fourwall'
 # emailList: 'Kiruthika.Srinivasan@mnscorp.net'
- emailList: 'Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Indrakumar.Palanisamy,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
+ emailList: 'Santhosh.Narayanaswamy@mnscorp.net','Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Indrakumar.Palanisamy,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
  tbl-parentautomationsuitname: '2'
  tbl-parentregion: 'CATE'
  tbl-testingPhase: '14'
