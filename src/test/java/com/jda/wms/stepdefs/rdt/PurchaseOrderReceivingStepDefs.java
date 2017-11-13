@@ -1014,9 +1014,7 @@ public class PurchaseOrderReceivingStepDefs {
 			} else if (rcvLockSplit[0].contains("MEZF2Z01")) {
 				urn = "M2Z01" + Utilities.getFiveDigitRandomNumber();
 			} else if (rcvLockSplit[0].contains("LOC")) {
-
 				urn = Utilities.getSixDigitRandomNumber() + Utilities.getThreeDigitRandomNumber();
-
 			} else {
 				urn = context.getUpiId();
 				System.out.println("urn " + urn);
@@ -1024,7 +1022,6 @@ public class PurchaseOrderReceivingStepDefs {
 		} else {
 			urn = context.getUpiId();
 			System.out.println("urn " + urn);
-
 		}
 
 		purchaseOrderReceivingPage.enterURNID(urn);
@@ -1798,7 +1795,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-			i_enter_urn_id();
+			i_enter_urn_id(context.getUpiId());
 			puttyFunctionsPage.nextScreen();
 
 			// To give tabs 5 times to navigate to FP line
