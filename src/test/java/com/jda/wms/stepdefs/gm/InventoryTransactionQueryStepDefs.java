@@ -849,8 +849,8 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
 		context.setLockCode(lockCode);
-		Assert.assertTrue("Lock code not displayed as expected",
-				inventoryTransactionQueryPage.checkDamagedReceiptLockCode(lockCode));
+		System.out.println("Lock code - "+lockCode);
+		Assert.assertEquals("Lock code not displayed as expected in ITL", "DMGD", lockCode);
 	}
 
 	@When("^the inventory transaction should be updated with reversed receipt tag$")

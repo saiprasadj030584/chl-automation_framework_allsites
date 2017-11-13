@@ -705,8 +705,8 @@ public class InventoryTransactionDB {
 				+ "' and code = '" + code + "'");
 		Statement stmt = context.getConnection().createStatement();
 
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='"
-				+ preAdviceId + "' or pallet_id='" + preAdviceId + "' and code = '" + code + "'");
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and code = '" + code + "'");
 
 		rs.next();
 		return rs.getString(1);
