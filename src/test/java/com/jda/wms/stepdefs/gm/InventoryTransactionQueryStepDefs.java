@@ -875,7 +875,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
-		String lockcode = inventoryTransactionDB.getLockCode(context.getUpiId(), code);
+		String lockcode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), code);
 		System.out.println("LOCKKK CODE"+context.getLockCode());
 		boolean isItlExists = false;
 		if (reference_Id.equalsIgnoreCase(context.getPreAdviceId())

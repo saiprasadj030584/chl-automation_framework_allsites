@@ -9,7 +9,7 @@ Feature: Boxed - Receiving - Direct PO - Negative
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lockcode damaged
 
-  @jenkins_analysis @boxed_receiving_direct_po_validate_not_received_asn @direct_po @boxed @receiving @complete @ds
+  @jenkins_analysis @jenkinsdpr @boxed_receiving_direct_po_validate_not_received_asn @direct_po @boxed @receiving @complete @ds
   Scenario: Validate not received ASN
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
