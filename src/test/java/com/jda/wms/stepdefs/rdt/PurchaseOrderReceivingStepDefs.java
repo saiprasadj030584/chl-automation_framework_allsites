@@ -519,18 +519,17 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			i_enter_urn_id(context.getUpiId());
-
+			puttyFunctionsPage.pressEnter();
+			
 		}
-		hooks.logoutPutty();
+	//	hooks.logoutPutty();
 	}
 
 	@Given("^Error message should be displayed on the page$")
 	public void error_message_should_be_displayed_on_the_page() throws Throwable {
 		Assert.assertTrue("Error message not displayed as expected",
 				purchaseOrderReceivingPage.validate_no_asn_error());
-
 		hooks.logoutPutty();
-
 	}
 
 	@Given("^I receive the PO with basic and pre-advice receiving$")
@@ -1031,7 +1030,6 @@ public class PurchaseOrderReceivingStepDefs {
 	@When("^I enter urn id \"([^\"]*)\"$")
 	public void i_enter_urn_id(String urn) throws FindFailed, InterruptedException {
 		purchaseOrderReceivingPage.enterURNID(urn);
-
 	}
 
 	public void i_enter_urn_id_damaged() throws FindFailed, InterruptedException {
