@@ -840,6 +840,19 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
+	@When("^the inventory transaction should be updated with lockcode damaged for fsv po$")
+	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged_fsv_po() throws Throwable {
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.enterCode("Inventory Lock");
+		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		inventoryTransactionQueryPage.enterReferenceId(context.getPreAdviceId());
+		jDAFooter.clickExecuteButton();
+		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
+		context.setLockCode(lockCode);
+		System.out.println("Lock code - "+lockCode);
+		Assert.assertEquals("Lock code not displayed as expected in ITL", "DMGD", lockCode);
+	}
+	
 	@When("^the inventory transaction should be updated with lockcode damaged$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged() throws Throwable {
 		jDAFooter.clickQueryButton();

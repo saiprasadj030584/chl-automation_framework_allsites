@@ -1634,13 +1634,28 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-		// String preAdviceId = "PO21113712138";
-		// String upiId = "00050453005258618170";
-		// String asnId = "0006215224";
+		// context.setUpiId(upiId);
+		// context.setPreAdviceId(preAdviceId);
+		context.setLocation(location);
 
-		// String preAdviceId = "PO21113712138";
-		// String upiId = "56490000552760077010022051700100";
-		// String asnId = "0006215224";
+		preAdviceHeaderStepsDefs
+				.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type, "Released");
+
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		context.setLocation(location);
+		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+	}
+	
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" with lock code damaged$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_with_lock_code_damaged(String type, String location) throws Throwable {
+		// String preAdviceId = getTcData.getPo();
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
 
 		// context.setUpiId(upiId);
 		// context.setPreAdviceId(preAdviceId);
@@ -1652,8 +1667,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		context.setLocation(location);
-		// i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
-		i_receive_all_skus_for_the_purchase_order_at_location(location);
+		 i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving();

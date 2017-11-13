@@ -35,7 +35,7 @@ Feature: Hanging - Inventory update
       | LockStatus | UpdateStatus | Code           |
       | UnLocked   | Locked       | Inventory Lock |
 
-  @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_expiry_date @complete @ds @no_ds
+  @jenkinsD @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_expiry_date @complete @ds @no_ds
   Scenario: Update Expiry date
     #Given I have tag in inventory with expiry "Y" status for "Hanging"
     Given I have tag in inventory with expiry "Y" status for "Hanging" and siteId "5649"
@@ -63,7 +63,7 @@ Feature: Hanging - Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-  @jenkinsB @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_condition_code @complete @ds @no_ds
+  @jenkinsD @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_update_condition_code @complete @ds @no_ds
   Scenario Outline: Update condition code
     Given I have a tag in inventory with condition "<Condition>" for "Hanging"
     When I navigate to inventory update page
@@ -79,7 +79,7 @@ Feature: Hanging - Inventory update
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-  @jenkinsB @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_pallet_type_update @complete @ds @no_ds
+  @jenkinsD @hanging @stock_adjustment @inventory_update @hanging_stock_adjustment_inventory_update_pallet_type_update @complete @ds @no_ds
   Scenario Outline: Pallet type update
     Given I have a tag in inventory with pallet type as "<PalletType>" for "Hanging"
     When I navigate to inventory update page

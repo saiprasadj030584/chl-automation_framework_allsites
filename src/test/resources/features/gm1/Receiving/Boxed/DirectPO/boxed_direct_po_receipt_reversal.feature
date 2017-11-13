@@ -12,7 +12,7 @@ Feature: Boxed - Direct PO - Receipt reversal
     And I do receipt reversal for the tag received
     Then the inventory transaction should be updated with reversed receipt tag
 
-  @jenkins_analysis @jenkinsdpr @boxed_receiving_direct_po_validate_receipt_reversal_process_with_qafts_lock_code @boxed @direct_po @receiving @complete @ds @maven_check_1 @putty_check_1 @check9
+  @jenkinsA @boxed_receiving_direct_po_validate_receipt_reversal_process_with_qafts_lock_code @boxed @direct_po @receiving @complete @ds @maven_check_1 @putty_check_1 @check9
   Scenario: Receipt reversal process in JDA WMS for Boxed type with lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status and locked with code "QAFTS"
     And the PO should be received at location "REC001"

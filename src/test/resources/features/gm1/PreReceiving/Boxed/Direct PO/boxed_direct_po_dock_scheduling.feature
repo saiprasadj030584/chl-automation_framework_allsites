@@ -58,7 +58,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @jenkinsA  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1 @dock @allocation_check
+  @jenkinsD  @jenkins_analysis @pre_receiving @direct_po @boxed @boxed_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds @maven_check_1 @dock @allocation_check
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -88,7 +88,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
- @jenkinsA @jenkins_analysis @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_compliance_flag_uploaded @complete @ds @maven_check_1 @allocation_check
+ @jenkinsA @jenkins_analysis @boxed @pre_receiving @direct_po @boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds @maven_check_1 @allocation_check
  Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
