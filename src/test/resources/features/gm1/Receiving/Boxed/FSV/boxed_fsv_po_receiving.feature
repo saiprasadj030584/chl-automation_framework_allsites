@@ -1,10 +1,10 @@
-@purchase_order
-Feature: Purchase order receiving
+@boxed_fsv_po_receiving
+Feature: Boxed - FSV PO - Receiving
   As a warehouse user
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_fsv_receipt_process @complete @ds @boxed_jenkins
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_fsv_receipt_process @complete @ds @boxed_jenkins @jenkinsfsv
   Scenario: Validate the FSV Receipt process
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -15,7 +15,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_receiving_multiple_lines @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_receiving_multiple_lines @complete @ds @jenkinsfsv
   Scenario: Validate the FSV Receipt process-multiple line items
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -26,7 +26,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds @boxed_jenkins
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds @boxed_jenkins @jenkinsfsv
   Scenario: Validate automatic document closure PO
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -37,7 +37,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_automatic_document_closure_po_multiple_line_items @complete @ds
+  @boxed @fsv_po @receiving @boxed_receiving_fsv_automatic_document_closure_po_multiple_line_items @complete @ds @jenkinsfsv
   Scenario: Validate automatic document closure PO_multiple_line items
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -58,3 +58,14 @@ Feature: Purchase order receiving
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
+
+    @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_the_urgent_delivery_po @complete @ds @jenkinsfsv
+  Scenario: Validate the urgent delivery PO
+    Given the FSV PO of type "Boxed" should be in "Released" status at site id
+    And the FSV PO line should have sku, quantity due details
+    And I update the advice id for all line items
+    And the PO should not be linked with UPI line
+    When I am on to pre-advice line maintenance page
+    And I mark it as urgent PO
+    Then the PO should be updated for urgent delivery
+    

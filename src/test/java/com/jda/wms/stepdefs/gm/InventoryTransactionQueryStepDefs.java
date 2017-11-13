@@ -393,16 +393,21 @@ public class InventoryTransactionQueryStepDefs {
 					"To Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
 							.getToLocationPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
 					failureList);
+			System.out.println("qty " +context.getRcvQtyDue());
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryTransactionDB.getUpdateQtyPO(context.getSkuId(), context.getPreAdviceId(), date,
 							"Receipt"),
 					failureList);
+			
+			
+			
+			System.out.println("qty " +context.getRcvQtyDue());
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getPalletIDList().get(i - 1),
 							date, "Receipt"),
 					failureList);
 		}
-		Assert.assertFalse("Inventory Transaction details are not displayed as expected. ["
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 

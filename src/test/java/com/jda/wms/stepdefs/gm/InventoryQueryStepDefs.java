@@ -197,7 +197,7 @@ public class InventoryQueryStepDefs {
 							.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(), date),
 					failureList);
 		}
-		Assert.assertFalse(
+		Assert.assertTrue(
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
