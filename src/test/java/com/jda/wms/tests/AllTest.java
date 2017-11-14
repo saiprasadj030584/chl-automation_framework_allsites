@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@goh_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_greater_than_the_upi_line_quantity"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_receiving_direct_po_validate_receipting_process_without_lock_code"})
 
 public class AllTest {
 }	
