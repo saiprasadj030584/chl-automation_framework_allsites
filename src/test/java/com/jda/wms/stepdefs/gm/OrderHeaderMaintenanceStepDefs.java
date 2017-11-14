@@ -145,6 +145,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@When("^the status should be turned as \"([^\"]*)\" in order header$")
 	public void the_status_should_be_turned_as_in_order_header(String status) throws Throwable {
+		Thread.sleep(8000);
 		String orderStatus = orderHeaderDB.getStatus(context.getOrderId());
 		Assert.assertEquals("Order status does not match", status, orderStatus);
 	}

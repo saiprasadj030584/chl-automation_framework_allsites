@@ -1033,7 +1033,7 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^verify the status as \"([^\"]*)\" in ITL$")
 	public void verify_the_status_as_in_itl(String notes) throws Throwable {
 		String itlNotes = inventoryTransactionDB.getNotes(context.getOrderId());
-		Assert.assertEquals("Status does not match", notes, itlNotes);
+		Assert.assertEquals("Order Status is not Cancelled as expected", notes, itlNotes);
 	}
 
 	@Then("^the goods receipt should be generated for received stock in inventory transaction for two putaway group$")

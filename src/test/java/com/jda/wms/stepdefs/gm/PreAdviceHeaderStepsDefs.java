@@ -260,12 +260,9 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
-		// verification.verifyData("Pre-Advice Status", status,
-		// preAdviceHeaderDB.getStatus(preAdviceId), failureList);
-		// verification.verifyData("UPI Status", status,
-		// upiReceiptHeaderDB.getStatus(upiId), failureList);
-		// verification.verifyData("Delivery Status", status,
-		// deliveryDB.getStatus(asnId), failureList);
+		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
 
 		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));

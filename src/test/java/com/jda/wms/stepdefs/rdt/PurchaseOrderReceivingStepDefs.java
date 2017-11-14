@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.DeliveryDB;
+import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.SkuDB;
 import com.jda.wms.db.gm.SupplierSkuDB;
@@ -32,6 +33,7 @@ import com.jda.wms.stepdefs.gm.PreAdviceHeaderStepsDefs;
 import com.jda.wms.stepdefs.gm.PreAdviceLineStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptHeaderStepDefs;
 import com.jda.wms.stepdefs.gm.UPIReceiptLineStepDefs;
+import com.jda.wms.utils.DateUtils;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.Given;
@@ -67,6 +69,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private SkuDB skuDb;
 	private GetTcData getTcData;
 	private SupplierSkuDB supplierSkuDB;
+	private InventoryTransactionDB inventoryTransactionDB;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -77,7 +80,7 @@ public class PurchaseOrderReceivingStepDefs {
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter, SkuDB skuDb,
 			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,
 			PuttyFunctionsPage puttyFunctionsPage, PreAdviceHeaderDB preAdviceHeaderDB, DeliveryDB deliveryDB,
-			JDALoginStepDefs jdaLoginStepDefs, GetTcData getTcData, SupplierSkuDB supplierSkuDB) {
+			JDALoginStepDefs jdaLoginStepDefs, GetTcData getTcData, SupplierSkuDB supplierSkuDB,InventoryTransactionDB inventoryTransactionDB) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -100,6 +103,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.getTcData = getTcData;
 		this.supplierSkuDB = supplierSkuDB;
+		this.inventoryTransactionDB = inventoryTransactionDB;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -2385,4 +2389,74 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 			hooks.logoutPutty();
 		}
+	
+	@When("^I receive all skus for the purchase order of type \"([^\"]*)\" at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_purchase_order_of_type_at_location(String dataType, String location)
+			throws Throwable {
+		context.setSKUType(dataType);
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setLocationID(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			String date = DateUtils.getCurrentSystemDateInDBFormat();
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			// context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(),
+			// "Receipt", date));
+			System.out.println("chk" + context.getRcvQtyDue());
+			i_enter_urn_id(context.getUpiId());
+			puttyFunctionsPage.nextScreen();
+			i_enter_asn(context.getAsnId());
+			i_enter_hanging_value();
+			i_enter_trl();
+			jdaFooter.PressEnter();
+			the_tag_and_upc_details_should_be_displayed_for_hanging();
+			i_enter_the_location();
+			puttyFunctionsPage.pressEnter();
+			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+			if (null != context.getLockCode()) {
+				i_enter_urn_id_for_locked_sku();
+			} else {
+				i_enter_urn_id();
+			}
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
+			}
+			context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(), "Receipt"));
+
+			hooks.logoutPutty();
+		}
+	}
+	
+	@When("^the tag and upc details should be displayed for hanging$")
+	public void the_tag_and_upc_details_should_be_displayed_for_hanging() throws FindFailed, InterruptedException {
+		ArrayList failureList = new ArrayList();
+		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
+				purchaseOrderReceivingPage.isLocationDisplayed());
+
+		System.out.println(context.getRcvQtyDue());
+		String[] qtySplit = purchaseOrderReceivingPage.getQtyToReceive().split("_");
+		String qtyToRcv = qtySplit[0];
+		verification.verifyData("Qty to Receive", String.valueOf(context.getRcvQtyDue()), qtyToRcv, failureList);
+
+		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
+		String upc = upcSplit[0];
+		context.setUPC(upc);
+		Assert.assertTrue(
+				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 }
