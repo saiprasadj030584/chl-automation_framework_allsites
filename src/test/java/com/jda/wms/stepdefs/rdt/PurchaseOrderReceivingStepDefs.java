@@ -2421,6 +2421,9 @@ public class PurchaseOrderReceivingStepDefs {
 			jdaFooter.PressEnter();
 			the_tag_and_upc_details_should_be_displayed_for_hanging();
 			i_enter_the_location();
+			jdaFooter.pressTab();
+			
+			i_enter_random_tag();
 			puttyFunctionsPage.pressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
 					purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
@@ -2440,6 +2443,13 @@ public class PurchaseOrderReceivingStepDefs {
 			hooks.logoutPutty();
 		}
 	}
+	
+	@When("^I enter random tag$")
+	public void i_enter_random_tag() throws FindFailed, InterruptedException {
+	context.setTagId(Utilities.getFourDigitRandomNumber());
+	purchaseOrderReceivingPage.entertagId(context.getTagId());
+	}
+
 	
 	@When("^the tag and upc details should be displayed for hanging$")
 	public void the_tag_and_upc_details_should_be_displayed_for_hanging() throws FindFailed, InterruptedException {

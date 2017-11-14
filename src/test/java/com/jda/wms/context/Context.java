@@ -149,7 +149,7 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public static Connection connectionSQLDB = null;
+	public Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private boolean jdaLoginFlag=false;
 

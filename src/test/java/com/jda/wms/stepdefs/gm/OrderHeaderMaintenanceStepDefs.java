@@ -44,6 +44,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	private SkuDB skuDB;
 	private InventoryQueryPage inventoryQueryPage;
 	private LocationDB locationDB;
+	//private OrderHeaderDB orderHeaderDB;
 
 	@Inject
 	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
@@ -585,7 +586,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Then("^the order stock modularity should be visible$")
 	public void the_Order_stock_modularity_should_be_visible() throws Throwable {
 		inventoryQueryPage.clickUserDefinedTab();
-
 		if (context.getSKUType().equalsIgnoreCase("Boxed")) {
 			Assert.assertEquals("No of Lines in PO and UPI Header do not match", "BOX",
 					orderHeaderDB.getStockModularity(context.getOrderId()));
