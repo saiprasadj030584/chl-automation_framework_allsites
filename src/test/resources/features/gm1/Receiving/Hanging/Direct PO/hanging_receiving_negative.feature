@@ -9,7 +9,7 @@ Feature: Purchase order receiving
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated with lockcode damaged
 
-  @hanging_receiving_direct_po_validate_not_received_ASN @direct_po @hanging @receiving @complete @ds @jenkinsno
+  @hanging_receiving_direct_po_validate_not_received_ASN @direct_po @hanging @receiving @complete @ds @jenkinsB
   Scenario: Validate not received ASN
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
