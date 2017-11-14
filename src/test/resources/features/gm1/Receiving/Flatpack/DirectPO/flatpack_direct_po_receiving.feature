@@ -13,7 +13,7 @@ Feature: Flatpack - Direct PO - Receiving
     And the goods receipt should be generated for flatpack received stock in inventory transaction
     Then the po status should be displayed as "Complete"
     
-     @jenkinsl @flatpack_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_lesser_than_the_upi_line_quantity @boxed @receiving @direct_po @complete @ds 
+     @flatpack_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_lesser_than_the_upi_line_quantity @boxed @receiving @direct_po @complete @ds 
   Scenario: Perform receiving when Pre advice line quantity is lesser than the UPI line quantity
       Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "less" than upi quantity
@@ -22,7 +22,7 @@ Feature: Flatpack - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "Complete" while upi and asn status should "Complete"
     
-    @jenkinsl @flatpack_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_greater_than_the_upi_line_quantity @po @complete @boxed @receiving @direct_po @ds 
+ @flatpack_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_greater_than_the_upi_line_quantity @po @complete @boxed @receiving @direct_po @ds 
   Scenario: Perform receiving when Pre advice line quantity is greater than the UPI line quantity
      Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "greater" than upi quantity
