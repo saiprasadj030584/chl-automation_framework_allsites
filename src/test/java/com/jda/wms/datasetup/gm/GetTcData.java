@@ -6,11 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.Assert;
 
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-
-
 
 public class GetTcData {
 	public static DbConnection dataBase = new DbConnection();
@@ -47,50 +44,9 @@ public class GetTcData {
 	}
 
 	public String getSto() {
-
 		String value = null;
-		System.out.println("UNIQ TAGG"+context.getUniqueTagInRunStatus());
-		if (!context.getUniqueTagInRunStatus()) {
-
-			// ResultSet resultSet = null;
-			// try {
-			// dataBase.connectAutomationDB();
-			// resultSet = dataBase.dbConnection.createStatement()
-			// .executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE
-			// PARENT_REQUEST_ID ='"
-			// + context.getParentRequestId() + "' AND UNIQUE_TAG ='" +
-			// context.getUniqueTag() + "'");
-			//
-			// while (resultSet.next()) {
-			// value = resultSet.getString("STO_ID");
-			//
-			// }
-			// dataBase.disconnectAutomationDB();
-			// } catch (Exception exception) {
-			// exception.printStackTrace();
-			// }
-
-
-//			ResultSet resultSet = null;
-//			try {
-//				dataBase.connectAutomationDB();
-//				resultSet = dataBase.dbConnection.createStatement()
-//						.executeQuery("SELECT * FROM DBO.JDA_GM_RUN_STATUS WHERE PARENT_REQUEST_ID ='"
-//								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-//
-//				while (resultSet.next()) {
-//					value = resultSet.getString("STO_ID");
-//
-//				}
-//				dataBase.disconnectAutomationDB();
-//			} catch (Exception exception) {
-//				exception.printStackTrace();
-//			}
-
-		} else {
-			value = context.getOrderId();
-		}
-		System.out.println("COOOOOOOO"+value);
+		value = context.getOrderId();
+		System.out.println("GEt STO " + context.getOrderId());
 		return value;
 	}
 
@@ -226,7 +182,7 @@ public class GetTcData {
 			// }
 		}
 		context.setOrderId(value);
-
+		System.out.println("set sto "+context.getOrderId());
 	}
 
 	public void setPalletId(String value) {
@@ -309,7 +265,7 @@ public class GetTcData {
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
-			//TODO include assertion statements
+			// TODO include assertion statements
 			if (exception.getMessage().contains("Exhausted Resultset")) {
 				Assert.assertTrue("No PO reference data present in DB ", false);
 			}
@@ -318,7 +274,6 @@ public class GetTcData {
 	}
 
 	public String getStoFromTestData() {
-
 		ResultSet resultSet = null;
 		String value = null;
 
@@ -359,7 +314,7 @@ public class GetTcData {
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
-			//TODO include assertion statements
+			// TODO include assertion statements
 			if (exception.getMessage().contains("Exhausted Resultset")) {
 				Assert.assertTrue("No UPI reference data present in DB ", false);
 			}
@@ -389,7 +344,7 @@ public class GetTcData {
 			dataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
-			//TODO include assertion statements
+			// TODO include assertion statements
 			if (exception.getMessage().contains("Exhausted Resultset")) {
 				Assert.assertTrue("No ASN reference data present in DB ", false);
 			}
@@ -439,20 +394,21 @@ public class GetTcData {
 
 	public void setOdn(String value) {
 		context.setOrderId(value);
-		if (!context.getUniqueTagInRunStatus()) {
-			dataBase.connectAutomationDB();
-			try {
-				dataBase.dbConnection.createStatement()
-						.execute("UPDATE DBO.JDA_GM_RUN_STATUS SET STO_ID= '" + value + "' WHERE PARENT_REQUEST_ID ='"
-								+ context.getParentRequestId() + "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-				dataBase.dbConnection.commit();
-				dataBase.disconnectAutomationDB();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		// if (!context.getUniqueTagInRunStatus()) {
+		// dataBase.connectAutomationDB();
+		// try {
+		// dataBase.dbConnection.createStatement()
+		// .execute("UPDATE DBO.JDA_GM_RUN_STATUS SET STO_ID= '" + value + "'
+		// WHERE PARENT_REQUEST_ID ='"
+		// + context.getParentRequestId() + "' AND UNIQUE_TAG ='" +
+		// context.getUniqueTag() + "'");
+		// dataBase.dbConnection.commit();
+		// dataBase.disconnectAutomationDB();
+		// } catch (SQLException e) {
+		// e.printStackTrace();
+		// }
+		// }
 	}
-
 
 	public String getQtyFromTestData() {
 		ResultSet resultSet = null;
@@ -502,7 +458,8 @@ public class GetTcData {
 			try {
 				dataBase.connectAutomationDB();
 				resultSet = dataBase.dbConnection.createStatement()
-						.executeQuery("SELECT PALLET_ID FROM DBO.JDA_GM_TEST_DATA where UNIQUE_TAG ='" + context.getUniqueTag() + "'");
+						.executeQuery("SELECT PALLET_ID FROM DBO.JDA_GM_TEST_DATA where UNIQUE_TAG ='"
+								+ context.getUniqueTag() + "'");
 
 				while (resultSet.next()) {
 					value = resultSet.getString("PALLET_ID");
@@ -512,12 +469,10 @@ public class GetTcData {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} 
-//		else {
-//			value = context.getPalletID();
-//		}
+		}
+		// else {
+		// value = context.getPalletID();
+		// }
 		return value;
 	}
 }
-
-

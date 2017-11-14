@@ -66,7 +66,12 @@ public class MoveTaskStepDefs {
 
 	@Then("^the list Id should be generated$")
 	public void the_list_Id_should_be_generated() throws Throwable {
-		moveTaskPage.getListId();
+		Assert.assertNotNull("List ID not generated as expected", moveTaskPage.getListId());
+	}
+	
+	@Then("^the move task for the order must be released$")
+	public void the_move_task_for_the_order_must_be_released() throws Throwable {
+		moveTaskDB.updateMoveTaskStatus(context.getOrderId());
 	}
 
 }

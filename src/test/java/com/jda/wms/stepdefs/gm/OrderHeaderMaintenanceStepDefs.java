@@ -88,7 +88,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order should be in \"([^\"]*)\" status in order header maintenance$")
 	public void the_order_should_be_in_status_in_order_header_maintenance(String status) throws Throwable {
 		// String orderId = getTcData.getSto();
-		Thread.sleep(8000);
+		Thread.sleep(20000);
 		context.setOrderId(context.getOrderId());
 		System.out.println(orderHeaderDB.getStatus(context.getOrderId()));
 		Assert.assertEquals("Status is not displayed as expected", status,
@@ -104,8 +104,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order details should be displayed in order header$")
 	public void the_order_details_should_be_displayed_after_allocation() throws Throwable {
 		verification.verifyData("Site Id", "Not Null", orderHeaderDB.getFromSiteId(context.getOrderId()), failureList);
-		verification.verifyData("Consignment", "Not Null", orderHeaderDB.getConsignment(context.getOrderId()),
-				failureList);
+//		verification.verifyData("Consignment", "Not Null", orderHeaderDB.getConsignment(context.getOrderId()),
+//				failureList);
 		verification.verifyData("Type", "Not Null", orderHeaderDB.getType(context.getOrderId()), failureList);
 		verification.verifyData("Shipdock", "Not Null", orderHeaderDB.getShipdock(context.getOrderId()), failureList);
 		verification.verifyData("Number of Lines", "Not Null", orderHeaderDB.getNumberOfLines(context.getOrderId()),
@@ -293,8 +293,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status$")
 	public void the_order_id_of_type_should_be_in_status(String orderType, String status) throws Throwable {
 
-		// String orderNumber = getTcData.getSto();
-		String orderNumber = "4764300801";
+		String orderNumber = getTcData.getSto();
+		System.out.println("Order Number "+orderNumber);
 
 		context.setOrderId(orderNumber);
 		context.setStatus(status);
