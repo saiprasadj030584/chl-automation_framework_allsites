@@ -681,7 +681,7 @@ public class PurchaseOrderPutawayStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 
 			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
-			String quantity = String.valueOf(context.getRcvQtyDue() - 10);
+			String quantity = String.valueOf(context.getRcvQtyDue() -2);
 			Thread.sleep(2000);
 
 			purchaseOrderPutawayPage.enterURNID(context.getTagId());

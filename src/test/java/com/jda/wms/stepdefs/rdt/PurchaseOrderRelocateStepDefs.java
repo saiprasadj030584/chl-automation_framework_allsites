@@ -70,6 +70,7 @@ public class PurchaseOrderRelocateStepDefs {
 		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId()));
 		jdaFooter.pressTab();
 		jdaFooter.pressTab();
+		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterlocation(context.getLocation());
 		jdaFooter.pressTab();
 		purchaseOrderRelocatePage.enterUPC(context.getUPC());

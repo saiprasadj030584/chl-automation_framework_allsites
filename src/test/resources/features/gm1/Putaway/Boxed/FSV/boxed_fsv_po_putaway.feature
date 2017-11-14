@@ -42,8 +42,8 @@ Feature: Purchase order Putaway
   @boxed_putaway_fsv_po_validate_putaway_logic_for_receiving_singles_when_locations_full @boxed @fsv_po @putaway @jenkinsput @compete @ds
   Scenario: Validate Putaway Logic for receiving singles when locations full
     Given the FSV PO of type "Boxed" should be received at location "REC001" and site id
-    When I choose existing relocate
-    And I proceed with entering the location and upc
+   # When I choose existing relocate
+   # And I proceed with entering the location and upc
     When I choose normal putaway
     And I proceed by entering less quantity for FSV
     Then the ITL should be generated for putaway relocated stock in inventory transaction

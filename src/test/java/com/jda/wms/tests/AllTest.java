@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_receiving_direct_po_validate_not_received_ASN"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_putaway_fsv_po_validate_putaway_logic_for_receiving_singles_when_locations_full"})
 
 public class AllTest {
 }	
