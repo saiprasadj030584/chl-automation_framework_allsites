@@ -4,7 +4,7 @@ Feature: GOH - Picking - Retail - Auto clustering
   I want to validate the auto clustering 
   So that the generated list id can be used for picking
 
-   @jenkinsac @goh_picking_retail_validate_whether_auto_clustering_process_is_done_after_the_allocation_process @goh @picking @retail @ds @complete
+   @jenkinsC @goh_picking_retail_validate_whether_auto_clustering_process_is_done_after_the_allocation_process @goh @picking @retail @ds @complete
   Scenario: Validate whether auto clustering process is done after the allocation process
     Given the order of "Retail" should be in "Released" status in order header maintenance
     When I navigate to system allocation page
