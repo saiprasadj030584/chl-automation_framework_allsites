@@ -11,4 +11,17 @@ Feature: Flatpack - Direct PO - Dock Scheduling
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     When I update the compliance flag in database
     Then the compliance details should be updated
+    
+    
+   @jenkinsrem @pre_receiving @direct_po @flatpack @flatpack_pre_receiving_direct_po_assign_dock_door_for_each_trailer_to_unload_it @complete @ds
+  Scenario: Assign dock door for each trailer to unload it
+    Given the PO, UPI, ASN of type "Flatpack" details should be displayed
+    And I create a trailer to receive at the dock door
+    When I navigate to dock scheduler start page
+    When I create new dock booking at site
+    When I select the booking type and ASN
+    And I select the slot
+    And I create a booking for the asn
+    Then the booking details should appear in the dock scheduler booking
+    
 

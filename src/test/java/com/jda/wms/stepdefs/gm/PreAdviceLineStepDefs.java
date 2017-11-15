@@ -1197,6 +1197,7 @@ public class PreAdviceLineStepDefs {
 				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+
 	
 	@Given("^the FSV PO line should have hazardous sku, quantity due and qa details$")
 	public void the_FSV_PO_line_should_have_hazardous_sku_quantity_due_qa_details() throws Throwable {
