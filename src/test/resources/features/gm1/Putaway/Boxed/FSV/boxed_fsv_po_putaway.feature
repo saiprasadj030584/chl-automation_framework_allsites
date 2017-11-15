@@ -32,7 +32,7 @@ Feature: Purchase order Putaway
     When I perform normal putaway
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-  @boxed_putaway_fsv_po_validate_putaway_location @fsv_po @complete @putaway @boxed @ds @jenkinsput
+   @jenkinsA @boxed_putaway_fsv_po_validate_putaway_location @fsv_po @complete @putaway @boxed @ds @jenkinsput
   Scenario: Validate Putaway Location
     Given the FSV PO of type "Boxed" should be received at location "REC001" and site id
     When I choose normal putaway

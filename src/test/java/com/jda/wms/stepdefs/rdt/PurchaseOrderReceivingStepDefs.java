@@ -2148,6 +2148,24 @@ public class PurchaseOrderReceivingStepDefs {
 				jdaFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
 			}
+			else if (type.equalsIgnoreCase("GOH")) {
+				i_enter_urn_id(context.getUpiId());
+				puttyFunctionsPage.nextScreen();
+				i_enter_asn(context.getAsnId());
+				i_enter_hanging_value();
+				i_enter_trl();
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
+			}
+			else if (type.equalsIgnoreCase("Flatpack")) {
+				i_enter_urn_id(context.getUpiId());
+				puttyFunctionsPage.nextScreen();
+				i_enter_asn(context.getAsnId());
+				i_enter_hanging_value();
+				i_enter_trl();
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
+			}
 
 			i_enter_the_location();
 			jdaFooter.PressEnter();

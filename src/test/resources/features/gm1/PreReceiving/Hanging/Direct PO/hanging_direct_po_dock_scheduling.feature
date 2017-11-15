@@ -69,7 +69,7 @@ Feature: Hanging - Direct PO - Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-   @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds
+   @jenkinsD @pre_receiving @direct_po @hanging @hanging_pre_receiving_direct_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO, UPI, ASN of type "Hanging" at site
     When I navigate to dock scheduler start page
