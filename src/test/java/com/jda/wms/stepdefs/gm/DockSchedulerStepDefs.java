@@ -44,7 +44,7 @@ public class DockSchedulerStepDefs {
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData,BookingInDiary bookingInDiary,OrderHeaderDB orderHeaderDB) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, GetTcData getTcData,BookingInDiary bookingInDiary,OrderHeaderDB orderHeaderDB,UPIReceiptLineStepDefs upiReceiptLineStepDefs) {
 
 
 		this.dockSchedulerPage = dockSchedulerPage;
@@ -60,6 +60,8 @@ public class DockSchedulerStepDefs {
 		this.getTcData = getTcData;
 		this.bookingInDiary = bookingInDiary;
 		this.orderHeaderDB =orderHeaderDB;
+		this.upiReceiptLineStepDefs = upiReceiptLineStepDefs;
+		this.upiReceiptHeaderStepDefs = upiReceiptHeaderStepDefs;
 
 	}
 
@@ -542,7 +544,33 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.changeBookingTime();
 		dockSchedulerPage.selectSlot();
 		jdaFooter.clickNextButton();
+		while (dockSchedulerPage.isNoDockErrorExists()) {
+			int count = 0;
+			count++;
+			jdaFooter.PressEnter();
+			dockSchedulerPage.selectSlot();
+			jdaFooter.clickNextButton();
+
+			if(count==7)
+			{
+				jdaFooter.PressEnter();
+				for(int i=0;i<5;i++)
+				{
+				jdaHomePage.scrollLeft();
+				}
+				dockSchedulerPage.selectSlot();
+				jdaFooter.clickNextButton();
+				
+			}
+			else if(count==15)
+			{
+
+				break;
+			}
+		}
 	}
+
+	
 
 	@When("^I change the booking time to different date$")
 	public void i_change_the_booking_time_to_different_date() throws Throwable {
@@ -600,8 +628,12 @@ public class DockSchedulerStepDefs {
 	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_idt(String type)
 			throws Throwable {
 		String site = context.getSiteId();
+		//String upiId = getTcData.getUpi();
+		// asnId = getTcData.getAsn();
+		//context.setSKUType(datatype);
 		context.setSiteId(site);
 		context.setSKUType(type);
+		System.out.println( "check" + context.getSKUType());
 		upiReceiptHeaderStepDefs.the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(type, "Released");
 		upiReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();
 		upiReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();

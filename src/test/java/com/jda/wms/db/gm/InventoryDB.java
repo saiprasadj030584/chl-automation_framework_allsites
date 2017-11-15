@@ -505,8 +505,8 @@ public class InventoryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-System.out.println("select QTY_ON_HAND from inventory where receipt_id='" + preAdviceId + "' and sku_id = '"
-						+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
+		System.out.println("select QTY_ON_HAND from inventory where receipt_id='" + preAdviceId + "' and sku_id = '"
+				+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select QTY_ON_HAND from inventory where receipt_id='" + preAdviceId + "' and sku_id = '"
@@ -807,7 +807,8 @@ System.out.println("select QTY_ON_HAND from inventory where receipt_id='" + preA
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
+		System.out.println(
+				"Select location_id from inventory where sku_id in (select sku_id from stock_check_tasks where list_id='"
 						+ listID + "' ) and tag_id='" + tagId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
@@ -1338,9 +1339,25 @@ System.out.println("select QTY_ON_HAND from inventory where receipt_id='" + preA
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select A.tag_id from inventory A inner join sku B on B.sku_id=A.sku_id where B.user_def_type_8='"+dataType+"' and A.site_id='"+siteID+"'");
+		ResultSet rs = stmt.executeQuery(
+				"select A.tag_id from inventory A inner join sku B on B.sku_id=A.sku_id where B.user_def_type_8='"
+						+ dataType + "' and A.site_id='" + siteID + "'");
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String getLockStatus(String locationId, String sku) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	
 }

@@ -6,7 +6,8 @@ Feature: Hanging - Outbound Order till despatch - Store Order
   @hanging_outbound_order_till_despatch_store_order_short_store_order_full_cancel @hanging @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - full cancel
     Given I have logged in as warehouse user in JDA dispatcher GM application
-    And the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    #And the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     When I navigate to system allocation page
     And I allocate the stocks
     And the status should be turned as "Allocated" in order header

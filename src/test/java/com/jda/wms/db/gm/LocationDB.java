@@ -89,4 +89,26 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException  {
 		return rs.getString("loc_count");
 			
 		}
+
+public String getUserDefType2(String location) throws SQLException, ClassNotFoundException {
+	if (context.getConnection() == null) {
+		database.connect();
+	}
+
+	Statement stmt = context.getConnection().createStatement();
+	ResultSet rs = stmt.executeQuery("select user_def_type_2 from location where location_id = '" + location + "'");
+	rs.next();
+	return rs.getString(1);
+}
+
+public String getUserDefType3(String location) throws SQLException, ClassNotFoundException {
+	if (context.getConnection() == null) {
+		database.connect();
+	}
+
+	Statement stmt = context.getConnection().createStatement();
+	ResultSet rs = stmt.executeQuery("select user_def_type_3 from location where location_id = '" + location + "'");
+	rs.next();
+	return rs.getString(1);
+}
 }

@@ -201,6 +201,42 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
+		}
+			else if (context.getUniqueTag().contains("idt") ) {
+				try {
+					npsDataBase.connectAutomationDB();
+					
+					System.out.println("inside loop idt");
+					// Generate Random New values to load
+					String asn = newAsnId();
+					// String upi = newPalletdId(); //32 digit number
+					// Fetching Refernce Test Data from Test data table
+					String upiReference = gettcdata.getUpiFromTestData();
+					String asnReference = gettcdata.getAsnFromTestData();
+
+					// To form the UPI ID for returns
+					String supplierIdRef = getSupplierIDFromJDADB(upiReference);
+					String qty = gettcdata.getQtyListFromTestData();
+					String upi = formReturnsUPIID(supplierIdRef, qty);
+
+					// Call JDA Login
+
+					 jdaLoginPage.login();
+
+					dataLoadFromUI.duplicateASN(asnReference, asn);
+					validateAsnDataSetup(asn);
+					dataLoadFromUI.duplicateUPI(upiReference, upi);
+					// dataLoadFromUI.killBrowser();
+
+					validateUpiDataSetup(upi);
+					gettcdata.setAsnId(asn);
+					gettcdata.setPalletId(upi);
+					context.setTestData("UPI:" + upi + ";ASN:" + asn);
+
+					npsDataBase.disconnectAutomationDB();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
 		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")
 				&& context.getUniqueTag().contains("non")) {
 			try {
@@ -407,7 +443,7 @@ public class DataSetupRunner {
 		if (context.getConnection() == null) {
 			jdaJdatabase.connect();
 		}
-
+		System.out.println("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
 		String supplierId = null;
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt

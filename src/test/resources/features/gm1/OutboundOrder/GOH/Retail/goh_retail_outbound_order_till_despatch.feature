@@ -7,6 +7,7 @@ Feature: GOH - Retail - Outbound Order till despatch
   @outbound_order_till_despatch @boxed @retail @goh_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
   Scenario: Incorrect pallet id keyin when unloading
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
+    Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
     And I enter OrderID for allocation
     Then Allocation should be updated

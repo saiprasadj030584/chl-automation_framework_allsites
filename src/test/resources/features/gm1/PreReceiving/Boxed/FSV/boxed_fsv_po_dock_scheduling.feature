@@ -59,7 +59,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinsD @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds 
+  @jenkinsidt @pre_receiving @fsv_po @boxed @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds 
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
