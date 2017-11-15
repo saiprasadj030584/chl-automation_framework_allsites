@@ -11,7 +11,7 @@ Feature: Hanging - Direct PO - Receiving
     And I choose M&S-Discrepancies summary as report type of type "Hanging"
     Then the trailor level discrepancy report should be generated
 
-  @hanging_receiving_direct_po_validate_manual_receipt @hanging @receiving @direct_po @complete @ds
+  @hanging_receiving_direct_po_validate_manual_receipt @hanging @receiving @direct_po @complete @ds @jenkinsrun
   Scenario: Validate manual receipt
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -64,7 +64,7 @@ public class AllocationStepDefs {
 		Thread.sleep(2000);
 		jDAFooter.clickNextButton();
 		Thread.sleep(2000);
-		//allocationPage.clickClusteringCheckBox();
+		allocationPage.clickClusteringCheckBox();
 		Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
 		Thread.sleep(9000);

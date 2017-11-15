@@ -3,7 +3,7 @@ Feature: Flatpack - Direct PO - Receiving
   As a warehouse user
   I want to validate receiving
   
-  @flatpack_receiving_direct_po_validate_manual_receipt @flatpack @receiving @direct_po @complete @ds
+ @jenkinsrun @flatpack_receiving_direct_po_validate_manual_receipt @flatpack @receiving @direct_po @complete @ds
   Scenario: Validate manual receipt
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

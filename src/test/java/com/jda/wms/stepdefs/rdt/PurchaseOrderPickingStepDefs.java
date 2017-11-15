@@ -191,6 +191,43 @@ public class PurchaseOrderPickingStepDefs {
 		hooks.logoutPutty();
 
 	}
+	@Given("^I enter the ivalid UPC for hanging$")
+	public void i_enter_the_invalid_UPC_for_hanging() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		// context.setListID(moveTaskDB.getListID("5103200521"));
+		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+		// moveTaskUpdateDB.releaseOrderId("5103200521");
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		puttyFunctionsPage.pressEnter();
+		// puttyFunctionsPage.pressEnter();
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		String tagValueL = addressDB.getLowerTagValue();
+		String tagValueH = addressDB.getHigherTagValue();
+		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+				+ Integer.parseInt(tagValueL);
+		context.setTagId(String.valueOf(tag));
+		System.out.println(String.valueOf(tag));
+		purchaseOrderPickingPage.enterTagId(String.valueOf(tag));
+		puttyFunctionsPage.pressEnter();
+		i_enter_the_UPC();
+		puttyFunctionsPage.pressEnter();
+		if (!purchaseOrderPickingPage.isInvalidSkuDetailsDisplayed()) {
+			failureList.add("Error message:Invalid Clientsku");
+		}
+		// puttyFunctionsPage.pressEnter();
+
+		context.setFailureList(failureList);
+		hooks.logoutPutty();
+
+	}
+	
 
 	@Then("^the error message should be displayed as invalid details$")
 	public void the_error_message_should_be_displayed_as_invalid_details() throws Throwable {
