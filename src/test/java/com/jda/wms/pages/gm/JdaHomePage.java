@@ -318,7 +318,6 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 			} else {
 				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
-				jdaLoginPage.driver.quit();
 				jdaLoginPage.login();
 				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
 				screen.click("images/JDAHome/Welcomed.png");
@@ -326,8 +325,6 @@ public class JdaHomePage {
 			}
 		} else {
 			System.out.println("2. Application issue - Kill IE driver and luanch application from first");
-			//jdaLoginPage.driver.quit();
-			jdaLoginPage.driver.close();
 			jdaLoginPage.login();
 			screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
 			screen.click("images/JDAHome/Welcomed.png");

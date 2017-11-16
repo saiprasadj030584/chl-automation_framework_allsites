@@ -393,7 +393,6 @@ public class DockSchedulerStepDefs {
 
 	@When("^I create new dock booking at site$")
 	public void i_create_new_dock_booking_at_site() throws Throwable {
-		context.setSiteId("5649");
 		String site = context.getSiteId();
 		dockSchedulerPage.selectCreateNewBooking();
 		if (dockSchedulerPage.isSiteExists()) {

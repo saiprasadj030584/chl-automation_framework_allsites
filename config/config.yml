@@ -34,22 +34,19 @@ default:
  cucumber-zip-path: 'D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\files'
 
 
- gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
- putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
-
- putty-gm-port: '24002'
-
-
- db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
- db-username: 'dcsdba'
- db-password: 'dcsabd'
+# gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
+# putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+# putty-gm-port: '24002'
+# db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
+# db-username: 'dcsdba'
+# db-password: 'dcsabd'
  
- #gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
- #putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
- #putty-gm-port: '22902'
- #db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
- #db-username: 'dcsdba'
- 3db-password: 'jdadccate5'
+ gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
+ putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ putty-gm-port: '22902'
+ db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
+ db-username: 'dcsdba'
+ db-password: 'jdadccate5'
 
  
 

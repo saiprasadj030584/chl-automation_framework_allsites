@@ -185,7 +185,7 @@ public class DataSetupRunner {
 
 				// Call JDA Login
 
-				// jdaLoginPage.login();
+				 jdaLoginPage.login();
 
 				dataLoadFromUI.duplicateASN(asnReference, asn);
 				validateAsnDataSetup(asn);
@@ -244,11 +244,12 @@ public class DataSetupRunner {
 
 				// Generate Random New values to load
 				String asn = newAsnId();
-				String upi = newPalletdId();
-				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
-
 				String asnReference = gettcdata.getAsnFromTestData();
+				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
+				String qty = gettcdata.getQtyListFromTestData();
+				String upi = formReturnsUPIID(supplierIdRef, qty);
+				// Fetching Refernce Test Data from Test data table
 				// Call JDA Login
 
 				jdaLoginPage.login();

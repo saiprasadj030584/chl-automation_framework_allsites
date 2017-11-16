@@ -93,6 +93,7 @@ public class DeliveryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("Select supplier_id from delivery where asn_id ='" + asnId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select supplier_id from delivery where asn_id ='" + asnId + "'");
 		rs.next();
