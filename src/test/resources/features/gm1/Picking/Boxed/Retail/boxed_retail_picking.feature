@@ -36,7 +36,7 @@ Feature: Boxed - Retail - Picking
     And I perform unpicking
     Then order header should be updated for unpicked stock
 
-  @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_upc @complete @ds
+  @boxed @retail @picking @boxed_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsw
   Scenario: Validate keying wrong UPC
     Given the order of "Retail" should be in "Released" status in order header maintenance
     # Given the order id of type "Retail" should be in "Released" status

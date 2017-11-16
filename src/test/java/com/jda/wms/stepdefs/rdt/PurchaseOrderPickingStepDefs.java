@@ -176,6 +176,7 @@ public class PurchaseOrderPickingStepDefs {
 		purchaseOrderPickingPage.selectPickingMenu2();
 		purchaseOrderPickingPage.selectContainerPick();
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
 		purchaseOrderPickingPage.enterListId(context.getListID());
 		puttyFunctionsPage.pressEnter();
 		purchaseOrderPickingPage.enterPrinterNO("P2003");

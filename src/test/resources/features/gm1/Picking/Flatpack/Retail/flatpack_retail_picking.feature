@@ -3,7 +3,7 @@ Feature: Flatpack - Retail - Picking
   As a warehouse user
   I want to pick the allocated stocks
 
-  @flatpack @retail @picking @flatpack_picking_retail_validate_keying_wrong_upc @complete @ds
+  @flatpack @retail @picking @flatpack_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsw
   Scenario: Validate keying wrong UPC
     Given the order of "Retail" should be in "Released" status in order header maintenance
     # Given the order id of type "Retail" should be in "Released" status
