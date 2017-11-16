@@ -11,7 +11,7 @@ Feature: GOH - IDT - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated with prohibition flag
 
-  @allocation @goh @idt @goh_allocation_idt_validate_whether_stock_is_available_for_allocation @complete @ds
+    @jenkinsallo @allocation @goh @idt @goh_allocation_idt_validate_whether_stock_is_available_for_allocation @complete @ds
   Scenario: Validating availability of stock for allocation
     Given the OrderID of type "IDT" for sku "GOH" should be in "Released" status at site
     And I have inventory available for the order line items
