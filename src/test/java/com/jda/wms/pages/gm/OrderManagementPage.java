@@ -52,7 +52,7 @@ public class OrderManagementPage {
 	public void clickHeaderTable() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderManagement/Site.png", timeoutInSec);
 		Match mQty = screen.find("images/OrderManagement/Site.png");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		screen.click(mQty.below(10));
 	}
 	

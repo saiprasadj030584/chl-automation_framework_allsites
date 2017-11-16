@@ -1,12 +1,12 @@
-@flatpack_outbound_order_till_despatch_store_order
-Feature: Flatpack - Outbound Order till despatch - Store Order
+@goh_outbound_order_till_despatch_store_order
+Feature: GOH - Outbound Order till despatch - Store Order
   As a warehouse user
   I want to order till dispatch
 
-  @jenkinsm @flatpack_outbound_order_till_despatch_store_order_short_store_order_full_cancel @flatpack @store_order @outbound_order_till_despatch @ds @complete
+  @jenkinsm @goh_outbound_order_till_despatch_store_order_short_store_order_full_cancel @goh @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - full cancel
    Given I have logged in as warehouse user in JDA dispatcher GM application
-    And the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
+    And the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     When I navigate to system allocation page
     And I allocate the stocks
     And the status should be turned as "Allocated" in order header

@@ -30,3 +30,12 @@ Feature: GOH - Direct PO - Receiving
     When I receive all skus for the purchase order of type "GOH" at location "REC001"
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
+    
+    @jenkinsm @goh_receiving_direct_po_validate_the_urgent_delivery_po @goh @direct_po @receiving @complete @ds
+  Scenario: Validate the urgent delivery PO
+    Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
+    When I am on to pre-advice line maintenance page
+    And I mark it as urgent PO
+    Then the PO should be updated for urgent delivery

@@ -1,12 +1,12 @@
-@hanging_master_pack_config
-Feature: Hanging - Master pack Config
+@goh_master_pack_config
+Feature: GOH - Master pack Config
   As a warehouse user
   I want to perform certain 
   modifications on sku
 
-  @jenkinsB @pre_receiving @master_pack_config @hanging @hanging_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s_&_amend_existing_pack_config @complete @ds @no_ds
-  Scenario: Validate whether pack config can be created for SKUs and Amend existing pack config
-    Given the sku of type "Hanging" and not new product
+  @jenkinsm @pre_receiving @master_pack_config @goh @goh_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s @complete @ds @no_ds 
+  Scenario:Validate whether pack config can be created for SKUs and Amend existing pack config
+    Given the sku of type "GOH" and not new product
     When I have logged in as warehouse user in JDA dispatcher GM application
     And I create config with TagVolume "1" and TrackingLevel "EA"
     When I navigate to pack config linking screen

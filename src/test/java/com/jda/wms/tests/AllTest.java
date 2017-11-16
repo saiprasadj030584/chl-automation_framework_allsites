@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_allocation_retail_validate_whether_stock_is_available_for_allocation"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@goh_outbound_order_till_despatch_store_order_short_store_order_full_cancel"})
 
 public class AllTest {
 }	
