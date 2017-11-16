@@ -50,7 +50,7 @@ Feature: Hanging - Direct PO - Receiving
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-    @jenkinsm @hanging_receiving_direct_po_validate_the_urgent_delivery_po @hanging @direct_po @receiving @complete @ds
+    @jenkinsB @hanging_receiving_direct_po_validate_the_urgent_delivery_po @hanging @direct_po @receiving @complete @ds
   Scenario: Validate the urgent delivery PO
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

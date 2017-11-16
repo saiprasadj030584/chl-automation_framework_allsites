@@ -3,7 +3,7 @@ Feature: Flatpack - Outbound Order till despatch - Store Order
   As a warehouse user
   I want to order till dispatch
 
-  @jenkinsm @flatpack_outbound_order_till_despatch_store_order_short_store_order_full_cancel @flatpack @store_order @outbound_order_till_despatch @ds @complete
+  @jenkinsC @flatpack_outbound_order_till_despatch_store_order_short_store_order_full_cancel @flatpack @store_order @outbound_order_till_despatch @ds @complete
   Scenario: Short store order - full cancel
    Given I have logged in as warehouse user in JDA dispatcher GM application
     And the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
