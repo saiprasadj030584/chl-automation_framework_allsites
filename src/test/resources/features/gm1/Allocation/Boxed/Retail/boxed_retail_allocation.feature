@@ -57,7 +57,7 @@ Feature: Allocation
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
 
-  @jenkinsvi @boxed_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @boxed @complete @ds
+  @jenkinsA @boxed_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @boxed @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order of "Retail" should be in "Released" status in order header maintenance
     Then the order stock modularity should be visible

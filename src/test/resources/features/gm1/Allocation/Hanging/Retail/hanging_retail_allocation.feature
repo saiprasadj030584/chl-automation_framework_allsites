@@ -14,7 +14,7 @@ Feature: Hanging - Retail - Allocation
       | OrderNumber |
       |  5170201467 |
 
-  @jenkinsvi @hanging_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @hanging @complete @ds
+  @jenkinsB @hanging_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @hanging @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     Then the order stock modularity should be visible
