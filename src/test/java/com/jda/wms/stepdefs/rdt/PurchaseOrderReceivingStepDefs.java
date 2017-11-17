@@ -2071,6 +2071,7 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			puttyFunctionsPage.pressEnter();
 			i_enter_the_location();
 			puttyFunctionsPage.pressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",

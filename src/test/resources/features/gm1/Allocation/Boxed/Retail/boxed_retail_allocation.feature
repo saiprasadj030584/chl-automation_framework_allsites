@@ -44,7 +44,7 @@ Feature: Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
- @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
+  @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
@@ -57,9 +57,7 @@ Feature: Allocation
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
 
-  @jenkinspr @boxed_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @boxed @complete @ds
+  @jenkinsvi @boxed_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @boxed @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order of "Retail" should be in "Released" status in order header maintenance
-    When I navigate to order header
-    And I query with Order Id
     Then the order stock modularity should be visible

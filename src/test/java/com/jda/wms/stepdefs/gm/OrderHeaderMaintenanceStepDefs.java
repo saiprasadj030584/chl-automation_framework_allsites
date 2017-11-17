@@ -77,13 +77,14 @@ public class OrderHeaderMaintenanceStepDefs {
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
-	public void the_order_should_be_in_status_in_order_header_maintenance(String orderType, String status)
+	public void the_order_of_of_type_should_be_in_status_in_order_header_maintenance(String orderType, String status)
 			throws Throwable {
 		// String orderId = getTcData.getSto();
 		String orderId = context.getOrderId();
 
 		Thread.sleep(8000);
 		context.setOrderId(orderId);
+		context.setOrderType(orderType);
 		Assert.assertEquals("Status is not displayed as expected", status,
 				orderHeaderDB.getStatus(context.getOrderId()));
 		verification.verifyData("Order Type Mismatch", orderType, orderHeaderDB.getOrderType(context.getOrderId()),
@@ -590,12 +591,17 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the order stock modularity should be visible$")
 	public void the_Order_stock_modularity_should_be_visible() throws Throwable {
-		inventoryQueryPage.clickUserDefinedTab();
-		if (context.getSKUType().equalsIgnoreCase("Boxed")) {
-			Assert.assertEquals("No of Lines in PO and UPI Header do not match", "BOX",
+//		inventoryQueryPage.clickUserDefinedTab();
+		context.setSKUType(skuDB.getSKUType(orderLineDB.getSkuId(context.getOrderId())));
+		if (context.getSKUType().equalsIgnoreCase("B")) {
+			Assert.assertEquals("Order Stock Modularity is not as expected", "BOX",
 					orderHeaderDB.getStockModularity(context.getOrderId()));
-		} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
-			Assert.assertEquals("No of Lines in PO and UPI Header do not match", "HANG",
+		} else if (context.getSKUType().equalsIgnoreCase("H")) {
+			Assert.assertEquals("Order Stock Modularity is not as expected", "HANG",
+					orderHeaderDB.getStockModularity(context.getOrderId()));
+		}
+		else if (context.getSKUType().equalsIgnoreCase("C")) {
+			Assert.assertEquals("Order Stock Modularity is not as expected", "HANG",
 					orderHeaderDB.getStockModularity(context.getOrderId()));
 		}
 	}

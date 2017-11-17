@@ -31,7 +31,7 @@ Feature: Flatpack - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
     
-    @jenkinsm @flatpack_receiving_direct_po_validate_the_urgent_delivery_po @flatpack @direct_po @receiving @complete @ds
+    @jenkinsC @flatpack_receiving_direct_po_validate_the_urgent_delivery_po @flatpack @direct_po @receiving @complete @ds
   Scenario: Validate the urgent delivery PO
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
