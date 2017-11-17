@@ -39,7 +39,6 @@ Feature: Hanging - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
     
-    
    @jenkinsB @hanging_receiving_direct_po_validate_receipting_process_without_lock_code @hanging @receiving @direct_po @complete @ds @group_3
   Scenario: Validate receipting process without lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details

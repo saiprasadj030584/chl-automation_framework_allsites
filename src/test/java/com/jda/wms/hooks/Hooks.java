@@ -101,7 +101,6 @@ public class Hooks {
 
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-			
 		}
 		System.out.println(context.getTestData());
 //		updateTestDataIntoRunStatusTable();

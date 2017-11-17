@@ -17,10 +17,10 @@ Feature: Boxed - Outbound Order till despatch - Store Order
     And update the status as cancelled
     Then verify the status as "Released --> Cancelled" in ITL
 
-  @boxed_outbound_order_till_despatch_store_order_pick_discrepancy @boxed @store_order @outbound_order_till_despatch @complete
-  Scenario Outline: Store order with pick discrepancy
+  @boxed_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @boxed @store_order @outbound_order_till_despatch @complete @ds
+  Scenario: Store order with pick discrepancy
     Given I have logged in as warehouse user in JDA dispatcher GM application
-    And I check the status as "Released" for given "<OrderId>"
+    And the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
     When I navigate to system allocation page
     And I allocate the stocks
     Then the status should be turned as "Allocated" in order header
@@ -31,7 +31,3 @@ Feature: Boxed - Outbound Order till despatch - Store Order
     And I perform picking for discrepancy
     And I should be directed to pickent page
     Then I verify the status as "In Progress" in order header
-
-    Examples: 
-      | OrderId    |
-      | 4764303869 |
