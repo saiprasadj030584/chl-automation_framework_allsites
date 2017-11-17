@@ -24,7 +24,7 @@ Feature: GOH - Retail - Allocation
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
     
-    @jenkinsvi @goh_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @goh @complete @ds
+    @jenkinsC @goh_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @goh @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     Then the order stock modularity should be visible
