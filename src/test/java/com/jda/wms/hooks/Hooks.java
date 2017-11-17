@@ -32,6 +32,7 @@ public class Hooks {
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
+	public static String SITEID = System.getProperty("SITEID");
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
@@ -68,7 +69,9 @@ public class Hooks {
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		context.setSiteId("5885");
+		System.setProperty("SITEID", SITEID);
+		context.setSiteId(System.setProperty("SITEID", SITEID));
+		// context.setSiteId("5885");
 
 		// below line included frm indira code while merging f_M1
 		dataSetupRunner.getTagListFromAutoDb();
