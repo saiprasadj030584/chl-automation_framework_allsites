@@ -74,6 +74,42 @@ public class UPIReceiptHeaderStepDefs {
 			upiReceiptHeaderDB.updateASN(context.getUpiList().get(i), context.getAsnId());
 		}
 	}
+	
+	@Given("^Multiple ASN to be linked with upi header list$")
+	public void multiple_asn_to_be_linked_with_multiple_upi_header() throws Throwable {
+		if(context.getAsnList().size()==context.getUpiList().size())
+		{
+			for(int i=0;i<context.getAsnList().size();i++)
+			{
+				upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnList().get(i));
+			}
+		}
+		else if(context.getAsnList().size()<context.getUpiList().size())
+		{
+			int i=0;
+			while(i<context.getAsnList().size()-1)
+			{
+				upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnList().get(i));
+				i++;
+			}
+			while(i!=context.getUpiList().size())
+			{
+				upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnList().get(context.getAsnList().size()-1));
+				i++;
+			}
+//			for(int i=0;i<context.getAsnList().size();i++)
+//			{
+//				if(i<context.getAsnList().size()-1)
+//				{
+//				upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnList().get(i));
+//				}
+//				else
+//				{
+//					upiReceiptHeaderDB.updateASN(context.getUpiList().get(i),context.getAsnList().get(context.getAsnList().size()-1));
+//				}
+//			}
+		}
+	}
 
 	@Given("^SSSC_URN_to_be_updated_with_upi_header$")
 	public void SSSC_URN_to_be_updated_with_upi_header() throws Throwable {

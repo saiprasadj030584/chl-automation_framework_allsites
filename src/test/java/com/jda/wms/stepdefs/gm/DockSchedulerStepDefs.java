@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.sikuli.script.Screen;
 
@@ -8,9 +10,11 @@ import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.BookingInDiary;
 import com.jda.wms.db.gm.BookingInDiaryLog;
+import com.jda.wms.db.gm.OrderHeaderDB;
 import com.jda.wms.pages.gm.DockSchedulerPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.stepdefs.rdt.PurchaseOrderReceivingStepDefs;
 import com.jda.wms.utils.Utilities;
 
@@ -33,6 +37,8 @@ public class DockSchedulerStepDefs {
 	private GetTcData getTcData;
 	private UPIReceiptLineStepDefs upiReceiptLineStepDefs;
 	private UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs;
+	private OrderHeaderDB orderHeaderDB;
+	private Verification verification;
 
 	Screen screen = new Screen();
 
@@ -41,7 +47,7 @@ public class DockSchedulerStepDefs {
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData ,BookingInDiary bookingInDiary) {
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs, GetTcData getTcData ,BookingInDiary bookingInDiary,OrderHeaderDB orderHeaderDB,Verification verification) {
 
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
@@ -55,6 +61,8 @@ public class DockSchedulerStepDefs {
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.getTcData = getTcData;
 		this.bookingInDiary=bookingInDiary;
+		this.orderHeaderDB=orderHeaderDB;
+		this.verification=verification;
 	}
 
 	@When("^I select the booking type and ASN$")
@@ -570,5 +578,51 @@ public class DockSchedulerStepDefs {
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
+	}
+	
+	@When("^I create new dock booking at site \"([^\"]*)\"$")
+	public void i_create_new_dock_booking_at_site(String site) throws Throwable {
+		dockSchedulerPage.selectCreateNewBooking();
+		if (dockSchedulerPage.isSiteExists()) {
+			dockSchedulerPage.enterSiteID(site);
+			context.setSiteId(site);
+		}
+		jdaFooter.clickNextButton();
+	}
+	
+	@When("^I select the booking type for consignment$")
+	public void i_select_the_booking_type_for_consignment() throws Throwable {
+		//context.setOrderId("5104628740");
+		dockSchedulerPage.enterBookingType("Consignment");
+		String cons=orderHeaderDB.selectConsignment(context.getOrderId());
+		context.setConsignmentID(cons);
+		jdaFooter.pressTab();
+		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
+		jdaFooter.clickSearch();
+		dockSchedulerPage.selectConsignment();
+		jdaFooter.clickNextButton();
+	}
+	
+	@Then("^the booking details should appear$")
+	public void the_booking_details_should_appear() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("Trailer ID", context.getTrailerNo(),
+				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
+		
+	}
+	
+	@When("^I create multiple dock booking at site \"([^\"]*)\"$")
+	public void i_create_multiple_dock_booking_at_site(String site) throws Throwable {
+		gdjkhfdjk
+		for(int i=0;i<2;i++)
+		{
+		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
+		i_create_new_dock_booking_at_site("5649");
+		i_select_the_booking_type_for_consignment();
+		i_select_the_slot();
+		i_create_a_booking_for_the_asn();
+		the_booking_details_should_appear()
+		
+		}
 	}
 }

@@ -47,7 +47,7 @@ public class StockAdjustmentsPage {
 	public void chooseReasonCode(String ReasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(ReasonCode);
-		screen.type(Key.ENTER);
+		//screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
 
@@ -176,8 +176,8 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterPalletType(String palletType) throws FindFailed, InterruptedException {
-		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
-		screen.click(mpallet.getCenter().offset(70, 0));
+//		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
+//		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(palletType);
 		Thread.sleep(1000);
 	}
@@ -226,6 +226,7 @@ public class StockAdjustmentsPage {
 
 	public void handlePopUp() throws InterruptedException {
 		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		

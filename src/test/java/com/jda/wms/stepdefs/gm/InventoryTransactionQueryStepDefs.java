@@ -293,15 +293,25 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
-			context.setPreAdviceId(context.getPreAdviceList().get(j));
-			context.setUpiId(context.getUpiList().get(j));
+		
 
-			for (int i = context.getLineItem(); i <= Integer
-					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
+			int count=0;
+			for (int k = 0; k < context.getUpiList().size(); k++) {
+				context.setUpiId(context.getUpiList().get(k));
+		
+				System.out.println("SKU FROM UPI lll"+context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+				System.out.println(k);
+				System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+					
+			
+			for (int p = 0; p <(context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1=context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+			
 				context.setRcvQtyDue(Integer.parseInt(
-						context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("QTY DUE")));
-				context.setSkuId(context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
 				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
@@ -312,9 +322,11 @@ public class InventoryTransactionQueryStepDefs {
 						String.valueOf(context.getRcvQtyDue()),
 						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
-				verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+		
+				verification.verifyData("Reference ID SKU " + context.getSkuId(), uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),
 						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
+				count++;
 			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
@@ -556,9 +568,10 @@ public class InventoryTransactionQueryStepDefs {
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String updatedQty = String.valueOf(context.getQtyOnHand());
+		String origqty = String.valueOf(context.getQtyOnHand());
+		String updqty = String.valueOf(context.getUpdatedQty());
 		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCode(context.getSkuId(), "Adjustment",
-				execDate, context.getReasonCode(), updatedQty);
+				execDate, context.getReasonCode(), updqty,origqty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 	}
@@ -775,7 +788,7 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^the inventory transaction should be updated$")
 	public void the_inventory_transaction_should_be_updated() throws Throwable {
-		jdaLoginPage.login();
+		
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Receipt");
@@ -783,6 +796,12 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
 		String code = "Receipt";
+		int totalQty=0;
+		for (int j = 0; j < context.getNoOfLines(); j++) {
+			
+			totalQty+=Integer.parseInt((context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+		}
+		context.setRcvQtyDue(totalQty);
 		Assert.assertEquals("ITL not updated", context.getRcvQtyDue(),
 				inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}

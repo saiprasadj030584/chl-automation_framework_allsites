@@ -166,4 +166,19 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
+	public void enterContainerId(String containerId) throws InterruptedException {
+		screen.type(containerId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+		
+	}
+
+	public void enterTagId(String tagid) throws InterruptedException {
+		screen.type(tagid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+		
+	}
 }

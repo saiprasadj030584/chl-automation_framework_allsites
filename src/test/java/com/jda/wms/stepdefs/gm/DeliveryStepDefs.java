@@ -33,6 +33,34 @@ public class DeliveryStepDefs {
 	public void the_pallet_count_should_be_updated_in_delivery() throws Throwable {
 		deliveryDB.updatePalletCount(context.getAsnId(), context.getNoOfLines());
 	}
+	
+	@Given("^the pallet count should be updated in multiple delivery$")
+	public void the_pallet_count_should_be_updated_in_multiple_delivery() throws Throwable {
+		System.out.println(context.getAsnList());
+		System.out.println(context.getUpiList());
+		if(context.getUpiList().size()==context.getAsnList().size())
+		{
+		for(int i=0;i<context.getAsnList().size();i++)
+		{
+		
+		deliveryDB.updatePalletCount(context.getAsnList().get(i), 1);
+		}
+		}
+		else if(context.getUpiList().size()>context.getAsnList().size())
+		{
+			for(int i=0;i<context.getAsnList().size();i++)
+			{
+			if(i<=context.getAsnList().size()-2)
+			{
+			deliveryDB.updatePalletCount(context.getAsnList().get(i), 1);
+			}
+			else if(i==context.getAsnList().size()-1)
+			{
+				deliveryDB.updatePalletCount(context.getAsnList().get(i), (context.getUpiList().size()-context.getAsnList().size())+1);
+			}
+			}
+		}
+	}
 
 	@Given("^I have an ASN Id with delivery status as \"([^\"]*)\"$")
 	public void i_have_an_ASN_Id_with_delivery_status_as(String status) throws Throwable {

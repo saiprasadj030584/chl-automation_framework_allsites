@@ -110,30 +110,119 @@ public class DataSetupRunner {
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
 		System.out.println(context.getUniqueTag());
 		if (context.getUniqueTag().contains("direct") || context.getUniqueTag().contains("inbound_receiving_receipt_reversal")) {
+			System.out.println("Inside DIRECT");
 			try {
 				npsDataBase.connectAutomationDB();
 				//Generate Random New values to load
 				String asn = newAsnId();
 				String po = newPoId();
 				String upi = newPalletdId_directPO();
+				
+			
+				
 				System.out.println("ASN "+asn);
 				//Fetching Refernce Test Data from Test data table
-				String asnReference = gettcdata.getAsnFromTestData();
-				String poReference = gettcdata.getPoFromTestData();
-				String upiReference = gettcdata.getUpiFromTestData();
-				
-				//Call JDA Login
+				String asnReference = null;
+				String poReference = null;
+				String upiReference = null;
+				String asnReference1 = null;
+				String poReference1 = null;
+				String upiReference1 = null;
 				jdaLoginPage.login();
+				if(context.getUniqueTag().contains("multiple_trailer"))
+				{
+					System.out.println("Inside mukltiple asn");
+					String asn1 = newAsnId();
+					asnReference = gettcdata.getAsnFromTestData();
+					//split
+					String[] asnArray = asnReference.split(",");
+					ArrayList<String> asnList=new ArrayList<String>();
+					
+					dataLoadFromUI.duplicateASN(asnArray[0],asn);
+					validateAsnDataSetup(asn);
+					
+					dataLoadFromUI.duplicateASN(asnArray[1],asn1);
+					validateAsnDataSetup(asn1);
+					
+					asnList.add(asn);asnList.add(asn1);
+					context.setAsnList(asnList);
+					
+				}
+				else
+				{
+					System.out.println("Single asn");
+					asnReference = gettcdata.getAsnFromTestData();
+					dataLoadFromUI.duplicateASN(asnReference,asn);
+					validateAsnDataSetup(asn);
+					gettcdata.setAsnId(asn);
+				}
+				if(context.getUniqueTag().contains("multiple_urn"))
+				{
+					System.out.println("Inside mukltiple utn");
+					String upi1 = newPalletdId_directPO();
+				    upiReference = gettcdata.getUpiFromTestData();
+					//split
+					String[] upiArray = upiReference.split(",");
+					ArrayList<String> upiList=new ArrayList<String>();
+					
+					dataLoadFromUI.duplicateUPI(upiArray[0],upi);
+					validateUpiDataSetup(upi);
+					
+					dataLoadFromUI.duplicateUPI(upiArray[1],upi1);
+					validateUpiDataSetup(upi1);
+					
+					upiList.add(upi);upiList.add(upi1);
+					context.setUpiList(upiList);
+					
+				}
+				else
+				{
+					System.out.println("Inside single utn");
+					 upiReference = gettcdata.getUpiFromTestData();
+					 dataLoadFromUI.duplicateUPI(upiReference,upi);
+						validateUpiDataSetup(upi);
+						gettcdata.setPalletId(upi);
+					
+				}
+				if(context.getUniqueTag().contains("multiple_po"))
+				{
+					System.out.println("Inside mukltiple po");
+					String po1 = newPoId();
+					poReference = gettcdata.getPoFromTestData();
+					//split
+					String[] poArray = poReference.split(",");
+					ArrayList<String> poList=new ArrayList<String>();
+					
+					dataLoadFromUI.duplicatePO(poArray[0],po);
+					validatePoDataSetup(po);
+					
+					dataLoadFromUI.duplicatePO(poArray[1],po1);
+					validatePoDataSetup(po1);
+					
+					poList.add(po);poList.add(po1);
+					context.setPoList(poList);
+					
+				}
+				else
+				{
+					System.out.println("Inside single po");
+					poReference = gettcdata.getPoFromTestData();
+					dataLoadFromUI.duplicatePO(poReference,po);
+					validatePoDataSetup(po);
+					gettcdata.setPo(po);
+				}
+				//Call JDA Login
 				
-				dataLoadFromUI.duplicateASN(asnReference,asn);
-				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference,upi);
-				validateUpiDataSetup(upi);
-				dataLoadFromUI.duplicatePO(poReference,po);
-				validatePoDataSetup(po);
-				gettcdata.setAsnId(asn);
-				gettcdata.setPo(po);
-				gettcdata.setPalletId(upi);
+				
+//				dataLoadFromUI.duplicateASN(asnReference,asn);
+//				validateAsnDataSetup(asn);
+//				dataLoadFromUI.duplicateUPI(upiReference,upi);
+//				validateUpiDataSetup(upi);
+//				dataLoadFromUI.duplicatePO(poReference,po);
+//				validatePoDataSetup(po);
+//				gettcdata.setAsnId(asn);
+//				gettcdata.setPo(po);
+//				gettcdata.setPalletId(upi);
 				
 				//npsDataBase.disconnectAutomationDB();
 								
@@ -160,6 +249,7 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")) {
+			System.out.println("ENTERED RETURNS RMS");
 			try {
 				npsDataBase.connectAutomationDB();
 				//Generate Random New values to load
@@ -168,10 +258,14 @@ public class DataSetupRunner {
               //Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
 				String asnReference = gettcdata.getAsnFromTestData();
+				System.out.println("REFERENCE"+upiReference);
+				System.out.println("REFERENCE"+asnReference);
 				
 				//To form the UPI ID for returns
 				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
+				System.out.println("SUPPLIER"+supplierIdRef);
 				String qty = gettcdata.getQtyListFromTestData();
+				System.out.println("QTY"+qty);
 				String upi=formReturnsUPIID(supplierIdRef,qty);
 				
 				//Call JDA Login
@@ -226,7 +320,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order") || context.getUniqueTag().contains("international") || context.getUniqueTag().contains("e_com") || context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("idt") ) {
+		} else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order") || context.getUniqueTag().contains("international") || context.getUniqueTag().contains("e_com") || context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("picking") ) {
 			if(context.getUniqueTag().contains("consolidate"))
 			{
 				try {
@@ -390,8 +484,25 @@ public class DataSetupRunner {
 	private String formReturnsUPIID(String supplierIdRef, String qty) throws ClassNotFoundException, SQLException, InterruptedException {
   
 		//manipulate supplier
+		String supplier=null;
+		if(supplierIdRef.contains("M"))
+		{
 		String[] supplierSplit = supplierIdRef.split("M");
-		String supplier =supplierSplit[1];	
+		supplier =supplierSplit[1];	
+		}
+		else
+		{
+		supplier =supplierIdRef;	
+		}
+		if(supplier.length()!=5)
+		{
+			String newSupplier="0";
+			for(int i=0;i<4-supplier.length();i++)
+			{
+				newSupplier+="0";
+			}
+			supplier=newSupplier+supplier;
+		}
       
 		//manipulate quantity
 		int sumLength = qty.length();
@@ -412,6 +523,7 @@ public class DataSetupRunner {
 		}
 		String supplierId=null;
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SUPPLIER_ID from upi_receipt_header where pallet_id='"+upiReference+"'");
 		ResultSet rs = stmt
 				.executeQuery("select SUPPLIER_ID from upi_receipt_header where pallet_id='"+upiReference+"'");
 		while(rs.next()){

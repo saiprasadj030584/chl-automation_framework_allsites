@@ -144,7 +144,7 @@ public class StockAdjustmentStepDefs {
 			reasonCodeToChoose = "RMS - Non advised receipt without movement label";
 			break;
 		}
-
+Thread.sleep(2000);
 		stockAdjustmentsPage.chooseReasonCode(reasonCodeToChoose);
 		jDAFooter.clickDoneButton();
 		jDAFooter.PressEnter();
@@ -153,8 +153,8 @@ public class StockAdjustmentStepDefs {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
 		
-		context.setTagId(inventoryTransactionDB.getTagIDWithQty(String.valueOf(context.getQtyOnHand()), "Adjustment",context.getSkuId(), date));
-		System.out.println(context.getTagId());
+//		context.setTagId(inventoryTransactionDB.getTagIDWithQty(String.valueOf(context.getQtyOnHand()), "Adjustment",context.getSkuId(), date));
+//		System.out.println(context.getTagId());
 	}
 
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")
@@ -249,7 +249,11 @@ public class StockAdjustmentStepDefs {
 	String quantity = inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(),DateUtils.getCurrentSystemDateInDBFormat(),code);
 		context.setQtyOnHand(Integer.parseInt(quantity));
 		String quantityInv= inventoryDB.getQtynHand(context.getSkuId(),toLocation);
+		System.out.println("qty inv"+quantityInv);
+		System.out.println("qty"+quantity);
+		
 		int quantityAdj = Integer.parseInt(quantityInv) - Integer.parseInt(quantity);
+		System.out.println("quantityAdj"+quantityAdj);
 		context.setUpdatedQty(quantityAdj-Integer.parseInt(quantityInv));
 		System.out.println("uppp"+context.getUpdatedQty());
 		stockAdjustmentsPage.selectExistingStock();
@@ -265,12 +269,13 @@ public class StockAdjustmentStepDefs {
 		
 		System.out.println("qty ij inv"+quantityInv);
 		jDAFooter.pressTab();
+		context.setQtyOnHand(Integer.parseInt(quantityInv));
+		//context.setUpdatedQty(Integer.parseInt(quantityInv)-quantityAdj);
+		System.out.println(context.getQtyOnHand()+" and "+ context.getUpdatedQty());
 		//stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getUpdatedQty()));
 		stockAdjustmentsPage.enterQuantityOnHand(quantityInv);
-		
 		jDAFooter.clickNextButton();
 		jDAFooter.clickNextButton();
-		
 		stockAdjustmentsPage.enterQuantityOnHand(quantityAdj);
 		jDAFooter.clickNextButton();
 	}

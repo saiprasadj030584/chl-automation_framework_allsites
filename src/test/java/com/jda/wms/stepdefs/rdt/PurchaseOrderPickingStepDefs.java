@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.AddressDB;
 import com.jda.wms.db.gm.BookingInDiary;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.LocationDB;
@@ -20,6 +21,8 @@ import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
+import com.jda.wms.utils.Utilities;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -42,12 +45,14 @@ public class PurchaseOrderPickingStepDefs {
 	private BookingInDiary bookingInDiary;
 	private OrderContainerDB orderContainerDB;
 	private OrderHeaderDB orderHeaderDB;
+	private AddressDB addressDB;
 
+	
 	@Inject
 	public PurchaseOrderPickingStepDefs(PurchaseOrderPickingPage purchaseOrderPickingPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
-			MoveTaskDB moveTaskDB,MoveTaskUpdateDB moveTaskUpdateDB,BookingInDiary bookingInDiary,OrderContainerDB orderContainerDB,OrderHeaderDB orderHeaderDB) {
+			MoveTaskDB moveTaskDB,MoveTaskUpdateDB moveTaskUpdateDB,BookingInDiary bookingInDiary,OrderContainerDB orderContainerDB,OrderHeaderDB orderHeaderDB,AddressDB addressDB) {
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
 		this.verification = verification;
@@ -62,6 +67,7 @@ public class PurchaseOrderPickingStepDefs {
 		this.bookingInDiary=bookingInDiary;
 		this.orderContainerDB=orderContainerDB;
 		this.orderHeaderDB=orderHeaderDB;
+		this.addressDB=addressDB;
 
 	}
 
@@ -337,6 +343,46 @@ public class PurchaseOrderPickingStepDefs {
 		puttyFunctionsPage.pressEnter();
 	    puttyFunctionsPage.pressEnter();
 		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
+		hooks.logoutPutty();
+
+	}
+	
+	@Given("^I perform picking for Hanging Retail$")
+	public void i_perform_picking_for_hanging_retail() throws Throwable {
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		
+		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+		for(int i=0;i<moveTaskDB.getListId(context.getOrderId()).size();i++)
+		{
+		context.setListID(moveTaskDB.getListId(context.getOrderId()).get(i));
+		
+		purchaseOrderPickingPage.enterListId(context.getListID());
+
+		puttyFunctionsPage.pressEnter();
+		//address table 
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		String tagValueL = addressDB.getLowerTagValue();
+		String tagValueH = addressDB.getHigherTagValue();
+		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+				+ Integer.parseInt(tagValueL);
+		context.setTagId(String.valueOf(tag));
+		System.out.println(String.valueOf(tag));
+		
+		System.out.println("TAG ID"+context.getTagId());
+		purchaseOrderPickingPage.enterTagId(context.getTagId());
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+
+		purchaseOrderPickingPage.enterContainerId(context.getTagId());
+		puttyFunctionsPage.pressEnter(); //Location
+
+		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
+		}
 		hooks.logoutPutty();
 
 	}

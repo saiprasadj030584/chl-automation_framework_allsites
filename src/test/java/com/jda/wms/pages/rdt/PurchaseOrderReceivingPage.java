@@ -716,4 +716,7 @@ public class PurchaseOrderReceivingPage {
 		else
 			return false;
 	}
+	
+	
+	
 }

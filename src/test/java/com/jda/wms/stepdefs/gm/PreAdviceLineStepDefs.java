@@ -413,16 +413,20 @@ public class PreAdviceLineStepDefs {
 			for (int i = 1; i <= context.getNoOfLines(); i++) {
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
 				context.setSkuId((String) skuFromUPI.get(i - 1));
+				System.out.println("SKU"+context.getSkuId());
 				lineItemsMap.put("QTY DUE", upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId()));
-				context.setRcvQtyDue(context.getRcvQtyDue()+Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId())));
+				context.setRcvQtyDue(context.getRcvQtyDue()
+						+ Integer.parseInt(upiReceiptLineDB.getQtyDue(context.getUpiId(), context.getSkuId())));
 				lineItemsMap.put("LINE ID", upiReceiptLineDB.getLineId(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PACK CONFIG", upiReceiptLineDB.getPackConfig(context.getUpiId(), context.getSkuId()));
 				lineItemsMap.put("PART SET", skuDB.getPartSet(context.getSkuId()));
-				supplierId=supplierSkuDb.getSupplierIdWithSku(context.getSkuId());
+				supplierId = supplierSkuDb.getSupplierId(context.getSkuId());
 				lineItemsMap.put("SUPPLIER ID", supplierId);
-				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(),supplierId));
+				lineItemsMap.put("DEPARTMENT", skuDB.getProductGroup(context.getSkuId()));
+				
+				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(), supplierId));
 				lineItemsMap.put("CONTAINER", upiReceiptLineDB.getContainer(context.getUpiId()));
-				UPIMap.put(context.getSkuId(),lineItemsMap);
+				UPIMap.put(context.getSkuId(), lineItemsMap);
 			}
 			context.setUPIMap(UPIMap);
 			System.out.println(context.getUPIMap());
@@ -1128,4 +1132,147 @@ for( int i=0;i<context.getNoOfLines();i++)
 					context.getAdviceId());
 		}
 	}
+	
+	@Given("^the single PO with multiple upi should have sku, quantity due details$")
+	public void the_single_PO_with_multiple_upi_should_have_sku_quantity_due_details() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		ArrayList skuFromPO = new ArrayList();
+		ArrayList skuFromUPI = new ArrayList();
+		Map<String, String> poNumLinesMap = new HashMap<String, String>();
+		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
+		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
+		Map<String, Map<Integer, Map<String, String>>> MultiplePOMap = new HashMap<String, Map<Integer, Map<String, String>>>();
+
+		for (int i = 0; i < context.getPreAdviceList().size(); i++) {
+			skuFromPO.addAll(preAdviceLineDB.getSkuIdList(context.getPreAdviceList().get(i)));
+		}
+		context.setSkuFromPO(skuFromPO);
+
+		for (int i = 0; i < context.getUpiList().size(); i++) {
+			skuFromUPI.addAll(upiReceiptLineDB.getSkuIdList(context.getUpiList().get(i)));
+		}
+		context.setSkuFromUPI(skuFromUPI);
+		
+		//sku match check
+		if (!(context.getSkuFromUPI().containsAll(context.getSkuFromPO()))) {
+			failureList.add("SKUs in PO and UPI Header do not match");
+		}
+		
+		System.out.println("SKU FROM PO"+context.getSkuFromPO());
+		System.out.println("SKU FROM UPI"+context.getSkuFromUPI());
+		
+		
+		
+
+		int m = 0, n = 0;
+//		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
+//			poMap = new HashMap<Integer, Map<String, String>>();
+//			for (int i = 1; i <= Integer
+//					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
+//				m++;
+//				System.out.println("MMMMMM"+m);
+//				Map<String, String> lineItemsMap = new HashMap<String, String>();
+//			
+//				context.setSkuId((String) skuFromPO.get(m - 1));
+//				System.out.println("PO SKU CHECK"+context.getSkuId());
+//				lineItemsMap.put("SKU", context.getSkuId());
+//				lineItemsMap.put("QTY DUE",
+//						preAdviceLineDB.getQtyDue(context.getPreAdviceList().get(j), context.getSkuId()));
+//				lineItemsMap.put("LINE ID",
+//						preAdviceLineDB.getLineId(context.getPreAdviceList().get(j), context.getSkuId()));
+//				POMap.put(i, lineItemsMap);
+//				System.out.println("POMapInit " + POMap);
+//				
+//				
+//			}
+//			System.out.println("POMap " + POMap);
+//			MultiplePOMap.put(context.getPreAdviceList().get(j), POMap);
+//			System.out.println("MultiplePOMap " + MultiplePOMap);
+//		}
+//		context.setMultiplePOMap(MultiplePOMap);
+//		System.out.println("MultiplePOMapFINAL " + MultiplePOMap);
+		
+		
+		/////////////////////////////////////
+		
+		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
+			
+		
+			Map<Integer, Map<String, String>> preadviceMap = new HashMap<Integer, Map<String, String>>();
+			for (int i = 1; i <= Integer.parseInt(context.getPoNumLinesMap().get(context.getPoList().get(j))); i++) {
+				m++;
+				context.setSkuId((String) skuFromPO.get(m - 1));
+				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				Map<String, String> lineItemsLinked = new HashMap<String, String>();
+				
+				lineItemsMap.put("SKU", context.getSkuId());
+				lineItemsMap.put("QTY DUE",
+						preAdviceLineDB.getQtyDue(context.getPreAdviceList().get(j), context.getSkuId()));
+				lineItemsMap.put("LINE ID",
+						preAdviceLineDB.getLineId(context.getPreAdviceList().get(j), context.getSkuId()));
+				
+				preadviceMap.put(i, lineItemsMap);
+			}
+			MultiplePOMap.put((String) context.getPoList().get(j), preadviceMap);
+			context.setMultiplePOMap(MultiplePOMap);
+			System.out.println("MULTIPLE PO MAP"+context.getMultiplePOMap());
+		}
+//////////////////////
+		System.out.println("MULTIPLE PO MAP FINAL"+context.getMultiplePOMap());
+
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			Map<String, Map<String, String>> skuMap = new HashMap<String, Map<String, String>>();
+			for (int i = 1; i <= context.getUpiNumLinesMap().get(context.getUpiList().get(j)); i++) {
+				n++;
+				context.setSkuId((String) skuFromUPI.get(n - 1));
+				Map<String, String> lineItemsMap = new HashMap<String, String>();
+				Map<String, String> lineItemsLinked = new HashMap<String, String>();
+				
+				lineItemsMap.put("SKU", context.getSkuId());
+				lineItemsMap.put("QTY DUE",
+						upiReceiptLineDB.getQtyDue(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("LINE ID",
+						upiReceiptLineDB.getLineId(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("PACK CONFIG",
+						upiReceiptLineDB.getPackConfig(context.getUpiList().get(j), context.getSkuId()));
+				lineItemsMap.put("PART SET", skuDB.getPartSet(context.getSkuId()));
+				String supplierId = supplierSkuDb.getSupplierId(context.getSkuId());
+				lineItemsMap.put("SUPPLIER ID", supplierId);
+				lineItemsMap.put("UPC", supplierSkuDb.getSupplierSKU(context.getSkuId(), supplierId));
+				lineItemsMap.put("LINKED","0");
+				skuMap.put(context.getSkuId(), lineItemsMap);
+			}
+			MultipleUPIMap.put((String) context.getUpiList().get(j), skuMap);
+			context.setMultipleUPIMap(MultipleUPIMap);
+			System.out.println("MULTIPLE UPI MAP"+context.getMultipleUPIMap());
+
+			// To Validate Modularity,New Product Check for SKU
+			for (int i = 0; i < skuFromPO.size(); i++) {
+				String type = null;
+				switch (context.getSKUType()) {
+				case "Boxed":
+					type = "B";
+					break;
+				case "Hanging":
+					type = "H";
+					break;
+				case "GOH":
+					type = "C";
+					break;
+				case "Flatpack":
+					type = "P";
+					break;
+				}
+				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
+						failureList);
+			}
+		}
+		Assert.assertTrue("PO & UPI line item attributes not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	
+
+
 }

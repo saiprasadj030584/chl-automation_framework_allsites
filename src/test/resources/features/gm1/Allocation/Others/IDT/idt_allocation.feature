@@ -3,7 +3,7 @@ Feature: Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-  @allocation @idt @goh @goh_allocation_idt_stock_in_suspense_location_not_allocated @complete
+  @allocation @idt @goh @goh_allocation_idt_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @suspense_check
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "IDT" should be in "Released" status and "GOH" skus should be in "Suspense" location
     When I navigate to system allocation page

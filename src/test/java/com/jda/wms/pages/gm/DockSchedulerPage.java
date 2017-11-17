@@ -383,4 +383,10 @@ public class DockSchedulerPage {
 		screen.click("images/DockScheduler/Schedule/LeftArrow.png");
 		Thread.sleep(2000);
 	}
+	
+	public void enterConsignmentID(String consignmentID) throws InterruptedException {
+		screen.type(consignmentID);
+		Thread.sleep(1000);
+		
+	}
 }

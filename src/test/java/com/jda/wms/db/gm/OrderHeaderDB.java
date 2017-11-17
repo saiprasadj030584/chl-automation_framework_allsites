@@ -372,5 +372,17 @@ public class OrderHeaderDB {
 		return rs.getString(1);
 	}
 
+	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select consignment from order_header where order_id='" + orderId + "'");
+			rs.next();
+			return rs.getString(1);
+		
+	}
+
 
 }

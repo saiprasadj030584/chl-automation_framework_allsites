@@ -3,6 +3,9 @@ package com.jda.wms.tests;
 
 
 import org.junit.runner.RunWith;
+
+import com.jda.wms.stepdefs.rdt.PurchaseOrderPutawayStepDefs;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
@@ -18,7 +21,7 @@ import cucumber.api.junit.Cucumber;
 
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@hanging_inbound_receiving_receipt_reversal_perform_a_receipt_correction_stock_adjustment_function_after_putaway_of_receipt"})
+				+ "cucumber.json" }, tags = { "@boxed_inbound_receiving_direct_po_multiple_trailer_multiple_urn_single_po"})
 
 
 public class AllTest {

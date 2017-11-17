@@ -16,7 +16,7 @@ Feature: Receiving
       | PreAdviceID | PalletId             | ASN        |
       |  1012004038 | 00050426003983997960 | 0000004023 |
 
-  @flatpack_receiving_direct_po_validate_damaged_on_receipt_from_supplier @direct_po @flatpack @receiving @scripting @allocation7_check
+  @flatpack_receiving_direct_po_validate_damaged_on_receipt_from_supplier @direct_po @flatpack @receiving @scripting @allocation7_check @check11
   Scenario: Receipt reversal process in JDA WMS for Hanging type without lock code - Boxed
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

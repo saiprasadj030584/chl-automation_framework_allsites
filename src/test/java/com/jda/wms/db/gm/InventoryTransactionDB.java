@@ -543,6 +543,8 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select from_loc_id from inventory_transaction where tag_id='" + tagId
+				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 //		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where sku_id = '" + skuId
@@ -584,6 +586,8 @@ public class InventoryTransactionDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select to_loc_id from inventory_transaction where tag_id='" + tagId
+				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
 //		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where sku_id ='" + preadviceId
 //				+ "' and code = '" + code + "' and DSTAMP like'" + date + "%'");
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where tag_id='" + tagId
@@ -624,7 +628,8 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
@@ -729,17 +734,22 @@ System.out.println("select LOCK_CODE from inventory_transaction where reference_
 	}
 
 	public boolean isRecordExistsForReasonCode(String skuId, String code, String dstamp, String reasonCode,
-			String updatedQty) throws ClassNotFoundException {
+			String updatedQty,String origQty) throws ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
+			System.out.println("select reason_id from inventory_transaction where sku_id='" + skuId
+					+ "' and code='" + code + "'and reason_id ='" + reasonCode + "' and update_qty = '" + updatedQty
+					+ "' and original_qty = '" + origQty
+					+ "' and dstamp like '" + dstamp + "%' order by dstamp desc");
 
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where sku_id='" + skuId
 					+ "' and code='" + code + "'and reason_id ='" + reasonCode + "' and update_qty = '" + updatedQty
-					+ "' and dstamp like '" + dstamp + "%'");
+					+ "' and original_qty = '" + origQty
+					+ "' and dstamp like '" + dstamp + "%' order by dstamp desc");
 			rs.next();
 			if (rs.getString(1).equals(reasonCode)) {
 				isRecordExists = true;

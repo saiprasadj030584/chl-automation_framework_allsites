@@ -62,6 +62,25 @@ public class Context {
 	private String siteId;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+	private ArrayList<String> asnList;
+	private ArrayList<String> poList;
+
+	public ArrayList<String> getPoList() {
+		return poList;
+	}
+
+	public void setPoList(ArrayList<String> poList) {
+		this.poList = poList;
+	}
+
+	public ArrayList<String> getAsnList() {
+		return asnList;
+	}
+
+	public void setAsnList(ArrayList<String> asnList) {
+		this.asnList = asnList;
+	}
+
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
@@ -139,6 +158,15 @@ public class Context {
 	private String toLocation2;
 	private String relocateLoctn;
 	private ArrayList<String> qtyTaskedList;
+	private ArrayList<String> trailerList;
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
+
 	private int noOfMoveTaskRecords;
 	private int skuSize;
 	private HashMap<Integer,String> qtyOnHandList;
@@ -148,7 +176,7 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public static Connection connectionSQLDB = null;
+	public Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private int updatedQty;
 	private boolean jdaLoginFlag=false;

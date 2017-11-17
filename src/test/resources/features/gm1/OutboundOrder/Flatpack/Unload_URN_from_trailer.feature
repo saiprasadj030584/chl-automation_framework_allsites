@@ -4,17 +4,13 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_despatch @boxed @retail @boxed_outbound_despatch_retail_split_shipment_and_multiple_vehicle_single_order
-  Scenario: Split shipment and multiple vehicle,single order
-    Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site "5649"
+  @outbound_despatch @flatpack @retail @flatpack_outbound_despatch_retail_unload_URN_from_trailer
+  Scenario Outline: Unload URN from trailer
+   Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
-    And I enter OrderID for allocation
     And I allocate the stocks
     Then the stock should get allocated
-    When I navigate to scheduler program page
-    And I run the program
-    And I perform picking for boxed
-    And I perform split picking for boxed
+    And I perform picking for flatpack
     Then the order should be Ready to Load
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
@@ -23,5 +19,11 @@ Feature: Outbound order
     And I select the slot
     And I create a booking for the asn
     Then the booking details should appear
-    And I proceed for boxed vehicle loading
+    And I proceed for vehicle loading
     Then Trailer should be loaded
+    When I proceed for vehicle unloading
+    Then vehicle should be unload
+
+    Examples: 
+      | OrderID    | SiteId |
+      | 5971939436 |   5649 |

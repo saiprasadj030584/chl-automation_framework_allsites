@@ -565,17 +565,24 @@ public void i_enter_urn_id_in_putaway(String tagId) throws FindFailed, Interrupt
 		else
 		{
 			System.out.println("CHECKKKKK"+context.getSKUType());
-			if(context.getSKUType().equalsIgnoreCase("Hanging"))
+			if(context.getSKUType().equalsIgnoreCase("Hanging") || context.getSKUType().equalsIgnoreCase("GOH"))
 		{
 				System.out.println("Entered !!!!!!!");
-			context.setToLocation(inventoryDB.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
+			context.setToLocation(locationDB.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
 			}
 			else if(context.getSKUType().equalsIgnoreCase("Boxed"))
 			{
 				System.out.println("Entered 2222222");
-			context.setToLocation(inventoryDB.getToLocationForPutawayBoxed("BOX"));
+			context.setToLocation(locationDB.getToLocationForPutawayBoxed("BOX"));
+			}
+			
+			else if(context.getSKUType().equalsIgnoreCase("Flatpack"))
+			{
+				System.out.println("Entered 2222222");
+			context.setToLocation(locationDB.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
 			}
 			jdaFooter.pressTab();
+			System.out.println("TOOO LOCATION"+context.getToLocation());
 			i_enter_to_location(context.getToLocation());}
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
