@@ -49,12 +49,34 @@ public class JdaLoginPage {
 
 				e.printStackTrace();
 			}
-
+			System.out.println("Site Id" + context.getSiteId());
 			setDriver();
 			driver.manage().window().maximize();
 
-			driver.navigate().to(configuration.getStringProperty("gm-jda-url"));
-			Thread.sleep(30000);
+			if (context.getSiteId().equals("5649")) {
+				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
+			}
+
+			else if (context.getSiteId().equals("5885")) {
+				driver.navigate().to(configuration.getStringProperty("stk-gm-jda-url"));
+			}
+
+			else {
+				System.out.println("Site Id is not found");
+				Assert.fail("Site Id is not found");
+			}
+
+			int waitTime = 3;
+			do {
+				if (screen.exists("/images/JDALogin/username.png") != null) {
+					break;
+				} else {
+					System.out.println("Login screen not found in loop");
+				}
+
+				Thread.sleep(5000);
+				waitTime = waitTime + 3;
+			} while (waitTime < 60);
 
 			if (screen.exists("images/JDALogin/username.png") == null) {
 				// Assert.fail("Login Not successful");

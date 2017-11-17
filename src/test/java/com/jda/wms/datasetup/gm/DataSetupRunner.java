@@ -260,6 +260,7 @@ public class DataSetupRunner {
 					String upiReference = gettcdata.getUpiFromTestData();
 					String asnReference = gettcdata.getAsnFromTestData();
 					System.out.println("upireference"+upiReference);
+					
 					System.out.println("asnReference"+asnReference);
 					
 					//To form the UPI ID for returns

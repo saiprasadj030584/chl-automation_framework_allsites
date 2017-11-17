@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
@@ -25,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.Scenario;
@@ -58,18 +60,11 @@ public class Hooks_autoUI {
 	public void setup(Scenario scenario) throws Exception {
 		System.out.println("Starting Execution" + scenario.getName());
 		getParentRequestID();
-
 		System.out.println("PREQ_ID " + context.getParentRequestId());
-		 System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop " + SITEID);
-		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
+		System.setProperty("SITEID", "5885");
 		insertSiteID();
 		getSiteID();
-//		updateBuildNumberInRequestTable();
-		context.setSiteId(System.getProperty("SITEID"));
 		insertDetails(scenario.getName());
-		// getChildRequestID();
-		// updateTestDataIntoRunStatusTable();
 	}
 
 	private void updateTestDataIntoRunStatusTable() {

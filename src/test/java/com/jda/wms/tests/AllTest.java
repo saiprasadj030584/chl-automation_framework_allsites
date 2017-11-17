@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_allocation_idt_validate_whether_stock_is_available_for_allocation"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_picking_retail_validate_keying_wrong_upc"})
 
 public class AllTest {
 }	

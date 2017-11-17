@@ -26,6 +26,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,8 +71,22 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection(configuration.getStringProperty("db-host"),
-					configuration.getStringProperty("db-username"), configuration.getStringProperty("db-password"));
+
+			if (context.getSiteId().equals("5649")) {
+				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
+						configuration.getStringProperty("wst-db-username"),
+						configuration.getStringProperty("wst-db-password"));
+			}
+
+			else if (context.getSiteId().equals("5885")) {
+				connection = DriverManager.getConnection(configuration.getStringProperty("stk-db-host"),
+						configuration.getStringProperty("stk-db-username"),
+						configuration.getStringProperty("stk-db-password"));
+			} else {
+				System.out.println("Site Id is not found");
+				Assert.fail("Site Id is not found");
+			}
+
 			connection.setAutoCommit(true);
 			context.setConnection(connection);
 			connectionSucessful = true;

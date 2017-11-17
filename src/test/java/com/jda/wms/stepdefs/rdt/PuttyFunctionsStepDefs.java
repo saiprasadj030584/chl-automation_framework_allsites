@@ -17,6 +17,8 @@ public class PuttyFunctionsStepDefs {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Configuration configuration;
 	private Context context;
+	private String host = null;
+	private String port = null;
 
 	@Inject
 	public PuttyFunctionsStepDefs(PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
@@ -31,12 +33,23 @@ public class PuttyFunctionsStepDefs {
 
 		puttyFunctionsPage.invokePutty();
 
-		String host = configuration.getStringProperty("putty-gm-host");
-		String port = configuration.getStringProperty("putty-gm-port");
+		if (context.getSiteId().equals("5649")) {
+			host = configuration.getStringProperty("wst-putty-gm-host");
+			port = configuration.getStringProperty("wst-putty-gm-port");
+		}
+
+		else if (context.getSiteId().equals("5885")) {
+			host = configuration.getStringProperty("stk-putty-gm-host");
+			port = configuration.getStringProperty("stk-putty-gm-port");
+		}
+		else {
+			System.out.println("Site Id is not found");
+			Assert.fail("Site Id is not found");
+		}
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(2000);
-		
-		if (puttyFunctionsPage.isLoginFailureExists()){
+
+		if (puttyFunctionsPage.isLoginFailureExists()) {
 			puttyFunctionsPage.pressEnter();
 		}
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());

@@ -3,8 +3,8 @@ Feature: Boxed - Returns - Receiving - Footwear
   As a warehouse user
   I want to receive the returned articles
 
-  @boxed_receiving_returns_do_detail_receiving_process_by_providing_input_as_urrn_and_footwear_upc_[10_digit]_followed_by_quantity_should_be_defaulted_as_1_and_perfect_condition_as_n_dmg_lock_code_in_itl @receiving @returns @boxed @complete @ds
-  Scenario: Do detail receiving process by providing input as URRN and footwear UPC [10 digit] , followed by quantity should be defaulted as '1' and perfect condition as 'N' – DMG lock code in ITL
+  @boxed_receiving_returns_do_detail_receiving_process_by_providing_input_as_urrn_and_footwear_upc_[10_digit]_followed_by_quantity_should_be_defaulted_as_1_and_perfect_condition_as_n_dmg_lock_code_in_itl @receiving10 @returns @boxed @complete @ds
+  Scenario: Do detail receiving process by providing input as URRN and footwear UPC [10 digit] , followed by quantity should be defaulted as 1 and perfect condition as N – DMG lock code in ITL
     Given the UPI and ASN should be in "Released" status
     And the upi should have sku, quantity due details
     And I receive all skus for the returns order at "REC003" with perfect condition "N" and lockcode "DMGD"
