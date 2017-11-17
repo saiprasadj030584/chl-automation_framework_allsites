@@ -773,4 +773,16 @@ public class PurchaseOrderReceivingPage {
 		else
 			return false;
 	}
+	
+	public boolean isBlindReceivingDoneForIdt() throws FindFailed, InterruptedException {
+		while (screen.exists("images/Putty/Receiving/ReceiptCompleteMultipleUrn.png") == null) {
+			System.out.println("Inside loop");
+			puttyFunctionsPage.pressEnter();
+		}
+		if ((screen.exists("images/Putty/Receiving/ReceiptCompleteMultipleUrn.png") != null)) {
+			System.out.println("Inside IF");
+			return true;
+		}
+		return false;
+	}
 }

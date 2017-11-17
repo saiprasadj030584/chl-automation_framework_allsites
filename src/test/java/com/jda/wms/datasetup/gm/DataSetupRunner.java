@@ -167,7 +167,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")) {
+		} else if (context.getUniqueTag().contains("returns") && (context.getUniqueTag().contains("returns_non_rms"))) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -182,7 +182,11 @@ public class DataSetupRunner {
 				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
 				String qty = gettcdata.getQtyListFromTestData();
 				String upi = formReturnsUPIID(supplierIdRef, qty);
-
+				Thread.sleep(2000);
+				String upi2=formReturnsUPIID(supplierIdRef,qty);
+				System.out.println("from ref upi 1 "+upi);
+				System.out.println("from ref upi 2 "+upi2);
+				System.out.println("from ref asn"+asn);
 				// Call JDA Login
 
 				 jdaLoginPage.login();
@@ -195,6 +199,12 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
+				
+				if(context.getUniqueTag().contains("multiple_urn")){
+                	dataLoadFromUI.duplicateUPI(upiReference,upi2);
+                	validateUpiDataSetup(upi2);
+                	gettcdata.setSecondPalletId(upi2);
+				}
 				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 
 				npsDataBase.disconnectAutomationDB();
@@ -237,70 +247,54 @@ public class DataSetupRunner {
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
-		} else if (context.getUniqueTag().contains("returns") && context.getUniqueTag().contains("rms")
-				&& context.getUniqueTag().contains("non")) {
-			try {
-				npsDataBase.connectAutomationDB();
-
-				// Generate Random New values to load
-				String asn = newAsnId();
-				String upiReference = gettcdata.getUpiFromTestData();
-				String asnReference = gettcdata.getAsnFromTestData();
-				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
-				String qty = gettcdata.getQtyListFromTestData();
-				String upi = formReturnsUPIID(supplierIdRef, qty);
-				// Fetching Refernce Test Data from Test data table
-				// Call JDA Login
-
-				jdaLoginPage.login();
-
-				dataLoadFromUI.duplicateASN(asnReference, asn);
-				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference, upi);
-				// dataLoadFromUI.killBrowser();
-
-				validateUpiDataSetup(upi);
-				gettcdata.setAsnId(asn);
-				gettcdata.setPalletId(upi);
-				context.setTestData("UPI:" + upi + ";ASN:" + asn);
-
-				npsDataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-		} else if (context.getUniqueTag().contains("returns") && !context.getUniqueTag().contains("rms")) {
-			try {
-				npsDataBase.connectAutomationDB();
-
-				// Generate Random New values to load
-				String asn = newAsnId();
-				String upi = newPalletdId();
-				// Fetching Refernce Test Data from Test data table
-				String upiReference = gettcdata.getUpiFromTestData();
-
-				String asnReference = gettcdata.getAsnFromTestData();
-				// Call JDA Login
-				jdaLoginPage.login();
-
-				dataLoadFromUI.duplicateASN(asnReference, asn);
-				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference, upi);
-				validateUpiDataSetup(upi);
-
-				// String asnReference = gettcdata.getAsnFromTestData();
-				validateAsnDataSetup(asn);
-
-				gettcdata.setAsnId(asn);
-				gettcdata.setPalletId(upi);
-
-				;
-				context.setTestData("UPI:" + upi + ";ASN:" + asn);
-
-				npsDataBase.disconnectAutomationDB();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-		} else if (context.getUniqueTag().contains("retail")) {
+		} 
+		
+			else if (context.getUniqueTag().contains("returns")&&(!(context.getUniqueTag().contains("returns_non_rms")))) {
+				try {
+					System.out.println("Returns 1");
+					npsDataBase.connectAutomationDB();
+					//Generate Random New values to load
+					String asn = newAsnId();
+					
+	              //Fetching Refernce Test Data from Test data table
+					String upiReference = gettcdata.getUpiFromTestData();
+					String asnReference = gettcdata.getAsnFromTestData();
+					System.out.println("upireference"+upiReference);
+					System.out.println("asnReference"+asnReference);
+					
+					//To form the UPI ID for returns
+					String supplierIdRef = getSupplierIDFromJDADB(upiReference);
+					String qty = gettcdata.getQtyListFromTestData();
+					String upi=formReturnsUPIID(supplierIdRef,qty);
+					Thread.sleep(2000);
+					String upi2=formReturnsUPIID(supplierIdRef,qty);
+					System.out.println("from ref upi 1 "+upi);
+					System.out.println("from ref upi 2 "+upi2);
+					System.out.println("from ref asn"+asn);
+					
+					//Call JDA Login
+				    jdaLoginPage.login();
+					dataLoadFromUI.duplicateASN(asnReference,asn);
+					validateAsnDataSetup(asn);
+					dataLoadFromUI.duplicateUPI(upiReference,upi);
+					//dataLoadFromUI.killBrowser();
+					validateUpiDataSetup(upi);
+					gettcdata.setAsnId(asn);
+					gettcdata.setPalletId(upi);
+					
+                    if(context.getUniqueTag().contains("multiple_urn")){
+                    	dataLoadFromUI.duplicateUPI(upiReference,upi2);
+                    	validateUpiDataSetup(upi2);
+                    	gettcdata.setSecondPalletId(upi2);
+					}
+					
+					npsDataBase.disconnectAutomationDB();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+		} 
+			
+			else if (context.getUniqueTag().contains("retail")) {
 			try {
 				npsDataBase.connectAutomationDB();
 

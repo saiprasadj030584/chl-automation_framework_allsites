@@ -1359,5 +1359,33 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 	
+	public String getQtyOnHandForFlatpack(String skuId,String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
+				+ tagId + "' and RECEIPT_DSTAMP like '" + date+ "%'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"+ tagId + "' and RECEIPT_DSTAMP like '" + date+ "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getQtyOnHandForHanging(String skuId,String tagId, String date)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"+ tagId + "' and RECEIPT_DSTAMP like '" + date+ "%'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"+ tagId + "' and RECEIPT_DSTAMP like '" + date+ "%'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
 	
 }

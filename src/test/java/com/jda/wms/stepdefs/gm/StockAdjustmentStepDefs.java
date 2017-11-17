@@ -331,4 +331,32 @@ public class StockAdjustmentStepDefs {
 	}
 
 	}
+	
+	@And("^I enter SkuId for existing stock at siteId$")
+	public void I_enter_SkuId_for_existing_stock_at_siteId() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+//		String date = DateUtils.getCurrentSystemDateInDBFormat();
+//		context.setTagId(
+//				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+		System.out.println("site id"+ context.getSiteId());
+		//context.setSiteId(context.getSiteId());	
+		jDAFooter.clickNextButton();
+
+		
+		stockAdjustmentsPage.enterTagId(context.getTagId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterSiteIdForStock(context.getSiteId());
+		jDAFooter.pressTab();		
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.clickNextButton();
+		jDAFooter.clickNextButton();
+		String qtyonhandbeforeadjustment = String.valueOf(context.getRcvQtyDue());
+//	    String qtyonhandbeforeadjustment=inventoryDB.getQtyOnHandForSKU(context.getSkuId());
+	    context.setqtyOnHandBeforeAdjustment(Integer.parseInt(qtyonhandbeforeadjustment));
+		String decrementQty = Integer.toString(context.getQtyOnHandBeforeAdjustment()-1);
+		stockAdjustmentsPage.updateQtyOnHand(decrementQty);
+		context.setQtyonhandafteradjustment(Integer.parseInt(decrementQty));
+		jDAFooter.clickNextButton();
+//		stockAdjustmentsPage.enterReasonCode();
+//		jDAFooter.clickDoneButton();
+	}
 }

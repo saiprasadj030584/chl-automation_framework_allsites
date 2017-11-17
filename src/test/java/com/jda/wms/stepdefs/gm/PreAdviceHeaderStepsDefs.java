@@ -512,5 +512,32 @@ public class PreAdviceHeaderStepsDefs {
 		Assert.assertEquals("Compliance Flag not updated", "COMP",
 				preAdviceHeaderDB.getComplianceFlag(context.getPreAdviceId()));
 	}
+	
+	@Given("^the multiple UPI and ASN should be in status with line items supplier details$")
+	public void the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+			) throws Throwable {
+		String status=context.getStatus();
+		String asnId=context.getAsnId();
+		String upiId=context.getUpiId();
+		System.out.println("upi id"+ upiId);
+		ArrayList<String> upiList = new ArrayList<String>();
+		String[] multipleupi = upiId.split(",");
+		for (int i = 0; i < multipleupi.length; i++) {
+			upiList.add(multipleupi[i]);
+		}
+		context.setUpiList(upiList);
+		context.setAsnId(asnId);
+		logger.debug("ASN ID: " + asnId);
+
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		for (int i = 0; i < context.getUpiList().size(); i++) {
+			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(context.getUpiList().get(i)),
+					failureList);
+		}
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
 
 }

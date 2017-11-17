@@ -1064,6 +1064,101 @@ public class PurchaseOrderPutawayStepDefs {
 		context.setUpiId(urn);
 		purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
 	}
+	
+	@When("^I proceed with normal putaway for flatpack type$")
+	public void i_proceed_with_normal_putaway_for_flatpack_type() throws Throwable {
+		i_enter_urn_id_for_flatpack_putaway();	
+		//String status="UnLocked";
+		String type="HANG";
+		String prodGrp=skuDB.getProductGroup(context.getSkuId());
+		context.setToLocation(locationDB.getPutawayLocationForFlatpack(type,prodGrp));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();		
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(context.getToLocation()));	
+		jdaFooter.PressEnter();	
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter urn id for flatpack putaway$")
+	public void i_enter_urn_id_for_flatpack_putaway() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		String skuId=uPIReceiptLineDB.getSkuID(context.getUpiId());
+		context.setSkuId(skuId);
+		String dstamp=inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		context.setTransactionTime(transactionTime);
+		String type="P";
+		String urn=moveTaskDB.getPalletId(context.getSkuId(),context.getTransactionTime(),type);
+		context.setUpiId(urn);
+		purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
+	}
+	
+	@When("^I proceed with normal putaway for boxed type$")
+	public void i_proceed_with_normal_putaway_for_boxed_type() throws Throwable {
+		i_enter_urn_id_for_boxed_putaway();	
+		jdaFooter.PressEnter();
+		String status="UnLocked";
+		String type="BOXF2";
+		String type2="BOX";
+		context.setToLocation(locationDB.getPutawayLocationForBoxed(type,type2,status));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();		
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(context.getToLocation()));	
+		jdaFooter.PressEnter();	
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter urn id for boxed putaway$")
+	public void i_enter_urn_id_for_boxed_putaway() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {		
+		purchaseOrderRelocatePage.enterPalletId(context.getTagId());
+	}
+	
+	@When("^I proceed with normal putaway for hanging type$")
+	public void i_proceed_with_normal_putaway_for_hanging_type() throws Throwable {
+		i_enter_urn_id_for_hanging_putaway();	
+		String status="UnLocked";
+		String type="HANG";
+		String prodGrp=skuDB.getProductGroup(context.getSkuId());
+		System.out.println("To Location "+context.getToLocation());
+		context.setToLocation(locationDB.getPutawayLocationForHanging(type,prodGrp,status));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();		
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(context.getToLocation()));	
+		jdaFooter.PressEnter();	
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter urn id for hanging putaway$")
+	public void i_enter_urn_id_for_hanging_putaway() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		String skuId=uPIReceiptLineDB.getSkuID(context.getUpiId());
+		context.setSkuId(skuId);
+		String dstamp=inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		context.setTransactionTime(transactionTime);
+		String type="P";
+		//String urn=moveTaskDB.getPalletId(context.getSkuId(),context.getTransactionTime(),type);
+		String urn=moveTaskDB.getPalletIdWithTagID(context.getSkuId(),context.getTagId(),type);
+    	context.setUpiId(urn);
+		purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
+	}
+	
+	@When("^I proceed with normal putaway for goh type$")
+	public void i_proceed_with_normal_putaway_for_goh_type() throws Throwable {
+		i_enter_urn_id_for_flatpack_putaway();	
+		jdaFooter.PressEnter();	
+		String status="UnLocked";
+		String type="HANG";
+		String prodGrp=skuDB.getProductGroup(context.getSkuId());
+		context.setToLocation(locationDB.getPutawayLocationForGoh(type,prodGrp,status));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();		
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(context.getToLocation()));	
+		jdaFooter.PressEnter();	
+		hooks.logoutPutty();
+	}
 
 
 }

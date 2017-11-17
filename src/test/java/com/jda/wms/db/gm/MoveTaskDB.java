@@ -524,4 +524,19 @@ public class MoveTaskDB {
 		ResultSet rs = stmt.executeQuery("update move_task set status='Released' where task_id='" + orderId + "'");
 		context.getConnection().commit();
 	}
+	
+	public String getPalletIdWithTagID(String skuId, String tagId, String type) throws SQLException, ClassNotFoundException {
+		System.out.println("select pallet_id from move_task where sku_id='" + skuId + "' and task_type='"
+				+ type +"' and tag_id ='" +tagId+ "'" );
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where sku_id='" + skuId + "' and task_type='"
+				+ type +"' and tag_id ='" +tagId+ "'" );
+		rs.next();
+		return rs.getString(1);
+
+	}
 }

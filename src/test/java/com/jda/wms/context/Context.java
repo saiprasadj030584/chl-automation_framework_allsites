@@ -152,18 +152,14 @@ public class Context {
 	public Connection connectionSQLDB = null;
 	private static String childStartTime;
 	private boolean jdaLoginFlag=false;
-
+	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
 	private static String childRequestId;
 	private static String testData;
 	private boolean vehicleLoadRequired = false;
-//	private String transactionTime;
-
+	private String secondPalletID;
 	private int updatedQty;
-
-
-
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1360,6 +1356,22 @@ public class Context {
 
 	public void setVehicleLoadRequired(boolean vehicleLoadRequired) {
 		this.vehicleLoadRequired = vehicleLoadRequired;
+	}
+
+	public int getQtyonhandafteradjustment() {
+		return qtyonhandafteradjustment;
+	}
+
+	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
+		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
+	}
+
+	public String getSecondPalletID() {
+		return secondPalletID;
+	}
+
+	public void setSecondPalletID(String secondPalletID) {
+		this.secondPalletID = secondPalletID;
 	}
 
 }

@@ -222,5 +222,25 @@ public class PurchaseOrderRelocateStepDefs {
 
 		hooks.logoutPutty();
 	}
+	
+	@When("^I proceed with entering the pallet id and location$")
+	public void i_proceed_with_entering_the_pallet_id_and_location() throws Throwable {
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+//			context.setSkuId((String) context.getSkuFromUPI().get(i - 1));
+//			String upc = context.getUPIMap().get(context.getSkuId()).get("UPC");			
+			purchaseOrderRelocatePage.enterPalletId(context.getUpiId());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();			
+			purchaseOrderRelocatePage.enterLocation(context.getLocation());
+			jdaFooter.PressEnter();
+			Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
+			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+			context.setFromLocation(context.getToLocation());
+			jdaFooter.PressEnter();
+			Assert.assertTrue("RelEnt page not displayed", purchaseOrderRelocatePage.isRelEntDisplayed());
+		}
+		hooks.logoutPutty();
+	}
 
 }

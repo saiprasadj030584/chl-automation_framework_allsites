@@ -2488,4 +2488,99 @@ public class PurchaseOrderReceivingStepDefs {
 				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	@Given("^the multiple UPI of type \"([^\"]*)\" and ASN should be in \"([^\"]*)\" status with partset$")
+	public void the_multiple_UPI_of_type_and_ASN_should_be_in_status_with_partset(String dataType, String status) throws Throwable {
+
+		String upiId = getTcData.getUpi();
+		System.out.println("upiId "+upiId);
+		String upiId2 = getTcData.getUpi2();
+		System.out.println("upiId2 "+upiId2);
+		String asnId = getTcData.getAsn();
+		String upi=upiId+","+upiId2;
+		context.setUpiId(upi);
+		
+		
+		context.setStatus(status);
+        System.out.println("UPI - Multiple " +upi);
+        System.out.println("asnId" +asnId);
+		context.setAsnId(asnId);
+		context.setSKUType(dataType);
+		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details();
+		the_multiple_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		Map<String, Integer> upiNumLines = new HashMap<String, Integer>();
+		int numLines = 0;
+		for (int i = 0; i < context.getUpiList().size(); i++) {
+			upiNumLines.put(context.getUpiList().get(i),
+					Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i))));
+			numLines += Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)));
+		}
+		context.setUpiNumLinesMap(upiNumLines);
+		context.setNoOfLines(numLines);
+	}
+	
+	@Given("^I receive all skus of multiple upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\" and partset$")
+	public void i_receive_all_skus_of_multiple_upi_for_the_returns_order_at_with_perfect_condition_and_partset(String location,
+			String condition) throws Throwable {
+		context.setLocationID(location);
+		context.setPerfectCondition(condition);
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_partset(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I blind receive all skus of multiple upi for the returns order at location \"([^\"]*)\" without lockcode for partset$")
+	public void i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_partset(
+			String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_with_partset();
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter details of multiple upi and perform blind receive without lockcode with partset$")
+	public void i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_with_partset() throws Throwable {
+		int m = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+			for (int j = 0; j < context.getUpiNumLinesMap().get(context.getUpiList().get(k)); j++) {
+				m++;
+				context.setSkuId(context.getSkuFromUPI().get(m - 1));
+
+				for (int i = 0; i < Integer.parseInt(context.getMultipleUPIMap().get(context.getUpiId())
+						.get(context.getSkuId()).get("QTY DUE")); i++) {
+					purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+					purchaseOrderReceivingPage.enterUPC1BEL(
+							context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("UPC"));
+					jdaFooter.pressTab();
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterQuantity("1");
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+					purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+					jdaFooter.pressTab();
+					jdaFooter.navigateToNextScreen();
+					purchaseOrderReceivingPage.enterSupplierId(context.getMultipleUPIMap().get(context.getUpiId())
+							.get(context.getSkuId()).get("SUPPLIER ID"));
+					purchaseOrderReceivingPage.enterPartset(context.getMultipleUPIMap().get(context.getUpiId())
+							.get(context.getSkuId()).get("PART SET"));
+					jdaFooter.PressEnter();
+					Thread.sleep(2000);
+					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
+							purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+					jdaFooter.PressEnter();
+					Thread.sleep(1000);
+
+				}
+			}
+		}
+	}
 }
+
