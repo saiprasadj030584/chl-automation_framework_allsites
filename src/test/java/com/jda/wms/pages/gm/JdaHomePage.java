@@ -1,5 +1,8 @@
 package com.jda.wms.pages.gm;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
@@ -285,7 +288,7 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/Welcome.png");
 	}
 
-	public void clickSearchIcon() throws FindFailed, InterruptedException {
+	/*public void clickSearchIcon() throws FindFailed, InterruptedException {
 		Thread.sleep(5000);
 		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 			System.out.println("Application search icon found");
@@ -331,7 +334,66 @@ public class JdaHomePage {
 			Thread.sleep(2000);
 		}
 
+	} */
+	
+	
+	public void clickSearchIcon() throws FindFailed, InterruptedException {
+		Thread.sleep(5000);
+		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
+			System.out.println("Application search icon found");
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcome.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			}
+		}
+
+		else if (screen.exists("images/JDAHome/JdaHomeLogin.png") != null) {
+			System.out.println("Application login page found instead of search icon");
+			jdaLoginPage.enterUsername();
+			jdaLoginPage.enterPassword();
+			jdaLoginPage.clickConnectButton();
+			Thread.sleep(5000);
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else {
+				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
+				applicationRestart();
+			}
+		} else {
+			System.out.println("2. Application issue - Kill IE driver and luanch application from first");
+			applicationRestart();
+		}
 	}
+
+	public void applicationRestart() throws InterruptedException, FindFailed {
+		try {
+			Process p = Runtime.getRuntime().exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
+			p.waitFor(30, TimeUnit.SECONDS);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		jdaLoginPage.driver = null;
+		jdaLoginPage.login();
+		screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+		screen.click("images/JDAHome/Welcomed.png");
+		Thread.sleep(2000);
+	}
+	
+	
 
 	public void navigateToInventoryUpdate() throws FindFailed, InterruptedException {
 		clickSearchIcon();
