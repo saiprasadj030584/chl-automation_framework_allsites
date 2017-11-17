@@ -202,7 +202,7 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		}
-			else if (context.getUniqueTag().contains("idt") ) {
+			else if (context.getUniqueTag().contains("idt")&&(!(context.getUniqueTag().contains("order")))) {
 				try {
 					npsDataBase.connectAutomationDB();
 					
