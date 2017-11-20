@@ -96,7 +96,7 @@ public class DataSetupRunner {
 		System.out.println("UNIQUE TAG "+context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-		System.out.println("SITE ID FOR SCENARIO "+context.getUniqueTag());
+		System.out.println("SITE ID FOR SCENARIO "+context.getSiteId());
 
 		// insertData();
 		// insertTempTestdata();
