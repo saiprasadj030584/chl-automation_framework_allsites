@@ -531,9 +531,10 @@ public class PurchaseOrderPickingStepDefs {
 		puttyFunctionsPage.pressEnter();
 		purchaseOrderPickingPage.enterContainerId(context.getTagId());
 		puttyFunctionsPage.pressEnter();
-		// puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
 		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
 		hooks.logoutPutty();
+		
 	}
 	
 	@Given("^I proceed for vehicle loading$")

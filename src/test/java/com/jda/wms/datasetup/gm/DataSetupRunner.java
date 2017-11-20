@@ -317,7 +317,7 @@ public class DataSetupRunner {
 			}
 		}
 
-		else if (context.getUniqueTag().contains("retail")) {
+		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 

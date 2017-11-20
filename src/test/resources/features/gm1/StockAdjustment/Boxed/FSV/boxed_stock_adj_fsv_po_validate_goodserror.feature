@@ -4,7 +4,7 @@ Feature: Validate goods error before putaway
   I want to validate the goods
   So that I can putaway the purchase order
 
-  @stk1 @stock_adjustment @boxed @fsv_po @boxed_stock_adjustment_fsv_po_validate_goods_error_before_putaway @complete @ds
+@jenkinsA @stock_adjustment @boxed @fsv_po @boxed_stock_adjustment_fsv_po_validate_goods_error_before_putaway @complete @ds
   Scenario: validating goods error Receiving process in JDA WMS for Boxed type
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

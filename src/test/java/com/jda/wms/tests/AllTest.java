@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_stock_adjustment_direct_po_validate_goods_error_before_putaway"
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn"
 				+ ""})
 
 public class AllTest {

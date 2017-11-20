@@ -342,7 +342,7 @@ public class OrderHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+System.out.println("select sku_id from order_line where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
 		rs.next();
