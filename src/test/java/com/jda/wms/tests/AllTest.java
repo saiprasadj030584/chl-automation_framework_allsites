@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@stk1"})
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@goh_stock_adjustment_direct_po_validate_for_goods_in_error_reason_code_before_putaway"})
 
 public class AllTest {
 }	
