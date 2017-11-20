@@ -76,7 +76,7 @@ public class JdaLoginPage {
 
 				Thread.sleep(5000);
 				waitTime = waitTime + 3;
-			} while (waitTime < 60);
+			} while (waitTime < 120);
 
 			if (screen.exists("images/JDALogin/username.png") == null) {
 				// Assert.fail("Login Not successful");

@@ -56,19 +56,6 @@ public class Hooks_autoUI {
 
 	}
 
-	@Before("~@Email")
-	public void setup(Scenario scenario) throws Exception {
-		System.out.println("Starting Execution" + scenario.getName());
-		getParentRequestID();
-		System.out.println("PREQ_ID " + context.getParentRequestId());
-		System.setProperty("SITEID", "5649");
-		context.setSiteId("5649");
-//		System.setProperty("SITEID", SITEID);
-		System.out.println("SITEID-----> " + SITEID);
-		insertSiteID();
-		getSiteID();
-		insertDetails(scenario.getName());
-	}
 
 	private void updateTestDataIntoRunStatusTable() {
 		try {
@@ -84,6 +71,7 @@ public class Hooks_autoUI {
 			exception.printStackTrace();
 		}
 	}
+
 
 	private void getChildRequestID() {
 		try {
@@ -118,27 +106,7 @@ public class Hooks_autoUI {
 		}
 	}
 
-	private void getSiteID() throws ClassNotFoundException {
-		try {
-			if (context.getSQLDBConnection() == null) {
-				sqlConnectOpen();
-			}
-			Statement stmt = null;
-			stmt = context.getSQLDBConnection().createStatement();
-			System.out.println(
-					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
-			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
-					+ "'";
-			ResultSet rs = stmt.executeQuery(query);
-
-			while (rs.next()) {
-				context.setSiteId(rs.getString("SITE_ID"));
-				System.out.println("" + context.getSiteId());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	@After("~@Email")
 	public void tearDown(Scenario scenario) throws IOException {
@@ -264,18 +232,7 @@ public class Hooks_autoUI {
 
 	}
 
-	private void insertSiteID() {
-		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + System.getProperty("SITEID") + "')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + System.getProperty("SITEID") + "')";
-			context.getSQLDBConnection().createStatement().execute(insertQuery);
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
+	
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {

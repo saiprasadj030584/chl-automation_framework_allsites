@@ -1,7 +1,9 @@
 package com.jda.wms.hooks;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.sikuli.script.FindFailed;
@@ -65,22 +67,92 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@Before("~@no_ds")
-	public void iniatateDataSetup(Scenario scenario) throws Exception {
-
+//	@Before("~@no_ds")
+	public void iniatateDataSetup1(Scenario scenario) throws Exception {
+		System.out.println("INSIDE NO_DS");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-//		System.setProperty("SITEID", SITEID);
-//		context.setSiteId(System.setProperty("SITEID", SITEID));
-		 context.setSiteId("5649");
+		System.out.println("Uniq Tag --->" + tagListForScenario);
 
-		// below line included frm indira code while merging f_M1
 		dataSetupRunner.getTagListFromAutoDb();
 
 		if (!(scenario.getName().contains("Triggering automation email"))) {
 			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+			insertSiteID();
+			// getSiteID();
 		}
 		System.out.println(context.getTestData());
-		// updateTestDataIntoRunStatusTable();
+	}
+
+	@Before("~@Email")
+	public void iniatateDataSetup(Scenario scenario) throws Exception {
+		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
+		System.out.println("Uniq Tag --->" + tagListForScenario);
+
+		System.out.println("Starting Execution" + scenario.getName());
+		hooksautoUI.getParentRequestID();
+		System.out.println("PREQ_ID " + context.getParentRequestId());
+		hooksautoUI.insertDetails(scenario.getName());
+
+		for (String tag : tagListForScenario) {
+			if (tag.contains("@ds")) {
+				dataSetupRunner.getTagListFromAutoDb();
+
+				if (!(scenario.getName().contains("Triggering automation email"))) {
+					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+//					insertSiteID();
+					// getSiteID();
+				}
+				System.out.println(context.getTestData());
+			}
+		}
+	}
+
+//	@Before("~@Email")
+	public void setup(Scenario scenario) throws Exception {
+		System.out.println("INSIDE EMAIL");
+		System.out.println("Starting Execution" + scenario.getName());
+		hooksautoUI.getParentRequestID();
+		System.out.println("PREQ_ID " + context.getParentRequestId());
+		hooksautoUI.insertDetails(scenario.getName());
+	}
+
+	private void getSiteID() throws ClassNotFoundException {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				hooksautoUI.sqlConnectOpen();
+			}
+			Statement stmt = null;
+			stmt = context.getSQLDBConnection().createStatement();
+			System.out.println(
+					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
+			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
+					+ "'";
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				context.setSiteId(rs.getString("SITE_ID"));
+				System.out.println("" + context.getSiteId());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void insertSiteID() {
+		try {
+			// System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID)
+			// VALUES ('" + context.getParentRequestId()
+			// + "','" + System.getProperty("SITEID") + "')");
+
+			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + context.getSiteId() + "')");
+			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + context.getSiteId() + "')";
+			context.getSQLDBConnection().createStatement().execute(insertQuery);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	// @Before
@@ -160,7 +232,8 @@ public class Hooks {
 
 	@After
 	public void closeDBConnection() throws SQLException {
-		if (!context.getConnection().equals(null)) {
+		// if (!context.getConnection().equals(null)) {
+		if (!(null == context.getConnection())) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}

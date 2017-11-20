@@ -84,7 +84,8 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private  Connection connection = null;
+	private Connection connection = null;
+	private static Connection dBConnection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -149,9 +150,9 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public Connection connectionSQLDB = null;
+	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
-	private boolean jdaLoginFlag=false;
+	private boolean jdaLoginFlag = false;
 	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
@@ -1293,7 +1294,6 @@ public class Context {
 		return childStartTime;
 	}
 
-
 	public String getOrigin() {
 		return origin;
 	}
@@ -1301,6 +1301,7 @@ public class Context {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+
 	public String getTransactionTime() {
 		return transactionTime;
 	}
@@ -1320,11 +1321,10 @@ public class Context {
 	public void setUpdatedQty(int updatedQty) {
 		this.updatedQty = updatedQty;
 	}
-	
+
 	public void setJdaLoginFlag(boolean jdaLoginFlag) {
 		this.jdaLoginFlag = jdaLoginFlag;
 	}
-
 
 	public String getAssertString() {
 		return assertString;
@@ -1372,6 +1372,15 @@ public class Context {
 
 	public void setSecondPalletID(String secondPalletID) {
 		this.secondPalletID = secondPalletID;
+	}
+
+	public void setDBConnection(Connection dBConnection) {
+		this.dBConnection = dBConnection;
+
+	}
+
+	public Connection getDBConnection() {
+		return dBConnection;
 	}
 
 }
