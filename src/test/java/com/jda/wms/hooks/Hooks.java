@@ -69,9 +69,9 @@ public class Hooks {
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		System.setProperty("SITEID", SITEID);
-		context.setSiteId(System.setProperty("SITEID", SITEID));
-		// context.setSiteId("5885");
+//		System.setProperty("SITEID", SITEID);
+//		context.setSiteId(System.setProperty("SITEID", SITEID));
+		 context.setSiteId("5649");
 
 		// below line included frm indira code while merging f_M1
 		dataSetupRunner.getTagListFromAutoDb();

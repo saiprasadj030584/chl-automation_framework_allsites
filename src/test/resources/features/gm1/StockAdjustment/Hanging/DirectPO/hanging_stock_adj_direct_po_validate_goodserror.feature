@@ -4,7 +4,7 @@ Feature: Hanging - Validate goods error
   I want to validate the goods
   So that I can putaway the purchase order
 
-  @stock_adjustment @hanging @direct_po @hanging_stock_adjustment_direct_po_validate_for_goods_in_error_reason_code_before_putaway @complete @ds
+  @stk1 @stock_adjustment @hanging @direct_po @hanging_stock_adjustment_direct_po_validate_for_goods_in_error_reason_code_before_putaway @complete @ds
   Scenario: Validate for goods in error reason code before putaway
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

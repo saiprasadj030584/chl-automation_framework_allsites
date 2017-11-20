@@ -485,9 +485,7 @@ public class InventoryQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		// context.setTagId(
-		// inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt",
-		// context.getSkuId(), date));
+		 context.setTagId(inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt",context.getSkuId(), date));
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 
