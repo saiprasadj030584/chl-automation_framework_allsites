@@ -24,7 +24,7 @@ Feature: Flatpack - Direct PO - Receiving
     Then the po status should be displayed as "Complete"
     
 
-  @flatpack_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @flatpack @complete @ds @jenkinsbr
+   @jenkinsf @flatpack_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @flatpack @complete @ds @jenkinsbr
   Scenario: Validate automatic document closure ASN
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

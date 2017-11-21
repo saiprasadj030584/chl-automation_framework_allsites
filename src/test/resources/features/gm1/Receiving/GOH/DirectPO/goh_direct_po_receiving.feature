@@ -13,7 +13,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for GOH received stock in inventory transaction
     Then the po status should be displayed as "Complete"
     
-    @goh_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @goh @complete @ds @jenkinsbr
+    @jenkinsf @goh_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @goh @complete @ds @jenkinsbr
     Scenario: Validate automatic document closure ASN
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
