@@ -130,14 +130,7 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 	}
 
-	public void enterPackConfig(String packConfig) throws FindFailed, InterruptedException {
-		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
-		screen.click(mconfigId.getCenter().offset(70, 0));
-		screen.type(packConfig);
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-	}
-
+	
 	public void clickMiscellaneousTab() throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Miscellaneous.png", timeoutInSec);
 		Thread.sleep(1000);
@@ -255,5 +248,15 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		
+	}
+	public void enterPackConfig(String packConfig) {
+		try{
+		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
+		screen.click(mconfigId.getCenter().offset(70, 0));
+		screen.type(packConfig);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		}
+		catch(Exception e){e=null;}
 	}
 }

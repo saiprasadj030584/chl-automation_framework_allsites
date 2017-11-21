@@ -23,6 +23,7 @@ import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.OrderHeaderPage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.stepdefs.rdt.PurchaseOrderStockCheckStepDefs;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -32,7 +33,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 public class OrderHeaderMaintenanceStepDefs {
 	ArrayList<String> failureList = new ArrayList<String>();
 	private Context context;
-	private JDAFooter jDAFooter;
+	private JDAFooter jdaFooter;
 	private OrderHeaderDB orderHeaderDB;
 	private JdaHomePage jDAHomePage;
 	private Verification verification;
@@ -48,17 +49,18 @@ public class OrderHeaderMaintenanceStepDefs {
 	private LocationDB locationDB;
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private SkuSkuConfigDB skuSkuConfigDB;
+	private PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs;
 	
 	@Inject
-	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
+	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jdaFooter, JdaHomePage jDAHomePage,
 			OrderHeaderDB orderHeaderDB, Verification verification, OrderHeaderPage orderHeaderPage,
 			JdaLoginPage jdaLoginPage, OrderLineDB orderLineDB, GetTcData getTcData, InventoryDB inventoryDB,
-
+			PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs,
 			JDALoginStepDefs jdaLoginStepDefs, InventoryQueryPage inventoryQueryPage, LocationDB locationDb,
 			SkuDB skuDB,LocationDB locationDB,StockAdjustmentsPage stockAdjustmentsPage,SkuSkuConfigDB skuSkuConfigDB) {
 
 		this.context = context;
-		this.jDAFooter = jDAFooter;
+		this.jdaFooter = jdaFooter;
 		this.jDAHomePage = jDAHomePage;
 		this.orderHeaderDB = orderHeaderDB;
 		this.verification = verification;
@@ -74,6 +76,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.locationDB = locationDB;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.skuSkuConfigDB = skuSkuConfigDB;
+		this.purchaseOrderStockCheckStepDefs=purchaseOrderStockCheckStepDefs;
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
@@ -216,9 +219,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setOrderType(orderType);
 		context.setSiteId(siteId);
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(orderId);
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(context.getOrderId()), failureList);
@@ -233,9 +236,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Then("^the order should be allocated$")
 	public void the_order_should_be_allocated() throws Throwable {
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(60000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
@@ -355,9 +358,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^order header should be updated for picked stock$")
 	public void order_header_should_be_updated_for_picked_stock() throws Throwable {
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		Assert.assertEquals("Order header not displayed as expected", "Picked",
 				orderHeaderDB.getStatus(context.getOrderId()));
 	}
@@ -366,9 +369,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void order_header_should_be_updated_for_unpicked_stock() throws Throwable {
 		Thread.sleep(2000);
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 
 		Assert.assertEquals("Order header not displayed as expected", "Released",
 				orderHeaderDB.getStatus(context.getOrderId()));
@@ -584,9 +587,9 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^I query with Order Id$")
 	public void i_query_with_order_id() throws Throwable {
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 	}
 
 	@Then("^the order stock modularity should be visible$")
@@ -640,9 +643,9 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setSKUType(Type);
 		context.setSkuId(orderHeaderDB.getSkuId(orderId));
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(orderId);
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer,ArrayList<String>>();
 		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(orderId), failureList);
@@ -662,9 +665,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Then("^the order should be allocated with prohibition flag$")
 	public void the_order_should_be_allocated_for_prohibition_flag() throws Throwable {
 		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
+		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(6000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);	
@@ -701,6 +704,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		boolean allocation=false;
 		for (int i = 0; i < skuFromOrder.size(); i++)
 		{
+			context.setSkuId((String)skuFromOrder.get(i));
 			ArrayList<String>  locationList=inventoryDB.getLocationsForSku((String)skuFromOrder.get(i));
 			System.out.println(locationList);
 			ArrayList<String> validLocations=new ArrayList<String>();
@@ -709,12 +713,14 @@ public class OrderHeaderMaintenanceStepDefs {
 			{
 				if(locationDb.getLocationZone(locationList.get(j))!=null)
 						{
+					if(inventoryDB.getOriginId(locationList.get(j))!=null && inventoryDB.getOriginId(locationList.get(j)).contains("NONE"))
+					{
 					if(context.getSKUType().equalsIgnoreCase("Hanging") || context.getSKUType().equalsIgnoreCase("GOH"))
 					{
-				if(locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("HANG"))
+				if(locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("HANG") && locationDb.getUserDefType1(locationList.get(j)).contains(skuDB.getProductGroup((String)skuFromOrder.get(i))))
 		{
 					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
+					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked")&& Integer.parseInt(inventoryDB.getQtynHand((String)skuFromOrder.get(i),locationList.get(j)))!= Integer.parseInt(inventoryDB.getAllocatedQty((String)skuFromOrder.get(i),locationList.get(j))))
 					{
 					System.out.println("entered"+locationList.get(j));
 			validLocations.add(locationList.get(j));
@@ -728,7 +734,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				if(locationDb.getLocationZone(locationList.get(j)).contains("BOX") && locationDb.getUserDefType2(locationList.get(j)).contains("BOX") && locationDb.getUserDefType3(locationList.get(j)).contains("BOX"))
 		{
 					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
+					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked")&&Integer.parseInt(inventoryDB.getQtynHand((String)skuFromOrder.get(i),locationList.get(j)))!= Integer.parseInt(inventoryDB.getAllocatedQty((String)skuFromOrder.get(i),locationList.get(j))) )
 					{
 					System.out.println("entered"+locationList.get(j));
 			validLocations.add(locationList.get(j));
@@ -739,10 +745,10 @@ public class OrderHeaderMaintenanceStepDefs {
 					
 					else if(context.getSKUType().equalsIgnoreCase("Flatpack"))
 					{
-				if((locationDb.getLocationZone(locationList.get(j)).contains("BOX") && locationDb.getUserDefType2(locationList.get(j)).contains("BOX") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")) || (locationDb.getLocationZone(locationList.get(j)).contains("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")))
+				if((locationDb.getLocationZone(locationList.get(j)).contains("BOX") && locationDb.getUserDefType2(locationList.get(j)).contains("BOX") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")) || (locationDb.getLocationZone(locationList.get(j)).contains("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT") && locationDb.getUserDefType1(locationList.get(j)).contains(skuDB.getProductGroup(context.getSkuId()))))
 		{
 					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
+					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked") &&Integer.parseInt(inventoryDB.getQtynHand((String)skuFromOrder.get(i),locationList.get(j)))!= Integer.parseInt(inventoryDB.getAllocatedQty((String)skuFromOrder.get(i),locationList.get(j))))
 					{
 					System.out.println("entered"+locationList.get(j));
 			validLocations.add(locationList.get(j));
@@ -751,6 +757,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		}
 					}
 				
+						}
 						}
 			}
 			System.out.println(validLocations);
@@ -764,10 +771,30 @@ public class OrderHeaderMaintenanceStepDefs {
 			{
 			if(context.getLocationID().equalsIgnoreCase("suspense"))
 					{
-					Assert.assertTrue("Sku not in suspense location " + (String) skuFromOrder.get(i),
-							inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))));
-					Assert.assertFalse("Stock is present in other locations" ,
-							allocation);
+										
+					if(!inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))))
+					{
+						System.out.println("Sku not in suspense location " + (String) skuFromOrder.get(i));
+						//do stock check
+						
+						purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(validLocations.get(0),String.valueOf(Integer.valueOf(inventoryDB.getQtynHand((String) skuFromOrder.get(i),validLocations.get(0)))-1));
+						
+					}
+					
+					if(allocation)
+					{
+						System.out.println("Stock is present in other locations");
+						System.out.println("Sku id :"+context.getSkuId());
+						//update in inventory of valid locations to 0
+						if(validLocations.size()!=0)
+						{
+							for(int j=0;j<validLocations.size();j++)
+							{
+							//inventoryDB.updateInventoryQty(validLocations.get(i),String.valueOf(0));
+								purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(validLocations.get(i),inventoryDB.getQtynHand((String) skuFromOrder.get(i),validLocations.get(i)));
+							}
+						}
+					}
 					}
 			}
 			else
@@ -784,33 +811,51 @@ public class OrderHeaderMaintenanceStepDefs {
 					jDAHomePage.navigateToStockAdjustment();
 					Thread.sleep(2000);
 					stockAdjustmentsPage.selectNewStock();
-					jDAFooter.clickNextButton();
+					jdaFooter.clickNextButton();
 					Thread.sleep(2000);
 					stockAdjustmentsPage.enterSkuId(context.getSkuId());
-					jDAFooter.pressTab();
-//					if(context.getSKUType().equalsIgnoreCase("Boxed")|| context.getSKUType().equalsIgnoreCase("Flatpack"))
-//					{
-//					stockAdjustmentsPage.enterLocation(locationDb.getLocationForZone("BOX").get(0));
-//					}
-//					else if(context.getSKUType().equalsIgnoreCase("GOH")|| context.getSKUType().equalsIgnoreCase("Hanging"))
-//					{
-			//		stockAdjustmentsPage.enterLocation(locationDb.getLocationForZone("HANG").get(0));
-					
+					jdaFooter.pressTab();
+//					
+					if(validLocations.size()!=0)
+					{
 					stockAdjustmentsPage.enterLocation(validLocations.get(0));
-					
-					//}
+					}
+					else
+					{
+						if(context.getSKUType().equalsIgnoreCase("Boxed"))
+							{
+							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayBoxed("BOX"));
+							}
+							else if(context.getSKUType().equalsIgnoreCase("GOH")|| context.getSKUType().equalsIgnoreCase("Hanging"))
+							{
+							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutaway("HANG",skuDB.getProductGroup(context.getSkuId())));
+							}
+							else if(context.getSKUType().equalsIgnoreCase("Flatpack"))
+							{
+								stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
+							}
+					}
 					stockAdjustmentsPage.enterSiteId(context.getSiteId());
 					stockAdjustmentsPage.enterQuantityOnHand("500");
 					stockAdjustmentsPage.enterOrigin("NONE");
-					stockAdjustmentsPage.enterPackConfig((String)skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
-					jDAFooter.clickNextButton();
+					
+					stockAdjustmentsPage.enterPackConfig((String) skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
+					jdaFooter.clickNextButton();
 					stockAdjustmentsPage.enterPalletType("PALLET");
-					jDAFooter.clickNextButton();
+					jdaFooter.clickNextButton();
 					stockAdjustmentsPage.enterReasonCode();
-					jDAFooter.clickDoneButton();
+					jdaFooter.clickDoneButton();
 					stockAdjustmentsPage.handlePopUp();
+		
 				}
+
+				
+
+					
 			}
+		
+			
+		
 			
 		// To Validate Modularity,New Product Check for SKU
 

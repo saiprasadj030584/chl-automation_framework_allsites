@@ -394,5 +394,15 @@ System.out.println("select sku_id from order_line where order_id='" + orderId + 
 		rs.next();
 		return rs.getString(1);
 	}
+	public  void updateWorkOrder(String order) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
 
+		Statement stmt = context.getConnection().createStatement();
+		stmt.executeUpdate("update ORDER_HEADER set work_group = null,WORK_GROUPING_ID = null,order_grouping_id = null where order_id ='" + order + "' ");
+		context.getConnection().commit();
+		System.out.println("update work group, work grouping id in order id");
+		
+	}
 }

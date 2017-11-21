@@ -834,4 +834,14 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	public void navigateToOrderGroupingPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("order grouping");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+		System.out.println("Navigating to order grouping page");
+	}
 }

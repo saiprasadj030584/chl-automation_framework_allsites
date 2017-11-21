@@ -29,12 +29,12 @@ Feature: Allocation
       | OriginLocation | AgainstLocation |
       | TUR            | UK              |
 
-  @allocation @retail @boxed @boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
+ @allocation @retail @boxed @boxed_allocation_retail_validate_whether_stocks_are_allocated_to_orders_just_in_time_allocation @complete @ds @just_in_time_alloc
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
-    Given the order id of type "Retail" should be in "Released" status
-    When I navigate to system allocation page
-    And I allocate the stocks
-    Then the stock should get allocated
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check just in time
+    When check whether the stock is allocated automatically
+    Then Navigate to order to check order is allocated
 
   @allocation @boxed @retail @boxed_allocation_retail_validate_prohibition_rule @complete @ds
   Scenario Outline: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
