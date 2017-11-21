@@ -32,16 +32,18 @@ public class PuttyFunctionsStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
-
+		//String port=null;
 		if (context.getSiteId().equals("5649")) {
-			String port=null;
+			System.out.println(port);
 			if(context.isVehicleLoadRequired()){
 			port = configuration.getStringProperty("wst-putty-gm-port-vehicle-load");
 			}
 			else{
-			host = configuration.getStringProperty("wst-putty-gm-host");
+				System.out.println("inside port if condition");
 			port = configuration.getStringProperty("wst-putty-gm-port");
+			System.out.println(port);
 			}
+			host = configuration.getStringProperty("wst-putty-gm-host");
 		}
 
 		else if (context.getSiteId().equals("5885")) {

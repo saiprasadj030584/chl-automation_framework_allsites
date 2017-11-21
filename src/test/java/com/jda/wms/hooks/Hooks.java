@@ -55,7 +55,7 @@ public class Hooks {
 		this.hooksautoUI = hooksautoUI;
 	}
 
-	@Before
+	//@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -65,22 +65,6 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
-	}
-
-//	@Before("~@no_ds")
-	public void iniatateDataSetup1(Scenario scenario) throws Exception {
-		System.out.println("INSIDE NO_DS");
-		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		System.out.println("Uniq Tag --->" + tagListForScenario);
-
-		dataSetupRunner.getTagListFromAutoDb();
-
-		if (!(scenario.getName().contains("Triggering automation email"))) {
-			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-			insertSiteID();
-			// getSiteID();
-		}
-		System.out.println(context.getTestData());
 	}
 
 	@Before("~@Email")
