@@ -13,7 +13,7 @@ Feature: Flatpack - Direct PO - Receiving
     And the goods receipt should be generated for flatpack received stock in inventory transaction
     Then the po status should be displayed as "Complete"
    
-   @flatpack_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+    @jenkinsre @flatpack_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

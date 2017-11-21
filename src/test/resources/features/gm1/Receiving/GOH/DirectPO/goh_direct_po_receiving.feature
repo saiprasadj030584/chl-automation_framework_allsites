@@ -23,7 +23,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
    
-      @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+     @jenkinsre @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
