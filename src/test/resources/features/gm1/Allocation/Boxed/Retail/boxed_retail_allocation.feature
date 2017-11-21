@@ -12,7 +12,7 @@ Feature: Allocation
 
   @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
-    Given the order id of type "Retail" should be in "Released" status
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated
@@ -26,8 +26,8 @@ Feature: Allocation
     Then the order status should be in "Released" status
 
     Examples: 
-      | OriginLocation | AgainstLocation | 
-      | TUR            | UK              | 
+      | OriginLocation | AgainstLocation |
+      | TUR            | UK              |
 
   @allocation @retail @boxed @boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
@@ -45,15 +45,19 @@ Feature: Allocation
     Then the order should be allocated
 
   @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
-  Scenario Outline: Validate whether stock is available for allocation 
+  Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @boxed @allocation @retail @allocation_boxed_retail_auto_allocation_while_qty_on_hand @complete @ds
+  @boxed @allocation @retail @boxed_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
-    Given the order is of type "RETAIL" and it is in "Released" status
+    Given the order of "Retail" should be in "Released" status in order header maintenance
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
 
+  @jenkinsA @boxed_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @boxed @complete @ds
+  Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
+    Given the order of "Retail" should be in "Released" status in order header maintenance
+    Then the order stock modularity should be visible

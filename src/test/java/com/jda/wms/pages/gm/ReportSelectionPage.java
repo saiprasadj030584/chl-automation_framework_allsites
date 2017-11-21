@@ -96,7 +96,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isReportGeneratedExist() throws InterruptedException, FindFailed {
-		if (screen.exists("images/ReportGeneration/Report.png") != null) {
+		if (screen.exists("images/ReportSelection/newReceivingSummaryReport.png") != null) {
 			return true;
 		} else
 			return false;
@@ -115,7 +115,7 @@ public class ReportSelectionPage {
 	
 	public boolean isReportDisplayedForPreReceivingUpc() throws InterruptedException {
 		Thread.sleep(11000);
-		if (screen.exists("images/ReportGeneration/ReportPreReceivingUpc.png") != null) {
+		if (screen.exists("images/ReportGeneration/Reports.png") != null) {
 			return true;
 		} else
 			return false;
@@ -154,7 +154,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isReceivingDiscrepanciesReportExist() throws InterruptedException, FindFailed {
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		if (screen.exists("images/ReportSelection/generatedDiscrepanciesReport.png") != null) {
 			return true;
 		} else
@@ -174,7 +174,7 @@ public class ReportSelectionPage {
 	}
 	
 	public boolean isInternalExceptionReportExist() throws FindFailed, InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(20000);
 		if (screen.exists("images/ReportSelection/generatedInternalExceptions.png") != null) {
 			return true;
 		} else
@@ -188,4 +188,31 @@ public class ReportSelectionPage {
 		Thread.sleep(2000);
 	}
 	
+	public void choosePickingAndReplenishWorkloadReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/pickingAndReplen.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);		
+	}
+	
+	public boolean isPickingAndReplenishWorkloadReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(10000);
+		
+		if (screen.exists("images/ReportSelection/replenWorkload.png") != null) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public void chooseProactiveAllocationShortageReport() throws FindFailed, InterruptedException {
+		Match mReport = screen.find("images/ReportSelection/proactiveShortage.png");
+		Thread.sleep(2000);
+		screen.click(mReport.below(5));
+		Thread.sleep(3000);
+	}
+	
+	public void isAllocationShortageReportExist() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/ReportSelection/proactiveShortageReport.png", timeoutInSec);
+	}
 }

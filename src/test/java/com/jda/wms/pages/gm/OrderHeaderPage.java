@@ -13,16 +13,14 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-public class OrderHeaderPage extends PageObject {
+public class OrderHeaderPage {
+
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	private WebDriver webDriver;
 
 	@Inject
-	public OrderHeaderPage(WebDriver webDriver) {
-		super(webDriver);
-		this.webDriver = webDriver;
+	public OrderHeaderPage() {
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -116,7 +114,7 @@ public class OrderHeaderPage extends PageObject {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-	
+
 	public String getStatus() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
@@ -124,18 +122,38 @@ public class OrderHeaderPage extends PageObject {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
+	public void enterOrderID(String orderReference) throws InterruptedException {
+		screen.type(orderReference);
+		Thread.sleep(1000);
+	}
+
 	public boolean isNoRecordFound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
-			else
-				return false;
+		else
+			return false;
 	}
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
-			else
-				return false;
+		else
+			return false;
+	}
+	
+	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException
+	{
+		screen.wait("images/OrderHeaderMaintenance/DeliveryAddress.png", timeoutInSec);
+		screen.click("images/OrderHeaderMaintenance/DeliveryAddress.png");
+		Thread.sleep(1000);
+	}
+	
+	public void clickGLN() throws FindFailed, InterruptedException
+	{
+		Match morderid = screen.find("images/OrderHeaderMaintenance/DeliveryAddress/GLN.png");
+		screen.click(morderid.getCenter().offset(70, 0));
+		Thread.sleep(1000);
 	}
 }
+

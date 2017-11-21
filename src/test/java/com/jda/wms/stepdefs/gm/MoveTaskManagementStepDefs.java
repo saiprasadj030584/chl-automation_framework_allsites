@@ -74,6 +74,7 @@ public class MoveTaskManagementStepDefs {
 	public void i_delete_the_order_and_list_id_in_move_task() throws Throwable {
 		moveTaskManagementPage.clickAvailable();
 		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
 		moveTaskManagementPage.enterTaskId(context.getOrderId());
 		jDAFooter.clickNextButton();
 		moveTaskManagementPage.clickWorkZone();

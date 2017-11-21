@@ -1,10 +1,10 @@
-@purchase_order
-Feature: Purchase order receiving
+@boxed_fsv_po_inbound_receiving
+Feature: Boxed - FSV PO - Inbound Receiving
   As a warehouse user
   I want to receive the sku from full service vendor supplier
   So that I can putaway the full service vendor purchase order
 
-  @boxed_inbound_receiving_fsv_po_over_receiving @boxed @inbound_receiving @fsv_po @complete @ds @boxed_jenkins
+  @jenkinsA @boxed_inbound_receiving_fsv_po_over_receiving @boxed @inbound_receiving @fsv_po @complete @ds @boxed_jenkins
   Scenario: Validate Over receiving
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Purchase order receiving
     When I perform "Over Receiving" for all skus for the FSV purchase order at location "REC001"
     Then the error message should be displayed as cannot over receipt failed
 
-  @boxed_inbound_receiving_fsv_po_under_receiving @boxed @inbound_receiving @fsv_po @complete @ds @boxed_jenkins
+  @jenkinsA @boxed_inbound_receiving_fsv_po_under_receiving @boxed @inbound_receiving @fsv_po @complete @ds @boxed_jenkins
   Scenario: Valdiate Under receiving
    Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

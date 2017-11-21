@@ -27,6 +27,11 @@ public class UpiReceiptHeaderPage {
 
 	}
 
+	public void enterPalletWithReference(String upiReference) throws InterruptedException {
+		screen.type(upiReference);
+		Thread.sleep(2000);
+	}
+
 	public boolean isNoRecordExist() {
 		if (screen.exists("images/Putty/Receiving/ReceiveMenu.png") != null)
 			return true;
@@ -70,23 +75,20 @@ public class UpiReceiptHeaderPage {
 		}
 		return false;
 	}
-	
-public boolean isNoRecordFound() throws FindFailed {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
-		return true;
+
+	public boolean isNoRecordFound() throws FindFailed {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
+		else
+			return false;
+
+	}
+
+	public boolean isEJBerrorfound() {
+		if (screen.exists("images/DuplicateOption/ejberror.png") != null)
+			return true;
 		else
 			return false;
 	}
 
-public boolean isEJBerrorfound() {
-	if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
-		return true;
-		else
-			return false;
-}
-
-public void enterPalletWithReference(String upiReference) throws InterruptedException {
-	screen.type(upiReference);
-	Thread.sleep(2000);
-}
 }

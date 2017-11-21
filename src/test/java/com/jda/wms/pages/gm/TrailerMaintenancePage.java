@@ -25,5 +25,12 @@ public class TrailerMaintenancePage {
 		screen.type("TRAILER");
 		Thread.sleep(2000);
 	}
+	
+	public boolean isTrailerExists() throws FindFailed, InterruptedException {
+		if (screen.find("/images/DockScheduler/Start/RecordExistsError.png") != null)
+			return true;
+		else
+			return false;
+	}
 
 }

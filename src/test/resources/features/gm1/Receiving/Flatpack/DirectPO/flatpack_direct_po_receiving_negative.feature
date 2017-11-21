@@ -3,7 +3,7 @@ Feature: Flatpack - Receiving - Direct PO - Negative
   As a warehouse user
   I want to receive the articles that are damaged
 
-  @jenkins_analysis @flatpack_receiving_direct_po_validate_not_received_asn @direct_po @boxed @receiving @complete @ds
+   @jenkinsnC @jenkins_analysis @flatpack_receiving_direct_po_validate_not_received_asn @direct_po @boxed @receiving @complete @ds
   Scenario: Validate not received ASN
     Given the PO of type "Flatpack" with UPI and ASN with line items,supplier details
     And the PO should have sku, quantity due details

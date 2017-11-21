@@ -2,8 +2,6 @@
 ##################
 default:
  browser-name: ie
-
-
  username: 'AUTO1'
  password: '1234'
  
@@ -20,12 +18,12 @@ default:
  tbl-parentprojectcode: 'CNH001'
  tbl-parentprojectname: 'JDA Dispatcher Fourwall'
 # emailList: 'Kiruthika.Srinivasan@mnscorp.net'
- emailList: 'Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Indrakumar.Palanisamy,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
+ emailList: 'Santhosh.Narayanaswamy@mnscorp.net,Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Indrakumar.Palanisamy,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
  tbl-parentautomationsuitname: '2'
  tbl-parentregion: 'CATE'
  tbl-testingPhase: '14'
  sqlDB-host: 'jdbc:sqlserver://MSHSRMNSUKC0117'
- sqlDB-databaseName: 'NPS_TEST'
+ sqlDB-databaseName: 'NPS_DEV'
  sqlDB-username: 'NPS_TEST' 
  sqlDB-password: 'Webservice2017'
  db-mnsEmailHost: 'mshsrmnsexc0001.mnsexchangecate.adrootcate.marksandspencercate.com'
@@ -34,20 +32,21 @@ default:
  db-mnsEmailPassword: 'W!sd0m95'
  cucumber-path: 'D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\Cucumber-Reports'
  cucumber-zip-path: 'D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\files'
+ wst-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
+ wst-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ wst-putty-gm-port-vehicle-load: '24004'
+ wst-putty-gm-port: '24007'
+ wst-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
+ wst-db-username: 'dcsdba'
+ wst-db-password: 'dcsabd'
+ stk-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
+ stk-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ stk-putty-gm-port: '22902'
+ stk-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
+ stk-db-username: 'dcsdba'
+ stk-db-password: 'jdadccate5'
 
- gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
- putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
- putty-gm-port: '24006'
- db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
- db-username: 'dcsdba'
- db-password: 'dcsabd'
  
-# gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
-# putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
-# putty-gm-port: '22902'
-# db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
-# db-username: 'dcsdba'
-# db-password: 'jdadccate5'
 
 
 # Browser settings

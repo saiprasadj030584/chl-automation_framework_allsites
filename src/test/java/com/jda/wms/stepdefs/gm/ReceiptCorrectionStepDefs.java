@@ -95,13 +95,13 @@ public class ReceiptCorrectionStepDefs {
 
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at location \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_location(String type,String location) throws Throwable {
-		String preAdviceId = getTcData.getPo();
-		String upiId = getTcData.getUpi();
-		String asnId = getTcData.getAsn();
-		
-		context.setPreAdviceId(preAdviceId);
-		context.setUpiId(upiId);
-		context.setAsnId(asnId);
+//		String preAdviceId = getTcData.getPo();
+//		String upiId = getTcData.getUpi();
+//		String asnId = getTcData.getAsn();
+//		
+//		context.setPreAdviceId(preAdviceId);
+//		context.setUpiId(upiId);
+//		context.setAsnId(asnId);
 		
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
@@ -155,7 +155,7 @@ public class ReceiptCorrectionStepDefs {
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("Location for SKU after Putaway" + context.getSkuId(), context.getToLocation(),
-					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date), failureList);
+					inventoryDB.getLocationAfterPutaway(context.getSkuId(), date,context.getPreAdviceId()), failureList);
 			verification.verifyData("Qty on Hand for SKU" + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryDB.getQtyOnHand(context.getSkuId(), context.getToLocation(), context.getUpiId(), date),
 					failureList);

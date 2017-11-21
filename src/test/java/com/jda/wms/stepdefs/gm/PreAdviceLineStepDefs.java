@@ -122,10 +122,14 @@ public class PreAdviceLineStepDefs {
 				case "Hanging":
 					type = "H";
 					break;
+				case "Flatpack":
+					type = "P";
+					break;
+				case "GOH":
+					type = "C";
+					break;
 				}
 				// TODO Check for multiple skus
-				context.setSKUType(type);
-
 				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
 				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
 						failureList);
@@ -563,7 +567,7 @@ public class PreAdviceLineStepDefs {
 	@Given("^I lock the product with lock code \"([^\"]*)\"$")
 	public void i_lock_the_product_with_lock_code(String lockCode) throws Throwable {
 		context.setLockCode(lockCode);
-		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
+		//jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		jdaHomeStepDefs.i_am_on_to_pre_advice_line_maintenance_page();
 		jdaFooter.clickQueryButton();
 		preAdviceLineMaintenancePage.enterPreAdviceID(context.getPreAdviceId());
@@ -1193,6 +1197,7 @@ public class PreAdviceLineStepDefs {
 				"PO line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+
 	
 	@Given("^the FSV PO line should have hazardous sku, quantity due and qa details$")
 	public void the_FSV_PO_line_should_have_hazardous_sku_quantity_due_qa_details() throws Throwable {

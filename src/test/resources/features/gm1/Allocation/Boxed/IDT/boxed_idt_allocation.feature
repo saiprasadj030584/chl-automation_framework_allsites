@@ -33,7 +33,7 @@ Feature: Boxed - IDT - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-  @allocation @boxed @idt @boxed_allocation_idt_validate_whether_stock_is_available_for_allocation @complete @ds
+    @jenkinsallo @allocation @boxed @idt @boxed_allocation_idt_validate_whether_stock_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "IDT" should be in "Released" status at site
     And I have inventory available for the order line items
@@ -41,7 +41,12 @@ Feature: Boxed - IDT - Allocation
 
      @boxed @allocation @idt @boxed_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds 
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
-    Given the order is of type "IDT" and it is in "Released" status
+   Given the order of "IDT" should be in "Released" status in order header maintenance 
     And the order sku details are verified
     When the inventory is available for the given SKU
     Then the order status should be changed to "Allocated" status
+
+    @jenkinsA @boxed_allocation_idt_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @idt @boxed @complete @ds
+  Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
+    Given the order of "IDT" should be in "Released" status in order header maintenance
+    Then the order stock modularity should be visible

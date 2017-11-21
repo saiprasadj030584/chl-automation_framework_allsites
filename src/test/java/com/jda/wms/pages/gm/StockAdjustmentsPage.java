@@ -249,4 +249,11 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		screen.type(Integer.toString(quantityAdj));
 		Thread.sleep(1000);
 	}
+	
+	public void enterSiteIdForStock(String siteId) throws InterruptedException {
+		screen.type(siteId);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		
+	}
 }

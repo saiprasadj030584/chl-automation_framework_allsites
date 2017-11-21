@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+
 public class DbConnection {
 
 	public Connection dbConnection = null;
@@ -16,6 +19,7 @@ public class DbConnection {
 	public static String dbURL = null;
 	public static String userId = null;
 	public static String pwd = null;
+	public static Context context = new Context();
 
 	public void connectAutomationDB() {
 
@@ -29,6 +33,7 @@ public class DbConnection {
 			Class.forName(System.getProperty("dbDriver", "com.microsoft.sqlserver.jdbc.SQLServerDriver")).newInstance();
 			DriverManager.setLoginTimeout(30);
 			dbConnection = DriverManager.getConnection(dbURL, userId, pwd);
+			context.setDBConnection(dbConnection);
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		} catch (Exception exception) {
@@ -37,6 +42,7 @@ public class DbConnection {
 	}
 
 	public void disconnectAutomationDB() {
+		System.out.println("IN DISCOONECTION AUTOMATION DB");
 		try {
 			if (this.dbConnection != null && !this.dbConnection.isClosed())
 				this.dbConnection.close();

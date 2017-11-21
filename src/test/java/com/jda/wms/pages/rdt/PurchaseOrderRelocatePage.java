@@ -1,20 +1,21 @@
 package com.jda.wms.pages.rdt;
 
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
-import org.sikuli.script.Screen;
-
-import com.jda.wms.utils.Utilities;
-
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+
 public class PurchaseOrderRelocatePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+
+	@Inject
+	public PurchaseOrderRelocatePage() {
+
+	}
 
 	public void selectRelocateMenu() throws InterruptedException {
 		screen.type("4");

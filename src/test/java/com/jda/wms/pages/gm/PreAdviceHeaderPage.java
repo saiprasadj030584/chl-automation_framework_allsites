@@ -125,7 +125,7 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+
 	public boolean isNoRecordFound() {
 		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
 			return true;
@@ -134,7 +134,7 @@ public class PreAdviceHeaderPage {
 	}
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
+		if(screen.exists("images/DuplicateOption/ejberror.png")!= null)
 			return true;
 			else
 				return false;

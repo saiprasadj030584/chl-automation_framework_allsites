@@ -103,7 +103,7 @@ public final class DirectPOReceivingwithPutawayGroup {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_pre_advice_receiving();
 		purchaseOrderReceivingStepDefs.i_should_be_directed_to_pre_advice_entry_page();
-		purchaseOrderReceivingStepDefs.i_enter_urn_id();
+		purchaseOrderReceivingStepDefs.i_enter_urn_id(context.getUpiId());
 		jDAFooter.PressEnter();
         System.out.println("Line"+context.getLineItem()+"No:"+context.getNoOfLines());
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
@@ -133,13 +133,16 @@ public final class DirectPOReceivingwithPutawayGroup {
 				if(!purchaseOrderReceivingPage.getPallet().split("_").equals(null)){
 				String urn = null;
 				String[] rcvPutSplit = purchaseOrderReceivingPage.getPallet().split("_");
-
+				if(rcvPutSplit.length!=0)
+				{
 				if (rcvPutSplit[0].contains("MEZF")) {
 					urn = "M2Z01" + Utilities.getSevenDigitRandomNumber();
 				}
 				else{
 					urn = rcvPutSplit[0].substring(1, 2) + Utilities.getSevenDigitRandomNumber();
 				}
+				}
+				
 			
 				purchaseOrderReceivingPage.enterURNID(urn);
 				jDAFooter.PressEnter();

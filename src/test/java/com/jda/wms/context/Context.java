@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cucumber.runtime.java.guice.ScenarioScope;
+
 public class Context {
 	private String preAdviceId;
 	private String skuId;
@@ -36,6 +38,7 @@ public class Context {
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
+	private String transactionTime;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
 	private List<String> caseRatiolist;
@@ -57,7 +60,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
-	private String siteId;
+	private static String siteId;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 	private ArrayList<String> preAdviceList;
@@ -81,7 +84,8 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private static Connection connection = null;
+	private Connection connection = null;
+	private static Connection dBConnection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -139,7 +143,7 @@ public class Context {
 	private ArrayList<String> qtyTaskedList;
 	private int noOfMoveTaskRecords;
 	private int skuSize;
-	private HashMap<Integer,String> qtyOnHandList;
+	private HashMap<Integer, String> qtyOnHandList;
 	private String orderType;
 	private static String parentRequestId;
 	private String uniqueTag;
@@ -148,12 +152,15 @@ public class Context {
 	private String totQtyOnHand;
 	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
+	private boolean jdaLoginFlag = false;
+	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
 	private static String childRequestId;
 	private static String testData;
 	private boolean vehicleLoadRequired = false;
-	private String transactionTime;
+	private String secondPalletID;
+	private int updatedQty;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -240,6 +247,7 @@ public class Context {
 	}
 
 	public void setPalletID(String palletID) {
+		System.out.println("Pallet Id SET HO GAYA");
 		this.palletID = palletID;
 	}
 
@@ -1214,11 +1222,11 @@ public class Context {
 		this.skuSize = skuSize;
 	}
 
-	public HashMap<Integer,String> getQtyOnHandList() {
+	public HashMap<Integer, String> getQtyOnHandList() {
 		return qtyOnHandList;
 	}
 
-	public void setQtyOnHandList(HashMap<Integer,String> qtyOnHandList) {
+	public void setQtyOnHandList(HashMap<Integer, String> qtyOnHandList) {
 		this.qtyOnHandList = qtyOnHandList;
 	}
 
@@ -1269,19 +1277,19 @@ public class Context {
 	public void setTotQtyOnHand(String totQtyOnHand) {
 		this.totQtyOnHand = totQtyOnHand;
 	}
-	
+
 	public Connection getSQLDBConnection() {
 		return connectionSQLDB;
 	}
 
 	public void setSQLDBConnection(Connection connectionSQLDB) {
 		this.connectionSQLDB = connectionSQLDB;
-	} 
-	
+	}
+
 	public void setChildStartTime(String childStartTime) {
 		this.childStartTime = childStartTime;
 	}
-	
+
 	public String getChildStartTime() {
 		return childStartTime;
 	}
@@ -1292,6 +1300,30 @@ public class Context {
 
 	public void setOrigin(String origin) {
 		this.origin = origin;
+	}
+
+	public String getTransactionTime() {
+		return transactionTime;
+	}
+
+	public void setTransactionTime(String transactionTime) {
+		this.transactionTime = transactionTime;
+	}
+
+	public boolean isJdaLoginFlag() {
+		return jdaLoginFlag;
+	}
+
+	public int getUpdatedQty() {
+		return updatedQty;
+	}
+
+	public void setUpdatedQty(int updatedQty) {
+		this.updatedQty = updatedQty;
+	}
+
+	public void setJdaLoginFlag(boolean jdaLoginFlag) {
+		this.jdaLoginFlag = jdaLoginFlag;
 	}
 
 	public String getAssertString() {
@@ -1326,11 +1358,29 @@ public class Context {
 		this.vehicleLoadRequired = vehicleLoadRequired;
 	}
 
-	public String getTransactionTime() {
-		return transactionTime;
+	public int getQtyonhandafteradjustment() {
+		return qtyonhandafteradjustment;
 	}
 
-	public void setTransactionTime(String transactionTime) {
-		this.transactionTime = transactionTime;
+	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
+		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
 	}
+
+	public String getSecondPalletID() {
+		return secondPalletID;
+	}
+
+	public void setSecondPalletID(String secondPalletID) {
+		this.secondPalletID = secondPalletID;
+	}
+
+	public void setDBConnection(Connection dBConnection) {
+		this.dBConnection = dBConnection;
+
+	}
+
+	public Connection getDBConnection() {
+		return dBConnection;
+	}
+
 }

@@ -1,11 +1,11 @@
-@inventory_update
+@goh_inventory_update
 Feature: GOH - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds
   Scenario Outline: Unlock the stock from Lock
-    Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
+   Given I have a tag in inventory with "<LockStatus>" status for "GOH" 
     When I navigate to inventory update page
     And I select the update type as "Lock Status Change"
     And I search the inventory for the tag
@@ -17,11 +17,11 @@ Feature: GOH - Inventory update
 
     Examples: 
       | LockStatus | UpdateStatus | Code             |
-      | Locked     | Unlocked     | Inventory Unlock |
+      | Locked     | UnLocked     | Inventory Unlock |
 
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
-    Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
+    Given I have a tag in inventory with "<LockStatus>" status for "GOH" 
     When I navigate to inventory update page
     And I select the update type as "Lock Status Change"
     And I search the inventory for the tag
@@ -32,12 +32,13 @@ Feature: GOH - Inventory update
     Then the status should be updated
 
     Examples: 
-      | LockStatus | UpdateStatus | Code           |
-      | UnLocked   | Locked       | Inventory Lock |
-
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_origin_update @complete @ds @no_ds
+      | LockStatus | UpdateStatus | Code             |
+      | UnLocked   | Locked       | Inventory Lock   |
+      
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_origin_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Origin update
-    Given I have a tag in inventory with origin "<Origin>" for "Hanging"
+    #Given I have a tag in inventory with origin "<Origin>"
+    Given I have a tag in inventory with origin "<Origin>" for "GOH" 
     When I navigate to inventory update page
     And I select the update type as "Origin Update"
     And I search the inventory for the tag
@@ -50,25 +51,27 @@ Feature: GOH - Inventory update
       | Origin | UpdateOrigin |
       | NONE   | UK origin    |
 
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_update_condition_code @complete @ds @no_ds
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_update_condition_code @complete @ds @jenkins1 @no_ds
   Scenario Outline: Update condition code
-    Given I have a tag in inventory with condition "<Condition>" for "Hanging"
+    #Given I have a tag in inventory with condition "<Condition>"
+    Given I have a tag in inventory with condition "<Condition>" for "GOH"
     When I navigate to inventory update page
     And I select the update type as "Condition Code Update"
     And I search the inventory for the tag
     Then the tag details should be displayed
     And I select the condition as "<UpdateCondition>"
     When I navigate to inventory transaction query
-    When I choose the code as "Condition Update" and I search the tag id for condition
+    When I choose the code as "Condition Update" and I search the tag id
     Then the condition should be updated
 
     Examples: 
       | Condition | UpdateCondition      |
       | FIRST     | Black condition code |
 
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pallet_type_update @complete @ds @no_ds
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pallet_type_update @complete @ds @jenkins1 @no_ds
   Scenario Outline: Pallet type update
-    Given I have a tag in inventory with pallet type as "<PalletType>" for "Hanging"
+    #Given I have a tag in inventory with pallet type as "<PalletType>"
+    Given I have a tag in inventory with pallet type as "<PalletType>" for "GOH"
     When I navigate to inventory update page
     And I select the update type as "Pallet Type Update"
     And I search the inventory for the tag
@@ -82,9 +85,10 @@ Feature: GOH - Inventory update
       | PalletType | UpdatePallet |
       | PALLET     | AIR          |
 
-   @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pack_config_update @complete @ds @no_ds
+  @jenkinsC @goh @stock_adjustment @inventory_update @goh_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds
   Scenario: Pack config update
-    Given I have a sku in inventory with more than one pack config for "Hanging"
+    #Given I have a sku in inventory with more than one pack config
+    Given I have a sku in inventory with more than one pack config for "GOH"
     When I navigate to inventory update page
     And I select the update type as "Pack Configuration Update"
     And I search the inventory for the sku

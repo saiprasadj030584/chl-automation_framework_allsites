@@ -26,7 +26,7 @@ public class AddressDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public String getLowerTagValue() throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

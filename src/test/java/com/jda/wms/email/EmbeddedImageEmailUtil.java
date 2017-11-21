@@ -103,19 +103,19 @@ public class EmbeddedImageEmailUtil {
 			}
 		}
 
-		File reportZipPath = new File(configuration.getStringProperty("cucumber-zip-path"));
-		File[] listOfFiles = reportZipPath.listFiles();
-		if (reportZipPath.listFiles().length!=0){
-			for(int r=0;r<listOfFiles.length;r++){
-				if(listOfFiles[r].getName().contains(".zip")){
-					String filePath = configuration.getStringProperty("cucumber-zip-path");
-					String fileName = "Cucumber_Report.zip";
-					MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-					attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));
-					multipart.addBodyPart(attachmentBodyPart);
-				}
-			}
-		}
+//		File reportZipPath = new File(configuration.getStringProperty("cucumber-zip-path"));
+//		File[] listOfFiles = reportZipPath.listFiles();
+//		if (reportZipPath.listFiles().length!=0){
+//			for(int r=0;r<listOfFiles.length;r++){
+//				if(listOfFiles[r].getName().contains(".zip")){
+//					String filePath = configuration.getStringProperty("cucumber-zip-path");
+//					String fileName = "Cucumber_Report.zip";
+//					MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+//					attachmentBodyPart.attachFile(new File(filePath + "/" + fileName));
+//					multipart.addBodyPart(attachmentBodyPart);
+//				}
+//			}
+//		}
 		msg.setContent(multipart);
 		Transport.send(msg);
 	}

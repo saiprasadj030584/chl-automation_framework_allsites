@@ -24,6 +24,31 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(2000);
 	}
 
+	public void enterContainerId(String containerId) throws FindFailed, InterruptedException {
+		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
+		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
+		// Thread.sleep(3000);
+		// screen.click(mQty.below(10));
+		Thread.sleep(1000);
+		screen.type(containerId);
+		Thread.sleep(3000);
+		// Thread.sleep(3000);
+
+	}
+
+	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
+		// TODO take new image for EnTTagid
+		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
+		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
+		Thread.sleep(3000);
+		// screen.click(mQty.below(10));
+		// Thread.sleep(1000);
+		System.out.println(tagId);
+		screen.type(tagId);
+		Thread.sleep(3000);
+
+	}
+
 	public void selectContainerPick() throws InterruptedException {
 		screen.type("3");
 		Thread.sleep(1000);

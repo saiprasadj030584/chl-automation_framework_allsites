@@ -13,11 +13,11 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
@@ -26,8 +26,9 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
+import com.jda.wms.pages.gm.JdaLoginPage;
 
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -35,8 +36,8 @@ import cucumber.api.java.en.Given;
 
 public class Hooks_autoUI {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private final WebDriver webDriver;
 	private final Configuration configuration;
+	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
@@ -47,41 +48,30 @@ public class Hooks_autoUI {
 	public static int fail = 0;
 
 	@Inject
-	public Hooks_autoUI(WebDriver webDriver, Context context, Configuration configuration) {
-		this.webDriver = webDriver;
+	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
+
 		this.context = context;
 		this.configuration = configuration;
+		this.jdaLoginPage = jdaLoginPage;
+
 	}
 
-	@Before("~@Email")
-	public void setup(Scenario scenario) throws Exception {
-		System.out.println("Starting Execution" + scenario.getName());
-		getParentRequestID();
-		System.out.println("PREQ_ID "+context.getParentRequestId());
-//		System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop "+SITEID);
-		System.out.println("BUILD ID from sys prop "+BUILD_NUM);
-		insertSiteID();
-		getSiteID();
-		updateBuildNumberInRequestTable();
-		context.setSiteId(System.getProperty("SITEID"));
-		insertDetails(scenario.getName());
-//		getChildRequestID();
-//		updateTestDataIntoRunStatusTable();
-	}
-	
+
 	private void updateTestDataIntoRunStatusTable() {
 		try {
 			if (context.getSQLDBConnection() == null) {
 				sqlConnectOpen();
 			}
-			System.out.println("update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE P_REQ_ID='"+context.getParentRequestId()+"' and status='INPROGRESS'");
-			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='"+context.getTestData()+"' WHERE P_REQ_ID='"+context.getParentRequestId()+"' and status='INPROGRESS'";
+			System.out.println("update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'");
+			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'";
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
+
 
 	private void getChildRequestID() {
 		try {
@@ -90,8 +80,9 @@ public class Hooks_autoUI {
 			}
 			Statement stmt = null;
 			stmt = context.getSQLDBConnection().createStatement();
-			
-			String selectQuery = "select C_REQ_ID from NPS_AUTO_UI_RUN_REQUEST where P_REQ_ID='"+context.getParentRequestId()+"' and STATUS='INPROGRESS'";
+
+			String selectQuery = "select C_REQ_ID from NPS_AUTO_UI_RUN_REQUEST where P_REQ_ID='"
+					+ context.getParentRequestId() + "' and STATUS='INPROGRESS'";
 			System.out.println(selectQuery);
 			context.getSQLDBConnection().createStatement().execute(selectQuery);
 			ResultSet rs = stmt.executeQuery(selectQuery);
@@ -105,7 +96,8 @@ public class Hooks_autoUI {
 
 	private void updateBuildNumberInRequestTable() {
 		try {
-			String insertQuery = "UPDATE NPS_AUTO_UI_RUN_REQUEST set JENKINS_BUILD_NO='"+BUILD_NUM+"' where P_REQ_ID='"+context.getParentRequestId()+"'";
+			String insertQuery = "UPDATE NPS_AUTO_UI_RUN_REQUEST set JENKINS_BUILD_NO='" + BUILD_NUM
+					+ "' where P_REQ_ID='" + context.getParentRequestId() + "'";
 			System.out.println(insertQuery);
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
@@ -114,24 +106,7 @@ public class Hooks_autoUI {
 		}
 	}
 
-	private void getSiteID() throws ClassNotFoundException {
-			try {
-				if (context.getSQLDBConnection() == null) {
-					sqlConnectOpen();
-				}
-				Statement stmt = null;
-				stmt = context.getSQLDBConnection().createStatement();
-				System.out.println("SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'");
-				String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='"+context.getParentRequestId()+"'";
-				ResultSet rs = stmt.executeQuery(query);
-
-				while (rs.next()) {
-					context.setSiteId(rs.getString("SITE_ID"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-	}
+	
 
 	@After("~@Email")
 	public void tearDown(Scenario scenario) throws IOException {
@@ -143,10 +118,14 @@ public class Hooks_autoUI {
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
-				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-				scenario.embed(screenshot, "image/png");
+
+				if (jdaLoginPage.driver != null) {
+					final byte[] screenshot = ((TakesScreenshot) jdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+					scenario.embed(screenshot, "image/png");
+				}
 			} catch (WebDriverException e) {
-				if (!(webDriver instanceof TakesScreenshot)) {
+
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
 							"Could not capture screenshot - selected web driver does not support taking screenshots");
 					return;
@@ -160,32 +139,17 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
-//				final byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-//				scenario.embed(screenshot, "image/png");
+				// final byte[] screenshot = ((TakesScreenshot)
+				// webDriver).getScreenshotAs(OutputType.BYTES);
+				// scenario.embed(screenshot, "image/png");
 			} catch (WebDriverException e) {
-//				if (!(webDriver instanceof TakesScreenshot)) {
-//					logger.error(
-//							"Could not capture screenshot - selected web driver does not support taking screenshots");
-//					return;
-//				}
-				e.printStackTrace();
+				// TODO Auto-generated catch block
+				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
+					logger.error(
+							"Could not capture screenshot - selected web driver does not support taking screenshots");
+					return;
+				}
 			}
-		}
-
-		// clearing down webdriver object
-//		if (webDriver != null) {
-//			webDriver.close();
-//			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKill.bat");
-//			// webDriver.quit();
-//		}
-	}
-	
-	@After
-	public void killIE(Scenario scenario) throws IOException {
-		if (webDriver != null) {
-			webDriver.close();
-			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\IEKillAdmin.lnk");
-			// webDriver.quit();
 		}
 	}
 
@@ -201,6 +165,8 @@ public class Hooks_autoUI {
 			System.out.println("Parent Id --->" + context.getParentRequestId());
 			String query = "INSERT INTO [dbo].[NPS_AUTO_UI_RUN_STATUS] ([P_REQ_ID],[TC_NAME],[EXEC_START_DATE_TIME],[STATUS])VALUES ('"
 					+ context.getParentRequestId() + "','" + testName + "','" + startTime + "','INPROGRESS')";
+
+			System.out.println("Insert Query" + query);
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {
 			exception.printStackTrace();
@@ -260,21 +226,13 @@ public class Hooks_autoUI {
 		} else {
 			context.setParentRequestId(PRQID);
 			System.setProperty("ID", PRQID);
-//			parentStartTime();
+			// parentStartTime();
 			fileSaveValueInText();
 		}
 
 	}
 
-	private void insertSiteID() {
-		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('"+context.getParentRequestId()+"','"+System.getProperty("SITEID")+"')";
-			context.getSQLDBConnection().createStatement().execute(insertQuery);
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}}
+	
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {

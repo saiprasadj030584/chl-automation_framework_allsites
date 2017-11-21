@@ -22,7 +22,7 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to order header$")
 	public void i_navigate_to_order_header() throws Throwable {
-		jdaHomePage.navigateToOrderHeader();
+		jdaHomePage.navigateToOrderHeaderMaintenance();
 	}
 
 	@When("^I navigate to SKU maintenance page$")
