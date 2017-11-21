@@ -28,3 +28,10 @@ Feature: GOH - Retail - Allocation
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     Then the order stock modularity should be visible
+    
+    @jenkall @allocation @retail @goh @goh_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+  Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
+    Given the order id of type "Retail" with "GOH" skus should be in "Released" status
+    When I navigate to system allocation page
+    And I allocate the stocks
+    Then the stock should get allocated
