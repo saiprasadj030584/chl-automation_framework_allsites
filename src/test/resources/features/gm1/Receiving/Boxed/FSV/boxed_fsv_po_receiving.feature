@@ -14,7 +14,7 @@ Feature: Boxed - FSV PO - Receiving
     Then the inventory should be displayed for all tags received for FSV PO
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
-
+    
   @boxed @fsv_po @receiving @boxed_receiving_fsv_receiving_multiple_lines @complete @ds @jenkinsA
   Scenario: Validate the FSV Receipt process-multiple line items
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
@@ -68,4 +68,16 @@ Feature: Boxed - FSV PO - Receiving
     When I am on to pre-advice line maintenance page
     And I mark it as urgent PO
     Then the PO should be updated for urgent delivery
+    
+     @jenkinsr @boxed_receiving_fsv_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
+  Scenario: Validate manual receipt
+   Given the FSV PO of type "Boxed" should be in "Released" status at site id
+    And the FSV PO line should have sku, quantity due details
+    And I update the advice id for all line items
+    And the PO should not be linked with UPI line
+    When I receive all skus for the FSV purchase order at location "REC001"
+    Then the inventory should be displayed for all tags received for FSV PO
+    And the goods receipt should be generated for FSV PO received stock in inventory transaction
+    Then the FSV po status should be displayed as "Complete"
+   
     

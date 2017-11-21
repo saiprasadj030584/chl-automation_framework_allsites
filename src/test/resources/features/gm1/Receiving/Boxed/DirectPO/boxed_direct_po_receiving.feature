@@ -62,3 +62,14 @@ Feature: Boxed - Direct PO - Receiving
     When I am on to pre-advice line maintenance page
     And I mark it as urgent PO
     Then the PO should be updated for urgent delivery
+    
+    @jenkinsr @boxed_receiving_direct_po_validate_manual_receipt @flatpack @receiving @direct_po @complete @ds
+  Scenario: Validate manual receipt
+    Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
+    When I receive all skus for the purchase order at location "REC001"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
+   

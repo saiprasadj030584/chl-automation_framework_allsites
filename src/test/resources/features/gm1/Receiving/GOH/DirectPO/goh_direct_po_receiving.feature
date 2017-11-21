@@ -3,7 +3,7 @@ Feature: GOH - Direct PO - Receiving
   As a warehouse user
   I want to validate receiving
 
-  @jenkinsrun @goh_receiving_direct_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
+  @jenkinsr @goh_receiving_direct_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
   Scenario: Validate manual receipt
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -11,6 +11,26 @@ Feature: GOH - Direct PO - Receiving
     When I receive all "GOH" skus for the purchase order at location "REC001"
     Then the inventory should be displayed for all tags received of GOH type
     And the goods receipt should be generated for GOH received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
+    
+    @goh_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @goh @complete @ds @jenkinsbr
+    Scenario: Validate automatic document closure ASN
+    Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
+    When I receive all skus for the purchase order of type "GOH" at location "REC001"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
+   
+      @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+  Scenario: Validate receipting process without lock code
+    Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
+    When I receive all skus for the purchase order of type "GOH" at location "REC001"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
     
     @jenkinsC @goh_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_lesser_than_the_upi_line_quantity @boxed @receiving @direct_po @complete @ds 
