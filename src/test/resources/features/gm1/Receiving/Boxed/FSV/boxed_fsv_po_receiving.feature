@@ -69,7 +69,7 @@ Feature: Boxed - FSV PO - Receiving
     And I mark it as urgent PO
     Then the PO should be updated for urgent delivery
     
-     @jenkinsr @boxed_receiving_fsv_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
+     @jenkinsA @boxed_receiving_fsv_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
   Scenario: Validate manual receipt
    Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

@@ -3,7 +3,7 @@ Feature: GOH - Direct PO - Receiving
   As a warehouse user
   I want to validate receiving
 
-  @jenkinsr @goh_receiving_direct_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
+  @jenkinsC @goh_receiving_direct_po_validate_manual_receipt @goh @receiving @direct_po @complete @ds
   Scenario: Validate manual receipt
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -13,7 +13,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for GOH received stock in inventory transaction
     Then the po status should be displayed as "Complete"
     
-    @jenkinsf @goh_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @goh @complete @ds @jenkinsbr
+    @jenkinsC @goh_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @goh @complete @ds @jenkinsbr
     Scenario: Validate automatic document closure ASN
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -23,7 +23,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
    
-     @jenkinsre @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+     @jenkinsC @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

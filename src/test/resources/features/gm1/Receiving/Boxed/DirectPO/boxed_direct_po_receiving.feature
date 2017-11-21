@@ -63,7 +63,7 @@ Feature: Boxed - Direct PO - Receiving
     And I mark it as urgent PO
     Then the PO should be updated for urgent delivery
     
-    @jenkinsr @boxed_receiving_direct_po_validate_manual_receipt @boxed @receiving @direct_po @complete @ds
+    @jenkinsA @boxed_receiving_direct_po_validate_manual_receipt @boxed @receiving @direct_po @complete @ds
   Scenario: Validate manual receipt
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

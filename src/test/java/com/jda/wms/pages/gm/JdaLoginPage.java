@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,6 +12,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.config.Constants;
 import com.jda.wms.context.Context;
@@ -24,8 +24,10 @@ public class JdaLoginPage {
 	int timeoutInSec = 20;
 
 	public static RemoteWebDriver driver;
-	Configuration configuration = new Configuration();
-	Context context = new Context();
+	private  Configuration configuration;
+	private  Context context;
+	// Configuration configuration = new Configuration();
+	// Context context = new Context();
 
 	// @Inject
 	// public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
@@ -33,8 +35,10 @@ public class JdaLoginPage {
 	// this.webDriver = webDriver;
 	// this.configuration = configuration;
 	// }
-
-	public JdaLoginPage() {
+	@Inject
+	public JdaLoginPage(Configuration configuration, Context context) {
+		this.configuration = configuration;
+		this.context = context;
 	}
 
 	public void login() throws FindFailed, InterruptedException {
@@ -52,6 +56,7 @@ public class JdaLoginPage {
 			System.out.println("Site Id" + context.getSiteId());
 			setDriver();
 			driver.manage().window().maximize();
+			Thread.sleep(2000);
 
 			if (context.getSiteId().equals("5649")) {
 				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
