@@ -75,7 +75,15 @@ public class DataLoadFromUI {
 		jdaFooter.pressBackSpace();
 		deliveryPage.enterAsnId(asn);
 		jdaFooter.clickExecuteButton();
+		Thread.sleep(2000);
 		jdaFooter.PressEnter();
+		if(deliveryPage.isEJBerrorfound()){
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+		}
+//		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
 		
 		context.setAsnId(asn);
@@ -104,7 +112,18 @@ public class DataLoadFromUI {
 		screen.type("a", Key.CTRL);
 		jdaFooter.pressBackSpace();
 		upiReceiptHeaderPage.enterPalletWithReference(upi);
-		jdaFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton(); 
+		
+		if(deliveryPage.isEJBerrorfound()){
+			Thread.sleep(2000);
+			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+			Thread.sleep(2000);
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+		}
 		jdaFooter.PressEnter();
 		System.out.println("CHECKKKKK2222");
 		jdaFooter.PressEnter();
@@ -147,7 +166,17 @@ public class DataLoadFromUI {
 		
 		
 		preAdviceHeaderPage.enterPreAdviceID(po);;
-		jdaFooter.clickExecuteButton();
+		jdaFooter.clickExecuteButton(); 
+		if(deliveryPage.isEJBerrorfound()){
+			Thread.sleep(2000);
+			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+			Thread.sleep(2000);
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+		}
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();

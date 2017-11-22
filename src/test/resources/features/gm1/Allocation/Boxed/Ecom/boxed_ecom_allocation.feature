@@ -8,4 +8,4 @@ Feature: Boxed - ECom - Allocation
     Given the order id of type "Ecom" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should get allocated
+    Then the order should be allocated

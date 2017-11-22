@@ -5,7 +5,7 @@ Feature: Purchase order receiving
   So that I can putaway the purchase order
 
   @jenkinsA @boxed_receiving_direct_po_validate_pallet_build_for_full_pallet_enter_n_in_full_pallet @boxed @direct_po @receiving @complete @ds
-  Scenario: Validate Pallet build for Full pallet - enter 'N' in full pallet
+  Scenario: Validate Pallet build for Full pallet - enter N in full pallet
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
@@ -15,7 +15,7 @@ Feature: Purchase order receiving
     Then the po status should be displayed as "Complete"
       
   @jenkinsA @boxed_receiving_direct_po_validate_pallet_build_for_full_pallet_enter_y_in_full_pallet @boxed @direct_po @receiving @complete @ds
-  Scenario: Validate Pallet build for Full pallet - enter 'Y' in full pallet
+  Scenario: Validate Pallet build for Full pallet - enter Y in full pallet
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line

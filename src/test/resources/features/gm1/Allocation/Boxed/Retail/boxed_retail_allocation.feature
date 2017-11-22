@@ -1,5 +1,5 @@
-@allocation
-Feature: Allocation
+@boxed_retail_allocation
+Feature: Boxed - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
@@ -8,14 +8,14 @@ Feature: Allocation
     Given the order id of type "Retail" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should not get allocated
+    Then the order should be allocated
 
   @jenkinsz @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should get allocated
+    Then the order should be allocated
 
   @boxed @allocation @retail @boxed_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds
   Scenario Outline: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Disallowed
