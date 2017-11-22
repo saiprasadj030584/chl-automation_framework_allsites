@@ -23,7 +23,7 @@ default:
  tbl-parentregion: 'CATE'
  tbl-testingPhase: '14'
  sqlDB-host: 'jdbc:sqlserver://MSHSRMNSUKC0117'
- sqlDB-databaseName: 'NPS_TEST'
+ sqlDB-databaseName: 'NPS_DEV'
  sqlDB-username: 'NPS_TEST' 
  sqlDB-password: 'Webservice2017'
  db-mnsEmailHost: 'mshsrmnsexc0001.mnsexchangecate.adrootcate.marksandspencercate.com'
