@@ -168,8 +168,8 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterPalletType(String palletType) throws FindFailed, InterruptedException {
-		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
-		screen.click(mpallet.getCenter().offset(70, 0));
+//		Match mpallet = screen.find("images/StockAdjustment/CreateModify/PalletType.png");
+//		screen.click(mpallet.getCenter().offset(70, 0));
 		screen.type(palletType);
 		Thread.sleep(1000);
 	}
@@ -203,8 +203,13 @@ public class StockAdjustmentsPage {
 	}
 	
 	public void enterOrigin(String origin) throws FindFailed, InterruptedException {
-		Match morigin = screen.find("images/StockAdjustment/Search/origin.png");
-		screen.click(morigin.getCenter().offset(70, 0));
+		//screen.wait("images/StockAdjustment/Search/origin.png", timeoutInSec);
+	//	Thread.sleep(1000);
+//		Match morigin = screen.find("images/StockAdjustment/Search/origin.png");
+		screen.wait("images/StockAdjustment/Search/origin.png", timeoutInSec);
+		Thread.sleep(1000);
+		screen.click("images/StockAdjustment/Search/origin.png");
+//		screen.click(morigin.getCenter().offset(70, 0));
 		screen.type(origin);
 		Thread.sleep(1000);
 	}
@@ -218,9 +223,9 @@ public class StockAdjustmentsPage {
 
 	public void handlePopUp() throws InterruptedException {
 		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
-		
 	}
 	
 	public void enterSiteIdExisting(String siteId) throws FindFailed, InterruptedException {

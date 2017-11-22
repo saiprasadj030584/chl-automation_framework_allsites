@@ -23,6 +23,7 @@ import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.pages.gm.OrderHeaderPage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
+import com.jda.wms.stepdefs.rdt.PurchaseOrderStockCheckStepDefs;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -48,14 +49,16 @@ public class OrderHeaderMaintenanceStepDefs {
 	private LocationDB locationDB;
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private SkuSkuConfigDB skuSkuConfigDB;
-	
+	private PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs;
+
 	@Inject
 	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jDAFooter, JdaHomePage jDAHomePage,
 			OrderHeaderDB orderHeaderDB, Verification verification, OrderHeaderPage orderHeaderPage,
 			JdaLoginPage jdaLoginPage, OrderLineDB orderLineDB, GetTcData getTcData, InventoryDB inventoryDB,
 
 			JDALoginStepDefs jdaLoginStepDefs, InventoryQueryPage inventoryQueryPage, LocationDB locationDb,
-			SkuDB skuDB,LocationDB locationDB,StockAdjustmentsPage stockAdjustmentsPage,SkuSkuConfigDB skuSkuConfigDB) {
+			SkuDB skuDB, LocationDB locationDB, StockAdjustmentsPage stockAdjustmentsPage,
+			SkuSkuConfigDB skuSkuConfigDB,PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs) {
 
 		this.context = context;
 		this.jDAFooter = jDAFooter;
@@ -74,6 +77,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.locationDB = locationDB;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.skuSkuConfigDB = skuSkuConfigDB;
+		this.purchaseOrderStockCheckStepDefs = purchaseOrderStockCheckStepDefs ;
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
@@ -111,8 +115,9 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order details should be displayed in order header$")
 	public void the_order_details_should_be_displayed_after_allocation() throws Throwable {
 		verification.verifyData("Site Id", "Not Null", orderHeaderDB.getFromSiteId(context.getOrderId()), failureList);
-//		verification.verifyData("Consignment", "Not Null", orderHeaderDB.getConsignment(context.getOrderId()),
-//				failureList);
+		// verification.verifyData("Consignment", "Not Null",
+		// orderHeaderDB.getConsignment(context.getOrderId()),
+		// failureList);
 		verification.verifyData("Type", "Not Null", orderHeaderDB.getType(context.getOrderId()), failureList);
 		verification.verifyData("Shipdock", "Not Null", orderHeaderDB.getShipdock(context.getOrderId()), failureList);
 		verification.verifyData("Number of Lines", "Not Null", orderHeaderDB.getNumberOfLines(context.getOrderId()),
@@ -246,7 +251,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the order status should be changed to \"([^\"]*)\" status$")
 	public void the_order_status_should_be_changed_to_status(String status) throws Throwable {
-		Assert.assertTrue("Order is not in Allocated status",
+		Assert.assertTrue("Order is not in expected status",
 				status.equals(orderHeaderDB.getStatus(context.getOrderId())));
 	}
 
@@ -302,7 +307,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_id_of_type_should_be_in_status(String orderType, String status) throws Throwable {
 
 		String orderNumber = getTcData.getSto();
-		System.out.println("Order Number "+orderNumber);
+		System.out.println("Order Number " + orderNumber);
 
 		context.setOrderId(orderNumber);
 		context.setStatus(status);
@@ -378,8 +383,8 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_id_of_type_with_skus_should_be_in_status1(String orderType, String skuType, String status)
 			throws Throwable {
 
-		 String orderNumber = getTcData.getSto();
-//		String orderNumber = "4704313644";
+		String orderNumber = getTcData.getSto();
+		// String orderNumber = "4704313644";
 
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
@@ -483,7 +488,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status and \"([^\"]*)\" skus should be in \"([^\"]*)\" location$")
 	public void the_order_id_of_type_should_be_in_status_and_skus_should_be_in_location(String orderType, String status,
-		String skuType, String locationId) throws Throwable {
+			String skuType, String locationId) throws Throwable {
 		String orderNumber = getTcData.getSto();
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
@@ -591,7 +596,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the order stock modularity should be visible$")
 	public void the_Order_stock_modularity_should_be_visible() throws Throwable {
-//		inventoryQueryPage.clickUserDefinedTab();
+		// inventoryQueryPage.clickUserDefinedTab();
 		context.setSKUType(skuDB.getSKUType(orderLineDB.getSkuId(context.getOrderId())));
 		if (context.getSKUType().equalsIgnoreCase("B")) {
 			Assert.assertEquals("Order Stock Modularity is not as expected", "BOX",
@@ -599,44 +604,46 @@ public class OrderHeaderMaintenanceStepDefs {
 		} else if (context.getSKUType().equalsIgnoreCase("H")) {
 			Assert.assertEquals("Order Stock Modularity is not as expected", "HANG",
 					orderHeaderDB.getStockModularity(context.getOrderId()));
-		}
-		else if (context.getSKUType().equalsIgnoreCase("C")) {
+		} else if (context.getSKUType().equalsIgnoreCase("C")) {
 			Assert.assertEquals("Order Stock Modularity is not as expected", "HANG",
 					orderHeaderDB.getStockModularity(context.getOrderId()));
 		}
 	}
-	
+
 	@Then("^the order should be picked$")
 	public void the_order_should_be_picked() throws Throwable {
 		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer,ArrayList<String>>();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		verification.verifyData("Order Status", "Picked", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
-	
+
 	@Given("^the OrderID of type \"([^\"]*)\" for sku \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
-	public void the_OrderID_of_type_for_sku_should_be_in_status(String orderType, String skuType,String status) throws Throwable {
+	public void the_OrderID_of_type_for_sku_should_be_in_status(String orderType, String skuType, String status)
+			throws Throwable {
 		String orderId = getTcData.getSto();
 		String siteId = context.getSiteId();
 		jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);
 		context.setSiteId(siteId);
-		String Type=null;
-		switch(skuType){
+		String Type = null;
+		switch (skuType) {
 		case "GOH":
-			Type="C";
+			Type = "C";
 			break;
 		case "Flatpack":
-			Type="P";
+			Type = "P";
 			break;
 		case "Boxed":
-			Type="B";
+			Type = "B";
 			break;
 		case "Hanging":
-			Type="H";
-			break;			
-		}		
+			Type = "H";
+			break;
+		}
 		context.setSKUType(Type);
 		context.setSkuId(orderHeaderDB.getSkuId(orderId));
 		jDAHomePage.navigateToOrderHeaderMaintenance();
@@ -644,21 +651,26 @@ public class OrderHeaderMaintenanceStepDefs {
 		orderHeaderPage.enterOrderNo(orderId);
 		jDAFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer,ArrayList<String>>();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		verification.verifyData("Order Status", status, orderHeaderDB.getStatus(orderId), failureList);
 		verification.verifyData("Order Type", orderType, orderHeaderDB.getOrderType(orderId), failureList);
 		verification.verifyData("SKU Type", context.getSKUType(), skuDB.getSKUType(context.getSkuId()), failureList);
 		verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()), failureList);
-	    context.setSkuId(orderLineDB.getSkuId(orderId));
-	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		context.setSkuId(orderLineDB.getSkuId(orderId));
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
-	
+
 	@Then("^the order should be Ready to Load$")
 	public void the_order_should_be_Ready_to_Load() throws Throwable {
-		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-	  	Assert.assertTrue("Order Status details not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
-	
+
 	@Then("^the order should be allocated with prohibition flag$")
 	public void the_order_should_be_allocated_for_prohibition_flag() throws Throwable {
 		jDAHomePage.navigateToOrderHeaderMaintenance();
@@ -667,29 +679,30 @@ public class OrderHeaderMaintenanceStepDefs {
 		jDAFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(6000);
-		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);	
-		verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);	
-	  	Assert.assertTrue("Order Status not displayed as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-	  	String sku_id=orderLineDB.getSkuId(context.getOrderId());
-	  	context.setSkuId(sku_id);
-	  	Assert.assertEquals("Prohibition flag not displayed as expected", "PROHIBITION",inventoryDB.getProhibitionFlag(context.getSkuId()));
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()),
+				orderHeaderDB.getQtyTaskedWithOrderID(context.getOrderId()), failureList);
+		Assert.assertTrue("Order Status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		String sku_id = orderLineDB.getSkuId(context.getOrderId());
+		context.setSkuId(sku_id);
+		Assert.assertEquals("Prohibition flag not displayed as expected", "PROHIBITION",
+				inventoryDB.getProhibitionFlag(context.getSkuId()));
 	}
-	
 
 	@Given("^check the loc type for the boxed preffered zones$")
 	public void check_the_loc_type_for_the_boxed_preffered_zones() throws Throwable {
-		System.out.println("Count of boxed preffered zones without tag-FIFO"+locationDB.checkBoxZone());
-		int check = Integer.parseInt(locationDB.checkBoxZone ());
-		if (check!=0)
+		System.out.println("Count of boxed preffered zones without tag-FIFO" + locationDB.checkBoxZone());
+		int check = Integer.parseInt(locationDB.checkBoxZone());
+		if (check != 0)
 			Assert.fail("Box location is not boxed preferable location");
 	}
-	
+
 	@Given("^the order id of type \"([^\"]*)\" with \"([^\"]*)\" skus should be in \"([^\"]*)\" status$")
-	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType,String skuType,String status)
+	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
-		
-		String orderNumber=context.getOrderId();
-		
+		String orderNumber = context.getOrderId();
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
 		context.setStatus(status);
@@ -698,89 +711,121 @@ public class OrderHeaderMaintenanceStepDefs {
 		ArrayList skuFromOrder = new ArrayList();
 		skuFromOrder = orderLineDB.getskuList(context.getOrderId());
 		context.setSkuFromOrder(skuFromOrder);
-		boolean allocation=false;
-		for (int i = 0; i < skuFromOrder.size(); i++)
-		{
-			ArrayList<String>  locationList=inventoryDB.getLocationsForSku((String)skuFromOrder.get(i));
+		boolean allocation = false;
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			context.setSkuId((String) skuFromOrder.get(i));
+			ArrayList<String> locationList = inventoryDB.getLocationsForSku((String) skuFromOrder.get(i));
 			System.out.println(locationList);
-			ArrayList<String> validLocations=new ArrayList<String>();
-			int totalQtyOnHand=0;
-			for (int j = 0; j < locationList.size(); j++)
-			{
-				if(locationDb.getLocationZone(locationList.get(j))!=null)
-						{
-					if(context.getSKUType().equalsIgnoreCase("Hanging") || context.getSKUType().equalsIgnoreCase("GOH"))
-					{
-				if(locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("HANG"))
-		{
-					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
-					{
-					System.out.println("entered"+locationList.get(j));
-			validLocations.add(locationList.get(j));
-			totalQtyOnHand+=Integer.parseInt(inventoryDB.getQtyForSkuInLocation((String)skuFromOrder.get(i),locationList.get(j)));
-					}
-		}
-					}
-					
-					else if(context.getSKUType().equalsIgnoreCase("Boxed") )
-					{
-				if(locationDb.getLocationZone(locationList.get(j)).contains("BOX") && locationDb.getUserDefType2(locationList.get(j)).contains("BOX") && locationDb.getUserDefType3(locationList.get(j)).contains("BOX"))
-		{
-					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
-					{
-					System.out.println("entered"+locationList.get(j));
-			validLocations.add(locationList.get(j));
-			totalQtyOnHand+=Integer.parseInt(inventoryDB.getQtyForSkuInLocation((String)skuFromOrder.get(i),locationList.get(j)));
-					}
-		}
-					}
-					
-					else if(context.getSKUType().equalsIgnoreCase("Flatpack"))
-					{
-				if((locationDb.getLocationZone(locationList.get(j)).contains("BOX") && locationDb.getUserDefType2(locationList.get(j)).contains("BOX") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")) || (locationDb.getLocationZone(locationList.get(j)).contains("HANG") && locationDb.getUserDefType2(locationList.get(j)).contains("HANG") && locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")))
-		{
-					System.out.println(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)));
-					if(inventoryDB.getLockStatus(locationList.get(j),(String)skuFromOrder.get(i)).equalsIgnoreCase("UnLocked"))
-					{
-					System.out.println("entered"+locationList.get(j));
-			validLocations.add(locationList.get(j));
-			totalQtyOnHand+=Integer.parseInt(inventoryDB.getQtyForSkuInLocation((String)skuFromOrder.get(i),locationList.get(j)));
-					}
-		}
-					}
-				
+			ArrayList<String> validLocations = new ArrayList<String>();
+			int totalQtyOnHand = 0;
+			for (int j = 0; j < locationList.size(); j++) {
+				if (locationDb.getLocationZone(locationList.get(j)) != null) {
+					if (inventoryDB.getOriginId(locationList.get(j)) != null
+							&& inventoryDB.getOriginId(locationList.get(j)).contains("NONE")) {
+						if (context.getSKUType().equalsIgnoreCase("Hanging")
+								|| context.getSKUType().equalsIgnoreCase("GOH")) {
+							if (locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG")
+									&& locationDb.getUserDefType2(locationList.get(j)).contains("HANG")
+									&& locationDb.getUserDefType3(locationList.get(j)).contains("HANG")
+									&& locationDb.getUserDefType1(locationList.get(j))
+											.contains(skuDB.getProductGroup((String) skuFromOrder.get(i)))) {
+								System.out.println(
+										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
+								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
+										.equalsIgnoreCase("UnLocked")
+										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
+												locationList.get(j))) != Integer.parseInt(
+														inventoryDB.getAllocatedQty((String) skuFromOrder.get(i),
+																locationList.get(j)))) {
+									System.out.println("entered" + locationList.get(j));
+									validLocations.add(locationList.get(j));
+									totalQtyOnHand += Integer.parseInt(inventoryDB
+											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
+								}
+							}
+						} else if (context.getSKUType().equalsIgnoreCase("Boxed")) {
+							if (locationDb.getLocationZone(locationList.get(j)).contains("BOX")
+									&& locationDb.getUserDefType2(locationList.get(j)).contains("BOX")
+									&& locationDb.getUserDefType3(locationList.get(j)).contains("BOX")) {
+								System.out.println(
+										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
+								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
+										.equalsIgnoreCase("UnLocked")
+										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
+												locationList.get(j))) != Integer.parseInt(
+														inventoryDB.getAllocatedQty((String) skuFromOrder.get(i),
+																locationList.get(j)))) {
+									System.out.println("entered" + locationList.get(j));
+									validLocations.add(locationList.get(j));
+									totalQtyOnHand += Integer.parseInt(inventoryDB
+											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
+								}
+							}
+						} else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
+							if ((locationDb.getLocationZone(locationList.get(j)).contains("BOX")
+									&& locationDb.getUserDefType2(locationList.get(j)).contains("BOX")
+									&& locationDb.getUserDefType3(locationList.get(j)).contains("FLAT"))
+									|| (locationDb.getLocationZone(locationList.get(j)).contains("HANG")
+											&& locationDb.getUserDefType2(locationList.get(j)).contains("HANG")
+											&& locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")
+											&& locationDb.getUserDefType1(locationList.get(j))
+													.contains(skuDB.getProductGroup(context.getSkuId())))) {
+								System.out.println(
+										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
+								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
+										.equalsIgnoreCase("UnLocked")
+										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
+												locationList.get(j))) != Integer.parseInt(
+														inventoryDB.getAllocatedQty((String) skuFromOrder.get(i),
+																locationList.get(j)))) {
+									System.out.println("entered" + locationList.get(j));
+									validLocations.add(locationList.get(j));
+									totalQtyOnHand += Integer.parseInt(inventoryDB
+											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
+								}
+							}
 						}
+					}
+				}
 			}
 			System.out.println(validLocations);
-			System.out.println("totalQtyOnHand"+totalQtyOnHand);
-			if(totalQtyOnHand>=Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(),(String)skuFromOrder.get(i))))
-			{
-				allocation=true;
+			System.out.println("totalQtyOnHand" + totalQtyOnHand);
+			if (totalQtyOnHand >= Integer
+					.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i)))) {
+				allocation = true;
 			}
-			
-			if(context.getLocationID()!=null)
-			{
-			if(context.getLocationID().equalsIgnoreCase("suspense"))
-					{
-					Assert.assertTrue("Sku not in suspense location " + (String) skuFromOrder.get(i),
-							inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))));
-					Assert.assertFalse("Stock is present in other locations" ,
-							allocation);
+			if (context.getLocationID() != null) {
+				if (context.getLocationID().equalsIgnoreCase("suspense")) {
+					if (!inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i)))) {
+						System.out.println("Sku not in suspense location " + (String) skuFromOrder.get(i));
+						// do stock check
+						purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(
+								validLocations.get(0),
+								String.valueOf(Integer.valueOf(
+										inventoryDB.getQtynHand((String) skuFromOrder.get(i), validLocations.get(0)))
+										- 1));
 					}
-			}
-			else
-			{
+					if (allocation) {
+						System.out.println("Stock is present in other locations");
+						System.out.println("Sku id :" + context.getSkuId());
+						// update in inventory of valid locations to 0
+						if (validLocations.size() != 0) {
+							for (int j = 0; j < validLocations.size(); j++) {
+								// inventoryDB.updateInventoryQty(validLocations.get(i),String.valueOf(0));
+								purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(
+										validLocations.get(i),
+										inventoryDB.getQtynHand((String) skuFromOrder.get(i), validLocations.get(i)));
+							}
+						}
+					}
+				}
+			} else {
 
-//					Assert.assertTrue("Stock is not present in other locations" ,
-//							allocation);
-				
+				// Assert.assertTrue("Stock is not present in other locations" ,
+				// allocation);
 				System.out.println("Stock is not present in other locations");
-				
-				if(!(allocation))
-				{
-					//default:stock adjustment to qty 500
+				if (!(allocation)) {
+					// default:stock adjustment to qty 500
 					jDAHomePage.navigateToStockAdjustment();
 					Thread.sleep(2000);
 					stockAdjustmentsPage.selectNewStock();
@@ -788,17 +833,21 @@ public class OrderHeaderMaintenanceStepDefs {
 					Thread.sleep(2000);
 					stockAdjustmentsPage.enterSkuId(context.getSkuId());
 					jDAFooter.pressTab();
-//					if(context.getSKUType().equalsIgnoreCase("Boxed")|| context.getSKUType().equalsIgnoreCase("Flatpack"))
-//					{
-//					stockAdjustmentsPage.enterLocation(locationDb.getLocationForZone("BOX").get(0));
-//					}
-//					else if(context.getSKUType().equalsIgnoreCase("GOH")|| context.getSKUType().equalsIgnoreCase("Hanging"))
-//					{
-			//		stockAdjustmentsPage.enterLocation(locationDb.getLocationForZone("HANG").get(0));
-					
-					stockAdjustmentsPage.enterLocation(validLocations.get(0));
-					
-					//}
+					//
+					if (validLocations.size() != 0) {
+						stockAdjustmentsPage.enterLocation(validLocations.get(0));
+					} else {
+						if (context.getSKUType().equalsIgnoreCase("Boxed")) {
+							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayBoxed("BOX"));
+						} else if (context.getSKUType().equalsIgnoreCase("GOH")
+								|| context.getSKUType().equalsIgnoreCase("Hanging")) {
+							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutaway("HANG",
+									skuDB.getProductGroup(context.getSkuId())));
+						} else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
+							stockAdjustmentsPage.enterLocation(locationDb
+									.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
+						}
+					}
 					stockAdjustmentsPage.enterSiteId(context.getSiteId());
 					stockAdjustmentsPage.enterQuantityOnHand("500");
 					stockAdjustmentsPage.enterOrigin("NONE");
@@ -810,31 +859,31 @@ public class OrderHeaderMaintenanceStepDefs {
 					jDAFooter.clickDoneButton();
 					stockAdjustmentsPage.handlePopUp();
 				}
+
 			}
-			
-		// To Validate Modularity,New Product Check for SKU
+			// To Validate Modularity,New Product Check for SKU
 
-					String type = null;
-					switch (context.getSKUType()) {
-					case "Boxed":
-						type = "B";
-						break;
-					case "Hanging":
-						type = "H";
-						break;
-					case "Flatpack":
-						type = "P";
-						break;
-					case "GOH":
-						type = "C";
-						break;
-					}
-					// TODO Check for multiple skus
+			String type = null;
+			switch (context.getSKUType()) {
+			case "Boxed":
+				type = "B";
+				break;
+			case "Hanging":
+				type = "H";
+				break;
+			case "Flatpack":
+				type = "P";
+				break;
+			case "GOH":
+				type = "C";
+				break;
+			}
+			// TODO Check for multiple skus
 
-					verification.verifyData("SKU Type", type, skuDB.getSKUType((String)skuFromOrder.get(i)), failureList);
-					verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue((String)skuFromOrder.get(i)),
-							failureList);
-				}
+			verification.verifyData("SKU Type", type, skuDB.getSKUType((String) skuFromOrder.get(i)), failureList);
+			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue((String) skuFromOrder.get(i)),
+					failureList);
+		}
 
 		// order type
 		if (orderType.equalsIgnoreCase("International")) {
@@ -858,11 +907,15 @@ public class OrderHeaderMaintenanceStepDefs {
 		}
 
 		// Order status
-//		verification.verifyData("Order Status not displayed as expected", status, orderHeaderDB.getStatus(orderNumber),
-//				failureList);
+		// verification.verifyData("Order Status not displayed as expected",
+		// status, orderHeaderDB.getStatus(orderNumber),
+		// failureList);
 
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	
+
 }

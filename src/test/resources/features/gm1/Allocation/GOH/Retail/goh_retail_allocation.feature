@@ -12,7 +12,7 @@ Feature: GOH - Retail - Allocation
     Then the order should be allocated with prohibition flag
 
    @jenkinsB @allocation @goh @retail @goh_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
-  Scenario: Validating availability of stock for allocation
+  Scenario: Validate whether stock is available for allocation 
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory
@@ -29,9 +29,9 @@ Feature: GOH - Retail - Allocation
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     Then the order stock modularity should be visible
     
-    @jenkall @allocation @retail @goh @goh_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+     @jenkgoh @allocation @retail @goh @goh_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
     Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should get allocated
+    Then the order should be allocated
