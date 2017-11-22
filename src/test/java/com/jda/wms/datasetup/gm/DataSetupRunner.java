@@ -336,7 +336,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") && context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -374,7 +374,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("outlet") && context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
