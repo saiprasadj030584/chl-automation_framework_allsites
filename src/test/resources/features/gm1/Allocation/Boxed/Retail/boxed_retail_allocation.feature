@@ -10,8 +10,8 @@ Feature: Allocation
     And I allocate the stocks
     Then the stock should not get allocated
 
-  @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
-  Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
+  @jenkinsz @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+  Scenario: Validate  whether all the stocks are allocated -Allocation Rules
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
@@ -44,7 +44,7 @@ Feature: Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-  @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
+  @jenkinsz @allocation @boxed @idt @boxed_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
