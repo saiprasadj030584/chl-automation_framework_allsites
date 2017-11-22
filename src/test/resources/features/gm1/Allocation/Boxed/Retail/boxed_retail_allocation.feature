@@ -29,7 +29,7 @@ Feature: Allocation
       | OriginLocation | AgainstLocation |
       | TUR            | UK              |
 
- @allocation @retail @boxed @boxed_allocation_retail_validate_whether_stocks_are_allocated_to_orders_just_in_time_allocation @complete @ds @just_in_time_alloc
+ @allocation @retail @boxed @boxed_allocation_retail_validate_whether_stocks_are_allocated_to_orders_just_in_time_allocation @complete @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I have setup the data to check just in time
@@ -61,3 +61,10 @@ Feature: Allocation
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order of "Retail" should be in "Released" status in order header maintenance
     Then the order stock modularity should be visible
+    
+     @allocation @retail @boxed @boxed_allocation_retail_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
+  Scenario: Validate whether stock with earliest expiry date is allocated first -Expiry Date Sensitive Product
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check expiry date
+
+    Then Navigate to order to check order is allocated

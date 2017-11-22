@@ -1,5 +1,7 @@
 package com.jda.wms.pages.rdt;
 
+import java.util.Random;
+
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -11,6 +13,7 @@ import com.jda.wms.context.Context;
 
 
 public class PurchaseOrderPickingPage {
+	Random random = new Random();
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
@@ -56,6 +59,81 @@ public class PurchaseOrderPickingPage {
 		screen.doubleClick((mSupplierId.below(10)));
 		Thread.sleep(2000);
 		return App.getClipboard();
+	}
+
+	public boolean palletIdAvailable() 
+	{
+		if (screen.exists("images/Putty/Picking/Enterpall.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean invalidContainerIdAvailable() 
+	{
+		if (screen.exists("images/Putty/Picking/InvalidContainer.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean validContainerIdAvailable()
+	{
+		if (screen.exists("images/Putty/Picking/Scancontainerid.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public void enter14digitpalletId() throws InterruptedException{
+		Thread.sleep(1000);
+		
+		
+		int x = random.nextInt(900) + 100;
+		String palletid = "1"+context.getOrderId()+x;
+		System.out.println("palletid: "+palletid);
+		screen.type(palletid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void noOfTag() throws InterruptedException{
+		Thread.sleep(1000);
+			
+		
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void entertag() throws InterruptedException{
+		Thread.sleep(1000);
+		int x = random.nextInt(900000) + 100000;
+		String container = String.valueOf(x);
+		System.out.println("containerid: "+container);
+		screen.type(container);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
+	public int generate5digitcontainerID() throws InterruptedException{
+		Thread.sleep(1000);
+		int x = random.nextInt(90000) + 10000;
+		
+		System.out.println("random no generated: "+x);
+		return x;
+		}
+	public void enterContainerID(String containerId) throws InterruptedException{
+		
+		screen.type(containerId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void enterskuid(String skuid) throws InterruptedException{
+		Thread.sleep(1000);
+		screen.type(skuid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 
 	public void enterCheckString(String checkString) throws InterruptedException {

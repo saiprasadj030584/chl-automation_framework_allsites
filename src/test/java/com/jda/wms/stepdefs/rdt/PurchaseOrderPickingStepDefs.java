@@ -17,6 +17,7 @@ import com.jda.wms.db.gm.MoveTaskDB;
 import com.jda.wms.db.gm.MoveTaskUpdateDB;
 import com.jda.wms.db.gm.OrderContainerDB;
 import com.jda.wms.db.gm.OrderHeaderDB;
+import com.jda.wms.db.gm.OrderLineDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.Verification;
@@ -49,11 +50,12 @@ public class PurchaseOrderPickingStepDefs {
 	private OrderContainerDB orderContainerDB;
 	private OrderHeaderDB orderHeaderDB;
 	private AddressDB addressDB;
+	private OrderLineDB orderLineDB;
 
 	@Inject
 	public PurchaseOrderPickingStepDefs(PurchaseOrderPickingPage purchaseOrderPickingPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
-			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
+			LocationDB locationDB,OrderLineDB orderLineDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
 
 			MoveTaskDB moveTaskDB,MoveTaskUpdateDB moveTaskUpdateDB,PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage,BookingInDiary bookingInDiary,OrderContainerDB orderContainerDB,OrderHeaderDB orderHeaderDB,AddressDB addressDB) {
 
@@ -73,6 +75,7 @@ public class PurchaseOrderPickingStepDefs {
 		this.orderContainerDB = orderContainerDB;
 		this.orderHeaderDB = orderHeaderDB;
 		this.addressDB = addressDB;
+		this.orderLineDB=orderLineDB;
 
 	}
 
@@ -161,6 +164,63 @@ public class PurchaseOrderPickingStepDefs {
 		hooks.logoutPutty();
 
 	}
+	@Given("^I perform nonretail picking$")
+	public void i_perform_nonretail_picking() throws Throwable {
+		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+		
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		if(!purchaseOrderPickingPage.validContainerIdAvailable())
+		purchaseOrderPickingPage.enter14digitpalletId();
+//		puttyFunctionsPage.pressEnter();
+
+		//while(purchaseOrderPickingPage.palletIdAvailable()){
+			//purchaseOrderPickingPage.enter14digitpalletId();
+			//puttyFunctionsPage.pressEnter();
+		//}
+		
+		ArrayList skulist = new ArrayList();
+		skulist = orderLineDB.getskuList(context.getOrderId());
+		context.setSkuFromOrder(skulist);
+		int containerid = purchaseOrderPickingPage.generate5digitcontainerID();
+		
+		int i = 0;
+		Thread.sleep(2000);
+		
+		Thread.sleep(2000);
+		for (; i < skulist.size(); i++)
+		{
+			purchaseOrderPickingPage.enterContainerID(String.valueOf(containerid));
+			String Sku =(String) skulist.get(i);
+			
+		
+		
+		//while(!purchaseOrderPickingPage.invalidContainerIdAvailable()){
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(1000);
+			
+			purchaseOrderPickingPage.enterContainerID(String.valueOf(containerid));
+			Thread.sleep(2000);
+		 	purchaseOrderPickingPage.noOfTag();
+		 	containerid++;
+		//}
+		
+			}
+			
+		if (i< skulist.size())
+			Assert.fail("picking is not valid One upc validation failed");
+		
+		
+		hooks.logoutPutty();
+
+	}
+	
 
 	@Then("^I enter the check string for marshalling$")
 	public void i_enter_the_check_string_for_marshalling() throws Throwable {
