@@ -60,7 +60,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
-	public static String siteId;
+	private static String siteId = null;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 	private ArrayList<String> preAdviceList;

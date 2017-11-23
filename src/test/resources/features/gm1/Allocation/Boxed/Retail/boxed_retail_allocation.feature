@@ -3,7 +3,7 @@ Feature: Boxed - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-  @allocation @retail @boxed @boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
+   @jenkinsk @allocation @retail @boxed @boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page
@@ -44,7 +44,7 @@ Feature: Boxed - Retail - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-  @jenkinsz @allocation @boxed @retail @boxed_allocation_retail_validate_whether_order_is_available_for_allocation @complete @ds
+  @jenkinsk @allocation @boxed @retail @boxed_allocation_retail_validate_whether_order_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
