@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
 
 import cucumber.api.java.Before;
 
@@ -46,16 +47,19 @@ public class Database {
 	private Connection connection;
 	private final Configuration configuration;
 	private final Context context;
+	private final DataSetupRunner dataSetupRunner;
 
 	@Inject
-	public Database(Configuration configuration, Context context) {
+	public Database(Configuration configuration, Context context, DataSetupRunner dataSetupRunner) {
 		this.configuration = configuration;
 		this.context = context;
+		this.dataSetupRunner = dataSetupRunner;
 	}
 
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
+	 * 
 	 * @param address
 	 *            - address of the server
 	 * @param username
@@ -70,6 +74,9 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (context.getSiteID() == null) {
+				dataSetupRunner.getSiteId(context.getUniqueTag());
+			}
 
 			if (context.getSiteID().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),

@@ -93,10 +93,10 @@ public class DataSetupRunner {
 			}
 		}
 		context.setUniqueTag(uniqueTag.toLowerCase());
-		System.out.println("UNIQUE TAG "+context.getUniqueTag());
+		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-		System.out.println("SITE ID FOR SCENARIO "+context.getSiteID());
+		System.out.println("SITE ID FOR SCENARIO " + context.getSiteID());
 
 		// insertData();
 		// insertTempTestdata();
@@ -107,8 +107,8 @@ public class DataSetupRunner {
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
-			System.out.println("CHECK CONNECTION "+context.getDBConnection());
-			if(context.getDBConnection().isClosed()||context.getDBConnection() == null){
+			System.out.println("CHECK CONNECTION " + context.getDBConnection());
+			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
 				npsDataBase.connectAutomationDB();
 			}
 
@@ -117,7 +117,10 @@ public class DataSetupRunner {
 			System.out.println(selectQuery);
 			context.getDBConnection().createStatement().execute(selectQuery);
 			rs = stmt.executeQuery(selectQuery);
-			while (rs.next()) {
+			if (!rs.next()) {
+				Assert.fail("Unique Tag Id is notfound");
+			} else {
+				System.out.println("Unique Tag Id is found");
 				context.setSiteID(rs.getString("SITE_NO"));
 			}
 		}

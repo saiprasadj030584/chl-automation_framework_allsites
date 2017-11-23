@@ -23,7 +23,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
    
-     @jenkinsC @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+   @jenkinsS  @jenkinsC @goh_receiving_direct_po_validate_receipting_process_without_lock_code @receiving @direct_po @goh @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -42,7 +42,7 @@ Feature: GOH - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "Complete" while upi and asn status should "Complete"
     
-    @jenkinsC @goh_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_greater_than_the_upi_line_quantity @po @complete @boxed @receiving @direct_po @ds 
+   @jenkinsS @jenkinsC @goh_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_greater_than_the_upi_line_quantity @po @complete @boxed @receiving @direct_po @ds 
   Scenario: Perform receiving when Pre advice line quantity is greater than the UPI line quantity
      Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "greater" than upi quantity
