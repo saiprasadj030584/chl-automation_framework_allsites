@@ -26,7 +26,7 @@ Feature: Boxed - FSV PO - Receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds @jenkinsA
+ @jenkinsS @boxed @fsv_po @receiving @boxed_receiving_fsv_po_validate_automatic_document_closure_po @complete @ds @jenkinsA
   Scenario: Validate automatic document closure PO
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -48,7 +48,7 @@ Feature: Boxed - FSV PO - Receiving
     And the goods receipt should be generated for FSV PO received stock in inventory transaction
     Then the FSV po status should be displayed as "Complete"
 
-  @jenkinsA @boxed @fsv_po @receiving @complete @boxed_receiving_fsv_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds
+  @jenkinsS @jenkinsA @boxed @fsv_po @receiving @complete @boxed_receiving_fsv_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds
   Scenario: Validate receiving process for boxed when two putaway group involved
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
