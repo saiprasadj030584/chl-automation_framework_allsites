@@ -10,7 +10,7 @@ Feature: Boxed - Retail - Allocation
     And I allocate the stocks
     Then the order should be allocated
 
-  @jenkinsfd @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+  @jenkinsA @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
@@ -44,7 +44,7 @@ Feature: Boxed - Retail - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-  @jenkinsk @allocation @boxed @retail @boxed_allocation_retail_validate_whether_order_is_available_for_allocation @complete @ds
+   @jenkinsA  @allocation @boxed @retail @boxed_allocation_retail_validate_whether_order_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
