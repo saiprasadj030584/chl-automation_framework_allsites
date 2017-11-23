@@ -121,11 +121,16 @@ public class DataSetupRunner {
 			context.getDBConnection().createStatement().execute(selectQuery);
 			rs = stmt.executeQuery(selectQuery);
 			if (!rs.next()) {
+				System.out.println("Fail Of Site Id **" + context.getSiteID());
 				Assert.fail("Unique Tag Id is notfound");
+			
 			} else {
 				System.out.println("Unique Tag Id is found");
 				context.setSiteID(rs.getString("SITE_NO"));
+				System.out.println("1 Value Of Site Id **" + context.getSiteID());
 			}
+			
+			System.out.println("2 Value Of Site Id **" + context.getSiteID());
 		}
 
 		catch (Exception exception) {

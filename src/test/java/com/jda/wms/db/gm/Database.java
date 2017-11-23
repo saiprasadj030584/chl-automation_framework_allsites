@@ -78,8 +78,11 @@ public class Database {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			if (context.getSiteID() == null) {
-				// dataSetupRunner.getSiteId(context.getUniqueTag());
+				
+				System.out.println("2 Value Of Site Id **" + context.getSiteID());
+				Assert.fail("No site Id has been fetched from DB");// dataSetupRunner.getSiteId(context.getUniqueTag());
 			}
+			System.out.println("Value Of Site Id **" + context.getSiteID());
 
 			if (context.getSiteID().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
