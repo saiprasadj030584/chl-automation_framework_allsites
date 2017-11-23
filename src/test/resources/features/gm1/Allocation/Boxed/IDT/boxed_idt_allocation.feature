@@ -33,7 +33,7 @@ Feature: Boxed - IDT - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated
 
-    @jenkinsz @allocation @boxed @idt @boxed_allocation_idt_validate_whether_order_is_available_for_allocation @complete @ds
+    @jenkinsk @allocation @boxed @idt @boxed_allocation_idt_validate_whether_order_is_available_for_allocation @complete @ds
   Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "IDT" should be in "Released" status at site
     And I have inventory available for the order line items
