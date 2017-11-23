@@ -334,12 +334,22 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
+				if (screen.exists("images/ScreenSelection.png") != null) {
+					System.out.println("Screen selection found");
+					screen.wait("images/SearchFor.png", timeoutInSec);
+					screen.click("images/SearchFor.png");
+				}
 			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
 				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
 				screen.click("images/JDAHome/Welcome.png");
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
+				if (screen.exists("images/ScreenSelection.png") != null) {
+					System.out.println("Screen selection found");
+					screen.wait("images/SearchFor.png", timeoutInSec);
+					screen.click("images/SearchFor.png");
+				}
 			}
 		}
 
@@ -355,6 +365,11 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
+				if (screen.exists("images/ScreenSelection.png") != null) {
+					System.out.println("Screen selection found");
+					screen.wait("images/SearchFor.png", timeoutInSec);
+					screen.click("images/SearchFor.png");
+				}
 			} else {
 				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
 				applicationRestart();
@@ -551,19 +566,12 @@ public class JdaHomePage {
 
 	public void navigateToPreAdviceLineMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
-		Thread.sleep(2000);
-		if (screen.exists("images/ScreenSelection.png") != null) {
-			System.out.println("Screen selection found");
-			screen.type("Pre-advice line maintenance/query screen");
-			screen.click("images/JDAHome/Search_button.png");
-			// screen.type(Key.ENTER);
-			Thread.sleep(1000);
-			screen.type(Key.ENTER);
-			Thread.sleep(5000);
-		} else {
-			System.out.println("Screen selection not  found");
-			Assert.fail("Screen selection pop up window not found might be due to application issue");
-		}
+		screen.type("Pre-advice line maintenance/query screen");
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 
 	public void navigateToOrderLineMaintenance() throws InterruptedException, FindFailed {

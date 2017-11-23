@@ -95,12 +95,18 @@ public class DataLoadFromUI {
 			screen.click("images/IgnoreMergeRulesUnchecked.png");
 			Thread.sleep(2000);
 			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
 		} else {
-			System.out.println("EJB err not found");
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
 		}
 		// jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
-
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setAsnId(asn);
 		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB.getAsnIdForASN(context.getAsnId()));
 	}
@@ -139,10 +145,19 @@ public class DataLoadFromUI {
 			screen.click("images/IgnoreMergeRulesUnchecked.png");
 			Thread.sleep(2000);
 			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
 		}
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setUpiId(upi);
 		System.out.println("UPI Id" + context.getUpiId());
 		Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
@@ -188,6 +203,10 @@ public class DataLoadFromUI {
 			screen.click("images/IgnoreMergeRulesUnchecked.png");
 			Thread.sleep(2000);
 			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
 		}
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
@@ -195,7 +214,11 @@ public class DataLoadFromUI {
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
-
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 	}
@@ -231,8 +254,8 @@ public class DataLoadFromUI {
 		screen.type("a", Key.CTRL);
 		jdaFooter.pressBackSpace();
 
-		jdaFooter.clickExecuteButton(); 
-		
+		jdaFooter.clickExecuteButton();
+
 		if (deliveryPage.isEJBerrorfound()) {
 			Thread.sleep(2000);
 			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
@@ -242,12 +265,20 @@ public class DataLoadFromUI {
 			screen.click("images/IgnoreMergeRulesUnchecked.png");
 			Thread.sleep(2000);
 			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
 		}
-		
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
 
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		jdaFooter.PressEnter();
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setOrderId(order);
 		Assert.assertEquals("No PO ID in Oracle DB", order, orderHeaderDB.getOrderIdForOdn(order));
 	}

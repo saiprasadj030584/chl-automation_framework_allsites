@@ -44,7 +44,7 @@ public class Hooks_autoUI {
 	private Context context;
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
-	
+
 	public static int fail = 0;
 
 	@Inject
@@ -55,7 +55,6 @@ public class Hooks_autoUI {
 		this.jdaLoginPage = jdaLoginPage;
 
 	}
-
 
 	private void updateTestDataIntoRunStatusTable() {
 		try {
@@ -71,7 +70,6 @@ public class Hooks_autoUI {
 			exception.printStackTrace();
 		}
 	}
-
 
 	private void getChildRequestID() {
 		try {
@@ -105,8 +103,6 @@ public class Hooks_autoUI {
 			exception.printStackTrace();
 		}
 	}
-
-	
 
 	@After("~@Email")
 	public void tearDown(Scenario scenario) throws IOException {
@@ -231,8 +227,6 @@ public class Hooks_autoUI {
 		}
 
 	}
-
-	
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {
@@ -394,8 +388,9 @@ public class Hooks_autoUI {
 					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'");
 			String updateQuery = "UPDATE DBO.Nps_Auto_UI_Run_Status SET EXEC_END_DATE_TIME='" + getSystemTime()
-					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
-					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
+					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS= '"
+					+ context.getEJBErrorMsg() + "' where P_REQ_ID= '" + context.getParentRequestId()
+					+ "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
 
 			context.getSQLDBConnection().createStatement().execute(updateQuery);
 
