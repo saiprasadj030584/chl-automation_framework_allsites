@@ -1,5 +1,5 @@
-@allocation
-Feature: Allocation
+@boxed_ecom_allocation
+Feature: Boxed - ECom - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
@@ -8,4 +8,4 @@ Feature: Allocation
     Given the order id of type "Ecom" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should get allocated
+    Then the order should be allocated

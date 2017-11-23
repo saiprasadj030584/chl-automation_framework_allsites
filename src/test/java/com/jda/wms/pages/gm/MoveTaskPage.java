@@ -11,6 +11,8 @@ public class MoveTaskPage {
 	int timeoutInSec = 20;
 
 	public void enterOrderId(String orderId) throws InterruptedException {
+		Thread.sleep(3000);
+		System.out.println("VALUE OF ORDERID =" + orderId);
 		screen.type(orderId);
 		Thread.sleep(1000);
 	}

@@ -22,7 +22,7 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to order header$")
 	public void i_navigate_to_order_header() throws Throwable {
-		jdaHomePage.navigateToOrderHeader();
+		jdaHomePage.navigateToOrderHeaderMaintenance();
 	}
 
 	@When("^I navigate to SKU maintenance page$")
@@ -253,6 +253,12 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_pack_config_linking_screen() throws Throwable {
 		jdaHomePage.navigateToPackConfigLinking();
 		Thread.sleep(6000);
+	}
+	
+	@When("^I navigate to Order Container Maintainance page$")
+	public void i_navigate_to_Order_Container_Maintainance_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+		Thread.sleep(2000);
 	}
 	
 	@When("^I navigate to scheduler program page$")

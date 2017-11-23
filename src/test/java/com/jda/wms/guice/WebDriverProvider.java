@@ -1,17 +1,13 @@
 package com.jda.wms.guice;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.jda.wms.config.Configuration;
-import com.jda.wms.config.Constants;
 
-public class WebDriverProvider implements Provider<WebDriver> {
+public class WebDriverProvider implements Provider<WebDriver> { //implements Provider<WebDriver>
 
 	private final Configuration configuration;
 
@@ -20,8 +16,13 @@ public class WebDriverProvider implements Provider<WebDriver> {
 		this.configuration = configuration;
 	}
 
+
+	private WebDriver getWebDriver() {
+		/*String browserName = configuration.getStringProperty("browser-name");
+=======
 	private WebDriver getWebDriver() {/*
 		String browserName = configuration.getStringProperty("browser-name");
+>>>>>>> 67531263016304a2f1097a830b347e399c0c5090
 		switch (browserName) {
 
 		case "chrome":
@@ -45,7 +46,9 @@ public class WebDriverProvider implements Provider<WebDriver> {
 		default:
 			System.setProperty("webdriver.chrome.driver", Constants.USER_DIR + "/bin/chromedriver/chromedriver.exe");
 			return new ChromeDriver();
-		}*/
+<<<<<<< HEAD
+		}*/ 
+
 		return new InternetExplorerDriver();
 	}
 

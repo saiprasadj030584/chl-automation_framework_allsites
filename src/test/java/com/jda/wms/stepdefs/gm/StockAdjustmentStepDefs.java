@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 
@@ -44,7 +43,8 @@ public class StockAdjustmentStepDefs {
 	@Inject
 	public StockAdjustmentStepDefs(Context context, JDAFooter jDAFooter, StockAdjustmentsPage stockAdjustmentsPage,
 			PopUpPage popUpPage, JdaHomePage jDAHomePage, InventoryTransactionDB inventoryTransactionDB,
-			Verification verification, InventoryTransactionQueryPage inventoryTransactionQueryPage,OrderLineDB orderLineDB,InventoryDB inventoryDB) {
+			Verification verification, InventoryTransactionQueryPage inventoryTransactionQueryPage,
+			OrderLineDB orderLineDB, InventoryDB inventoryDB) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
@@ -58,15 +58,16 @@ public class StockAdjustmentStepDefs {
 	}
 
 	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
-	public void i_create_a_new_stock_with_siteid_and_location(String location)
-			throws FindFailed, InterruptedException {
+	public void i_create_a_new_stock_with_siteid_and_location(String location) throws FindFailed, InterruptedException {
+
 		String siteId = context.getSiteId();
-		if (siteId.equals("5649")){
-		String owner = "M+S";
-		String clientid = "M+S";
-		String quantity = Utilities.getTwoDigitRandomNumber();
-		context.setQtyOnHand(Integer.parseInt(quantity));
-		String pallet = "PALLET";
+		System.out.println( "print" + siteId);
+		if (siteId.equals("5649")) {
+			String owner = "M+S";
+			String clientid = "M+S";
+			String quantity = Utilities.getTwoDigitRandomNumber();
+			context.setQtyOnHand(Integer.parseInt(quantity));
+			String pallet = "PALLET";
 
 		stockAdjustmentsPage.selectNewStock();
 		jDAFooter.clickNextButton();
@@ -78,7 +79,52 @@ public class StockAdjustmentStepDefs {
 		stockAdjustmentsPage.enterClientId(clientid);
 		stockAdjustmentsPage.enterSiteId(siteId);
 		stockAdjustmentsPage.enterQuantityOnHand(quantity);
-		//stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
+		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
+		jDAFooter.clickNextButton();
+		stockAdjustmentsPage.enterPallet(pallet);
+		jDAFooter.clickNextButton();
+		}
+		else if (siteId.equals("5885")){
+
+			context.setQtyOnHand(context.getRcvQtyDue());
+
+			stockAdjustmentsPage.selectNewStock();
+			jDAFooter.clickNextButton();
+			Thread.sleep(2000);
+			stockAdjustmentsPage.enterSkuId(context.getSkuId());
+			jDAFooter.pressTab();
+			stockAdjustmentsPage.enterLocation(location);
+			stockAdjustmentsPage.enterSiteId(siteId);
+			stockAdjustmentsPage.enterQuantityOnHand(String.valueOf(context.getRcvQtyDue()));
+			jDAFooter.clickNextButton();
+			stockAdjustmentsPage.enterContainerId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletId(context.getUpiId());
+			stockAdjustmentsPage.enterPalletType("PALLET");
+			jDAFooter.clickNextButton();
+		}
+	}
+	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\"$")
+	public void i_create_a_new_stock_with_siteid_and_location(String siteID,String location)
+			throws FindFailed, InterruptedException {
+		context.setSiteId(siteID);
+		String siteId = context.getSiteId();
+		if (siteId.equals("5649")){
+		String owner = "M+S";
+		String clientid = "M+S";
+		String quantity = Utilities.getTwoDigitRandomNumber();
+		context.setQtyOnHand(Integer.parseInt(quantity));
+		String pallet = "PALLET";
+		stockAdjustmentsPage.selectNewStock();
+		jDAFooter.clickNextButton();
+		Thread.sleep(2000);
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterLocation(location);
+		stockAdjustmentsPage.enterOwnerId(owner);
+		stockAdjustmentsPage.enterClientId(clientid);
+		stockAdjustmentsPage.enterSiteId(siteId);
+		stockAdjustmentsPage.enterQuantityOnHand(quantity);
+		stockAdjustmentsPage.enterPackConfig(context.getPackConfig());
 		jDAFooter.clickNextButton();
 		stockAdjustmentsPage.enterPallet(pallet);
 		jDAFooter.clickNextButton();
@@ -102,18 +148,20 @@ public class StockAdjustmentStepDefs {
 		}
 	}
 
+
 	@When("^I choose the reason code as \"([^\"]*)\"$")
 	public void I_choose_the_reason_code_as(String reasonCode) throws Throwable {
 		String reasonCodeToChoose = null;
 		switch (reasonCode) {
+
 		case "Dirty":
-			reasonCodeToChoose = "Dirty";
+			reasonCodeToChoose = "DIRTY";
 			break;
 		case "DMIT":
-			reasonCodeToChoose = "Damaged in Transit - for the 'damaged pallet'";
+			reasonCodeToChoose = "DMIT";
 			break;
 		case "EXPD":
-			reasonCodeToChoose = "Expired";
+			reasonCodeToChoose = "EXPD";
 			break;
 		case "FOUND":
 			reasonCodeToChoose = "FOUND";
@@ -130,7 +178,9 @@ public class StockAdjustmentStepDefs {
 		case "SC":
 			reasonCodeToChoose = "Stock Count";
 			break;
-
+		case "Receiving Correction":
+			reasonCodeToChoose = "Receiving Correction";
+			break;
 		case "RMS - Unexpected receipt with movement label":
 			reasonCodeToChoose = "RMS - Unexpected receipt with movement label";
 			break;
@@ -149,12 +199,15 @@ Thread.sleep(2000);
 		jDAFooter.clickDoneButton();
 		jDAFooter.PressEnter();
 		jDAFooter.PressEnter();
-		context.setReasonCode(reasonCode);
+
+
+		context.setReasonCode(reasonCodeToChoose);
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date));
-		
-//		context.setTagId(inventoryTransactionDB.getTagIDWithQty(String.valueOf(context.getQtyOnHand()), "Adjustment",context.getSkuId(), date));
-//		System.out.println(context.getTagId());
+		//context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Adjustment", date)); 
+		System.out.println("Reason Code" + reasonCodeToChoose);
+		if (reasonCodeToChoose.equalsIgnoreCase("Stock Count")){
+			context.setReasonCode("SC");
+		}
 	}
 
 	@When("^I change on hand qty and reason code to \"([^\"]*)\"$")
@@ -214,7 +267,7 @@ Thread.sleep(2000);
 			}
 		}
 	}
-	
+
 	public void i_select_a_existing_stock_with_siteid_location_and_tag_id(String siteId, String toLocation,
 			String tagId) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 //		String code = "Putaway";
@@ -238,6 +291,7 @@ Thread.sleep(2000);
 //		jDAFooter.clickNextButton();
 		
 		String code = "Putaway";
+
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
@@ -247,6 +301,7 @@ Thread.sleep(2000);
 		context.setTagId(
 				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
 	String quantity = inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(),DateUtils.getCurrentSystemDateInDBFormat(),code);
+
 		context.setQtyOnHand(Integer.parseInt(quantity));
 		String quantityInv= inventoryDB.getQtynHand(context.getSkuId(),toLocation);
 		System.out.println("qty inv"+quantityInv);
@@ -280,5 +335,33 @@ Thread.sleep(2000);
 		jDAFooter.clickNextButton();
 	}
 
+	}
+	
+	@And("^I enter SkuId for existing stock at siteId$")
+	public void I_enter_SkuId_for_existing_stock_at_siteId() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+//		String date = DateUtils.getCurrentSystemDateInDBFormat();
+//		context.setTagId(
+//				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+		System.out.println("site id"+ context.getSiteId());
+		//context.setSiteId(context.getSiteId());	
+		jDAFooter.clickNextButton();
+
+		
+		stockAdjustmentsPage.enterTagId(context.getTagId());
+		jDAFooter.pressTab();
+		stockAdjustmentsPage.enterSiteIdForStock(context.getSiteId());
+		jDAFooter.pressTab();		
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jDAFooter.clickNextButton();
+		jDAFooter.clickNextButton();
+		String qtyonhandbeforeadjustment = String.valueOf(context.getRcvQtyDue());
+//	    String qtyonhandbeforeadjustment=inventoryDB.getQtyOnHandForSKU(context.getSkuId());
+	    context.setqtyOnHandBeforeAdjustment(Integer.parseInt(qtyonhandbeforeadjustment));
+		String decrementQty = Integer.toString(context.getQtyOnHandBeforeAdjustment()-1);
+		stockAdjustmentsPage.updateQtyOnHand(decrementQty);
+		context.setQtyonhandafteradjustment(Integer.parseInt(decrementQty));
+		jDAFooter.clickNextButton();
+//		stockAdjustmentsPage.enterReasonCode();
+//		jDAFooter.clickDoneButton();
 	}
 }

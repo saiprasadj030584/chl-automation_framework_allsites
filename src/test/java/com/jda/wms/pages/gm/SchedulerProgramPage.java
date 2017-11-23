@@ -3,6 +3,9 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
 import com.google.inject.Inject;
 import org.sikuli.script.Screen;
+import org.sikuli.script.Screen;
+
+import com.google.inject.Inject;
 public class SchedulerProgramPage {
 	private JDAFooter jDAFooter;
 	Screen screen = new Screen();

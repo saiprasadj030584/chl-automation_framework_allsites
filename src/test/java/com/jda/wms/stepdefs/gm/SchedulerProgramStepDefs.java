@@ -20,6 +20,7 @@ import com.jda.wms.utils.DateUtils;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 
 public class SchedulerProgramStepDefs {
 	private MoveTaskPage moveTaskPage;
@@ -35,9 +36,9 @@ public class SchedulerProgramStepDefs {
 	private SchedulerProgramPage schedulerProgramPage;
 
 	@Inject
-	public SchedulerProgramStepDefs(MoveTaskPage moveTaskPage, JDAFooter jDAFooter, 
-			OrderHeaderDB orderHeaderDB, Verification verification, OrderLineDB orderLineDB, Context context,
-			InventoryDB inventoryDB, MoveTaskDB moveTaskDB,SchedulerProgramPage schedulerProgramPage) {
+	public SchedulerProgramStepDefs(MoveTaskPage moveTaskPage, JDAFooter jDAFooter, OrderHeaderDB orderHeaderDB,
+			Verification verification, OrderLineDB orderLineDB, Context context, InventoryDB inventoryDB,
+			MoveTaskDB moveTaskDB, SchedulerProgramPage schedulerProgramPage) {
 		this.jDAFooter = jDAFooter;
 		this.orderHeaderDB = orderHeaderDB;
 		this.verification = verification;
@@ -46,8 +47,9 @@ public class SchedulerProgramStepDefs {
 		this.inventoryDB = inventoryDB;
 		this.moveTaskDB = moveTaskDB;
 		this.moveTaskPage = moveTaskPage;
-		this.schedulerProgramPage=schedulerProgramPage;
+		this.schedulerProgramPage = schedulerProgramPage;
 	}
+
 	@And("^I run the program$")
 	public void i_run_the_program() throws Throwable {
 		jDAFooter.clickQueryButton();
@@ -56,6 +58,3 @@ public class SchedulerProgramStepDefs {
 		schedulerProgramPage.clickRunNowButton();
 	}
 }
-
-
-

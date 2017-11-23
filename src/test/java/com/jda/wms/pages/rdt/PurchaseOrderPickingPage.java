@@ -13,7 +13,7 @@ public class PurchaseOrderPickingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
-	
+
 	@Inject
 	public PurchaseOrderPickingPage(Context context) {
 		this.context = context;
@@ -89,7 +89,7 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
-	
+
 	public boolean isPartSetInstructionDisplayed() {
 		if (screen.exists("images/Putty/Picking/PartSetInstructions.png") != null)
 			return true;
@@ -103,37 +103,37 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
-	
+
 	public void getQuantity() throws FindFailed, InterruptedException {
 		Thread.sleep(2000);
 		Match mStatus = screen.find("images/Putty/Picking/Qty.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
 		screen.doubleClick(mStatus.getCenter().offset(40, 0));
 		Thread.sleep(2000);
-		//context.setQtyReceivedFromPutty(Integer.parseInt(App.getClipboard()));
+		// context.setQtyReceivedFromPutty(Integer.parseInt(App.getClipboard()));
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
-//		return App.getClipboard();
+		// return App.getClipboard();
 	}
-	
+
 	public void enterMinimumQty() throws InterruptedException {
-//		screen.type(Key.ENTER);
-//		Thread.sleep(3000);
-//		screen.type(Key.TAB);
-//		Thread.sleep(2000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(3000);
+		// screen.type(Key.TAB);
+		// Thread.sleep(2000);
 		screen.type("1");
 		Thread.sleep(5000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(5000);
-	} 
-	
+		// screen.type(Key.ENTER);
+		// Thread.sleep(5000);
+	}
+
 	public boolean isPickEnt() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;
 		else
 			return false;
 	}
-	
+
 	public void getTagId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Picking/GetTagId.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
@@ -143,7 +143,7 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+
 	public void enterContainerId() throws FindFailed, InterruptedException {
 		screen.wait("images/Putty/Picking/Cont.png", timeoutInSec);
 		Match mQty = screen.find("images/Putty/Picking/Cont.png");
@@ -153,32 +153,41 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 	public void selectReason() throws InterruptedException {
 		screen.type("6");
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
+	public void enterContainerId(String containerId) throws FindFailed, InterruptedException {
+		Thread.sleep(1000);
+		screen.type(containerId);
+		Thread.sleep(3000);
+
+	}
+
+	public boolean isPickCmpPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/pickcmp.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 	public boolean isPickEntPageDisplayed() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;
 		else
 			return false;
 	}
-	public void enterContainerId(String containerId) throws InterruptedException {
-		screen.type(containerId);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
-		
+
+
+
+	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
+		System.out.println(tagId);
+		screen.type(tagId);
+		Thread.sleep(3000);
+
 	}
 
-	public void enterTagId(String tagid) throws InterruptedException {
-		screen.type(tagid);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
-		
-	}
 }

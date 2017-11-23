@@ -45,7 +45,9 @@ public class LocationDB {
 		//System.out.println("select zone_1 from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
-		return rs.getString(1);
+		String temp = rs.getString(1);
+		rs.close();
+		return temp;
 	}
 
 	public ArrayList<String> getLocation() throws SQLException, ClassNotFoundException {
@@ -80,10 +82,10 @@ public class LocationDB {
 	
 	public ArrayList<String> getLocationForZone(String zone) throws SQLException, ClassNotFoundException {
 		ArrayList<String> locationList = new ArrayList<String>();
-
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from location where zone_1 LIKE '%"+zone+"%' and lock_status='UnLocked'");
@@ -97,6 +99,19 @@ public class LocationDB {
 		return locationList;
 	}
 	
+public String checkBoxZone() throws ClassNotFoundException, SQLException {
+
+	if (context.getConnection() == null) {
+		database.connect();
+	}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"SELECT COUNT(LOC_TYPE) as loc_count FROM LOCATION WHERE LOC_TYPE != 'Tag-FIFO' AND ZONE_1 LIKE 'BOXPREF%'");
+		rs.next();
+		return rs.getString("loc_count");
+
+	}
+
 	public String getUserDefType2(String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -107,7 +122,6 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
 	public String getUserDefType3(String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -131,6 +145,82 @@ public class LocationDB {
 		return rs.getString(1);
 	}
 	
+
+	public String getPutawayLocationForFlatpack(String type, String prodGrp)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select location_id from location  where zone_1='" + type + "' and user_def_type_2='" + type
+				+ "' and user_def_type_3='" + type + "' and current_volume='0'" + "and user_def_type_1='" + prodGrp
+				+ "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		// ResultSet rs = stmt.executeQuery(
+		// "select location_id from location where lock_status='" + status + "'
+		// and user_def_type_1='"+prodGrp+"'");
+		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
+				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
+				+ "and user_def_type_1='" + prodGrp + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPutawayLocationForBoxed(String type, String type2, String status)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select location_id from location  where zone_1='" + type + "' and user_def_type_2='" + type
+				+ "' and user_def_type_3='" + type + "' and current_volume='0'" + "and lock_status='" + status + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
+				+ "' and user_def_type_2='" + type2 + "' and user_def_type_3='" + type2 + "' and current_volume='0'"
+				+ "and lock_status='" + status + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPutawayLocationForHanging(String type, String prodGrp, String status)
+			throws SQLException, ClassNotFoundException {
+		System.out.println("select location_id from location  where zone_1='" + type + "' and user_def_type_2='" + type
+				+ "' and user_def_type_3='" + type + "' and current_volume='0'" + "and user_def_type_1='" + prodGrp
+				+ "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
+				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
+				+ "and user_def_type_1='" + prodGrp + "' and lock_status='" + status + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getPutawayLocationForGoh(String type, String prodGrp, String status)
+			throws SQLException, ClassNotFoundException {
+		System.out.println(
+				"select location_id from location  where zone_1 like '" + type + "%' and user_def_type_2 like '" + type
+						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and user_def_type_1='"
+						+ prodGrp + "' and lock_status='" + status + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		// ResultSet rs = stmt.executeQuery(
+		// "select location_id from location where lock_status='" + status + "'
+		// and user_def_type_1='"+prodGrp+"'");
+		ResultSet rs = stmt.executeQuery(
+				"select location_id from location  where zone_1 like '" + type + "%' and user_def_type_2 like '" + type
+						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and user_def_type_1='"
+						+ prodGrp + "' and lock_status='" + status + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public String getToLocationForPutawayBoxed(String skuType) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -167,6 +257,5 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
 	
 }

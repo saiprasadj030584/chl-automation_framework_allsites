@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Assert;
+import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -14,12 +15,13 @@ import com.jda.wms.db.gm.OrderLineDB;
 import com.jda.wms.pages.gm.AllocationPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
+import com.jda.wms.pages.gm.MoveTaskPage;
 import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
-import com.jda.wms.pages.gm.MoveTaskPage;
 import com.jda.wms.utils.DateUtils;
 
-import cucumber.api.java.en.*;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class MoveTaskStepDefs {
 	private MoveTaskPage moveTaskPage;
@@ -32,6 +34,7 @@ public class MoveTaskStepDefs {
 	private JDAFooter jDAFooter;
 	private JdaHomePage jdaHomePage;
 	private MoveTaskDB moveTaskDB;
+	
 
 	@Inject
 	public MoveTaskStepDefs(MoveTaskPage moveTaskPage, JDAFooter jDAFooter, AllocationPage allocationPage,
@@ -44,6 +47,7 @@ public class MoveTaskStepDefs {
 		this.context = context;
 		this.inventoryDB = inventoryDB;
 		this.moveTaskDB = moveTaskDB;
+		this.moveTaskPage = moveTaskPage;
 	}
 
 	@Then("^the move task should be updated$")
@@ -51,17 +55,26 @@ public class MoveTaskStepDefs {
 		String Date = DateUtils.getCurrentSystemDateInDBFormat();
 		Assert.assertEquals("updated move task task type are not as expected", "M", moveTaskDB.getTaskType(Date));
 	}
-	
+
 	@When("^I enter OrderID in move task$")
 	public void i_enter_OrderID_in_move_task() throws Throwable {
 		jDAFooter.clickQueryButton();
-		moveTaskPage.enterOrderId(context.getOrderId());
+		String orderid=context.getOrderId();
+		System.out.println("step 1 VALUE OF ORDERID =" + orderid);
+		//screen.type(orderid);
+		moveTaskPage.enterOrderId(orderid);
+		System.out.println("VALUE OF ORDERID =" + context.getOrderId());
 		jDAFooter.clickExecuteButton();
 	}
 
 	@Then("^the list Id should be generated$")
 	public void the_list_Id_should_be_generated() throws Throwable {
-		moveTaskPage.getListId();
+		Assert.assertNotNull("List ID not generated as expected", moveTaskPage.getListId());
+	}
+	
+	@Then("^the move task for the order must be released$")
+	public void the_move_task_for_the_order_must_be_released() throws Throwable {
+		moveTaskDB.updateMoveTaskStatus(context.getOrderId());
 	}
 	
 	@Then("^the orders should get consolidated$")

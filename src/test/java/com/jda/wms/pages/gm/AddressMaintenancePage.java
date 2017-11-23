@@ -6,9 +6,15 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+
 public class AddressMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+
+	@Inject
+	public AddressMaintenancePage() {
+	}
 
 	public void enterAddressID(String addressId) throws FindFailed {
 		screen.wait("images/AddressMaintenance/AddressId.png", timeoutInSec);
@@ -114,6 +120,5 @@ public class AddressMaintenancePage {
 		screen.type("c", Key.CTRL);
 		Thread.sleep(1000);
 		return App.getClipboard();
-
 	}
 }

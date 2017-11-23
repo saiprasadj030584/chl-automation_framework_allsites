@@ -4,8 +4,6 @@ import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -27,6 +25,11 @@ public class UpiReceiptHeaderPage {
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(2000);
 
+	}
+
+	public void enterPalletWithReference(String upiReference) throws InterruptedException {
+		screen.type(upiReference);
+		Thread.sleep(2000);
 	}
 
 	public boolean isNoRecordExist() {
@@ -72,17 +75,20 @@ public class UpiReceiptHeaderPage {
 		}
 		return false;
 	}
-	public void enterPalletWithReference(String upiReference) throws InterruptedException {
-		screen.type(upiReference);
-		Thread.sleep(2000);
-	}
-	
-public boolean isNoRecordFound() throws FindFailed {
-		
-		if(screen.exists("images/DuplicateOption/NoRecords.png")!= null)
-		return true;
+
+	public boolean isNoRecordFound() throws FindFailed {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
 		else
 			return false;
-		
+
 	}
+
+	public boolean isEJBerrorfound() {
+		if (screen.exists("images/DuplicateOption/ejberror.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

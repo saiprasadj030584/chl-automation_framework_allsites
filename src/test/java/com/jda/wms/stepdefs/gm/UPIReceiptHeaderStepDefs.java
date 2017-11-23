@@ -131,8 +131,8 @@ public class UPIReceiptHeaderStepDefs {
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
 		context.setSKUType(datatype);
-		context.setUpiId(upiId);
-		context.setAsnId(asnId);
+	//	context.setUpiId(upiId);
+	//	context.setAsnId(asnId);
 		String ShippingType = "ZIDC";
 		ArrayList failureList = new ArrayList();
 		verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(upiId), failureList);

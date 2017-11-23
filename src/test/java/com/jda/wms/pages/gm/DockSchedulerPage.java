@@ -387,6 +387,5 @@ public class DockSchedulerPage {
 	public void enterConsignmentID(String consignmentID) throws InterruptedException {
 		screen.type(consignmentID);
 		Thread.sleep(1000);
-		
 	}
 }

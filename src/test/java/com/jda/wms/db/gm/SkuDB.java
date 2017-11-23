@@ -259,7 +259,28 @@ public class SkuDB {
 		} else {
 			return false;
 		}
-
 }
+	
+	public String isHazmatSku(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select hazmat from sku where sku_id = '" + skuId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select hazmat from sku where sku_id = '" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getPutawayGroup(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select putaway_group from sku where sku_id = '" + skuId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select putaway_group from sku where sku_id = '" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 }

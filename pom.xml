@@ -107,7 +107,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>WMS</projectName>
+							<projectName>JDA_WMS_GM</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<cucumberOutput>${project.build.directory}/cucumber-reports</cucumberOutput>
 							<skippedFails>true</skippedFails>

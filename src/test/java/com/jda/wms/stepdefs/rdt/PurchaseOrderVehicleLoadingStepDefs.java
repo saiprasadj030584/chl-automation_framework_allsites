@@ -18,7 +18,6 @@ import com.jda.wms.db.gm.MoveTaskUpdateDB;
 import com.jda.wms.db.gm.OrderHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
-
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
@@ -81,8 +80,6 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-
-	
 
 	@Then("^Trailer should be unload$")
 	public void Trailer_should_be_unload() throws Throwable {

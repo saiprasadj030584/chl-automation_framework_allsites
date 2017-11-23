@@ -1,12 +1,13 @@
 package com.jda.wms.db.gm;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -230,7 +231,7 @@ public class OrderHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-
+		System.out.println("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
@@ -325,7 +326,7 @@ public class OrderHeaderDB {
 		context.getConnection().commit();
 		rs.next();
 	}
-	
+
 	public String getStockModularity(String orderId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -336,31 +337,62 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		ResultSet rs = stmt.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
 		context.getConnection().commit();
 	}
-	
+
 	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
-			}
+		}
 
-			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
-			rs.next();
-			return rs.getString(1);
-		
-	
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
 
 	}
-	
+
+	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select consignment from order_header where order_id='" + orderId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getOrderedQuantityWithOrderId(String orderID) throws SQLException, ClassNotFoundException {
+		System.out.println("qty order" + "select qty_ordered from order_line where  order_id='" + orderID + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_ordered from order_line where  order_id='" + orderID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getQtyTaskedWithOrderID(String orderid) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_tasked from order_line where order_id='" + orderid + "' ");
+
+		context.getConnection().commit();
+		rs.next();
+		return rs.getString(1);
+	}
+
 	public Object getOrderIdForOdn(String order) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -371,18 +403,5 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
-	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-			}
-
-			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select consignment from order_header where order_id='" + orderId + "'");
-			rs.next();
-			return rs.getString(1);
-		
-	}
-
 
 }

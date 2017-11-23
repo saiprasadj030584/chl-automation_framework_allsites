@@ -1,5 +1,8 @@
 package com.jda.wms.pages.gm;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
@@ -8,13 +11,15 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
 public class JdaHomePage {
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-
+	private final JdaLoginPage jdaLoginPage;
 	Region reg = new Region(0, 0, 4000, 1000);
 
 	@Inject
-	public JdaHomePage() {
+	public JdaHomePage(JdaLoginPage jdaLoginPage) {
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -283,11 +288,112 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/Welcome.png");
 	}
 
+	/*public void clickSearchIcon() throws FindFailed, InterruptedException {
+		Thread.sleep(5000);
+		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
+			System.out.println("Application search icon found");
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcome.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			}
+		}
+
+		else if (screen.exists("images/JDAHome/JdaHomeLogin.png") != null) {
+			System.out.println("Application login page found instead of search icon");
+			jdaLoginPage.enterUsername();
+			jdaLoginPage.enterPassword();
+			jdaLoginPage.clickConnectButton();
+			Thread.sleep(5000);
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else {
+				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
+				jdaLoginPage.login();
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+			}
+		} else {
+			System.out.println("2. Application issue - Kill IE driver and luanch application from first");
+			jdaLoginPage.login();
+			screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+			screen.click("images/JDAHome/Welcomed.png");
+			Thread.sleep(2000);
+		}
+
+	} */
+	
+	
 	public void clickSearchIcon() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/searchScreenButton.png", timeoutInSec);
-		screen.click("images/JDAHome/searchScreenButton.png");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
+		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
+			System.out.println("Application search icon found");
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcome.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			}
+		}
+
+		else if (screen.exists("images/JDAHome/JdaHomeLogin.png") != null) {
+			System.out.println("Application login page found instead of search icon");
+			jdaLoginPage.enterUsername();
+			jdaLoginPage.enterPassword();
+			jdaLoginPage.clickConnectButton();
+			Thread.sleep(5000);
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else {
+				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
+				applicationRestart();
+			}
+		} else {
+			System.out.println("2. Application issue - Kill IE driver and luanch application from first");
+			applicationRestart();
+		}
 	}
+
+	public void applicationRestart() throws InterruptedException, FindFailed {
+		try {
+			Process p = Runtime.getRuntime().exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
+			p.waitFor(30, TimeUnit.SECONDS);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		jdaLoginPage.driver = null;
+		jdaLoginPage.login();
+		screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+		screen.click("images/JDAHome/Welcomed.png");
+		Thread.sleep(2000);
+	}
+	
+	
 
 	public void navigateToInventoryUpdate() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -313,7 +419,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("UPI Receipt Header");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
@@ -333,32 +440,36 @@ public class JdaHomePage {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
 	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+		System.out.println("787tygjggjgfvmmbmb");
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
+		screen.click("images/JDAHome/Search_button.png");
+
+		// screen.type(Key.ENTER);
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
-	
-		public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
-			clickSearchIcon();
-			Thread.sleep(1000);
-			screen.type("Pack configuration maintenance/query screen");
-			screen.type(Key.ENTER);
-			Thread.sleep(1000);
-			screen.type(Key.ENTER);
-			Thread.sleep(3000);
-		
+	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Pack configuration maintenance/query screen");
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+
 	}
 
 	public void enterTabKey() {
@@ -369,7 +480,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Update");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -379,7 +491,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Query");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -389,7 +502,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Address");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -399,7 +513,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment maintenance");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -409,7 +524,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pick face maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -419,7 +535,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("pack configuration maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -429,7 +546,8 @@ public class JdaHomePage {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
 		screen.type("Location maintenance/query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -439,7 +557,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("C&E consignment linking");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -449,7 +568,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice line maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -459,7 +579,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Line Maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -469,7 +590,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Receipt Reversal");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -479,7 +601,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Ship dock reassignment screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -489,7 +612,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Header Maintenance/query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -499,7 +623,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Preparation");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -509,7 +634,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Trailer maintenance/query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -519,7 +645,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock scheduler screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -529,7 +656,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock Scheduler entries query screen*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -557,7 +685,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Vehicle Unloading*");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -567,7 +696,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move task list generation screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -577,7 +707,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
@@ -587,7 +718,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("(ILT)");
-		screen.type(Key.ENTER);
+		// screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -598,7 +730,7 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/ScrollRightBig.png");
 		Thread.sleep(1000);
 	}
-	
+
 	public void scrollLeftBig() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/ScrollLeftBig.png", timeoutInSec);
 		screen.click("images/JDAHome/ScrollLeftBig.png");
@@ -609,7 +741,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Report Selection");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -619,7 +752,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -629,7 +763,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -639,7 +774,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task query screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -649,7 +785,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task list completion screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -659,7 +796,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order container maintence/query");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -669,22 +807,24 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Management");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
-	
+
 	public void navigateToPackConfigLinking() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pack configuration Linking screen");
-		screen.type(Key.ENTER);
+		screen.click("images/JDAHome/Search_button.png");
+		// screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-	
+
 	public void navigateToSchedulerProgramPage() throws InterruptedException, FindFailed {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -693,8 +833,8 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
-		
 	}
+	
 	
 	public void navigateToUpiReceiptLinePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();

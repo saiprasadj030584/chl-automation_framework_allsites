@@ -50,7 +50,7 @@ public class BookingInDiary {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public boolean isBookingExists(String bookingNo) throws SQLException, ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
@@ -58,8 +58,9 @@ public class BookingInDiary {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"select BOOKREF_ID from trailer where BOOKREF_ID='" + bookingNo + "'");
+
+			ResultSet rs = stmt.executeQuery("select BOOKREF_ID from trailer where BOOKREF_ID='" + bookingNo + "'");
+
 			rs.next();
 			if (rs.getString(1) != null) {
 				isRecordExists = true;
@@ -70,7 +71,8 @@ public class BookingInDiary {
 			}
 		}
 		return isRecordExists;
-	}
+}
+	
 	
 	public String selectDockDoor(String bookingID) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {

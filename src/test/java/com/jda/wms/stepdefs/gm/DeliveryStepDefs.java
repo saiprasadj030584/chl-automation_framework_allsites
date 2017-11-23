@@ -68,6 +68,7 @@ public class DeliveryStepDefs {
 		jdaLoginPage.login();
 	}
 
+
 	@When("^I enter an ASN ID$")
 	public void I_enter_an_ASN_ID() throws Throwable {
 		jdaFooter.clickQueryButton();
@@ -84,6 +85,23 @@ public class DeliveryStepDefs {
 	@Given("^the pallet count should be updated as \"([^\"]*)\" in delivery$")
 	public void the_pallet_count_should_be_updated_as_in_delivery(int count) throws Throwable {
 		deliveryDB.updatePalletCount(context.getAsnId(), count);
-
+	}
+	
+	@Given("^I have an ASN Id of type \"([^\"]*)\" with delivery status as \"([^\"]*)\"$")
+	public void i_have_an_ASN_Id_of_type_with_delivery_status_as(String type,String status) throws Throwable {
+		context.setAsnId(deliveryDB.getAsnId(type,status));
+		Assert.assertEquals("Delivery Status is not as expected", status, deliveryDB.getStatus(context.getAsnId()));
+		jdaLoginPage.login();
+	}
+	
+	@Then("^the ASN should not be received$")
+	public void the_ASN_should_not_be_received() throws Throwable {
+		String status= deliveryDB.getStatus(context.getAsnId());
+		if((status.equalsIgnoreCase("Released")) ||(status.equalsIgnoreCase("In Progress"))){
+			Assert.assertTrue("ASN have been received",true);					
+		}
+		else{
+			Assert.assertTrue("ASN have been received",false);	
+		}			
 	}
 }

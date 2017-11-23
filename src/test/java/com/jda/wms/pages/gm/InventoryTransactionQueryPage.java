@@ -11,9 +11,12 @@ public class InventoryTransactionQueryPage {
 	int timeoutInSec = 20;
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
-		screen.click(mtagId.getCenter().offset(70, 0));
+//		Match mtagId = screen.find("images/InventoryTransactionQuery/general/TagID.png");
+//		screen.click(mtagId.getCenter().offset(70, 0));
+		screen.wait("images/InventoryTransactionQuery/general/TagID.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/general/TagID.png");
 		screen.type(tagId);
+		Thread.sleep(1000);
 	}
 
 	public void enterReasonCode(String reasonCode) throws InterruptedException, FindFailed {
@@ -133,7 +136,9 @@ public class InventoryTransactionQueryPage {
 	public String getStatus() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/InventoryTransactionQuery/General/LockStatus.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
+		Thread.sleep(2000);
 		screen.type("a", Key.CTRL);
+		Thread.sleep(2000);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
@@ -533,9 +538,7 @@ public class InventoryTransactionQueryPage {
 		return App.getClipboard();
 	}
 
-	public void enterSkuId(String skuId) throws FindFailed {
-		Match mskuId = screen.find("images/InventoryTransactionQuery/General/SkuId.png");
-		screen.click(mskuId.getCenter().offset(70, 0));
+	public void enterSkuId(String skuId) throws FindFailed {		
 		screen.type(skuId);
 	}
 
@@ -585,4 +588,10 @@ public class InventoryTransactionQueryPage {
 		screen.click(mlocId.getCenter().offset(70, 0));
 		screen.type(toLocation);
 	}
+	
+	public void clickUserDefinedTab() throws FindFailed, InterruptedException {
+		screen.wait("images/InventoryTransactionQuery/UserDefined/UserDefinedTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/UserDefined/UserDefinedTab.png");
+		Thread.sleep(2000);
+		}
 }

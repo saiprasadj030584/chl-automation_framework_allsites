@@ -23,7 +23,7 @@ public class PuttyFunctionsPage {
 	}
 
 	public void invokePutty() throws IOException, InterruptedException {
-		Process putty = Runtime.getRuntime().exec("putty.exe");
+		Process putty = Runtime.getRuntime().exec("bin/putty/putty.exe");
 		context.setPuttyProcess(putty);
 		Thread.sleep(2000);
 	}
@@ -33,15 +33,18 @@ public class PuttyFunctionsPage {
 		// Clear pre-entered host name
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
+		System.out.println(host);
 		screen.type(host);
+		System.out.println(host);
 
 		// navigate to Port
 		screen.type(Key.TAB);
 		// Clear pre-entered Port detail
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
+		Thread.sleep(4000);
 		screen.type(port);
-
+		System.out.println("ch" + port);
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");
 		Thread.sleep(1000);
@@ -160,11 +163,40 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
-	
+
 	public String getValue() throws FindFailed, InterruptedException {
-		
+
 		screen.doubleClick();
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+
+	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isVehicleUnloadEntryPageDisplayed() throws FindFailed {
+		if (screen.exists("images/Putty/VehicleLoading/UnLodEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isTrailerEnterPageDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/TrailerEnterPage.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isinvalidpalletIdPageDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/invalidPallet.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

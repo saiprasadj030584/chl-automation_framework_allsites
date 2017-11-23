@@ -17,5 +17,4 @@ public class AllocationPage {
 		screen.wait("images/SystemAllocation/ClusteringUnCheck.png", timeoutInSec);
 		screen.click("images/SystemAllocation/ClusteringUnCheck.png");
 	}
-
 }

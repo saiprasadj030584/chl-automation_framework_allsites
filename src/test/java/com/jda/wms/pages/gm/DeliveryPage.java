@@ -1,7 +1,6 @@
 package com.jda.wms.pages.gm;
 
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 public class DeliveryPage {
@@ -20,4 +19,11 @@ public class DeliveryPage {
 				return false;
 	}
 
+
+	public boolean isEJBerrorfound() {
+		if(screen.exists("images/EJBError.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

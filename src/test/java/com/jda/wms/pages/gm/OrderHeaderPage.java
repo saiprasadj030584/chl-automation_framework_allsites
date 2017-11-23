@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.pages.PageObject;
 
-public class OrderHeaderPage{
+public class OrderHeaderPage {
+
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -113,7 +114,7 @@ public class OrderHeaderPage{
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-	
+
 	public String getStatus() throws FindFailed {
 		Match mStatus = screen.find("images/InventoryQuery/General/Status.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
@@ -121,14 +122,12 @@ public class OrderHeaderPage{
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
-	public void enterOrderID(String orderid) throws FindFailed, InterruptedException {
-//		Match morderid = screen.find("images/StockAdjustment/Search/pallet.png");
-//		screen.click(morderid.getCenter().offset(70, 0));
-		screen.type(orderid);
+
+	public void enterOrderID(String orderReference) throws InterruptedException {
+		screen.type(orderReference);
 		Thread.sleep(1000);
 	}
-	
+
 	public boolean isNoRecordFound() {
 		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
 			return true;
@@ -142,15 +141,14 @@ public class OrderHeaderPage{
 		else
 			return false;
 	}
-	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException
-	{
+
+	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderHeaderMaintenance/DeliveryAddress.png", timeoutInSec);
 		screen.click("images/OrderHeaderMaintenance/DeliveryAddress.png");
 		Thread.sleep(1000);
 	}
-	
-	public void clickGLN() throws FindFailed, InterruptedException
-	{
+
+	public void clickGLN() throws FindFailed, InterruptedException {
 		Match morderid = screen.find("images/OrderHeaderMaintenance/DeliveryAddress/GLN.png");
 		screen.click(morderid.getCenter().offset(70, 0));
 		Thread.sleep(1000);

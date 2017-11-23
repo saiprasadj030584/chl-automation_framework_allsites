@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.gm;
 
 import org.junit.Assert;
+import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -11,7 +12,6 @@ import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.gm.WarningPopUpPage;
 import com.jda.wms.utils.DateUtils;
-import org.sikuli.script.Screen;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -42,6 +42,7 @@ public class InventoryUpdateStepDefs {
 
 	@When("^I select the update type as \"([^\"]*)\"$")
 	public void i_select_the_update_type_as(String updateType) throws Throwable {
+		Thread.sleep(3000);
 		inventoryUpdatePage.enterSelectType(updateType);
 		jdafooter.clickNextButton();
 	}
@@ -73,14 +74,31 @@ public class InventoryUpdateStepDefs {
 		jdafooter.clickNextButton();
 	}
 
+	// @Then("^I select the status as \"([^\"]*)\"$")
+	// public void i_select_the_status_as(String status) throws Throwable {
+	// inventoryUpdatePage.enterStatus(status);
+	// jdafooter.clickDoneButton();
+	// if (inventoryUpdatePage.isWarningPopUpPageExist()) {
+	// warningPopUpPage.clickYes();
+	// }
+	// context.setStatus(status);
+	// }
+
 	@Then("^I select the status as \"([^\"]*)\"$")
-	public void i_select_the_status_as(String status) throws Throwable {
-		inventoryUpdatePage.enterStatus(status);
+	public void i_select_the_status_as(String updateOrigin) throws Throwable {
+		if (updateOrigin.equalsIgnoreCase("UK origin")) {
+			context.setOrigin("UK");
+		}
+		inventoryUpdatePage.enterStatus(updateOrigin);
+		if (updateOrigin.equalsIgnoreCase("Locked")) {
+			jdafooter.pressTab();
+			inventoryUpdatePage.enterLockcode("1Damaged");
+		}
 		jdafooter.clickDoneButton();
 		if (inventoryUpdatePage.isWarningPopUpPageExist()) {
 			warningPopUpPage.clickYes();
 		}
-		context.setStatus(status);
+		context.setStatus(updateOrigin);
 	}
 
 	@Then("^I select the future date$")

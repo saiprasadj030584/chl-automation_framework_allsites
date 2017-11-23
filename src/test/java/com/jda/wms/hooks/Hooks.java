@@ -6,11 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
@@ -23,6 +18,7 @@ import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
+import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.Database;
 
 import cucumber.api.Scenario;
@@ -31,32 +27,35 @@ import cucumber.api.java.Before;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-//	private final WebDriver webDriver;
+
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
-
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
+	public static String SITEID = System.getProperty("SITEID");
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
+	private GetTcData gettcdata;
+	private Hooks_autoUI hooksautoUI;
 
 	@Inject
 	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
 			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
-			Database jdaJdatabase) {
-//		this.webDriver = webDriver;
+			Database jdaJdatabase, GetTcData gettcdata, Hooks_autoUI hooksautoUI) {
+
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
 		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
 		this.updateTcToAutomationDb = updateTcToAutomationDb;
 		this.jdaJdatabase = jdaJdatabase;
-
+		this.gettcdata = gettcdata;
+		this.hooksautoUI = hooksautoUI;
 	}
 
-	@Before
+	//@Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -66,7 +65,78 @@ public class Hooks {
 		logger.debug("Start of Scenario: " + scenario.getName());
 		logger.debug(
 				"###########################################################################################################################");
+	}
 
+	@Before("~@Email")
+	public void iniatateDataSetup(Scenario scenario) throws Exception {
+		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
+		System.out.println("Uniq Tag --->" + tagListForScenario);
+
+		System.out.println("Starting Execution" + scenario.getName());
+		hooksautoUI.getParentRequestID();
+		System.out.println("PREQ_ID " + context.getParentRequestId());
+		hooksautoUI.insertDetails(scenario.getName());
+
+		for (String tag : tagListForScenario) {
+			if (tag.contains("@ds")) {
+				dataSetupRunner.getTagListFromAutoDb();
+
+				if (!(scenario.getName().contains("Triggering automation email"))) {
+					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+//					insertSiteID();
+					// getSiteID();
+				}
+				System.out.println(context.getTestData());
+			}
+		}
+	}
+
+//	@Before("~@Email")
+	public void setup(Scenario scenario) throws Exception {
+		System.out.println("INSIDE EMAIL");
+		System.out.println("Starting Execution" + scenario.getName());
+		hooksautoUI.getParentRequestID();
+		System.out.println("PREQ_ID " + context.getParentRequestId());
+		hooksautoUI.insertDetails(scenario.getName());
+	}
+
+	private void getSiteID() throws ClassNotFoundException {
+		try {
+			if (context.getSQLDBConnection() == null) {
+				hooksautoUI.sqlConnectOpen();
+			}
+			Statement stmt = null;
+			stmt = context.getSQLDBConnection().createStatement();
+			System.out.println(
+					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
+			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
+					+ "'";
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				context.setSiteId(rs.getString("SITE_ID"));
+				System.out.println("" + context.getSiteId());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void insertSiteID() {
+		try {
+			// System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID)
+			// VALUES ('" + context.getParentRequestId()
+			// + "','" + System.getProperty("SITEID") + "')");
+
+			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + context.getSiteId() + "')");
+			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
+					+ "','" + context.getSiteId() + "')";
+			context.getSQLDBConnection().createStatement().execute(insertQuery);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	// @Before
@@ -79,40 +149,13 @@ public class Hooks {
 		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
 	}
 
-	@Before("~@no_ds")
-	public void iniatateDataSetup(Scenario scenario) throws Exception {
-
-		logger.debug(
-				"###########################################################################################################################");
-		logger.debug("Iniatate Data Setup ");
-		logger.debug(
-				"###########################################################################################################################");
-
-		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		//context.setSiteId(System.getProperty("SITEID"));
-		 dataSetupRunner.getTagListFromAutoDb();
-		 context.setSiteId("5649");
-		// dataSetupRunner.getParentRequestIdFromDB();
-		// dataSetupRunner.getJdaSiteIdFromDB();
-		if (!(scenario.getName().contains("Triggering automation email"))) {
-			dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-			
-		}
-		
-	}
-
 	// @Before
 	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
-
 		updateTcToAutomationDb.updateTcStartTime();
-
-		// updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
-
+		updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 	}
 
-	
-
-	@After
+	// @After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();
@@ -142,32 +185,39 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
-		
+
+		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
 
 	// @After
-	public void killBrowser(Scenario scenario) throws IOException {
+	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
 		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq
 		// %username%\"");
-//		Process killChrome = Runtime.getRuntime()
-//				.exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq %username%\"");
-//		Process killFirefox = Runtime.getRuntime()
-//				.exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq %username%\"");
-//
-//		Process killGeckoDriver = Runtime.getRuntime()
-//				.exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq %username%\"");
-//		Process killChromeDriver = Runtime.getRuntime()
-//				.exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq %username%\"");
-//
-//		Process killIeDriver = Runtime.getRuntime()
-//				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
+		// Process killChrome = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq
+		// %username%\"");
+		// Process killFirefox = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq
+		// %username%\"");
+		//
+		// Process killGeckoDriver = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq
+		// %username%\"");
+		// Process killChromeDriver = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq
+		// %username%\"");
+		//
+		// Process killIeDriver = Runtime.getRuntime()
+		// .exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq
+		// %username%\"");
 	}
 
 	@After
 	public void closeDBConnection() throws SQLException {
-		if (!context.getConnection().equals(null)) {
+		// if (!context.getConnection().equals(null)) {
+		if (!(null == context.getConnection())) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}

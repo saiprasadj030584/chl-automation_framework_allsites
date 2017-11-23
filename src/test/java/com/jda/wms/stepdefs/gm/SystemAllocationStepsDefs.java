@@ -5,11 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
 import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.DeliveryDB;
@@ -26,7 +24,7 @@ import com.jda.wms.pages.gm.SystemAllocationPage;
 import com.jda.wms.pages.gm.Verification;
 
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 
 public class SystemAllocationStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -56,8 +54,8 @@ public class SystemAllocationStepsDefs {
 			UPIReceiptHeaderDB upiReceiptHeaderDB, Verification verification, DeliveryDB deliveryDB,
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
 			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage,
-			JDALoginStepDefs jDALoginStepDefs, SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB,
-			OrderLineDB orderLineDB) {
+			OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs, JDALoginStepDefs jDALoginStepDefs,
+			SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB, OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -137,13 +135,13 @@ public class SystemAllocationStepsDefs {
 			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
 					.equals(String.valueOf(context.getRcvQtyDue())))) {
 				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
-				 context.setFailureList(failureList);
+				context.setFailureList(failureList);
 			}
 		}
 		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@When("^I enter OrderID for allocation$")
 	public void i_enter_OrderID_for_allocation() throws Throwable {
 		jdaFooter.clickNextButton();
@@ -155,6 +153,18 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickDoneButton();
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();
+		Thread.sleep(8000);
+	}
+	
+	@Then("^Allocation should be updated$")
+	public void allocation_should_be_updated() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Thread.sleep(10000);
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		//verification.verifyData("Quantity Tasked",orderHeaderDB.getOrderedQuantity(context.getOrderId()), orderHeaderDB.getQuantitytaskedStatus(context.getOrderId()), failureList);
+		//verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);
+		Assert.assertTrue("Order Status not updated as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
 	}
 	
 	@Given("^I allocate the stocks using consignment in system allocation page$")

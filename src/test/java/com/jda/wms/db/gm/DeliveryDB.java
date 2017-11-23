@@ -24,6 +24,7 @@ public class DeliveryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("Select status from delivery where asn_id ='" + asnId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
 
@@ -92,8 +93,38 @@ public class DeliveryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("Select supplier_id from delivery where asn_id ='" + asnId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select supplier_id from delivery where asn_id ='" + asnId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	public String getAsnId(String type,String status) throws SQLException, ClassNotFoundException {
+		String Type=null;
+		switch(type)
+		{
+		case "Hanging":
+			Type="H";
+			break;
+		case "Boxed":
+			Type="B";
+			break;
+		case "Flatpack":
+			Type="P";
+			break;
+		case "GOH":
+			Type="C";
+			break;
+		}
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("Select A.asn_id,B.sku_id from upi_receipt_header A  "
+				+ "inner join upi_receipt_line B on A.pallet_id = B.pallet_id inner join sku C on B.sku_id=c.sku_id "
+				+ "and a.status='"+status+"' and C.user_def_type_8= '"+Type+"' and a.asn_id!='null'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -109,5 +140,6 @@ public class DeliveryDB {
 		return rs.getString(1);
 	}
 
-
 }
+
+

@@ -1,6 +1,9 @@
 package com.jda.wms.pages.gm;
 
-import org.openqa.selenium.WebDriver;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,48 +13,38 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.config.Constants;
 import com.jda.wms.context.Context;
-import com.jda.wms.pages.PageObject;
 
-public class JdaLoginPage{
+public class JdaLoginPage {
 	WebElement webElement;
-//	private final WebDriver webDriver;
-//	private final Configuration configuration;
-//	private Context context;
-//	Screen screen = new Screen();
-	int timeoutInSec = 20; 
-	
-	public static RemoteWebDriver driver;
-	Configuration configuration = new Configuration();
-	Context context = new Context();
+
 	Screen screen = new Screen();
+	int timeoutInSec = 20;
 
-	public JdaLoginPage() {
+	public static RemoteWebDriver driver;
+	private  Configuration configuration;
+	private  Context context;
+	// Configuration configuration = new Configuration();
+	// Context context = new Context();
 
+	// @Inject
+	// public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
+	// super(webDriver);
+	// this.webDriver = webDriver;
+	// this.configuration = configuration;
+	// }
+	@Inject
+	public JdaLoginPage(Configuration configuration, Context context) {
+		this.configuration = configuration;
+		this.context = context;
 	}
 
-	/*@Inject
-	public JdaLoginPage(WebDriver webDriver, Configuration configuration,Context context) {
-		super(webDriver);
-		this.webDriver = webDriver;
-		this.configuration = configuration;
-		this.context=context;
-	}*/
-
-		
 	public void login() throws FindFailed, InterruptedException {
-		
-
-
+		System.out.println("Login function");
 		if (driver == null) {
-
+			System.out.println("Driver is null");
 			try {
 				Process p = Runtime.getRuntime()
 						.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
@@ -60,33 +53,53 @@ public class JdaLoginPage{
 
 				e.printStackTrace();
 			}
-
+			System.out.println("Site Id" + context.getSiteId());
 			setDriver();
 			driver.manage().window().maximize();
-			driver.navigate().to(configuration.getStringProperty("gm-jda-url")); 
-			Thread.sleep(30000);
-			
+			Thread.sleep(2000);
+
+			if (context.getSiteId().equals("5649")) {
+				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
+			}
+
+			else if (context.getSiteId().equals("5885")) {
+				driver.navigate().to(configuration.getStringProperty("stk-gm-jda-url"));
+			}
+
+			else {
+				System.out.println("Site Id is not found");
+				Assert.fail("Site Id is not found");
+			}
+
+			int waitTime = 3;
+			do {
+				if (screen.exists("/images/JDALogin/username.png") != null) {
+					break;
+				} else {
+					System.out.println("Login screen not found in loop");
+				}
+
+				Thread.sleep(5000);
+				waitTime = waitTime + 3;
+			} while (waitTime < 120);
+
 			if (screen.exists("images/JDALogin/username.png") == null) {
-				//Assert.fail("Login Not successful");
-					if(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-					{
-					while(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-					{
-						
+				// Assert.fail("Login Not successful");
+				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+
 						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
 						screen.click("images/JDALogin/DoNotAsk.png");
 						screen.wait("images/JDALogin/Later.png", timeoutInSec);
 						screen.click("images/JDALogin/Later.png");
-						
+
 					}
-					
-					}
-					else
-					{
-						Assert.fail("URL Not successful");
-					}
-					
+
+				} else {
+					Assert.fail("URL Not successful");
 				}
+
+			}
 
 			enterUsername();
 			enterPassword();
@@ -115,41 +128,28 @@ public class JdaLoginPage{
 			screen.type(Key.UP);
 			Thread.sleep(2000);
 			screen.type(Key.ENTER);
-			}
+		}
 
 		else if (screen.exists("/images/JDAHome/Welcome.png") != null) {
 			screen.rightClick("/images/JDAHome/Welcome.png", 25);
 			Thread.sleep(4000);
 			screen.click("/images/JDAHome/CloseAll.png", 25);
 		}
-	
-		
-		
-		/*if(context.isJdaLoginFlag()==false){
-		webDriver.manage().window().maximize();
-		webDriver.navigate().to(configuration.getStringProperty("gm-jda-url"));
-		Thread.sleep(30000);
-		
-		
-		
-		enterUsername();
-		enterPassword();
-		clickConnectButton();
-		Thread.sleep(5000);
-		}*/
-		}
-		
+	}
+
 	public static void setDriver() {
 		DesiredCapabilities capabilities = null;
 		capabilities = DesiredCapabilities.internetExplorer();
 		capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		capabilities.setCapability("ignoreZoomSetting", true);
 		capabilities.setCapability("screen-resolution", "1364*766");
+
 		System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
+
 	}
 
-	private void enterUsername() throws FindFailed, InterruptedException {
+	public void enterUsername() throws FindFailed, InterruptedException {
 		int waitTime = 15;
 		do {
 			if (screen.exists("images/JDALogin/username.png") != null) {
@@ -164,38 +164,38 @@ public class JdaLoginPage{
 		screen.type(configuration.getStringProperty("username"));
 	}
 
-	private void enterPassword() throws FindFailed, InterruptedException {
+	public void enterPassword() throws FindFailed, InterruptedException {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 		screen.type(configuration.getStringProperty("password"));
 		Thread.sleep(1000);
 	}
 
-	private void clickConnectButton() throws FindFailed, InterruptedException {
+	public void clickConnectButton() throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(15000);
-		if (screen.exists("images/JDAHome/searchScreenButton.png") == null) {
-		//Assert.fail("Login Not successful");
-			if(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-			{
-			while(screen.exists("images/JDALogin/JavaUpdateError.png")!=null)
-			{
-				
-				screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
-				screen.click("images/JDALogin/DoNotAsk.png");
-				screen.wait("images/JDALogin/Later.png", timeoutInSec);
-				screen.click("images/JDALogin/Later.png");
-				
+
+		if (screen.exists("images/JDAHome/JDAHomePage.png") == null) {
+			Assert.fail("Login Not successful");
+
+			if (screen.exists("images/JDAHome/searchScreenButton.png") == null) {
+				// Assert.fail("Login Not successful");
+				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+
+						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
+						screen.click("images/JDALogin/DoNotAsk.png");
+						screen.wait("images/JDALogin/Later.png", timeoutInSec);
+						screen.click("images/JDALogin/Later.png");
+
+					}
+
+				} else {
+
+					Assert.fail("Login Not successful");
+				}
 			}
-			
-			}
-			else
-			{
-			
-				Assert.fail("Login Not successful");
-			}
-			
+			context.setJdaLoginFlag(true);
 		}
-		context.setJdaLoginFlag(true);
 	}
 }

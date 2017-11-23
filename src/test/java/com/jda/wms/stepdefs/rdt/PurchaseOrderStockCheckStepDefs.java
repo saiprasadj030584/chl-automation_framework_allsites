@@ -60,7 +60,9 @@ public class PurchaseOrderStockCheckStepDefs {
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskDB moveTaskDB, OrderHeaderDB orderHeaderDB, AddressDB addressDB, MoveTaskUpdateDB moveTaskUpdateDB,
-			PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage, BookingInDiary bookingInDiary,PurchaseOrderStockCheckPage purchaseOrderStockCheckPage,PurchaseOrderPutawayPage purchaseOrderPutawayPage,SupplierSkuDB supplierSkuDb) {
+			PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage, BookingInDiary bookingInDiary,
+			PurchaseOrderStockCheckPage purchaseOrderStockCheckPage, PurchaseOrderPutawayPage purchaseOrderPutawayPage,
+			SupplierSkuDB supplierSkuDb) {
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
 		this.verification = verification;
@@ -76,14 +78,14 @@ public class PurchaseOrderStockCheckStepDefs {
 		this.moveTaskUpdateDB = moveTaskUpdateDB;
 		this.purchaseOrderVehicleLoadingPage = purchaseOrderVehicleLoadingPage;
 		this.bookingInDiary = bookingInDiary;
-		this.purchaseOrderStockCheckPage=purchaseOrderStockCheckPage;
-		this.purchaseOrderPutawayPage=purchaseOrderPutawayPage;
-		this.supplierSkuDb=supplierSkuDb;
+		this.purchaseOrderStockCheckPage = purchaseOrderStockCheckPage;
+		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
+		this.supplierSkuDb = supplierSkuDb;
 
 	}
 
 	@Then("^I do new stock check at location \"([^\"]*)\" with quantity \"([^\"]*)\"$")
-	public void i_do_new_stock_check_at_location_with_quantity(String location,String qty) throws Throwable {
+	public void i_do_new_stock_check_at_location_with_quantity(String location, String qty) throws Throwable {
 		context.setLocationID(location);
 		context.setQtyOrdered(Integer.parseInt(qty));
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
@@ -93,12 +95,13 @@ public class PurchaseOrderStockCheckStepDefs {
 		i_select_new_stock_check();
 		i_do_new_stock_check();
 	}
-	
+
 	@Then("^I do new stock check at location \"([^\"]*)\" with quantity \"([^\"]*)\" and supplier \"([^\"]*)\"$")
-	public void i_do_new_stock_check_at_location_with_quantity_and_supplier(String location,String qty,String supplier) throws Throwable {
+	public void i_do_new_stock_check_at_location_with_quantity_and_supplier(String location, String qty,
+			String supplier) throws Throwable {
 		context.setLocationID(location);
 		context.setQtyOrdered(Integer.parseInt(qty));
-		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(),supplier));
+		context.setUPC(supplierSkuDb.getSupplierSKU(context.getSkuId(), supplier));
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		puttyFunctionsPage.nextScreen();
@@ -106,11 +109,11 @@ public class PurchaseOrderStockCheckStepDefs {
 		i_select_new_stock_check();
 		i_do_new_stock_check_with_supplier(supplier);
 	}
-	
+
 	@Given("^I select inventory$")
 	public void i_select_inventory() throws Throwable {
 		purchaseOrderStockCheckPage.selectInventoryMenu();
-		
+
 	}
 
 	@Given("^I select new stock check$")
@@ -118,76 +121,72 @@ public class PurchaseOrderStockCheckStepDefs {
 		purchaseOrderStockCheckPage.selectNewStockCheck();
 		Assert.assertTrue("Stock Check Menu not displayed as expected",
 				purchaseOrderStockCheckPage.isNewStockCheckEntPageDisplayed());
-		
+
 	}
-	
+
 	@Given("^I enter location \"([^\"]*)\"$")
 	public void i_enter_location(String location) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_location(location);
 	}
-	
+
 	@Given("^I enter upc \"([^\"]*)\"$")
 	public void i_enter_upc(String upc) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_upc(upc);
 	}
-	
+
 	@Given("^I enter supplier \"([^\"]*)\"$")
 	public void i_enter_supplier(String supplier) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_supplier(supplier);
 	}
-	
+
 	@Given("^I enter quantity \"([^\"]*)\"$")
 	public void i_enter_quantity(String qty) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_location(qty);
 	}
-	
+
 	@Given("^I do new stock check$")
 	public void i_do_new_stock_check() throws Throwable {
-	i_enter_location(context.getLocationID());
-	if(purchaseOrderPutawayPage.isChkToDisplayed()){
-		purchaseOrderPutawayStepDefs.i_enter_the_check_string();
+		i_enter_location(context.getLocationID());
+		if (purchaseOrderPutawayPage.isChkToDisplayed()) {
+			purchaseOrderPutawayStepDefs.i_enter_the_check_string();
+		}
+		i_enter_quantity(String.valueOf(context.getQtyOrdered()));
+		jdaFooter.PressEnter();
+		i_enter_quantity(String.valueOf(context.getQtyOrdered()));
+		i_enter_no_or_yes("N");
+		jdaFooter.PressEnter();
+		Assert.assertTrue("Stock Check Menu not displayed as expected",
+				purchaseOrderStockCheckPage.isNewStockCheckEntPageDisplayed());
 	}
-	i_enter_quantity(String.valueOf(context.getQtyOrdered()));
-	jdaFooter.PressEnter();
-	i_enter_quantity(String.valueOf(context.getQtyOrdered()));
-	i_enter_no_or_yes("N");
-	jdaFooter.PressEnter();
-	Assert.assertTrue("Stock Check Menu not displayed as expected",
-			purchaseOrderStockCheckPage.isNewStockCheckEntPageDisplayed());
-	}
-	
+
 	@Given("^I do new stock check with supplier \"([^\"]*)\"$")
 	public void i_do_new_stock_check_with_supplier(String supplier) throws Throwable {
-	i_enter_location(context.getLocationID());//valid location that should nt be inventory
-	
-	jdaFooter.PressEnter();
-	i_enter_no_or_yes("Y");
-	jdaFooter.pressTab();
-	i_enter_upc(context.getUPC());
-	jdaFooter.pressTab();
-	i_enter_supplier(supplier);
-	jdaFooter.pressTab();
-	i_enter_quantity(String.valueOf(context.getQtyOrdered()));
-	jdaFooter.PressEnter();
-	if(purchaseOrderPutawayPage.isChkToDisplayed()){
-		purchaseOrderPutawayStepDefs.i_enter_the_check_string();
+		i_enter_location(context.getLocationID());// valid location that should
+													// nt be inventory
+
+		jdaFooter.PressEnter();
+		i_enter_no_or_yes("Y");
+		jdaFooter.pressTab();
+		i_enter_upc(context.getUPC());
+		jdaFooter.pressTab();
+		i_enter_supplier(supplier);
+		jdaFooter.pressTab();
+		i_enter_quantity(String.valueOf(context.getQtyOrdered()));
+		jdaFooter.PressEnter();
+		if (purchaseOrderPutawayPage.isChkToDisplayed()) {
+			purchaseOrderPutawayStepDefs.i_enter_the_check_string();
+		}
+		jdaFooter.PressEnter();
+		i_enter_no_or_yes("N");
+		jdaFooter.PressEnter();
+
+		Assert.assertTrue("Stock Check Menu not displayed as expected",
+				purchaseOrderStockCheckPage.isNewStockCheckEntPageDisplayed());
 	}
-	jdaFooter.PressEnter();
-	i_enter_no_or_yes("N");
-	jdaFooter.PressEnter();
-	
-	Assert.assertTrue("Stock Check Menu not displayed as expected",
-			purchaseOrderStockCheckPage.isNewStockCheckEntPageDisplayed());
-	}
-	
+
 	@Given("^I enter NO or YES \"([^\"]*)\"$")
 	public void i_enter_no_or_yes(String value) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_no_or_yes(value);
 	}
-	
-	
-	
-	
 
-	
 }
