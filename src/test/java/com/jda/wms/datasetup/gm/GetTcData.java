@@ -167,11 +167,11 @@ public class GetTcData {
 				dataBase.dbConnection.createStatement()
 						.execute("UPDATE DBO.JDA_GM_RUN_STATUS	"
 								+ "SET SKU_ID = (SELECT SKU_ID FROM DBO.JDA_GM_TEST_DATA WHERE " + "UNIQUE_TAG='"
-								+ context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteId() + "' )"
+								+ context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteID() + "' )"
 								+ ", QTY = (SELECT QTY FROM DBO.JDA_GM_TEST_DATA WHERE " + "UNIQUE_TAG='"
-								+ context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteId() + "' )"
+								+ context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteID() + "' )"
 								+ ", SUPPLIER_ID = (SELECT SUPPLIER_ID FROM DBO.JDA_GM_TEST_DATA WHERE "
-								+ "UNIQUE_TAG='" + context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteId()
+								+ "UNIQUE_TAG='" + context.getUniqueTag() + "' AND SITE_NO='" + context.getSiteID()
 								+ "' )" + "WHERE PARENT_REQUEST_ID ='" + context.getParentRequestId()
 								+ "' AND UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 				dataBase.dbConnection.commit();
@@ -190,10 +190,10 @@ public class GetTcData {
 		try {
 			dataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-					+ "' AND SITE_NO='" + context.getSiteId() + "'");
+					+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("PO_ID");
@@ -217,7 +217,7 @@ public class GetTcData {
 			dataBase.connectAutomationDB();
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("STO_ID");
@@ -237,11 +237,11 @@ public class GetTcData {
 
 		try {
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-					+ "' AND SITE_NO='" + context.getSiteId() + "'");
+					+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			dataBase.connectAutomationDB();
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("PALLET_ID");
@@ -265,14 +265,14 @@ public class GetTcData {
 			dataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 
-					+ "' AND SITE_NO='" + context.getSiteId() + "'");
+					+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			resultSet = dataBase.dbConnection.createStatement()
 					// System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA
 					// WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 					// + "' AND SITE_NO='" + context.getSiteId() + "'");
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("ASN_ID");
@@ -294,10 +294,10 @@ public class GetTcData {
 		try {
 			dataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-					+ "' AND SITE_NO='" + context.getSiteId() + "'");
+					+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("SKU_ID");
@@ -316,7 +316,7 @@ public class GetTcData {
 			dataBase.connectAutomationDB();
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("QTY");
@@ -353,7 +353,7 @@ public class GetTcData {
 			dataBase.connectAutomationDB();
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("QTY");
@@ -371,10 +371,10 @@ public class GetTcData {
 		try {
 			dataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "'");
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 
 			while (resultSet.next()) {
 				value = resultSet.getString("STO_ID");

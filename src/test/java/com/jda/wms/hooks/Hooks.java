@@ -114,8 +114,8 @@ public class Hooks {
 			ResultSet rs = stmt.executeQuery(query);
 
 			while (rs.next()) {
-				context.setSiteId(rs.getString("SITE_ID"));
-				System.out.println("" + context.getSiteId());
+				context.setSiteID(rs.getString("SITE_ID"));
+				System.out.println("" + context.getSiteID());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,9 +129,9 @@ public class Hooks {
 			// + "','" + System.getProperty("SITEID") + "')");
 
 			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteId() + "')");
+					+ "','" + context.getSiteID() + "')");
 			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteId() + "')";
+					+ "','" + context.getSiteID() + "')";
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
 		} catch (Exception exception) {

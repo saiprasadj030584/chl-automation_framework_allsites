@@ -33,7 +33,7 @@ public class PuttyFunctionsStepDefs {
 
 		puttyFunctionsPage.invokePutty();
 		//String port=null;
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 			System.out.println(port);
 			if(context.isVehicleLoadRequired()){
 			port = configuration.getStringProperty("wst-putty-gm-port-vehicle-load");
@@ -46,7 +46,7 @@ public class PuttyFunctionsStepDefs {
 			host = configuration.getStringProperty("wst-putty-gm-host");
 		}
 
-		else if (context.getSiteId().equals("5885")) {
+		else if (context.getSiteID().equals("5885")) {
 			host = configuration.getStringProperty("stk-putty-gm-host");
 			port = configuration.getStringProperty("stk-putty-gm-port");
 		}

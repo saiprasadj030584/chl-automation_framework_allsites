@@ -53,7 +53,7 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.clickExecuteButton();
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 			verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
 					failureList);
 			verification.verifyData("Service Level", context.getServiceLevel(),
@@ -72,7 +72,7 @@ public class DockSchedulerBookingStepDefs {
 		System.out.println("TRAILER"+context.getTrailerNo());
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 			verification.verifyData("Carrier", context.getCarrier(), bookingInDiary.getCarrier(context.getBookingID()),
 					failureList);
 			verification.verifyData("Service Level", context.getServiceLevel(),
@@ -89,7 +89,7 @@ public class DockSchedulerBookingStepDefs {
 		Assert.assertTrue("Booking time not updated", dockSchedulerPage.isBookingTimeUpdated());
 		jdaHomePage.navigateToDockSchedulerPage();
 		if (dockSchedulerPage.isSiteExists()) {
-			dockSchedulerPage.enterSiteID(context.getSiteId());
+			dockSchedulerPage.enterSiteID(context.getSiteID());
 		}
 		jdaFooter.clickNextButton();
 		dockSchedulerPage.enterBookingId(context.getBookingID());

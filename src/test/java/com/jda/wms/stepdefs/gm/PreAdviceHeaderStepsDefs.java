@@ -346,12 +346,12 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the FSV PO of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String type, String status) throws Throwable {
 
-		context.setSiteId("5649");
+		context.setSiteID("5649");
 		// String preAdviceId = getTcData.getPo();
 		// String preAdviceId = "25400900903";
 
 		String preAdviceId = context.getPreAdviceId();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		// String preAdviceId = getTcData.getPo();
 		// String siteId = context.getSiteId();
@@ -359,7 +359,7 @@ public class PreAdviceHeaderStepsDefs {
 		context.setPreAdviceId(preAdviceId);
 		// String siteId ="5649";
 		context.setSKUType(type);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		context.setsupplierType("FSV");
 		logger.debug("PO ID: " + preAdviceId);
 		logger.debug("SITE ID: " + siteId);

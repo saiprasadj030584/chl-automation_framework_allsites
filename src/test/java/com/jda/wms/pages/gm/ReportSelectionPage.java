@@ -129,7 +129,7 @@ public class ReportSelectionPage {
 	}
 	
 	public void chooseSiteId() throws InterruptedException {
-		screen.type(context.getSiteId());
+		screen.type(context.getSiteID());
 		Thread.sleep(1000);
 	}
 	

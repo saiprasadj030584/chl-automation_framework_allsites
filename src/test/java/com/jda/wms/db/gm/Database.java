@@ -72,13 +72,13 @@ public class Database {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			if (context.getSiteId().equals("5649")) {
+			if (context.getSiteID().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
 						configuration.getStringProperty("wst-db-username"),
 						configuration.getStringProperty("wst-db-password"));
 			}
 
-			else if (context.getSiteId().equals("5885")) {
+			else if (context.getSiteID().equals("5885")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("stk-db-host"),
 						configuration.getStringProperty("stk-db-username"),
 						configuration.getStringProperty("stk-db-password"));

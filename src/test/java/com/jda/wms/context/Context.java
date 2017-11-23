@@ -60,7 +60,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
-	private static String siteId = null;
+	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 	private ArrayList<String> preAdviceList;
@@ -606,12 +606,12 @@ public class Context {
 		this.faceType = faceType;
 	}
 
-	public String getSiteId() {
-		return siteId;
+	public String getSiteID() {
+		return siteID;
 	}
 
-	public void setSiteId(String siteId) {
-		this.siteId = siteId;
+	public void setSiteID(String siteID) {
+		this.siteID = siteID;
 	}
 
 	public String getLocation() {

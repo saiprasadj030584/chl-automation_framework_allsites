@@ -53,16 +53,16 @@ public class JdaLoginPage {
 
 				e.printStackTrace();
 			}
-			System.out.println("Site Id" + context.getSiteId());
+			System.out.println("Site Id" + context.getSiteID());
 			setDriver();
 			driver.manage().window().maximize();
 			Thread.sleep(2000);
 
-			if (context.getSiteId().equals("5649")) {
+			if (context.getSiteID().equals("5649")) {
 				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
 			}
 
-			else if (context.getSiteId().equals("5885")) {
+			else if (context.getSiteID().equals("5885")) {
 				driver.navigate().to(configuration.getStringProperty("stk-gm-jda-url"));
 			}
 

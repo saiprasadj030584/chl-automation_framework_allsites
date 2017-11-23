@@ -206,7 +206,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the OrderID of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
 	public void the_OrderID_of_type_should_be_in_status(String orderType, String status) throws Throwable {
 		String orderId = getTcData.getSto();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		/* Due to merge the fathima branch */
 
@@ -219,7 +219,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setOrderId(orderId);
 		System.out.println(context.getOrderId());
 		context.setOrderType(orderType);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		jDAHomePage.navigateToOrderHeaderMaintenance();
 		jDAFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(orderId);
@@ -624,11 +624,11 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_OrderID_of_type_for_sku_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
 		String orderId = getTcData.getSto();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 		jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		String Type = null;
 		switch (skuType) {
 		case "GOH":
@@ -848,7 +848,7 @@ public class OrderHeaderMaintenanceStepDefs {
 									.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
 						}
 					}
-					stockAdjustmentsPage.enterSiteId(context.getSiteId());
+					stockAdjustmentsPage.enterSiteId(context.getSiteID());
 					stockAdjustmentsPage.enterQuantityOnHand("500");
 					stockAdjustmentsPage.enterOrigin("NONE");
 					stockAdjustmentsPage.enterPackConfig((String)skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
