@@ -56,7 +56,6 @@ public class Database {
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
-	 *
 	 * @param address
 	 *            - address of the server
 	 * @param username
