@@ -259,4 +259,10 @@ public class JDAHomeStepDefs {
 	public void i_navigate_scheduler_program_page() throws Throwable {
 		jdaHomePage.navigateToSchedulerProgramPage();
 	}
+	
+	@When("^I navigate to UPI receipt line page$")
+	public void i_navigate_to_UPI_receipt_line_page() throws FindFailed, InterruptedException {
+		jdaHomePage.navigateToUpiReceiptLinePage();
+
+	}
 }

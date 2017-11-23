@@ -1024,4 +1024,26 @@ System.out.println("update inventory set qty_on_hand = '" + qty + "' where locat
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public boolean isStockForSkuInProhibitedLocation(String skuId,String location) {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			System.out.println("select sku_id from Inventory where origin_id='TUR' and sku_id='" + skuId + "' and location_id='" + location + "'");
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"select sku_id from Inventory where origin_id='TUR' and sku_id='" + skuId + "' and location_id='" + location + "'");
+			rs.next();
+			if (rs.getString(1) != null) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

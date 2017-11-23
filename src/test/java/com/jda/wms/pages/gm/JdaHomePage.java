@@ -696,4 +696,14 @@ public class JdaHomePage {
 		
 	}
 	
+	public void navigateToUpiReceiptLinePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("UPI receipt line maintenance/query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
+	}
+	
 }

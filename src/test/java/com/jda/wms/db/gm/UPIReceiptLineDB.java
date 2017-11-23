@@ -296,4 +296,17 @@ System.out.println("update upi_receipt_line set PRE_ADVICE_LINE_ID = '" + preAdv
 				+ "' where pallet_id = '" + upiId + "' and sku_id='" + sku + "'");
 		context.getConnection().commit();
 	}
+	
+	public void updateStock( String upiId,String skuID,String qty)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+System.out.println("update upi_receipt_line set QTY_DUE = '" + qty
+		+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update upi_receipt_line set QTY_DUE = '" + qty
+				+ "' where pallet_id = '" + upiId + "'   and sku_id = '" + skuID + "' ");
+		context.getConnection().commit();
+	}
 }

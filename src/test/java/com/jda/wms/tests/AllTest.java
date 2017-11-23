@@ -20,8 +20,10 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		
+		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@boxed_inbound_receiving_direct_po_multiple_trailer_multiple_urn_single_po"})
+				+ "cucumber.json" }, tags = { "@hanging_inbound_receiving_direct_po_single_po_and_multiple_urn_single_trailer"
+						+ ""})
 
 
 public class AllTest {

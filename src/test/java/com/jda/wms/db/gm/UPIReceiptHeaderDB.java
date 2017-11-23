@@ -137,4 +137,15 @@ public class UPIReceiptHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getAsnId(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select ASN_ID from upi_receipt_header where pallet_id='" + upiId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

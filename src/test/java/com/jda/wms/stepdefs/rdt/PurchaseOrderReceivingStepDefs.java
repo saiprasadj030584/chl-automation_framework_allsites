@@ -352,7 +352,7 @@ public class PurchaseOrderReceivingStepDefs {
 					System.out.println("entered for Hang");
 					i_enter_urn_id(context.getUpiId());
 					puttyFunctionsPage.nextScreen();
-					i_enter_asn(context.getAsnId());
+					i_enter_asn(uPIReceiptHeaderDB.getAsnId(context.getUpiId()));
 					i_enter_hanging_value();
 					i_enter_trl();
 					jdaFooter.PressEnter();
@@ -368,7 +368,11 @@ public class PurchaseOrderReceivingStepDefs {
 				} else {
 					i_enter_urn_id();
 				}
+				System.out.println("RESULT "+ purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if(purchaseOrderReceivingPage.isRcvPalletEntPutGrpPageDisplayed())
+				{
 				jdaFooter.PressEnter();
+				}
 				Thread.sleep(2000);
 
 				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
@@ -1042,6 +1046,9 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter urn id$")
 	public void i_enter_urn_id() throws FindFailed, InterruptedException {
+		System.out.println("KLJKL"+purchaseOrderReceivingPage.isPutAwayGroupExists());
+		if(purchaseOrderReceivingPage.isPutAwayGroupExists())
+		{
 		System.out.println("enterpp");
 		String urn = null;
 		String[] rcvLockSplit = purchaseOrderReceivingPage.getPutawayGroup().split("_");
@@ -1062,8 +1069,9 @@ public class PurchaseOrderReceivingStepDefs {
 		}else {
 			urn = context.getUpiId();
 		}
-		purchaseOrderReceivingPage.enterURNID(urn);
+		purchaseOrderReceivingPage.enterPalletID(urn);
 		context.setPalletID(urn);
+		}
 	}
 
 	@When("^I enter urn id \"([^\"]*)\"$")
@@ -2253,6 +2261,8 @@ public class PurchaseOrderReceivingStepDefs {
 				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	
 
 	@When("^I enter asn$")
 	public void i_enter_asn(String asn) throws FindFailed, InterruptedException {
@@ -2351,4 +2361,150 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	
+	@When("^the tag and upc details should be displayed for receiving after adding stock$")
+	public void the_tag_and_upc_details_should_be_displayed_for_receiving_after_adding_stock()
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		ArrayList failureList = new ArrayList();
+//		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
+//				purchaseOrderReceivingPage.isLocationDisplayed());
+
+		// context.setTagId(inventoryTransactionDB.getTagId(context.getPreAdviceId(),
+		// "Receipt"));
+		String[] tagSplit = purchaseOrderReceivingPage.getTagId().split("_");
+		String tagID = tagSplit[0];
+
+		verification.verifyData("Tag ID", context.getUpiId(), tagID, failureList);
+
+		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
+		String packConfig = packConfigSplit[0];
+		verification.verifyData("Pack Config", context.getPackConfig(), packConfig, failureList);
+
+		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
+				failureList);
+
+		String[] qtySplit = purchaseOrderReceivingPage.getQtyToReceiveAfterStockAdd().split("_");
+		String qtyToRcv = qtySplit[0];
+		verification.verifyData("Qty to Receive", String.valueOf(context.getRcvQtyDue()+5), qtyToRcv, failureList);
+
+		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
+		String upc = upcSplit[0];
+		context.setUPC(upc);
+		Assert.assertTrue(
+				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@When("^I receive all skus for the multiple purchase order with multiple upi after adding stock at location \"([^\"]*)\"$")
+	public void i_receive_all_skus_for_the_multiple_purchase_order_with_multiple_upi_after_adding_stock_at_location(String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+
+		upiMap = context.getUPIMap();
+		multipleUpiMap = context.getMultipleUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+		int m = 0;
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			context.setUpiId(context.getUpiList().get(j));
+			for (int i = 1; i <= (context.getUpiNumLinesMap().get(context.getUpiId())); i++) {
+				m++;
+				context.setSkuId(context.getSkuFromUPI().get(m - 1));
+				context.setSupplierID(
+						multipleUpiMap.get(context.getUpiList().get(j)).get(context.getSkuId()).get("SUPPLIER ID"));
+				context.setPackConfig(
+						multipleUpiMap.get(context.getUpiList().get(j)).get(context.getSkuId()).get("PACK CONFIG"));
+				context.setRcvQtyDue(Integer.parseInt(
+						multipleUpiMap.get(context.getUpiList().get(j)).get(context.getSkuId()).get("QTY DUE")));
+				Thread.sleep(1000);
+				System.out.println("RECEIVING"+context.getUpiId());
+				System.out.println(context.getSkuId());
+				System.out.println("MMM"+m);
+				System.out.println("JJJJ"+j);
+				System.out.println("111111111110000000000");
+				if (context.getSKUType().equalsIgnoreCase("Boxed") || context.getSKUType().equalsIgnoreCase("Flatpack") || context.getSKUType().equalsIgnoreCase("GOH")) {
+					System.out.println("entered for GOH");
+					i_enter_urn_id(context.getUpiId());
+					jdaFooter.PressEnter();
+					if(j==0)
+					{
+					the_tag_and_upc_details_should_be_displayed_for_receiving_after_adding_stock();
+					}else
+					{
+					the_tag_and_upc_details_should_be_displayed_for_receiving();
+					}
+				} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
+					System.out.println("entered for Hang");
+					i_enter_urn_id(context.getUpiId());
+					puttyFunctionsPage.nextScreen();
+					i_enter_asn(uPIReceiptHeaderDB.getAsnId(context.getUpiId()));
+					i_enter_hanging_value();
+					i_enter_trl();
+					jdaFooter.PressEnter();
+					if(j==0)
+					{
+					the_tag_and_upc_details_should_be_displayed_for_hanging_sku_after_adding_stock();
+					}else
+					{
+					the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
+					}
+					
+				}
+				System.out.println("NONE");
+				i_enter_the_location();
+				jdaFooter.PressEnter();
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+						purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if (null != context.getLockCode()) {
+					i_enter_urn_id_for_locked_sku();
+				} else {
+					i_enter_urn_id();
+				}
+				jdaFooter.PressEnter();
+				Thread.sleep(2000);
+
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+					context.setFailureList(failureList);
+				}
+			}
+		}
+			hooks.logoutPutty();
+	}
+
+	@When("^the tag and upc details should be displayed for hanging sku after adding stock$")
+	public void the_tag_and_upc_details_should_be_displayed_for_hanging_sku_after_adding_stock() throws FindFailed, InterruptedException {
+		ArrayList failureList = new ArrayList();
+		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
+				purchaseOrderReceivingPage.isLocationDisplayed());
+
+		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
+		String packConfig = packConfigSplit[0];
+		// verification.verifyData("Pack Config", context.getPackConfig(),
+		// packConfig, failureList);
+
+		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
+				failureList);
+
+		// purchaseOrderReceivingPage.enterLocation(context.getLocationID());
+
+		String[] qtySplit = purchaseOrderReceivingPage.getQtyToReceiveAfterStockAdd().split("_");
+		String qtyToRcv = qtySplit[0];
+		verification.verifyData("Qty to Receive", String.valueOf(context.getRcvQtyDue()+5), qtyToRcv, failureList);
+
+		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
+		String upc = upcSplit[0];
+		context.setUPC(upc);
+		Assert.assertTrue(
+				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	
+	
+
 }

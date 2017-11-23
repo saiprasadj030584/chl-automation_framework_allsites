@@ -293,6 +293,33 @@ public class PurchaseOrderPickingStepDefs {
 
 }
 	
+	@Given("^I proceed for boxed vehicle loading for multiple bookings$")
+	public void i_proceed_for_for_boxed_vehicle_loading_for_multiple_bookings() throws Throwable {
+			context.setVehicleLoadRequired(true);
+			puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+			puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+			purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+			purchaseOrderVehicleLoadingPage.selectMultiPalletLoadMenu();
+			//context.setBookingID("28634");
+			//context.setOrderId("5104628949");
+			for(int i=0;i<context.getBookingList().size();i++)
+			{
+			String dockdoor=bookingInDiary.selectDockDoor(context.getBookingList().get(i));
+			purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+			puttyFunctionsPage.pressTab();
+			String urn = moveTaskDB.selectPalletId(context.getOrderId());
+			purchaseOrderVehicleLoadingPage.enterURN(urn);	
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			Assert.assertTrue("vehicle loading not as expected", purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			}
+			
+			hooks.logoutPutty();
+			context.setVehicleLoadRequired(false);
+
+}
+	
 	@When("^I proceed for boxed vehicle unloading$")
 	public void i_proceed_for_boxed_vehicle_unloading() throws Throwable {
 		String siteid = "5649";

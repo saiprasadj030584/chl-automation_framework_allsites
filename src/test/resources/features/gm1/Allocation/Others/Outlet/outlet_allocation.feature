@@ -9,6 +9,3 @@ Feature: Allocation
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated
-
-
-  

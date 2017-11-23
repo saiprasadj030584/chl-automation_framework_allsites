@@ -159,6 +159,16 @@ public class Context {
 	private String relocateLoctn;
 	private ArrayList<String> qtyTaskedList;
 	private ArrayList<String> trailerList;
+	private ArrayList<String> bookingList;
+	
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
+
 	public ArrayList<String> getTrailerList() {
 		return trailerList;
 	}

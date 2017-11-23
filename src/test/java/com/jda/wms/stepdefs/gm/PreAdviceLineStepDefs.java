@@ -1138,7 +1138,7 @@ for( int i=0;i<context.getNoOfLines();i++)
 		ArrayList failureList = new ArrayList();
 		ArrayList skuFromPO = new ArrayList();
 		ArrayList skuFromUPI = new ArrayList();
-		Map<String, String> poNumLinesMap = new HashMap<String, String>();
+		//Map<String, String> poNumLinesMap = new HashMap<String, String>();
 		Map<Integer, Map<String, String>> POMap = new HashMap<Integer, Map<String, String>>();
 		Map<String, Map<String, Map<String, String>>> MultipleUPIMap = new HashMap<String, Map<String, Map<String, String>>>();
 		Map<String, Map<Integer, Map<String, String>>> MultiplePOMap = new HashMap<String, Map<Integer, Map<String, String>>>();
@@ -1195,11 +1195,18 @@ for( int i=0;i<context.getNoOfLines();i++)
 		
 		/////////////////////////////////////
 		
+		
+		System.out.println("UPI NO LINES MAP"+context.getUpiNumLinesMap());
+		System.out.println("PO NO LINES MAP"+context.getPoNumLinesMap());
+		System.out.println(context.getPoNumLinesMap().get(context.getPreAdviceList().get(0)));
+		
+		
+		/////////////////////////////////////////
 		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
 			
 		
 			Map<Integer, Map<String, String>> preadviceMap = new HashMap<Integer, Map<String, String>>();
-			for (int i = 1; i <= Integer.parseInt(context.getPoNumLinesMap().get(context.getPoList().get(j))); i++) {
+			for (int i = 1; i <= Integer.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
 				m++;
 				context.setSkuId((String) skuFromPO.get(m - 1));
 				Map<String, String> lineItemsMap = new HashMap<String, String>();
@@ -1213,7 +1220,7 @@ for( int i=0;i<context.getNoOfLines();i++)
 				
 				preadviceMap.put(i, lineItemsMap);
 			}
-			MultiplePOMap.put((String) context.getPoList().get(j), preadviceMap);
+			MultiplePOMap.put((String) context.getPreAdviceList().get(j), preadviceMap);
 			context.setMultiplePOMap(MultiplePOMap);
 			System.out.println("MULTIPLE PO MAP"+context.getMultiplePOMap());
 		}

@@ -1070,4 +1070,171 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	@Then("^the goods receipt should be generated for the multiple stock received after adding stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_multiple_stock_received_after_adding_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		
+
+			int count=0;
+			for (int k = 0; k < context.getUpiList().size(); k++) {
+				context.setUpiId(context.getUpiList().get(k));
+		
+				System.out.println("SKU FROM UPI lll"+context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+				System.out.println(k);
+				System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+					
+			
+			for (int p = 0; p <(context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1=context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+			
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				if(k==0)
+				{
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+						String.valueOf(context.getRcvQtyDue()+5),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				}
+				else
+				{
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue()),
+							inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+							failureList);
+				}
+		
+				verification.verifyData("Reference ID SKU " + context.getSkuId(), uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for the hanging multiple stock received in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_hanging_multiple_stock_received_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		
+
+			int count=0;
+			for (int k = 0; k < context.getUpiList().size(); k++) {
+				context.setUpiId(context.getUpiList().get(k));
+		
+				System.out.println("SKU FROM UPI lll"+context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+				System.out.println(k);
+				System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+				
+					
+			
+			for (int p = 0; p <(context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1=context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+			
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				context.setTagId(inventoryTransactionDB.getTagId(uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),context.getSkuId(), "Receipt"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+						String.valueOf(context.getRcvQtyDue()),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+		
+				verification.verifyData("Reference ID SKU " + context.getSkuId(), uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for the hanging multiple stock received after adding stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_hanging_multiple_stock_received_after_adding_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		
+
+			int count=0;
+			for (int k = 0; k < context.getUpiList().size(); k++) {
+				context.setUpiId(context.getUpiList().get(k));
+		
+				System.out.println("SKU FROM UPI lll"+context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+				System.out.println(k);
+				System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+					
+			
+			for (int p = 0; p <(context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1=context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+			
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				context.setTagId(inventoryTransactionDB.getTagId(uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),context.getSkuId(), "Receipt"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				if(k==0)
+				{
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+						String.valueOf(context.getRcvQtyDue()+5),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				}
+				else
+				{
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue()),
+							inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+							failureList);
+				}
+		
+				verification.verifyData("Reference ID SKU " + context.getSkuId(), uPIReceiptLineDB.getPreAdviceId(context.getUpiId(),context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+
+
 }

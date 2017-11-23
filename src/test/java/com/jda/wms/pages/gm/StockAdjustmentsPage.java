@@ -131,11 +131,14 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterPackConfig(String packConfig) throws FindFailed, InterruptedException {
+		if(screen.exists("images/StockAdjustment/Search/PackConfig.png")!=null)
+		{
 		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
 		screen.click(mconfigId.getCenter().offset(70, 0));
 		screen.type(packConfig);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
+		}
 	}
 	
 	public void selectPackConfig() throws FindFailed, InterruptedException {

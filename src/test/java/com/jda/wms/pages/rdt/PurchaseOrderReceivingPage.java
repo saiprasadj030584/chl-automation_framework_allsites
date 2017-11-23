@@ -717,6 +717,62 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 	
+	public boolean isRcvPalletEntPutGrpPageDisplayed() {
+		if (screen.exists("images/Putty/Receiving/RcvPalletEntPutGrp.png") != null)
+			return true;
+		else
+			return false;
+	}
 	
+	public String getQtyToReceiveAfterStockAdd() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+	System.out.println("abba"+App.getClipboard());
+		System.out.println("ANS"+App.getClipboard().split("_"));
+		String[] qtySplit =App.getClipboard().split("_");
+		if(qtySplit.length==0)
+		{
+			for(int i=0;i<4;i++)
+			{
+				puttyFunctionsPage.pressTab();
+			}
+			screen.type(String.valueOf(context.getRcvQtyDue()+5));
+			puttyFunctionsPage.pressTab();
+			Match mSupplierId1 = screen.find("images/Putty/Receiving/QtyToReceive.png");
+			screen.click(mSupplierId1.getCenter().offset(50, 0));
+			screen.doubleClick(mSupplierId1.getCenter().offset(50, 0));
+			Thread.sleep(2000);
+		}
+		return App.getClipboard();
+	}
+	
+	public void enterPalletID(String urn) throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/Pallet.png");
+		
+		screen.click(mSupplierId.below(10));
+		screen.doubleClick(mSupplierId.below(10));
+		Thread.sleep(2000);
+	System.out.println("abba"+App.getClipboard());
+		System.out.println("ANS"+App.getClipboard().split("_"));
+		String[] qtySplit =App.getClipboard().split("_");
+		System.out.println("PALLLETTT LENGTH"+qtySplit.length);
+		if(qtySplit.length!=0)
+		{
+			for(int i=0;i<qtySplit.length;i++)
+			{
+				puttyFunctionsPage.rightArrow();
+			}
+			for(int i=0;i<qtySplit.length;i++)
+			{
+				screen.type(Key.BACKSPACE);
+			}
+			Thread.sleep(1000);
+		}
+		
+		screen.type(urn);
+		Thread.sleep(2000);
+	}
 	
 }

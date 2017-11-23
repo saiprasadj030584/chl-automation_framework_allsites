@@ -1,12 +1,12 @@
-@Unload_URN_from_trailer
+@Split_Shipment
 Feature: Outbound order
   As a warehouse user
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_despatch @boxed @retail @boxed_outbound_despatch_retail_split_shipment_and_multiple_vehicle_single_order
+  @outbound_despatch @boxed @idt @boxed_outbound_despatch_idt_split_shipment_and_multiple_vehicle_single_order
   Scenario: Split shipment and multiple vehicle,single order
-    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    Given the order id of type "IDT" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated

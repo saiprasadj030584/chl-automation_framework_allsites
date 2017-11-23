@@ -27,15 +27,17 @@ public class UPIReceiptLineStepDefs {
 	private Map<Integer, Map<String, String>> poMap;
 	private Map<String, Map<String, String>> upiMap;
 	private Verification verification;
+	private JDAHomeStepDefs jdaHomeStepDefs;
 
 	@Inject
 	public UPIReceiptLineStepDefs(Context context, UPIReceiptLineDB upiReceiptLineDB, SupplierSkuDB supplierSkuDb,
-			SkuDB skuDb, Verification verification) {
+			SkuDB skuDb, Verification verification, JDAHomeStepDefs jdaHomeStepDefs) {
 		this.context = context;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.supplierSkuDb = supplierSkuDb;
 		this.skuDb = skuDb;
 		this.verification = verification;
+		this.jdaHomeStepDefs = jdaHomeStepDefs;
 	}
 
 	@Given("^PO to be linked with upi line$")
@@ -61,79 +63,90 @@ public class UPIReceiptLineStepDefs {
 		// Link PO ID and PO line DI with UPI for each line item
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		
-//		int m = 0;
-//		for (int j = 0; j < context.getUpiList().size(); j++) {
-//
-//			for (int i = 1; i <= Integer
-//					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(m))); i++) {
-//				String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU");
-//				String poLineId = context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i)
-//						.get("LINE ID");
-//				upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(m), sku, context.getUpiList().get(j));
-//				upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiList().get(j));
-//			}
-//			m++;
-//		}
-		
-		System.out.println("UPI NUM LINES"+context.getUpiNumLinesMap());
-		System.out.println("PO NUM LINES"+context.getPoNumLinesMap());
-		
-		ArrayList linked=new ArrayList();
+
+		// int m = 0;
+		// for (int j = 0; j < context.getUpiList().size(); j++) {
+		//
+		// for (int i = 1; i <= Integer
+		// .parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(m)));
+		// i++) {
+		// String sku =
+		// context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i).get("SKU");
+		// String poLineId =
+		// context.getMultiplePOMap().get(context.getPreAdviceList().get(m)).get(i)
+		// .get("LINE ID");
+		// upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(m),
+		// sku, context.getUpiList().get(j));
+		// upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku,
+		// context.getUpiList().get(j));
+		// }
+		// m++;
+		// }
+
+		System.out.println("UPI NUM LINES" + context.getUpiNumLinesMap());
+		System.out.println("PO NUM LINES" + context.getPoNumLinesMap());
+
+		ArrayList linked = new ArrayList();
 		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
 			for (int i = 1; i <= Integer
 					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
-				System.out.println("MULTIPLE PO"+context.getMultiplePOMap());
-				System.out.println("SKU"+context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
+				System.out.println("MULTIPLE PO" + context.getMultiplePOMap());
+				System.out.println(
+						"SKU" + context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
 				System.out.println("//////////////////////////////////");
-				System.out.println("UPI List"+context.getUpiList());
-				System.out.println("Num Lines"+context.getPoNumLinesMap());
+				System.out.println("UPI List" + context.getUpiList());
+				System.out.println("Num Lines" + context.getPoNumLinesMap());
 				System.out.println("//////////////////////////////////");
 				String sku = context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU");
-				
+
 				String poLineId = context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i)
 						.get("LINE ID");
-				System.out.println("SKUUUUUU"+sku);
-				System.out.println("PO LINE IDDDDDDDDDDD"+poLineId);
-				int count=0;
+				System.out.println("SKUUUUUU" + sku);
+				System.out.println("PO LINE IDDDDDDDDDDD" + poLineId);
+				int count = 0;
 				for (int k = 0; k < context.getUpiList().size(); k++) {
-					System.out.println("SKU FROM UPI lll"+context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+					System.out
+							.println("SKU FROM UPI lll" + context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
 					System.out.println(k);
 					System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
-					
-					
-					for (int p = 0; p <(context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
-						String sku1=context.getSkuFromUPI().get(count);
-						System.out.println("P first"+p);
-						System.out.println("k first"+k);
-//						String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).get("SKU");
-						String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
-						System.out.println("SKUUUUUU FROM UPI"+skuUPI);
-						System.out.println("A"+context.getMultipleUPIMap().get(context.getUpiList().get(k)));
-						System.out.println("B"+context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1));
-						System.out.println("C"+context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("LINKED"));
-						
-						if(sku.equalsIgnoreCase(skuUPI))
-						{
-							if(context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).get("LINKED").equalsIgnoreCase("0"))
-							{
-							upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(j), sku, context.getUpiList().get(k));
-							upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiList().get(k));
-							context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).put("LINKED","1");
-							System.out.println(context.getMultipleUPIMap());
-							
+
+					for (int p = 0; p < (context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+						String sku1 = context.getSkuFromUPI().get(count);
+						System.out.println("P first" + p);
+						System.out.println("k first" + k);
+						// String skuUPI =
+						// context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).get("SKU");
+						String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1)
+								.get("SKU");
+						System.out.println("SKUUUUUU FROM UPI" + skuUPI);
+						System.out.println("A" + context.getMultipleUPIMap().get(context.getUpiList().get(k)));
+						System.out
+								.println("B" + context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1));
+						System.out.println("C"
+								+ context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("LINKED"));
+
+						if (sku.equalsIgnoreCase(skuUPI)) {
+							if (context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).get("LINKED")
+									.equalsIgnoreCase("0")) {
+								upiReceiptLineDB.updatePreAdviceID(context.getPreAdviceList().get(j), sku,
+										context.getUpiList().get(k));
+								upiReceiptLineDB.updatePreAdviceLineID(poLineId, sku, context.getUpiList().get(k));
+								context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku).put("LINKED",
+										"1");
+								System.out.println(context.getMultipleUPIMap());
+
 							}
 						}
-						System.out.println("P last"+p);
+						System.out.println("P last" + p);
 						count++;
-					
+
+					}
 				}
-				}
+			}
 		}
-		}
-		System.out.println("VLUES"+context.getMultiplePOMap());
-		System.out.println("VLUES"+context.getMultipleUPIMap());
-		
+		System.out.println("VLUES" + context.getMultiplePOMap());
+		System.out.println("VLUES" + context.getMultipleUPIMap());
+
 	}
 
 	@Given("^ Multiple PO to be linked with upi line for multiple pallets$")
@@ -248,6 +261,26 @@ public class UPIReceiptLineStepDefs {
 		} else {
 			Assert.assertFalse("SKU is not Multi Soured", supplierSkuDb.isMultiSourced(context.getUPC()));
 		}
+	}
+
+	@Given("^I increase the stock of one pallet$")
+	public void i_increase_stock_of_one_pallet() throws Throwable {
+		// Link PO ID and PO line DI with UPI for each line item
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		
+		for (int j = 0; j < context.getUpiList().size(); j++) {
+			for (int i = 0; i < upiReceiptLineDB.getSkuIdList(context.getUpiList().get(j)).size(); i++) {
+				String sku = upiReceiptLineDB.getSkuIdList(context.getUpiList().get(j)).get(i);
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiList().get(j)).get(sku).get("QTY DUE")));
+				upiReceiptLineDB.updateStock(context.getUpiList().get(j), sku,
+						String.valueOf(context.getRcvQtyDue() + 5));
+
+			}
+			break;
+		}
+
 	}
 
 }

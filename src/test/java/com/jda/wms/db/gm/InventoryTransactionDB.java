@@ -962,4 +962,18 @@ System.out.println("select LOCK_CODE from inventory_transaction where reference_
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public String getTagId(String preadviceId,String skuId,String code) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select TAG_ID from inventory_transaction where reference_id='" + preadviceId + "' and sku_id='" + skuId + "' and code = 'Receipt'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select TAG_ID from inventory_transaction where reference_id='" + preadviceId + "' and sku_id='" + skuId + "' and code = 'Receipt'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

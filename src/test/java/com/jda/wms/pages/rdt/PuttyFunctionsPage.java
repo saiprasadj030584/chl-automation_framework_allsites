@@ -2,6 +2,7 @@ package com.jda.wms.pages.rdt;
 
 import java.io.IOException;
 
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -158,5 +159,12 @@ public class PuttyFunctionsPage {
 			return true;
 		else
 			return false;
+	}
+	
+	public String getValue() throws FindFailed, InterruptedException {
+		
+		screen.doubleClick();
+		Thread.sleep(2000);
+		return App.getClipboard();
 	}
 }

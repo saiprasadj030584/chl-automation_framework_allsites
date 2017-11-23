@@ -94,13 +94,7 @@ public class DockSchedulerBookingStepDefs {
 		jdaFooter.PressEnter();
 	}
 	
-	@Then("^the booking details should appear$")
-	public void the_booking_details_should_appear() throws Throwable {
-		ArrayList failureList = new ArrayList();
-		verification.verifyData("Trailer ID", context.getTrailerNo(),
-				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
-		
-	}
+	
 	
 	
 }

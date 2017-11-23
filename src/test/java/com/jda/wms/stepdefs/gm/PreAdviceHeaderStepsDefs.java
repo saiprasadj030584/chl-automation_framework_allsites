@@ -699,6 +699,8 @@ public class PreAdviceHeaderStepsDefs {
 		context.setUpiNumLinesMap(upiNumLines);
 		// System.out.println("number of lines"+numLines);
 		context.setPoNumLinesMap(PONumLinesMap);
+		System.out.println("UPI NO LINES MAP"+context.getUpiNumLinesMap());
+		System.out.println("PO NO LINES MAP"+context.getPoNumLinesMap());
 		if (upiNumLinesCount != poNumLines) {
 			failureList.add("No of Lines in PO and UPI Header do not match");
 		}

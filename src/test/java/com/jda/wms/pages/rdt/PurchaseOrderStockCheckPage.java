@@ -53,5 +53,15 @@ public class PurchaseOrderStockCheckPage {
 		screen.type(asn);
 		Thread.sleep(2000);
 	}
+	
+	public void i_enter_supplier(String supplier) throws InterruptedException {
+		screen.type(supplier);
+		Thread.sleep(2000);
+	}
+	
+	public void i_enter_upc(String upc) throws InterruptedException {
+		screen.type(upc);
+		Thread.sleep(2000);
+	}
 }
 

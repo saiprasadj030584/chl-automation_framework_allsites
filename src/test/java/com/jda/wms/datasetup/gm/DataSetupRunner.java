@@ -129,7 +129,7 @@ public class DataSetupRunner {
 				String poReference1 = null;
 				String upiReference1 = null;
 				jdaLoginPage.login();
-				if(context.getUniqueTag().contains("multiple_trailer"))
+				if(context.getUniqueTag().contains("multiple_trailer") || context.getUniqueTag().contains("adding_stock_to_asn_before_receiving"))
 				{
 					System.out.println("Inside mukltiple asn");
 					String asn1 = newAsnId();
@@ -156,7 +156,7 @@ public class DataSetupRunner {
 					validateAsnDataSetup(asn);
 					gettcdata.setAsnId(asn);
 				}
-				if(context.getUniqueTag().contains("multiple_urn"))
+				if(context.getUniqueTag().contains("multiple_urn") || context.getUniqueTag().contains("adding_stock_to_asn_before_receiving"))
 				{
 					System.out.println("Inside mukltiple utn");
 					String upi1 = newPalletdId_directPO();
