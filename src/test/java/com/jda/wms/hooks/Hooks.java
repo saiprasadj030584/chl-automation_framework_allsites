@@ -34,7 +34,6 @@ public class Hooks {
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
-//	public static String SITEID = System.getProperty("SITEID");
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
@@ -124,10 +123,6 @@ public class Hooks {
 
 	private void insertSiteID() {
 		try {
-			// System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID)
-			// VALUES ('" + context.getParentRequestId()
-			// + "','" + System.getProperty("SITEID") + "')");
-
 			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
 					+ "','" + context.getSiteID() + "')");
 			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()

@@ -44,8 +44,8 @@ public class Database {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
-	private Configuration configuration;
-	private Context context;
+	private final Configuration configuration;
+	private final Context context;
 
 	@Inject
 	public Database(Configuration configuration, Context context) {
