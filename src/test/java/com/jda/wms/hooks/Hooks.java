@@ -34,7 +34,7 @@ public class Hooks {
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
-	public static String SITEID = System.getProperty("SITEID");
+//	public static String SITEID = System.getProperty("SITEID");
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;

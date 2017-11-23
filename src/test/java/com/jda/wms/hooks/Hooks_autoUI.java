@@ -39,7 +39,7 @@ public class Hooks_autoUI {
 	private final Configuration configuration;
 	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
-	public static String SITEID = System.getProperty("SITEID");
+//	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
 	Screen screen = new Screen();
 	private Context context;
