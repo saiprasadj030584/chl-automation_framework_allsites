@@ -96,6 +96,9 @@ public class DataSetupRunner {
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
+		if (null==context.getSiteID()){
+			getSiteId(context.getUniqueTag());
+		}
 		System.out.println("SITE ID FOR SCENARIO " + context.getSiteID());
 
 		// insertData();
@@ -437,6 +440,7 @@ public class DataSetupRunner {
 
 			}
 		}
+		System.out.println("------------------SITE ID :"+context.getSiteID()+"---------------------");
 
 	}
 
@@ -542,15 +546,13 @@ public class DataSetupRunner {
 		try {
 			npsDataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-			// resultSet = npsDataBase.dbConnection.createStatement()
-			// .executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE
-			// UNIQUE_TAG ='" + context.getUniqueTag()
-			// + "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = npsDataBase.dbConnection.createStatement().executeQuery(
 					"SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
-				UniqueTagInTestData = true;
+				if (temp.equalsIgnoreCase(context.getUniqueTag())){
+					UniqueTagInTestData = true;
+				}
 			}
 			npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {

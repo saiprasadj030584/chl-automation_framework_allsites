@@ -47,13 +47,13 @@ public class Database {
 	private Connection connection;
 	private final Configuration configuration;
 	private final Context context;
-	private final DataSetupRunner dataSetupRunner;
+//	private final DataSetupRunner dataSetupRunner;
 
 	@Inject
-	public Database(Configuration configuration, Context context, DataSetupRunner dataSetupRunner) {
+	public Database(Configuration configuration, Context context) {
 		this.configuration = configuration;
 		this.context = context;
-		this.dataSetupRunner = dataSetupRunner;
+//		this.dataSetupRunner = dataSetupRunner;
 	}
 
 	/**
@@ -74,9 +74,9 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			if (context.getSiteID() == null) {
-				dataSetupRunner.getSiteId(context.getUniqueTag());
-			}
+//			if (context.getSiteID() == null) {
+//				dataSetupRunner.getSiteId(context.getUniqueTag());
+//			}
 
 			if (context.getSiteID().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
