@@ -3,14 +3,14 @@ Feature: Boxed - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-   @jenkinsk @allocation @retail @boxed @boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
+    @allocation @retail @boxed @boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page
     And I allocate the stocks
     Then the order should be allocated
 
-  @jenkinsz @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+  @jenkinsfd @allocation @retail @boxed @boxed_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
