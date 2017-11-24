@@ -92,6 +92,7 @@ public class DataSetupRunner {
 				uniqueTag = tag;
 			}
 		}
+		context.setSiteId("5649");
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		System.out.println("UNIQUE TAG "+context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
@@ -317,7 +318,7 @@ public class DataSetupRunner {
 			}
 		}
 
-		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order")) {
+		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order") ||context.getUniqueTag().contains("remove_stock_check_")) {
 			try {
 				npsDataBase.connectAutomationDB();
 

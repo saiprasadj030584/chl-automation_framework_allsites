@@ -338,18 +338,22 @@ public class JdaHomePage {
 	
 	
 	public void clickSearchIcon() throws FindFailed, InterruptedException {
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 			System.out.println("Application search icon found");
 			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				System.out.println("11111111");
 				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				Thread.sleep(5000);
 				screen.click("images/JDAHome/Welcomed.png");
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
 			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+				System.out.println("22222222");
 				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
-				screen.click("images/JDAHome/Welcome.png");
+				Thread.sleep(2000);
+				screen.click("images/JDAHome/Welcomed.png");
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);

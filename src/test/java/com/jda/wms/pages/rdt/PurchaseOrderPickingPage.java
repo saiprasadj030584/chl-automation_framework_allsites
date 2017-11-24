@@ -38,6 +38,25 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void enterPicToTagId(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		 
+		}
+	public boolean checktagidavailable() throws FindFailed, InterruptedException {
+		try {
+			System.out.println("entered check stock ");
+		if (screen.exists("images/Putty/Picking/scantagid.png", 10) != null){
+			Thread.sleep(1000);
+			screen.type(Key.ENTER);
+			return true;}
+		else
+			
+			return false;
+		}catch(Exception e){e.printStackTrace();return false;
+		}
+	}
 
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
@@ -190,12 +209,22 @@ public class PurchaseOrderPickingPage {
 		// return App.getClipboard();
 	}
 
-	public void enterMinimumQty() throws InterruptedException {
+	public void entrMinimumQty() throws InterruptedException {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(3000);
 		// screen.type(Key.TAB);
 		// Thread.sleep(2000);
 		screen.type("1");
+		Thread.sleep(5000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(5000);
+	}
+	public void enterMinimumQty(String qty) throws InterruptedException {
+		// screen.type(Key.ENTER);
+		// Thread.sleep(3000);
+		// screen.type(Key.TAB);
+		// Thread.sleep(2000);
+		screen.type(qty);
 		Thread.sleep(5000);
 		// screen.type(Key.ENTER);
 		// Thread.sleep(5000);
@@ -242,6 +271,7 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(1000);
 		screen.type(containerId);
 		Thread.sleep(3000);
+		screen.type(Key.ENTER);
 		// Thread.sleep(3000);
 
 	}

@@ -391,7 +391,7 @@ public class PurchaseOrderPickingStepDefs {
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		purchaseOrderPickingPage.enterListId(context.getListID());
 		purchaseOrderPickingPage.getQuantity();
-		purchaseOrderPickingPage.enterMinimumQty();
+		purchaseOrderPickingPage.entrMinimumQty();
 		purchaseOrderPickingPage.getTagId();
 		purchaseOrderPickingPage.selectReason();
 		purchaseOrderPickingPage.enterContainerId();

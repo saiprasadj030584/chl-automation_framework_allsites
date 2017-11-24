@@ -23,7 +23,7 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-
+	
 	public void enterContainerId(String containerId) throws FindFailed, InterruptedException {
 		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
 		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");

@@ -31,6 +31,7 @@ public void selectExistingStockCheckMenu() throws InterruptedException {
 	Thread.sleep(2000);
 }
 
+
 public void enterLocation(String Location) throws InterruptedException {
 	screen.type(Location);
 	Thread.sleep(1000);
