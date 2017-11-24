@@ -54,7 +54,7 @@ public class Hooks {
 		this.hooksautoUI = hooksautoUI;
 	}
 
-	//@Before
+	// @Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -85,11 +85,7 @@ public class Hooks {
 					System.out.println("Datasetup Started");
 					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
 					System.out.println("Datasetup completed");
-//					insertSiteID();
-					// getSiteID();
-				}
-				else
-				{
+				} else {
 					System.out.println("Datasetup not require for email scenario");
 				}
 				System.out.println(context.getTestData());
@@ -98,7 +94,7 @@ public class Hooks {
 		System.out.println("1st Before end");
 	}
 
-//	@Before("~@Email")
+	// @Before("~@Email")
 	public void setup(Scenario scenario) throws Exception {
 		System.out.println("INSIDE EMAIL");
 		System.out.println("Starting Execution" + scenario.getName());
