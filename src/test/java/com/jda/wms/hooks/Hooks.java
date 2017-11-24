@@ -82,9 +82,15 @@ public class Hooks {
 				dataSetupRunner.getTagListFromAutoDb();
 
 				if (!(scenario.getName().contains("Triggering automation email"))) {
+					System.out.println("Datasetup Started");
 					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
+					System.out.println("Datasetup completed");
 //					insertSiteID();
 					// getSiteID();
+				}
+				else
+				{
+					System.out.println("Datasetup not require for email scenario");
 				}
 				System.out.println(context.getTestData());
 			}
