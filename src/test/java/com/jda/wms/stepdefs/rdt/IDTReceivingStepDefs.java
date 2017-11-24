@@ -572,5 +572,53 @@ public class IDTReceivingStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
+	@When("^I perform return receiving at location \"([^\"]*)\" for multiple URN$")
+	public void i_perform_return_receiving_at_location_for_multiple_URN(String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		upiMap = context.getUPIMap();
+		String quantity = null;
+		System.out.println("upiMap "+upiMap);
+		System.out.println("context.getUpiNumLinesMap() "+context.getUpiNumLinesMap());
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingStepDefs.i_receive_the_po_with_basic_and_blind_receiving();
+		purchaseOrderReceivingStepDefs.i_should_be_directed_to_blind_entry_page();
+		
+		int m = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+			System.out.println(context.getUpiNumLinesMap().get(context.getUpiId()));
+			for (int j = 0; j < context.getUpiNumLinesMap().get(context.getUpiList().get(k)); j++) {
+				m++;
+				context.setSkuId(context.getSkuFromUPI().get(m - 1));
+
+					purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+					purchaseOrderReceivingPage.enterUPC1BEL(
+							context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("UPC"));
+					jdaFooter.pressTab();
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterQuantity("1");
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+					context.setLocation(location);
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+					jdaFooter.navigateToNextScreen();
+					purchaseOrderReceivingPage.enterSupplierId(context.getMultipleUPIMap().get(context.getUpiId())
+							.get(context.getSkuId()).get("SUPPLIER ID"));
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPalletId(Utilities.getFiveDigitRandomNumber()+Utilities.getFourDigitRandomNumber());;
+					jdaFooter.PressEnter();
+					Thread.sleep(2000);
+					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + j,
+							purchaseOrderReceivingPage.isBlindReceivingDoneForIdt());
+					jdaFooter.PressEnter();
+					Thread.sleep(1000);
+			}
+		}
+		hooks.logoutPutty();
+	}
 
 }

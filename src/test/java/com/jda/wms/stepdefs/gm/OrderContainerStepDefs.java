@@ -138,4 +138,15 @@ public class OrderContainerStepDefs {
 		orderContainerPage.getBuildMasterURN();
 		Thread.sleep(2000);
 	}
+
+	 @Then("^URN should be sorted$")
+		public void urn_should_be_sorted() throws Throwable {
+		 jdaHomePage.navigateToOrderContainerPage();
+		 jDAFooter.clickQueryButton();
+		 orderContainerPage.enterOrderID(context.getOrderId());
+		 jDAFooter.clickExecuteButton();
+		 orderContainerPage.getBuildMasterURN();
+		 Thread.sleep(2000);
+		 Assert.assertEquals("Sortation is not as expected",context.getToPallet(),orderContainerDB.selectURN(context.getOrderId()) );
+		}
 }

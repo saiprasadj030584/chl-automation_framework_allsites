@@ -16,12 +16,10 @@ public class Verification {
 	}
 
 	public ArrayList<String> verifyData(String fieldName, String expectedResults, String actualResults,
+
 			ArrayList<String> failureList) {
-		System.out.println("Expected Results" +expectedResults);
-		System.out.println("Actual Results" +actualResults);
-		System.out.println(expectedResults.contains(actualResults));
 		logger.debug(fieldName + " - expected [" + expectedResults + "] and actual [" + actualResults + "]");
-		if (!(expectedResults==null)) {
+		if (!(null==expectedResults)) {
 			if (null == actualResults) {
 				failureList.add(fieldName + " does not match. Expected  [Not Null] but was [" + actualResults + "]");
 			}
@@ -33,6 +31,7 @@ public class Verification {
 		}
 		return failureList;
 	}
+
 
 	public ArrayList<String> verifyDataEempty(String fieldName, String expectedResults, String actualResults,
 			ArrayList<String> failureList) {

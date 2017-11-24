@@ -3,7 +3,9 @@ package com.jda.wms.stepdefs.rdt;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Assert;
 
@@ -75,6 +77,8 @@ public class PurchaseOrderPickingStepDefs {
 		this.addressDB = addressDB;
 
 	}
+	
+	
 
 	@Given("^I perform picking$")
 	public void i_perform_picking() throws Throwable {
@@ -343,28 +347,150 @@ public class PurchaseOrderPickingStepDefs {
 		puttyFunctionsPage.pressEnter();
 	}
 	
-	@Given("^I perform picking for boxed$")
-	public void i_perform_picking_for_boxed() throws Throwable {
+	@Given("^I perform picking for hanging discrepancy$")
+	public void i_perform_picking_for_hanging_discrepancy() throws Throwable {
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		String tagValueL = addressDB.getLowerTagValue();
+		String tagValueH = addressDB.getHigherTagValue();
+		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+				+ Integer.parseInt(tagValueL);
+		context.setTagId(String.valueOf(tag));
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPicToTagId(context.getTagId());
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		//purchaseOrderPickingPage.getQuantity();
+		purchaseOrderPickingPage.enterMinimumQty();
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.selectReason();
+		purchaseOrderPickingPage.enterContainerId(String.valueOf(tag));
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
+		hooks.logoutPutty();
+	}
+	@Given("^I perform picking for multiple order$")
+	public void i_perform_picking_for_multiple_order() throws Throwable {
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		purchaseOrderPickingPage.selectPickingMenu();
 		purchaseOrderPickingPage.selectPickingMenu2();
 		purchaseOrderPickingPage.selectContainerPick();
-		//context.setOrderId("4764320894");
-		context.setListID(moveTaskDB.getListIdString(context.getOrderId()));
-		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+		for (int i = 1; i < context.getOrderList().size(); i++) {
+		context.setOrderId(context.getOrderList().get(i));
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		purchaseOrderPickingPage.enterListId(context.getListID());
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		String tagValueL = addressDB.getLowerTagValue();
+		String tagValueH = addressDB.getHigherTagValue();
+		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+				+ Integer.parseInt(tagValueL);
+		context.setTagId(String.valueOf(tag));
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPicToTagId(context.getTagId());
 		puttyFunctionsPage.pressEnter();
 		puttyFunctionsPage.pressEnter();
-		// String ToTAg= purchaseOrderPickingPage.getToTag();
-	    puttyFunctionsPage.pressEnter();
-		String ContainerID = moveTaskDB.getContainerId(context.getOrderId());
-		//purchaseOrderPickingPage.enterContainerId(ContainerID);
 		puttyFunctionsPage.pressEnter();
-	    puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterContainerId(String.valueOf(tag));
+		int d=0;
+		do{
+			System.out.println(purchaseOrderPickingPage.isPckPalToExists());
+		if(!purchaseOrderPickingPage.isPckPalToExists()){
+			System.out.println("inside IF pallet check");
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			if(purchaseOrderPickingPage.isPckConCnfExists()){
+				purchaseOrderPickingPage.enterContainerId(String.valueOf(tag));
+			}
+			d++;
+		}
+		else{
+			System.out.println("found screen");
+			break;
+		}
+		}while(d>0);
+		puttyFunctionsPage.pressEnter();
 		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
+	}
 		hooks.logoutPutty();
 	}
+	
+	@Given("^I perform picking for boxed$")
+	public void i_perform_picking_for_boxed() throws Throwable {
+		Assert.assertNotNull("List ID is not generated as expected", context.getListID());
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPrinterNO("P2003");
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		Assert.assertTrue("Picking Entry is not as expected",
+				 purchaseOrderPickingPage.isPckEntPageDisplayed());
+		hooks.logoutPutty();
+		
+	}
+	@Given("^I perform picking for multiple order of type boxed$")
+	public void i_perform_picking_for_multiple_order_of_type_boxed() throws Throwable {
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		
+		for (int i = 1; i < context.getOrderList().size(); i++) {
+		context.setOrderId(context.getOrderList().get(i));
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		Assert.assertNotNull("List ID is not generated as expected", context.getListID());
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPrinterNO("dummy3");
+		
+		int d=0;
+		do{
+			System.out.println(purchaseOrderPickingPage.isPckPalToExists());
+		if(!purchaseOrderPickingPage.isPckPalToExists()){
+			System.out.println("inside IF pallet check");
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			d++;
+		}
+		else{
+			System.out.println("found screen");
+			break;
+		}
+		}while(d>0);
+		
+		
+		puttyFunctionsPage.pressEnter();
+		Assert.assertTrue("Picking Entry is not as expected",
+				 purchaseOrderPickingPage.isPckEntPageDisplayed());
+		ArrayList failureList = new ArrayList();
+		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		
+		}
+		hooks.logoutPutty();
+	}
+	
 	
 	@Given("^I proceed for boxed vehicle loading$")
 	public void i_proceed_for_for_boxed_vehicle_loading() throws Throwable {
@@ -383,6 +509,46 @@ public class PurchaseOrderPickingStepDefs {
 			Thread.sleep(2000);
 			Assert.assertTrue("vehicle loading not as expected", puttyFunctionsPage.isVehEntPageDisplayed());
 			
+			//purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed();
+			//Assert.assertTrue("Vehicle Loading is not as expected", purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			hooks.logoutPutty();
+			context.setVehicleLoadRequired(false);
+}
+	@Given("^I proceed for vehicle loading with multiple order$")
+	public void i_proceed_for_vehicle_loading_with_multiple_order() throws Throwable {
+			context.setVehicleLoadRequired(true);
+			puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+			puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+			purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+			purchaseOrderVehicleLoadingPage.selectMultiPalletLoadMenu();
+			
+			ArrayList palletIDList = new ArrayList();
+			for (int i = 0; i < context.getOrderList().size(); i++) {
+				//To check if multiple orders have same pallet ID
+				context.setOrderId(context.getOrderList().get(i));
+				String urn = moveTaskDB.selectPalletId(context.getOrderId());
+				palletIDList.add(urn);
+			}
+			Set<String> hs = new HashSet<>();
+			hs.addAll(palletIDList);
+			palletIDList.clear();
+			palletIDList.addAll(hs);
+			context.setPalletIDList(palletIDList);
+			System.out.println("pallet id list" + context.getPalletIDList());
+			
+			for (int i = 0; i < context.getPalletIDList().size(); i++) {
+//			context.setOrderId(context.getOrderList().get(i));
+				System.out.println("get booking id" + context.getBookingID());
+			String dockdoor=bookingInDiary.selectDockDoor(context.getBookingID());
+			purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+			puttyFunctionsPage.pressTab();
+//			String urn = moveTaskDB.selectPalletId(context.getOrderId());
+			purchaseOrderVehicleLoadingPage.enterURN((String) context.getPalletIDList().get(i));	
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			Assert.assertTrue("Vehicle loading not as expected", puttyFunctionsPage.isVehEntPageDisplayed());
+			}
 			//purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed();
 			//Assert.assertTrue("Vehicle Loading is not as expected", purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
 			hooks.logoutPutty();
@@ -425,7 +591,51 @@ public class PurchaseOrderPickingStepDefs {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(2000);		
 	}
+    @When("^I proceed for boxed vehicle unloading with multiple order$")
+	public void i_proceed_for_boxed_vehicle_unloading_with_multiple_order() throws Throwable {
+		String siteid = context.getSiteId();
+		context.setVehicleLoadRequired(true);
+		Thread.sleep(3000);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+		purchaseOrderVehicleLoadingPage.selectVehicleUnloadMenu();
+		for (int i = 0; i < context.getOrderList().size(); i++) {
+		context.setOrderId(context.getOrderList().get(i));
+		String urn=orderContainerDB.selectURN(context.getOrderId());
+		purchaseOrderVehicleLoadingPage.enterPalletID(urn);
+		Thread.sleep(2000);
+		puttyFunctionsPage.pressTab();
+		purchaseOrderVehicleLoadingPage.enterTrailer(context.getTrailerNo());
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(2000);	
+		Assert.assertTrue("vehicle unloading not as expected", puttyFunctionsPage.isVehicleUnloadEntryPageDisplayed());
+		}
+		hooks.logoutPutty();
+	}
     
+    @When("^I proceed for \"([^\"]*)\" vehicle unloading with multiple order$")
+	public void i_proceed_for_vehicle_unloading_with_multiple_order(String dataType) throws Throwable {
+		String siteid = context.getSiteId();
+		context.setVehicleLoadRequired(true);
+		Thread.sleep(3000);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+		purchaseOrderVehicleLoadingPage.selectVehicleUnloadMenu();
+		for (int i = 0; i < context.getPalletIDList().size(); i++) {
+//		context.setOrderId(context.getOrderList().get(i));
+//		String urn=orderContainerDB.selectURN(context.getOrderId());
+		purchaseOrderVehicleLoadingPage.enterPalletID(context.getPalletIDList().get(i));
+		Thread.sleep(2000);
+		//puttyFunctionsPage.pressTab();
+		purchaseOrderVehicleLoadingPage.enterTrailer(context.getTrailerNo());
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(2000);	
+		Assert.assertTrue("vehicle unloading not as expected", puttyFunctionsPage.isVehicleUnloadEntryPageDisplayed());
+		}
+		hooks.logoutPutty();
+	}
     @Then("^vehicle should be unload$")
 	public void vehicle_should_be_unload() throws Throwable {
     	ArrayList failureList = new ArrayList();
@@ -437,6 +647,22 @@ public class PurchaseOrderPickingStepDefs {
     	Assert.assertTrue("vehicle unloading not as expected", puttyFunctionsPage.isVehicleUnloadEntryPageDisplayed());
 		hooks.logoutPutty();
     }
+    
+    @Then("^vehicle should be unload for multiple order$")
+   	public void vehicle_should_be_unload_for_multiple_order() throws Throwable {
+       	ArrayList failureList = new ArrayList();
+   		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+   		for (int i = 0; i < context.getOrderList().size(); i++) {
+		context.setOrderId(context.getOrderList().get(i));
+   		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+//   		Assert.assertTrue("vehicle unloading not as expected", puttyFunctionsPage.isVehicleUnloadEntryPageDisplayed());
+   		System.out.println("order id to be unload"+ context.getOrderId());
+   		}
+   		Assert.assertTrue(
+   				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+   				failureList.isEmpty());
+   		//hooks.logoutPutty();
+       }
     
     @Then("^Trailer should enter page displayed$")
 	public void Trailer_should_enter() throws Throwable {	
@@ -594,5 +820,25 @@ public class PurchaseOrderPickingStepDefs {
 			purchaseOrderVehicleLoadingPage.enterTrailer(context.getTrailerNo());
 			puttyFunctionsPage.pressEnter();
 			Thread.sleep(2000);
+		}
+	 @Given("^I proceed with sortation$")
+		public void i_proceed_with_sortation() throws Throwable {
+			//context.setSortationRequired(true);
+			puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+			puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+			purchaseOrderPickingPage.selectPickingMenu();
+			purchaseOrderPickingPage.selectSortingMenu();
+			String ToPallet=Utilities.getTenDigitRandomNumber()+Utilities.getFiveDigitRandomNumber();
+			context.setToPallet(ToPallet);
+			purchaseOrderPickingPage.enterToPallet(context.getToPallet());
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.nextScreen();
+			puttyFunctionsPage.pressTab();
+			String fromPallet=orderContainerDB.selectContainer(context.getOrderId());
+			purchaseOrderPickingPage.enterFromPallet(fromPallet);
+			puttyFunctionsPage.pressEnter();	
+			Assert.assertTrue("Sortation completion is not as expected", purchaseOrderPickingPage.isPalRpkFrmCPageDisplayed());
+			hooks.logoutPutty();
+
 		}
 }

@@ -63,9 +63,11 @@ public class Context {
 	private String siteId;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+	private ArrayList<String> orderList;
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
+	private String orderId2;
 	private String customer;
 	private String listID;
 	private String toPallet;
@@ -160,6 +162,7 @@ public class Context {
 	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
 	private int updatedQty;
+	private static String secondTestData;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1349,6 +1352,13 @@ public class Context {
 	public static void setTestData(String testData) {
 		Context.testData = testData;
 	}
+	public static String getSecondTestData() {
+		return secondTestData;
+	}
+
+	public static void setSecondTestData(String secondTestData) {
+		Context.secondTestData = secondTestData;
+	}
 
 	public boolean isVehicleLoadRequired() {
 		return vehicleLoadRequired;
@@ -1372,6 +1382,22 @@ public class Context {
 
 	public void setSecondPalletID(String secondPalletID) {
 		this.secondPalletID = secondPalletID;
+	}
+
+	public ArrayList<String> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(ArrayList<String> orderList) {
+		this.orderList = orderList;
+	}
+
+	public String getOrderId2() {
+		return orderId2;
+	}
+
+	public void setOrderId2(String orderId2) {
+		this.orderId2 = orderId2;
 	}
 
 }

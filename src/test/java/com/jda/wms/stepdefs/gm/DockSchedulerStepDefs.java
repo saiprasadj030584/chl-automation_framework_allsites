@@ -648,10 +648,10 @@ public class DockSchedulerStepDefs {
 	
 	@When("^I select the booking type for consignment$")
 	public void i_select_the_booking_type_for_consignment() throws Throwable {
-		//context.setOrderId("5104628740");
 		dockSchedulerPage.enterBookingType("Consignment");
 		String cons=orderHeaderDB.selectConsignment(context.getOrderId());
 		context.setConsignmentID(cons);
+		Thread.sleep(2000);
 		jdaFooter.pressTab();
 		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
 		jdaFooter.clickSearch();

@@ -126,6 +126,7 @@ public class SystemAllocationStepsDefs {
 		skuFromOrder = context.getSkuFromOrder();
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
 				failureList);
+		System.out.println("sku size....." + skuFromOrder.size());
 		for (int i = 0; i < skuFromOrder.size(); i++) {
 			context.setRcvQtyDue(
 					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
@@ -152,15 +153,42 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickDoneButton();
 		Thread.sleep(8000);
 	}
+	@When("^I enter multiple OrderID for allocation$")
+	public void i_enter_multiple_OrderID_for_allocation() throws Throwable {
+		jdaFooter.clickNextButton();
+		for (int i = 0; i < context.getOrderList().size(); i++) {
+		systemAllocationPage.enterOrderId(context.getOrderList().get(i));
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		jdaFooter.clickDoneButton();
+		Thread.sleep(2000);
+		jdaFooter.clickDoneButton();
+		Thread.sleep(8000);
+		systemAllocationPage.deleteOrderId();
+		jdaFooter.pressBackSpace();
+		Thread.sleep(3000);
+		}
+	}
 	
 	@Then("^Allocation should be updated$")
 	public void allocation_should_be_updated() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(10000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-		//verification.verifyData("Quantity Tasked",orderHeaderDB.getOrderedQuantity(context.getOrderId()), orderHeaderDB.getQuantitytaskedStatus(context.getOrderId()), failureList);
-		//verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);
-		Assert.assertTrue("order and qty task is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+		Assert.assertTrue("order status is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Then("^Allocation should be updated for multiple order$")
+	public void allocation_should_be_updated_for_multiple_order() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Thread.sleep(10000);
+		for (int i = 0; i < context.getOrderList().size(); i++) {
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderList().get(i)), failureList);
+		}
+		Assert.assertTrue("order status is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
 }

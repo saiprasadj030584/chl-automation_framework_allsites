@@ -65,7 +65,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	// @Before
+	 @Before
 	public void updateAutoDBRequestStart(Scenario scenario) throws IOException {
 
 		updateRequestToAutomationDb.updateRequestStartTime();
@@ -75,7 +75,7 @@ public class Hooks {
 		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
 	}
 
-	@Before("~@no_ds")
+	  @Before("~@no_ds")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 
 		logger.debug(
@@ -114,7 +114,7 @@ public class Hooks {
 	}
 
 
-	@After
+	//@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();

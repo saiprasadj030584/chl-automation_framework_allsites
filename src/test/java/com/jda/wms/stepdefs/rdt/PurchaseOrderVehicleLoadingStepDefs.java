@@ -77,7 +77,19 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-
+	
+		@Then("^Trailer should be loaded for multiple order$")
+		public void Trailer_should_be_loaded_for_multiple_order() throws Throwable {
+			ArrayList failureList = new ArrayList();
+			Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+			for (int i = 0; i < context.getOrderList().size(); i++) {
+				context.setOrderId(context.getOrderList().get(i));
+			verification.verifyData("Order Status", "Complete", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+			}
+			Assert.assertTrue(
+					"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+					failureList.isEmpty());
+		}
 	
 
 	@Then("^Trailer should be unload$")

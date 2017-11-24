@@ -20,7 +20,7 @@ public class JDALoginStepDefs {
 
 	@Given("^I have logged in as warehouse user in JDA dispatcher GM application$")
 	public void i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_GM_application() throws Throwable {
-		jdaLoginPage.login();
+		//jdaLoginPage.login();
 	}
 
 }

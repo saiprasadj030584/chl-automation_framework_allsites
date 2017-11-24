@@ -36,4 +36,10 @@ public class SystemAllocationPage {
 		screen.type(orderId);
 		Thread.sleep(1000);
 	}
+
+	public void deleteOrderId() throws InterruptedException {
+		screen.type("a", Key.CTRL);
+		Thread.sleep(1000);
+		
+	}
 }

@@ -40,75 +40,75 @@ public class JdaLoginPage {
 	public void login() throws FindFailed, InterruptedException {
 		System.out.println("Login function");
 		if (driver == null) {
-			System.out.println("Driver is null");
-			try {
-				Process p = Runtime.getRuntime()
-						.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
-				p.waitFor(30, TimeUnit.SECONDS);
-			} catch (IOException e) {
+		System.out.println("Driver is null");
+		try {
+		Process p = Runtime.getRuntime()
+		.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
+		p.waitFor(30, TimeUnit.SECONDS);
+		} catch (IOException e) {
 
-				e.printStackTrace();
-			}
+		e.printStackTrace();
+		}
 
-			setDriver();
-			driver.manage().window().maximize();
+		setDriver();
+		driver.manage().window().maximize();
 
-			driver.navigate().to(configuration.getStringProperty("gm-jda-url"));
-			Thread.sleep(30000);
+		driver.navigate().to(configuration.getStringProperty("gm-jda-url"));
+		Thread.sleep(60000);
 
-			if (screen.exists("images/JDALogin/username.png") == null) {
-				// Assert.fail("Login Not successful");
-				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
-					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+		if (screen.exists("images/JDALogin/username.png") != null) {
+		// Assert.fail("Login Not successful");
+		if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+		while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
 
-						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
-						screen.click("images/JDALogin/DoNotAsk.png");
-						screen.wait("images/JDALogin/Later.png", timeoutInSec);
-						screen.click("images/JDALogin/Later.png");
+		screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
+		screen.click("images/JDALogin/DoNotAsk.png");
+		screen.wait("images/JDALogin/Later.png", timeoutInSec);
+		screen.click("images/JDALogin/Later.png");
 
-					}
+		}
 
-				} else {
-					Assert.fail("URL Not successful");
-				}
+		} else {
+		Assert.fail("URL Not successful");
+		}
 
-			}
+		}
 
-			enterUsername();
-			enterPassword();
-			clickConnectButton();
+		enterUsername();
+		enterPassword();
+		clickConnectButton();
 		}
 
 		int waitTime = 3;
 		do {
-			if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
-				break;
-			}
-			Thread.sleep(15000);
-			waitTime = waitTime + 3;
+		if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
+		break;
+		}
+		Thread.sleep(15000);
+		waitTime = waitTime + 3;
 		} while (waitTime < 60);
 
 		if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
-			screen.rightClick("/images/JDAHome/Welcomed.png", 25);
-			Thread.sleep(2000);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			screen.type(Key.UP);
-			Thread.sleep(2000);
-			screen.type(Key.ENTER);
+		screen.rightClick("/images/JDAHome/Welcomed.png", 25);
+		Thread.sleep(2000);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
 		}
 
 		else if (screen.exists("/images/JDAHome/Welcome.png") != null) {
-			screen.rightClick("/images/JDAHome/Welcome.png", 25);
-			Thread.sleep(4000);
-			screen.click("/images/JDAHome/CloseAll.png", 25);
+		screen.rightClick("/images/JDAHome/Welcome.png", 25);
+		Thread.sleep(4000);
+		screen.click("/images/JDAHome/CloseAll.png", 25);
 		}
-	}
+		}
 
 	public static void setDriver() {
 		DesiredCapabilities capabilities = null;

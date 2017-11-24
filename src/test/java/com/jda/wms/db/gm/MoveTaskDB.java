@@ -481,6 +481,7 @@ public class MoveTaskDB {
 	}
 
 	public String selectPalletId(String orderId) throws SQLException, ClassNotFoundException {
+		System.out.println("select pallet_id from move_task where task_id='" + orderId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}

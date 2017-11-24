@@ -99,6 +99,8 @@ public class DockSchedulerBookingStepDefs {
 	@Then("^the booking details should appear$")
 	public void the_booking_details_should_appear() throws Throwable {
 		ArrayList failureList = new ArrayList();
+		System.out.println("gettrailor "+ context.getTrailerNo());
+		System.out.println(bookingInDiary.getTrailerID(context.getBookingID()));
 		verification.verifyData("Trailer ID", context.getTrailerNo(),
 				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
 		Assert.assertTrue("Booking details does not display as expected. [" +Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());

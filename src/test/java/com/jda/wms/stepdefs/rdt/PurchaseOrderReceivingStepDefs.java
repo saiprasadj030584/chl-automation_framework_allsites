@@ -1176,12 +1176,12 @@ public class PurchaseOrderReceivingStepDefs {
 
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-
+        context.setStatus(status);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		context.setSKUType(dataType);
-		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(upiId,
-				asnId, status);
+		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
+				);
 		the_multiple_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		Map<String, Integer> upiNumLines = new HashMap<String, Integer>();
 		int numLines = 0;

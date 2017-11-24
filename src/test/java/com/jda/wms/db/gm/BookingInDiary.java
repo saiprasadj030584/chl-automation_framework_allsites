@@ -26,6 +26,7 @@ public class BookingInDiary {
 		ResultSet rs = stmt
 				.executeQuery("select trailer_id from booking_in_diary where bookref_id='" + bookingId + "'");
 		rs.next();
+		System.out.println("return trailor"+rs.getString(1));
 		return rs.getString(1);
 	}
 
