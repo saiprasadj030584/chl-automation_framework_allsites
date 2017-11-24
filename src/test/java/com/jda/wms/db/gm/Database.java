@@ -47,7 +47,7 @@ public class Database {
 	private String applicationUser;
 	private Connection connection;
 	private final Configuration configuration;
-	private final Context context;
+	private static Context context;
 	public static DbConnection npsDataBase;
 	// private final DataSetupRunner dataSetupRunner;
 
@@ -72,15 +72,14 @@ public class Database {
 	 * @return - returns true if the connection is successful.
 	 * @throws ClassNotFoundException
 	 */
-	@Before
 	public void connect() throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			if (context.getSiteID() == null) {
-				
-				System.out.println("2 Value Of Site Id **" + context.getSiteID());
-				Assert.fail("No site Id has been fetched from DB");// dataSetupRunner.getSiteId(context.getUniqueTag());
+				System.out.println(" Value Of Site Id" + context.getSiteID());
+//				Assert.fail("No site Id has been fetched from DB");//
+				npsDataBase.getSiteId(context.getUniqueTag());
 			}
 			System.out.println("Value Of Site Id **" + context.getSiteID());
 

@@ -69,22 +69,7 @@ public class DataSetupRunner {
 		}
 	}
 
-	public void getJdaSiteIdFromDB() {
-		ResultSet resultSet = null;
-		try {
-			npsDataBase.connectAutomationDB();
-			resultSet = npsDataBase.dbConnection.createStatement()
-					.executeQuery("Select * from dbo.JDA_GM_RUN_REQUESTS where PARENT_REQUEST_ID='"
-							+ context.getParentRequestId() + "'");
-			while (resultSet.next()) {
-				context.setSiteID(resultSet.getString("SITE_NO"));
-			}
-			npsDataBase.disconnectAutomationDB();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
-
+	
 	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
 		String uniqueTag = "";
 		for (String tag : tagListForScenario) {

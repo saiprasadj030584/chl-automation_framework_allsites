@@ -68,6 +68,7 @@ public class Hooks {
 
 	@Before("~@Email")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
+		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
 
@@ -88,6 +89,7 @@ public class Hooks {
 				System.out.println(context.getTestData());
 			}
 		}
+		System.out.println("1st Before end");
 	}
 
 //	@Before("~@Email")
