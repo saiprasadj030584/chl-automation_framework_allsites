@@ -60,7 +60,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
-	private String siteId;
+	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 	private ArrayList<String> orderList;
@@ -86,7 +86,8 @@ public class Context {
 	private String consignment;
 	private int pickedRecords;
 	private String containerId;
-	private  Connection connection = null;
+	private Connection connection = null;
+	private static Connection dBConnection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
@@ -151,9 +152,9 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public Connection connectionSQLDB = null;
+	public static Connection connectionSQLDB = null;
 	private static String childStartTime;
-	private boolean jdaLoginFlag=false;
+	private boolean jdaLoginFlag = false;
 	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
@@ -161,6 +162,7 @@ public class Context {
 	private static String testData;
 	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
+	private String ejbError;
 	private int updatedQty;
 	private static String secondTestData;
 
@@ -608,12 +610,12 @@ public class Context {
 		this.faceType = faceType;
 	}
 
-	public String getSiteId() {
-		return siteId;
+	public String getSiteID() {
+		return siteID;
 	}
 
-	public void setSiteId(String siteId) {
-		this.siteId = siteId;
+	public void setSiteID(String siteID) {
+		this.siteID = siteID;
 	}
 
 	public String getLocation() {
@@ -1296,7 +1298,6 @@ public class Context {
 		return childStartTime;
 	}
 
-
 	public String getOrigin() {
 		return origin;
 	}
@@ -1304,6 +1305,7 @@ public class Context {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+
 	public String getTransactionTime() {
 		return transactionTime;
 	}
@@ -1323,11 +1325,10 @@ public class Context {
 	public void setUpdatedQty(int updatedQty) {
 		this.updatedQty = updatedQty;
 	}
-	
+
 	public void setJdaLoginFlag(boolean jdaLoginFlag) {
 		this.jdaLoginFlag = jdaLoginFlag;
 	}
-
 
 	public String getAssertString() {
 		return assertString;
@@ -1398,6 +1399,22 @@ public class Context {
 
 	public void setOrderId2(String orderId2) {
 		this.orderId2 = orderId2;
+	}
+	public void setDBConnection(Connection dBConnection) {
+		this.dBConnection = dBConnection;
+
+	}
+
+	public Connection getDBConnection() {
+		return dBConnection;
+	}
+
+	public void setEJBErrorMsg(String ejbError) {
+		this.ejbError = ejbError;
+	}
+
+	public String getEJBErrorMsg() {
+		return ejbError;
 	}
 
 }

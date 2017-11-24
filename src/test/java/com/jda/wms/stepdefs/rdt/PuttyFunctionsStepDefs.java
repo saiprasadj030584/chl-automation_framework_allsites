@@ -32,20 +32,21 @@ public class PuttyFunctionsStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
-		if (context.getSiteId().equals("5649")) {
+		//String port=null;
+		if (context.getSiteID().equals("5649")) {
 			System.out.println(port);
 			if(context.isVehicleLoadRequired()){
-			port = configuration.getStringProperty("putty-gm-port-vehicle-load");
+			port = configuration.getStringProperty("wst-putty-gm-port-vehicle-load");
 			}
 			else{
 				System.out.println("inside port if condition");
-			port = configuration.getStringProperty("putty-gm-port");
+			port = configuration.getStringProperty("wst-putty-gm-port");
 			System.out.println(port);
 			}
-			host = configuration.getStringProperty("putty-gm-host");
+			host = configuration.getStringProperty("wst-putty-gm-host");
 		}
 
-		else if (context.getSiteId().equals("5885")) {
+		else if (context.getSiteID().equals("5885")) {
 			host = configuration.getStringProperty("stk-putty-gm-host");
 			port = configuration.getStringProperty("stk-putty-gm-port");
 		}
@@ -53,13 +54,10 @@ public class PuttyFunctionsStepDefs {
 			System.out.println("Site Id is not found");
 			Assert.fail("Site Id is not found");
 		}
-
-//		String host = configuration.getStringProperty("putty-gm-host");
-//		String port = configuration.getStringProperty("putty-gm-port");
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(2000);
-		
-		if (puttyFunctionsPage.isLoginFailureExists()){
+
+		if (puttyFunctionsPage.isLoginFailureExists()) {
 			puttyFunctionsPage.pressEnter();
 		}
 		Assert.assertTrue("Putty Login page not displayed as expected", puttyFunctionsPage.isLoginScreenDisplayed());

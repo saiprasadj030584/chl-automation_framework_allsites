@@ -995,6 +995,7 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+	
 
 	public String getQtyForSkuInLocation(String skuId, String location) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -1393,7 +1394,6 @@ public class InventoryDB {
 	}
 
 	public String getOriginId(String location) throws SQLException, ClassNotFoundException {
-		System.out.println("divya chandan 123434645ler.gmk;drlkgt;serk");
 		System.out.println("select origin_id from inventory where location_id='" + location + "'");
 		if (context.getConnection() == null) {
 			database.connect();
@@ -1420,5 +1420,5 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
 }
+

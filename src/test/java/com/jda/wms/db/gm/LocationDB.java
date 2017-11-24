@@ -45,7 +45,9 @@ public class LocationDB {
 		System.out.println("select zone_1 from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
-		return rs.getString(1);
+		String temp = rs.getString(1);
+		rs.close();
+		return temp;
 	}
 
 	public ArrayList<String> getLocation() throws SQLException, ClassNotFoundException {
@@ -216,7 +218,6 @@ public class LocationDB {
 				"select location_id from location where (zone_1 like 'BOX%' and user_def_type_2 like 'BOX%' and user_def_type_3 like 'FLAT%' and lock_status='UnLocked' and current_volume='0')"
 						+ "or (zone_1 like 'HANG%' and user_def_type_2 like 'HANG%' and user_def_type_3 like 'FLAT%' and user_def_type_1='"
 						+ department + "' and lock_status='UnLocked' and current_volume='0')");
-
 		rs.next();
 		return rs.getString(1);
 	}
@@ -237,7 +238,6 @@ public class LocationDB {
 		database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		 
 		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
 		rs.next();

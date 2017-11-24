@@ -2,7 +2,12 @@
 ##################
 default:
  browser-name: ie
+<<<<<<< HEAD
  username: 'p9136796'
+=======
+ username: 'AUTO1'
+ bck-userid: 'AUTO2'
+>>>>>>> a663f130661b12009d52e4426e432db5c475b74f
  password: '1234'
  
  auto-title: 'JDA C&H Test Automation Result'
@@ -32,6 +37,7 @@ default:
  db-mnsEmailPassword: 'W!sd0m95'
  cucumber-path: 'D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\Cucumber-Reports'
  cucumber-zip-path: 'D:\\Program Files\\Jenkins\\workspace\\JDA_WMS_GM_Timed\\files'
+<<<<<<< HEAD
 
 
  gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
@@ -48,6 +54,21 @@ default:
 # db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
 # db-username: 'dcsdba'
 # db-password: 'jdadccate5'
+=======
+ wst-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
+ wst-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ wst-putty-gm-port-vehicle-load: '24004'
+ wst-putty-gm-port: '24007'
+ wst-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
+ wst-db-username: 'dcsdba'
+ wst-db-password: 'dcsabd'
+ stk-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdastkc/UserLogin.html'
+ stk-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
+ stk-putty-gm-port: '22902'
+ stk-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDASTKC'
+ stk-db-username: 'dcsdba'
+ stk-db-password: 'jdadccate5'
+>>>>>>> a663f130661b12009d52e4426e432db5c475b74f
 
  
 

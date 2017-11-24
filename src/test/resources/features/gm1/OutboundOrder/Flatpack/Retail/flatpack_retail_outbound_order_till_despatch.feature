@@ -5,7 +5,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
   So that I can unload that trailer
 
   @outbound_order_till_despatch @boxed @retail @flatpack_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
-  Scenario Outline: Incorrect pallet id keyin when unloading
+  Scenario: Incorrect pallet id keyin when unloading
     Given the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
     When I navigate to system allocation page
     And I enter OrderID for allocation

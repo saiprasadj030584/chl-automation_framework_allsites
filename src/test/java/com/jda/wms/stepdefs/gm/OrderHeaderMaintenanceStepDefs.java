@@ -81,7 +81,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
-	public void the_order_of_of_type_should_be_in_status_in_order_header_maintenance(String orderType, String status)
+	public void the_order_of_should_be_in_status_in_order_header_maintenance(String orderType, String status)
 			throws Throwable {
 		// String orderId = getTcData.getSto();
 		String orderId = context.getOrderId();
@@ -206,7 +206,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the OrderID of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site$")
 	public void the_OrderID_of_type_should_be_in_status(String orderType, String status) throws Throwable {
 		String orderId = getTcData.getSto();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		/* Due to merge the fathima branch */
 
@@ -219,7 +219,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setOrderId(orderId);
 		System.out.println(context.getOrderId());
 		context.setOrderType(orderType);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		jDAHomePage.navigateToOrderHeaderMaintenance();
 		jDAFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(orderId);
@@ -251,7 +251,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the order status should be changed to \"([^\"]*)\" status$")
 	public void the_order_status_should_be_changed_to_status(String status) throws Throwable {
-		Assert.assertTrue("Order is not in Allocated status",
+		Assert.assertTrue("Order is not in expected status",
 				status.equals(orderHeaderDB.getStatus(context.getOrderId())));
 	}
 
@@ -624,11 +624,11 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_OrderID_of_type_for_sku_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
 		String orderId = getTcData.getSto();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 		// jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		String Type = null;
 		switch (skuType) {
 		case "GOH":
@@ -667,13 +667,13 @@ public class OrderHeaderMaintenanceStepDefs {
 			throws Throwable {
 		String orderId1 = getTcData.getSto();
 		String orderId2=getTcData.getSto2();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 		String orderId=orderId1+","+orderId2;
 		System.out.println("order id" + orderId);
 		// jdaLoginPage.login();
 		context.setOrderId(orderId);
 		context.setOrderType(orderType);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		ArrayList<String> orderList = new ArrayList<String>();
 		String[] multipleorder = orderId.split(",");
 		for (int i = 0; i < multipleorder.length; i++) {
@@ -726,7 +726,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@Then("^the order should be Ready to Load$")
 	public void the_order_should_be_Ready_to_Load() throws Throwable {
 		for (int i = 0; i < context.getOrderList().size(); i++) {
@@ -770,9 +770,7 @@ public class OrderHeaderMaintenanceStepDefs {
 	@Given("^the order id of type \"([^\"]*)\" with \"([^\"]*)\" skus should be in \"([^\"]*)\" status$")
 	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
-
 		String orderNumber = context.getOrderId();
-
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
 		context.setStatus(status);
@@ -799,7 +797,6 @@ public class OrderHeaderMaintenanceStepDefs {
 									&& locationDb.getUserDefType3(locationList.get(j)).contains("HANG")
 									&& locationDb.getUserDefType1(locationList.get(j))
 											.contains(skuDB.getProductGroup((String) skuFromOrder.get(i)))) {
-								System.out.println("hanging divya..............");
 								System.out.println(
 										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
 								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
@@ -813,7 +810,6 @@ public class OrderHeaderMaintenanceStepDefs {
 									totalQtyOnHand += Integer.parseInt(inventoryDB
 											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
 								}
-								System.out.println("hanging divya 2.........");
 							}
 						}
 						
@@ -836,9 +832,7 @@ public class OrderHeaderMaintenanceStepDefs {
 											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
 								}
 							}
-						}
-
-						else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
+						} else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
 							if ((locationDb.getLocationZone(locationList.get(j)).contains("BOX")
 									&& locationDb.getUserDefType2(locationList.get(j)).contains("BOX")
 									&& locationDb.getUserDefType3(locationList.get(j)).contains("FLAT"))
@@ -862,7 +856,6 @@ public class OrderHeaderMaintenanceStepDefs {
 								}
 							}
 						}
-
 					}
 				}
 			}
@@ -885,9 +878,7 @@ public class OrderHeaderMaintenanceStepDefs {
 								String.valueOf(Integer.valueOf(
 										inventoryDB.getQtynHand((String) skuFromOrder.get(i), validLocations.get(0)))
 										- 1));
-
 					}
-
 					if (allocation) {
 						System.out.println("Stock is present in other locations");
 						System.out.println("Sku id :" + context.getSkuId());
@@ -906,9 +897,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 				// Assert.assertTrue("Stock is not present in other locations" ,
 				// allocation);
-
 				System.out.println("Stock is not present in other locations");
-
 				if (!(allocation)) {
 					// default:stock adjustment to qty 500
 					jDAHomePage.navigateToStockAdjustment();
@@ -933,7 +922,7 @@ public class OrderHeaderMaintenanceStepDefs {
 									.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
 						}
 					}
-					stockAdjustmentsPage.enterSiteId(context.getSiteId());
+					stockAdjustmentsPage.enterSiteId(context.getSiteID());
 					stockAdjustmentsPage.enterQuantityOnHand("500");
 					stockAdjustmentsPage.enterOrigin("NONE");
 
@@ -946,8 +935,6 @@ public class OrderHeaderMaintenanceStepDefs {
 					stockAdjustmentsPage.handlePopUp();
 
 				}
-
-			}
 
 			// To Validate Modularity,New Product Check for SKU
 
@@ -1003,4 +990,6 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	}
 }
+	

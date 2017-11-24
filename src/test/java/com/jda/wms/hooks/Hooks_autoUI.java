@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
@@ -25,6 +26,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.Scenario;
@@ -37,12 +39,12 @@ public class Hooks_autoUI {
 	private final Configuration configuration;
 	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
-	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
+
 	public static int fail = 0;
 
 	@Inject
@@ -52,24 +54,6 @@ public class Hooks_autoUI {
 		this.configuration = configuration;
 		this.jdaLoginPage = jdaLoginPage;
 
-	}
-
-	@Before("~@Email")
-	public void setup(Scenario scenario) throws Exception {
-		System.out.println("Starting Execution" + scenario.getName());
-		getParentRequestID();
-
-		System.out.println("PREQ_ID " + context.getParentRequestId());
-		 System.setProperty("SITEID", "5649");
-		System.out.println("Site ID from sys prop " + SITEID);
-		System.out.println("BUILD ID from sys prop " + BUILD_NUM);
-		insertSiteID();
-		getSiteID();
-//		updateBuildNumberInRequestTable();
-		context.setSiteId(System.getProperty("SITEID"));
-		insertDetails(scenario.getName());
-		// getChildRequestID();
-		// updateTestDataIntoRunStatusTable();
 	}
 
 	private void updateTestDataIntoRunStatusTable() {
@@ -117,28 +101,6 @@ public class Hooks_autoUI {
 
 		} catch (Exception exception) {
 			exception.printStackTrace();
-		}
-	}
-
-	private void getSiteID() throws ClassNotFoundException {
-		try {
-			if (context.getSQLDBConnection() == null) {
-				sqlConnectOpen();
-			}
-			Statement stmt = null;
-			stmt = context.getSQLDBConnection().createStatement();
-			System.out.println(
-					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
-			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
-					+ "'";
-			ResultSet rs = stmt.executeQuery(query);
-
-			while (rs.next()) {
-				context.setSiteId(rs.getString("SITE_ID"));
-				System.out.println("" + context.getSiteId());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -264,19 +226,6 @@ public class Hooks_autoUI {
 			fileSaveValueInText();
 		}
 
-	}
-
-	private void insertSiteID() {
-		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + System.getProperty("SITEID") + "')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + System.getProperty("SITEID") + "')";
-			context.getSQLDBConnection().createStatement().execute(insertQuery);
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
 	}
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
@@ -439,8 +388,9 @@ public class Hooks_autoUI {
 					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'");
 			String updateQuery = "UPDATE DBO.Nps_Auto_UI_Run_Status SET EXEC_END_DATE_TIME='" + getSystemTime()
-					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
-					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
+					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS= '"
+					+ context.getEJBErrorMsg() + "' where P_REQ_ID= '" + context.getParentRequestId()
+					+ "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
 
 			context.getSQLDBConnection().createStatement().execute(updateQuery);
 

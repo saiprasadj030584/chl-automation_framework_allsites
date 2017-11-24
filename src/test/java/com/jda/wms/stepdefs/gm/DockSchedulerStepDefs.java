@@ -108,7 +108,7 @@ public class DockSchedulerStepDefs {
 		int count = 0;
 
 		// TODO Check the dock door where to book slot
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 			for (int i = 0; i < 3; i++) {
 				jdaHomePage.scrollRightBig();
 			}
@@ -167,12 +167,12 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		System.out.println("site id "+context.getSiteId());
-		if (context.getSiteId().equals("5649")) {
+		System.out.println("site id "+context.getSiteID());
+		if (context.getSiteID().equals("5649")) {
 		dockSchedulerPage.enterCarrier(context.getCarrier());
 		}
 		dockSchedulerPage.pressTab();
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 		dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		}
 		dockSchedulerPage.pressTab();
@@ -282,7 +282,7 @@ public class DockSchedulerStepDefs {
 		String bookingID = Utilities.getFiveDigitRandomNumber();
 		String trailerNo = context.getTrailerNo();
 		context.setBookingID(bookingID);
-		System.out.println(context.getSiteId());
+		System.out.println(context.getSiteID());
 		context.setCarrier("ALLPORT");
 		context.setServiceLevel("AIR");
 		System.out.println(context.getCarrier());
@@ -290,13 +290,13 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		System.out.println(context.getSiteId().equals("5649"));
-		if (context.getSiteId().equals("5649")) {
+		System.out.println(context.getSiteID().equals("5649"));
+		if (context.getSiteID().equals("5649")) {
 			System.out.println("in carrier");
 			dockSchedulerPage.enterCarrier(context.getCarrier());
 		}
 		dockSchedulerPage.pressTab();
-		if (context.getSiteId().equals("5649")) {
+		if (context.getSiteID().equals("5649")) {
 			System.out.println("in service");
 			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		}
@@ -393,11 +393,11 @@ public class DockSchedulerStepDefs {
 
 	@When("^I create new dock booking at site$")
 	public void i_create_new_dock_booking_at_site() throws Throwable {
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 		dockSchedulerPage.selectCreateNewBooking();
 		if (dockSchedulerPage.isSiteExists()) {
 			dockSchedulerPage.enterSiteID(site);
-			context.setSiteId(site);
+			context.setSiteID(site);
 		}
 		jdaFooter.clickNextButton();
 	}
@@ -409,7 +409,7 @@ public class DockSchedulerStepDefs {
 		String preAdviceId = getTcData.getPo();
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 
 //		 String preAdviceId = getTcData.getPo();
 //		 String upiId = getTcData.getUpi();
@@ -438,9 +438,9 @@ public class DockSchedulerStepDefs {
 
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 
-		context.setSiteId(site);
+		context.setSiteID(site);
 		context.setSKUType(type);
 		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status("Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
@@ -458,8 +458,8 @@ public class DockSchedulerStepDefs {
 
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
-		context.setSiteId(site);
+		String site = context.getSiteID();
+		context.setSiteID(site);
 		context.setSKUType(type);
 		purchaseOrderReceivingStepDefs.the_UPI_and_ASN_should_be_in_status_for_NON_RMS(upiId, asnId, "Released");
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
@@ -475,8 +475,8 @@ public class DockSchedulerStepDefs {
 	public void i_have_done_the_dock_scheduler_booking_with_the_PO_of_type_at_site(String type) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
 		String preAdviceId = context.getPreAdviceId();
-		context.setSiteId("5649");
-		String site = context.getSiteId();
+		context.setSiteID("5649");
+		String site = context.getSiteID();
 		preReceivingStepDefs.the_PO_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
 		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
@@ -504,7 +504,7 @@ public class DockSchedulerStepDefs {
 	@When("^I select view existing bookings$")
 	public void i_select_view_existing_bookings() throws Throwable {
 		if (dockSchedulerPage.isSiteExists()) {
-			dockSchedulerPage.enterSiteID(context.getSiteId());
+			dockSchedulerPage.enterSiteID(context.getSiteID());
 		}
 		jdaFooter.clickNextButton();
 	}
@@ -590,7 +590,7 @@ public class DockSchedulerStepDefs {
 			throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();
 		if (dockSchedulerPage.isSiteExists()) {
-			dockSchedulerPage.enterSiteID(context.getSiteId());
+			dockSchedulerPage.enterSiteID(context.getSiteID());
 		}
 		jdaFooter.clickNextButton();
 		dockSchedulerPage.enterBookingId(context.getBookingID());
@@ -614,7 +614,7 @@ public class DockSchedulerStepDefs {
 	public void the_UPI_ASN_of_type_details_should_be_displayed(String type) throws Throwable {
 //		String upiId = getTcData.getUpi();
 //		String asnId = getTcData.getAsn();
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 
 //		String site = context.getSiteId();
 		String upiId = context.getUpiId();
@@ -626,11 +626,11 @@ public class DockSchedulerStepDefs {
 	@Given("^I have done the dock scheduler booking with the UPI, ASN of type \"([^\"]*)\" at site for IDT$")
 	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_idt(String type)
 			throws Throwable {
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 		//String upiId = getTcData.getUpi();
 		// asnId = getTcData.getAsn();
 		//context.setSKUType(datatype);
-		context.setSiteId(site);
+		context.setSiteID(site);
 		context.setSKUType(type);
 		System.out.println( "check" + context.getSKUType());
 		upiReceiptHeaderStepDefs.the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(type, "Released");

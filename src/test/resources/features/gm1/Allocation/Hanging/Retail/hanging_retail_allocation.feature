@@ -50,7 +50,7 @@ Feature: Hanging - Retail - Allocation
     Then the order should be allocated with prohibition flag
     
      @jenkinsB @allocation @hanging @retail @hanging_allocation_retail_validate_whether_stock_is_available_for_allocation @complete @ds
-  Scenario: Validating availability of stock for allocation
+  Scenario: Validate whether stock is available for allocation
     Given the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     And I have inventory available for the order line items
     Then sku should be available in inventory

@@ -80,7 +80,8 @@ public class PurchaseOrderReceivingStepDefs {
 			InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs, JDAFooter jdaFooter, SkuDB skuDb,
 			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,
 			PuttyFunctionsPage puttyFunctionsPage, PreAdviceHeaderDB preAdviceHeaderDB, DeliveryDB deliveryDB,
-			JDALoginStepDefs jdaLoginStepDefs, GetTcData getTcData, SupplierSkuDB supplierSkuDB,InventoryTransactionDB inventoryTransactionDB) {
+			JDALoginStepDefs jdaLoginStepDefs, GetTcData getTcData, SupplierSkuDB supplierSkuDB,
+			InventoryTransactionDB inventoryTransactionDB) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -131,14 +132,13 @@ public class PurchaseOrderReceivingStepDefs {
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
 
-//		String preAdviceId = "1010002230";
-//		String upiId = "00050453000258618208";
-//		String asnId = "0000003724";
-		
-		String preAdviceId =context.getPreAdviceId();
-		String upiId = context.getUpiId();
-	String asnId =context.getAsnId();
+		// String preAdviceId = "1010002230";
+		// String upiId = "00050453000258618208";
+		// String asnId = "0000003724";
 
+		String preAdviceId = context.getPreAdviceId();
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
@@ -154,9 +154,12 @@ public class PurchaseOrderReceivingStepDefs {
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 
-//		verification.verifyData("Pre-Advice Status", status, preAdviceHeaderDB.getStatus(preAdviceId), failureList);
-//		verification.verifyData("UPI Status", status, uPIReceiptHeaderDB.getStatus(upiId), failureList);
-//		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		// verification.verifyData("Pre-Advice Status", status,
+		// preAdviceHeaderDB.getStatus(preAdviceId), failureList);
+		// verification.verifyData("UPI Status", status,
+		// uPIReceiptHeaderDB.getStatus(upiId), failureList);
+		// verification.verifyData("Delivery Status", status,
+		// deliveryDB.getStatus(asnId), failureList);
 
 		context.setSupplierID(preAdviceHeaderDB.getSupplierId(preAdviceId));
 		int numLines = Integer.parseInt(preAdviceHeaderDB.getNumberOfLines(preAdviceId));
@@ -169,7 +172,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		 preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
+		preAdviceLineStepDefs.i_lock_the_product_with_lock_code(lockCode);
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header list and multiple po to be linked with upi line$")
@@ -524,9 +527,9 @@ public class PurchaseOrderReceivingStepDefs {
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
 			i_enter_urn_id(context.getUpiId());
 			puttyFunctionsPage.pressEnter();
-			
+
 		}
-	//	hooks.logoutPutty();
+		// hooks.logoutPutty();
 	}
 
 	@Given("^Error message should be displayed on the page$")
@@ -1176,12 +1179,12 @@ public class PurchaseOrderReceivingStepDefs {
 
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-        context.setStatus(status);
+		context.setStatus(status);
+
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		context.setSKUType(dataType);
-		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
-				);
+		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details();
 		the_multiple_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		Map<String, Integer> upiNumLines = new HashMap<String, Integer>();
 		int numLines = 0;
@@ -1654,9 +1657,10 @@ public class PurchaseOrderReceivingStepDefs {
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
-	
+
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" with lock code damaged$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_with_lock_code_damaged(String type, String location) throws Throwable {
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_with_lock_code_damaged(String type,
+			String location) throws Throwable {
 		// String preAdviceId = getTcData.getPo();
 		// String upiId = getTcData.getUpi();
 		// String asnId = getTcData.getAsn();
@@ -1671,7 +1675,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
 		context.setLocation(location);
-		 i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
+		i_receive_all_skus_for_the_purchase_order_at_location_with_damaged(location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving();
@@ -1843,13 +1847,13 @@ public class PurchaseOrderReceivingStepDefs {
 			String condition) throws Throwable {
 		String upiId = context.getUpiId();
 		String asnId = context.getAsnId();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		context.setUpiId(upiId);
 		context.setLocationID(location);
 		context.setAsnId(asnId);
 		context.setPerfectCondition(condition);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details("Released");
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
@@ -1867,7 +1871,7 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocationID(location);
 		context.setAsnId(asnId);
 		context.setPerfectCondition(condition);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details("Released");
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
@@ -1883,7 +1887,7 @@ public class PurchaseOrderReceivingStepDefs {
 			throws Throwable {
 
 		String preAdviceId = getTcData.getPo();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
@@ -2116,7 +2120,7 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I receive all \"([^\"]*)\" skus for the purchase order at location \"([^\"]*)\"$")
 
-	public void i_receive_all_skus_for_the_purchase_order_at_location(String type,String location) throws Throwable {
+	public void i_receive_all_skus_for_the_purchase_order_at_location(String type, String location) throws Throwable {
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
@@ -2148,8 +2152,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_trl();
 				jdaFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
-			}
-			else if (type.equalsIgnoreCase("GOH")) {
+			} else if (type.equalsIgnoreCase("GOH")) {
 				i_enter_urn_id(context.getUpiId());
 				puttyFunctionsPage.nextScreen();
 				i_enter_asn(context.getAsnId());
@@ -2157,8 +2160,7 @@ public class PurchaseOrderReceivingStepDefs {
 				i_enter_trl();
 				jdaFooter.PressEnter();
 				the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
-			}
-			else if (type.equalsIgnoreCase("Flatpack")) {
+			} else if (type.equalsIgnoreCase("Flatpack")) {
 				i_enter_urn_id(context.getUpiId());
 				puttyFunctionsPage.nextScreen();
 				i_enter_asn(context.getAsnId());
@@ -2355,60 +2357,62 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
-	
+
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" for hazardous putaway$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_hazardous_putaway(String type,String location) throws Throwable {
-		
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_hazardous_putaway(String type,
+			String location) throws Throwable {
+
 		String preAdviceId = getTcData.getPo();
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
-		
+
 		context.setLocation(location);
 		context.setUpiId(upiId);
 		context.setPreAdviceId(preAdviceId);
-		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
+		preAdviceHeaderStepsDefs
+				.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type, "Released");
 		preAdviceLineStepDefs.the_PO_should_have_hazardous_sku_quantity_due_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		i_receive_all_hazardous_skus_for_the_purchase_order_at_location(type,location);
+		i_receive_all_hazardous_skus_for_the_purchase_order_at_location(type, location);
 		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received();
 		inventoryTransactionQueryStepDefs
 				.the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
 	}
-	
+
 	@When("^I receive all \"([^\"]*)\" hazardous skus for the purchase order at location \"([^\"]*)\"$")
-	public void i_receive_all_hazardous_skus_for_the_purchase_order_at_location(String type,String location) throws Throwable {
+	public void i_receive_all_hazardous_skus_for_the_purchase_order_at_location(String type, String location)
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		context.setLocation(location);
 		context.setLocationID(location);
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
-		System.out.println("gdhgfsgh"+context.getSKUType());
+		System.out.println("gdhgfsgh" + context.getSKUType());
 
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
-	i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
 		i_should_be_directed_to_pre_advice_entry_page();
 
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) 
-		{
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
 			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
-				i_enter_urn_id(context.getUpiId());
-				jdaFooter.PressEnter();
-				the_tag_and_upc_details_should_be_displayed_for_receiving();
-				i_enter_the_location();
-				jdaFooter.PressEnter();
-					Thread.sleep(2000);
-				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
-					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
-					context.setFailureList(failureList);
-				}
+			i_enter_urn_id(context.getUpiId());
+			jdaFooter.PressEnter();
+			the_tag_and_upc_details_should_be_displayed_for_receiving();
+			i_enter_the_location();
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+			if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+				failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+				context.setFailureList(failureList);
 			}
-			hooks.logoutPutty();
 		}
-	
+		hooks.logoutPutty();
+	}
+
 	@When("^I receive all skus for the purchase order of type \"([^\"]*)\" at location \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_purchase_order_of_type_at_location(String dataType, String location)
 			throws Throwable {
@@ -2441,7 +2445,7 @@ public class PurchaseOrderReceivingStepDefs {
 			the_tag_and_upc_details_should_be_displayed_for_hanging();
 			i_enter_the_location();
 			jdaFooter.pressTab();
-			
+
 			i_enter_random_tag();
 			puttyFunctionsPage.pressEnter();
 			Assert.assertTrue("Rcv Pallet Entry Page not displayed",
@@ -2462,14 +2466,13 @@ public class PurchaseOrderReceivingStepDefs {
 			hooks.logoutPutty();
 		}
 	}
-	
+
 	@When("^I enter random tag$")
 	public void i_enter_random_tag() throws FindFailed, InterruptedException {
-	context.setTagId(Utilities.getFourDigitRandomNumber());
-	purchaseOrderReceivingPage.entertagId(context.getTagId());
+		context.setTagId(Utilities.getFourDigitRandomNumber());
+		purchaseOrderReceivingPage.entertagId(context.getTagId());
 	}
 
-	
 	@When("^the tag and upc details should be displayed for hanging$")
 	public void the_tag_and_upc_details_should_be_displayed_for_hanging() throws FindFailed, InterruptedException {
 		ArrayList failureList = new ArrayList();
@@ -2488,22 +2491,22 @@ public class PurchaseOrderReceivingStepDefs {
 				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@Given("^the multiple UPI of type \"([^\"]*)\" and ASN should be in \"([^\"]*)\" status with partset$")
-	public void the_multiple_UPI_of_type_and_ASN_should_be_in_status_with_partset(String dataType, String status) throws Throwable {
+	public void the_multiple_UPI_of_type_and_ASN_should_be_in_status_with_partset(String dataType, String status)
+			throws Throwable {
 
 		String upiId = getTcData.getUpi();
-		System.out.println("upiId "+upiId);
+		System.out.println("upiId " + upiId);
 		String upiId2 = getTcData.getUpi2();
-		System.out.println("upiId2 "+upiId2);
+		System.out.println("upiId2 " + upiId2);
 		String asnId = getTcData.getAsn();
-		String upi=upiId+","+upiId2;
+		String upi = upiId + "," + upiId2;
 		context.setUpiId(upi);
-		
-		
+
 		context.setStatus(status);
-        System.out.println("UPI - Multiple " +upi);
-        System.out.println("asnId" +asnId);
+		System.out.println("UPI - Multiple " + upi);
+		System.out.println("asnId" + asnId);
 		context.setAsnId(asnId);
 		context.setSKUType(dataType);
 		preAdviceHeaderStepsDefs.the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details();
@@ -2518,17 +2521,18 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setUpiNumLinesMap(upiNumLines);
 		context.setNoOfLines(numLines);
 	}
-	
+
 	@Given("^I receive all skus of multiple upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\" and partset$")
-	public void i_receive_all_skus_of_multiple_upi_for_the_returns_order_at_with_perfect_condition_and_partset(String location,
-			String condition) throws Throwable {
+	public void i_receive_all_skus_of_multiple_upi_for_the_returns_order_at_with_perfect_condition_and_partset(
+			String location, String condition) throws Throwable {
 		context.setLocationID(location);
 		context.setPerfectCondition(condition);
 		upiReceiptLineStepDefs.fetch_Qty_Details();
-		i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_partset(location);
+		i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_partset(
+				location);
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
-	
+
 	@When("^I blind receive all skus of multiple upi for the returns order at location \"([^\"]*)\" without lockcode for partset$")
 	public void i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_partset(
 			String location) throws Throwable {
@@ -2544,9 +2548,10 @@ public class PurchaseOrderReceivingStepDefs {
 		i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_with_partset();
 		hooks.logoutPutty();
 	}
-	
+
 	@When("^I enter details of multiple upi and perform blind receive without lockcode with partset$")
-	public void i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_with_partset() throws Throwable {
+	public void i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_with_partset()
+			throws Throwable {
 		int m = 0;
 		for (int k = 0; k < context.getUpiList().size(); k++) {
 			context.setUpiId(context.getUpiList().get(k));
@@ -2583,4 +2588,3 @@ public class PurchaseOrderReceivingStepDefs {
 		}
 	}
 }
-

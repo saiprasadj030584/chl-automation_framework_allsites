@@ -426,7 +426,7 @@ public class PurchaseOrderPutawayStepDefs {
 		i_enter_pallet_id_in_putaway(context.getTagId());
 
 		jdaFooter.PressEnter();
-		if (context.getSiteId().equalsIgnoreCase("5649")) {
+		if (context.getSiteID().equalsIgnoreCase("5649")) {
 
 			for (int i = 0; i < 9; i++) {
 				puttyFunctionsPage.rightArrow();
@@ -434,7 +434,7 @@ public class PurchaseOrderPutawayStepDefs {
 			for (int i = 0; i < 9; i++) {
 				jdaFooter.pressBackSpace();
 			}
-		} else if (context.getSiteId().equalsIgnoreCase("5885")) {
+		} else if (context.getSiteID().equalsIgnoreCase("5885")) {
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
 			for (int i = 0; i < 9; i++) {

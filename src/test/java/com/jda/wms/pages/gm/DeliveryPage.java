@@ -21,7 +21,14 @@ public class DeliveryPage {
 
 
 	public boolean isEJBerrorfound() {
-		if(screen.exists("images/DuplicateOption/ejberror.png")!= null)
+		if(screen.exists("images/EJBError.png")!= null)
+			return true;
+			else
+				return false;
+	}
+	
+	public boolean warningPopUpDuplicateMsg() {
+		if(screen.exists("images/Warning_Popup_DuplicateMsg.png")!= null)
 			return true;
 			else
 				return false;

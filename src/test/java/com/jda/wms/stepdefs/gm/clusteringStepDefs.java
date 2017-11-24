@@ -26,7 +26,7 @@ public class clusteringStepDefs {
 
 	@When("^I proceed with clustering$")
 	public void i_proceed_with_clustering() throws Throwable {
-		clusteringPage.enterSiteID(context.getSiteId());
+		clusteringPage.enterSiteID(context.getSiteID());
 		jDAFooter.PressEnter();
 		jDAFooter.pressTab();
 		clusteringPage.enterGroupId("RETAIL");

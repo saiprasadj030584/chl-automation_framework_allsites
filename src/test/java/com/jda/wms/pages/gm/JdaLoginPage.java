@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,6 +12,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.config.Constants;
 import com.jda.wms.context.Context;
@@ -24,8 +24,10 @@ public class JdaLoginPage {
 	int timeoutInSec = 20;
 
 	public static RemoteWebDriver driver;
-	Configuration configuration = new Configuration();
-	Context context = new Context();
+	private  Configuration configuration;
+	private  Context context;
+	// Configuration configuration = new Configuration();
+	// Context context = new Context();
 
 	// @Inject
 	// public JdaLoginPage(WebDriver webDriver, Configuration configuration) {
@@ -33,28 +35,53 @@ public class JdaLoginPage {
 	// this.webDriver = webDriver;
 	// this.configuration = configuration;
 	// }
-
-	public JdaLoginPage() {
+	@Inject
+	public JdaLoginPage(Configuration configuration, Context context) {
+		this.configuration = configuration;
+		this.context = context;
 	}
 
 	public void login() throws FindFailed, InterruptedException {
 		System.out.println("Login function");
 		if (driver == null) {
-		System.out.println("Driver is null");
-		try {
-		Process p = Runtime.getRuntime()
-		.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
-		p.waitFor(30, TimeUnit.SECONDS);
-		} catch (IOException e) {
+			System.out.println("Driver is null");
+			try {
+				Process p = Runtime.getRuntime()
+						.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
+				p.waitFor(30, TimeUnit.SECONDS);
+			} catch (IOException e) {
 
-		e.printStackTrace();
-		}
+				e.printStackTrace();
+			}
+			System.out.println("Site Id" + context.getSiteID());
+			setDriver();
+			driver.manage().window().maximize();
+			Thread.sleep(2000);
 
-		setDriver();
-		driver.manage().window().maximize();
+			if (context.getSiteID().equals("5649")) {
+				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
+			}
 
-		driver.navigate().to(configuration.getStringProperty("gm-jda-url"));
-		Thread.sleep(60000);
+			else if (context.getSiteID().equals("5885")) {
+				driver.navigate().to(configuration.getStringProperty("stk-gm-jda-url"));
+			}
+
+			else {
+				System.out.println("Site Id is not found");
+				Assert.fail("Site Id is not found");
+			}
+
+			int waitTime = 3;
+			do {
+				if (screen.exists("/images/JDALogin/username.png") != null) {
+					break;
+				} else {
+					System.out.println("Login screen not found in loop");
+				}
+
+				Thread.sleep(5000);
+				waitTime = waitTime + 3;
+			} while (waitTime < 120);
 
 		if (screen.exists("images/JDALogin/username.png") != null) {
 		// Assert.fail("Login Not successful");

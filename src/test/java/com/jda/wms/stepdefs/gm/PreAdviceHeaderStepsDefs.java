@@ -398,12 +398,12 @@ public class PreAdviceHeaderStepsDefs {
 	@Given("^the FSV PO of type \"([^\"]*)\" should be in \"([^\"]*)\" status at site id$")
 	public void the_FSV_PO_of_type_should_be_in_status_at_site_id(String type, String status) throws Throwable {
 
-		context.setSiteId("5649");
+		context.setSiteID("5649");
 		// String preAdviceId = getTcData.getPo();
 		// String preAdviceId = "25400900903";
 
 		String preAdviceId = context.getPreAdviceId();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		// String preAdviceId = getTcData.getPo();
 		// String siteId = context.getSiteId();
@@ -411,7 +411,7 @@ public class PreAdviceHeaderStepsDefs {
 		context.setPreAdviceId(preAdviceId);
 		// String siteId ="5649";
 		context.setSKUType(type);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		context.setsupplierType("FSV");
 		logger.debug("PO ID: " + preAdviceId);
 		logger.debug("SITE ID: " + siteId);
@@ -513,7 +513,30 @@ public class PreAdviceHeaderStepsDefs {
 	public void the_compliance_flag_details_should_be_updated_in_preadvice_header () throws Throwable {
 		Assert.assertEquals("Compliance Flag not updated", "COMP",
 				preAdviceHeaderDB.getComplianceFlag(context.getPreAdviceId()));
-	}
+	} 
+	
+	/*@Given("^the multiple UPI and ASN should be in status with line items supplier detail$")
+	public void the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_detail(String upiId,
+			String asnId, String status) throws Throwable {
+		ArrayList<String> upiList = new ArrayList<String>();
+		String[] multipleupi = upiId.split(",");
+		for (int i = 0; i < multipleupi.length; i++) {
+			upiList.add(multipleupi[i]);
+		}
+		context.setUpiList(upiList);
+		context.setAsnId(asnId);
+		logger.debug("ASN ID: " + asnId);
+
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		for (int i = 0; i < context.getUpiList().size(); i++) {
+			verification.verifyData("UPI Status", status, upiReceiptHeaderDB.getStatus(context.getUpiList().get(i)),
+					failureList);
+		}
+		verification.verifyData("Delivery Status", status, deliveryDB.getStatus(asnId), failureList);
+		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}*/
 	
 	@Given("^the multiple UPI and ASN should be in status with line items supplier details$")
 	public void the_multiple_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(
