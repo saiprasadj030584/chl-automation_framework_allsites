@@ -672,13 +672,6 @@ public class DockSchedulerStepDefs {
 		jdaFooter.clickNextButton();
 	}
 	
-	@Then("^the booking details should appear$")
-	public void the_booking_details_should_appear() throws Throwable {
-		ArrayList failureList = new ArrayList();
-		verification.verifyData("Trailer ID", context.getTrailerNo(),
-				bookingInDiary.getTrailerID(context.getBookingID()), failureList);
-		
-	}
 	
 	@When("^I create multiple dock booking at site \"([^\"]*)\"$")
 	public void i_create_multiple_dock_booking_at_site(String site) throws Throwable {
@@ -692,7 +685,7 @@ public class DockSchedulerStepDefs {
 		i_select_the_slot();
 		i_create_a_booking_for_the_asn_with_trailer(context.getTrailerNo());
 		bookingIdList.add(context.getBookingID());
-		the_booking_details_should_appear();
+		dockSchedulerBookingStepDefs.the_booking_details_should_appear();
 		
 		}
 		context.setBookingList(bookingIdList);

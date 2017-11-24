@@ -13,7 +13,7 @@ Feature: Inbound receiving
     And the goods receipt should be generated for the hanging multiple stock received in inventory transaction
     Then the po status should be displayed as "Complete" for all the po
 
-  @hanging_inbound_receiving_direct_po_single_po_and_multiple_urn_single_trailer @hanging @inbound_receiving @direct_po @recv @hangRev
+  @hanging_inbound_receiving_direct_po_single_po_and_multiple_urn_single_trailer @hanging @inbound_receiving @direct_po @recv @hangRev @ds
   Scenario: Single PO and mulitple URN ,single trailer
     Given the single PO of type "Hanging" with multiple UPI and ASN should be in "Released" status with line items,supplier details
     And the single PO with multiple upi should have sku, quantity due details
@@ -30,8 +30,8 @@ Feature: Inbound receiving
     When I receive all skus for the multiple purchase order with multiple upi at location "REC001"
     And the goods receipt should be generated for the hanging multiple stock received in inventory transaction
     Then the po status should be displayed as "Complete" for all the po
-    
-    @hanging_direct_po_receiving_adding_stock_to_asn_before_receiving @hanging @inbound_receiving @receiving @recv @hangRev
+
+  @hanging_direct_po_receiving_adding_stock_to_asn_before_receiving @hanging @inbound_receiving @receiving @recv @hangRev
   Scenario: Adding stock onto an ASN before receiving has started
     Given the single PO of type "Hanging" with multiple UPI and multiple ASN should be in "Released" status with line items,supplier details
     And the single PO with multiple upi should have sku, quantity due details

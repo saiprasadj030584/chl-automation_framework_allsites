@@ -1790,6 +1790,7 @@ public class InventoryTransactionQueryStepDefs {
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 
+	@Then("^the goods receipt should be generated for the hanging multiple stock received in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_the_hanging_multiple_stock_received_in_inventory_transaction()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -1892,5 +1893,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	
+	
 
 }

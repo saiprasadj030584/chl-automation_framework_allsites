@@ -1268,32 +1268,6 @@ public class PreAdviceLineStepDefs {
 		
 
 		int m = 0, n = 0;
-//		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
-//			poMap = new HashMap<Integer, Map<String, String>>();
-//			for (int i = 1; i <= Integer
-//					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
-//				m++;
-//				System.out.println("MMMMMM"+m);
-//				Map<String, String> lineItemsMap = new HashMap<String, String>();
-//			
-//				context.setSkuId((String) skuFromPO.get(m - 1));
-//				System.out.println("PO SKU CHECK"+context.getSkuId());
-//				lineItemsMap.put("SKU", context.getSkuId());
-//				lineItemsMap.put("QTY DUE",
-//						preAdviceLineDB.getQtyDue(context.getPreAdviceList().get(j), context.getSkuId()));
-//				lineItemsMap.put("LINE ID",
-//						preAdviceLineDB.getLineId(context.getPreAdviceList().get(j), context.getSkuId()));
-//				POMap.put(i, lineItemsMap);
-//				System.out.println("POMapInit " + POMap);
-//				
-//				
-//			}
-//			System.out.println("POMap " + POMap);
-//			MultiplePOMap.put(context.getPreAdviceList().get(j), POMap);
-//			System.out.println("MultiplePOMap " + MultiplePOMap);
-//		}
-//		context.setMultiplePOMap(MultiplePOMap);
-//		System.out.println("MultiplePOMapFINAL " + MultiplePOMap);
 		
 		
 		/////////////////////////////////////

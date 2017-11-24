@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.GetTcData;
 import com.jda.wms.db.gm.DeliveryDB;
+import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.PreAdviceHeaderDB;
 import com.jda.wms.db.gm.SkuDB;
@@ -70,6 +71,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private GetTcData getTcData;
 	private SupplierSkuDB supplierSkuDB;
 	private InventoryTransactionDB inventoryTransactionDB;
+	private InventoryDB inventoryDb;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -81,7 +83,7 @@ public class PurchaseOrderReceivingStepDefs {
 			UPIReceiptHeaderDB uPIReceiptHeaderDB, UPIReceiptLineDB uPIReceiptLineDB,
 			PuttyFunctionsPage puttyFunctionsPage, PreAdviceHeaderDB preAdviceHeaderDB, DeliveryDB deliveryDB,
 			JDALoginStepDefs jdaLoginStepDefs, GetTcData getTcData, SupplierSkuDB supplierSkuDB,
-			InventoryTransactionDB inventoryTransactionDB) {
+			InventoryTransactionDB inventoryTransactionDB,InventoryDB inventoryDb) {
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.context = context;
 		this.hooks = hooks;
@@ -105,6 +107,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.getTcData = getTcData;
 		this.supplierSkuDB = supplierSkuDB;
 		this.inventoryTransactionDB = inventoryTransactionDB;
+		this.inventoryDb=inventoryDb;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -2255,7 +2258,7 @@ public class PurchaseOrderReceivingStepDefs {
 	}
 
 	@When("^the tag and upc details should be displayed for hanging sku$")
-	public void the_tag_and_upc_details_should_be_displayed_for_hanging_sku() throws FindFailed, InterruptedException {
+	public void the_tag_and_upc_details_should_be_displayed_for_hanging_sku() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
 				purchaseOrderReceivingPage.isLocationDisplayed());
@@ -2277,6 +2280,11 @@ public class PurchaseOrderReceivingStepDefs {
 		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
 		String upc = upcSplit[0];
 		context.setUPC(upc);
+		jdaFooter.pressTab();
+		i_enter_tag_id_for_hanging();
+		puttyFunctionsPage.upArrow();
+		puttyFunctionsPage.upArrow();
+		
 		Assert.assertTrue(
 				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
@@ -2800,6 +2808,20 @@ public class PurchaseOrderReceivingStepDefs {
 
 			hooks.logoutPutty();
 		}
+	}
+	
+	@When("^I enter Tag Id for hanging$")
+	public void i_enter_tag_id_for_hanging() throws Throwable {
+		
+		String tagId = Utilities.getSixDigitRandomNumber();
+		while(inventoryDb.isTagExists(tagId))
+		{
+			tagId = Utilities.getSixDigitRandomNumber();
+		}
+		context.setTagId(tagId);
+		purchaseOrderReceivingPage.entertagId(tagId);
+		
+	
 	}
 
 }

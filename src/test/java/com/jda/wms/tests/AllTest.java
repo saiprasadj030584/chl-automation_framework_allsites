@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 		
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@hanging_inbound_receiving_direct_po_single_po_and_multiple_urn_single_trailer"
+				+ "cucumber.json" }, tags = { "@goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed"
 						+ ""})
 
 

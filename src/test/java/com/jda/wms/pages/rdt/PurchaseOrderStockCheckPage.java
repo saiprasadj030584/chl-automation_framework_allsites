@@ -63,5 +63,10 @@ public class PurchaseOrderStockCheckPage {
 		screen.type(upc);
 		Thread.sleep(2000);
 	}
+	
+	public void i_enter_quantity(String qty) throws InterruptedException {
+		screen.type(qty);
+		Thread.sleep(2000);
+	}
 }
 

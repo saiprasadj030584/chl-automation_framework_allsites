@@ -33,6 +33,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
+import com.jda.wms.datasetup.gm.DbConnection;
 
 import cucumber.api.java.Before;
 
@@ -46,11 +48,15 @@ public class Database {
 	private Connection connection;
 	private Configuration configuration;
 	private Context context;
+	public static DbConnection npsDataBase;
+	
 
 	@Inject
-	public Database(Configuration configuration, Context context) {
+	public Database(Configuration configuration, Context context,DbConnection npsDataBase) {
 		this.configuration = configuration;
 		this.context = context;
+		this.npsDataBase=npsDataBase;
+		
 	}
 
 	/**
@@ -71,7 +77,9 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
+			if (context.getSiteId() == null) {
+				getSiteId();
+			}
 			if (context.getSiteId().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
 						configuration.getStringProperty("wst-db-username"),
@@ -93,8 +101,7 @@ public class Database {
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
 			logger.debug("Exception " + ex.getMessage());
-		}
-	}
+		}	}
 
 	/**
 	 * This method is used to place a file into the interface tables of the
@@ -768,4 +775,33 @@ public class Database {
 		}
 		return moveTasks;
 	}
+	
+	public void getSiteId() throws ClassNotFoundException, SQLException {
+		ResultSet rs = null;
+		Statement stmt = null;
+		try {
+			System.out.println("CHECK CONNECTION " + context.getDBConnection());
+			if (context.getDBConnection() == null || context.getDBConnection().isClosed()  ) {
+				npsDataBase.connectAutomationDB();
+			}
+
+			stmt = context.getDBConnection().createStatement();
+			String selectQuery = "Select SITE_NO from JDA_GM_TEST_DATA where UNIQUE_TAG = '" + context.getUniqueTag()+ "'";
+			System.out.println(selectQuery);
+			context.getDBConnection().createStatement().execute(selectQuery);
+			rs = stmt.executeQuery(selectQuery);
+			if (!rs.next()) {
+				Assert.fail("Unique Tag Id is notfound");
+			} else {
+				System.out.println("Unique Tag Id is found");
+				context.setSiteId(rs.getString("SITE_NO"));
+			}
+		}
+
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+
+
 }

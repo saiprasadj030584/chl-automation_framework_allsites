@@ -62,7 +62,7 @@ public class PurchaseOrderStockCheckStepDefs {
 			MoveTaskDB moveTaskDB, OrderHeaderDB orderHeaderDB, AddressDB addressDB, MoveTaskUpdateDB moveTaskUpdateDB,
 			PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage, BookingInDiary bookingInDiary,
 			PurchaseOrderStockCheckPage purchaseOrderStockCheckPage, PurchaseOrderPutawayPage purchaseOrderPutawayPage,
-			SupplierSkuDB supplierSkuDb) {
+			SupplierSkuDB supplierSkuDb,PurchaseOrderPutawayStepDefs purchaseOrderPutawayStepDefs) {
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
 		this.verification = verification;
@@ -81,6 +81,7 @@ public class PurchaseOrderStockCheckStepDefs {
 		this.purchaseOrderStockCheckPage = purchaseOrderStockCheckPage;
 		this.purchaseOrderPutawayPage = purchaseOrderPutawayPage;
 		this.supplierSkuDb = supplierSkuDb;
+		this.purchaseOrderPutawayStepDefs=purchaseOrderPutawayStepDefs;
 
 	}
 
@@ -108,6 +109,7 @@ public class PurchaseOrderStockCheckStepDefs {
 		i_select_inventory();
 		i_select_new_stock_check();
 		i_do_new_stock_check_with_supplier(supplier);
+		hooks.logoutPutty();
 	}
 
 	@Given("^I select inventory$")
@@ -141,7 +143,7 @@ public class PurchaseOrderStockCheckStepDefs {
 
 	@Given("^I enter quantity \"([^\"]*)\"$")
 	public void i_enter_quantity(String qty) throws Throwable {
-		purchaseOrderStockCheckPage.i_enter_location(qty);
+		purchaseOrderStockCheckPage.i_enter_quantity(qty);
 	}
 
 	@Given("^I do new stock check$")
@@ -163,9 +165,11 @@ public class PurchaseOrderStockCheckStepDefs {
 	public void i_do_new_stock_check_with_supplier(String supplier) throws Throwable {
 		i_enter_location(context.getLocationID());// valid location that should
 													// nt be inventory
+		context.setToLocation(context.getLocationID());
 
 		jdaFooter.PressEnter();
 		i_enter_no_or_yes("Y");
+		jdaFooter.PressEnter();
 		jdaFooter.pressTab();
 		i_enter_upc(context.getUPC());
 		jdaFooter.pressTab();

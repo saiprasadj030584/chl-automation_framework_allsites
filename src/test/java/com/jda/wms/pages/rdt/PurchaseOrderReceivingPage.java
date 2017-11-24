@@ -811,10 +811,10 @@ public class PurchaseOrderReceivingPage {
 		String[] qtySplit = App.getClipboard().split("_");
 		System.out.println("PALLLETTT LENGTH" + qtySplit.length);
 		if (qtySplit.length != 0) {
-			for (int i = 0; i < qtySplit.length; i++) {
+			for (int i = 0; i < qtySplit[0].length(); i++) {
 				puttyFunctionsPage.rightArrow();
 			}
-			for (int i = 0; i < qtySplit.length; i++) {
+			for (int i = 0; i < qtySplit[0].length(); i++) {
 				screen.type(Key.BACKSPACE);
 			}
 			Thread.sleep(1000);

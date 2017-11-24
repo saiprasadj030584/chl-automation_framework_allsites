@@ -1465,4 +1465,25 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public boolean isTagExists(String tagId) {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select tag_id from inventory where tag_id='" + tagId
+					+ "'");
+			rs.next();
+			if (rs.getString(1) != null) {
+				isRecordExists = true;
+			}
+		} catch (Exception e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 }

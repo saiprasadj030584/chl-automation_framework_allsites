@@ -87,11 +87,13 @@ public class DataSetupRunner {
 
 	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
 		String uniqueTag = "";
+		
 		for (String tag : tagListForScenario) {
 			if (tag.length() > uniqueTag.length()) {
 				uniqueTag = tag;
 			}
 		}
+		System.out.println("UNIQQQQQ"+uniqueTag);
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
@@ -117,7 +119,10 @@ public class DataSetupRunner {
 			System.out.println(selectQuery);
 			context.getDBConnection().createStatement().execute(selectQuery);
 			rs = stmt.executeQuery(selectQuery);
-			while (rs.next()) {
+			if (!rs.next()) {
+				Assert.fail("Unique Tag Id is notfound");
+			} else {
+				System.out.println("Unique Tag Id is found");
 				context.setSiteId(rs.getString("SITE_NO"));
 			}
 		}
@@ -298,7 +303,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") && (!(context.getUniqueTag().contains("order")))) {
+		} else if (context.getUniqueTag().contains("idt") && (!(context.getUniqueTag().contains("order")) && !(context.getUniqueTag().contains("allocation")))) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -401,8 +406,9 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("idt") && (context.getUniqueTag().contains("order") || context.getUniqueTag().contains("allocation"))) {
 			try {
+				System.out.println("Inside IDT Order");
 				npsDataBase.connectAutomationDB();
 
 				// Generate Random New values to load

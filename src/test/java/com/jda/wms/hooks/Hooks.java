@@ -76,9 +76,11 @@ public class Hooks {
 		hooksautoUI.getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		hooksautoUI.insertDetails(scenario.getName());
-
+System.out.println("tagListForScenario"+tagListForScenario);
 		for (String tag : tagListForScenario) {
+			System.out.println("TAG"+tag);
 			if (tag.contains("@ds")) {
+				
 				dataSetupRunner.getTagListFromAutoDb();
 
 				if (!(scenario.getName().contains("Triggering automation email"))) {
@@ -86,8 +88,9 @@ public class Hooks {
 //					insertSiteID();
 					// getSiteID();
 				}
-				System.out.println(context.getTestData());
+				System.out.println("DS"+context.getTestData());
 			}
+			System.out.println("NO DS");
 		}
 	}
 
