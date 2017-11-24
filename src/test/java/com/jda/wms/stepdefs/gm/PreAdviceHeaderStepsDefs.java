@@ -29,7 +29,6 @@ import cucumber.api.java.en.Given;
 
 public class PreAdviceHeaderStepsDefs {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private JDAFooter jdaFooter;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private Context context;
 	private JDALoginStepDefs jdaLoginStepDefs;
@@ -42,6 +41,7 @@ public class PreAdviceHeaderStepsDefs {
 	private UPIReceiptLineDB upiReceiptLineDB;
 	private final PreAdviceLineDB preAdviceLineDB;
 	private JdaHomePage jdaHomePage;
+	private JDAFooter jdaFooter;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private GetTcData getTcData;
 
