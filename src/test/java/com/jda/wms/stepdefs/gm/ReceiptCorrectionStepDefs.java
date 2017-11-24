@@ -198,7 +198,7 @@ public class ReceiptCorrectionStepDefs {
 
 	@When("^I do stock adjustments after putaway for receipt reversal with siteId and PO$")
 	public void i_do_stock_adjustments_after_putaway_for_receipt_reversal_with_siteId_and_PO() throws Throwable {
-		String siteID = context.getSiteId();
+		String siteID = context.getSiteID();
 		String preAdviceId = context.getPreAdviceId();
 		Thread.sleep(2000);
 		jdaLoginPage.login();

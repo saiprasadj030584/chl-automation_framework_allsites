@@ -77,7 +77,7 @@ public class DataSetupRunner {
 					.executeQuery("Select * from dbo.JDA_GM_RUN_REQUESTS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "'");
 			while (resultSet.next()) {
-				context.setSiteId(resultSet.getString("SITE_NO"));
+				context.setSiteID(resultSet.getString("SITE_NO"));
 			}
 			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
@@ -98,7 +98,10 @@ public class DataSetupRunner {
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-		System.out.println("SITE ID FOR SCENARIO " + context.getSiteId());
+		if (null==context.getSiteID()){
+			getSiteId(context.getUniqueTag());
+		}
+		System.out.println("SITE ID FOR SCENARIO " + context.getSiteID());
 
 		// insertData();
 		// insertTempTestdata();
@@ -120,11 +123,16 @@ public class DataSetupRunner {
 			context.getDBConnection().createStatement().execute(selectQuery);
 			rs = stmt.executeQuery(selectQuery);
 			if (!rs.next()) {
+				System.out.println("Fail Of Site Id **" + context.getSiteID());
 				Assert.fail("Unique Tag Id is notfound");
+			
 			} else {
 				System.out.println("Unique Tag Id is found");
-				context.setSiteId(rs.getString("SITE_NO"));
+				context.setSiteID(rs.getString("SITE_NO"));
+				System.out.println("1 Value Of Site Id **" + context.getSiteID());
 			}
+			
+			System.out.println("2 Value Of Site Id **" + context.getSiteID());
 		}
 
 		catch (Exception exception) {
@@ -505,6 +513,7 @@ public class DataSetupRunner {
 
 			}
 		}
+		System.out.println("------------------SITE ID :"+context.getSiteID()+"---------------------");
 
 	}
 
@@ -523,7 +532,7 @@ public class DataSetupRunner {
 			qty = "0" + qty;
 		}
 		qty = qty;
-		String upi = context.getSiteId() + "000" + Utilities.getSixDigitRandomNumber() + supplier + "100"
+		String upi = context.getSiteID() + "000" + Utilities.getSixDigitRandomNumber() + supplier + "100"
 				+ Utilities.getSixDigitRandomNumber() + qty + "00";
 		return upi;
 	}
@@ -611,15 +620,13 @@ public class DataSetupRunner {
 		try {
 			npsDataBase.connectAutomationDB();
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
-			// resultSet = npsDataBase.dbConnection.createStatement()
-			// .executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE
-			// UNIQUE_TAG ='" + context.getUniqueTag()
-			// + "' AND SITE_NO='" + context.getSiteId() + "'");
 			resultSet = npsDataBase.dbConnection.createStatement().executeQuery(
 					"SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
-				UniqueTagInTestData = true;
+				if (temp.equalsIgnoreCase(context.getUniqueTag())){
+					UniqueTagInTestData = true;
+				}
 			}
 			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
@@ -646,7 +653,7 @@ public class DataSetupRunner {
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("Select * from dbo.JDA_GM_RUN_STATUS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "' and UNIQUE_TAG ='" + context.getUniqueTag()
-							+ "' AND SITE_NO='" + context.getSiteId() + "' and TC_STATUS='NO_RUN'; ");
+							+ "' AND SITE_NO='" + context.getSiteID() + "' and TC_STATUS='NO_RUN'; ");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
 				UniqueTagInRunStatus = true;
@@ -678,7 +685,7 @@ public class DataSetupRunner {
 
 				context.setTestData("PO:" + po + ";UPI:" + upi + ";ASN:" + asn);
 				String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) from Interface_Delivery)+1, '"
-						+ asn + "' ,'" + context.getSiteId()
+						+ asn + "' ,'" + context.getSiteID()
 						+ "', 'MX180160' ,'Released',null,'M+S',(Select SUPPLIER_ID from supplier_sku where sku_id='"
 						+ sku
 						+ "' and ROWNUM = 1) ,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, '180160' ,null,null,null,null,null,null,'ZEDC', '180160' ,null,null,null,null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,'Europe/London',null,null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
@@ -687,7 +694,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setAsnId(asn);
 				String upi_header_qry = "Insert into INTERFACE_UPI_RECEIPT_HEADER values ((Select max (Key)  from INTERFACE_UPI_RECEIPT_HEADER)+ 1, '"
-						+ upi + "' ,'" + context.getSiteId()
+						+ upi + "' ,'" + context.getSiteID()
 						+ "',to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null, '" + asn
 						+ "' ,'M+S', null ,'PALLET',9999,160,null,null,null,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'SEA',null,'1',null, 'CN5314835',null,null,'MSX3645','ZEDC', '180160' ,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222, '"
 						+ upi
@@ -713,7 +720,7 @@ public class DataSetupRunner {
 				rinsert = stmt.executeQuery(upi_line_qry);
 				context.getConnection().commit();
 				String po_header_qry = "Insert into INTERFACE_PRE_ADVICE_HEADER values ((Select max (Key)  from Interface_Pre_advice_header)+ 1,'M+S', '"
-						+ po + "' ,'PO','" + context.getSiteId()
+						+ po + "' ,'PO','" + context.getSiteID()
 						+ "','M+S', (Select SUPPLIER_ID from supplier_sku where sku_id='" + sku
 						+ "' and ROWNUM = 1),'Released',null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,'SEA',null, null, (select product_group from sku where sku_id='"
 						+ gettcdata.getSkuList()
@@ -758,7 +765,7 @@ public class DataSetupRunner {
 				System.out.println("sku " + sku);
 
 				String po_header_qry = "Insert into INTERFACE_PRE_ADVICE_HEADER values ((Select max (Key)  from Interface_Pre_advice_header)+ 1,'M+S', '"
-						+ po + "' ,'PO','" + context.getSiteId()
+						+ po + "' ,'PO','" + context.getSiteID()
 						+ "','M+S', (Select SUPPLIER_ID from supplier_sku where sku_id='" + sku
 						+ "' and ROWNUM = 1),'Released',null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,'SEA',null, null, (select product_group from sku where sku_id='"
 
@@ -795,14 +802,14 @@ public class DataSetupRunner {
 				String upi = newRmsPalletdId();
 				String sku = gettcdata.getSkuListFromTestData();
 				String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) + 1 from Interface_Delivery), '"
-						+ asn + "' ,'" + context.getSiteId()
+						+ asn + "' ,'" + context.getSiteID()
 						+ "', 'RMSMX390126' ,'Released',null,'M+S', '0054' ,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, '0054300517390126' ,null,null,null,null,null,null,'ZRET', '0054300517390126' ,null,null,null,null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,'Europe/London',null,null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(delivery_qry);
 				ResultSet rinsert = stmt.executeQuery(delivery_qry);
 				context.getConnection().commit();
 				gettcdata.setAsnId(asn);
 				String upi_header_qry = "Insert into INTERFACE_UPI_RECEIPT_HEADER values ((Select max (Key) + 1 from INTERFACE_UPI_RECEIPT_HEADER), '"
-						+ upi + "' ,'" + context.getSiteId()
+						+ upi + "' ,'" + context.getSiteID()
 						+ "',to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null, '" + asn
 						+ "' ,'M+S', null ,'PALLET',9999,160,null,null,null,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'SEA',null,'1','00000000002116229489', null,null,null,'000000000090200020','ZRET', '0054300517390126' ,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222, '"
 						+ upi
@@ -839,14 +846,14 @@ public class DataSetupRunner {
 				String upi = newRmsPalletdId();
 				String sku = gettcdata.getSkuListFromTestData();
 				String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) + 1 from Interface_Delivery), '"
-						+ asn + "' ,'" + context.getSiteId()
+						+ asn + "' ,'" + context.getSiteID()
 						+ "', 'RMSMX390126' ,'Released',null,'M+S', '0054' ,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, '0054300517390126' ,null,null,null,null,null,null,'ZRET', '0054300517390126' ,null,null,null,null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,'Europe/London',null,null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(delivery_qry);
 				ResultSet rinsert = stmt.executeQuery(delivery_qry);
 				context.getConnection().commit();
 				gettcdata.setAsnId(asn);
 				String upi_header_qry = "Insert into INTERFACE_UPI_RECEIPT_HEADER values ((Select max (Key) + 1 from INTERFACE_UPI_RECEIPT_HEADER), '"
-						+ upi + "' ,'" + context.getSiteId()
+						+ upi + "' ,'" + context.getSiteID()
 						+ "',to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null, '" + asn
 						+ "' ,'M+S', null ,'PALLET',9999,160,null,null,null,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'SEA',null,'1','00000000002116229489', null,null,null,'000000000090200020','ZRET', '0054300517390126' ,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222, '"
 						+ upi
@@ -882,14 +889,14 @@ public class DataSetupRunner {
 				String upi = newRmsPalletdId();
 				String sku = gettcdata.getSkuListFromTestData();
 				String delivery_qry = "Insert into Interface_delivery values ((Select max (Key) + 1 from Interface_Delivery), '"
-						+ asn + "' ,'" + context.getSiteId()
+						+ asn + "' ,'" + context.getSiteID()
 						+ "', 'RMSMX390126' ,'Released',null,'M+S', '0054' ,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, '0054300517390126' ,null,null,null,null,null,null,'ZRET', '0054300517390126' ,null,null,null,null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222,null,null,null,'Europe/London',null,null,'NDC','U','Pending',null,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(delivery_qry);
 				ResultSet rinsert = stmt.executeQuery(delivery_qry);
 				context.getConnection().commit();
 				gettcdata.setAsnId(asn);
 				String upi_header_qry = "Insert into INTERFACE_UPI_RECEIPT_HEADER values ((Select max (Key) + 1 from INTERFACE_UPI_RECEIPT_HEADER), '"
-						+ upi + "' ,'" + context.getSiteId()
+						+ upi + "' ,'" + context.getSiteID()
 						+ "',to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null, '" + asn
 						+ "' ,'M+S', null ,'PALLET',9999,160,null,null,null,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'SEA',null,'1','00000000002116229489', null,null,null,'000000000090200020','ZRET', '0054300517390126' ,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,22222, '"
 						+ upi
@@ -925,7 +932,7 @@ public class DataSetupRunner {
 				String sku = gettcdata.getSkuListFromTestData();
 				String qty = gettcdata.getQtyListFromTestData();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '0055' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'Store','Cross Dock','Retail','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, null ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null, '3366' ,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -955,7 +962,7 @@ public class DataSetupRunner {
 				String qty = gettcdata.getQtyListFromTestData();
 				npsDataBase.connectAutomationDB();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from Interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '4624' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'REPLEN',null,'IDT','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, 362101 ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -984,7 +991,7 @@ public class DataSetupRunner {
 				String sku = gettcdata.getSkuListFromTestData();
 				String qty = gettcdata.getQtyListFromTestData();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '0055' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'Store','Cross Dock','Retail','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, null ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null, '3366' ,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -1013,7 +1020,7 @@ public class DataSetupRunner {
 				String sku = gettcdata.getSkuListFromTestData();
 				String qty = gettcdata.getQtyListFromTestData();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '0055' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'Store','Cross Dock','Retail','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, null ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null, '6596' ,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -1043,7 +1050,7 @@ public class DataSetupRunner {
 				String qty = gettcdata.getQtyListFromTestData();
 				npsDataBase.connectAutomationDB();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from Interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '4624' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'REPLEN',null,'IDT','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, 362101 ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -1072,7 +1079,7 @@ public class DataSetupRunner {
 				String sku = gettcdata.getSkuListFromTestData();
 				String qty = gettcdata.getQtyListFromTestData();
 				String order_header_qry = "Insert into INTERFACE_ORDER_HEADER values ((Select max (Key) + 1 from interface_order_header),'M+S', '"
-						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteId()
+						+ odn + "' ,null,null,'Released','Hold','50',null,null,null,null,null,'" + context.getSiteID()
 						+ "',null,'M+S', '0055' ,to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,to_timestamp(Sysdate+10,'DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,'N','N',null,null,null,null,null,'Store','Cross Dock','Retail','ZN8',null,'N','N','N','N',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'),null,null,null, null ,null,null,22222,null,null,null,null,null,null,null,null,null,null,null,'N','N','N',null, '5542' ,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N','N',null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,null,null,null,null,'N','N','N',null,'N',null,null,'N',null,null,'N','Europe/London','Europe/London',null,'NDC','U','Pending','null',to_timestamp(Sysdate,'DD-MON-RR HH24.MI.SSXFF'))";
 				System.out.println(order_header_qry);
 				ResultSet rinsert = stmt.executeQuery(order_header_qry);
@@ -1209,7 +1216,7 @@ public class DataSetupRunner {
 			value2 = ThreadLocalRandom.current().nextLong(100000000, max);
 			value3 = ThreadLocalRandom.current().nextLong(100000000, max);
 			int tempInt = ThreadLocalRandom.current().nextInt(0, 9);
-			tempValue = context.getSiteId() + String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
+			tempValue = context.getSiteID() + String.valueOf(value1) + String.valueOf(value2) + String.valueOf(value3)
 					+ String.valueOf(tempInt);
 			HashMap<String, Boolean> presenceMap = validateUpiPresenceinJdaTable(tempValue);
 			mainTable = presenceMap.get("mainTable");
@@ -1600,85 +1607,85 @@ public class DataSetupRunner {
 			context.setPreAdviceId("1110009381");
 			context.setAsnId("0000832279");
 			context.setUpiId("00051453008358615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code")) {
 			context.setPreAdviceId("1110098032");
 			context.setAsnId("0000019479");
 			context.setUpiId("00051453000931615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapc_lock_code")) {
 			context.setPreAdviceId("1110083032");
 			context.setAsnId("0000018279");
 			context.setUpiId("00051453000284115234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_fwl_lock_code")) {
 			context.setPreAdviceId("1110009532");
 			context.setAsnId("0000842279");
 			context.setUpiId("00051453093158615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_rework_lock_code")) {
 			context.setPreAdviceId("1110831032");
 			context.setAsnId("0000831279");
 			context.setUpiId("00051453084128615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsfwl_lock_code")) {
 			context.setPreAdviceId("1110098232");
 			context.setAsnId("0000093179");
 			context.setUpiId("00051453000296415234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcfwl_lock_code")) {
 			context.setPreAdviceId("1110953432");
 			context.setAsnId("0000005239");
 			context.setUpiId("00051987000258615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsrw_lock_code")) {
 			context.setPreAdviceId("1110098732");
 			context.setAsnId("0000019429");
 			context.setUpiId("00051453000258056434");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomprw_lock_code")) {
 			context.setPreAdviceId("1110084232");
 			context.setAsnId("0000731279");
 			context.setUpiId("00051453000259564234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcrw_lock_code")) {
 			context.setPreAdviceId("1110074232");
 			context.setAsnId("0000016312");
 			context.setUpiId("00051453000284215234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_fwlrw_lock_code")) {
 			context.setPreAdviceId("1110073132");
 			context.setAsnId("0000094329");
 			context.setUpiId("00051453000258412234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qaftsfwlrw_lock_code")) {
 			context.setPreAdviceId("1110095232");
 			context.setAsnId("0000095319");
 			context.setUpiId("00051453000285125234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qacomfwlrw_lock_code")) {
 			context.setPreAdviceId("1110096422");
 			context.setAsnId("0000017379");
 			context.setUpiId("00051453000258420234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag()
 				.equals("@hanging_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code")) {
 			context.setPreAdviceId("1110087332");
 			context.setAsnId("0008842279");
 			context.setUpiId("00051453000284615234");
-			context.setSiteId("5649");
+			context.setSiteID("5649");
 		} else if (context.getUniqueTag().equals("@boxed_putaway_idt_validate_putaway_location")) {
 			context.setAsnId("PO0918836083");
 			context.setUpiId("56490001389579276900395756000210");

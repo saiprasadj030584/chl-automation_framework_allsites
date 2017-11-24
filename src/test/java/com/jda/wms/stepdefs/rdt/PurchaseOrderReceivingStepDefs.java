@@ -1911,13 +1911,13 @@ public class PurchaseOrderReceivingStepDefs {
 			String condition) throws Throwable {
 		String upiId = context.getUpiId();
 		String asnId = context.getAsnId();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		context.setUpiId(upiId);
 		context.setLocationID(location);
 		context.setAsnId(asnId);
 		context.setPerfectCondition(condition);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details("Released");
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
@@ -1935,7 +1935,7 @@ public class PurchaseOrderReceivingStepDefs {
 		context.setLocationID(location);
 		context.setAsnId(asnId);
 		context.setPerfectCondition(condition);
-		context.setSiteId(siteId);
+		context.setSiteID(siteId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details("Released");
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
 		context.setLocation(location);
@@ -1951,7 +1951,7 @@ public class PurchaseOrderReceivingStepDefs {
 			throws Throwable {
 
 		String preAdviceId = getTcData.getPo();
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 
 		preAdviceHeaderStepsDefs.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();

@@ -5,17 +5,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
 
 public class PreAdviceHeaderDB {
 	private final Context context;
 	private final Database database;
+	private final Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public PreAdviceHeaderDB(Context context, Database database) {
+	public PreAdviceHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
 		this.context = context;
 		this.database = database;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
@@ -94,15 +99,16 @@ public class PreAdviceHeaderDB {
 				"update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-	
-	public void updateAdviceNumber(String adviceNumber,String preAdviceId) throws SQLException, ClassNotFoundException {
+
+	public void updateAdviceNumber(String adviceNumber, String preAdviceId)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"update pre_advice_header set USER_DEF_TYPE_1= '" + adviceNumber + "' where pre_advice_id = '" + preAdviceId + "'");
+		ResultSet rs = stmt.executeQuery("update pre_advice_header set USER_DEF_TYPE_1= '" + adviceNumber
+				+ "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
 
@@ -177,7 +183,7 @@ public class PreAdviceHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public void updateAdviceForSku(String preAdviceId, String adviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -187,28 +193,38 @@ public class PreAdviceHeaderDB {
 				+ "' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-	
+
 	public void updateComplianceFlag(String preAdviceId) throws SQLException, ClassNotFoundException {
-		System.out.println("update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='"
-				+ preAdviceId + "'");
+		System.out.println(
+				"update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='" + preAdviceId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='"
-				+ preAdviceId + "'");
+		ResultSet rs = stmt.executeQuery(
+				"update pre_advice_header set user_def_type_1='COMP' where pre_advice_id='" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-	
-	public Object getPreAdviceIdForPO(String preAdviceId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
 
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select pre_advice_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "' ");
-		rs.next();
+	public Object getPreAdviceIdForPO(String preAdviceId) throws SQLException, ClassNotFoundException {
+		ResultSet rs = null;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+
+			Statement stmt = context.getConnection().createStatement();
+			rs = stmt.executeQuery(
+					"select pre_advice_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "' ");
+			if (!rs.next()) {
+				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+			} else {
+				System.out.println("Pre advice header id -->" + rs.getString(1));
+			}
+		} catch (Exception e) {
+			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+		}
 		return rs.getString(1);
 	}
 

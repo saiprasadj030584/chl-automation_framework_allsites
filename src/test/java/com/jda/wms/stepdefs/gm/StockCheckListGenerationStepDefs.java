@@ -51,7 +51,7 @@ public class StockCheckListGenerationStepDefs {
 
 	@When("^I enter the tag ID as on inventory tab for site id$")
 	public void i_enter_the_tag_ID_as_on_inventory_tab_for_site_id() throws Throwable {
-		String siteID = context.getSiteId();
+		String siteID = context.getSiteID();
 		context.setTagId(inventoryDB.getTagID(siteID));
 		stockCheckListGenerationPage.enterTagId(context.getTagId());
 		jdaFooter.clickNextButton();
@@ -105,7 +105,7 @@ public class StockCheckListGenerationStepDefs {
 	
 	@When("^I enter the tag ID as on inventory tab for site id for \"([^\"]*)\"$")
 	public void i_enter_the_tag_ID_as_on_inventory_tab_for_site_id(String dataType) throws Throwable {
-		String siteID = context.getSiteId();
+		String siteID = context.getSiteID();
 		if (dataType.equalsIgnoreCase("Boxed")) {
 			context.setTagId(inventoryDB.getTagID(siteID, "B"));
 		} else if (dataType.equalsIgnoreCase("Hanging")) {

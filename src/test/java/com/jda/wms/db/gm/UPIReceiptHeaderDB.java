@@ -5,20 +5,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.jboss.netty.util.internal.SystemPropertyUtil;
+import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
 
 public class UPIReceiptHeaderDB {
 
 	private Context context;
 	private Database database;
+	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public UPIReceiptHeaderDB(Context context, Database database) {
+	public UPIReceiptHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
 		this.context = context;
 		this.database = database;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public String getStatus(String upiId) throws SQLException, ClassNotFoundException {
@@ -129,14 +132,24 @@ public class UPIReceiptHeaderDB {
 	}
 
 	public Object getUpiIdForUPI(String upi) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
+		ResultSet rs = null;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
 
-		Statement stmt = context.getConnection().createStatement();
-		System.out.println("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
-		ResultSet rs = stmt.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
-		rs.next();
+			Statement stmt = context.getConnection().createStatement();
+			System.out.println("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+			rs = stmt.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+			if (!rs.next()) {
+				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+			} else {
+				System.out.println("UPI Receipt Header -->" + rs.getString(1));
+			}
+		} catch (Exception e) {
+			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+		}
 		return rs.getString(1);
 	}
 

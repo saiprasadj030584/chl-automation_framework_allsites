@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
@@ -26,12 +25,10 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
-import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 
 public class Hooks_autoUI {
@@ -39,12 +36,12 @@ public class Hooks_autoUI {
 	private final Configuration configuration;
 	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
-	public static String SITEID = System.getProperty("SITEID");
 	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
 	public static int pass = 0;
+
 	public static int fail = 0;
 
 	@Inject
@@ -55,7 +52,6 @@ public class Hooks_autoUI {
 		this.jdaLoginPage = jdaLoginPage;
 
 	}
-
 
 	private void updateTestDataIntoRunStatusTable() {
 		try {
@@ -71,7 +67,6 @@ public class Hooks_autoUI {
 			exception.printStackTrace();
 		}
 	}
-
 
 	private void getChildRequestID() {
 		try {
@@ -105,8 +100,6 @@ public class Hooks_autoUI {
 			exception.printStackTrace();
 		}
 	}
-
-	
 
 	@After("~@Email")
 	public void tearDown(Scenario scenario) throws IOException {
@@ -231,8 +224,6 @@ public class Hooks_autoUI {
 		}
 
 	}
-
-	
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {
@@ -394,8 +385,9 @@ public class Hooks_autoUI {
 					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'");
 			String updateQuery = "UPDATE DBO.Nps_Auto_UI_Run_Status SET EXEC_END_DATE_TIME='" + getSystemTime()
-					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS='NA' where P_REQ_ID= '"
-					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
+					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS= '"
+					+ context.getEJBErrorMsg() + "' where P_REQ_ID= '" + context.getParentRequestId()
+					+ "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
 
 			context.getSQLDBConnection().createStatement().execute(updateQuery);
 

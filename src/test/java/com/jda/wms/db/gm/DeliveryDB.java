@@ -6,18 +6,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
 
 public class DeliveryDB {
 
 	private Context context;
 	private Database database;
+	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public DeliveryDB(Context context, Database database) {
+	public DeliveryDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
 		this.context = context;
 		this.database = database;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public String getStatus(String asnId) throws SQLException, ClassNotFoundException {
@@ -99,22 +104,21 @@ public class DeliveryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getAsnId(String type,String status) throws SQLException, ClassNotFoundException {
-		String Type=null;
-		switch(type)
-		{
+
+	public String getAsnId(String type, String status) throws SQLException, ClassNotFoundException {
+		String Type = null;
+		switch (type) {
 		case "Hanging":
-			Type="H";
+			Type = "H";
 			break;
 		case "Boxed":
-			Type="B";
+			Type = "B";
 			break;
 		case "Flatpack":
-			Type="P";
+			Type = "P";
 			break;
 		case "GOH":
-			Type="C";
+			Type = "C";
 			break;
 		}
 		if (context.getConnection() == null) {
@@ -124,22 +128,33 @@ public class DeliveryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select A.asn_id,B.sku_id from upi_receipt_header A  "
 				+ "inner join upi_receipt_line B on A.pallet_id = B.pallet_id inner join sku C on B.sku_id=c.sku_id "
-				+ "and a.status='"+status+"' and C.user_def_type_8= '"+Type+"' and a.asn_id!='null'");
+				+ "and a.status='" + status + "' and C.user_def_type_8= '" + Type + "' and a.asn_id!='null'");
 		rs.next();
 		return rs.getString(1);
 	}
-	
+
 	public Object getAsnIdForASN(String asn) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
+		ResultSet rs = null;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			System.out.println("Select asn_id from delivery where asn_id ='" + asn + "'");
+			Statement stmt = context.getConnection().createStatement();
+			rs = stmt.executeQuery("Select asn_id from delivery where asn_id ='" + asn + "'");
+			if (!rs.next()) {
+				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+			} else {
+				System.out.println("ASN ID -->" + rs.getString(1));
+			}
+
+		} catch (Exception e) {
+			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+			e.printStackTrace();
+
 		}
-		System.out.println("Select asn_id from delivery where asn_id ='" + asn + "'");
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("Select asn_id from delivery where asn_id ='" + asn + "'");
-		rs.next();
 		return rs.getString(1);
 	}
 
 }
-
-

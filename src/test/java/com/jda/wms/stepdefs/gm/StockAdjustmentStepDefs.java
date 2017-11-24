@@ -60,7 +60,7 @@ public class StockAdjustmentStepDefs {
 	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
 	public void i_create_a_new_stock_with_siteid_and_location(String location) throws FindFailed, InterruptedException {
 
-		String siteId = context.getSiteId();
+		String siteId = context.getSiteID();
 		System.out.println( "print" + siteId);
 		if (siteId.equals("5649")) {
 			String owner = "M+S";
@@ -106,8 +106,8 @@ public class StockAdjustmentStepDefs {
 	@When("^I create a new stock with siteid \"([^\"]*)\" and location \"([^\"]*)\"$")
 	public void i_create_a_new_stock_with_siteid_and_location(String siteID,String location)
 			throws FindFailed, InterruptedException {
-		context.setSiteId(siteID);
-		String siteId = context.getSiteId();
+		context.setSiteID(siteID);
+		String siteId = context.getSiteID();
 		if (siteId.equals("5649")){
 		String owner = "M+S";
 		String clientid = "M+S";
@@ -254,7 +254,7 @@ Thread.sleep(2000);
 				stockAdjustmentsPage.enterSkuId(context.getSkuId());
 				jDAFooter.pressTab();
 				stockAdjustmentsPage.enterLocation(context.getLocation());
-				stockAdjustmentsPage.enterSiteId(context.getSiteId());
+				stockAdjustmentsPage.enterSiteId(context.getSiteID());
 				stockAdjustmentsPage.enterOrigin(context.getCountry());
 				stockAdjustmentsPage.enterQuantityOnHand(quantity);
 				stockAdjustmentsPage.enterPackConfig(packConfig);
@@ -342,14 +342,14 @@ Thread.sleep(2000);
 //		String date = DateUtils.getCurrentSystemDateInDBFormat();
 //		context.setTagId(
 //				inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
-		System.out.println("site id"+ context.getSiteId());
+		System.out.println("site id"+ context.getSiteID());
 		//context.setSiteId(context.getSiteId());	
 		jDAFooter.clickNextButton();
 
 		
 		stockAdjustmentsPage.enterTagId(context.getTagId());
 		jDAFooter.pressTab();
-		stockAdjustmentsPage.enterSiteIdForStock(context.getSiteId());
+		stockAdjustmentsPage.enterSiteIdForStock(context.getSiteID());
 		jDAFooter.pressTab();		
 		stockAdjustmentsPage.enterSkuId(context.getSkuId());
 		jDAFooter.clickNextButton();

@@ -26,4 +26,11 @@ public class DeliveryPage {
 			else
 				return false;
 	}
+	
+	public boolean warningPopUpDuplicateMsg() {
+		if(screen.exists("images/Warning_Popup_DuplicateMsg.png")!= null)
+			return true;
+			else
+				return false;
+	}
 }

@@ -60,7 +60,7 @@ public class Context {
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
 	private String faceType;
-	public static String siteId;
+	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 	private ArrayList<String> asnList;
@@ -163,6 +163,7 @@ public class Context {
 	private String assertString = null;
 	private static String childRequestId;
 	private String secondPalletID;
+	private String ejbError;
 	private int updatedQty;
 	private boolean jdaLoginFlag = false;
 	private boolean vehicleLoadRequired;
@@ -663,12 +664,12 @@ public class Context {
 		this.faceType = faceType;
 	}
 
-	public String getSiteId() {
-		return siteId;
+	public String getSiteID() {
+		return siteID;
 	}
 
-	public void setSiteId(String siteId) {
-		this.siteId = siteId;
+	public void setSiteID(String siteID) {
+		this.siteID = siteID;
 	}
 
 	public String getLocation() {
@@ -1438,6 +1439,14 @@ public class Context {
 
 	public Connection getDBConnection() {
 		return dBConnection;
+	}
+
+	public void setEJBErrorMsg(String ejbError) {
+		this.ejbError = ejbError;
+	}
+
+	public String getEJBErrorMsg() {
+		return ejbError;
 	}
 
 }
