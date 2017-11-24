@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
@@ -26,12 +25,10 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
-import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.pages.gm.JdaLoginPage;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 
 public class Hooks_autoUI {
