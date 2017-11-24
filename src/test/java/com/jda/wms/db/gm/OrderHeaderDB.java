@@ -395,4 +395,14 @@ System.out.println("select sku_id from order_line where order_id='" + orderId + 
 		return rs.getString(1);
 	}
 
+	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+	}
+
 }

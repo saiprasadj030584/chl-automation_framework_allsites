@@ -64,3 +64,29 @@ Feature: GOH - Retail - Outbound Order till despatch
     Then Trailer should be loaded
     When I proceed for vehicle unload
     Then Trailer should enter page displayed
+    
+    @outbound_order_till_despatch @goh @retail @goh_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
+  Scenario: Trailer not entered when unloading
+   # Given the multiple order id of type "Retail" with "GOH" skus should be in "Released" status
+    Given the multiple OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
+    When I create a consignment for multiple order
+    When I navigate to system allocation page
+    And I enter multiple OrderID for allocation
+    Then Allocation should be updated for multiple order
+    When I navigate to mannual clustering screen
+    And I proceed with clustering
+    When I navigate to scheduler program page
+    And I run the program
+    And I perform picking for multiple order
+    Then the order should be Ready to Load
+    And I create a trailer to receive at the dock door
+    When I navigate to dock scheduler start page
+    When I create new dock booking at site
+    When I select the booking type for consignment
+    And I select the slot
+    And I create a booking for the asn
+    Then the booking details should appear
+    And I proceed for vehicle loading with multiple order
+    Then Trailer should be loaded for multiple order
+    When I proceed for "GOH" vehicle unloading with multiple order
+    Then vehicle should be unload for multiple order

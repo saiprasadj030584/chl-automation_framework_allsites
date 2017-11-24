@@ -86,7 +86,7 @@ Feature: Boxed - Retail - Outbound Order till despatch
     And I select the slot
     And I create a booking for the asn
     Then the booking details should appear
-    And I proceed for boxed vehicle loading with multiple order
+    And I proceed for vehicle loading with multiple order
     Then Trailer should be loaded for multiple order
     When I proceed for boxed vehicle unloading with multiple order
     Then vehicle should be unload for multiple order

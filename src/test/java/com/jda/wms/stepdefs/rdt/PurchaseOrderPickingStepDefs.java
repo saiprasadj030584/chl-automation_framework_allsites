@@ -546,6 +546,7 @@ public class PurchaseOrderPickingStepDefs {
 			purchaseOrderVehicleLoadingPage.enterURN((String) context.getPalletIDList().get(i));	
 			puttyFunctionsPage.pressEnter();
 			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
 			Thread.sleep(2000);
 			Assert.assertTrue("Vehicle loading not as expected", puttyFunctionsPage.isVehEntPageDisplayed());
 			}
@@ -628,7 +629,9 @@ public class PurchaseOrderPickingStepDefs {
 //		String urn=orderContainerDB.selectURN(context.getOrderId());
 		purchaseOrderVehicleLoadingPage.enterPalletID(context.getPalletIDList().get(i));
 		Thread.sleep(2000);
-		//puttyFunctionsPage.pressTab();
+		if(dataType.equalsIgnoreCase("Boxed")){
+		  puttyFunctionsPage.pressTab();
+		}
 		purchaseOrderVehicleLoadingPage.enterTrailer(context.getTrailerNo());
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(2000);	
