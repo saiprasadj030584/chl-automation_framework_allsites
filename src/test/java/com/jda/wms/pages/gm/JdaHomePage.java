@@ -10,6 +10,7 @@ import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 
 public class JdaHomePage {
 
@@ -18,11 +19,13 @@ public class JdaHomePage {
 	private final JdaLoginPage jdaLoginPage;
 	private JDAFooter jdaFooter;
 	Region reg = new Region(0, 0, 4000, 1000);
+	private Context context;
 
 	@Inject
-	public JdaHomePage(JdaLoginPage jdaLoginPage,JDAFooter jdaFooter) {
+	public JdaHomePage(JdaLoginPage jdaLoginPage,JDAFooter jdaFooter,Context context) {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jdaFooter = jdaFooter;
+		this.context =context;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -327,6 +330,7 @@ public class JdaHomePage {
 	 */
 
 	public void clickSearchIcon() throws FindFailed, InterruptedException {
+		try{
 		Thread.sleep(5000);
 		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 			System.out.println("Application search icon found");
@@ -349,8 +353,9 @@ public class JdaHomePage {
 				System.out.println("Search for Screen selection ");
 				if (screen.exists("images/ScreenSelection.png") != null) {
 					System.out.println("Screen selection found");
-					screen.wait("images/SearchFor.png", timeoutInSec);
-					screen.click("images/SearchFor.png");
+					screen.click("images/ScreenSelection.png");
+//					screen.wait("images/SearchFor.png", timeoutInSec);
+//					screen.click("images/SearchFor.png");
 				}
 			
 			else if (screen.exists("images/JDAHome/Welcome.png") != null) {
@@ -371,8 +376,9 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				if (screen.exists("images/ScreenSelection.png") != null) {
 					System.out.println("Screen selection found");
-					screen.wait("images/SearchFor.png", timeoutInSec);
-					screen.click("images/SearchFor.png");
+					screen.click("images/ScreenSelection.png");
+//					screen.wait("images/SearchFor.png", timeoutInSec);
+//					screen.click("images/SearchFor.png");
 				}
 			}
 			} 
@@ -392,16 +398,25 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				if (screen.exists("images/ScreenSelection.png") != null) {
 					System.out.println("Screen selection found");
-					screen.wait("images/SearchFor.png", timeoutInSec);
-					screen.click("images/SearchFor.png");
+					screen.click("images/ScreenSelection.png");
+//					screen.wait("images/SearchFor.png", timeoutInSec);
+//					screen.click("images/SearchFor.png");
 				}
-			} else {
-				System.out.println("1. Application issue - Kill IE driver and luanch application from first");
-				applicationRestart();
+			} 
+			else {
+				System.out.println("1. Application issue - Kill IE driver and Launch application from first");
+//				applicationRestart();
+				Assert.fail("Application issue - Application didnt launch properly, hence failing the case");
 			}
 		} else {
-			System.out.println("2. Application issue - Kill IE driver and luanch application from first");
+			System.out.println("2. Application issue - Kill IE driver and Launch application from first");
 			applicationRestart();
+		}
+		}
+		catch(Exception e){
+			context.setEJBErrorMsg(e.getMessage());
+			System.out.println("Exception in screen navigation step "+e.getMessage());
+			Assert.fail("Exception in screen navigation step "+e.getMessage());
 		}
 	}
 	// Commented the earlier find screen option

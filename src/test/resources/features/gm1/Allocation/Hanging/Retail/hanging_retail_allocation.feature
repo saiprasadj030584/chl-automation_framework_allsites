@@ -26,7 +26,7 @@ Feature: Hanging - Retail - Allocation
     And I allocate the stocks
     Then the stock should get allocated
 
-  @jenkinsfm @hanging @allocation @retail @hanging_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+  @jenkinsB @hanging @allocation @retail @hanging_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     And the order sku details are verified

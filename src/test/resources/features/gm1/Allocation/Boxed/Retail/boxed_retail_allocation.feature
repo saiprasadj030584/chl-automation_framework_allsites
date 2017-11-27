@@ -50,7 +50,7 @@ Feature: Boxed - Retail - Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @jenkinsfm @boxed @allocation @retail @boxed_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+  @jenkinsA @boxed @allocation @retail @boxed_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
     Given the order of "Retail" should be in "Released" status in order header maintenance
     And the order sku details are verified
