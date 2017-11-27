@@ -113,59 +113,76 @@ public class DataLoadFromUI {
 
 	public void duplicateUPI(String upiReference, String upi)
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
-		jdaHomePage.navigateToUpiReceiptHeaderPage();
-		jdaFooter.clickQueryButton();
-		System.out.println("CHECKKKKK1");
-		upiReceiptHeaderPage.enterPalletWithReference(upiReference);
-		jdaFooter.clickExecuteButton();
-		if (upiReceiptHeaderPage.isNoRecordFound()) {
-			Assert.assertTrue("No upi data present in UI ", false);
-		}
-		if (upiReceiptHeaderPage.isEJBerrorfound()) {
-			Assert.assertTrue("EJB error found", false);
-		}
-
-		screen.rightClick();
-		Thread.sleep(2000);
-		screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
-		screen.click("images/DuplicateOption/duplicate.png");
-		Thread.sleep(2000);
-
-		screen.type("a", Key.CTRL);
-		jdaFooter.pressBackSpace();
-		upiReceiptHeaderPage.enterPalletWithReference(upi);
-		jdaFooter.clickExecuteButton();
-
-		if (deliveryPage.isEJBerrorfound()) {
-			Thread.sleep(2000);
-			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
-			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
-			Thread.sleep(2000);
-			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
-			screen.click("images/IgnoreMergeRulesUnchecked.png");
-			Thread.sleep(2000);
+		try {
+			jdaHomePage.navigateToUpiReceiptHeaderPage();
+			jdaFooter.clickQueryButton();
+			System.out.println("CHECKKKKK1");
+			upiReceiptHeaderPage.enterPalletWithReference(upiReference);
 			jdaFooter.clickExecuteButton();
-			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
-		} else {
-			context.setEJBErrorMsg("NA");
-			System.out.println("1 EJB err not found");
-		}
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		if (deliveryPage.isEJBerrorfound()) {
-			Assert.fail("Failed even after enabling the ignore merge rules checked..");
-		} else {
-			System.out.println("2 EJB err not found");
-		}
-		context.setUpiId(upi);
-		System.out.println("UPI Id" + context.getUpiId());
-		Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
+			if (upiReceiptHeaderPage.isNoRecordFound()) {
+				Assert.assertTrue("No upi data present in UI ", false);
+			}
+			if (upiReceiptHeaderPage.isEJBerrorfound()) {
+				Assert.assertTrue("EJB error found", false);
+			}
 
+			screen.rightClick();
+			Thread.sleep(2000);
+			screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
+			screen.click("images/DuplicateOption/duplicate.png");
+			Thread.sleep(2000);
+
+			screen.type("a", Key.CTRL);
+			jdaFooter.pressBackSpace();
+			upiReceiptHeaderPage.enterPalletWithReference(upi);
+			jdaFooter.clickExecuteButton();
+
+			if (deliveryPage.isEJBerrorfound()) {
+				Thread.sleep(2000);
+				screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+				screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+				Thread.sleep(2000);
+				screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+				screen.click("images/IgnoreMergeRulesUnchecked.png");
+				Thread.sleep(2000);
+				jdaFooter.clickExecuteButton();
+				context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+			} else {
+				context.setEJBErrorMsg("NA");
+				System.out.println("1 EJB err not found");
+			}
+			if (screen.exists("images/SaveModifications.png") != null) {
+				System.out.println("Save Modifications");
+				jdaFooter.PressEnter();
+			}
+			if (screen.exists("images/DefaultToReleased.png") != null) {
+				System.out.println("Default to Released");
+				jdaFooter.PressEnter();
+			}
+			if (screen.exists("images/DuplicateLines.png") != null) {
+				System.out.println("Duplicating Lines..");
+				jdaFooter.PressEnter();
+			}
+
+			if (deliveryPage.isEJBerrorfound()) {
+				System.out.println("EJB Error even after merge rules - Fail");
+				Assert.fail("Failed even after enabling the ignore merge rules checked..");
+			} else {
+				System.out.println("2 EJB err not found");
+			}
+			context.setUpiId(upi);
+			System.out.println("UPI Id" + context.getUpiId());
+			Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
+		} catch (Exception e) {
+			context.setEJBErrorMsg(e.getMessage());
+			System.out.println("Duplication of UPI - Exception - " + e.getMessage());
+			Assert.fail("Duplication of UPI - Exception - " + e.getMessage());
+		}
 	}
 
 	public void duplicatePO(String poReference, String po)
 			throws ClassNotFoundException, FindFailed, InterruptedException, SQLException {
+		try{
 
 		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
 		jdaFooter.clickQueryButton();
@@ -208,11 +225,21 @@ public class DataLoadFromUI {
 			context.setEJBErrorMsg("NA");
 			System.out.println("1 EJB err not found");
 		}
-		jdaFooter.PressEnter();
-		Thread.sleep(3000);
-		jdaFooter.PressEnter();
-		Thread.sleep(3000);
-		jdaFooter.PressEnter();
+		if (screen.exists("images/SaveModifications.png") != null) {
+			System.out.println("Save Modifications");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		}
+		if (screen.exists("images/DefaultToReleased.png") != null) {
+			System.out.println("Default to Released");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		}
+		if (screen.exists("images/DuplicateLines.png") != null) {
+			System.out.println("Duplicating Lines..");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		}
 		Thread.sleep(3000);
 		if (deliveryPage.isEJBerrorfound()) {
 			Assert.fail("Failed even after enabling the ignore merge rules checked..");
@@ -221,7 +248,13 @@ public class DataLoadFromUI {
 		}
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
+		}catch (Exception e) {
+		context.setEJBErrorMsg(e.getMessage());
+		System.out.println("Duplication of PO - Exception - " + e.getMessage());
+		Assert.fail("Duplication of PO - Exception - " + e.getMessage());
 	}
+	}
+
 
 	public void duplicateOdn(String orderReference, String order)
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
