@@ -543,14 +543,14 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 
-	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+	public void navigateToPreAdviceHeaderMaintenance()throws FindFailed, InterruptedException {
 		System.out.println("787tygjggjgfvmmbmb");
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
 	//	screen.click("images/JDAHome/Search_button.png");
 
-		 screen.type(Key.ENTER);
+	    screen.type(Key.ENTER);
 		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);

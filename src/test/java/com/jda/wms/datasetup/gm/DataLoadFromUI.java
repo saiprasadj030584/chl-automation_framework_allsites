@@ -61,7 +61,9 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		try{
 		jdaHomePage.navigateToDeliveryPage();
+		System.out.println("inside after query click asn");
 		jdaFooter.clickQueryButton();
+		System.out.println("inside after query click asn");
 		if (screen.exists("images/AfterQueryClick.png") != null) {
 			deliveryPage.enterAsnId(asnReference);
 			jdaFooter.clickExecuteButton();
@@ -72,6 +74,7 @@ public class DataLoadFromUI {
 		else{
 			//Clicking query for the second time to ensure test case
 			jdaFooter.clickQueryButton();
+			System.out.println("inside after query click asn");
 			if (screen.exists("images/AfterQueryClick.png") != null) {
 				deliveryPage.enterAsnId(asnReference);
 				jdaFooter.clickExecuteButton();
@@ -139,7 +142,9 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		try {
 			jdaHomePage.navigateToUpiReceiptHeaderPage();
+			System.out.println("inside after query click ui");
 			jdaFooter.clickQueryButton();
+			System.out.println("inside after query click ui");
 			System.out.println("CHECKKKKK1");
 			upiReceiptHeaderPage.enterPalletWithReference(upiReference);
 			jdaFooter.clickExecuteButton();
@@ -151,6 +156,7 @@ public class DataLoadFromUI {
 			else{
 				//Clicking query for the second time to ensure test case
 				jdaFooter.clickQueryButton();
+				System.out.println("inside after query click ui");
 				if (screen.exists("images/AfterQueryClick.png") != null) {
 					upiReceiptHeaderPage.enterPalletWithReference(upiReference);
 					jdaFooter.clickExecuteButton();
@@ -225,7 +231,9 @@ public class DataLoadFromUI {
 		try{
 
 		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
+		System.out.println("inside after query click po");
 		jdaFooter.clickQueryButton();
+		System.out.println("inside after query click po");
 		preAdviceHeaderPage.enterPreAdviceID(poReference);
 		jdaFooter.clickExecuteButton();
 
@@ -236,6 +244,7 @@ public class DataLoadFromUI {
 		else{
 			//Clicking query for the second time to ensure test case
 			jdaFooter.clickQueryButton();
+			System.out.println("inside after query click po");
 			if (screen.exists("images/AfterQueryClick.png") != null) {
 				preAdviceHeaderPage.enterPreAdviceID(poReference);
 				jdaFooter.clickExecuteButton();
