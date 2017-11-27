@@ -109,6 +109,7 @@ public class Hooks_autoUI {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
+			updateTestDataIntoRunStatusTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
 
@@ -116,7 +117,8 @@ public class Hooks_autoUI {
 					final byte[] screenshot = ((TakesScreenshot) jdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
 					scenario.embed(screenshot, "image/png");
 				}
-			} catch (WebDriverException e) {
+			}
+			catch (WebDriverException e) {
 
 				if (!(jdaLoginPage.driver instanceof TakesScreenshot)) {
 					logger.error(
@@ -132,6 +134,7 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
+				updateTestDataIntoRunStatusTable();
 				// final byte[] screenshot = ((TakesScreenshot)
 				// webDriver).getScreenshotAs(OutputType.BYTES);
 				// scenario.embed(screenshot, "image/png");

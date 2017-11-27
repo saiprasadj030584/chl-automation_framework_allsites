@@ -11,10 +11,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.inject.Inject;
-import com.jda.wms.DbReporting.UpdateRequestToAutomationDb;
-import com.jda.wms.DbReporting.UpdateTcToAutomationDb;
 import com.jda.wms.context.Context;
 import com.jda.wms.datasetup.gm.DataSetupRunner;
 import com.jda.wms.datasetup.gm.DbConnection;
@@ -33,22 +30,17 @@ public class Hooks {
 	String envVar = System.getProperty("user.dir");
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
-	static UpdateTcToAutomationDb updateTcToAutomationDb;
-	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
 	private Hooks_autoUI hooksautoUI;
 
 	@Inject
 	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
-			UpdateTcToAutomationDb updateTcToAutomationDb, UpdateRequestToAutomationDb updateRequestToAutomationDb,
 			Database jdaJdatabase, GetTcData gettcdata, Hooks_autoUI hooksautoUI) {
 
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
-		this.updateRequestToAutomationDb = updateRequestToAutomationDb;
-		this.updateTcToAutomationDb = updateTcToAutomationDb;
 		this.jdaJdatabase = jdaJdatabase;
 		this.gettcdata = gettcdata;
 		this.hooksautoUI = hooksautoUI;
@@ -138,21 +130,6 @@ public class Hooks {
 		}
 	}
 
-	// @Before
-	public void updateAutoDBRequestStart(Scenario scenario) throws IOException {
-
-		updateRequestToAutomationDb.updateRequestStartTime();
-
-		updateRequestToAutomationDb.updateRequestTcCount();
-
-		updateRequestToAutomationDb.updateRequestStatus("IN_PROGRESS");
-	}
-
-	// @Before
-	public void updateAutoDBTcStart(Scenario scenario) throws IOException {
-		updateTcToAutomationDb.updateTcStartTime();
-		updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
-	}
 
 	// @After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
@@ -188,31 +165,6 @@ public class Hooks {
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
 
-	// @After
-	public void killBrowser() throws IOException {
-
-		// Process killIE = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM iexplore.exe /FI \"USERNAME eq
-		// %username%\"");
-		// Process killChrome = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM chrome.exe /FI \"USERNAME eq
-		// %username%\"");
-		// Process killFirefox = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM firefox.exe /FI \"USERNAME eq
-		// %username%\"");
-		//
-		// Process killGeckoDriver = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM geckodriver.exe /FI \"USERNAME eq
-		// %username%\"");
-		// Process killChromeDriver = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM chromedriver.exe /FI \"USERNAME eq
-		// %username%\"");
-		//
-		// Process killIeDriver = Runtime.getRuntime()
-		// .exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq
-		// %username%\"");
-	}
-
 	@After
 	public void closeDBConnection() throws SQLException {
 		// if (!context.getConnection().equals(null)) {
@@ -220,42 +172,6 @@ public class Hooks {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
-	}
-
-	// @After
-	public void clickSignoutButton() throws FindFailed {
-		screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
-		screen.click("images/JDAHeader/Singout.png", 25);
-		logger.debug("Signed off JDA WMS Application");
-	}
-
-	// @After
-	public void updateAutoDBTcEnd(Scenario scenario) throws IOException {
-		if (scenario.isFailed()) {
-			updateTcToAutomationDb.updateTcComments("Comments");
-			updateTcToAutomationDb.updateTcStatus("FAIL");
-
-		} else {
-			updateTcToAutomationDb.updateTcStatus("PASS");
-		}
-		updateTcToAutomationDb.updateTcEndTime();
-		updateTcToAutomationDb.updateTcTimeTaken();
-
-		logger.debug(
-				"###########################################################################################################################");
-		logger.debug("End of Scenario: " + scenario.getName());
-		logger.debug(
-				"###########################################################################################################################");
-	}
-
-	// @After
-	public void updateAutoDBRequestEnd() throws IOException {
-		updateRequestToAutomationDb.updateRequestFailCountExcScripErrors();
-		updateRequestToAutomationDb.updateRequestFailCountIncScripErrors();
-		updateRequestToAutomationDb.updateRequestPassCount();
-		updateRequestToAutomationDb.updateRequestEndTime();
-		updateRequestToAutomationDb.updateRequestTimeTaken();
-		updateRequestToAutomationDb.updateRequestStatus("Request Status");
 	}
 
 }

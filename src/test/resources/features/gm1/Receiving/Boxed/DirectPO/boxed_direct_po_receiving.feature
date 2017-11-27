@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jenkinsA @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
+  @jenkinsA @jenkinsch @boxed_receiving_direct_po_receiving_without_lockcode @receiving @direct_po @boxed @complete @ds @maven_check_1 @putty_check @maven_check_2 @jenkinsbr 
   Scenario: Validate receipting process without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -24,7 +24,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkinsA @boxed_receiving_direct_po_preadvice_qty_greater_than_upi_qty @po @complete @boxed @receiving @direct_po @ds 
+  @jenkinsA @jenkinsch @boxed_receiving_direct_po_preadvice_qty_greater_than_upi_qty @po @complete @boxed @receiving @direct_po @ds 
   Scenario: Perform receiving when Pre advice line quantity is greater than the UPI line quantity
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "greater" than upi quantity
@@ -34,7 +34,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
 
-  @jenkinsA @boxed_receiving_direct_po_preadvice_qty_less_than_upi_qty @boxed @receiving @direct_po @complete @ds 
+  @jenkinsA  @jenkinsch @boxed_receiving_direct_po_preadvice_qty_less_than_upi_qty @boxed @receiving @direct_po @complete @ds 
   Scenario: Perform receiving when Pre advice line quantity is lesser than the UPI line quantity
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "less" than upi quantity
