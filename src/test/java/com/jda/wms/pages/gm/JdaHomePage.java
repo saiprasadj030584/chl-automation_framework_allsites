@@ -329,7 +329,7 @@ public class JdaHomePage {
 	 * }
 	 */
 
-	public void clickSearchIcon() throws FindFailed, InterruptedException {
+	public void clickSearchIcon() {
 		try{
 		Thread.sleep(5000);
 		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {

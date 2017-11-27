@@ -61,11 +61,28 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		jdaHomePage.navigateToDeliveryPage();
 		jdaFooter.clickQueryButton();
-		deliveryPage.enterAsnId(asnReference);
-		jdaFooter.clickExecuteButton();
-		if (deliveryPage.isNoRecordFound()) {
-			Assert.assertTrue("No ASN data present in UI ", false);
+		if (screen.exists("images/AfterQueryClick.png") != null) {
+			deliveryPage.enterAsnId(asnReference);
+			jdaFooter.clickExecuteButton();
+			if (deliveryPage.isNoRecordFound()) {
+				Assert.assertTrue("No ASN data present in UI ", false);
+			}
 		}
+		else{
+			//Clicking query for the second time to ensure test case
+			jdaFooter.clickQueryButton();
+			if (screen.exists("images/AfterQueryClick.png") != null) {
+				deliveryPage.enterAsnId(asnReference);
+				jdaFooter.clickExecuteButton();
+				if (deliveryPage.isNoRecordFound()) {
+					Assert.assertTrue("No ASN data present in UI ", false);
+				}
+			}
+			else{
+				Assert.fail("Application Issue - Query button not clicked");
+			}
+		}
+		
 		if (deliveryPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
