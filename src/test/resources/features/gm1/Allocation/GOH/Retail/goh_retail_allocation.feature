@@ -17,12 +17,12 @@ Feature: GOH - Retail - Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @allocation @goh @retail @goh_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+  @jenkinsfm @allocation @goh @retail @goh_allocation_retail_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     And the order sku details are verified
     When the inventory is available for the given SKU
-    Then the order status should be changed to "Allocated" status
+   Then the order should be allocated
     
     @jenkinsC @goh_allocation_retail_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @retail @goh @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
