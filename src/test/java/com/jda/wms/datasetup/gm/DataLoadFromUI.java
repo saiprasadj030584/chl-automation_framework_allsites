@@ -145,7 +145,7 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		try {
 			jdaHomePage.navigateToUpiReceiptHeaderPage();
-			boolean screenFound =upiReceiptHeaderPage .upiHomePage();
+			boolean screenFound =upiReceiptHeaderPage.upiHomePage();
 			System.out.println("upi Page Check" + screenFound);
 			Assert.assertEquals(true, screenFound);
 			System.out.println("inside after query click ui");
