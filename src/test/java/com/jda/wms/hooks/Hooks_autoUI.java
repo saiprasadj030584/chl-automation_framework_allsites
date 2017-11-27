@@ -59,9 +59,9 @@ public class Hooks_autoUI {
 				sqlConnectOpen();
 			}
 			System.out.println("update dbo.NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
-			+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='"+tcName+'"');
+			+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='"+tcName+"'");
 			String query = "update dbo.NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
-					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='"+tcName+'"';
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='"+tcName+"'";
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {
 			exception.printStackTrace();

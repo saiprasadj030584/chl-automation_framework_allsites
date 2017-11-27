@@ -515,8 +515,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("UPI Receipt Header");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(4000);
@@ -536,8 +536,8 @@ public class JdaHomePage {
 		screen.type("f", Key.CTRL);
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -548,9 +548,9 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
-		screen.click("images/JDAHome/Search_button.png");
+	//	screen.click("images/JDAHome/Search_button.png");
 
-		// screen.type(Key.ENTER);
+		 screen.type(Key.ENTER);
 		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -858,8 +858,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);

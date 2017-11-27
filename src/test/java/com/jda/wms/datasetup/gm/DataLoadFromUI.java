@@ -59,6 +59,7 @@ public class DataLoadFromUI {
 
 	public void duplicateASN(String asnReference, String asn)
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		try{
 		jdaHomePage.navigateToDeliveryPage();
 		jdaFooter.clickQueryButton();
 		if (screen.exists("images/AfterQueryClick.png") != null) {
@@ -126,7 +127,13 @@ public class DataLoadFromUI {
 		}
 		context.setAsnId(asn);
 		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB.getAsnIdForASN(context.getAsnId()));
+		}catch (Exception e) {
+			context.setEJBErrorMsg(e.getMessage());
+			System.out.println("Duplication of delivery - Exception - " + e.getMessage());
+			Assert.fail("Duplication of delivery - Exception - " + e.getMessage());
+		}
 	}
+	
 
 	public void duplicateUPI(String upiReference, String upi)
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
@@ -138,6 +145,22 @@ public class DataLoadFromUI {
 			jdaFooter.clickExecuteButton();
 			if (upiReceiptHeaderPage.isNoRecordFound()) {
 				Assert.assertTrue("No upi data present in UI ", false);
+				
+			
+			}
+			else{
+				//Clicking query for the second time to ensure test case
+				jdaFooter.clickQueryButton();
+				if (screen.exists("images/AfterQueryClick.png") != null) {
+					upiReceiptHeaderPage.enterPalletWithReference(upiReference);
+					jdaFooter.clickExecuteButton();
+					if (deliveryPage.isNoRecordFound()) {
+						Assert.assertTrue("No upi data present in UI ", false);
+					}
+				}
+				else{
+					Assert.fail("Application Issue - Query button not clicked");
+				}
 			}
 			if (upiReceiptHeaderPage.isEJBerrorfound()) {
 				Assert.assertTrue("EJB error found", false);
@@ -209,12 +232,26 @@ public class DataLoadFromUI {
 		if (preAdviceHeaderPage.isNoRecordFound()) {
 			Assert.assertTrue("No po data present in UI ", false);
 		}
+		
+		else{
+			//Clicking query for the second time to ensure test case
+			jdaFooter.clickQueryButton();
+			if (screen.exists("images/AfterQueryClick.png") != null) {
+				preAdviceHeaderPage.enterPreAdviceID(poReference);
+				jdaFooter.clickExecuteButton();
+				if (deliveryPage.isNoRecordFound()) {
+					Assert.assertTrue("No po data present in UI ", false);
+				}
+			}
+			else{
+				Assert.fail("Application Issue - Query button not clicked");
+			}
 		if (preAdviceHeaderPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
 
 		if (deliveryPage.isNoRecordFound()) {
-			Assert.assertTrue("No po data present in UI ", false);
+			Assert.assertTrue("No po data present in po ", false);
 		}
 
 		screen.rightClick();
@@ -265,12 +302,14 @@ public class DataLoadFromUI {
 		}
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
+		}
 		}catch (Exception e) {
 		context.setEJBErrorMsg(e.getMessage());
 		System.out.println("Duplication of PO - Exception - " + e.getMessage());
 		Assert.fail("Duplication of PO - Exception - " + e.getMessage());
 	}
 	}
+	
 
 
 	public void duplicateOdn(String orderReference, String order)
