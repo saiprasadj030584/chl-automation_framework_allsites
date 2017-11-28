@@ -136,7 +136,6 @@ public class Hooks_autoUI {
 			try {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
-				updateTestDataIntoRunStatusTable(scenario.getName());
 				updateParentTable();
 
 				// final byte[] screenshot = ((TakesScreenshot)
