@@ -79,7 +79,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
-  @jenkinsA @jenkinsfsv @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds 
+  @jenkinsA  @pre_receiving @fsv_po @boxed_pre_receiving_fsv_po_validate_whether_booking_can_be_made_to_complete_status @complete @ds 
   Scenario: Validate whether booking can be made to Complete status
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
