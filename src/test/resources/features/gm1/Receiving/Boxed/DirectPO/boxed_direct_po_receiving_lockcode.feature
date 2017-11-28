@@ -4,7 +4,8 @@ Feature: Boxed - Direct PO - Receiving with Lock code
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @jenkinsA @jenkinsS @boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  
+  @jenkinsA @jenkinsfo @jenkinsS @boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -15,7 +16,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
- @jenkinsS @jenkinsA @boxed_receiving_direct_po_receiving_with_lock_code_qacomp @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsfo @jenkinsS @jenkinsA @boxed_receiving_direct_po_receiving_with_lock_code_qacomp @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QACOMP lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
