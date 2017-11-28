@@ -277,7 +277,7 @@ public class DataLoadFromUI {
 				jdaFooter.pressBackSpace();
 
 				preAdviceHeaderPage.enterPreAdviceID(po);
-				;
+				
 				jdaFooter.clickExecuteButton();
 				if (deliveryPage.isEJBerrorfound()) {
 					Thread.sleep(2000);
