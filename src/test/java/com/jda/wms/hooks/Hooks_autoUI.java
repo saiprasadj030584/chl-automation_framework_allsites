@@ -108,8 +108,8 @@ public class Hooks_autoUI {
 		if (scenario.isFailed()) {
 			System.out.println("After class----> FAIL" + scenario.isFailed());
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
-			updateParentTable();
 			updateTestDataIntoRunStatusTable(scenario.getName());
+			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
 			try {
 
@@ -133,8 +133,9 @@ public class Hooks_autoUI {
 			try {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
-				updateParentTable();
 				updateTestDataIntoRunStatusTable(scenario.getName());
+				updateParentTable();
+				
 				// final byte[] screenshot = ((TakesScreenshot)
 				// webDriver).getScreenshotAs(OutputType.BYTES);
 				// scenario.embed(screenshot, "image/png");

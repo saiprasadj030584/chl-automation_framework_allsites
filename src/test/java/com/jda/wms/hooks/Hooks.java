@@ -46,18 +46,6 @@ public class Hooks {
 		this.hooksautoUI = hooksautoUI;
 	}
 
-	// @Before
-	public void logScenarioDetails(Scenario scenario) throws Exception {
-		String scenarioID = scenario.getId();
-		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
-		logger.debug(
-				"###########################################################################################################################");
-		logger.debug("featureID: " + featureID);
-		logger.debug("Start of Scenario: " + scenario.getName());
-		logger.debug(
-				"###########################################################################################################################");
-	}
-
 	@Before("~@Email")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		System.out.println("1st Before start");
@@ -86,16 +74,8 @@ public class Hooks {
 		System.out.println("1st Before end");
 	}
 
-	// @Before("~@Email")
-	public void setup(Scenario scenario) throws Exception {
-		System.out.println("INSIDE EMAIL");
-		System.out.println("Starting Execution" + scenario.getName());
-		hooksautoUI.getParentRequestID();
-		System.out.println("PREQ_ID " + context.getParentRequestId());
-		hooksautoUI.insertDetails(scenario.getName());
-	}
 
-	private void getSiteID() throws ClassNotFoundException {
+	/*private void getSiteID() throws ClassNotFoundException {
 		try {
 			if (context.getSQLDBConnection() == null) {
 				hooksautoUI.sqlConnectOpen();
@@ -128,7 +108,7 @@ public class Hooks {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-	}
+	}*/
 
 
 	// @After

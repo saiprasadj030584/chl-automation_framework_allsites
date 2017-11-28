@@ -296,7 +296,7 @@ public class DataLoadFromUI {
 				if (screen.exists("images/SaveModifications.png") != null) {
 					System.out.println("Save Modifications");
 					jdaFooter.PressEnter();
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 				}
 				if (screen.exists("images/DefaultToReleased.png") != null) {
 					System.out.println("Default to Released");
@@ -318,7 +318,7 @@ public class DataLoadFromUI {
 				Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 			}
 		} catch (Exception e) {
-			context.setEJBErrorMsg(e.getMessage());
+			context.setEJBErrorMsg("Duplication of PO - Exception - " + e.getMessage());
 			System.out.println("Duplication of PO - Exception - " + e.getMessage());
 			Assert.fail("Duplication of PO - Exception - " + e.getMessage());
 		}
