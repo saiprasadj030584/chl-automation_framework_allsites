@@ -170,6 +170,7 @@ public class DataSetupRunner {
 
 				String poReference = gettcdata.getPoFromTestData();
 				context.setTestData("PO:" + po);
+				System.out.println("" + context.getTestData());
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicatePO(poReference, po);
