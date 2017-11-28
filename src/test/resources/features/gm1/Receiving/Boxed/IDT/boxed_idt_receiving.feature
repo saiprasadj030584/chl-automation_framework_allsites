@@ -3,11 +3,12 @@ Feature: Inbound receiving IDT
   As a warehouse user
   I want to receive the returned articles
 
-  @boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn @idt @receiving @boxed @complete @ds
+  @boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn @idt @receiving @boxed @complete @ds @jenkinsidt
   Scenario: Validate the IDT receiving process - Normal URN
     Given the UPI and ASN should be in "Released" status for IDT
-    And the UPI should have sku, quantity due details
     And ASN and container to be linked with upi header
+    And the UPI should have sku, quantity due details
+   # And ASN and container to be linked with upi header
     When I perform normal urn "Full Receiving" for "single line item" at location "REC001" for IDT
     And the ITL should be generated for IDT received in inventory transaction
 

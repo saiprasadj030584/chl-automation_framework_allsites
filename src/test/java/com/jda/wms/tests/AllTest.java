@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = { "@boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress" })
+		"json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn"})
 
 public class AllTest {
 }
