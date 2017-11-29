@@ -1,5 +1,5 @@
 @receiving_IDT
-Feature: Inbound receiving IDT
+Feature: Boxed - Receiving - IDT
   As a warehouse user
   I want to receive the returned articles
 

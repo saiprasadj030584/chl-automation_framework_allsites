@@ -1,5 +1,5 @@
-@purchase_order_receiving
-Feature: Inbound Receiving - Over & Under Receiving with Lock code
+@boxed_inbound_receiving_direct_po_over_and_under_receiving_with_lock_code
+Feature: Inbound Receiving - Direct PO - Over & Under Receiving with Lock code
   As a warehouse user
   I want to receive the articles
   So that I can putaway the purchase order

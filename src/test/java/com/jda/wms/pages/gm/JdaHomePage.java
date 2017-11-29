@@ -515,6 +515,7 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("UPI Receipt Header");
+		Thread.sleep(2000);
 		//screen.click("images/JDAHome/Search_button.png");
 		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -537,6 +538,7 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 		screen.type("Pre-advice header maintenance/query screen");
 		//screen.click("images/JDAHome/Search_button.png");
+		Thread.sleep(2000);
 		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
