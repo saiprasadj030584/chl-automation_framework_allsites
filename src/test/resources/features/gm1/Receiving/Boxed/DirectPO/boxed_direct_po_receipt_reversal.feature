@@ -4,7 +4,7 @@ Feature: Boxed - Direct PO - Receipt reversal
   I want to receive the articles
   So that I can reverse the received purchase order
 
-  @jenkinsA @boxed_receiving_direct_po_validate_receipt_reversal_process_without_lock_code @boxed @direct_po @receiving @complete @ds @maven_check_1 @putty_check_1 @done_check @check9
+  @jenkinsA @jenkinsfly @boxed_receiving_direct_po_validate_receipt_reversal_process_without_lock_code @boxed @direct_po @receiving @complete @ds @maven_check_1 @putty_check_1 @done_check @check9
   Scenario: Receipt reversal process in JDA WMS for Boxed type without lock code
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001"
     When I have logged in as warehouse user in JDA dispatcher GM application

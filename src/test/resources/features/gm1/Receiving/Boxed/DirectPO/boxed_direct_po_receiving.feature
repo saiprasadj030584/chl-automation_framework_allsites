@@ -34,7 +34,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
 
-  @jenkinsA  @jenkinsch @boxed_receiving_direct_po_preadvice_qty_less_than_upi_qty @boxed @receiving @direct_po @complete @ds 
+  @jenkinsA  @jenkinsfly @boxed_receiving_direct_po_preadvice_qty_less_than_upi_qty @boxed @receiving @direct_po @complete @ds 
   Scenario: Perform receiving when Pre advice line quantity is lesser than the UPI line quantity
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "less" than upi quantity
