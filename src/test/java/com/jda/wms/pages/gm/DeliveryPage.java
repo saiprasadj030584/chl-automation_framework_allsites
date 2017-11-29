@@ -20,7 +20,7 @@ public class DeliveryPage {
 	}
 
 	public boolean deliveryHomePage() {
-		if (screen.exists("images/DeliveryPage.png") != null)
+		if (screen.exists("images/JDAHome/DeliveryHomePage.png") != null)
 			return true;
 		else
 			return false;

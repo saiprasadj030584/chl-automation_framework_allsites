@@ -24,11 +24,15 @@ public class JdaHomePage {
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private DeliveryPage deliveryPage;
 	private OrderHeaderPage orderHeaderPage;
+	private InventoryQueryPage inventoryQueryPage;
+	private StockAdjustmentsPage stockAdjustmentsPage;
+	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
+//	private DockSchedulerPage dockSchedulerPage;
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
 			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
-			PreAdviceHeaderPage preAdviceHeaderPage, OrderHeaderPage orderHeaderPage) {
+			PreAdviceHeaderPage preAdviceHeaderPage,InventoryTransactionQueryPage inventoryTransactionQueryPage, StockAdjustmentsPage stockAdjustmentsPage, OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -36,6 +40,10 @@ public class JdaHomePage {
 		this.preAdviceHeaderPage = preAdviceHeaderPage;
 		this.deliveryPage = deliveryPage;
 		this.orderHeaderPage = orderHeaderPage;
+		this.inventoryQueryPage = inventoryQueryPage;
+		this. stockAdjustmentsPage = stockAdjustmentsPage ;
+		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
+		//this.dockSchedulerPage = dockSchedulerPage;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -280,23 +288,14 @@ public class JdaHomePage {
 	}
 
 	public void navigateToInventoryQueryPage() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Inventory Query");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		navigateToPage("Inventory Query");
+		validateHomePageNavigation(inventoryQueryPage.inventoryQueryHomePage(), "Inventory Query");
 	}
 
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(2000);
-		screen.type("Stock Adjustment");
-		screen.type(Key.ENTER);
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		navigateToPage("Stock Adjustment");
+		validateHomePageNavigation(stockAdjustmentsPage.stockAdjustmentsHomePage(), "Stock Adjustment");
+		
 	}
 
 	public void clickWelcomeButton() throws FindFailed {
@@ -515,31 +514,21 @@ public class JdaHomePage {
 	}
 
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {
+		navigateToPage("(ITL) query");
+		validateHomePageNavigation(inventoryTransactionQueryPage.inventoryTransactionHomePage(), "(ITL) query");
 		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("(ITL) query");
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(4000);
+//		Thread.sleep(1000);
+//		screen.type("(ITL) query");
+//		Thread.sleep(2000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(1000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(4000);
 	}
 
 	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
 		navigateToPage("UPI Receipt Header");
 		validateHomePageNavigation(upiReceiptHeaderPage.upiHomePage(), "UPI Receipt Header");
-	}
-
-	private void navigateToPage(String pageName) throws InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type(pageName);
-		Thread.sleep(2000);
-//		screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(4000);
 	}
 
 	public void navigateToUpiManagementPage() throws FindFailed, InterruptedException {
@@ -743,6 +732,9 @@ public class JdaHomePage {
 	}
 
 	public void navigateToDockSchedulerPage() throws FindFailed, InterruptedException {
+//		navigateToPage("Dock scheduler screen");
+//		validateHomePageNavigation(dockSchedulerPage.dockSchedulerHomePage(), "Dock scheduler screen");
+//	}
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock scheduler screen");
@@ -862,6 +854,7 @@ public class JdaHomePage {
 
 	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
 		navigateToPage("Delivery");
+		Thread.sleep(3000);
 		validateHomePageNavigation(deliveryPage.deliveryHomePage(), "Delivery Maintenance");
 	}
 
@@ -936,5 +929,17 @@ public class JdaHomePage {
 			System.out.println(homePageName + " Page not found");
 			Assert.fail(homePageName + " Page not found");
 		}
+	}
+	
+	private void navigateToPage(String pageName) throws InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type(pageName);
+		Thread.sleep(2000);
+//		screen.click("images/JDAHome/Search_button.png");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
 	}
 }

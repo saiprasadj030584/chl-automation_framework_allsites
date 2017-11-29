@@ -157,7 +157,7 @@ public class OrderHeaderPage {
 	}
 
 	public boolean orderHomePage() {
-		if (screen.exists("images/OrderHeaderHomePage.png") != null)
+		if (screen.exists("images/JDAHome/OrderHeaderHomePage.png") != null)
 			return true;
 		else
 			return false;

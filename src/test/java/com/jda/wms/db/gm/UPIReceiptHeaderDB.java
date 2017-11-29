@@ -35,6 +35,15 @@ public class UPIReceiptHeaderDB {
 		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
+//		int iVal = 0;
+//
+//		if (rs.next()) {
+//		    iVal = rs.getInt("status");
+//		    if (rs.wasNull()) {
+//		       System.out.println("Null Value returned !!! Testdat setup issue ! Please Rerun this scenario");
+//		       Assert.fail();
+//		    }
+//		}
 		return rs.getString(1);
 	}
 
@@ -139,10 +148,29 @@ public class UPIReceiptHeaderDB {
 			}
 
 			Statement stmt = context.getConnection().createStatement();
-			System.out.println("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+			System.out.println("** SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
 			rs = stmt.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
+			System.out.println(" Query Executed");
+//			int iVal = 0;
+//
+//			if (!rs.next()) {
+//			    iVal = rs.getInt("pallet_id");
+//			    if (rs.wasNull()) {
+//			       System.out.println("Null Value returned !!! Testdat setup issue ! Please Rerun this scenario");
+//			       Assert.fail();
+//			    }
+//			    else
+//			    {
+//			    	System.out.println("Value found in DB");
+//			    }
+//			}
+//			else
+//		    {
+//		    	System.out.println("Value found in DB");
+//		    }
+			
 			if (!rs.next()) {
-				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
+				context.setErrorMessage("*Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}

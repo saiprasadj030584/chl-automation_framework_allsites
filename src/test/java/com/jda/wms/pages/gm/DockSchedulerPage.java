@@ -13,12 +13,12 @@ public class DockSchedulerPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private final Context context;
-	private JdaHomePage jdaHomePage;
+//	private JdaHomePage jdaHomePage;
 
 	@Inject
-	public DockSchedulerPage(Context context, JdaHomePage jdaHomePage) {
+	public DockSchedulerPage(Context context ) {
 		this.context = context;
-		this.jdaHomePage = jdaHomePage;
+		//this.jdaHomePage = jdaHomePage;
 	}
 
 	public void selectCreateNewBooking() throws FindFailed, InterruptedException {
@@ -387,5 +387,12 @@ public class DockSchedulerPage {
 	public void enterConsignmentID(String consignmentID) throws InterruptedException {
 		screen.type(consignmentID);
 		Thread.sleep(1000);
+	}
+
+	public boolean dockSchedulerHomePage() {
+		if (screen.exists("images/JDAHome/DockSchedulerHomePage.png") != null)
+			return true;
+		else
+			return false;
 	}
 }

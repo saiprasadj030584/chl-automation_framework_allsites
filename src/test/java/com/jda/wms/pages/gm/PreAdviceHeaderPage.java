@@ -141,7 +141,7 @@ public class PreAdviceHeaderPage {
 	}
 
 	public boolean preadviceHomePage() {
-		if (screen.exists("images/PreAdviceHeaderHomePage.png") != null)
+		if (screen.exists("images/JDAHome/PreAdviceHeaderHomePage.png") != null)
 			return true;
 		else
 			return false;

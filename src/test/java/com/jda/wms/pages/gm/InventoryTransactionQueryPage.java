@@ -594,4 +594,11 @@ public class InventoryTransactionQueryPage {
 		screen.click("images/InventoryTransactionQuery/UserDefined/UserDefinedTab.png");
 		Thread.sleep(2000);
 		}
+
+	public boolean inventoryTransactionHomePage() {
+		if (screen.exists("images/JDAHome/UPIReceiptHeaderPage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

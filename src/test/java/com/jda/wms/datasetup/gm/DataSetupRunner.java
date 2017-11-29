@@ -69,7 +69,6 @@ public class DataSetupRunner {
 		}
 	}
 
-	
 	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
 		String uniqueTag = "";
 		for (String tag : tagListForScenario) {
@@ -81,7 +80,7 @@ public class DataSetupRunner {
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-		if (null==context.getSiteID()){
+		if (null == context.getSiteID()) {
 			getSiteId(context.getUniqueTag());
 		}
 		System.out.println("SITE ID FOR SCENARIO " + context.getSiteID());
@@ -108,13 +107,13 @@ public class DataSetupRunner {
 			if (!rs.next()) {
 				System.out.println("Fail Of Site Id **" + context.getSiteID());
 				Assert.fail("Unique Tag Id is notfound");
-			
+
 			} else {
 				System.out.println("Unique Tag Id is found");
 				context.setSiteID(rs.getString("SITE_NO"));
 				System.out.println("1 Value Of Site Id **" + context.getSiteID());
 			}
-			
+
 			System.out.println("2 Value Of Site Id **" + context.getSiteID());
 		}
 
@@ -197,7 +196,7 @@ public class DataSetupRunner {
 				Thread.sleep(2000);
 				String upi2 = null;
 				if (context.getUniqueTag().contains("multiple_urn")) {
-				upi2 = formReturnsUPIID(supplierIdRef, qty);
+					upi2 = formReturnsUPIID(supplierIdRef, qty);
 				}
 				System.out.println("from ref upi 1 " + upi);
 				System.out.println("from ref upi 2 " + upi2);
@@ -206,7 +205,7 @@ public class DataSetupRunner {
 
 				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 				if (context.getUniqueTag().contains("multiple_urn")) {
-					context.setTestData("UPI 1:" + upi + "UPI 2: "+upi2+";ASN:" + asn);
+					context.setTestData("UPI 1:" + upi + "UPI 2: " + upi2 + ";ASN:" + asn);
 				}
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference, asn);
@@ -223,7 +222,6 @@ public class DataSetupRunner {
 					validateUpiDataSetup(upi2);
 					gettcdata.setSecondPalletId(upi2);
 				}
-				
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -257,7 +255,6 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
-			
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -287,7 +284,7 @@ public class DataSetupRunner {
 				Thread.sleep(2000);
 				String upi2 = null;
 				if (context.getUniqueTag().contains("multiple_urn")) {
-				upi2 = formReturnsUPIID(supplierIdRef, qty);
+					upi2 = formReturnsUPIID(supplierIdRef, qty);
 				}
 				System.out.println("from ref upi 1 " + upi);
 				System.out.println("from ref upi 2 " + upi2);
@@ -295,9 +292,9 @@ public class DataSetupRunner {
 
 				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 				if (context.getUniqueTag().contains("multiple_urn")) {
-					context.setTestData("UPI 1:" + upi + "UPI 2: "+upi2+";ASN:" + asn);
+					context.setTestData("UPI 1:" + upi + "UPI 2: " + upi2 + ";ASN:" + asn);
 				}
-				
+
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateASN(asnReference, asn);
@@ -334,7 +331,6 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -373,7 +369,6 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -393,7 +388,6 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -415,7 +409,6 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -435,23 +428,27 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				
+
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 
 			}
 		}
-		System.out.println("------------------SITE ID :"+context.getSiteID()+"---------------------");
+		System.out.println("------------------SITE ID :" + context.getSiteID() + "---------------------");
 
 	}
 
 	private String formReturnsUPIID(String supplierIdRef, String qty)
 			throws ClassNotFoundException, SQLException, InterruptedException {
-
+		String supplier = null;
 		// manipulate supplier
-		String[] supplierSplit = supplierIdRef.split("M");
-		String supplier = supplierSplit[1];
+		if (supplierIdRef.contains("M")) {
+			String[] supplierSplit = supplierIdRef.split("M");
+			supplier = supplierSplit[1];
+		} else {
+			supplier = supplierIdRef;
+		}
 
 		// manipulate quantity
 		int sumLength = qty.length();
@@ -552,7 +549,7 @@ public class DataSetupRunner {
 					"SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
-				if (temp.equalsIgnoreCase(context.getUniqueTag())){
+				if (temp.equalsIgnoreCase(context.getUniqueTag())) {
 					UniqueTagInTestData = true;
 				}
 			}
