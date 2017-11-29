@@ -92,7 +92,7 @@ public class UpiReceiptHeaderPage {
 	}
 
 	public boolean upiHomePage() {
-		if (screen.exists("images/UpiPage.png") != null)
+		if (screen.exists("images/UPIReceiptHeaderPage.png") != null)
 			return true;
 		else
 			return false;

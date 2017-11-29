@@ -392,7 +392,7 @@ public class Hooks_autoUI {
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'");
 			String updateQuery = "UPDATE DBO.Nps_Auto_UI_Run_Status SET EXEC_END_DATE_TIME='" + getSystemTime()
 					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS= '"
-					+ context.getEJBErrorMsg() + "',TEST_DATA ='" + context.getTestData() + "' where P_REQ_ID= '"
+					+ context.getErrorMessage() + "',TEST_DATA ='" + context.getTestData() + "' where P_REQ_ID= '"
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
 
 			context.getSQLDBConnection().createStatement().execute(updateQuery);

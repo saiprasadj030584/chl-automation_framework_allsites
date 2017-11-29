@@ -45,7 +45,6 @@ public class DataLoadFromUI {
 
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter = jdaFooter;
-		this.deliveryPage = deliveryPage;
 		this.context = context;
 		this.deliveryDB = deliveryDB;
 		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
@@ -61,10 +60,6 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		try {
 			jdaHomePage.navigateToDeliveryPage();
-			boolean screenFound = deliveryPage.deliveryHomePage();
-			System.out.println("Delivery Page Check" + screenFound);
-			Assert.assertEquals(true, screenFound);
-
 			System.out.println("inside after query click asn");
 			jdaFooter.clickQueryButton();
 			System.out.println("inside after query click asn");
@@ -118,9 +113,9 @@ public class DataLoadFromUI {
 				screen.click("images/IgnoreMergeRulesUnchecked.png");
 				Thread.sleep(2000);
 				jdaFooter.clickExecuteButton();
-				context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+				context.setErrorMessage("EJB Error---> Ignore merge rules checked");
 			} else {
-				context.setEJBErrorMsg("NA");
+				context.setErrorMessage("NA");
 				System.out.println("1 EJB err not found");
 			}
 			// jdaFooter.PressEnter();
@@ -135,7 +130,7 @@ public class DataLoadFromUI {
 		} catch (
 
 		Exception e) {
-			context.setEJBErrorMsg(e.getMessage());
+			context.setErrorMessage(e.getMessage());
 			System.out.println("Duplication of delivery - Exception - " + e.getMessage());
 			Assert.fail("Duplication of delivery - Exception - " + e.getMessage());
 		}
@@ -145,9 +140,6 @@ public class DataLoadFromUI {
 			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		try {
 			jdaHomePage.navigateToUpiReceiptHeaderPage();
-			boolean screenFound =upiReceiptHeaderPage.upiHomePage();
-			System.out.println("upi Page Check" + screenFound);
-			Assert.assertEquals(true, screenFound);
 			System.out.println("inside after query click ui");
 			jdaFooter.clickQueryButton();
 			System.out.println("inside after query click ui");
@@ -195,9 +187,9 @@ public class DataLoadFromUI {
 				screen.click("images/IgnoreMergeRulesUnchecked.png");
 				Thread.sleep(2000);
 				jdaFooter.clickExecuteButton();
-				context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+				context.setErrorMessage("EJB Error---> Ignore merge rules checked");
 			} else {
-				context.setEJBErrorMsg("NA");
+				context.setErrorMessage("NA");
 				System.out.println("1 EJB err not found");
 			}
 			if (screen.exists("images/SaveModifications.png") != null) {
@@ -223,7 +215,7 @@ public class DataLoadFromUI {
 			System.out.println("UPI Id" + context.getUpiId());
 			Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
 		} catch (Exception e) {
-			context.setEJBErrorMsg(e.getMessage());
+			context.setErrorMessage(e.getMessage());
 			System.out.println("Duplication of UPI - Exception - " + e.getMessage());
 			Assert.fail("Duplication of UPI - Exception - " + e.getMessage());
 		}
@@ -234,9 +226,6 @@ public class DataLoadFromUI {
 		try {
 
 			jdaHomePage.navigateToPreAdviceHeaderMaintenance();
-			boolean screenFound = preAdviceHeaderPage.preadviceHomePage();
-			System.out.println("Pre advice found" + screenFound);
-			Assert.assertEquals(true, screenFound);
 			System.out.println("inside after query click po");
 			jdaFooter.clickQueryButton();
 			System.out.println("inside after query click po");
@@ -288,9 +277,9 @@ public class DataLoadFromUI {
 					screen.click("images/IgnoreMergeRulesUnchecked.png");
 					Thread.sleep(2000);
 					jdaFooter.clickExecuteButton();
-					context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+					context.setErrorMessage("EJB Error---> Ignore merge rules checked");
 				} else {
-					context.setEJBErrorMsg("NA");
+					context.setErrorMessage("NA");
 					System.out.println("1 EJB err not found");
 				}
 				if (screen.exists("images/SaveModifications.png") != null) {
@@ -318,7 +307,7 @@ public class DataLoadFromUI {
 				Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 			}
 		} catch (Exception e) {
-			context.setEJBErrorMsg("Duplication of PO - Exception - " + e.getMessage());
+			context.setErrorMessage("Duplication of PO - Exception - " + e.getMessage());
 			System.out.println("Duplication of PO - Exception - " + e.getMessage());
 			Assert.fail("Duplication of PO - Exception - " + e.getMessage());
 		}
@@ -366,9 +355,9 @@ public class DataLoadFromUI {
 			screen.click("images/IgnoreMergeRulesUnchecked.png");
 			Thread.sleep(2000);
 			jdaFooter.clickExecuteButton();
-			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+			context.setErrorMessage("EJB Error---> Ignore merge rules checked");
 		} else {
-			context.setEJBErrorMsg("NA");
+			context.setErrorMessage("NA");
 			System.out.println("1 EJB err not found");
 		}
 

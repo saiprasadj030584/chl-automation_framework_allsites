@@ -143,7 +143,7 @@ public class DeliveryDB {
 			Statement stmt = context.getConnection().createStatement();
 			rs = stmt.executeQuery("Select asn_id from delivery where asn_id ='" + asn + "'");
 			if (!rs.next()) {
-				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("ASN ID -->" + rs.getString(1));
 			}

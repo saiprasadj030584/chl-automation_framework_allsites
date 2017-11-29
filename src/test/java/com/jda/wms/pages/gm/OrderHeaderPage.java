@@ -155,5 +155,12 @@ public class OrderHeaderPage {
 		screen.click(morderid.getCenter().offset(70, 0));
 		Thread.sleep(1000);
 	}
+
+	public boolean orderHomePage() {
+		if (screen.exists("images/OrderHeaderHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }
 

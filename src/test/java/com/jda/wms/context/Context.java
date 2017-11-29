@@ -160,7 +160,7 @@ public class Context {
 	private static String testData;
 	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
-	private String ejbError;
+	private String errorMessage;
 	private int updatedQty;
 
 	public Map<String, String> getPoNumLinesMap() {
@@ -1384,12 +1384,12 @@ public class Context {
 		return dBConnection;
 	}
 
-	public void setEJBErrorMsg(String ejbError) {
-		this.ejbError = ejbError;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	public String getEJBErrorMsg() {
-		return ejbError;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }

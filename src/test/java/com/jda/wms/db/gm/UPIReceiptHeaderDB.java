@@ -142,7 +142,7 @@ public class UPIReceiptHeaderDB {
 			System.out.println("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
 			rs = stmt.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE pallet_id = '" + upi + "'");
 			if (!rs.next()) {
-				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}
