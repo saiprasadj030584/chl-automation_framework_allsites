@@ -1393,16 +1393,18 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
-	public String getOriginId(String location) throws SQLException, ClassNotFoundException {
+	public boolean getOriginId(String location) throws SQLException, ClassNotFoundException {
 		System.out.println("select origin_id from inventory where location_id='" + location + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select distinct(origin_id) from inventory where location_id='" + location + "' and origin_id is not null");
-		rs.next();
-		return rs.getString(1);
+		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "' and origin_id ='NONE'");
+		if(rs.next())
+		return true;
+		else
+			return false;
 		
 	}
 

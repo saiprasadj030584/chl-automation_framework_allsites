@@ -24,8 +24,8 @@ public class JdaLoginPage {
 	int timeoutInSec = 20;
 
 	public static RemoteWebDriver driver;
-	private  Configuration configuration;
-	private  Context context;
+	private Configuration configuration;
+	private Context context;
 	// Configuration configuration = new Configuration();
 	// Context context = new Context();
 
@@ -56,7 +56,7 @@ public class JdaLoginPage {
 			System.out.println("Site Id" + context.getSiteID());
 			setDriver();
 			driver.manage().window().maximize();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			if (context.getSiteID().equals("5649")) {
 				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
@@ -79,63 +79,63 @@ public class JdaLoginPage {
 					System.out.println("Login screen not found in loop");
 				}
 
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				waitTime = waitTime + 3;
-			} while (waitTime < 120);
+			} while (waitTime < 300);
 
-		if (screen.exists("images/JDALogin/username.png") != null) {
-		// Assert.fail("Login Not successful");
-		if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
-		while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+			if (screen.exists("images/JDALogin/username.png") == null) {
+				// Assert.fail("Login Not successful");
+				if (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
+					while (screen.exists("images/JDALogin/JavaUpdateError.png") != null) {
 
-		screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
-		screen.click("images/JDALogin/DoNotAsk.png");
-		screen.wait("images/JDALogin/Later.png", timeoutInSec);
-		screen.click("images/JDALogin/Later.png");
+						screen.wait("images/JDALogin/DoNotAsk.png", timeoutInSec);
+						screen.click("images/JDALogin/DoNotAsk.png");
+						screen.wait("images/JDALogin/Later.png", timeoutInSec);
+						screen.click("images/JDALogin/Later.png");
 
-		}
+					}
 
-		} else {
-		Assert.fail("URL Not successful");
-		}
+				} else {
+					Assert.fail("URL Not successful");
+				}
 
-		}
+			}
 
-		enterUsername();
-		enterPassword();
-		clickConnectButton();
+			enterUsername();
+			enterPassword();
+			clickConnectButton();
 		}
 
 		int waitTime = 3;
 		do {
-		if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
-		break;
-		}
-		Thread.sleep(15000);
-		waitTime = waitTime + 3;
+			if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
+				break;
+			}
+			Thread.sleep(15000);
+			waitTime = waitTime + 3;
 		} while (waitTime < 60);
 
 		if (screen.exists("/images/JDAHome/Welcomed.png") != null) {
-		screen.rightClick("/images/JDAHome/Welcomed.png", 25);
-		Thread.sleep(2000);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		screen.type(Key.UP);
-		Thread.sleep(2000);
-		screen.type(Key.ENTER);
+			screen.rightClick("/images/JDAHome/Welcomed.png", 25);
+			Thread.sleep(2000);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			screen.type(Key.UP);
+			Thread.sleep(2000);
+			screen.type(Key.ENTER);
 		}
 
 		else if (screen.exists("/images/JDAHome/Welcome.png") != null) {
-		screen.rightClick("/images/JDAHome/Welcome.png", 25);
-		Thread.sleep(4000);
-		screen.click("/images/JDAHome/CloseAll.png", 25);
+			screen.rightClick("/images/JDAHome/Welcome.png", 25);
+			Thread.sleep(4000);
+			screen.click("/images/JDAHome/CloseAll.png", 25);
 		}
-		}
+	}
 
 	public static void setDriver() {
 		DesiredCapabilities capabilities = null;

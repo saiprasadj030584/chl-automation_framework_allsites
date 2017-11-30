@@ -19,7 +19,7 @@ Feature: Hanging - Outbound Order till despatch - Store Order
 
   @hanging_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @hanging @store_order @outbound_order_till_despatch @ds  @pick_discrepencies_grp
   Scenario: Store order with pick discrepancy
-    #Given I have logged in as warehouse user in JDA dispatcher GM application
+    Given I have logged in as warehouse user in JDA dispatcher GM application
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
@@ -29,4 +29,4 @@ Feature: Hanging - Outbound Order till despatch - Store Order
     And I select user directed option in main menu
     And I select container picking
     And I perform picking for hanging discrepancy
-    Then I verify the status as "In Progress" in order header
+    Then I verify the status as "Ready to Load" in order header

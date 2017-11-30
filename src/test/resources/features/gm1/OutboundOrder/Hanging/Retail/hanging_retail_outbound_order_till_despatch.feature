@@ -64,16 +64,19 @@ Feature: Hanging - Retail - Outbound Order till despatch
     When I proceed for vehicle unload
     Then Trailer should enter page displayed
     
-  @outbound_order_till_despatch @hanging @retail @hanging_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
-  Scenario: Trailer not entered when unloading
-    Given the multiple OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
+  @outbound_order_till_despatch @hanging @retail @hanging_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds @complete 
+  Scenario: Multiple pallet in the single trailer when unloading
+   # Given the multiple OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
+    Given the multiple order id of type "Retail" with "Hanging" skus should be in "Released" status
+    When I create a consignment for multiple order
     When I navigate to system allocation page
     And I enter multiple OrderID for allocation
     Then Allocation should be updated for multiple order
+    When I navigate to mannual clustering screen
+    And I proceed with clustering
     When I navigate to scheduler program page
     And I run the program
-    #And I perform picking for multiple order of type boxed
-    And I perform picking for hanging
+    And I perform picking for multiple order
     Then the order should be Ready to Load
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page
@@ -82,8 +85,9 @@ Feature: Hanging - Retail - Outbound Order till despatch
     And I select the slot
     And I create a booking for the asn
     Then the booking details should appear
-    And I proceed for boxed vehicle loading with multiple order
+    And I proceed for vehicle loading with multiple order
     Then Trailer should be loaded for multiple order
-    When I proceed for boxed vehicle unloading with multiple order
+    When I proceed for "Hanging" vehicle unloading with multiple order
     Then vehicle should be unload for multiple order
+
     

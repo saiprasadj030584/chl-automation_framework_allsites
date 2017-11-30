@@ -184,10 +184,14 @@ public class SystemAllocationStepsDefs {
 	public void allocation_should_be_updated_for_multiple_order() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(10000);
+		System.out.println("before loop Allocation step : "+failureList.size());
 		for (int i = 0; i < context.getOrderList().size(); i++) {
+			System.out.println("Order ID to check allocation status "+context.getOrderList().get(i));
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderList().get(i)), failureList);
+		System.out.println("Allocation step : "+failureList.size());
 		}
-		Assert.assertTrue("order status is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+		System.out.println("outside loop Allocation step : "+failureList.size());
+		Assert.assertTrue("Order status is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
 	

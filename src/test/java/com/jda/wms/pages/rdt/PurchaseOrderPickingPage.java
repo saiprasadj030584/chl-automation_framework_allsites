@@ -39,8 +39,8 @@ public class PurchaseOrderPickingPage {
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(5000);
 	}
 
 	public void enterPrinterNO(String string) throws InterruptedException {
@@ -210,9 +210,11 @@ public class PurchaseOrderPickingPage {
 			return false;
 	}
 
-	public void enterPicToTagId(String tagId) throws InterruptedException {
+	public void enterPicToTagId(String tagId) throws InterruptedException { 
+		System.out.println("Check Tag Id --------->" + tagId);
+		
 		screen.type(tagId);
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		
 	}
 

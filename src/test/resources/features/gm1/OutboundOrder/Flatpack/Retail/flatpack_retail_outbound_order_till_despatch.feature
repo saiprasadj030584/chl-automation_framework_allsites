@@ -64,9 +64,9 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     When I proceed for vehicle unload
     Then Trailer should enter page displayed
     
-   @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
-  Scenario: Trailer not entered when unloading
-    Given the multiple OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
+  @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
+  Scenario: Multiple pallet in the single trailer when unloading
+    Given the multiple order id of type "Retail" with "Flatpack" skus should be in "Released" status
     When I create a consignment for multiple order
     When I navigate to system allocation page
     And I enter multiple OrderID for allocation
@@ -88,3 +88,5 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     Then Trailer should be loaded for multiple order
     When I proceed for "Flatpack" vehicle unloading with multiple order
     Then vehicle should be unload for multiple order
+    #When I navigate to Trailer Shipping page
+    #Then trailer should be shipped

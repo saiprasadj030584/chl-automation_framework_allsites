@@ -232,15 +232,70 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	
-	public String getToLocationForPutaway(String skuType,String department) throws SQLException, ClassNotFoundException {
+
+	public String getToLocationForPutaway(String skuType, String department)
+			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
-		database.connect();
+			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
-		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
+		System.out.println("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
+				+ "%' and lock_status='UnLocked' and user_def_type_1='" + department + "' and current_volume='0'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
+				+ "%' and lock_status='UnLocked' and user_def_type_1='" + department + "' and current_volume='0'");
 		rs.next();
 		return rs.getString(1);
+	}
+
+	public boolean getunlockedlocation(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
 		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out
+				.println("select * from location where location_id = '" + location + "'  and lock_status = 'UnLocked'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where location_id = '" + location
+				+ "'  and lock_status = 'UnLocked'");
+		if (rs.next())
+			return true;
+		else
+			return false;
+	}
+
+	public boolean getunlocked_GOH_location(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select * from location where location_id = '" + location
+				+ "' and zone_1 = 'HANG' and user_def_type_2 = 'HANG' and user_def_type_3 = 'HANG' and lock_status = 'UnLocked'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where location_id = '" + location
+				+ "' and zone_1 = 'HANG' and user_def_type_2 = 'HANG' and user_def_type_3 = 'HANG' and lock_status = 'UnLocked'");
+		if (rs.next())
+			return true;
+		else
+			return false;
+	}
+
+	public String getToLocationForPutawayGOH(String skuType, String department)
+			throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+
+		System.out.println("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
+				+ "%' and lock_status='UnLocked' a and current_volume='0'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
+				+ "%' and lock_status='UnLocked' and  current_volume='0'");
+
+		rs.next();
+		return rs.getString(1);
+	}
 }

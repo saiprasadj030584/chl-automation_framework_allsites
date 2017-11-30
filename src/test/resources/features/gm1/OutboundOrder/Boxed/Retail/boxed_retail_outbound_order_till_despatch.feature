@@ -72,7 +72,9 @@ Feature: Boxed - Retail - Outbound Order till despatch
     
   @outbound_order_till_despatch @boxed @retail @boxed_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds @complete
   Scenario: Trailer not entered when unloading
-    Given the multiple OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
+    #Given the multiple OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
+    Given the multiple order id of type "Retail" with "Boxed" skus should be in "Released" status
+    When I create a consignment for multiple order
     When I navigate to system allocation page
     And I enter multiple OrderID for allocation
     Then Allocation should be updated for multiple order

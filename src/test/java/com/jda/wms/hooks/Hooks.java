@@ -66,7 +66,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-	@Before("~@Email")
+	 @Before("~@Email")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
