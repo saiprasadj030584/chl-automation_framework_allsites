@@ -954,4 +954,103 @@ public class InventoryQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	@Then("^the inventory should be displayed for all tags received in split$")
+	public void the_inventory_should_be_displayed_for_all_tags_received_in_split() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		multiplePOMap = context.getMultiplePOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			if ((!(null == context.getReceiveType())) && context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+						Integer.toString(context.getRcvQtyDue()),
+						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
+						failureList);
+			} else if (null == context.getReceiveType()) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+
+						inventoryDB.getLocationAfterReceive(context.getSkuId(), context.getTagId(), date), failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+
+						String.valueOf(context.getRcvQtyDue()),
+						inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId(), date),
+
+						failureList);
+			}
+			}
+		}
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Then("^the inventory should be displayed for all tags split received for FSV PO$")
+	public void the_inventory_should_be_displayed_for_all_tags_split_received_for_fsv_po() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+				context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+					inventoryDB.getLocationAfterPOReceive(context.getSkuId(), context.getPreAdviceId(), date),
+					failureList);
+			verification.verifyData(
+					"Qty on Hand for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()), inventoryDB
+							.getQtyOnHandPO(context.getSkuId(), context.getLocation(), context.getPreAdviceId(), date),
+					failureList);
+			}
+		}
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Then("^the inventory should be displayed for all tags split received idt$")
+	public void the_inventory_should_be_displayed_for_all_tags_split_received_idt() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		// String tagId = Utilities.getTenDigitRandomNumber() +
+		// Utilities.getTenDigitRandomNumber();
+		context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+				verification.verifyData("Location for SKU after receive" + context.getSkuId(), context.getLocation(),
+						inventoryDB.getLocationAfterReceiveIdt(context.getSkuId(), context.getContainerId()),
+						failureList);
+				verification.verifyData("Qty on Hand for SKU " + context.getSkuId(),
+						Integer.toString(context.getRcvQtyDue()),
+						inventoryDB.getQtyOnHandreturns(context.getSkuId(), context.getContainerId()), failureList);
+			}
+			}
+		}
+		Assert.assertTrue(
+				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
 }

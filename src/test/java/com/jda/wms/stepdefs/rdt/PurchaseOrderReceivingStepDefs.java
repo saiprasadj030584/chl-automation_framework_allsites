@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,6 +74,7 @@ public class PurchaseOrderReceivingStepDefs {
 	private SupplierSkuDB supplierSkuDB;
 	private InventoryTransactionDB inventoryTransactionDB;
 	private InventoryDB inventoryDb;
+	//private IDTReceivingStepDefs idtReceivingStepDefs;
 
 	@Inject
 	public PurchaseOrderReceivingStepDefs(PurchaseOrderReceivingPage purchaseOrderReceivingPage, Context context,
@@ -108,6 +111,7 @@ public class PurchaseOrderReceivingStepDefs {
 		this.supplierSkuDB = supplierSkuDB;
 		this.inventoryTransactionDB = inventoryTransactionDB;
 		this.inventoryDb=inventoryDb;
+		//this.idtReceivingStepDefs=idtReceivingStepDefs;
 	}
 
 	@Given("^the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line$")
@@ -1367,6 +1371,8 @@ public class PurchaseOrderReceivingStepDefs {
 
 	@When("^I enter tag id$")
 	public void i_enter_tag_id() throws FindFailed, InterruptedException {
+		
+		purchaseOrderReceivingPage.eraseTagContent();
 		String tagId = Utilities.getTenDigitRandomNumber() + Utilities.getTenDigitRandomNumber();
 		context.setTagId(tagId);
 		purchaseOrderReceivingPage.entertagId(tagId);
@@ -1545,6 +1551,18 @@ public class PurchaseOrderReceivingStepDefs {
 		puttyFunctionsPage.backSpace();
 		purchaseOrderReceivingPage.enterQuantity(quantity);
 		puttyFunctionsPage.pressEnter();
+	}
+	
+	@When("^I enter qty")
+	public void i_enter_qty(String quantity) throws Throwable {
+		// To navigate and enter the modified quantity
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.rightArrow();
+		puttyFunctionsPage.backSpace();
+		puttyFunctionsPage.backSpace();
+		puttyFunctionsPage.backSpace();
+		purchaseOrderReceivingPage.enterQuantity(quantity);
 	}
 
 	@When("^I blind receive the invalid upi$")
@@ -2822,6 +2840,472 @@ public class PurchaseOrderReceivingStepDefs {
 		purchaseOrderReceivingPage.entertagId(tagId);
 		
 	
+	}
+	
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" for maximum aisle$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_maximum_aisle(String type, String location)
+			throws Throwable {
+
+		String preAdviceId = getTcData.getPo();
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
+
+		context.setUpiId(upiId);
+		context.setPreAdviceId(preAdviceId);
+		context.setAsnId(asnId);
+
+		preAdviceHeaderStepsDefs
+				.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type, "Released");
+		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
+		the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
+		context.setLocation(location);
+		i_perform_for_all_skus_at_location_for_maximum_aisle("Under Receiving","REC001");
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_received_in_split();
+		inventoryTransactionQueryStepDefs
+				.the_goods_receipt_should_be_generated_for_split_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_po_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\" for maximum aisle$")
+	public void i_perform_for_all_skus_at_location_for_maximum_aisle(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setQtyOnHand(context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()/120);
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()%120);
+			if(context.getQtyOnHand()>120)
+			{
+		for(int k=0;k<context.getQtyOnHand()/120;k++)
+		{
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf("120");
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			if (context.getSKUType().equalsIgnoreCase("Boxed") || context.getSKUType().equalsIgnoreCase("Flatpack")
+					|| context.getSKUType().equalsIgnoreCase("GOH")) {
+				System.out.println("entered for GOH");
+				i_enter_urn_id(context.getUpiId());
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+			} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
+				System.out.println("entered for Hang");
+				i_enter_urn_id(context.getUpiId());
+				puttyFunctionsPage.nextScreen();
+				i_enter_asn(uPIReceiptHeaderDB.getAsnId(context.getUpiId()));
+				i_enter_hanging_value();
+				i_enter_trl();
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+				//the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
+			}
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			// i_enter_the_quantity(quantity);
+			puttyFunctionsPage.pressEnter();
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				i_enter_urn_id();
+				puttyFunctionsPage.pressEnter();
+			}
+			// hooks.logoutPutty();
+		}
+		
+		System.out.println("COMES TO IF Part");
+		System.out.println(context.getQtyOnHand());
+		System.out.println(context.getQtyOnHand()%120);
+		System.out.println((context.getQtyOnHand()%120)!=0);
+		System.out.println((context.getQtyOnHand()%120)*120);
+		if((context.getQtyOnHand()%120)!=0)
+		{
+			System.out.println("inside Loop after for");
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				System.out.println("REM Quant"+String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()%120)*120)));
+				quantity = String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()/120)*120));
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			if (context.getSKUType().equalsIgnoreCase("Boxed") || context.getSKUType().equalsIgnoreCase("Flatpack")
+					|| context.getSKUType().equalsIgnoreCase("GOH")) {
+				System.out.println("entered for GOH");
+				i_enter_urn_id(context.getUpiId());
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+			} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
+				System.out.println("entered for Hang");
+				i_enter_urn_id(context.getUpiId());
+				puttyFunctionsPage.nextScreen();
+				i_enter_asn(uPIReceiptHeaderDB.getAsnId(context.getUpiId()));
+				i_enter_hanging_value();
+				i_enter_trl();
+				jdaFooter.PressEnter();
+				the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+				//the_tag_and_upc_details_should_be_displayed_for_hanging_sku();
+			}
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			// i_enter_the_quantity(quantity);
+			puttyFunctionsPage.pressEnter();
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				i_enter_urn_id();
+				puttyFunctionsPage.pressEnter();
+			}
+		}
+		
+			}
+		}
+		hooks.logoutPutty();
+	}
+	
+	@When("^the tag and upc details should be displayed for maximum aisle check$")
+	public void the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check() throws FindFailed, InterruptedException {
+		ArrayList failureList = new ArrayList();
+		System.out.println("is location" + purchaseOrderReceivingPage.isLocationDisplayed());
+		Assert.assertTrue("RcvPreCmp page not displayed to enter Location",
+				purchaseOrderReceivingPage.isLocationDisplayed());
+		String[] tagSplit = purchaseOrderReceivingPage.getTagId().split("_");
+		String tagID = tagSplit[0];
+
+		verification.verifyData("Tag ID", context.getUpiId(), tagID, failureList);
+
+		String[] packConfigSplit = purchaseOrderReceivingPage.getPackConfig().split("_");
+		String packConfig = packConfigSplit[0];
+		verification.verifyData("Pack Config", context.getPackConfig(), packConfig, failureList);
+
+		verification.verifyData("Supplier", context.getSupplierID(), purchaseOrderReceivingPage.getSupplierId(),
+				failureList);
+
+		String[] qtySplit = purchaseOrderReceivingPage.getQtyToReceiveUnderReceiving().split("_");
+		String qtyToRcv = qtySplit[0];
+		verification.verifyData("Qty to Receive", String.valueOf(context.getRcvQtyDue()), qtyToRcv, failureList);
+
+		String[] upcSplit = purchaseOrderReceivingPage.getUPC().split("_");
+		String upc = upcSplit[0];
+		context.setUPC(upc);
+		Assert.assertTrue(
+				"Tag and UPC details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	
+	@Given("^the FSV PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" for maximum aisle$")
+	public void the_fsv_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_maximum_aisle(String type, String location)
+			throws Throwable {
+
+		preAdviceHeaderStepsDefs
+				.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
+		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
+		preAdviceHeaderStepsDefs.the_PO_should_not_be_linked_with_UPI_line();
+		context.setLocation(location);
+		i_perform_for_all_skus_for_the_FSV_purchase_order_at_location_for_maximum_aisle("Under Receiving","REC001");
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_split_received_for_fsv_po();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_fsv_PO_split_received_stock_in_inventory_transaction();
+		
+		preAdviceHeaderStepsDefs.the_FSV_po_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I perform \"([^\"]*)\" for all skus for the FSV purchase order at location \"([^\"]*)\" for maximum aisle$")
+	public void i_perform_for_all_skus_for_the_FSV_purchase_order_at_location_for_maximum_aisle(String receiveType, String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
+			context.setQtyOnHand(context.getRcvQtyDue());
+			if(context.getQtyOnHand()>120)
+			{
+		for(int k=0;k<context.getQtyOnHand()/120;k++)
+		{
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf("120");
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
+			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			jdaFooter.PressEnter();
+			i_enter_the_loctn();
+			jdaFooter.pressTab();
+			i_enter_tag_id();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			i_enter_qty(quantity);
+			jdaFooter.PressEnter();
+			i_enter_the_newpallet(context.enterNewPallet().get(i - 1));
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+						purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+					context.setFailureList(failureList);
+				}
+			}
+		}
+		System.out.println("COMES TO IF Part");
+		System.out.println(context.getQtyOnHand());
+		System.out.println(context.getQtyOnHand()%120);
+		System.out.println((context.getQtyOnHand()%120)!=0);
+		System.out.println((context.getQtyOnHand()%120)*120);
+		if((context.getQtyOnHand()%120)!=0)
+		{
+			System.out.println("inside Loop after for");
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				System.out.println("REM Quant"+String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()%120)*120)));
+				quantity = String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()/120)*120));
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
+			i_enter_belCode(context.getBelCodeList().get(i - 1));
+			jdaFooter.PressEnter();
+			i_enter_the_loctn();
+			jdaFooter.pressTab();
+			i_enter_tag_id();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			i_enter_qty(quantity);
+			jdaFooter.PressEnter();
+			i_enter_the_newpallet(context.enterNewPallet().get(i - 1));
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				Assert.assertTrue("Rcv Pallet Entry Page not displayed",
+						purchaseOrderReceivingPage.isRcvPalletEntPageDisplayed());
+				if (!purchaseOrderReceivingPage.isPreAdviceEntryDisplayed()) {
+					failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+					context.setFailureList(failureList);
+				}
+			
+			
+			}
+		}
+			}
+		}
+		hooks.logoutPutty();
+	}
+	
+	@Given("^the IDT PO of type \"([^\"]*)\" with UPI and ASN should be received at \"([^\"]*)\" for maximum aisle$")
+	public void the_idt_PO_of_type_with_UPI_and_ASN_should_be_received_at_for_maximum_aisle(String type, String location)
+			throws Throwable {
+
+
+		upiReceiptHeaderStepDefs
+				.the_UPI_of_type_and_ASN_should_be_in_status_for_IDT(type, "Released");
+		upiReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
+		upiReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();
+		context.setLocation(location);
+		i_perform_for_all_skus_at_location_for_IDT_for_maximum_aisle_check("Under Receiving","REC001");
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_split_received_idt();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_IDT_split_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_idt_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\" for IDT maximum aisle$")
+	public void i_perform_for_all_skus_at_location_for_idt_maximum_aisle(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		context.setReceiveType(receiveType);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_pre_advice_receiving();
+		i_should_be_directed_to_pre_advice_entry_page();
+
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setPackConfig(upiMap.get(context.getSkuId()).get("PACK CONFIG"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setQtyOnHand(context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()/120);
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()%120);
+			if(context.getQtyOnHand()>120)
+			{
+		for(int k=0;k<context.getQtyOnHand()/120;k++)
+		{
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf("120");
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			i_enter_urn_id(context.getUpiId());
+			puttyFunctionsPage.pressEnter();
+			the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			// i_enter_the_quantity(quantity);
+			puttyFunctionsPage.pressEnter();
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				i_enter_urn_id();
+				puttyFunctionsPage.pressEnter();
+			}
+			// hooks.logoutPutty();
+		}
+		
+		System.out.println("COMES TO IF Part");
+		System.out.println(context.getQtyOnHand());
+		System.out.println(context.getQtyOnHand()%120);
+		System.out.println((context.getQtyOnHand()%120)!=0);
+		System.out.println((context.getQtyOnHand()%120)*120);
+		if((context.getQtyOnHand()%120)!=0)
+		{
+			System.out.println("inside Loop after for");
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				System.out.println("REM Quant"+String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()%120)*120)));
+				quantity = String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()/120)*120));
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			i_enter_urn_id(context.getUpiId());
+			puttyFunctionsPage.pressEnter();
+			the_tag_and_upc_details_should_be_displayed_for_maximum_aisle_check();
+			i_enter_the_location();
+			puttyFunctionsPage.pressTab();
+			i_enter_tag_id();
+			// i_enter_the_quantity(quantity);
+			puttyFunctionsPage.pressEnter();
+			if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				i_enter_urn_id();
+				puttyFunctionsPage.pressEnter();
+			}
+		}
+		
+			}
+		}
+		hooks.logoutPutty();
+	}
+	
+	@When("^I perform \"([^\"]*)\" for all skus at location \"([^\"]*)\" for IDT for maximum aisle check$")
+	public void i_perform_for_all_skus_at_location_for_IDT_for_maximum_aisle_check(String receiveType, String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList<String> skuList = new ArrayList<String>();
+		skuList = context.getSkuList();
+		context.setLocation(location);
+		context.setLocationID(location);
+		context.setReceiveType(receiveType);
+		upiMap = context.getUPIMap();
+		String quantity = null;
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		for (int s = 0; s < skuList.size(); s++) {
+			context.setSkuId(skuList.get(s));
+			context.setUPC(supplierSkuDB.getSupplierSKU(context.getSkuId()));
+
+			context.setContainerId(upiMap.get(context.getSkuId()).get("CONTAINER"));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setSupplierID(upiMap.get(context.getSkuId()).get("SUPPLIER ID"));
+			context.setQtyOnHand(context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue());
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()/120);
+			System.out.println("RECEIVE QTY DUE"+context.getRcvQtyDue()%120);
+			if(context.getQtyOnHand()>120)
+			{
+		for(int k=0;k<context.getQtyOnHand()/120;k++)
+		{
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 5);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				quantity = String.valueOf("120");
+			} else if (receiveType.equalsIgnoreCase("Full Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue());
+			}
+			context.setRcvQtyDue(Integer.parseInt(quantity));
+			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			// jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if (!purchaseOrderReceivingPage.isExcessReceiptErrorDisplayed()) {
+				failureList.add(
+						"Error message:You can not over receipt this sscc not displayed for sku " + context.getSkuId());
+			}
+			puttyFunctionsPage.pressEnter();
+		}
+		System.out.println("COMES TO IF Part");
+		System.out.println(context.getQtyOnHand());
+		System.out.println(context.getQtyOnHand()%120);
+		System.out.println((context.getQtyOnHand()%120)!=0);
+		System.out.println((context.getQtyOnHand()%120)*120);
+		if((context.getQtyOnHand()%120)!=0)
+		{
+			System.out.println("inside Loop after for");
+			if (receiveType.equalsIgnoreCase("Over Receiving")) {
+				quantity = String.valueOf(context.getRcvQtyDue() + 1);
+			} else if (receiveType.equalsIgnoreCase("Under Receiving")) {
+				System.out.println("REM Quant"+String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()%120)*120)));
+				quantity = String.valueOf(context.getQtyOnHand()-((context.getQtyOnHand()/120)*120));
+			}
+			context.setRcvQtyDue(Integer.valueOf(quantity));
+			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			// jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(quantity);
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+
+			puttyFunctionsPage.nextScreen();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			if (!purchaseOrderReceivingPage.isExcessReceiptErrorDisplayed()) {
+				failureList.add(
+						"Error message:You can not over receipt this sscc not displayed for sku " + context.getSkuId());
+			}
+			puttyFunctionsPage.pressEnter();
+			}
+			}
+		}
+			
+		context.setFailureList(failureList);
+		hooks.logoutPutty();
 	}
 
 }

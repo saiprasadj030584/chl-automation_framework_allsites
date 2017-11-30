@@ -14,6 +14,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
 import com.jda.wms.hooks.Hooks_autoUI;
 import com.jda.wms.pages.gm.JdaLoginPage;
+import com.jda.wms.stepdefs.gm.StockCreationForAlocation;
 import com.jda.wms.utils.Utilities;
 
 public class DataSetupRunner {
@@ -24,10 +25,24 @@ public class DataSetupRunner {
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
 	private Hooks_autoUI hooks_autoUI;
+	private StockCreationForAlocation stockCreationForAlocation;
+//	private StockAdjustmentsPage stockAdjustmentsPage;
+//	private SupplierSkuDB supplierSkuDb;
+//	private JDAFooter jdaFooter;
+//	private SkuSkuConfigDB skuSkuConfigDB;
+//	private JdaHomePage jdaHomePage;
+//	private InventoryDB inventoryDB;
+//	private SkuDB skuDB;
+//	private PurchaseOrderStockCheckPage purchaseOrderStockCheckPage; 
+	
+	/*StockAdjustmentsPage stockAdjustmentsPage, SupplierSkuDB supplierSkuDb,
+	JDAFooter jdaFooter, SkuSkuConfigDB skuSkuConfigDB, JdaHomePage jdaHomePage, InventoryDB inventoryDB,
+	SkuDB skuDB, PurchaseOrderStockCheckPage purchaseOrderStockCheckPage*/
 
 	@Inject
 	public DataSetupRunner(Context context, DbConnection npsDataBase, Database jdaJdatabase, GetTcData gettcdata,
-			DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage, Hooks_autoUI hooks_autoUI) {
+			DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage, Hooks_autoUI hooks_autoUI,
+			StockCreationForAlocation stockCreationForAlocation) {
 		this.context = context;
 		this.npsDataBase = npsDataBase;
 		this.gettcdata = gettcdata;
@@ -36,6 +51,17 @@ public class DataSetupRunner {
 		this.dataLoadFromUI = dataLoadFromUI;
 		this.jdaLoginPage = jdaLoginPage;
 		this.hooks_autoUI = hooks_autoUI;
+		this.stockCreationForAlocation=stockCreationForAlocation;
+//		this.jdaHomePage = jdaHomePage;
+//		this.skuSkuConfigDB = skuSkuConfigDB;
+//		this.orderLineDB = orderLineDB;
+//		this.stockAdjustmentsPage = stockAdjustmentsPage;
+//		this.supplierSkuDb = supplierSkuDb;
+//		this.jdaFooter = jdaFooter;
+//		// this.locationDB = locationDB;
+//		this.inventoryDB = inventoryDB;
+//		this.skuDB = skuDB;
+//		this.purchaseOrderStockCheckPage = purchaseOrderStockCheckPage;
 	}
 
 	public void getTagListFromAutoDb() {
@@ -87,18 +113,19 @@ public class DataSetupRunner {
 
 	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
 		String uniqueTag = "";
-		
+
 		for (String tag : tagListForScenario) {
 			if (tag.length() > uniqueTag.length()) {
 				uniqueTag = tag;
 			}
 		}
-		System.out.println("UNIQQQQQ"+uniqueTag);
+		System.out.println("UNIQQQQQ" + uniqueTag);
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-		if (null==context.getSiteID()){
+
+		if (null == context.getSiteID()) {
 			getSiteId(context.getUniqueTag());
 		}
 		System.out.println("SITE ID FOR SCENARIO " + context.getSiteID());
@@ -125,13 +152,13 @@ public class DataSetupRunner {
 			if (!rs.next()) {
 				System.out.println("Fail Of Site Id **" + context.getSiteID());
 				Assert.fail("Unique Tag Id is notfound");
-			
+
 			} else {
 				System.out.println("Unique Tag Id is found");
 				context.setSiteID(rs.getString("SITE_NO"));
 				System.out.println("1 Value Of Site Id **" + context.getSiteID());
 			}
-			
+
 			System.out.println("2 Value Of Site Id **" + context.getSiteID());
 		}
 
@@ -311,7 +338,8 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") && (!(context.getUniqueTag().contains("order")) && !(context.getUniqueTag().contains("allocation")))) {
+		} else if (context.getUniqueTag().contains("idt")
+				&& (!(context.getUniqueTag().contains("order")) && !(context.getUniqueTag().contains("allocation")))) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -395,14 +423,42 @@ public class DataSetupRunner {
 			}
 		}
 
-		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order")) {
+		else if (context.getUniqueTag().contains("retail") || (context.getUniqueTag().contains("retail") && context.getUniqueTag().contains("order"))) {
 			try {
 				npsDataBase.connectAutomationDB();
+				
+				//Order Reference
+				String odnReference = gettcdata.getOdnFromTestData();
+				context.setOrderId(odnReference);
 
+				
+				// Fetching Refernce Test Data from Test data table
+				//SKU Stock Maintenance in Inventory
+				
+				String skuReference = gettcdata.getSkuListFromTestData();
+				String[] skuArray = skuReference.split(",");
+				ArrayList<String> skuList=new ArrayList<String>();
+				for (int i = 0; i < skuArray.length; i++) {
+					skuList.add(skuArray[i]);
+				}
+				context.setSkuList(skuList);
+				
+				//SKU Stock Adjustment If stock is not there in inventory
+				try
+				{
+					stockCreationForAlocation.createStockbeforeAllocation(context.getSkuList(),context.getUniqueTag());
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			//Order Duplication	
 				// Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
-				String odnReference = gettcdata.getOdnFromTestData();
+				
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
@@ -414,15 +470,43 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") && (context.getUniqueTag().contains("order") || context.getUniqueTag().contains("allocation"))) {
+		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("idt")
+				&& (context.getUniqueTag().contains("order") || context.getUniqueTag().contains("allocation"))) {
 			try {
 				System.out.println("Inside IDT Order");
 				npsDataBase.connectAutomationDB();
 
+				//Order Reference
+				String odnReference = gettcdata.getOdnFromTestData();
+				context.setOrderId(odnReference);
+
+				
+				// Fetching Refernce Test Data from Test data table
+				//SKU Stock Maintenance in Inventory
+				
+				String skuReference = gettcdata.getSkuListFromTestData();
+				String[] skuArray = skuReference.split(",");
+				ArrayList<String> skuList=new ArrayList<String>();
+				for (int i = 0; i < skuArray.length; i++) {
+					skuList.add(skuArray[i]);
+				}
+				context.setSkuList(skuList);
+				
+				//SKU Stock Adjustment If stock is not there in inventory
+				try
+				{
+					stockCreationForAlocation.createStockbeforeAllocation(context.getSkuList(),context.getUniqueTag());
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			//Order Duplication	
 				// Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
-				String odnReference = gettcdata.getOdnFromTestData();
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
@@ -513,7 +597,7 @@ public class DataSetupRunner {
 
 			}
 		}
-		System.out.println("------------------SITE ID :"+context.getSiteID()+"---------------------");
+		System.out.println("------------------SITE ID :" + context.getSiteID() + "---------------------");
 
 	}
 
@@ -624,7 +708,7 @@ public class DataSetupRunner {
 					"SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag() + "'");
 			while (resultSet.next()) {
 				String temp = resultSet.getString("UNIQUE_TAG");
-				if (temp.equalsIgnoreCase(context.getUniqueTag())){
+				if (temp.equalsIgnoreCase(context.getUniqueTag())) {
 					UniqueTagInTestData = true;
 				}
 			}
@@ -1710,4 +1794,5 @@ public class DataSetupRunner {
 			context.setPreAdviceId("9317010312");
 		}
 	}
+
 }

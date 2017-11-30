@@ -32,7 +32,7 @@ Feature: Purchase order Putaway
     When I perform normal putaway
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-   @jenkinsA @boxed_putaway_fsv_po_validate_putaway_location @fsv_po @complete @putaway @boxed @ds @jenkinsput
+  @jenkinsA @boxed_putaway_fsv_po_validate_putaway_location @fsv_po @complete @putaway @boxed @ds @jenkinsput
   Scenario: Validate Putaway Location
     Given the FSV PO of type "Boxed" should be received at location "REC001" and site id
     When I choose normal putaway
@@ -42,8 +42,8 @@ Feature: Purchase order Putaway
   @boxed_putaway_fsv_po_validate_putaway_logic_for_receiving_singles_when_locations_full @boxed @fsv_po @putaway @jenkinsput @compete @ds
   Scenario: Validate Putaway Logic for receiving singles when locations full
     Given the FSV PO of type "Boxed" should be received at location "REC001" and site id
-   # When I choose existing relocate
-   # And I proceed with entering the location and upc
+    # When I choose existing relocate
+    # And I proceed with entering the location and upc
     When I choose normal putaway
     And I proceed by entering less quantity for FSV
     Then the ITL should be generated for putaway relocated stock in inventory transaction
@@ -99,3 +99,11 @@ Feature: Purchase order Putaway
     Then the FSV po status should be displayed as "Complete"
     When I perform normal putaway of hazardous product after relocation for FSV PO
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
+
+  @boxed @putaway @fsv_po @boxed_putaway_fsv_po_validate_maximum_locations_per_aisle_per_upc @complete @ds
+  Scenario: Validate maximum locations per Aisle per UPC
+    Given the FSV PO of type "Boxed" with UPI and ASN should be received at "REC001" for maximum aisle
+    When I choose existing relocate
+    And I proceed with entering the upc and location of FSV PO
+    When I perform normal putaway after under receiving and relocation
+    Then the goods receipt should be generated for putaway stock in inventory transaction

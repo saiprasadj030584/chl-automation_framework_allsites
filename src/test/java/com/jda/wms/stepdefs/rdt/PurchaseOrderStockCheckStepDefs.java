@@ -192,5 +192,7 @@ public class PurchaseOrderStockCheckStepDefs {
 	public void i_enter_no_or_yes(String value) throws Throwable {
 		purchaseOrderStockCheckPage.i_enter_no_or_yes(value);
 	}
+	
+	
 
 }

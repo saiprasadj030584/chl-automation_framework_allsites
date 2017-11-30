@@ -1154,5 +1154,44 @@ public class InventoryTransactionDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
+	public ArrayList<String> getTagIDList(String pallet, String code, String sku, String dstamp)
+			throws SQLException, ClassNotFoundException {
+		
+		
+		ArrayList<String> palletIdList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code
+				+ "'and reference_id= '" + pallet + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				palletIdList.add((rs.getString(j)));
+			}
+		}
+		return palletIdList;
+		
+	}
+
+	public String getReceivedQty(String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
+				+ "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
+	
+
 
 }

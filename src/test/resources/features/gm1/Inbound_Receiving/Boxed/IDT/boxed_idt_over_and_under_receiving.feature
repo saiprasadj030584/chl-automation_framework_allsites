@@ -20,3 +20,5 @@ Feature: Inbound receiving IDT
     Then the inventory should be displayed for all tags received idt
     And the goods receipt should be generated for IDT received stock in inventory transaction
     Then the idt status should be displayed as "In Progress"
+    
+      

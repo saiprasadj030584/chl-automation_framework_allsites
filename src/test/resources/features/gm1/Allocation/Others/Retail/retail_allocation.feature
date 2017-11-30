@@ -31,9 +31,9 @@ Feature: Allocation
     And I allocate the stocks
     Then the stock should not get allocated
 
-  @allocation @retail @goh @goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds
+  @allocation @retail @goh @goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds @gems
   Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Disallowed
-    Given the order id of type "IDT" should be in "Released" status and "GOH" skus should be applicable for "Prohibition" disallowed
+    Given the order id of type "Retail" should be in "Released" status and "GOH" skus should be applicable for "Prohibition" disallowed
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should not get allocated

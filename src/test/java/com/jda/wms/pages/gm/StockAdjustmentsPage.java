@@ -218,8 +218,8 @@ public class StockAdjustmentsPage {
 	//	Thread.sleep(1000);
 //		Match morigin = screen.find("images/StockAdjustment/Search/origin.png");
 		screen.wait("images/StockAdjustment/Search/origin.png", timeoutInSec);
-		Thread.sleep(1000);
-		screen.click("images/StockAdjustment/Search/origin.png");
+		Match mpallet = screen.find("images/StockAdjustment/Search/origin.png");
+		screen.click(mpallet.getCenter().offset(50, 0));
 //		screen.click(morigin.getCenter().offset(70, 0));
 		screen.type(origin);
 		Thread.sleep(1000);

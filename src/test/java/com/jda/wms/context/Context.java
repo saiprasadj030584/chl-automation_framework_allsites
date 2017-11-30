@@ -168,6 +168,15 @@ public class Context {
 	private boolean jdaLoginFlag = false;
 	private boolean vehicleLoadRequired;
 	private String orderId1;
+	private ArrayList<String> tagIdList;
+
+	public ArrayList<String> getTagIdList() {
+		return tagIdList;
+	}
+
+	public void setTagIdList(ArrayList<String> tagIdList) {
+		this.tagIdList = tagIdList;
+	}
 
 	public String getOrderId1() {
 		return orderId1;

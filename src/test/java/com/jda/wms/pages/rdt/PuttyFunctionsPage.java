@@ -23,13 +23,14 @@ public class PuttyFunctionsPage {
 	}
 
 	public void invokePutty() throws IOException, InterruptedException {
+		
 		Process putty = Runtime.getRuntime().exec("bin/putty/putty.exe");
 		context.setPuttyProcess(putty);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-
+		Thread.sleep(3000);
 		// Clear pre-entered host name
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
@@ -47,7 +48,7 @@ public class PuttyFunctionsPage {
 		System.out.println("ch" + port);
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");
-		Thread.sleep(1000);
+		Thread.sleep(7000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
@@ -147,9 +148,9 @@ public class PuttyFunctionsPage {
 
 	public void rightArrow() throws InterruptedException {
 		screen.type(Key.RIGHT);
-		Thread.sleep(2000);
+		// Thread.sleep(2000);
 	}
-	
+
 	public void upArrow() throws InterruptedException {
 		screen.type(Key.UP);
 		Thread.sleep(2000);

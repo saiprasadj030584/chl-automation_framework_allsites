@@ -220,7 +220,6 @@ public class PurchaseOrderReceivingPage {
 		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressTab();
 		Thread.sleep(3000);
 	}
 
@@ -834,5 +833,62 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getQtyToReceiveUnderReceiving() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		String[] qtySplit = App.getClipboard().split("_");
+		if (qtySplit.length == 0) {
+			System.out.println(qtySplit.length);
+			for (int i = 0; i < 4; i++) {
+				puttyFunctionsPage.pressTab();
+			}
+			
+			context.setRcvQtyDue(context.getRcvQtyDue());
+			
+			System.out.println("context - qty " + String.valueOf(context.getRcvQtyDue()));
+			screen.type(String.valueOf(context.getRcvQtyDue()));
+			puttyFunctionsPage.pressTab();
+		} else {
+			for (int i = 0; i < 4; i++) {
+				puttyFunctionsPage.pressTab();
+			}
+			for (int i = 0; i < 3; i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < 3; i++) {
+				puttyFunctionsPage.backSpace();
+			}
+			screen.type(String.valueOf(context.getRcvQtyDue()));
+			puttyFunctionsPage.pressTab();
+		}
+		Match qty = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(qty.getCenter().offset(50, 0));
+		screen.doubleClick(qty.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		System.out.println("app.geclipboard " + App.getClipboard());
+		return App.getClipboard();
+	}
+
+	public void eraseTagContent() throws FindFailed, InterruptedException {
+		// TODO Auto-generated method stub
+		
+		String[] tagSplit = getTagId().split("_");
+		String tagID = tagSplit[0];
+		
+		System.out.println("PALLLETTT LENGTH" + tagSplit.length);
+		if (tagSplit.length != 0) {
+			for (int i = 0; i < tagSplit[0].length(); i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < tagSplit[0].length(); i++) {
+				screen.type(Key.BACKSPACE);
+			}
+			Thread.sleep(1000);
+		}
+		
 	}
 }
