@@ -159,7 +159,9 @@ System.out.println("tagListForScenario"+tagListForScenario);
 
 	// @After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
+		System.out.println("KILLLLLLLLLLLLLLL IN HOOKS 1");
 		if (context.isPuttyLoginFlag() == true) {
+			System.out.println("KILLLLLLLLLLLLLLL IN HOOKS 2");
 			// context.getPuttyProcess().waitFor();
 			while (screen.exists("/images/Putty/3Logout.png") == null) {
 				screen.type(Key.F12);
@@ -187,8 +189,10 @@ System.out.println("tagListForScenario"+tagListForScenario);
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
-
+		System.out.println("KILLLLLLLLLLLLLLL IN HOOKS 3");
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
+		p.waitFor();
+		System.out.println("Kill Completed");
 	}
 
 	// @After

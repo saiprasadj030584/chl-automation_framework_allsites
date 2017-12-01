@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 		
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@boxed_putaway_idt_validate_maximum_locations_per_aisle_per_upc"})
+				+ "cucumber.json" }, tags = { "@boxed_putaway_fsv_po_validate_maximum_locations_per_aisle_per_upc"})
 
 
 public class AllTest {

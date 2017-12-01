@@ -1293,6 +1293,47 @@ public class PurchaseOrderPutawayStepDefs {
 		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	
+	@When("^I perform normal returns putaway after under receiving and relocation$")
+	public void i_perform_normal_returns_putaway_after_under_receiving_and_relocation() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		// poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(context.getSkuFromUPI().get(i - 1));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getUpiId(), "Receipt", context.getSkuId(), date));
+			System.out.println("TAG ID LIST"+context.getTagIdList());
+			for(int k=0;k<context.getTagIdList().size();k++)
+{
+			context.setTagId(
+					context.getTagIdList().get(k));
+			context.setUpiId(context.getTagId());
+			i_enter_urn_id_in_putaway(context.getTagId());
+			jdaFooter.PressEnter();
+			if (null == context.getLockCode()) {
+				the_tag_details_for_putaway_should_be_displayed_after_relocation();
+
+			}
+			jdaFooter.PressEnter();
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			} else {
+
+			}
+			i_should_be_directed_to_putent_page();
+
+		}
+		}
+		hooks.logoutPutty();
+	}
 
 
 

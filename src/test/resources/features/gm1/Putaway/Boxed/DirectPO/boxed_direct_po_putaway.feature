@@ -69,7 +69,7 @@ Feature: Boxed - Direct PO - Putaway
     When I perform normal putaway of hazardous product after relocation
     Then the goods receipt should be generated for putaway stock in inventory transaction
 
-  @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_maximum_locations_per_aisle_per_upc @complete @ds
+  @boxed @putaway @direct_po @boxed_putaway_direct_po_validate_maximum_locations_per_aisle_per_upc @complete @ds @max
   Scenario: Validate maximum locations per Aisle per UPC
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001" for maximum aisle
     When I choose existing relocate

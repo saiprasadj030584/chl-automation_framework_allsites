@@ -32,7 +32,7 @@ public class PuttyFunctionsStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
-		
+		System.out.println("PUTTY LAUNCH");
 		if (context.getSiteID().equals("5649")) {
 			System.out.println(port);
 			if(context.isVehicleLoadRequired()){

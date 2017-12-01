@@ -25,7 +25,6 @@ import com.jda.wms.pages.gm.StockAdjustmentsPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
 import com.jda.wms.stepdefs.rdt.PuttyFunctionsStepDefs;
 
-
 public class StockMaintainStepDefs {
 	Map<Integer, Map<String, String>> poMap;
 	Map<String, Map<String, String>> upiMap;
@@ -40,20 +39,19 @@ public class StockMaintainStepDefs {
 	private InventoryDB inventoryDB;
 	private SkuDB skuDB;
 	private JdaLoginPage jdaLoginPage;
-	
+
 	private SupplierSkuDB supplierSkuDb;
 	private SkuSkuConfigDB skuSkuConfigDB;
 	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private PuttyFunctionsPage puttyFunctionsPage;
 	String envVar = System.getProperty("user.dir");
-	
 
 	@Inject
 	public StockMaintainStepDefs(Context context, JDAFooter jDAFooter, StockAdjustmentsPage stockAdjustmentsPage,
-			JdaHomePage jDAHomePage, 
-			OrderLineDB orderLineDB, InventoryDB inventoryDB, LocationDB locationDB, SkuDB skuDB,
-			SupplierSkuDB supplierSkuDb,
-			SkuSkuConfigDB skuSkuConfigDB,PuttyFunctionsStepDefs puttyFunctionsStepDefs,PuttyFunctionsPage puttyFunctionsPage,JdaLoginPage jdaLoginPage) {
+			JdaHomePage jDAHomePage, OrderLineDB orderLineDB, InventoryDB inventoryDB, LocationDB locationDB,
+			SkuDB skuDB, SupplierSkuDB supplierSkuDb, SkuSkuConfigDB skuSkuConfigDB,
+			PuttyFunctionsStepDefs puttyFunctionsStepDefs, PuttyFunctionsPage puttyFunctionsPage,
+			JdaLoginPage jdaLoginPage) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
@@ -64,22 +62,17 @@ public class StockMaintainStepDefs {
 		this.skuDB = skuDB;
 		this.supplierSkuDb = supplierSkuDb;
 		this.skuSkuConfigDB = skuSkuConfigDB;
-		this.puttyFunctionsStepDefs= puttyFunctionsStepDefs;
-		this.puttyFunctionsPage= puttyFunctionsPage;
-		this.jdaLoginPage=jdaLoginPage;
+		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
+		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
-	
-
 	public void i_maintain_stock_in_inventory(ArrayList<String> skuList, String uniqueTag) throws Throwable {
-		if(uniqueTag.contains("suspense"))
-				{
-				context.setLocationID("Suspense");
-				}
-		else if(uniqueTag.contains("prohibit"))
-				{
+		if (uniqueTag.contains("suspense")) {
+			context.setLocationID("Suspense");
+		} else if (uniqueTag.contains("prohibit")) {
 			context.setLocationID("Prohibition");
-				}
+		}
 		boolean allocation = false;
 		for (int i = 0; i < context.getSkuList().size(); i++) {
 			context.setSkuId((String) context.getSkuList().get(i));
@@ -97,7 +90,8 @@ public class StockMaintainStepDefs {
 								&& locationDB.getUserDefType2(context.getLocation()).contains("HANG")
 								&& locationDB.getUserDefType3(context.getLocation()).contains("HANG")
 								&& locationDB.getUserDefType1(context.getLocation())
-										.contains(skuDB.getProductGroup(context.getSkuId())) && locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
+										.contains(skuDB.getProductGroup(context.getSkuId()))
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
 							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
 							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
 									.equalsIgnoreCase("UnLocked")
@@ -117,7 +111,8 @@ public class StockMaintainStepDefs {
 						System.out.println("Entered GOH");
 						if (locationDB.getLocationZone(context.getLocation()).equalsIgnoreCase("HANG")
 								&& locationDB.getUserDefType2(context.getLocation()).contains("HANG")
-								&& locationDB.getUserDefType3(context.getLocation()).contains("HANG") && locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
+								&& locationDB.getUserDefType3(context.getLocation()).contains("HANG")
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
 							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
 							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
 									.equalsIgnoreCase("UnLocked")
@@ -136,7 +131,8 @@ public class StockMaintainStepDefs {
 					else if (context.getSKUType().equalsIgnoreCase("B")) {
 						if (locationDB.getLocationZone(context.getLocation()).contains("BOX")
 								&& locationDB.getUserDefType2(context.getLocation()).contains("BOX")
-								&& locationDB.getUserDefType3(context.getLocation()).contains("BOX") && locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
+								&& locationDB.getUserDefType3(context.getLocation()).contains("BOX")
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
 							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
 							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
 									.equalsIgnoreCase("UnLocked")
@@ -155,12 +151,15 @@ public class StockMaintainStepDefs {
 					else if (context.getSKUType().equalsIgnoreCase("P")) {
 						if ((locationDB.getLocationZone(context.getLocation()).contains("BOX")
 								&& locationDB.getUserDefType2(context.getLocation()).contains("BOX")
-								&& locationDB.getUserDefType3(context.getLocation()).contains("FLAT") && locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked"))
+								&& locationDB.getUserDefType3(context.getLocation()).contains("FLAT")
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked"))
 								|| (locationDB.getLocationZone(context.getLocation()).contains("HANG")
 										&& locationDB.getUserDefType2(context.getLocation()).contains("HANG")
 										&& locationDB.getUserDefType3(context.getLocation()).contains("FLAT")
 										&& locationDB.getUserDefType1(context.getLocation())
-												.contains(skuDB.getProductGroup(context.getSkuId())) && locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked"))) {
+												.contains(skuDB.getProductGroup(context.getSkuId()))
+										&& locationDB.getLockStatus(context.getLocation())
+												.equalsIgnoreCase("UnLocked"))) {
 							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
 							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
 									.equalsIgnoreCase("UnLocked")
@@ -187,15 +186,45 @@ public class StockMaintainStepDefs {
 
 			if (context.getLocationID() != null) {
 				if (context.getLocationID().equalsIgnoreCase("suspense")) {
+					String location=null;
 
 					if (!inventoryDB.isSkuInSuspenseLocation(context.getSkuId())) {
 						System.out.println("Sku not in suspense location " + context.getSkuId());
 						// do stock check
 						System.out.println("SUSPENSE" + validLocations.get(0));
 						System.out.println(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)));
-					i_do_new_stock_check_at_location_with_quantity(
-								validLocations.get(0), String.valueOf(Integer
-										.valueOf(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)))));
+						if(validLocations.size() != 0)
+						{
+						i_do_new_stock_check_at_location_with_quantity(validLocations.get(0), String.valueOf(
+								Integer.valueOf(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)))));
+						inventoryDB.updateInventoryQty(validLocations.get(0), String.valueOf(0));
+						}
+						else
+						{
+							if (context.getSKUType().equalsIgnoreCase("B")) {
+								
+										location=locationDB.getToLocationForPutawayBoxed("BOX");
+							} else if (
+									context.getSKUType().equalsIgnoreCase("H")) {
+								
+										locationDB.getToLocationForPutaway("HANG",
+												skuDB.getProductGroup(context.getSkuId()));
+										
+							} else if (context.getSKUType().equalsIgnoreCase("P")) {
+				
+								location=locationDB.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId()));
+							}
+							else if(context.getSKUType().equalsIgnoreCase("C"))
+							{
+								location=locationDB.getPutawayLocationForGoh("HANG");
+							}
+							
+							i_do_new_stock_check_at_location_with_quantity(location, String.valueOf(
+									Integer.valueOf(inventoryDB.getQtynHand(context.getSkuId(), location))));
+							inventoryDB.updateInventoryQty(location, String.valueOf(0));
+						}
+						
+						
 
 					}
 					System.out.println("ALLOCATION" + allocation);
@@ -207,8 +236,6 @@ public class StockMaintainStepDefs {
 								System.out.println("SUSPENSE" + validLocations.get(j));
 								System.out.println(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(j)));
 								inventoryDB.updateInventoryQty(validLocations.get(j), String.valueOf(0));
-								// purchaseOrderStockCheckPage.i_do_new_stock_check_at_location_with_quantity(validLocations.get(j),inventoryDB.getQtynHand((String)
-								// skuFromOrder.get(i),validLocations.get(j)));
 							}
 						}
 					}
@@ -237,7 +264,7 @@ public class StockMaintainStepDefs {
 											skuDB.getProductGroup(context.getSkuId())),
 									"100", supplierSkuDb.getProhibitedSupplier(context.getSkuId()));
 						} else if (context.getSKUType().equalsIgnoreCase("P")) {
-						i_do_new_stock_check_at_location_with_quantity_and_supplier(
+							i_do_new_stock_check_at_location_with_quantity_and_supplier(
 									locationDB
 											.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())),
 									"100", supplierSkuDb.getProhibitedSupplier(context.getSkuId()));
@@ -258,13 +285,10 @@ public class StockMaintainStepDefs {
 								}
 							}
 						}
-					} //
+					} 
 				}
 
 			} else {
-
-				// Assert.assertTrue("Stock is not present in other locations" ,
-				// allocation);
 
 				System.out.println("Stock is not present in other locations");
 
@@ -311,8 +335,7 @@ public class StockMaintainStepDefs {
 		}
 
 	}
-	
-	
+
 	public void i_do_new_stock_check_at_location_with_quantity_and_supplier(String location, String qty,
 			String supplier) throws Throwable {
 		context.setLocationID(location);
@@ -326,11 +349,13 @@ public class StockMaintainStepDefs {
 		Assert.assertTrue("Stock Check Menu not displayed as expected", isNewStockCheckEntPageDisplayed());
 
 		i_do_new_stock_check_with_supplier(supplier);
-			logoutPutty();
+		logoutPutty();
 	}
-	
+
 	private void logoutPutty() throws InterruptedException, IOException {
+		System.out.println("PUTTY KILL IN STOCK MAINTAIN 1");
 		if (context.isPuttyLoginFlag() == true) {
+			System.out.println("PUTTY KILL IN STOCK MAINTAIN 2");
 			// context.getPuttyProcess().waitFor();
 			while (screen.exists("/images/Putty/3Logout.png") == null) {
 				screen.type(Key.F12);
@@ -345,11 +370,11 @@ public class StockMaintainStepDefs {
 			screen.type(Key.ENTER);
 			Thread.sleep(2000);
 			context.setPuttyLoginFlag(false);
+		} else {
+			System.out.println("PUTTY KILL IN STOCK MAINTAIN 3");
+			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		}
-		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 	}
-
-
 
 	public void i_do_new_stock_check_at_location_with_quantity(String location, String qty) throws Throwable {
 		context.setLocationID(location);
@@ -362,7 +387,7 @@ public class StockMaintainStepDefs {
 		Assert.assertTrue("Stock Check Menu not displayed as expected", isNewStockCheckEntPageDisplayed());
 		i_do_new_stock_check();
 	}
-	
+
 	public void i_do_new_stock_check_with_supplier(String supplier) throws Throwable {
 		i_enter_location(context.getLocationID());// valid location that should
 													// nt be inventory
@@ -387,7 +412,7 @@ public class StockMaintainStepDefs {
 
 		Assert.assertTrue("Stock Check Menu not displayed as expected", isNewStockCheckEntPageDisplayed());
 	}
-	
+
 	public boolean isChkToDisplayed() {
 		if (screen.exists("images/Putty/Putaway/ChkTo.png") != null)
 			return true;
@@ -405,7 +430,7 @@ public class StockMaintainStepDefs {
 		screen.type(chkString);
 		Thread.sleep(2000);
 	}
-	
+
 	public void selectInventoryMenu() throws FindFailed, InterruptedException {
 		screen.type("5");
 		Thread.sleep(1000);
@@ -453,6 +478,7 @@ public class StockMaintainStepDefs {
 		screen.type(qty);
 		Thread.sleep(2000);
 	}
+
 	public void i_do_new_stock_check() throws Throwable {
 		i_enter_location(context.getLocationID());
 		if (isChkToDisplayed()) {
@@ -466,5 +492,4 @@ public class StockMaintainStepDefs {
 		Assert.assertTrue("Stock Check Menu not displayed as expected", isNewStockCheckEntPageDisplayed());
 	}
 
-	
 }

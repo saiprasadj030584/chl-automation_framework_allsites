@@ -5,7 +5,7 @@ Feature: Boxed - Direct PO - Putaway
   So that I can complete the purchase order
 
 
-  @hanging @putaway @direct_po @hanging_putaway_direct_po_validate_maximum_locations_per_aisle_per_upc @complete @ds
+  @hanging @putaway @direct_po @hanging_putaway_direct_po_validate_maximum_locations_per_aisle_per_upc @complete @ds @max
   Scenario: Validate maximum locations per Aisle per UPC
     Given the PO of type "Hanging" with UPI and ASN should be received at "REC001" for maximum aisle
     When I choose existing relocate

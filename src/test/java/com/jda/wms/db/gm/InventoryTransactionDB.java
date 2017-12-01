@@ -21,20 +21,22 @@ public class InventoryTransactionDB {
 		this.database = database;
 	}
 
-	public String getToLocationIDT(String skuId, String upiId, String date, String code)
+	public String getToLocationIDT(String skuId, String upiId, String date, String code,String tagId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select to_loc_id from inventory_transaction where  reference_id='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public String getUpdateQtyIDT(String skuId, String upiId, String date, String code)
+	public String getUpdateQtyIDT(String skuId, String upiId, String date, String code,String tagId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -44,7 +46,7 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -835,28 +837,32 @@ public class InventoryTransactionDB {
 		return rs.getString(1);
 	}
 
-	public String getFromLocationIDT(String skuId, String upiId, String date, String code)
+	public String getFromLocationIDT(String skuId, String upiId, String date, String code,String tagId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
+		System.out.println("select from_loc_id from inventory_transaction where  reference_id='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
 
-	public String getReferenceIdIDT(String skuId, String upiId, String date, String code)
+	public String getReferenceIdIDT(String skuId, String upiId, String date, String code,String tagId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select REFERENCE_ID from inventory_transaction where reference_id ='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where reference_id ='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -1163,6 +1169,8 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select tag_id from inventory_transaction where CODE ='" + code
+				+ "'and reference_id= '" + pallet + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code

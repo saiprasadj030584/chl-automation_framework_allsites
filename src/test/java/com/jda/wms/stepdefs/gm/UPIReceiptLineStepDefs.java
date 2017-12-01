@@ -225,6 +225,7 @@ public class UPIReceiptLineStepDefs {
 		Map<String, Map<String, String>> UPIMap = new HashMap<String, Map<String, String>>();
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
 		context.setSkuList(skuFromUPI);
+		context.setSkuFromUPI(skuFromUPI);
 
 		// Add SKU details to UPI Map
 		for (int i = 1; i <= context.getNoOfLines(); i++) {

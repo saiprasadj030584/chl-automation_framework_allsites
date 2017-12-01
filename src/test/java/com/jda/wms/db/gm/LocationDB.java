@@ -199,12 +199,11 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		return rs.getString(1);
 	}
 
-	public String getPutawayLocationForGoh(String type, String prodGrp, String status)
+	public String getPutawayLocationForGoh(String type)
 			throws SQLException, ClassNotFoundException {
 		System.out.println(
 				"select location_id from location  where zone_1 like '" + type + "%' and user_def_type_2 like '" + type
-						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and user_def_type_1='"
-						+ prodGrp + "' and lock_status='" + status + "'");
+						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and lock_status='UnLocked'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -215,8 +214,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		// and user_def_type_1='"+prodGrp+"'");
 		ResultSet rs = stmt.executeQuery(
 				"select location_id from location  where zone_1 like '" + type + "%' and user_def_type_2 like '" + type
-						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and user_def_type_1='"
-						+ prodGrp + "' and lock_status='" + status + "'");
+						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and lock_status='UnLocked'");
 		rs.next();
 		return rs.getString(1);
 	}
