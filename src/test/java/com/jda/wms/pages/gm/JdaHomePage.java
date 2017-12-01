@@ -28,11 +28,14 @@ public class JdaHomePage {
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
 //	private DockSchedulerPage dockSchedulerPage;
+	private PackConfigMaintenancePage packConfigMaintenancePage ;
+	private AddressMaintenancePage addressMaintenancePage;
+	private MoveTaskPage moveTaskPage ;
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
 			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
-			PreAdviceHeaderPage preAdviceHeaderPage,InventoryTransactionQueryPage inventoryTransactionQueryPage, StockAdjustmentsPage stockAdjustmentsPage, OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
+			PreAdviceHeaderPage preAdviceHeaderPage,MoveTaskPage moveTaskPage,AddressMaintenancePage addressMaintenancePage ,InventoryTransactionQueryPage inventoryTransactionQueryPage,PackConfigMaintenancePage packConfigMaintenancePage, StockAdjustmentsPage stockAdjustmentsPage, OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -44,6 +47,9 @@ public class JdaHomePage {
 		this. stockAdjustmentsPage = stockAdjustmentsPage ;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		//this.dockSchedulerPage = dockSchedulerPage;
+		this.packConfigMaintenancePage = packConfigMaintenancePage;
+		this.addressMaintenancePage = addressMaintenancePage;
+		this.moveTaskPage = moveTaskPage;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -548,17 +554,21 @@ public class JdaHomePage {
 	}
 
 	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Pack configuration maintenance/query screen");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
-
+		navigateToPage("Pack configuration maintenance/query screen");
+		validateHomePageNavigation(packConfigMaintenancePage.packConfigirationHomePage(), "Pack configuration maintenance/query screen");
 	}
+	
+//		clickSearchIcon();
+//		Thread.sleep(1000);
+//		screen.type("Pack configuration maintenance/query screen");
+//		Thread.sleep(2000);
+//		// screen.click("images/JDAHome/Search_button.png");
+//		screen.type(Key.ENTER);
+//		Thread.sleep(1000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(3000);
+//
+//	}
 
 	public void enterTabKey() {
 		screen.type(Key.TAB);
@@ -577,28 +587,34 @@ public class JdaHomePage {
 	}
 
 	public void navigateToMoveTaskQuery() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Move Task Query");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		navigateToPage("Move Task Query");
+		validateHomePageNavigation(moveTaskPage.moveTaskHomePage(), "Move Task Query");
 	}
+//		clickSearchIcon();
+//		Thread.sleep(1000);
+//		screen.type("Move Task Query");
+//		Thread.sleep(2000);
+//		// screen.click("images/JDAHome/Search_button.png");
+//		screen.type(Key.ENTER);
+//		Thread.sleep(1000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(3000);
+//	}
 
 	public void navigateToAddressMaintenancePage() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Address");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		navigateToPage("Address");
+		validateHomePageNavigation(addressMaintenancePage.addressMaintenanceHomePage(), "Address");
 	}
+//		clickSearchIcon();
+//		Thread.sleep(1000);
+//		screen.type("Address");
+//		Thread.sleep(2000);
+//		// screen.click("images/JDAHome/Search_button.png");
+//		screen.type(Key.ENTER);
+//		Thread.sleep(1000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(3000);
+//	}
 
 	public void navigateToCEConsignmentMaintenenacePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();

@@ -121,4 +121,11 @@ public class AddressMaintenancePage {
 		Thread.sleep(1000);
 		return App.getClipboard();
 	}
+
+	public boolean addressMaintenanceHomePage() {
+		if (screen.exists("images/JDAHome/PreAdviceHeaderHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

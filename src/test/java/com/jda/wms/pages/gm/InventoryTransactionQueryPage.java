@@ -596,7 +596,7 @@ public class InventoryTransactionQueryPage {
 		}
 
 	public boolean inventoryTransactionHomePage() {
-		if (screen.exists("images/JDAHome/UPIReceiptHeaderPage.png") != null)
+		if (screen.exists("images/JDAHome/InventoryTransactionHomePage.png") != null)
 			return true;
 		else
 			return false;

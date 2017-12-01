@@ -129,4 +129,11 @@ public class PackConfigMaintenancePage {
 		screen.click("/images/JDAPackConfig/General.png");
 		Thread.sleep(2000);
 	}
+
+	public  boolean packConfigirationHomePage() {
+		if (screen.exists("images/JDAHome/PackConfigurationHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }
