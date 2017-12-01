@@ -1,4 +1,4 @@
-@hanging_direct_po_over_and_under_receiving_with_lock_code
+@hanging_dir_po_over_and_under_rec_lck
 Feature: Hanging - Direct PO - Inbound receiving with Lock code
   As a warehouse user
   I want to receive the articles
