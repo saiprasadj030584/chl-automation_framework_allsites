@@ -127,22 +127,62 @@ public class StockCheckStepDefs {
 			stockCheckPage.enterQty("N");
 			
 		}
+	
+	@Given ("^I have to perform stock check for discrepancy$")
+	public void I_have_to_perform_stock_check_for_discrepancy() throws Throwable {
+		
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		stockCheckPage.selectInventoryMenu();
+		stockCheckPage.selectExistingStockCheckMenu();
+		stockCheckPage.enterLocation(context.getListID());
+		
+		Thread.sleep(1000);
+		//if(stockCheckPage.checkCheckString())
+		stockCheckPage.enterCheckString(locationDB.getCheckString(context.getFromLocation()));
+		
+		
+		
+			int stock_curr =	Integer.parseInt(inventoryDB.getQtynHandwithlocation(context.getTagId(),context.getFromLocation()))- minqty;
+			stockCheckPage.enterQty(String.valueOf(stock_curr));
+			System.out.println("stock_curr:"+stock_curr);	
+		Thread.sleep(1000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+			
+			stockCheckPage.enterQty(String.valueOf(stock_curr));
+			Thread.sleep(1000);
+			stockCheckPage.enterQty("N");
+			hooks.logoutPutty();
+		}
 				
 		
 	
 	
 	@Then("^The inventory should be in unlocked status$")
 	public void the_inventory_should_be_in_unlocked_status() throws Throwable {
-		if(inventoryDB.getLocation(context.getTagId()).contains("UnLocked"))
+		if(inventoryDB.getLocationstatus(context.getTagId(),context.getFromLocation()).contains("UnLocked"))
 		{
-			System.out.println("Location is in unlocked status");
+			System.out.println("Location "+context.getFromLocation()+" is in unlocked status");
 		}
 		else
 		{
 			Assert.fail("Location is in locked status");}
 	}
-	@Given("^I perform picking for hanging discrepancy$")
-	public void i_perform_picking_for_hanging_discrepancy() throws Throwable {
+	@Then("^The inventory should be in locked status$")
+	public void the_inventory_should_be_in_locked_status() throws Throwable {
+		if(inventoryDB.getLocationstatus(context.getTagId(),context.getFromLocation()).contains("Locked"))
+		{
+			System.out.println("Location "+context.getFromLocation()+" inventory is in locked status");
+		}
+		else
+		{
+			Assert.fail("Location is in unlocked status after picking discrepencies");}
+	}
+	
+	
+	@Given("^I perform picking for hanging discrepancy for stock check$")
+	public void i_perform_picking_for_hanging_discrepancy_for_stock_check() throws Throwable {
 	context.setListID(moveTaskDB.getListID(context.getOrderId()));
 	
 	purchaseOrderPickingPage.enterListId(context.getListID());
@@ -164,9 +204,27 @@ public class StockCheckStepDefs {
 		
 	puttyFunctionsPage.pressEnter();
 	//purchaseOrderPickingPage.getQuantity();
-	String QTYtasked =orderLineDB.getQtyTasked(context.getOrderId(), context.getSkuId());
+	String QTYtasked =moveTaskDB.getQtyTasked(context.getOrderId(), context.getSkuId(), context.getListID()) ;
+	if(Integer.parseInt(QTYtasked)>1)
 	 minqty=(Integer.parseInt(QTYtasked))/2;
-	purchaseOrderPickingPage.enterMinimumQty(String.valueOf(minqty));
+	
+	 int i=0;
+	 while(i<10){
+		 
+		 if (purchaseOrderPickingPage.enterskuidscreenavailable())
+		 {
+		purchaseOrderPickingPage.enterMinimumQty(String.valueOf(minqty));
+		break;
+		 }
+		 else
+		 {
+			 puttyFunctionsPage.pressEnter();
+			 Thread.sleep(1000);
+		 
+		 }
+		 i++;
+		 }
+	
 	puttyFunctionsPage.pressEnter();
 	purchaseOrderPickingPage.selectReason();
 	purchaseOrderPickingPage.enterContainerId(String.valueOf(tagid));

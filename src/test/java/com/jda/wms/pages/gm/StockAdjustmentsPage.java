@@ -210,11 +210,20 @@ public class StockAdjustmentsPage {
 	}
 
 	public void handlePopUp() throws InterruptedException {
-		screen.type(Key.ENTER);
+		
+		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		
 	}
+	public boolean iswarningPopUpDisplayed() throws InterruptedException, FindFailed {
+		if (screen.exists("images/StockAdjustment/Results/warning.png") != null) {
+			Thread.sleep(2000);
+			return true;
+		} else
+			return false;
+	}
+	
 	
 	public void enterSiteIdExisting(String siteId) throws FindFailed, InterruptedException {
 		Match msiteId = screen.find("images/StockAdjustment/Search/siteIdExisting.png");

@@ -167,6 +167,11 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToSystemAllocationPage();
 		Thread.sleep(6000);
 	}
+	@When("^I navigate to \"([^\"]*)\" page$")
+	public void i_navigate_to_JDA_page(String pagename) throws Throwable {
+		jdaHomePage.navigateToPage(pagename);
+		Thread.sleep(6000);
+	}
 
 	@When("^I navigate to UPI Management screen$")
 	public void i_navigate_to_UPI_Management_screen() throws Throwable {

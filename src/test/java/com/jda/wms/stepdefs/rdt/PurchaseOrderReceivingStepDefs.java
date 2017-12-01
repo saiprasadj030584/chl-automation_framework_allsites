@@ -2587,4 +2587,31 @@ public class PurchaseOrderReceivingStepDefs {
 			}
 		}
 	}
+	@When("^I perform receiving for all skus at location for x dock$")
+	public void i_perform_receiving_for_all_skus_at_location() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		// context.setLocation(location);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderReceivingPage.selectReceiveMenu();
+		purchaseOrderReceivingPage.selectGroupReceive();
+		purchaseOrderReceivingPage.selectUpiReceive();
+		i_enter_urn_id_for_xdock();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(180000);
+
+		if (!purchaseOrderReceivingPage.isReciveCmpEntryDisplayed()) {
+			failureList.add("Receive not completed and Home page not displayed for URN " + context.getUpiId());
+			context.setFailureList(failureList);
+		}
+
+		hooks.logoutPutty();
+
+	}
+	@When("^I enter urn id for xdock$")
+	private void i_enter_urn_id_for_xdock() throws FindFailed, InterruptedException {
+		purchaseOrderReceivingPage.enterURNID("5885121529080280317");
+	}
+
 }
