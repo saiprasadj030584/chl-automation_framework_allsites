@@ -272,4 +272,11 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		Thread.sleep(1000);
 		
 	}
+
+	public boolean stockAdjustmentsHomePage() {
+		if (screen.exists("images/JDAHome/StockAdjustmentHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

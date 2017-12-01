@@ -139,4 +139,11 @@ public class PreAdviceHeaderPage {
 			else
 				return false;
 	}
+
+	public boolean preadviceHomePage() {
+		if (screen.exists("images/JDAHome/PreAdviceHeaderHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

@@ -959,8 +959,10 @@ public class InventoryTransactionQueryStepDefs {
 		jdaLoginPage.login();
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterNotes("Custom ITL");
+		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterNotes("Custom ITL");
+		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		jDAFooter.clickExecuteButton();
 		Assert.assertEquals("ITL not updated", "Receiving Error",
 				inventoryTransactionDB.getCodeIdt(context.getSkuId(), "Custom ITL"));

@@ -1159,7 +1159,7 @@ public class PurchaseOrderPutawayStepDefs {
 		String status="UnLocked";
 		String type="HANG";
 		String prodGrp=skuDB.getProductGroup(context.getSkuId());
-		context.setToLocation(locationDB.getPutawayLocationForGoh(type,prodGrp,status));
+		context.setToLocation(locationDB.getPutawayLocationForGoh(type));
 		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
 		jdaFooter.PressEnter();		
 		purchaseOrderPutawayPage

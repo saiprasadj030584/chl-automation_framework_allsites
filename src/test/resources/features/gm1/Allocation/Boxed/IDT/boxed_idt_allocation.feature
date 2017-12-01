@@ -44,7 +44,7 @@ Feature: Boxed - IDT - Allocation
    Given the order of "IDT" should be in "Released" status in order header maintenance 
     And the order sku details are verified
     When the inventory is available for the given SKU
-    Then the order status should be changed to "Allocated" status
+    Then the order should be allocated
 
     @jenkinsA @boxed_allocation_idt_validate_whether_there_is_visibility_in_stock_modularity_for_ordering_visiblity_of_stock_types_for_ordering @allocation @idt @boxed @complete @ds
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering

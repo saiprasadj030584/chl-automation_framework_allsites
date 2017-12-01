@@ -163,7 +163,7 @@ public class Context {
 	private String assertString = null;
 	private static String childRequestId;
 	private String secondPalletID;
-	private String ejbError;
+	private String errorMessage;
 	private int updatedQty;
 	private boolean jdaLoginFlag = false;
 	private boolean vehicleLoadRequired;
@@ -1450,12 +1450,12 @@ public class Context {
 		return dBConnection;
 	}
 
-	public void setEJBErrorMsg(String ejbError) {
-		this.ejbError = ejbError;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	public String getEJBErrorMsg() {
-		return ejbError;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }

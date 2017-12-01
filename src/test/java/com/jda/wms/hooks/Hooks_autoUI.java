@@ -53,15 +53,18 @@ public class Hooks_autoUI {
 
 	}
 
-	private void updateTestDataIntoRunStatusTable() {
+	@SuppressWarnings("static-access")
+	private void updateTestDataIntoRunStatusTable(String tcName) {
 		try {
 			if (context.getSQLDBConnection() == null) {
 				sqlConnectOpen();
 			}
-			System.out.println("update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
-					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'");
-			String query = "update NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
-					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS'";
+			System.out.println(
+					"update dbo.NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData() + "' WHERE P_REQ_ID='"
+							+ context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='" + tcName + "'");
+			String query = "update dbo.NPS_AUTO_UI_RUN_STATUS set TEST_DATA ='" + context.getTestData()
+					+ "' WHERE P_REQ_ID='" + context.getParentRequestId() + "' and status='INPROGRESS' and TC_NAME='"
+					+ tcName + "'";
 			context.getSQLDBConnection().createStatement().execute(query);
 		} catch (Exception exception) {
 			exception.printStackTrace();
@@ -106,7 +109,9 @@ public class Hooks_autoUI {
 		// attaching the screenshot in cucumber report
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
+			System.out.println(context.getTestData());
 			System.out.println("After class----> FAIL" + scenario.isFailed());
+			System.out.println("*****************" + context.getTestData());
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
@@ -132,6 +137,7 @@ public class Hooks_autoUI {
 				System.out.println("After class----> PASS" + scenario.isFailed());
 				updateExecutionStatusInAutomationDb_End("PASS", scenario.getName());
 				updateParentTable();
+
 				// final byte[] screenshot = ((TakesScreenshot)
 				// webDriver).getScreenshotAs(OutputType.BYTES);
 				// scenario.embed(screenshot, "image/png");
@@ -386,8 +392,8 @@ public class Hooks_autoUI {
 					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'");
 			String updateQuery = "UPDATE DBO.Nps_Auto_UI_Run_Status SET EXEC_END_DATE_TIME='" + getSystemTime()
 					+ "', STATUS= '" + status + "',TOTAL_TIME = '" + totalTime + "',REMARKS= '"
-					+ context.getEJBErrorMsg() + "' where P_REQ_ID= '" + context.getParentRequestId()
-					+ "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
+					+ context.getErrorMessage() + "',TEST_DATA ='" + context.getTestData() + "' where P_REQ_ID= '"
+					+ context.getParentRequestId() + "' and TC_NAME='" + tagName + "' and STATUS = 'INPROGRESS'";
 
 			context.getSQLDBConnection().createStatement().execute(updateQuery);
 

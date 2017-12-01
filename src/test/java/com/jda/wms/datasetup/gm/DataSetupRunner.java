@@ -124,7 +124,6 @@ public class DataSetupRunner {
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
 		getSiteId(context.getUniqueTag());
-
 		if (null == context.getSiteID()) {
 			getSiteId(context.getUniqueTag());
 		}
@@ -281,16 +280,13 @@ public class DataSetupRunner {
 				// Fetching Refernce Test Data from Test data table
 
 				String poReference = gettcdata.getPoFromTestData();
-
+				context.setTestData("PO:" + po);
+				System.out.println("" + context.getTestData());
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicatePO(poReference, po);
-				// dataLoadFromUI.killBrowser();
 				validatePoDataSetup(po);
 				gettcdata.setPo(po);
-
-				context.setTestData("PO:" + po);
-
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -301,7 +297,6 @@ public class DataSetupRunner {
 
 				// Generate Random New values to load
 				String asn = newAsnId();
-				// String upi = newPalletdId(); //32 digit number
 				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
 				String asnReference = gettcdata.getAsnFromTestData();
@@ -310,14 +305,20 @@ public class DataSetupRunner {
 				String qty = gettcdata.getQtyListFromTestData();
 				String upi = formReturnsUPIID(supplierIdRef, qty);
 				Thread.sleep(2000);
-				String upi2 = formReturnsUPIID(supplierIdRef, qty);
+				String upi2 = null;
+				if (context.getUniqueTag().contains("multiple_urn")) {
+					upi2 = formReturnsUPIID(supplierIdRef, qty);
+				}
 				System.out.println("from ref upi 1 " + upi);
 				System.out.println("from ref upi 2 " + upi2);
 				System.out.println("from ref asn" + asn);
 				// Call JDA Login
 
+				context.setTestData("UPI:" + upi + ";ASN:" + asn);
+				if (context.getUniqueTag().contains("multiple_urn")) {
+					context.setTestData("UPI 1:" + upi + "UPI 2: " + upi2 + ";ASN:" + asn);
+				}
 				jdaLoginPage.login();
-
 				dataLoadFromUI.duplicateASN(asnReference, asn);
 				validateAsnDataSetup(asn);
 				dataLoadFromUI.duplicateUPI(upiReference, upi);
@@ -332,7 +333,6 @@ public class DataSetupRunner {
 					validateUpiDataSetup(upi2);
 					gettcdata.setSecondPalletId(upi2);
 				}
-				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -355,9 +355,8 @@ public class DataSetupRunner {
 				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
 				String qty = gettcdata.getQtyListFromTestData();
 				String upi = formReturnsUPIID(supplierIdRef, qty);
-
+				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 				// Call JDA Login
-
 				jdaLoginPage.login();
 
 				dataLoadFromUI.duplicateASN(asnReference, asn);
@@ -368,7 +367,6 @@ public class DataSetupRunner {
 				validateUpiDataSetup(upi);
 				gettcdata.setAsnId(asn);
 				gettcdata.setPalletId(upi);
-				context.setTestData("UPI:" + upi + ";ASN:" + asn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -396,10 +394,18 @@ public class DataSetupRunner {
 				String qty = gettcdata.getQtyListFromTestData();
 				String upi = formReturnsUPIID(supplierIdRef, qty);
 				Thread.sleep(2000);
-				String upi2 = formReturnsUPIID(supplierIdRef, qty);
+				String upi2 = null;
+				if (context.getUniqueTag().contains("multiple_urn")) {
+					upi2 = formReturnsUPIID(supplierIdRef, qty);
+				}
 				System.out.println("from ref upi 1 " + upi);
 				System.out.println("from ref upi 2 " + upi2);
 				System.out.println("from ref asn" + asn);
+
+				context.setTestData("UPI:" + upi + ";ASN:" + asn);
+				if (context.getUniqueTag().contains("multiple_urn")) {
+					context.setTestData("UPI 1:" + upi + "UPI 2: " + upi2 + ";ASN:" + asn);
+				}
 
 				// Call JDA Login
 				jdaLoginPage.login();
@@ -458,20 +464,18 @@ public class DataSetupRunner {
 			//Order Duplication	
 				// Generate Random New values to load
 				String odn = newOdnId();
-				
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("idt")
-				&& (context.getUniqueTag().contains("order") || context.getUniqueTag().contains("allocation"))) {
+				&& (context.getUniqueTag().contains("order"))) {
 			try {
 				System.out.println("Inside IDT Order");
 				npsDataBase.connectAutomationDB();
@@ -512,7 +516,6 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
@@ -526,18 +529,18 @@ public class DataSetupRunner {
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("outlet") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -545,18 +548,18 @@ public class DataSetupRunner {
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("e_com") || context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("e_com") || context.getUniqueTag().contains("e_com") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -564,6 +567,7 @@ public class DataSetupRunner {
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				System.out.println("Ecom Order creation");
 				System.out.println("order " + odn);
@@ -571,13 +575,12 @@ public class DataSetupRunner {
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
 
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("international")) {
+		} else if (context.getUniqueTag().contains("international") || context.getUniqueTag().contains("international")&& context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -585,12 +588,13 @@ public class DataSetupRunner {
 				String odn = newOdnId();
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
+				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);
-				context.setTestData("STO:" + odn);
+
 				npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
@@ -603,10 +607,14 @@ public class DataSetupRunner {
 
 	private String formReturnsUPIID(String supplierIdRef, String qty)
 			throws ClassNotFoundException, SQLException, InterruptedException {
-
+		String supplier = null;
 		// manipulate supplier
-		String[] supplierSplit = supplierIdRef.split("M");
-		String supplier = supplierSplit[1];
+		if (supplierIdRef.contains("M")) {
+			String[] supplierSplit = supplierIdRef.split("M");
+			supplier = supplierSplit[1];
+		} else {
+			supplier = supplierIdRef;
+		}
 
 		// manipulate quantity
 		int sumLength = qty.length();

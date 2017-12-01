@@ -4,7 +4,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
   I want to receive the locked articles
   But i cannot putaway the purchase order
 
-  @jenkinsB @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @jenkinshrl @complete @ds @group_3
+  @jenkins4 @hanging_receiving_direct_po_validate_receiving_process_with_qafts_lock_code @hanging @receiving @direct_po @jenkinshrl @complete @ds @group_3
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -15,7 +15,7 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkinsB @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @jenkinshrl @direct_po @complete @ds @group_3
+   @jenkins4 @hanging_receiving_direct_po_validate_receiving_process_with_qacomp_lock_code @hanging @receiving @jenkinshrl @direct_po @complete @ds @group_3
   Scenario: Validate receiving process with QACOMP lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -65,17 +65,6 @@ Feature: Hanging - Direct PO - Receiving with Lock codes
     And the PO should have sku, quantity due details
     And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
     And I lock the product with lock code "QAFTSFWL"
-    When I receive all "Hanging" skus for the purchase order at location "REC001"
-    Then the inventory should be displayed for all tags received of hanging type
-    And the goods receipt should be generated for hanging received stock in inventory transaction
-    Then the po status should be displayed as "Complete"
-
-    @hanging_receiving_direct_po_validate_receiving_process_with_qacnifwl_lock_code @hanging @receiving @direct_po @not_applicable @ds @group_3
-  Scenario: Validate receiving process with QACNIFWL lock code
-    Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
-    And the PO should have sku, quantity due details
-    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
-    And I lock the product with lock code "QACOMPFWL"
     When I receive all "Hanging" skus for the purchase order at location "REC001"
     Then the inventory should be displayed for all tags received of hanging type
     And the goods receipt should be generated for hanging received stock in inventory transaction

@@ -389,6 +389,7 @@ public class IDTReceivingStepDefs {
 			}
 			context.setRcvQtyDue(Integer.parseInt(quantity));
 			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
+			//jdaFooter.pressTab();
 			System.out.println("Type" + type);
 			if (type.equalsIgnoreCase("multiple line item")) {
 				jdaFooter.pressTab();

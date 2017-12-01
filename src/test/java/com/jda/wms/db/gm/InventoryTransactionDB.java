@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -925,11 +927,21 @@ public class InventoryTransactionDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select lock_code from inventory_transaction where reference_id='" + upiId
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where reference_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
+		
+		
+		
+
+		if (!rs.next()) {
+		       System.out.println("Null Value returned !!! Testdat setup issue ! Please Rerun this scenario");
+		       Assert.fail();
+		}
+		
 		return rs.getString(1);
 	}
 
