@@ -1,4 +1,4 @@
-@boxed_inbound_receiving_direct_po_over_and_under_receiving_with_lock_code
+@boxed_inbound_rec_direct_po_o_and_u_rec_lck
 Feature: Inbound Receiving - Direct PO - Over & Under Receiving with Lock code
   As a warehouse user
   I want to receive the articles

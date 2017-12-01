@@ -7,8 +7,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty",
-		"json:target/cucumber-reports/cucumber.json" }, tags = {"@boxed_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header" })
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
+				"@boxed_inbound_receiving_direct_po_over_receiving_with_lock_code" })
 
 public class AllTest {
 }
