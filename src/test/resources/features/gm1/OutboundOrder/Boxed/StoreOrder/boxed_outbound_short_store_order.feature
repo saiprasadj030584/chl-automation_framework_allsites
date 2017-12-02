@@ -3,7 +3,7 @@ Feature: Boxed - Outbound Order till despatch - Store Order
   As a warehouse user
   I want to order till dispatch
 
-  @jenkinsA @boxed_outbound_order_till_despatch_store_order_short_store_order_full_cancel @boxed @store_order @outbound_order_till_despatch @complete @ds
+  @jenkinsA @unique_boxed_outbound_order_till_despatch_store_order_short_store_order_full_cancel @boxed @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - full cancel
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
@@ -16,7 +16,7 @@ Feature: Boxed - Outbound Order till despatch - Store Order
     And update the status as cancelled
     Then verify the status as "Released --> Cancelled" in ITL
 
-  @boxed_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @boxed @store_order @outbound_order_till_despatch @complete @ds
+  @unique_boxed_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @boxed @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Store order with pick discrepancy
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page

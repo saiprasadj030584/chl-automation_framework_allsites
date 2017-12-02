@@ -47,12 +47,12 @@ public class Database {
 	private String applicationUser;
 	private Connection connection;
 	private final Configuration configuration;
-	private static Context context;
-	public static DbConnection npsDataBase;
+	private final Context context;
+	public final DbConnection npsDataBase;
 	// private final DataSetupRunner dataSetupRunner;
 
 	@Inject
-	public Database(Configuration configuration, Context context) {
+	public Database(Configuration configuration, Context context,DbConnection npsDataBase) {
 		this.configuration = configuration;
 		this.context = context;
 		this.npsDataBase = npsDataBase;
@@ -78,7 +78,6 @@ public class Database {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			if (context.getSiteID() == null) {
 				System.out.println(" Value Of Site Id" + context.getSiteID());
-//				Assert.fail("No site Id has been fetched from DB");//
 				npsDataBase.getSiteId(context.getUniqueTag());
 			}
 			System.out.println("Value Of Site Id **" + context.getSiteID());

@@ -18,7 +18,7 @@ import com.jda.wms.utils.Utilities;
 
 public class DataSetupRunner {
 	private Context context;
-	public static DbConnection npsDataBase;
+	private DbConnection npsDataBase;
 	private GetTcData gettcdata;
 	private Database jdaJdatabase;
 	private DataLoadFromUI dataLoadFromUI;
@@ -72,7 +72,7 @@ public class DataSetupRunner {
 	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
 		String uniqueTag = "";
 		for (String tag : tagListForScenario) {
-			if (tag.length() > uniqueTag.length()) {
+			if (tag.contains("unique")) {
 				uniqueTag = tag;
 			}
 		}
@@ -91,14 +91,14 @@ public class DataSetupRunner {
 	}
 
 	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {
-		ResultSet rs = null;
-		Statement stmt = null;
+
 		try {
 			System.out.println("CHECK CONNECTION " + context.getDBConnection());
-			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
+			if (null == context.getDBConnection() || context.getDBConnection().isClosed()) {
 				npsDataBase.connectAutomationDB();
 			}
-
+			ResultSet rs = null;
+			Statement stmt = null;
 			stmt = context.getDBConnection().createStatement();
 			String selectQuery = "Select SITE_NO from JDA_GM_TEST_DATA where UNIQUE_TAG = '" + uniqueTag + "'";
 			System.out.println(selectQuery);

@@ -4,7 +4,7 @@ Feature: Flatpack - Direct PO - Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @flatpack_putaway_direct_po_validate_flatpack_putaway_process @direct_po @putaway @boxed @ds @complete
+  @unique_flatpack_putaway_direct_po_validate_flatpack_putaway_process @direct_po @putaway @boxed @ds @complete
   Scenario: Validate Putaway Process
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -3,7 +3,7 @@ Feature: GOH - Outbound Order till despatch - Store Order
   As a warehouse user
   I want to order till dispatch
 
-  @jenkinsC @goh_outbound_order_till_despatch_store_order_short_store_order_full_cancel @goh @store_order @outbound_order_till_despatch @complete @ds
+  @jenkinsC @unique_goh_outbound_order_till_despatch_store_order_short_store_order_full_cancel @goh @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - full cancel
    Given I have logged in as warehouse user in JDA dispatcher GM application
     And the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
@@ -17,7 +17,7 @@ Feature: GOH - Outbound Order till despatch - Store Order
     And update the status as cancelled
     Then verify the status as "Released --> Cancelled" in ITL
     
-    @goh_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @goh @store_order @outbound_order_till_despatch @ds
+    @unique_goh_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @goh @store_order @outbound_order_till_despatch @ds
   Scenario: Store order with pick discrepancy
     Given I have logged in as warehouse user in JDA dispatcher GM application
     And the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site

@@ -11,6 +11,9 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
+
+import cucumber.api.Scenario;
 
 public class JdaHomePage {
 
@@ -27,15 +30,19 @@ public class JdaHomePage {
 	private InventoryQueryPage inventoryQueryPage;
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
-//	private DockSchedulerPage dockSchedulerPage;
-	private PackConfigMaintenancePage packConfigMaintenancePage ;
+	// private DockSchedulerPage dockSchedulerPage;
+	private PackConfigMaintenancePage packConfigMaintenancePage;
 	private AddressMaintenancePage addressMaintenancePage;
-	private MoveTaskPage moveTaskPage ;
+	private MoveTaskPage moveTaskPage;
+	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
-			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
-			PreAdviceHeaderPage preAdviceHeaderPage,MoveTaskPage moveTaskPage,AddressMaintenancePage addressMaintenancePage ,InventoryTransactionQueryPage inventoryTransactionQueryPage,PackConfigMaintenancePage packConfigMaintenancePage, StockAdjustmentsPage stockAdjustmentsPage, OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
+			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage, Hooks_autoUI hooks_autoUI,
+			PreAdviceHeaderPage preAdviceHeaderPage, MoveTaskPage moveTaskPage,
+			AddressMaintenancePage addressMaintenancePage, InventoryTransactionQueryPage inventoryTransactionQueryPage,
+			PackConfigMaintenancePage packConfigMaintenancePage, StockAdjustmentsPage stockAdjustmentsPage,
+			OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -44,12 +51,13 @@ public class JdaHomePage {
 		this.deliveryPage = deliveryPage;
 		this.orderHeaderPage = orderHeaderPage;
 		this.inventoryQueryPage = inventoryQueryPage;
-		this. stockAdjustmentsPage = stockAdjustmentsPage ;
+		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
-		//this.dockSchedulerPage = dockSchedulerPage;
+		// this.dockSchedulerPage = dockSchedulerPage;
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.moveTaskPage = moveTaskPage;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -301,7 +309,7 @@ public class JdaHomePage {
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		navigateToPage("Stock Adjustment");
 		validateHomePageNavigation(stockAdjustmentsPage.stockAdjustmentsHomePage(), "Stock Adjustment");
-		
+
 	}
 
 	public void clickWelcomeButton() throws FindFailed {
@@ -523,13 +531,13 @@ public class JdaHomePage {
 		navigateToPage("(ITL) query");
 		validateHomePageNavigation(inventoryTransactionQueryPage.inventoryTransactionHomePage(), "(ITL) query");
 		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("(ITL) query");
-//		Thread.sleep(2000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(4000);
+		// Thread.sleep(1000);
+		// screen.type("(ITL) query");
+		// Thread.sleep(2000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(1000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(4000);
 	}
 
 	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
@@ -555,20 +563,21 @@ public class JdaHomePage {
 
 	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
 		navigateToPage("Pack configuration maintenance/query screen");
-		validateHomePageNavigation(packConfigMaintenancePage.packConfigirationHomePage(), "Pack configuration maintenance/query screen");
+		validateHomePageNavigation(packConfigMaintenancePage.packConfigirationHomePage(),
+				"Pack configuration maintenance/query screen");
 	}
-	
-//		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("Pack configuration maintenance/query screen");
-//		Thread.sleep(2000);
-//		// screen.click("images/JDAHome/Search_button.png");
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(3000);
-//
-//	}
+
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Pack configuration maintenance/query screen");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	//
+	// }
 
 	public void enterTabKey() {
 		screen.type(Key.TAB);
@@ -590,31 +599,31 @@ public class JdaHomePage {
 		navigateToPage("Move Task Query");
 		validateHomePageNavigation(moveTaskPage.moveTaskHomePage(), "Move Task Query");
 	}
-//		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("Move Task Query");
-//		Thread.sleep(2000);
-//		// screen.click("images/JDAHome/Search_button.png");
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(3000);
-//	}
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Move Task Query");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	// }
 
 	public void navigateToAddressMaintenancePage() throws FindFailed, InterruptedException {
 		navigateToPage("Address");
 		validateHomePageNavigation(addressMaintenancePage.addressMaintenanceHomePage(), "Address");
 	}
-//		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("Address");
-//		Thread.sleep(2000);
-//		// screen.click("images/JDAHome/Search_button.png");
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(3000);
-//	}
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Address");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	// }
 
 	public void navigateToCEConsignmentMaintenenacePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -748,9 +757,10 @@ public class JdaHomePage {
 	}
 
 	public void navigateToDockSchedulerPage() throws FindFailed, InterruptedException {
-//		navigateToPage("Dock scheduler screen");
-//		validateHomePageNavigation(dockSchedulerPage.dockSchedulerHomePage(), "Dock scheduler screen");
-//	}
+		// navigateToPage("Dock scheduler screen");
+		// validateHomePageNavigation(dockSchedulerPage.dockSchedulerHomePage(),
+		// "Dock scheduler screen");
+		// }
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock scheduler screen");
@@ -868,8 +878,12 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 	}
 
-	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
+	public void navigateToDeliveryPage() throws FindFailed, InterruptedException, IOException {
 		navigateToPage("Delivery");
+//		System.out.println(context.getScenario().getSourceTagNames());
+//		System.out.println("Screen schot before");
+//		hooks_autoUI.tearDown(context.getScenario());
+//		System.out.println("After Screen schot");
 		Thread.sleep(3000);
 		validateHomePageNavigation(deliveryPage.deliveryHomePage(), "Delivery Maintenance");
 	}
@@ -946,13 +960,13 @@ public class JdaHomePage {
 			Assert.fail(homePageName + " Page not found");
 		}
 	}
-	
+
 	private void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type(pageName);
 		Thread.sleep(2000);
-//		screen.click("images/JDAHome/Search_button.png");
+		// screen.click("images/JDAHome/Search_button.png");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

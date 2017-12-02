@@ -4,7 +4,7 @@ Feature: Inbound receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @boxed_inbound_receiving_direct_po_multiple_po_receive_multiple_urn_single_trailer @boxed @inbound_receiving @direct_po @complete @ds
+ @unique_boxed_inbound_receiving_direct_po_multiple_po_receive_multiple_urn_single_trailer @boxed @inbound_receiving @direct_po @complete @ds
   Scenario: Mulitple PO ,multiple URN ,single ASN
     Given the multiple PO of type "Boxed" with multiple UPI and ASN should be in "Released" status with line items,supplier details
     And the multiple PO with multiple upi should have sku, quantity due details
