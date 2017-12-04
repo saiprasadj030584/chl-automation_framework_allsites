@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
@@ -11,6 +14,9 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
+
+import cucumber.api.Scenario;
 
 public class JdaHomePage {
 
@@ -27,12 +33,19 @@ public class JdaHomePage {
 	private InventoryQueryPage inventoryQueryPage;
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private InventoryTransactionQueryPage inventoryTransactionQueryPage;
-//	private DockSchedulerPage dockSchedulerPage;
+	// private DockSchedulerPage dockSchedulerPage;
+	private PackConfigMaintenancePage packConfigMaintenancePage;
+	private AddressMaintenancePage addressMaintenancePage;
+	private MoveTaskPage moveTaskPage;
+	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
-			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
-			PreAdviceHeaderPage preAdviceHeaderPage,InventoryTransactionQueryPage inventoryTransactionQueryPage, StockAdjustmentsPage stockAdjustmentsPage, OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
+			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage, Hooks_autoUI hooks_autoUI,
+			PreAdviceHeaderPage preAdviceHeaderPage, MoveTaskPage moveTaskPage,
+			AddressMaintenancePage addressMaintenancePage, InventoryTransactionQueryPage inventoryTransactionQueryPage,
+			PackConfigMaintenancePage packConfigMaintenancePage, StockAdjustmentsPage stockAdjustmentsPage,
+			OrderHeaderPage orderHeaderPage, InventoryQueryPage inventoryQueryPage) {
 		this.jdaLoginPage = jdaLoginPage;
 		this.jdaFooter = jdaFooter;
 		this.context = context;
@@ -41,9 +54,13 @@ public class JdaHomePage {
 		this.deliveryPage = deliveryPage;
 		this.orderHeaderPage = orderHeaderPage;
 		this.inventoryQueryPage = inventoryQueryPage;
-		this. stockAdjustmentsPage = stockAdjustmentsPage ;
+		this.stockAdjustmentsPage = stockAdjustmentsPage;
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
-		//this.dockSchedulerPage = dockSchedulerPage;
+		// this.dockSchedulerPage = dockSchedulerPage;
+		this.packConfigMaintenancePage = packConfigMaintenancePage;
+		this.addressMaintenancePage = addressMaintenancePage;
+		this.moveTaskPage = moveTaskPage;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
@@ -295,7 +312,7 @@ public class JdaHomePage {
 	public void navigateToStockAdjustment() throws FindFailed, InterruptedException {
 		navigateToPage("Stock Adjustment");
 		validateHomePageNavigation(stockAdjustmentsPage.stockAdjustmentsHomePage(), "Stock Adjustment");
-		
+
 	}
 
 	public void clickWelcomeButton() throws FindFailed {
@@ -340,7 +357,7 @@ public class JdaHomePage {
 
 	public void clickSearchIcon() {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 				System.out.println("Application search icon found");
 				if (screen.exists("images/JDAHome/Welcomed.png") != null) {
@@ -357,6 +374,7 @@ public class JdaHomePage {
 					screen.type(Key.UP);
 					screen.type(Key.UP);
 					Thread.sleep(2000);
+					stepsScreenShot();
 					screen.type(Key.ENTER);
 					Thread.sleep(2000);
 					System.out.println("Search for Screen selection ");
@@ -381,6 +399,7 @@ public class JdaHomePage {
 						screen.type(Key.UP);
 						// screen.type(Key.UP);
 						Thread.sleep(2000);
+						stepsScreenShot();
 						screen.type(Key.ENTER);
 						Thread.sleep(2000);
 						if (screen.exists("images/ScreenSelection.png") != null) {
@@ -495,7 +514,7 @@ public class JdaHomePage {
 
 			e.printStackTrace();
 		}
-		jdaLoginPage.driver = null;
+		JdaLoginPage.driver = null;
 		jdaLoginPage.login();
 		screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
 		screen.click("images/JDAHome/Welcomed.png");
@@ -507,23 +526,40 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 		screen.type("Inventory Update");
 		Thread.sleep(2000);
+		stepsScreenShot();
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
+	public void stepsScreenShot() {
+		try {
+			Thread.sleep(1000);
+			if (JdaLoginPage.driver != null) {
+				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+				context.getScenario().embed(screenshot, "image/png");
+			} else {
+				((JavascriptExecutor) JdaLoginPage.driver).executeScript("window.focus();");
+				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+				context.getScenario().embed(screenshot, "image/png");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {
 		navigateToPage("(ITL) query");
 		validateHomePageNavigation(inventoryTransactionQueryPage.inventoryTransactionHomePage(), "(ITL) query");
-		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("(ITL) query");
-//		Thread.sleep(2000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(4000);
+//		clickSearchIcon();
+		// Thread.sleep(1000);
+		// screen.type("(ITL) query");
+		// Thread.sleep(2000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(1000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(4000);
 	}
 
 	public void navigateToUpiReceiptHeaderPage() throws FindFailed, InterruptedException {
@@ -548,17 +584,22 @@ public class JdaHomePage {
 	}
 
 	public void navigateToPackConfigMaintenance() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Pack configuration maintenance/query screen");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
-
+		navigateToPage("Pack configuration maintenance/query screen");
+		validateHomePageNavigation(packConfigMaintenancePage.packConfigirationHomePage(),
+				"Pack configuration maintenance/query screen");
 	}
+
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Pack configuration maintenance/query screen");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	//
+	// }
 
 	public void enterTabKey() {
 		screen.type(Key.TAB);
@@ -577,28 +618,34 @@ public class JdaHomePage {
 	}
 
 	public void navigateToMoveTaskQuery() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Move Task Query");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		navigateToPage("Move Task Query");
+		validateHomePageNavigation(moveTaskPage.moveTaskHomePage(), "Move Task Query");
 	}
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Move Task Query");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	// }
 
 	public void navigateToAddressMaintenancePage() throws FindFailed, InterruptedException {
-		clickSearchIcon();
-		Thread.sleep(1000);
-		screen.type("Address");
-		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(3000);
+		navigateToPage("Address");
+		validateHomePageNavigation(addressMaintenancePage.addressMaintenanceHomePage(), "Address");
 	}
+	// clickSearchIcon();
+	// Thread.sleep(1000);
+	// screen.type("Address");
+	// Thread.sleep(2000);
+	// // screen.click("images/JDAHome/Search_button.png");
+	// screen.type(Key.ENTER);
+	// Thread.sleep(1000);
+	// screen.type(Key.ENTER);
+	// Thread.sleep(3000);
+	// }
 
 	public void navigateToCEConsignmentMaintenenacePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -732,9 +779,10 @@ public class JdaHomePage {
 	}
 
 	public void navigateToDockSchedulerPage() throws FindFailed, InterruptedException {
-//		navigateToPage("Dock scheduler screen");
-//		validateHomePageNavigation(dockSchedulerPage.dockSchedulerHomePage(), "Dock scheduler screen");
-//	}
+		// navigateToPage("Dock scheduler screen");
+		// validateHomePageNavigation(dockSchedulerPage.dockSchedulerHomePage(),
+		// "Dock scheduler screen");
+		// }
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Dock scheduler screen");
@@ -852,8 +900,13 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 	}
 
-	public void navigateToDeliveryPage() throws FindFailed, InterruptedException {
+	public void navigateToDeliveryPage() throws FindFailed, InterruptedException, IOException {
+		stepsScreenShot();
 		navigateToPage("Delivery");
+		// System.out.println(context.getScenario().getSourceTagNames());
+		// System.out.println("Screen schot before");
+		// hooks_autoUI.tearDown(context.getScenario());
+		// System.out.println("After Screen schot");
 		Thread.sleep(3000);
 		validateHomePageNavigation(deliveryPage.deliveryHomePage(), "Delivery Maintenance");
 	}
@@ -942,16 +995,19 @@ public class JdaHomePage {
 			Assert.fail(homePageName + " Page not found");
 		}
 	}
-	
+
 	private void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
+		stepsScreenShot();
 		screen.type(pageName);
+//		stepsScreenShot();
 		Thread.sleep(2000);
-//		screen.click("images/JDAHome/Search_button.png");
 		screen.type(Key.ENTER);
+		stepsScreenShot();
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
+		stepsScreenShot();
 		Thread.sleep(4000);
 	}
 }

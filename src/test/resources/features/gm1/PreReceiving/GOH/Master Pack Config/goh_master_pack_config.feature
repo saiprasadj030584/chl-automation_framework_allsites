@@ -4,7 +4,7 @@ Feature: GOH - Master pack Config
   I want to perform certain 
   modifications on sku
 
-  @jenkinsm @pre_receiving @master_pack_config @goh @goh_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s @complete @ds @no_ds 
+  @jenkinsm @pre_receiving @master_pack_config @goh @unique_goh_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s @complete @ds @no_ds 
   Scenario:Validate whether pack config can be created for SKUs and Amend existing pack config
     Given the sku of type "GOH" and not new product
     When I have logged in as warehouse user in JDA dispatcher GM application

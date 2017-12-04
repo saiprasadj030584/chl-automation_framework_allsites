@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import cucumber.api.Scenario;
 
 import cucumber.runtime.java.guice.ScenarioScope;
 
@@ -17,6 +18,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
+	private Scenario scenario;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -45,6 +47,7 @@ public class Context {
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
+
 	private String address1;
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
@@ -1319,6 +1322,14 @@ public class Context {
 
 	public void setUniqueTag(String uniqueTag) {
 		this.uniqueTag = uniqueTag;
+	}
+
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
 	}
 
 	public String getAdviceId() {

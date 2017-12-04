@@ -25,6 +25,9 @@ public class DbConnection {
 	public static Context context = new Context();
 	public static DbConnection npsDataBase;
 
+	
+	
+
 	public void connectAutomationDB() {
 
 		Map<String, String> DBDetails = getJdaAutomationDbDetails();
@@ -43,16 +46,17 @@ public class DbConnection {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-	}  
-	
+	}
+
 	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
 			System.out.println("CHECK CONNECTION " + context.getDBConnection());
-			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
-				npsDataBase.connectAutomationDB();
+			if (null == context.getDBConnection() || context.getDBConnection().isClosed()) {
+				connectAutomationDB();
 			}
+			// npsDataBase.connectAutomationDB();
 
 			stmt = context.getDBConnection().createStatement();
 			String selectQuery = "Select SITE_NO from JDA_GM_TEST_DATA where UNIQUE_TAG = '" + uniqueTag + "'";
@@ -60,19 +64,19 @@ public class DbConnection {
 			context.getDBConnection().createStatement().execute(selectQuery);
 			rs = stmt.executeQuery(selectQuery);
 			if (!rs.next()) {
-				Assert.fail("Unique Tag Id is notfound");
-			
+				Assert.fail("Unique Tag Id is not found");
+
 			} else {
 				context.setSiteID(rs.getString("SITE_NO"));
 			}
-			
+
 		}
 
 		catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
-	
+
 	public void getJdaSiteIdFromDB() {
 		ResultSet resultSet = null;
 		try {
@@ -80,7 +84,7 @@ public class DbConnection {
 			resultSet = npsDataBase.dbConnection.createStatement()
 					.executeQuery("Select * from dbo.JDA_GM_RUN_REQUESTS where PARENT_REQUEST_ID='"
 							+ context.getParentRequestId() + "'");
-			
+
 			while (resultSet.next()) {
 				context.setSiteID(resultSet.getString("SITE_NO"));
 			}
@@ -90,9 +94,8 @@ public class DbConnection {
 		}
 	}
 
-
 	public void disconnectAutomationDB() {
-		System.out.println("IN DISCOONECTION AUTOMATION DB");
+		System.out.println("IN DISCONNECTION AUTOMATION DB");
 		try {
 			if (this.dbConnection != null && !this.dbConnection.isClosed())
 				this.dbConnection.close();

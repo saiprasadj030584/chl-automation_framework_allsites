@@ -3,7 +3,7 @@ Feature: Purchase order receiving
   As a warehouse user
   I want to receive the articles that are damaged
 
- @jenkinsS @boxed_receiving_fsv_po_validate_damaged_on_receipt_from_supplier @boxed @fsv_po @receiving @complete @ds @jenkinsA
+ @jenkinsS @unique_boxed_receiving_fsv_po_validate_damaged_on_receipt_from_supplier @boxed @fsv_po @receiving @complete @ds @jenkinsA
   Scenario: Validate damaged on receipt (From supplier) for FSV PO - Boxed
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO with "DMGD" should have sku, quantity due details

@@ -4,7 +4,7 @@ Feature: GOH - Direct PO - Putaway
   I want to putaway the received articles
   So that I can complete the purchase order
 
-  @goh @putaway @direct_po @goh_putaway_direct_po_validate_goh_putaway_process @complete @ds
+  @goh @putaway @direct_po @unique_goh_putaway_direct_po_validate_goh_putaway_process @complete @ds
   Scenario: Validate GOH Putaway Process
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

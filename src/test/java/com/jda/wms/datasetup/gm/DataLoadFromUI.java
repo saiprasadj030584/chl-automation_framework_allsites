@@ -112,6 +112,7 @@ public class DataLoadFromUI {
 				screen.click("images/IgnoreMergeRulesUnchecked.png");
 				Thread.sleep(2000);
 				jdaFooter.clickExecuteButton();
+				jdaFooter.PressEnter();
 				context.setErrorMessage("EJB Error---> Ignore merge rules checked");
 			} else {
 				context.setErrorMessage("NA");

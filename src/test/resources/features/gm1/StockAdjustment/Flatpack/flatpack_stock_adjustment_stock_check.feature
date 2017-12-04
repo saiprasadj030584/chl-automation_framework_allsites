@@ -3,7 +3,7 @@ Feature: Flatpack - Stock Check Positive Proof
   As a warehouse user
   I want to validate stock in inventory
 
-  @jenkinsD @flatpack @stock_check @stock_adjustment @flatpack_stock_adjustment_stock_check_positive_proof_of_stock_check @complete @ds @jenkins1 @no_ds 
+  @jenkinsD @flatpack @stock_check @stock_adjustment @unique_flatpack_stock_adjustment_stock_check_positive_proof_of_stock_check @complete @ds @jenkins1 @no_ds 
   Scenario: Positive proof of stock check
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
