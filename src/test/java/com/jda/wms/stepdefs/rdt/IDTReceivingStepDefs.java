@@ -391,9 +391,9 @@ public class IDTReceivingStepDefs {
 			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
 			//jdaFooter.pressTab();
 			System.out.println("Type" + type);
-			if (type.equalsIgnoreCase("multiple line item")) {
-				jdaFooter.pressTab();
-			}
+//			if (type.equalsIgnoreCase("multiple line item")) {
+//				jdaFooter.pressTab();
+	//		}
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
@@ -412,6 +412,7 @@ public class IDTReceivingStepDefs {
 		context.setFailureList(failureList);
 		hooks.logoutPutty();
 	}
+//
 	
 
 	@Given("^the UPI with \"([^\"]*)\" skus and ASN should be in \"([^\"]*)\" status for IDT$")

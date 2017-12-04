@@ -3,7 +3,7 @@ Feature: Boxed - Receiving - IDT
   As a warehouse user
   I want to receive the returned articles
 
-  @unique_boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn @idt @receiving @boxed @complete @ds @jenkinsfly
+  @jenkinsA @unique_boxed_receiving_idt_validate_the_idt_receiving_process_normal_urn @idt @receiving @boxed @complete @ds @jenkinsfly
   Scenario: Validate the IDT receiving process - Normal URN
     Given the UPI and ASN should be in "Released" status for IDT
     And ASN and container to be linked with upi header
