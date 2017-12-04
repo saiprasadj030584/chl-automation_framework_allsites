@@ -7,7 +7,7 @@ Feature: Boxed - IDT - Order Management
    @jenkinsg @unique_goh_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @goh @order_management @idt @complete @ds
   Scenario: Verify order status updated for each transaction in order management screen and order header
    # Given the order of "IDT" should be in "Released" status in order header maintenance
-   Given the order id of type "IDT" with "Boxed" skus should be in "Released" status
+   Given the order id of type "IDT" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     When I navigate to order management page

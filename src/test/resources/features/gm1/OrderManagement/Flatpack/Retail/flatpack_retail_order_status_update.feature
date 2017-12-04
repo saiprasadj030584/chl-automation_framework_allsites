@@ -7,7 +7,7 @@ Feature: flatpack - Retail - Order Management
                
    @jenkinsg @unique_flatpack_order_management_retail_order_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @flatpack @order_management @retail @complete @ds
   Scenario: Verify order status updated for each transaction in order management screen and order header
-    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    Given the order id of type "Retail" with "Flatpack" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     When I navigate to order management page

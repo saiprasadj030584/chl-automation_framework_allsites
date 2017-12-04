@@ -8,7 +8,7 @@ Feature: Flatpack - IDT - Order Management
       @jenkinsg @unique_flatpack_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @flatpack @order_management @idt @complete
   Scenario Outline: Verify order status updated for each transaction in order management screen and order header
    # Given the "Flatpack" type "<orderId>" of "IDT" should be in "Released" status in order header maintenance
-     Given the order id of type "IDT" with "Boxed" skus should be in "Released" status
+     Given the order id of type "IDT" with "Flatpack" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
     When I navigate to order management page
