@@ -493,7 +493,7 @@ public class IDTReceivingStepDefs {
 			}
 			context.setRcvQtyDue(Integer.parseInt(quantity));
 			purchaseOrderReceivingPage.enterURNID(context.getContainerId());
-			// jdaFooter.pressTab();
+			 jdaFooter.pressTab();
 			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
 			jdaFooter.pressTab();
 			jdaFooter.pressTab();
