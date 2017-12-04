@@ -4,7 +4,7 @@ Feature: Boxed - IDT - Order Management
   I want to allocate the order 
   So that the order status can be updated in the order management screen
 
-   @jenkinsg @unique_boxed_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @boxed @order_management @idt @complete @ds
+   @jenkinsA @unique_boxed_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @boxed @order_management @idt @complete @ds
   Scenario: Verify order status updated for each transaction in order management screen and order header
    # Given the order of "IDT" should be in "Released" status in order header maintenance
    Given the order id of type "IDT" with "Boxed" skus should be in "Released" status
