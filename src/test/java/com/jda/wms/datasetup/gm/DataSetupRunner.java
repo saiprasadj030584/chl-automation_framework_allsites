@@ -430,6 +430,8 @@ public class DataSetupRunner {
 		}
 
 		else if (context.getUniqueTag().contains("retail") || (context.getUniqueTag().contains("retail") && context.getUniqueTag().contains("order"))) {
+			
+			System.out.println("Entered retail");
 			try {
 				npsDataBase.connectAutomationDB();
 				

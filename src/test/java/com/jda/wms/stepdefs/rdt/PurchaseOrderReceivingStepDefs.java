@@ -1592,6 +1592,10 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptHeaderStepDefs.SSSC_URN_to_be_updated_with_upi_header();
 		upiReceiptLineStepDefs.container_to_be_updated_with_upi_line();
 		upiReceiptLineStepDefs.urn_to_be_updated_with_upi_line();
+		Assert.assertEquals("UPI Header is not as expected,Expected ZRET", "ZRET",
+				uPIReceiptHeaderDB.getUserDefinedType7(context.getUpiId()));
+		Assert.assertEquals("UPI Line is not as expected,Expected ZRET", "ZRET",
+				uPIReceiptLineDB.getUserDefinedType7(context.getUpiId()));
 	}
 
 	@When("^I blind receive all skus for the purchase order at location \"([^\"]*)\"$")
@@ -3012,6 +3016,7 @@ public class PurchaseOrderReceivingStepDefs {
 		preAdviceHeaderStepsDefs
 				.the_FSV_PO_of_type_should_be_in_status_at_site_id(type, "Released");
 		preAdviceLineStepDefs.the_FSV_PO_line_should_have_sku_quantity_due_details();
+		preAdviceLineStepDefs.i_update_the_advice_id_for_all_line_items();
 		preAdviceHeaderStepsDefs.the_PO_should_not_be_linked_with_UPI_line();
 		context.setLocation(location);
 		i_perform_for_all_skus_for_the_FSV_purchase_order_at_location_for_maximum_aisle("Under Receiving","REC001");
@@ -3034,6 +3039,9 @@ public class PurchaseOrderReceivingStepDefs {
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
 		i_receive_the_po_with_basic_and_pre_advice_receiving();
 		i_should_be_directed_to_pre_advice_entry_page();
+		System.out.println("INIT VALUES"+context.getPalletIDList());
+		System.out.println(context.getBelCodeList());
+		System.out.println(context.getBelCodeList());
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
@@ -3049,6 +3057,10 @@ public class PurchaseOrderReceivingStepDefs {
 				quantity = String.valueOf("120");
 			}
 			context.setRcvQtyDue(Integer.valueOf(quantity));
+			System.out.println("VALUES"+context.getPalletIDList().get(i - 1));
+			System.out.println(context.getBelCodeList().get(i - 1));
+			System.out.println(context.enterNewPallet().get(i - 1));
+			
 			i_enter_pallet_id(context.getPalletIDList().get(i - 1));
 			i_enter_belCode(context.getBelCodeList().get(i - 1));
 			jdaFooter.PressEnter();
@@ -3306,6 +3318,32 @@ public class PurchaseOrderReceivingStepDefs {
 			
 		context.setFailureList(failureList);
 		hooks.logoutPutty();
+	}
+	
+	@Given("^the UPI of type \"([^\"]*)\" and ASN should be received at \"([^\"]*)\" for maximum aisle$")
+	public void the_upi_of_type_and_ASN_should_be_received_at_for_maximum_aisle(String type, String location)
+			throws Throwable {
+		String upiId = context.getUpiId();
+		String asnId = context.getAsnId();
+		String siteId = context.getSiteID();
+
+		context.setUpiId(upiId);
+		context.setLocationID(location);
+		context.setAsnId(asnId);
+		context.setSiteID(siteId);
+		context.setSKUType(type);
+		
+		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details("Released");
+		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_updated_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line();
+		preAdviceLineStepDefs.the_upi_should_have_sku_quantity_due_details();
+		context.setLocation(location);
+		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
+		context.setContainerId(uPIReceiptLineDB.getContainer(upiId));
+		context.setLocation(location);
+		i_perform_for_all_skus_at_location_for_IDT_for_maximum_aisle_check("Under Receiving","REC001");
+		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_split_received_idt();
+		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_IDT_split_received_stock_in_inventory_transaction();
+		preAdviceHeaderStepsDefs.the_idt_status_should_be_displayed_as("Complete");
 	}
 
 }

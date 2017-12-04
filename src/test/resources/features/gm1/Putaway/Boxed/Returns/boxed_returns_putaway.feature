@@ -76,3 +76,13 @@ Feature: Boxed - Returns - Putaway
     And I proceed with entering the returns upc and location
     When I perform normal returns putaway after relocation
     Then the goods receipt should be generated for putaway returns stock in inventory transaction
+    
+     
+    @boxed @putaway @returns @unique_boxed_putaway_returns_validate_maximum_locations_per_aisle_per_upc @complete @ds @max
+  Scenario: Validate maximum locations per Aisle per UPC
+    Given the UPI of type "Boxed" and ASN should be received at "REC001" for maximum aisle
+    When I choose existing relocate
+    And I proceed with entering the returns upc and location
+     When I perform normal returns putaway after under receiving and relocation
+     Then the goods receipt should be generated for IDT split received stock in inventory transaction
+    

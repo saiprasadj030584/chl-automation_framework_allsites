@@ -353,9 +353,7 @@ public class StockMaintainStepDefs {
 	}
 
 	private void logoutPutty() throws InterruptedException, IOException {
-		System.out.println("PUTTY KILL IN STOCK MAINTAIN 1");
 		if (context.isPuttyLoginFlag() == true) {
-			System.out.println("PUTTY KILL IN STOCK MAINTAIN 2");
 			// context.getPuttyProcess().waitFor();
 			while (screen.exists("/images/Putty/3Logout.png") == null) {
 				screen.type(Key.F12);
@@ -371,7 +369,6 @@ public class StockMaintainStepDefs {
 			Thread.sleep(2000);
 			context.setPuttyLoginFlag(false);
 		} else {
-			System.out.println("PUTTY KILL IN STOCK MAINTAIN 3");
 			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		}
 	}

@@ -429,10 +429,34 @@ public class PreAdviceLineStepDefs {
 			context.setUPIMap(UPIMap);
 			System.out.println(context.getUPIMap());
 			
+			for (int i = 1; i <= context.getNoOfLines(); i++) {
+
+				String type = null;
+				switch (context.getSKUType()) {
+				case "Boxed":
+					type = "B";
+					break;
+				case "Hanging":
+					type = "H";
+					break;
+				case "Flatpack":
+					type = "P";
+					break;
+				case "GOH":
+					type = "C";
+					break;
+				}
+				// TODO Check for multiple skus
+				verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+				verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
+						failureList);
+			}
+			
 			
 			Assert.assertTrue(
 					"PO & UPI line item attributes not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 					failureList.isEmpty());
+			
 	}
 
 	@Given("^the upi should have MEZZ sku, quantity due details$")

@@ -100,7 +100,7 @@ Feature: Purchase order Putaway
     When I perform normal putaway of hazardous product after relocation for FSV PO
     Then the goods receipt should be generated for putaway FSV stock in inventory transaction
 
-  @boxed @putaway @fsv_po @boxed_putaway_fsv_po_validate_maximum_locations_per_aisle_per_upc @complete @ds
+  @boxed @putaway @fsv_po @unique_boxed_putaway_fsv_po_validate_maximum_locations_per_aisle_per_upc @complete @ds
   Scenario: Validate maximum locations per Aisle per UPC
     Given the FSV PO of type "Boxed" with UPI and ASN should be received at "REC001" for maximum aisle
     When I choose existing relocate
