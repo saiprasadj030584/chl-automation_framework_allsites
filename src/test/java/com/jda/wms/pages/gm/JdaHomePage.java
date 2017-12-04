@@ -535,7 +535,7 @@ public class JdaHomePage {
 
 	public void stepsScreenShot() {
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 			if (JdaLoginPage.driver != null) {
 				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
 				context.getScenario().embed(screenshot, "image/png");

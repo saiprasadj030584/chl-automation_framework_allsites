@@ -795,6 +795,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				allocation = true;
 			}
 			if (context.getLocationID() != null) {
+				System.out.println("1st *****************");
 				if (context.getLocationID().equalsIgnoreCase("suspense")) {
 					if (!inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i)))) {
 						System.out.println("Sku not in suspense location " + (String) skuFromOrder.get(i));
