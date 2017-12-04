@@ -4,7 +4,7 @@ Feature: Hanging - Inbound receiving with Lock code -  IDT
   I want to receive the returned articles
 
   @unique_hanging_inbound_receiving_idt_over_receiving_with_lock_code @idt @inbound_receiving @hanging @complete @ds
-  Scenario Outline: Validate Over receiving with lockcode
+  Scenario: Validate Over receiving with lockcode
     Given the UPI and ASN of "Hanging" type should be in "Released" status for IDT
     And the UPI should have sku, quantity due details
     And ASN and container to be linked with upi header
