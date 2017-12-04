@@ -357,7 +357,7 @@ public class JdaHomePage {
 
 	public void clickSearchIcon() {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 				System.out.println("Application search icon found");
 				if (screen.exists("images/JDAHome/Welcomed.png") != null) {
