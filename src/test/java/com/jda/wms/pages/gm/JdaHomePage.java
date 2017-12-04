@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Region;
@@ -371,6 +374,7 @@ public class JdaHomePage {
 					screen.type(Key.UP);
 					screen.type(Key.UP);
 					Thread.sleep(2000);
+					stepsScreenShot();
 					screen.type(Key.ENTER);
 					Thread.sleep(2000);
 					System.out.println("Search for Screen selection ");
@@ -395,6 +399,7 @@ public class JdaHomePage {
 						screen.type(Key.UP);
 						// screen.type(Key.UP);
 						Thread.sleep(2000);
+						stepsScreenShot();
 						screen.type(Key.ENTER);
 						Thread.sleep(2000);
 						if (screen.exists("images/ScreenSelection.png") != null) {
@@ -509,7 +514,7 @@ public class JdaHomePage {
 
 			e.printStackTrace();
 		}
-		jdaLoginPage.driver = null;
+		JdaLoginPage.driver = null;
 		jdaLoginPage.login();
 		screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
 		screen.click("images/JDAHome/Welcomed.png");
@@ -521,16 +526,33 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 		screen.type("Inventory Update");
 		Thread.sleep(2000);
+		stepsScreenShot();
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
+	public void stepsScreenShot() {
+		try {
+			Thread.sleep(10000);
+			if (JdaLoginPage.driver != null) {
+				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+				context.getScenario().embed(screenshot, "image/png");
+			} else {
+				((JavascriptExecutor) JdaLoginPage.driver).executeScript("window.focus();");
+				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+				context.getScenario().embed(screenshot, "image/png");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {
 		navigateToPage("(ITL) query");
 		validateHomePageNavigation(inventoryTransactionQueryPage.inventoryTransactionHomePage(), "(ITL) query");
-		clickSearchIcon();
+//		clickSearchIcon();
 		// Thread.sleep(1000);
 		// screen.type("(ITL) query");
 		// Thread.sleep(2000);
@@ -879,11 +901,12 @@ public class JdaHomePage {
 	}
 
 	public void navigateToDeliveryPage() throws FindFailed, InterruptedException, IOException {
+		stepsScreenShot();
 		navigateToPage("Delivery");
-//		System.out.println(context.getScenario().getSourceTagNames());
-//		System.out.println("Screen schot before");
-//		hooks_autoUI.tearDown(context.getScenario());
-//		System.out.println("After Screen schot");
+		// System.out.println(context.getScenario().getSourceTagNames());
+		// System.out.println("Screen schot before");
+		// hooks_autoUI.tearDown(context.getScenario());
+		// System.out.println("After Screen schot");
 		Thread.sleep(3000);
 		validateHomePageNavigation(deliveryPage.deliveryHomePage(), "Delivery Maintenance");
 	}
@@ -964,12 +987,15 @@ public class JdaHomePage {
 	private void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
+		stepsScreenShot();
 		screen.type(pageName);
+//		stepsScreenShot();
 		Thread.sleep(2000);
-		// screen.click("images/JDAHome/Search_button.png");
 		screen.type(Key.ENTER);
+		stepsScreenShot();
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
+		stepsScreenShot();
 		Thread.sleep(4000);
 	}
 }
