@@ -3,7 +3,7 @@ Feature: Picking and Replenishment workload report
   As a warehouse user
   I want to validate picking and replenish workload report
 
-  @jenkinsC @picking @all_data @unique_all_data_picking_picking_validate_picking_and_replenishment_workload_report @complete @ds @no_ds
+  @jenkinsC  @jenkinsgm @picking @all_data @unique_all_data_picking_picking_validate_picking_and_replenishment_workload_report @complete @ds @no_ds
   Scenario: Validate Picking and Replenishment Workload  Report
     Given I am on report selection page
     When I choose the print to screen option

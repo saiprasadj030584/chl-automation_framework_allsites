@@ -45,7 +45,7 @@ Feature: Flatpack - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | EXPD       |
 
-  @flatpack @stock_adjustment @stock_adjustment_reason_code @unique_flatpack_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_found_ @complete @ds @no_ds @jenkinsC
+  @flatpack @jenkinsgm @stock_adjustment @stock_adjustment_reason_code @unique_flatpack_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_found_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as FOUND
     Given I have a sku of type "Flatpack" to adjust the stock
     When I navigate to stock adjustments page
@@ -73,7 +73,7 @@ Feature: Flatpack - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | INCOMPLETE |
 
-  @flatpack @stock_adjustment @stock_adjustment_reason_code @unique_flatpack_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_lost_ @complete @ds @no_ds @jenkinsC
+  @flatpack @jenkinsgm @stock_adjustment @stock_adjustment_reason_code @unique_flatpack_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_lost_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as LOST
     Given I have a sku of type "Flatpack" to adjust the stock
     When I navigate to stock adjustments page

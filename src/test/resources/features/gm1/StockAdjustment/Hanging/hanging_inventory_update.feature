@@ -48,7 +48,7 @@ Feature: Hanging - Inventory update
     When I choose the code as "Expiry Update" and search the tag id
     Then the expiry date should be updated
 
-  @jenkinsB @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_origin_update @complete @ds @no_ds
+  @jenkinsB @jenkinsgm @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_origin_update @complete @ds @no_ds
   Scenario Outline: Origin update
     Given I have a tag in inventory with origin "<Origin>" for "Hanging"
     When I navigate to inventory update page

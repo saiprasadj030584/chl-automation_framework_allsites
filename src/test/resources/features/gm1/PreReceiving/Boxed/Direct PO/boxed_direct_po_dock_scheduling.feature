@@ -15,7 +15,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinsA @pre_receiving @direct_po @boxed @unique_boxed_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @maven_check_1 @allocation_check
+  @jenkinsA @jenkinsgm @pre_receiving @direct_po @boxed @unique_boxed_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @maven_check_1 @allocation_check
   Scenario: Validate whether Booking details can be captured - Carrier Information
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -96,7 +96,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     When I update the compliance flag in database
     Then the compliance details should be updated
 
-  @jenkinsA @boxed @pre_receiving @direct_po @unique_boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_header @complete @ds
+  @jenkinsA @jenkinsgm @boxed @pre_receiving @direct_po @unique_boxed_pre_receiving_direct_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_header @complete @ds
   Scenario: Validate whether compliance flag can be uploaded for Pre advice header
     Given the PO of type "Boxed" should be in "Released" status with line items,supplier details
     When I update the compliance flag in pre advice header
