@@ -88,7 +88,7 @@ public class DataSetupRunner {
 
 		// insertData();
 		// insertTempTestdata();
-		createTestDataFromUI();
+		//createTestDataFromUI();
 	}
 
 	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {
@@ -485,7 +485,7 @@ public class DataSetupRunner {
 				// Fetching Refernce Test Data from Test data table
 				String odnReference = gettcdata.getOdnFromTestData();
 				// Call JDA Login
-				jdaLoginPage.login();
+				//jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
 				validateOdnDataSetup(odn);
 				gettcdata.setOdn(odn);

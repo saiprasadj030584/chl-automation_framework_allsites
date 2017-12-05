@@ -92,3 +92,4 @@ Feature: Boxed - Retail - Outbound Order till despatch
     Then Trailer should be loaded for multiple order
     When I proceed for boxed vehicle unloading with multiple order
     Then vehicle should be unload for multiple order
+    

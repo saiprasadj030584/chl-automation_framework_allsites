@@ -143,6 +143,7 @@ public class Context {
 	private String toLocation2;
 	private String relocateLoctn;
 	private ArrayList<String> qtyTaskedList;
+	private ArrayList<String> locationList;
 	private int noOfMoveTaskRecords;
 	private int skuSize;
 	private HashMap<Integer, String> qtyOnHandList;
@@ -165,6 +166,7 @@ public class Context {
 	private String ejbError;
 	private int updatedQty;
 	private static String secondTestData;
+	private int newQtyOnHAnd;
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -1416,5 +1418,22 @@ public class Context {
 	public String getEJBErrorMsg() {
 		return ejbError;
 	}
+
+	public int getNewQtyOnHAnd() {
+		return newQtyOnHAnd;
+	}
+
+	public void setNewQtyOnHAnd(int newQtyOnHAnd) {
+		this.newQtyOnHAnd = newQtyOnHAnd;
+	}
+
+	public ArrayList<String> getLocationList() {
+		return locationList;
+	}
+
+	public void setLocationList(ArrayList<String> locationList) {
+		this.locationList = locationList;
+	}
+
 
 }

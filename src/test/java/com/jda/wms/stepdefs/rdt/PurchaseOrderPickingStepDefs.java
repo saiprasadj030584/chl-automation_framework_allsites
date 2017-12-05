@@ -724,7 +724,6 @@ public class PurchaseOrderPickingStepDefs {
 		context.setListID(moveTaskDB.getListId(context.getOrderId()));
 		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
 		purchaseOrderPickingPage.enterListId(context.getListID());
-
 		puttyFunctionsPage.pressEnter();
 		String customer = orderHeaderDB.getCustomer(context.getOrderId());
 		context.setCustomer(customer);
@@ -733,15 +732,29 @@ public class PurchaseOrderPickingStepDefs {
 		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
 				+ Integer.parseInt(tagValueL);
 		context.setTagId(String.valueOf(tag));
-		System.out.println(String.valueOf(tag));
-		// purchaseOrderPickingPage.enterTagId(String.valueOf(tag));
-		purchaseOrderPickingPage.enterTagId(context.getTagId());
+		puttyFunctionsPage.pressEnter();
+		purchaseOrderPickingPage.enterPicToTagId(context.getTagId());
 		puttyFunctionsPage.pressEnter();
 		puttyFunctionsPage.pressEnter();
-		// puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
 		purchaseOrderPickingPage.enterContainerId(String.valueOf(tag));
+		int d = 0;
+		do {
+			System.out.println(purchaseOrderPickingPage.isPckPalToExists());
+			if (!purchaseOrderPickingPage.isPckPalToExists()) {
+				System.out.println("inside IF pallet check");
+				puttyFunctionsPage.pressEnter();
+				Thread.sleep(2000);
+				if (purchaseOrderPickingPage.isPckConCnfExists()) {
+					purchaseOrderPickingPage.enterContainerId(String.valueOf(tag));
+				}
+				d++;
+			} else {
+				System.out.println("found screen");
+				break;
+			}
+		} while (d > 0);
 		puttyFunctionsPage.pressEnter();
-		// puttyFunctionsPage.pressEnter();
 		Assert.assertTrue("Picking completion is not as expected", purchaseOrderPickingPage.isPickEntPageDisplayed());
 		hooks.logoutPutty();
 
@@ -817,6 +830,7 @@ public class PurchaseOrderPickingStepDefs {
 		puttyFunctionsPage.pressTab();
 		String urn = moveTaskDB.selectURN(context.getOrderId());
 		purchaseOrderVehicleLoadingPage.enterURN(urn);
+		puttyFunctionsPage.pressEnter();
 		puttyFunctionsPage.pressEnter();
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(2000);

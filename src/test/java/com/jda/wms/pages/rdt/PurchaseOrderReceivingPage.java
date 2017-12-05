@@ -785,4 +785,18 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
+
+	public String getURRNValue() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/BlindRcvURRN.png");
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.offset(50, 0));
+		return App.getClipboard();
+	}
+
+	public boolean isURRNExists() {
+		if (screen.exists("images/Putty/Receiving/BlindRcvURRN.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

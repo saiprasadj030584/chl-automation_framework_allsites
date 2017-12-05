@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@hanging_inbound_receiving_returns_multiple_urn_and_single_asn"
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@unique_hanging_outbound_order_till_despatch_store_order_short_store_order_partial_cancel"
 				+ ""
 				+ ""
 				+ ""})

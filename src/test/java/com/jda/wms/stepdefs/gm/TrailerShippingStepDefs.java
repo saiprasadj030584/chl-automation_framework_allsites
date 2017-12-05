@@ -64,11 +64,34 @@ public class TrailerShippingStepDefs {
 		
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-		for (int i = 0; i < context.getOrderList().size(); i++) {
-			context.setOrderId(context.getOrderList().get(i));
 			verification.verifyData("Order Status", "Shipped", orderHeaderDB.getStatus(context.getOrderId()),
 					failureList);
-		}
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+	@Then("^trailer shipping will be In Progress$")
+	public void trailer_shipping_will_be_In_Progress() throws Throwable {
+		jdaFooter.PressEnter();
+		Thread.sleep(2000);
+		jdaFooter.pressTab();
+		Thread.sleep(1000);
+		jdaFooter.pressTab();
+		Thread.sleep(1000);
+		trailerShippingPage.enterSiteID(context.getSiteID());
+		jdaFooter.pressTab();
+		trailerShippingPage.enterTrailerNumber(context.getTrailerNo());
+		jdaFooter.clickNextButton();
+		String Sealno=Utilities.getFourDigitRandomNumber();
+		trailerShippingPage.enterSealNo(Sealno);
+		trailerShippingPage.clickOkButton();
+		Thread.sleep(5000);
+		jdaFooter.clickDoneButton();
+		
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+			verification.verifyData("Order Status", "In Progress", orderHeaderDB.getStatus(context.getOrderId()),
+					failureList);
 		Assert.assertTrue(
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());

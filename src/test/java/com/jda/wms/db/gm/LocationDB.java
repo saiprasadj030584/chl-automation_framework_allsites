@@ -42,7 +42,7 @@ public class LocationDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select zone_1 from location where location_id = '" + location + "'");
+//		System.out.println("select zone_1 from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
 		String temp = rs.getString(1);
@@ -298,4 +298,6 @@ public class LocationDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	
 }

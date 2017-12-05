@@ -77,6 +77,15 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Then("^Trailer loading should be In Progress$")
+	public void Trailer_loading_should_be_In_Progress() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		verification.verifyData("Order Status", "In Progress", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 	
 		@Then("^Trailer should be loaded for multiple order$")
 		public void Trailer_should_be_loaded_for_multiple_order() throws Throwable {

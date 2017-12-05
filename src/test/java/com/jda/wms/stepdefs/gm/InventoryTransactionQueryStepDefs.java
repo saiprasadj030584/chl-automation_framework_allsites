@@ -978,6 +978,17 @@ public class InventoryTransactionQueryStepDefs {
 
 		Assert.assertEquals("ITL not updated", origQtyDue, receiptCount);
 	}
+	
+	@When("^the inventory transaction should be updated for single upi$")
+	public void the_inventory_transaction_should_be_updated_for_single_upi() throws Throwable {
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Receipt");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String code = "Receipt";
+			Assert.assertEquals("ITL not generated for Returns Receiving", 1 , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+
+	}
 
 	@When("^I search with sku and reason code$")
 	public void i_search_with_sku_and_reason_code() throws Throwable {
