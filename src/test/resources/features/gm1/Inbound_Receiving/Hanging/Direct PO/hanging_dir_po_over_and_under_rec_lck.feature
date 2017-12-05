@@ -4,7 +4,7 @@ Feature: Hanging - Direct PO - Inbound receiving with Lock code
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @jenkinsB @hanging @unique_inbound_receiving @direct_po @hanging_inbound_receiving_direct_po_over_receiving_with_lock_code @complete @ds @group_0
+  @jenkinsB @hanging @unique_inbound_receiving @jenkinsgm1  @direct_po @hanging_inbound_receiving_direct_po_over_receiving_with_lock_code @complete @ds @group_0
   Scenario: Over receiving with lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
