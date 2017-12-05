@@ -39,7 +39,7 @@ Feature: Boxed - IDT - Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @boxed @allocation @idt @unique_boxed_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+ @jenkinsls @boxed @allocation @idt @unique_boxed_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
     Given the order of "IDT" should be in "Released" status in order header maintenance
     And the order sku details are verified
