@@ -70,13 +70,16 @@ public class StockCheckStepDefs {
 	
 	@Given ("^I have to datasetup for restrict quantity$")
 	public void I_have_to_datasetup_for_restrict_quantity()throws Throwable {
-		
-		
+		String productgroup;
+		context.setLocationID(inventoryDB.getLocation(context.getTagId()));
 		System.out.println("Location ID: "+context.getLocationID());
 		context.setSkuId(inventoryDB.getSkuIdFromLocation(context.getLocationID()));
-		
+		context.setProductGroup(skudb.getProductGroup(context.getSkuId()));
 		context.setUPC(supplierSkuDB.getUPC(context.getSkuId()));
-		 productGroupDB.updatenotes(context.getSkuId());
+		if(productGroupDB.selectproductgroup())
+		 productGroupDB.updatenotes();
+		else
+		 productGroupDB.insertproductgroup();
 	}
 	
 	
@@ -94,7 +97,7 @@ public class StockCheckStepDefs {
 			stockCheckPage.enterLocation(context.getListID());
 		}
 		
-		stockCheckPage.enterCheckString(context.getLocationID());
+	//	stockCheckPage.enterCheckString(context.getLocationID());
 		
 		stockCheckPage.enterQty(context.getUPC());
 		if(stockCheckPage.checkStock()){

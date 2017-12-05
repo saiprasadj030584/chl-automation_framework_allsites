@@ -71,7 +71,7 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
+			context.setSiteId("5649");
 			if (context.getSiteId().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
 						configuration.getStringProperty("wst-db-username"),

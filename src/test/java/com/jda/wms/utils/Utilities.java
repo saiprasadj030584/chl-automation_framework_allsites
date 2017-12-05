@@ -77,4 +77,10 @@ public class Utilities {
 					+ String.valueOf(tempInt);
 		return tempValue;
 	}
+	public boolean validateNull(String arguments){
+		if(arguments==null)
+			return false;
+		else
+			return true;
+	}
 }

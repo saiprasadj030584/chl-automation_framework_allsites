@@ -34,3 +34,14 @@ Feature: order allocation and picking
     And I check clustering
     And I perform nonretail picking
     Then Navigate to order to check order is picked
+    
+   
+    @picking @unique_boxed_picking_picking_validate_whether_retail_order_is_picked_from_preferred_aisle_and_non_retail_order_from_normal_storage_aisle @ds
+    Scenario: Validate whether Retail Order is picked from Preferred Aisle and Non Retail Order from Normal Storage Aisle
+    Given I have to datsetup with preferred and non preferred location
+    And I allocate the multiple stocks
+    And I validate the aisle for the sku 
+    
+    
+    
+    

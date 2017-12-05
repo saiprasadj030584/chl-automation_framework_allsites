@@ -1014,7 +1014,40 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
-
+	public ArrayList getLocationsForBoxedSku(String skuId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='" + skuId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='" + skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		System.out.println("Col" + columns);
+		while (rs.next()) {
+			System.out.println(rs.getString(columns));
+			inventoryList.add((rs.getString(columns)));
+		}
+		return inventoryList;
+	}
+	public boolean checkAllocatableLocation(String locationId, String sku,String orderId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println(
+				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='" + orderId + "' and inventory.sku_id ='" + sku + "' and inventory.location_id ='" + locationId + "'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='" + orderId + "' and inventory.sku_id like '%" + sku + "%' and inventory.location_id ='" + locationId + "'");
+		if(rs.next())
+			return true;
+		else 
+			return false;
+				
+	}
+	
+	 
 	public String getQtyForSkuInLocation(String skuId, String location) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();

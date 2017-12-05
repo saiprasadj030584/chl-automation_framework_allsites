@@ -9,6 +9,8 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
+import com.jda.wms.db.gm.LocationDB;
+import com.jda.wms.db.gm.MoveTaskDB;
 import com.jda.wms.db.gm.OrderHeaderDB;
 import com.jda.wms.db.gm.OrderLineDB;
 import com.jda.wms.pages.gm.AllocationPage;
@@ -31,10 +33,12 @@ public class AllocationStepDefs {
 	private StockAdjustmentsPage stockAdjustmentsPage;
 	private JDAFooter jDAFooter;
 	private JdaHomePage jdaHomePage;
+	private MoveTaskDB movetask;
+	private LocationDB locationDB;
 
 	@Inject
 	public AllocationStepDefs(JDAFooter jDAFooter, AllocationPage allocationPage, OrderHeaderDB orderHeaderDB,
-			Verification verification, OrderLineDB orderLineDB, Context context, InventoryDB inventoryDB) {
+			Verification verification,MoveTaskDB movetask,LocationDB locationDB, OrderLineDB orderLineDB, Context context, InventoryDB inventoryDB) {
 		this.jDAFooter = jDAFooter;
 		this.allocationPage = allocationPage;
 		this.orderHeaderDB = orderHeaderDB;
@@ -42,18 +46,11 @@ public class AllocationStepDefs {
 		this.orderLineDB = orderLineDB;
 		this.context = context;
 		this.inventoryDB = inventoryDB;
+		this.movetask= movetask;
+		this.locationDB=locationDB;
 	}
 
-//	@Given("^the OrderID \"([^\"]*)\" of type \"([^\"]*)\" should be in \"([^\"]*)\" status$")
-//	public void the_OrderID_of_type_should_be_in_status(String orderId, String orderType, String status)
-//			throws Throwable {
-//		context.setOrderId(orderId);
-//		ArrayList failureList = new ArrayList();
-//		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-//		Assert.assertTrue(
-//				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-//				failureList.isEmpty());
-//	}
+
 	
 	@When("^I enter OrderID for clustering$")
 	public void i_enter_OrderID_for_clustering() throws Throwable {
@@ -70,5 +67,29 @@ public class AllocationStepDefs {
 		Thread.sleep(9000);
 		jDAFooter.clickDoneButton();
 	}
-
+	@When("^I validate the aisle for the sku$")
+	public void i_validate_the_aisle_for_the_sku() throws Throwable {
+		ArrayList<String> Orderlist=context.getOdnList();
+		for (int i=0;i<Orderlist.size();i++){
+		context.setOrderId(Orderlist.get(i));
+		if (orderHeaderDB.getStatus(context.getOrderId()).contains("Allocated"))
+		{
+			if(orderHeaderDB.getType(context.getOrderId()).equalsIgnoreCase("RETAIL"))
+				{
+				System.out.println("RETAIL");
+				if(!locationDB.checkpreflocation(movetask.getLocationId(context.getOrderId())))
+				Assert.fail("Retail Order got allocated from Non Preferred Location");
+					}
+			else
+			{
+				System.out.println("NON RETAIL");
+				if(locationDB.checkpreflocation(movetask.getLocationId(context.getOrderId())))
+				Assert.fail("NON Retail Order got allocated from Preferred Location");
+						
+			}
+		}
+		else
+			Assert.fail("Order status not in Allocated status");
+		}
+	}
 }

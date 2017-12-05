@@ -1,11 +1,13 @@
 package com.jda.wms.stepdefs.gm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -53,14 +55,16 @@ public class OrderHeaderMaintenanceStepDefs {
 	private SkuSkuConfigDB skuSkuConfigDB;
 	private PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs;
 	private OrderPreparationPage orderPreparationPage;
+	private Utilities utilities;
+	private StockAdjustmentStepDefs stockAdjustmentStepDefs;
 
 	@Inject
-	public OrderHeaderMaintenanceStepDefs(Context context, JDAFooter jdaFooter, JdaHomePage jDAHomePage,
+	public OrderHeaderMaintenanceStepDefs(Context context,StockAdjustmentStepDefs stockAdjustmentStepDefs, JDAFooter jdaFooter, JdaHomePage jDAHomePage,
 			OrderHeaderDB orderHeaderDB, Verification verification, OrderHeaderPage orderHeaderPage,
 			JdaLoginPage jdaLoginPage, OrderLineDB orderLineDB, GetTcData getTcData, InventoryDB inventoryDB,
 			PurchaseOrderStockCheckStepDefs purchaseOrderStockCheckStepDefs, JDALoginStepDefs jdaLoginStepDefs,
 			InventoryQueryPage inventoryQueryPage, LocationDB locationDb, SkuDB skuDB, LocationDB locationDB,
-			StockAdjustmentsPage stockAdjustmentsPage,OrderPreparationPage orderPreparationPage, SkuSkuConfigDB skuSkuConfigDB) {
+			StockAdjustmentsPage stockAdjustmentsPage, Utilities utilities,OrderPreparationPage orderPreparationPage, SkuSkuConfigDB skuSkuConfigDB) {
 
 		this.context = context;
 		this.jdaFooter = jdaFooter;
@@ -81,6 +85,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.skuSkuConfigDB = skuSkuConfigDB;
 		this.purchaseOrderStockCheckStepDefs = purchaseOrderStockCheckStepDefs;
 		this.orderPreparationPage=orderPreparationPage;
+		this. utilities=utilities;
+		this.stockAdjustmentStepDefs=stockAdjustmentStepDefs;
 	}
 
 	@Given("^the order of \"([^\"]*)\" should be in \"([^\"]*)\" status in order header maintenance$")
@@ -720,6 +726,8 @@ public class OrderHeaderMaintenanceStepDefs {
 			context.setSkuId((String) skuFromOrder.get(i));
 			ArrayList<String> locationList = inventoryDB.getLocationsForSku((String) skuFromOrder.get(i));
 			System.out.println(locationList);
+			//add update lock status to location
+			
 			ArrayList<String> validLocations = new ArrayList<String>();
 			int totalQtyOnHand = 0;
 			for (int j = 0; j < locationList.size(); j++) {
@@ -792,8 +800,8 @@ public class OrderHeaderMaintenanceStepDefs {
 				allocation = true;
 			}
 
-			if (context.getLocationID() != null) {
-				if (context.getLocationID().equalsIgnoreCase("suspense")) {
+			if (utilities.validateNull(context.getLocationID())&&
+				context.getLocationID().equalsIgnoreCase("suspense")) {
 
 					if (!inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i)))) {
 						System.out.println("Sku not in suspense location " + (String) skuFromOrder.get(i));
@@ -820,52 +828,30 @@ public class OrderHeaderMaintenanceStepDefs {
 							}
 						}
 					}
-				}
+				
 			} else {
 
 				System.out.println("Stock is not present in other locations");
-
-				if (!(allocation)) {
-					// default:stock adjustment to qty 500
-					jDAHomePage.navigateToStockAdjustment();
-					Thread.sleep(2000);
-					stockAdjustmentsPage.selectNewStock();
-					jdaFooter.clickNextButton();
-					Thread.sleep(2000);
-					stockAdjustmentsPage.enterSkuId(context.getSkuId());
-					jdaFooter.pressTab();
-					//
+			//Perform Stock Adjustment
+				if (!(allocation)){
 					if (validLocations.size() != 0) {
-						stockAdjustmentsPage.enterLocation(validLocations.get(0));
+						stockAdjustmentStepDefs.performStockAdjustment(validLocations.get(0));
 					} else {
 						if (context.getSKUType().equalsIgnoreCase("Boxed")) {
-							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayBoxed("BOX"));
+							stockAdjustmentStepDefs.performStockAdjustment(locationDb.getToLocationForPutawayBoxed("BOX"));
 						} else if (context.getSKUType().equalsIgnoreCase("GOH"))
-								stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayGOH("HANG",
+							stockAdjustmentStepDefs.performStockAdjustment(locationDb.getToLocationForPutawayGOH("HANG",
 										skuDB.getProductGroup(context.getSkuId())));
 								else if  (context.getSKUType().equalsIgnoreCase("Hanging")) {
-							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutaway("HANG",
+									stockAdjustmentStepDefs.performStockAdjustment(locationDb.getToLocationForPutaway("HANG",
 									skuDB.getProductGroup(context.getSkuId())));
 						} else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
-							stockAdjustmentsPage.enterLocation(locationDb
+							stockAdjustmentStepDefs.performStockAdjustment(locationDb
 									.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
 						}
-					}
-					stockAdjustmentsPage.enterSiteId(context.getSiteId());
-					stockAdjustmentsPage.enterQuantityOnHand("500");
-					stockAdjustmentsPage.enterOrigin("NONE");
-
-					stockAdjustmentsPage
-							.enterPackConfig((String) skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
-					jdaFooter.clickNextButton();
-					stockAdjustmentsPage.enterPalletType("PALLET");
-					jdaFooter.clickNextButton();
-					stockAdjustmentsPage.enterReasonCode();
-					jdaFooter.clickDoneButton();
-
-					stockAdjustmentsPage.handlePopUp();
-					stockAdjustmentsPage.handlePopUp();
-				break;}
+					}	
+				}
+				
 
 			}
 
@@ -922,6 +908,80 @@ public class OrderHeaderMaintenanceStepDefs {
 		Assert.assertTrue("Order Details is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Given("^I have to datsetup with preferred and non preferred location$")
+	public void I_have_to_datsetup_with_preferred_and_non_preferred_location()
+			throws Throwable {
+		
+		ArrayList<String> orderlist = new ArrayList<String>();
+		ArrayList<String> validLocations = new ArrayList<String>();
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList skuFromOrder = new ArrayList();
+		
+		
+		int prefLocation=0;
+		int normalLocation=0;
+		int totalQtyOnHand = 0;
+			
+		context.setSKUType("Boxed");
+		orderlist=context.getOdnList();
+		
+		
+		for(int z=0;z<orderlist.size();z++)
+		{
+			String orderNumber = orderlist.get(z);
+			context.setOrderId(orderNumber);
+			skuFromOrder = orderLineDB.getskuList(context.getOrderId());
+			context.setSkuFromOrder(skuFromOrder);
+		
+		
+		
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			
+			context.setSkuId((String) skuFromOrder.get(i));
+			
+			ArrayList<String> locationList = inventoryDB.getLocationsForBoxedSku((String) skuFromOrder.get(i));
+			System.out.println(locationList);
+	
+			
+			for (int j = 0; j < locationList.size(); j++) {
+					System.out.println("entered" + locationList.get(j));
+												
+						if(inventoryDB.checkAllocatableLocation(locationList.get(j),(String) skuFromOrder.get(i),context.getOrderId())){
+							validLocations.add(locationList.get(j));		
+							if(locationDB.checkpreflocation(locationList.get(j)))
+								prefLocation++;
+							else
+								normalLocation++;
+							}
+								}
+			
+		System.out.println(validLocations);
+		System.out.println("prefLocation:"+prefLocation+", normalLocation:"+normalLocation);
+		if (prefLocation==0) {
+			System.out.println("Stock Adjustment for Preferred Location");
+			stockAdjustmentStepDefs.performStockAdjustment(locationDb.getToLocationForPutawayBoxedPreferred());
+			prefLocation=0;}
+		
+		if (normalLocation==0){
+			System.out.println("Stock Adjustment for Normal Location");
+			stockAdjustmentStepDefs.performStockAdjustment(locationDb.getToLocationForPutawayBoxedNormal());
+			normalLocation=0;}
+		}				
+			
+		}
+			
+			
+		}
+
+
+	
+	
+	
+		
+
+		
+
+		
 	@Given("^I create a consignment for order \"([^\"]*)\"$")
 	public void i_create_a_consignment_for_order(String orderId) throws Throwable {
 		// jdaLoginPage.login();

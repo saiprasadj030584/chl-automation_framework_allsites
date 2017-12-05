@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -85,7 +86,7 @@ public class DataSetupRunner {
 		}
 	}
 
-	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException {
+	public void insertDataToJdaDB(ArrayList<String> tagListForScenario) throws ClassNotFoundException, SQLException, FindFailed, InterruptedException {
 		String uniqueTag = "";
 		for (String tag : tagListForScenario) {
 			if (tag.length() > uniqueTag.length()) {
@@ -128,7 +129,8 @@ public class DataSetupRunner {
 		}
 	}
 
-	private void createTestDataFromUI() throws ClassNotFoundException, SQLException {
+	private void createTestDataFromUI() throws ClassNotFoundException, SQLException, FindFailed, InterruptedException {
+		
 		if (context.getUniqueTag().contains("direct")) {
 			try {
 				npsDataBase.connectAutomationDB();
@@ -317,7 +319,36 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		}
+		else if (context.getUniqueTag().contains("picked_from_preferred_aisle"))
+				 {
+			npsDataBase.connectAutomationDB();
+				
+			String asnReference = gettcdata.getOdnFromTestData();
+			ArrayList<String> asnList = new ArrayList<String>();
+			String odn1 = newOdnId();
+			String odn2 = newOdnId();
+			// split
+			String[] asnArray = asnReference.split(",");
+				
 
+			jdaLoginPage.login();
+			dataLoadFromUI.duplicateOdn(asnArray[0], odn1);
+			validateOdnDataSetup(odn1);
+			gettcdata.setOdn(odn1);
+			
+			dataLoadFromUI.duplicateOdn(asnArray[1], odn2);
+			validateOdnDataSetup(odn2);
+			gettcdata.setOdn(odn2);
+
+			
+			
+
+			asnList.add(odn1);
+			asnList.add(odn2);
+			context.setOdnList(asnList);
+			System.out.println("AsnList : "+asnList);
+			npsDataBase.disconnectAutomationDB();
+			}
 		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order") ||context.getUniqueTag().contains("remove_stock_check_")) {
 			try {
 				npsDataBase.connectAutomationDB();
