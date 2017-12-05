@@ -57,7 +57,19 @@ public class PurchaseOrderPickingPage {
 		}catch(Exception e){e.printStackTrace();return false;
 		}
 	}
-
+	public boolean enterskuidscreenavailable() throws FindFailed, InterruptedException {
+		try {
+			System.out.println("entered quantity pick");
+		if (screen.exists("images/Putty/Picking/qtyenterscreen.png", 10) != null){
+			Thread.sleep(1000);
+			
+			return true;}
+		else
+			
+			return false;
+		}catch(Exception e){e.printStackTrace();return false;
+		}
+	}
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
 		Thread.sleep(1000);

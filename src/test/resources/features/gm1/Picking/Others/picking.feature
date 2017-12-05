@@ -24,7 +24,7 @@ Feature: order allocation and picking
     Then the urn id should be updated in order container page
 
  
-    @boxed @non_retail @picking  @boxed_picking_picking_validate_whether_only_one_upc_is_picked_in_tote_for_the_following_order_conventry_tesam_external_reprocessing_international_franchises @complete @ds
+    @boxed @non_retail @picking  @unique_boxed_picking_picking_validate_whether_only_one_upc_is_picked_in_tote_for_the_following_order_conventry_tesam_external_reprocessing_international_franchises @complete @ds
     Scenario: Validate one UPC is picked
     #Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

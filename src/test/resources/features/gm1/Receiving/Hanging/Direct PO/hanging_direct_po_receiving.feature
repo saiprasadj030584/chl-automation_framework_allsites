@@ -10,6 +10,16 @@ Feature: Hanging - Direct PO - Receiving
     And I search for "*DISCREPANCIES*" report
     And I choose M&S-Discrepancies summary as report type of type "Hanging"
     Then the trailor level discrepancy report should be generated
+    
+     @jenkinsB @jenkns @hanging_receiving_direct_po_validate_automatic_document_closure_asn @receiving @direct_po @boxed @complete @ds @jenkinsbr
+    Scenario: Validate automatic document closure ASN
+    Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
+    And the PO should have sku, quantity due details
+    And the pallet count should be updated in delivery, asn to be linked with upi header and po to be linked with upi line
+    When I receive all skus for the purchase order of type "Hanging" at location "REC001"
+    Then the inventory should be displayed for all tags received
+    And the goods receipt should be generated for received stock in inventory transaction
+    Then the po status should be displayed as "Complete"
 
  @jenkinsB @hanging_receiving_direct_po_validate_manual_receipt @hanging @receiving @direct_po @complete @ds @jenkinsrun
   Scenario: Validate manual receipt

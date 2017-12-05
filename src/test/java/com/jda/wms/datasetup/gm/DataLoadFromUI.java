@@ -27,8 +27,8 @@ public class DataLoadFromUI {
 	private DeliveryPage deliveryPage;
 	private UpiReceiptHeaderPage upiReceiptHeaderPage;
 	private DeliveryDB deliveryDB;
-	private PreAdviceHeaderPage  preAdviceHeaderPage;
-	private UPIReceiptHeaderDB  uPIReceiptHeaderDB;
+	private PreAdviceHeaderPage preAdviceHeaderPage;
+	private UPIReceiptHeaderDB uPIReceiptHeaderDB;
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private Context context;
 	private OrderHeaderPage orderHeaderPage;
@@ -36,33 +36,37 @@ public class DataLoadFromUI {
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	@Inject
-	public DataLoadFromUI(JdaHomePage jdaHomePage,JDAFooter jdaFooter,DeliveryPage deliveryPage,
-			DeliveryDB deliveryDB,OrderHeaderPage orderHeaderPage ,Context context,UpiReceiptHeaderPage upiReceiptHeaderPage,
-			PreAdviceHeaderDB preAdviceHeaderDB,PreAdviceHeaderPage  preAdviceHeaderPage,OrderHeaderDB orderHeaderDB ,UPIReceiptHeaderDB  uPIReceiptHeaderDB) {
 
-		this.jdaHomePage=jdaHomePage;
-		this.jdaFooter=jdaFooter;
-		this.deliveryPage=deliveryPage;
-		this.context=context;
-		this.deliveryDB=deliveryDB;
-		this.upiReceiptHeaderPage =upiReceiptHeaderPage;
-		this.preAdviceHeaderPage =  preAdviceHeaderPage;
-		this.preAdviceHeaderDB=preAdviceHeaderDB;
-		this.uPIReceiptHeaderDB =uPIReceiptHeaderDB;
+	@Inject
+	public DataLoadFromUI(JdaHomePage jdaHomePage, JDAFooter jdaFooter, DeliveryPage deliveryPage,
+			DeliveryDB deliveryDB, OrderHeaderPage orderHeaderPage, Context context,
+			UpiReceiptHeaderPage upiReceiptHeaderPage, PreAdviceHeaderDB preAdviceHeaderDB,
+			PreAdviceHeaderPage preAdviceHeaderPage, OrderHeaderDB orderHeaderDB,
+			UPIReceiptHeaderDB uPIReceiptHeaderDB) {
+
+		this.jdaHomePage = jdaHomePage;
+		this.jdaFooter = jdaFooter;
+		this.deliveryPage = deliveryPage;
+		this.context = context;
+		this.deliveryDB = deliveryDB;
+		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
+		this.preAdviceHeaderPage = preAdviceHeaderPage;
+		this.preAdviceHeaderDB = preAdviceHeaderDB;
+		this.uPIReceiptHeaderDB = uPIReceiptHeaderDB;
 		this.orderHeaderPage = orderHeaderPage;
 		this.orderHeaderDB = orderHeaderDB;
 	}
 
-	public void duplicateASN(String asnReference, String asn) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	public void duplicateASN(String asnReference, String asn)
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		jdaHomePage.navigateToDeliveryPage();
 		jdaFooter.clickQueryButton();
 		deliveryPage.enterAsnId(asnReference);
 		jdaFooter.clickExecuteButton();
-		if(deliveryPage.isNoRecordFound()){
+		if (deliveryPage.isNoRecordFound()) {
 			Assert.assertTrue("No ASN data present in UI ", false);
 		}
-		if(deliveryPage.isEJBerrorfound()){
+		if (deliveryPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
 
@@ -75,23 +79,49 @@ public class DataLoadFromUI {
 		jdaFooter.pressBackSpace();
 		deliveryPage.enterAsnId(asn);
 		jdaFooter.clickExecuteButton();
+		Thread.sleep(2000);
 		jdaFooter.PressEnter();
+		Thread.sleep(2000);
+		if (deliveryPage.warningPopUpDuplicateMsg()) {
+			System.out.println("Warning popup  found");
+			jdaFooter.PressEnter();
+		} else {
+			System.out.println("Warning popup not found");
+		}
+		Thread.sleep(2000);
+		if (deliveryPage.isEJBerrorfound()) {
+			System.out.println("EJB error Found");
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
+		}
+		// jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
-		
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setAsnId(asn);
-		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB. getAsnIdForASN(context.getAsnId()));
+		Assert.assertEquals("No ASN ID in Oracle DB", asn, deliveryDB.getAsnIdForASN(context.getAsnId()));
 	}
 
-	public void duplicateUPI(String upiReference, String upi) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	public void duplicateUPI(String upiReference, String upi)
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		jdaHomePage.navigateToUpiReceiptHeaderPage();
 		jdaFooter.clickQueryButton();
 		System.out.println("CHECKKKKK1");
-		upiReceiptHeaderPage.enterPalletWithReference(upiReference);		
+		upiReceiptHeaderPage.enterPalletWithReference(upiReference);
 		jdaFooter.clickExecuteButton();
-		if(upiReceiptHeaderPage.isNoRecordFound()){
+		if (upiReceiptHeaderPage.isNoRecordFound()) {
 			Assert.assertTrue("No upi data present in UI ", false);
 		}
-		if(upiReceiptHeaderPage.isEJBerrorfound()){
+		if (upiReceiptHeaderPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
 
@@ -100,40 +130,56 @@ public class DataLoadFromUI {
 		screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
 		screen.click("images/DuplicateOption/duplicate.png");
 		Thread.sleep(2000);
-		
+
 		screen.type("a", Key.CTRL);
 		jdaFooter.pressBackSpace();
 		upiReceiptHeaderPage.enterPalletWithReference(upi);
 		jdaFooter.clickExecuteButton();
+
+		if (deliveryPage.isEJBerrorfound()) {
+			Thread.sleep(2000);
+			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+			Thread.sleep(2000);
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
+		}
 		jdaFooter.PressEnter();
-		System.out.println("CHECKKKKK2222");
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setUpiId(upi);
-		System.out.println("oooooooooooooooooooooooooooooooooooooooo"+context.getUpiId());
+		System.out.println("UPI Id" + context.getUpiId());
 		Assert.assertEquals("No UPI ID in Oracle DB", upi, uPIReceiptHeaderDB.getUpiIdForUPI(context.getUpiId()));
-		System.out.println("CHRFFKl");
 
 	}
-		
-	
 
-	public void duplicatePO(String poReference, String po) throws ClassNotFoundException, FindFailed, InterruptedException, SQLException {
-		System.out.println("CHECK333333");
+	public void duplicatePO(String poReference, String po)
+			throws ClassNotFoundException, FindFailed, InterruptedException, SQLException {
 
 		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
 		jdaFooter.clickQueryButton();
 		preAdviceHeaderPage.enterPreAdviceID(poReference);
 		jdaFooter.clickExecuteButton();
 
-		if(preAdviceHeaderPage.isNoRecordFound()){
+		if (preAdviceHeaderPage.isNoRecordFound()) {
 			Assert.assertTrue("No po data present in UI ", false);
 		}
-		if(preAdviceHeaderPage.isEJBerrorfound()){
+		if (preAdviceHeaderPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
 
-		if(deliveryPage.isNoRecordFound()){
+		if (deliveryPage.isNoRecordFound()) {
 			Assert.assertTrue("No po data present in UI ", false);
 		}
 
@@ -144,33 +190,52 @@ public class DataLoadFromUI {
 		Thread.sleep(2000);
 		screen.type("a", Key.CTRL);
 		jdaFooter.pressBackSpace();
-		
-		
-		preAdviceHeaderPage.enterPreAdviceID(po);;
+
+		preAdviceHeaderPage.enterPreAdviceID(po);
+		;
 		jdaFooter.clickExecuteButton();
+		if (deliveryPage.isEJBerrorfound()) {
+			Thread.sleep(2000);
+			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+			Thread.sleep(2000);
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
+		}
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
 		jdaFooter.PressEnter();
 		Thread.sleep(3000);
-		
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setPreAdviceId(po);
 		Assert.assertEquals("No PO ID in Oracle DB", po, preAdviceHeaderDB.getPreAdviceIdForPO(po));
 	}
-	public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
-		System.out.println("CHECK333433");
+
+	public void duplicateOdn(String orderReference, String order)
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		jdaHomePage.navigateToOrderHeaderMaintenance();
 		jdaFooter.clickQueryButton();
 		Thread.sleep(2000);
-		System.out.println("Order Reference"+orderReference);
+		System.out.println("Order Reference" + orderReference);
 		orderHeaderPage.enterOrderID(orderReference);
 
 		jdaFooter.clickExecuteButton();
-		if(orderHeaderPage.isNoRecordFound()){
+		if (orderHeaderPage.isNoRecordFound()) {
 			Assert.assertTrue("No Order data present in UI ", false);
 		}
-		if(orderHeaderPage.isEJBerrorfound()){
+		if (orderHeaderPage.isEJBerrorfound()) {
 			Assert.assertTrue("EJB error found", false);
 		}
 		screen.rightClick();
@@ -180,10 +245,9 @@ public class DataLoadFromUI {
 		Thread.sleep(2000);
 		screen.type("a", Key.CTRL);
 		jdaFooter.pressBackSpace();
-		
-		
+
 		orderHeaderPage.enterOrderID(order);
-		
+
 		orderHeaderPage.clickDeliveryAddressTab();
 		orderHeaderPage.clickGLN();
 		Thread.sleep(1000);
@@ -191,50 +255,59 @@ public class DataLoadFromUI {
 		jdaFooter.pressBackSpace();
 
 		jdaFooter.clickExecuteButton();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		
-		context.setOrderId(order);
-		Assert.assertEquals("No PO ID in Oracle DB",order, orderHeaderDB.getOrderIdForOdn(order));
-	}
-	
 
-
-
-	/*public void duplicateOdn(String orderReference, String order) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
-		System.out.println("CHECK333433");
-		jdaHomePage.navigateToOrderHeaderMaintenance();
-		jdaFooter.clickQueryButton();
-		orderHeaderPage.enterOrderID(orderReference);
-
-		jdaFooter.clickExecuteButton();
-		if(orderHeaderPage.isNoRecordFound()){
-			Assert.assertTrue("No Order data present in UI ", false);
+		if (deliveryPage.isEJBerrorfound()) {
+			Thread.sleep(2000);
+			screen.wait("images/UpiReceiptHeader/MiscellaneousTab.png", timeoutInSec);
+			screen.click("images/UpiReceiptHeader/MiscellaneousTab.png");
+			Thread.sleep(2000);
+			screen.wait("images/IgnoreMergeRulesUnchecked.png", timeoutInSec);
+			screen.click("images/IgnoreMergeRulesUnchecked.png");
+			Thread.sleep(2000);
+			jdaFooter.clickExecuteButton();
+			context.setEJBErrorMsg("EJB Error---> Ignore merge rules checked");
+		} else {
+			context.setEJBErrorMsg("NA");
+			System.out.println("1 EJB err not found");
 		}
-		if(orderHeaderPage.isEJBerrorfound()){
-			Assert.assertTrue("EJB error found", false);
-		}
-		screen.rightClick();
-		Thread.sleep(2000);
-		screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
-		screen.click("images/DuplicateOption/duplicate.png");
-		Thread.sleep(2000);
-		screen.type("a", Key.CTRL);
-		jdaFooter.pressBackSpace();
-		
-		
-		orderHeaderPage.enterOrderID(order);
 
-		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
 		jdaFooter.PressEnter();
-		
+		if (deliveryPage.isEJBerrorfound()) {
+			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+		} else {
+			System.out.println("2 EJB err not found");
+		}
 		context.setOrderId(order);
-		Assert.assertEquals("No PO ID in Oracle DB",order, orderHeaderDB.getOrderIdForOdn(order));
+		Assert.assertEquals("No PO ID in Oracle DB", order, orderHeaderDB.getOrderIdForOdn(order));
 	}
-*/
+
+	/*
+	 * public void duplicateOdn(String orderReference, String order) throws
+	 * FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	 * System.out.println("CHECK333433");
+	 * jdaHomePage.navigateToOrderHeaderMaintenance();
+	 * jdaFooter.clickQueryButton();
+	 * orderHeaderPage.enterOrderID(orderReference);
+	 * 
+	 * jdaFooter.clickExecuteButton(); if(orderHeaderPage.isNoRecordFound()){
+	 * Assert.assertTrue("No Order data present in UI ", false); }
+	 * if(orderHeaderPage.isEJBerrorfound()){ Assert.assertTrue(
+	 * "EJB error found", false); } screen.rightClick(); Thread.sleep(2000);
+	 * screen.wait("images/DuplicateOption/duplicate.png", timeoutInSec);
+	 * screen.click("images/DuplicateOption/duplicate.png"); Thread.sleep(2000);
+	 * screen.type("a", Key.CTRL); jdaFooter.pressBackSpace();
+	 * 
+	 * 
+	 * orderHeaderPage.enterOrderID(order);
+	 * 
+	 * jdaFooter.clickExecuteButton(); jdaFooter.PressEnter();
+	 * jdaFooter.PressEnter(); jdaFooter.PressEnter();
+	 * 
+	 * context.setOrderId(order); Assert.assertEquals("No PO ID in Oracle DB"
+	 * ,order, orderHeaderDB.getOrderIdForOdn(order)); }
+	 */
 	public void killBrowser() throws IOException {
 
 		// Process killIE = Runtime.getRuntime()
@@ -254,4 +327,3 @@ public class DataLoadFromUI {
 				.exec("cmd /c taskkill /F /IM IEDriverServer.exe /FI \"USERNAME eq %username%\"");
 	}
 }
-

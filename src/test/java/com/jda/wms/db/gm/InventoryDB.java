@@ -985,7 +985,7 @@ public class InventoryDB {
 		}
 		System.out.println("select location_id from inventory where sku_id='" + skuId + "'");
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='" + skuId + "'");
+		ResultSet rs = stmt.executeQuery("select distinct(location_id) from inventory where sku_id='" + skuId + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		System.out.println("Col" + columns);
@@ -995,6 +995,17 @@ public class InventoryDB {
 		}
 		return inventoryList;
 	}
+	
+	public  String getOriginId(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+		database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "'");
+		rs.next();
+		return rs.getString(1);
+		}
+		
 
 	public String getQtyForSkuInLocation(String skuId, String location) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -1411,15 +1422,7 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	public  String getOriginId(String location) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "'");
-		rs.next();
-		return rs.getString(1);
-	}
+
+	
 	
 }

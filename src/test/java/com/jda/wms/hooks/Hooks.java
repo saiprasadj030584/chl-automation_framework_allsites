@@ -34,7 +34,7 @@ public class Hooks {
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 	static UpdateTcToAutomationDb updateTcToAutomationDb;
-	public static String SITEID = "5649";// System.getProperty("SITEID");
+
 	static UpdateRequestToAutomationDb updateRequestToAutomationDb;
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
@@ -55,7 +55,7 @@ public class Hooks {
 		this.hooksautoUI = hooksautoUI;
 	}
 
-	//@Before
+	// @Before
 	public void logScenarioDetails(Scenario scenario) throws Exception {
 		String scenarioID = scenario.getId();
 		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
@@ -69,6 +69,7 @@ public class Hooks {
 
 	@Before({"~@Email"})
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
+		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
 
@@ -82,16 +83,19 @@ public class Hooks {
 				dataSetupRunner.getTagListFromAutoDb();
 
 				if (!(scenario.getName().contains("Triggering automation email"))) {
+					System.out.println("Datasetup Started");
 					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-//					insertSiteID();
-					// getSiteID();
+					System.out.println("Datasetup completed");
+				} else {
+					System.out.println("Datasetup not require for email scenario");
 				}
 				System.out.println(context.getTestData());
 			}
 		}
+		System.out.println("1st Before end");
 	}
 
-//	@Before("~@Email")
+	// @Before("~@Email")
 	public void setup(Scenario scenario) throws Exception {
 		System.out.println("INSIDE EMAIL");
 		System.out.println("Starting Execution" + scenario.getName());
@@ -114,8 +118,8 @@ public class Hooks {
 			ResultSet rs = stmt.executeQuery(query);
 
 			while (rs.next()) {
-				context.setSiteId(rs.getString("SITE_ID"));
-				System.out.println("" + context.getSiteId());
+				context.setSiteID(rs.getString("SITE_ID"));
+				System.out.println("" + context.getSiteID());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,14 +128,10 @@ public class Hooks {
 
 	private void insertSiteID() {
 		try {
-			// System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID)
-			// VALUES ('" + context.getParentRequestId()
-			// + "','" + System.getProperty("SITEID") + "')");
-
 			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteId() + "')");
+					+ "','" + context.getSiteID() + "')");
 			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteId() + "')";
+					+ "','" + context.getSiteID() + "')";
 			context.getSQLDBConnection().createStatement().execute(insertQuery);
 
 		} catch (Exception exception) {

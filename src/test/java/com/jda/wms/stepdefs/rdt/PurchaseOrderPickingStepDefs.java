@@ -451,7 +451,7 @@ public class PurchaseOrderPickingStepDefs {
 	
 	@Given("^I proceed for vehicle unload$")
 	public void i_proceed_for_for_vehicle_unload() throws Throwable {
-		String siteid = context.getSiteId();
+		String siteid = context.getSiteID();
 		context.setVehicleLoadRequired(true);
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
@@ -471,7 +471,7 @@ public class PurchaseOrderPickingStepDefs {
 	
     @When("^I proceed for boxed vehicle unloading$")
 	public void i_proceed_for_boxed_vehicle_unloading() throws Throwable {
-		String siteid = context.getSiteId();
+		String siteid = context.getSiteID();
 		context.setVehicleLoadRequired(true);
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
@@ -623,7 +623,7 @@ public class PurchaseOrderPickingStepDefs {
 	
 	 @When("^I proceed for vehicle unloading$")
 		public void i_proceed_for_vehicle_unloading() throws Throwable {
-			String siteid =context.getSiteId();
+			String siteid =context.getSiteID();
 			context.setVehicleLoadRequired(true);
 			puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
 			puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();

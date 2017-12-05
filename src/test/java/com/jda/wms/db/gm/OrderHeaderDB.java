@@ -5,21 +5,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.hooks.Hooks_autoUI;
 
 public class OrderHeaderDB {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private Database database;
+	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public OrderHeaderDB(Context context, Database database) {
+	public OrderHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
 		this.context = context;
 		this.database = database;
+		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public String getStatus(String orderId) throws SQLException, ClassNotFoundException {
@@ -342,7 +346,7 @@ public class OrderHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-System.out.println("select sku_id from order_line where order_id='" + orderId + "'");
+		System.out.println("select sku_id from order_line where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
 		rs.next();
@@ -385,13 +389,23 @@ System.out.println("select sku_id from order_line where order_id='" + orderId + 
 	}
 
 	public Object getOrderIdForOdn(String order) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
+		ResultSet rs = null;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
 
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
-		rs.next();
+			Statement stmt = context.getConnection().createStatement();
+			rs = stmt.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
+			if (!rs.next()) {
+				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+			} else {
+				System.out.println("Order ID -->" + rs.getString(1));
+			}
+		} catch (Exception e) {
+			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+		}
 		return rs.getString(1);
 	}
 	public  void updateWorkOrder(String order) throws SQLException, ClassNotFoundException {

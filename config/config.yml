@@ -2,7 +2,9 @@
 ##################
 default:
  browser-name: ie
+
  username: 'SELVA'
+ bck-userid: 'AUTO2'
  password: '1234'
  
  auto-title: 'JDA C&H Test Automation Result'

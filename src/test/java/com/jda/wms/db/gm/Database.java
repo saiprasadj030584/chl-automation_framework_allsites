@@ -33,6 +33,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.datasetup.gm.DataSetupRunner;
+import com.jda.wms.datasetup.gm.DbConnection;
 
 import cucumber.api.java.Before;
 
@@ -44,19 +46,23 @@ public class Database {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private String applicationUser;
 	private Connection connection;
-	private Configuration configuration;
-	private Context context;
+	private final Configuration configuration;
+	private static Context context;
+	public static DbConnection npsDataBase;
+	// private final DataSetupRunner dataSetupRunner;
 
 	@Inject
 	public Database(Configuration configuration, Context context) {
 		this.configuration = configuration;
 		this.context = context;
+		this.npsDataBase = npsDataBase;
+		// this.dataSetupRunner = dataSetupRunner;
 	}
 
 	/**
 	 * This method creates a connection to the database using the parameters
 	 * provided. Returns true if the connection is a success.
-	 *
+	 * 
 	 * @param address
 	 *            - address of the server
 	 * @param username
@@ -66,19 +72,24 @@ public class Database {
 	 * @return - returns true if the connection is successful.
 	 * @throws ClassNotFoundException
 	 */
-	@Before
 	public void connect() throws ClassNotFoundException {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (context.getSiteID() == null) {
+				System.out.println(" Value Of Site Id" + context.getSiteID());
+//				Assert.fail("No site Id has been fetched from DB");//
+				npsDataBase.getSiteId(context.getUniqueTag());
+			}
+			System.out.println("Value Of Site Id **" + context.getSiteID());
 
-			if (context.getSiteId().equals("5649")) {
+			if (context.getSiteID().equals("5649")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
 						configuration.getStringProperty("wst-db-username"),
 						configuration.getStringProperty("wst-db-password"));
 			}
 
-			else if (context.getSiteId().equals("5885")) {
+			else if (context.getSiteID().equals("5885")) {
 				connection = DriverManager.getConnection(configuration.getStringProperty("stk-db-host"),
 						configuration.getStringProperty("stk-db-username"),
 						configuration.getStringProperty("stk-db-password"));
@@ -767,5 +778,30 @@ public class Database {
 		} catch (NullPointerException ex) {
 		}
 		return moveTasks;
+	}
+
+	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {
+		ResultSet rs = null;
+		Statement stmt = null;
+		try {
+			System.out.println("CHECK CONNECTION " + context.getDBConnection());
+			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
+				npsDataBase.connectAutomationDB();
+			}
+
+			stmt = context.getDBConnection().createStatement();
+			String selectQuery = "Select SITE_NO from JDA_GM_TEST_DATA where UNIQUE_TAG = '" + uniqueTag + "'";
+			System.out.println(selectQuery);
+			context.getDBConnection().createStatement().execute(selectQuery);
+			rs = stmt.executeQuery(selectQuery);
+			if (!rs.next()) {
+				Assert.fail("Unique Tag Id is notfound");
+			} else {
+				System.out.println("Unique Tag Id is found");
+				context.setSiteID(rs.getString("SITE_NO"));
+			}
+		} catch (Exception e) {
+
+		}
 	}
 }

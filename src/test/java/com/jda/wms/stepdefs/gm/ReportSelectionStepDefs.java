@@ -42,7 +42,7 @@ public class ReportSelectionStepDefs {
 
 	@When("^I enter the siteID$")
 	public void i_enter_the_siteID() throws Throwable {
-		String siteID = context.getSiteId();
+		String siteID = context.getSiteID();
 		reportSelectionPage.enterSiteID(siteID);
 		reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
 		reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
@@ -51,7 +51,7 @@ public class ReportSelectionStepDefs {
 	}
 	@When("^I enter the siteID for hanging$")
 	public void i_enter_the_siteID_for_hanging() throws Throwable {
-		String siteID = context.getSiteId();
+		String siteID = context.getSiteID();
 		reportSelectionPage.enterSiteID(siteID);
 		//reportSelectionPage.chooseStartDate(DateUtils.getPrevSystemMonth());
 	//	reportSelectionPage.chooseEndDate(DateUtils.getCurrentSystemDate());
@@ -87,7 +87,7 @@ public class ReportSelectionStepDefs {
 	
 	@When("^I choose M&S-Receiving summary as report type at site for \"([^\"]*)\" type$")
 	public void i_choose_M_S_Receiving_summary_as_report_type_at_site_(String dataType) throws Throwable {
-		String site = context.getSiteId();
+		String site = context.getSiteID();
 		reportSelectionPage.chooseReport();
 		jDAFooter.clickNextButton();
 		reportSelectionPage.chooseSiteId(site);

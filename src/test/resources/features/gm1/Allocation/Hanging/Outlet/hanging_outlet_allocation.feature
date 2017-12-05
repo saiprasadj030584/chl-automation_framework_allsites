@@ -16,9 +16,9 @@ Feature: Hanging - Outlet - Allocation
       |  5470000241 |
 
 
-      @allocation @outlet @hanging @hanging_allocation_outlet_validate_whether_all_the_stocks_are_allocated_allocation_rules @complete @ds 
+     @jenkinsB @allocation @outlet @hanging @hanging_allocation_outlet_validate_whether_all_the_stocks_are_allocated_allocation_rules @complete @ds 
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules
     Given the order id of type "Outlet" with "Hanging" skus should be in "Released" status
     When I navigate to system allocation page
     And I allocate the stocks
-    Then the stock should get allocated
+    Then the order should be allocated
