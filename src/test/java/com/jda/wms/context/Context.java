@@ -18,7 +18,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
-	private Scenario scenario;
+	private static Scenario scenario;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;

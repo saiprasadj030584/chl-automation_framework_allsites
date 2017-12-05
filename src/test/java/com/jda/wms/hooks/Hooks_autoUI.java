@@ -107,6 +107,7 @@ public class Hooks_autoUI {
 	@After("~@Email")
 	public void tearDown(Scenario scenario) throws IOException {
 		// attaching the screenshot in cucumber report
+		
 		System.out.println("After class----> Count" + scenario.getId());
 		if (scenario.isFailed()) {
 			System.out.println(context.getTestData());

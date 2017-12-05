@@ -534,10 +534,11 @@ public class JdaHomePage {
 	}
 
 	public void stepsScreenShot() {
-		try {
-			Thread.sleep(1000);
+		/*try {
+			Thread.sleep(5000);
 			if (JdaLoginPage.driver != null) {
 				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+				System.out.println("*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
 				context.getScenario().embed(screenshot, "image/png");
 			} else {
 				((JavascriptExecutor) JdaLoginPage.driver).executeScript("window.focus();");
@@ -546,7 +547,7 @@ public class JdaHomePage {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {

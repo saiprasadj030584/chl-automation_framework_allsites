@@ -49,6 +49,7 @@ public class Hooks {
 	@Before("~@Email")
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		context.setScenario(scenario);
+		System.out.println("*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
 		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
