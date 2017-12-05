@@ -17,7 +17,7 @@ Feature: Boxed - Stock adjustments with Reason Code
       | Location | ReasonCode | 
       | 1AA103   | Dirty      |   
 
-  @jenkinsA @stock_adjustment @boxed @unique_boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @jenkins1 @no_ds
+  @jenkinsA @jenkinsgm @stock_adjustment @boxed @unique_boxed_stock_adjustment_stock_adjustment_reason_code_dmit @complete @ds @jenkins1 @no_ds
   Scenario Outline: Do stock adjustment by selecting reason code as DMIT
     Given I have a sku of type "Boxed" to adjust the stock
     When I navigate to stock adjustments page
