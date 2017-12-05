@@ -51,7 +51,15 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-
+	public void navigateToPage(String Pagename) throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type(Pagename);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
 	public void navigateToOrderContainerPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);

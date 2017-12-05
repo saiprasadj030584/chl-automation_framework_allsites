@@ -177,14 +177,9 @@ public class PurchaseOrderPickingStepDefs {
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		purchaseOrderPickingPage.enterListId(context.getListID());
 		if(!purchaseOrderPickingPage.validContainerIdAvailable())
+			
 		purchaseOrderPickingPage.enter14digitpalletId();
-//		puttyFunctionsPage.pressEnter();
 
-		//while(purchaseOrderPickingPage.palletIdAvailable()){
-			//purchaseOrderPickingPage.enter14digitpalletId();
-			//puttyFunctionsPage.pressEnter();
-		//}
-		
 		ArrayList skulist = new ArrayList();
 		skulist = orderLineDB.getskuList(context.getOrderId());
 		context.setSkuFromOrder(skulist);
@@ -194,25 +189,40 @@ public class PurchaseOrderPickingStepDefs {
 		Thread.sleep(2000);
 		
 		Thread.sleep(2000);
-		for (; i < skulist.size(); i++)
+		
+		//Looping for picking all the Sku's
+		
+		for (; i <= skulist.size(); i++)
 		{
 			purchaseOrderPickingPage.enterContainerID(String.valueOf(containerid));
 			String Sku =(String) skulist.get(i);
-			
 		
 		
-		//while(!purchaseOrderPickingPage.invalidContainerIdAvailable()){
-			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter(); //tucskucon
+			Thread.sleep(1000);
+			puttyFunctionsPage.pressEnter();  //pclsubconcmp screen
 			Thread.sleep(1000);
 			
-			purchaseOrderPickingPage.enterContainerID(String.valueOf(containerid));
+			purchaseOrderPickingPage.enterContainerID(String.valueOf(containerid)); //pclconcnf screen
 			Thread.sleep(2000);
-		 	purchaseOrderPickingPage.noOfTag();
-		 	containerid++;
-		//}
-		
-			}
 			
+		 	purchaseOrderPickingPage.noOfTag(); //quesEnt
+		 	
+		if(purchaseOrderPickingPage.isPckPalToAvailable())  //pckpalto screen
+			{i++;break;} 
+		 	containerid++;
+			}
+		int j=0;
+		while(j<5){
+			if(purchaseOrderPickingPage.isPckPalToAvailable()){
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);}
+			else{
+				break;
+			}
+		j++;
+		}
+		
 		if (i< skulist.size())
 			Assert.fail("picking is not valid One upc validation failed");
 		

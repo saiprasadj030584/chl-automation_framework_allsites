@@ -49,6 +49,17 @@ public class UPIReceiptHeaderStepDefs {
 			upiReceiptHeaderDB.updateSSSCURN(context.getUpiList().get(i));
 		}
 	}
+	@Given("^order header line to be linked with upi header line$")
+	public void order_header_line_to_be_linked_with_upi_header_line() throws Throwable {
+		// String type1 =
+		// uPIReceiptLineDB.getUserDefinedType1(context.getUpiId());
+		// String type2 = orderLineDB.getUserDefinedType1(context.getOrderId());
+		// Assert.assertEquals("User defined tab 1 does not match", type1,
+		// type2);
+		upiReceiptHeaderDB.updateASN(context.getUpiId(), context.getAsnId());
+		uPIReceiptLineDB.updatePreAdviceID(context.getPreAdviceId(), context.getUpiId(), null);
+
+	}
 
 	@Given("^ASN and container to be linked with upi header$")
 	public void asn_and_container_to_be_linked_with_upi_header() throws Throwable {

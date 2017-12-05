@@ -77,6 +77,20 @@ public boolean existingStockError() throws FindFailed, InterruptedException {
 	}catch(Exception e){return false;
 	}
 }
+
+public boolean checkCheckString() throws FindFailed, InterruptedException {
+	try {
+		System.out.println("enetered to check existingStockError");
+	if (screen.exists("images/Putty/StockCheck/NewStockCheck/checkStringinpicking.png", 10) != null){
+		Thread.sleep(1000);
+		
+		return true;}
+	else
+		
+		return false;
+	}catch(Exception e){return false;
+	}
+}
 	public void backmenu() throws InterruptedException {	
 	Thread.sleep(1000);
 	screen.type(Key.F12);

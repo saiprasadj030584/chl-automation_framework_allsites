@@ -63,6 +63,7 @@ public class Context {
 	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+	private ArrayList<String> odnList;
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
@@ -186,7 +187,12 @@ public class Context {
 	public void setUpiList(ArrayList<String> upiList) {
 		this.upiList = upiList;
 	}
-
+	public void setOdnList(ArrayList<String> odnList) {
+		this.odnList = odnList;
+	}
+	public ArrayList<String> getOdnList() {
+		return odnList;
+	}
 	public ArrayList<String> getPreAdviceList() {
 		return preAdviceList;
 	}

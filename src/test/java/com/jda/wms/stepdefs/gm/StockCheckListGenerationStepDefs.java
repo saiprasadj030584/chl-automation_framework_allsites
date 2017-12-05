@@ -56,6 +56,13 @@ public class StockCheckListGenerationStepDefs {
 		stockCheckListGenerationPage.enterTagId(context.getTagId());
 		jdaFooter.clickNextButton();
 	}
+	@When("^I enter the tag ID as on inventory tab for location$")
+	public void i_enter_the_tag_ID_as_on_inventory_tab_for_location() throws Throwable {
+		String siteID = context.getSiteID();
+		context.setTagId(inventoryDB.getTagIDwithlocation(context.getFromLocation()));
+		stockCheckListGenerationPage.enterTagId(context.getTagId());
+		jdaFooter.clickNextButton();
+	}
 
 	@Then("^the available list should be displayed$")
 	public void the_available_list_should_be_displayed() throws Throwable {

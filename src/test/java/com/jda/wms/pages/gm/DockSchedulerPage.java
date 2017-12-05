@@ -339,7 +339,10 @@ public class DockSchedulerPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
-
+	public void enterStatus(String string) throws InterruptedException {
+		screen.type(string);
+		Thread.sleep(1000);
+	}
 	public void enterCarrier(String carrier) throws InterruptedException {
 		screen.type(carrier);
 		Thread.sleep(1000);

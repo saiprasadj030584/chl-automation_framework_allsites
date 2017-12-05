@@ -55,7 +55,7 @@ public class PuttyFunctionsStepDefs {
 			Assert.fail("Site Id is not found");
 		}
 		puttyFunctionsPage.loginPutty(host, port);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 		if (puttyFunctionsPage.isLoginFailureExists()) {
 			puttyFunctionsPage.pressEnter();

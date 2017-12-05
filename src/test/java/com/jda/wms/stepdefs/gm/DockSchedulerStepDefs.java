@@ -82,7 +82,37 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectPreAdviceId();
 		jdaFooter.clickNextButton();
 	}
+	@When("^I create new dock booking at site \"([^\"]*)\"$")
+	public void i_create_new_dock_booking_at_site(String site) throws Throwable {
+		dockSchedulerPage.selectCreateNewBooking();
+		if (dockSchedulerPage.isSiteExists()) {
+			dockSchedulerPage.enterSiteID(site);
+			context.setSiteID(site);
+		}
+		jdaFooter.clickNextButton();
+	}
+	@When("^I create a booking for the asn for xDOCK$")
+	public void i_create_a_booking_for_the_asn_xDOCK() throws Throwable {
+		// String trailerNo = context.getTrailerNo();
+		String trailerNo = "10229";
+		String bookingID = Utilities.getFiveDigitRandomNumber();
+		context.setBookingID(bookingID);
+		dockSchedulerPage.enterBookingId(bookingID);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterStatus("In Progress");
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerType();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerNo(trailerNo);
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedPallets();
+		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterEstimatedCartons();
+		jdaFooter.PressEnter();
 
+	}
 	// @When("^I select the slot$")
 	// public void i_select_the_slot() throws Throwable {
 	// Thread.sleep(3000);

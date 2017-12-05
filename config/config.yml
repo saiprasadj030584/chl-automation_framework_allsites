@@ -37,7 +37,7 @@ default:
  wst-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
  wst-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
  wst-putty-gm-port-vehicle-load: '24004'
- wst-putty-gm-port: '24001'
+ wst-putty-gm-port: '24005'
  wst-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
  wst-db-username: 'dcsdba'
  wst-db-password: 'dcsabd'

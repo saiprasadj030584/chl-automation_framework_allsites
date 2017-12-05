@@ -12,6 +12,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.InventoryTransactionDB;
 import com.jda.wms.db.gm.OrderLineDB;
+import com.jda.wms.db.gm.SkuSkuConfigDB;
 import com.jda.wms.pages.gm.InventoryTransactionQueryPage;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
@@ -39,9 +40,11 @@ public class StockAdjustmentStepDefs {
 	int timeoutInSec = 20;
 	private OrderLineDB orderLineDB;
 	private InventoryDB inventoryDB;
-
+	private JDAFooter jdaFooter;
+	private SkuSkuConfigDB skuSkuConfigDB;
+	
 	@Inject
-	public StockAdjustmentStepDefs(Context context, JDAFooter jDAFooter, StockAdjustmentsPage stockAdjustmentsPage,
+	public StockAdjustmentStepDefs(Context context,SkuSkuConfigDB skuSkuConfigDB,JDAFooter jdaFooter, JDAFooter jDAFooter, StockAdjustmentsPage stockAdjustmentsPage,
 			PopUpPage popUpPage, JdaHomePage jDAHomePage, InventoryTransactionDB inventoryTransactionDB,
 			Verification verification, InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			OrderLineDB orderLineDB, InventoryDB inventoryDB) {
@@ -55,6 +58,8 @@ public class StockAdjustmentStepDefs {
 		this.inventoryTransactionQueryPage = inventoryTransactionQueryPage;
 		this.orderLineDB = orderLineDB;
 		this.inventoryDB = inventoryDB;
+		this.jdaFooter=jdaFooter;
+		this.skuSkuConfigDB= skuSkuConfigDB;
 	}
 
 	@When("^I create a new stock with siteid and location \"([^\"]*)\"$")
@@ -331,6 +336,32 @@ public class StockAdjustmentStepDefs {
 	}
 
 	}
+	void performStockAdjustment(String Location) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException{
+		
+		// default:stock adjustment to qty 500
+		jDAHomePage.navigateToStockAdjustment();
+		Thread.sleep(2000);
+		stockAdjustmentsPage.selectNewStock();
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		stockAdjustmentsPage.enterSkuId(context.getSkuId());
+		jdaFooter.pressTab();
+		stockAdjustmentsPage.enterLocation(Location);
+		stockAdjustmentsPage.enterSiteId(context.getSiteID());
+		stockAdjustmentsPage.enterQuantityOnHand("500");
+		stockAdjustmentsPage.enterOrigin("NONE");
+
+		stockAdjustmentsPage
+				.enterPackConfig((String) skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
+		jdaFooter.clickNextButton();
+		stockAdjustmentsPage.enterPalletType("PALLET");
+		jdaFooter.clickNextButton();
+		stockAdjustmentsPage.enterReasonCode();
+		jdaFooter.clickDoneButton();
+
+		stockAdjustmentsPage.handlePopUp();
+		stockAdjustmentsPage.handlePopUp();
+}
 	
 	@And("^I enter SkuId for existing stock at siteId$")
 	public void I_enter_SkuId_for_existing_stock_at_siteId() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {

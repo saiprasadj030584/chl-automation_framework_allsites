@@ -539,4 +539,16 @@ public class MoveTaskDB {
 		return rs.getString(1);
 
 	}
+	public String getLocationId(String order_id) throws SQLException, ClassNotFoundException {
+		System.out.println("select  from_loc_id from move_task where task_id = '"+order_id+"' order by start_dstamp" );
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select  from_loc_id from move_task where task_id = '"+order_id+"' order by start_dstamp" );
+		rs.next();
+		return rs.getString(1);
+
+	}
 }

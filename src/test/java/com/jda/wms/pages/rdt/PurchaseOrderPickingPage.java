@@ -8,6 +8,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 
@@ -17,6 +18,12 @@ public class PurchaseOrderPickingPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
+	
+	@Inject
+	public void PurchaseOrderPickingPage( Context context){
+		this.context=context;
+	}
+	
 
 	public void selectPickingMenu() throws InterruptedException {
 		screen.type("3");
@@ -57,19 +64,7 @@ public class PurchaseOrderPickingPage {
 		}catch(Exception e){e.printStackTrace();return false;
 		}
 	}
-	public boolean enterskuidscreenavailable() throws FindFailed, InterruptedException {
-		try {
-			System.out.println("entered quantity pick");
-		if (screen.exists("images/Putty/Picking/qtyenterscreen.png", 10) != null){
-			Thread.sleep(1000);
-			
-			return true;}
-		else
-			
-			return false;
-		}catch(Exception e){e.printStackTrace();return false;
-		}
-	}
+	
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
 		Thread.sleep(1000);
@@ -113,17 +108,26 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
-	public void enter14digitpalletId() throws InterruptedException{
+	public boolean isPckPalToAvailable()
+	{
+		if (screen.exists("images/Putty/Picking/PckPalTo.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public void enter14digitpalletId() {
+		try{
 		Thread.sleep(1000);
-		
-		
 		int x = random.nextInt(900) + 100;
+		System.out.println(x);
+		//add inject in master 
 		String palletid = "1"+context.getOrderId()+x;
 		System.out.println("palletid: "+palletid);
 		screen.type(palletid);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
+		}catch(Exception e){e.printStackTrace();}
 	}
 	public void noOfTag() throws InterruptedException{
 		Thread.sleep(1000);
@@ -241,7 +245,19 @@ public class PurchaseOrderPickingPage {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(5000);
 	}
-
+	public boolean enterskuidscreenavailable() throws FindFailed, InterruptedException {
+		try {
+			System.out.println("entered quantity pick");
+		if (screen.exists("images/Putty/Picking/qtyenterscreen.png", 10) != null){
+			Thread.sleep(1000);
+			
+			return true;}
+		else
+			
+			return false;
+		}catch(Exception e){e.printStackTrace();return false;
+		}
+	}
 	public boolean isPickEnt() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;

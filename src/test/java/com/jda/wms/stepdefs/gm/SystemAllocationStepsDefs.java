@@ -44,6 +44,7 @@ public class SystemAllocationStepsDefs {
 	private SystemAllocationPage systemAllocationPage;
 	private OrderHeaderDB orderHeaderDB;
 	private OrderLineDB orderLineDB;
+	private JDAHomeStepDefs jDAHomeStepDefs;
 
 	@Inject
 	public SystemAllocationStepsDefs(JDAFooter jdaFooter, JDALoginStepDefs jdaLoginStepDefs,
@@ -52,7 +53,7 @@ public class SystemAllocationStepsDefs {
 			PreAdviceLineStepDefs preAdviceLineStepDefs, PreAdviceLineDB preAdviceLineDB,
 			UPIReceiptLineDB upiReceiptLineDB, JdaHomePage jdaHomePage,
 			OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepsDefs, JDALoginStepDefs jDALoginStepDefs,
-			SystemAllocationPage systemAllocationPage, OrderHeaderDB orderHeaderDB, OrderLineDB orderLineDB) {
+			SystemAllocationPage systemAllocationPage,JDAHomeStepDefs jDAHomeStepDefs, OrderHeaderDB orderHeaderDB, OrderLineDB orderLineDB) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.context = context;
@@ -69,6 +70,7 @@ public class SystemAllocationStepsDefs {
 		this.systemAllocationPage = systemAllocationPage;
 		this.orderHeaderDB = orderHeaderDB;
 		this.orderLineDB = orderLineDB;
+		this.jDAHomeStepDefs=jDAHomeStepDefs;
 
 	}
 
@@ -80,7 +82,22 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickNextButton();
 		jdaFooter.clickDoneButton();
 	}
-
+	@When("^I allocate the multiple stocks$")
+	public void i_allocate_the_multiple_stocks() throws Throwable {
+		ArrayList<String> Orderlist=context.getOdnList();
+		for (int i=0;i<Orderlist.size();i++){
+		jDAHomeStepDefs.i_navigate_to_JDA_page("system allocation");
+		context.setOrderId(Orderlist.get(i));
+		Thread.sleep(2000);
+		jdaFooter.clickNextButton();
+		systemAllocationPage.enterOrderID();
+		jdaFooter.clickNextButton();
+		jdaFooter.clickNextButton();
+		jdaFooter.clickDoneButton();
+		}
+		Thread.sleep(5000);
+	}
+	
 	@Given("^the stock should not get allocated")
 	public void the_stock_should_not_get_allocated() throws Throwable {
 		ArrayList failureList = new ArrayList();

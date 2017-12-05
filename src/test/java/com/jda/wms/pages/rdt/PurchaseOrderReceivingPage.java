@@ -27,7 +27,26 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectGroupReceive() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public boolean isReciveCmpEntryDisplayed() {
+		if ((screen.exists("images/Putty/Receiving/XdockReceive.png") != null))
+			return true;
+		else
+			return false;
 
+	}
+	public void selectUpiReceive() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+
+	}
 	public void selectBasicReceiveMenu() throws FindFailed, InterruptedException {
 		screen.type("1");
 		Thread.sleep(1000);

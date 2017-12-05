@@ -76,6 +76,7 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+
 			if (context.getSiteID() == null) {
 				System.out.println(" Value Of Site Id" + context.getSiteID());
 //				Assert.fail("No site Id has been fetched from DB");//
@@ -84,6 +85,7 @@ public class Database {
 			System.out.println("Value Of Site Id **" + context.getSiteID());
 
 			if (context.getSiteID().equals("5649")) {
+
 				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
 						configuration.getStringProperty("wst-db-username"),
 						configuration.getStringProperty("wst-db-password"));

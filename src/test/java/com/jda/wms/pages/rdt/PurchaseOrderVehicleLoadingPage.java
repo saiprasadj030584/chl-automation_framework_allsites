@@ -99,4 +99,18 @@ public class PurchaseOrderVehicleLoadingPage {
 		Thread.sleep(1000);
 
 	}
+	public boolean isQueryMsgDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/QueryMsg.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isConsignmentLoadingMsgDisplayed() {
+		if (screen.exists("images/Putty/VehicleLoading/ConsignmentMsg.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

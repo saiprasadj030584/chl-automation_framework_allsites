@@ -27,5 +27,17 @@ public class PurchaseOrderMarshallingPage {
 		else
 			return false;
 	}
+	public boolean ismarshallcompMsgDisplayed() {
+		if (screen.exists("images/Putty/Picking/MarMsg.png") != null)
+			return true;
+		else
+			return false;
+	}
 
+	public boolean ismarshalllocationMsgDisplayed() {
+		if (screen.exists("images/Putty/Picking/MoveLocatn.png") != null)
+			return true;
+		else
+			return false;
+	}
 }
