@@ -3,7 +3,7 @@ Feature: Boxed - Receiving - Direct PO - Negative
   As a warehouse user
   I want to receive the articles that are damaged
 
-   @jenkinsA @unique_boxed_receiving_direct_po_validate_damaged_on_receipt_from_supplier @direct_po @boxed @receiving @complete @ds @jenkins1
+   @jenkinsA @jenkinsrun @unique_boxed_receiving_direct_po_validate_damaged_on_receipt_from_supplier @direct_po @boxed @receiving @complete @ds @jenkins1
   Scenario: Validate damaged on receipt (From supplier) 
     Given the PO of type "Boxed" with UPI and ASN should be received at "REC001" with lock code damaged
     When I navigate to inventory transaction query

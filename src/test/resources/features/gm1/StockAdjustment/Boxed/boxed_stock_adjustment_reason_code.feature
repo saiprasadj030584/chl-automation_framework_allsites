@@ -3,7 +3,7 @@ Feature: Boxed - Stock adjustments with Reason Code
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @jenkinsA @jenkinsch @stock_adjustment @boxed @unique_boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @jenkins1 @no_ds
+  @jenkinsA @jenkinsrun  @stock_adjustment @boxed @unique_boxed_stock_adjustment_stock_adjustment_reason_code_dirty @complete @ds @jenkins1 @no_ds
   Scenario Outline: Do stock adjustment by selecting reason code as Dirty
     Given I have a sku of type "Boxed" to adjust the stock
     When I navigate to stock adjustments page

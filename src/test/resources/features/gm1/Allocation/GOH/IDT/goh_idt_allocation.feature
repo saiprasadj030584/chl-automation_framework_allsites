@@ -17,7 +17,7 @@ Feature: GOH - IDT - Allocation
     And I have inventory available for the order line items
     Then sku should be available in inventory
 
-  @jenkinsls @goh @allocation @idt @unique_goh_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+  @jenkinsC @goh @allocation @idt @unique_goh_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate whether stocks are automatically allocated to orders -Auto Allocation
     Given the OrderID of type "IDT" for sku "GOH" should be in "Released" status at site
     And the order sku details are verified

@@ -14,7 +14,7 @@ Feature: Purchase order receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
       
-  @jenkinsA @unique_boxed_receiving_direct_po_validate_pallet_build_for_full_pallet_enter_y_in_full_pallet @boxed @direct_po @receiving @complete @ds
+  @jenkinsA @jenkinsrun @unique_boxed_receiving_direct_po_validate_pallet_build_for_full_pallet_enter_y_in_full_pallet @boxed @direct_po @receiving @complete @ds
   Scenario: Validate Pallet build for Full pallet - enter Y in full pallet
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

@@ -3,7 +3,7 @@ Feature: Hanging - IDT - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
- @jenkinsls @hanging @allocation @idt @unique_hanging_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
+ @jenkinsB @hanging @allocation @idt @unique_hanging_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation @complete @ds
   Scenario: Validate  whether stocks are automatically allocated to orders -Auto Allocation
     # Given the order id of type "IDT" with "Hanging" skus should be in "Released" status
     Given the order of "IDT" should be in "Released" status in order header maintenance

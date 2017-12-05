@@ -44,7 +44,7 @@ Feature: Boxed - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "Complete" while upi and asn status should "Complete"
 
- @jenkinsA @jenkins_analysis @boxed @direct_po @receiving @complete @unique_boxed_receiving_direct_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds
+ @jenkinsA @jenkinsrun @jenkins_analysis @boxed @direct_po @receiving @complete @unique_boxed_receiving_direct_po_validate_receiving_process_for_boxed_when_two_putaway_group_involved @ds
   Scenario: Receiving process in JDA WMS for Boxed type having different putaway group
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

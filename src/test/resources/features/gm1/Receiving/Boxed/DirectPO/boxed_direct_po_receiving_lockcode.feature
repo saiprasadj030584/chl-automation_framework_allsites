@@ -5,7 +5,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
   But i cannot putaway the purchase order
 
   
-  @jenkinsA @jenkinsfly @jenkinsS @unique_boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+  @jenkinsA @jenkinsrun @jenkinsfly @jenkinsS @unique_boxed_receiving_direct_po_receiving_with_lock_code_qafts @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTS lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

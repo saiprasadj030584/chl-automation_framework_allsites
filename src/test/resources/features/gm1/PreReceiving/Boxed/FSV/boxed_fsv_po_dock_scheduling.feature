@@ -4,7 +4,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
   I want to schedult a dock door for FSV PO
   So that I can receive the same in the scheduled dock door
 
-  @jenkinsA @pre_receiving @fsv_po @boxed @unique_boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkinsfsv
+  @jenkinsA @jenkinsrun @pre_receiving @fsv_po @boxed @unique_boxed_pre_receiving_fsv_po_dock_schedule @complete @ds @jenkinsfsv
   Scenario: Validate whether PO can be assigned using the Pre advice ID
     Given the PO of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -89,7 +89,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
 
-  @jenkinsA  @jenkinsfsv @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds  
+  @jenkinsA  @jenkinsrun @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds  
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
