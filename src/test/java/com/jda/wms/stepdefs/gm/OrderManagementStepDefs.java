@@ -51,7 +51,6 @@ public class OrderManagementStepDefs {
 	public void update_the_status_as_cancelled() throws Throwable {
 		orderManagementPage.clickAvailable();
 		jdaFooter.clickNextButton();
-		context.setOrderId("7274417277");
 		orderManagementPage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickNextButton();
 		orderManagementPage.clickHeaderTable();

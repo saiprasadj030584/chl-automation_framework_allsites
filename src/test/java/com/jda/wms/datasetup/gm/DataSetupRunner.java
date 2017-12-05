@@ -88,7 +88,7 @@ public class DataSetupRunner {
 
 		// insertData();
 		// insertTempTestdata();
-		//createTestDataFromUI();
+		createTestDataFromUI();
 	}
 
 	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {

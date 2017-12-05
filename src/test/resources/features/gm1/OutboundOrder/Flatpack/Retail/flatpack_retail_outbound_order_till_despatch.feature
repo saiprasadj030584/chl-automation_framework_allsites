@@ -89,4 +89,4 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     When I proceed for "Flatpack" vehicle unloading with multiple order
     Then vehicle should be unload for multiple order
     #When I navigate to Trailer Shipping page
-    #Then trailer should be shipped
+    Then trailer should be shipped

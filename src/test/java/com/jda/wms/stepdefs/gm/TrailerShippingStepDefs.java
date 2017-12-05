@@ -44,8 +44,8 @@ public class TrailerShippingStepDefs {
 		this.verification = verification;
 	}
 
-	@Then("^trailer should be shipped$")
-	public void trailer_should_be_shipped() throws Throwable {
+	@Then("^I proceed for trailer shipping$")
+	public void I_proced_for_trailer_shipping() throws Throwable {
 		jdaFooter.PressEnter();
 		Thread.sleep(2000);
 		jdaFooter.pressTab();
@@ -62,13 +62,6 @@ public class TrailerShippingStepDefs {
 		Thread.sleep(5000);
 		jdaFooter.clickDoneButton();
 		
-		ArrayList failureList = new ArrayList();
-		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
-			verification.verifyData("Order Status", "Shipped", orderHeaderDB.getStatus(context.getOrderId()),
-					failureList);
-		Assert.assertTrue(
-				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
 	}
 	@Then("^trailer shipping will be In Progress$")
 	public void trailer_shipping_will_be_In_Progress() throws Throwable {
