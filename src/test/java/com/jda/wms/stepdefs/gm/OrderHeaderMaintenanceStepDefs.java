@@ -242,7 +242,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		orderHeaderPage.enterOrderNo(context.getOrderId());
 		jDAFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
-		Thread.sleep(60000);
+		Thread.sleep(6000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
 				failureList);
 		Assert.assertTrue("Order Status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",

@@ -9,7 +9,7 @@ Feature: Hanging - IDT - Allocation
     Given the order of "IDT" should be in "Released" status in order header maintenance
     And the order sku details are verified
     When the inventory is available for the given SKU
-    Then the order status should be changed to "Allocated" status
+    Then the order should be allocated
 
   @allocation @hanging @idt @unique_hanging_allocation_idt_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
   Scenario: Validating prohibition rule while allocation
