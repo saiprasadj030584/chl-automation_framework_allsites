@@ -237,10 +237,10 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	@Then("^the order should be allocated$")
 	public void the_order_should_be_allocated() throws Throwable {
-		jDAHomePage.navigateToOrderHeaderMaintenance();
-		jDAFooter.clickQueryButton();
-		orderHeaderPage.enterOrderNo(context.getOrderId());
-		jDAFooter.clickExecuteButton();
+//		jDAHomePage.navigateToOrderHeaderMaintenance();
+//		jDAFooter.clickQueryButton();
+//		orderHeaderPage.enterOrderNo(context.getOrderId());
+//		jDAFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(6000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),

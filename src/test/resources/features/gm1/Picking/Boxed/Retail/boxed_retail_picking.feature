@@ -43,6 +43,8 @@ Feature: Boxed - Retail - Picking
     When I navigate to system allocation page
     And I enter OrderID for allocation
     Then the status should be allocated for the orderID
+    When I navigate to scheduler program page
+    And I run the program
     When I enter the invalid  UPC
     Then the error message should be displayed as invalid details
 

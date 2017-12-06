@@ -723,8 +723,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Line Maintenance/query screen");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);

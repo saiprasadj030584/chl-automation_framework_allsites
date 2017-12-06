@@ -2,7 +2,7 @@
 ##################
 default:
  browser-name: ie
- username: 'AUTO2'
+ username: 'AUTO1'
  bck-userid: 'AUTO2'
  password: '1234'
  
