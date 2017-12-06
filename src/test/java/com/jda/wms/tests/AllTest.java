@@ -8,11 +8,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_hanging_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation"
-				+ " " })
+				"@unique_flatpack_outbound_order_till_despatch_store_order_short_store_order_full_cancel" })
 
 public class AllTest {
-	
+
 }
-
-
