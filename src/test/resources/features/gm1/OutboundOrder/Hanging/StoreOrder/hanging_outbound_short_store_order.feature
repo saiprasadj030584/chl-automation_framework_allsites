@@ -31,7 +31,7 @@ Feature: Hanging - Outbound Order till despatch - Store Order
     And I perform picking for hanging discrepancy
     Then I verify the status as "Ready to Load" in order header
 
-  @unique_hanging_outbound_order_till_despatch_store_order_short_store_order_partial_cancel @hanging @store_order @outbound_order_till_despatch @ds
+  @unique_hanging_outbound_order_till_despatch_store_order_short_store_order_partial_cancel @hanging @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - partial cancel
     Given I have logged in as warehouse user in JDA dispatcher GM application
     And the order of type "Retail" with "Hanging" skus should be in "Released" status before partial allocation
@@ -43,7 +43,7 @@ Feature: Hanging - Outbound Order till despatch - Store Order
     And I proceed with clustering
     When I navigate to scheduler program page
     And I run the program
-    And I perform picking for hanging
+    And I perform picking for "Hanging" type
     Then I verify the status as "In Progress" in order header
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page

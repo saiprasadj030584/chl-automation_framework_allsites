@@ -233,4 +233,25 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
+
+	public void changeQtyPick(int qty) throws InterruptedException {
+		// TODO Auto-generated method stub
+		String changdQty=String.valueOf(qty/2);
+		screen.type(changdQty+"E_("+changdQty+"E)");
+		Thread.sleep(2000);
+	}
+
+	public void selectSplitPick() throws InterruptedException {
+		screen.type("3");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public boolean isPckLocPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/ToLoctn.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

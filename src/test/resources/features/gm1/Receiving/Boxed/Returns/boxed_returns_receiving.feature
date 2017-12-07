@@ -51,3 +51,10 @@ Feature: Boxed - Returns - Receiving
     When I perform receiving for all skus at "REC003" with perfect condition "N"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated for multi sourced SKU receipt
+    
+  @unique_boxed_receiving_returns_do_detail_receiving_process_by_providing_input_as_urrn_and_unique_upc_with_multi_supplier_followed_by_quantity_should_be_defaulted_as_1_and_perfect_condition_as_y @returns @receiving @returns @boxed @ds
+  Scenario Outline: Do detail receiving process by providing input as URRN and unique UPC with multi supplier , followed by quantity should be defaulted as '1' and perfect condition as 'y' / 'N'
+    Given the UPI and ASN should be in "Released" status for multi sourced SKU
+    When I perform receiving for all skus at "REC003" with perfect condition "Y"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated for multi sourced SKU receipt

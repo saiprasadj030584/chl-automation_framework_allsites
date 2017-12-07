@@ -428,7 +428,8 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			   }
 		}
-			else if (context.getUniqueTag().contains("retail")&& context.getUniqueTag().contains("order")) {
+			else if (context.getUniqueTag().contains("retail")&& context.getUniqueTag().contains("order")
+					&& (!(context.getUniqueTag().contains("different_order")))) { 
 				System.out.println("inside retail and order");
 				try {
 					npsDataBase.connectAutomationDB();
@@ -450,6 +451,36 @@ public class DataSetupRunner {
 					gettcdata.setSecondOdn(odn2);
 					context.setTestData("STO:" + odn);
 					context.setSecondTestData("STO 2:" + odn2);
+					npsDataBase.disconnectAutomationDB();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+			}
+			else if (context.getUniqueTag().contains("retail")&& context.getUniqueTag().contains("different_order")) {
+				System.out.println("inside different order");
+				try {
+					npsDataBase.connectAutomationDB();
+
+					// Generate Random New values to load
+					String odn = newOdnId();
+					String odn2 = newOdnId();
+					// Fetching Refernce Test Data from Test data table
+					String odnReference = gettcdata.getOdnFromTestData();
+					// Call JDA Login
+					//jdaLoginPage.login();
+					String[] orderArray = odnReference.split(",");
+					ArrayList<String> orderList = new ArrayList<String>();
+					dataLoadFromUI.duplicateOdn(orderArray[0], odn);
+					validateOdnDataSetup(odn);
+					dataLoadFromUI.duplicateOdn(orderArray[1], odn2);
+					validateOdnDataSetup(odn2);
+					gettcdata.setOdn(odn);
+					gettcdata.setSecondOdn(odn2);
+					context.setTestData("STO:" + odn);
+					context.setSecondTestData("STO 2:" + odn2);
+					orderList.add(odn);
+					orderList.add(odn2);
+					context.setOrderList(orderList);
 					npsDataBase.disconnectAutomationDB();
 				} catch (Exception exception) {
 					exception.printStackTrace();

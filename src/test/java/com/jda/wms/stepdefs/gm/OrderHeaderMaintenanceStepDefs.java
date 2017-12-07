@@ -1399,7 +1399,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	public void the_order_of_type_with_skus_should_be_in_status_before_partial_allocation(String orderType,
 			String skuType, String status) throws Throwable {
 		String orderNumber = context.getOrderId();
-
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
 		context.setStatus(status);
@@ -1447,9 +1446,9 @@ public class OrderHeaderMaintenanceStepDefs {
 						.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))) / 2;
 				stockAdjustmentsPage.enterQuantityOnHand(exactQtyToBeAllocate);
 				stockAdjustmentsPage.enterOrigin("NONE");
-				// stockAdjustmentsPage
-				// .enterPackConfig((String)
-				// skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
+				 stockAdjustmentsPage
+				 .enterPackConfig((String)
+				 skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
 				jDAFooter.clickNextButton();
 				stockAdjustmentsPage.enterPalletType("PALLET");
 				jDAFooter.clickNextButton();

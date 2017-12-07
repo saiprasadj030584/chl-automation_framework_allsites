@@ -154,7 +154,7 @@ public class Hooks {
 		updateTcToAutomationDb.updateTcStatus("IN_PROGRESS");
 	}
 
-	// @After
+	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();

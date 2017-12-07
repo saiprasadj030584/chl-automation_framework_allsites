@@ -237,10 +237,10 @@ public class PreAdviceHeaderStepsDefs {
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		context.setSupplier(deliveryDB.getSupplier(context.getAsnId()));
-		// verification.verifyData("UPI Status", status,
-		// upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
-		// verification.verifyData("Delivery Status", status,
-		// deliveryDB.getStatus(context.getAsnId()), failureList);
+		 verification.verifyData("UPI Status", status,
+		 upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
+		 verification.verifyData("Delivery Status", status,
+		 deliveryDB.getStatus(context.getAsnId()), failureList);
 		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}

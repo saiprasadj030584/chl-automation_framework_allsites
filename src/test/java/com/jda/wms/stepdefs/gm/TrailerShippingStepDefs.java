@@ -89,6 +89,35 @@ public class TrailerShippingStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Then("^Multiple trailer should be shipped$")
+	public void multiple_trailer_should_be_shipped() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		jdaFooter.PressEnter();
+		for (int i = 0; i < context.getTrailerList().size(); i++) {
+			context.setTrailerNo(context.getTrailerList().get(i));
+			Thread.sleep(2000);
+			jdaFooter.pressTab();
+			Thread.sleep(1000);
+			jdaFooter.pressTab();
+			Thread.sleep(1000);
+			trailerShippingPage.enterSiteID(context.getSiteID());
+			jdaFooter.pressTab();
+			jdaFooter.deleteExistingContent();
+			trailerShippingPage.enterTrailerNumber(context.getTrailerNo());
+			jdaFooter.clickNextButton();
+			String Sealno = Utilities.getFourDigitRandomNumber();
+			trailerShippingPage.enterSealNo(Sealno);
+			trailerShippingPage.clickOkButton();
+			Thread.sleep(5000);
+			jdaFooter.clickDoneButton();
+		}
+		Thread.sleep(3000);
+		verification.verifyData("Order Status", "Shipped", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 
 }
 

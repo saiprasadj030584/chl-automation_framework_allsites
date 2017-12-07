@@ -79,6 +79,8 @@ public class Context {
 	private ArrayList packConfigList;
 	private String putawayLocation1;
 	private String putawayLocation2;
+	private ArrayList<String> trailerList;
+	private ArrayList<String> bookingList;
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -1435,5 +1437,22 @@ public class Context {
 		this.locationList = locationList;
 	}
 
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
+
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
+
+	
 
 }

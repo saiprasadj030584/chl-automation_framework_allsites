@@ -99,4 +99,12 @@ public class PurchaseOrderVehicleLoadingPage {
 		Thread.sleep(1000);
 
 	}
+
+	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)
+			return true;
+		else
+			return false;
+
+	}
 }
