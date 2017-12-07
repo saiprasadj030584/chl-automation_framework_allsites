@@ -3,7 +3,7 @@ Feature: Boxed - Outbound Order till despatch - Store Order
   As a warehouse user
   I want to order till dispatch
 
-   @jenkinrun @jenkinsA @jenkinsgm @jenkinsgm1 @unique_boxed_outbound_order_till_despatch_store_order_short_store_order_full_cancel @boxed @store_order @outbound_order_till_despatch @complete @ds
+   @jenkinrun @jenkinsA @jenkinsgm @jenkins14 @unique_boxed_outbound_order_till_despatch_store_order_short_store_order_full_cancel @boxed @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - full cancel
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
