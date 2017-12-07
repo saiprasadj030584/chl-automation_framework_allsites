@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		
 		"pretty", "json:target/cucumber-reports/"
-				+ "cucumber.json" }, tags = { "@unique_goh_outbound_order_till_despatch_idt_order_split_shipment_and_multiple_vehicle_single_order"})
+				+ "cucumber.json" }, tags = { "@reviw"})
 	
 public class AllTest {
 }
