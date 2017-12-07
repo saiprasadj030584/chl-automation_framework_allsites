@@ -4,16 +4,16 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds
+  @outbound_despatch @hanging @retail @unique_hanging_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds
   Scenario: Split shipment and multiple vehicle,single order
-    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     And I create a consignment for order
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should get allocated
     When I navigate to scheduler program page
     And I run the program
-    And I perform split picking for boxed retail
+    And I perform split picking for hanging retail
     Then the order should be Ready to Load
     And I create multiple trailer to receive at the dock door
     And I create multiple dock booking at site "5649"

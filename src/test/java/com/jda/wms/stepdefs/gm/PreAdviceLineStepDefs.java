@@ -405,6 +405,7 @@ public class PreAdviceLineStepDefs {
 
 		skuFromUPI = upiReceiptLineDB.getSkuIdList(context.getUpiId());
 		context.setSkuFromUPI(skuFromUPI);
+		context.setSkuList(context.getSkuFromUPI());
 		String supplierId;
 
 			// Add SKU details to UPI Map

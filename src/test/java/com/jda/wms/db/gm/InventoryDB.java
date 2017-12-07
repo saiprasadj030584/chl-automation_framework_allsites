@@ -1486,4 +1486,22 @@ public class InventoryDB {
 		}
 		return isRecordExists;
 	}
+	
+	public ArrayList<String> getLockCodeList(String location,String skuId) throws ClassNotFoundException, SQLException {
+		
+		ArrayList<String> stockDetails = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select lock_code from inventory where location_id='" + location + "' and sku_id='" + skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			stockDetails.add((rs.getString(j)));
+		}
+		return stockDetails;
+	}
 }

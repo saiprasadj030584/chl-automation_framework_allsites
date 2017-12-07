@@ -3323,9 +3323,14 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the UPI of type \"([^\"]*)\" and ASN should be received at \"([^\"]*)\" for maximum aisle$")
 	public void the_upi_of_type_and_ASN_should_be_received_at_for_maximum_aisle(String type, String location)
 			throws Throwable {
-		String upiId = context.getUpiId();
-		String asnId = context.getAsnId();
-		String siteId = context.getSiteID();
+//		String upiId = context.getUpiId();
+//		String asnId = context.getAsnId();
+//		String siteId = context.getSiteID();
+		
+		String upiId = "56490000532760246410022051700100";
+		String asnId = "0000001234";
+		String siteId = "5649";
+
 
 		context.setUpiId(upiId);
 		context.setLocationID(location);
@@ -3340,10 +3345,86 @@ public class PurchaseOrderReceivingStepDefs {
 		upiReceiptLineStepDefs.i_fetch_supplier_id_UPC();
 		context.setContainerId(uPIReceiptLineDB.getContainer(upiId));
 		context.setLocation(location);
-		i_perform_for_all_skus_at_location_for_IDT_for_maximum_aisle_check("Under Receiving","REC001");
-		inventoryQueryStepDefs.the_inventory_should_be_displayed_for_all_tags_split_received_idt();
+		
+		i_split_receive_all_skus_for_the_returns_order_at_with_perfect_condition("REC002","Y");
 		inventoryTransactionQueryStepDefs.the_goods_receipt_should_be_generated_for_IDT_split_received_stock_in_inventory_transaction();
 		preAdviceHeaderStepsDefs.the_idt_status_should_be_displayed_as("Complete");
+	}
+	
+	@When("^I split blind receive all skus for the purchase order at location \"([^\"]*)\" without lockcode$")
+	public void i_split_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(String location)
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_and_perform_split_blind_receive_without_lockcode();
+		hooks.logoutPutty();
+	}
+	
+	@When("^I enter details and perform split blind receive without lockcode$")
+	public void i_enter_details_and_perform_split_blind_receive_without_lockcode() throws Throwable {
+		for (int j = 0; j < context.getNoOfLines(); j++) {
+			context.setSupplierID(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("SUPPLIER ID"));
+			context.setUPC(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("UPC"));
+			context.setRcvQtyDue(
+					Integer.parseInt(context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+			context.setQtyOnHand(context.getRcvQtyDue());
+			if(context.getQtyOnHand()>120)
+			{
+		for(int k=0;k<context.getQtyOnHand()/120;k++)
+		{
+				purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+				jdaFooter.pressTab();
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterQuantity("120");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+				purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+				jdaFooter.pressTab();
+				puttyFunctionsPage.nextScreen();
+				purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+				jdaFooter.PressEnter();
+				Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + k,
+						purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+				jdaFooter.PressEnter();
+				Thread.sleep(1000);
+			}
+		if((context.getQtyOnHand()%120)!=0)
+		{
+			purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+			purchaseOrderReceivingPage.enterUPC1BEL(context.getUPC());
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterQuantity(String.valueOf(context.getQtyOnHand()%120));
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+			purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+			jdaFooter.pressTab();
+			purchaseOrderReceivingPage.enterSupplierId(context.getSupplierID());
+			jdaFooter.PressEnter();
+			Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " ,
+					purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+			jdaFooter.PressEnter();
+			Thread.sleep(1000);
+		}
+		}
+		}
+	}
+	
+	@Given("^I split receive all skus for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
+	public void i_split_receive_all_skus_for_the_returns_order_at_with_perfect_condition(String location, String condition)
+			throws Throwable {
+		context.setLocationID(location);
+		context.setLocation(location);
+		context.setPerfectCondition(condition);
+		i_split_blind_receive_all_skus_for_the_returns_order_at_location_without_lockcode(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
 
 }

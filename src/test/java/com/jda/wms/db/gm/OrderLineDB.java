@@ -55,7 +55,7 @@ public class OrderLineDB {
 	}
 
 	public String getQtyTasked(String orderID, String skuID) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
+		if (context.getDBConnection().isClosed()||context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();

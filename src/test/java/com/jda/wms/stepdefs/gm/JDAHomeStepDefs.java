@@ -165,7 +165,6 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
 		jdaHomePage.navigateToSystemAllocationPage();
-		Thread.sleep(6000);
 	}
 
 	@When("^I navigate to UPI Management screen$")

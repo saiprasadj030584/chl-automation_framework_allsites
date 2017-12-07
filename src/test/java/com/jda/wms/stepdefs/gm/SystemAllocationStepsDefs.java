@@ -67,7 +67,7 @@ public class SystemAllocationStepsDefs {
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.upiReceiptLineDB = upiReceiptLineDB;
 		this.jdaHomePage = jdaHomePage;
-		
+
 		this.jDALoginStepDefs = jDALoginStepDefs;
 		this.systemAllocationPage = systemAllocationPage;
 		this.orderHeaderDB = orderHeaderDB;
@@ -155,105 +155,99 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickDoneButton();
 		Thread.sleep(8000);
 	}
-	
+
 	@Then("^Allocation should be updated$")
 	public void allocation_should_be_updated() throws Throwable {
 		ArrayList failureList = new ArrayList();
 		Thread.sleep(10000);
-		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()), failureList);
-		//verification.verifyData("Quantity Tasked",orderHeaderDB.getOrderedQuantity(context.getOrderId()), orderHeaderDB.getQuantitytaskedStatus(context.getOrderId()), failureList);
-		//verification.verifyData("Qty task", orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()), orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()), failureList);
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		// verification.verifyData("Quantity
+		// Tasked",orderHeaderDB.getOrderedQuantity(context.getOrderId()),
+		// orderHeaderDB.getQuantitytaskedStatus(context.getOrderId()),
+		// failureList);
+		// verification.verifyData("Qty task",
+		// orderHeaderDB.getOrderedQuantityWithOrderId(context.getOrderId()),
+		// orderHeaderDB. getQtyTaskedWithOrderID(context.getOrderId()),
+		// failureList);
 		Assert.assertTrue("Order Status not updated as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@Given("^I allocate the stocks using consignment in system allocation page$")
 	public void i_allocate_the_stocks_using_consignment_in_system_allocation_page() throws Throwable {
-		DateFormat sdf = new SimpleDateFormat(
-			    "HH:mm:ss");
-	String minimumTime="";
-	Date first=new Date();
-	ArrayList failureList = new ArrayList();
-	
+		DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String minimumTime = "";
+		Date first = new Date();
+		ArrayList failureList = new ArrayList();
 
-	for (int k = 0; k < context.getOrderList().size(); k++) {
-		context.setOrderId(context.getOrderList().get(k));
-	
-		if(k==0)
-		{
-			minimumTime=orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19);
-			first = sdf.parse(minimumTime);
-			
-		}
-	System.out.println(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19));
-	if(!(first.before(sdf.parse(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19)))))
-			{
-		minimumTime=orderHeaderDB.getCreationDate(context.getOrderId()).replace('.',':').substring(11, 19);
-		first=sdf.parse(minimumTime);
+		for (int k = 0; k < context.getOrderList().size(); k++) {
+			context.setOrderId(context.getOrderList().get(k));
+
+			if (k == 0) {
+				minimumTime = orderHeaderDB.getCreationDate(context.getOrderId()).replace('.', ':').substring(11, 19);
+				first = sdf.parse(minimumTime);
+
 			}
+			System.out.println(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.', ':').substring(11, 19));
+			if (!(first.before(sdf
+					.parse(orderHeaderDB.getCreationDate(context.getOrderId()).replace('.', ':').substring(11, 19))))) {
+				minimumTime = orderHeaderDB.getCreationDate(context.getOrderId()).replace('.', ':').substring(11, 19);
+				first = sdf.parse(minimumTime);
+			}
+		}
+
+		// In UI
+
+		jdaHomePage.navigateToSystemAllocationPage();
+		Thread.sleep(6000);
+
+		jdaFooter.clickNextButton();
+		// systemAllocationPage.enterOrderDate("0");
+		systemAllocationPage.enterOrderTime(">=" + minimumTime);
+		systemAllocationPage.enterConsignmentID(context.getConsignmentID());
+		jdaFooter.clickNextButton();
+		systemAllocationPage.selectAllRecords();
+		jdaFooter.clickNextButton();
+		jdaFooter.clickDoneButton();
+
 	}
-	
-	
 
-
-	//In UI
-	
-	jdaHomePage.navigateToSystemAllocationPage();
-	Thread.sleep(6000);
-
-jdaFooter.clickNextButton();
-//systemAllocationPage.enterOrderDate("0");
-systemAllocationPage.enterOrderTime(">="+minimumTime);
-systemAllocationPage.enterConsignmentID(context.getConsignmentID());
-jdaFooter.clickNextButton();
-systemAllocationPage.selectAllRecords();
-jdaFooter.clickNextButton();
-jdaFooter.clickDoneButton();
-
-	}
-
-	
 	@Given("^the multiple stocks should get allocated")
 	public void the_multiple_stocks_should_get_allocated() throws Throwable {
-		
-		
+
 		ArrayList failureList = new ArrayList();
 		for (int k = 0; k < context.getOrderList().size(); k++) {
 			context.setOrderId(context.getOrderList().get(k));
-		jdaHomePage.navigateToOrderHeaderMaintenance();
-		jdaFooter.clickQueryButton();
-		systemAllocationPage.enterOrderID();
-		jdaFooter.clickExecuteButton();
-		jdaHomePage.navigateToOrderLineMaintenance();
-		jdaFooter.clickQueryButton();
-		systemAllocationPage.enterOrderID();
-		jdaFooter.clickExecuteButton();
-		
-		
-			
-			
-			
-			
+			jdaHomePage.navigateToOrderHeaderMaintenance();
+			jdaFooter.clickQueryButton();
+			systemAllocationPage.enterOrderID();
+			jdaFooter.clickExecuteButton();
+			jdaHomePage.navigateToOrderLineMaintenance();
+			jdaFooter.clickQueryButton();
+			systemAllocationPage.enterOrderID();
+			jdaFooter.clickExecuteButton();
+
 			ArrayList<String> skuFromOrder = new ArrayList<String>();
 			skuFromOrder = orderLineDB.getskuList(context.getOrderId());
-		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
-				failureList);
-		for (int i = 0; i < skuFromOrder.size(); i++) {
-			context.setRcvQtyDue(
-					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
+			verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+					failureList);
+			for (int i = 0; i < skuFromOrder.size(); i++) {
+				context.setRcvQtyDue(Integer
+						.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
 
-			System.out.println("QTY DUEEE11"+String.valueOf(context.getRcvQtyDue()));
-			System.out.println(!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
-					.equals(String.valueOf(context.getRcvQtyDue()))));
-			
-			System.out.println("QTY DUEEE"+String.valueOf(context.getRcvQtyDue()));
-			System.out.println((orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))));
-			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
-					.equals(String.valueOf(context.getRcvQtyDue())))) {
-				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
-				// context.setFailureList(failureList);
+				System.out.println("QTY DUEEE11" + String.valueOf(context.getRcvQtyDue()));
+				System.out.println(!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+						.equals(String.valueOf(context.getRcvQtyDue()))));
+
+				System.out.println("QTY DUEEE" + String.valueOf(context.getRcvQtyDue()));
+				System.out.println((orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))));
+				if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+						.equals(String.valueOf(context.getRcvQtyDue())))) {
+					failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
+					// context.setFailureList(failureList);
+				}
 			}
-		}
 		}
 		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());

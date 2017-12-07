@@ -675,6 +675,11 @@ public class PreAdviceHeaderStepsDefs {
 		 upiReceiptHeaderDB.getStatus(context.getUpiId()), failureList);
 		 verification.verifyData("Delivery Status", status,
 		 deliveryDB.getStatus(context.getAsnId()), failureList);
+		 
+		 int numLines = Integer.parseInt(upiReceiptHeaderDB.getNumberOfLines(context.getUpiId()));
+			context.setNoOfLines(numLines);
+			logger.debug("Num of Lines: " + numLines);
+
 		Assert.assertTrue("UPI header , Delivery details not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}

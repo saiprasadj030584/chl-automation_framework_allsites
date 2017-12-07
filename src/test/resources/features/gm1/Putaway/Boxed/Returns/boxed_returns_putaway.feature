@@ -37,7 +37,7 @@ Feature: Boxed - Returns - Putaway
     And I proceed without entering quantity for returns
     Then the error message should be displayed as invalid quantity exception
 
-  @unique_boxed @putaway @returns @boxed_putaway_returns_sampling_qa_build @hold
+  @boxed @putaway @unique_returns @boxed_putaway_returns_sampling_qa_build @hold
   Scenario: Validate Sampling/QA Pallet build
     Given the UPI and ASN should be in "Released" status
     And the upi should have sku, quantity due details
@@ -67,7 +67,7 @@ Feature: Boxed - Returns - Putaway
     And I proceed by entering less quantity for IDT
     Then the ITL should be generated for putaway stock in inventory transaction
 
-  @unique_boxed @putaway @returns @boxed_putaway_returns_validate_putaway_qc_goods @complete @ds
+  @boxed @putaway @returns @unique_boxed_putaway_returns_validate_putaway_qc_goods @complete @ds
   Scenario: Validate Putaway QC goods
     Given the UPI and ASN should be in "Released" status
     And the upi should have sku, quantity due details

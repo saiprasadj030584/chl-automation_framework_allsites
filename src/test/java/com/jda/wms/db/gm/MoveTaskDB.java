@@ -68,7 +68,7 @@ public class MoveTaskDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
+		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "' and list_id is not null");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		rs.next();
 		return rs.getString(1);

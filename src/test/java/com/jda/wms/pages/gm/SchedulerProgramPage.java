@@ -22,7 +22,7 @@ public class SchedulerProgramPage {
 	}
 	public void clickRunNowButton() throws FindFailed, InterruptedException {
 		Match run = screen.find("images/schedulerProgram/runButton.png");
-		screen.click(run.getCenter().offset(70, 0));
+		screen.click(run.getCenter());
 		Thread.sleep(2000);
 	}
 }

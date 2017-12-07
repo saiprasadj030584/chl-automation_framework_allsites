@@ -16,4 +16,8 @@ public class StockCreationForAlocation {
 	public void createStockbeforeAllocation(ArrayList skuList, String uniqueTag) throws Throwable{
 	stockMaintainStepDefs.i_maintain_stock_in_inventory(skuList,uniqueTag);
 	}
+	
+	public void createStockbeforeAllocationWriteOff(ArrayList skuList, String uniqueTag) throws Throwable{
+		stockMaintainStepDefs.i_maintain_stock_in_inventory_write_off(skuList,uniqueTag);
+		}
 }

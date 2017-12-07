@@ -11,6 +11,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.gm.Database;
 import com.jda.wms.db.gm.InventoryDB;
 import com.jda.wms.db.gm.LocationDB;
 import com.jda.wms.db.gm.OrderLineDB;
@@ -44,6 +45,9 @@ public class StockMaintainStepDefs {
 	private SkuSkuConfigDB skuSkuConfigDB;
 	private PuttyFunctionsStepDefs puttyFunctionsStepDefs;
 	private PuttyFunctionsPage puttyFunctionsPage;
+	private InventoryUpdateStepDefs inventoryUpdateStepDefs;
+	private InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs;
+	private Database database;
 	String envVar = System.getProperty("user.dir");
 
 	@Inject
@@ -51,7 +55,7 @@ public class StockMaintainStepDefs {
 			JdaHomePage jDAHomePage, OrderLineDB orderLineDB, InventoryDB inventoryDB, LocationDB locationDB,
 			SkuDB skuDB, SupplierSkuDB supplierSkuDb, SkuSkuConfigDB skuSkuConfigDB,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, PuttyFunctionsPage puttyFunctionsPage,
-			JdaLoginPage jdaLoginPage) {
+			JdaLoginPage jdaLoginPage,InventoryUpdateStepDefs inventoryUpdateStepDefs,InventoryTransactionQueryStepDefs inventoryTransactionQueryStepDefs,Database database) {
 		this.context = context;
 		this.jDAFooter = jDAFooter;
 		this.stockAdjustmentsPage = stockAdjustmentsPage;
@@ -65,6 +69,156 @@ public class StockMaintainStepDefs {
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.jdaLoginPage = jdaLoginPage;
+		this.inventoryUpdateStepDefs=inventoryUpdateStepDefs;
+		this.inventoryTransactionQueryStepDefs=inventoryTransactionQueryStepDefs;
+		this.database=database;
+	}
+
+	public void i_maintain_stock_in_inventory_write_off(ArrayList<String> skuList, String uniqueTag) throws Throwable {
+		boolean allocation = false;
+		String lockcode=null;
+		if(uniqueTag.contains("samples"))
+		{
+			lockcode="HOREQ";
+		}
+		else if(uniqueTag.contains("jobbers"))
+		{
+			lockcode="SJ";
+		}
+		for (int i = 0; i < context.getSkuList().size(); i++) {
+			context.setSkuId((String) context.getSkuList().get(i));
+			context.setSKUType(skuDB.getSKUType(context.getSkuId()));
+			ArrayList<String> locationList = inventoryDB.getLocationsForSku(context.getSkuId());
+			System.out.println(locationList);
+			ArrayList<String> validLocations = new ArrayList<String>();
+			int totalQtyOnHand = 0;
+			for (int j = 0; j < locationList.size(); j++) {
+				context.setLocation(locationList.get(j));
+
+				if (locationDB.getLocationZone(context.getLocation()) != null) {
+					if (context.getSKUType().equalsIgnoreCase("H")) {
+						if (locationDB.getLocationZone(context.getLocation()).equalsIgnoreCase("HANG")
+								&& locationDB.getUserDefType2(context.getLocation()).contains("HANG")
+								&& locationDB.getUserDefType3(context.getLocation()).contains("HANG")
+								&& locationDB.getUserDefType1(context.getLocation())
+										.contains(skuDB.getProductGroup(context.getSkuId()))
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
+							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
+							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
+									.equalsIgnoreCase("Locked")&& inventoryDB.getLockCodeList(context.getLocation(), context.getSkuId())
+									.contains(lockcode)
+									&& Integer.parseInt(inventoryDB.getQtynHand(context.getSkuId(),
+											context.getLocation())) != Integer
+													.parseInt(inventoryDB.getQtyAllocated(context.getSkuId(),
+															context.getLocation()))) {
+								System.out.println("entered" + context.getLocation());
+								validLocations.add(context.getLocation());
+								totalQtyOnHand += Integer.parseInt(
+										inventoryDB.getQtyForSkuInLocation(context.getSkuId(), context.getLocation()));
+							}
+						}
+					}
+
+					else if (context.getSKUType().equalsIgnoreCase("B")) {
+						if (locationDB.getLocationZone(context.getLocation()).contains("BOX")
+								&& locationDB.getUserDefType2(context.getLocation()).contains("BOX")
+								&& locationDB.getUserDefType3(context.getLocation()).contains("BOX")
+								&& locationDB.getLockStatus(context.getLocation()).equalsIgnoreCase("UnLocked")) {
+							System.out.println(inventoryDB.getLockStatus(context.getLocation(), context.getSkuId()));
+							if (inventoryDB.getLockStatus(context.getLocation(), context.getSkuId())
+									.equalsIgnoreCase("Locked")&& inventoryDB.getLockCodeList(context.getLocation(), context.getSkuId())
+									.contains(lockcode)
+									&& Integer.parseInt(inventoryDB.getQtynHand(context.getSkuId(),
+											context.getLocation())) != Integer
+													.parseInt(inventoryDB.getQtyAllocated(context.getSkuId(),
+															context.getLocation()))) {
+								System.out.println("entered" + context.getLocation());
+								validLocations.add(context.getLocation());
+								totalQtyOnHand += Integer.parseInt(
+										inventoryDB.getQtyForSkuInLocation(context.getSkuId(), context.getLocation()));
+							}
+						}
+					}
+
+				}
+			}
+			System.out.println("VALID LOCATIONS" + validLocations);
+			System.out.println("totalQtyOnHand" + totalQtyOnHand);
+			if (totalQtyOnHand >= Integer
+					.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), context.getSkuId()))) {
+				allocation = true;
+			}
+
+			if (context.getLocationID() != null) {
+
+			} else {
+
+				System.out.println("Stock is not present in other locations");
+
+				if (!(allocation)) {
+					// default:stock adjustment to qty 500
+					jdaLoginPage.login();
+					jDAHomePage.navigateToStockAdjustment();
+					Thread.sleep(2000);
+					stockAdjustmentsPage.selectNewStock();
+					jDAFooter.clickNextButton();
+					Thread.sleep(2000);
+					stockAdjustmentsPage.enterSkuId(context.getSkuId());
+					jDAFooter.pressTab();
+					//
+					if (validLocations.size() != 0) {
+						stockAdjustmentsPage.enterLocation(validLocations.get(0));
+					} else {
+						if (context.getSKUType().equalsIgnoreCase("B")) {
+							stockAdjustmentsPage.enterLocation(locationDB.getToLocationForPutawayBoxed("BOX"));
+						} else if (context.getSKUType().equalsIgnoreCase("H")) {
+							stockAdjustmentsPage.enterLocation(locationDB.getToLocationForPutaway("HANG",
+									skuDB.getProductGroup(context.getSkuId())));
+						}
+						stockAdjustmentsPage.enterSiteId(context.getSiteID());
+						stockAdjustmentsPage.enterQuantityOnHand("500");
+						stockAdjustmentsPage.enterOrigin("NONE");
+
+						stockAdjustmentsPage
+								.enterPackConfig(skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
+						jDAFooter.clickNextButton();
+						stockAdjustmentsPage.enterPalletType("PALLET");
+						jDAFooter.clickNextButton();
+						stockAdjustmentsPage.enterReasonCode();
+						jDAFooter.clickDoneButton();
+						stockAdjustmentsPage.handlePopUp();
+					}
+					
+					//inventory update locka sttaus chnage samples
+					
+					if(lockcode.equalsIgnoreCase("HOREQ"))
+					{
+						jDAHomePage.navigateToInventoryUpdate();
+						inventoryUpdateStepDefs.i_select_the_update_type_as("Lock Status Change");
+						inventoryUpdateStepDefs.i_search_the_inventory_for_the_tag();
+						inventoryUpdateStepDefs.the_tag_details_should_be_displayed();
+						inventoryUpdateStepDefs.i_select_the_status_as_and_code_as("Locked","1Stock Removal-Sample");
+						jDAHomePage.navigateToInventoryTransactionPage();
+						inventoryTransactionQueryStepDefs.i_choose_the_code_as_and_search_the_tag_id("Inventory Lock");
+						inventoryTransactionQueryStepDefs.the_status_should_be_updated();
+					}
+					else if(lockcode.equalsIgnoreCase("SJ"))
+					{
+						jDAHomePage.navigateToInventoryUpdate();
+						inventoryUpdateStepDefs.i_select_the_update_type_as("Lock Status Change");
+						inventoryUpdateStepDefs.i_search_the_inventory_for_the_tag();
+						inventoryUpdateStepDefs.the_tag_details_should_be_displayed();
+						inventoryUpdateStepDefs.i_select_the_status_as_and_code_as("Locked","1Stock Removal-Jobber");
+						jDAHomePage.navigateToInventoryTransactionPage();
+						inventoryTransactionQueryStepDefs.i_choose_the_code_as_and_search_the_tag_id("Inventory Lock");
+						inventoryTransactionQueryStepDefs.the_status_should_be_updated();
+					}
+
+				}
+
+			}
+		}
+
 	}
 
 	public void i_maintain_stock_in_inventory(ArrayList<String> skuList, String uniqueTag) throws Throwable {
@@ -186,45 +340,37 @@ public class StockMaintainStepDefs {
 
 			if (context.getLocationID() != null) {
 				if (context.getLocationID().equalsIgnoreCase("suspense")) {
-					String location=null;
+					String location = null;
 
 					if (!inventoryDB.isSkuInSuspenseLocation(context.getSkuId())) {
 						System.out.println("Sku not in suspense location " + context.getSkuId());
 						// do stock check
 						System.out.println("SUSPENSE" + validLocations.get(0));
 						System.out.println(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)));
-						if(validLocations.size() != 0)
-						{
-						i_do_new_stock_check_at_location_with_quantity(validLocations.get(0), String.valueOf(
-								Integer.valueOf(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)))));
-						inventoryDB.updateInventoryQty(validLocations.get(0), String.valueOf(0));
-						}
-						else
-						{
+						if (validLocations.size() != 0) {
+							i_do_new_stock_check_at_location_with_quantity(validLocations.get(0), String.valueOf(Integer
+									.valueOf(inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(0)))));
+							inventoryDB.updateInventoryQty(validLocations.get(0), String.valueOf(0));
+						} else {
 							if (context.getSKUType().equalsIgnoreCase("B")) {
-								
-										location=locationDB.getToLocationForPutawayBoxed("BOX");
-							} else if (
-									context.getSKUType().equalsIgnoreCase("H")) {
-								
-										locationDB.getToLocationForPutaway("HANG",
-												skuDB.getProductGroup(context.getSkuId()));
-										
+
+								location = locationDB.getToLocationForPutawayBoxed("BOX");
+							} else if (context.getSKUType().equalsIgnoreCase("H")) {
+
+								locationDB.getToLocationForPutaway("HANG", skuDB.getProductGroup(context.getSkuId()));
+
 							} else if (context.getSKUType().equalsIgnoreCase("P")) {
-				
-								location=locationDB.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId()));
+
+								location = locationDB
+										.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId()));
+							} else if (context.getSKUType().equalsIgnoreCase("C")) {
+								location = locationDB.getPutawayLocationForGoh("HANG");
 							}
-							else if(context.getSKUType().equalsIgnoreCase("C"))
-							{
-								location=locationDB.getPutawayLocationForGoh("HANG");
-							}
-							
-							i_do_new_stock_check_at_location_with_quantity(location, String.valueOf(
-									Integer.valueOf(inventoryDB.getQtynHand(context.getSkuId(), location))));
+
+							i_do_new_stock_check_at_location_with_quantity(location, String
+									.valueOf(Integer.valueOf(inventoryDB.getQtynHand(context.getSkuId(), location))));
 							inventoryDB.updateInventoryQty(location, String.valueOf(0));
 						}
-						
-						
 
 					}
 					System.out.println("ALLOCATION" + allocation);
@@ -285,7 +431,7 @@ public class StockMaintainStepDefs {
 								}
 							}
 						}
-					} 
+					}
 				}
 
 			} else {
@@ -333,6 +479,8 @@ public class StockMaintainStepDefs {
 			}
 
 		}
+		database.closeDBConnection();
+		database.connect();
 
 	}
 

@@ -40,7 +40,6 @@ public class DockSchedulerStepDefs {
 	private BookingInDiary bookingInDiary;
 	private OrderHeaderDB orderHeaderDB;
 
-
 	Screen screen = new Screen();
 
 	@Inject
@@ -48,8 +47,9 @@ public class DockSchedulerStepDefs {
 			Context context, PreReceivingStepDefs preReceivingStepDefs,
 			TrailerMaintenanceStepDefs trailerMaintenanceStepDefs, JDAHomeStepDefs jDAHomeStepDefs,
 			DockSchedulerBookingStepDefs dockSchedulerBookingStepDefs, BookingInDiaryLog bookingInDiaryLog,
-			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, GetTcData getTcData,BookingInDiary bookingInDiary,OrderHeaderDB orderHeaderDB,UPIReceiptLineStepDefs upiReceiptLineStepDefs,Verification verification) {
-
+			PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs,
+			UPIReceiptHeaderStepDefs upiReceiptHeaderStepDefs, GetTcData getTcData, BookingInDiary bookingInDiary,
+			OrderHeaderDB orderHeaderDB, UPIReceiptLineStepDefs upiReceiptLineStepDefs, Verification verification) {
 
 		this.dockSchedulerPage = dockSchedulerPage;
 		this.jdaFooter = jdaFooter;
@@ -62,9 +62,9 @@ public class DockSchedulerStepDefs {
 		this.bookingInDiaryLog = bookingInDiaryLog;
 		this.purchaseOrderReceivingStepDefs = purchaseOrderReceivingStepDefs;
 		this.getTcData = getTcData;
-		this.verification=verification;
+		this.verification = verification;
 		this.bookingInDiary = bookingInDiary;
-		this.orderHeaderDB =orderHeaderDB;
+		this.orderHeaderDB = orderHeaderDB;
 		this.upiReceiptLineStepDefs = upiReceiptLineStepDefs;
 		this.upiReceiptHeaderStepDefs = upiReceiptHeaderStepDefs;
 	}
@@ -125,19 +125,15 @@ public class DockSchedulerStepDefs {
 			dockSchedulerPage.selectSlot();
 			jdaFooter.clickNextButton();
 
-			if(count==7)
-			{
+			if (count == 7) {
 				jdaFooter.PressEnter();
-				for(int i=0;i<5;i++)
-				{
-				jdaHomePage.scrollLeft();
+				for (int i = 0; i < 5; i++) {
+					jdaHomePage.scrollLeft();
 				}
 				dockSchedulerPage.selectSlot();
 				jdaFooter.clickNextButton();
-				
-			}
-			else if(count==15)
-			{
+
+			} else if (count == 15) {
 
 				break;
 			}
@@ -153,31 +149,29 @@ public class DockSchedulerStepDefs {
 		}
 	}
 
-
 	@When("^I create a booking for the asn$")
 	public void i_create_a_booking_for_the_asn() throws Throwable {
-		int count=0;
+		int count = 0;
 		String bookingID = Utilities.getFiveDigitRandomNumber();
-		while(bookingInDiary.isBookingExists(bookingID))
-		{
+		while (bookingInDiary.isBookingExists(bookingID)) {
 			bookingID = Utilities.getFiveDigitRandomNumber();
 		}
-		System.out.println(" CHECKKK "+context.getTrailerNo());
+		System.out.println(" CHECKKK " + context.getTrailerNo());
 		String trailerNo = context.getTrailerNo();
-		System.out.println(" CHECKKK00000"+bookingID);
+		System.out.println(" CHECKKK00000" + bookingID);
 		context.setBookingID(bookingID);
 		context.setCarrier("ALLPORT");
 		context.setServiceLevel("AIR");
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.pressTab();
-		System.out.println("site id "+context.getSiteID());
+		System.out.println("site id " + context.getSiteID());
 		if (context.getSiteID().equals("5649")) {
-		dockSchedulerPage.enterCarrier(context.getCarrier());
+			dockSchedulerPage.enterCarrier(context.getCarrier());
 		}
 		dockSchedulerPage.pressTab();
 		if (context.getSiteID().equals("5649")) {
-		dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
 		}
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterTrailerType();
@@ -193,94 +187,82 @@ public class DockSchedulerStepDefs {
 			while (dockSchedulerPage.isNoDockErrorExists()) {
 				count++;
 				System.out.println("inside while - dock error");
-				
-		jdaFooter.PressEnter();
-				
-		dockSchedulerPage.selectSlot();
-		jdaFooter.clickNextButton();
-		bookingID = Utilities.getFiveDigitRandomNumber();
-		while(bookingInDiary.isBookingExists(bookingID))
-		{
-			bookingID = Utilities.getFiveDigitRandomNumber();
-		}
-		context.setBookingID(bookingID);
-		jdaFooter.deleteExistingContent();
-		dockSchedulerPage.enterBookingId(bookingID);
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterEstimatedPallets();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterEstimatedCartons();
-		jdaFooter.PressEnter();
-		
-		if(count==4)
-		{
-			jdaFooter.PressEnter();
-			for(int i=0;i<5;i++)
-			{
-			jdaHomePage.scrollLeft();
-			}
-			dockSchedulerPage.selectSlot();
-			jdaFooter.clickNextButton();
-			bookingID = Utilities.getFiveDigitRandomNumber();
-			while(bookingInDiary.isBookingExists(bookingID))
-			{
+
+				jdaFooter.PressEnter();
+
+				dockSchedulerPage.selectSlot();
+				jdaFooter.clickNextButton();
 				bookingID = Utilities.getFiveDigitRandomNumber();
+				while (bookingInDiary.isBookingExists(bookingID)) {
+					bookingID = Utilities.getFiveDigitRandomNumber();
+				}
+				context.setBookingID(bookingID);
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterBookingId(bookingID);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedPallets();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedCartons();
+				jdaFooter.PressEnter();
+
+				if (count == 4) {
+					jdaFooter.PressEnter();
+					for (int i = 0; i < 5; i++) {
+						jdaHomePage.scrollLeft();
+					}
+					dockSchedulerPage.selectSlot();
+					jdaFooter.clickNextButton();
+					bookingID = Utilities.getFiveDigitRandomNumber();
+					while (bookingInDiary.isBookingExists(bookingID)) {
+						bookingID = Utilities.getFiveDigitRandomNumber();
+					}
+					context.setBookingID(bookingID);
+					jdaFooter.deleteExistingContent();
+					dockSchedulerPage.enterBookingId(bookingID);
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterEstimatedPallets();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterEstimatedCartons();
+					jdaFooter.PressEnter();
+
+				} else if (count == 7) {
+					break;
+				}
+
 			}
-			context.setBookingID(bookingID);
-			jdaFooter.deleteExistingContent();
-			dockSchedulerPage.enterBookingId(bookingID);
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedPallets();
-			dockSchedulerPage.pressTab();
-			dockSchedulerPage.enterEstimatedCartons();
-			jdaFooter.PressEnter();
-			
-			
-		}
-		else if(count==7)
-		{
-			break;
-		}
-		
-		}
-		}
-		else if(dockSchedulerPage.isBookingErrorExists())
-		{
+		} else if (dockSchedulerPage.isBookingErrorExists()) {
 			System.out.println("inside if - booking error");
-		while (dockSchedulerPage.isBookingErrorExists()) {
-			System.out.println("inside while - booking error");
-		jdaFooter.PressEnter();
-		jdaFooter.clickNextButton();
-		bookingID = Utilities.getFiveDigitRandomNumber();
-		jdaFooter.deleteExistingContent();
-		dockSchedulerPage.enterBookingId(bookingID);
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterEstimatedPallets();
-		dockSchedulerPage.pressTab();
-		dockSchedulerPage.enterEstimatedCartons();
-		jdaFooter.PressEnter();
-		} 
+			while (dockSchedulerPage.isBookingErrorExists()) {
+				System.out.println("inside while - booking error");
+				jdaFooter.PressEnter();
+				jdaFooter.clickNextButton();
+				bookingID = Utilities.getFiveDigitRandomNumber();
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterBookingId(bookingID);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedPallets();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedCartons();
+				jdaFooter.PressEnter();
+			}
 		}
-		}
-	
+	}
 
-
-	
 	@When("^I create a booking$")
 	public void i_create_a_booking() throws Throwable {
 		String bookingID = Utilities.getFiveDigitRandomNumber();
@@ -415,17 +397,11 @@ public class DockSchedulerStepDefs {
 		String asnId = getTcData.getAsn();
 		String site = context.getSiteID();
 
-//		 String preAdviceId = getTcData.getPo();
-//		 String upiId = getTcData.getUpi();
-//		 String asnId = getTcData.getAsn();
-		
-		
-	//String site = "5649";
-		
+		// String preAdviceId = getTcData.getPo();
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
 
-		
-		
-		
+		// String site = "5649";
 
 		preReceivingStepDefs.the_PO_UPI_ASN_of_type_details_should_be_displayed(type);
 		trailerMaintenanceStepDefs.i_create_a_trailer_to_receive_at_the_dock_door();
@@ -554,32 +530,26 @@ public class DockSchedulerStepDefs {
 			dockSchedulerPage.selectSlot();
 			jdaFooter.clickNextButton();
 
-			if(count==7)
-			{
+			if (count == 7) {
 				jdaFooter.PressEnter();
-				for(int i=0;i<5;i++)
-				{
-				jdaHomePage.scrollLeft();
+				for (int i = 0; i < 5; i++) {
+					jdaHomePage.scrollLeft();
 				}
 				dockSchedulerPage.selectSlot();
 				jdaFooter.clickNextButton();
-				
-			}
-			else if(count==15)
-			{
+
+			} else if (count == 15) {
 
 				break;
 			}
 		}
 	}
 
-	
-
 	@When("^I change the booking time to different date$")
 	public void i_change_the_booking_time_to_different_date() throws Throwable {
 		dockSchedulerPage.changeBookingTimeToDifferentDate();
-		//dockSchedulerPage.selectSlot();
-		 i_select_the_slot();
+		// dockSchedulerPage.selectSlot();
+		i_select_the_slot();
 		// i_move_to_the_slot();
 		jdaFooter.clickNextButton();
 	}
@@ -616,11 +586,11 @@ public class DockSchedulerStepDefs {
 
 	@Given("^the UPI , ASN of type \"([^\"]*)\" details should be displayed$")
 	public void the_UPI_ASN_of_type_details_should_be_displayed(String type) throws Throwable {
-//		String upiId = getTcData.getUpi();
-//		String asnId = getTcData.getAsn();
+		// String upiId = getTcData.getUpi();
+		// String asnId = getTcData.getAsn();
 		String site = context.getSiteID();
 
-//		String site = context.getSiteId();
+		// String site = context.getSiteId();
 		String upiId = context.getUpiId();
 		String asnId = context.getAsnId();
 		context.setSKUType(type);
@@ -631,12 +601,12 @@ public class DockSchedulerStepDefs {
 	public void i_have_done_the_dock_scheduler_booking_with_the_UPI_ASN_of_type_at_site_for_idt(String type)
 			throws Throwable {
 		String site = context.getSiteID();
-		//String upiId = getTcData.getUpi();
+		// String upiId = getTcData.getUpi();
 		// asnId = getTcData.getAsn();
-		//context.setSKUType(datatype);
+		// context.setSKUType(datatype);
 		context.setSiteID(site);
 		context.setSKUType(type);
-		System.out.println( "check" + context.getSKUType());
+		System.out.println("check" + context.getSKUType());
 		upiReceiptHeaderStepDefs.the_UPI_and_ASN_of_type_should_be_in_status_for_IDT(type, "Released");
 		upiReceiptLineStepDefs.the_UPI_should_have_sku_quantity_due_details();
 		upiReceiptHeaderStepDefs.asn_and_container_to_be_linked_with_upi_header();
@@ -649,7 +619,7 @@ public class DockSchedulerStepDefs {
 		i_create_a_booking_for_the_asn();
 		dockSchedulerBookingStepDefs.the_booking_details_should_appear_in_the_dock_scheduler_booking();
 	}
-	
+
 	@When("^I create new dock booking at site \"([^\"]*)\"$")
 	public void i_create_new_dock_booking_at_site(String site) throws Throwable {
 		dockSchedulerPage.selectCreateNewBooking();
@@ -659,11 +629,11 @@ public class DockSchedulerStepDefs {
 		}
 		jdaFooter.clickNextButton();
 	}
+
 	@When("^I select the booking type for consignment$")
 	public void i_select_the_booking_type_for_consignment() throws Throwable {
-		//context.setOrderId("5104628740");
 		dockSchedulerPage.enterBookingType("Consignment");
-		String cons=orderHeaderDB.selectConsignment(context.getOrderId());
+		String cons = orderHeaderDB.selectConsignment(context.getOrderId());
 		context.setConsignmentID(cons);
 		jdaFooter.pressTab();
 		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
@@ -671,29 +641,27 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectConsignment();
 		jdaFooter.clickNextButton();
 	}
-	
-	
+
 	@When("^I create multiple dock booking at site \"([^\"]*)\"$")
 	public void i_create_multiple_dock_booking_at_site(String site) throws Throwable {
-		ArrayList<String> bookingIdList=new ArrayList<String>();
-		for(int i=0;i<context.getTrailerList().size();i++)
-		{
+		ArrayList<String> bookingIdList = new ArrayList<String>();
+		for (int i = 0; i < context.getTrailerList().size(); i++) {
 			context.setTrailerNo(context.getTrailerList().get(i));
-		jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
-		i_create_new_dock_booking_at_site(site);
-		i_select_the_booking_type_for_consignment();
-		i_select_the_slot();
-		i_create_a_booking_for_the_asn_with_trailer(context.getTrailerNo());
-		bookingIdList.add(context.getBookingID());
-		dockSchedulerBookingStepDefs.the_booking_details_should_appear();
-		
+			jDAHomeStepDefs.i_navigate_to_dock_scheduler_start_page();
+			i_create_new_dock_booking_at_site(site);
+			i_select_the_booking_type_for_consignment();
+			i_select_the_slot();
+			i_create_a_booking_for_the_asn_with_trailer(context.getTrailerNo());
+			bookingIdList.add(context.getBookingID());
+			dockSchedulerBookingStepDefs.the_booking_details_should_appear();
+
 		}
 		context.setBookingList(bookingIdList);
 	}
-	
+
 	@When("^I select the booking type for flatpack consignment$")
 	public void i_select_the_booking_type_for_flatpack_consignment() throws Throwable {
-		//context.setOrderId("5104628740");
+		// context.setOrderId("5104628740");
 		dockSchedulerPage.enterBookingType("Consignment");
 		jdaFooter.pressTab();
 		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
@@ -701,89 +669,36 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.selectConsignment();
 		jdaFooter.clickNextButton();
 	}
-	
+
 	@When("^I create a booking for the asn with trailer \"([^\"]*)\"$")
 	public void i_create_a_booking_for_the_asn_with_trailer(String trailer) throws Throwable {
-		int count=0;
-	String bookingID = Utilities.getFiveDigitRandomNumber();
-	while(bookingInDiary.isBookingExists(bookingID))
-	{
-		bookingID = Utilities.getFiveDigitRandomNumber();
-	}
-	System.out.println(" CHECKKK "+trailer);
-	String trailerNo =trailer;
-	System.out.println(" CHECKKK00000"+bookingID);
-	context.setBookingID(bookingID);
-	
-	dockSchedulerPage.enterBookingId(bookingID);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterBookingId("In Progress");
-	dockSchedulerPage.pressTab();
-	System.out.println("site id "+context.getSiteID());
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterTrailerNo(trailerNo);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedPallets();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedCartons();
-	jdaFooter.PressEnter();
-	if (dockSchedulerPage.isNoDockErrorExists()) {
-		System.out.println("inside while - dock error");
-		while (dockSchedulerPage.isNoDockErrorExists()) {
-			count++;
-			System.out.println("inside while - dock error");
-			
-	jdaFooter.PressEnter();
-			
-	dockSchedulerPage.selectSlot();
-	jdaFooter.clickNextButton();
-	bookingID = Utilities.getFiveDigitRandomNumber();
-	while(bookingInDiary.isBookingExists(bookingID))
-	{
-		bookingID = Utilities.getFiveDigitRandomNumber();
-	}
-	context.setBookingID(bookingID);
-	jdaFooter.deleteExistingContent();
-	dockSchedulerPage.enterBookingId(bookingID);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterBookingId("In Progress");
-	dockSchedulerPage.pressTab();
-	System.out.println("site id "+context.getSiteID());
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterTrailerNo(trailerNo);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedPallets();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedCartons();
-	jdaFooter.PressEnter();
-	
-	if(count==7)
-	{
-		jdaFooter.PressEnter();
-		for(int i=0;i<5;i++)
-		{
-		jdaHomePage.scrollLeft();
-		}
-		dockSchedulerPage.selectSlot();
-		jdaFooter.clickNextButton();
-		bookingID = Utilities.getFiveDigitRandomNumber();
-		while(bookingInDiary.isBookingExists(bookingID))
-		{
+		int count = 0;
+		String bookingID = Utilities.getFiveDigitRandomNumber();
+		while (bookingInDiary.isBookingExists(bookingID)) {
 			bookingID = Utilities.getFiveDigitRandomNumber();
 		}
+		System.out.println(" CHECKKK " + trailer);
+		String trailerNo = trailer;
+		System.out.println(" CHECKKK00000" + bookingID);
 		context.setBookingID(bookingID);
-		jdaFooter.deleteExistingContent();
+		context.setCarrier("ALLPORT");
+		context.setServiceLevel("AIR");
+
 		dockSchedulerPage.enterBookingId(bookingID);
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterBookingId("In Progress");
 		dockSchedulerPage.pressTab();
-		System.out.println("site id "+context.getSiteID());
+
+		System.out.println("site id " + context.getSiteID());
+		if (context.getSiteID().equals("5649")) {
+			dockSchedulerPage.enterCarrier(context.getCarrier());
+		}
 		dockSchedulerPage.pressTab();
+		if (context.getSiteID().equals("5649")) {
+			dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+		}
 		dockSchedulerPage.pressTab();
+		dockSchedulerPage.enterTrailerType();
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterTrailerNo(trailerNo);
 		dockSchedulerPage.pressTab();
@@ -791,41 +706,116 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.pressTab();
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
-		
-		
-	}
-	else if(count==15)
-	{
-		break;
-	}
-	
-	}
-	}
-	else if(dockSchedulerPage.isBookingErrorExists())
-	{
-		System.out.println("inside if - booking error");
-	while (dockSchedulerPage.isBookingErrorExists()) {
-		System.out.println("inside while - booking error");
-	jdaFooter.PressEnter();
-	jdaFooter.clickNextButton();
-	bookingID = Utilities.getFiveDigitRandomNumber();
-	jdaFooter.deleteExistingContent();
-	dockSchedulerPage.enterBookingId(bookingID);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterBookingId("In Progress");
-	dockSchedulerPage.pressTab();
-	System.out.println("site id "+context.getSiteID());
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterTrailerNo(trailerNo);
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedPallets();
-	dockSchedulerPage.pressTab();
-	dockSchedulerPage.enterEstimatedCartons();
-	jdaFooter.PressEnter();
-	} 
-	}
-	context.getBookingList().add(bookingID);
+		if (dockSchedulerPage.isNoDockErrorExists() || dockSchedulerPage.isBookingErrorExists()) {
+			System.out.println("inside while - dock error");
+			while (dockSchedulerPage.isNoDockErrorExists() || dockSchedulerPage.isBookingErrorExists()) {
+				count++;
+				System.out.println("inside while - dock error");
+
+				jdaFooter.PressEnter();
+
+				dockSchedulerPage.selectSlot();
+				jdaFooter.clickNextButton();
+				bookingID = Utilities.getFiveDigitRandomNumber();
+				while (bookingInDiary.isBookingExists(bookingID)) {
+					bookingID = Utilities.getFiveDigitRandomNumber();
+				}
+				context.setBookingID(bookingID);
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterBookingId(bookingID);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterBookingId("In Progress");
+				dockSchedulerPage.pressTab();
+
+				System.out.println("site id " + context.getSiteID());
+				if (context.getSiteID().equals("5649")) {
+					jdaFooter.deleteExistingContent();
+					dockSchedulerPage.enterCarrier(context.getCarrier());
+				}
+				dockSchedulerPage.pressTab();
+				if (context.getSiteID().equals("5649")) {
+					jdaFooter.deleteExistingContent();
+					dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+				}
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterTrailerType();
+				dockSchedulerPage.pressTab();
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterTrailerNo(trailerNo);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedPallets();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedCartons();
+				jdaFooter.PressEnter();
+
+				if (count == 4) {
+					jdaFooter.PressEnter();
+					for (int i = 0; i < 5; i++) {
+						jdaHomePage.scrollLeft();
+					}
+					dockSchedulerPage.selectSlot();
+					jdaFooter.clickNextButton();
+					bookingID = Utilities.getFiveDigitRandomNumber();
+					while (bookingInDiary.isBookingExists(bookingID)) {
+						bookingID = Utilities.getFiveDigitRandomNumber();
+					}
+					context.setBookingID(bookingID);
+					jdaFooter.deleteExistingContent();
+					dockSchedulerPage.enterBookingId(bookingID);
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterBookingId("In Progress");
+					dockSchedulerPage.pressTab();
+
+					System.out.println("site id " + context.getSiteID());
+					if (context.getSiteID().equals("5649")) {
+						jdaFooter.deleteExistingContent();
+						dockSchedulerPage.enterCarrier(context.getCarrier());
+					}
+					dockSchedulerPage.pressTab();
+					if (context.getSiteID().equals("5649")) {
+						jdaFooter.deleteExistingContent();
+						dockSchedulerPage.enterServiceLevel(context.getServiceLevel());
+					}
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterTrailerType();
+					dockSchedulerPage.pressTab();
+					jdaFooter.deleteExistingContent();
+					dockSchedulerPage.enterTrailerNo(trailerNo);
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterEstimatedPallets();
+					dockSchedulerPage.pressTab();
+					dockSchedulerPage.enterEstimatedCartons();
+					jdaFooter.PressEnter();
+
+				} else if (count == 7) {
+					break;
+				}
+
+			}
+		} else if (dockSchedulerPage.isBookingErrorExists()) {
+			System.out.println("inside if - booking error");
+			while (dockSchedulerPage.isBookingErrorExists()) {
+				System.out.println("inside while - booking error");
+				jdaFooter.PressEnter();
+				jdaFooter.clickNextButton();
+				bookingID = Utilities.getFiveDigitRandomNumber();
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterBookingId(bookingID);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterBookingId("In Progress");
+				dockSchedulerPage.pressTab();
+				System.out.println("site id " + context.getSiteID());
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.pressTab();
+				jdaFooter.deleteExistingContent();
+				dockSchedulerPage.enterTrailerNo(trailerNo);
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedPallets();
+				dockSchedulerPage.pressTab();
+				dockSchedulerPage.enterEstimatedCartons();
+				jdaFooter.PressEnter();
+			}
+		}
 	}
 }

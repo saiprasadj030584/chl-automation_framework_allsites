@@ -204,9 +204,11 @@ public class PurchaseOrderPickingPage {
 			return false;
 	}
 
-	public void changeQtyPick(String string) {
+	public void changeQtyPick(int qty) throws InterruptedException {
 		// TODO Auto-generated method stub
-		
+		String changdQty=String.valueOf(qty/2);
+		screen.type(changdQty+"E_("+changdQty+"E)");
+		Thread.sleep(2000);
 	}
 	
 	

@@ -802,4 +802,12 @@ public class Database {
 
 		}
 	}
+	
+	public void closeDBConnection() throws SQLException {
+		// if (!context.getConnection().equals(null)) {
+		if (!(null == context.getConnection())) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+	}
 }

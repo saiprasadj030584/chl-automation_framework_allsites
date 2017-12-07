@@ -32,15 +32,15 @@ public class TrailerShippingStepDefs {
 	private Verification verification;
 
 	@Inject
-	public TrailerShippingStepDefs(JDAFooter jdaFooter,TrailerShippingPage trailerShippingPage,
-			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context,OrderHeaderDB orderHeaderDB,
+	public TrailerShippingStepDefs(JDAFooter jdaFooter, TrailerShippingPage trailerShippingPage,
+			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context, OrderHeaderDB orderHeaderDB,
 			Verification verification) {
 		this.jdaFooter = jdaFooter;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaLoginPage = jdaLoginPage;
 		this.context = context;
-		this.trailerShippingPage=trailerShippingPage;
-		this.orderHeaderDB=orderHeaderDB;
+		this.trailerShippingPage = trailerShippingPage;
+		this.orderHeaderDB = orderHeaderDB;
 		this.verification = verification;
 	}
 
@@ -56,12 +56,12 @@ public class TrailerShippingStepDefs {
 		jdaFooter.pressTab();
 		trailerShippingPage.enterTrailerNumber(context.getTrailerNo());
 		jdaFooter.clickNextButton();
-		String Sealno=Utilities.getFourDigitRandomNumber();
+		String Sealno = Utilities.getFourDigitRandomNumber();
 		trailerShippingPage.enterSealNo(Sealno);
 		trailerShippingPage.clickOkButton();
 		Thread.sleep(5000);
 		jdaFooter.clickDoneButton();
-		
+
 		ArrayList failureList = new ArrayList();
 		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
 		for (int i = 0; i < context.getOrderList().size(); i++) {
@@ -74,5 +74,34 @@ public class TrailerShippingStepDefs {
 				failureList.isEmpty());
 	}
 
-}
+	@Then("^Multiple trailer should be shipped$")
+	public void multiple_trailer_should_be_shipped() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		jdaFooter.PressEnter();
+		for (int i = 0; i < context.getTrailerList().size(); i++) {
+			context.setTrailerNo(context.getTrailerList().get(i));
+			Thread.sleep(2000);
+			jdaFooter.pressTab();
+			Thread.sleep(1000);
+			jdaFooter.pressTab();
+			Thread.sleep(1000);
+			trailerShippingPage.enterSiteID(context.getSiteID());
+			jdaFooter.pressTab();
+			jdaFooter.deleteExistingContent();
+			trailerShippingPage.enterTrailerNumber(context.getTrailerNo());
+			jdaFooter.clickNextButton();
+			String Sealno = Utilities.getFourDigitRandomNumber();
+			trailerShippingPage.enterSealNo(Sealno);
+			trailerShippingPage.clickOkButton();
+			Thread.sleep(5000);
+			jdaFooter.clickDoneButton();
+		}
+		Thread.sleep(3000);
+		verification.verifyData("Order Status", "Shipped", orderHeaderDB.getStatus(context.getOrderId()), failureList);
 
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
+
+}
