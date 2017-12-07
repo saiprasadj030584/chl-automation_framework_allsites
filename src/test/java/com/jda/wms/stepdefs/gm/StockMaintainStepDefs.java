@@ -479,8 +479,7 @@ public class StockMaintainStepDefs {
 			}
 
 		}
-		database.closeDBConnection();
-		database.connect();
+		database.reconnectDB();
 
 	}
 

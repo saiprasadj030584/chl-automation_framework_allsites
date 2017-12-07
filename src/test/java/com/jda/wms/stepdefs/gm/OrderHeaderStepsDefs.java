@@ -338,166 +338,6 @@ public class OrderHeaderStepsDefs {
 		boolean allocation = false;
 		for (int i = 0; i < skuFromOrder.size(); i++) {
 			context.setSkuId((String) skuFromOrder.get(i));
-			ArrayList<String> locationList = inventoryDB.getLocationsForSku((String) skuFromOrder.get(i));
-			System.out.println(locationList);
-			ArrayList<String> validLocations = new ArrayList<String>();
-			int totalQtyOnHand = 0;
-			for (int j = 0; j < locationList.size(); j++) {
-				if (locationDb.getLocationZone(locationList.get(j)) != null) {
-					if (inventoryDB.getOriginId(locationList.get(j)) != null
-							&& inventoryDB.getOriginId(locationList.get(j)).contains("NONE")) {
-						if (context.getSKUType().equalsIgnoreCase("Hanging")
-								|| context.getSKUType().equalsIgnoreCase("GOH")) {
-							if (locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG")
-									&& locationDb.getUserDefType2(locationList.get(j)).contains("HANG")
-									&& locationDb.getUserDefType3(locationList.get(j)).contains("HANG")
-									&& locationDb.getUserDefType1(locationList.get(j))
-											.contains(skuDB.getProductGroup(context.getSkuId()))) {
-								System.out.println(
-										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
-								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-										.equalsIgnoreCase("UnLocked")
-										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
-												locationList.get(j))) != Integer.parseInt(
-														inventoryDB.getQtyAllocated((String) skuFromOrder.get(i),
-																locationList.get(j)))) {
-									System.out.println("entered" + locationList.get(j));
-									validLocations.add(locationList.get(j));
-									totalQtyOnHand += Integer.parseInt(inventoryDB
-											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
-								}
-							}
-						}
-
-						else if (context.getSKUType().equalsIgnoreCase("Boxed")) {
-							if (locationDb.getLocationZone(locationList.get(j)).contains("BOX")
-									&& locationDb.getUserDefType2(locationList.get(j)).contains("BOX")
-									&& locationDb.getUserDefType3(locationList.get(j)).contains("BOX")) {
-								System.out.println(
-										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
-								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-										.equalsIgnoreCase("UnLocked")
-										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
-												locationList.get(j))) != Integer.parseInt(
-														inventoryDB.getQtyAllocated((String) skuFromOrder.get(i),
-																locationList.get(j)))) {
-									System.out.println("entered" + locationList.get(j));
-									validLocations.add(locationList.get(j));
-									totalQtyOnHand += Integer.parseInt(inventoryDB
-											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
-								}
-							}
-						}
-
-						else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
-							if ((locationDb.getLocationZone(locationList.get(j)).contains("BOX")
-									&& locationDb.getUserDefType2(locationList.get(j)).contains("BOX")
-									&& locationDb.getUserDefType3(locationList.get(j)).contains("FLAT"))
-									|| (locationDb.getLocationZone(locationList.get(j)).contains("HANG")
-											&& locationDb.getUserDefType2(locationList.get(j)).contains("HANG")
-											&& locationDb.getUserDefType3(locationList.get(j)).contains("FLAT")
-											&& locationDb.getUserDefType1(locationList.get(j))
-													.contains(skuDB.getProductGroup(context.getSkuId())))) {
-								System.out.println(
-										inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)));
-								if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-										.equalsIgnoreCase("UnLocked")
-										&& Integer.parseInt(inventoryDB.getQtynHand((String) skuFromOrder.get(i),
-												locationList.get(j))) != Integer.parseInt(
-														inventoryDB.getQtyAllocated((String) skuFromOrder.get(i),
-																locationList.get(j)))) {
-									System.out.println("entered" + locationList.get(j));
-									validLocations.add(locationList.get(j));
-									totalQtyOnHand += Integer.parseInt(inventoryDB
-											.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
-								}
-							}
-						}
-
-					}
-				}
-			}
-			System.out.println(validLocations);
-			System.out.println("totalQtyOnHand" + totalQtyOnHand);
-			if (totalQtyOnHand >= Integer
-					.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i)))) {
-				allocation = true;
-			}
-
-			if (context.getLocationID() != null) {
-				if (context.getLocationID().equalsIgnoreCase("suspense")) {
-
-					if (!inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i)))) {
-						System.out.println("Sku not in suspense location " + (String) skuFromOrder.get(i));
-						// do stock check
-
-						purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(
-								validLocations.get(0),
-								String.valueOf(Integer.valueOf(
-										inventoryDB.getQtynHand((String) skuFromOrder.get(i), validLocations.get(0)))
-										- 1));
-
-					}
-
-					if (allocation) {
-						System.out.println("Stock is present in other locations");
-						// update in inventory of valid locations to 0
-						if (validLocations.size() != 0) {
-							for (int j = 0; j < validLocations.size(); j++) {
-								inventoryDB.updateInventoryQty(validLocations.get(i), String.valueOf(0));
-								// purchaseOrderStockCheckStepDefs.i_do_new_stock_check_at_location_with_quantity(validLocations.get(i),inventoryDB.getQtynHand((String)
-								// skuFromOrder.get(i),validLocations.get(i)));
-							}
-						}
-					}
-				}
-			} else {
-
-				// Assert.assertTrue("Stock is not present in other locations" ,
-				// allocation);
-
-				System.out.println("Stock is not present in other locations");
-
-				if (!(allocation)) {
-					// default:stock adjustment to qty 500
-					jdaHomePage.navigateToStockAdjustment();
-					Thread.sleep(2000);
-					stockAdjustmentsPage.selectNewStock();
-					jdaFooter.clickNextButton();
-					Thread.sleep(2000);
-					stockAdjustmentsPage.enterSkuId(context.getSkuId());
-					jdaFooter.pressTab();
-					//
-					if (validLocations.size() != 0) {
-						stockAdjustmentsPage.enterLocation(validLocations.get(0));
-					} else {
-						if (context.getSKUType().equalsIgnoreCase("Boxed")) {
-							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutawayBoxed("BOX"));
-						} else if (context.getSKUType().equalsIgnoreCase("GOH")
-								|| context.getSKUType().equalsIgnoreCase("Hanging")) {
-							stockAdjustmentsPage.enterLocation(locationDb.getToLocationForPutaway("HANG",
-									skuDB.getProductGroup(context.getSkuId())));
-						} else if (context.getSKUType().equalsIgnoreCase("Flatpack")) {
-							stockAdjustmentsPage.enterLocation(locationDb
-									.getToLocationForPutawayFlatpack(skuDB.getProductGroup(context.getSkuId())));
-						}
-					}
-
-					stockAdjustmentsPage.enterSiteId(context.getSiteID());
-					stockAdjustmentsPage.enterQuantityOnHand("500");
-					stockAdjustmentsPage.enterOrigin("NONE");
-
-					stockAdjustmentsPage.enterPackConfig(skuSkuConfigDB.getPackConfigList(context.getSkuId()).get(0));
-					jdaFooter.clickNextButton();
-					stockAdjustmentsPage.enterPalletType("PALLET");
-					jdaFooter.clickNextButton();
-					stockAdjustmentsPage.enterReasonCode();
-					jdaFooter.clickDoneButton();
-					stockAdjustmentsPage.handlePopUp();
-
-				}
-
-			}
 
 			// To Validate Modularity,New Product Check for SKU
 
@@ -518,8 +358,8 @@ public class OrderHeaderStepsDefs {
 			}
 			// TODO Check for multiple skus
 
-			verification.verifyData("SKU Type", type, skuDB.getSKUType((String) skuFromOrder.get(i)), failureList);
-			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue((String) skuFromOrder.get(i)),
+			verification.verifyData("SKU Type", type, skuDB.getSKUType(context.getSkuId()), failureList);
+			verification.verifyData("New Product", "N", skuDB.getNewProductCheckValue(context.getSkuId()),
 					failureList);
 		}
 
@@ -798,6 +638,11 @@ public class OrderHeaderStepsDefs {
 		orderPreparationPage.enterOrderId(context.getOrderId());
 		jdaFooter.clickNextButton();
 		String consignment = "CON" + Utilities.getThreeDigitRandomNumber();
+		while (consignmentDB.isConsignmentExists(consignment)) {
+			System.out.println("entered already exists");
+			consignment = "CON" + Utilities.getThreeDigitRandomNumber();
+		}
+		System.out.println("exit already exists7");
 		orderPreparationPage.createNewConsignment(consignment);
 		orderPreparationPage.selectRecord();
 		jdaFooter.clickNextButton();

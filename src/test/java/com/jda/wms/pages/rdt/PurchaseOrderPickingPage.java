@@ -211,6 +211,28 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(2000);
 	}
 	
+	public void enterPallet(String string) throws InterruptedException {
+		screen.type(string);
+		Thread.sleep(1000);
+	}
+
+	public String getToLocation() throws FindFailed, InterruptedException {
+		// TODO Auto-generated method stub
+		Match mStatus = screen.find("images/Putty/Picking/ToLocationPicking.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		Thread.sleep(5000);
+		return App.getClipboard();
+	}
+
+	public boolean isBoxSizeEntryPageDisplayed() {
+		// TODO Auto-generated method stub
+		if (screen.exists("images/Putty/Picking/BoxSize.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
 	
 
 }

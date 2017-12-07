@@ -783,7 +783,7 @@ public class Database {
 		Statement stmt = null;
 		try {
 			System.out.println("CHECK CONNECTION " + context.getDBConnection());
-			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
+			if (context.getDBConnection() == null) {
 				npsDataBase.connectAutomationDB();
 			}
 
@@ -809,5 +809,15 @@ public class Database {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
 		}
+	}
+	
+	public void reconnectDB() throws SQLException, ClassNotFoundException {
+		
+		
+		if (!(null == context.getConnection())) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+		connect();
 	}
 }

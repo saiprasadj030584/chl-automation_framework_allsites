@@ -15,7 +15,7 @@ Feature: Outbound order
     And I run the program
     And I perform split picking for boxed retail
     Then the order should be Ready to Load
-    And I create multiple trailer to receive at the dock door
+    And I create "2" trailer to receive at the dock door
     And I create multiple dock booking at site "5649"
     And I proceed for boxed vehicle loading for multiple bookings of split pick
     Then Trailer should be loaded

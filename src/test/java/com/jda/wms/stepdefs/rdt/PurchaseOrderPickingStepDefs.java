@@ -22,6 +22,7 @@ import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.gm.JDAFooter;
 import com.jda.wms.pages.gm.JdaHomePage;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
+import com.jda.wms.pages.rdt.PurchaseOrderRelocatePage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
 import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
@@ -59,6 +60,7 @@ public class PurchaseOrderPickingStepDefs {
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private ClusteringStepDefs clusteringStepDefs;
 	private OrderLineDB orderLineDB;
+	private PurchaseOrderRelocatePage purchaseOrderRelocatePage;
 
 	@Inject
 	public PurchaseOrderPickingStepDefs(PurchaseOrderPickingPage purchaseOrderPickingPage, Context context,
@@ -69,7 +71,7 @@ public class PurchaseOrderPickingStepDefs {
 			PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage, BookingInDiary bookingInDiary,
 			OrderContainerDB orderContainerDB, OrderHeaderDB orderHeaderDB, AddressDB addressDB,
 			SchedulerProgramStepDefs schedulerProgramStepDefs, JDAHomeStepDefs jdaHomeStepDefs,
-			ClusteringStepDefs clusteringStepDefs, OrderLineDB orderLineDB) {
+			ClusteringStepDefs clusteringStepDefs, OrderLineDB orderLineDB,PurchaseOrderRelocatePage purchaseOrderRelocatePage) {
 
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -91,6 +93,7 @@ public class PurchaseOrderPickingStepDefs {
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 		this.clusteringStepDefs = clusteringStepDefs;
 		this.orderLineDB = orderLineDB;
+		this.purchaseOrderRelocatePage=purchaseOrderRelocatePage;
 
 	}
 
@@ -863,6 +866,12 @@ public class PurchaseOrderPickingStepDefs {
 					Assert.assertTrue("To Location page is not as expected",
 							purchaseOrderPickingPage.isPckLocPageDisplayed());
 					puttyFunctionsPage.pressEnter();
+					if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+						Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+						context.setToLocation(purchaseOrderPickingPage.getToLocation());
+						purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+						jdaFooter.PressEnter();
+					}
 					Assert.assertTrue("Picking completion is not as expected",
 							purchaseOrderPickingPage.isPickEntPageDisplayed());
 					hooks.logoutPutty();
@@ -878,5 +887,154 @@ public class PurchaseOrderPickingStepDefs {
 			}
 		}
 	}
+	
+	@Given("^I perform split picking for boxed non retail$")
+	public void i_perform_split_picking_for_boxed_non_retail() throws Throwable {
+		ArrayList<String> listIdArray = moveTaskDB.getListIdArray(context.getOrderId());
+		String container=null;
+		for (int j = 0; j < listIdArray.size(); j++) {
+			context.setListID(moveTaskDB.getListId(context.getOrderId()));
+			context.setSkuId(moveTaskDB.getSkuId(context.getListID()));
+			{
+				for (int i = 0; i < 2; i++) {
+					puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+					puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+					purchaseOrderPickingPage.selectPickingMenu();
+					purchaseOrderPickingPage.selectPickingMenu2();
+					purchaseOrderPickingPage.selectContainerPick();
+					moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+					context.setListID(moveTaskDB.getListId(context.getOrderId()));
+					purchaseOrderPickingPage.enterListId(context.getListID());
+					purchaseOrderPickingPage.enterPallet(Utilities.getFourteenDigitRandomNumber());
+					puttyFunctionsPage.pressEnter();
+					container=Utilities.getSixDigitRandomNumber();
+					purchaseOrderPickingPage.enterPallet(container);
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter();
+					if (i == 0) {
+						purchaseOrderPickingPage.changeQtyPick(
+								Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), context.getSkuId())));
+						puttyFunctionsPage.pressEnter();
+						purchaseOrderPickingPage.selectSplitPick();
+						purchaseOrderPickingPage.enterPallet(container);
+						puttyFunctionsPage.pressEnter();
+						jdaFooter.clickMoreButton();
+						jdaFooter.clickMoreButton();
+					} else if (i == 1) {
+						puttyFunctionsPage.pressEnter();
+						purchaseOrderPickingPage.enterPallet(container);
+						puttyFunctionsPage.pressEnter();
+					}
+					purchaseOrderPickingPage.enterPallet("1");
+					puttyFunctionsPage.pressEnter();
+					Assert.assertTrue("To Location page is not as expected",
+							purchaseOrderPickingPage.isPckLocPageDisplayed());
+					puttyFunctionsPage.pressEnter();
+					if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+						Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+						context.setToLocation(purchaseOrderPickingPage.getToLocation());
+						purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+						jdaFooter.PressEnter();
+					}
+					Assert.assertTrue("Picking completion is not as expected",
+							purchaseOrderPickingPage.isPickEntPageDisplayed());
+					hooks.logoutPutty();
+					if (i == 0) {
+						// do clustering
+						jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
+						clusteringStepDefs.i_proceed_with_clustering_for("NON RETAIL");
+						// again scheduler program
+						jdaHomeStepDefs.i_navigate_scheduler_program_page();
+						schedulerProgramStepDefs.i_run_the_program();
+					}
+				}
+			}
+		}
+	}
+	
+	@Given("^I perform split picking for hanging non retail$")
+	public void i_perform_split_picking_for_hanging_non_retail() throws Throwable {
+		ArrayList<String> listIdArray = moveTaskDB.getListIdArray(context.getOrderId());
+		for (int j = 0; j < listIdArray.size(); j++) {
+
+			context.setListID(moveTaskDB.getListId(context.getOrderId()));
+			context.setSkuId(moveTaskDB.getSkuId(context.getListID()));
+			{
+				for (int i = 0; i < 2; i++) {
+					puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+					puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+					purchaseOrderPickingPage.selectPickingMenu();
+					purchaseOrderPickingPage.selectPickingMenu2();
+					purchaseOrderPickingPage.selectContainerPick();
+					moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+
+					context.setListID(moveTaskDB.getListId(context.getOrderId()));
+					purchaseOrderPickingPage.enterListId(context.getListID());
+					puttyFunctionsPage.pressEnter();
+					
+					// address table
+					String customer = orderHeaderDB.getCustomer(context.getOrderId());
+					context.setCustomer(customer);
+					String tagValueL = addressDB.getLowerTagValue();
+					String tagValueH = addressDB.getHigherTagValue();
+					int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+							+ Integer.parseInt(tagValueL);
+					context.setTagId(String.valueOf(tag));
+					System.out.println(String.valueOf(tag));
+
+					System.out.println("TAG ID" + context.getTagId());
+					purchaseOrderPickingPage.enterTagId(context.getTagId());
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter(); //full qty enter
+					if(i==0)
+					{
+					purchaseOrderPickingPage.changeQtyPick(
+							Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), context.getSkuId())));
+					puttyFunctionsPage.pressEnter();
+					purchaseOrderPickingPage.selectSplitPick();
+					}
+					else
+					{
+						puttyFunctionsPage.pressEnter();	
+					}
+					purchaseOrderPickingPage.enterContainerId(context.getTagId());
+					puttyFunctionsPage.pressEnter(); 
+					if(i==0)
+					{
+					jdaFooter.clickMoreButton();
+					jdaFooter.clickMoreButton();
+					}
+					if(purchaseOrderPickingPage.isBoxSizeEntryPageDisplayed())
+					{
+						purchaseOrderPickingPage.enterPallet("1");
+						puttyFunctionsPage.pressEnter();	
+					}
+					Assert.assertTrue("To Location page is not as expected",
+							purchaseOrderPickingPage.isPckLocPageDisplayed());
+					puttyFunctionsPage.pressEnter();
+					if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+						Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+						context.setToLocation(purchaseOrderPickingPage.getToLocation());
+						purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+						jdaFooter.PressEnter();
+					}
+					Assert.assertTrue("Picking completion is not as expected",
+							purchaseOrderPickingPage.isPickEntPageDisplayed());
+					hooks.logoutPutty();
+					if (i == 0) {
+						// do clustering
+						jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
+						clusteringStepDefs.i_proceed_with_clustering_for("NON RETAIL");
+						// again scheduler program
+						jdaHomeStepDefs.i_navigate_scheduler_program_page();
+						schedulerProgramStepDefs.i_run_the_program();
+					}
+				}
+			}
+		}
+	}
+	
+	
+
 
 }

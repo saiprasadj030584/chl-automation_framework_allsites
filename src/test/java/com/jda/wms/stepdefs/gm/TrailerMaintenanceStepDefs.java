@@ -50,10 +50,10 @@ public class TrailerMaintenanceStepDefs {
 		context.setTrailerNo(trailerNo);
 	}
 
-	@Given("^I create multiple trailer to receive at the dock door$")
-	public void i_create_multiple_trailer_to_receive_at_the_dock_door() throws Throwable {
+	@Given("^I create \"([^\"]*)\" trailer to receive at the dock door$")
+	public void i_create_multiple_trailer_to_receive_at_the_dock_door(String count) throws Throwable {
 		ArrayList<String> trailerList = new ArrayList<String>();
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < Integer.parseInt(count); i++) {
 			jdaHomePage.navigateToTrailerMaintanencePage();
 			jdaFooter.clickAddButton();
 			String trailerNo = Utilities.getFiveDigitRandomNumber();
