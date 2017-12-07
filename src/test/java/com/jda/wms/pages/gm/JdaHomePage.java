@@ -983,8 +983,8 @@ public class JdaHomePage {
 			System.out.println(homePageName + " Page not found");
 			Assert.fail(homePageName + " Page not found");
 		}
+	
 	}
-
 	private void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
