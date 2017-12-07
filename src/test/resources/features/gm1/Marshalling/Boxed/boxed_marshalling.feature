@@ -5,8 +5,7 @@ Feature: Boxed - Perform Marshalling
 
   @boxed @retail @marshalling @unique_boxed_marshalling_retail_perform_marshalling @complete @ds
   Scenario: Perform marshalling
-  
-         
+           
     Given the order of "Retail" should be in "Released" status in order header maintenance 
     When I navigate to system allocation page
     And I enter OrderID for allocation

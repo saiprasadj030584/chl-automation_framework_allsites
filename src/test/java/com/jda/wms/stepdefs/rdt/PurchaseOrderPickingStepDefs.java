@@ -180,9 +180,9 @@ public class PurchaseOrderPickingStepDefs {
 		purchaseOrderPickingPage.enterListId(context.getListID());
 //		if (context.getListID().contains("DOL")) {
 //		i_enter_the_UPC();
-		puttyFunctionsPage.pressEnter();
-		purchaseOrderPickingPage.enterPrinterNO("P2003");
-		puttyFunctionsPage.pressEnter();
+		//puttyFunctionsPage.pressEnter();
+		//purchaseOrderPickingPage.enterPrinterNO("P2003");
+		//puttyFunctionsPage.pressEnter();
 		i_enter_the_UPC();
 		puttyFunctionsPage.pressEnter();
 		if (!purchaseOrderPickingPage.isInvalidSkuDetailsDisplayed()) {

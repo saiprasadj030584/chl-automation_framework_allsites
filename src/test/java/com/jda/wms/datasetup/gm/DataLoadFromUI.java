@@ -361,10 +361,22 @@ public class DataLoadFromUI {
 			context.setErrorMessage("NA");
 			System.out.println("1 EJB err not found");
 		}
-
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
+		if (screen.exists("images/SaveModifications.png") != null) {
+			System.out.println("Save Modifications");
+			jdaFooter.PressEnter();
+		}
+		if (screen.exists("images/DefaultToReleased.png") != null) {
+			System.out.println("Default to Released");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		}
+		if (screen.exists("images/DuplicateLines.png") != null) {
+			System.out.println("Duplicating Lines..");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		
+		
+		}
 		if (deliveryPage.isEJBerrorfound()) {
 			Assert.fail("Failed even after enabling the ignore merge rules checked..");
 		} else {
