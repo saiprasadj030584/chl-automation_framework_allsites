@@ -534,26 +534,26 @@ public class JdaHomePage {
 	}
 
 	public void stepsScreenShot() {
-		/*try {
-			Thread.sleep(5000);
-			if (JdaLoginPage.driver != null) {
-				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
-				System.out.println("*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
-				context.getScenario().embed(screenshot, "image/png");
-			} else {
-				((JavascriptExecutor) JdaLoginPage.driver).executeScript("window.focus();");
-				final byte[] screenshot = ((TakesScreenshot) JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
-				context.getScenario().embed(screenshot, "image/png");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
+		/*
+		 * try { Thread.sleep(5000); if (JdaLoginPage.driver != null) { final
+		 * byte[] screenshot = ((TakesScreenshot)
+		 * JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+		 * System.out.println("*************" + context.getScenario().getId() +
+		 * "-----------" + context.getScenario().getName());
+		 * context.getScenario().embed(screenshot, "image/png"); } else {
+		 * ((JavascriptExecutor)
+		 * JdaLoginPage.driver).executeScript("window.focus();"); final byte[]
+		 * screenshot = ((TakesScreenshot)
+		 * JdaLoginPage.driver).getScreenshotAs(OutputType.BYTES);
+		 * context.getScenario().embed(screenshot, "image/png"); } } catch
+		 * (Exception e) { e.printStackTrace(); }
+		 */
 	}
 
 	public void navigateToInventoryTransactionPage() throws FindFailed, InterruptedException {
 		navigateToPage("(ITL) query");
 		validateHomePageNavigation(inventoryTransactionQueryPage.inventoryTransactionHomePage(), "(ITL) query");
-//		clickSearchIcon();
+		// clickSearchIcon();
 		// Thread.sleep(1000);
 		// screen.type("(ITL) query");
 		// Thread.sleep(2000);
@@ -723,8 +723,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order Line Maintenance/query screen");
-		//screen.click("images/JDAHome/Search_button.png");
-		 screen.type(Key.ENTER);
+		// screen.click("images/JDAHome/Search_button.png");
+		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -910,6 +910,7 @@ public class JdaHomePage {
 		// System.out.println("After Screen schot");
 		Thread.sleep(3000);
 		validateHomePageNavigation(deliveryPage.deliveryHomePage(), "Delivery Maintenance");
+		
 	}
 
 	public void navigateToStockCheckTaskQueryPage() throws InterruptedException, FindFailed {
@@ -977,20 +978,23 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 
-	private void validateHomePageNavigation(boolean homePage, String homePageName) {
+	private void validateHomePageNavigation(boolean homePage, String homePageName) throws InterruptedException {
 		if (!homePage) {
 			context.setErrorMessage(homePageName + " Page not found");
 			System.out.println(homePageName + " Page not found");
-			Assert.fail(homePageName + " Page not found");
+			 Assert.fail(homePageName + " Page not found");
+		
+
 		}
-	
+
 	}
+
 	private void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		stepsScreenShot();
 		screen.type(pageName);
-//		stepsScreenShot();
+		// stepsScreenShot();
 		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		stepsScreenShot();

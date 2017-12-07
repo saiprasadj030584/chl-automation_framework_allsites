@@ -234,7 +234,10 @@ public class DataLoadFromUI {
 			jdaFooter.clickExecuteButton();
 
 			if (preAdviceHeaderPage.isNoRecordFound()) {
-				Assert.assertTrue("No po data present in UI ", false);
+				System.out.println(
+						"No po data present in UI due to invalid test data. Please check with project team to get valid data:-"
+								+ poReference);
+				Assert.fail("No po data present in UI");
 			}
 
 			else {
@@ -245,17 +248,23 @@ public class DataLoadFromUI {
 					preAdviceHeaderPage.enterPreAdviceID(poReference);
 					jdaFooter.clickExecuteButton();
 					if (deliveryPage.isNoRecordFound()) {
-						Assert.assertTrue("No po data present in UI ", false);
+						System.out.println(
+								"No po data present in UI due to invalid test data. Please check with project team to get valid data:-"
+										+ poReference);
+						Assert.fail("No po data present in UI");
 					}
 				} else {
 					Assert.fail("Application Issue - Query button not clicked");
 				}
 				if (preAdviceHeaderPage.isEJBerrorfound()) {
-					Assert.assertTrue("EJB error found", false);
+					Assert.fail(" Application issue - EJB error found. Please check with non prod support team");
 				}
 
 				if (deliveryPage.isNoRecordFound()) {
-					Assert.assertTrue("No po data present in po ", false);
+					System.out.println(
+							"No po data present in UI due to invalid test data. Please check with project team to get valid data:-"
+									+ poReference);
+					Assert.fail("No po data present in UI");
 				}
 
 				screen.rightClick();
@@ -267,7 +276,7 @@ public class DataLoadFromUI {
 				jdaFooter.pressBackSpace();
 
 				preAdviceHeaderPage.enterPreAdviceID(po);
-				
+
 				jdaFooter.clickExecuteButton();
 				if (deliveryPage.isEJBerrorfound()) {
 					Thread.sleep(2000);
@@ -324,10 +333,13 @@ public class DataLoadFromUI {
 
 		jdaFooter.clickExecuteButton();
 		if (orderHeaderPage.isNoRecordFound()) {
-			Assert.assertTrue("No Order data present in UI ", false);
+			System.out.println(
+					"No order header data present in UI due to invalid test data. Please check with project team to get valid data:-"
+							+ orderReference);
+			Assert.fail("No po data present in UI");
 		}
 		if (orderHeaderPage.isEJBerrorfound()) {
-			Assert.assertTrue("EJB error found", false);
+			Assert.fail("EJB error found");
 		}
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -374,8 +386,7 @@ public class DataLoadFromUI {
 			System.out.println("Duplicating Lines..");
 			jdaFooter.PressEnter();
 			Thread.sleep(2000);
-		
-		
+
 		}
 		if (deliveryPage.isEJBerrorfound()) {
 			Assert.fail("Failed even after enabling the ignore merge rules checked..");
