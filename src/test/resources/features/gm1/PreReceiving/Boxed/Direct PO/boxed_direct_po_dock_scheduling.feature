@@ -15,7 +15,7 @@ Feature: Boxed - Direct PO - Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinsA @jenkinsgm @pre_receiving @direct_po @boxed @unique_hanging_picking_retail_validate_keying_wrong_upc @complete @ds @maven_check_1 @allocation_check
+  @jenkinsA @jenkinsgm @pre_receiving @direct_po @boxed @unique_boxed_pre_receiving_direct_po_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds @maven_check_1 @allocation_check
   Scenario: Validate whether Booking details can be captured - Carrier Information
     Given the PO, UPI, ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
