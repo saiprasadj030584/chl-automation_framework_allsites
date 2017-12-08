@@ -24,28 +24,64 @@ public class DeliveryDB {
 		this.database = database;
 		this.hooks_autoUI = hooks_autoUI;
 	}
-
+	
 	public String getStatus(String asnId) throws SQLException, ClassNotFoundException {
+		ResultSet rs = null;
+		try {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		Statement stmt = context.getConnection().createStatement();
 		System.out.println("Select status from delivery where asn_id ='" + asnId + "'");
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
+		 rs = stmt
+				.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
+		 if (!rs.next()) {
+				context.setErrorMessage("status not found for the asnId :");
+				Assert.fail("status not found for the asnId :");
+			}else
+			{
+				System.out.println("status Found for Customer :");
+			}
+		}
+		 catch (Exception e) {
+				context.setErrorMessage("Exception Caught !!! status not found for the asnId :");
+				Assert.fail("Exception Caught !!! status not found for the asnId :" );
+				
 
-		rs.next();
-		return rs.getString(1);
-	}
+			}
+			return rs.getString(1);
+		}
 
+		
+
+	
 	public String getAsnId(String status) throws SQLException, ClassNotFoundException {
+		ResultSet rs = null;
+		try {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("Select asn_id from delivery where status ='" + status + "'");
-		rs.next();
-		return rs.getString(1);
-	}
+		System.out.println("Select asn_id from delivery where status ='" + status + "'");
+		 rs = stmt
+				.executeQuery("Select asn_id from delivery where status ='" + status + "'");
+		 if (!rs.next()) {
+				context.setErrorMessage("asn_id not found for the status :");
+				Assert.fail("asn_id not found for the status :");
+			}else
+			{
+				System.out.println("asn_id Found for asn_id :");
+			}
+		}
+		 catch (Exception e) {
+				context.setErrorMessage("Exception Caught !!! asn_id not found for the status :");
+				Assert.fail("Exception Caught !!! asn_id not found for the status :" );
+				
+
+			}
+			return rs.getString(1);
+		}
+
 
 	public void updatePalletCount(String asnId, int numLines) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -93,17 +129,34 @@ public class DeliveryDB {
 		}
 		return isRecordExists;
 	}
-
+	
 	public String getSupplier(String asnId) throws ClassNotFoundException, SQLException {
+		ResultSet rs = null;
+		try {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("Select supplier_id from delivery where asn_id ='" + asnId + "'");
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("Select supplier_id from delivery where asn_id ='" + asnId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
+		System.out.println("Select supplier_id from delivery where asn_id ='" + asnId + "'");
+		 rs = stmt
+				.executeQuery("Select supplier_id from delivery where asn_id ='" + asnId + "'");
+		 if (!rs.next()) {
+				context.setErrorMessage("supplier_id not found for the asnId :");
+				Assert.fail("supplier_id not found for the asnId :");
+			}else
+			{
+				System.out.println("supplier_id Found for asnId :");
+			}
+		}
+		 catch (Exception e) {
+				context.setErrorMessage("Exception Caught !!! supplier_id not found for the asnId :");
+				Assert.fail("Exception Caught !!! supplier_id not found for the asnId :");
+				
+
+			}
+			return rs.getString(1);
+		}
+
 
 	public String getAsnId(String type, String status) throws SQLException, ClassNotFoundException {
 		String Type = null;
