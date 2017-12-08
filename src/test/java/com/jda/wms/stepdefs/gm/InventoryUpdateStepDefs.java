@@ -65,6 +65,9 @@ public class InventoryUpdateStepDefs {
 	@Then("^the tag details should be displayed$")
 	public void the_tag_details_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Tag Details not displayed as expected", inventoryUpdatePage.isRecordDisplayed());
+		if (inventoryUpdatePage.isNoRecordFound()) {
+			Assert.fail("record is not present please check with Non Prod Team and Try again ");
+		}
 		jdafooter.clickNextButton();
 	}
 
