@@ -883,8 +883,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Report Selection");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -894,8 +894,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Delivery Management");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -917,8 +917,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task query screen");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -928,8 +928,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Stock check task list completion screen");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -939,8 +939,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Order container maintence/query");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
@@ -950,8 +950,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Move Task Management");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -961,8 +961,8 @@ public class JdaHomePage {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Pack configuration Linking screen");
-		screen.click("images/JDAHome/Search_button.png");
-		// screen.type(Key.ENTER);
+		//screen.click("images/JDAHome/Search_button.png");
+		 screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);

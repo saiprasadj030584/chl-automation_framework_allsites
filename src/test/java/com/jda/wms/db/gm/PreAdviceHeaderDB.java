@@ -218,6 +218,7 @@ public class PreAdviceHeaderDB {
 					"select pre_advice_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "' ");
 			if (!rs.next()) {
 				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
+				Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("Pre advice header id -->" + rs.getString(1));
 			}

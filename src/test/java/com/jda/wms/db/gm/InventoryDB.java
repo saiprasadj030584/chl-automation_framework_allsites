@@ -1227,6 +1227,13 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.sku_id, inventory.config_id from inventory inner join sku on sku.NEW_PRODUCT='N' "
 						+ "and sku.sku_id=inventory.sku_id and sku.user_def_type_8='" + type + "'");
+		if (!rs.next()) {
+			context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+		} else {
+			System.out.println("stock details -->" + rs.getString(1));
+		}
+		
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
 		rs.next();

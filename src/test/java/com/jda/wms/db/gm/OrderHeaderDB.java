@@ -399,6 +399,7 @@ public class OrderHeaderDB {
 			rs = stmt.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
 			if (!rs.next()) {
 				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
+				Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("Order ID -->" + rs.getString(1));
 			}

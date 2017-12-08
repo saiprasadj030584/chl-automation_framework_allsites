@@ -171,6 +171,7 @@ public class UPIReceiptHeaderDB {
 			
 			if (!rs.next()) {
 				context.setErrorMessage("*Datasetup is not completed due to application issue or windows pop up");
+				Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}
