@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -80,8 +82,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select line_id from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getQtyDue(String upiId, String skuID) throws SQLException, ClassNotFoundException {
@@ -92,8 +93,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getQtyReceived(String upiId, String skuID) throws SQLException, ClassNotFoundException {
@@ -104,8 +104,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUserDefinedType7(String upiId) throws SQLException, ClassNotFoundException {
@@ -115,8 +114,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select USER_DEF_TYPE_7 from upi_receipt_line where pallet_id='" + upiId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public void updatePreAdviceID(String preAdviceId, String skuID, String upiId)
@@ -163,8 +161,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select CONFIG_ID from upi_receipt_line where pallet_id = '" + upiId
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getContainer(String upiId) throws ClassNotFoundException, SQLException {
@@ -174,8 +171,7 @@ public class UPIReceiptLineDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT container_id FROM upi_receipt_line WHERE pallet_id = '" + upiId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public boolean isUPIRecordExists(String preAdviceId) throws ClassNotFoundException {
@@ -276,8 +272,7 @@ public class UPIReceiptLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT user_def_type_7 FROM upi_receipt_line WHERE pallet_id = '" + upiId
 				+ "' and sku_id='" + skuId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public void updateContainerID(String upiId, String sku) throws ClassNotFoundException, SQLException {
@@ -298,8 +293,13 @@ public class UPIReceiptLineDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from upi_receipt_line where pallet_id= '"+ upiId +"'");
-		rs.next();
-
-		return rs.getString(1);
-	}
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 }
+}
+
+
+
+
+
+
+

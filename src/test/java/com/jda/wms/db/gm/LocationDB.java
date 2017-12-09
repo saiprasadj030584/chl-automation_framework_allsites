@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,8 +32,7 @@ public class LocationDB {
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select check_string from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select check_string from location where location_id = '" + location + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 
 	}
 
@@ -76,8 +76,7 @@ public class LocationDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from location where lock_status = '" + status + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String checkBoxZone() throws ClassNotFoundException, SQLException {
@@ -100,8 +99,7 @@ public class LocationDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_2 from location where location_id = '" + location + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUserDefType3(String location) throws SQLException, ClassNotFoundException {
@@ -111,8 +109,7 @@ public class LocationDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_3 from location where location_id = '" + location + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForFlatpack(String type, String prodGrp)
@@ -131,8 +128,7 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
 				+ "and user_def_type_1='" + prodGrp + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForBoxed(String type, String type2, String status)
@@ -147,8 +143,7 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type2 + "' and user_def_type_3='" + type2 + "' and current_volume='0'"
 				+ "and lock_status='" + status + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForHanging(String type, String prodGrp, String status)
@@ -164,8 +159,7 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
 				+ "and user_def_type_1='" + prodGrp + "' and lock_status='" + status + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForGoh(String type, String prodGrp, String status)
@@ -186,8 +180,7 @@ public class LocationDB {
 				"select location_id from location  where zone_1 like '" + type + "%' and user_def_type_2 like '" + type
 						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and user_def_type_1='"
 						+ prodGrp + "' and lock_status='" + status + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocationForPutawayBoxed(String skuType) throws SQLException, ClassNotFoundException {
@@ -201,8 +194,7 @@ public class LocationDB {
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
 				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
 				+ "%' and lock_status='UnLocked' and current_volume='0'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocationForPutawayFlatpack(String department) throws SQLException, ClassNotFoundException {
@@ -218,8 +210,7 @@ public class LocationDB {
 				"select location_id from location where (zone_1 like 'BOX%' and user_def_type_2 like 'BOX%' and user_def_type_3 like 'FLAT%' and lock_status='UnLocked' and current_volume='0')"
 						+ "or (zone_1 like 'HANG%' and user_def_type_2 like 'HANG%' and user_def_type_3 like 'FLAT%' and user_def_type_1='"
 						+ department + "' and lock_status='UnLocked' and current_volume='0')");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUserDefType1(String location) throws SQLException, ClassNotFoundException {
@@ -229,8 +220,7 @@ public class LocationDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_1 from location where location_id = '" + location + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 	
 	public String getToLocationForPutaway(String skuType,String department) throws SQLException, ClassNotFoundException {
@@ -240,7 +230,15 @@ public class LocationDB {
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' and user_def_type_1='"+department+"' and current_volume='0'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 		}
 }
+
+
+
+
+
+
+
+
+

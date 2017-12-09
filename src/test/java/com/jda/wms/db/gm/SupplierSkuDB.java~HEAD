@@ -25,8 +25,7 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ORDER_DATE from ORDER_HEADER where sku_id='" + skuId
 				+ "' AND supplier_id ='" + supplierID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getSupplierSKU(String skuId, String supplierID) throws ClassNotFoundException {
@@ -44,3 +43,11 @@ public class SupplierSkuDB {
 		}
 	}
 }
+
+
+
+
+
+
+
+
