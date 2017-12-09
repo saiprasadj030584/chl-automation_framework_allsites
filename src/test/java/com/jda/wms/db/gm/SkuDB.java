@@ -29,6 +29,16 @@ public class SkuDB {
 		allocationGroup = (rs.getString(1));
 		return allocationGroup;
 	}
+	public String getDatatype(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select hanging_garment FROM SKU WHERE sku_id = '" + skuId + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 
 	public String getDescription(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

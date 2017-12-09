@@ -112,5 +112,21 @@ public class PurchaseOrderVehicleLoadingPage {
 		else
 			return false;
 	}
+	public boolean isVehicleUnloadEntryPageDisplayed() throws FindFailed {
+		// screen.wait("images/Putty/VehicleLoading/UnLodEnt.png",
+		// timeoutInSec);
 
+		if (screen.exists("images/Putty/VehicleLoading/UnLodEnt.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)
+			return true;
+		else
+			return false;
+
+	}
 }

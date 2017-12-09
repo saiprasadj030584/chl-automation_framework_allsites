@@ -51,4 +51,14 @@ Thread.sleep(1000);
 jDAFooter.clickNextButton();
 jDAFooter.clickDoneButton();
 }
+@When("^I proceed with clustering for \"([^\"]*)\"$")
+public void i_proceed_with_clustering_for(String orderType) throws Throwable {
+	clusteringPage.enterSiteID(context.getSiteID());
+	jDAFooter.PressEnter();
+	jDAFooter.pressTab();
+	clusteringPage.enterGroupId(orderType);
+	Thread.sleep(1000);
+	jDAFooter.clickNextButton();
+	jDAFooter.clickDoneButton();
+}
 }

@@ -266,6 +266,7 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		Thread.sleep(1000);
 		
 	}
+
 	public void enterPackConfig(String packConfig) {
 		try{
 		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
@@ -275,5 +276,13 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		Thread.sleep(1000);
 		}
 		catch(Exception e){e=null;}
+}
+
+	public boolean stockAdjustmentsHomePage() {
+		if (screen.exists("images/JDAHome/StockAdjustmentHomePage.png") != null)
+			return true;
+		else
+			return false;
+
 	}
 }

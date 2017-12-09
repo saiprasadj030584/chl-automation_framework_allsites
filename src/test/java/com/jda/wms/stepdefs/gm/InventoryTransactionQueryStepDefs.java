@@ -103,7 +103,16 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
+	@When("^the inventory transaction should be updated for single upi$")
+	public void the_inventory_transaction_should_be_updated_for_single_upi() throws Throwable {
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Receipt");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String code = "Receipt";
+			Assert.assertEquals("ITL not generated for Returns Receiving", 1 , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 
+	}
 	@Then("^the goods receipt should be generated for received stock in inventory transaction for receiving$")
 	public void the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving()
 			throws Throwable {
@@ -934,8 +943,10 @@ public class InventoryTransactionQueryStepDefs {
 		jdaLoginPage.login();
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.enterNotes("Custom ITL");
+		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		inventoryTransactionQueryPage.enterNotes("Custom ITL");
+		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		jDAFooter.clickExecuteButton();
 		Assert.assertEquals("ITL not updated", "Receiving Error",
 				inventoryTransactionDB.getCodeIdt(context.getSkuId(), "Custom ITL"));

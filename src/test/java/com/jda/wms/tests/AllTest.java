@@ -10,9 +10,13 @@ import cucumber.api.junit.Cucumber;
 
 
 
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@unique_boxed_picking_picking_validate_whether_retail_order_is_picked_from_preferred_aisle_and_non_retail_order_from_normal_storage_aisle"
+
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@unique_boxed_returns_returns_rms_validate_the_returns_rms_normal_urn_single_line_item"
 				+ ""})
 
 
 public class AllTest {
+	
 }
+
+

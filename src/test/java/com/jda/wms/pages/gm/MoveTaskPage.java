@@ -24,4 +24,11 @@ public class MoveTaskPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+
+	public boolean moveTaskHomePage() {
+		if (screen.exists("images/JDAHome/PreAdviceHeaderHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
 }

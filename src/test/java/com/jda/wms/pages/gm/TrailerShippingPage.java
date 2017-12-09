@@ -14,7 +14,10 @@ public class TrailerShippingPage {
 		screen.type(string);
 		Thread.sleep(1000);
 	}
-
+	public void enterSiteID(String siteID) throws InterruptedException {
+		screen.type(siteID);
+		Thread.sleep(1000);
+	}
 	public void enterTrailer(String trailerNo) throws InterruptedException, FindFailed {
 		Match skuID = screen.find("images/TrailerShipping/Trailer.png");
 		screen.click(skuID.getCenter().offset(70, 0));
@@ -56,5 +59,17 @@ public class TrailerShippingPage {
 		Thread.sleep(1000);
 
 	}
+	public void enterTrailerNumber(String trailerNo) throws InterruptedException {
+		screen.type(trailerNo);
+		Thread.sleep(1000);
+
+	}
+
 	
+	public void clickOkButton() throws InterruptedException, FindFailed {
+		Match mSeal = screen.find("images/TrailerShipping/ok.png");
+		screen.click("images/TrailerShipping/ok.png");	
+		Thread.sleep(1000);
+		
+	}
 }

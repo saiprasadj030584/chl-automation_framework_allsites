@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import cucumber.api.Scenario;
 
 import cucumber.runtime.java.guice.ScenarioScope;
 
@@ -17,6 +18,7 @@ public class Context {
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
+	private static Scenario scenario;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -45,6 +47,7 @@ public class Context {
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
+	private String orderId1;
 	private String address1;
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
@@ -161,9 +164,12 @@ public class Context {
 	private static String testData;
 	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
-	private String ejbError;
+	private String errorMessage;
 	private int updatedQty;
-
+	private ArrayList<String> orderList;
+	private ArrayList<String> trailerList;
+	private ArrayList<String> bookingList;
+	
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
 	}
@@ -183,7 +189,12 @@ public class Context {
 	public ArrayList<String> getUpiList() {
 		return upiList;
 	}
-
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
 	public void setUpiList(ArrayList<String> upiList) {
 		this.upiList = upiList;
 	}
@@ -212,7 +223,13 @@ public class Context {
 	public String getPerfectCondition() {
 		return perfectCondition;
 	}
+	public ArrayList<String> getOrderList() {
+		return orderList;
+	}
 
+	public void setOrderList(ArrayList<String> orderList) {
+		this.orderList = orderList;
+	}
 	public void setPerfectCondition(String perfectCondition) {
 		this.perfectCondition = perfectCondition;
 	}
@@ -264,6 +281,12 @@ public class Context {
 
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
+	}
+	public String getOrderId1() {
+		return orderId1;
+	}
+	public void setOrderId1(String orderId1) {
+		this.orderId1 = orderId1;
 	}
 
 	public String getOrderStatus() {
@@ -1261,6 +1284,14 @@ public class Context {
 		this.uniqueTag = uniqueTag;
 	}
 
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
+	}
+
 	public String getAdviceId() {
 		return adviceId;
 	}
@@ -1372,7 +1403,13 @@ public class Context {
 	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
 		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
 	}
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
 
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
 	public String getSecondPalletID() {
 		return secondPalletID;
 	}
@@ -1390,12 +1427,12 @@ public class Context {
 		return dBConnection;
 	}
 
-	public void setEJBErrorMsg(String ejbError) {
-		this.ejbError = ejbError;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
-	public String getEJBErrorMsg() {
-		return ejbError;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }

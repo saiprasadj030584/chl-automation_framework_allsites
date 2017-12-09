@@ -4,7 +4,7 @@ Feature: Dock Scheduling
   I want to schedult a dock door for Returns Non RMS type
   So that I can receive the same in the scheduled dock door
 
-  @jenkinsE @pre_receiving @returns_(non_rms) @boxed_pre_receiving_returns_non_rms_validate_whether_asn_can_be_assigned_using_the_container_id @complete @ds
+  @jenkinsE @pre_receiving @returns_(non_rms) @unique_boxed_pre_receiving_returns_non_rms_validate_whether_asn_can_be_assigned_using_the_container_id @complete @ds
   Scenario: Validate whether ASN can be assigned using the Container ID
     Given the UPI , ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -15,7 +15,7 @@ Feature: Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_carrier_information @complete @ds
   Scenario: Validate whether Booking details can be captured - Carrier Information
     Given the UPI , ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -26,7 +26,7 @@ Feature: Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_service_level_information @complete @ds
   Scenario: Validate whether Booking details can be captured - Service level information
     Given the UPI , ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -37,7 +37,7 @@ Feature: Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_details_can_be_captured_trailer_type_information @complete @ds
   Scenario: Validate whether Booking details can be captured - Trailer Type information
     Given the UPI , ASN of type "Boxed" details should be displayed
     And I create a trailer to receive at the dock door
@@ -48,7 +48,7 @@ Feature: Dock Scheduling
     And I create a booking for the asn
     Then the booking details should appear in the dock scheduler booking
 
-  @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_the_booking_can_be_deleted @complete @ds
+  @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_the_booking_can_be_deleted @complete @ds
   Scenario: Validate whether the Booking can be deleted
     Given I have done the dock scheduler booking with the UPI, ASN of type "Boxed" at site for NON RMS
     When I navigate to dock scheduler start page
@@ -58,7 +58,7 @@ Feature: Dock Scheduling
     When I delete the booking
     Then the booking details should be deleted in the dock scheduler booking
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_moved_to_different_time_on_the_same_day @complete @ds
   Scenario: Validate whether booking can be moved to different time on the same day
     Given I have done the dock scheduler booking with the UPI, ASN of type "Boxed" at site for NON RMS
     When I navigate to dock scheduler start page
@@ -68,7 +68,7 @@ Feature: Dock Scheduling
     When I change the booking time
     Then the booking id details with updated time should be displayed on the page
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_made_to_complete_status @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_made_to_complete_status @complete @ds
   Scenario: Validate whether booking can be made to Complete status
     Given I have done the dock scheduler booking with the UPI, ASN of type "Boxed" at site for NON RMS
     When I navigate to dock scheduler start page
@@ -78,7 +78,7 @@ Feature: Dock Scheduling
     When I change the status of booking to BookingStatus "Complete"
     Then the booking id details with updated status "Complete" should be displayed on the page
     
-  @jenkinsE  @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds
+  @jenkinsE  @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_status_can_be_updated_to_capture_the_arrival_time_scheduled_to_in_progress @complete @ds
   Scenario: Validate whether Booking status can be updated to capture the arrival time (Scheduled to In progress)
     Given I have done the dock scheduler booking with the UPI, ASN of type "Boxed" at site for NON RMS
     When I navigate to dock scheduler start page
@@ -88,7 +88,7 @@ Feature: Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
- @jenkinsE @pre_receiving @returns_(non_rms) @boxed @boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_moved_to_different_date @complete @ds
+ @jenkinsE @pre_receiving @returns_(non_rms) @boxed @unique_boxed_pre_receiving_returns_non_rms_validate_whether_booking_can_be_moved_to_different_date @complete @ds
   Scenario Outline: Validate whether Booking can be moved to different date
     Given I have done the dock scheduler booking with the UPI, ASN of type "Boxed" at site for NON RMS
     When I navigate to dock scheduler start page

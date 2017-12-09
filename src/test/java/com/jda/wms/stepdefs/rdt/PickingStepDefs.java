@@ -228,7 +228,7 @@ public class PickingStepDefs {
 
 	}
 
-//	@Given("^I proceed for multi pallet load with dock door$")
+	@Given("^I proceed for multi pallet load with dock door$")
 	public void i_proceed_for_for_multi_pallet_load_with_dock_door() throws Throwable {
 		// context.setVehicleLoadRequired(true);
 		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
@@ -271,5 +271,4 @@ public class PickingStepDefs {
 		// context.setVehicleLoadRequired(false);
 
 	}
-
 }

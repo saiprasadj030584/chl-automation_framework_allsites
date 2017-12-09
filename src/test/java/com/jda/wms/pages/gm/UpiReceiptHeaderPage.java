@@ -91,4 +91,11 @@ public class UpiReceiptHeaderPage {
 			return false;
 	}
 
+	public boolean upiHomePage() {
+		if (screen.exists("images/JDAHome/UPIReceiptHeaderHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

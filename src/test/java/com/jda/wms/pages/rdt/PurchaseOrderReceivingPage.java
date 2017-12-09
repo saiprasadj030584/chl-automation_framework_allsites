@@ -33,6 +33,12 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public boolean isURRNExists() {
+		if (screen.exists("images/Putty/Receiving/BlindRcvURRN.png") != null)
+			return true;
+		else
+			return false;
+	}
 	public boolean isReciveCmpEntryDisplayed() {
 		if ((screen.exists("images/Putty/Receiving/XdockReceive.png") != null))
 			return true;

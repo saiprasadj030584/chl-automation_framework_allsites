@@ -4,7 +4,7 @@ Feature: Hanging - Retail - Outbound Order till despatch
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_order_till_despatch @boxed @retail @hanging_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
+  @outbound_order_till_despatch @boxed @retail @unique_hanging_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
   Scenario: Incorrect pallet id keyin when unloading
     Given the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     When I navigate to system allocation page
@@ -24,7 +24,7 @@ Feature: Hanging - Retail - Outbound Order till despatch
     When I proceed for vehicle unload
     Then Trailer should display as Invalid Pallet ID
 
-  @outbound_order_till_despatch @hanging @retail @hanging_outbound_order_till_despatch_order_unload_urn_from_the_trailer @complete @ds
+  @outbound_order_till_despatch @hanging @retail @unique_hanging_outbound_order_till_despatch_order_unload_urn_from_the_trailer @complete @ds
   Scenario: Unload URN from trailer
     Given the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     When I navigate to system allocation page
@@ -44,7 +44,7 @@ Feature: Hanging - Retail - Outbound Order till despatch
     When I proceed for vehicle unloading
     Then vehicle should be unload
 
-  @outbound_order_till_despatch @boxed @retail @hanging_outbound_order_till_despatch_order_trailer_not_entered_when_unloading @complete @ds
+  @outbound_order_till_despatch @boxed @retail @unique_hanging_outbound_order_till_despatch_order_trailer_not_entered_when_unloading @complete @ds
   Scenario: Trailer not entered when unloading
     Given the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     When I navigate to system allocation page

@@ -257,7 +257,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		orderHeaderPage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 		ArrayList failureList = new ArrayList();
-		Thread.sleep(60000);
+		Thread.sleep(6000);
 		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
 				failureList);
 		Assert.assertTrue("Order Status not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -810,6 +810,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				allocation = true;
 			}
 
+
 			if (utilities.validateNull(context.getLocationID())&&
 				context.getLocationID().equalsIgnoreCase("suspense")) {
 
@@ -935,7 +936,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		int totalQtyOnHand = 0;
 			
 		context.setSKUType("Boxed");
-		orderlist=context.getOdnList();
+		orderlist=context.getOrderList();
 		
 		
 		for(int z=0;z<orderlist.size();z++)

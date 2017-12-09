@@ -36,7 +36,14 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-
+	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+	}
 	public String getOrderDate(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -398,7 +405,7 @@ public class OrderHeaderDB {
 			Statement stmt = context.getConnection().createStatement();
 			rs = stmt.executeQuery("select order_id from order_header where order_id = '" + order + "' ");
 			if (!rs.next()) {
-				context.setEJBErrorMsg("Datasetup is not completed due to application issue or windows pop up");
+				context.setErrorMessage("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("Order ID -->" + rs.getString(1));
 			}

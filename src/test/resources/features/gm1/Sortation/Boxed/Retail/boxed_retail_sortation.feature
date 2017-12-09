@@ -4,7 +4,7 @@ Feature: Boxed - Retail - Sortation
   I want to validate Pallet ID
   So that order can be picked
 
-  @sortation @boxed @retail @boxed_sortation_sortation_validate_whether_master_urn_can_be_build @complete @ds 
+  @sortation @boxed @retail @unique_boxed_sortation_sortation_validate_whether_master_urn_can_be_build @complete @ds 
   Scenario: Validate whether Master URN can be build
     Given the OrderID of type "Retail" should be in "Released" status at site
     When I navigate to system allocation page

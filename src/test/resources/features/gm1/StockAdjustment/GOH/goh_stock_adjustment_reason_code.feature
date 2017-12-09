@@ -3,7 +3,7 @@ Feature: GOH - Stock adjustments with Reason Code
   As a warehouse user
   I want to adjust the stock in inventory
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dirty_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dirty_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as Dirty
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -17,7 +17,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | Dirty      |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dmit_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_dmit_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as DMIT
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -31,7 +31,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | DMIT       |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_expd_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_expd_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as EXPD
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -45,7 +45,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | EXPD       |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_found_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_found_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as FOUND
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -59,7 +59,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | SiteId | Location | ReasonCode |
       |   5649 | 1AA103   | FOUND      |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_incomplete_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_incomplete_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as INCOMPLETE
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -73,7 +73,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | INCOMPLETE |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_lost_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_lost_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as LOST
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -87,7 +87,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | LOST       |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_samples_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_samples_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as SAMPLES
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page
@@ -101,7 +101,7 @@ Feature: GOH - Stock adjustments with Reason Code
       | Location | ReasonCode |
       | 1AA103   | SAMPLES    |
 
-  @goh @stock_adjustment @stock_adjustment_reason_code @goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_stock_count_ @complete @ds @no_ds @jenkinsC
+  @goh @stock_adjustment @stock_adjustment_reason_code @unique_goh_stock_adjustment_stock_adjustment_reason_code_do_stock_adjustment_by_selecting_reason_code_as_stock_count_ @complete @ds @no_ds @jenkinsC
   Scenario Outline: Do stock adjustment by selecting reason code as SC
     Given I have a sku of type "GOH" to adjust the stock
     When I navigate to stock adjustments page

@@ -4,7 +4,7 @@ Feature: Boxed - Validate goods error
   I want to validate the goods
   So that I can putaway the purchase order
 
-  @jenkinsD @stock_adjustment @boxed @direct_po @boxed_stock_adjustment_direct_po_validate_goods_error_before_putaway @complete @ds
+ @jenkinsfly @stock_adjustment @boxed @direct_po @unique_boxed_stock_adjustment_direct_po_validate_goods_error_before_putaway @complete @ds
   Scenario: Validate for goods in error reason code before putaway
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -17,7 +17,7 @@ Feature: Boxed - Validate goods error
     And I do receipt reversal for the random tag received
     Then the inventory transaction should be updated with reversed receipt tag for random tags received
 
-  @stock_adjustment @boxed @direct_po @boxed_stock_adjustment_direct_po_validate_goods_error_after_putaway @complete @ds
+  @stock_adjustment @boxed @direct_po @unique_boxed_stock_adjustment_direct_po_validate_goods_error_after_putaway @complete @ds
   Scenario Outline: validating goods error after putaway
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

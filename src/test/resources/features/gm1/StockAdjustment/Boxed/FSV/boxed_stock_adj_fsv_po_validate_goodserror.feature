@@ -4,7 +4,7 @@ Feature: Validate goods error before putaway
   I want to validate the goods
   So that I can putaway the purchase order
 
-@jenkinsA @stock_adjustment @boxed @fsv_po @boxed_stock_adjustment_fsv_po_validate_goods_error_before_putaway @complete @ds
+@jenkinsA @stock_adjustment @boxed @fsv_po @unique_boxed_stock_adjustment_fsv_po_validate_goods_error_before_putaway @complete @ds
   Scenario: validating goods error Receiving process in JDA WMS for Boxed type
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details
@@ -17,7 +17,7 @@ Feature: Validate goods error before putaway
     And I do receipt reversal for the random palletId received
     Then the inventory transaction should be updated for random palletId with reversed receipt tag
 
-  @stock_adjustment @boxed @fsv_po @boxed_stock_adjustment_fsv_po_validate_goods_error_after_putaway @complete @ds
+  @stock_adjustment @boxed @fsv_po @unique_boxed_stock_adjustment_fsv_po_validate_goods_error_after_putaway @complete @ds
   Scenario Outline: validating goods error Receiving process in JDA WMS for Boxed type
     Given the FSV PO of type "Boxed" should be in "Released" status at site id
     And the FSV PO line should have sku, quantity due details

@@ -84,7 +84,7 @@ public class SystemAllocationStepsDefs {
 	}
 	@When("^I allocate the multiple stocks$")
 	public void i_allocate_the_multiple_stocks() throws Throwable {
-		ArrayList<String> Orderlist=context.getOdnList();
+		ArrayList<String> Orderlist=context.getOrderList();
 		for (int i=0;i<Orderlist.size();i++){
 		jDAHomeStepDefs.i_navigate_to_JDA_page("system allocation");
 		context.setOrderId(Orderlist.get(i));
@@ -95,7 +95,7 @@ public class SystemAllocationStepsDefs {
 		jdaFooter.clickNextButton();
 		jdaFooter.clickDoneButton();
 		}
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 	
 	@Given("^the stock should not get allocated")
@@ -155,7 +155,34 @@ public class SystemAllocationStepsDefs {
 		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Given("^the multiple stock should get allocated")
+	public void the_multiple_stock_should_get_allocated() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		jdaHomePage.navigateToOrderHeaderMaintenance();
+		jdaFooter.clickQueryButton();
+		systemAllocationPage.enterOrderID();
+		jdaFooter.clickExecuteButton();
+		jdaHomePage.navigateToOrderLineMaintenance();
+		jdaFooter.clickQueryButton();
+		systemAllocationPage.enterOrderID();
+		jdaFooter.clickExecuteButton();
 
+		ArrayList skuFromOrder = new ArrayList();
+		skuFromOrder = context.getSkuFromOrder();
+		verification.verifyData("Order Status", "Allocated", orderHeaderDB.getStatus(context.getOrderId()),
+				failureList);
+		for (int i = 0; i < skuFromOrder.size(); i++) {
+			context.setRcvQtyDue(
+					Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i))));
+			if (!(orderLineDB.getQtyTasked(context.getOrderId(), (String) skuFromOrder.get(i))
+					.equals(String.valueOf(context.getRcvQtyDue())))) {
+				failureList.add("Quantity Tasked not updated " + (String) skuFromOrder.get(i));
+				context.setFailureList(failureList);
+			}
+		}
+		Assert.assertTrue("Allocation of stock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 	@When("^I enter OrderID for allocation$")
 	public void i_enter_OrderID_for_allocation() throws Throwable {
 		jdaFooter.clickNextButton();

@@ -3,7 +3,7 @@ Feature: Boxed - Sortation - Report generation for repacking
   As a warehouse user
   I want to generate repacking report generation
 
-  @jenkinsD @boxed @sortation @boxed_sortation_sortation_validate_whether_report_is_generated_for_repacking @complete @no_ds @ds
+  @jenkinsD @boxed @sortation @unique_boxed_sortation_sortation_validate_whether_report_is_generated_for_repacking @complete @no_ds @ds
   Scenario: Validate whether report is generated for Repacking
     Given I am on report selection page
     When I choose the print to screen option

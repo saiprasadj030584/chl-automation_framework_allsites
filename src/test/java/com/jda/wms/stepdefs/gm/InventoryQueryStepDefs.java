@@ -127,6 +127,19 @@ public class InventoryQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+@Then("^I have setup the data to check expiry date$")
+public void I_have_setup_the_data_to_check_expiry_date()throws Throwable
+{
+	//update sku
+//update inventory
+
+}
+
+@Then ("^Validate the earliest expiry date$")
+public void Validate_the_earliest_expiry_date() throws Throwable
+{
+	//check in move task to validate the expiry date
+	}
 
 	@Then("^the inventory should be displayed for all multiple tags received$")
 	public void the_inventory_should_be_displayed_for_all_multiple_tags_received() throws Throwable {

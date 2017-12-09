@@ -324,4 +324,11 @@ public class InventoryQueryPage {
 		return App.getClipboard();
 	}
 
+	public boolean inventoryQueryHomePage() {
+		if (screen.exists("images/JDAHome/InventoryQueryHomePage.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 }

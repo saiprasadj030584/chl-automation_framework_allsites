@@ -24,6 +24,9 @@ import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
+import com.jda.wms.stepdefs.gm.ClusteringStepDefs;
+import com.jda.wms.stepdefs.gm.JDAHomeStepDefs;
+import com.jda.wms.stepdefs.gm.SchedulerProgramStepDefs;
 import com.jda.wms.utils.Utilities;
 
 
@@ -51,13 +54,16 @@ public class PurchaseOrderPickingStepDefs {
 	private OrderHeaderDB orderHeaderDB;
 	private AddressDB addressDB;
 	private OrderLineDB orderLineDB;
-
+	private JDAHomeStepDefs jdaHomeStepDefs;
+	private ClusteringStepDefs clusteringStepDefs;
+	private SchedulerProgramStepDefs schedulerProgramStepDefs;
 	@Inject
 	public PurchaseOrderPickingStepDefs(PurchaseOrderPickingPage purchaseOrderPickingPage, Context context,
 			PuttyFunctionsStepDefs puttyFunctionsStepDefs, Verification verification, InventoryDB inventoryDB,
 			LocationDB locationDB,OrderLineDB orderLineDB, Hooks hooks, JDAFooter jdaFooter, PuttyFunctionsPage puttyFunctionsPage,
 
-			MoveTaskDB moveTaskDB,MoveTaskUpdateDB moveTaskUpdateDB,PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage,BookingInDiary bookingInDiary,OrderContainerDB orderContainerDB,OrderHeaderDB orderHeaderDB,AddressDB addressDB) {
+			MoveTaskDB moveTaskDB,SchedulerProgramStepDefs schedulerProgramStepDefs,MoveTaskUpdateDB moveTaskUpdateDB, JDAHomeStepDefs jdaHomeStepDefs,
+			ClusteringStepDefs clusteringStepDefs,PurchaseOrderVehicleLoadingPage purchaseOrderVehicleLoadingPage,BookingInDiary bookingInDiary,OrderContainerDB orderContainerDB,OrderHeaderDB orderHeaderDB,AddressDB addressDB) {
 
 		this.context = context;
 		this.puttyFunctionsStepDefs = puttyFunctionsStepDefs;
@@ -75,6 +81,9 @@ public class PurchaseOrderPickingStepDefs {
 		this.orderContainerDB = orderContainerDB;
 		this.orderHeaderDB = orderHeaderDB;
 		this.addressDB = addressDB;
+		this.schedulerProgramStepDefs = schedulerProgramStepDefs;
+		this.jdaHomeStepDefs = jdaHomeStepDefs;
+		this.clusteringStepDefs = clusteringStepDefs;
 		this.orderLineDB=orderLineDB;
 
 	}
@@ -163,6 +172,255 @@ public class PurchaseOrderPickingStepDefs {
 		Assert.assertTrue("picking completion is not as expected", purchaseOrderPickingPage.isPickCmpPageDisplayed());
 		hooks.logoutPutty();
 
+	}
+
+	@Given("^I proceed for boxed vehicle loading for multiple bookings of split pick$")
+	public void i_proceed_for_for_boxed_vehicle_loading_for_multiple_bookings_of_split_pick() throws Throwable {
+		context.setVehicleLoadRequired(true);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+		purchaseOrderVehicleLoadingPage.selectMultiPalletLoadMenu();
+		ArrayList<String> palletList = moveTaskDB.selectPalletIdList(context.getOrderId());
+		int i = 0;
+		while (i < context.getBookingList().size()) {
+			String dockdoor = bookingInDiary.selectDockDoor(context.getBookingList().get(i));
+			purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+			puttyFunctionsPage.pressTab();
+			String urn = palletList.get(i);
+			purchaseOrderVehicleLoadingPage.enterURN(urn);
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			if (i != (context.getBookingList().size() - 1)) {
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			} else {
+				puttyFunctionsPage.pressEnter();
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+
+			}
+			i++;
+		}
+		if (palletList.size() > context.getBookingList().size()) {
+			for (int k = context.getBookingList().size() - 1; k < palletList.size(); k++) {
+				String dockdoor = bookingInDiary
+						.selectDockDoor(context.getBookingList().get(context.getBookingList().size() - 1));
+				purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+				puttyFunctionsPage.pressTab();
+
+				String urn = palletList.get(k);
+				purchaseOrderVehicleLoadingPage.enterURN(urn);
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				Thread.sleep(2000);
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			}
+		}
+
+		hooks.logoutPutty();
+		context.setVehicleLoadRequired(false);
+
+	}
+	@Given("^I proceed for boxed vehicle loading for multiple bookings of split pick for multiple order$")
+	public void i_proceed_for_for_boxed_vehicle_loading_for_multiple_bookings_of_split_pick_for_multiple_order() throws Throwable {
+		ArrayList<String> Orderlist=context.getOrderList();
+		for (int z=0;z<Orderlist.size();z++){
+		context.setOrderId(Orderlist.get(z));	
+		context.setVehicleLoadRequired(true);
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderVehicleLoadingPage.selectVehicleLoadMenu();
+		purchaseOrderVehicleLoadingPage.selectMultiPalletLoadMenu();
+		ArrayList<String> palletList = moveTaskDB.selectPalletIdList(context.getOrderId());
+		int i = 0;
+		while (i < context.getBookingList().size()) {
+			String dockdoor = bookingInDiary.selectDockDoor(context.getBookingList().get(i));
+			purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+			puttyFunctionsPage.pressTab();
+			String urn = palletList.get(i);
+			purchaseOrderVehicleLoadingPage.enterURN(urn);
+			puttyFunctionsPage.pressEnter();
+			puttyFunctionsPage.pressEnter();
+			Thread.sleep(2000);
+			if (i != (context.getBookingList().size() - 1)) {
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			} else {
+				puttyFunctionsPage.pressEnter();
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+
+			}
+			i++;
+		}
+		if (palletList.size() > context.getBookingList().size()) {
+			for (int k = context.getBookingList().size() - 1; k < palletList.size(); k++) {
+				String dockdoor = bookingInDiary
+						.selectDockDoor(context.getBookingList().get(context.getBookingList().size() - 1));
+				purchaseOrderVehicleLoadingPage.enterDockDoorForFlatpack(dockdoor);
+				puttyFunctionsPage.pressTab();
+
+				String urn = palletList.get(k);
+				purchaseOrderVehicleLoadingPage.enterURN(urn);
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				Thread.sleep(2000);
+				Assert.assertTrue("vehicle loading not as expected",
+						purchaseOrderVehicleLoadingPage.isVehEntPageDisplayed());
+			}
+		}
+
+		hooks.logoutPutty();
+		context.setVehicleLoadRequired(false);
+		}
+	}
+	@Given("^I perform split picking for hanging retail$")
+	public void i_perform_split_picking_for_hanging_retail() throws Throwable {
+		ArrayList<String> listIdArray = moveTaskDB.getListIdArray(context.getOrderId());
+		for (int j = 0; j < listIdArray.size(); j++) {
+
+			context.setListID(moveTaskDB.getListId(context.getOrderId()));
+			context.setSkuId(moveTaskDB.getSkuId(context.getListID()));
+			{
+				for (int i = 0; i < 2; i++) {
+					puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+					puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+					purchaseOrderPickingPage.selectPickingMenu();
+					purchaseOrderPickingPage.selectPickingMenu2();
+					purchaseOrderPickingPage.selectContainerPick();
+					moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+
+					context.setListID(moveTaskDB.getListId(context.getOrderId()));
+					purchaseOrderPickingPage.enterListId(context.getListID());
+					puttyFunctionsPage.pressEnter();
+					
+					// address table
+					String customer = orderHeaderDB.getCustomer(context.getOrderId());
+					context.setCustomer(customer);
+					String tagValueL = addressDB.getLowerTagValue();
+					String tagValueH = addressDB.getHigherTagValue();
+					int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+							+ Integer.parseInt(tagValueL);
+					context.setTagId(String.valueOf(tag));
+					System.out.println(String.valueOf(tag));
+
+					System.out.println("TAG ID" + context.getTagId());
+					purchaseOrderPickingPage.enterTagId(context.getTagId());
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter(); //full qty enter
+					if(i==0)
+					{
+					purchaseOrderPickingPage.changeQtyPick(
+							Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), context.getSkuId())));
+					puttyFunctionsPage.pressEnter();
+					purchaseOrderPickingPage.selectSplitPick();
+					}
+					else
+					{
+						puttyFunctionsPage.pressEnter();	
+					}
+					purchaseOrderPickingPage.enterContainerId(context.getTagId());
+					puttyFunctionsPage.pressEnter(); 
+					if(i==0)
+					{
+					jdaFooter.clickMoreButton();
+					jdaFooter.clickMoreButton();
+					}
+					Assert.assertTrue("To Location page is not as expected",
+							purchaseOrderPickingPage.isPckLocPageDisplayed());
+					puttyFunctionsPage.pressEnter();
+					Assert.assertTrue("Picking completion is not as expected",
+							purchaseOrderPickingPage.isPickEntPageDisplayed());
+					hooks.logoutPutty();
+					if (i == 0) {
+						// do clustering
+						jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
+						clusteringStepDefs.i_proceed_with_clustering_for("RETAIL");
+						// again scheduler program
+						jdaHomeStepDefs.i_navigate_scheduler_program_page();
+						schedulerProgramStepDefs.i_run_the_program();
+					}
+				}
+			}
+		}
+	}
+	@Given("^I perform multiple split picking for retail$")
+	public void i_perform_multiple_split_picking_for_hanging_retail() throws Throwable {
+		ArrayList<String> Orderlist=context.getOrderList();
+		for (int z=0;z<Orderlist.size();z++){
+		context.setOrderId(Orderlist.get(z));	
+		
+		ArrayList<String> listIdArray = moveTaskDB.getListIdArray(context.getOrderId());
+		for (int j = 0; j < listIdArray.size(); j++) {
+
+			context.setListID(moveTaskDB.getListId(context.getOrderId()));
+			context.setSkuId(moveTaskDB.getSkuId(context.getListID()));
+			{
+				for (int i = 0; i < 2; i++) {
+					puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+					puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+					purchaseOrderPickingPage.selectPickingMenu();
+					purchaseOrderPickingPage.selectPickingMenu2();
+					purchaseOrderPickingPage.selectContainerPick();
+					moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+
+					context.setListID(moveTaskDB.getListId(context.getOrderId()));
+					purchaseOrderPickingPage.enterListId(context.getListID());
+					puttyFunctionsPage.pressEnter();
+					
+					// address table
+					String customer = orderHeaderDB.getCustomer(context.getOrderId());
+					context.setCustomer(customer);
+					String tagValueL = addressDB.getLowerTagValue();
+					String tagValueH = addressDB.getHigherTagValue();
+					int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+							+ Integer.parseInt(tagValueL);
+					context.setTagId(String.valueOf(tag));
+					System.out.println(String.valueOf(tag));
+
+					System.out.println("TAG ID" + context.getTagId());
+					purchaseOrderPickingPage.enterTagId(context.getTagId());
+					puttyFunctionsPage.pressEnter();
+					puttyFunctionsPage.pressEnter(); //full qty enter
+					if(i==0)
+					{
+					purchaseOrderPickingPage.changeQtyPick(
+							Integer.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), context.getSkuId())));
+					puttyFunctionsPage.pressEnter();
+					purchaseOrderPickingPage.selectSplitPick();
+					}
+					else
+					{
+						puttyFunctionsPage.pressEnter();	
+					}
+					purchaseOrderPickingPage.enterContainerId(context.getTagId());
+					puttyFunctionsPage.pressEnter(); 
+					if(i==0)
+					{
+					jdaFooter.clickMoreButton();
+					jdaFooter.clickMoreButton();
+					}
+					Assert.assertTrue("To Location page is not as expected",
+							purchaseOrderPickingPage.isPckLocPageDisplayed());
+					puttyFunctionsPage.pressEnter();
+					Assert.assertTrue("Picking completion is not as expected",
+							purchaseOrderPickingPage.isPickEntPageDisplayed());
+					hooks.logoutPutty();
+					if (i == 0) {
+						// do clustering
+						jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
+						clusteringStepDefs.i_proceed_with_clustering_for("RETAIL");
+						// again scheduler program
+						jdaHomeStepDefs.i_navigate_scheduler_program_page();
+						schedulerProgramStepDefs.i_run_the_program();
+					}
+				}
+			}
+		}
+		}
 	}
 	@Given("^I perform nonretail picking$")
 	public void i_perform_nonretail_picking() throws Throwable {
