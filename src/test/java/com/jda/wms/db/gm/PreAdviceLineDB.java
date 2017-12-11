@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -77,8 +79,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_7 from pre_advice_line where pre_advice_id = '"
 				+ preAdviceID + "' and sku_id = '" + skuID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 	
 	public void updateAdviceNumber(String adviceNumber,String preAdviceId) throws SQLException, ClassNotFoundException {
@@ -100,8 +101,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_6 from pre_advice_line where pre_advice_id = '"
 				+ preAdviceID + "'  and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getBaseUOM(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
@@ -111,8 +111,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_5 from pre_advice_line where pre_advice_id = '"
 				+ preAdviceID + "'  and sku_id = '" + skuID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPackConfig(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
@@ -123,8 +122,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select config_id from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'  and sku_id = '" + skuID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getQtyDue(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
@@ -136,8 +134,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpc(String skuID) throws SQLException, ClassNotFoundException {
@@ -147,8 +144,7 @@ public class PreAdviceLineDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public ArrayList<String> getConsignmentID(String preAdviceID) throws SQLException, ClassNotFoundException {
@@ -179,8 +175,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select PALLET_CONFIG from pre_advice_line where pre_advice_id = '"
 				+ preAdviceID + "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getLineId(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
@@ -191,8 +186,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select line_id from pre_advice_line where pre_advice_id = '" + preAdviceID
 				+ "'   and sku_id = '" + skuID + "' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public void updateLockCode(String preAdviceId, String lockCode) throws SQLException, ClassNotFoundException {
@@ -213,8 +207,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_3 from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public void updateComplianceFlag(String preAdviceId, String skuId) throws SQLException, ClassNotFoundException {
@@ -235,8 +228,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select lock_code from pre_advice_line where pre_advice_id = '" + preAdviceId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 	
 	public void updateAdviceForSku(String preAdviceId, String skuId, String adviceId)
@@ -258,8 +250,7 @@ public class PreAdviceLineDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_2 from pre_advice_line where pre_advice_id='" + preAdviceId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 	
 	public boolean isUrgentDeliveryPo(String preAdviceId) throws SQLException, ClassNotFoundException {
@@ -268,10 +259,23 @@ public class PreAdviceLineDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_chk_4 from pre_advice_line where pre_advice_id='"+preAdviceId+"' and user_def_chk_4='Y'");
-		if (rs.next()) {
-			return true;
-		} else {
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
 			return false;
+		} else {
+			System.out.println("Record found in DB");
+			return true;
 		}
+		
 }
 }
+
+
+
+
+
+
+
+
+

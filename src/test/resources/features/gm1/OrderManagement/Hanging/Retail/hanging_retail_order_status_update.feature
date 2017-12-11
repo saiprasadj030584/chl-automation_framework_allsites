@@ -15,6 +15,6 @@ Feature: Hanging - Retail - Order Management
     And I search the order
     Then the record should be displayed
     When I proceed to check the status
-   # Then the status should be displayed as "Allocated" in order header
-     Then the stock should get allocated
+    Then the status should be displayed as "Allocated" in order header
+    # Then the stock should get allocated
     

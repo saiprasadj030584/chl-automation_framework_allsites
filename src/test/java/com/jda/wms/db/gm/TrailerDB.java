@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -25,8 +27,7 @@ public class TrailerDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select TRAILER_TYPE from trailer where trailer_id = '" + trailerID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 	
 	public boolean isTrailerExists(String trailerNo) throws SQLException, ClassNotFoundException {
@@ -50,3 +51,12 @@ public class TrailerDB {
 		return isRecordExists;
 	}
 }
+
+
+
+
+
+
+
+
+

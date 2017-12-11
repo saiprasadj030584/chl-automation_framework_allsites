@@ -47,8 +47,7 @@ public class UPIReceiptHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select NUM_LINES from upi_receipt_header WHERE pallet_id = '" + upiId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getNumberOfLines(ArrayList<String> upiList) throws SQLException, ClassNotFoundException {
@@ -74,8 +73,7 @@ public class UPIReceiptHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select USER_DEF_TYPE_7 from upi_receipt_header where pallet_id='" + upiId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public void updateASN(String upiId, String asnId) throws SQLException, ClassNotFoundException {
@@ -107,8 +105,7 @@ public class UPIReceiptHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("SELECT user_def_type_7 FROM upi_receipt_header WHERE pallet_id = '" + upiId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public boolean isRecordExistsForPalletId(String upiId) {
@@ -165,6 +162,7 @@ public class UPIReceiptHeaderDB {
 			
 			if (!rs.next()) {
 				context.setErrorMessage("*Datasetup is not completed due to application issue or windows pop up");
+				Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			} else {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}
@@ -193,8 +191,16 @@ public class UPIReceiptHeaderDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT pallet_id FROM upi_receipt_header WHERE STATUS = '" + status + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 }
+
+
+
+
+
+
+
+
+

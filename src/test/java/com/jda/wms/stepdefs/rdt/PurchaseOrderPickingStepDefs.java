@@ -138,7 +138,7 @@ this.orderLineDB=orderLineDB;
 				puttyFunctionsPage.pressEnter();
 			} else if (context.getSKUType().equalsIgnoreCase("Hanging")) {
 				moveTaskUpdateDB.releaseOrderId(context.getOrderId());
-				// moveTaskUpdateDB.releaseOrderId("5104200528");
+				
 				purchaseOrderPickingPage.enterListId(context.getListID());
 
 				puttyFunctionsPage.pressEnter();
@@ -518,9 +518,11 @@ this.orderLineDB=orderLineDB;
 		context.setListID(moveTaskDB.getListID(context.getOrderId()));
 		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
 		purchaseOrderPickingPage.enterListId(context.getListID());
-		puttyFunctionsPage.pressEnter();
-		purchaseOrderPickingPage.enterPrinterNO("P2003");
-		puttyFunctionsPage.pressEnter();
+//		if (context.getListID().contains("DOL")) {
+//		i_enter_the_UPC();
+		//puttyFunctionsPage.pressEnter();
+		//purchaseOrderPickingPage.enterPrinterNO("P2003");
+		//puttyFunctionsPage.pressEnter();
 		i_enter_the_UPC();
 		puttyFunctionsPage.pressEnter();
 		if (!purchaseOrderPickingPage.isInvalidSkuDetailsDisplayed()) {
@@ -530,8 +532,8 @@ this.orderLineDB=orderLineDB;
 
 		context.setFailureList(failureList);
 		hooks.logoutPutty();
-
 	}
+
 
 	@Given("^I enter the ivalid UPC for hanging$")
 	public void i_enter_the_invalid_UPC_for_hanging() throws Throwable {

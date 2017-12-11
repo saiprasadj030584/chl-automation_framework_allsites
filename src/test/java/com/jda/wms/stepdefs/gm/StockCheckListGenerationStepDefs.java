@@ -67,6 +67,9 @@ public class StockCheckListGenerationStepDefs {
 	@Then("^the available list should be displayed$")
 	public void the_available_list_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Available List is not displayed.", stockCheckListGenerationPage.isListAvailable());
+		if (stockCheckListGenerationPage.isNoRecordFound()) {
+			Assert.fail("record is not present please check with Non Prod Team and Try again ");
+		}
 		Thread.sleep(1000);
 	}
 

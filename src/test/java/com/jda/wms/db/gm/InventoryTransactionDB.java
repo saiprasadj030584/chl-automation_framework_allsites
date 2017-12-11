@@ -33,11 +33,15 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
-		rs.next();
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
+		} else {
+			System.out.println("Record found in DB");
+		}
 		return rs.getString(1);
 	}
-
 	public String getUpdateQtyIDT(String skuId, String upiId, String date, String code,String tagId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -62,7 +66,12 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select TAG_ID from inventory_transaction where reference_id='" + upiId + "' and code = 'Receipt'");
-		rs.next();
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
+		} else {
+			System.out.println("Record found in DB");
+		}
 		return rs.getString(1);
 	}
 
@@ -97,7 +106,12 @@ public class InventoryTransactionDB {
 				" Select  b.Description  from inventory_transaction A inner join sku B on A.Sku_id = B.Sku_id where A.tag_id = '"
 						+ tagId + "' and A.code = '" + code + "' and A.sku_id = '" + skuId + "' ");
 
-		rs.next();
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
+		} else {
+			System.out.println("Record found in DB");
+		}
 		return rs.getString(1);
 	}
 
@@ -289,8 +303,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select from_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"
 						+ tagID + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocation(String taskID, String tagID, String dstamp)
@@ -303,8 +316,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select to_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"
 						+ tagID + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFinalLocation(String taskID, String tagID, String dstamp)
@@ -317,8 +329,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select final_loc_id from inventory_transaction where CODE = 'Replenish' and tag_id = '"
 						+ tagID + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQty(String taskID, String tagID, String dstamp) throws SQLException, ClassNotFoundException {
@@ -330,8 +341,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select update_qty from inventory_transaction where CODE = 'Replenish' and tag_id = '"
 						+ tagID + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQtyUnlocked(String skuID, String tagID, String dstamp)
@@ -345,8 +355,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt.executeQuery(
 				"select update_qty from inventory_transaction where CODE = 'Inv UnLock' and reference_id = '" + tagID
 						+ "' and sku_id='" + skuID + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getTagID(String pallet, String code, String dstamp) throws SQLException, ClassNotFoundException {
@@ -359,8 +368,7 @@ public class InventoryTransactionDB {
 
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code
 				+ "'and reference_id= '" + pallet + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getTagID(String pallet, String code, String sku, String dstamp)
@@ -374,8 +382,7 @@ public class InventoryTransactionDB {
 
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code
 				+ "'and reference_id= '" + pallet + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getTagIDWithQty(String qtyDue, String code, String sku, String dstamp)
@@ -389,8 +396,7 @@ public class InventoryTransactionDB {
 
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where CODE ='" + code
 				+ "'and update_qty= '" + qtyDue + "' and sku_id= '" + sku + "' and DStamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQuantity(String tagID, String code, String date)
@@ -402,8 +408,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  update_qty from inventory_transaction where tag_id='" + tagID
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getStatus(String tagId, String code, String lockCode, String dstamp)
@@ -415,8 +420,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_status from inventory_transaction where tag_id='" + tagId
 				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReasonCode(String tagId, String code, String lockCode, String dstamp)
@@ -428,8 +432,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where reference_id='" + tagId
 				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReasonCodeUnlocked(String palletId, String tagId, String code, String dstamp)
@@ -441,8 +444,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where pallet_id='" + palletId
 				+ "' and code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReasonCodeUnlocked(String tagId, String code, String dstamp)
@@ -454,8 +456,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reason_id from inventory_transaction where" + " code='" + code
 				+ "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getLockStatus(String tagId, String code, String dstamp) throws ClassNotFoundException, SQLException {
@@ -466,8 +467,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_status from inventory_transaction where reference_id='" + tagId
 				+ "' and code='" + code + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUploadedFileName(String tagId, String code, String lockCode, String dstamp)
@@ -479,8 +479,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded_filename from inventory_transaction where tag_id='" + tagId
 				+ "' and code='" + code + "' and lock_code ='" + lockCode + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUploadedValue(String tagId, String code, String lockCode, String dstamp)
@@ -492,8 +491,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where tag_id='" + tagId
 				+ "' and code='" + code + "' and lock_code='" + lockCode + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUploadedValueUnlocked(String palletId, String tagId, String code, String dstamp)
@@ -506,8 +504,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select uploaded from inventory_transaction where pallet_id='" + palletId
 				+ "' and code='" + code + "' and tag_id='" + tagId + "' and dstamp like '" + dstamp + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQty(String tagId, String code, String dstamp, String status, String reasonCode)
@@ -522,8 +519,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
 				+ "' and code = '" + code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status
 				+ "' and REASON_ID ='" + reasonCode + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getOriginalQty(String tagId, String code, String dstamp, String status, String reasonCode)
@@ -536,8 +532,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt.executeQuery("select ORIGINAL_QTY from inventory_transaction where tag_id='" + tagId
 				+ "' and code = '" + code + "' and dstamp like '" + dstamp + "%' and lock_status = '" + status
 				+ "' and REASON_ID ='" + reasonCode + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFromLocation(String skuId, String tagId, String date, String code)
@@ -554,8 +549,7 @@ public class InventoryTransactionDB {
 		// + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFromLocatn(String tagId, String code, String date) throws ClassNotFoundException, SQLException {
@@ -565,8 +559,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFromLocationPO(String skuId, String preAdviceId, String date, String code)
@@ -581,8 +574,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select from_loc_id from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocation(String preadviceId, String tagId, String date, String code)
@@ -595,8 +587,7 @@ public class InventoryTransactionDB {
 				+ code + "' and DSTAMP like '" + date + "%'");
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocatn(String tagId, String code, String date) throws ClassNotFoundException, SQLException {
@@ -607,8 +598,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where tag_id='" + tagId
 				+ "'  and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocationPO(String skuId, String preAdviceId, String date, String code)
@@ -623,8 +613,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select to_loc_id from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQty(String skuId, String tagId, String date, String code)
@@ -638,8 +627,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where tag_id='" + tagId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQtyPO(String skuId, String preAdviceId, String date, String code)
@@ -654,8 +642,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select UPDATE_QTY from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReferenceId(String skuId, String tagId, String date, String code)
@@ -668,8 +655,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select reference_id from inventory_transaction where sku_id = '" + skuId
 				+ "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id='" + tagId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReferenceIdPO(String skuId, String palletId, String date, String code)
@@ -683,8 +669,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where tag_id='" + palletId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReferenceId(String upiId, String code) throws ClassNotFoundException, SQLException {
@@ -695,8 +680,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where tag_id='" + upiId
 				+ "' and code = '" + code + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getLockCode(String preAdviceId, String code) throws ClassNotFoundException, SQLException {
@@ -707,10 +691,12 @@ public class InventoryTransactionDB {
 				+ "' and code = '" + code + "'");
 		Statement stmt = context.getConnection().createStatement();
 
-		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='"
-				+ preAdviceId + "' or pallet_id='" + preAdviceId + "' and code = '" + code + "' order by dSTAMP desc");
-		rs.next();
-		return rs.getString(1);
+
+		ResultSet rs = stmt.executeQuery("select LOCK_CODE from inventory_transaction where reference_id='" + preAdviceId
+				+ "' and code = '" + code + "'");
+
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+
 	}
 
 	public int getReceiptCount(String upiId, String code) throws ClassNotFoundException, SQLException {
@@ -799,8 +785,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_code from inventory_transaction where tag_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getLockCodeWithPORef(String skuId, String preAdviceId, String date, String code)
@@ -813,8 +798,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select lock_code from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPallet(String upiId, String code) throws SQLException, ClassNotFoundException {
@@ -824,8 +808,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getSkuId(String upiId, String code) throws SQLException, ClassNotFoundException {
@@ -835,8 +818,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from inventory_transaction where reference_id='" + upiId
 				+ "' and code = '" + code + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFromLocationIDT(String skuId, String upiId, String date, String code,String tagId)
@@ -849,9 +831,10 @@ public class InventoryTransactionDB {
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where  reference_id='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
-		rs.next();
-		return rs.getString(1);
+
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+
 	}
 
 	public String getReferenceIdIDT(String skuId, String upiId, String date, String code,String tagId)
@@ -864,9 +847,10 @@ public class InventoryTransactionDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where reference_id ='" + upiId
-				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%' and tag_id = '" + tagId + "%'");
-		rs.next();
-		return rs.getString(1);
+
+				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+
 	}
 
 	public String getConfigId(String skuId, String code) throws SQLException, ClassNotFoundException {
@@ -876,8 +860,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				" SELECT CONFIG_ID FROM  inventory_transaction  where code = '" + code + " and sku_id =" + skuId + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getConfigIdFromITL(String tagId, String code, String date)
@@ -888,8 +871,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(" SELECT CONFIG_ID FROM  inventory_transaction  where code = '" + code
 				+ " and tag_id =" + tagId + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String isITLExistsForRelocatedPutaway(String skuId, String upiId, String date, String string,
@@ -918,8 +900,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"SELECT code FROM inventory_transaction WHERE  sku_id = '" + skuId + "'and notes = 'Custom ITL'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getLockCodebyUpid(String upiId, String skuId, String date, String code)
@@ -953,8 +934,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select notes from inventory_transaction where Reference_Id='" + orderId
 				+ "' and code = 'Order Status'and Notes = 'Released --> Cancelled' ");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getFromLocationWithPo(String skuId, String preAdviceId, String date, String code)
@@ -967,8 +947,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select from_loc_id from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocationWithPo(String skuId, String preAdviceId, String date, String code)
@@ -981,8 +960,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select to_loc_id from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQtyWithPo(String skuId, String preAdviceId, String date, String code)
@@ -994,8 +972,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select UPDATE_QTY from inventory_transaction where reference_id='" + preAdviceId
 						+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getPutawayTagId(String siteID, String preAdviceID) throws SQLException, ClassNotFoundException {
@@ -1008,8 +985,7 @@ public class InventoryTransactionDB {
 		ResultSet rs = stmt
 				.executeQuery("select tag_id from inventory_transaction where CODE = 'Putaway' and reference_id='"
 						+ preAdviceID + "' and site_id ='" + siteID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getlockstatus(String date, String tagId) throws SQLException, ClassNotFoundException {
@@ -1019,8 +995,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT lock_status  FROM inventory_transaction where dstamp like '" + date
 				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getExpiryDate(String date, String tagId) throws SQLException, ClassNotFoundException {
@@ -1030,8 +1005,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT  expiry_dstamp  FROM inventory_transaction where dstamp like '" + date
 				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getConditionfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
@@ -1041,8 +1015,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT  condition_id  FROM inventory_transaction where dstamp like '" + date
 				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public Object getPalletfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
@@ -1052,8 +1025,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT  PALLET_CONFIG  FROM inventory_transaction where dstamp like '" + date
 				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public Object getPackConfigfromDB(String date, String tagId) throws SQLException, ClassNotFoundException {
@@ -1063,8 +1035,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT  config_id  FROM inventory_transaction where dstamp like '" + date
 				+ "%' AND tag_id= '" + tagId + "' order by dstamp desc");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getTagIdForSpecificTime(String skuId, String code, String transactionTime)
@@ -1078,8 +1049,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory_transaction where sku_id='" + skuId
 				+ "' and code='" + code + "' and dstamp like '%" + transactionTime + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public boolean isRecordExistsForReasonCodeForTransactionTime(String skuId, String code, String transactionTime)
@@ -1117,8 +1087,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select from_loc_id from inventory_transaction where pallet_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getToLocationWithpalletId(String skuId, String upiId, String date, String code)
@@ -1130,8 +1099,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select to_loc_id from inventory_transaction where pallet_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getUpdateQtyWithPalletId(String skuId, String upiId, String date, String code)
@@ -1143,8 +1111,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPDATE_QTY from inventory_transaction where pallet_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getReferenceIdWithPalletId(String skuId, String upiId, String date, String code)
@@ -1156,8 +1123,7 @@ public class InventoryTransactionDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select REFERENCE_ID from inventory_transaction where pallet_id='" + upiId
 				+ "' and sku_id = '" + skuId + "' and code = '" + code + "' and DSTAMP like '" + date + "%'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getTagId(String preadviceId, String skuId, String code) throws SQLException, ClassNotFoundException {
@@ -1215,3 +1181,4 @@ public class InventoryTransactionDB {
 
 
 }
+

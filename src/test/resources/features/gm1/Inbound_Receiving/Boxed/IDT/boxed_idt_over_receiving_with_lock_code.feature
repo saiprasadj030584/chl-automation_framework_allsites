@@ -3,7 +3,7 @@ Feature: Inbound Receiving - IDT - Over Receiving with Lock code
   As a warehouse user
   I want to receive the returned articles
 
-  @jenkinsfly @unique_boxed_inbound_receiving_idt_over_receiving_with_lock_code @idt @inbound_receiving @boxed @complete @ds @maven_check_1
+  @jenkinsA @unique_boxed_inbound_receiving_idt_over_receiving_with_lock_code @idt @inbound_receiving @boxed @complete @ds @maven_check_1
   Scenario: Validate Over receiving with lockcode
     Given the UPI and ASN should be in "Released" status for IDT
     And ASN and container to be linked with upi header

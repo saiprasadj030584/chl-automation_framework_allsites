@@ -19,7 +19,7 @@ Feature: Hanging - IDT - Allocation
     And I enter OrderID for allocation
     Then the order should be allocated with prohibition flag
 
-     @jenkinsKO @allocation @hanging @idt @unique_hanging_allocation_idt_validate_whether_order_is_available_for_allocation @complete @ds
+     @jenkinsB @allocation @hanging @idt @unique_hanging_allocation_idt_validate_whether_order_is_available_for_allocation @complete @ds
   Scenario: Validating availability of stock for allocation
     Given the OrderID of type "IDT" for sku "Hanging" should be in "Released" status at site
     And I have inventory available for the order line items

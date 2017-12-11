@@ -36,13 +36,15 @@ Feature: Boxed - Retail - Picking
     And I perform unpicking
     Then order header should be updated for unpicked stock
 
-  @boxed @retail @picking @unique_boxed_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsw
+ @jenkinsA @boxed @retail @picking @unique_boxed_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsw
   Scenario: Validate keying wrong UPC
     Given the order of "Retail" should be in "Released" status in order header maintenance
     # Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page
     And I enter OrderID for allocation
     Then the status should be allocated for the orderID
+    When I navigate to scheduler program page
+    And I run the program
     When I enter the invalid  UPC
     Then the error message should be displayed as invalid details
 

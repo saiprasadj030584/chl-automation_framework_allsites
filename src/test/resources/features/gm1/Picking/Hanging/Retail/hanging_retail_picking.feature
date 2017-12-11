@@ -3,7 +3,7 @@ Feature: Hanging - Retail - Picking
   As a warehouse user
   I want to pick the allocated stocks
 
-  @hanging @jenkinsgm @retail @picking @unique_hanging_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsB
+  @hanging @jenkinsgm  @jenkinsgm1 @retail @picking @unique_hanging_picking_retail_validate_keying_wrong_upc @complete @ds @jenkinsB
   Scenario: Validate keying wrong UPC
     Given the order of "Retail" should be in "Released" status in order header maintenance
     When I navigate to system allocation page

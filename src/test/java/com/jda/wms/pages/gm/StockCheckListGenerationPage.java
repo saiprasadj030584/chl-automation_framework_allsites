@@ -106,4 +106,12 @@ public class StockCheckListGenerationPage {
 		screen.wait("images/StockCheckListGeneration/MiscellonousTab.png", timeoutInSec);
 		screen.click("images/StockCheckListGeneration/MiscellonousTab.png");
 	}
+
+	public boolean isNoRecordFound() {
+		if (screen.exists("images/DuplicateOption/NoRecords.png") != null)
+			return true;
+		else
+			return false;
+	}
 }
+

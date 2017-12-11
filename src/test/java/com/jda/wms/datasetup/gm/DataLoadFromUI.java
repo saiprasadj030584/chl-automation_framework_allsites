@@ -33,6 +33,8 @@ public class DataLoadFromUI {
 	private Context context;
 	private OrderHeaderDB orderHeaderDB;
 	private DeliveryPage deliveryPage;
+	public String invalidTesDataerrMsg = "Invalid test data provided as reference in the iARM portal.Please update valid test data and try again.";
+	public String ejbErrMsg ="EJB Error Found - Application issue . please check with Non Prod Team and Try again";
 
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -66,7 +68,9 @@ public class DataLoadFromUI {
 				deliveryPage.enterAsnId(asnReference);
 				jdaFooter.clickExecuteButton();
 				if (deliveryPage.isNoRecordFound()) {
-					Assert.assertTrue("No ASN data present in UI ", false);
+				System.out.println(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + asnReference);
+				context.setErrorMessage(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + asnReference);
+				Assert.fail(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + asnReference);
 				}
 			} else {
 				// Clicking query for the second time to ensure test case
@@ -76,7 +80,10 @@ public class DataLoadFromUI {
 					deliveryPage.enterAsnId(asnReference);
 					jdaFooter.clickExecuteButton();
 					if (deliveryPage.isNoRecordFound()) {
-						Assert.assertTrue("No ASN data present in UI ", false);
+						System.out.println(
+								"No asn data present in UI due to invalid test data. Please check with project team to get valid data:-"
+										+ asnReference);
+						Assert.fail("No asn data present in UI");
 					}
 				} else {
 					Assert.fail("Application Issue - Query button not clicked");
@@ -84,7 +91,9 @@ public class DataLoadFromUI {
 			}
 
 			if (deliveryPage.isEJBerrorfound()) {
-				Assert.assertTrue("EJB error found", false);
+				System.out.println(ejbErrMsg);
+				context.setErrorMessage(ejbErrMsg);
+				Assert.fail(ejbErrMsg);
 			}
 
 			screen.rightClick();
@@ -121,7 +130,9 @@ public class DataLoadFromUI {
 			// jdaFooter.PressEnter();
 			jdaFooter.PressEnter();
 			if (deliveryPage.isEJBerrorfound()) {
-				Assert.fail("Failed even after enabling the ignore merge rules checked..");
+				System.out.println(ejbErrMsg);
+				context.setErrorMessage(ejbErrMsg);
+				Assert.fail(ejbErrMsg+" Failed even after enabling the ignore merge rules checked..");
 			} else {
 				System.out.println("2 EJB err not found");
 			}
@@ -143,13 +154,16 @@ public class DataLoadFromUI {
 			System.out.println("inside after query click ui");
 			jdaFooter.clickQueryButton();
 			System.out.println("inside after query click ui");
-			System.out.println("CHECKKKKK1");
 			upiReceiptHeaderPage.enterPalletWithReference(upiReference);
 			jdaFooter.clickExecuteButton();
 			if (upiReceiptHeaderPage.isNoRecordFound()) {
-				Assert.assertTrue("No upi data present in UI ", false);
+				System.out.println(invalidTesDataerrMsg + " Invalid upi reference-->" + upiReference);
+				context.setErrorMessage(invalidTesDataerrMsg + " Invalid upi reference-->" + upiReference);
+				Assert.fail(invalidTesDataerrMsg + " Invalid upi-->" + upiReference);
+				}
+		
 
-			} else {
+			 else {
 				// Clicking query for the second time to ensure test case
 				jdaFooter.clickQueryButton();
 				System.out.println("inside after query click ui");
@@ -164,7 +178,10 @@ public class DataLoadFromUI {
 				}
 			}
 			if (upiReceiptHeaderPage.isEJBerrorfound()) {
-				Assert.assertTrue("EJB error found", false);
+				System.out.println(ejbErrMsg);
+				context.setErrorMessage(ejbErrMsg);
+				Assert.fail(ejbErrMsg);
+				
 			}
 
 			screen.rightClick();
@@ -207,7 +224,8 @@ public class DataLoadFromUI {
 
 			if (deliveryPage.isEJBerrorfound()) {
 				System.out.println("EJB Error even after merge rules - Fail");
-				Assert.fail("Failed even after enabling the ignore merge rules checked..");
+				context.setErrorMessage(ejbErrMsg);
+				Assert.fail(ejbErrMsg+" Failed even after enabling the ignore merge rules checked..");
 			} else {
 				System.out.println("2 EJB err not found");
 			}
@@ -233,7 +251,9 @@ public class DataLoadFromUI {
 			jdaFooter.clickExecuteButton();
 
 			if (preAdviceHeaderPage.isNoRecordFound()) {
-				Assert.assertTrue("No po data present in UI ", false);
+				System.out.println(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + poReference);
+				context.setErrorMessage(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + poReference);
+				Assert.fail(invalidTesDataerrMsg + " Invalid Purchase Order reference-->" + poReference);
 			}
 
 			else {
@@ -244,17 +264,24 @@ public class DataLoadFromUI {
 					preAdviceHeaderPage.enterPreAdviceID(poReference);
 					jdaFooter.clickExecuteButton();
 					if (deliveryPage.isNoRecordFound()) {
-						Assert.assertTrue("No po data present in UI ", false);
+						System.out.println(
+								"No po data present in UI due to invalid test data. Please check with project team to get valid data:-"
+										+ poReference);
+						Assert.fail("No po data present in UI");
 					}
 				} else {
 					Assert.fail("Application Issue - Query button not clicked");
 				}
 				if (preAdviceHeaderPage.isEJBerrorfound()) {
-					Assert.assertTrue("EJB error found", false);
+					System.out.println(ejbErrMsg);
+					context.setErrorMessage(ejbErrMsg);
+					Assert.fail(ejbErrMsg);
 				}
-
 				if (deliveryPage.isNoRecordFound()) {
-					Assert.assertTrue("No po data present in po ", false);
+					System.out.println(
+							"No po data present in UI due to invalid test data. Please check with project team to get valid data:-"
+									+ poReference);
+					Assert.fail("No po data present in UI");
 				}
 
 				screen.rightClick();
@@ -266,7 +293,7 @@ public class DataLoadFromUI {
 				jdaFooter.pressBackSpace();
 
 				preAdviceHeaderPage.enterPreAdviceID(po);
-				
+
 				jdaFooter.clickExecuteButton();
 				if (deliveryPage.isEJBerrorfound()) {
 					Thread.sleep(2000);
@@ -299,7 +326,9 @@ public class DataLoadFromUI {
 				}
 				Thread.sleep(3000);
 				if (deliveryPage.isEJBerrorfound()) {
-					Assert.fail("Failed even after enabling the ignore merge rules checked..");
+					System.out.println(ejbErrMsg);
+					context.setErrorMessage(ejbErrMsg);
+					Assert.fail(ejbErrMsg+"Failed even after enabling the ignore merge rules checked..");
 				} else {
 					System.out.println("2 EJB err not found");
 				}
@@ -323,10 +352,15 @@ public class DataLoadFromUI {
 
 		jdaFooter.clickExecuteButton();
 		if (orderHeaderPage.isNoRecordFound()) {
-			Assert.assertTrue("No Order data present in UI ", false);
+			System.out.println(invalidTesDataerrMsg + " Invalid upi reference-->" + orderReference);
+			context.setErrorMessage(invalidTesDataerrMsg + " Invalid upi reference-->" + orderReference);
+			Assert.fail(invalidTesDataerrMsg + " Invalid upi-->" + orderReference);
+			
 		}
 		if (orderHeaderPage.isEJBerrorfound()) {
-			Assert.assertTrue("EJB error found", false);
+			System.out.println(ejbErrMsg);
+			context.setErrorMessage(ejbErrMsg);
+			Assert.fail(ejbErrMsg);
 		}
 		screen.rightClick();
 		Thread.sleep(2000);
@@ -360,12 +394,25 @@ public class DataLoadFromUI {
 			context.setErrorMessage("NA");
 			System.out.println("1 EJB err not found");
 		}
+		if (screen.exists("images/SaveModifications.png") != null) {
+			System.out.println("Save Modifications");
+			jdaFooter.PressEnter();
+		}
+		if (screen.exists("images/DefaultToReleased.png") != null) {
+			System.out.println("Default to Released");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
+		}
+		if (screen.exists("images/DuplicateLines.png") != null) {
+			System.out.println("Duplicating Lines..");
+			jdaFooter.PressEnter();
+			Thread.sleep(2000);
 
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
-		jdaFooter.PressEnter();
+		}
 		if (deliveryPage.isEJBerrorfound()) {
-			Assert.fail("Failed even after enabling the ignore merge rules checked..");
+			System.out.println(ejbErrMsg);
+			context.setErrorMessage(ejbErrMsg);
+			Assert.fail(ejbErrMsg+" Failed even after enabling the ignore merge rules checked..");
 		} else {
 			System.out.println("2 EJB err not found");
 		}

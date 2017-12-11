@@ -19,7 +19,7 @@ Feature: Hanging - Retail - Allocation
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     Then the order stock modularity should be visible
 
-  @allocation @retail @hanging @unique_hanging_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
+ @jenkinsB @allocation @retail @hanging @unique_hanging_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @ds
   Scenario: Validate whether all the stocks are allocated -Allocation Rules-Retail Orders
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     When I navigate to system allocation page

@@ -99,7 +99,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @jenkinsA  @jenkins_analysis @boxed @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds 
+  @jenkinsA @jenkinsgm1 @jenkins_analysis @boxed @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds 
   Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO should be in "Released" status
     And the PO line should have sku, quantity due details

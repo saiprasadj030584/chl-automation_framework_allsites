@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
@@ -25,8 +27,7 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ORDER_DATE from ORDER_HEADER where sku_id='" + skuId
 				+ "' AND supplier_id ='" + supplierID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
 	public String getSupplierId(String upc) throws ClassNotFoundException {
@@ -50,12 +51,15 @@ public class SupplierSkuDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select count(*) from supplier_sku where supplier_sku_id='" + upc + "'");
-		rs.next();
-		if (Integer.valueOf(rs.getString(1)) > 1) {
-			return true;
-		} else {
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
 			return false;
+		} else {
+			System.out.println("Record found in DB");
+			return true;
 		}
+		
 	}
 
 	public String getUPC(String skuId) {
@@ -107,9 +111,9 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuId
 				+ "' AND supplier_id ='" + supplierID + "'");
-		rs.next();
-		return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
+
 
 	public String getProhibitedSupplier(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -122,3 +126,12 @@ public class SupplierSkuDB {
 	}
 
 }
+
+
+
+
+
+
+
+
+
