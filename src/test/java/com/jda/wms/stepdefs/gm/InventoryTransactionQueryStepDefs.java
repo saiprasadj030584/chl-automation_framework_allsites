@@ -986,7 +986,8 @@ public class InventoryTransactionQueryStepDefs {
 			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
 			jDAFooter.clickExecuteButton();
 			String code = "Receipt";
-			Assert.assertEquals("ITL not generated for Returns Receiving", 1 , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+			System.out.println("no of line"+ context.getNoOfLines());
+			Assert.assertEquals("ITL not generated for Returns Receiving", context.getNoOfLines() , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 
 	}
 

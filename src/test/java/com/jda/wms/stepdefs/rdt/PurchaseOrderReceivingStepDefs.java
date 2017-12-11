@@ -738,6 +738,11 @@ public class PurchaseOrderReceivingStepDefs {
 						purchaseOrderReceivingPage.enterPalletId(
 								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
 					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
 					jdaFooter.PressEnter();
 					Thread.sleep(2000);
 
@@ -758,6 +763,11 @@ public class PurchaseOrderReceivingStepDefs {
 						jdaFooter.pressTab();
 						purchaseOrderReceivingPage.enterPalletId(
 								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
 					}
 					jdaFooter.PressEnter();
 					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
@@ -801,6 +811,11 @@ public class PurchaseOrderReceivingStepDefs {
 					purchaseOrderReceivingPage
 							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
 				}
+				else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("flatpack"))) {
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage
+							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+				}
 				jdaFooter.PressEnter();
 				Thread.sleep(2000);
 				if (purchaseOrderReceivingPage.isURRNExists()) {
@@ -826,6 +841,11 @@ public class PurchaseOrderReceivingStepDefs {
 								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
 					}
 					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("flatpack"))) {
 						jdaFooter.pressTab();
 						purchaseOrderReceivingPage
 								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
@@ -1294,13 +1314,13 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the multiple UPI of type \"([^\"]*)\" and ASN should be in \"([^\"]*)\" status$")
 	public void the_multiple_UPI_of_type_and_ASN_should_be_in_status(String dataType, String status) throws Throwable {
 
-		// String upiId1 = getTcData.getUpi();
-		// String upiId2 = getTcData.getUpi2();
-		// String asnId = getTcData.getAsn();
+		 String upiId1 = getTcData.getUpi();
+		 String upiId2 = getTcData.getUpi2();
+		 String asnId = getTcData.getAsn();
 
-		String upiId1 = "56490000369490536160009081600400";
-		String upiId2 = "56490000542760246410022061800100";
-		String asnId = "0000006398";
+//		String upiId1 = "56490000369490536160009081600400";
+//		String upiId2 = "56490000542760246410022061800100";
+//		String asnId = "0000006398";
 
 		context.setStatus(status);
 		String upiId = upiId1 + "," + upiId2;
@@ -1324,30 +1344,17 @@ public class PurchaseOrderReceivingStepDefs {
 	@Given("^the normal UPI of type \"([^\"]*)\" and ASN should be in \"([^\"]*)\" status$")
 	public void the_normal_UPI_of_type_and_ASN_should_be_in_status(String dataType, String status) throws Throwable {
 		//
-		// String upiId = getTcData.getUpi();
-		// String asnId = getTcData.getAsn();
-		// System.out.println("upi"+ upiId);
-		// System.out.println("asn"+asnId );
-
-		String upiId = "56490004109100005410011061702000";
-		String asnId = "400528";
-
+		 String upiId = getTcData.getUpi();
+		 String asnId = getTcData.getAsn();
+		 System.out.println("upi"+ upiId);
+		 System.out.println("asn"+asnId );
 		context.setStatus(status);
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		context.setSKUType(dataType);
 		preAdviceHeaderStepsDefs.the_normal_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details();
 		the_pallet_count_should_be_updated_in_delivery_asn_userdefnote1_to_be_upadted_in_upi_header_and_userdefnote2_containerid_to_be_upadted_in_upi_line_for_non_rms();
-		// Map<String, Integer> upiNumLines = new HashMap<String, Integer>();
-		// int numLines = 0;
-		// for (int i = 0; i < context.getUpiList().size(); i++) {
-		// upiNumLines.put(context.getUpiList().get(i),
-		// Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i))));
-		// numLines +=
-		// Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(context.getUpiList().get(i)));
-		// }
 		int numLines = Integer.parseInt(uPIReceiptHeaderDB.getNumberOfLines(context.getUpiId()));
-		// context.setUpiNumLinesMap(upiNumLines);
 		context.setNoOfLines(numLines);
 	}
 

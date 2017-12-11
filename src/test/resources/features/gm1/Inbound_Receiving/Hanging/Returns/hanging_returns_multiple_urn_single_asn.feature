@@ -1,5 +1,5 @@
-@footwear_returns_inbound_receiving
-Feature: Footwear - Returns - Multiple URN Single ASN Receiving
+@hanging_returns_inbound_receiving
+Feature: Hanging - Returns - Multiple URN Single ASN Receiving
   As a warehouse user
   I want to receive the articles
 

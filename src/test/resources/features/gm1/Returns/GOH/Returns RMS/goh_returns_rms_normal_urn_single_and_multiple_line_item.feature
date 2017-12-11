@@ -13,7 +13,7 @@ Feature: GOH - Returns RMS - Returns
 
   @returns @goh @returns_rms @unique_goh_returns_returns_rms_validate_the_returns_rms_normal_urn_multiple_line_item @ds
   Scenario: Validate the Returns RMS - Normal URN - Multiple line item
-    Given the normal UPI of type "Boxed" and ASN should be in "Released" status
+    Given the normal UPI of type "GOH" and ASN should be in "Released" status
     And the upi should have sku, quantity due details
     And I receive all skus of single upi for the returns order at "REC003" with perfect condition "Y"
     When I navigate to inventory transaction query

@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
-		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@unique_boxed_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_different_order"
+		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {"@unique_goh_returns_returns_rms_validate_the_returns_rms_normal_urn_multiple_line_item"
 				+ ""
 				+ ""
 				+ ""})

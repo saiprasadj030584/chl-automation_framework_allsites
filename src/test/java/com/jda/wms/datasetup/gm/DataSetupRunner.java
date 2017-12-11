@@ -186,6 +186,7 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("returns") && (context.getUniqueTag().contains("returns_non_rms"))) {
+			System.out.println("inside returns non rms");
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -217,6 +218,11 @@ public class DataSetupRunner {
 				gettcdata.setPalletId(upi);
 
 				if (context.getUniqueTag().contains("multiple_urn")) {
+					dataLoadFromUI.duplicateUPI(upiReference, upi2);
+					validateUpiDataSetup(upi2);
+					gettcdata.setSecondPalletId(upi2);
+				}
+				else if (context.getUniqueTag().contains("multiple_upi")) {
 					dataLoadFromUI.duplicateUPI(upiReference, upi2);
 					validateUpiDataSetup(upi2);
 					gettcdata.setSecondPalletId(upi2);
@@ -375,7 +381,11 @@ public class DataSetupRunner {
                     	validateUpiDataSetup(upi2);
                     	gettcdata.setSecondPalletId(upi2);
 					}
-					
+                    else if(context.getUniqueTag().contains("multiple_upi")){
+                    	dataLoadFromUI.duplicateUPI(upiReference,upi2);
+                    	validateUpiDataSetup(upi2);
+                    	gettcdata.setSecondPalletId(upi2);
+					}
 					npsDataBase.disconnectAutomationDB();
 				} catch (Exception exception) {
 					exception.printStackTrace();
