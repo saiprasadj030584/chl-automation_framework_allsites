@@ -4,7 +4,7 @@ Feature: Boxed - Retail - Outbound Order till despatch
   I want to load a trailer
   So that I can unload that trailer
 
-  @unique_outbound_order_till_despatch @boxed @retail @boxed_outbound_order_till_despatch_retail_incorrect_pallet_id_keyin_when_unloading @complete @ds
+  @outbound_order_till_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_incorrect_pallet_id_keyin_when_unloading @complete @ds
   Scenario: Incorrect pallet id keyin when unloading
     Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
     When I navigate to system allocation page
@@ -26,7 +26,7 @@ Feature: Boxed - Retail - Outbound Order till despatch
     When I proceed for vehicle unload
     Then Trailer should display as Invalid Pallet ID
 
-  @unique_outbound_order_till_despatch @boxed @retail @boxed_outbound_order_till_despatch_retail_unload_urn_from_the_trailer @complete @ds
+  @outbound_order_till_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_unload_urn_from_the_trailer @complete @ds
   Scenario: Unload URN from the trailer
     Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
     When I navigate to system allocation page

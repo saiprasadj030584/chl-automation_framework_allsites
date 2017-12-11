@@ -357,39 +357,18 @@ public class JdaHomePage {
 
 	public void clickSearchIcon() {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 			if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
 				System.out.println("Application search icon found");
 				if (screen.exists("images/JDAHome/Welcomed.png") != null) {
 					screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
 					screen.click("images/JDAHome/Welcomed.png");
 					Thread.sleep(2000);
-					// System.out.println("Right Click on welcome tab");
-					jdaFooter.rightClick();
-					Thread.sleep(2000);
-					screen.type(Key.UP);
-					screen.type(Key.UP);
-					screen.type(Key.UP);
-					screen.type(Key.UP);
-					screen.type(Key.UP);
-					screen.type(Key.UP);
-					Thread.sleep(2000);
-					stepsScreenShot();
-					screen.type(Key.ENTER);
-					Thread.sleep(2000);
-					System.out.println("Search for Screen selection ");
-					if (screen.exists("images/ScreenSelection.png") != null) {
-						System.out.println("Screen selection found");
-						screen.click("images/ScreenSelection.png");
-						// screen.wait("images/SearchFor.png", timeoutInSec);
-						// screen.click("images/SearchFor.png");
-					}
-
-					else if (screen.exists("images/JDAHome/Welcome.png") != null) {
-						System.out.println("Screen selection not Found . Try again to right click welcome screen");
-						screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
-						screen.click("images/JDAHome/Welcome.png");
-						Thread.sleep(2000);
+					do {
+						Thread.sleep(1000);
+						screen.click("images/JDAHome/Welcomed.png");
+					} while (screen.exists("images/JDAHome/JDAHomePage.png") == null);
+					if (screen.exists("images/JDAHome/JDAHomePage.png") != null) {
 						jdaFooter.rightClick();
 						Thread.sleep(2000);
 						screen.type(Key.UP);
@@ -397,19 +376,77 @@ public class JdaHomePage {
 						screen.type(Key.UP);
 						screen.type(Key.UP);
 						screen.type(Key.UP);
-						// screen.type(Key.UP);
+						Thread.sleep(1000);
+						if (screen.exists("images/JDAHome/TranslateScreen.png") != null) {
+							screen.type(Key.UP);
+						}
 						Thread.sleep(2000);
-						stepsScreenShot();
-						screen.type(Key.ENTER);
-						Thread.sleep(2000);
-						if (screen.exists("images/ScreenSelection.png") != null) {
-							System.out.println("Screen selection found");
-							screen.click("images/ScreenSelection.png");
-							// screen.wait("images/SearchFor.png",
-							// timeoutInSec);
-							// screen.click("images/SearchFor.png");
+
+						if (screen.exists("images/JDAHome/CAEFF.png") != null
+								|| screen.exists("images/JDAHome/FS.png") != null) {
+							screen.type(Key.ENTER);
+							Thread.sleep(2000);
+							System.out.println("Search for Screen selection ");
+							if (screen.exists("images/ScreenSelection.png") != null) {
+								System.out.println("Screen selection found");
+								screen.click("images/ScreenSelection.png");
+								// screen.wait("images/SearchFor.png",
+								// timeoutInSec);
+								// screen.click("images/SearchFor.png");
+							}
+						} else {
+							System.out.println("Find screen image is not found");
+							Assert.fail("Find screen image is not found");
 						}
 					}
+
+					else {
+						System.out.println("JDA Home Page is not displayed");
+						Assert.fail("JDA Home Page is not displayed");
+					}
+				}
+
+				else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+					System.out.println("Screen selection not Found . Try again to right click welcome screen");
+					screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
+					screen.click("images/JDAHome/Welcome.png");
+					Thread.sleep(2000);
+					if (screen.exists("images/JDAHome/JDAHomePage.png") != null) {
+						jdaFooter.rightClick();
+						Thread.sleep(2000);
+						screen.type(Key.UP);
+						screen.type(Key.UP);
+						screen.type(Key.UP);
+						screen.type(Key.UP);
+						screen.type(Key.UP);
+						Thread.sleep(1000);
+						if (screen.exists("images/JDAHome/TranslateScreen.png") != null) {
+							screen.type(Key.UP);
+						}
+						Thread.sleep(2000);
+						if (screen.exists("images/JDAHome/FS.png") != null) {
+							screen.type(Key.ENTER);
+							Thread.sleep(2000);
+							if (screen.exists("images/ScreenSelection.png") != null) {
+								System.out.println("Screen selection found");
+								screen.click("images/ScreenSelection.png");
+								// screen.wait("images/SearchFor.png",
+								// timeoutInSec);
+								// screen.click("images/SearchFor.png");
+							}
+						} else {
+							System.out.println("Find screen image is not found");
+							Assert.fail("Find screen image is not found");
+						}
+					} else {
+						System.out.println("JDA Home Page is not displayed");
+						Assert.fail("JDA Home Page is not displayed");
+					}
+				}
+
+				else {
+					System.out.println("JDA Home Page is not displayed");
+					Assert.fail("JDA Home Page is not displayed");
 				}
 			}
 
