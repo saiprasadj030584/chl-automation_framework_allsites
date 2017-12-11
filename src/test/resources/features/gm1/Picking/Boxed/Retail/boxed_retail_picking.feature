@@ -50,16 +50,13 @@ Feature: Boxed - Retail - Picking
   Scenario: Validate whether Boxed location is made as Pickable Preferred Location
     Given check the loc type for the boxed preffered zones
     
-    
-    @boxed @picking @boxed_picking_picking_validate_whether_retail_order_is_picked_from_preferred_aisle_and_non_retail_order_from_normal_storage_aisle @complete @ds @retail
-  Scenario: Validate whether Retail Order is picked from Preferred Aisle and Non Retail Order from Normal Storage Aisle
-    Given the order id of type "Retail" should be in "Released" status
+   
+  
+ @unique_boxed_picking_picking_validate_whether_boxed_location_is_made_as_pickable_in_a_reserve @Boxed @ds
+ Scenario: Reserve location is made as pickable 
+Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
     When I navigate to system allocation page
-    And I allocate the stocks
-    Then the stock should get allocated
-    And I perform picking
-    
-    When I navigate to system allocation page
-    And I allocate the stocks
-    Then the stock should get allocated
-    And I perform picking
+    And I enter OrderID for allocation
+    Then Allocation should be updated
+    Then Pick Face is maintained against the location
+    Then I perform picking

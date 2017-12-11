@@ -32,7 +32,7 @@ public class SkuSkuConfigDB {
 		return rs.getString(1);
 	}
 
-	public ArrayList getPackConfigList(String sku) throws SQLException, ClassNotFoundException {
+	public ArrayList<String> getPackConfigList(String sku) throws SQLException, ClassNotFoundException {
 		ArrayList<String> packConfigList = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();

@@ -105,8 +105,7 @@ public class Database {
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
 			logger.debug("Exception " + ex.getMessage());
-		}
-	}
+		}	}
 
 	/**
 	 * This method is used to place a file into the interface tables of the
@@ -786,7 +785,7 @@ public class Database {
 		Statement stmt = null;
 		try {
 			System.out.println("CHECK CONNECTION " + context.getDBConnection());
-			if (context.getDBConnection().isClosed() || context.getDBConnection() == null) {
+			if (context.getDBConnection() == null) {
 				npsDataBase.connectAutomationDB();
 			}
 
@@ -804,5 +803,23 @@ public class Database {
 		} catch (Exception e) {
 
 		}
+	}
+	
+	public void closeDBConnection() throws SQLException {
+		// if (!context.getConnection().equals(null)) {
+		if (!(null == context.getConnection())) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+	}
+	
+	public void reconnectDB() throws SQLException, ClassNotFoundException {
+		
+		
+		if (!(null == context.getConnection())) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
+		connect();
 	}
 }

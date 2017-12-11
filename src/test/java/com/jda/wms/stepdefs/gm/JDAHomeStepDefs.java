@@ -165,7 +165,6 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to system allocation page$")
 	public void i_navigate_to_system_allocation_page() throws Throwable {
 		jdaHomePage.navigateToSystemAllocationPage();
-		Thread.sleep(6000);
 	}
 	@When("^I navigate to \"([^\"]*)\" page$")
 	public void i_navigate_to_JDA_page(String pagename) throws Throwable {
@@ -269,5 +268,11 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to scheduler program page$")
 	public void i_navigate_scheduler_program_page() throws Throwable {
 		jdaHomePage.navigateToSchedulerProgramPage();
+	}
+	
+	@When("^I navigate to UPI receipt line page$")
+	public void i_navigate_to_UPI_receipt_line_page() throws FindFailed, InterruptedException {
+		jdaHomePage.navigateToUpiReceiptLinePage();
+
 	}
 }

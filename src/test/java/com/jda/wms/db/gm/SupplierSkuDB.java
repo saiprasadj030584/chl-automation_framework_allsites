@@ -111,4 +111,14 @@ public class SupplierSkuDB {
 		return rs.getString(1);
 	}
 
+	public String getProhibitedSupplier(String skuId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select address_id from address where address_id in (select supplier_id from supplier_sku where sku_id='" + skuId + "') and country='TUR'");
+		rs.next();
+		return rs.getString(1);
+	}
+
 }

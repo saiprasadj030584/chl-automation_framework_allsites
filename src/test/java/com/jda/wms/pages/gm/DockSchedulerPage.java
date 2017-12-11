@@ -37,7 +37,7 @@ public class DockSchedulerPage {
 
 	public void enterBookingType(String bookingType) throws FindFailed, InterruptedException {
 		screen.type(bookingType);
-		screen.type(Key.TAB);
+		Thread.sleep(2000);
 	}
 
 	public void enterConsignment() throws FindFailed, InterruptedException {

@@ -35,6 +35,7 @@ public class OrderLineDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
@@ -54,7 +55,7 @@ public class OrderLineDB {
 	}
 
 	public String getQtyTasked(String orderID, String skuID) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
+		if (context.getDBConnection().isClosed()||context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();

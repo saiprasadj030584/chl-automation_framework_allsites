@@ -58,7 +58,9 @@ public class AddressDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public void updateUserDefNote2(String order) throws SQLException, ClassNotFoundException {
+
 		if (context.getConnection() == null) {
 			database.connect();
 		}

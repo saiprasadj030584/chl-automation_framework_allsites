@@ -64,6 +64,7 @@ public class SkuDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("select product_group from sku where sku_id  = '" + skuId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id  = '" + skuId + "'");
 		rs.next();

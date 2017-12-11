@@ -15,6 +15,7 @@ import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
 import com.jda.wms.hooks.Hooks_autoUI;
 import com.jda.wms.pages.gm.JdaLoginPage;
+import com.jda.wms.stepdefs.gm.StockCreationForAlocation;
 import com.jda.wms.utils.Utilities;
 
 public class DataSetupRunner {
@@ -25,10 +26,24 @@ public class DataSetupRunner {
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
 	private Hooks_autoUI hooks_autoUI;
+	private StockCreationForAlocation stockCreationForAlocation;
+//	private StockAdjustmentsPage stockAdjustmentsPage;
+//	private SupplierSkuDB supplierSkuDb;
+//	private JDAFooter jdaFooter;
+//	private SkuSkuConfigDB skuSkuConfigDB;
+//	private JdaHomePage jdaHomePage;
+//	private InventoryDB inventoryDB;
+//	private SkuDB skuDB;
+//	private PurchaseOrderStockCheckPage purchaseOrderStockCheckPage; 
+	
+	/*StockAdjustmentsPage stockAdjustmentsPage, SupplierSkuDB supplierSkuDb,
+	JDAFooter jdaFooter, SkuSkuConfigDB skuSkuConfigDB, JdaHomePage jdaHomePage, InventoryDB inventoryDB,
+	SkuDB skuDB, PurchaseOrderStockCheckPage purchaseOrderStockCheckPage*/
 
 	@Inject
 	public DataSetupRunner(Context context, DbConnection npsDataBase, Database jdaJdatabase, GetTcData gettcdata,
-			DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage, Hooks_autoUI hooks_autoUI) {
+			DataLoadFromUI dataLoadFromUI, JdaLoginPage jdaLoginPage, Hooks_autoUI hooks_autoUI,
+			StockCreationForAlocation stockCreationForAlocation) {
 		this.context = context;
 		this.npsDataBase = npsDataBase;
 		this.gettcdata = gettcdata;
@@ -37,6 +52,17 @@ public class DataSetupRunner {
 		this.dataLoadFromUI = dataLoadFromUI;
 		this.jdaLoginPage = jdaLoginPage;
 		this.hooks_autoUI = hooks_autoUI;
+		this.stockCreationForAlocation=stockCreationForAlocation;
+//		this.jdaHomePage = jdaHomePage;
+//		this.skuSkuConfigDB = skuSkuConfigDB;
+//		this.orderLineDB = orderLineDB;
+//		this.stockAdjustmentsPage = stockAdjustmentsPage;
+//		this.supplierSkuDb = supplierSkuDb;
+//		this.jdaFooter = jdaFooter;
+//		// this.locationDB = locationDB;
+//		this.inventoryDB = inventoryDB;
+//		this.skuDB = skuDB;
+//		this.purchaseOrderStockCheckPage = purchaseOrderStockCheckPage;
 	}
 
 	public void getTagListFromAutoDb() {
@@ -49,7 +75,7 @@ public class DataSetupRunner {
 			while (resultSet.next()) {
 				tagList.add(resultSet.getString("UNIQUE_TAG"));
 			}
-			npsDataBase.disconnectAutomationDB();
+			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -64,12 +90,11 @@ public class DataSetupRunner {
 			while (resultSet.next()) {
 				context.setParentRequestId(resultSet.getString("PARENT_REQUEST_ID"));
 			}
-			npsDataBase.disconnectAutomationDB();
+			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
-
 
 
 	public void getJdaSiteIdFromDB() {
@@ -92,12 +117,12 @@ public class DataSetupRunner {
 
 
 		String uniqueTag = "";
+
 		for (String tag : tagListForScenario) {
 			if (tag.contains("unique")) {
 				uniqueTag = tag;
 			}
 		}
-		
 		context.setUniqueTag(uniqueTag.toLowerCase());
 		System.out.println("UNIQUE TAG " + context.getUniqueTag());
 		Assert.assertTrue("UniqueTag Not Found in Test Data Table", validateUniqueTagInTestData());
@@ -144,38 +169,109 @@ public class DataSetupRunner {
 		}
 	}
 
+
 	private void createTestDataFromUI() throws ClassNotFoundException, SQLException, FindFailed, InterruptedException {
 		
-		if (context.getUniqueTag().contains("direct")) {
+		
+		System.out.println(context.getUniqueTag());
+		if (context.getUniqueTag().contains("direct")
+				|| context.getUniqueTag().contains("inbound_receiving_receipt_reversal")) {
+			System.out.println("Inside DIRECT");
+
 			try {
 				npsDataBase.connectAutomationDB();
 				// Generate Random New values to load
 				String asn = newAsnId();
 				String po = newPoId();
 				String upi = newPalletdId_directPO();
-				String odn = newOdnId();
-				String asnReference = gettcdata.getAsnFromTestData();
-				String poReference = gettcdata.getPoFromTestData();
-				String upiReference = gettcdata.getUpiFromTestData();
-				context.setTestData("PO:" + po + ";UPI:" + upi + ";ASN:" + asn);
 
-				// Call JDA Login
+				System.out.println("ASN " + asn);
+				// Fetching Refernce Test Data from Test data table
+				String asnReference = null;
+				String poReference = null;
+				String upiReference = null;
+				String asnReference1 = null;
+				String poReference1 = null;
+				String upiReference1 = null;
 				jdaLoginPage.login();
-				dataLoadFromUI.duplicateASN(asnReference, asn);
-				validateAsnDataSetup(asn);
-				dataLoadFromUI.duplicateUPI(upiReference, upi);
-				validateUpiDataSetup(upi);
-				dataLoadFromUI.duplicatePO(poReference, po);
-				// dataLoadFromUI.killBrowser();
-				validatePoDataSetup(po);
-				// dataLoadFromUI.killBrowser();
-				gettcdata.setAsnId(asn);
-				gettcdata.setPo(po);
-				gettcdata.setPalletId(upi);
+				if (context.getUniqueTag().contains("multiple_trailer")
+						|| context.getUniqueTag().contains("adding_stock_to_asn_before_receiving")) {
+					System.out.println("Inside mukltiple asn");
+					String asn1 = newAsnId();
+					asnReference = gettcdata.getAsnFromTestData();
+					// split
+					String[] asnArray = asnReference.split(",");
+					ArrayList<String> asnList = new ArrayList<String>();
 
-				// validateAsnDataSetup(asn);
-				// validatePoDataSetup(po);
-				// validateUpiDataSetup(upi);
+					dataLoadFromUI.duplicateASN(asnArray[0], asn);
+					validateAsnDataSetup(asn);
+
+					dataLoadFromUI.duplicateASN(asnArray[1], asn1);
+					validateAsnDataSetup(asn1);
+
+					asnList.add(asn);
+					asnList.add(asn1);
+					context.setAsnList(asnList);
+
+				} else {
+					System.out.println("Single asn");
+					asnReference = gettcdata.getAsnFromTestData();
+					dataLoadFromUI.duplicateASN(asnReference, asn);
+					validateAsnDataSetup(asn);
+					gettcdata.setAsnId(asn);
+				}
+				if (context.getUniqueTag().contains("multiple_urn")
+						|| context.getUniqueTag().contains("adding_stock_to_asn_before_receiving")) {
+					System.out.println("Inside mukltiple utn");
+					String upi1 = newPalletdId_directPO();
+					upiReference = gettcdata.getUpiFromTestData();
+					// split
+					String[] upiArray = upiReference.split(",");
+					ArrayList<String> upiList = new ArrayList<String>();
+
+					dataLoadFromUI.duplicateUPI(upiArray[0], upi);
+					validateUpiDataSetup(upi);
+
+					dataLoadFromUI.duplicateUPI(upiArray[1], upi1);
+					validateUpiDataSetup(upi1);
+
+					upiList.add(upi);
+					upiList.add(upi1);
+					context.setUpiList(upiList);
+
+				} else {
+					System.out.println("Inside single utn");
+					upiReference = gettcdata.getUpiFromTestData();
+					dataLoadFromUI.duplicateUPI(upiReference, upi);
+					validateUpiDataSetup(upi);
+					gettcdata.setPalletId(upi);
+
+				}
+				if (context.getUniqueTag().contains("multiple_po")) {
+					System.out.println("Inside mukltiple po");
+					String po1 = newPoId();
+					poReference = gettcdata.getPoFromTestData();
+					// split
+					String[] poArray = poReference.split(",");
+					ArrayList<String> poList = new ArrayList<String>();
+
+					dataLoadFromUI.duplicatePO(poArray[0], po);
+					validatePoDataSetup(po);
+
+					dataLoadFromUI.duplicatePO(poArray[1], po1);
+					validatePoDataSetup(po1);
+
+					poList.add(po);
+					poList.add(po1);
+					context.setPoList(poList);
+
+				} else {
+					System.out.println("Inside single po");
+					poReference = gettcdata.getPoFromTestData();
+					dataLoadFromUI.duplicatePO(poReference, po);
+					validatePoDataSetup(po);
+					gettcdata.setPo(po);
+				}
 				npsDataBase.disconnectAutomationDB();
 
 			} catch (Exception exception) {
@@ -211,9 +307,8 @@ public class DataSetupRunner {
 				// Fetching Refernce Test Data from Test data table
 				String upiReference = gettcdata.getUpiFromTestData();
 				String asnReference = gettcdata.getAsnFromTestData();
-
-				// To form the UPI ID for returns
 				String supplierIdRef = getSupplierIDFromJDADB(upiReference);
+				System.out.println("SUPPLIER" + supplierIdRef);
 				String qty = gettcdata.getQtyListFromTestData();
 				String upi = formReturnsUPIID(supplierIdRef, qty);
 				Thread.sleep(2000);
@@ -250,7 +345,8 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") && (!(context.getUniqueTag().contains("order")))) {
+		} else if (context.getUniqueTag().contains("idt")
+				&& (!(context.getUniqueTag().contains("order")) && !(context.getUniqueTag().contains("allocation")))) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -285,8 +381,9 @@ public class DataSetupRunner {
 			}
 		}
 
+		//put not
 		else if (context.getUniqueTag().contains("returns")
-				&& (!(context.getUniqueTag().contains("returns_non_rms")))) {
+				&& ((context.getUniqueTag().contains("returns_non_rms")))) {
 			try {
 				System.out.println("Returns 1");
 				npsDataBase.connectAutomationDB();
@@ -339,6 +436,7 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		}
+
 		else if (context.getUniqueTag().contains("x_dock_receiving")){
 			npsDataBase.connectAutomationDB();
 			String asn = newAsnId();
@@ -400,14 +498,44 @@ public class DataSetupRunner {
 			npsDataBase.disconnectAutomationDB();
 			}
 		else if (context.getUniqueTag().contains("retail") || context.getUniqueTag().contains("order") ||context.getUniqueTag().contains("remove_stock_check_")) {
+	
+			
+			System.out.println("Entered retail");
+
 			try {
 				npsDataBase.connectAutomationDB();
+				
+				//Order Reference
+				String odnReference = gettcdata.getOdnFromTestData();
+				context.setOrderId(odnReference);
 
+				
+				// Fetching Refernce Test Data from Test data table
+				//SKU Stock Maintenance in Inventory
+				
+				String skuReference = gettcdata.getSkuListFromTestData();
+				String[] skuArray = skuReference.split(",");
+				ArrayList<String> skuList=new ArrayList<String>();
+				for (int i = 0; i < skuArray.length; i++) {
+					skuList.add(skuArray[i]);
+				}
+				context.setSkuList(skuList);
+				
+				//SKU Stock Adjustment If stock is not there in inventory
+				try
+				{
+					stockCreationForAlocation.createStockbeforeAllocation(context.getSkuList(),context.getUniqueTag());
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			//Order Duplication	
 				// Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
-				String odnReference = gettcdata.getOdnFromTestData();
-				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
@@ -418,15 +546,43 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("idt") || context.getUniqueTag().contains("idt")
+				&& (context.getUniqueTag().contains("order"))) {
 			try {
+				System.out.println("Inside IDT Order");
 				npsDataBase.connectAutomationDB();
 
+				//Order Reference
+				String odnReference = gettcdata.getOdnFromTestData();
+				context.setOrderId(odnReference);
+
+				
+				// Fetching Refernce Test Data from Test data table
+				//SKU Stock Maintenance in Inventory
+				
+				String skuReference = gettcdata.getSkuListFromTestData();
+				String[] skuArray = skuReference.split(",");
+				ArrayList<String> skuList=new ArrayList<String>();
+				for (int i = 0; i < skuArray.length; i++) {
+					skuList.add(skuArray[i]);
+				}
+				context.setSkuList(skuList);
+				
+				//SKU Stock Adjustment If stock is not there in inventory
+				try
+				{
+					stockCreationForAlocation.createStockbeforeAllocation(context.getSkuList(),context.getUniqueTag());
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			//Order Duplication	
 				// Generate Random New values to load
 				String odn = newOdnId();
-				// Fetching Refernce Test Data from Test data table
-				String odnReference = gettcdata.getOdnFromTestData();
-				context.setTestData("STO:" + odn);
 				// Call JDA Login
 				jdaLoginPage.login();
 				dataLoadFromUI.duplicateOdn(odnReference, odn);
@@ -456,7 +612,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("order")) {
+		} else if (context.getUniqueTag().contains("outlet") || context.getUniqueTag().contains("outlet") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -475,7 +631,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("e_com")) {
+		} else if (context.getUniqueTag().contains("e_com") || context.getUniqueTag().contains("e_com") && context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -496,7 +652,7 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
-		} else if (context.getUniqueTag().contains("international")) {
+		} else if (context.getUniqueTag().contains("international") || context.getUniqueTag().contains("international")&& context.getUniqueTag().contains("order")) {
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -515,6 +671,54 @@ public class DataSetupRunner {
 			} catch (Exception exception) {
 				exception.printStackTrace();
 
+			}
+		}
+		else if (context.getUniqueTag().contains("write_off") || context.getUniqueTag().contains("write_off")
+				&& (context.getUniqueTag().contains("order"))) {
+			try {
+				System.out.println("Inside Write Off Order");
+				npsDataBase.connectAutomationDB();
+
+				//Order Reference
+				String odnReference = gettcdata.getOdnFromTestData();
+				context.setOrderId(odnReference);
+
+				
+				// Fetching Refernce Test Data from Test data table
+				//SKU Stock Maintenance in Inventory
+				
+				String skuReference = gettcdata.getSkuListFromTestData();
+				String[] skuArray = skuReference.split(",");
+				ArrayList<String> skuList=new ArrayList<String>();
+				for (int i = 0; i < skuArray.length; i++) {
+					skuList.add(skuArray[i]);
+				}
+				context.setSkuList(skuList);
+				
+				//SKU Stock Adjustment If stock is not there in inventory
+				try
+				{
+					stockCreationForAlocation.createStockbeforeAllocationWriteOff(context.getSkuList(),context.getUniqueTag());
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			//Order Duplication	
+				// Generate Random New values to load
+				String odn = newOdnId();
+				// Call JDA Login
+				jdaLoginPage.login();
+				dataLoadFromUI.duplicateOdn(odnReference, odn);
+				validateOdnDataSetup(odn);
+				gettcdata.setOdn(odn);
+
+				npsDataBase.disconnectAutomationDB();
+			} catch (Exception exception) {
+				exception.printStackTrace();
 			}
 		}
 		System.out.println("------------------SITE ID :" + context.getSiteID() + "---------------------");
@@ -552,6 +756,7 @@ public class DataSetupRunner {
 		System.out.println("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
 		String supplierId = null;
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
 		ResultSet rs = stmt
 				.executeQuery("select SUPPLIER_ID from upi_receipt_header where pallet_id='" + upiReference + "'");
 		while (rs.next()) {
@@ -635,7 +840,7 @@ public class DataSetupRunner {
 					UniqueTagInTestData = true;
 				}
 			}
-			npsDataBase.disconnectAutomationDB();
+			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			UniqueTagInTestData = false;
@@ -665,7 +870,7 @@ public class DataSetupRunner {
 				String temp = resultSet.getString("UNIQUE_TAG");
 				UniqueTagInRunStatus = true;
 			}
-			npsDataBase.disconnectAutomationDB();
+			// npsDataBase.disconnectAutomationDB();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			UniqueTagInRunStatus = false;
@@ -757,7 +962,7 @@ public class DataSetupRunner {
 				validateAsnDataSetup(asn);
 				validatePoDataSetup(po);
 				validateUpiDataSetup(upi);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -797,7 +1002,7 @@ public class DataSetupRunner {
 
 				// gettcdata.setSkuQtySupplier();
 				validatePoDataSetup(po);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -841,7 +1046,7 @@ public class DataSetupRunner {
 				gettcdata.setSkuQtySupplier();
 				validateAsnDataSetup(asn);
 				validateUpiDataSetup(upi);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -885,7 +1090,7 @@ public class DataSetupRunner {
 				gettcdata.setSkuQtySupplier();
 				validateAsnDataSetup(asn);
 				validateUpiDataSetup(upi);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -928,7 +1133,7 @@ public class DataSetupRunner {
 				gettcdata.setSkuQtySupplier();
 				validateAsnDataSetup(asn);
 				validateUpiDataSetup(upi);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -957,7 +1162,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -987,7 +1192,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -1016,7 +1221,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -1045,7 +1250,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -1075,7 +1280,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -1104,7 +1309,7 @@ public class DataSetupRunner {
 				context.getConnection().commit();
 				gettcdata.setSkuQtySupplier();
 				validateOdnDataSetup(odn);
-				npsDataBase.disconnectAutomationDB();
+				// npsDataBase.disconnectAutomationDB();
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}
@@ -1717,4 +1922,5 @@ public class DataSetupRunner {
 			context.setPreAdviceId("9317010312");
 		}
 	}
+
 }

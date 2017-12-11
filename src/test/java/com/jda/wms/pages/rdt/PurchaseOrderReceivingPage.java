@@ -93,7 +93,6 @@ public class PurchaseOrderReceivingPage {
 		return false;
 	}
 
-
 	public boolean isBlindReceivingDoneperfectCondition() throws FindFailed, InterruptedException {
 		boolean returnVal = false;
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
@@ -133,8 +132,7 @@ public class PurchaseOrderReceivingPage {
 		}
 
 	}
-	
-	
+
 	public boolean isOverReceiptErrorReturnsDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
 		if ((screen.exists("images/Putty/Receiving/OverReceiptError.png") != null))
@@ -143,7 +141,6 @@ public class PurchaseOrderReceivingPage {
 			return false;
 
 	}
-	
 
 	public boolean isBlindReceivingDoneWithoutLockCode() throws FindFailed, InterruptedException {
 		while (screen.exists("images/Putty/Receiving/ReturnsCompleted.png") == null) {
@@ -163,7 +160,7 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
-	
+
 	public boolean isDamageReceiptDisplayed() throws FindFailed, InterruptedException {
 		if ((screen.exists("images/Putty/Receiving/ReturnsCompletedDamaged.png") != null)) {
 			return true;
@@ -228,6 +225,7 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+
 	public String getPutawayGroup() throws FindFailed, InterruptedException {
 		System.out.println("entered putwaay grp");
 		Match putawayGroup = screen.find("images/Putty/Receiving/PutawayGroup.png");
@@ -236,23 +234,19 @@ public class PurchaseOrderReceivingPage {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
-	
-	
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		System.out.println("loc"+location);
+		System.out.println("loc" + location);
 		screen.type(location);
 		Thread.sleep(1000);
 	}
-	
+
 	public void enterLoc(String location) throws InterruptedException, FindFailed {
 		screen.wait("images/Putty/Receiving/Location.png", timeoutInSec);
 		screen.click("images/Putty/Receiving/Location.png");
 		screen.type(location);
-		puttyFunctionsPage.pressTab();
 		Thread.sleep(3000);
 	}
-
 
 	public void enterTagId(String uniqueId) throws InterruptedException {
 		screen.type(uniqueId);
@@ -373,7 +367,7 @@ public class PurchaseOrderReceivingPage {
 		} else
 			return false;
 	}
-	
+
 	public boolean isNoValidPreAdviceFound() throws InterruptedException {
 		if (screen.exists("images/Putty/Receiving/NoValidPreAdvice.png") != null) {
 			return true;
@@ -462,7 +456,7 @@ public class PurchaseOrderReceivingPage {
 
 	public void enterBelCode(String getbelCode) throws InterruptedException {
 		screen.type(getbelCode);
-	Thread.sleep(2000);
+		Thread.sleep(2000);
 	}
 
 	public void enterNewPallet(String getnewpallet) throws InterruptedException {
@@ -514,39 +508,41 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
-//	public String getQtyToReceive() throws FindFailed, InterruptedException {
-//		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
-//		screen.click(mSupplierId.getCenter().offset(50, 0));
-//		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
-//		Thread.sleep(2000);
-//	System.out.println("abba"+App.getClipboard());
-//		System.out.println("ANS"+App.getClipboard().split("_"));
-//		String[] qtySplit =App.getClipboard().split("_");
-//		if(qtySplit.length==0)
-//		{
-//			for(int i=0;i<4;i++)
-//			{
-//				puttyFunctionsPage.pressTab();
-//			}
-//			screen.type(String.valueOf(context.getRcvQtyDue()));
-//			System.out.println("0000000" + String.valueOf(context.getRcvQtyDue()));
-//			puttyFunctionsPage.pressTab();
-//			Match mSupplierId1 = screen.find("images/Putty/Receiving/QtyToReceive.png");
-//			screen.click(mSupplierId1.getCenter().offset(50, 0));
-//			screen.doubleClick(mSupplierId1.getCenter().offset(50, 0));
-//			Thread.sleep(2000);
-//		}
-//		return App.getClipboard();
-//	}
-//	public String getPutAwayGrp() throws FindFailed, InterruptedException {
-//		Match mSupplierId = screen.find("images/Putty/Receiving/PutawayGroup.png");
-//		screen.click(mSupplierId.getCenter().offset(50, 0));
-//		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
-//		Thread.sleep(2000);
-//		return App.getClipboard();
-//	}
-	
-	
+	// public String getQtyToReceive() throws FindFailed, InterruptedException {
+	// Match mSupplierId =
+	// screen.find("images/Putty/Receiving/QtyToReceive.png");
+	// screen.click(mSupplierId.getCenter().offset(50, 0));
+	// screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+	// Thread.sleep(2000);
+	// System.out.println("abba"+App.getClipboard());
+	// System.out.println("ANS"+App.getClipboard().split("_"));
+	// String[] qtySplit =App.getClipboard().split("_");
+	// if(qtySplit.length==0)
+	// {
+	// for(int i=0;i<4;i++)
+	// {
+	// puttyFunctionsPage.pressTab();
+	// }
+	// screen.type(String.valueOf(context.getRcvQtyDue()));
+	// System.out.println("0000000" + String.valueOf(context.getRcvQtyDue()));
+	// puttyFunctionsPage.pressTab();
+	// Match mSupplierId1 =
+	// screen.find("images/Putty/Receiving/QtyToReceive.png");
+	// screen.click(mSupplierId1.getCenter().offset(50, 0));
+	// screen.doubleClick(mSupplierId1.getCenter().offset(50, 0));
+	// Thread.sleep(2000);
+	// }
+	// return App.getClipboard();
+	// }
+	// public String getPutAwayGrp() throws FindFailed, InterruptedException {
+	// Match mSupplierId =
+	// screen.find("images/Putty/Receiving/PutawayGroup.png");
+	// screen.click(mSupplierId.getCenter().offset(50, 0));
+	// screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+	// Thread.sleep(2000);
+	// return App.getClipboard();
+	// }
+
 	public String getQtyToReceive() throws FindFailed, InterruptedException {
 		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
 		screen.click(mSupplierId.getCenter().offset(50, 0));
@@ -592,7 +588,6 @@ public class PurchaseOrderReceivingPage {
 		System.out.println("app.geclipboard " + App.getClipboard());
 		return App.getClipboard();
 	}
-
 
 	public String getPallet() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/PutawayForLock.png");
@@ -716,7 +711,8 @@ public class PurchaseOrderReceivingPage {
 
 	public boolean isOverReceiptErrorDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
-		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null)||(screen.exists("images/Putty/Receiving/canNotOverReceiptHanging.png") != null))
+		if ((screen.exists("images/Putty/Receiving/canNotOverReceipt.png") != null)
+				|| (screen.exists("images/Putty/Receiving/canNotOverReceiptHanging.png") != null))
 			return true;
 		else if ((screen.exists("images/Putty/Receiving/canNotOverReceipt1.png") != null))
 			return true;
@@ -741,7 +737,7 @@ public class PurchaseOrderReceivingPage {
 			return false;
 
 	}
-	
+
 	public boolean isReceiptCompleteDisplayed() throws InterruptedException {
 		Thread.sleep(2000);
 		if ((screen.exists("images/Putty/Receiving/ReceivingComplete.png") != null))
@@ -749,7 +745,7 @@ public class PurchaseOrderReceivingPage {
 		else
 			return false;
 	}
-	
+
 	public boolean isRCVLinEnt() throws InterruptedException {
 		Thread.sleep(10000);
 		if ((screen.exists("images/Putty/Receiving/RcvLinEnt.png") != null))
@@ -757,29 +753,29 @@ public class PurchaseOrderReceivingPage {
 
 		return false;
 	}
-	
+
 	public boolean isLabelPrintedPageDisplayed() {
 		if (screen.exists("images/Putty/Receiving/Labelprinted.png") != null)
 			return true;
 		else
 			return false;
 	}
-	
-	public void enterUPC(String skuId)throws FindFailed, InterruptedException {
+
+	public void enterUPC(String skuId) throws FindFailed, InterruptedException {
 		screen.type(skuId);
 		Thread.sleep(2000);
-}
-	
+	}
+
 	public void enterTrlId(String trlId) throws InterruptedException {
 		screen.type(trlId);
 		Thread.sleep(2000);
 	}
-	
+
 	public void enterHangingValue() throws InterruptedException {
 		screen.type("1");
 		Thread.sleep(2000);
 	}
-	
+
 	public void enterAsn(String asn) throws InterruptedException {
 		screen.type(asn);
 		Thread.sleep(2000);
@@ -792,13 +788,66 @@ public class PurchaseOrderReceivingPage {
 			return false;
 	}
 
+	public boolean isRcvPalletEntPutGrpPageDisplayed() {
+		if (screen.exists("images/Putty/Receiving/RcvPalletEntPutGrp.png") != null)
+			return true;
+		else
+			return false;
+	}
+
 	public boolean isPalletExists() {
 		if (screen.exists("images/Putty/Receiving/PutawayGroup.png") != null)
 			return true;
 		else
 			return false;
 	}
-	
+
+	public String getQtyToReceiveAfterStockAdd() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		System.out.println("abba" + App.getClipboard());
+		System.out.println("ANS" + App.getClipboard().split("_"));
+		String[] qtySplit = App.getClipboard().split("_");
+		if (qtySplit.length == 0) {
+			for (int i = 0; i < 4; i++) {
+				puttyFunctionsPage.pressTab();
+			}
+			screen.type(String.valueOf(context.getRcvQtyDue() + 5));
+			puttyFunctionsPage.pressTab();
+			Match mSupplierId1 = screen.find("images/Putty/Receiving/QtyToReceive.png");
+			screen.click(mSupplierId1.getCenter().offset(50, 0));
+			screen.doubleClick(mSupplierId1.getCenter().offset(50, 0));
+			Thread.sleep(2000);
+		}
+		return App.getClipboard();
+	}
+
+	public void enterPalletID(String urn) throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/Pallet.png");
+
+		screen.click(mSupplierId.below(10));
+		screen.doubleClick(mSupplierId.below(10));
+		Thread.sleep(2000);
+		System.out.println("abba" + App.getClipboard());
+		System.out.println("ANS" + App.getClipboard().split("_"));
+		String[] qtySplit = App.getClipboard().split("_");
+		System.out.println("PALLLETTT LENGTH" + qtySplit.length);
+		if (qtySplit.length != 0) {
+			for (int i = 0; i < qtySplit[0].length(); i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < qtySplit[0].length(); i++) {
+				screen.type(Key.BACKSPACE);
+			}
+			Thread.sleep(1000);
+		}
+
+		screen.type(urn);
+		Thread.sleep(2000);
+	}
+
 	public boolean isBlindReceivingDoneForIdt() throws FindFailed, InterruptedException {
 		while (screen.exists("images/Putty/Receiving/ReceiptCompleteMultipleUrn.png") == null) {
 			System.out.println("Inside loop");
@@ -809,5 +858,62 @@ public class PurchaseOrderReceivingPage {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getQtyToReceiveUnderReceiving() throws FindFailed, InterruptedException {
+		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(mSupplierId.getCenter().offset(50, 0));
+		screen.doubleClick(mSupplierId.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		String[] qtySplit = App.getClipboard().split("_");
+		if (qtySplit.length == 0) {
+			System.out.println(qtySplit.length);
+			for (int i = 0; i < 4; i++) {
+				puttyFunctionsPage.pressTab();
+			}
+			
+			context.setRcvQtyDue(context.getRcvQtyDue());
+			
+			System.out.println("context - qty " + String.valueOf(context.getRcvQtyDue()));
+			screen.type(String.valueOf(context.getRcvQtyDue()));
+			puttyFunctionsPage.pressTab();
+		} else {
+			for (int i = 0; i < 4; i++) {
+				puttyFunctionsPage.pressTab();
+			}
+			for (int i = 0; i < 3; i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < 3; i++) {
+				puttyFunctionsPage.backSpace();
+			}
+			screen.type(String.valueOf(context.getRcvQtyDue()));
+			puttyFunctionsPage.pressTab();
+		}
+		Match qty = screen.find("images/Putty/Receiving/QtyToReceive.png");
+		screen.click(qty.getCenter().offset(50, 0));
+		screen.doubleClick(qty.getCenter().offset(50, 0));
+		Thread.sleep(2000);
+		System.out.println("app.geclipboard " + App.getClipboard());
+		return App.getClipboard();
+	}
+
+	public void eraseTagContent() throws FindFailed, InterruptedException {
+		// TODO Auto-generated method stub
+		
+		String[] tagSplit = getTagId().split("_");
+		String tagID = tagSplit[0];
+		
+		System.out.println("PALLLETTT LENGTH" + tagSplit.length);
+		if (tagSplit.length != 0) {
+			for (int i = 0; i < tagSplit[0].length(); i++) {
+				puttyFunctionsPage.rightArrow();
+			}
+			for (int i = 0; i < tagSplit[0].length(); i++) {
+				screen.type(Key.BACKSPACE);
+			}
+			Thread.sleep(1000);
+		}
+		
 	}
 }

@@ -364,7 +364,8 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the order id \"([^\"]*)\" should be in \"([^\"]*)\" status$")
+
+//	@Given("^the order id \"([^\"]*)\" should be in \"([^\"]*)\" status$")
 	public void the_order_id_should_be_in_status(String orderNumber, String status) throws Throwable {
 		context.setOrderId(orderNumber);
 		context.setStatus(status);
@@ -372,7 +373,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		// jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 	}
 
-	@Given("^order header should be updated for picked stock$")
+	//@Given("^order header should be updated for picked stock$")
 	public void order_header_should_be_updated_for_picked_stock() throws Throwable {
 		jDAHomePage.navigateToOrderHeaderMaintenance();
 		jdaFooter.clickQueryButton();
@@ -382,7 +383,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				orderHeaderDB.getStatus(context.getOrderId()));
 	}
 
-	@Given("^order header should be updated for unpicked stock$")
+	//@Given("^order header should be updated for unpicked stock$")
 	public void order_header_should_be_updated_for_unpicked_stock() throws Throwable {
 		Thread.sleep(2000);
 		jDAHomePage.navigateToOrderHeaderMaintenance();
@@ -411,41 +412,6 @@ public class OrderHeaderMaintenanceStepDefs {
 		context.setSkuFromOrder(skuFromOrder);
 		boolean allocation = false;
 		for (int i = 0; i < skuFromOrder.size(); i++) {
-
-			ArrayList<String> locationList = inventoryDB.getLocationsForSku((String) skuFromOrder.get(i));
-			System.out.println(locationList);
-			ArrayList<String> validLocations = new ArrayList<String>();
-			int totalQtyOnHand = 0;
-			for (int j = 0; j < locationList.size(); j++) {
-				if (locationDb.getLocationZone(locationList.get(j)) != null) {
-					if (locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG")
-							|| locationDb.getLocationZone(locationList.get(j)).contains("BOX")) {
-						System.out.println("entered" + locationList.get(j));
-						validLocations.add(locationList.get(j));
-						totalQtyOnHand += Integer.parseInt(
-								inventoryDB.getQtyForSkuInLocation((String) skuFromOrder.get(i), locationList.get(j)));
-					}
-
-				}
-			}
-			System.out.println(validLocations);
-			System.out.println("totalQtyOnHand" + totalQtyOnHand);
-			if (totalQtyOnHand >= Integer
-					.parseInt(orderLineDB.getQtyOrdered(context.getOrderId(), (String) skuFromOrder.get(i)))) {
-				allocation = true;
-			}
-
-			if (context.getLocationID() != null) {
-				if (context.getLocationID().equalsIgnoreCase("suspense")) {
-					Assert.assertTrue("Sku not in suspense location " + (String) skuFromOrder.get(i),
-							inventoryDB.isSkuInSuspenseLocation((String) (skuFromOrder.get(i))));
-					Assert.assertFalse("Stock is present in other locations", allocation);
-				}
-			} else {
-
-				Assert.assertTrue("Stock is not present in other locations", allocation);
-
-			}
 
 			// To Validate Modularity,New Product Check for SKU
 
@@ -501,7 +467,7 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status and \"([^\"]*)\" skus should be in \"([^\"]*)\" location$")
+	//@Given("^the order id of type \"([^\"]*)\" should be in \"([^\"]*)\" status and \"([^\"]*)\" skus should be in \"([^\"]*)\" location$")
 	public void the_order_id_of_type_should_be_in_status_and_skus_should_be_in_location(String orderType, String status,
 			String skuType, String locationId) throws Throwable {
 		String orderNumber = getTcData.getSto();
@@ -602,14 +568,14 @@ public class OrderHeaderMaintenanceStepDefs {
 
 	}
 
-	@Then("^I query with Order Id$")
+	//@Then("^I query with Order Id$")
 	public void i_query_with_order_id() throws Throwable {
 		jdaFooter.clickQueryButton();
 		orderHeaderPage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickExecuteButton();
 	}
 
-	@Then("^the order stock modularity should be visible$")
+	//@Then("^the order stock modularity should be visible$")
 	public void the_Order_stock_modularity_should_be_visible() throws Throwable {
 		// inventoryQueryPage.clickUserDefinedTab();
 		context.setSKUType(skuDB.getSKUType(orderLineDB.getSkuId(context.getOrderId())));
@@ -624,6 +590,7 @@ public class OrderHeaderMaintenanceStepDefs {
 					orderHeaderDB.getStockModularity(context.getOrderId()));
 		}
 	}
+
 
 	@Then("^the order should be picked$")
 	public void the_order_should_be_picked() throws Throwable {
@@ -681,14 +648,6 @@ public class OrderHeaderMaintenanceStepDefs {
 				failureList.isEmpty());
 	}
 
-	@Then("^the order should be Ready to Load$")
-	public void the_order_should_be_Ready_to_Load() throws Throwable {
-		verification.verifyData("Order Status", "Ready to Load", orderHeaderDB.getStatus(context.getOrderId()),
-				failureList);
-		Assert.assertTrue(
-				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
-				failureList.isEmpty());
-	}
 
 	@Then("^the order should be allocated with prohibition flag$")
 	public void the_order_should_be_allocated_for_prohibition_flag() throws Throwable {
@@ -718,11 +677,11 @@ public class OrderHeaderMaintenanceStepDefs {
 			Assert.fail("Box location is not boxed preferable location");
 	}
 
-	@Given("^the order id of type \"([^\"]*)\" with \"([^\"]*)\" skus should be in \"([^\"]*)\" status$")
+
+	//@Given("^the order id of type \"([^\"]*)\" with \"([^\"]*)\" skus should be in \"([^\"]*)\" status$")
 	public void the_order_id_of_type_with_skus_should_be_in_status(String orderType, String skuType, String status)
 			throws Throwable {
-
-		String orderNumber = context.getOrderId();
+	String orderNumber = context.getOrderId();
 
 		context.setOrderId(orderNumber);
 		context.setSKUType(skuType);
@@ -988,8 +947,7 @@ public class OrderHeaderMaintenanceStepDefs {
 
 
 	
-	
-	
+
 		
 
 		

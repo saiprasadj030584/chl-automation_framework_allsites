@@ -2,6 +2,7 @@ package com.jda.wms.pages.rdt;
 
 import java.io.IOException;
 
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -22,13 +23,14 @@ public class PuttyFunctionsPage {
 	}
 
 	public void invokePutty() throws IOException, InterruptedException {
+		
 		Process putty = Runtime.getRuntime().exec("bin/putty/putty.exe");
 		context.setPuttyProcess(putty);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 
 	public void loginPutty(String host, String port) throws FindFailed, InterruptedException {
-
+		Thread.sleep(3000);
 		// Clear pre-entered host name
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
@@ -43,10 +45,10 @@ public class PuttyFunctionsPage {
 		screen.type(Key.BACKSPACE);
 		Thread.sleep(4000);
 		screen.type(port);
-		System.out.println( "ch" +port);
+		System.out.println("ch" + port);
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");
-		Thread.sleep(1000);
+		Thread.sleep(7000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
@@ -146,6 +148,11 @@ public class PuttyFunctionsPage {
 
 	public void rightArrow() throws InterruptedException {
 		screen.type(Key.RIGHT);
+		// Thread.sleep(2000);
+	}
+
+	public void upArrow() throws InterruptedException {
+		screen.type(Key.UP);
 		Thread.sleep(2000);
 	}
 
@@ -162,14 +169,21 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
-	
+
+	public String getValue() throws FindFailed, InterruptedException {
+
+		screen.doubleClick();
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+
 	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)
 			return true;
 		else
 			return false;
 	}
-	
+
 	public boolean isVehicleUnloadEntryPageDisplayed() throws FindFailed {
 		if (screen.exists("images/Putty/VehicleLoading/UnLodEnt.png") != null)
 			return true;
@@ -183,7 +197,7 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
-	
+
 	public boolean isinvalidpalletIdPageDisplayed() {
 		if (screen.exists("images/Putty/VehicleLoading/invalidPallet.png") != null)
 			return true;

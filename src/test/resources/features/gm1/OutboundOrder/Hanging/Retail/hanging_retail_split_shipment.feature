@@ -4,6 +4,7 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
+
   @outbound_despatch @hanging @retail @unique_hanging_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds
   Scenario: Split shipment and multiple vehicle,single order
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
@@ -22,6 +23,7 @@ Feature: Outbound order
     When I navigate to Trailer Shipping page
     Then Multiple trailer should be shipped
 
+
     @outbound_despatch  @retail @unique_all_data_outbound_order_till_despatch_retail_type_order_split_shipment_multiple_vehicle_multiple_order_different_upc_and_dept @ds
   Scenario: Split shipment and multiple vehicle,single order
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
@@ -39,4 +41,4 @@ Feature: Outbound order
     When I navigate to Trailer Shipping page
     Then Multiple trailer should be shipped
     
-    
+

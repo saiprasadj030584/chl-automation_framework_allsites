@@ -36,4 +36,26 @@ public class SystemAllocationPage {
 		screen.type(orderId);
 		Thread.sleep(1000);
 	}
+	
+	public void enterOrderTime(String orderTime) throws FindFailed, InterruptedException {
+		Match mConsignmentID = screen.find("images/OrderHeaderMaintenance/OrderTime.png");
+		screen.click(mConsignmentID.getCenter().offset(70, 0));
+		screen.type(orderTime);
+		Thread.sleep(2000);
+	}
+	
+	public void enterConsignmentID(String consignmentID) throws FindFailed, InterruptedException {
+		Match mConsignmentID = screen.find("images/OrderHeaderMaintenance/Consignment.png");
+		screen.click(mConsignmentID.getCenter().offset(70, 0));
+		screen.type(consignmentID);
+		Thread.sleep(2000);
+	}
+	public void selectAllRecords() throws FindFailed, InterruptedException {
+		Match mConsignmentID = screen.find("images/SystemAllocation/OrderTab.png");
+		Thread.sleep(2000);
+		screen.click(mConsignmentID.below(10));
+		Thread.sleep(1000);
+		screen.type("a", Key.CTRL);
+		Thread.sleep(2000);
+	}
 }

@@ -82,6 +82,7 @@ public class PurchaseOrderPutawayPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException {
+		System.out.println("TOOO LOCATION"+location);
 		screen.type(location);
 
 		Thread.sleep(3000);

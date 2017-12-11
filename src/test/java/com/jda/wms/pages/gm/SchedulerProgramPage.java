@@ -1,6 +1,8 @@
 package com.jda.wms.pages.gm;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
+import com.google.inject.Inject;
+import org.sikuli.script.Screen;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -20,7 +22,10 @@ public class SchedulerProgramPage {
 	}
 	public void clickRunNowButton() throws FindFailed, InterruptedException {
 		Match run = screen.find("images/schedulerProgram/runButton.png");
+
 		screen.click(run);
+screen.click(run.getCenter());
+
 		Thread.sleep(2000);
 	}
 }

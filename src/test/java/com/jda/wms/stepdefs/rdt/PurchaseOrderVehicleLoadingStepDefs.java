@@ -22,7 +22,10 @@ import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
+import com.jda.wms.utils.Utilities;
 
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class PurchaseOrderVehicleLoadingStepDefs {
@@ -78,6 +81,7 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				failureList.isEmpty());
 	}
 
+
 	@Then("^Trailer should be loaded for multiple order$")
 	public void Trailer_should_be_loaded_for_multiple_order() throws Throwable {
 		ArrayList<String> Orderlist=context.getOrderList();
@@ -91,6 +95,7 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				failureList.isEmpty());
 		}
 	}	
+
 
 	@Then("^Trailer should be unload$")
 	public void Trailer_should_be_unload() throws Throwable {

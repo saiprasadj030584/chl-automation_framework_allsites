@@ -73,6 +73,7 @@ public class BookingInDiary {
 		return isRecordExists;
 }
 	
+	
 	public String selectDockDoor(String bookingID) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();

@@ -64,3 +64,24 @@ Feature: GOH - Retail - Outbound Order till despatch
     Then Trailer should be loaded
     When I proceed for vehicle unload
     Then Trailer should enter page displayed
+    
+    @outbound_despatch @goh @retail @unique_goh_outbound_order_till_despatch_retail_type_order_shipment_and_multiple_vehicle_single_order @ds
+  Scenario: Shipment , single vehicle,different store,same x dock dc,different order,same upc and dept
+    Given the multiple order id of type "Retail" with "GOH" skus should be in "Released" status
+    And I allocate the stocks using consignment in system allocation page
+    Then the multiple stocks should get allocated
+    When I navigate to scheduler program page
+    And I run the program
+    And I perform picking for boxed
+    Then the order should be Ready to Load
+    And I create a trailer to receive at the dock door
+    When I navigate to dock scheduler start page
+    When I create new dock booking at site
+    When I select the booking type for consignment
+    And I select the slot
+    And I create a booking for the asn
+    Then the booking details should appear
+    And I proceed for boxed vehicle loading
+    Then Trailer should be loaded
+    When I navigate to Trailer Shipping page
+    Then trailer should be shipped

@@ -47,7 +47,7 @@ public class StockAdjustmentsPage {
 	public void chooseReasonCode(String ReasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
 		screen.type(ReasonCode);
-		screen.type(Key.ENTER);
+		//screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
 
@@ -130,7 +130,27 @@ public class StockAdjustmentsPage {
 		Thread.sleep(1000);
 	}
 
+
+	public void enterPackConfig(String packConfig) throws FindFailed, InterruptedException {
+		if(screen.exists("images/StockAdjustment/Search/PackConfig.png")!=null)
+		{
+		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
+		screen.click(mconfigId.getCenter().offset(70, 0));
+		screen.type(packConfig);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		}
+	}
 	
+	public void selectPackConfig() throws FindFailed, InterruptedException {
+		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
+		screen.click(mconfigId.getCenter().offset(70, 0));
+		jdaFooter.
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+	}
+
+
 	public void clickMiscellaneousTab() throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Miscellaneous.png", timeoutInSec);
 		Thread.sleep(1000);
@@ -202,8 +222,8 @@ public class StockAdjustmentsPage {
 	//	Thread.sleep(1000);
 //		Match morigin = screen.find("images/StockAdjustment/Search/origin.png");
 		screen.wait("images/StockAdjustment/Search/origin.png", timeoutInSec);
-		Thread.sleep(1000);
-		screen.click("images/StockAdjustment/Search/origin.png");
+		Match mpallet = screen.find("images/StockAdjustment/Search/origin.png");
+		screen.click(mpallet.getCenter().offset(50, 0));
 //		screen.click(morigin.getCenter().offset(70, 0));
 		screen.type(origin);
 		Thread.sleep(1000);
@@ -237,7 +257,7 @@ public class StockAdjustmentsPage {
 		Match msiteId = screen.find("images/StockAdjustment/Search/siteIdExisting.png");
 		screen.click(msiteId.getCenter().offset(70, 0));
 		screen.type(siteId);
-		screen.type(Key.ENTER);
+		//screen.type(Key.ENTER);
 		Thread.sleep(1000);
 	}
 	
@@ -267,16 +287,6 @@ public void enterSkuIDExisting(String skuId) throws FindFailed, InterruptedExcep
 		
 	}
 
-	public void enterPackConfig(String packConfig) {
-		try{
-		Match mconfigId = screen.find("images/StockAdjustment/Search/PackConfig.png");
-		screen.click(mconfigId.getCenter().offset(70, 0));
-		screen.type(packConfig);
-		screen.type(Key.ENTER);
-		Thread.sleep(1000);
-		}
-		catch(Exception e){e=null;}
-}
 
 	public boolean stockAdjustmentsHomePage() {
 		if (screen.exists("images/JDAHome/StockAdjustmentHomePage.png") != null)

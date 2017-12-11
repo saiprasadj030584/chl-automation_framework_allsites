@@ -11,8 +11,6 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-
-
 public class PurchaseOrderPickingPage {
 	Random random = new Random();
 	Screen screen = new Screen();
@@ -24,6 +22,11 @@ public class PurchaseOrderPickingPage {
 		this.context=context;
 	}
 	
+
+	@Inject
+	public PurchaseOrderPickingPage(Context context) {
+		this.context = context;
+	}
 
 	public void selectPickingMenu() throws InterruptedException {
 		screen.type("3");
@@ -292,13 +295,10 @@ public class PurchaseOrderPickingPage {
 	}
 
 	public void enterContainerId(String containerId) throws FindFailed, InterruptedException {
-		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
-		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
-		// Thread.sleep(3000);
-		// screen.click(mQty.below(10));
 		Thread.sleep(1000);
 		screen.type(containerId);
 		Thread.sleep(3000);
+
 		screen.type(Key.ENTER);
 		// Thread.sleep(3000);
 
@@ -310,7 +310,7 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
-	
+
 	public boolean isPickEntPageDisplayed() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;
@@ -318,19 +318,15 @@ public class PurchaseOrderPickingPage {
 			return false;
 	}
 
+
+
 	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
-		// TODO take new image for EnTTagid
-		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
-		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
-		Thread.sleep(3000);
-		// screen.click(mQty.below(10));
-		// Thread.sleep(1000);
 		System.out.println(tagId);
 		screen.type(tagId);
 		Thread.sleep(3000);
 
 	}
-
+	
 	public void selectSplitPick() throws InterruptedException {
 		screen.type("3");
 		Thread.sleep(1000);
@@ -351,4 +347,30 @@ public class PurchaseOrderPickingPage {
 		screen.type(changdQty+"E_("+changdQty+"E)");
 		Thread.sleep(2000);
 	}
+	
+	public void enterPallet(String string) throws InterruptedException {
+		screen.type(string);
+		Thread.sleep(1000);
+	}
+
+	public String getToLocation() throws FindFailed, InterruptedException {
+		// TODO Auto-generated method stub
+		Match mStatus = screen.find("images/Putty/Picking/ToLocationPicking.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		Thread.sleep(5000);
+		return App.getClipboard();
+	}
+
+
+		public boolean isBoxSizeEntryPageDisplayed() {
+		// TODO Auto-generated method stub
+		if (screen.exists("images/Putty/Picking/BoxSize.png") != null)
+
+			return true;
+		else
+			return false;
+	}
+
+	
 }

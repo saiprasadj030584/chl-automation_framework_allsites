@@ -23,13 +23,13 @@ public class TrailerMaintenanceStepDefs {
 
 	@Inject
 	public TrailerMaintenanceStepDefs(JDAFooter jdaFooter, TrailerMaintenancePage trailerMaintenancePage,
-			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context,TrailerDB trailerDB) {
+			JdaHomePage jdaHomePage, JdaLoginPage jdaLoginPage, Context context, TrailerDB trailerDB) {
 		this.jdaFooter = jdaFooter;
 		this.trailerMaintenancePage = trailerMaintenancePage;
 		this.jdaHomePage = jdaHomePage;
 		this.jdaLoginPage = jdaLoginPage;
 		this.context = context;
-		this.trailerDB=trailerDB;
+		this.trailerDB = trailerDB;
 	}
 	@Given("^I create \"([^\"]*)\" trailer to receive at the dock door$")
 	public void i_create_multiple_trailer_to_receive_at_the_dock_door(String nooftrailer) throws Throwable {
@@ -58,29 +58,16 @@ public class TrailerMaintenanceStepDefs {
 		jdaHomePage.navigateToTrailerMaintanencePage();
 		jdaFooter.clickAddButton();
 		String trailerNo = Utilities.getFiveDigitRandomNumber();
-		while(trailerDB.isTrailerExists(trailerNo))
-		{
+		while (trailerDB.isTrailerExists(trailerNo)) {
 			trailerNo = Utilities.getFiveDigitRandomNumber();
 		}
 		trailerMaintenancePage.enterTrailerNo(trailerNo);
 		trailerMaintenancePage.enterTrailerType();
 		jdaFooter.clickExecuteButton();
 		jdaFooter.PressEnter();
-		
-//		if(trailerDB.isTrailerExists())
-//		{
-//		while(trailerDB.isTrailerExists())
-//		{
-//			jdaHomePage.navigateToTrailerMaintanencePage();
-//			jdaFooter.clickAddButton();
-//			trailerNo = Utilities.getFiveDigitRandomNumber();
-//			trailerMaintenancePage.enterTrailerNo(trailerNo);
-//			trailerMaintenancePage.enterTrailerType();
-//			jdaFooter.clickExecuteButton();
-//			jdaFooter.PressEnter();
-//		}
-//		}
 		context.setTrailerNo(trailerNo);
 	}
+
+	
 
 }

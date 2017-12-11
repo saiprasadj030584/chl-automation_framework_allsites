@@ -36,14 +36,7 @@ public class OrderHeaderDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
-		context.getConnection().commit();
-	}
+	
 	public String getOrderDate(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -349,6 +342,15 @@ public class OrderHeaderDB {
 		return rs.getString(1);
 	}
 
+	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+	}
+
 	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -358,6 +360,7 @@ public class OrderHeaderDB {
 		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
 		rs.next();
 		return rs.getString(1);
+
 	}
 
 	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
@@ -378,7 +381,6 @@ public class OrderHeaderDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_ordered from order_line where  order_id='" + orderID + "'");
-		context.getConnection().commit();
 		rs.next();
 		return rs.getString(1);
 	}

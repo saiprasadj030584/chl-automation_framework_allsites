@@ -66,7 +66,13 @@ public class Context {
 	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+
 	private ArrayList<String> odnList;
+
+	private ArrayList<String> asnList;
+	private ArrayList<String> poList;
+
+
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
@@ -154,22 +160,63 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public static Connection connectionSQLDB = null;
+	public Connection connectionSQLDB = null;
 	private static String childStartTime;
-	private boolean jdaLoginFlag = false;
 	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
 	private static String childRequestId;
-	private static String testData;
-	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
 	private String errorMessage;
 	private int updatedQty;
+
 	private ArrayList<String> orderList;
 	private ArrayList<String> trailerList;
 	private ArrayList<String> bookingList;
+
+	private boolean jdaLoginFlag = false;
+	private boolean vehicleLoadRequired;
 	
+	private ArrayList<String> tagIdList;
+
+	public ArrayList<String> getTagIdList() {
+		return tagIdList;
+	}
+
+	public void setTagIdList(ArrayList<String> tagIdList) {
+		this.tagIdList = tagIdList;
+	}
+
+	public String getOrderId1() {
+		return orderId1;
+	}
+
+	public void setOrderId1(String orderId1) {
+		this.orderId1 = orderId1;
+	}
+
+	
+	private static String testData;
+
+	public ArrayList<String> getPoList() {
+		return poList;
+	}
+
+	public void setPoList(ArrayList<String> poList) {
+		this.poList = poList;
+	}
+
+	public ArrayList<String> getAsnList() {
+		return asnList;
+	}
+
+	public void setAsnList(ArrayList<String> asnList) {
+		this.asnList = asnList;
+	}
+
+	
+
+
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
 	}
@@ -189,21 +236,35 @@ public class Context {
 	public ArrayList<String> getUpiList() {
 		return upiList;
 	}
-	public ArrayList<String> getTrailerList() {
-		return trailerList;
-	}
-	public void setTrailerList(ArrayList<String> trailerList) {
-		this.trailerList = trailerList;
-	}
 	public void setUpiList(ArrayList<String> upiList) {
 		this.upiList = upiList;
 	}
+
 	public void setOdnList(ArrayList<String> odnList) {
 		this.odnList = odnList;
 	}
 	public ArrayList<String> getOdnList() {
 		return odnList;
 	}
+
+
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
+
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
+
+
 	public ArrayList<String> getPreAdviceList() {
 		return preAdviceList;
 	}
@@ -282,12 +343,7 @@ public class Context {
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
 	}
-	public String getOrderId1() {
-		return orderId1;
-	}
-	public void setOrderId1(String orderId1) {
-		this.orderId1 = orderId1;
-	}
+	
 
 	public String getOrderStatus() {
 		return orderStatus;
@@ -1403,13 +1459,7 @@ public class Context {
 	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
 		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
 	}
-	public ArrayList<String> getBookingList() {
-		return bookingList;
-	}
-
-	public void setBookingList(ArrayList<String> bookingList) {
-		this.bookingList = bookingList;
-	}
+		
 	public String getSecondPalletID() {
 		return secondPalletID;
 	}

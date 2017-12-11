@@ -1003,6 +1003,18 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	
+	
+	public void navigateToUpiReceiptLinePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("UPI receipt line maintenance/query screen");
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
+	}
 
 	public void navigateToOrderGroupingPage() throws InterruptedException, FindFailed {
 		clickSearchIcon();
