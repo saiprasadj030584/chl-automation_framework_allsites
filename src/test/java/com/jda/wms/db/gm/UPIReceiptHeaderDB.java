@@ -28,22 +28,15 @@ public class UPIReceiptHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("dfhsdfh");
+		System.out.println("Status of UPI");
 
 		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
-//		int iVal = 0;
-//
-//		if (rs.next()) {
-//		    iVal = rs.getInt("status");
-//		    if (rs.wasNull()) {
-//		       System.out.println("Null Value returned !!! Testdat setup issue ! Please Rerun this scenario");
-//		       Assert.fail();
-//		    }
-//		}
+
+		System.out.println(rs.getString(1));
+
 		return rs.getString(1);
 	}
 
@@ -86,6 +79,7 @@ public class UPIReceiptHeaderDB {
 	}
 
 	public void updateASN(String upiId, String asnId) throws SQLException, ClassNotFoundException {
+		System.out.println("update upi_receipt_header set asn_id='" + asnId + "' where pallet_id='" + upiId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}

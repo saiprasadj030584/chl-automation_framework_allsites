@@ -260,7 +260,7 @@ public class UPIReceiptLineStepDefs {
 		if (supplierSkuDb.isMultiSourced(context.getUPC())) {
 			context.setSupplierID(supplierSkuDb.getSupplierId(context.getUPC()));
 		} else {
-			Assert.assertFalse("SKU is not Multi Soured", supplierSkuDb.isMultiSourced(context.getUPC()));
+			Assert.assertFalse("SKU is not Multi Sourced", supplierSkuDb.isMultiSourced(context.getUPC()));
 		}
 	}
 

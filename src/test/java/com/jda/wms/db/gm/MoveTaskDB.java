@@ -505,6 +505,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 
 	public String selectPalletId(String orderId) throws SQLException, ClassNotFoundException {
+		System.out.println("select pallet_id from move_task where task_id='" + orderId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -516,6 +517,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 	}
 
 	public String selectURN(String orderId) throws SQLException, ClassNotFoundException {
+		System.out.println("select container_id from move_task where task_id='" + orderId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -618,4 +620,3 @@ public String getContainerId(String orderId) throws SQLException, ClassNotFoundE
 	
 	
 	}
-

@@ -71,15 +71,15 @@ public class PurchaseOrderPickingPage {
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(5000);
 	}
 
 	public void enterPrinterNO(String string) throws InterruptedException {
 		screen.type(string);
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(s5000);
 	}
 
 	public String getPickingLocation() throws FindFailed, InterruptedException {
@@ -227,7 +227,6 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(5000);
 		// return App.getClipboard();
 	}
-
 	public void entrMinimumQty() throws InterruptedException {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(3000);
@@ -238,6 +237,7 @@ public class PurchaseOrderPickingPage {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(5000);
 	}
+
 	public void enterMinimumQty(String qty) throws InterruptedException {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(3000);
@@ -289,7 +289,8 @@ public class PurchaseOrderPickingPage {
 	}
 
 	public void selectReason() throws InterruptedException {
-		screen.type("6");
+		screen.type("1");
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
@@ -301,6 +302,7 @@ public class PurchaseOrderPickingPage {
 
 		screen.type(Key.ENTER);
 		// Thread.sleep(3000);
+
 
 	}
 
@@ -362,6 +364,50 @@ public class PurchaseOrderPickingPage {
 		return App.getClipboard();
 	}
 
+	public void selectSortingMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void enterToPallet(String toPallet) throws InterruptedException {
+		screen.type(toPallet);
+		Thread.sleep(1000);
+	}
+
+	public void enterFromPallet(String fromPallet) throws InterruptedException {
+		screen.type(fromPallet);
+		Thread.sleep(1000);
+		
+	}
+
+	public boolean isPalRpkFrmCPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/PalRpkFrmC.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+
+	public boolean isPckPalToExists() throws InterruptedException {
+		Thread.sleep(1000);
+		if (screen.exists("images/Putty/Picking/PckPalTo.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isPckConCnfExists() throws InterruptedException {
+		Thread.sleep(1000);
+		if (screen.exists("images/Putty/Picking/PckConCnf.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	
+
 
 		public boolean isBoxSizeEntryPageDisplayed() {
 		// TODO Auto-generated method stub
@@ -371,6 +417,7 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
+
 
 	
 }

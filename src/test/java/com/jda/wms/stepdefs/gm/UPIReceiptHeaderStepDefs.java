@@ -81,7 +81,9 @@ public class UPIReceiptHeaderStepDefs {
 
 	@Given("^ASN to be linked with upi header list$")
 	public void asn_to_be_linked_with_multiple_upi_header() throws Throwable {
+		System.out.println("size"+context.getUpiList().size());
 		for (int i = 0; i < context.getUpiList().size(); i++) {
+			System.out.println(context.getUpiList().get(i));
 			upiReceiptHeaderDB.updateASN(context.getUpiList().get(i), context.getAsnId());
 		}
 	}

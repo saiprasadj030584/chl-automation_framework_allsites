@@ -29,11 +29,12 @@ public class DeliveryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+		System.out.println("Status of ASN");
 		System.out.println("Select status from delivery where asn_id ='" + asnId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select status from delivery where asn_id ='" + asnId + "'");
-
 		rs.next();
+		System.out.println(rs.getString(1));
 		return rs.getString(1);
 	}
 

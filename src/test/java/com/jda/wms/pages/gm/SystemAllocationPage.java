@@ -36,6 +36,7 @@ public class SystemAllocationPage {
 		screen.type(orderId);
 		Thread.sleep(1000);
 	}
+
 	
 	public void enterOrderTime(String orderTime) throws FindFailed, InterruptedException {
 		Match mConsignmentID = screen.find("images/OrderHeaderMaintenance/OrderTime.png");
@@ -57,5 +58,12 @@ public class SystemAllocationPage {
 		Thread.sleep(1000);
 		screen.type("a", Key.CTRL);
 		Thread.sleep(2000);
+
+	}
+	public void deleteOrderId() throws InterruptedException {
+		screen.type("a", Key.CTRL);
+		Thread.sleep(1000);
+		
+
 	}
 }

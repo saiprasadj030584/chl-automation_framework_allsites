@@ -182,7 +182,7 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_mannual_clustering_screen() throws Throwable {
 		jdaHomePage.navigateToMannualClusteringPage();
 	}
-
+	
 	@When("^I navigate to dock scheduler start page$")
 	public void i_navigate_to_dock_scheduler_start_page() throws Throwable {
 		jdaHomePage.navigateToDockSchedulerPage();

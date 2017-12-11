@@ -37,7 +37,9 @@ public class DockSchedulerPage {
 
 	public void enterBookingType(String bookingType) throws FindFailed, InterruptedException {
 		screen.type(bookingType);
+
 		Thread.sleep(2000);
+
 	}
 
 	public void enterConsignment() throws FindFailed, InterruptedException {
@@ -388,6 +390,7 @@ public class DockSchedulerPage {
 	}
 	
 	public void enterConsignmentID(String consignmentID) throws InterruptedException {
+		Thread.sleep(1000);
 		screen.type(consignmentID);
 		Thread.sleep(1000);
 	}

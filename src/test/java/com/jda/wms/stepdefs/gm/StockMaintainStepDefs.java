@@ -423,7 +423,7 @@ public class StockMaintainStepDefs {
 						// update in inventory of valid locations to 0
 						if (validLocations.size() != 0) {
 							for (int j = 0; j < validLocations.size(); j++) {
-								if (!(inventoryDB.getOriginId(validLocations.get(j)).equalsIgnoreCase("TUR"))) {
+								if (!(inventoryDB.getOriginIdValue(validLocations.get(j)).equalsIgnoreCase("TUR"))) {
 									System.out.println("SUSPENSE" + validLocations.get(j));
 									System.out.println(
 											inventoryDB.getQtynHand(context.getSkuId(), validLocations.get(j)));

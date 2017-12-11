@@ -5,6 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
@@ -32,6 +33,7 @@ public class OrderLineDB {
 	}
 
 	public String getQtyOrdered(String orderID, String skuID) throws SQLException, ClassNotFoundException {
+		System.out.println("select qty_ordered from ORDER_LINE WHERE order_id ='" + orderID + "' and sku_id = '" + skuID + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -172,5 +174,23 @@ public class OrderLineDB {
 			}
 		}
 		return locationId;
+	}
+	public ArrayList<String> getSkuIdList(String orderId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> skuIdList = new ArrayList<String>();
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id ='" + orderId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		while (rs.next()) {
+			for (int j = 1; j <= columns; j++) {
+				skuIdList.add((rs.getString(j)));
+			}
+		}
+		return skuIdList;
 	}
 }

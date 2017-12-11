@@ -24,8 +24,8 @@ public class JdaLoginPage {
 	int timeoutInSec = 20;
 
 	public static RemoteWebDriver driver;
-	private  Configuration configuration;
-	private  Context context;
+	private Configuration configuration;
+	private Context context;
 	// Configuration configuration = new Configuration();
 	// Context context = new Context();
 
@@ -56,7 +56,7 @@ public class JdaLoginPage {
 			System.out.println("Site Id" + context.getSiteID());
 			setDriver();
 			driver.manage().window().maximize();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			if (context.getSiteID().equals("5649")) {
 				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
@@ -79,9 +79,9 @@ public class JdaLoginPage {
 					System.out.println("Login screen not found in loop");
 				}
 
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				waitTime = waitTime + 3;
-			} while (waitTime < 120);
+			} while (waitTime < 300);
 
 			if (screen.exists("images/JDALogin/username.png") == null) {
 				// Assert.fail("Login Not successful");

@@ -59,7 +59,9 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
+
 	@Before({ "~@Email" })
+
 
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		context.setScenario(scenario);

@@ -412,7 +412,8 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterEstimatedCartons();
 		jdaFooter.PressEnter();
 	}
-
+	
+	
 	public void i_enter_booking_details_with_bookingID(String bookingID) throws Throwable {
 		String trailerNo = context.getTrailerNo();
 		context.setBookingID(bookingID);
@@ -672,6 +673,7 @@ public class DockSchedulerStepDefs {
 		dockSchedulerPage.enterBookingType("Consignment");
 		String cons = orderHeaderDB.selectConsignment(context.getOrderId());
 		context.setConsignmentID(cons);
+		Thread.sleep(2000);
 		jdaFooter.pressTab();
 		dockSchedulerPage.enterConsignmentID(context.getConsignmentID());
 		jdaFooter.clickSearch();

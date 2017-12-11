@@ -94,6 +94,7 @@ public class PurchaseOrderVehicleLoadingPage {
 
 	}
 
+
 	public boolean isQueryMsgDisplayed() {
 		if (screen.exists("images/Putty/VehicleLoading/QueryMsg.png") != null)
 			return true;
@@ -117,6 +118,7 @@ public class PurchaseOrderVehicleLoadingPage {
 		else
 			return false;
 	}
+
 
 	public boolean isVehEntPageDisplayed() throws FindFailed, InterruptedException {
 		if (screen.exists("images/Putty/VehicleLoading/LodMEnt.png") != null)

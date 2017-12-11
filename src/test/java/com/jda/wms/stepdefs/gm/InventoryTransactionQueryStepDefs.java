@@ -101,17 +101,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	@When("^the inventory transaction should be updated for single upi$")
-	public void the_inventory_transaction_should_be_updated_for_single_upi() throws Throwable {
-			jDAFooter.clickQueryButton();
-			inventoryTransactionQueryPage.enterCode("Receipt");
-			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
-			jDAFooter.clickExecuteButton();
-			String code = "Receipt";
-			Assert.assertEquals("ITL not generated for Returns Receiving", 1 , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
-
-	}
-	@Then("^the goods receipt should be generated for received stock in inventory transaction for receiving$")
+		@Then("^the goods receipt should be generated for received stock in inventory transaction for receiving$")
 	public void the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -1013,6 +1003,18 @@ public class InventoryTransactionQueryStepDefs {
 		}
 
 		Assert.assertEquals("ITL not updated", origQtyDue, receiptCount);
+	}
+	
+	@When("^the inventory transaction should be updated for single upi$")
+	public void the_inventory_transaction_should_be_updated_for_single_upi() throws Throwable {
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Receipt");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String code = "Receipt";
+			System.out.println("no of line"+ context.getNoOfLines());
+			Assert.assertEquals("ITL not generated for Returns Receiving", context.getNoOfLines() , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+
 	}
 
 	@When("^I search with sku and reason code$")

@@ -59,4 +59,18 @@ public class OrderContainerDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+
+	public String selectContainer(String orderId) throws ClassNotFoundException, SQLException {
+		System.out.println("select container_id from order_container where ORDER_ID = '" + orderId + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select container_id from order_container where order_id = '" + orderId + "'");
+		rs.next();
+		//sSystem.out.println("status after allocation"+ rs.getString(1));
+		return rs.getString(1);
+	}
+	
 }

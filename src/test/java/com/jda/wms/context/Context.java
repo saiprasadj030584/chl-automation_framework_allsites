@@ -67,15 +67,18 @@ public class Context {
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
 
+
 	private ArrayList<String> odnList;
 
 	private ArrayList<String> asnList;
 	private ArrayList<String> poList;
 
+	private ArrayList<String> orderList;
 
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
+	private String orderId2;
 	private String customer;
 	private String listID;
 	private String toPallet;
@@ -87,6 +90,8 @@ public class Context {
 	private ArrayList packConfigList;
 	private String putawayLocation1;
 	private String putawayLocation2;
+	private ArrayList<String> trailerList;
+	private ArrayList<String> bookingList;
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -151,6 +156,7 @@ public class Context {
 	private String toLocation2;
 	private String relocateLoctn;
 	private ArrayList<String> qtyTaskedList;
+	private ArrayList<String> locationList;
 	private int noOfMoveTaskRecords;
 	private int skuSize;
 	private HashMap<Integer, String> qtyOnHandList;
@@ -169,10 +175,9 @@ public class Context {
 	private String secondPalletID;
 	private String errorMessage;
 	private int updatedQty;
+	private static String secondTestData;
+	private int newQtyOnHAnd;
 
-	private ArrayList<String> orderList;
-	private ArrayList<String> trailerList;
-	private ArrayList<String> bookingList;
 
 	private boolean jdaLoginFlag = false;
 	private boolean vehicleLoadRequired;
@@ -248,21 +253,6 @@ public class Context {
 	}
 
 
-	public ArrayList<String> getBookingList() {
-		return bookingList;
-	}
-
-	public void setBookingList(ArrayList<String> bookingList) {
-		this.bookingList = bookingList;
-	}
-
-	public ArrayList<String> getTrailerList() {
-		return trailerList;
-	}
-
-	public void setTrailerList(ArrayList<String> trailerList) {
-		this.trailerList = trailerList;
-	}
 
 
 	public ArrayList<String> getPreAdviceList() {
@@ -1443,6 +1433,13 @@ public class Context {
 	public static void setTestData(String testData) {
 		Context.testData = testData;
 	}
+	public static String getSecondTestData() {
+		return secondTestData;
+	}
+
+	public static void setSecondTestData(String secondTestData) {
+		Context.secondTestData = secondTestData;
+	}
 
 	public boolean isVehicleLoadRequired() {
 		return vehicleLoadRequired;
@@ -1467,7 +1464,13 @@ public class Context {
 	public void setSecondPalletID(String secondPalletID) {
 		this.secondPalletID = secondPalletID;
 	}
+	public String getOrderId2() {
+		return orderId2;
+	}
 
+	public void setOrderId2(String orderId2) {
+		this.orderId2 = orderId2;
+	}
 	public void setDBConnection(Connection dBConnection) {
 		this.dBConnection = dBConnection;
 
@@ -1484,5 +1487,39 @@ public class Context {
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
+	public int getNewQtyOnHAnd() {
+		return newQtyOnHAnd;
+	}
+
+	public void setNewQtyOnHAnd(int newQtyOnHAnd) {
+		this.newQtyOnHAnd = newQtyOnHAnd;
+	}
+
+	public ArrayList<String> getLocationList() {
+		return locationList;
+	}
+
+	public void setLocationList(ArrayList<String> locationList) {
+		this.locationList = locationList;
+	}
+
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
+
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
+
+	
 
 }

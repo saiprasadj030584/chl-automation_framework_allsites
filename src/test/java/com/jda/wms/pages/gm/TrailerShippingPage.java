@@ -21,20 +21,13 @@ public class TrailerShippingPage {
 		Thread.sleep(1000);
 	}
 
+
 	public void enterTrailer(String trailerNo) throws InterruptedException, FindFailed {
 		Match skuID = screen.find("images/TrailerShipping/Trailer.png");
 		screen.click(skuID.getCenter().offset(70, 0));
 		screen.type(trailerNo);
 		Thread.sleep(1000);
 	}
-
-	public void enterSealNo(String sealNo) throws FindFailed, InterruptedException {
-		Match skuID = screen.find("images/TrailerShipping/SealNO.png");
-		screen.click(skuID.getCenter().offset(70, 0));
-		screen.type(sealNo);
-		Thread.sleep(1000);
-	}
-
 	public boolean isRecordDisplayed() {
 		if (screen.exists("images/Putty/Picking/pickcmp.png") != null)
 			return true;
@@ -54,6 +47,8 @@ public class TrailerShippingPage {
 		screen.click(skuID.getCenter().offset(70, 0));
 
 	}
+	
+
 	public void enterTrailerNumber(String trailerNo) throws InterruptedException {
 		screen.type(trailerNo);
 
@@ -62,17 +57,27 @@ public class TrailerShippingPage {
 	}
 
 
+
 	public void clickOne() throws InterruptedException, FindFailed {
 		Match skuID = screen.find("images/TrailerShipping/One.png");
 		screen.click(skuID.getCenter().offset(70, 0));
 		Thread.sleep(1000);
 
 	}
+
+	public void enterSealNo(String sealno) throws FindFailed, InterruptedException {
+		Match mSeal = screen.find("images/TrailerShipping/SealNO.png");
+		screen.click("images/TrailerShipping/SealNO.png");	
+		Thread.sleep(1000);
+		screen.type(sealno);
+		Thread.sleep(1000);
+	}
+
+
 	public void clickOkButton() throws InterruptedException, FindFailed {
 		Match mSeal = screen.find("images/TrailerShipping/ok.png");
 		screen.click("images/TrailerShipping/ok.png");	
 		Thread.sleep(1000);
 		
 	}
-
 }

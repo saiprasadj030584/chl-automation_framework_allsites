@@ -429,7 +429,7 @@ public class OrderHeaderStepsDefs {
 				int totalQtyOnHand = 0;
 				for (int j = 0; j < locationList.size(); j++) {
 					if (locationDb.getLocationZone(locationList.get(j)) != null) {
-						if (inventoryDB.getOriginId(locationList.get(j)).contains("NONE")) {
+						if (inventoryDB.getOriginId(locationList.get(j))) {
 							if (context.getSKUType().equalsIgnoreCase("Hanging")
 									|| context.getSKUType().equalsIgnoreCase("GOH")) {
 								if (locationDb.getLocationZone(locationList.get(j)).equalsIgnoreCase("HANG")
@@ -439,8 +439,8 @@ public class OrderHeaderStepsDefs {
 												.contains(skuDB.getProductGroup(context.getSkuId()))) {
 									System.out.println(inventoryDB.getLockStatus(locationList.get(j),
 											(String) skuFromOrder.get(i)));
-									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-											.equalsIgnoreCase("UnLocked")) {
+									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)).equalsIgnoreCase("UnLocked")
+											) {
 										System.out.println("entered" + locationList.get(j));
 										validLocations.add(locationList.get(j));
 										totalQtyOnHand += Integer.parseInt(inventoryDB.getQtyForSkuInLocation(
@@ -455,8 +455,8 @@ public class OrderHeaderStepsDefs {
 										&& locationDb.getUserDefType3(locationList.get(j)).contains("BOX")) {
 									System.out.println(inventoryDB.getLockStatus(locationList.get(j),
 											(String) skuFromOrder.get(i)));
-									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-											.equalsIgnoreCase("UnLocked")) {
+									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)).equalsIgnoreCase("UnLocked")
+											) {
 										System.out.println("entered" + locationList.get(j));
 										validLocations.add(locationList.get(j));
 										totalQtyOnHand += Integer.parseInt(inventoryDB.getQtyForSkuInLocation(
@@ -476,8 +476,8 @@ public class OrderHeaderStepsDefs {
 														.contains(skuDB.getProductGroup(context.getSkuId())))) {
 									System.out.println(inventoryDB.getLockStatus(locationList.get(j),
 											(String) skuFromOrder.get(i)));
-									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i))
-											.equalsIgnoreCase("UnLocked")) {
+									if (inventoryDB.getLockStatus(locationList.get(j), (String) skuFromOrder.get(i)).equalsIgnoreCase("UnLocked")
+											) {
 										System.out.println("entered" + locationList.get(j));
 										validLocations.add(locationList.get(j));
 										totalQtyOnHand += Integer.parseInt(inventoryDB.getQtyForSkuInLocation(

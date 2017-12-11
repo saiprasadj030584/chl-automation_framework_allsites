@@ -21,6 +21,7 @@ public class UPIReceiptLineDB {
 	}
 
 	public void updateContainerID(String upiId) throws SQLException, ClassNotFoundException {
+		System.out.println("update upi_receipt_line set CONTAINER_ID = '" + upiId + "' where pallet_id = '" + upiId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}

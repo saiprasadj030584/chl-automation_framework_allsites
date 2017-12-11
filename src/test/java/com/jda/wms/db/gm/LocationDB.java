@@ -43,7 +43,9 @@ public class LocationDB {
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		//System.out.println("select zone_1 from location where location_id = '" + location + "'");
+
+		System.out.println("select zone_1 from location where location_id = '" + location + "'");
+
 		ResultSet rs = stmt.executeQuery("select zone_1 from location where location_id = '" + location + "'");
 		rs.next();
 		String temp = rs.getString(1);
@@ -352,6 +354,7 @@ public String getToLocationForPutawayGOH(String skuType,String department) throw
 	if (context.getConnection() == null) {
 		database.connect();
 	}
+
 	Statement stmt = context.getConnection().createStatement();
 	
 	System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and user_def_type_2 like '"+skuType+"%' and user_def_type_3 like '"+skuType+"%' and lock_status='UnLocked' a and current_volume='0'");
@@ -387,15 +390,21 @@ public String getToLocationForPutawayBoxedNormal() throws SQLException, ClassNot
 
 	public String getLockStatus(String location) throws SQLException, ClassNotFoundException {
 
+
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
+
 		ResultSet rs = stmt.executeQuery("select lock_status from location where location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
 
 		}
+
+
+
+
 
 }

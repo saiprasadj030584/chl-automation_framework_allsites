@@ -859,6 +859,7 @@ public class PurchaseOrderReceivingPage {
 		}
 		return false;
 	}
+
 	
 	public String getQtyToReceiveUnderReceiving() throws FindFailed, InterruptedException {
 		Match mSupplierId = screen.find("images/Putty/Receiving/QtyToReceive.png");
@@ -916,4 +917,13 @@ public class PurchaseOrderReceivingPage {
 		}
 		
 	}
+
+	public String getURRNValue() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/Receiving/BlindRcvURRN.png");
+		Thread.sleep(2000);
+		screen.doubleClick(mStatus.offset(50, 0));
+		return App.getClipboard();
+	}
+
+	
 }
