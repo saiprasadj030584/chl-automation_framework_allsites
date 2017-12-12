@@ -14,7 +14,6 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
 
 import cucumber.api.Scenario;
 
@@ -37,11 +36,10 @@ public class JdaHomePage {
 	private PackConfigMaintenancePage packConfigMaintenancePage;
 	private AddressMaintenancePage addressMaintenancePage;
 	private MoveTaskPage moveTaskPage;
-	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
-			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage, Hooks_autoUI hooks_autoUI,
+			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
 			PreAdviceHeaderPage preAdviceHeaderPage, MoveTaskPage moveTaskPage,
 			AddressMaintenancePage addressMaintenancePage, InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			PackConfigMaintenancePage packConfigMaintenancePage, StockAdjustmentsPage stockAdjustmentsPage,
@@ -60,7 +58,6 @@ public class JdaHomePage {
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.moveTaskPage = moveTaskPage;
-		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {

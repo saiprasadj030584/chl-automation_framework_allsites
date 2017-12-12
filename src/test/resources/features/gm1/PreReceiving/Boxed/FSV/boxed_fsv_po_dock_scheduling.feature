@@ -69,7 +69,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I change the booking time
     Then the booking id details with updated time should be displayed on the page
 
-  @jenkinsA @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted @complete @ds 
+  @jenkinsA @jenkinsgm @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_the_booking_can_be_deleted @complete @ds 
   Scenario: Validate whether the Booking can be deleted
     Given I have done the dock scheduler booking with the PO of type "Boxed" at site
     When I navigate to dock scheduler start page
@@ -99,7 +99,7 @@ Feature: Boxed - FSV PO - Dock Scheduling
     When I change the status of booking to BookingStatus "In Progress"
     Then the booking id details with updated status "In Progress" should be displayed on the page
 
-  @jenkinsA @jenkinsgm1 @jenkins_analysis @boxed @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds 
+  @jenkinsA @jenkinsgm @jenkins_analysis @boxed @pre_receiving @fsv_po @unique_boxed_pre_receiving_fsv_po_validate_whether_compliance_flag_can_be_uploaded_for_pre_advice_line @complete @ds 
   Scenario: Validate whether compliance flag can be uploaded for Pre advice line
     Given the PO should be in "Released" status
     And the PO line should have sku, quantity due details

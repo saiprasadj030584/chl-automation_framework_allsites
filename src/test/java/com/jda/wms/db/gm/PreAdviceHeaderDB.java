@@ -9,18 +9,15 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
 
 public class PreAdviceHeaderDB {
 	private final Context context;
 	private final Database database;
-	private final Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public PreAdviceHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
+	public PreAdviceHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
@@ -215,7 +212,6 @@ public class PreAdviceHeaderDB {
 				System.out.println("Pre advice header id -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
-			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
 		return rs.getString(1);

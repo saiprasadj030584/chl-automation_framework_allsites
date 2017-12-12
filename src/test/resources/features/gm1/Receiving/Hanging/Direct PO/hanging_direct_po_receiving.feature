@@ -31,7 +31,7 @@ Feature: Hanging - Direct PO - Receiving
     And the goods receipt should be generated for hanging received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
-  @jenkinsB @unique_hanging_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_lesser_than_the_upi_line_quantity @boxed @receiving @direct_po @complete @ds
+  @jenkinsB @jenkinsgm @unique_hanging_receiving_direct_po_perform_receiving_when_pre_advice_line_quantity_is_lesser_than_the_upi_line_quantity @boxed @receiving @direct_po @complete @ds
   Scenario: Perform receiving when Pre advice line quantity is lesser than the UPI line quantity
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details with po quantity "less" than upi quantity
@@ -49,7 +49,7 @@ Feature: Hanging - Direct PO - Receiving
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be "In Progress" while upi and asn status should "Complete"
     
-   @jenkinsB @unique_hanging_receiving_direct_po_validate_receipting_process_without_lock_code @hanging @receiving @direct_po @complete @ds @group_3
+   @jenkinsB @jenkinsgm @unique_hanging_receiving_direct_po_validate_receipting_process_without_lock_code @hanging @receiving @direct_po @complete @ds @group_3
   Scenario: Validate receipting process without lock code
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

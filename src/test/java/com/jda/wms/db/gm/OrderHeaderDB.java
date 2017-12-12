@@ -11,19 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
 
 public class OrderHeaderDB {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private Database database;
-	private Hooks_autoUI hooks_autoUI;
 
 	@Inject
-	public OrderHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
+	public OrderHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-		this.hooks_autoUI = hooks_autoUI;
 	}
 
 	public String getStatus(String orderId) throws SQLException, ClassNotFoundException {
@@ -384,7 +381,6 @@ public class OrderHeaderDB {
 				System.out.println("Order ID -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
-			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
 		return rs.getString(1);
