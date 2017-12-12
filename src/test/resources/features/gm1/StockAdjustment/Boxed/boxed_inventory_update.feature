@@ -101,7 +101,6 @@ Feature: Boxed - Inventory update
 
   @jenkinsA @jenkinsg @boxed @stock_adjustment @inventory_update @unique_boxed_stock_adjustment_inventory_update_pack_config_update @complete @ds @jenkins1 @no_ds @group_1
   Scenario: Pack config update
-    #Given I have a sku in inventory with more than one pack config
     Given I have a sku in inventory with more than one pack config for "Boxed"
     When I navigate to inventory update page
     And I select the update type as "Pack Configuration Update"

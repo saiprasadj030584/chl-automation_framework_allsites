@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_flatpack_outbound_order_till_despatch_store_order_short_store_order_full_cancel" })
+				"@unique_boxed_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s" })
 
 
 public class AllTest {
