@@ -26,7 +26,7 @@ Feature: Outbound order
 
     @outbound_despatch  @retail @unique_all_data_outbound_order_till_despatch_retail_type_order_split_shipment_multiple_vehicle_multiple_order_different_upc_and_dept @ds
   Scenario: Split shipment and multiple vehicle,single order
-    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I create a consignment for multiple order
     And I allocate the multiple stocks
     Then the multiple stock should get allocated

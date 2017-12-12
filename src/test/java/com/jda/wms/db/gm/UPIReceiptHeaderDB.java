@@ -9,19 +9,19 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
+
 
 public class UPIReceiptHeaderDB {
 
 	private Context context;
 	private Database database;
-	private Hooks_autoUI hooks_autoUI;
+	
 
 	@Inject
-	public UPIReceiptHeaderDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
+	public UPIReceiptHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-		this.hooks_autoUI = hooks_autoUI;
+	
 	}
 
 	public String getStatus(String upiId) throws SQLException, ClassNotFoundException {
@@ -167,7 +167,7 @@ public class UPIReceiptHeaderDB {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
-			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
 		return rs.getString(1);

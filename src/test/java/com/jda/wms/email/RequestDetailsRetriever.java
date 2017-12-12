@@ -10,18 +10,19 @@ import java.util.Map;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
+import com.jda.wms.hooks.Hooks;
+
 
 public class RequestDetailsRetriever {
 	public static String[] mailAddressTo;
 	private final Context context;
-	private final Hooks_autoUI hooks_autoUI;
+	private final Hooks hooks;
 	private final Configuration configuration;
 
 	@Inject
-	public RequestDetailsRetriever(Context context, Hooks_autoUI hooks_autoUI, Configuration configuration) {
+	public RequestDetailsRetriever(Context context, Hooks hooks, Configuration configuration) {
 		this.context = context;
-		this.hooks_autoUI = hooks_autoUI;
+		this.hooks = hooks;
 		this.configuration = configuration;
 
 	}
@@ -34,7 +35,7 @@ public class RequestDetailsRetriever {
 
 		try {
 			if (context.getSQLDBConnection() == null) {
-				hooks_autoUI.sqlConnectOpen();
+				hooks.sqlConnectOpen();
 			}
 
 			String query = "Select * from NPS_AUTO_UI_RUN_REQUEST where p_Req_Id='" + parentRequestId + "'";
@@ -64,7 +65,7 @@ public class RequestDetailsRetriever {
 	public String getTestingPhase(String masterId) throws ClassNotFoundException, SQLException {
 
 		if (context.getSQLDBConnection() == null) {
-			hooks_autoUI.sqlConnectOpen();
+			hooks.sqlConnectOpen();
 		}
 		String query = "sELECT master_desc FROM  tbl_autoMasterData Where master_id = '" + masterId + "'";
 
@@ -99,7 +100,7 @@ public class RequestDetailsRetriever {
 		ResultSet resultSet = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
-				hooks_autoUI.sqlConnectOpen();
+				hooks.sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement()
 					.executeQuery("select count(*) as COUNT from dbo.NPS_AUTO_UI_RUN_STATUS where P_REQ_ID='"
@@ -131,7 +132,7 @@ public class RequestDetailsRetriever {
 
 		try {
 			if (context.getSQLDBConnection() == null) {
-				hooks_autoUI.sqlConnectOpen();
+				hooks.sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement()
 					.executeQuery("select * from dbo.NPS_AUTO_UI_RUN_STATUS where P_REQ_ID='" + parentRequestId + "'");
@@ -190,7 +191,7 @@ public class RequestDetailsRetriever {
 		ResultSet rs = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
-				hooks_autoUI.sqlConnectOpen();
+				hooks.sqlConnectOpen();
 			}
 
 			rs = context.getSQLDBConnection().createStatement().executeQuery(
@@ -223,7 +224,7 @@ public class RequestDetailsRetriever {
 		ArrayList<String> emailList = new ArrayList<String>();
 		try {
 			if (context.getSQLDBConnection() == null) {
-				hooks_autoUI.sqlConnectOpen();
+				hooks.sqlConnectOpen();
 			}
 
 			String getEmailList = configuration.getStringProperty("emailList");

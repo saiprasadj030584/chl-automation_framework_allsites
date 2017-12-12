@@ -12,7 +12,8 @@ import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.email.HtmlCreator;
 import com.jda.wms.email.SendEmail;
-import com.jda.wms.hooks.Hooks_autoUI;
+import com.jda.wms.hooks.Hooks;
+
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,24 +23,24 @@ public class EmailStepDefs {
 	private final Context context;
 	private final HtmlCreator htmlCreator;
 	private final SendEmail sendEmail;
-	private final Hooks_autoUI hooks_autoUI;
+	private final Hooks hooks;
 	private final Configuration configuration;
 	public static String PRQID = null;
 	String envVar = System.getProperty("user.dir");
 
 	@Inject
-	public EmailStepDefs(Configuration configuration, Hooks_autoUI hooks_autoUI, Context context,
+	public EmailStepDefs(Configuration configuration, Hooks hooks, Context context,
 			HtmlCreator htmlCreator, SendEmail sendEmail) {
 		this.context = context;
 		this.htmlCreator = htmlCreator;
 		this.sendEmail = sendEmail;
-		this.hooks_autoUI = hooks_autoUI;
+		this.hooks = hooks;
 		this.configuration = configuration;
 	}
 
 	@Given("^user has triggered an ANR automated email to end user with automation test result$")
 	public void user_has_triggered_an_anr_automated_email_to_end_user_with_automation_test_result() throws Throwable {
-		hooks_autoUI.fileReadValueFromText();
+		hooks.fileReadValueFromText();
 		htmlCreator.htmlWriter(context.getParentRequestId());
 		sendEmail.triggerEmailAutomatedTestResults();
 
@@ -48,10 +49,10 @@ public class EmailStepDefs {
 	@Given("^Insert the metrics details in automation metrics DB$")
 	public void insert_the_metrics_details_in_automation_metrics_DB() throws Throwable {
 		Statement stmt = null;
-		hooks_autoUI.fileReadValueFromText();
+		hooks.fileReadValueFromText();
 		System.out.println("PARENT REQ ID"+context.getParentRequestId());
 		if (context.getSQLDBConnection() == null) {
-			hooks_autoUI.sqlConnectOpen();
+			hooks.sqlConnectOpen();
 		}
 
 		stmt = context.getSQLDBConnection().createStatement();
@@ -92,7 +93,7 @@ public class EmailStepDefs {
 
 	@Then("^I trigger email to all the stakeholders$")
 	public void i_trigger_email_to_all_the_stakeholders() throws Throwable { 
-		hooks_autoUI.fileReadValueFromText();
+		hooks.fileReadValueFromText();
 		htmlCreator.htmlWriter(context.getParentRequestId());
 		sendEmail.triggerEmailAutomatedTestResults();
 	}

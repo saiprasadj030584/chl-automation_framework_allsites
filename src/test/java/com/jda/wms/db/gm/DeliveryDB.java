@@ -10,19 +10,19 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.hooks.Hooks_autoUI;
+
 
 public class DeliveryDB {
 
 	private Context context;
 	private Database database;
-	private Hooks_autoUI hooks_autoUI;
+	
 
 	@Inject
-	public DeliveryDB(Context context, Database database, Hooks_autoUI hooks_autoUI) {
+	public DeliveryDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-		this.hooks_autoUI = hooks_autoUI;
+		
 	}
 	
 	public String getStatus(String asnId) throws SQLException, ClassNotFoundException {
@@ -204,7 +204,7 @@ public class DeliveryDB {
 			}
 
 		} catch (Exception e) {
-			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
+			
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			e.printStackTrace();
 
