@@ -1,6 +1,8 @@
 package com.jda.wms.pages.gm;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Match;
+import com.google.inject.Inject;
+import org.sikuli.script.Screen;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;

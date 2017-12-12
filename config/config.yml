@@ -2,12 +2,12 @@
 ##################
 default:
  browser-name: ie
- username: 'AUTO1'
+ username: 'SELVA'
  bck-userid: 'AUTO2'
  password: '1234'
- 
+
  auto-title: 'JDA C&H Test Automation Result'
- url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html' 
+ ur.l: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html' 
  alm-domain: 'GM'
  alm-executed: '19'
  alm-projectName: 'Testing'
@@ -19,7 +19,7 @@ default:
  tbl-parentprojectcode: 'CNH001'
  tbl-parentprojectname: 'JDA Dispatcher Fourwall'
 # emailList: 'Kiruthika.Srinivasan@mnscorp.net'
- emailList: 'Santhosh.Narayanaswamy@mnscorp.net,Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Indrakumar.Palanisamy,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
+ emailList: 'Santhosh.Narayanaswamy@mnscorp.net,Ramachandra.R.V.Rao@mnscorp.net,Vijay.moses@mnscorp.net,Kiruthika.Srinivasan@mnscorp.net,Santhaseelan.Shanmugam@mnscorp.net,Fathima.Jaseela@mnscorp.net,Indira.Sankaran@mnscorp.net,KumariDivya.Chandan@mnscorp.net,Bhubaneswar.Sethi@mnscorp.net,Raguram.Ramaswamy@mnscorp.net'
  tbl-parentautomationsuitname: '2'
  tbl-parentregion: 'CATE'
  tbl-testingPhase: '14'
@@ -36,7 +36,7 @@ default:
  wst-gm-jda-url: 'http://hlxc0dc034.unix.marksandspencercate.com:8880/jdacuat/UserLogin.html'
  wst-putty-gm-host: 'hlxc0dc035.unix.marksandspencercate.com'
  wst-putty-gm-port-vehicle-load: '24004'
- wst-putty-gm-port: '24007'
+ wst-putty-gm-port: '24005'
  wst-db-host: 'jdbc:oracle:thin:@10.128.177.80:1521:JDACUAT'
  wst-db-username: 'dcsdba'
  wst-db-password: 'dcsabd'

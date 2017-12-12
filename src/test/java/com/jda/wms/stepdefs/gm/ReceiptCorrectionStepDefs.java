@@ -93,8 +93,8 @@ public class ReceiptCorrectionStepDefs {
 		this.getTcData = getTcData;
 	}
 
-	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be received at location \"([^\"]*)\"$")
-	public void the_PO_of_type_with_UPI_and_ASN_should_be_received_at_location(String type,String location) throws Throwable {
+	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be in \"([^\"]*)\" status$")
+	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status(String type,String status) throws Throwable {
 //		String preAdviceId = getTcData.getPo();
 //		String upiId = getTcData.getUpi();
 //		String asnId = getTcData.getAsn();
@@ -102,12 +102,12 @@ public class ReceiptCorrectionStepDefs {
 //		context.setPreAdviceId(preAdviceId);
 //		context.setUpiId(upiId);
 //		context.setAsnId(asnId);
-		
+		context.setStatus(status);
 		preAdviceHeaderStepsDefs.the_PO_of_type_with_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(type,"Released");
 		preAdviceLineStepDefs.the_PO_should_have_sku_quantity_due_details();
 		purchaseOrderReceivingStepDefs
 				.the_pallet_count_should_be_updated_in_delivery_asn_to_be_linked_with_upi_header_and_po_to_be_linked_with_upi_line();
-		context.setLocation(location);
+		
 	}
 
 	@When("^I do normal putaway for all tags received into putaway location$")
@@ -200,6 +200,8 @@ public class ReceiptCorrectionStepDefs {
 	public void i_do_stock_adjustments_after_putaway_for_receipt_reversal_with_siteId_and_PO() throws Throwable {
 		String siteID = context.getSiteID();
 		String preAdviceId = context.getPreAdviceId();
+		Thread.sleep(2000);
+		jdaLoginPage.login();
 		JDAHomeStepDefs.i_navigate_to_stock_adjustments_page();
 		String putawayTagId = inventoryTransactionDB.getPutawayTagId(siteID, preAdviceId);
 		stockAdjustmentStepDefs.i_select_a_existing_stock_with_siteid_location_and_tag_id(siteID,

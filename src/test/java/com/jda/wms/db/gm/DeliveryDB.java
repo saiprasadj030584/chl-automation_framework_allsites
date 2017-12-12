@@ -31,6 +31,7 @@ public class DeliveryDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
+
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("Select status from delivery where asn_id ='" + asnId + "'");
 		 rs = stmt
@@ -53,6 +54,7 @@ public class DeliveryDB {
 		}
 
 		
+
 
 	
 	public String getAsnId(String status) throws SQLException, ClassNotFoundException {

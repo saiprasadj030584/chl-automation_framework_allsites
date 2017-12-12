@@ -47,7 +47,7 @@ public class Context {
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
-
+	private String orderId1;
 	private String address1;
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
@@ -66,9 +66,19 @@ public class Context {
 	private String siteID;
 	private ArrayList<String> failureList;
 	private ArrayList<String> upiList;
+
+
+	private ArrayList<String> odnList;
+
+	private ArrayList<String> asnList;
+	private ArrayList<String> poList;
+
+	private ArrayList<String> orderList;
+
 	private ArrayList<String> preAdviceList;
 	private ArrayList<String> supplierIdList;
 	private String orderId;
+	private String orderId2;
 	private String customer;
 	private String listID;
 	private String toPallet;
@@ -80,6 +90,8 @@ public class Context {
 	private ArrayList packConfigList;
 	private String putawayLocation1;
 	private String putawayLocation2;
+	private ArrayList<String> trailerList;
+	private ArrayList<String> bookingList;
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
@@ -144,6 +156,7 @@ public class Context {
 	private String toLocation2;
 	private String relocateLoctn;
 	private ArrayList<String> qtyTaskedList;
+	private ArrayList<String> locationList;
 	private int noOfMoveTaskRecords;
 	private int skuSize;
 	private HashMap<Integer, String> qtyOnHandList;
@@ -153,18 +166,61 @@ public class Context {
 	private String adviceId;
 	private boolean uniqueTagInRunStatus;
 	private String totQtyOnHand;
-	public static Connection connectionSQLDB = null;
+	public Connection connectionSQLDB = null;
 	private static String childStartTime;
-	private boolean jdaLoginFlag = false;
 	private int qtyonhandafteradjustment;
 	private String origin;
 	private String assertString = null;
 	private static String childRequestId;
-	private static String testData;
-	private boolean vehicleLoadRequired = false;
 	private String secondPalletID;
 	private String errorMessage;
 	private int updatedQty;
+	private static String secondTestData;
+	private int newQtyOnHAnd;
+
+
+	private boolean jdaLoginFlag = false;
+	private boolean vehicleLoadRequired;
+	
+	private ArrayList<String> tagIdList;
+
+	public ArrayList<String> getTagIdList() {
+		return tagIdList;
+	}
+
+	public void setTagIdList(ArrayList<String> tagIdList) {
+		this.tagIdList = tagIdList;
+	}
+
+	public String getOrderId1() {
+		return orderId1;
+	}
+
+	public void setOrderId1(String orderId1) {
+		this.orderId1 = orderId1;
+	}
+
+	
+	private static String testData;
+
+	public ArrayList<String> getPoList() {
+		return poList;
+	}
+
+	public void setPoList(ArrayList<String> poList) {
+		this.poList = poList;
+	}
+
+	public ArrayList<String> getAsnList() {
+		return asnList;
+	}
+
+	public void setAsnList(ArrayList<String> asnList) {
+		this.asnList = asnList;
+	}
+
+	
+
 
 	public Map<String, String> getPoNumLinesMap() {
 		return poNumLinesMap;
@@ -185,10 +241,19 @@ public class Context {
 	public ArrayList<String> getUpiList() {
 		return upiList;
 	}
-
 	public void setUpiList(ArrayList<String> upiList) {
 		this.upiList = upiList;
 	}
+
+	public void setOdnList(ArrayList<String> odnList) {
+		this.odnList = odnList;
+	}
+	public ArrayList<String> getOdnList() {
+		return odnList;
+	}
+
+
+
 
 	public ArrayList<String> getPreAdviceList() {
 		return preAdviceList;
@@ -209,7 +274,13 @@ public class Context {
 	public String getPerfectCondition() {
 		return perfectCondition;
 	}
+	public ArrayList<String> getOrderList() {
+		return orderList;
+	}
 
+	public void setOrderList(ArrayList<String> orderList) {
+		this.orderList = orderList;
+	}
 	public void setPerfectCondition(String perfectCondition) {
 		this.perfectCondition = perfectCondition;
 	}
@@ -262,6 +333,7 @@ public class Context {
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
 	}
+	
 
 	public String getOrderStatus() {
 		return orderStatus;
@@ -1361,6 +1433,13 @@ public class Context {
 	public static void setTestData(String testData) {
 		Context.testData = testData;
 	}
+	public static String getSecondTestData() {
+		return secondTestData;
+	}
+
+	public static void setSecondTestData(String secondTestData) {
+		Context.secondTestData = secondTestData;
+	}
 
 	public boolean isVehicleLoadRequired() {
 		return vehicleLoadRequired;
@@ -1377,7 +1456,7 @@ public class Context {
 	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
 		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
 	}
-
+		
 	public String getSecondPalletID() {
 		return secondPalletID;
 	}
@@ -1385,7 +1464,13 @@ public class Context {
 	public void setSecondPalletID(String secondPalletID) {
 		this.secondPalletID = secondPalletID;
 	}
+	public String getOrderId2() {
+		return orderId2;
+	}
 
+	public void setOrderId2(String orderId2) {
+		this.orderId2 = orderId2;
+	}
 	public void setDBConnection(Connection dBConnection) {
 		this.dBConnection = dBConnection;
 
@@ -1402,5 +1487,39 @@ public class Context {
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
+	public int getNewQtyOnHAnd() {
+		return newQtyOnHAnd;
+	}
+
+	public void setNewQtyOnHAnd(int newQtyOnHAnd) {
+		this.newQtyOnHAnd = newQtyOnHAnd;
+	}
+
+	public ArrayList<String> getLocationList() {
+		return locationList;
+	}
+
+	public void setLocationList(ArrayList<String> locationList) {
+		this.locationList = locationList;
+	}
+
+	public ArrayList<String> getTrailerList() {
+		return trailerList;
+	}
+
+	public void setTrailerList(ArrayList<String> trailerList) {
+		this.trailerList = trailerList;
+	}
+
+	public ArrayList<String> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(ArrayList<String> bookingList) {
+		this.bookingList = bookingList;
+	}
+
+	
 
 }

@@ -35,7 +35,7 @@ public class OrderHeaderDB {
 		ResultSet rs = stmt.executeQuery("select STATUS from ORDER_HEADER where ORDER_ID = '" + orderId + "'");
 		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
-
+	
 	public String getOrderDate(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -219,7 +219,6 @@ public class OrderHeaderDB {
 		}
 		System.out.println("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_6 from order_header where order_id='" + orderId + "'");
 		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
@@ -315,6 +314,15 @@ public class OrderHeaderDB {
 		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
 	}
 
+	public void removeConsignment(String orderId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update order_header set consignment='' where order_id='" + orderId + "'");
+		context.getConnection().commit();
+	}
+
 	public String getSkuId(String orderId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -322,7 +330,9 @@ public class OrderHeaderDB {
 		System.out.println("select sku_id from order_line where order_id='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from order_line where order_id='" + orderId + "'");
+
 		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+
 	}
 
 	public String selectConsignment(String orderId) throws SQLException, ClassNotFoundException {
@@ -344,6 +354,7 @@ public class OrderHeaderDB {
 		ResultSet rs = stmt.executeQuery("select qty_ordered from order_line where  order_id='" + orderID + "'");
 		context.getConnection().commit();
 		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+
 	}
 
 	public String getQtyTaskedWithOrderID(String orderid) throws SQLException, ClassNotFoundException {
@@ -378,6 +389,18 @@ public class OrderHeaderDB {
 		}
 		return rs.getString(1);
 	}
+	public  void updateWorkOrder(String order) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		stmt.executeUpdate("update ORDER_HEADER set work_group = null,WORK_GROUPING_ID = null,order_grouping_id = null where order_id ='" + order + "' ");
+		context.getConnection().commit();
+		System.out.println("update work group, work grouping id in order id");
+		
+	}
+
 
 }
 

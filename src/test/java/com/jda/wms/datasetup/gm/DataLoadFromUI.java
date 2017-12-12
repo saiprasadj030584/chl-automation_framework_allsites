@@ -29,8 +29,8 @@ public class DataLoadFromUI {
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private UPIReceiptHeaderDB uPIReceiptHeaderDB;
 	private PreAdviceHeaderDB preAdviceHeaderDB;
-	private Context context;
 	private OrderHeaderPage orderHeaderPage;
+	private Context context;
 	private OrderHeaderDB orderHeaderDB;
 	private DeliveryPage deliveryPage;
 	public String invalidTesDataerrMsg = "Invalid test data provided as reference in the iARM portal.Please update valid test data and try again.";
@@ -40,22 +40,21 @@ public class DataLoadFromUI {
 	int timeoutInSec = 20;
 
 	@Inject
-	public DataLoadFromUI(JdaHomePage jdaHomePage, JDAFooter jdaFooter, DeliveryDB deliveryDB,
-			OrderHeaderPage orderHeaderPage, Context context, UpiReceiptHeaderPage upiReceiptHeaderPage,
-			PreAdviceHeaderDB preAdviceHeaderDB, PreAdviceHeaderPage preAdviceHeaderPage, OrderHeaderDB orderHeaderDB,
-			UPIReceiptHeaderDB uPIReceiptHeaderDB, DeliveryPage deliveryPage) {
+	public DataLoadFromUI(JdaHomePage jdaHomePage,JDAFooter jdaFooter,DeliveryPage deliveryPage,
+			DeliveryDB deliveryDB,Context context,UpiReceiptHeaderPage upiReceiptHeaderPage,
+			PreAdviceHeaderDB preAdviceHeaderDB,PreAdviceHeaderPage  preAdviceHeaderPage,UPIReceiptHeaderDB  uPIReceiptHeaderDB,OrderHeaderPage orderHeaderPage,OrderHeaderDB orderHeaderDB) {
 
-		this.jdaHomePage = jdaHomePage;
-		this.jdaFooter = jdaFooter;
-		this.context = context;
-		this.deliveryDB = deliveryDB;
-		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
-		this.preAdviceHeaderPage = preAdviceHeaderPage;
-		this.preAdviceHeaderDB = preAdviceHeaderDB;
-		this.uPIReceiptHeaderDB = uPIReceiptHeaderDB;
-		this.orderHeaderPage = orderHeaderPage;
-		this.orderHeaderDB = orderHeaderDB;
-		this.deliveryPage = deliveryPage;
+		this.jdaHomePage=jdaHomePage;
+		this.jdaFooter=jdaFooter;
+		this.deliveryPage=deliveryPage;
+		this.context=context;
+		this.deliveryDB=deliveryDB;
+		this.upiReceiptHeaderPage =upiReceiptHeaderPage;
+		this.preAdviceHeaderPage =  preAdviceHeaderPage;
+		this.preAdviceHeaderDB=preAdviceHeaderDB;
+		this.uPIReceiptHeaderDB =uPIReceiptHeaderDB;
+		this.orderHeaderPage=orderHeaderPage;
+		this.orderHeaderDB=orderHeaderDB;
 	}
 
 	public void duplicateASN(String asnReference, String asn)

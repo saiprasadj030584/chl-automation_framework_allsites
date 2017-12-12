@@ -29,12 +29,13 @@ Feature: Boxed - Retail - Allocation
       | OriginLocation | AgainstLocation |
       | TUR            | UK              |
 
+
   @allocation @retail @boxed @unique_boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
-    Given the order id of type "Retail" should be in "Released" status
-    When I navigate to system allocation page
-    And I allocate the stocks
-    Then the stock should get allocated
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check just in time
+    When check whether the stock is allocated automatically
+    Then Navigate to order to check order is allocated
 
   @allocation @boxed @retail @unique_boxed_allocation_retail_validate_prohibition_rule @complete @ds
   Scenario Outline: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
@@ -61,3 +62,17 @@ Feature: Boxed - Retail - Allocation
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order of "Retail" should be in "Released" status in order header maintenance
     Then the order stock modularity should be visible
+    
+     @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
+  Scenario: Validate whether stock with earliest expiry date is allocated first -Expiry Date Sensitive Product
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check expiry date
+    Then Navigate to order to check order is allocated
+		Then Validate the earliest expiry date
+		
+		 @allocation @idt @boxed @unique_boxed_allocation_retail_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
+  Scenario: Validate whether stock with earliest expiry date is allocated first -Expiry Date Sensitive Product
+    Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check expiry date
+    Then Navigate to order to check order is allocated
+		Then Validate the earliest expiry date

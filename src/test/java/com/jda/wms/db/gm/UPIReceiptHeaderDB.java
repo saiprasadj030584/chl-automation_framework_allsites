@@ -28,22 +28,15 @@ public class UPIReceiptHeaderDB {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("dfhsdfh");
+		System.out.println("Status of UPI");
 
 		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		ResultSet rs = stmt.executeQuery("Select status from upi_receipt_header where pallet_id ='" + upiId + "'");
 		rs.next();
-//		int iVal = 0;
-//
-//		if (rs.next()) {
-//		    iVal = rs.getInt("status");
-//		    if (rs.wasNull()) {
-//		       System.out.println("Null Value returned !!! Testdat setup issue ! Please Rerun this scenario");
-//		       Assert.fail();
-//		    }
-//		}
+
+		System.out.println(rs.getString(1));
+
 		return rs.getString(1);
 	}
 
@@ -84,6 +77,7 @@ public class UPIReceiptHeaderDB {
 	}
 
 	public void updateASN(String upiId, String asnId) throws SQLException, ClassNotFoundException {
+		System.out.println("update upi_receipt_header set asn_id='" + asnId + "' where pallet_id='" + upiId + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -176,6 +170,17 @@ public class UPIReceiptHeaderDB {
 			hooks_autoUI.updateExecutionStatusInAutomationDb_End("FAIL", context.getUniqueTag());
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
+		return rs.getString(1);
+	}
+
+	public String getAsnId(String upiId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select ASN_ID from upi_receipt_header where pallet_id='" + upiId + "'");
+		rs.next();
 		return rs.getString(1);
 	}
 

@@ -30,13 +30,14 @@ public class Hooks {
 	String envVar = System.getProperty("user.dir");
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
+
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
 	private Hooks_autoUI hooksautoUI;
 
 	@Inject
-	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase,
-			Database jdaJdatabase, GetTcData gettcdata, Hooks_autoUI hooksautoUI) {
+	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase, Database jdaJdatabase,
+			GetTcData gettcdata, Hooks_autoUI hooksautoUI) {
 
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
@@ -46,10 +47,26 @@ public class Hooks {
 		this.hooksautoUI = hooksautoUI;
 	}
 
-	@Before("~@Email")
+	// @Before
+	public void logScenarioDetails(Scenario scenario) throws Exception {
+		String scenarioID = scenario.getId();
+		String featureID = scenarioID.substring(0, scenarioID.lastIndexOf(";"));
+		logger.debug(
+				"###########################################################################################################################");
+		logger.debug("featureID: " + featureID);
+		logger.debug("Start of Scenario: " + scenario.getName());
+		logger.debug(
+				"###########################################################################################################################");
+	}
+
+
+	@Before({ "~@Email" })
+
+
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		context.setScenario(scenario);
-		System.out.println("*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
+		System.out.println(
+				"*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
 		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
@@ -58,9 +75,11 @@ public class Hooks {
 		hooksautoUI.getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		hooksautoUI.insertDetails(scenario.getName());
-
+System.out.println("tagListForScenario"+tagListForScenario);
 		for (String tag : tagListForScenario) {
+			System.out.println("TAG"+tag);
 			if (tag.contains("@ds")) {
+				
 				dataSetupRunner.getTagListFromAutoDb();
 
 				if (!(scenario.getName().contains("Triggering automation email"))) {
@@ -70,50 +89,40 @@ public class Hooks {
 				} else {
 					System.out.println("Datasetup not require for email scenario");
 				}
-				System.out.println(context.getTestData());
+				System.out.println("DS"+context.getTestData());
 			}
+			System.out.println("NO DS");
 		}
 		System.out.println("1st Before end");
 	}
 
+	/*
+	 * private void getSiteID() throws ClassNotFoundException { try { if
+	 * (context.getSQLDBConnection() == null) { hooksautoUI.sqlConnectOpen(); }
+	 * Statement stmt = null; stmt =
+	 * context.getSQLDBConnection().createStatement(); System.out.println(
+	 * "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" +
+	 * context.getParentRequestId() + "'"); String query =
+	 * "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" +
+	 * context.getParentRequestId() + "'"; ResultSet rs =
+	 * stmt.executeQuery(query);
+	 * 
+	 * while (rs.next()) { context.setSiteID(rs.getString("SITE_ID"));
+	 * System.out.println("" + context.getSiteID()); } } catch (SQLException e)
+	 * { e.printStackTrace(); } }
+	 * 
+	 * private void insertSiteID() { try { System.out.println(
+	 * "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" +
+	 * context.getParentRequestId() + "','" + context.getSiteID() + "')");
+	 * String insertQuery =
+	 * "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" +
+	 * context.getParentRequestId() + "','" + context.getSiteID() + "')";
+	 * context.getSQLDBConnection().createStatement().execute(insertQuery);
+	 * 
+	 * } catch (Exception exception) { exception.printStackTrace(); } }
+	 */
 
-	/*private void getSiteID() throws ClassNotFoundException {
-		try {
-			if (context.getSQLDBConnection() == null) {
-				hooksautoUI.sqlConnectOpen();
-			}
-			Statement stmt = null;
-			stmt = context.getSQLDBConnection().createStatement();
-			System.out.println(
-					"SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId() + "'");
-			String query = "SELECT SITE_ID FROM [dbo].[JDA_SITE_ID] where P_REQ_ID='" + context.getParentRequestId()
-					+ "'";
-			ResultSet rs = stmt.executeQuery(query);
-
-			while (rs.next()) {
-				context.setSiteID(rs.getString("SITE_ID"));
-				System.out.println("" + context.getSiteID());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void insertSiteID() {
-		try {
-			System.out.println("INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteID() + "')");
-			String insertQuery = "INSERT INTO JDA_SITE_ID (P_REQ_ID,SITE_ID) VALUES ('" + context.getParentRequestId()
-					+ "','" + context.getSiteID() + "')";
-			context.getSQLDBConnection().createStatement().execute(insertQuery);
-
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}*/
-
-
-	 @After
+	@After
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();
@@ -143,8 +152,9 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
-
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
+		p.waitFor();
+		System.out.println("Kill Completed");
 	}
 
 	@After

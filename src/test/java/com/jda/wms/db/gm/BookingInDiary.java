@@ -42,6 +42,7 @@ public class BookingInDiary {
 				Assert.fail("Exception Caught !!! trailer_id not found for the bookingID :" );
 				
 
+
 			}
 			return rs.getString(1);
 		}
@@ -132,6 +133,7 @@ public class BookingInDiary {
 		}
 		return isRecordExists;
 }
+	
 	
 	public String selectDockDoor(String bookingID) throws ClassNotFoundException, SQLException {
 		ResultSet rs = null;

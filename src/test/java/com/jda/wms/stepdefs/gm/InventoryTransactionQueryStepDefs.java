@@ -44,7 +44,7 @@ public class InventoryTransactionQueryStepDefs {
 	public InventoryTransactionQueryStepDefs(Context context, Verification verification,
 			InventoryTransactionDB inventoryTransactionDB, InventoryTransactionQueryPage inventoryTransactionQueryPage,
 			JDAFooter jDAFooter, JdaLoginPage jdaLoginPage, JDAHomeStepDefs jDAHomeStepDefs, JdaHomePage jdaHomePage,
-			UPIReceiptLineDB uPIReceiptLineDB, UpiReceiptHeaderPage upiReceiptHeaderPage,InventoryDB inventoryDB) {
+			UPIReceiptLineDB uPIReceiptLineDB, UpiReceiptHeaderPage upiReceiptHeaderPage, InventoryDB inventoryDB) {
 		this.context = context;
 		this.verification = verification;
 		this.inventoryTransactionDB = inventoryTransactionDB;
@@ -55,7 +55,7 @@ public class InventoryTransactionQueryStepDefs {
 		this.jdaHomePage = jdaHomePage;
 		this.uPIReceiptLineDB = uPIReceiptLineDB;
 		this.upiReceiptHeaderPage = upiReceiptHeaderPage;
-		this.inventoryDB=inventoryDB;
+		this.inventoryDB = inventoryDB;
 
 	}
 
@@ -66,15 +66,14 @@ public class InventoryTransactionQueryStepDefs {
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 
-
-		//jdaLoginPage.login();
-//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-//		jDAFooter.clickQueryButton();
-//		inventoryTransactionQueryPage.selectCode("Receipt");
-//		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
-//		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-//		inventoryTransactionQueryPage.enterTransactionDate();
-//		jDAFooter.clickExecuteButton();
+		// jdaLoginPage.login();
+		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		// jDAFooter.clickQueryButton();
+		// inventoryTransactionQueryPage.selectCode("Receipt");
+		// inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		// inventoryTransactionQueryPage.enterTransactionDate();
+		// jDAFooter.clickExecuteButton();
 
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
@@ -85,8 +84,7 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(),
-					String.valueOf(context.getRcvQtyDue()),
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
@@ -103,8 +101,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-
-	@Then("^the goods receipt should be generated for received stock in inventory transaction for receiving$")
+		@Then("^the goods receipt should be generated for received stock in inventory transaction for receiving$")
 	public void the_goods_receipt_should_be_generated_for_received_stock_in_inventory_transaction_for_receiving()
 			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -132,23 +129,22 @@ public class InventoryTransactionQueryStepDefs {
 					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 
-			if(context.getReceiveType()!=null)
-			{
-			if(context.getReceiveType().equalsIgnoreCase("Under Receiving"))
-			{
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()-5),
+			if (context.getReceiveType() != null) {
+				if (context.getReceiveType().equalsIgnoreCase("Under Receiving")) {
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue() - 5),
 
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			}
-			}
-			else
-			{
-				verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+							inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date,
+									"Receipt"),
+							failureList);
+				}
+			} else {
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+						String.valueOf(context.getRcvQtyDue()),
 						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
 			}
-			
+
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
@@ -164,7 +160,7 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
 	@Then("^the ITL should be generated for putaway stock in inventory transaction for override$")
 	public void the_ITL_should_be_generated_for_putaway_stock_in_inventory_transaction_for_override() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -192,9 +188,11 @@ public class InventoryTransactionQueryStepDefs {
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			context.setRcvQtyDue(Integer.parseInt(poMap.get(i).get("QTY DUE")));
-			//context.setTagId(
-				//	inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
@@ -207,6 +205,7 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
+		}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
@@ -316,7 +315,7 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.selectCode("Inventory Unlock");
 		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuIdExisting(context.getSkuId());
-		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterTransactionDate();
 
 		inventoryTransactionQueryPage.enterTagId(context.getTagId());
@@ -348,15 +347,24 @@ public class InventoryTransactionQueryStepDefs {
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		for (int j = 0; j < context.getPreAdviceList().size(); j++) {
-			context.setPreAdviceId(context.getPreAdviceList().get(j));
-			context.setUpiId(context.getUpiList().get(j));
 
-			for (int i = context.getLineItem(); i <= Integer
-					.parseInt(context.getPoNumLinesMap().get(context.getPreAdviceList().get(j))); i++) {
+		int count = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+
+			System.out.println("SKU FROM UPI lll" + context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+			System.out.println(k);
+			System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+
+			for (int p = 0; p < (context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1 = context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+
 				context.setRcvQtyDue(Integer.parseInt(
-						context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("QTY DUE")));
-				context.setSkuId(context.getMultiplePOMap().get(context.getPreAdviceList().get(j)).get(i).get("SKU"));
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
 				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
@@ -367,9 +375,12 @@ public class InventoryTransactionQueryStepDefs {
 						String.valueOf(context.getRcvQtyDue()),
 						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
-				verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+
+				verification.verifyData("Reference ID SKU " + context.getSkuId(),
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()),
 						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
+				count++;
 			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
@@ -393,15 +404,13 @@ public class InventoryTransactionQueryStepDefs {
 					"To Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
 							.getToLocationPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
 					failureList);
-			System.out.println("qty " +context.getRcvQtyDue());
+			System.out.println("qty " + context.getRcvQtyDue());
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
 					inventoryTransactionDB.getUpdateQtyPO(context.getSkuId(), context.getPreAdviceId(), date,
 							"Receipt"),
 					failureList);
-			
-			
-			
-			System.out.println("qty " +context.getRcvQtyDue());
+
+			System.out.println("qty " + context.getRcvQtyDue());
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getPalletIDList().get(i - 1),
 							date, "Receipt"),
@@ -549,15 +558,17 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickMiscellaneous2Tab();
 	}
-	@When("^I choose the code as \"([^\"]*)\" and search the sku id at specific transaction time$")      
-	public void i_choose_the_code_as_and_search_the_sku_id_at_particular_transaction_time(String code) throws Throwable {
+
+	@When("^I choose the code as \"([^\"]*)\" and search the sku id at specific transaction time$")
+	public void i_choose_the_code_as_and_search_the_sku_id_at_particular_transaction_time(String code)
+			throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode(code);
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		String dstamp=inventoryDB.getDstamp(context.getSkuId());
-		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		String dstamp = inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime = dstamp.replace(':', '.').substring(10, 19);
 		context.setTransactionTime(transactionTime);
-		System.out.println("transactionTime"+transactionTime);
+		System.out.println("transactionTime" + transactionTime);
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterTransactionTime(transactionTime);
@@ -565,7 +576,6 @@ public class InventoryTransactionQueryStepDefs {
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.getReasonCode();
 	}
-	
 
 	@When("^I choose the code as \"([^\"]*)\" and search the sku id$")
 	public void i_choose_the_code_as_and_search_the_sku_id(String code) throws Throwable {
@@ -648,30 +658,29 @@ public class InventoryTransactionQueryStepDefs {
 				// inventoryTransactionQueryPage.getPackConfig());
 				inventoryTransactionDB.getPackConfigfromDB(date, context.getTagId()));
 
-
 	}
 
 	@Then("^the reason code should be updated$")
 	public void the_reason_code_should_be_updated() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String updatedQty = String.valueOf(context.getQtyOnHand());
+		String origqty = String.valueOf(context.getQtyOnHand());
+		String updqty = String.valueOf(context.getUpdatedQty());
 		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCode(context.getSkuId(), "Adjustment",
-				execDate, context.getReasonCode(), updatedQty);
+				execDate, context.getReasonCode(), updqty, origqty);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 	}
+
 	@Then("^the reason code should be updated for specific transaction time$")
 	public void the_reason_code_should_be_updated_for_specific_transaction_time() throws Throwable {
 		String execDate = DateUtils.getCurrentSystemDateInDBFormat();
-	    String transactionTime=context.getTransactionTime();
-		boolean isRecordExists = inventoryTransactionDB.isRecordExistsForReasonCodeForTransactionTime(context.getSkuId(), "Adjustment",
-				transactionTime);
+		String transactionTime = context.getTransactionTime();
+		boolean isRecordExists = inventoryTransactionDB
+				.isRecordExistsForReasonCodeForTransactionTime(context.getSkuId(), "Adjustment", transactionTime);
 		Assert.assertTrue("ITL does not exist for the adjusted stock with reason code " + context.getReasonCode(),
 				isRecordExists);
 
 	}
-	
-	
 
 	@When("^the inventory transaction should be updated for SKU with single supplier$")
 	public void the_inventory_transaction_should_be_updated_for_sku_with_single_supplier() throws Throwable {
@@ -723,8 +732,9 @@ public class InventoryTransactionQueryStepDefs {
 
 		ArrayList<String> failureList = new ArrayList<String>();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-//		context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(), context.getTagId(),
-//				"Adjustment", date));
+		// context.setUploaded(inventoryTransactionDB.getUploadedValueUnlocked(context.getUpiId(),
+		// context.getTagId(),
+		// "Adjustment", date));
 		// if(!(context.getUploaded().equalsIgnoreCase("Y")))
 		// {
 		// failureList.add("Uploaded field not updated as expected
@@ -732,24 +742,24 @@ public class InventoryTransactionQueryStepDefs {
 		// }
 		//
 		if (context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt with movement label")) {
-			verification.verifyData("Reason code not updated as expected", "NADVMVNOHU", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
+			verification.verifyData("Reason code not updated as expected", "NADVMVNOHU",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		else if (context.getReasonCode().equalsIgnoreCase("RMS - Unexpected receipt without movement label")) {
-			verification.verifyData("Reason code not updated as expected", "NANOHUNMV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
+			verification.verifyData("Reason code not updated as expected", "NANOHUNMV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		else if (context.getReasonCode().equalsIgnoreCase("RMS  Non advised receipt with movement label")) {
-			verification.verifyData("Reason code not updated as expected", "NADVHUMOV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
+			verification.verifyData("Reason code not updated as expected", "NADVHUMOV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 
 		//
 		else if (context.getReasonCode().equalsIgnoreCase("RMS - Non advised receipt without movement label")) {
-			verification.verifyData("Reason code not updated as expected", "NADVHUNOMV", inventoryTransactionDB
-					.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
+			verification.verifyData("Reason code not updated as expected", "NADVHUNOMV",
+					inventoryTransactionDB.getReasonCodeUnlocked(context.getTagId(), "Adjustment", date), failureList);
 		}
 		Assert.assertTrue(
 				"Reason code and inventory lock is not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
@@ -808,8 +818,8 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.selectCode("Receipt");
 		inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
-		String dstamp=inventoryDB.getDstamp(context.getSkuId());
-		String transactionTime=dstamp.replace(':','.').substring(10,19);
+		String dstamp = inventoryDB.getDstamp(context.getSkuId());
+		String transactionTime = dstamp.replace(':', '.').substring(10, 19);
 		context.setTransactionTime(transactionTime);
 		inventoryTransactionQueryPage.enterTransactionDate();
 		jDAFooter.pressTab();
@@ -817,23 +827,29 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId((String) context.getSkuList().get(i - 1));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+				context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getFromLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getToLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getToLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyIDT(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getUpdateQtyIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getUpiId(),
-					inventoryTransactionDB.getReferenceIdIDT(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+					inventoryTransactionDB.getReferenceIdIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
 					failureList);
 
 			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
 						failureList);
+			}
 			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
@@ -849,20 +865,20 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
 		context.setLockCode(lockCode);
-		System.out.println("Lock code - "+lockCode);
+		System.out.println("Lock code - " + lockCode);
 		Assert.assertEquals("Lock code not displayed as expected in ITL", "DMGD", lockCode);
 	}
-	
+
 	@When("^the inventory transaction should be updated with lockcode damaged$")
 	public void the_inventory_transaction_should_be_updated_with_lockcode_damaged() throws Throwable {
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Inventory Lock");
-		inventoryTransactionQueryPage.enterTagId(context.getUpiId());
+		// inventoryTransactionQueryPage.enterTagId(context.getTagId());
 		inventoryTransactionQueryPage.enterReferenceId(context.getPreAdviceId());
 		jDAFooter.clickExecuteButton();
 		String lockCode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), "Inv Lock");
 		context.setLockCode(lockCode);
-		System.out.println("Lock code - "+lockCode);
+		System.out.println("Lock code - " + lockCode);
 		Assert.assertEquals("Lock code not displayed as expected in ITL", "DMGD", lockCode);
 	}
 
@@ -889,7 +905,7 @@ public class InventoryTransactionQueryStepDefs {
 		String code = "Receipt Reverse";
 		String reference_Id = inventoryTransactionDB.getReferenceId(context.getUpiId(), code);
 		String lockcode = inventoryTransactionDB.getLockCode(context.getPreAdviceId(), code);
-		System.out.println("LOCKKK CODE"+context.getLockCode());
+		System.out.println("LOCKKK CODE" + context.getLockCode());
 		boolean isItlExists = false;
 		if (reference_Id.equalsIgnoreCase(context.getPreAdviceId())
 				&& (lockcode.equalsIgnoreCase(context.getLockCode()))) {
@@ -897,8 +913,10 @@ public class InventoryTransactionQueryStepDefs {
 		}
 		Assert.assertTrue("ITL not displayed for Receipt reversal with Lock Code", isItlExists);
 	}
+
 	@When("^the inventory transaction should be updated with reversed receipt tag with lockcode for random tag received$")
-	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode_for_random_tag_received() throws Throwable {
+	public void the_inventory_transaction_should_be_updated_with_reversed_receipt_tag_with_lockcode_for_random_tag_received()
+			throws Throwable {
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Receipt Reversal");
@@ -917,7 +935,7 @@ public class InventoryTransactionQueryStepDefs {
 
 	@When("^the inventory transaction should be updated$")
 	public void the_inventory_transaction_should_be_updated() throws Throwable {
-		jdaLoginPage.login();
+
 		jdaHomePage.navigateToInventoryTransactionPage();
 		jDAFooter.clickQueryButton();
 		inventoryTransactionQueryPage.enterCode("Receipt");
@@ -925,6 +943,12 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		context.setTagId(inventoryTransactionDB.getTagId(context.getUpiId(), "Receipt"));
 		String code = "Receipt";
+		int totalQty = 0;
+		for (int j = 0; j < context.getNoOfLines(); j++) {
+
+			totalQty += Integer.parseInt((context.getUPIMap().get(context.getSkuFromUPI().get(j)).get("QTY DUE")));
+		}
+		context.setRcvQtyDue(totalQty);
 		Assert.assertEquals("ITL not updated", context.getRcvQtyDue(),
 				inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
 	}
@@ -980,15 +1004,27 @@ public class InventoryTransactionQueryStepDefs {
 
 		Assert.assertEquals("ITL not updated", origQtyDue, receiptCount);
 	}
+	
+	@When("^the inventory transaction should be updated for single upi$")
+	public void the_inventory_transaction_should_be_updated_for_single_upi() throws Throwable {
+			jDAFooter.clickQueryButton();
+			inventoryTransactionQueryPage.enterCode("Receipt");
+			inventoryTransactionQueryPage.enterReferenceId(context.getUpiId());
+			jDAFooter.clickExecuteButton();
+			String code = "Receipt";
+			System.out.println("no of line"+ context.getNoOfLines());
+			Assert.assertEquals("ITL not generated for Returns Receiving", context.getNoOfLines() , inventoryTransactionDB.getReceiptCount(context.getUpiId(), code));
+
+	}
 
 	@When("^I search with sku and reason code$")
 	public void i_search_with_sku_and_reason_code() throws Throwable {
 		jDAFooter.clickQueryButton();
 		jDAFooter.pressTab();
 		inventoryTransactionQueryPage.enterSkuIdExisting(context.getSkuId());
-		//comment below line
+		// comment below line
 		jDAFooter.pressTab();
-		//inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
+		// inventoryTransactionQueryPage.enterSkuId(context.getSkuId());
 		inventoryTransactionQueryPage.enterPalletId(context.getUpiId());
 		inventoryTransactionQueryPage.clickMiscellaneousTab();
 		inventoryTransactionQueryPage.enterReasonCode("UPCOVERREC");
@@ -1027,7 +1063,7 @@ public class InventoryTransactionQueryStepDefs {
 		ArrayList failureList = new ArrayList();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		verification.verifyData("ITL", "Not Null",
-				inventoryTransactionDB.getUpdateQtyIDT(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+				inventoryTransactionDB.getUpdateQtyIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
 				failureList);
 		Assert.assertTrue("ITL not updated. [" + Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
@@ -1218,70 +1254,26 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		inventoryTransactionQueryPage.clickUserDefinedTab();
 	}
-	
-	
-	
-	
-	
-	
-	@Then("^the goods receipt should be generated for GOH received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_GOH_received_stock_in_inventory_transaction() throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getTagId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-				
-			
-			if (null!=context.getLockCode()){
-				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
-						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
-						failureList);
-			}
-		}
-		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
-				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-	}
-	
-	
+
 	@Then("^the goods receipt should be generated for hanging received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_hanging_received_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_hanging_received_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		///jdaLoginPage.login();
-//		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-//		jDAFooter.clickQueryButton();
-//		inventoryTransactionQueryPage.selectCode("Receipt");
-//		jDAFooter.pressTab();
-//		jDAFooter.pressTab();
-//		inventoryTransactionQueryPage.enterTagId(context.getTagId());
-//		inventoryTransactionQueryPage.enterTransactionDate();
-//		jDAFooter.clickExecuteButton();
+		/// jdaLoginPage.login();
+		// jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		// jDAFooter.clickQueryButton();
+		// inventoryTransactionQueryPage.selectCode("Receipt");
+		// jDAFooter.pressTab();
+		// jDAFooter.pressTab();
+		// inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		// inventoryTransactionQueryPage.enterTransactionDate();
+		// jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
@@ -1293,9 +1285,8 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-				
-			
-			if (null!=context.getLockCode()){
+
+			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getLockCode(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
@@ -1304,142 +1295,75 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
 	@Then("^the goods receipt should be generated for GOH putaway stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_GOH_putaway_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_GOH_putaway_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
-					inventoryTransactionDB.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getToLocation(), inventoryTransactionDB
+							.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date,
+							"Putaway"),
 					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB
+							.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
-	@Then("^the goods receipt should be generated for GOH type$")
-	public void the_goods_receipt_should_be_generated_for_GOH_type() throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getTagId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-				
-			
-			if (null!=context.getLockCode()){
-				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
-						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
-						failureList);
-			}
-		}
-		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
-				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-	}
-	
-	@Then("^the goods receipt should be generated for flatpack received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_flatpack_received_stock_in_inventory_transaction() throws Throwable {
-		ArrayList<String> failureList = new ArrayList<String>();
-		poMap = context.getPOMap();
-		upiMap = context.getUPIMap();
-		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		jdaLoginPage.login();
-		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
-		jDAFooter.clickQueryButton();
-		inventoryTransactionQueryPage.selectCode("Receipt");
-		inventoryTransactionQueryPage.enterTagId(context.getTagId());
-		inventoryTransactionQueryPage.enterTransactionDate();
-		jDAFooter.clickExecuteButton();
-		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
-			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
-					failureList);
-				
-			
-			if (null!=context.getLockCode()){
-				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
-						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
-						failureList);
-			}
-		}
-		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
-				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
-	}
-	
+
 	@Then("^the goods receipt should be generated for flatpack putaway stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_flatpack_putaway_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_flatpack_putaway_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
-					inventoryTransactionDB.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getToLocation(), inventoryTransactionDB
+							.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date,
+							"Putaway"),
 					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB
+							.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
 	@Then("^the goods receipt should be generated for boxed received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_boxed_received_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_boxed_received_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//jdaLoginPage.login();
+		// jdaLoginPage.login();
 		System.out.println("ITL SCREEN NAVIGATION");
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
@@ -1451,7 +1375,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
@@ -1463,9 +1387,8 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-				
-			
-			if (null!=context.getLockCode()){
+
+			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
@@ -1474,32 +1397,37 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
 	@Then("^the goods receipt should be generated for boxed putaway stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_boxed_putaway_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_boxed_putaway_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
-					inventoryTransactionDB.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getFromLocation(), inventoryTransactionDB
+							.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
-					inventoryTransactionDB.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getToLocation(), inventoryTransactionDB
+							.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date,
+							"Putaway"),
 					failureList);
-			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData(
+					"Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB
+							.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
 					failureList);
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
 	@Then("^the inventory should be displayed after stock adjustment for flatpack$")
 	public void the_inventory_should_be_displayed_after_stock_adjustment_for_flatpack() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -1534,7 +1462,7 @@ public class InventoryTransactionQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
 	@Then("^the inventory should be displayed after stock adjustment for fsv po boxed$")
 	public void the_inventory_should_be_displayed_after_stock_adjustment_for_fsv_po_boxed() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
@@ -1566,14 +1494,113 @@ public class InventoryTransactionQueryStepDefs {
 				"Inventory details are not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
-	
+
+	@Then("^the goods receipt should be generated for goh putaway stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_goh_putaway_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getToLocation(), inventoryTransactionDB
+							.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date,
+							"Putaway"),
+					failureList);
+			verification.verifyData(
+					"Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB
+							.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@Then("^the goods receipt should be generated for GOH received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_GOH_received_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+
+			if (null != context.getLockCode()) {
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@Then("^the goods receipt should be generated for hanging putaway stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_hanging_putaway_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getToLocation(), inventoryTransactionDB
+							.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date,
+							"Putaway"),
+					failureList);
+			verification.verifyData(
+					"Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(), inventoryTransactionDB
+							.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					failureList);
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
 	@Then("^the goods receipt should be generated for hanging stock in inventory transaction$")
 	public void the_goods_receipt_should_be_generated_for_hanging_stock_in_inventory_transaction() throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//jdaLoginPage.login();
+		// jdaLoginPage.login();
 		System.out.println("ITL SCREEN NAVIGATION");
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
@@ -1585,7 +1612,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
@@ -1597,9 +1624,8 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-				
-			
-			if (null!=context.getLockCode()){
+
+			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
@@ -1608,39 +1634,92 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
-	@Then("^the goods receipt should be generated for hanging putaway stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_hanging_putaway_stock_in_inventory_transaction() throws Throwable {
+
+	@Then("^the goods receipt should be generated for flatpack received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_flatpack_received_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
-					inventoryTransactionDB.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
+
+			if (null != context.getLockCode()) {
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+			}
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
+
+	@Then("^the goods receipt should be generated for GOH type$")
+	public void the_goods_receipt_should_be_generated_for_GOH_type() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		jdaLoginPage.login();
+		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
+		jDAFooter.clickQueryButton();
+		inventoryTransactionQueryPage.selectCode("Receipt");
+		inventoryTransactionQueryPage.enterTagId(context.getTagId());
+		inventoryTransactionQueryPage.enterTransactionDate();
+		jDAFooter.clickExecuteButton();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+
+			if (null != context.getLockCode()) {
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
 	@Then("^the goods receipt should be generated for goh received stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_goh_received_stock_in_inventory_transaction() throws Throwable {
+	public void the_goods_receipt_should_be_generated_for_goh_received_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
-		//jdaLoginPage.login();
+		// jdaLoginPage.login();
 		System.out.println("ITL SCREEN NAVIGATION");
 		jDAHomeStepDefs.i_navigate_to_inventory_transaction_query();
 		jDAFooter.clickQueryButton();
@@ -1652,7 +1731,7 @@ public class InventoryTransactionQueryStepDefs {
 		jDAFooter.clickExecuteButton();
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
-		verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
 					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
@@ -1664,9 +1743,8 @@ public class InventoryTransactionQueryStepDefs {
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
 					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-				
-			
-			if (null!=context.getLockCode()){
+
+			if (null != context.getLockCode()) {
 				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
 						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getTagId(), date, "Receipt"),
 						failureList);
@@ -1675,29 +1753,312 @@ public class InventoryTransactionQueryStepDefs {
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
-	
-	@Then("^the goods receipt should be generated for goh putaway stock in inventory transaction$")
-	public void the_goods_receipt_should_be_generated_for_goh_putaway_stock_in_inventory_transaction() throws Throwable {
+
+	@Then("^the goods receipt should be generated for the hanging multiple stock received after adding stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_hanging_multiple_stock_received_after_adding_stock_in_inventory_transaction()
+			throws Throwable {
 		ArrayList<String> failureList = new ArrayList<String>();
 		poMap = context.getPOMap();
 		upiMap = context.getUPIMap();
 		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		int count = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+
+			System.out.println("SKU FROM UPI lll" + context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+			System.out.println(k);
+			System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+
+			for (int p = 0; p < (context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1 = context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				context.setTagId(inventoryTransactionDB.getTagId(
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()), context.getSkuId(),
+						"Receipt"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				if (k == 0) {
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue() + 5), inventoryTransactionDB.getUpdateQty(
+									context.getSkuId(), context.getTagId(), date, "Receipt"),
+							failureList);
+				} else {
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue()), inventoryTransactionDB.getUpdateQty(
+									context.getSkuId(), context.getTagId(), date, "Receipt"),
+							failureList);
+				}
+
+				verification.verifyData("Reference ID SKU " + context.getSkuId(),
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@Then("^the goods receipt should be generated for the hanging multiple stock received in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_hanging_multiple_stock_received_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		int count = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+
+			System.out.println("SKU FROM UPI lll" + context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+			System.out.println(k);
+			System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+
+			for (int p = 0; p < (context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1 = context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				context.setTagId(inventoryTransactionDB.getTagId(
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()), context.getSkuId(),
+						"Receipt"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+						String.valueOf(context.getRcvQtyDue()),
+						inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+
+				verification.verifyData("Reference ID SKU " + context.getSkuId(),
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+
+	@Then("^the goods receipt should be generated for the multiple stock received after adding stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_the_multiple_stock_received_after_adding_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
+		int count = 0;
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+
+			System.out.println("SKU FROM UPI lll" + context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+			System.out.println(k);
+			System.out.println(context.getUpiNumLinesMap().get(context.getUpiList().get(k)));
+
+			for (int p = 0; p < (context.getUpiNumLinesMap().get(context.getUpiList().get(k))); p++) {
+				String sku1 = context.getSkuFromUPI().get(count);
+				String skuUPI = context.getMultipleUPIMap().get(context.getUpiList().get(k)).get(sku1).get("SKU");
+				context.setSkuId(skuUPI);
+
+				context.setRcvQtyDue(Integer.parseInt(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("QTY DUE")));
+				context.setSkuId(
+						context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("SKU"));
+				verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+						inventoryTransactionDB.getToLocation(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				if (k == 0) {
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue() + 5), inventoryTransactionDB.getUpdateQty(
+									context.getSkuId(), context.getUpiId(), date, "Receipt"),
+							failureList);
+				} else {
+					verification.verifyData("Update Qty for SKU " + context.getSkuId(),
+							String.valueOf(context.getRcvQtyDue()), inventoryTransactionDB.getUpdateQty(
+									context.getSkuId(), context.getUpiId(), date, "Receipt"),
+							failureList);
+				}
+
+				verification.verifyData("Reference ID SKU " + context.getSkuId(),
+						uPIReceiptLineDB.getPreAdviceId(context.getUpiId(), context.getSkuId()),
+						inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+				count++;
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for split received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_split_received_stock_in_inventory_transaction() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+
 		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
 			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			
 			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
-					inventoryTransactionDB.getFromLocationWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
-			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
-					inventoryTransactionDB.getToLocationWithpalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
-					inventoryTransactionDB.getUpdateQtyWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Receipt"),
 					failureList);
 			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
-					inventoryTransactionDB.getReferenceIdWithPalletId(context.getSkuId(), context.getUpiId(), date, "Putaway"),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Receipt"),
+					failureList);
+
+			if (null != context.getLockCode()) {
+				verification.verifyData(
+						"Lock Code SKU " + context.getSkuId(), context.getLockCode(), inventoryTransactionDB
+								.getLockCodeWithPORef(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
+						failureList);
+			}
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for FSV PO split received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_fsv_PO_split_received_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			
+			verification.verifyData(
+					"From Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getFromLocationPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
+					failureList);
+			verification.verifyData(
+					"To Location for SKU " + context.getSkuId(), context.getLocation(), inventoryTransactionDB
+							.getToLocationPO(context.getSkuId(), context.getPreAdviceId(), date, "Receipt"),
+					failureList);
+			System.out.println("qty " + context.getRcvQtyDue());
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQtyPO(context.getSkuId(), context.getPreAdviceId(), date,
+							"Receipt"),
+					failureList);
+
+			System.out.println("qty " + context.getRcvQtyDue());
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getPreAdviceId(),
+					inventoryTransactionDB.getReferenceIdPO(context.getSkuId(), context.getTagId(),
+							date, "Receipt"),
+					failureList);
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for IDT split received stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_IDT_split_received_stock_in_inventory_transaction()
+			throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		ArrayList skuFromUPI = new ArrayList();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) context.getSkuList().get(i - 1));
+			context.setTagIdList(inventoryTransactionDB.getTagIDList(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			for(int k=0;k<context.getTagIdList().size();k++)
+			{
+				context.setTagId(context.getTagIdList().get(k));
+			context.setRcvQtyDue(Integer.parseInt(inventoryTransactionDB.getReceivedQty(context.getTagId())));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getFromLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getLocation(),
+					inventoryTransactionDB.getToLocationIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQtyIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getUpiId(),
+					inventoryTransactionDB.getReferenceIdIDT(context.getSkuId(), context.getUpiId(), date, "Receipt",context.getTagId()),
+					failureList);
+
+			if (null != context.getLockCode()) {
+				verification.verifyData("Lock Code SKU " + context.getSkuId(), context.getPreAdviceId(),
+						inventoryTransactionDB.getLockCode(context.getSkuId(), context.getUpiId(), date, "Receipt"),
+						failureList);
+			}
+			
+			}
+		}
+		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
+				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
+	}
+	
+	@Then("^the goods receipt should be generated for putaway split IDT stock in inventory transaction$")
+	public void the_goods_receipt_should_be_generated_for_putaway_split_idt_stock_in_inventory_transaction()
+			throws Throwable {
+
+		ArrayList<String> failureList = new ArrayList<String>();
+		upiMap = context.getUPIMap();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(context.getSkuFromUPI().get(i - 1));
+			context.setRcvQtyDue(Integer.parseInt(upiMap.get(context.getSkuId()).get("QTY DUE")));
+			context.setTagId(inventoryTransactionDB.getTagID(context.getUpiId(), "Receipt", context.getSkuId(), date));
+			verification.verifyData("From Location for SKU " + context.getSkuId(), context.getFromLocation(),
+					inventoryTransactionDB.getFromLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("To Location for SKU " + context.getSkuId(), context.getToLocation(),
+					inventoryTransactionDB.getToLocation(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Update Qty for SKU " + context.getSkuId(), String.valueOf(context.getRcvQtyDue()),
+					inventoryTransactionDB.getUpdateQty(context.getSkuId(), context.getTagId(), date, "Putaway"),
+					failureList);
+			verification.verifyData("Reference ID SKU " + context.getSkuId(), context.getUpiId(),
+					inventoryTransactionDB.getReferenceId(context.getSkuId(), context.getTagId(), date, "Putaway"),
 					failureList);
 		}
 		Assert.assertTrue("Inventory Transaction details are not displayed as expected. ["
 				+ Arrays.asList(failureList.toArray()) + "].", failureList.isEmpty());
 	}
 }
+

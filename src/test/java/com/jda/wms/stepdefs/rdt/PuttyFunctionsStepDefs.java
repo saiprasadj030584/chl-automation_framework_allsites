@@ -32,7 +32,7 @@ public class PuttyFunctionsStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
-		//String port=null;
+		System.out.println("PUTTY LAUNCH");
 		if (context.getSiteID().equals("5649")) {
 			System.out.println(port);
 			if(context.isVehicleLoadRequired()){
@@ -55,7 +55,7 @@ public class PuttyFunctionsStepDefs {
 			Assert.fail("Site Id is not found");
 		}
 		puttyFunctionsPage.loginPutty(host, port);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 		if (puttyFunctionsPage.isLoginFailureExists()) {
 			puttyFunctionsPage.pressEnter();

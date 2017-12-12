@@ -22,7 +22,10 @@ import com.jda.wms.pages.gm.Verification;
 import com.jda.wms.pages.rdt.PurchaseOrderPickingPage;
 import com.jda.wms.pages.rdt.PurchaseOrderVehicleLoadingPage;
 import com.jda.wms.pages.rdt.PuttyFunctionsPage;
+import com.jda.wms.utils.Utilities;
 
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class PurchaseOrderVehicleLoadingStepDefs {
@@ -77,8 +80,30 @@ public class PurchaseOrderVehicleLoadingStepDefs {
 				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
 				failureList.isEmpty());
 	}
+	@Then("^Trailer should be loaded for multiple order$")
+	public void Trailer_should_be_loaded_for_multiple_order() throws Throwable {
+		ArrayList<String> Orderlist=context.getOrderList();
+		for (int z=0;z<Orderlist.size();z++){
+		context.setOrderId(Orderlist.get(z));	
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		verification.verifyData("Order Status", "Complete", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+		}
+	}	
 
-	
+
+	@Then("^Trailer loading should be In Progress$")
+	public void Trailer_loading_should_be_In_Progress() throws Throwable {
+		ArrayList failureList = new ArrayList();
+		Map<Integer, ArrayList<String>> tagIDMap = new HashMap<Integer, ArrayList<String>>();
+		verification.verifyData("Order Status", "In Progress", orderHeaderDB.getStatus(context.getOrderId()), failureList);
+		Assert.assertTrue(
+				"Order Status details not displayed as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 
 	@Then("^Trailer should be unload$")
 	public void Trailer_should_be_unload() throws Throwable {

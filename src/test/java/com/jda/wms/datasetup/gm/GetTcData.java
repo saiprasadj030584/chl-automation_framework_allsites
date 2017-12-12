@@ -30,7 +30,12 @@ public class GetTcData {
 		System.out.println("GEt STO " + context.getOrderId());
 		return value;
 	}
-
+	public String getSto2() {
+		String value = null;
+		value = context.getOrderId2();
+		System.out.println("GEt STO " + context.getOrderId2());
+		return value;
+	}
 	public String getUpi() {
 
 		String value = null;
@@ -239,6 +244,8 @@ public class GetTcData {
 			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 					+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteID() + "'");
@@ -314,6 +321,8 @@ public class GetTcData {
 		String value = null;
 		try {
 			dataBase.connectAutomationDB();
+			System.out.println("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
+							+ "' AND SITE_NO='" + context.getSiteID() + "'");
 			resultSet = dataBase.dbConnection.createStatement()
 					.executeQuery("SELECT * FROM DBO.JDA_GM_TEST_DATA WHERE UNIQUE_TAG ='" + context.getUniqueTag()
 							+ "' AND SITE_NO='" + context.getSiteID() + "'");
@@ -344,6 +353,9 @@ public class GetTcData {
 		// e.printStackTrace();
 		// }
 		// }
+	}
+	public void setSecondOdn(String value) {
+		context.setOrderId2(value);
 	}
 
 	public String getQtyFromTestData() {
@@ -424,6 +436,12 @@ public class GetTcData {
 		String value = null;
 		value = context.getSecondPalletID();
 		System.out.println(" At getUpi2 "+value);
+		return value;
+	}
+	public String getOrder2() {
+		String value = null;
+		value = context.getOrderId2();
+		System.out.println(" At getOrder2 "+value);
 		return value;
 	}
 }

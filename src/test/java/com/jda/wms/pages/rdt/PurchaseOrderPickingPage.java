@@ -1,19 +1,32 @@
 package com.jda.wms.pages.rdt;
 
+import java.util.Random;
+
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
-
-
 public class PurchaseOrderPickingPage {
+	Random random = new Random();
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private Context context;
+	
+	@Inject
+	public void PurchaseOrderPickingPage( Context context){
+		this.context=context;
+	}
+	
+
+	@Inject
+	public PurchaseOrderPickingPage(Context context) {
+		this.context = context;
+	}
 
 	public void selectPickingMenu() throws InterruptedException {
 		screen.type("3");
@@ -35,19 +48,38 @@ public class PurchaseOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-
+	public void enterPicToTagId(String tagId) throws InterruptedException {
+		screen.type(tagId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		 
+		}
+	public boolean checktagidavailable() throws FindFailed, InterruptedException {
+		try {
+			System.out.println("entered check stock ");
+		if (screen.exists("images/Putty/Picking/scantagid.png", 10) != null){
+			Thread.sleep(1000);
+			screen.type(Key.ENTER);
+			return true;}
+		else
+			
+			return false;
+		}catch(Exception e){e.printStackTrace();return false;
+		}
+	}
+	
 	public void enterListId(String ListID) throws InterruptedException {
 		screen.type(ListID);
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(5000);
 	}
 
 	public void enterPrinterNO(String string) throws InterruptedException {
 		screen.type(string);
 		Thread.sleep(1000);
-		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+//		screen.type(Key.ENTER);
+//		Thread.sleep(s5000);
 	}
 
 	public String getPickingLocation() throws FindFailed, InterruptedException {
@@ -56,6 +88,90 @@ public class PurchaseOrderPickingPage {
 		screen.doubleClick((mSupplierId.below(10)));
 		Thread.sleep(2000);
 		return App.getClipboard();
+	}
+
+	public boolean palletIdAvailable() 
+	{
+		if (screen.exists("images/Putty/Picking/Enterpall.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean invalidContainerIdAvailable() 
+	{
+		if (screen.exists("images/Putty/Picking/InvalidContainer.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean validContainerIdAvailable()
+	{
+		if (screen.exists("images/Putty/Picking/Scancontainerid.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isPckPalToAvailable()
+	{
+		if (screen.exists("images/Putty/Picking/PckPalTo.png", 10) != null)
+			return true;
+		else
+			return false;
+	}
+	public void enter14digitpalletId() {
+		try{
+		Thread.sleep(1000);
+		int x = random.nextInt(900) + 100;
+		System.out.println(x);
+		//add inject in master 
+		String palletid = "1"+context.getOrderId()+x;
+		System.out.println("palletid: "+palletid);
+		screen.type(palletid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+		}catch(Exception e){e.printStackTrace();}
+	}
+	public void noOfTag() throws InterruptedException{
+		Thread.sleep(1000);
+			
+		
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void entertag() throws InterruptedException{
+		Thread.sleep(1000);
+		int x = random.nextInt(900000) + 100000;
+		String container = String.valueOf(x);
+		System.out.println("containerid: "+container);
+		screen.type(container);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
+	public int generate5digitcontainerID() throws InterruptedException{
+		Thread.sleep(1000);
+		int x = random.nextInt(90000) + 10000;
+		
+		System.out.println("random no generated: "+x);
+		return x;
+		}
+	public void enterContainerID(String containerId) throws InterruptedException{
+		
+		screen.type(containerId);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void enterskuid(String skuid) throws InterruptedException{
+		Thread.sleep(1000);
+		screen.type(skuid);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 
 	public void enterCheckString(String checkString) throws InterruptedException {
@@ -111,8 +227,7 @@ public class PurchaseOrderPickingPage {
 		Thread.sleep(5000);
 		// return App.getClipboard();
 	}
-
-	public void enterMinimumQty() throws InterruptedException {
+	public void entrMinimumQty() throws InterruptedException {
 		// screen.type(Key.ENTER);
 		// Thread.sleep(3000);
 		// screen.type(Key.TAB);
@@ -123,6 +238,29 @@ public class PurchaseOrderPickingPage {
 		// Thread.sleep(5000);
 	}
 
+	public void enterMinimumQty(String qty) throws InterruptedException {
+		// screen.type(Key.ENTER);
+		// Thread.sleep(3000);
+		// screen.type(Key.TAB);
+		// Thread.sleep(2000);
+		screen.type(qty);
+		Thread.sleep(5000);
+		// screen.type(Key.ENTER);
+		// Thread.sleep(5000);
+	}
+	public boolean enterskuidscreenavailable() throws FindFailed, InterruptedException {
+		try {
+			System.out.println("entered quantity pick");
+		if (screen.exists("images/Putty/Picking/qtyenterscreen.png", 10) != null){
+			Thread.sleep(1000);
+			
+			return true;}
+		else
+			
+			return false;
+		}catch(Exception e){e.printStackTrace();return false;
+		}
+	}
 	public boolean isPickEnt() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;
@@ -151,20 +289,20 @@ public class PurchaseOrderPickingPage {
 	}
 
 	public void selectReason() throws InterruptedException {
-		screen.type("6");
+		screen.type("1");
+		Thread.sleep(2000);
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
 
 	public void enterContainerId(String containerId) throws FindFailed, InterruptedException {
-		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
-		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
-		// Thread.sleep(3000);
-		// screen.click(mQty.below(10));
 		Thread.sleep(1000);
 		screen.type(containerId);
 		Thread.sleep(3000);
+
+		screen.type(Key.ENTER);
 		// Thread.sleep(3000);
+
 
 	}
 
@@ -174,7 +312,7 @@ public class PurchaseOrderPickingPage {
 		else
 			return false;
 	}
-	
+
 	public boolean isPickEntPageDisplayed() {
 		if (screen.exists("images/Putty/Picking/PickEntry.png") != null)
 			return true;
@@ -182,18 +320,104 @@ public class PurchaseOrderPickingPage {
 			return false;
 	}
 
+
+
 	public void enterTagId(String tagId) throws FindFailed, InterruptedException {
-		// TODO take new image for EnTTagid
-		// screen.wait("images/Putty/Picking/EnterTag.png", timeoutInSec);
-		// Match mQty = screen.find("images/Putty/Picking/EnterTag.png");
-		Thread.sleep(3000);
-		// screen.click(mQty.below(10));
-		// Thread.sleep(1000);
 		System.out.println(tagId);
 		screen.type(tagId);
 		Thread.sleep(3000);
 
 	}
+	
+	public void selectSplitPick() throws InterruptedException {
+		screen.type("3");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	
+	public boolean isPckLocPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/ToLoctn.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public void changeQtyPick(int qty) throws InterruptedException {
+		// TODO Auto-generated method stub
+		String changdQty=String.valueOf(qty/2);
+		screen.type(changdQty+"E_("+changdQty+"E)");
+		Thread.sleep(2000);
+	}
+	
+	public void enterPallet(String string) throws InterruptedException {
+		screen.type(string);
+		Thread.sleep(1000);
+	}
+
+	public String getToLocation() throws FindFailed, InterruptedException {
+		// TODO Auto-generated method stub
+		Match mStatus = screen.find("images/Putty/Picking/ToLocationPicking.png");
+		screen.click(mStatus.getCenter().offset(40, 0));
+		screen.doubleClick(mStatus.getCenter().offset(40, 0));
+		Thread.sleep(5000);
+		return App.getClipboard();
+	}
+
+	public void selectSortingMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void enterToPallet(String toPallet) throws InterruptedException {
+		screen.type(toPallet);
+		Thread.sleep(1000);
+	}
+
+	public void enterFromPallet(String fromPallet) throws InterruptedException {
+		screen.type(fromPallet);
+		Thread.sleep(1000);
+		
+	}
+
+	public boolean isPalRpkFrmCPageDisplayed() {
+		if (screen.exists("images/Putty/Picking/PalRpkFrmC.png") != null)
+			return true;
+		else
+			return false;
+	}
 
 
+	public boolean isPckPalToExists() throws InterruptedException {
+		Thread.sleep(1000);
+		if (screen.exists("images/Putty/Picking/PckPalTo.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isPckConCnfExists() throws InterruptedException {
+		Thread.sleep(1000);
+		if (screen.exists("images/Putty/Picking/PckConCnf.png") != null)
+			return true;
+		else
+			return false;
+	}
+
+	
+
+
+		public boolean isBoxSizeEntryPageDisplayed() {
+		// TODO Auto-generated method stub
+		if (screen.exists("images/Putty/Picking/BoxSize.png") != null)
+
+			return true;
+		else
+			return false;
+	}
+
+
+	
 }

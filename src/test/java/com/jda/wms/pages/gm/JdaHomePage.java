@@ -89,7 +89,7 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-
+	
 	public void navigateToOrderContainerPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -355,6 +355,30 @@ public class JdaHomePage {
 	 * }
 	 */
 
+/*<<<<<<< HEAD
+	public void clickSearchIcon() throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		if (screen.exists("images/JDAHome/searchScreenButton.png") != null) {
+			System.out.println("Application search icon found");
+			if (screen.exists("images/JDAHome/Welcomed.png") != null) {
+				System.out.println("11111111");
+				screen.wait("images/JDAHome/Welcomed.png", timeoutInSec);
+				Thread.sleep(5000);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+				System.out.println("22222222");
+				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
+				Thread.sleep(2000);
+				screen.click("images/JDAHome/Welcomed.png");
+				Thread.sleep(2000);
+				screen.type("f", Key.CTRL);
+				Thread.sleep(2000);
+			}
+		}
+=======*/
 	public void clickSearchIcon() {
 		try {
 			Thread.sleep(5000);
@@ -477,6 +501,7 @@ public class JdaHomePage {
 					Assert.fail("JDA Home Page is not displayed");
 				}
 			}
+//>>>>>>> 6bc64758346561f8f9178c19573cec33e2ffd791
 
 			else if (screen.exists("images/JDAHome/JdaHomeLogin.png") != null) {
 				System.out.println("Application login page found instead of search icon");
@@ -818,8 +843,10 @@ public class JdaHomePage {
 	}
 
 	public void navigateToOrderHeaderMaintenance() throws FindFailed, InterruptedException {
+
 		navigateToPage("Order Header Maintenance/query screen");
 		validateHomePageNavigation(orderHeaderPage.orderHomePage(), "Order Header Maintenance");
+
 	}
 
 	public void navigateToOrderPreparationPage() throws FindFailed, InterruptedException {
@@ -1042,6 +1069,29 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	
+	
+	public void navigateToUpiReceiptLinePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("UPI receipt line maintenance/query screen");
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(4000);
+	}
+
+	public void navigateToOrderGroupingPage() throws InterruptedException, FindFailed {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("order grouping");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+		System.out.println("Navigating to order grouping page");
+	}
 
 	private void validateHomePageNavigation(boolean homePage, String homePageName) throws InterruptedException {
 		if (!homePage) {
@@ -1053,7 +1103,7 @@ public class JdaHomePage {
 
 	}
 
-	private void navigateToPage(String pageName) throws InterruptedException {
+	public void navigateToPage(String pageName) throws InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
 		stepsScreenShot();
@@ -1066,5 +1116,6 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		stepsScreenShot();
 		Thread.sleep(4000);
+
 	}
 }

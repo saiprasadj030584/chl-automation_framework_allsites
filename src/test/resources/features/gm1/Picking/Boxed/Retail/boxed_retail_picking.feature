@@ -51,3 +51,14 @@ Feature: Boxed - Retail - Picking
   @jenkinsA @boxed @retail @picking @unique_boxed_picking_retail_validate_whether_boxed_location_is_made_as_pickable_preferred_location @complete @ds @no_ds
   Scenario: Validate whether Boxed location is made as Pickable Preferred Location
     Given check the loc type for the boxed preffered zones
+    
+   
+  
+ @unique_boxed_picking_picking_validate_whether_boxed_location_is_made_as_pickable_in_a_reserve @Boxed @ds
+ Scenario: Reserve location is made as pickable 
+Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
+    When I navigate to system allocation page
+    And I enter OrderID for allocation
+    Then Allocation should be updated
+    Then Pick Face is maintained against the location
+    Then I perform picking

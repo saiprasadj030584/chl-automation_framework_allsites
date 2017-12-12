@@ -141,16 +141,14 @@ public class OrderHeaderPage {
 		else
 			return false;
 	}
-	
-	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException
-	{
+
+	public void clickDeliveryAddressTab() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderHeaderMaintenance/DeliveryAddress.png", timeoutInSec);
 		screen.click("images/OrderHeaderMaintenance/DeliveryAddress.png");
 		Thread.sleep(1000);
 	}
-	
-	public void clickGLN() throws FindFailed, InterruptedException
-	{
+
+	public void clickGLN() throws FindFailed, InterruptedException {
 		Match morderid = screen.find("images/OrderHeaderMaintenance/DeliveryAddress/GLN.png");
 		screen.click(morderid.getCenter().offset(70, 0));
 		Thread.sleep(1000);
@@ -163,4 +161,3 @@ public class OrderHeaderPage {
 			return false;
 	}
 }
-
