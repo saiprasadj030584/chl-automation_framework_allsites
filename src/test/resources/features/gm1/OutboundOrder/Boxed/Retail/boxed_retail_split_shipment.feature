@@ -4,7 +4,7 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds @reviw
+   @yes @outbound_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds @reviw
   Scenario: Split shipment and multiple vehicle,single order
    Given the multiple order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I allocate the stocks using consignment in system allocation page

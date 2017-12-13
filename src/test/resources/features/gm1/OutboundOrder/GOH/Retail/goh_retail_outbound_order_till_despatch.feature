@@ -87,7 +87,7 @@ Feature: GOH - Retail - Outbound Order till despatch
     When I navigate to Trailer Shipping page
     Then trailer should be shipped
 
-    @outbound_order_till_despatch @goh @retail @goh_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds @complete 
+   @yes @outbound_order_till_despatch @goh @retail @goh_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds @complete 
   Scenario: Multiple pallet in the single trailer when unloading
     Given the multiple order id of type "Retail" with "GOH" skus should be in "Released" status
     When I create a consignment for multiple order

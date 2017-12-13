@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -234,6 +235,10 @@ public class Hooks {
 			System.out.println(context.getTestData());
 			System.out.println("After class----> FAIL" + scenario.isFailed());
 			System.out.println("*****************" + context.getTestData());
+			if (screen.exists("images/EJBError.png") != null){
+//				System.out.println("EJB Error Found - Application issue . please check with Non Prod Team and Try again");
+				context.setErrorMessage("EJB Error Found - Application issue . please check with Non Prod Team and Try again");
+			}
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
@@ -273,6 +278,7 @@ public class Hooks {
 			}
 		}
 	}
+
 
 	public void insertDetails(String testName) {
 		try {

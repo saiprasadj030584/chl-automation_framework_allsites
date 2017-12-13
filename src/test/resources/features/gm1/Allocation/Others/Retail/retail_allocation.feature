@@ -24,7 +24,7 @@ Feature: Allocation
     Then the multiple stocks should get allocated
     And the orders should get consolidated
 
-  @allocation @retail @goh @goh_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @retail_check @suspense_check
+  @yes @allocation @retail @goh @goh_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @retail_check @suspense_check
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and "GOH" skus should be in "Suspense" location
     When I navigate to system allocation page

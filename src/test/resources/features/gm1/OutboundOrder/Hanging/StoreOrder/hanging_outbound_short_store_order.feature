@@ -18,7 +18,7 @@ Feature: Hanging - Outbound Order till despatch - Store Order
     Then verify the status as "Released --> Cancelled" in ITL
 
 
-  @unique_hanging_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @hanging @store_order @outbound_order_till_despatch @ds
+ @yes @unique_hanging_outbound_order_till_despatch_store_order_store_order_with_pick_discrepancy_e_g_order_for_10_pick_and_despatch_8 @hanging @store_order @outbound_order_till_despatch @ds
   Scenario: Store order with pick discrepancy
     Given I have logged in as warehouse user in JDA dispatcher GM application
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
@@ -32,7 +32,7 @@ Feature: Hanging - Outbound Order till despatch - Store Order
     And I perform picking for hanging discrepancy
     Then I verify the status as "Ready to Load" in order header
 
-  @unique_hanging_outbound_order_till_despatch_store_order_short_store_order_partial_cancel @hanging @store_order @outbound_order_till_despatch @complete @ds
+   @yes @unique_hanging_outbound_order_till_despatch_store_order_short_store_order_partial_cancel @hanging @store_order @outbound_order_till_despatch @complete @ds
   Scenario: Short store order - partial cancel
     Given I have logged in as warehouse user in JDA dispatcher GM application
     And the order of type "Retail" with "Hanging" skus should be in "Released" status before partial allocation

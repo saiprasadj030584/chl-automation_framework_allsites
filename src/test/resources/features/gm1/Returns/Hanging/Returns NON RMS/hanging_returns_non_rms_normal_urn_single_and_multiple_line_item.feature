@@ -11,7 +11,7 @@ Feature: Hanging - Returns Non RMS - Returns
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated for single upi
 
-  @returns @hanging @returns_non_rms @unique_hanging_returns_returns_non_rms_validate_the_returns_non_rms_normal_urn_multiple_line_item @complete @ds
+  @returns @yes @hanging @returns_non_rms @unique_hanging_returns_returns_non_rms_validate_the_returns_non_rms_normal_urn_multiple_line_item @complete @ds
   Scenario: Validate the Returns Non RMS - Normal URN - Multiple line item
     Given the normal UPI of type "Boxed" and ASN should be in "Released" status
     And the upi should have sku, quantity due details
