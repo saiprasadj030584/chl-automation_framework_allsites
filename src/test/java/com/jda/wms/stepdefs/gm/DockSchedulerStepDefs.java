@@ -284,9 +284,10 @@ public class DockSchedulerStepDefs {
 					jdaFooter.PressEnter();
 
 				} else if (count == 7) {
-					break;
+					
+				Assert.fail("Cannot find the dock to book the slot");
 				}
-
+			
 			}
 		} else if (dockSchedulerPage.isBookingErrorExists()) {
 			System.out.println("inside if - booking error");

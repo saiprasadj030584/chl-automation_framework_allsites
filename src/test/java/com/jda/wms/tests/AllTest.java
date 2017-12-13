@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_boxed_pre_receiving_master_pack_config_validate_whether_pack_config_can_be_created_for_sku_s" })
+				"@unique_boxed_pre_receiving_direct_po_dock_schedule_asn" })
 
 
 public class AllTest {
