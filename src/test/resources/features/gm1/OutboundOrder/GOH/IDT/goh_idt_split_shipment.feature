@@ -4,7 +4,7 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
-  @outbound_despatch @goh @idt @unique_goh_outbound_order_till_despatch_idt_order_split_shipment_and_multiple_vehicle_single_order @ds
+   @yes @outbound_despatch @goh @idt @unique_goh_outbound_order_till_despatch_idt_order_split_shipment_and_multiple_vehicle_single_order @ds
   Scenario: Split shipment and multiple vehicle,single order
     Given the order id of type "IDT" with "GOH" skus should be in "Released" status
     And I create a consignment for order

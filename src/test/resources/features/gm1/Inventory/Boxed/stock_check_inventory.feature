@@ -3,7 +3,7 @@ Feature: Report generation
   As a warehouse user
   I want to validate stock in inventory
 
-    @boxed  @unique_boxed_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
+    @boxed @yes  @unique_boxed_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
      Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page

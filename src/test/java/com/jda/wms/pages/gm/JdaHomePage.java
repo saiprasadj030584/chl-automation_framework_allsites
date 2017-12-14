@@ -37,7 +37,7 @@ public class JdaHomePage {
 	private PackConfigMaintenancePage packConfigMaintenancePage;
 	private AddressMaintenancePage addressMaintenancePage;
 	private MoveTaskPage moveTaskPage;
-	
+
 
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
@@ -60,7 +60,7 @@ public class JdaHomePage {
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.moveTaskPage = moveTaskPage;
-		
+
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {

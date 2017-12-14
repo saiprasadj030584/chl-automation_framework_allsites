@@ -18,7 +18,7 @@ Feature: Inventory - Report generation
     Then I should see the created list
 
 
-@jenkinsA @unique_boxed_inventory_inventory_validate_whether_report_is_generated_based_on_stock_accuracy_by_location @boxed @inventory @complete @ds @jenkins1 @no_ds @jenkinssc
+@jenkinsA @jenkinsgm @unique_boxed_inventory_inventory_validate_whether_report_is_generated_based_on_stock_accuracy_by_location @boxed @inventory @complete @ds @jenkins1 @no_ds @jenkinssc
   Scenario: Validate whether report is generated based on Stock Accuracy by Location
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to report selection page

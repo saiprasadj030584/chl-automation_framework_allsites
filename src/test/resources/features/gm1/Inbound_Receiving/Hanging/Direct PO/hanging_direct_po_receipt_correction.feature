@@ -4,7 +4,7 @@ Feature: Purchase order Putaway Receipt correction
   I want to putaway the received articles and do the receipt correction for the putaway stock
   So that I can correct the inventory stock which updated through putaway
 
-  @hanging @receipt_reversal @inbound_receiving @hanging_inbound_receiving_receipt_reversal_perform_a_receipt_correction_stock_adjustment_function_after_putaway_of_receipt @complete @check17
+   @yes @hanging @receipt_reversal @inbound_receiving @hanging_inbound_receiving_receipt_reversal_perform_a_receipt_correction_stock_adjustment_function_after_putaway_of_receipt @complete @check17
   Scenario: Perform a receipt correction (stock adjustment function) after putaway of receipt
     Given the PO of type "Hanging" with UPI and ASN should be in "Released" status
     When I receive all "Hanging" skus for the purchase order at location "REC001"

@@ -30,7 +30,7 @@ Feature: Boxed - Retail - Allocation
       | TUR            | UK              |
 
 
-  @allocation @retail @boxed @unique_boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
+   @yes @allocation @retail @boxed @unique_boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I have setup the data to check just in time

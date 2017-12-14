@@ -16,13 +16,12 @@ public class DeliveryDB {
 
 	private Context context;
 	private Database database;
-	
+
 
 	@Inject
 	public DeliveryDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-		
 	}
 	
 	public String getStatus(String asnId) throws SQLException, ClassNotFoundException {
@@ -204,7 +203,7 @@ public class DeliveryDB {
 			}
 
 		} catch (Exception e) {
-			
+
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			e.printStackTrace();
 

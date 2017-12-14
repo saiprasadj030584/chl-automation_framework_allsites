@@ -17,7 +17,7 @@ public class OrderHeaderDB {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private Database database;
-	
+
 
 	@Inject
 	public OrderHeaderDB(Context context, Database database) {
@@ -384,8 +384,8 @@ public class OrderHeaderDB {
 				System.out.println("Order ID -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
-			
-			
+			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+
 		}
 		return rs.getString(1);
 	}

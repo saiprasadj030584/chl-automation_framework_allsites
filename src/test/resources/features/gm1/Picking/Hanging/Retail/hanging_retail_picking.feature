@@ -13,7 +13,7 @@ Feature: Hanging - Retail - Picking
     Then the error message should be displayed as invalid details
 
 
-   @hanging @hanging_picking_picking_remove_stock_check_putaway_picking_relocate_&_replenishment_v2 @inventory @complete  @ds
+  @yes @hanging @hanging_picking_picking_remove_stock_check_putaway_picking_relocate_&_replenishment_v2 @inventory @complete  @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
   
   	Given the order id of type "Retail" with "Hanging" skus should be in "Released" status

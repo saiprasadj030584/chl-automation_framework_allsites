@@ -3,7 +3,7 @@ Feature: Hanging - Returns - Multiple URN Single ASN Receiving
   As a warehouse user
   I want to receive the articles
 
-  @unique_hanging_inbound_receiving_returns_multiple_urn_and_single_asn @inbound_receiving @returns_rms @hanging @ds
+   @yes @unique_hanging_inbound_receiving_returns_multiple_urn_and_single_asn @inbound_receiving @returns_rms @hanging @ds
   Scenario: Multiple URN and single ASN
     Given the multiple UPI of type "Hanging" and ASN should be in "Released" status
     And the multiple upi should have sku, quantity due details

@@ -87,7 +87,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     Then trailer should be shipped
     
     
-  @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
+   @yes @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
   Scenario: Multiple pallet in the single trailer when unloading
     Given the multiple order id of type "Retail" with "Flatpack" skus should be in "Released" status
     When I create a consignment for multiple order

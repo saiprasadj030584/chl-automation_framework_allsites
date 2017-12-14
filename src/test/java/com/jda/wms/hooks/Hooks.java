@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.Assert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -36,41 +37,34 @@ import com.jda.wms.pages.gm.JdaLoginPage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import cucumber.api.java.en.Given;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
+	Screen screen = new Screen();
+	private Context context;
 	private final Configuration configuration;
 	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String BUILD_NUM = System.getProperty("BUILD_NUM");
-	public static int pass = 0;
-
-	public static int fail = 0;
-
-	Screen screen = new Screen();
-	private Context context;
 	String envVar = System.getProperty("user.dir");
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
 
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
-	
 
 	@Inject
 	public Hooks(Context context, DataSetupRunner dataSetupRunner, DbConnection dataBase, Database jdaJdatabase,
-			GetTcData gettcdata,JdaLoginPage jdaLoginPage,Configuration configuration){
+			GetTcData gettcdata, Configuration configuration,JdaLoginPage jdaLoginPage) {
 
 		this.context = context;
 		this.dataSetupRunner = dataSetupRunner;
 		this.NPSdataBase = dataBase;
 		this.jdaJdatabase = jdaJdatabase;
 		this.gettcdata = gettcdata;
-		this.configuration=configuration;
-		this.jdaLoginPage=jdaLoginPage;
-		
+		this.configuration = configuration;
+		this.jdaLoginPage = jdaLoginPage;
 	}
 
 	// @Before
@@ -85,9 +79,7 @@ public class Hooks {
 				"###########################################################################################################################");
 	}
 
-
 	@Before({ "~@Email" })
-
 
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
 		context.setScenario(scenario);
@@ -101,11 +93,11 @@ public class Hooks {
 		getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		insertDetails(scenario.getName());
-System.out.println("tagListForScenario"+tagListForScenario);
+		System.out.println("tagListForScenario" + tagListForScenario);
 		for (String tag : tagListForScenario) {
-			System.out.println("TAG"+tag);
+			System.out.println("TAG" + tag);
 			if (tag.contains("@ds")) {
-				
+
 				dataSetupRunner.getTagListFromAutoDb();
 
 				if (!(scenario.getName().contains("Triggering automation email"))) {
@@ -115,7 +107,7 @@ System.out.println("tagListForScenario"+tagListForScenario);
 				} else {
 					System.out.println("Datasetup not require for email scenario");
 				}
-				System.out.println("DS"+context.getTestData());
+				System.out.println("DS" + context.getTestData());
 			}
 			System.out.println("NO DS");
 		}
@@ -181,16 +173,8 @@ System.out.println("tagListForScenario"+tagListForScenario);
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		p.waitFor();
 		System.out.println("Kill Completed");
-	}
-
-	@After
-	public void closeDBConnection() throws SQLException {
-		// if (!context.getConnection().equals(null)) {
-		if (!(null == context.getConnection())) {
-			context.getConnection().close();
-			logger.debug("DB Connection closed");
-		}
-	}
+	} 
+	
 	@SuppressWarnings("static-access")
 	private void updateTestDataIntoRunStatusTable(String tcName) {
 		try {
@@ -251,6 +235,10 @@ System.out.println("tagListForScenario"+tagListForScenario);
 			System.out.println(context.getTestData());
 			System.out.println("After class----> FAIL" + scenario.isFailed());
 			System.out.println("*****************" + context.getTestData());
+			if (screen.exists("images/EJBError.png") != null){
+//				System.out.println("EJB Error Found - Application issue . please check with Non Prod Team and Try again");
+				context.setErrorMessage("EJB Error Found - Application issue . please check with Non Prod Team and Try again");
+			}
 			updateExecutionStatusInAutomationDb_End("FAIL", scenario.getName());
 			updateParentTable();
 			System.out.println("Entering teardown if scenario is failed");
@@ -290,6 +278,7 @@ System.out.println("tagListForScenario"+tagListForScenario);
 			}
 		}
 	}
+
 
 	public void insertDetails(String testName) {
 		try {
@@ -570,10 +559,13 @@ System.out.println("tagListForScenario"+tagListForScenario);
 		return dateFormat.format(date);
 	}
 
-	@Given("^demo file$")
-	public void demo_file() throws Throwable {
-		Thread.sleep(5000);
-		System.out.println("Test Auto Pass");
+	@After
+	public void closeDBConnection() throws SQLException {
+		// if (!context.getConnection().equals(null)) {
+		if (!(null == context.getConnection())) {
+			context.getConnection().close();
+			logger.debug("DB Connection closed");
+		}
 	}
 
 }

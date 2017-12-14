@@ -13,7 +13,6 @@ import org.sikuli.script.FindFailed;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.gm.Database;
-//import com.jda.wms.hooks.Hooks_autoUI;
 import com.jda.wms.pages.gm.JdaLoginPage;
 import com.jda.wms.stepdefs.gm.StockCreationForAlocation;
 import com.jda.wms.utils.Utilities;
@@ -25,7 +24,6 @@ public class DataSetupRunner {
 	private Database jdaJdatabase;
 	private DataLoadFromUI dataLoadFromUI;
 	private JdaLoginPage jdaLoginPage;
-	//private Hooks_autoUI hooks_autoUI;
 	private StockCreationForAlocation stockCreationForAlocation;
 //	private StockAdjustmentsPage stockAdjustmentsPage;
 //	private SupplierSkuDB supplierSkuDb;
@@ -51,7 +49,7 @@ public class DataSetupRunner {
 
 		this.dataLoadFromUI = dataLoadFromUI;
 		this.jdaLoginPage = jdaLoginPage;
-	//	this.hooks_autoUI = hooks_autoUI;
+
 		this.stockCreationForAlocation=stockCreationForAlocation;
 //		this.jdaHomePage = jdaHomePage;
 //		this.skuSkuConfigDB = skuSkuConfigDB;

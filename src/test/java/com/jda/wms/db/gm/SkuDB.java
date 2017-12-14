@@ -375,7 +375,9 @@ public class SkuDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
 		ResultSet rs = stmt.executeQuery("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
+		System.out.println("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
 		if (!rs.next()) {
 			context.setErrorMessage("Record not found in DB");
 			Assert.fail("Record not found in DB");

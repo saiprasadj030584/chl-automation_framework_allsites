@@ -20,7 +20,7 @@ public class PreAdviceHeaderDB {
 	public PreAdviceHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-	
+
 	}
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)
@@ -215,7 +215,6 @@ public class PreAdviceHeaderDB {
 				System.out.println("Pre advice header id -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
-			
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
 		return rs.getString(1);
