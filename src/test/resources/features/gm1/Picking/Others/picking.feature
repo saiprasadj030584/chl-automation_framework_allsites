@@ -4,7 +4,7 @@ Feature: order allocation and picking
   I want to pick the allocated stocks
 
 
-   @yes @flatpack @picking @flatpack_picking_picking_validate_whether_retail_urn_is_generated_for_tote_cage_or_pallet @complete @ds @retail @tote_check1 @pck
+   @yes @flatpack @picking @unique_flatpack_picking_picking_validate_whether_retail_urn_is_generated_for_tote_cage_or_pallet @complete @ds @retail @tote_check1 @pck
 
   Scenario: Validate whether Retail URN is generated for Tote Cage or Pallet
     Given the order id of type "Retail" with "Flatpack" skus should be in "Released" status
@@ -17,7 +17,7 @@ Feature: order allocation and picking
 
 
 
-  @yes @goh @picking @goh_picking_picking_validate_whether_retail_urn_is_generated_for_tote_cage_or_pallet @complete @ds @retail @tote_check @pck1
+  @yes @goh @picking @unique_goh_picking_picking_validate_whether_retail_urn_is_generated_for_tote_cage_or_pallet @complete @ds @retail @tote_check @pck1
 
   Scenario: Validate whether Retail URN is generated for Tote Cage or Pallet
     Given the order id of type "Retail" with "GOH" skus should be in "Released" status
@@ -49,12 +49,11 @@ Feature: order allocation and picking
     Given I have to datsetup with preferred and non preferred location
     And I allocate the multiple stocks
     And I validate the aisle for the sku 
-
     And I perform picking for Hanging Retail
     When I navigate to order container page
     Then the urn id should be updated in order container page
 
- @yes @goh @picking @goh_picking_picking_validate_the_unpick_process @complete @pck1
+ @yes @goh @picking @unique_goh_picking_picking_validate_the_unpick_process @complete @pck1
   Scenario: Validate the Unpick process
     Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page
@@ -68,7 +67,7 @@ Feature: order allocation and picking
     And I perform unpicking
     Then order header should be updated for unpicked stock
 
- @yes @flatpack @picking @flatpack_picking_picking_validate_the_unpick_process @complete @pck1
+ @yes @flatpack @picking @unique_flatpack_picking_picking_validate_the_unpick_process @complete @pck1
   Scenario: Validate the Unpick process
     Given the order id of type "Retail" with "Flatpack" skus should be in "Released" status
     When I navigate to system allocation page

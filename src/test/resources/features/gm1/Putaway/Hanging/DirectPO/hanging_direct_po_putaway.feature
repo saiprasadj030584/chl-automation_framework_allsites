@@ -11,3 +11,11 @@ Feature: Boxed - Direct PO - Putaway
     And I proceed with entering the upc and location
     When I perform normal putaway after under receiving and relocation
     Then the goods receipt should be generated for putaway stock in inventory transaction
+    
+    
+    @unique_hanging_putaway_direct_po_quantity_field_validation @direct_po @hanging @putaway @complete
+  Scenario: Validate Putaway quantity
+    Given the PO of type "Hanging" with UPI and ASN should be received at "REC001"
+    When I choose normal putaway
+    And I proceed without entering po quantity
+    Then the error message should be displayed as invalid quantity exception
