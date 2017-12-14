@@ -592,7 +592,7 @@ public class DataSetupRunner {
 			gettcdata.setPalletId(upi);
 			
 		}
-		else if (context.getUniqueTag().contains("picked_from_preferred_aisle")||context.getUniqueTag().contains("multiple_order"))
+		else if (context.getUniqueTag().contains("picked_from_preferred_aisle")||context.getUniqueTag().contains("multiple_order")||context.getUniqueTag().contains("different_order"))
 				 {
 			npsDataBase.connectAutomationDB();
 				

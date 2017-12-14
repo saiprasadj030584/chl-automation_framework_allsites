@@ -1601,6 +1601,58 @@ this.orderLineDB=orderLineDB;
 		}
 	}
 	
-	
+	@Given("^I perform picking for boxed retail multiple orders$")
+	public void i_perform_picking_for_boxed_retail_multiple_orders() throws Throwable {
+		ArrayList<String> orderList = context.getOrderList();
+		for (int k = 0; k < orderList.size(); k++) {
+			context.setOrderId(orderList.get(k));
+			ArrayList<String> listIdArray = moveTaskDB.getListIdArray(context.getOrderId());
+			for (int j = 0; j < listIdArray.size(); j++) {
+
+				context.setListID(moveTaskDB.getListId(context.getOrderId()));
+				context.setSkuId(moveTaskDB.getSkuId(context.getListID()));
+				puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+				puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+				purchaseOrderPickingPage.selectPickingMenu();
+				purchaseOrderPickingPage.selectPickingMenu2();
+				purchaseOrderPickingPage.selectContainerPick();
+				moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+
+				context.setListID(moveTaskDB.getListId(context.getOrderId()));
+				purchaseOrderPickingPage.enterListId(context.getListID());
+				puttyFunctionsPage.pressEnter();
+				purchaseOrderPickingPage.enterPrinterNO("dummy3");
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				puttyFunctionsPage.pressEnter();
+				if (!(k == orderList.size() - 1)) {
+					jdaFooter.clickMoreButton();
+					jdaFooter.clickMoreButton();
+				}
+				Assert.assertTrue("To Location page is not as expected",
+						purchaseOrderPickingPage.isPckLocPageDisplayed());
+				puttyFunctionsPage.pressEnter();
+				if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+					Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+					context.setToLocation(purchaseOrderPickingPage.getToLocation());
+					purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+					jdaFooter.PressEnter();
+				}
+				Assert.assertTrue("Picking completion is not as expected",
+						purchaseOrderPickingPage.isPickEntPageDisplayed());
+				hooks.logoutPutty();
+			}
+
+			if (k != orderList.size() - 1) {
+				// do clustering
+				jdaHomeStepDefs.i_navigate_to_mannual_clustering_screen();
+				clusteringStepDefs.i_proceed_with_clustering_for("RETAIL");
+				// again scheduler program
+				jdaHomeStepDefs.i_navigate_scheduler_program_page();
+				schedulerProgramStepDefs.i_run_the_program();
+			}
+		}
+	}	
 
 }

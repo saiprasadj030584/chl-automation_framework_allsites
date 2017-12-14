@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_boxed_picking_picking_validate_whether_only_one_upc_is_picked_in_tote_for_the_following_order_conventry_tesam_external_reprocessing_international_franchises" })
+				"@unique_all_data_outbound_order_till_despatch_retail_type_order_split_shipment_multiple_vehicle_multiple_order_different_upc_and_dept" })
 
 
 
