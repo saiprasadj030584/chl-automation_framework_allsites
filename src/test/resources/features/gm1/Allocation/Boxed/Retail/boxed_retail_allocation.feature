@@ -38,7 +38,7 @@ Feature: Boxed - Retail - Allocation
     Then Navigate to order to check order is allocated
 
   @allocation @boxed @retail @unique_boxed_allocation_retail_validate_prohibition_rule @complete @ds
-  Scenario Outline: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
+  Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
     When I navigate to system allocation page

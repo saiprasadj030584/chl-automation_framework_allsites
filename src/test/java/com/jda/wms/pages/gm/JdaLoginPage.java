@@ -26,6 +26,9 @@ public class JdaLoginPage {
 	public static RemoteWebDriver driver;
 	private Configuration configuration;
 	private Context context;
+	public static String statusRegion = System.getProperty("USE_DB");
+	public static String region = System.getProperty("REGION");
+	//public static String region = "ST";
 	// Configuration configuration = new Configuration();
 	// Context context = new Context();
 
@@ -57,18 +60,50 @@ public class JdaLoginPage {
 			setDriver();
 			driver.manage().window().maximize();
 			Thread.sleep(5000);
-
-			if (context.getSiteID().equals("5649")) {
-				driver.navigate().to(configuration.getStringProperty("wst-gm-jda-url"));
+			if (statusRegion == null) {
+				statusRegion = "N";
+			} else {
+				System.out.println("DATABASE Status region---> " + statusRegion);
 			}
+			if (statusRegion.equalsIgnoreCase("N")) {
+				if (region.equalsIgnoreCase("ST")) {
+					if (context.getSiteID().equals("5649")) {
+						driver.navigate().to(configuration.getStringProperty("st-wst-gm-jda-url"));
+					}
 
-			else if (context.getSiteID().equals("5885")) {
-				driver.navigate().to(configuration.getStringProperty("stk-gm-jda-url"));
+					else if (context.getSiteID().equals("5885")) {
+						driver.navigate().to(configuration.getStringProperty("st-stk-gm-jda-url"));
+					} else {
+						System.out.println("Site Id is not found");
+						Assert.fail("Site Id is not found");
+					}
+
+				} else if (region.equalsIgnoreCase("SIT")) {
+					if (context.getSiteID().equals("5649")) {
+						driver.navigate().to(configuration.getStringProperty("sit-wst-gm-jda-url"));
+					}
+
+					else if (context.getSiteID().equals("5885")) {
+						driver.navigate().to(configuration.getStringProperty("sit-stk-gm-jda-url"));
+					} else {
+						System.out.println("Site Id is not found");
+						Assert.fail("Site Id is not found");
+					}
+				}
 			}
 
 			else {
-				System.out.println("Site Id is not found");
-				Assert.fail("Site Id is not found");
+				System.out.println("Get environment Details from NPS DB  " + "JDA GM URL:-" + context.getURL());
+				if (context.getSiteID().equals("5649")) {
+					driver.navigate().to(context.getURL());
+				}
+
+				else if (context.getSiteID().equals("5885")) {
+					driver.navigate().to(context.getURL());
+				} else {
+					System.out.println("Site Id is not found");
+					Assert.fail("Site Id is not found");
+				}
 			}
 
 			int waitTime = 3;

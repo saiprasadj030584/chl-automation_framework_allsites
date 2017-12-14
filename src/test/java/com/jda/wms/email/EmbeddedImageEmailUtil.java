@@ -59,7 +59,8 @@ public class EmbeddedImageEmailUtil {
 		// creates a new e-mail message
 		Message msg = new MimeMessage(session);
 
-		msg.setFrom(new InternetAddress("NPS-AUTOMATION"));
+//		msg.setFrom(new InternetAddress("NPS-AUTOMATION"));
+		msg.setFrom(new InternetAddress("y0137206@mnscorp.net"));
 
 		String[] mailAddressTo = requestDetailsRetriever.getmailAddress(context.getParentRequestId());
 

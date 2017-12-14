@@ -50,7 +50,9 @@ public class Hooks {
 	String envVar = System.getProperty("user.dir");
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
-
+	public static String statusRegion = System.getProperty("USE_DB");
+	public static String region = System.getProperty("REGION");
+//	public static String region = "ST";
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
 
@@ -88,8 +90,12 @@ public class Hooks {
 		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
-
-		System.out.println("Starting Execution" + scenario.getName());
+		System.out.println("Starting Execution" + scenario.getName()); 
+		if (statusRegion != null) {
+			getAppInventoryDetails(region, "Foods");
+		} else {
+			System.out.println("Environment details get from config file");
+		}
 		getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		insertDetails(scenario.getName());
@@ -173,7 +179,41 @@ public class Hooks {
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		p.waitFor();
 		System.out.println("Kill Completed");
-	} 
+	}  
+	
+	public void getAppInventoryDetails(String region, String cluster) {
+		ResultSet resultSet = null;
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			resultSet = context.getSQLDBConnection().createStatement().executeQuery(
+					"Select * from APP_INVENTORY Where environment = '" + region + "' and cluster = 'GM'");
+			while (resultSet.next()) {
+				String url = resultSet.getString("url");
+				String siteId = resultSet.getString("site_id");
+				String puttyHost = resultSet.getString("putty_host");
+				String puttyPort = resultSet.getString("putty_port");
+				String appUsername = resultSet.getString("app_username");
+				String appPassword = resultSet.getString("app_pwd");
+				String dBHost = resultSet.getString("db_host");
+				String dBUsername = resultSet.getString("db_username");
+				String dBPassword = resultSet.getString("db_pwd");
+				context.setURL(url);
+				context.setSiteId(siteId);
+				context.setPuttyHost(puttyHost);
+				context.setPuttyPort(puttyPort);
+				context.setAppUserName(appUsername);
+				context.setAppPassord(appPassword);
+				context.setDBHost(dBHost);
+				context.setDBUserName(dBUsername);
+				context.setDBPassword(dBPassword);
+
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
 	
 	@SuppressWarnings("static-access")
 	private void updateTestDataIntoRunStatusTable(String tcName) {
