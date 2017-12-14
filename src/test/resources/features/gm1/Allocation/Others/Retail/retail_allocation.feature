@@ -3,7 +3,7 @@ Feature: Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-  @allocation @retail @goh @goh_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @new_script @allocation7_check
+  @allocation @retail @goh @unique_goh_allocation_retail_validate_whether_all_the_stocks_are_allocated_allocation_rules_retail_orders @complete @new_script @allocation7_check
   Scenario: Validate  whether all the stocks are allocated -Allocation Rules-Retail Orders
     Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     When I navigate to system allocation page

@@ -10,7 +10,7 @@ Feature: Boxed - IDT - Allocation
     And I allocate the stocks
     Then the stock should get allocated
 
-  @allocation @idt @boxed @unique_boxed_allocation_idt_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
+     @allocation @yes @idt @boxed @unique_boxed_allocation_idt_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "IDT" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page

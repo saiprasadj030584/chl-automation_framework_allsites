@@ -3,7 +3,7 @@ Feature: Boxed - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-    @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
+   @yes @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page

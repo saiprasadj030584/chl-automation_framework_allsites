@@ -16,7 +16,7 @@ Feature: Boxed - IDT - Putaway
     When I perform normal putaway after relocation
     Then the goods receipt should be generated for putaway IDT stock in inventory transaction
 
-  @boxed @putaway @idt @unique_boxed_putaway_idt_validate_sampling/qa_pallet_build @complete @ds
+  @yes @boxed @putaway @idt @unique_boxed_putaway_idt_validate_sampling/qa_pallet_build @complete @ds
   Scenario: Validate Sampling/QA Pallet build
     Given the UPI and ASN should be in "Released" status for IDT
     And ASN and container to be linked with upi header

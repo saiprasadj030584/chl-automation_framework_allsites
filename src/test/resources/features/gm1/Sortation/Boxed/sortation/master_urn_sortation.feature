@@ -3,7 +3,7 @@ Feature: order sortation
   As a warehouse user
   I want to sort the picked stocks
 
-  @yes @boxed @sortation @retail @boxed_sortation_sortation_validate_whether_master_urn_can_be_sorted_for_retail_order @ds 
+  @yes @boxed @sortation @retail @unique_boxed_sortation_sortation_validate_whether_master_urn_can_be_sorted_for_retail_order @ds 
   Scenario: Validate whether master URN can be sorted
     Given the order id of type "Retail" should be in "Released" status
     When I navigate to system allocation page

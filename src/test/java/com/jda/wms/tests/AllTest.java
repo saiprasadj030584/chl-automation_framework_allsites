@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_boxed_allocation_international_validate_whether_all_the_stocks_are_allocated_allocation_rules" })
+				"@unique_flatpack_inbound_receiving_returns_multiple_urn_and_single_asn" })
 
 
 public class AllTest {
