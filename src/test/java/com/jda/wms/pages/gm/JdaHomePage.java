@@ -15,6 +15,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
+
 import cucumber.api.Scenario;
 
 public class JdaHomePage {
@@ -37,6 +38,7 @@ public class JdaHomePage {
 	private AddressMaintenancePage addressMaintenancePage;
 	private MoveTaskPage moveTaskPage;
 
+
 	@Inject
 	public JdaHomePage(JdaLoginPage jdaLoginPage, JDAFooter jdaFooter, Context context,
 			UpiReceiptHeaderPage upiReceiptHeaderPage, DeliveryPage deliveryPage,
@@ -58,6 +60,7 @@ public class JdaHomePage {
 		this.packConfigMaintenancePage = packConfigMaintenancePage;
 		this.addressMaintenancePage = addressMaintenancePage;
 		this.moveTaskPage = moveTaskPage;
+
 	}
 
 	public void navigateToOrderHeader() throws FindFailed, InterruptedException {

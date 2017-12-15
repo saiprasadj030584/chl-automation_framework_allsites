@@ -11,10 +11,12 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
+
 public class DeliveryDB {
 
 	private Context context;
 	private Database database;
+
 
 	@Inject
 	public DeliveryDB(Context context, Database database) {
@@ -201,6 +203,7 @@ public class DeliveryDB {
 			}
 
 		} catch (Exception e) {
+
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 			e.printStackTrace();
 

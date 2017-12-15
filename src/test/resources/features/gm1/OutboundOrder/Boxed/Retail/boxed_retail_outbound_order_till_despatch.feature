@@ -92,16 +92,27 @@ Feature: Boxed - Retail - Outbound Order till despatch
     When I navigate to Trailer Shipping page
     Then trailer should be shipped
     
-@unique_outbound_order_till_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_shipment_single_vehicle_different_store_same_x_dock_dc_different_order_same_upc_and_dept @complete @ds
-  Scenario: Trailer not entered when unloading
-    Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site
-    When I navigate to system allocation page
-    And I enter OrderID for allocation
-    Then Allocation should be updated
+@outbound_order_till_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_shipment_single_vehicle_different_store_same_x_dock_dc_different_order_same_upc_and_dept @complete @ds
+  Scenario: Shipment , single vehicle,different store,same x dock dc,different order,same upc and dept
+    Given the different order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I allocate the multiple stocks
+    Then the multiple stocks should get allocated
     When I navigate to scheduler program page
     And I run the program
-    And I perform picking for boxed
+    And I perform picking for boxed retail multiple orders
+   #And I perform picking for multiple order of type boxed
     Then the order should be Ready to Load
+    And I create a trailer to receive at the dock door
+    When I navigate to dock scheduler start page
+    When I create new dock booking at site
+    When I select the booking type for consignment
+    And I select the slot
+    And I create a booking for the asn
+    Then the booking details should appear
+    And I proceed for boxed vehicle loading
+    Then Trailer should be loaded
+    When I navigate to Trailer Shipping page
+    Then trailer should be shipped
 
     
   @outbound_order_till_despatch @boxed @retail @boxed_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds @complete
@@ -127,4 +138,23 @@ Feature: Boxed - Retail - Outbound Order till despatch
     When I proceed for boxed vehicle unloading with multiple order
     Then vehicle should be unload for multiple order
     
-
+@outbound_order_till_despatch @boxed @retail @unique_boxed_outbound_order_till_despatch_retail_type_order_shipment_single_vehicle_different_store_same_x_dock_dc_different_order_different_upc_and_dept @complete @ds
+  Scenario: Shipment , single vehicle,different store,same x dock dc,different order,different upc and dept
+    Given the different order id of type "Retail" with "Boxed" skus should be in "Released" status
+    And I allocate the multiple stocks
+    Then the multiple stocks should get allocated
+    When I navigate to scheduler program page
+    And I run the program
+    And I perform picking for boxed retail multiple orders
+    Then the order should be Ready to Load
+    And I create a trailer to receive at the dock door
+    When I navigate to dock scheduler start page
+    When I create new dock booking at site
+    When I select the booking type for consignment
+    And I select the slot
+    And I create a booking for the asn
+    Then the booking details should appear
+    And I proceed for boxed vehicle loading
+    Then Trailer should be loaded
+    When I navigate to Trailer Shipping page
+    Then trailer should be shipped

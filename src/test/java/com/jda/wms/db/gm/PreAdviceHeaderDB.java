@@ -10,14 +10,17 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
+
 public class PreAdviceHeaderDB {
 	private final Context context;
 	private final Database database;
+
 
 	@Inject
 	public PreAdviceHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+
 	}
 
 	public HashMap<String, String> getPreAdviceHeaderDetails(String preAdviceID)

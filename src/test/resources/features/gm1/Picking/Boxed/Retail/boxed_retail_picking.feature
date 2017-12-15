@@ -52,8 +52,7 @@ Feature: Boxed - Retail - Picking
   Scenario: Validate whether Boxed location is made as Pickable Preferred Location
     Given check the loc type for the boxed preffered zones
     
-   
-  
+    
  @unique_boxed_picking_picking_validate_whether_boxed_location_is_made_as_pickable_in_a_reserve @Boxed @ds
  Scenario: Reserve location is made as pickable 
 Given the OrderID of type "Retail" for sku "Boxed" should be in "Released" status at site

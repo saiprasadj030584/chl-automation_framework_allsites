@@ -12,15 +12,18 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
+
 public class OrderHeaderDB {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private Context context;
 	private Database database;
 
+
 	@Inject
 	public OrderHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+
 	}
 
 	public String getStatus(String orderId) throws SQLException, ClassNotFoundException {
@@ -382,6 +385,7 @@ public class OrderHeaderDB {
 			}
 		} catch (Exception e) {
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
+
 		}
 		return rs.getString(1);
 	}

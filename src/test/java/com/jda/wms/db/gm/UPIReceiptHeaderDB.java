@@ -10,15 +10,18 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
+
 public class UPIReceiptHeaderDB {
 
 	private Context context;
 	private Database database;
 
+
 	@Inject
 	public UPIReceiptHeaderDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
+
 	}
 
 	public String getStatus(String upiId) throws SQLException, ClassNotFoundException {
@@ -164,6 +167,7 @@ public class UPIReceiptHeaderDB {
 				System.out.println("UPI Receipt Header -->" + rs.getString(1));
 			}
 		} catch (Exception e) {
+
 			Assert.fail("Datasetup is not completed due to application issue or windows pop up");
 		}
 		return rs.getString(1);

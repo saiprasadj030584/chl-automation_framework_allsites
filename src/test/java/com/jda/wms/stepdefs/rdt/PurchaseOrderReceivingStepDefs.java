@@ -162,6 +162,22 @@ private InventoryDB inventoryDb;
 		i_enter_details_of_single_upi_and_perform_blind_receive_without_lockcode();
 		hooks.logoutPutty();
 	}
+	@When("^I blind receive all skus of single upi for the returns order at location \"([^\"]*)\" without lockcode for footware$")
+	public void i_blind_receive_all_skus_of_single_upi_for_the_returns_order_at_location_without_lockcode_for_footware(
+			String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_of_single_upi_and_perform_blind_receive_without_lockcode_for_footware();
+		hooks.logoutPutty();
+	}
 	@When("^I blind receive all skus of single upi for the returns order at location \"([^\"]*)\" without lockcode for footwear$")
 	public void i_blind_receive_all_skus_of_single_upi_for_the_returns_order_at_location_without_lockcode_for_footwear(
 			String location) throws Throwable {
@@ -635,6 +651,22 @@ private InventoryDB inventoryDb;
 		i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode();
 		hooks.logoutPutty();
 	}
+	@When("^I blind receive all skus of multiple upi for the returns order at location \"([^\"]*)\" without lockcode for footware$")
+	public void i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_footware(
+			String location) throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		context.setLocation(location);
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_receive_the_po_with_basic_and_blind_receiving();
+		i_should_be_directed_to_blind_entry_page();
+		i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_for_footware();
+		hooks.logoutPutty();
+	}
+	
 	@When("^I blind receive all skus for the returns order with mixed stock at location \"([^\"]*)\" without lockcode$")
 	public void i_blind_receive_all_skus_for_the_returns_order_with_mixed_stock_at_location_without_lockcode(
 			String location) throws Throwable {
@@ -937,7 +969,77 @@ private InventoryDB inventoryDb;
 			}
 		}
 	}
+	@When("^I enter details of multiple upi and perform blind receive without lockcode for footware$")
+	public void i_enter_details_of_multiple_upi_and_perform_blind_receive_without_lockcode_for_footware() throws Throwable {
+		int m = 0;
+		System.out.println("size of upi list" + context.getUpiList().size());
+		for (int k = 0; k < context.getUpiList().size(); k++) {
+			context.setUpiId(context.getUpiList().get(k));
+			for (int j = 0; j < context.getUpiNumLinesMap().get(context.getUpiList().get(k)); j++) {
+				m++;
+				context.setSkuId(context.getSkuFromUPI().get(m - 1));
 
+				for (int i = 0; i < Integer.parseInt(context.getMultipleUPIMap().get(context.getUpiId())
+						.get(context.getSkuId()).get("QTY DUE")); i++) {
+					purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+					purchaseOrderReceivingPage.enterUPC1BEL(
+							context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("UPC"));
+					jdaFooter.pressTab();
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterQuantity("1");
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+					purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+					jdaFooter.pressTab();
+					jdaFooter.navigateToNextScreen();
+					purchaseOrderReceivingPage.enterSupplierId(context.getMultipleUPIMap().get(context.getUpiId())
+							.get(context.getSkuId()).get("SUPPLIER ID"));
+					if (context.getUniqueTag().contains("non_rms")) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage.enterPalletId(
+								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					jdaFooter.PressEnter();
+					Thread.sleep(2000);
+
+					purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+					purchaseOrderReceivingPage.enterUPC1BEL(
+							context.getMultipleUPIMap().get(context.getUpiId()).get(context.getSkuId()).get("UPC"));
+					jdaFooter.pressTab();
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterQuantity("1");
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+					purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+					jdaFooter.pressTab();
+					jdaFooter.navigateToNextScreen();
+					purchaseOrderReceivingPage.enterSupplierId(context.getMultipleUPIMap().get(context.getUpiId())
+							.get(context.getSkuId()).get("SUPPLIER ID"));
+					if (context.getUniqueTag().contains("non_rms")) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage.enterPalletId(
+								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					jdaFooter.PressEnter();
+					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
+							purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+					jdaFooter.PressEnter();
+					Thread.sleep(1000);
+
+				}
+			}
+		}
+	}
 	@When("^I enter details of single upi and perform blind receive without lockcode$")
 	public void i_enter_details_of_single_upi_and_perform_blind_receive_without_lockcode() throws Throwable {
 		for (int j = 0; j < context.getSkuFromUPI().size(); j++) {
@@ -1022,7 +1124,91 @@ private InventoryDB inventoryDb;
 			}
 		}
 	}
-
+	@When("^I enter details of single upi and perform blind receive without lockcode for footware$")
+	public void i_enter_details_of_single_upi_and_perform_blind_receive_without_lockcode_for_footware() throws Throwable {
+		for (int j = 0; j < context.getSkuFromUPI().size(); j++) {
+			context.setSkuId(context.getSkuFromUPI().get(j));
+			for (int i = 0; i < Integer.parseInt(context.getUPIMap().get(context.getSkuId()).get("QTY DUE")); i++) {
+				purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPIMap().get(context.getSkuId()).get("UPC")+"01");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterUPC1BEL(context.getUPIMap().get(context.getSkuId()).get("UPC")+"02");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterQuantity("1");
+				jdaFooter.pressTab();
+				purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+				purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+				jdaFooter.pressTab();
+				jdaFooter.navigateToNextScreen();
+				purchaseOrderReceivingPage
+						.enterSupplierId(context.getUPIMap().get(context.getSkuId()).get("SUPPLIER ID"));
+				if (context.getUniqueTag().contains("non_rms")) {
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage
+							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+				} else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("goh"))) {
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage
+							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+				}
+				else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage
+							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+				}
+				else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("flatpack"))) {
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage
+							.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+				}
+				jdaFooter.PressEnter();
+				Thread.sleep(2000);
+				if (purchaseOrderReceivingPage.isURRNExists()) {
+					purchaseOrderReceivingPage.enterURNID(context.getUpiId());
+					purchaseOrderReceivingPage.enterUPC1BEL(context.getUPIMap().get(context.getSkuId()).get("UPC"));
+					jdaFooter.pressTab();
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterQuantity("1");
+					jdaFooter.pressTab();
+					purchaseOrderReceivingPage.enterPerfectCondition(context.getPerfectCondition());
+					purchaseOrderReceivingPage.enterLocationInBlindReceive(context.getLocation());
+					jdaFooter.pressTab();
+					jdaFooter.navigateToNextScreen();
+					purchaseOrderReceivingPage
+							.enterSupplierId(context.getUPIMap().get(context.getSkuId()).get("SUPPLIER ID"));
+					if (context.getUniqueTag().contains("non_rms")) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage.enterPalletId(
+								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					} else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("goh"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage.enterPalletId(
+								Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("hanging"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					else if ((context.getUniqueTag().contains("rms")) && (context.getUniqueTag().contains("flatpack"))) {
+						jdaFooter.pressTab();
+						purchaseOrderReceivingPage
+								.enterPalletId(Utilities.getEightDigitRandomNumber() + Utilities.getOneDigitRandomNumber());
+					}
+					jdaFooter.PressEnter();
+					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
+							purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+					jdaFooter.PressEnter();
+					Thread.sleep(1000);
+				} else {
+					Assert.assertTrue("Blind Receiving Unsuccessfull while receiving quantity " + i,
+							purchaseOrderReceivingPage.isBlindReceivingDoneWithoutLockCode());
+					jdaFooter.PressEnter();
+					Thread.sleep(1000);
+				}
+			}
+		}
+	}
 	@When("^I enter details and perform blind receive of mixed stock without lockcode$")
 	public void i_enter_details_and_perform_blind_receive_of_mixed_stock_without_lockcode() throws Throwable {
 		for (int j = 0; j < context.getNoOfLines(); j++) {
@@ -1599,7 +1785,15 @@ private InventoryDB inventoryDb;
 		i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode(location);
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
-
+	@Given("^I receive all skus of multiple upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\" for footware$")
+	public void i_receive_all_skus_of_multiple_upi_for_the_returns_order_at_with_perfect_condition_for_footware(String location,
+			String condition) throws Throwable {
+		context.setLocationID(location);
+		context.setPerfectCondition(condition);
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_of_multiple_upi_for_the_returns_order_at_location_without_lockcode_for_footware(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
 	@Given("^I receive all skus of single upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
 	public void i_receive_all_skus_of_single_upi_for_the_returns_order_at_with_perfect_condition(String location,
 			String condition) throws Throwable {
@@ -1609,7 +1803,15 @@ private InventoryDB inventoryDb;
 		i_blind_receive_all_skus_of_single_upi_for_the_returns_order_at_location_without_lockcode(location);
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 	}
-
+	@Given("^I receive all skus of single upi for the returns order at \"([^\"]*)\" with perfect condition \"([^\"]*)\" for footware$")
+	public void i_receive_all_skus_of_single_upi_for_the_returns_order_at_with_perfect_condition_for_footware(String location,
+			String condition) throws Throwable {
+		context.setLocationID(location);
+		context.setPerfectCondition(condition);
+		upiReceiptLineStepDefs.fetch_Qty_Details();
+		i_blind_receive_all_skus_of_single_upi_for_the_returns_order_at_location_without_lockcode_for_footware(location);
+		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
+	}
 	@Given("^I receive all skus for the returns order with mixed stock at \"([^\"]*)\" with perfect condition \"([^\"]*)\"$")
 	public void i_receive_all_skus_for_the_returns_order_with_mixed_stock_at_with_perfect_condition(String location,
 			String condition) throws Throwable {

@@ -50,3 +50,10 @@ Feature: Boxed - IDT - Allocation
   Scenario: Validate whether there is visibility in Stock modularity  for ordering -Visiblity of Stock types for ordering
     Given the order of "IDT" should be in "Released" status in order header maintenance
     Then the order stock modularity should be visible
+    
+     @allocation @idt @boxed @unique_boxed_allocation_idt_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
+  Scenario: Validate whether stock with earliest expiry date is allocated first -Expiry Date Sensitive Product
+    Given the order id of type "NonRetail" with "Boxed" skus should be in "Released" status
+    And I have setup the data to check expiry date
+    Then Navigate to order to check order is allocated
+		Then Validate the earliest expiry date
