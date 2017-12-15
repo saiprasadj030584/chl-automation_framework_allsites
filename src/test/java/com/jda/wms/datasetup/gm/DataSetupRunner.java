@@ -602,20 +602,15 @@ public class DataSetupRunner {
 			String odn2 = newOdnId();
 			// split
 			String[] asnArray = asnReference.split(",");
-				
-
 			jdaLoginPage.login();
 			dataLoadFromUI.duplicateOdn(asnArray[0], odn1);
 			validateOdnDataSetup(odn1);
 			gettcdata.setOdn(odn1);
-			
+			context.setOrderId(odn1);
 			dataLoadFromUI.duplicateOdn(asnArray[1], odn2);
 			validateOdnDataSetup(odn2);
 			gettcdata.setOdn(odn2);
-
-			
-			
-
+			context.setOrderId1(odn2);
 			asnList.add(odn1);
 			asnList.add(odn2);
 			context.setOrderList(asnList);

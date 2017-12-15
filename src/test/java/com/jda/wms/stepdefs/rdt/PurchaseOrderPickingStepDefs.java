@@ -1417,7 +1417,7 @@ this.orderLineDB=orderLineDB;
 						moveTaskUpdateDB.releaseOrderId(context.getOrderId());
 						context.setListID(moveTaskDB.getListId(context.getOrderId()));
 						purchaseOrderPickingPage.enterListId(context.getListID());
-						puttyFunctionsPage.pressEnter();
+						//puttyFunctionsPage.pressEnter();
 						purchaseOrderPickingPage.enterPrinterNO("dummy3");
 						puttyFunctionsPage.pressEnter();
 						puttyFunctionsPage.pressEnter();
