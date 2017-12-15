@@ -386,6 +386,7 @@ this.orderLineDB=orderLineDB;
 					// address table
 					String customer = orderHeaderDB.getCustomer(context.getOrderId());
 					context.setCustomer(customer);
+					System.out.println(customer);
 					String tagValueL = addressDB.getLowerTagValue();
 					String tagValueH = addressDB.getHigherTagValue();
 					int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))

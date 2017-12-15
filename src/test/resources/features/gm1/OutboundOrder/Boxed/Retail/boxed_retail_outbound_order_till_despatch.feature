@@ -99,8 +99,8 @@ Feature: Boxed - Retail - Outbound Order till despatch
     Then the multiple stocks should get allocated
     When I navigate to scheduler program page
     And I run the program
-   # And I perform picking for boxed retail multiple orders
-   And I perform picking for multiple order of type boxed
+    And I perform picking for boxed retail multiple orders
+   #And I perform picking for multiple order of type boxed
     Then the order should be Ready to Load
     And I create a trailer to receive at the dock door
     When I navigate to dock scheduler start page

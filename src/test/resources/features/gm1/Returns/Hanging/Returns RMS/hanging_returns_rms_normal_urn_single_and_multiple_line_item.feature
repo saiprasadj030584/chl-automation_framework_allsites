@@ -18,3 +18,5 @@ Feature: Boxed - Returns RMS - Returns
     And I receive all skus of single upi for the returns order at "REC003" with perfect condition "Y"
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated for single upi
+
+  

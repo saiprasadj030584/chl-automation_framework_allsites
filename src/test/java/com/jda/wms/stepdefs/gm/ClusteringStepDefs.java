@@ -36,7 +36,7 @@ public class ClusteringStepDefs {
 		jDAFooter.clickNextButton();
 		jDAFooter.clickDoneButton();
 	}
-
+	@When("^I proceed with clustering \"([^\"]*)\"$")
 	public void i_proceed_with_clustering_for(String string) throws Throwable {
 		clusteringPage.enterSiteID(context.getSiteID());
 		jDAFooter.PressEnter();
