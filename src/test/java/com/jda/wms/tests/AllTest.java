@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-				"@unique_all_data_outbound_order_till_despatch_retail_type_order_split_shipment_multiple_vehicle_multiple_order_different_upc_and_dept" })
+			"@unique_boxed_inbound_receiving_direct_po_over_receiving" })
 
 
 

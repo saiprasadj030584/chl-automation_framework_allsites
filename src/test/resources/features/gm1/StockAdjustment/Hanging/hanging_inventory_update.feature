@@ -3,7 +3,7 @@ Feature: Hanging - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkinsB @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
+  @jenkinsB  @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @no_ds
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
     When I navigate to inventory update page
@@ -19,7 +19,7 @@ Feature: Hanging - Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | UnLocked     | Inventory Unlock |
 
-  @jenkinsB @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
+  @jenkinsB  @hanging @stock_adjustment @inventory_update @unique_hanging_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status for "Hanging"
     When I navigate to inventory update page

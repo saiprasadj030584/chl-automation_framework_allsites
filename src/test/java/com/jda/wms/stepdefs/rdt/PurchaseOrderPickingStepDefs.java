@@ -620,6 +620,17 @@ this.orderLineDB=orderLineDB;
 		Assert.assertTrue("Picking Entry is not as expected", purchaseOrderPickingPage.isPckEntPageDisplayed());
 		hooks.logoutPutty();
 	}
+//	@Then("^the picking should be completed for hanging$")
+//	public void the_picking_should_be_completed_for_hanging() throws Throwable {
+//		purchaseOrderPickingPage.enterContainerId(context.getTagId());
+//		puttyFunctionsPage.pressEnter();
+//		puttyFunctionsPage.pressEnter();
+//		Assert.assertTrue("picking completion is not as expected", purchaseOrderPickingPage.isPickCmpPageDisplayed());
+//		hooks.logoutPutty();
+//
+//		
+//		
+//	}
 
 	@Then("^the part set warning should be displayed$")
 	public void the_part_set_warning_should_be_displayed() throws Throwable {
@@ -627,12 +638,50 @@ this.orderLineDB=orderLineDB;
 		puttyFunctionsPage.pressEnter();
 		puttyFunctionsPage.pressEnter();
 	}
+	@Then("^the picking should be completed for hanging$")
+	public void the_picking_should_be_completed_for_hanging() throws Throwable {
+		purchaseOrderPickingPage.enterContainerId(context.getTagId());
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		Assert.assertTrue("picking completion is not as expected", purchaseOrderPickingPage.isPickCmpPageDisplayed());
+		hooks.logoutPutty();
+
+		
+		
+	}
 
 	@Then("^the part set instruction should be displayed$")
 	public void the_part_set_instruction_should_be_displayed() throws Throwable {
 		Assert.assertTrue("Message Menu page not displayed as expected", purchaseOrderPickingPage.isMsgMenuDisplayed());
 		Assert.assertTrue("Part set Instruction page is not displayed as expected",
 				purchaseOrderPickingPage.isPartSetInstructionDisplayed());
+	}
+	@Given("^I perform picking for \"([^\"]*)\"$")
+	public void i_perform_picking_for_hanging(String receivetype) throws Throwable{
+		context.setListID(moveTaskDB.getListID(context.getOrderId()));
+		Assert.assertNotNull("List ID is not generated as expected", context.getListID());
+
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		purchaseOrderPickingPage.selectPickingMenu();
+		purchaseOrderPickingPage.selectPickingMenu2();
+		purchaseOrderPickingPage.selectContainerPick();
+		moveTaskUpdateDB.releaseOrderId(context.getOrderId());
+		purchaseOrderPickingPage.enterListId(context.getListID());
+		// purchaseOrderPickingPage.enterListId("HGMS2749711");
+		puttyFunctionsPage.pressEnter();
+
+		String customer = orderHeaderDB.getCustomer(context.getOrderId());
+		context.setCustomer(customer);
+		String tagValueL = addressDB.getLowerTagValue();
+		String tagValueH = addressDB.getHigherTagValue();
+		int tag = (int) (Math.random() * (Integer.parseInt(tagValueH) - Integer.parseInt(tagValueL)))
+				+ Integer.parseInt(tagValueL);
+		context.setTagId(String.valueOf(tag));
+		System.out.println(String.valueOf(tag));
+		purchaseOrderPickingPage.enterTagId(String.valueOf(tag));
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
 	}
 
 	@Then("^I proceed with picking to validate multi part set instruction$")

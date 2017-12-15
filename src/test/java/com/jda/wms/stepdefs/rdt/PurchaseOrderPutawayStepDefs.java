@@ -1203,6 +1203,40 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
+	
+	@When("^I proceed with normal putaway$")
+	public void i_proceed_with_normal_putaway() throws Throwable {
+		i_enter_urn_id_in_putaway();
+		jdaFooter.PressEnter();
+		context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId()));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(inventoryDB.getPutawayLocation(context.getSkuId())));
+		jdaFooter.PressEnter();
+		hooks.logoutPutty();
+
+	}
+	@When("^I proceed without entering po quantity$")
+	public void i_proceed_without_entering_po_quantity() throws InterruptedException, FindFailed {
+		ArrayList failureList1 = new ArrayList();
+		i_enter_urn_id_in_putaway();
+		jdaFooter.PressEnter();
+		for (int t = 0; t < 9; t++) {
+			puttyFunctionsPage.rightArrow();
+		}
+		for (int i = 0; i < 9; i++) {
+			jdaFooter.pressBackSpace();
+		}
+
+		jdaFooter.PressEnter();
+		if (!purchaseOrderPutawayPage.isQuantityErrorDisplayed()) {
+			failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+					+ context.getUpiId());
+		}
+	}
+
 
 	@When("^I perform normal putaway after under receiving and relocation$")
 	public void i_perform_normal_putaway_after_under_receiving_and_relocation() throws Throwable {
@@ -1335,6 +1369,62 @@ public class PurchaseOrderPutawayStepDefs {
 		hooks.logoutPutty();
 	}
 
+	@When("^I perform normal putaway after relocation for MEZZ skus$")
+	public void i_perform_normal_putaway_after_relocation_for_mezz_skus() throws Throwable {
+		ArrayList<String> failureList = new ArrayList<String>();
+		poMap = context.getPOMap();
+		upiMap = context.getUPIMap();
 
+		puttyFunctionsStepDefs.i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsStepDefs.i_select_user_directed_option_in_main_menu();
+		i_select_normal_putaway();
+		i_should_be_directed_to_putent_page();
+		String date = DateUtils.getCurrentSystemDateInDBFormat();
+		for (int i = context.getLineItem(); i <= context.getNoOfLines(); i++) {
+			context.setSkuId(poMap.get(i).get("SKU"));
+			context.setTagId(
+					inventoryTransactionDB.getTagID(context.getPreAdviceId(), "Receipt", context.getSkuId(), date));
+			context.setUpiId(context.getTagId());
+			i_enter_urn_id_in_putaway(context.getTagId());
+			jdaFooter.PressEnter();
+				the_tag_details_for_mezz_putaway_should_be_displayed_after_relocation();
 
+			jdaFooter.PressEnter();
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			} else {
+
+			}
+			i_should_be_directed_to_putent_page();
+
+		}
+		hooks.logoutPutty();
+	}
+	
+	@When("^the tag details for MEZZ putaway should be displayed after relocation$")
+	public void the_tag_details_for_mezz_putaway_should_be_displayed_after_relocation()
+			throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		ArrayList failureList = new ArrayList();
+		Assert.assertTrue("PutCmp page not displayed to enter To Location",
+				purchaseOrderPutawayPage.isPutCmpPageDisplayed());
+		verification.verifyData("From Location", context.getFromLocation(), purchaseOrderPutawayPage.getFromLocation(),
+				failureList);
+		verification.verifyData("Tag ID", context.getTagId(), purchaseOrderPutawayPage.getTagId(), failureList);
+		if (purchaseOrderPutawayPage.getToLocation() != null) {
+			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+		} else {
+			
+			
+				context.setToLocation(inventoryDB.getToLocationForMezz("MEZ",context.getSiteId()));
+				
+			jdaFooter.pressTab();
+				i_enter_to_location(context.getToLocation());
+			
+		}
+		
+		Assert.assertTrue("SKU Attributes are not as expected. [" + Arrays.asList(failureList.toArray()) + "].",
+				failureList.isEmpty());
+	}
 }

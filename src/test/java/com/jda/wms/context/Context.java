@@ -176,7 +176,17 @@ public class Context {
 	private String errorMessage;
 	private int updatedQty;
 	private static String secondTestData;
-	private int newQtyOnHAnd;
+	private int newQtyOnHAnd; 
+	
+	private static String url;
+	private static String puttyHost;
+	private static String puttyPort;
+	private static String appUsername;
+	private static String appPassword;
+	private static String dBHost;
+	private static String dBUsername;
+	private static String dBPassword;
+	private static String siteId;
 
 
 	private boolean jdaLoginFlag = false;
@@ -1518,6 +1528,82 @@ public class Context {
 
 	public void setBookingList(ArrayList<String> bookingList) {
 		this.bookingList = bookingList;
+	} 
+	
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+	
+	public void setURL(String url) {
+		this.url = url;
+	}
+
+	public String getURL() {
+		return url;
+	}
+
+	public void setPuttyHost(String puttyHost) {
+		this.puttyHost = puttyHost;
+	}
+
+	public String getPuttyHost() {
+		return puttyHost;
+	}
+
+	public void setPuttyPort(String puttyPort) {
+		this.puttyPort = puttyPort;
+
+	}
+
+	public String getPuttyPort() {
+		return puttyPort;
+	}
+
+	public void setAppUserName(String appUsername) {
+		this.appUsername = appUsername;
+	}
+
+	public String getAppUserName() {
+		return appUsername;
+	}
+
+	public void setAppPassord(String appPassword) {
+		this.appPassword = appPassword;
+
+	}
+	
+	public String getAppPassord() {
+		return appPassword;
+	}
+
+	public void setDBHost(String dBHost) {
+		this.dBHost = dBHost;
+	} 
+	
+	public String getDBHost() {
+		return dBHost;
+	}
+
+	public void setDBUserName(String dBUsername) {
+		this.dBUsername = dBUsername;
+
+	}
+	
+	public String getDBUserName() {
+		return dBUsername;
+	}
+
+	public void setDBPassword(String dBPassword) {
+		this.dBPassword = dBPassword;
+
+	}
+	
+	public String getDBPassword() {
+		return dBPassword;
 	}
 
 	

@@ -50,7 +50,9 @@ public class Hooks {
 	String envVar = System.getProperty("user.dir");
 	private DataSetupRunner dataSetupRunner;
 	public static DbConnection NPSdataBase;
-
+	public static String statusRegion = System.getProperty("USE_DB");
+	public static String region = System.getProperty("REGION");
+//	public static String region = "ST";
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
 
@@ -88,8 +90,12 @@ public class Hooks {
 		System.out.println("1st Before start");
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
 		System.out.println("Uniq Tag --->" + tagListForScenario);
-
-		System.out.println("Starting Execution" + scenario.getName());
+		System.out.println("Starting Execution" + scenario.getName()); 
+		if (statusRegion != null) {
+			getAppInventoryDetails(region, "Foods");
+		} else {
+			System.out.println("Environment details get from config file");
+		}
 		getParentRequestID();
 		System.out.println("PREQ_ID " + context.getParentRequestId());
 		insertDetails(scenario.getName());
@@ -144,36 +150,65 @@ public class Hooks {
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();
-			while (screen.exists("/images/Putty/3Logout.png") == null) {
+			int f=0;
+			do{
+				if (screen.exists("/images/Putty/3Logout.png") == null){
 				screen.type(Key.F12);
-			}
+				}
+				f++;
+			}while(f<=15);
+//			while (screen.exists("/images/Putty/3Logout.png") == null) {
+//				screen.type(Key.F12);
+//			}
 			screen.type("3");
 			Thread.sleep(1000);
 			screen.type(Key.ENTER);
 			Thread.sleep(2000);
-
 			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
-			// //Process p = Runtime.getRuntime().exec("cmd /c
-			// C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
-			// p.waitFor();
-
 			screen.type(Key.F4, Key.ALT);
 			Thread.sleep(2000);
 			screen.type(Key.ENTER);
 			Thread.sleep(2000);
 			context.setPuttyLoginFlag(false);
-			// screen.wait("images/Putty/PuttyClose.png", 20);
-			// screen.click("images/Putty/PuttyClose.png", 25);
-			// Thread.sleep(1000);
-
-			// screen.wait("images/Putty/PuttyCloseOK.png", 20);
-			// screen.click("images/Putty/PuttyCloseOK.png", 25);
-			// Thread.sleep(1000);
 		}
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		p.waitFor();
 		System.out.println("Kill Completed");
-	} 
+	}  
+	
+	public void getAppInventoryDetails(String region, String cluster) {
+		ResultSet resultSet = null;
+		try {
+			if (context.getSQLDBConnection() == null) {
+				sqlConnectOpen();
+			}
+			resultSet = context.getSQLDBConnection().createStatement().executeQuery(
+					"Select * from APP_INVENTORY Where environment = '" + region + "' and cluster = 'GM'");
+			while (resultSet.next()) {
+				String url = resultSet.getString("url");
+				String siteId = resultSet.getString("site_id");
+				String puttyHost = resultSet.getString("putty_host");
+				String puttyPort = resultSet.getString("putty_port");
+				String appUsername = resultSet.getString("app_username");
+				String appPassword = resultSet.getString("app_pwd");
+				String dBHost = resultSet.getString("db_host");
+				String dBUsername = resultSet.getString("db_username");
+				String dBPassword = resultSet.getString("db_pwd");
+				context.setURL(url);
+				context.setSiteId(siteId);
+				context.setPuttyHost(puttyHost);
+				context.setPuttyPort(puttyPort);
+				context.setAppUserName(appUsername);
+				context.setAppPassord(appPassword);
+				context.setDBHost(dBHost);
+				context.setDBUserName(dBUsername);
+				context.setDBPassword(dBPassword);
+
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
 	
 	@SuppressWarnings("static-access")
 	private void updateTestDataIntoRunStatusTable(String tcName) {

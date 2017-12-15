@@ -1984,6 +1984,22 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+	
+	public String getToLocationForMezz(String skuType,String siteId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
+		if (!rs.next()) {
+			context.setErrorMessage("Record not found in DB");
+			Assert.fail("Record not found in DB");
+		} else {
+			System.out.println("Record found in DB");
+		}
+		return rs.getString(1);
+	}
 }
 
 

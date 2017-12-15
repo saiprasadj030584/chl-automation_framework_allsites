@@ -16,5 +16,9 @@ Feature: Purchase order receiving
     And the pallet count should be updated in delivery, po to be linked with upi line
     When I receive all skus for the purchase order with no asn at location "REC001"
     Then Error message should be displayed on the page
+    
+    
+    
+    
 
   

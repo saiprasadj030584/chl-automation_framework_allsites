@@ -19,6 +19,9 @@ public class PuttyFunctionsStepDefs {
 	private Context context;
 	private String host = null;
 	private String port = null;
+	public static String statusRegion = System.getProperty("USE_DB");
+	 public static String region = System.getProperty("REGION");
+	//public static String region = "ST";
 
 	@Inject
 	public PuttyFunctionsStepDefs(PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
@@ -33,27 +36,79 @@ public class PuttyFunctionsStepDefs {
 
 		puttyFunctionsPage.invokePutty();
 		System.out.println("PUTTY LAUNCH");
-		if (context.getSiteID().equals("5649")) {
-			System.out.println(port);
-			if(context.isVehicleLoadRequired()){
-			port = configuration.getStringProperty("wst-putty-gm-port-vehicle-load");
+		if (statusRegion == null) {
+			statusRegion = "N";
+		} else {
+			System.out.println("DATABASE Status region---> " + statusRegion);
+		}
+		if (statusRegion.equalsIgnoreCase("N")) {
+			if (region.equalsIgnoreCase("SIT")) {
+				if (context.getSiteID().equals("5649")) {
+					System.out.println(port);
+					if (context.isVehicleLoadRequired()) {
+						port = configuration.getStringProperty("sit-wst-putty-gm-port-vehicle-load");
+					} else {
+						System.out.println("inside port if condition");
+						port = configuration.getStringProperty("sit-wst-putty-gm-port");
+						System.out.println(port);
+					}
+					host = configuration.getStringProperty("sit-wst-putty-gm-host");
+				} else if (context.getSiteID().equals("5885")) {
+					host = configuration.getStringProperty("stk-putty-gm-host");
+					port = configuration.getStringProperty("stk-putty-gm-port");
+				} else {
+					System.out.println("Site Id is not found");
+					Assert.fail("Site Id is not found");
+				}
 			}
-			else{
-				System.out.println("inside port if condition");
-			port = configuration.getStringProperty("wst-putty-gm-port");
-			System.out.println(port);
+
+			else if (region.equalsIgnoreCase("ST")) {
+				if (context.getSiteID().equals("5649")) {
+					System.out.println(port);
+					if (context.isVehicleLoadRequired()) {
+						port = configuration.getStringProperty("st-wst-putty-gm-port-vehicle-load");
+					} else {
+						System.out.println("inside port if condition");
+						port = configuration.getStringProperty("st-wst-putty-gm-port");
+						System.out.println(port);
+					}
+					host = configuration.getStringProperty("st-wst-putty-gm-host");
+				} else if (context.getSiteID().equals("5885")) {
+					host = configuration.getStringProperty("st-stk-putty-gm-host");
+					port = configuration.getStringProperty("st-stk-putty-gm-port");
+				} else {
+					System.out.println("Site Id is not found");
+					Assert.fail("Site Id is not found");
+				}
 			}
-			host = configuration.getStringProperty("wst-putty-gm-host");
 		}
 
-		else if (context.getSiteID().equals("5885")) {
-			host = configuration.getStringProperty("stk-putty-gm-host");
-			port = configuration.getStringProperty("stk-putty-gm-port");
-		}
 		else {
-			System.out.println("Site Id is not found");
-			Assert.fail("Site Id is not found");
+			System.out.println("Get environment Details from NPS DB Putty Host:-" + context.getPuttyHost()
+					+ "Putty Port:-" + context.getPuttyPort());
+			if (region.equalsIgnoreCase("ST")) {
+				if (context.getSiteID().equals("5649")) {
+					if (context.isVehicleLoadRequired()) {
+						port = configuration.getStringProperty("st-wst-putty-gm-port-vehicle-load");
+					} else {
+						port = context.getPuttyPort();
+					}
+					host = context.getPuttyHost();
+				}
+			}
+
+			else if (region.equalsIgnoreCase("SIT")) {
+				if (context.getSiteID().equals("5649")) {
+					if (context.isVehicleLoadRequired()) {
+						port = configuration.getStringProperty("sit-wst-putty-gm-port-vehicle-load");
+					} else {
+						port = context.getPuttyPort();
+					}
+					host = context.getPuttyHost();
+				}
+			}
 		}
+
 		puttyFunctionsPage.loginPutty(host, port);
 		Thread.sleep(5000);
 

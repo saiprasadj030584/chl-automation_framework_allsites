@@ -49,10 +49,13 @@ public class Database {
 	private final Configuration configuration;
 	private final Context context;
 	public final DbConnection npsDataBase;
+	public static String statusRegion = System.getProperty("USE_DB");
+	public static String region = System.getProperty("REGION");
+//	public static String region = "ST";
 	// private final DataSetupRunner dataSetupRunner;
 
 	@Inject
-	public Database(Configuration configuration, Context context,DbConnection npsDataBase) {
+	public Database(Configuration configuration, Context context, DbConnection npsDataBase) {
 		this.configuration = configuration;
 		this.context = context;
 		this.npsDataBase = npsDataBase;
@@ -76,27 +79,59 @@ public class Database {
 		boolean connectionSucessful = false;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			if (context.getSiteID() == null) {
-				System.out.println(" Value Of Site Id" + context.getSiteID());
-				npsDataBase.getSiteId(context.getUniqueTag());
-			}
-			System.out.println("Value Of Site Id **" + context.getSiteID());
-
-			if (context.getSiteID().equals("5649")) {
-
-				connection = DriverManager.getConnection(configuration.getStringProperty("wst-db-host"),
-						configuration.getStringProperty("wst-db-username"),
-						configuration.getStringProperty("wst-db-password"));
-			}
-
-			else if (context.getSiteID().equals("5885")) {
-				connection = DriverManager.getConnection(configuration.getStringProperty("stk-db-host"),
-						configuration.getStringProperty("stk-db-username"),
-						configuration.getStringProperty("stk-db-password"));
+			if (statusRegion == null) {
+				statusRegion = "N";
 			} else {
-				System.out.println("Site Id is not found");
-				Assert.fail("Site Id is not found");
+				System.out.println("DATABASE Status region---> " + statusRegion);
+			}
+			if (statusRegion.equalsIgnoreCase("N")) {
+				if (region.equalsIgnoreCase("ST")) {
+					if (context.getSiteID() == null) {
+						System.out.println(" Value Of Site Id" + context.getSiteID());
+						npsDataBase.getSiteId(context.getUniqueTag());
+					}
+					System.out.println("Value Of Site Id **" + context.getSiteID());
+
+					if (context.getSiteID().equals("5649")) {
+
+						connection = DriverManager.getConnection(configuration.getStringProperty("st-wst-db-host"),
+								configuration.getStringProperty("st-wst-db-username"),
+								configuration.getStringProperty("st-wst-db-password"));
+					}
+
+					else if (context.getSiteID().equals("5885")) {
+						connection = DriverManager.getConnection(configuration.getStringProperty("st-stk-db-host"),
+								configuration.getStringProperty("st-stk-db-username"),
+								configuration.getStringProperty("st-stk-db-password"));
+					}
+				} else if (region.equalsIgnoreCase("SIT")) {
+
+					if (context.getSiteID().equals("5649")) {
+
+						connection = DriverManager.getConnection(configuration.getStringProperty("sit-wst-db-host"),
+								configuration.getStringProperty("sit-wst-db-username"),
+								configuration.getStringProperty("sit-wst-db-password"));
+					}
+
+					else if (context.getSiteID().equals("5885")) {
+						connection = DriverManager.getConnection(configuration.getStringProperty("sit-stk-db-host"),
+								configuration.getStringProperty("sit-stk-db-username"),
+								configuration.getStringProperty("sit-stk-db-password"));
+					}
+
+				} else {
+					System.out.println("Site Id is not found");
+					Assert.fail("Site Id is not found");
+				}
+
+			}
+
+			else {
+				System.out.println("Get environment Details from NPS DB  " + "DB Host:-" + context.getDBHost()
+						+ "DB UserName:-" + context.getDBUserName() + "DB Password:-" + context.getDBPassword());
+				connection = DriverManager.getConnection(context.getDBHost(), context.getDBUserName(),
+						context.getDBPassword());
+
 			}
 
 			connection.setAutoCommit(true);
@@ -105,7 +140,8 @@ public class Database {
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {
 			logger.debug("Exception " + ex.getMessage());
-		}	}
+		}
+	}
 
 	/**
 	 * This method is used to place a file into the interface tables of the
@@ -804,7 +840,7 @@ public class Database {
 
 		}
 	}
-	
+
 	public void closeDBConnection() throws SQLException {
 		// if (!context.getConnection().equals(null)) {
 		if (!(null == context.getConnection())) {
@@ -812,10 +848,9 @@ public class Database {
 			logger.debug("DB Connection closed");
 		}
 	}
-	
+
 	public void reconnectDB() throws SQLException, ClassNotFoundException {
-		
-		
+
 		if (!(null == context.getConnection())) {
 			context.getConnection().close();
 			logger.debug("DB Connection closed");
@@ -823,15 +858,3 @@ public class Database {
 		connect();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

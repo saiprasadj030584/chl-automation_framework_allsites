@@ -4,7 +4,7 @@ Feature: XDock
   I want to perform Xdock of stocks
 
   @unique_boxed_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_upi_header_and_line @xDock @boxed
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,UPI header and line
     Given the "Boxed" PO and UPI and ASN and order should be in Released status
    And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -23,7 +23,7 @@ Feature: XDock
 
     
 @unique_hanging_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_upi_header_and_line @xDock @Hanging
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,UPI header and line
     Given the "Hanging" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -42,7 +42,7 @@ Feature: XDock
     Then Shipping message should be displayed
      
      @unique_boxed_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_multiple_upi_header_and_line @xDock @Hanging
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,multiple UPI header and line
     Given the "Hanging" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -61,7 +61,7 @@ Feature: XDock
     Then Shipping message should be displayed
      
 @unique_hanging_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_multiple_upi_header_and_line @xDock @boxed
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,multiple UPI header and line
     Given the "Boxed" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -80,7 +80,7 @@ Feature: XDock
     Then Shipping message should be displayed
     
     @unique_flatpack_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_upi_header_and_line @xDock @Flatpack
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,UPI header and line
     Given the "Flatpack" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -99,7 +99,7 @@ Feature: XDock
     Then Shipping message should be displayed
     
     @unique_flatpack_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_multiple_upi_header_and_line @xDock @Flatpack
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,multiple UPI header and line
     Given the "Flatpack" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -118,7 +118,7 @@ Feature: XDock
     Then Shipping message should be displayed
 
      @unique_goh_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_multiple_upi_header_and_line @xDock @GOH
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,multiple UPI header and line
     Given the "GOH" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
@@ -137,7 +137,7 @@ Feature: XDock
     Then Shipping message should be displayed
     
      @unique_goh_inbound_receiving_x_dock_receiving_receving_using_asn_order_header_and_line_upi_header_and_line @xDock @GOH
-  Scenario Outline: xdock
+  Scenario: Receving using ASN,ORDER header and line,UPI header and line
     Given the "GOH" PO and UPI and ASN and order should be in Released status
     And order header line to be linked with upi header line
     And I create a trailer to receive at the dock door
