@@ -4,7 +4,7 @@ Feature: Outbound order
   I want to load a trailer
   So that I can unload that trailer
 
- @yes @outbound_despatch @flatpack @idt @unique_flatpack_outbound_order_till_despatch_idt_order_split_shipment_and_multiple_vehicle_single_order @ds
+ @yes @jenkinsC @outbound_despatch @flatpack @idt @unique_flatpack_outbound_order_till_despatch_idt_order_split_shipment_and_multiple_vehicle_single_order @ds
   Scenario: Split shipment and multiple vehicle,single order
     Given the order id of type "IDT" with "Flatpack" skus should be in "Released" status
     And I create a consignment for order
@@ -22,7 +22,7 @@ Feature: Outbound order
     When I navigate to Trailer Shipping page
     Then Multiple trailer should be shipped
 
-   @unique_outbound_order_till_despatch @flatpack @idt @unique_flatpack_outbound_order_till_despatch_idt_order_shipment_single_vehicle_different_store_same_x_dock_dc_different_order_same_upc_and_dept @complete @ds
+ @jenkinsC  @unique_outbound_order_till_despatch @flatpack @idt @unique_flatpack_outbound_order_till_despatch_idt_order_shipment_single_vehicle_different_store_same_x_dock_dc_different_order_same_upc_and_dept @complete @ds
   Scenario: Trailer not entered when unloading
     Given the OrderID of type "IDT" for sku "Flatpack" should be in "Released" status at site
     When I navigate to system allocation page

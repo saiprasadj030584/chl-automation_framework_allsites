@@ -28,7 +28,7 @@ public class OrderContainerDB {
 		System.out.println("select status from order_container where order_id='"+orderId+"'");
 		ResultSet rs = stmt
 				.executeQuery("select status from order_container where order_id='"+orderId+"'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 
@@ -38,7 +38,7 @@ public class OrderContainerDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from order_container where order_id='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getContainerId(String orderId) throws ClassNotFoundException, SQLException {
@@ -47,7 +47,7 @@ public class OrderContainerDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select container_id from order_container where order_id='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String selectURN(String orderId) throws ClassNotFoundException, SQLException {
@@ -57,7 +57,7 @@ public class OrderContainerDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from order_container where order_id = '" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 

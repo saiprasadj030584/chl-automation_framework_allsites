@@ -13,7 +13,7 @@ Feature: Inbound Receiving - Direct PO - Over & Under Receiving with Lock code
     When I perform "Over Receiving" for all skus at location "REC001"
     Then the error message should be displayed as cannot over receipt
 
-   @jenkinsS @jenkinsgm @jenkins14 @jenkinsA @unique_boxed_inbound_receiving_direct_po_under_receiving_with_lock_code @complete @ds @boxed @inbound_receiving @complete @ds 
+   @jenkinsS @jenkinsA @jenkinsgm @jenkins14 @jenkinsA @unique_boxed_inbound_receiving_direct_po_under_receiving_with_lock_code @complete @ds @boxed @inbound_receiving @complete @ds 
   Scenario: Validate Under receiving with lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

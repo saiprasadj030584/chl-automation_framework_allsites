@@ -4,7 +4,7 @@ Feature: Feature: Flatpack - Direct PO - Inbound receiving withoout lock code
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @fltapack @inbound_receiving @direct_po @unique_flatpack_inbound_receiving_direct_po_over_receiving @complete @ds @group_0
+  @fltapack @jenkinsC @inbound_receiving @direct_po @unique_flatpack_inbound_receiving_direct_po_over_receiving @complete @ds @group_0
   Scenario: Over receiving
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Feature: Flatpack - Direct PO - Inbound receiving withoout lock code
     When I perform "Over Receiving" for all "Flatpack" skus at location "REC001"
     Then the error message should be displayed as cannot over receipt
 
-   @flatpack @inbound_receiving @direct_po @unique_flatpack_inbound_receiving_direct_po_under_receiving @complete @ds @group_1
+  @jenkinsC @flatpack @inbound_receiving @direct_po @unique_flatpack_inbound_receiving_direct_po_under_receiving @complete @ds @group_1
   Scenario: Under receiving
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

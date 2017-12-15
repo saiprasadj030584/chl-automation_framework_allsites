@@ -4,7 +4,7 @@ Feature: Feature: Goh - Direct PO - Inbound receiving withoout lock code
   I want to receive the articles
   So that I can putaway the purchase order
 
-  @goh @inbound_receiving @direct_po @unique_goh_inbound_receiving_direct_po_over_receiving @complete @ds 
+  @goh @jenkinsC @inbound_receiving @direct_po @unique_goh_inbound_receiving_direct_po_over_receiving @complete @ds 
   Scenario: Over receiving
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details
@@ -12,7 +12,7 @@ Feature: Feature: Goh - Direct PO - Inbound receiving withoout lock code
     When I perform "Over Receiving" for all "GOH" skus at location "REC001"
     Then the error message should be displayed as cannot over receipt
 
-   @goh @inbound_receiving @direct_po @unique_goh_inbound_receiving_direct_po_under_receiving @complete @ds 
+   @goh @jenkinsC  @inbound_receiving @direct_po @unique_goh_inbound_receiving_direct_po_under_receiving @complete @ds 
   Scenario: Under receiving
     Given the PO of type "GOH" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

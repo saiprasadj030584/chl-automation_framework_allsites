@@ -3,7 +3,7 @@ Feature: Purchase order receiving
   As a warehouse user
   I want to receive the articles
 
-  @yes @unique_part_set_inbound_receiving_returns_multiple_urn_and_single_asn @inbound_receiving @returns_rms @partset @ds @complete
+  @yes @stoke @unique_part_set_inbound_receiving_returns_multiple_urn_and_single_asn @inbound_receiving @returns_rms @partset @ds @complete
   Scenario: Multiple URN and single ASN
     Given the multiple UPI of type "Hanging" and ASN should be in "Released" status with partset
     And the multiple upi should have sku, quantity due details

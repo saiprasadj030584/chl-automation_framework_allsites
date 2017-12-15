@@ -33,7 +33,7 @@ public class LocationDB {
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select check_string from location where location_id = '" + location + "'");
 		ResultSet rs = stmt.executeQuery("select check_string from location where location_id = '" + location + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 
@@ -149,7 +149,7 @@ public class LocationDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_id from location where lock_status = '" + status + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	
 	public ArrayList<String> getLocationForZone(String zone) throws SQLException, ClassNotFoundException {
@@ -192,7 +192,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_2 from location where location_id = '" + location + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	public String getUserDefType3(String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -201,7 +201,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_3 from location where location_id = '" + location + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	
 	public String getToLocationForPutaway(String skuType,String department) throws SQLException, ClassNotFoundException {
@@ -235,7 +235,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
 				+ "and user_def_type_1='" + prodGrp + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForBoxed(String type, String type2, String status)
@@ -250,7 +250,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type2 + "' and user_def_type_3='" + type2 + "' and current_volume='0'"
 				+ "and lock_status='" + status + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForHanging(String type, String prodGrp, String status)
@@ -266,7 +266,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		ResultSet rs = stmt.executeQuery("select location_id from location  where zone_1='" + type
 				+ "' and user_def_type_2='" + type + "' and user_def_type_3='" + type + "' and current_volume='0'"
 				+ "and user_def_type_1='" + prodGrp + "' and lock_status='" + status + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPutawayLocationForGoh(String type)
@@ -287,7 +287,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 
 						+ "%' and user_def_type_3 like '" + type + "%' and current_volume='0'" + "and lock_status='UnLocked'");
 		
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 
@@ -303,7 +303,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
 				+ "%' and user_def_type_2 like '" + skuType + "%' and user_def_type_3 like '" + skuType
 				+ "%' and lock_status='UnLocked' and current_volume='0'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 	
@@ -320,7 +320,7 @@ public String checkBoxZone() throws ClassNotFoundException, SQLException {
 				"select location_id from location where (zone_1 like 'BOX%' and user_def_type_2 like 'BOX%' and user_def_type_3 like 'FLAT%' and lock_status='UnLocked' and current_volume='0')"
 						+ "or (zone_1 like 'HANG%' and user_def_type_2 like 'HANG%' and user_def_type_3 like 'FLAT%' and user_def_type_1='"
 						+ department + "' and lock_status='UnLocked' and current_volume='0')");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	
 public boolean getunlocked_GOH_location(String location) throws SQLException, ClassNotFoundException {

@@ -27,7 +27,7 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ORDER_DATE from ORDER_HEADER where sku_id='" + skuId
 				+ "' AND supplier_id ='" + supplierID + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getSupplierId(String upc) throws ClassNotFoundException {
@@ -52,11 +52,11 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select count(*) from supplier_sku where supplier_sku_id='" + upc + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 			return false;
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 			return true;
 		}
 		
@@ -111,7 +111,7 @@ public class SupplierSkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuId
 				+ "' AND supplier_id ='" + supplierID + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 

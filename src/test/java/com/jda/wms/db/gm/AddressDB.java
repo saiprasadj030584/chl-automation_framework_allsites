@@ -88,10 +88,10 @@ public class AddressDB {
 			rs = stmt.executeQuery(
 					"select user_def_type_7 from address where Address_id = '" + context.getCustomer() + "'");
 			if (!rs.next()) {
-				context.setErrorMessage("Record not found in DB");
-				Assert.fail("Record not found in DB");
+				context.setErrorMessage("Queried data from JDA DB not found");
+				Assert.fail("Queried data from JDA DB not found");
 			} else {
-				System.out.println("Record not found in DB");
+				System.out.println("Queried data from JDA DB not found");
 			}
 		} catch (Exception e) {
 			context.setErrorMessage("Exception Caught !!! Record not found for the customer :");

@@ -31,10 +31,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select EXPIRY_DSTAMP from INVENTORY where TAG_ID = '" + tagId
 				+ "' AND SKU_ID = '" + skuId + "' AND LOCATION_ID = '" + location + "' AND LOCK_STATUS = 'UnLocked'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -47,10 +47,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select customer_id  from inventory_transaction where reference_id ='"
 				+ reference + "' and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -64,10 +64,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select consignment  from inventory_transaction where reference_id ='"
 				+ reference + "' and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -81,10 +81,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select from_status from inventory_transaction where reference_id ='"
 				+ reference + "' and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -97,10 +97,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select to_status from inventory_transaction where reference_id ='" + reference
 				+ "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -113,10 +113,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select  uploaded_dstamp from inventory_transaction where reference_id ='"
 				+ reference + "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -130,10 +130,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select  uploaded_filename from inventory_transaction where reference_id = '"
 				+ reference + "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -147,10 +147,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select  uploaded from inventory_transaction where reference_id = '"
 				+ reference + "' and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -164,10 +164,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_4 from inventory_transaction where reference_id = '"
 				+ reference + "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -180,10 +180,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select USER_DEF_DATE_1 from inventory_transaction where reference_id = '"
 				+ reference + "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -196,10 +196,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select USER_DEF_TYPE_2 from inventory_transaction where reference_id = '"
 				+ reference + "'  and notes ='" + notes + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -212,10 +212,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select site_id from inventory where tag_id = '" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -262,10 +262,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select qty_on_hand from Inventory  where sku_id ='" + sku
 				+ "' and location_id='" + location + "' and tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -276,10 +276,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_num_3 from inventory where tag_id='" + tagID + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -291,10 +291,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -306,10 +306,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_status from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -333,10 +333,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select lock_code from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -348,10 +348,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -374,10 +374,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_6 from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -390,10 +390,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_on_hand from inventory where tag_id='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -421,7 +421,7 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select sku_id from inventory where tag_id='" + tagID + "' and zone_1 ='" + zone + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getTagIdWithStatus(String status) throws ClassNotFoundException {
@@ -448,10 +448,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.tag_id, inventory.sku_id,inventory.qty_on_hand,inventory.qty_allocated from inventory inner join sku on sku.allocation_group = 'EXPIRY' and sku.sku_id = inventory.sku_id and inventory.qty_on_hand>inventory.qty_allocated");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -465,10 +465,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.tag_id,inventory.user_def_num_3 from inventory inner join sku on sku.product_group = 'F20' and sku.sku_id = inventory.sku_id and inventory.user_def_num_3 is not null");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -528,10 +528,10 @@ public class InventoryDB {
 
 						+ skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -544,10 +544,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where receipt_id='" + containerID
 				+ "' and sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -559,10 +559,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from inventory where tag_id ='" + tagId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -574,10 +574,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select tag_id from inventory Where site_id='" + siteID + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -603,10 +603,10 @@ public class InventoryDB {
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -624,10 +624,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where receipt_id='" + preAdviceId
 				+ "' and sku_id = '" + skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -644,10 +644,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where tag_id='" + upiId + "' and sku_id = '"
 				+ skuId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -664,10 +664,10 @@ public class InventoryDB {
 				.executeQuery("select QTY_ON_HAND from inventory where receipt_id='" + preAdviceId + "' and sku_id = '"
 						+ skuId + "' and location_id = '" + location + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -684,10 +684,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id = '" + skuId
 				+ "' and location_id  not like '" + location + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -702,7 +702,7 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '" + skuId
 				+ "' and MOVE_DSTAMP like '" + date + "%'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getagId(String status) throws SQLException, ClassNotFoundException {
@@ -712,7 +712,7 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select TAG_ID FROM inventory WHERE lock_status='" + status + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getsku(String status) throws SQLException, ClassNotFoundException {
@@ -723,10 +723,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select SKU_ID FROM inventory WHERE lock_status='" + status + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -738,10 +738,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select location_ID FROM inventory WHERE lock_status='" + status + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -929,10 +929,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select location_id from inventory where sku_id='" + skuId
 				+ "' and location_id not like '%REC%' and location_id not like '%STAGE%' and location_id not like '%DEFAULTLANE%' and location_id not like '%SINBOX%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -947,10 +947,10 @@ public class InventoryDB {
 				+ context.getPutawayLocation1() + "'");
 
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -964,10 +964,10 @@ public class InventoryDB {
 						+ listID + "' ) and tag_id='" + tagId + "'");
 
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -981,10 +981,10 @@ public class InventoryDB {
 				"select qty_on_hand from inventory where tag_id ='" + tagId + "' and location_id = '" + location + "'");
 
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1002,10 +1002,10 @@ public class InventoryDB {
 						+ listID + "' ) and tag_id='" + tagId + "'");
 
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1017,10 +1017,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select count(*) from inventory where sku_id='" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1055,10 +1055,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select count(*) from inventory where sku_id='" + skuId + "' and location_id not like 'SUSPENSE'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1071,10 +1071,10 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select config_id from inventory where sku_id='" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1091,10 +1091,10 @@ public class InventoryDB {
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + newpallet + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1108,10 +1108,10 @@ public class InventoryDB {
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1127,10 +1127,10 @@ public class InventoryDB {
 						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
 						+ "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1148,10 +1148,10 @@ public class InventoryDB {
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1186,10 +1186,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
 				+ "%' and lock_status='UnLocked' and user_def_type_1='" + department + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1204,10 +1204,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select location_id from location where Zone_1 like '" + skuType + "%' and lock_status='UnLocked'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1282,10 +1282,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select qty_on_hand from inventory where sku_id='" + skuId + "' and location_id='" + location + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1494,7 +1494,7 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select origin_id from inventory where tag_id= '" + tagId + "' ");
 
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList getStockDetails(String type) throws ClassNotFoundException, SQLException {
@@ -1536,10 +1536,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select DSTAMP from inventory_transaction where sku_id='" + skuId + "'" + "order by dstamp desc");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1554,10 +1554,10 @@ public class InventoryDB {
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1574,10 +1574,10 @@ public class InventoryDB {
 						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
 						+ "%'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1592,7 +1592,7 @@ public class InventoryDB {
 
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where sku_id = '" + skuId
 				+ "' and location_id = '" + location + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	public String getQtynHandwithlocation(String tagid,String Location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -1614,7 +1614,7 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from inventory where sku_id='" + skuId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getLocationAfterReceiveForFlatpack(String skuId, String tagId, String date)
@@ -1626,7 +1626,7 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getQtyOnHandForFlatpack(String skuId, String location, String tagId, String date)
@@ -1640,7 +1640,7 @@ public class InventoryDB {
 				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
 						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
 						+ "%'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPutawayLocation(String skuId) throws SQLException, ClassNotFoundException {
@@ -1653,7 +1653,7 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select location_id from inventory where sku_id='" + skuId + "' and location_id not like '%REC%'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getTagID(String siteID, String dataType) throws SQLException, ClassNotFoundException {
@@ -1664,7 +1664,7 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select A.tag_id from inventory A inner join sku B on B.sku_id=A.sku_id where B.user_def_type_8='"
 						+ dataType + "' and A.site_id='" + siteID + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	
 	
@@ -1748,7 +1748,7 @@ public class InventoryDB {
 				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
 						+ tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 
@@ -1977,10 +1977,10 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select QTY_ALLOCATED from inventory where sku_id = '" + skuId
 				+ "' and location_id = '" + location + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -1993,10 +1993,10 @@ public class InventoryDB {
 		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
 		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}

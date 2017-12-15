@@ -3,7 +3,7 @@ Feature: GOH - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-  @allocation @goh @retail @unique_goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
+ @jenkinsC @allocation @goh @retail @unique_goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
   Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
     Given the OrderID of type "Retail" for sku "GOH" should be in "Released" status at site
     And I have inventory available for the order line items
@@ -12,7 +12,7 @@ Feature: GOH - Retail - Allocation
     Then the order should be allocated with prohibition flag
     
     
-   @allocation @retail @goh @unique_goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds @gems
+   @jenkinsC @allocation @retail @goh @unique_goh_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds @gems
   Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Disallowed 
     Given the order id of type "Retail" should be in "Released" status and "GOH" skus should be applicable for "Prohibition" disallowed
     When I navigate to system allocation page
@@ -45,7 +45,7 @@ Feature: GOH - Retail - Allocation
     And I allocate the stocks
     Then the order should be allocated
     
-    @allocation @retail @boxed @unique_goh_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
+    @jenkinsC  @allocation @retail @boxed @unique_goh_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "Retail" with "GOH" skus should be in "Released" status
     And I have setup the data to check just in time

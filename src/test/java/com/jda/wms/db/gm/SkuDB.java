@@ -28,10 +28,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ALLOCATION_GROUP from SKU WHERE SKU_ID ='" + sku + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		allocationGroup = (rs.getString(1));
 		return allocationGroup;
@@ -54,10 +54,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select description from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -69,10 +69,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_3 from SKU where sku_id = '" + skuID + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -85,10 +85,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id  = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -100,10 +100,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ean from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -115,10 +115,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select UPC from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -130,10 +130,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  each_quantity  from sku where sku_id  = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -146,10 +146,10 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("select qty_due from upi_receipt_line where sku_id = '" + skuId
 				+ "' and pallet_id='" + pallet_id + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -161,10 +161,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  tag_merge from sku where sku_id  = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -176,10 +176,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  new_product from sku where sku_id= '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -191,10 +191,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select ce_warehouse_type from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -206,10 +206,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select  ce_vat_code from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -221,10 +221,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select ce_customs_excise FROM sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -236,10 +236,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select CE_ALCOHOLIC_STRENGTH FROM sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -251,10 +251,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select expiry_reqd FROM sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -267,10 +267,10 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("Select USER_DEF_TYPE_2 FROM sku where sku_id = '" + skuId + "'");
 		//rs.next();
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -282,10 +282,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("Select USER_DEF_TYPE_7 FROM sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -297,10 +297,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id = '" + skuId + "' ");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -313,10 +313,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select new_product from sku where sku_id = '" + skuId + "' ");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -329,10 +329,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select USER_DEF_NUM_2 from sku where sku_id = '" + skuId + "' ");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -344,11 +344,11 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from sku where sku_id = '" + skuId + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 			return false;
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 			return true;
 		}
 		
@@ -362,10 +362,10 @@ public class SkuDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select sku_id from sku where user_def_type_8='" + skuType + "' and new_product='N'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 		}
 		return rs.getString(1);
 	}
@@ -379,11 +379,11 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
 		System.out.println("select sku_id from sku_sku_config where sku_id='" + skuId + "' and config_id='" + packConfig + "'");
 		if (!rs.next()) {
-			context.setErrorMessage("Record not found in DB");
-			Assert.fail("Record not found in DB");
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
 			return false;
 		} else {
-			System.out.println("Record found in DB");
+			System.out.println("Queried data from JDA DB found");
 			return true;
 		}
 }

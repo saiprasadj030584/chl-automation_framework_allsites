@@ -11,7 +11,7 @@ Feature: Hanging - IDT - Allocation
     When the inventory is available for the given SKU
     Then the order should be allocated
 
-  @allocation @hanging @idt @unique_hanging_allocation_idt_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
+  @jenkinsB  @allocation @hanging @idt @unique_hanging_allocation_idt_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
   Scenario: Validating prohibition rule while allocation
     Given the OrderID of type "IDT" for sku "Hanging" should be in "Released" status at site
     And I have inventory available for the order line items

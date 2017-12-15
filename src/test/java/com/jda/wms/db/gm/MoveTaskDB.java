@@ -62,7 +62,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		System.out.println("select list_id from move_task where task_id ='" + orderId + "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select list_id from move_task where task_id ='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList<String> getListIdArray(String orderID) throws SQLException, ClassNotFoundException {
@@ -91,7 +91,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "' and list_id is not null");
 		ResultSetMetaData rsmd = rs.getMetaData();
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList<String> getQtyToMoveList(String orderID) throws SQLException, ClassNotFoundException {
@@ -265,7 +265,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select LIST_ID FROM move_task where tag_id ='" + tagId + "' and sku_id = '" + skuId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList<String> getReplenishQtyToMoveList(String sku) throws SQLException, ClassNotFoundException {
@@ -383,7 +383,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select config_id FROM move_task where sku_id = '" + skuId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPalletId(String orderId) throws SQLException, ClassNotFoundException {
@@ -393,7 +393,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where task_id ='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getTaskType(String date) throws SQLException, ClassNotFoundException {
@@ -403,7 +403,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Task_TYPE from move_task where DSTAMP like'" + date + "%'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList getListIDList(String taskId, String skuId) throws ClassNotFoundException {
@@ -482,7 +482,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Task_id from move_task where DSTAMP like'" + date + "%' and tag_id='"
 				+ tagId + "' and status='Released'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getListIdString(String orderID) throws SQLException, ClassNotFoundException {
@@ -494,7 +494,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select LIST_ID from MOVE_TASK where TASK_ID = '" + orderID + "'");
 		ResultSetMetaData rsmd = rs.getMetaData();
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 
@@ -507,7 +507,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		// move_task where task_id = '" + orderId + "'");
 		ResultSet rs = stmt.executeQuery("SELECT CONTAINER_ID FROM move_task  where task_id = '" + orderId + "'");
 		context.getConnection().commit();
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 
@@ -520,7 +520,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where task_id='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String selectURN(String orderId) throws SQLException, ClassNotFoundException {
@@ -531,7 +531,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select container_id from move_task where task_id='" + orderId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPalletId(String skuId, String transactionTime, String type) throws SQLException, ClassNotFoundException {
@@ -542,7 +542,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where sku_id='" + skuId + "' and task_type='"
 				+ type +"' and dstamp like '%" +transactionTime+ "%'" );
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 	
@@ -566,7 +566,7 @@ public ArrayList<String> selectPalletIdList(String orderId) throws SQLException,
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select pallet_id from move_task where sku_id='" + skuId + "' and task_type='"
 				+ type +"' and tag_id ='" +tagId+ "'" );
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 
 	}
 

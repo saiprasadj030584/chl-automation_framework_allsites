@@ -5,7 +5,7 @@ Feature: Flatpack - IDT - Order Management
   So that the order status can be updated in the order management screen
 
            
-      @jenkinsg @unique_flatpack_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @flatpack @order_management @idt @complete
+      @jenkinsC @unique_flatpack_order_management_idt_verify_order_status_updated_for_each_transaction_in_order_management_screen_and_order_header @flatpack @order_management @idt @complete
   Scenario: Verify order status updated for each transaction in order management screen and order header
    # Given the "Flatpack" type "<orderId>" of "IDT" should be in "Released" status in order header maintenance
      Given the order id of type "IDT" with "Flatpack" skus should be in "Released" status

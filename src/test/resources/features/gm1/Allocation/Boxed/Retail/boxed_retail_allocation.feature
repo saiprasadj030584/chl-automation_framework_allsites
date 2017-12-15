@@ -3,7 +3,7 @@ Feature: Boxed - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-   @yes @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
+    @jenkinsA @yes @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_the_stock_in_suspense_location_is_not_allocated_non_allocation @complete @ds
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and skus should be in "Suspense" location
     When I navigate to system allocation page
@@ -17,7 +17,7 @@ Feature: Boxed - Retail - Allocation
     And I allocate the stocks
     Then the order should be allocated
 
-  @boxed @allocation @retail @unique_boxed_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds
+   @jenkinsA @boxed @allocation @retail @unique_boxed_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_disallowed @complete @ds
   Scenario Outline: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Disallowed
     Given the order is of type "RETAIL" and it is in "Released" status
     And the order status is in "Released" status raised for the country of origin "<OriginLocation>"
@@ -30,14 +30,14 @@ Feature: Boxed - Retail - Allocation
       | TUR            | UK              |
 
 
-   @yes @allocation @retail @boxed @unique_boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
+    @jenkinsA @yes @allocation @retail @boxed @unique_boxed_allocation_retail_stocks_allocation_just_in_time_allocation @onhold @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I have setup the data to check just in time
     When check whether the stock is allocated automatically
     Then Navigate to order to check order is allocated
 
-  @allocation @boxed @retail @unique_boxed_allocation_retail_validate_prohibition_rule @complete @ds
+  @jenkinsA @allocation @boxed @retail @unique_boxed_allocation_retail_validate_prohibition_rule @complete @ds
   Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
     Given the OrderID of type "Retail" should be in "Released" status at site
     And I have inventory available for the order line items
@@ -63,7 +63,7 @@ Feature: Boxed - Retail - Allocation
     Given the order of "Retail" should be in "Released" status in order header maintenance
     Then the order stock modularity should be visible
     
-     @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
+    @jenkinsic @allocation @retail @boxed @unique_boxed_allocation_retail_validate_whether_stock_with_earliest_expiry_date_is_allocated_first_expiry_date_sensitive_product @complete @ds 
   Scenario: Validate whether stock with earliest expiry date is allocated first -Expiry Date Sensitive Product
     Given the order id of type "Retail" with "Boxed" skus should be in "Released" status
     And I have setup the data to check expiry date

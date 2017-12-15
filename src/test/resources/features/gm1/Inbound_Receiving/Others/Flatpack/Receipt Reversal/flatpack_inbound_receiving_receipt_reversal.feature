@@ -4,7 +4,7 @@ Feature: Purchase order receiving
   I want to receive the articles
   So that I can putaway the purchase order
 
- @yes @flatpack @receipt_reversal @inbound_receiving @flatpack_inbound_receiving_receipt_reversal_perform_a_receipt_correction_stock_adjustment_function_after_putaway_of_receipt @complete @check17
+ @yes  @jenkinsC @flatpack @receipt_reversal @inbound_receiving @flatpack_inbound_receiving_receipt_reversal_perform_a_receipt_correction_stock_adjustment_function_after_putaway_of_receipt @complete @check17
   Scenario: Perform a receipt correction (stock adjustment function) after putaway of receipt
     Given the PO of type "Flatpack" with UPI and ASN should be in "Released" status
     When I receive all "Flatpack" skus for the purchase order at location "REC002"

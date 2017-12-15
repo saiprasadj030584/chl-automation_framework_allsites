@@ -28,7 +28,7 @@ public class SkuSkuConfigDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"Select sku_id from inventory where sku_id in (select sku_id from sku_sku_config group by sku_id having count(sku_id) > 1)");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public ArrayList<String> getPackConfigList(String sku) throws SQLException, ClassNotFoundException {

@@ -3,7 +3,7 @@ Feature: Hanging - Retail - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
-  @yes @unique_hanging_allocation_retail_stock_in_suspense_location_not_allocated @allocation @retail @hanging @complete
+  @yes   @jenkinsB @unique_hanging_allocation_retail_stock_in_suspense_location_not_allocated @allocation @retail @hanging @complete
   Scenario: Validate whether the stock in suspense location is not allocated-Non allocation
     Given the order id of type "Retail" should be in "Released" status and "Hanging" skus should be in "Suspense" location
     When I navigate to system allocation page
@@ -31,7 +31,7 @@ Feature: Hanging - Retail - Allocation
     When the inventory is available for the given SKU
     Then the order should be allocated
     
-     @allocation @retail @boxed @unique_hanging_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
+     @jenkinsB @allocation @retail @boxed @unique_hanging_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
     And I have setup the data to check just in time
@@ -46,7 +46,7 @@ Feature: Hanging - Retail - Allocation
     When the inventory is available for the given SKU
     Then the order should be allocated
     
-    @allocation @hanging @retail @unique_hanging_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
+     @jenkinsB @allocation @hanging @retail @unique_hanging_allocation_retail_validate_the_prohibition_rules_while_allocating_the_stock_prohibition_rules_prioritize @complete @ds
   Scenario: Validate the Prohibition Rules while allocating the stock  -Prohibition Rules -Prioritize
     Given the OrderID of type "Retail" for sku "Hanging" should be in "Released" status at site
     And I have inventory available for the order line items

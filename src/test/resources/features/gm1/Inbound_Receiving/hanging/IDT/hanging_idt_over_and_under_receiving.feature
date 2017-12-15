@@ -3,7 +3,7 @@ Feature: Inbound Receiving - IDT - Over & Under Receiving without Lock code
   As a warehouse user
   I want to receive the returned articles
 
-   @jenkinsA @unique_hanging_inbound_receiving_idt_over_receiving @idt @inbound_receiving @boxed @complete @ds @maven_check_1 @jenkinsfly
+   @jenkinsB @unique_hanging_inbound_receiving_idt_over_receiving @idt @inbound_receiving @boxed @complete @ds @maven_check_1 @jenkinsfly
   Scenario: Validate Over receiving
     Given the UPI and ASN should be in "Released" status for IDT
     And ASN and container to be linked with upi header

@@ -57,7 +57,7 @@ public class PreAdviceHeaderDB {
 		System.out.println("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		ResultSet rs = stmt
 				.executeQuery("select status from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getNumberOfLines(String preAdviceId) throws SQLException, ClassNotFoundException {
@@ -68,7 +68,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select NUM_LINES from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getPreAdviceId(String status) throws ClassNotFoundException {
@@ -118,7 +118,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select supplier_id from pre_advice_header where pre_advice_id = '" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getUserDefType5(String preAdviceId) throws ClassNotFoundException, SQLException {
@@ -129,7 +129,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_5 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getUserDefType1(String preAdviceId) throws ClassNotFoundException, SQLException {
@@ -140,7 +140,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_1 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getUserDefType2(String preAdviceId) throws ClassNotFoundException, SQLException {
@@ -151,7 +151,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_2 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
@@ -162,7 +162,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select site_id from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getQtyDueSum(String preAdviceId) throws ClassNotFoundException, SQLException {
@@ -173,7 +173,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select sum(qty_due) from pre_advice_line where pre_advice_id = '" + preAdviceId + "' ");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public void updateAdviceForSku(String preAdviceId, String adviceId) throws SQLException, ClassNotFoundException {
@@ -228,7 +228,7 @@ public class PreAdviceHeaderDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select user_def_type_1 from pre_advice_header where pre_advice_id = '" + preAdviceId + "'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 }

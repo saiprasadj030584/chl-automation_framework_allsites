@@ -3,7 +3,7 @@ Feature: Report generation
   As a warehouse user
   I want to validate stock in inventory
 
-    @boxed @yes  @unique_boxed_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
+    @jenkinsA @boxed @yes  @unique_boxed_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
      Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
@@ -20,7 +20,7 @@ Feature: Report generation
     And I have to datasetup for restrict quantity
     And I have to check restrict quantity
     
-    @hanging  @hanging_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
+    @hanging @jenkinsB  @hanging_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
     
     Given I have logged in as warehouse user in JDA dispatcher GM application
@@ -38,7 +38,7 @@ Feature: Report generation
     And I have to datasetup for restrict quantity
     And I have to check restrict quantity
 
-    @flatpack  @flatpack_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
+    @flatpack @jenkinsC @flatpack_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
     Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page
@@ -55,7 +55,7 @@ Feature: Report generation
     And I have to datasetup for restrict quantity
     And I have to check restrict quantity
     
-  @goh @goh_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
+  @goh @jenkinsC @goh_inventory_inventory_validate_whether_quantity_field_in_stock_check_screen_is_restricted_restrict_quantity_value @inventory @complete @ds
     Scenario: Validate quantity field in the stock check screen to be restricted so that there is no risk of entering a UPC as a quantity
    Given I have logged in as warehouse user in JDA dispatcher GM application
     When I navigate to stock check list generation page

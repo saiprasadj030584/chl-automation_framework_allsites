@@ -4,7 +4,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
   I want to load a trailer
   So that I can unload that trailer
 
- @unique_outbound_order_till_despatch @boxed @retail @flatpack_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
+ @jenkinsC @unique_outbound_order_till_despatch @boxed @retail @flatpack_outbound_order_till_despatch_order_incorrect_pallet_id_keyin_when_unloading @complete @ds
   Scenario: Incorrect pallet id keyin when unloading
     Given the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
     When I navigate to system allocation page
@@ -24,7 +24,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     When I proceed for vehicle unload
     Then Trailer should display as Invalid Pallet ID
 
-  @unique_outbound_order_till_despatch @flatpack @retail @flatpack_outbound_order_till_despatch_order_unload_urn_from_the_trailer @complete @ds
+  @jenkinsC @unique_outbound_order_till_despatch @flatpack @retail @flatpack_outbound_order_till_despatch_order_unload_urn_from_the_trailer @complete @ds
   Scenario: Unload URN from trailer
    Given the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
     When I navigate to system allocation page
@@ -44,7 +44,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     When I proceed for vehicle unloading
     Then vehicle should be unload
 
-  @unique_outbound_order_till_despatch @boxed @retail @flatpack_outbound_order_till_despatch_order_trailer_not_entered_when_unloading @complete @ds
+  @jenkinsC @unique_outbound_order_till_despatch @boxed @retail @flatpack_outbound_order_till_despatch_order_trailer_not_entered_when_unloading @complete @ds
   Scenario: Trailer not entered when unloading
     Given the OrderID of type "Retail" for sku "Flatpack" should be in "Released" status at site
     When I navigate to system allocation page
@@ -65,7 +65,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     Then Trailer should enter page displayed
     
 
-    @outbound_despatch @flatpack @retail @unique_flatpack_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds
+   @jenkinsC @outbound_despatch @flatpack @retail @unique_flatpack_outbound_order_till_despatch_retail_type_order_split_shipment_and_multiple_vehicle_single_order @ds
   Scenario: Shipment , single vehicle,different store,same x dock dc,different order,same upc and dept
     Given the multiple order id of type "Retail" with "Flatpack" skus should be in "Released" status
     And I allocate the stocks using consignment in system allocation page
@@ -87,7 +87,7 @@ Feature: Flatpack - Retail - Outbound Order till despatch
     Then trailer should be shipped
     
     
-   @yes @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
+   @yes @jenkinsC @outbound_order_till_despatch @flatpack @retail @flatpack_outbound_retail_order_till_despatch_order_multiple_pallet_in_the_single_trailer_when_unloading @ds 
   Scenario: Multiple pallet in the single trailer when unloading
     Given the multiple order id of type "Retail" with "Flatpack" skus should be in "Released" status
     When I create a consignment for multiple order

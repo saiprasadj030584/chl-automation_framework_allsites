@@ -183,7 +183,7 @@ public class DeliveryDB {
 		ResultSet rs = stmt.executeQuery("Select A.asn_id,B.sku_id from upi_receipt_header A  "
 				+ "inner join upi_receipt_line B on A.pallet_id = B.pallet_id inner join sku C on B.sku_id=c.sku_id "
 				+ "and a.status='" + status + "' and C.user_def_type_8= '" + Type + "' and a.asn_id!='null'");
-		if (!rs.next()) {context.setErrorMessage("Record not found in DB");Assert.fail("Record not found in DB");} else{System.out.println("Record found in DB");}return rs.getString(1);
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public Object getAsnIdForASN(String asn) throws SQLException, ClassNotFoundException {
