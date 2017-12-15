@@ -10,7 +10,7 @@ Feature: Allocation
     And I allocate the stocks
     Then the stock should not get allocated
 
-  @yes @allocation @idt @hanging @unique_hanging_allocation_retail_validate_whether_different_orders_of_same_store_are_grouped_together_for_one_pick_consolidate_orders @complete
+  @yes @allocation @idt @hanging @unique_hanging_allocation_idt_validate_whether_different_orders_of_same_store_are_grouped_together_for_one_pick_consolidate_orders @complete
   Scenario: Validate whether different orders of  same store are grouped together for one pick -  Consolidate Orders
     Given the multiple order id of type "IDT" with "Hanging" skus should be in "Released" status
     And I allocate the stocks using consignment in system allocation page

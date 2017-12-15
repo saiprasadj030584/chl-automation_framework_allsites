@@ -3,7 +3,7 @@ Feature: Boxed - IDT - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
- @yes @allocation @idt @boxed @unique_boxed_allocation_idt_stocks_allocation_just_in_time_allocation @dryrun @onhold @ds
+  @allocation @idt @boxed @unique_boxed_allocation_idt_stocks_allocation_just_in_time_allocation @dryrun @onhold @ds
   Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
     Given the order id of type "IDT" should be in "Released" status
     When I navigate to system allocation page

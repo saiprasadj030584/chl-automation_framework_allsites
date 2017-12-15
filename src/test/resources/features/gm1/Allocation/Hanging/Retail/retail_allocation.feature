@@ -9,5 +9,14 @@ Feature: Allocation
     When I navigate to system allocation page
     And I allocate the stocks
     Then the stock should not get allocated
+    
+    
+    
+     @allocation @retail @hanging @unique_hanging_allocation_retail_validate_whether_different_orders_of_same_store_are_grouped_together_for_one_pick_consolidate_orders @complete 
+  Scenario: Validate whether different orders of  same store are grouped together for one pick -  Consolidate Orders
+    Given the multiple order id of type "Retail" with "Hanging" skus should be in "Released" status
+    And I allocate the stocks using consignment in system allocation page
+    Then the multiple stocks should get allocated
+    And the orders should get consolidated
 
  

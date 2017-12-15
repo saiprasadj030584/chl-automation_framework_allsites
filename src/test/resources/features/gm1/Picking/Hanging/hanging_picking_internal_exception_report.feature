@@ -3,7 +3,7 @@ Feature: Hanging - Picking - Report Generation
   As a warehouse user
   I want to generate internal exception report
 
-  @jenkinsB @hanging @picking @unique_hanging_picking_picking_validate_pick_internal_exception_reports @ds @complete @no_ds
+ @stoke @jenkinsB @hanging @picking @unique_hanging_picking_picking_validate_pick_internal_exception_reports @ds @complete @no_ds
   Scenario: Validate Pick Internal Exception Reports
     Given I am on report selection page
     When I choose the print to screen option

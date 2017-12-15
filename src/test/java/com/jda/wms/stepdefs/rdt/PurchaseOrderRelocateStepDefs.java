@@ -82,6 +82,47 @@ public class PurchaseOrderRelocateStepDefs {
 		hooks.logoutPutty();
 
 	}
+	@When("^I proceed with entering the upc and location for MEZZ sku$")
+	public void i_proceed_with_entering_the_upc_and_location_for_mezz_sku() throws Throwable {
+
+		for (int i = 1; i <= context.getNoOfLines(); i++) {
+			context.setSkuId((String) context.getSkuFromPO().get(i - 1));
+			String upc = context.getUPIMap().get(context.getSkuId()).get("UPC");
+			
+			jdaFooter.pressTab();
+			jdaFooter.pressTab();
+			if(context.getSiteId().equals("5649"))
+			{
+				jdaFooter.pressTab();
+			}
+			
+			purchaseOrderRelocatePage.enterLocation(context.getLocation());
+			jdaFooter.pressTab();
+			purchaseOrderRelocatePage.enterUPC(upc);
+			jdaFooter.PressEnter();
+			if(!(purchaseOrderRelocatePage.isNoRelocationDisplayed()))
+			{
+			Assert.assertTrue("RecPalCmp page not displayed", purchaseOrderRelocatePage.isRelPalCmpDisplayed());
+			context.setToLocation(purchaseOrderPutawayPage.getToLocation());
+			context.setFromLocation(context.getToLocation());
+			jdaFooter.PressEnter();
+			if (purchaseOrderRelocatePage.isChkToDisplayed()) {
+				Assert.assertTrue("ChkTo page not displayed", purchaseOrderRelocatePage.isChkToDisplayed());
+				purchaseOrderRelocatePage.enterChks(locationDB.getCheckString(context.getToLocation()));
+				jdaFooter.PressEnter();
+			}
+			Assert.assertTrue("RelEnt page not displayed", purchaseOrderRelocatePage.isRelEntDisplayed());
+			}
+			else
+			{
+				context.setFromLocation(context.getLocation());
+			}
+		}
+		
+
+		hooks.logoutPutty();
+	}
+
 
 	@When("^I proceed with entering the upc and location$")
 	public void i_proceed_with_entering_the_upc_and_location() throws Throwable {

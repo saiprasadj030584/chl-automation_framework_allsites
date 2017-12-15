@@ -250,18 +250,9 @@ private InventoryDB inventoryDb;
 	@Given("^the PO of type \"([^\"]*)\" with UPI and ASN should be in \"([^\"]*)\" status and locked with code \"([^\"]*)\"$")
 	public void the_PO_of_type_with_UPI_and_ASN_should_be_in_status_and_locked_with_code(String type, String status,
 			String lockCode) throws Throwable {
-		//
-		// String preAdviceId = getTcData.getPo();
-		// String upiId = getTcData.getUpi();
-		// String asnId = getTcData.getAsn();
-
-		// String preAdviceId = "1010002230";
-		// String upiId = "00050453000258618208";
-		// String asnId = "0000003724";
-
-		String preAdviceId = context.getPreAdviceId();
-		String upiId = context.getUpiId();
-		String asnId = context.getAsnId();
+		 String preAdviceId = getTcData.getPo();
+		 String upiId = getTcData.getUpi();
+		 String asnId = getTcData.getAsn();
 
 		context.setPreAdviceId(preAdviceId);
 		context.setUpiId(upiId);
@@ -2286,9 +2277,11 @@ private InventoryDB inventoryDb;
 		preAdviceHeaderStepsDefs.the_FSV_po_status_should_be_displayed_as("Complete");
 	}
 
-	@Given("^the UPI \"([^\"]*)\" and ASN \"([^\"]*)\" should be in \"([^\"]*)\" status for multi sourced SKU$")
-	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String upiId, String asnId, String status)
+	@Given("^the UPI and ASN should be in \"([^\"]*)\" status for multi sourced SKU$")
+	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String status)
 			throws Throwable {
+		String upiId = getTcData.getUpi();
+		String asnId = getTcData.getAsn();
 		context.setUpiId(upiId);
 		context.setAsnId(asnId);
 		preAdviceHeaderStepsDefs.the_UPI_and_ASN_should_be_in_status_with_line_items_supplier_details(status);
@@ -2491,7 +2484,7 @@ private InventoryDB inventoryDb;
 	}
 
 	@Given("^the UPI with \"([^\"]*)\" skus and ASN should be in \"([^\"]*)\" status for multi sourced SKU$")
-	public void the_UPI_and_ASN_should_be_in_status_for_multi_sourced_SKU(String status) throws Throwable {
+	public void the_UPI_with_skus_and_ASN_should_be_in_status_for_multi_sourced_SKU(String status) throws Throwable {
 
 		String upiId = getTcData.getUpi();
 		String asnId = getTcData.getAsn();
@@ -3789,5 +3782,5 @@ private InventoryDB inventoryDb;
 		upiReceiptHeaderStepDefs.the_pallet_and_asn_status_should_be_displayed_as("Complete");
 
 	}
-
+	
 }

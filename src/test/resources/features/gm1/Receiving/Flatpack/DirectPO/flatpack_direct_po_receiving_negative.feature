@@ -11,3 +11,9 @@ Feature: Flatpack - Receiving - Direct PO - Negative
     When I navigate to delivery page
     And I enter an ASN ID
     Then the ASN should not be received
+    
+    @jenkinsnC @unique_flatpack_receiving_direct_po_validate_damaged_on_receipt_from_supplier @direct_po @flatpack @receiving @complete @ds
+  Scenario: Validate damaged on receipt (From supplier) 
+    Given the PO of type "Flatpack" with UPI and ASN should be received at "REC001"
+    When I navigate to inventory transaction query
+    Then the inventory transaction should be updated with lockcode damaged
