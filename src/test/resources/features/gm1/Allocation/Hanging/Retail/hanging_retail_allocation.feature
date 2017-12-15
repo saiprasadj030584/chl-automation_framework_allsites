@@ -31,9 +31,16 @@ Feature: Hanging - Retail - Allocation
     When the inventory is available for the given SKU
     Then the order should be allocated
     
+     @allocation @retail @boxed @unique_hanging_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
+  Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
+    Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+    And I have setup the data to check just in time
+    When check whether the stock is allocated automatically
+    Then Navigate to order to check order is allocated
+    
    @jenkinsB @hanging @allocation @retail @unique_hanging_allocation_retail_validate_the_allocations_rules_for_hanging @complete @ds
   Scenario: Validate the allocations Rules for Hanging 
-    #Given the order id of type "Retail" with "Hanging" skus should be in "Released" status
+   
     Given the order of "Retail" should be in "Released" status in order header maintenance 
     And the order sku details are verified
     When the inventory is available for the given SKU

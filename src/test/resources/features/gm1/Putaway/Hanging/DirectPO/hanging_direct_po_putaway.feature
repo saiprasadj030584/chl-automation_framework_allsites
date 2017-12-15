@@ -14,8 +14,26 @@ Feature: Boxed - Direct PO - Putaway
     
     
     @unique_hanging_putaway_direct_po_quantity_field_validation @direct_po @hanging @putaway @complete
-  Scenario: Validate Putaway quantity
+   Scenario: Validate Putaway quantity
     Given the PO of type "Hanging" with UPI and ASN should be received at "REC001"
     When I choose normal putaway
     And I proceed without entering po quantity
     Then the error message should be displayed as invalid quantity exception
+    
+    
+   @unique_hanging_putaway_direct_po_validate_putaway_logic_for_receiving_singles_when_locations_full @hanging @direct_po @putaway @compete
+    Scenario: Validate Putaway Logic for receiving singles when locations full
+     Given the PO of type "Hanging" with UPI and ASN should be received at "REC001"
+    When I choose normal putaway
+    And I proceed by entering less quantity
+    Then the ITL should be generated for putaway relocated stock in inventory transaction
+    
+    
+    
+    @hanging_putaway_direct_po_validate_putaway_process @direct_po @hanging @putaway @complete
+    Scenario: Validate Putaway Process
+     Given the PO of type "Hanging" with UPI and ASN should be received at "REC001"
+    When I choose normal putaway
+    And I proceed with normal putaway
+    Then the goods receipt should be generated for putaway stock in inventory transaction
+    

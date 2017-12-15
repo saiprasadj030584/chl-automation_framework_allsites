@@ -150,31 +150,26 @@ public class Hooks {
 	public void logoutPutty() throws FindFailed, InterruptedException, IOException {
 		if (context.isPuttyLoginFlag() == true) {
 			// context.getPuttyProcess().waitFor();
-			while (screen.exists("/images/Putty/3Logout.png") == null) {
+			int f=0;
+			do{
+				if (screen.exists("/images/Putty/3Logout.png") == null){
 				screen.type(Key.F12);
-			}
+				}
+				f++;
+			}while(f<=15);
+//			while (screen.exists("/images/Putty/3Logout.png") == null) {
+//				screen.type(Key.F12);
+//			}
 			screen.type("3");
 			Thread.sleep(1000);
 			screen.type(Key.ENTER);
 			Thread.sleep(2000);
-
 			Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
-			// //Process p = Runtime.getRuntime().exec("cmd /c
-			// C:\\Users\\kiruthika.srinivasan\\Desktop\\puttykill_Admin.lnk");
-			// p.waitFor();
-
 			screen.type(Key.F4, Key.ALT);
 			Thread.sleep(2000);
 			screen.type(Key.ENTER);
 			Thread.sleep(2000);
 			context.setPuttyLoginFlag(false);
-			// screen.wait("images/Putty/PuttyClose.png", 20);
-			// screen.click("images/Putty/PuttyClose.png", 25);
-			// Thread.sleep(1000);
-
-			// screen.wait("images/Putty/PuttyCloseOK.png", 20);
-			// screen.click("images/Putty/PuttyCloseOK.png", 25);
-			// Thread.sleep(1000);
 		}
 		Process p = Runtime.getRuntime().exec("cmd /c " + envVar + "\\bin\\puttykillAdmin.lnk");
 		p.waitFor();

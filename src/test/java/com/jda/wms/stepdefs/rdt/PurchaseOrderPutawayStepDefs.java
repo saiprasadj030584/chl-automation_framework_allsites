@@ -1203,6 +1203,40 @@ public class PurchaseOrderPutawayStepDefs {
 		}
 		hooks.logoutPutty();
 	}
+	
+	
+	@When("^I proceed with normal putaway$")
+	public void i_proceed_with_normal_putaway() throws Throwable {
+		i_enter_urn_id_in_putaway();
+		jdaFooter.PressEnter();
+		context.setToLocation(inventoryDB.getPutawayLocation(context.getSkuId()));
+		purchaseOrderPutawayPage.enterToLocation(context.getToLocation());
+		jdaFooter.PressEnter();
+		purchaseOrderPutawayPage
+				.enterCheckString(locationDB.getCheckString(inventoryDB.getPutawayLocation(context.getSkuId())));
+		jdaFooter.PressEnter();
+		hooks.logoutPutty();
+
+	}
+	@When("^I proceed without entering po quantity$")
+	public void i_proceed_without_entering_po_quantity() throws InterruptedException, FindFailed {
+		ArrayList failureList1 = new ArrayList();
+		i_enter_urn_id_in_putaway();
+		jdaFooter.PressEnter();
+		for (int t = 0; t < 9; t++) {
+			puttyFunctionsPage.rightArrow();
+		}
+		for (int i = 0; i < 9; i++) {
+			jdaFooter.pressBackSpace();
+		}
+
+		jdaFooter.PressEnter();
+		if (!purchaseOrderPutawayPage.isQuantityErrorDisplayed()) {
+			failureList1.add("Error message:Cannot find putaway location not displayed as expected for UPI"
+					+ context.getUpiId());
+		}
+	}
+
 
 	@When("^I perform normal putaway after under receiving and relocation$")
 	public void i_perform_normal_putaway_after_under_receiving_and_relocation() throws Throwable {

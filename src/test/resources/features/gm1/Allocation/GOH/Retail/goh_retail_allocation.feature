@@ -35,3 +35,10 @@ Feature: GOH - Retail - Allocation
     When I navigate to system allocation page
     And I allocate the stocks
     Then the order should be allocated
+    
+    @allocation @retail @boxed @unique_goh_allocation_retail_stocks_allocation_just_in_time_allocation  @ds
+  Scenario: Validate whether stocks are allocated to orders  -Just in Time Allocation
+    Given the order id of type "Retail" with "GOH" skus should be in "Released" status
+    And I have setup the data to check just in time
+    When check whether the stock is allocated automatically
+    Then Navigate to order to check order is allocated
