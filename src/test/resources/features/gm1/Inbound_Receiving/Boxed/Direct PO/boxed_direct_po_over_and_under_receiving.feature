@@ -4,7 +4,7 @@ Feature: Inbound Receiving - Direct PO - Over & Under Receiving without Lock cod
   I want to receive the articles
   So that I can putaway the purchase order
 
-   @jenkinsgm @jenkinsA @unique_boxed_inbound_receiving_direct_po_over_receiving @complete @boxed @inbound_receiving @complete @ds @group_0
+   @jenkinsgm  @run1 @jenkinsA @unique_boxed_inbound_receiving_direct_po_over_receiving @complete @boxed @inbound_receiving @complete @ds @group_0
   Scenario: Validate Over receiving without lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

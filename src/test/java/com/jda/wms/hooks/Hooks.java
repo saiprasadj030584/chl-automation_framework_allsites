@@ -52,7 +52,7 @@ public class Hooks {
 	public static DbConnection NPSdataBase;
 	public static String statusRegion = System.getProperty("USE_DB");
 	public static String region = System.getProperty("REGION");
-//	public static String region = "ST";
+	//public static String region = "ST";
 	private Database jdaJdatabase;
 	private GetTcData gettcdata;
 

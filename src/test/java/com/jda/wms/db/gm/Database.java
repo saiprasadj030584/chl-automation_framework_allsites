@@ -51,7 +51,7 @@ public class Database {
 	public final DbConnection npsDataBase;
 	public static String statusRegion = System.getProperty("USE_DB");
 	public static String region = System.getProperty("REGION");
-//	public static String region = "ST";
+	//public static String region = "ST";
 	// private final DataSetupRunner dataSetupRunner;
 
 	@Inject

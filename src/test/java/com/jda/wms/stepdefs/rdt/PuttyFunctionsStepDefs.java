@@ -20,7 +20,7 @@ public class PuttyFunctionsStepDefs {
 	private String host = null;
 	private String port = null;
 	public static String statusRegion = System.getProperty("USE_DB");
-	 public static String region = System.getProperty("REGION");
+ public static String region = System.getProperty("REGION");
 	//public static String region = "ST";
 
 	@Inject

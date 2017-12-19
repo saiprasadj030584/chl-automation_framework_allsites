@@ -60,8 +60,11 @@ public class JdaLoginPage {
 			setDriver();
 			driver.manage().window().maximize();
 			Thread.sleep(5000);
+			System.out.println(statusRegion);
 			if (statusRegion == null) {
+				System.out.println("null status region");
 				statusRegion = "N";
+				System.out.println("status region"+statusRegion);
 			} else {
 				System.out.println("DATABASE Status region---> " + statusRegion);
 			}
@@ -181,7 +184,7 @@ public class JdaLoginPage {
 
 		System.setProperty("webdriver.ie.driver", Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
 		driver = new InternetExplorerDriver(capabilities);
-
+       System.out.println("Driver"+driver);
 	}
 
 	public void enterUsername() throws FindFailed, InterruptedException {
