@@ -27,8 +27,8 @@ public class JdaLoginPage {
 	private Configuration configuration;
 	private Context context;
 	public static String statusRegion = System.getProperty("USE_DB");
-	public static String region = System.getProperty("REGION");
-	//public static String region = "ST";
+//	public static String region = System.getProperty("REGION");
+	public static String region = "ST";
 	// Configuration configuration = new Configuration();
 	// Context context = new Context();
 

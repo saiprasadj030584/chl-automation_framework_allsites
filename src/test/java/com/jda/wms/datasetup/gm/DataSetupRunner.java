@@ -274,6 +274,7 @@ public class DataSetupRunner {
 				exception.printStackTrace();
 			}
 		} else if (context.getUniqueTag().contains("fsv")) {
+			System.out.println("inside FSV");
 			try {
 				npsDataBase.connectAutomationDB();
 
@@ -286,7 +287,7 @@ public class DataSetupRunner {
 				context.setTestData("PO:" + po);
 				System.out.println("" + context.getTestData());
 				// Call JDA Login
-				//jdaLoginPage.login();
+				jdaLoginPage.login();
 				dataLoadFromUI.duplicatePO(poReference, po);
 				validatePoDataSetup(po);
 				gettcdata.setPo(po);

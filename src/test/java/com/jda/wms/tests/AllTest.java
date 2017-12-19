@@ -7,7 +7,8 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
-			"@unique_boxed_allocation_outlet_validate_whether_all_the_stocks_are_allocated_allocation_rules" })
+			""
+			+ "@unique_boxed_inbound_receiving_fsv_po_over_receiving_with_lock_code" })
 
 
 

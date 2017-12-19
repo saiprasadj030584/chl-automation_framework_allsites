@@ -2036,6 +2036,7 @@ private InventoryDB inventoryDb;
 		puttyFunctionsPage.pressTab();
 		puttyFunctionsPage.pressTab();
 		puttyFunctionsPage.pressTab();
+		puttyFunctionsPage.pressTab();
 		puttyFunctionsPage.rightArrow();
 		puttyFunctionsPage.rightArrow();
 		puttyFunctionsPage.rightArrow();
