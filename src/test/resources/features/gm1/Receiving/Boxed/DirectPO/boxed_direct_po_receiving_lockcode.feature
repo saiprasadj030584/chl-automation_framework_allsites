@@ -137,7 +137,7 @@ Feature: Boxed - Direct PO - Receiving with Lock code
     And the goods receipt should be generated for received stock in inventory transaction
     Then the po status should be displayed as "Complete"
 
- @jenkinsfo @jenkinsA @unique_boxed_receiving_direct_po_validate_receiving_process_with_qapcfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
+ @jenkinsfo @jenkinsA @unique_boxed_receiving_direct_po_validate_receiving_process_with_qaftsfwlrw_lock_code @boxed @receiving @direct_po @complete @ds @jenkinsbrl
   Scenario: Validate receiving process with QAFTSFWLRW lock code
     Given the PO of type "Boxed" with UPI and ASN should be in "Released" status with line items,supplier details
     And the PO should have sku, quantity due details

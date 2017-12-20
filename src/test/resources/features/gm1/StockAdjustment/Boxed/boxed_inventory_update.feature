@@ -4,7 +4,7 @@ Feature: Boxed - Inventory update
   As a warehouse user
   I want to update the stock in inventory for the required status
 
-  @jenkinsA @jenkinsrun @run1 @jenkinsgm @jenkins14 @boxed @stock_adjustment @inventory_update @unique_boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete @ds @jenkins1 @no_ds @group_1
+  @jenkinsA @jenkinsrun @run1 @jenkinsgm @jenkins14 @boxed @stock_adjustment @inventory_update @unique_boxed_stock_adjustment_inventory_update_unlock_the_stock_from_lock @complete  @jenkins1 @no_ds @group_1
   Scenario Outline: Unlock the stock from Lock
     Given I have a tag in inventory with "<LockStatus>" status for "Boxed"
     When I navigate to inventory update page
@@ -20,7 +20,7 @@ Feature: Boxed - Inventory update
       | LockStatus | UpdateStatus | Code             |
       | Locked     | UnLocked     | Inventory Unlock |
 
-  @jenkinsA @boxed @stock_adjustment @inventory_update @unique_boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete @ds @no_ds @group_1
+  @jenkinsA @boxed @stock_adjustment @inventory_update @unique_boxed_stock_adjustment_inventory_update_lock_the_stock_from_unlock @complete  @no_ds @group_1
   Scenario Outline: Lock the stock from unlock
     Given I have a tag in inventory with "<LockStatus>" status for "Boxed"
     When I navigate to inventory update page
