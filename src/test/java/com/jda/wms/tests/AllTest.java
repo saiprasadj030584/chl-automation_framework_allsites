@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
 			""
-			+ "@unique_boxed_inbound_receiving_fsv_po_over_receiving_with_lock_code" })
+			+ "@unique_boxed_inbound_receiving_direct_po_over_receiving" })
 
 
 
