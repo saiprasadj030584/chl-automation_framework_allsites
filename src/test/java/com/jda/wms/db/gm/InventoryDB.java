@@ -38,6 +38,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getCustomer(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -88,6 +89,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getToStatus(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -104,6 +106,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getUploadedDate(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -171,6 +174,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getIntoDestinationDate(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -187,6 +191,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getIfosOrderNum(String reference, String notes) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -269,6 +274,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getABV(String tagID) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -283,6 +289,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getInventorySKUId(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -298,6 +305,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getStatus(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -340,6 +348,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getLocation(String tagId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -355,13 +364,15 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
-	public String getLocationstatus(String tagId,String location) throws ClassNotFoundException, SQLException {
+
+	public String getLocationstatus(String tagId, String location) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select Lock_status from inventory where tag_id='" + tagId + "' and location_id = '"+location+"'");
+		ResultSet rs = stmt.executeQuery(
+				"select Lock_status from inventory where tag_id='" + tagId + "' and location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -421,7 +432,13 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt
 				.executeQuery("select sku_id from inventory where tag_id='" + tagID + "' and zone_1 ='" + zone + "'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getTagIdWithStatus(String status) throws ClassNotFoundException {
@@ -535,6 +552,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getLocationAfterReceiveIdt(String skuId, String containerID)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -551,6 +569,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getSkuId(String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -581,6 +600,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getTagIDwithlocation(String LocationId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -691,6 +711,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getLocationAfterPutaway(String skuId, String date, String preAdviceId)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -702,7 +723,13 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select Location_id from inventory where sku_id = '" + skuId
 				+ "' and MOVE_DSTAMP like '" + date + "%'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getagId(String status) throws SQLException, ClassNotFoundException {
@@ -712,7 +739,13 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select TAG_ID FROM inventory WHERE lock_status='" + status + "'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getsku(String status) throws SQLException, ClassNotFoundException {
@@ -730,6 +763,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getlocation(String status) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -936,6 +970,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getPutawayLocation2(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -954,6 +989,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getQtyOnHand(String listID, String tagId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -1098,6 +1134,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getLocationAfterReceiveForRandomTag(String skuId, String tagId, String date)
 			throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -1155,6 +1192,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public int getQtyOnHandNotInSuspense(String sku) throws SQLException, ClassNotFoundException {
 		ArrayList<String> qtyOnHandNotInSuspense = new ArrayList<String>();
 		if (context.getConnection() == null) {
@@ -1230,17 +1268,40 @@ public class InventoryDB {
 		return inventoryList;
 	}
 
+	public ArrayList getLocationListForSku(String skuId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		System.out.println("select distinct(location_id) from inventory where sku_id='" + skuId
+				+ "'  and lock_status = 'UnLocked'");
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select distinct(location_id) from inventory where sku_id='" + skuId
+				+ "' and lock_status = 'UnLocked'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		System.out.println("Col" + columns);
+		while (rs.next()) {
+			System.out.println(rs.getString(columns));
+			inventoryList.add((rs.getString(columns)));
+		}
+		return inventoryList;
+	}
 
 	public ArrayList getValidLocationsForSku(String skuId) throws SQLException, ClassNotFoundException {
 		ArrayList<String> inventoryList = new ArrayList<String>();
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println("SELECT distinct(A.location_id) from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-				+ skuId + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		System.out.println(
+				"SELECT distinct(A.location_id) from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuId
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT distinct(A.location_id) from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuId + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		ResultSet rs = stmt.executeQuery(
+				"SELECT distinct(A.location_id) from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuId
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();
@@ -1252,26 +1313,26 @@ public class InventoryDB {
 		return inventoryList;
 	}
 
-	public boolean checkAllocatableLocation(String locationId, String sku,String orderId) throws ClassNotFoundException, SQLException {
+	public boolean checkAllocatableLocation(String locationId, String sku, String orderId)
+			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		System.out.println(
-				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='" + orderId + "' and inventory.sku_id ='" + sku + "' and inventory.location_id ='" + locationId + "'");
+				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='"
+						+ orderId + "' and inventory.sku_id ='" + sku + "' and inventory.location_id ='" + locationId
+						+ "'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
-				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='" + orderId + "' and inventory.sku_id like '%" + sku + "%' and inventory.location_id ='" + locationId + "'");
-		if(rs.next())
+				"select ORDER_LINE.qty_ordered,inventory.QTY_ON_HAND from ORDER_LINE inner join inventory on inventory.sku_id = ORDER_LINE.sku_id where inventory.QTY_ON_HAND > ORDER_LINE.qty_ordered and ORDER_LINE.order_id ='"
+						+ orderId + "' and inventory.sku_id like '%" + sku + "%' and inventory.location_id ='"
+						+ locationId + "'");
+		if (rs.next())
 			return true;
-		else 
+		else
 			return false;
-				
+
 	}
-	
-
-	
-
-
 
 	public String getQtyForSkuInLocation(String skuId, String location) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -1289,8 +1350,9 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
-	
-	public String getQtyAllocatedForSkuInLocation(String skuId, String location) throws ClassNotFoundException, SQLException {
+
+	public String getQtyAllocatedForSkuInLocation(String skuId, String location)
+			throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1301,6 +1363,7 @@ public class InventoryDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public ArrayList getTagIdDetailsForLockStatus(String lockStatus, String dataType)
 			throws SQLException, ClassNotFoundException {
 		ArrayList<String> inventoryList = new ArrayList<String>();
@@ -1494,7 +1557,13 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select origin_id from inventory where tag_id= '" + tagId + "' ");
 
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public ArrayList getStockDetails(String type) throws ClassNotFoundException, SQLException {
@@ -1519,7 +1588,7 @@ public class InventoryDB {
 					stockDetails.add((rs.getString(j)));
 				}
 			}
-			
+
 		} catch (Exception e) {
 			context.setErrorMessage("Exception Caught !!! Data is not found");
 			Assert.fail("Exception Caught !!! Data is not found");
@@ -1581,6 +1650,7 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
+
 	public String getQtynHand(String skuId, String location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -1592,9 +1662,16 @@ public class InventoryDB {
 
 		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where sku_id = '" + skuId
 				+ "' and location_id = '" + location + "'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
-	public String getQtynHandwithlocation(String tagid,String Location) throws SQLException, ClassNotFoundException {
+
+	public String getQtynHandwithlocation(String tagid, String Location) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1602,10 +1679,12 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		System.out.println("select QTY_ON_HAND from inventory where tag_id = '" + tagid + "'");
 
-		ResultSet rs = stmt.executeQuery("select QTY_ON_HAND from inventory where tag_id = '" + tagid + "' and location_id='"+Location+"'");
+		ResultSet rs = stmt.executeQuery(
+				"select QTY_ON_HAND from inventory where tag_id = '" + tagid + "' and location_id='" + Location + "'");
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public String getProhibitionFlag(String skuId) throws SQLException, ClassNotFoundException {
 		System.out.println("select user_def_type_8 from inventory where sku_id='" + skuId + "'");
 		if (context.getConnection() == null) {
@@ -1614,7 +1693,13 @@ public class InventoryDB {
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from inventory where sku_id='" + skuId + "'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getLocationAfterReceiveForFlatpack(String skuId, String tagId, String date)
@@ -1626,7 +1711,13 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select inventory.Location_id from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and "
 						+ "inventory.tag_id ='" + tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getQtyOnHandForFlatpack(String skuId, String location, String tagId, String date)
@@ -1640,7 +1731,13 @@ public class InventoryDB {
 				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
 						+ tagId + "'  and inventory.Location_id ='" + location + "' and RECEIPT_DSTAMP like '" + date
 						+ "%'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getPutawayLocation(String skuId) throws SQLException, ClassNotFoundException {
@@ -1653,7 +1750,13 @@ public class InventoryDB {
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 				"select location_id from inventory where sku_id='" + skuId + "' and location_id not like '%REC%'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
 
 	public String getTagID(String siteID, String dataType) throws SQLException, ClassNotFoundException {
@@ -1664,74 +1767,80 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery(
 				"select A.tag_id from inventory A inner join sku B on B.sku_id=A.sku_id where B.user_def_type_8='"
 						+ dataType + "' and A.site_id='" + siteID + "'");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 	}
-	
-	
-	public String getSkuIdFromLocation(String Location) throws SQLException, ClassNotFoundException
-	{System.out.println("select sku_id from inventory where location_id = '"+ Location +"'");
-	if (context.getConnection() == null) {
-		database.connect();
+
+	public String getSkuIdFromLocation(String Location) throws SQLException, ClassNotFoundException {
+		System.out.println("select sku_id from inventory where location_id = '" + Location + "'");
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+
+		ResultSet rs = stmt.executeQuery("select sku_id from inventory where location_id = '" + Location + "'");
+		rs.next();
+		return rs.getString(1);
+
 	}
-	Statement stmt = context.getConnection().createStatement();
-	
-	ResultSet rs = stmt.executeQuery("select sku_id from inventory where location_id = '"+ Location +"'");
-	rs.next();
-	return rs.getString(1);
-		
-	}
-	public ArrayList<String> getLockCodeList(String location,String skuId) throws ClassNotFoundException, SQLException {
-		
+
+	public ArrayList<String> getLockCodeList(String location, String skuId)
+			throws ClassNotFoundException, SQLException {
+
 		ArrayList<String> stockDetails = new ArrayList<String>();
 
-	if (context.getConnection() == null) {
-		database.connect();
-	}
-	Statement stmt = context.getConnection().createStatement();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
 
-	ResultSet rs = stmt.executeQuery(
-			"select lock_code from inventory where location_id='" + location + "' and sku_id='" + skuId + "'");
-	ResultSetMetaData rsmd = rs.getMetaData();
-	int columns = rsmd.getColumnCount();
-	rs.next();
-	for (int j = 1; j <= columns; j++) {
-		stockDetails.add((rs.getString(j)));
+		ResultSet rs = stmt.executeQuery(
+				"select lock_code from inventory where location_id='" + location + "' and sku_id='" + skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			stockDetails.add((rs.getString(j)));
+		}
+		return stockDetails;
 	}
-	return stockDetails;
-}
 
 	public String getLockStatus(String locationId, String sku) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
+		System.out.println("select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku
+				+ "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery(
 
-				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
+				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku
+						+ "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
 		rs.next();
-			return rs.getString(1);
-		
-				
+		return rs.getString(1);
+
 	}
+
 	public boolean checkinventoryStatus(String locationId, String sku) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
-		System.out.println(
-				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
+		System.out.println("select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku
+				+ "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(
-				"select lock_status from inventory where location_id='" + locationId + "' and sku_id='" + sku + "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
-		if(rs.next())
+		ResultSet rs = stmt.executeQuery("select lock_status from inventory where location_id='" + locationId
+				+ "' and sku_id='" + sku + "' and QTY_ON_HAND != QTY_ALLOCATED and lock_status='UnLocked'");
+		if (rs.next())
 			return true;
-		else 
+		else
 			return false;
-				
+
 	}
-	
-	
 
 	public String getQtyOnHandForFlatpack(String skuId, String tagId, String date)
 
@@ -1748,7 +1857,13 @@ public class InventoryDB {
 				"select inventory.QTY_ON_HAND from inventory inner join sku on sku.NEW_PRODUCT='N' and sku.sku_id=inventory.sku_id and inventory.tag_id ='"
 						+ tagId + "' and RECEIPT_DSTAMP like '" + date + "%'");
 
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		if (!rs.next()) {
+			context.setErrorMessage("Queried data from JDA DB not found");
+			Assert.fail("Queried data from JDA DB not found");
+		} else {
+			System.out.println("Queried data from JDA DB found");
+		}
+		return rs.getString(1);
 
 	}
 
@@ -1769,31 +1884,29 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 
+	/*
+	 * public String getOriginId(String location) throws SQLException,
+	 * ClassNotFoundException { if (context.getConnection() == null) {
+	 * database.connect(); }
+	 * 
+	 * Statement stmt = context.getConnection().createStatement(); ResultSet rs
+	 * = stmt.executeQuery("select origin_id from inventory where location_id='"
+	 * + location + "'"); rs.next(); return rs.getString(1); }
+	 */
+	public boolean checkOriginId(String location) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
 
-	/*public  String getOriginId(String location) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "'");
-		rs.next();
-		return rs.getString(1);
-	}*/
-	public  boolean checkOriginId(String location) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "' and origin_id = 'NONE'");
-		if(rs.next())
+		ResultSet rs = stmt.executeQuery(
+				"select origin_id from inventory where location_id='" + location + "' and origin_id = 'NONE'");
+		if (rs.next())
 			return true;
 		else
 			return false;
-		
+
 	}
-	
 
 	public String getQtyAllocated(String skuId, String location) throws SQLException, ClassNotFoundException {
 		System.out.println("select QTY_ALLOCATED from inventory where sku_id = '" + skuId + "' and location_id = '"
@@ -1802,47 +1915,56 @@ public class InventoryDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select QTY_ALLOCATED from inventory where sku_id = '" + skuId + "' and location_id = '"+ location + "'");
+		ResultSet rs = stmt.executeQuery("select QTY_ALLOCATED from inventory where sku_id = '" + skuId
+				+ "' and location_id = '" + location + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-		public ArrayList getLocationsForBoxedSku(String skuId) throws SQLException, ClassNotFoundException {
-			ArrayList<String> inventoryList = new ArrayList<String>();
 
-			if (context.getConnection() == null) {
-				database.connect();
-			}
-			System.out.println("select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='" + skuId + "'");
-			Statement stmt = context.getConnection().createStatement();
+	public ArrayList getLocationsForBoxedSku(String skuId) throws SQLException, ClassNotFoundException {
+		ArrayList<String> inventoryList = new ArrayList<String>();
 
-			ResultSet rs = stmt.executeQuery("select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='" + skuId + "'");
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int columns = rsmd.getColumnCount();
-			rs.next();
-			for (int j = 1; j <= columns; j++) {
-				inventoryList.add((rs.getString(j)));
-			}
-			return inventoryList;
-			
-			
+		if (context.getConnection() == null) {
+			database.connect();
 		}
+		System.out.println(
+				"select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='"
+						+ skuId + "'");
+		Statement stmt = context.getConnection().createStatement();
+
+		ResultSet rs = stmt.executeQuery(
+				"select distinct(location.location_id) from location inner join inventory  on location.location_id=inventory.location_id where location.zone_1 like 'BOX%' and  location.user_def_type_2 like 'BOX%'  and location.user_def_type_3 = 'BOX' and location.lock_status = 'UnLocked' and  inventory.QTY_ON_HAND > inventory.QTY_ALLOCATED and inventory.lock_status='UnLocked' and inventory.sku_id='"
+						+ skuId + "'");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columns = rsmd.getColumnCount();
+		rs.next();
+		for (int j = 1; j <= columns; j++) {
+			inventoryList.add((rs.getString(j)));
+		}
+		return inventoryList;
+
+	}
+
 	public boolean getOriginId(String location) throws SQLException, ClassNotFoundException {
-//		System.out.println("select origin_id from inventory where location_id='" + location + "'");
+		// System.out.println("select origin_id from inventory where
+		// location_id='" + location + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "' and origin_id ='NONE'");
-		if(rs.next())
-		return true;
+		ResultSet rs = stmt.executeQuery(
+				"select origin_id from inventory where location_id='" + location + "' and origin_id ='NONE'");
+		if (rs.next())
+			return true;
 		else
 			return false;
-		
+
 	}
 
 	public String getOriginIdValue(String location) throws SQLException, ClassNotFoundException {
-//		System.out.println("select origin_id from inventory where location_id='" + location + "'");
+		// System.out.println("select origin_id from inventory where
+		// location_id='" + location + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -1851,9 +1973,8 @@ public class InventoryDB {
 		ResultSet rs = stmt.executeQuery("select origin_id from inventory where location_id='" + location + "'");
 		rs.next();
 		return rs.getString(1);
-		
-	}
 
+	}
 
 	public void updateInventoryQty(String location, String qty) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -1889,8 +2010,6 @@ public class InventoryDB {
 		return isRecordExists;
 	}
 
-
-
 	public boolean isTagExists(String tagId) {
 		boolean isRecordExists = false;
 		try {
@@ -1898,8 +2017,7 @@ public class InventoryDB {
 				database.connect();
 			}
 			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("select tag_id from inventory where tag_id='" + tagId
-					+ "'");
+			ResultSet rs = stmt.executeQuery("select tag_id from inventory where tag_id='" + tagId + "'");
 			rs.next();
 			if (rs.getString(1) != null) {
 				isRecordExists = true;
@@ -1911,59 +2029,69 @@ public class InventoryDB {
 		}
 		return isRecordExists;
 	}
-	
 
 	public String getValidLocation(String skuID) throws SQLException, ClassNotFoundException {
-		System.out.println("SELECT  A.location_id from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		System.out.println(
+				"SELECT  A.location_id from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT A.location_id from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		ResultSet rs = stmt.executeQuery(
+				"SELECT A.location_id from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public String getValidQty(String skuID) throws SQLException, ClassNotFoundException {
-		System.out.println("SELECT A.qty_on_hand from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		System.out.println(
+				"SELECT A.qty_on_hand from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT  A.qty_on_hand from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		ResultSet rs = stmt.executeQuery(
+				"SELECT  A.qty_on_hand from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public String getValidAllocatedQty(String skuID) throws SQLException, ClassNotFoundException {
-		System.out.println("SELECT  A.qty_allocated from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		System.out.println(
+				"SELECT  A.qty_allocated from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 
 		Statement stmt = context.getConnection().createStatement();
 
-		ResultSet rs = stmt.executeQuery("SELECT A.qty_allocated from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
-						+ skuID + "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
+		ResultSet rs = stmt.executeQuery(
+				"SELECT A.qty_allocated from inventory A inner join location B on A.location_id=B.location_id where A.sku_id='"
+						+ skuID
+						+ "' and A.origin_id='NONE' and A.lock_status='UnLocked' and B.ZONE_1='HANG' and B.lock_status='UnLocked' and B.USER_DEF_TYPE_2='HANG' and B.USER_DEF_TYPE_3='HANG' and B.user_def_type_1='T86'");
 		rs.next();
 		return rs.getString(1);
 	}
 
 	public void updateLocationStatus(String status, String locationID) throws SQLException, ClassNotFoundException {
-		System.out.println("update inventory set lock_status = '" + status + "' where location_id = '" + locationID + "'");
+		System.out.println(
+				"update inventory set lock_status = '" + status + "' where location_id = '" + locationID + "'");
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
 
-		ResultSet rs = stmt
-				.executeQuery("update inventory set lock_status = '" + status + "' where location_id = '" + locationID + "'");
+		ResultSet rs = stmt.executeQuery(
+				"update inventory set lock_status = '" + status + "' where location_id = '" + locationID + "'");
 		context.getConnection().commit();
 	}
-
-
-
-		
 
 	public String getAllocatedQty(String skuId, String location) throws SQLException, ClassNotFoundException {
 		System.out.println("select QTY_ALLOCATED from inventory where sku_id = '" + skuId + "' and location_id = '"
@@ -1984,14 +2112,16 @@ public class InventoryDB {
 		}
 		return rs.getString(1);
 	}
-	
-	public String getToLocationForMezz(String skuType,String siteId) throws SQLException, ClassNotFoundException {
+
+	public String getToLocationForMezz(String skuType, String siteId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
-		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '"+skuType+"%' and lock_status='UnLocked' and site_id='"+siteId+"'");
+		System.out.println("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and lock_status='UnLocked' and site_id='" + siteId + "'");
+		ResultSet rs = stmt.executeQuery("select location_id from location where Zone_1 like '" + skuType
+				+ "%' and lock_status='UnLocked' and site_id='" + siteId + "'");
 		if (!rs.next()) {
 			context.setErrorMessage("Queried data from JDA DB not found");
 			Assert.fail("Queried data from JDA DB not found");
@@ -2001,16 +2131,3 @@ public class InventoryDB {
 		return rs.getString(1);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

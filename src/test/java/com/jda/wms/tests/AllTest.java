@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = {
 			""
-			+ "@unique_boxed_inbound_receiving_direct_po_over_receiving" })
+			+ "@unique_boxed_allocation_idt_validate_whether_stocks_are_automatically_allocated_to_orders_auto_allocation" })
 
 
 

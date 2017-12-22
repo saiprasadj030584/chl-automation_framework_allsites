@@ -231,7 +231,7 @@ public class StockMaintainStepDefs {
 		for (int i = 0; i < context.getSkuList().size(); i++) {
 			context.setSkuId((String) context.getSkuList().get(i));
 			context.setSKUType(skuDB.getSKUType(context.getSkuId()));
-			ArrayList<String> locationList = inventoryDB.getLocationsForSku(context.getSkuId());
+			ArrayList<String> locationList = inventoryDB.getLocationListForSku(context.getSkuId());
 			System.out.println(locationList);
 			ArrayList<String> validLocations = new ArrayList<String>();
 			int totalQtyOnHand = 0;

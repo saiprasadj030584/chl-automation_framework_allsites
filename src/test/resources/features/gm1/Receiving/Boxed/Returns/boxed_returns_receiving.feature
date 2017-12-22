@@ -19,7 +19,7 @@ Feature: Boxed - Returns - Receiving
     When I navigate to inventory transaction query
     Then the inventory transaction should be updated
 
-  @unique_boxed_receiving_returns_verify_the_asn_in_the_upi_management_and_check_the_due_and_receipt_ date_ along_with_asn @receiving @returns @boxed @complete1 @ds
+  @unique_boxed_receiving_returns_verification_of_movement_label_field_in_the_blind_receiving_screen @receiving @returns @boxed @complete1 @ds
   Scenario: Verification of movement label field in the blind receiving screen
     Given the UPI and ASN should be in "Released" status
     And I receive all skus for the returns order at "REC003" with movement label enabled

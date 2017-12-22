@@ -26,7 +26,7 @@ Feature: Boxed - Direct PO - Putaway
     And I proceed by entering less quantity
     Then the ITL should be generated for putaway relocated stock in inventory transaction
 
-  @hanging_putaway_direct_po_validate_putaway_process @direct_po @hanging @putaway @complete
+  @jenkinsB @unique_hanging_putaway_direct_po_validate_putaway_process @direct_po @hanging @putaway @complete
   Scenario: Validate Putaway Process
     Given the PO of type "Hanging" with UPI and ASN should be received at "REC001"
     When I choose normal putaway
