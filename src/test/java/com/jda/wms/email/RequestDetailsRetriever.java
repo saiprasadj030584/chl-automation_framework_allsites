@@ -35,6 +35,7 @@ public class RequestDetailsRetriever {
 
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				hooks.sqlConnectOpen();
 			}
 
@@ -65,6 +66,7 @@ public class RequestDetailsRetriever {
 	public String getTestingPhase(String masterId) throws ClassNotFoundException, SQLException {
 
 		if (context.getSQLDBConnection() == null) {
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 			hooks.sqlConnectOpen();
 		}
 		String query = "sELECT master_desc FROM  tbl_autoMasterData Where master_id = '" + masterId + "'";
@@ -100,6 +102,7 @@ public class RequestDetailsRetriever {
 		ResultSet resultSet = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				hooks.sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement()
@@ -132,6 +135,7 @@ public class RequestDetailsRetriever {
 
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				hooks.sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement()
@@ -191,6 +195,7 @@ public class RequestDetailsRetriever {
 		ResultSet rs = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				hooks.sqlConnectOpen();
 			}
 
@@ -224,6 +229,7 @@ public class RequestDetailsRetriever {
 		ArrayList<String> emailList = new ArrayList<String>();
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				hooks.sqlConnectOpen();
 			}
 

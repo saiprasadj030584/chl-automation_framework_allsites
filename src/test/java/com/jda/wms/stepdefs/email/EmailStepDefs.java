@@ -52,6 +52,7 @@ public class EmailStepDefs {
 		hooks.fileReadValueFromText();
 		System.out.println("PARENT REQ ID"+context.getParentRequestId());
 		if (context.getSQLDBConnection() == null) {
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 			hooks.sqlConnectOpen();
 		}
 

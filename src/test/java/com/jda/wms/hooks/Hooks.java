@@ -84,40 +84,42 @@ public class Hooks {
 	@Before({ "~@Email" })
 
 	public void iniatateDataSetup(Scenario scenario) throws Exception {
+		System.out.println("$$$$$$$$$$---THE FIRST METHOD TO GET EXECUTED STARTS HERE");
+		
 		context.setScenario(scenario);
-		System.out.println(
-				"*************" + context.getScenario().getId() + "-----------" + context.getScenario().getName());
-		System.out.println("1st Before start");
+		System.out.println("$$$$$$$$$$---" + context.getScenario().getId() + "---" + context.getScenario().getName());
 		ArrayList<String> tagListForScenario = (ArrayList<String>) scenario.getSourceTagNames();
-		System.out.println("Uniq Tag --->" + tagListForScenario);
-		System.out.println("Starting Execution" + scenario.getName()); 
+		System.out.println("$$$$$$$$$$---TAG LIST FOR THIS SCENARIO -----> " + tagListForScenario);
+		System.out.println("$$$$$$$$$$---BEGIN SCENARIO EXECUTION FOR----->" + scenario.getName()); 
 		if (statusRegion != null) {
-			getAppInventoryDetails(region, "Foods");
+			System.out.println("$$$$$$$$$$---NEED TO FETCH APPLICATION INVENTORY DETAILS FROM DATABASE");
+			getAppInventoryDetails(region, "GM");
 		} else {
-			System.out.println("Environment details get from config file");
+			System.out.println("$$$$$$$$$$---NEED TO FETCH APPLICATION INVENTORY DETAILS FROM CONFIG YAML FILE");
 		}
 		getParentRequestID();
-		System.out.println("PREQ_ID " + context.getParentRequestId());
+		System.out.println("$$$$$$$$$$--- PREQ_ID IS ----->" + context.getParentRequestId());
 		insertDetails(scenario.getName());
 		System.out.println("tagListForScenario" + tagListForScenario);
-		for (String tag : tagListForScenario) {
-			System.out.println("TAG" + tag);
-			if (tag.contains("@ds")) {
-
-				dataSetupRunner.getTagListFromAutoDb();
-
+//		for (String tag : tagListForScenario) {
+//			System.out.println("TAG" + tag);
+			if (tagListForScenario.contains("@ds")) {
+				dataSetupRunner.getTagListFromAutoDb(); //why clarify
 				if (!(scenario.getName().contains("Triggering automation email"))) {
-					System.out.println("Datasetup Started");
+					System.out.println("$$$$$$$$$$-----> BEGIN TEST DATA SETUP");
 					dataSetupRunner.insertDataToJdaDB(tagListForScenario);
-					System.out.println("Datasetup completed");
+					System.out.println("$$$$$$$$$$-----> TEST DATA SETUP COMPLETED");
 				} else {
-					System.out.println("Datasetup not require for email scenario");
+					System.out.println("$$$$$$$$$$-----> TEST DATA SETUP NOT REQUIRED FOR THIS EMAIL SCENARIO");
 				}
-				System.out.println("DS" + context.getTestData());
+				System.out.println("DS" + Context.getTestData());
 			}
-			System.out.println("NO DS");
-		}
-		System.out.println("1st Before end");
+			else{
+				System.out.println("$$$$$$$$$$-----> TEST DATA SETUP NOT REQUIRED FOR THIS SCENARIO");
+			}
+			
+//		}
+		System.out.println("$$$$$$$$$$---THE FIRST METHOD THAT WAS EXECUTED ENDS HERE");
 	}
 
 	/*
@@ -180,6 +182,7 @@ public class Hooks {
 		ResultSet resultSet = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement().executeQuery(
@@ -214,6 +217,7 @@ public class Hooks {
 	private void updateTestDataIntoRunStatusTable(String tcName) {
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			System.out.println(
@@ -231,6 +235,7 @@ public class Hooks {
 	private void getChildRequestID() {
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			Statement stmt = null;
@@ -318,6 +323,7 @@ public class Hooks {
 	public void insertDetails(String testName) {
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 
@@ -351,9 +357,11 @@ public class Hooks {
 			connectionMain.setAutoCommit(true);
 			context.setSQLDBConnection(connectionMain);
 			connectionSucessful = true;
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION SUCCESSFULLY ESTABLISHED");
 
 		} catch (SQLException ex) {
-			System.out.println("Exception " + ex.getMessage());
+			System.out.println("$$$$$$$$$$---EXCEPTION IN OBTAINING SQL DATABASE CONNECTION");
+			System.out.println(ex.getMessage());
 		}
 	}
 
@@ -367,6 +375,7 @@ public class Hooks {
 
 			try {
 				if (context.getSQLDBConnection() == null) {
+					System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 					sqlConnectOpen();
 				}
 
@@ -396,6 +405,7 @@ public class Hooks {
 
 	public void parentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 			sqlConnectOpen();
 		}
 		String updateStartTime = getSystemTime();
@@ -416,6 +426,7 @@ public class Hooks {
 			String totalTestCaseCount = Integer.toString(Integer.valueOf(failCount) + Integer.valueOf(passCount));
 
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			// String parentStTime = System.getProperty("ParentStartTime");
@@ -435,6 +446,7 @@ public class Hooks {
 
 	public String getParentStartTime() throws ClassNotFoundException, SQLException {
 		if (context.getSQLDBConnection() == null) {
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 			sqlConnectOpen();
 		}
 		Statement stmt = context.getSQLDBConnection().createStatement();
@@ -450,6 +462,7 @@ public class Hooks {
 		ResultSet resultSet = null;
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			resultSet = context.getSQLDBConnection().createStatement()
@@ -533,6 +546,7 @@ public class Hooks {
 	public String getParentReqId() throws ClassNotFoundException, SQLException {
 		Statement stmt = null;
 		if (context.getSQLDBConnection() == null) {
+			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 			sqlConnectOpen();
 		}
 		stmt = context.getSQLDBConnection().createStatement();
@@ -547,6 +561,7 @@ public class Hooks {
 
 		try {
 			if (context.getSQLDBConnection() == null) {
+				System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
 				sqlConnectOpen();
 			}
 			String totalTime = getTimeDifference(context.getChildStartTime(), getSystemTime());

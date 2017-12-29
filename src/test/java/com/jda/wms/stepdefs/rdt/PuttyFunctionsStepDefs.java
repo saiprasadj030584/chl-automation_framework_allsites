@@ -35,20 +35,21 @@ public class PuttyFunctionsStepDefs {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
-		System.out.println("PUTTY LAUNCH");
+		System.out.println("LAUNCHED PuTTY");
+		System.out.println("$$$$$$$$$$-----> Initializing the PuTTY login parameters");
 		if (statusRegion == null) {
+			System.out.println("$$$$$$$$$$-----> Using parameters from Config YAML file");
 			statusRegion = "N";
 		} else {
-			System.out.println("DATABASE Status region---> " + statusRegion);
+			System.out.println("$$$$$$$$$$-----> Using parameters from database, user-defined input");
 		}
 		if (statusRegion.equalsIgnoreCase("N")) {
 			if (region.equalsIgnoreCase("SIT")) {
 				if (context.getSiteID().equals("5649")) {
-					System.out.println(port);
 					if (context.isVehicleLoadRequired()) {
 						port = configuration.getStringProperty("sit-wst-putty-gm-port-vehicle-load");
 					} else {
-						System.out.println("inside port if condition");
+						
 						port = configuration.getStringProperty("sit-wst-putty-gm-port");
 						System.out.println(port);
 					}

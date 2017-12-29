@@ -142,7 +142,7 @@ public class DataSetupRunner {
 	public void getSiteId(String uniqueTag) throws ClassNotFoundException, SQLException {
 
 		try {
-			System.out.println("CHECK CONNECTION " + context.getDBConnection());
+			System.out.println("$$$$$$$$$$-----> CHECK CONNECTION " + context.getDBConnection());
 			if (null == context.getDBConnection() || context.getDBConnection().isClosed()) {
 				npsDataBase.connectAutomationDB();
 			}
@@ -158,7 +158,8 @@ public class DataSetupRunner {
 				Assert.fail("Unique Tag Id is notfound");
 
 			} else {
-				System.out.println("Unique Tag Id is found");
+				
+				System.out.println("$$$$$$$$$$-----> Unique Tag Id is found");
 				context.setSiteID(rs.getString("SITE_NO"));
 				System.out.println("1 Value Of Site Id **" + context.getSiteID());
 			}
