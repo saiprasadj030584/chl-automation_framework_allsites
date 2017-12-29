@@ -3,7 +3,7 @@ Feature: Boxed - Outlet - Allocation
   As a warehouse user
   I want to perform allocation of stocks
 
- @jenkinsrun @jenkinsA @allocation @outlet @boxed @unique_boxed_allocation_outlet_validate_whether_all_the_stocks_are_allocated_allocation_rules @run1 @complete @ds
+@r1 @jenkinsrun @jenkinsA @allocation @outlet @boxed @unique_boxed_allocation_outlet_validate_whether_all_the_stocks_are_allocated_allocation_rules @run1 @complete @ds
   Scenario: Validate whether all the stocks are allocated -Allocation Rules-Retail Orders
     Given the order id of type "Outlet" with "Boxed" skus should be in "Released" status
     When I navigate to system allocation page
