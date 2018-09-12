@@ -1,9 +1,6 @@
 package com.jda.wms.stepdefs.email;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -12,8 +9,7 @@ import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.email.HtmlCreator;
 import com.jda.wms.email.SendEmail;
-import com.jda.wms.hooks.Hooks;
-
+import com.jda.wms.hooks.Hooks_autoUI;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -23,24 +19,24 @@ public class EmailStepDefs {
 	private final Context context;
 	private final HtmlCreator htmlCreator;
 	private final SendEmail sendEmail;
-	private final Hooks hooks;
+	private final Hooks_autoUI hooks_autoUI;
 	private final Configuration configuration;
 	public static String PRQID = null;
 	String envVar = System.getProperty("user.dir");
 
 	@Inject
-	public EmailStepDefs(Configuration configuration, Hooks hooks, Context context,
+	public EmailStepDefs(Configuration configuration, Hooks_autoUI hooks_autoUI, Context context,
 			HtmlCreator htmlCreator, SendEmail sendEmail) {
 		this.context = context;
 		this.htmlCreator = htmlCreator;
 		this.sendEmail = sendEmail;
-		this.hooks = hooks;
+		this.hooks_autoUI = hooks_autoUI;
 		this.configuration = configuration;
 	}
 
 	@Given("^user has triggered an ANR automated email to end user with automation test result$")
 	public void user_has_triggered_an_anr_automated_email_to_end_user_with_automation_test_result() throws Throwable {
-		hooks.fileReadValueFromText();
+		hooks_autoUI.fileReadValueFromText();
 		htmlCreator.htmlWriter(context.getParentRequestId());
 		sendEmail.triggerEmailAutomatedTestResults();
 
@@ -49,11 +45,10 @@ public class EmailStepDefs {
 	@Given("^Insert the metrics details in automation metrics DB$")
 	public void insert_the_metrics_details_in_automation_metrics_DB() throws Throwable {
 		Statement stmt = null;
-		hooks.fileReadValueFromText();
+		hooks_autoUI.fileReadValueFromText();
 		System.out.println("PARENT REQ ID"+context.getParentRequestId());
 		if (context.getSQLDBConnection() == null) {
-			System.out.println("$$$$$$$$$$---SQL DATABASE CONNECTION NEED TO BE RE-ESTABLISHED");
-			hooks.sqlConnectOpen();
+			hooks_autoUI.sqlConnectOpen();
 		}
 
 		stmt = context.getSQLDBConnection().createStatement();
@@ -87,14 +82,13 @@ public class EmailStepDefs {
 					+ requestedBy + "'";
 
 			System.out.println("Stored Procedure ---> " + query1);
-			System.out.println(context.getSQLDBConnection());
 			context.getSQLDBConnection().createStatement().execute(query1);
 		}
 	}
 
 	@Then("^I trigger email to all the stakeholders$")
 	public void i_trigger_email_to_all_the_stakeholders() throws Throwable { 
-		hooks.fileReadValueFromText();
+		hooks_autoUI.fileReadValueFromText();
 		htmlCreator.htmlWriter(context.getParentRequestId());
 		sendEmail.triggerEmailAutomatedTestResults();
 	}
@@ -141,9 +135,9 @@ public class EmailStepDefs {
 				}
 			}
 		}
-		System.out.println("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
+		System.out.println("cmd /c " + envVar + "\\zipCucumberReportAdmin.lnk");
 		Thread.sleep(2000);
-		Process p2 = Runtime.getRuntime().exec("cmd /c \"" + envVar + "\\bin\\zipCucumberReportAdmin.lnk\"");
+		Process p2 = Runtime.getRuntime().exec("cmd /c zip -r .\\files\\Cucumber_Report.zip Cucumber-Reports");
 		Thread.sleep(5000);
 	}
 }

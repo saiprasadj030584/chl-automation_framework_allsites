@@ -43,7 +43,6 @@ public class HtmlCreator {
 
 		requestSummaryDetailsMap = requestDetailsRetriever.getFailedList(context.getParentRequestId());
 		ArrayList totalStepList = (ArrayList) requestSummaryDetailsMap.get("totalStepList");
-		ArrayList datascenarioList = (ArrayList) requestSummaryDetailsMap.get("totalStepList");
 		ArrayList commentsList = (ArrayList) requestSummaryDetailsMap.get("commentsList");
 		ArrayList startTime = (ArrayList) requestSummaryDetailsMap.get("startTime");
 		ArrayList endTime = (ArrayList) requestSummaryDetailsMap.get("endTime");
@@ -122,7 +121,7 @@ public class HtmlCreator {
 			bw.write("<td height='0' colspan='19' style='text-align: left;'><b>Automation Test Summary:</b></td>\n");
 			bw.write("</tr>\n");
 			bw.write("<tr><th  bgcolor='#33B5FF'>\n");
-			bw.write("<p style='color: #060606;'>&nbsp;Total No. of Test Case</p>\n");
+			bw.write("<p style='color: #060606;'>&nbsp;Tot No. of Test Scen</p>\n");
 			bw.write("</th>\n<th bgcolor='#33B5FF' colspan='2' >\n");
 			bw.write("<p style='color: #060606;'>&nbsp;No of Pass</p>\n");
 			bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
@@ -169,11 +168,8 @@ public class HtmlCreator {
 					bw.write("<tr><th bgcolor='#33B5FF'>\n");
 					bw.write("<p style='color: #060606;'>&nbsp;S.No</p>\n");
 
-//					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
-//					bw.write("<p style='color: #060606;'>&nbsp;Data Type - Sub Scenario</p>\n");
-					
-					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
-					bw.write("<p style='color: #060606;'>&nbsp;Test Case Name</p>\n");
+					bw.write("</th>\n<th bgcolor='#33B5FF' colspan='3' >\n");
+					bw.write("<p style='color: #060606;'>&nbsp;Test Scenario's</p>\n");
 
 					bw.write("</th>\n<th bgcolor='#33B5FF'>\n");
 					bw.write("<p style='color: #060606;'>&nbsp;Status</p>\n");
@@ -189,23 +185,17 @@ public class HtmlCreator {
 
 //					bw.write("</th>\n<th bgcolor='#33B5FF'  >\n");
 //					bw.write("<p style='color: #060606;'>&nbsp;Remarks</p>\n");
-//					bw.write("</th>\n</tr>\n");
+					bw.write("</th>\n</tr>\n");
 
 					for (int rowCount = 0; rowCount < totalCount; rowCount++) {
-						System.out.println("" + totalStepList);
+//						System.out.println("" + totalStepList);
 						bw.write("<td>\n");
 						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
 								+ (rowCount + 1) + "</font><font face= Copperplate Gothic Bold></font> </p>\n");
 						bw.write("</td>\n");
-						
-//						bw.write("<td>\n");
-//						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
-//								+ totalStepList.get(rowCount)
-//								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
-//						bw.write("</td>\n");
-						
-						bw.write("<td>\n");
-						bw.write("<p align=center><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
+
+						bw.write("<td colspan='3'>\n ");
+						bw.write("<p align=left><font color=#060606 size=2 face= Copperplate Gothic Bold>&nbsp;"
 								+ totalStepList.get(rowCount)
 								+ "</font><font face= Copperplate Gothic Bold></font> </p>\n");
 						bw.write("</td>\n");

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Inject;
 import com.jda.wms.exception.DataException;
-import com.jda.wms.pages.PageObject;
+import com.jda.wms.pages.PageObject.PageObject;
 
 public class GetDataFromJson extends PageObject {
 

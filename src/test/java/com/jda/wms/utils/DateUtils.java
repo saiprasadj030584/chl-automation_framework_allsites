@@ -13,10 +13,32 @@ public class DateUtils {
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.format(cal.getTime());
 	}
-
-	public static String getCurrentSystemDateInDBFormat() {
+	
+	public static String getCurrentSystemDateInDBFormat(){
 		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
 		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime()).toUpperCase();
+		
+	} 
+	
+	
+	public static String getCurrentSystemTimeFormat(){
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime()).toUpperCase();
+	}
+	
+	public static String getSystemDate1stAddInDBFormat(){
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 1);
+		return dateFormat.format(cal.getTime()).toUpperCase();
+	}
+	
+	public static String getSystemDate2ndAddInDBFormat(){
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 2);
 		return dateFormat.format(cal.getTime()).toUpperCase();
 	}
 
@@ -28,7 +50,7 @@ public class DateUtils {
 	}
 
 	public static String getAddedSystemYear() {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, 2);
 		return dateFormat.format(cal.getTime());
@@ -88,19 +110,5 @@ public class DateUtils {
 		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(expDate);
 		Calendar cal = Calendar.getInstance();
 		return dateFormat.toString();
-	}
-
-	public static String getCurrentSystemTimeLessThan2Minutes() throws ParseException {
-		DateFormat dateFormat = new SimpleDateFormat("kk:mm:ss");
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MINUTE, -2);
-		return dateFormat.format(cal.getTime());
-	}
-	
-	public static String getPrevSystemMonth() {
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MONTH, -1);
-		return dateFormat.format(cal.getTime());
 	}
 }

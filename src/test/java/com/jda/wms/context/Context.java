@@ -2,23 +2,20 @@ package com.jda.wms.context;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import cucumber.api.Scenario;
 
-import cucumber.runtime.java.guice.ScenarioScope;
+import com.jda.wms.pages.Exit.RDTTask;
 
 public class Context {
+	private RDTTask currentTask;
 	private String preAdviceId;
 	private String skuId;
-	private String uploaded;
 	private String productGroup;
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
-	private static Scenario scenario;
 	private String tagId;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
@@ -31,23 +28,15 @@ public class Context {
 	private Map<String, Map<String, String>> purchaseOrderMap;
 	private Map<String, ArrayList<String>> tagIDMap;
 	private int lineItem = 1;
-	private String dueDate;
-	private ArrayList<String> skuFromUPI;
-	private ArrayList<String> skuFromOrder;
-	private String PutawayLocation1;
-	private String PutawayLocation2;
-	private String fromLocation;
 	private int rcvQtyDue;
 	private String location;
 	private int tagIdIndex = 0;
-	private String transactionTime;
 	private String locationZone;
 	private Map<String, String> locationPerTagMap;
 	private List<String> caseRatiolist;
 	private Map<String, Integer> qtyReceivedPerTagMap;
 	private String name;
 	private String country;
-	private String orderId1;
 	private String address1;
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
@@ -62,49 +51,30 @@ public class Context {
 	private String palletType;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private int qtyOnHand;
+	private int qtyOnHand_zone;
 	private String faceType;
-	private String siteID;
+	private String siteId;
 	private ArrayList<String> failureList;
-	private ArrayList<String> upiList;
-
-
-	private ArrayList<String> odnList;
-
-	private ArrayList<String> asnList;
-	private ArrayList<String> poList;
-
-	private ArrayList<String> orderList;
-
-	private ArrayList<String> preAdviceList;
-	private ArrayList<String> supplierIdList;
 	private String orderId;
-	private String orderId2;
-	private String customer;
+	private String customer = null;
 	private String listID;
 	private String toPallet;
 	private String toLocation;
 	private String finalLocation;
 	private int qtyToMove;
 	private String shipDock;
-	private String supplier;
-	private ArrayList packConfigList;
-	private String putawayLocation1;
-	private String putawayLocation2;
-	private ArrayList<String> trailerList;
-	private ArrayList<String> bookingList;
 	private String newShipDock;
 	private String trailerNo;
 	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
+	private String errorMessage;
 	private int pickedRecords;
 	private String containerId;
-	private Connection connection = null;
-	private static Connection dBConnection = null;
+	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
 	private Integer recordCountByTaskID;
-	private String receiptDate;
 	private String palletID;
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
@@ -114,6 +84,7 @@ public class Context {
 	Map<Integer, Map<String, String>> replenishmentDetailsMap;
 	private int qtyReverse;
 	private boolean puttyLoginFlag = false;
+	private boolean loginPage = false;
 	private String addressID;
 	private String packConfigID;
 	private String dockSchedulerNotes;
@@ -122,62 +93,19 @@ public class Context {
 	private Map<String, Map<Integer, Map<String, String>>> multipleOrderListIDMap;
 	private Process puttyProcess;
 	private String pickingType;
-	private String upiId;
-	private String asnId;
-	private ArrayList skuFromPO;
-	private Map<Integer, Map<String, String>> poMap;
-	private Map<String, Map<String, String>> UPIMap;
-	private Map<String, Map<String, Map<String, String>>> MultipleUPIMap;
-	private Map<String, Map<Integer, Map<String, String>>> MultiplePOMap;
-	private Map<String, String> poNumLinesMap;
-	private Map<String, Integer> upiNumLinesMap;
-	private String skuType;
-	private String packConfig;
-	private String UPC;
-	private String projLoc;
-	private String carrier;
-	private String serviceLevel;
-	private boolean poQtyMoreThanUPIQty = false;
-	private String generateBelCode;
-	private ArrayList<String> belCodeList;
-	private ArrayList<String> enternewpallet;
-	private String bookingTime;
-	private String updatedBookingTime;
-	private String dockId;
-	private String updatedDockId;
-	private String condition;
-	private String reasonCode;
-	private String owner;
-	private String receiveType;
-	private String Record;
-	private String perfectCondition;
-	private String supplierType;
-	private String partset;
-	private String toLocation2;
-	private String relocateLoctn;
-	private ArrayList<String> qtyTaskedList;
-	private ArrayList<String> locationList;
-	private int noOfMoveTaskRecords;
-	private int skuSize;
-	private HashMap<Integer, String> qtyOnHandList;
-	private String orderType;
+	private String triggerQty;
+	private String workZone;
+	private String task;
+	private int QtyOnHandTag;
+	private int QtyWithCaseRatio;
+	private String LocationList;
+	private String Quantity;
+	private String RecordForPallet;
+	private String qtyToMovePck;
+	public static Connection connectionSQLDB = null;
 	private static String parentRequestId;
-	private String uniqueTag;
-	private String adviceId;
-	private boolean uniqueTagInRunStatus;
-	private String totQtyOnHand;
-	public Connection connectionSQLDB = null;
 	private static String childStartTime;
-	private int qtyonhandafteradjustment;
-	private String origin;
-	private String assertString = null;
-	private static String childRequestId;
-	private String secondPalletID;
-	private String errorMessage;
-	private int updatedQty;
-	private static String secondTestData;
-	private int newQtyOnHAnd; 
-	
+
 	private static String url;
 	private static String puttyHost;
 	private static String puttyPort;
@@ -186,145 +114,44 @@ public class Context {
 	private static String dBHost;
 	private static String dBUsername;
 	private static String dBPassword;
-	private static String siteId;
-
-
-	private boolean jdaLoginFlag = false;
-	private boolean vehicleLoadRequired;
+	private String pickFaceTime;
+	private String Key;
 	
-	private ArrayList<String> tagIdList;
+	private String qtyToMove2;
+	private String tag;
+	private String receiptId;
 
-	public ArrayList<String> getTagIdList() {
-		return tagIdList;
+	public void setParentRequestId(String parentRequestId) {
+		this.parentRequestId = parentRequestId;
 	}
 
-	public void setTagIdList(ArrayList<String> tagIdList) {
-		this.tagIdList = tagIdList;
+	public String getParentRequestId() {
+		return parentRequestId;
 	}
 
-	public String getOrderId1() {
-		return orderId1;
+	public Connection getSQLDBConnection() {
+		return connectionSQLDB;
 	}
 
-	public void setOrderId1(String orderId1) {
-		this.orderId1 = orderId1;
+	public void setSQLDBConnection(Connection connectionSQLDB) {
+		this.connectionSQLDB = connectionSQLDB;
 	}
 
-	
-	private static String testData;
+	public void setChildStartTime(String childStartTime) {
 
-	public ArrayList<String> getPoList() {
-		return poList;
+		this.childStartTime = childStartTime;
 	}
 
-	public void setPoList(ArrayList<String> poList) {
-		this.poList = poList;
+	public String getChildStartTime() {
+		return childStartTime;
 	}
 
-	public ArrayList<String> getAsnList() {
-		return asnList;
+	public RDTTask getCurrentTask() {
+		return currentTask;
 	}
 
-	public void setAsnList(ArrayList<String> asnList) {
-		this.asnList = asnList;
-	}
-
-	
-
-
-	public Map<String, String> getPoNumLinesMap() {
-		return poNumLinesMap;
-	}
-
-	public void setPoNumLinesMap(Map<String, String> poNumLinesMap) {
-		this.poNumLinesMap = poNumLinesMap;
-	}
-
-	public ArrayList<String> getSupplierIdList() {
-		return supplierIdList;
-	}
-
-	public void setSupplierIdList(ArrayList<String> supplierIdList) {
-		this.supplierIdList = supplierIdList;
-	}
-
-	public ArrayList<String> getUpiList() {
-		return upiList;
-	}
-	public void setUpiList(ArrayList<String> upiList) {
-		this.upiList = upiList;
-	}
-
-	public void setOdnList(ArrayList<String> odnList) {
-		this.odnList = odnList;
-	}
-	public ArrayList<String> getOdnList() {
-		return odnList;
-	}
-
-
-
-
-	public ArrayList<String> getPreAdviceList() {
-		return preAdviceList;
-	}
-
-	public void setPreAdviceList(ArrayList<String> preAdviceList) {
-		this.preAdviceList = preAdviceList;
-	}
-
-	public String getPartset() {
-		return partset;
-	}
-
-	public void setPartset(String partset) {
-		this.partset = partset;
-	}
-
-	public String getPerfectCondition() {
-		return perfectCondition;
-	}
-	public ArrayList<String> getOrderList() {
-		return orderList;
-	}
-
-	public void setOrderList(ArrayList<String> orderList) {
-		this.orderList = orderList;
-	}
-	public void setPerfectCondition(String perfectCondition) {
-		this.perfectCondition = perfectCondition;
-	}
-
-	public String getUpdatedBookingTime() {
-		return updatedBookingTime;
-	}
-
-	public void setUpdatedBookingTime(String updatedBookingTime) {
-		this.updatedBookingTime = updatedBookingTime;
-	}
-
-	public String getDockId() {
-		return dockId;
-	}
-
-	public void setDockId(String dockId) {
-		this.dockId = dockId;
-	}
-
-	public String getUpdatedDockId() {
-		return updatedDockId;
-	}
-
-	public void setUpdatedDockId(String updatedDockId) {
-		this.updatedDockId = updatedDockId;
-	}
-
-	public String getBookingTime() {
-		return bookingTime;
-	}
-
-	public void setBookingTime(String bookingTime) {
-		this.bookingTime = bookingTime;
+	public void setCurrentTask(RDTTask currentTask) {
+		this.currentTask = currentTask;
 	}
 
 	public String getPalletID() {
@@ -332,7 +159,6 @@ public class Context {
 	}
 
 	public void setPalletID(String palletID) {
-		System.out.println("Pallet Id SET HO GAYA");
 		this.palletID = palletID;
 	}
 
@@ -343,7 +169,6 @@ public class Context {
 	public void setABV(String newAbv) {
 		this.newAbv = newAbv;
 	}
-	
 
 	public String getOrderStatus() {
 		return orderStatus;
@@ -353,11 +178,11 @@ public class Context {
 		this.orderStatus = orderStatus;
 	}
 
-	public String getLocationID() {
+	public String getlocationID() {
 		return locationID;
 	}
 
-	public void setLocationID(String locationID) {
+	public void setlocationID(String locationID) {
 		this.locationID = locationID;
 	}
 
@@ -384,8 +209,6 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
-
-	private ArrayList skuList;
 
 	public String getEAN() {
 		return ean;
@@ -560,7 +383,7 @@ public class Context {
 	}
 
 	public List<String> getCaseRatioList() {
-		return caseRatiolist;
+		return caseRatiolist; // setCaseRatioList
 	}
 
 	public void setCaseRatioList(List<String> caseRatiolist) {
@@ -684,6 +507,14 @@ public class Context {
 		return qtyOnHand;
 	}
 
+	public void setQtyOnHand_zone(int qtyOnHand_zone) {
+		this.qtyOnHand_zone = qtyOnHand_zone;
+	}
+
+	public int getQtyOnHand_zone() {
+		return qtyOnHand_zone;
+	}
+
 	public String getFaceType() {
 		return faceType;
 	}
@@ -692,12 +523,12 @@ public class Context {
 		this.faceType = faceType;
 	}
 
-	public String getSiteID() {
-		return siteID;
+	public String getSiteId() {
+		return siteId;
 	}
 
-	public void setSiteID(String siteID) {
-		this.siteID = siteID;
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
 	}
 
 	public String getLocation() {
@@ -795,6 +626,14 @@ public class Context {
 	public void setQtyToMove(int qtyToMove) {
 		this.qtyToMove = qtyToMove;
 	}
+	
+	public String getQtyToMovepck() {
+		return qtyToMovePck;
+	}
+
+	public void setQtyToMovePck(String qtyToMovePck) {
+		this.qtyToMovePck = qtyToMovePck;
+	}
 
 	public void setTrailerNo(String trailerNo) {
 		this.trailerNo = trailerNo;
@@ -866,6 +705,13 @@ public class Context {
 
 	public void setTaskId(String taskId) {
 		this.taskId = taskId;
+	}
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
 	}
 
 	public Map<Integer, Map<String, String>> getReplenishmentDetailsMap() {
@@ -980,564 +826,15 @@ public class Context {
 		this.pickingType = pickingType;
 	}
 
-	public String getAsnId() {
-		return asnId;
-	}
-
-	public void setAsnId(String asnId) {
-		this.asnId = asnId;
-	}
-
-	public String getUpiId() {
-		return upiId;
-	}
-
-	public void setUpiId(String upiId) {
-		this.upiId = upiId;
-	}
-
-	public Map<Integer, Map<String, String>> getPOMap() {
-		return poMap;
-	}
-
-	public void setPOMap(Map<Integer, Map<String, String>> pOMap) {
-		poMap = pOMap;
-	}
-
-	public String getSKUType() {
-		return skuType;
-	}
-
-	public void setSKUType(String skuType) {
-		this.skuType = skuType;
-	}
-
-	public String getsupplierType() {
-		return supplierType;
-	}
-
-	public void setsupplierType(String supplierType) {
-		this.supplierType = supplierType;
-	}
-
-	public String getPackConfig() {
-		return packConfig;
-	}
-
-	public void setPackConfig(String packConfig) {
-		this.packConfig = packConfig;
-	}
-
-	public String getUPC() {
-		return UPC;
-	}
-
-	public void setUPC(String uPC) {
-		UPC = uPC;
-	}
-
-	public Map<String, Map<String, String>> getUPIMap() {
-		return UPIMap;
-	}
-
-	public void setUPIMap(Map<String, Map<String, String>> uPIMap) {
-		UPIMap = uPIMap;
-	}
-
-	public String getProjLoc() {
-		return projLoc;
-	}
-
-	public void setProjLoc(String projLoc) {
-		this.projLoc = projLoc;
-	}
-
-	public String getCarrier() {
-		return carrier;
-	}
-
-	public void setCarrier(String carrier) {
-		this.carrier = carrier;
-	}
-
-	public String getServiceLevel() {
-		return serviceLevel;
-	}
-
-	public void setServiceLevel(String serviceLevel) {
-		this.serviceLevel = serviceLevel;
-	}
-
-	public boolean isPoQtyMoreThanUPIQty() {
-		return poQtyMoreThanUPIQty;
-	}
-
-	public void setPoQtyMoreThanUPIQty(boolean poQtyMoreThanUPIQty) {
-		this.poQtyMoreThanUPIQty = poQtyMoreThanUPIQty;
-	}
-
-	public void setBelCode(String generateBelCode) {
-		this.generateBelCode = generateBelCode;
-	}
-
-	public String getBelCode() {
-		return generateBelCode;
-	}
-
-	public ArrayList<String> enterNewPallet() {
-		return enternewpallet;
-	}
-
-	public void setNewPallet(ArrayList enternewpallet) {
-		this.enternewpallet = enternewpallet;
-	}
-
-	public ArrayList<String> getBelCodeList() {
-		return belCodeList;
-	}
-
-	public void setBelCodeList(ArrayList<String> belCodeList) {
-		this.belCodeList = belCodeList;
-	}
-
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
-	public String getReasonCode() {
-		return reasonCode;
-	}
-
-	public void setReasonCode(String reasonCode) {
-		this.reasonCode = reasonCode;
-	}
-
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	public String getSupplierType() {
-		return supplierType;
-	}
-
-	public void setSupplierType(String supplierType) {
-		this.supplierType = supplierType;
-	}
-
-	public String getReceiveType() {
-		return receiveType;
-	}
-
-	public void setReceiveType(String receiveType) {
-		this.receiveType = receiveType;
-	}
-
-	public ArrayList getSkuList() {
-		return skuList;
-	}
-
-	public void setSkuList(ArrayList skuList) {
-		this.skuList = skuList;
-	}
-
-	public String getRecord() {
-		return Record;
-	}
-
-	public void setRecord(String record) {
-		Record = record;
-	}
-
-	public Map<String, Map<String, Map<String, String>>> getMultipleUPIMap() {
-		return MultipleUPIMap;
-	}
-
-	public void setMultipleUPIMap(Map<String, Map<String, Map<String, String>>> multipleUPIMap) {
-		MultipleUPIMap = multipleUPIMap;
-	}
-
-	public String getSupplier() {
-		return supplier;
-	}
-
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
-	}
-
-	public ArrayList getPackConfigList() {
-		return packConfigList;
-	}
-
-	public void setPackConfigList(ArrayList packConfigList) {
-		this.packConfigList = packConfigList;
-	}
-
-	public String getPutawayLocation1() {
-		return putawayLocation1;
-	}
-
-	public void setPutawayLocation1(String putawayLocation1) {
-		this.putawayLocation1 = putawayLocation1;
-	}
-
-	public String getPutawayLocation2() {
-		return putawayLocation2;
-	}
-
-	public void setPutawayLocation2(String putawayLocation2) {
-		this.putawayLocation2 = putawayLocation2;
-	}
-
-	public String getToLocation2() {
-		return toLocation2;
-	}
-
-	public void setToLocation2(String toLocation2) {
-		this.toLocation2 = toLocation2;
-	}
-
-	public String getRelocateLoctn() {
-		return relocateLoctn;
-	}
-
-	public void setRelocateLoctn(String relocateLoctn) {
-		this.relocateLoctn = relocateLoctn;
-	}
-
-	public String getUploaded() {
-		return uploaded;
-	}
-
-	public void setUploaded(String uploaded) {
-		this.uploaded = uploaded;
-	}
-
-	public Map<String, Integer> getUpiNumLinesMap() {
-		return upiNumLinesMap;
-	}
-
-	public void setUpiNumLinesMap(Map<String, Integer> upiNumLinesMap) {
-		this.upiNumLinesMap = upiNumLinesMap;
-	}
-
-	public Map<String, Map<Integer, Map<String, String>>> getMultiplePOMap() {
-		return MultiplePOMap;
-	}
-
-	public void setMultiplePOMap(Map<String, Map<Integer, Map<String, String>>> multiplePOMap) {
-		MultiplePOMap = multiplePOMap;
-	}
-
-	public ArrayList getSkuFromPO() {
-		return skuFromPO;
-	}
-
-	public void setSkuFromPO(ArrayList skuFromPO) {
-		this.skuFromPO = skuFromPO;
-	}
-
-	public String getReceiptDate() {
-		return receiptDate;
-	}
-
-	public void setReceiptDate(String receiptDate) {
-		this.receiptDate = receiptDate;
-	}
-
-	public String getFromLocation() {
-		return fromLocation;
-	}
-
-	public void setFromLocation(String fromLocation) {
-		this.fromLocation = fromLocation;
-	}
-
-	public ArrayList<String> getSkuFromOrder() {
-		return skuFromOrder;
-	}
-
-	public void setSkuFromOrder(ArrayList<String> skuFromOrder) {
-		this.skuFromOrder = skuFromOrder;
-	}
-
-	public ArrayList<String> getSkuFromUPI() {
-		return skuFromUPI;
-	}
-
-	public void setSkuFromUPI(ArrayList<String> skuFromUPI) {
-		this.skuFromUPI = skuFromUPI;
-	}
-
-	public String getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public ArrayList<String> getQtyTaskedList() {
-		return qtyTaskedList;
-	}
-
-	public void setQtyTaskedList(ArrayList<String> qtyTaskedList) {
-		this.qtyTaskedList = qtyTaskedList;
-	}
-
-	public int getNoOfMoveTaskRecords() {
-		return noOfMoveTaskRecords;
-	}
-
-	public void setNoOfMoveTaskRecords(int noOfMoveTaskRecords) {
-		this.noOfMoveTaskRecords = noOfMoveTaskRecords;
-	}
-
-	public int getSkuSize() {
-		return skuSize;
-	}
-
-	public void setSkuSize(int skuSize) {
-		this.skuSize = skuSize;
-	}
-
-	public HashMap<Integer, String> getQtyOnHandList() {
-		return qtyOnHandList;
-	}
-
-	public void setQtyOnHandList(HashMap<Integer, String> qtyOnHandList) {
-		this.qtyOnHandList = qtyOnHandList;
-	}
-
-	public String getOrderType() {
-		return orderType;
-	}
-
-	public void setOrderType(String orderType) {
-		this.orderType = orderType;
-	}
-
-	public String getParentRequestId() {
-		return parentRequestId;
-	}
-
-	public void setParentRequestId(String parentRequestId) {
-		this.parentRequestId = parentRequestId;
-	}
-
-	public String getUniqueTag() {
-		return uniqueTag;
-	}
-
-	public void setUniqueTag(String uniqueTag) {
-		this.uniqueTag = uniqueTag;
-	}
-
-	public Scenario getScenario() {
-		return scenario;
-	}
-
-	public void setScenario(Scenario scenario) {
-		this.scenario = scenario;
-	}
-
-	public String getAdviceId() {
-		return adviceId;
-	}
-
-	public void setAdviceId(String adviceId) {
-		this.adviceId = adviceId;
-	}
-
-	public boolean getUniqueTagInRunStatus() {
-		return uniqueTagInRunStatus;
-	}
-
-	public void setUniqueTagInRunStatus(boolean uniqueTagInRunStatus) {
-		this.uniqueTagInRunStatus = uniqueTagInRunStatus;
-	}
-
-	public String getTotQtyOnHand() {
-		return totQtyOnHand;
-	}
-
-	public void setTotQtyOnHand(String totQtyOnHand) {
-		this.totQtyOnHand = totQtyOnHand;
-	}
-
-	public Connection getSQLDBConnection() {
-		return connectionSQLDB;
-	}
-
-	public void setSQLDBConnection(Connection connectionSQLDB) {
-		this.connectionSQLDB = connectionSQLDB;
-	}
-
-	public void setChildStartTime(String childStartTime) {
-		this.childStartTime = childStartTime;
-	}
+	public void setJDALoginFlag(boolean loginPage) {
+		this.loginPage = loginPage;
 
-	public String getChildStartTime() {
-		return childStartTime;
 	}
 
-	public String getOrigin() {
-		return origin;
+	public boolean isJDALoginFlag() {
+		return puttyLoginFlag;
 	}
 
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}
-
-	public String getTransactionTime() {
-		return transactionTime;
-	}
-
-	public void setTransactionTime(String transactionTime) {
-		this.transactionTime = transactionTime;
-	}
-
-	public boolean isJdaLoginFlag() {
-		return jdaLoginFlag;
-	}
-
-	public int getUpdatedQty() {
-		return updatedQty;
-	}
-
-	public void setUpdatedQty(int updatedQty) {
-		this.updatedQty = updatedQty;
-	}
-
-	public void setJdaLoginFlag(boolean jdaLoginFlag) {
-		this.jdaLoginFlag = jdaLoginFlag;
-	}
-
-	public String getAssertString() {
-		return assertString;
-	}
-
-	public void setAssertString(String assertString) {
-		this.assertString = assertString;
-	}
-
-	public static String getChildRequestId() {
-		return childRequestId;
-	}
-
-	public static void setChildRequestId(String childRequestId) {
-		Context.childRequestId = childRequestId;
-	}
-
-	public static String getTestData() {
-		return testData;
-	}
-
-	public static void setTestData(String testData) {
-		Context.testData = testData;
-	}
-	public static String getSecondTestData() {
-		return secondTestData;
-	}
-
-	public static void setSecondTestData(String secondTestData) {
-		Context.secondTestData = secondTestData;
-	}
-
-	public boolean isVehicleLoadRequired() {
-		return vehicleLoadRequired;
-	}
-
-	public void setVehicleLoadRequired(boolean vehicleLoadRequired) {
-		this.vehicleLoadRequired = vehicleLoadRequired;
-	}
-
-	public int getQtyonhandafteradjustment() {
-		return qtyonhandafteradjustment;
-	}
-
-	public void setQtyonhandafteradjustment(int qtyonhandafteradjustment) {
-		this.qtyonhandafteradjustment = qtyonhandafteradjustment;
-	}
-		
-	public String getSecondPalletID() {
-		return secondPalletID;
-	}
-
-	public void setSecondPalletID(String secondPalletID) {
-		this.secondPalletID = secondPalletID;
-	}
-	public String getOrderId2() {
-		return orderId2;
-	}
-
-	public void setOrderId2(String orderId2) {
-		this.orderId2 = orderId2;
-	}
-	public void setDBConnection(Connection dBConnection) {
-		this.dBConnection = dBConnection;
-
-	}
-
-	public Connection getDBConnection() {
-		return dBConnection;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public int getNewQtyOnHAnd() {
-		return newQtyOnHAnd;
-	}
-
-	public void setNewQtyOnHAnd(int newQtyOnHAnd) {
-		this.newQtyOnHAnd = newQtyOnHAnd;
-	}
-
-	public ArrayList<String> getLocationList() {
-		return locationList;
-	}
-
-	public void setLocationList(ArrayList<String> locationList) {
-		this.locationList = locationList;
-	}
-
-	public ArrayList<String> getTrailerList() {
-		return trailerList;
-	}
-
-	public void setTrailerList(ArrayList<String> trailerList) {
-		this.trailerList = trailerList;
-	}
-
-	public ArrayList<String> getBookingList() {
-		return bookingList;
-	}
-
-	public void setBookingList(ArrayList<String> bookingList) {
-		this.bookingList = bookingList;
-	} 
-	
-	public String getSiteId() {
-		return siteId;
-	}
-
-	public void setSiteId(String siteId) {
-		this.siteId = siteId;
-	}
-	
 	public void setURL(String url) {
 		this.url = url;
 	}
@@ -1575,15 +872,15 @@ public class Context {
 		this.appPassword = appPassword;
 
 	}
-	
+
 	public String getAppPassord() {
 		return appPassword;
 	}
 
 	public void setDBHost(String dBHost) {
 		this.dBHost = dBHost;
-	} 
-	
+	}
+
 	public String getDBHost() {
 		return dBHost;
 	}
@@ -1592,7 +889,7 @@ public class Context {
 		this.dBUsername = dBUsername;
 
 	}
-	
+
 	public String getDBUserName() {
 		return dBUsername;
 	}
@@ -1601,11 +898,100 @@ public class Context {
 		this.dBPassword = dBPassword;
 
 	}
-	
+
 	public String getDBPassword() {
 		return dBPassword;
 	}
 
-	
+	public void setErrorMessage(String string) {
+		this.errorMessage = errorMessage;
+	}
 
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setTriggerQty(String triggerqty) {
+		this.triggerQty = triggerQty;
+
+	}
+
+	public String getTriggerQty() {
+		return triggerQty;
+	}
+
+	public void setworkZone(String workZone) {
+		this.workZone = workZone;
+
+	}
+	public String getworkZone() {
+		return workZone = workZone;
+	}
+
+	public void setQtyOnHandTag(int QtyOnHandTag) {
+		this.QtyOnHandTag = QtyOnHandTag;
+	}
+
+	public void setQtyWithCaseRatio(int QtyWithCaseRatio) {
+		this.QtyWithCaseRatio = QtyWithCaseRatio;
+
+	}
+
+	public void setLocationList(String thisLocation) {
+		this.LocationList=thisLocation;
+		
+	}
+
+	public String getLocationList() {
+		return LocationList=LocationList;
+	}
+
+	public void setQuantity(String quantity) {
+		this.Quantity=quantity;
+		
+	}
+
+	public void setRecordForPallet(String record) {
+		this.RecordForPallet=record;
+		
+	}
+
+	public String getRecordForPallet(String record) {
+		return RecordForPallet=record;
+	}
+
+	public String getTime() {
+		
+		return pickFaceTime=pickFaceTime ;
+	}
+	public void setTime() {
+		this.pickFaceTime=pickFaceTime;
+		
+	}
+	public void setTime(String pickFaceTime) {
+		this.pickFaceTime = pickFaceTime;
+	}
+
+	public void setQtyToMove(String qtyToMove2) {
+		this.qtyToMove2 = qtyToMove2;
+		
+	}
+
+	public String getKey() {
+		return Key;
+	}
+
+
+	public void setlockStatus(String status) {
+		this.status = status;
+		
+	}
+
+	public String getlockStatus() {
+		
+		return status;
+	}
 }
+
+
+
