@@ -599,6 +599,15 @@ public class JdaHomePage {
 		Thread.sleep(5000);
 	}
 
+	public void navigateToMoveTaskListManagementPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Move task management");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
 	public void navigateToOrderManagementPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);

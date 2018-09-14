@@ -140,8 +140,10 @@ public class MoveTaskListGenerationPage {
 	}
 	
 	public void enterTaskIdInMoveTaskUpdate(String orderID) throws FindFailed, InterruptedException {
-		Match mTagId = screen.find("images/MoveTaskUpdate/taskid.png");
-		screen.click(mTagId.getCenter().offset(70, 0));
+		screen.click("images/JDAFooter/next.png");
+		Thread.sleep(1000);
+		Match mTaskId = screen.find("images/MoveTaskManagement/TaskId.png");
+		screen.click(mTaskId.getCenter().offset(70, 0));
 		screen.type(orderID);
 		Thread.sleep(1000);
 	}

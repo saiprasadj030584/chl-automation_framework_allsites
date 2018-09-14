@@ -1,4 +1,5 @@
 package com.jda.wms.stepdefs.Exit;
+import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -140,10 +141,18 @@ public class JDAExitorderHeaderDB{
 		jdaHomePage.navigateToMoveTaskListGenerationPage();
 		Thread.sleep(3000);
 		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		moveTaskListGenerationPage.clickAddButton();
+		Thread.sleep(1000);
+		jdaFooter.clickNextButton();
+		Thread.sleep(1000);
+		jdaFooter.clickDoneButton();
+		Thread.sleep(1000);
+		moveTaskListGenerationPage.isListIdPopupDisplayed();
 		
 	}
-
+	}
+		
 	
-		
-	}
 
