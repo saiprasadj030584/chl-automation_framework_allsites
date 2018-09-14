@@ -127,7 +127,7 @@ public class JDAExitorderHeaderDB{
 			if(!orderstatus1.equals("orderstatus"))
 			{
 				System.out.println("status1"+orderstatus1);
-//				systemAllocationStepDefs.i_system_allocate_the_order(); / should be confirmed as it was manual franchise to be manually allocated
+				//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
 			}
 		
 		}
