@@ -1,9 +1,9 @@
 package com.jda.wms.stepdefs.Exit;
-import org.sikuli.script.FindFailed;
+import org.apache.commons.lang.StringUtils;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.context.OrderHeaderContext;
@@ -21,6 +21,7 @@ import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
+import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
@@ -65,6 +66,7 @@ public class JDAExitorderHeaderDB{
 	private JdaHomePage jdaHomePage;
 	private InventoryDB inventoryDB;
 	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
+	private MoveTaskManagementPage moveTaskManagementPage;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
@@ -77,7 +79,8 @@ public class JDAExitorderHeaderDB{
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
-			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage) {
+			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
+			InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage,MoveTaskManagementPage moveTaskManagementPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -109,6 +112,7 @@ public class JDAExitorderHeaderDB{
 		this.jdaHomePage=jdaHomePage;
 		this.inventoryDB=inventoryDB;
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
+		this.moveTaskManagementPage=moveTaskManagementPage;
 	}
 	
 	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\"$")
@@ -147,19 +151,18 @@ public class JDAExitorderHeaderDB{
 		Thread.sleep(2000);
 	}
 		
-//		@And ("^Validation of List Id generated with prefix as MANB$")
-//		public void Validation_of_List_Id_generated_with_prefic_as_MANB()throws Throwable{
-//			
-//			Screen.click();
-//		}
-//		moveTaskListGenerationPage.clickAddButton();
-//		Thread.sleep(1000);
-//		jdaFooter.clickNextButton();
-//		Thread.sleep(1000);
-//		jdaFooter.clickDoneButton();
-//		Thread.sleep(1000);
-//		moveTaskListGenerationPage.isListIdPopupDisplayed();
-		
+	@And ("^Validation of List Id generated with prefix as MANB$")
+	public void Validation_of_List_Id_generated_with_prefic_as_MANB()throws Throwable{
+			
+			moveTaskManagementPage.validateListID();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as MANB", "MANB", prefixlist);
+			logger.debug("List Id generated with prefix as MANB is : " + actuallist);
+			System.out.println("List Id generated with prefix as MANB is : " + actuallist);
+		}
 	
 	}
 		

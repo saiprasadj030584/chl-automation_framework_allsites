@@ -839,6 +839,18 @@ public String getReplenishStatus(String tagId) throws ClassNotFoundException, SQ
 	return rs.getString(1);
 }
 
+public String getListID(String taskId) throws SQLException, ClassNotFoundException {
+	if (context.getConnection() == null) {
+		database.connect();
+	}
+
+	Statement stmt = context.getConnection().createStatement();
+	System.out.println("select LIST_ID FROM move_task where task_id ='" + taskId + "'");
+	ResultSet rs = stmt.executeQuery(
+			"select LIST_ID FROM move_task where task_id ='" + taskId + "' ");
+	rs.next();
+	return rs.getString(1);
+}
 
 }
 

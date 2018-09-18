@@ -674,9 +674,5 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	@And ("^Validation of List Id generated with prefix as MANB$")
-	public void Validation_of_List_Id_generated_with_prefic_as_MANB()throws Throwable{
-		
-		screen.click("images/MoveTaskManagement/MANB.png");
-	}
+	
 }
