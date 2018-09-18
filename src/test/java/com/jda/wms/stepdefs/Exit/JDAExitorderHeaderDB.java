@@ -3,6 +3,7 @@ import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.context.OrderHeaderContext;
@@ -25,6 +26,7 @@ import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
 
@@ -138,20 +140,27 @@ public class JDAExitorderHeaderDB{
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status() throws Throwable{
 		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
 		Thread.sleep(3000);
-		jdaHomePage.navigateToMoveTaskListGenerationPage();
+		jdaHomePage.navigateToMoveTaskListManagementPage();
 		Thread.sleep(3000);
 		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
-		moveTaskListGenerationPage.clickAddButton();
-		Thread.sleep(1000);
-		jdaFooter.clickNextButton();
-		Thread.sleep(1000);
-		jdaFooter.clickDoneButton();
-		Thread.sleep(1000);
-		moveTaskListGenerationPage.isListIdPopupDisplayed();
-		
 	}
+		
+//		@And ("^Validation of List Id generated with prefix as MANB$")
+//		public void Validation_of_List_Id_generated_with_prefic_as_MANB()throws Throwable{
+//			
+//			Screen.click();
+//		}
+//		moveTaskListGenerationPage.clickAddButton();
+//		Thread.sleep(1000);
+//		jdaFooter.clickNextButton();
+//		Thread.sleep(1000);
+//		jdaFooter.clickDoneButton();
+//		Thread.sleep(1000);
+//		moveTaskListGenerationPage.isListIdPopupDisplayed();
+		
+	
 	}
 		
 	
