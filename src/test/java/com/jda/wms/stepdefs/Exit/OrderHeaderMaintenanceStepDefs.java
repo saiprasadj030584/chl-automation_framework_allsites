@@ -56,8 +56,6 @@ public class OrderHeaderMaintenanceStepDefs {
 	private OrderHeaderContext orderHeaderContext;
 	private OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs;
 	private MoveTaskStepDefs moveTaskStepDefs;
-	private SystemAllocationStepDefs systemAllocationStepDefs;
-	private ClusteringStepDefs clusteringStepDefs;
 	private OrderPreparationStepDefs orderPreparationStepDefs;
 	private DataSetupRunner dataSetupRunner;
 	private GetTCData getTCData;
@@ -80,7 +78,6 @@ public class OrderHeaderMaintenanceStepDefs {
 			AddressDB addressDB, Hooks hooks, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
 			SelectDataFromDB selectDataFromDB, OrderHeaderContext orderHeaderContext,
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
-			SystemAllocationStepDefs systemAllocationStepDefs, ClusteringStepDefs clusteringStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			  MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
@@ -102,8 +99,6 @@ public class OrderHeaderMaintenanceStepDefs {
 		this.orderHeaderContext = orderHeaderContext;
 		this.orderLineMaintenanceStepDefs = orderLineMaintenanceStepDefs;
 		this.moveTaskStepDefs = moveTaskStepDefs;
-		this.systemAllocationStepDefs = systemAllocationStepDefs;
-		this.clusteringStepDefs = clusteringStepDefs;
 		this.orderPreparationStepDefs = orderPreparationStepDefs;
 		this.dataSetupRunner = dataSetupRunner;
 		this.getTCData = getTCData;
@@ -137,12 +132,12 @@ public class OrderHeaderMaintenanceStepDefs {
 			if(!orderstatus1.equals("orderstatus"))
 			{
 				System.out.println("status1"+orderstatus1);
-				systemAllocationStepDefs.i_system_allocate_the_order();
+//				systemAllocationStepDefs.i_system_allocate_the_order();
 			}
 		
 		}
 		
-	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 	    orderPreparationStepDefs.i_create_consignment();
 	    String statusBeforePck = moveTaskDB.getStatus(context.getOrderId());
 	    System.out.println("statusBeforePck=" +statusBeforePck);	    
@@ -210,12 +205,12 @@ public class OrderHeaderMaintenanceStepDefs {
 			if(orderstatus1.equals("Released"))
 			{
 				System.out.println("status1"+orderstatus1);
-				systemAllocationStepDefs.i_system_allocate_the_order();
+//				systemAllocationStepDefs.i_system_allocate_the_order();
 			}
 		
 		}
 		
-	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 	    orderPreparationStepDefs.i_create_consignment();
 	    String statusBeforePck = moveTaskDB.getStatus(context.getOrderId());
 	    System.out.println("statusBeforePck=" +statusBeforePck);	    
@@ -283,12 +278,12 @@ public class OrderHeaderMaintenanceStepDefs {
 			if(orderstatus1.equals("Released"))
 			{
 				System.out.println("status"+orderstatus1);
-				systemAllocationStepDefs.i_system_allocate_the_order();
+//				systemAllocationStepDefs.i_system_allocate_the_order();
 			}
 		
 		}
 		
-	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 	    orderPreparationStepDefs.i_create_consignment();
 	    String statusBeforePck = moveTaskDB.getStatus(context.getOrderId());
 	    System.out.println("statusBeforePck=" +statusBeforePck);	    
@@ -353,12 +348,12 @@ public class OrderHeaderMaintenanceStepDefs {
 			if(!orderstatus1.equals("orderstatus"))
 			{
 				System.out.println("status: "+orderstatus1);
-				systemAllocationStepDefs.i_system_allocate_the_order();
+//				systemAllocationStepDefs.i_system_allocate_the_order();
 			}
 		
 		}
 		
-	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//	    clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 	    orderPreparationStepDefs.i_create_consignment();
 	    String statusBeforePck = moveTaskDB.getStatus(context.getOrderId());
 	    System.out.println("statusBeforePck=" +statusBeforePck);	    
@@ -664,8 +659,8 @@ public class OrderHeaderMaintenanceStepDefs {
 		System.out.println("New Order ID " + orderID);
 		context.setTaskId(orderID);
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
-		systemAllocationStepDefs.i_system_allocate_the_order();
-		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//		systemAllocationStepDefs.i_system_allocate_the_order();
+//		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 		/*jdaHomeStepDefs.i_navigate_to_move_task_update();
 		moveTaskUpdateStepDefs.the_task_id_should_be_released(orderID);*/
 		orderPreparationStepDefs.i_create_consignment();

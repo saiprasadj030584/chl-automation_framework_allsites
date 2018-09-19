@@ -67,8 +67,7 @@ public class MoveTaskStepDefs {
 	private SkuDB skuDB;
 	private Map<Integer, Map<String, String>> stockTransferOrderMap;
 	private JDALoginStepDefs jdaLoginStepDefs;
-	private SystemAllocationStepDefs systemAllocationStepDefs;
-	private ClusteringStepDefs clusteringStepDefs;
+//	private SystemAllocationStepDefs systemAllocationStepDefs;
 	private OrderPreparationStepDefs orderPreparationStepDefs;
 	private final StockCheckListGenerationPage stockCheckListGenerationPage;
 	private final MoveTaskListGenerationPage moveTaskListGenerationPage;
@@ -76,7 +75,7 @@ public class MoveTaskStepDefs {
 	private final PickFaceMaintenancePage pickFaceMaintenancPage;
 	private final PickFaceTableDB pickFaceTableDB;
 
-	private final PickFaceMaintenanceStepDefs pickFaceMaintenanceStepDefs;
+//	private final PickFaceMaintenanceStepDefs pickFaceMaintenanceStepDefs;
 	private OrderHeaderMaintenanceStepDefs  orderHeaderMaintenanceStepDefs;
 	private final OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs;
 	
@@ -92,8 +91,8 @@ public class MoveTaskStepDefs {
 	@Inject
 	public MoveTaskStepDefs(Verification verification, StockCheckListGenerationPage stockCheckListGenerationPage,
 			JDALoginStepDefs jdaLoginStepDefs, OrderHeaderDB orderHeaderDB, GetTCData getTCData,
-			OrderLineDB orderLineDB, SkuDB skuDB, SystemAllocationStepDefs systemAllocationStepDefs,
-			ClusteringStepDefs clusteringStepDefs, OrderPreparationStepDefs orderPreparationStepDefs,
+			OrderLineDB orderLineDB, SkuDB skuDB,
+			OrderPreparationStepDefs orderPreparationStepDefs,
 			DataSetupRunner dataSetupRunner, Utilities utilities,
 			 MoveTaskQueryPage moveTaskQueryPage, Hooks hooks,
 			MoveTaskDB moveTaskDB, Context context, JDAFooter jDAFooter, SkuConfigDB skuConfigDB,
@@ -102,7 +101,7 @@ public class MoveTaskStepDefs {
 			MoveTaskListGenerationPage moveTaskListGenerationPage, JdaLoginPage jdaLoginPage,
 
 			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,
-			PickFaceMaintenanceStepDefs pickFaceMaintenanceStepDefs,
+			
 			
 			OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs,OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs) {
 	
@@ -113,8 +112,6 @@ public class MoveTaskStepDefs {
 		this.jdaLoginPage = jdaLoginPage;
 		this.stockCheckListGenerationPage = stockCheckListGenerationPage;
 		this.moveTaskListGenerationPage = moveTaskListGenerationPage;
-		this.systemAllocationStepDefs = systemAllocationStepDefs;
-		this.clusteringStepDefs = clusteringStepDefs;
 		this.orderPreparationStepDefs = orderPreparationStepDefs;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
 		this.verification = verification;
@@ -135,7 +132,7 @@ public class MoveTaskStepDefs {
 		this.inventoryDB = inventoryDB;
 		this.orderLineDB = orderLineDB;
 
-		this.pickFaceMaintenanceStepDefs = pickFaceMaintenanceStepDefs;
+//		this.pickFaceMaintenanceStepDefs = pickFaceMaintenanceStepDefs;
 		this.orderHeaderMaintenanceStepDefs=orderHeaderMaintenanceStepDefs;
 		
 		this.orderLineMaintenanceStepDefs=orderLineMaintenanceStepDefs;
@@ -840,10 +837,10 @@ public class MoveTaskStepDefs {
 
  		i_have_logged_in_as_a_warehouse_user_in_JDA_dispatcher_food_application();
  		jdaHomePage.navigateToPickFaceMaintenance();
- 		pickFaceMaintenanceStepDefs.i_add_the_location_Id_with_face_sku_site_id_and_trigger_qty("Fixed", "21036245",
- 				"9771");
+// 		pickFaceMaintenanceStepDefs.i_add_the_location_Id_with_face_sku_site_id_and_trigger_qty("Fixed", "21036245",
+// 				"9771");
  		Thread.sleep(4000);
- 		systemAllocationStepDefs.i_system_allocate_the_order_for_sku("21036245");
+// 		systemAllocationStepDefs.i_system_allocate_the_order_for_sku("21036245");
  		the_replenish_pick_is_created();
 // 		context.setTask(task);
 // 		// String tag=moveTaskDB.getTag(task);
@@ -1252,7 +1249,7 @@ public class MoveTaskStepDefs {
 		
 //		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
 		
-		systemAllocationStepDefs.the_location_should_be_changed_to_for_the_sku("UnLocked","21036013");
+//		systemAllocationStepDefs.the_location_should_be_changed_to_for_the_sku("UnLocked","21036013");
 		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table_for_customer_for_consolidation("Released","RDC","3942");
 		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
 		orderLineMaintenanceStepDefs.the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table();
@@ -1271,7 +1268,7 @@ public class MoveTaskStepDefs {
 	@Given("^I have the order id for consolidation$")
 	public void i_have_order_id_for_consolidation() throws Throwable {
 		
-		systemAllocationStepDefs.the_location_should_be_changed_to_for_the_sku("UnLocked","21036013");
+//		systemAllocationStepDefs.the_location_should_be_changed_to_for_the_sku("UnLocked","21036013");
 		orderHeaderMaintenanceStepDefs.the_sto_should_be_status_type_order_details_in_the_order_header_table_for_customer_for_container_check("Released","RDC","3942");
 		orderHeaderMaintenanceStepDefs.the_order_should_have_delivery_details();
 		orderLineMaintenanceStepDefs.the_STO_should_have_the_SKU_pack_config_quantity_ordered_quantity_tasked_case_ratio_details_for_each_line_items_from_order_line_table();

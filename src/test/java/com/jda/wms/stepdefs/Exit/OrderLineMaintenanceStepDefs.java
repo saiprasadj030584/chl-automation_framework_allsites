@@ -37,7 +37,6 @@ public class OrderLineMaintenanceStepDefs {
 	@Inject
 	public OrderLineMaintenanceStepDefs(OrderLineMaintenancePage orderLineMaintenancePage,
 			JDAHomeStepDefs jdaHomeStepDefs, JdaHomePage jdaHomePage, JDAFooter jdaFooter, Context context,
-			PackConfigMaintenanceStepDefs packConfigMaintenanceStepDefs,
 			PackConfigMaintenancePage packConfigMaintenancePage, OrderLineDB orderLineDB, Verification verification,SkuDB skuDB,SkuConfigDB skuConfigDB) {
 		this.orderLineMaintenancePage = orderLineMaintenancePage;
 		this.context = context;

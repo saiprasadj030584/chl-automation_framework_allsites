@@ -26,8 +26,6 @@ public class OrderPreparationStepDefs {
 	private InsertDataIntoDB insertDataIntoDB;
 	private DeleteDataFromDB deleteDataFromDB;
 	private SelectDataFromDB selectDataFromDB;
-	private SystemAllocationStepDefs systemAllocationStepDefs;
-	private ClusteringStepDefs clusteringStepDefs;
 	private JDAHomeStepDefs jdaHomeStepDefs;
 	private OrderHeaderDB orderHeaderDB;
 	private JDALoginStepDefs jdaLoginStepDefs;
@@ -40,7 +38,7 @@ public class OrderPreparationStepDefs {
 	public OrderPreparationStepDefs(OrderPreparationPage orderPreparationPage, WarningPopUpPage warningPopUpPage,
 			JDAFooter jdaFooter, Context context,InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
 			SelectDataFromDB selectDataFromDB,MoveTaskDB moveTaskDB,MoveTaskUpdateDB moveTaskUpdateDB,
-			SystemAllocationStepDefs systemAllocationStepDefs,ClusteringStepDefs clusteringStepDefs,JDAHomeStepDefs jdaHomeStepDefs,OrderHeaderDB orderHeaderDB,JDALoginStepDefs jdaLoginStepDefs,DataSetupRunner dataSetupRunner,GetTCData getTCData) {
+			JDAHomeStepDefs jdaHomeStepDefs,OrderHeaderDB orderHeaderDB,JDALoginStepDefs jdaLoginStepDefs,DataSetupRunner dataSetupRunner,GetTCData getTCData) {
 		this.orderPreparationPage = orderPreparationPage;
 		this.warningPopUpPage = warningPopUpPage;
 		this.jdaFooter = jdaFooter;
@@ -48,8 +46,6 @@ public class OrderPreparationStepDefs {
 		this.insertDataIntoDB = insertDataIntoDB;
 		this.deleteDataFromDB = deleteDataFromDB;
 		this.selectDataFromDB = selectDataFromDB;
-		this.systemAllocationStepDefs =systemAllocationStepDefs;
-		this.clusteringStepDefs = clusteringStepDefs;
 		this.jdaHomeStepDefs=jdaHomeStepDefs;
 		this.orderHeaderDB = orderHeaderDB;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
@@ -75,8 +71,8 @@ public class OrderPreparationStepDefs {
 		String orderId = getTCData.getSto();
 		System.out.println("New Order ID " + orderId);
 //		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_dispatcher_food_application();
-		systemAllocationStepDefs.i_system_allocate_the_order();
-		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
+//		systemAllocationStepDefs.i_system_allocate_the_order();
+//		clusteringStepDefs.i_create_list_ids_manually_in_clustering();
 		i_create_consignment();
 		// ------------------Data Set up Modified---------------
 		

@@ -49,8 +49,6 @@ public class JDAExitorderHeaderDB{
 	private OrderHeaderContext orderHeaderContext;
 	private OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs;
 	private MoveTaskStepDefs moveTaskStepDefs;
-	private SystemAllocationStepDefs systemAllocationStepDefs;
-	private ClusteringStepDefs clusteringStepDefs;
 	private OrderPreparationStepDefs orderPreparationStepDefs;
 	private DataSetupRunner dataSetupRunner;
 	private GetTCData getTCData;
@@ -75,7 +73,6 @@ public class JDAExitorderHeaderDB{
 			AddressDB addressDB, Hooks hooks, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
 			SelectDataFromDB selectDataFromDB, OrderHeaderContext orderHeaderContext,
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
-			SystemAllocationStepDefs systemAllocationStepDefs, ClusteringStepDefs clusteringStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
@@ -98,8 +95,7 @@ public class JDAExitorderHeaderDB{
 		this.orderHeaderContext = orderHeaderContext;
 		this.orderLineMaintenanceStepDefs = orderLineMaintenanceStepDefs;
 		this.moveTaskStepDefs = moveTaskStepDefs;
-		this.systemAllocationStepDefs = systemAllocationStepDefs;
-		this.clusteringStepDefs = clusteringStepDefs;
+
 		this.orderPreparationStepDefs = orderPreparationStepDefs;
 		this.dataSetupRunner = dataSetupRunner;
 		this.getTCData = getTCData;
