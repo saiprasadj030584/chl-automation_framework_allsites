@@ -16,7 +16,7 @@ import cucumber.api.junit.Cucumber;
 
 				+ ""
 				+ ""
-				+ "@SN2_Picking_Order_Manual_IDT"
+				+ "@SN3_Picking_FSV_Cross_Dock"
 				+ ""
 
 				

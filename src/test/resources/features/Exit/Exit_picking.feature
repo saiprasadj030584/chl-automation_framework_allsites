@@ -18,6 +18,11 @@ so that I can pick and dispatch
   And Navigate to Move Task management Screen to verify Order Allocated status for IDT
   And Validation of List Id generated with prefix as IDT
   
+ @SN3_Picking_FSV_Cross_Dock
+ Scenario: SN3_Picking FSV Cross Dock
+ Given Data to be inserted in preadvice header and order header
+  
+  
   
   
 

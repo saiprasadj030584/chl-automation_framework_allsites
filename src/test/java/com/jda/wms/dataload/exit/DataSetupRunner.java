@@ -80,7 +80,7 @@ public class DataSetupRunner {
 	public void insertPreAdviceData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String poId = newPoId();
 		insertDataIntoDB.insertPreAdviceHeader(poId);
-		insertDataIntoDB.insertPreAdviceLine(poId, context.getProductCategory());
+		insertDataIntoDB.insertPreAdviceline(poId);
 		
 		Thread.sleep(3000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
