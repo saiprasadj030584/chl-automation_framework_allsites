@@ -22,5 +22,10 @@ public class MoveTaskManagementPage {
 		screen.click("images/MoveTaskManagement/MANB.png");
 		Thread.sleep(1000);
 	}
+	public void validateListIDforIDT() throws FindFailed, InterruptedException {
+		screen.click("images/MoveTaskManagement/IDT.png");
+		Thread.sleep(1000);
+	}
+	
 	}
 

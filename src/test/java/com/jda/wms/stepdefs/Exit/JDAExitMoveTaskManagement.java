@@ -24,5 +24,6 @@ public class JDAExitMoveTaskManagement<JDAFooter>{
 		screen.type(orderID);
 		Thread.sleep(1000);
 	}
+	
 
 }

@@ -10,4 +10,14 @@ so that I can pick and dispatch
   Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
   And Navigate to Move Task management Screen to verify Order Allocated status
   And Validation of List Id generated with prefix as MANB
+  
+@SN2_Picking_Order_Manual_IDT
+  Scenario: SN1_Picking Order Manual IDT
+  #Given Logging in as warehouse user in Exit application
+  Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
+  And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+  And Validation of List Id generated with prefix as IDT
+  
+  
+  
 

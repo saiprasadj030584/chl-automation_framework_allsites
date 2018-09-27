@@ -159,7 +159,53 @@ public class JDAExitorderHeaderDB{
 			logger.debug("List Id generated with prefix as MANB is : " + actuallist);
 			System.out.println("List Id generated with prefix as MANB is : " + actuallist);
 		}
+	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\" for IDT$")
+	public void Order_Status_should_be_Type_should_be_Customer_should_be_for_IDT(String status,
+			String type, String customer) throws Throwable {
+		context.setStoType(type);
+		context.setCustomer(customer);
+		dataSetupRunner.insertOrderData();
+		String orderID = getTCData.getSto();
+		System.out.println("New Order ID : " + orderID);
+		Thread.sleep(10000);
+		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+		System.out.println("status : "+orderstatus);
+		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		if(orderstatus.equals(status))
+		{
+			Thread.sleep(15000);
+			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
+			if(!orderstatus1.equals("orderstatus"))
+			{
+				System.out.println("status1"+orderstatus1);
+				//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
+			}
+		
+		}
 	
+	}
+	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for IDT$")
+	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_IDT() throws Throwable{
+		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		Thread.sleep(3000);
+		jdaHomePage.navigateToMoveTaskListManagementPage();
+		Thread.sleep(3000);
+		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+	}
+	@And ("^Validation of List Id generated with prefix as IDT$")
+	public void Validation_of_List_Id_generated_with_prefic_as_IDT()throws Throwable{
+			
+			moveTaskManagementPage.validateListIDforIDT();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDTB", prefixlist);
+			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
+			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
+		}
 	}
 		
 	

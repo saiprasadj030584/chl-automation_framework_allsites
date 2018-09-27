@@ -16,7 +16,7 @@ import cucumber.api.junit.Cucumber;
 
 				+ ""
 				+ ""
-				+ "@SN1_Picking_Order_Manual_Franchise_Boxed"
+				+ "@SN2_Picking_Order_Manual_IDT"
 				+ ""
 
 				
