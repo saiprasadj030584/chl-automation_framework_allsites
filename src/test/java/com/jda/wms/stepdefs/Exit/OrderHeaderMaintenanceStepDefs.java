@@ -191,7 +191,7 @@ public class OrderHeaderMaintenanceStepDefs {
 		// ------------------Data Set up Modified---------------
 		context.setStoType(type);
 		context.setCustomer(customer);
-		dataSetupRunner.insert2OrderData();
+		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID " + orderID);
 		Thread.sleep(10000);

@@ -135,13 +135,13 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
-	
-	public void insert2OrderData() throws ClassNotFoundException, SQLException, InterruptedException {
+	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
+		String poId = newPoId();
 //		String stoId = "8800004368";
 		System.out.println(stoId);
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insert2OrderLine(stoId);
+		insertDataIntoDB.insertOrderLine2(stoId,poId);
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
@@ -160,6 +160,31 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
+	
+//	public void insert2OrderData() throws ClassNotFoundException, SQLException, InterruptedException {
+//		String stoId = newStoId();
+////		String stoId = "8800004368";
+//		System.out.println(stoId);
+//		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
+//		insertDataIntoDB.insert2OrderLine(stoId);
+//		Thread.sleep(10000);
+//		selectDataFromDB.isOrderHeaderRecordExists(stoId);
+//		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
+//			
+//		//Bhuban
+//		updateDataFromDB.updateMoveTaskStatusInMoveTask(stoId);
+//		 //updateDataFromDB.updateMoveTaskStatusInOrderHeader(stoId);
+//			
+//			updateDataFromDB.updateAddressIntPalletType(context.getCustomer());
+//			Thread.sleep(3000);	
+//		
+//		
+//		
+//		Assert.assertTrue("Test Data not available - Issue in Data loading",
+//				selectDataFromDB.isOrderRecordExists(stoId));
+//		getTCData.setSto(stoId);
+//		System.out.println("Order Id from Interface table is:"+ stoId );
+//	}
 	public void insertOrderDataForContainer() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 //		String stoId = "8800004368";
@@ -258,7 +283,7 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
-	private String newStoId() throws ClassNotFoundException, SQLException, InterruptedException {
+	public String newStoId() throws ClassNotFoundException, SQLException, InterruptedException {
 
 		long value, max = 999999999;
 		boolean mainTable = true, interfaceTable = true;

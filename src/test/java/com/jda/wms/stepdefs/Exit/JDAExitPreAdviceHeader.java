@@ -110,13 +110,14 @@ public class JDAExitPreAdviceHeader{
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 	}
-	@Given ("^Data to be inserted in preadvice header and order header$")
-	public void Data_to_be_inserted_in_preadvice_header_and_order_header(String status,
+	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,
 			String type, String customer) throws Throwable {
+		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
-//		dataSetupRunner.insertPreAdviceData();
-		dataSetupRunner.insertOrderData();
+		dataSetupRunner.insertPreAdviceData();
+		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
@@ -136,4 +137,27 @@ public class JDAExitPreAdviceHeader{
 		}
 	
 	}
+	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for FSV Crossdock$")
+	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_FSV_Crossdock() throws Throwable{
+		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		Thread.sleep(3000);
+		jdaHomePage.navigateToMoveTaskListManagementPage();
+		Thread.sleep(3000);
+		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+	}
+	@And ("^Validation of List Id generated with prefix as FSVB$")
+	public void Validation_of_List_Id_generated_with_prefix_as_FSVB()throws Throwable{
+			
+			moveTaskManagementPage.validateListIDforIDT();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as FSVB", "FSVB", prefixlist);
+			logger.debug("List Id generated with prefix as FSVB is : " + actuallist);
+			System.out.println("List Id generated with prefix as FSVB is : " + actuallist);
+		}
+	
 	}
