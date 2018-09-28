@@ -39,7 +39,27 @@ public class SelectDataFromDB {
 		}
 		return isRecordExists;
 	}
-
+	public boolean isUpiRecordExists(String palletID) throws ClassNotFoundException {
+		boolean isRecordExists = false;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT PALLET_ID FROM UPI_HEADER WHERE PRE_ADVICE_ID = '" + palletID + "'");
+			rs.next();
+			if (rs.getString(1).equals(palletID)) {
+				isRecordExists = true;
+			}
+		} catch (SQLException e) {
+			
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 	public boolean isOrderRecordExists(String orderId) throws ClassNotFoundException, InterruptedException {
 		boolean isRecordExists = false;
 		ResultSet rs = null;

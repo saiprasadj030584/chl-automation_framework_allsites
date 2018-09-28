@@ -22,8 +22,14 @@ so that I can pick and dispatch
  Scenario: SN3_Picking FSV Cross Dock
  Given Data to be inserted in preadvice header and order header with "Released","NONRETAIL","5542"
  And Navigate to Move Task management Screen to verify Order Allocated status for FSV Crossdock
-  And Validation of List Id generated with prefix as FSVB
-  
+ And Validation of List Id generated with prefix as FSVB
+ 
+ 
+  @SN3_Picking_ASN_Cross_Dock
+ Scenario: SN3_Picking FSV Cross Dock
+ Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+ And Navigate to Move Task management Screen to verify Order Allocated status for ASN Crossdock
+ And Validation of List Id generated with prefix as ASNB
   
  
   

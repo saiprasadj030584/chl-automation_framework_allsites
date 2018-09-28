@@ -46,6 +46,21 @@ public class DataSetupRunner {
 		return tempValue;
 	}
 	
+	public String palletId() throws ClassNotFoundException, SQLException, InterruptedException {
+		long value, max = 999999999;
+		boolean mainTable = true, interfaceTable = true;
+		String tempValue;
+		do {
+			value = ThreadLocalRandom.current().nextLong(100000000, max);
+			int tempInt = ThreadLocalRandom.current().nextInt(9);
+			tempValue = String.valueOf(value) + String.valueOf(tempInt);
+			HashMap<String, Boolean> presenceMap = validatePoPresenceinJdaTable(tempValue);
+			System.out.println("temp value"+tempValue);
+			mainTable = presenceMap.get("mainTable");
+			interfaceTable = presenceMap.get("interfaceTable");
+		} while (mainTable || interfaceTable);
+		return tempValue;
+	}
 	
 	public HashMap<String, Boolean> validatePoPresenceinJdaTable(String tempValue)
 			throws ClassNotFoundException, SQLException, InterruptedException {
@@ -86,6 +101,16 @@ public class DataSetupRunner {
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(poId));
 		getTCData.setPo(poId);
+	}
+	public void insertUPIReceiptData() throws ClassNotFoundException, SQLException, InterruptedException {
+		String palletId = palletId();
+		insertDataIntoDB.insertUPIReceiptHeader(palletId);
+		insertDataIntoDB.insertUPIReceiptline(palletId);
+		
+		Thread.sleep(3000);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isUpiRecordExists(palletId));
+		getTCData.setPo(palletId);
 	}
 	
 	public void insertPreAdviceDataTrial() throws ClassNotFoundException, SQLException, InterruptedException {
