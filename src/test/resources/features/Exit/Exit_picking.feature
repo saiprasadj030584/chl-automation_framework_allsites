@@ -4,12 +4,14 @@ As a user in Exit DC
 Order should be autoalocated
 so that I can pick and dispatch
 
-@SN1_Picking_Order_Manual_Franchise_Boxed
+@SN1_Picking_Order_Manual_Franchise_Boxed @SN05_Picking_and_receiving_
   Scenario: SN1_Picking Order Manual Franchise Boxed
   #Given Logging in as warehouse user in Exit application
   Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
   And Navigate to Move Task management Screen to verify Order Allocated status
   And Validation of List Id generated with prefix as MANB
+  Then I login as warehouse user in putty
+  And I select user directed option in main menu
   
 @SN2_Picking_Order_Manual_IDT
   Scenario: SN1_Picking Order Manual IDT

@@ -116,7 +116,7 @@ public class JDAExitUpiHeader{
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
-		dataSetupRunner.insertPreAdviceData();
+//		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertUPIReceiptData();
 		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
