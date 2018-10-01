@@ -30,7 +30,7 @@ public class InsertDataIntoDB {
                         + key +"','M+S','"
                         +preAdviceId+"','STO','5542','M+S','4624','Released',null,to_timestamp('"
                         +queryInsertDate+" 00.00.00.000000000'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,null,null,'224101','ZGM',null,null,null,'H',null,null,null,'N','N','N',to_timestamp('"
-                        +queryInsertDate+" 12.05.23.000000000'),null,null,null,null,null,null,5581,null,null,null,null,null,'N',null,null,null,null,null,'Europe/Belfast','Europe/London',null,'INT','A','CMEError','MANDSIF001',to_timestamp('"+queryInsertDate+" 08.49.04.679759000'))";
+                        +queryInsertDate+" 12.05.23.000000000'),null,null,null,null,null,null,5581,null,null,null,null,null,'N',null,null,null,null,null,'Europe/Belfast','Europe/London',null, 'M+S', 'A', 'Pending',null,to_timestamp('"+queryInsertDate+" 23.49.04.679759000'))";
 		System.out.println("Insert Pre Advice Header");
 		System.out.println(query);
 		if (context.getConnection() == null) {
@@ -184,7 +184,7 @@ public class InsertDataIntoDB {
 		String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_LINE");
 		String query = "Insert into INTERFACE_PRE_ADVICE_LINE (KEY,CLIENT_ID,PRE_ADVICE_ID,LINE_ID,HOST_PRE_ADVICE_ID,HOST_LINE_ID,SKU_ID,CONFIG_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,PALLET_CONFIG,ORIGIN_ID,CONDITION_ID,TAG_ID,LOCK_CODE,SPEC_CODE,QTY_DUE,NOTES,SAP_PLANT,SAP_STORE_LOC,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TRACKING_LEVEL,QTY_DUE_TOLERANCE,CE_COO,OWNER_ID,CE_CONSIGNMENT_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_UNDER_BOND,CE_LINK,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,SERIAL_VALID_MERGE,SAMPLING_TYPE,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
 				       + key +"','M+S','"
-				       +preAdviceId+"',10,null,null,'000000000021071852',null,null,null,null,null,null,null,null,null,null,30,null,null,null,'N','969108','ZGM',null,'5571','03835975','SP13','0625A','B',null,null,null,null,to_timestamp('"+queryInsertDate+" 14.05.55.000000000'),null,null,null,null,null,2018,31,null,null,'EA',null,null,'M+S',null,null,null,null,null,null,null,null,'N',null,null,null,'Europe/London',null,null,'INT','A','CMEError','MANDSIF001',to_timestamp('"
+				       +preAdviceId+"',10,null,null,'000000000021071852',null,null,null,null,null,null,null,null,null,null,30,null,null,null,'N','969108','ZGM',null,'5571','03835975','SP13','0625A','B',null,null,null,null,to_timestamp('"+queryInsertDate+" 14.05.55.000000000'),null,null,null,null,null,2018,31,null,null,'EA',null,null,'M+S',null,null,null,null,null,null,null,null,'N',null,null,null,'Europe/London',null,null,'M+S', 'A','Pending',null,to_timestamp('"
 				       +queryInsertDate+" 14.05.57.342179000'))";
 		System.out.println("Insert Pre Advice line");
 		System.out.println(query);
@@ -287,8 +287,8 @@ public class InsertDataIntoDB {
 		if (rs.next()) {
 
 			System.out.println("Data not found");
-			String key = String.valueOf(Integer.parseInt(rs.getString(1) + 1));
-//			String key = String.valueOf(1);
+//			String key = String.valueOf(Integer.parseInt(rs.getString(1) + 1));
+			String key = String.valueOf(1);
 			return key;
 
 		} else {

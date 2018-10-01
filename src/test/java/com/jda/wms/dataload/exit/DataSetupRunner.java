@@ -97,7 +97,7 @@ public class DataSetupRunner {
 		insertDataIntoDB.insertPreAdviceHeader(poId);
 		insertDataIntoDB.insertPreAdviceline(poId);
 		
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(poId));
 		getTCData.setPo(poId);
