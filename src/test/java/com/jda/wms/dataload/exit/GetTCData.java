@@ -18,6 +18,13 @@ public class GetTCData {
 	public String getPO() {
 		return context.getPreAdviceId();
 	}
+	public void setpoId(String poId) {
+		context.setpoId(poId);
+	}
+
+	public String getpoId() {
+		return context.getpoId();
+	}
 	
 	public void setSto(String stoId) {
 		context.setOrderId(stoId);

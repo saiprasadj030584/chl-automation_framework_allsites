@@ -18,22 +18,32 @@ public class SelectDataFromDB {
 		this.database = database;
 	}
 
-	public boolean isPreAdviceRecordExists(String preAdviceId) throws ClassNotFoundException {
+	public boolean isPreAdviceRecordExists(String poId) throws ClassNotFoundException, InterruptedException {
 		boolean isRecordExists = false;
+		ResultSet rs = null;
 		try {
 			if (context.getConnection() == null) {
 				database.connect();
 			}
-			Statement stmt = context.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"SELECT PRE_ADVICE_ID FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '" + preAdviceId + "'");
-			rs.next();
-			if (rs.getString(1).equals(preAdviceId)) {
+
+			int waitTime = 2;
+			do {
+				Statement stmt = context.getConnection().createStatement();
+				rs = stmt.executeQuery("SELECT PRE_ADVICE_ID FROM PRE_ADVICE_HEADER WHERE PRE_ADVICE_ID = '" + poId + "'");
+				if (rs.next()) {
+					break;
+				}
+				Thread.sleep(2000);
+				waitTime = waitTime + 2;
+			} while (waitTime < 120);
+
+			String getpoIdfromDB = rs.getString(1);
+			if (poId.equals(getpoIdfromDB)) {
 				isRecordExists = true;
 			}
 		} catch (SQLException e) {
-			
 			if (e.getMessage().contains("Exhausted Resultset")) {
+				System.out.println("Validating STO");
 				isRecordExists = false;
 			}
 		}

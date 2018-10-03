@@ -98,9 +98,10 @@ public class DataSetupRunner {
 		insertDataIntoDB.insertPreAdviceline(poId);
 		
 		Thread.sleep(7000);
+		System.out.println("pre advice Id = " + poId);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
 				selectDataFromDB.isPreAdviceRecordExists(poId));
-		getTCData.setPo(poId);
+		getTCData.setpoId(poId);
 	}
 	public void insertUPIReceiptData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String palletId = palletId();
@@ -128,7 +129,7 @@ public class DataSetupRunner {
 	public void insert2PreAdviceData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String poId = newPoId();
 		insertDataIntoDB.insertPreAdviceHeader(poId);
-		insertDataIntoDB.insert2PreAdviceLine(poId, context.getProductCategory());
+//		insertDataIntoDB.insert2PreAdviceLine(poId, context.getProductCategory());
 		Thread.sleep(3000);
 		
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
@@ -162,11 +163,13 @@ public class DataSetupRunner {
 	}
 	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
-		String poId = newPoId();
+//		getTCData.getpoId();
+//		context.getpoId();
+//		String poId = newPoId();
 //		String stoId = "8800004368";
 		System.out.println(stoId);
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insertOrderLine2(stoId,poId);
+		insertDataIntoDB.insertOrderLine2(stoId,getTCData.getpoId());
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));

@@ -120,6 +120,7 @@ public class Context {
 	private String qtyToMove2;
 	private String tag;
 	private String receiptId;
+	public String poId;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -713,7 +714,13 @@ public class Context {
 	public void setTask(String task) {
 		this.task = task;
 	}
+	public String getpoId() {
+		return poId;
+	}
 
+	public void setpoId(String poId) {
+		this.poId = poId;
+	}
 	public Map<Integer, Map<String, String>> getReplenishmentDetailsMap() {
 		return replenishmentDetailsMap;
 	}

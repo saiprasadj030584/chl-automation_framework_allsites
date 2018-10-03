@@ -65,6 +65,7 @@ public class JDAExitPreAdviceHeader{
 	private InventoryDB inventoryDB;
 	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
+	private String poId;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
@@ -117,6 +118,7 @@ public class JDAExitPreAdviceHeader{
 		context.setStoType(type);
 		context.setCustomer(customer);
 		dataSetupRunner.insertPreAdviceData();
+//		getTCData.getpoId();
 		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
