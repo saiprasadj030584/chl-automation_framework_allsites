@@ -45,6 +45,7 @@ public class JDAExitputtyfunctionsStepDef {
 		ArrayList<String> failureList = new ArrayList<String>();
 
 		puttyFunctionsPage.invokePutty();
+		Thread.sleep(5000);
 		if (statusRegion == null) {
 			statusRegion = "N";
 		} else {
@@ -118,8 +119,10 @@ public class JDAExitputtyfunctionsStepDef {
 	public void i_should_be_directed_to_pick_entry_page() throws Throwable {
 		Assert.assertTrue("Pick entry not displayed as expected.",
 				storeTrackingOrderPickingPage.isPickEntryDisplayed());
+//		String ListId=moveTaskDB.getTag(context.getOrderId());
+		String listId=moveTaskDB.getList(context.getOrderId());
 		storeTrackingOrderPickingPage.enterListID(context.getListID());
-		System.out.println("ListId= " +context.getListID());
+		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
 	}
 	@And("^I should be entering TagId$")

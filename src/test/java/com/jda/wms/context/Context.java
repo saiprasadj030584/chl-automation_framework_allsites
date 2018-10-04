@@ -57,7 +57,7 @@ public class Context {
 	private ArrayList<String> failureList;
 	private String orderId;
 	private String customer = null;
-	private String listID;
+	private String listId;
 	private String toPallet;
 	private String toLocation;
 	private String finalLocation;
@@ -589,11 +589,11 @@ public class Context {
 	}
 
 	public String getListID() {
-		return listID;
+		return listId;
 	}
 
-	public void setListID(String listID) {
-		this.listID = listID;
+	public void setListID(String listId) {
+		this.listId = listId;
 	}
 
 	public String getToPallet() {

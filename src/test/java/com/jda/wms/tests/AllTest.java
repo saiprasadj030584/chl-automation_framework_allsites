@@ -14,11 +14,15 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
+				
+				
 				+ ""
 				+ ""
 				+ "@SN1_Picking_Order_Manual_Franchise_Boxed"
 				+ ""
+				+ ""
 
+				
 				
 				+ ""
 
