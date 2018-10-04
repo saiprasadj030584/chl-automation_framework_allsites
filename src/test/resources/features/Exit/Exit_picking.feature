@@ -7,9 +7,9 @@ so that I can pick and dispatch
 @SN1_Picking_Order_Manual_Franchise_Boxed @SN05_Picking_and_receiving_
   Scenario: SN1_Picking Order Manual Franchise Boxed
   #Given Logging in as warehouse user in Exit application
-  #Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
-  #And Navigate to Move Task management Screen to verify Order Allocated status
-  #And Validation of List Id generated with prefix as MANB
+  Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
+  And Navigate to Move Task management Screen to verify Order Allocated status
+  And Validation of List Id generated with prefix as MANB
   Then I login as warehouse user in putty
   And I select user directed option in main menu
   And I select picking with container pick

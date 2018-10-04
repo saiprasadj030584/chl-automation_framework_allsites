@@ -121,13 +121,15 @@ public class JDAExitputtyfunctionsStepDef {
 				storeTrackingOrderPickingPage.isPickEntryDisplayed());
 //		String ListId=moveTaskDB.getTag(context.getOrderId());
 		String listId=moveTaskDB.getList(context.getOrderId());
-		storeTrackingOrderPickingPage.enterListID(context.getListID());
+//		context.setListID(listId);
+		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
 	}
 	@And("^I should be entering TagId$")
 	public void I_should_be_entering_TagId() throws Throwable{
 		String TagId=moveTaskDB.getTag(context.getOrderId());
+//		context.setTag(TagId);
 		System.out.println("TagId="+TagId);
 		storeTrackingOrderPickingPage.enterTagId(TagId);
 		Thread.sleep(500);

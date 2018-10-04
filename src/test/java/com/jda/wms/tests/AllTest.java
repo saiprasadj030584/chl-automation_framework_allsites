@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@SN1_Picking_Order_Manual_Franchise_Boxed"
+				+ "@SN3_Picking_FSV_Cross_Dock"
 				+ ""
 				+ ""
 
