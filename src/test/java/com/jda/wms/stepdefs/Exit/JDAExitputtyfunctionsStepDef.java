@@ -1,15 +1,17 @@
 package com.jda.wms.stepdefs.Exit;
-import java.io.IOException;
 import java.util.ArrayList;
+
 import org.junit.Assert;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.db.Exit.MoveTaskDB;
+import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
+import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,18 +22,23 @@ public class JDAExitputtyfunctionsStepDef {
 	private Configuration configuration;
 	private Context context;
 	private Object screen;
-	
+	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
+	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
+	private MoveTaskDB moveTaskDB;
 	public static String statusRegion = System.getProperty("USE_DB");
 	//public static String region = System.getProperty("REGION");
-	public static String region ="ST";
+	public static String region ="SIT";
 	public static String host = null;
 	public static String port = null;
 
 	@Inject
-	public JDAExitputtyfunctionsStepDef(PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
+	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
+		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
 		this.configuration = configuration;
 		this.context = context;
+		this.moveTaskDB=moveTaskDB;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -90,6 +97,43 @@ public class JDAExitputtyfunctionsStepDef {
 	}
 	@When("^I select user directed option in main menu$")
 	public void i_select_user_directed_option_in_main_menu() throws Throwable {
+		purchaseOrderReceivingPage.selectUserDirectedMenu();
+	}
+	@Given("^I select picking with container pick$")
+	public void i_select_picking_with_container_pick() throws Throwable {
+//		storeTrackingOrderPickingPage.selectPickingMenu();
+		System.out.println("before enter");
+		storeTrackingOrderPickingPage.selectPickingMenu();
+//		storeTrackingOrderPickingPage.selectPickingMenuForFurtherProcess();
+		System.out.println("After enter");
+		Assert.assertTrue("Picking Menu not displayed as expected",
+				storeTrackingOrderPickingPage.isPickMenuDisplayed());
+		storeTrackingOrderPickingPage.selectPickingInPickMenu();
+		
+		Assert.assertTrue("Pick Task Menu not displayed as expected",
+				storeTrackingOrderPickingPage.isPickTaskMenuDisplayed());
+		storeTrackingOrderPickingPage.selectContainerPickMenu();
+	}
+	@Then("^I should be directed to pick entry page$")
+	public void i_should_be_directed_to_pick_entry_page() throws Throwable {
+		Assert.assertTrue("Pick entry not displayed as expected.",
+				storeTrackingOrderPickingPage.isPickEntryDisplayed());
+		storeTrackingOrderPickingPage.enterListID(context.getListID());
+		System.out.println("ListId= " +context.getListID());
+		puttyFunctionsPage.pressEnter();
+	}
+	@And("^I should be entering TagId$")
+	public void I_should_be_entering_TagId() throws Throwable{
+		String TagId=moveTaskDB.getTag(context.getOrderId());
+		System.out.println("TagId="+TagId);
+		storeTrackingOrderPickingPage.enterTagId(TagId);
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
 		
 	}
-}
+	}

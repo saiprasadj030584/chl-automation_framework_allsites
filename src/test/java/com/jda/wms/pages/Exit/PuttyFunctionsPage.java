@@ -31,10 +31,12 @@ public class PuttyFunctionsPage {
 
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
+		System.out.println("host"+host);
 		screen.type(host);
 		screen.type(Key.TAB);
 		screen.type("A", Key.CTRL);
 		screen.type(Key.BACKSPACE);
+		System.out.println("port"+port);
 		screen.type(port);
 		screen.wait("images/Putty/Telnet.png", timeoutInSec);
 		screen.click("images/Putty/Telnet.png");

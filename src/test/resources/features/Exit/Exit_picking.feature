@@ -12,6 +12,9 @@ so that I can pick and dispatch
   And Validation of List Id generated with prefix as MANB
   Then I login as warehouse user in putty
   And I select user directed option in main menu
+  And I select picking with container pick
+  Then I should be directed to pick entry page
+  And I should be entering TagId
   
 @SN2_Picking_Order_Manual_IDT
   Scenario: SN1_Picking Order Manual IDT
