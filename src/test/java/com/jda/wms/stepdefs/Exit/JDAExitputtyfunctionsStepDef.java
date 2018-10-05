@@ -141,4 +141,25 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(500);
 		
 	}
+	@Given("^I select Receiving menu$")
+	public void I_select_Receiving_menu() throws Throwable {
+//		storeTrackingOrderPickingPage.selectPickingMenu();
+		System.out.println("before enter");
+		storeTrackingOrderPickingPage.selectReceivingMenu();
+//		storeTrackingOrderPickingPage.selectPickingMenuForFurtherProcess();
+		System.out.println("After enter");
+		Assert.assertTrue("Receiving Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isReceivingMenuDisplayed());
+		storeTrackingOrderPickingPage.selectBasicReceivingMenu();
+		Assert.assertTrue("Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isBasicReceivingMenuDisplayed());
+		storeTrackingOrderPickingPage.selectGS1_128ReceiveMenu();
+		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
+	}
+	@Given("^I enter URN$")
+	public void I_enter_URN() throws Throwable {
+		
+	
+	}
 	}

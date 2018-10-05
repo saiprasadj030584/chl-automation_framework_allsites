@@ -17,6 +17,13 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectReceivingMenu() throws InterruptedException {
+		Thread.sleep(2000);
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 	public void selectPickingMenuForFurtherProcess() throws InterruptedException {
 		Thread.sleep(2000);
 		System.out.println("before enter 3");
@@ -30,6 +37,24 @@ public class StoreTrackingOrderPickingPage {
 
 	public boolean isPickMenuDisplayed() {
 		if (screen.exists("images/Putty/Picking/PickMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isReceivingMenuDisplayed() {
+		if (screen.exists("images/Putty/Receiving/ReceiveMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isRcvScnEANCMenuDisplayed() {
+		if (screen.exists("images/Putty/Receiving/RcvScnEANC.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isBasicReceivingMenuDisplayed() {
+		if (screen.exists("images/Putty/Receiving/BasicReceiveMenu.png") != null)
 			return true;
 		else
 			return false;
@@ -62,6 +87,19 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectBasicReceivingMenu() throws InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public void selectGS1_128ReceiveMenu() throws InterruptedException {
+		screen.type("3");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
 
 	public boolean isPickEntryDisplayed() throws InterruptedException {
 		Thread.sleep(5000);

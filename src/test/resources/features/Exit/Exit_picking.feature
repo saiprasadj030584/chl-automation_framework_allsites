@@ -4,7 +4,7 @@ As a user in Exit DC
 Order should be autoalocated
 so that I can pick and dispatch
 
-@SN1_Picking_Order_Manual_Franchise_Boxed @SN05_Picking_and_receiving_
+@SN1_Picking_Order_Manual_Franchise_Boxed @SN05_Picking_in_Rdt
   Scenario: SN1_Picking Order Manual Franchise Boxed
   #Given Logging in as warehouse user in Exit application
   Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
@@ -16,7 +16,7 @@ so that I can pick and dispatch
   Then I should be directed to pick entry page
   And I should be entering TagId
   
-@SN2_Picking_Order_Manual_IDT
+@SN2_Picking_Order_Manual_IDT @SN06_Picking_in_Rdt
   Scenario: SN1_Picking Order Manual IDT
   #Given Logging in as warehouse user in Exit application
   Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
@@ -28,12 +28,15 @@ so that I can pick and dispatch
   Then I should be directed to pick entry page
   And I should be entering TagId
   
- @SN3_Picking_FSV_Cross_Dock
+ @SN3_Picking_FSV_Cross_Dock_and_Receiving
  Scenario: SN3_Picking FSV Cross Dock
- Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
- And Navigate to Move Task management Screen to verify Order Allocated status for FSV Crossdock
- And Validation of List Id generated with prefix as FSVB
+ #Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+ #And Navigate to Move Task management Screen to verify Order Allocated status for FSV Crossdock
+ #And Validation of List Id generated with prefix as FSVB
  Then I login as warehouse user in putty
+ And I select user directed option in main menu 
+ And I select Receiving menu
+ And I enter URN
  
  
   @SN4_Picking_ASN_Cross_Dock
