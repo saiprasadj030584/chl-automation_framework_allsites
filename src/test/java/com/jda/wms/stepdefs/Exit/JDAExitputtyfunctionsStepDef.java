@@ -128,10 +128,13 @@ public class JDAExitputtyfunctionsStepDef {
 	}
 	@And("^I should be entering TagId$")
 	public void I_should_be_entering_TagId() throws Throwable{
-		String TagId=moveTaskDB.getTag(context.getOrderId());
+		//String TagId=moveTaskDB.getTag(context.getOrderId());
+		String TagId="9999";
 //		context.setTag(TagId);
 		System.out.println("TagId="+TagId);
 		storeTrackingOrderPickingPage.enterTagId(TagId);
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
