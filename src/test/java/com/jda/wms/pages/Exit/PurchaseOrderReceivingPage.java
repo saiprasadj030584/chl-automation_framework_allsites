@@ -1,8 +1,10 @@
 package com.jda.wms.pages.Exit;
 
+import org.apache.commons.lang.StringUtils;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
+import org.sikuli.script.Location;
 import org.sikuli.script.Match;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
@@ -73,12 +75,22 @@ public class PurchaseOrderReceivingPage {
 
 	public String getPreAdvId() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Receiving/Pre-AdviceDisplayed.png");
-		screen.click(mStatus.getCenter().offset(50, 0));
-		screen.doubleClick(mStatus.getCenter().offset(50, 0));
+		screen.click(mStatus.getCenter().offset(50, 4));
+//		screen.doubleClick(mStatus.getCenter().offset(0, 4));
+		screen.doubleClick(mStatus.getCenter().offset(0, 4));
+		System.out.println(mStatus.getCenter().offset(0, 4));
+		Location actualUPC =mStatus.getCenter().offset(0, 4);
+//		String prefixlist=StringUtils.substring(actualUPC, 0, 4);
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
-
+	public String getUPC() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/UPC.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.doubleClick(mStatus.getCenter().offset(70,0));		
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
 	public boolean isSearchInfoDisplayed() throws FindFailed, InterruptedException {
 		if ((screen.exists("images/Putty/SearchInfo.png") != null)
 				|| (screen.exists("images/Putty/Info - Po.png") != null))

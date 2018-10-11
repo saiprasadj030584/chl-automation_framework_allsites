@@ -8,8 +8,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class SkuDB {
-	private Context context;
-	private Database database;
+	private static Context context;
+	private static Database database;
 
 	@Inject
 	public SkuDB(Context context, Database database) {
@@ -79,6 +79,16 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public static String getUPCDB() throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select upc from sku where sku_id = '000000000021071852'");
+		rs.next();
+		return (rs.getString(1));
+	}
+
 
 	public String getEachQuantity(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

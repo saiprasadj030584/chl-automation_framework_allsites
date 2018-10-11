@@ -1,12 +1,14 @@
 package com.jda.wms.stepdefs.Exit;
 import java.util.ArrayList;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.Exit.MoveTaskDB;
+import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
@@ -120,15 +122,19 @@ public class JDAExitputtyfunctionsStepDef {
 		Assert.assertTrue("Pick entry not displayed as expected.",
 				storeTrackingOrderPickingPage.isPickEntryDisplayed());
 //		String ListId=moveTaskDB.getTag(context.getOrderId());
-		String listId=moveTaskDB.getList(context.getOrderId());
+//		String listId=moveTaskDB.getList(context.getOrderId());
 //		context.setListID(listId);
+//		storeTrackingOrderPickingPage.enterListID(listId);
+//		System.out.println("ListId= " +listId);
+//		puttyFunctionsPage.pressEnter();
+	}
+	@And("^I enter ListId and TagId$")
+	public void I_enter_ListId_and_TagId() throws Throwable{
+		//String TagId=moveTaskDB.getTag(context.getOrderId());
+		String listId=moveTaskDB.getList(context.getOrderId());
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
-	}
-	@And("^I should be entering TagId$")
-	public void I_should_be_entering_TagId() throws Throwable{
-		//String TagId=moveTaskDB.getTag(context.getOrderId());
 		String TagId="9999";
 //		context.setTag(TagId);
 		System.out.println("TagId="+TagId);
@@ -136,12 +142,28 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
+		String UPCValue=purchaseOrderReceivingPage.getUPC();//from screen
+		System.out.println("upc="+UPCValue);
+		String UPCDB=SkuDB.getUPCDB();
+		System.out.println("upc="+UPCDB);
+//		String actuallist = moveTaskDB.getListID(context.getOrderId());
+		String prefixlist=StringUtils.substring(UPCDB, 4, 0);
+		Assert.assertEquals("UPC to be validated", 0, prefixlist);
+//		logger.debug("List Id generated with prefix as MANB is : " + actuallist);
+//		if (UPCValue.equals(UPCDB)) {
+//			System.out.println("validated");}
+//		else{
+//			System.out.println("upc value not as expected");
+//		}
+		
+		
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
+	
 		
 	}
 	@Given("^I select Receiving menu$")
@@ -165,4 +187,7 @@ public class JDAExitputtyfunctionsStepDef {
 		
 	
 	}
+	
 	}
+	
+	

@@ -14,7 +14,7 @@ so that I can pick and dispatch
   And I select user directed option in main menu
   And I select picking with container pick
   Then I should be directed to pick entry page
-  And I should be entering TagId
+  And I enter ListId and TagId
   
 @SN2_Picking_Order_Manual_IDT @SN06_Picking_in_Rdt
   Scenario: SN1_Picking Order Manual IDT
@@ -26,7 +26,7 @@ so that I can pick and dispatch
   And I select user directed option in main menu
   And I select picking with container pick
   Then I should be directed to pick entry page
-  And I should be entering TagId
+  And I enter ListId and TagId
   
  @SN3_Picking_FSV_Cross_Dock_and_Receiving
  Scenario: SN3_Picking FSV Cross Dock

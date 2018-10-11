@@ -134,6 +134,15 @@ public class MoveTaskDB {
 		}
 		return skuID;
 	}
+//	public String getUPCDB() throws SQLException, ClassNotFoundException {
+//		if (context.getConnection() == null) {
+//			database.connect();
+//		}
+//		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt.executeQuery("select upc from sku where sku_id = '000000000021071852'");
+//		rs.next();
+//		return (rs.getString(1));
+//	}
 
 	public ArrayList<String> getLocationList(String orderID) throws ClassNotFoundException, SQLException {
 		ArrayList<String> location = new ArrayList<String>();
