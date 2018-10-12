@@ -8,6 +8,7 @@ import java.util.Map;
 import com.jda.wms.pages.Exit.RDTTask;
 
 public class Context {
+	private static String upiId = null;
 	private RDTTask currentTask;
 	private String preAdviceId;
 	private String skuId;
@@ -121,6 +122,7 @@ public class Context {
 	private String tag;
 	private String receiptId;
 	public String poId;
+	private String generateBelCode;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -137,6 +139,7 @@ public class Context {
 	public void setSQLDBConnection(Connection connectionSQLDB) {
 		this.connectionSQLDB = connectionSQLDB;
 	}
+	
 
 	public void setChildStartTime(String childStartTime) {
 
@@ -209,6 +212,13 @@ public class Context {
 
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
+	}
+	public String getUpiId() {
+		return upiId;
+	}
+
+	public void setUpiId(String upiId) {
+		this.upiId = upiId;
 	}
 
 	public String getEAN() {
@@ -997,6 +1007,20 @@ public class Context {
 	public String getlockStatus() {
 		
 		return status;
+	}
+	public void setBelCode(String generateBelCode) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String getBelCode() {
+		return generateBelCode;
+	}
+	public void setPalletIDList(String palletIDList) {
+		this.generateBelCode = generateBelCode;
+	}
+
+	public String setPalletIDList() {
+		return generateBelCode;
 	}
 }
 

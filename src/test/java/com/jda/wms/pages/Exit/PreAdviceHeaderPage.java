@@ -1,15 +1,32 @@
 package com.jda.wms.pages.Exit;
 
+import java.beans.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.junit.Assert;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
+import com.google.inject.Inject;
+import com.jda.wms.context.Context;
+import com.jda.wms.db.Exit.Database;
+import com.jda.wms.db.Exit.PreAdviceHeaderDB;
+import com.jda.wms.db.Exit.PreAdviceLineDB;
+import com.jda.wms.utils.Utilities;
+
+import cucumber.api.java.en.Given;
+
+
+
 public class PreAdviceHeaderPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-
+	private Context context;
+		
 	public void enterPreAdviceID(String preAdviceId) throws FindFailed {
 		screen.type(preAdviceId);
 	}
@@ -108,4 +125,11 @@ public class PreAdviceHeaderPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	
+	
+	
+	
+
+
+	
 }

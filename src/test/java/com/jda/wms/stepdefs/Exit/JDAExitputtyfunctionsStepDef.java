@@ -1,4 +1,5 @@
 package com.jda.wms.stepdefs.Exit;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
@@ -8,10 +9,14 @@ import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.db.Exit.MoveTaskDB;
+import com.jda.wms.db.Exit.PreAdviceHeaderDB;
+import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -148,7 +153,7 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("upc="+UPCDB);
 //		String actuallist = moveTaskDB.getListID(context.getOrderId());
 		String prefixlist=StringUtils.substring(UPCDB, 4, 0);
-		Assert.assertEquals("UPC to be validated", 0, prefixlist);
+//		Assert.assertEquals("UPC to be validated", 0, prefixlist);
 //		logger.debug("List Id generated with prefix as MANB is : " + actuallist);
 //		if (UPCValue.equals(UPCDB)) {
 //			System.out.println("validated");}
@@ -182,8 +187,82 @@ public class JDAExitputtyfunctionsStepDef {
 		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
 		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
 	}
-	@Given("^I enter URN$")
-	public void I_enter_URN() throws Throwable {
+	private String generatePalletID(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+		String palletID = null;
+		// First 4 digits - Site id
+		String siteid = PreAdviceHeaderDB.getSiteId(preAdviceId);
+		// Hardcoded 3 digit
+		String barcode = Utilities.getThreeDigitRandomNumber();
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate(preAdviceId);
+		// Dept id : 3 digit
+		String dept = deptmanipulate(preAdviceId);
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+		// Advice - 6 digit
+		String advice = PreAdviceHeaderDB.getUserDefType1(preAdviceId);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+		return palletID;
+	}
+	
+	// Get supplierid - 4 digit and manipulated to get only integer
+		public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
+			String supplier = PreAdviceHeaderDB.getSupplierId(preAdviceId);
+			String[] supplierSplit = supplier.split("M");
+			return supplierSplit[1];
+		}
+		// Get dept - 3 digit
+		public String deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
+			String dept = PreAdviceLineDB.getUserDefType2(preAdviceId);
+			System.out.println("Dept" + dept);
+			String[] deptSplit = dept.split("T");
+			return deptSplit[1];
+		}
+		public String skuQtyManipulate(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+			String qtyDue = PreAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
+			int sumLength = qtyDue.length();
+			if (sumLength == 1) {
+				qtyDue = "00" + qtyDue;
+			} else if (sumLength == 2) {
+				qtyDue = "0" + qtyDue;
+			}
+			return qtyDue;
+		}
+		
+		private String generateBelCode(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+			String belCode = null;
+			// Checkdigit : 2 any random number
+			String checkdigit = Utilities.getTwoDigitRandomNumber();
+			// Supplier code : 5 digit
+			String supplier = suppliermanipulate(preAdviceId);
+			// UPC : 8 digit
+			String upc = PreAdviceLineDB.getUpc(context.getSkuId());
+			// Quantity : 3 digit
+			String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+			// Checkbit hardcoded : 2 digit
+			String checkbit = "10";
+			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
+			return belCode;
+		}
+		
+	
+	
+	@Given("^I enter URN and Bel$")
+	public void I_enter_URN_and_Bel() throws Throwable {
+		
+		PurchaseOrderReceivingPage.enterPalletID(context.getUpiId());
+		puttyFunctionsPage.pressEnter();
+		
+		
+		
+		
+//		// To generate Pa"ListId= " +listId);
+		puttyFunctionsPage.pressEnter();
+		
 		
 	
 	}

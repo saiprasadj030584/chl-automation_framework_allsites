@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class PreAdviceHeaderDB {
-	private final Context context;
-	private final Database database;
+	private static Context context;
+	private static Database database;
 
 	@Inject
 	public PreAdviceHeaderDB(Context context, Database database) {
@@ -80,7 +82,7 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
+	public static String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -92,7 +94,7 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
+	public static String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -102,6 +104,16 @@ public class PreAdviceHeaderDB {
 				.executeQuery("select site_id from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
+	}
+	public static String getUserDefType1(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_1 from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 
 	public String getDueDate(String preAdviceId) throws SQLException, ClassNotFoundException {
@@ -178,4 +190,16 @@ public class PreAdviceHeaderDB {
 				"update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
+	public static String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (((Context) context).getConnection() == null) {
+			((Database) database).connect();
+		}
+
+		Statement stmt = (Statement) ((Context) context).getConnection().createStatement();
+		ResultSet rs = ((java.sql.Statement) stmt)
+				.executeQuery("select site_id from pre_advice_header where pre_advice_id='" + preAdviceId + "'");
+		if (!rs.next()) {((Context) context).setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+	}
+	
+
 }

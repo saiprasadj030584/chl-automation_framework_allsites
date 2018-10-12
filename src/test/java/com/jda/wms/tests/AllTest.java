@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@SN2_Picking_Order_Manual_IDT"
+				+ "@SN05_Picking_in_Rdt_MANB"
 				+ ""
 				+ ""
 

@@ -13,7 +13,7 @@ import com.google.inject.Inject;
 
 
 public class PurchaseOrderReceivingPage {
-	Screen screen = new Screen();
+	static Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private JdaHomePage imageCheckFunction;
 	@Inject
@@ -112,6 +112,11 @@ public class PurchaseOrderReceivingPage {
 		screen.type(location);
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
+	}
+	public static void enterPalletID(String urn) throws InterruptedException {
+		screen.type(urn);
+		Thread.sleep(1000);
+
 	}
 
 	public void enterTagId(String uniqueId) throws InterruptedException {

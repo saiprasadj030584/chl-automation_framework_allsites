@@ -118,6 +118,16 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(listId);
 		Thread.sleep(1000);
 	}
+	
+	public void enterURN(String URN) throws InterruptedException {
+		screen.type(URN);
+		Thread.sleep(1000);
+	}
+	
+	public void enterBel(String Bel) throws InterruptedException {
+		screen.type(Bel);
+		Thread.sleep(1000);
+	}
 
 	public String getListIDDisplayed() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Picking/ListID.png");

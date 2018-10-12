@@ -7,13 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.Assert;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class PreAdviceLineDB {
 
-	private final Context context;
-	private final Database database;
+	private static Context context;
+	private static Database database;
 
 	@Inject
 	public PreAdviceLineDB(Context context, Database database) {
@@ -114,7 +116,7 @@ public class PreAdviceLineDB {
 		return rs.getString(1);
 	}
 
-	public String getQtyDue(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
+	public static String getQtyDue(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -124,7 +126,17 @@ public class PreAdviceLineDB {
 				+ "'   and sku_id = '" + skuID + "' ");
 		rs.next();
 		return rs.getString(1);
-	}  
+	} 
+	public static String getUpc(String skuID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+	}
+	
 	
 	
 	public String getLockCode(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
@@ -174,5 +186,16 @@ public class PreAdviceLineDB {
 				+ "'   and sku_id = '" + skuID + "'");
 		rs.next();
 		return rs.getString(1);
+	}
+	
+	public static String getUserDefType2(String preAdviceId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(
+				"select user_def_type_2 from pre_advice_line where pre_advice_id='" + preAdviceId + "'");
+		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 }
