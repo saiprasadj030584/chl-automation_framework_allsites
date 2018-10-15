@@ -11,8 +11,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class PreAdviceHeaderDB {
-	private static Context context;
-	private static Database database;
+	private Context context;
+	private Database database;
 
 	@Inject
 	public PreAdviceHeaderDB(Context context, Database database) {
@@ -82,7 +82,7 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public static String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
+	public  String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -94,18 +94,19 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public static String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
-		//if (context.getConnection() == null) {
+	public  String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
 			database.connect();
-		//}
+		}
 
 		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select site_id from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		ResultSet rs = stmt
 				.executeQuery("select site_id from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
 		rs.next();
 		return rs.getString(1);
 	}
-	public static String getUserDefType1(String preAdviceId) throws ClassNotFoundException, SQLException {
+	public  String getUserDefType1(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -190,7 +191,7 @@ public class PreAdviceHeaderDB {
 				"update pre_advice_header set status = '" + status + "' where pre_advice_id = '" + preAdviceId + "'");
 		context.getConnection().commit();
 	}
-	public static String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
+	public  String getSiteID(String preAdviceId) throws ClassNotFoundException, SQLException {
 		if (((Context) context).getConnection() == null) {
 			((Database) database).connect();
 		}

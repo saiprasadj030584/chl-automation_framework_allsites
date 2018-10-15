@@ -38,15 +38,18 @@ public class JDAExitputtyfunctionsStepDef {
 	public static String region ="SIT";
 	public static String host = null;
 	public static String port = null;
+	
+	private PreAdviceHeaderDB preAdviceHeaderDB;
 
 	@Inject
-	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context) {
+	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,PreAdviceHeaderDB preAdviceHeaderDB) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
 		this.configuration = configuration;
 		this.context = context;
 		this.moveTaskDB=moveTaskDB;
+		this.preAdviceHeaderDB=preAdviceHeaderDB;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -196,7 +199,7 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("preadv"+preAdviceId);
 		String palletID = null;
 		// First 4 digits - Site id
-		String siteid = PreAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
 		System.out.println(siteid);
 		// Hardcoded 3 digit
 		String barcode = Utilities.getThreeDigitRandomNumber();
@@ -210,7 +213,7 @@ public class JDAExitputtyfunctionsStepDef {
 		// Sku quantity : 3 digit
 		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
 		// Advice - 6 digit
-		String advice = PreAdviceHeaderDB.getUserDefType1(preAdviceId);
+		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
 		// checkbit - 2 digit
 		String checkbit = "10";
 		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
@@ -242,7 +245,7 @@ public class JDAExitputtyfunctionsStepDef {
 	
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String supplier = PreAdviceHeaderDB.getSupplierId(preAdviceId);
+			String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
 			String[] supplierSplit = supplier.split("M");
 			return supplierSplit[1];
 		}
