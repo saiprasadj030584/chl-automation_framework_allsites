@@ -8,6 +8,7 @@ import org.junit.Assert;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
+import com.jda.wms.dataload.exit.GetTCData;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.PreAdviceHeaderDB;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
@@ -186,13 +187,20 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectGS1_128ReceiveMenu();
 		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
 		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
+		GetTCData.getpoId();
+		String skuId = "000000000021071852";
+		i_generate_pallet_id(GetTCData.getpoId(),skuId);
 	}
-	private String generatePalletID(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+	@Given("^I generate pallet id$")
+	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("preadv"+preAdviceId);
 		String palletID = null;
 		// First 4 digits - Site id
 		String siteid = PreAdviceHeaderDB.getSiteId(preAdviceId);
+		System.out.println(siteid);
 		// Hardcoded 3 digit
 		String barcode = Utilities.getThreeDigitRandomNumber();
+		
 		// Random generated 6 digit
 		String URN = Utilities.getSixDigitRandomNumber();
 		// Supplier id : 5 digit
@@ -206,8 +214,31 @@ public class JDAExitputtyfunctionsStepDef {
 		// checkbit - 2 digit
 		String checkbit = "10";
 		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		return palletID;
+		System.out.println("check"+palletID);
 	}
+	
+//	private String generatePalletID(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+//		String palletID = null;
+//		// First 4 digits - Site id
+//		String siteid = PreAdviceHeaderDB.getSiteId(preAdviceId);
+//		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+//		// Random generated 6 digit
+//		String URN = Utilities.getSixDigitRandomNumber();
+//		// Supplier id : 5 digit
+//		String supplier = suppliermanipulate(preAdviceId);
+//		// Dept id : 3 digit
+//		String dept = deptmanipulate(preAdviceId);
+//		// Sku quantity : 3 digit
+//		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+//		// Advice - 6 digit
+//		String advice = PreAdviceHeaderDB.getUserDefType1(preAdviceId);
+//		// checkbit - 2 digit
+//		String checkbit = "10";
+//		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+//		
+//		return palletID;
+//	}
 	
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {

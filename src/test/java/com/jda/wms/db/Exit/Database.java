@@ -109,6 +109,7 @@ public class Database {
 			}
 			connection.setAutoCommit(true);
 			context.setConnection(connection);
+			System.out.println();
 			connectionSucessful = true;
 			logger.debug("Connection successfull");
 		} catch (SQLException ex) {

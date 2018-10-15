@@ -11,6 +11,7 @@ import org.junit.Assert;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+import com.jda.wms.utils.Utilities;
 
 public class PreAdviceLineDB {
 
@@ -198,4 +199,5 @@ public class PreAdviceLineDB {
 				"select user_def_type_2 from pre_advice_line where pre_advice_id='" + preAdviceId + "'");
 		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
+	
 }

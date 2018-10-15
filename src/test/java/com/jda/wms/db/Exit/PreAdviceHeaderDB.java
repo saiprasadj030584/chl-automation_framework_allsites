@@ -95,9 +95,9 @@ public class PreAdviceHeaderDB {
 	}
 
 	public static String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
+		//if (context.getConnection() == null) {
 			database.connect();
-		}
+		//}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt

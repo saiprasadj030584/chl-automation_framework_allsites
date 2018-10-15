@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class GetTCData {
-	private Context context;
+	private static Context context;
 	
 	@Inject
 	public GetTCData(Context context) {
@@ -22,7 +22,7 @@ public class GetTCData {
 		context.setpoId(poId);
 	}
 
-	public String getpoId() {
+	public static String getpoId() {
 		return context.getpoId();
 	}
 	
