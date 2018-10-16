@@ -123,6 +123,8 @@ public class Context {
 	private String receiptId;
 	public String poId;
 	private String generateBelCode;
+	private String skuid;
+	private String belCode;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -212,6 +214,13 @@ public class Context {
 
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
+	}
+	public String getSkuId2() {
+		return skuid;
+	}
+
+	public void setSkuId2(String skuid) {
+		this.skuid = skuid;
 	}
 	public String getUpiId() {
 		return upiId;
@@ -1008,20 +1017,14 @@ public class Context {
 		
 		return status;
 	}
-	public void setBelCode(String generateBelCode) {
-		this.generateBelCode = generateBelCode;
+	public void setBelCode(String belCode) {
+		this.belCode = belCode;
 	}
 
 	public String getBelCode() {
-		return generateBelCode;
+		return belCode;
 	}
-	public void setPalletIDList(String palletIDList) {
-		this.generateBelCode = generateBelCode;
-	}
-
-	public String setPalletIDList() {
-		return generateBelCode;
-	}
+	
 }
 
 

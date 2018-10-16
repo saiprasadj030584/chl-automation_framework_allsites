@@ -13,6 +13,7 @@ import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.PreAdviceHeaderDB;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
@@ -40,9 +41,13 @@ public class JDAExitputtyfunctionsStepDef {
 	public static String port = null;
 	
 	private PreAdviceHeaderDB preAdviceHeaderDB;
+	private SupplierSkuDB supplierSkuDB;
+	private PreAdviceLineDB preAdviceLineDB;
+
+	
 
 	@Inject
-	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,PreAdviceHeaderDB preAdviceHeaderDB) {
+	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,PreAdviceHeaderDB preAdviceHeaderDB) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -50,6 +55,8 @@ public class JDAExitputtyfunctionsStepDef {
 		this.context = context;
 		this.moveTaskDB=moveTaskDB;
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
+		this.supplierSkuDB= supplierSkuDB;
+		this.preAdviceLineDB = preAdviceLineDB;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -190,74 +197,64 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectGS1_128ReceiveMenu();
 		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
 		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
-		GetTCData.getpoId();
-		String skuId = "000000000021071852";
-		i_generate_pallet_id(GetTCData.getpoId(),skuId);
+		Thread.sleep(1000);
+		
 	}
 	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
-		System.out.println("preadv"+preAdviceId);
+		System.out.println("skuid "+skuid);
+		context.setSkuId2(skuid);
+		System.out.println("preadv "+preAdviceId);
 		String palletID = null;
 		// First 4 digits - Site id
 		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
-		System.out.println(siteid);
+		System.out.println("siteid "+siteid);
 		// Hardcoded 3 digit
 		String barcode = Utilities.getThreeDigitRandomNumber();
-		
+		System.out.println("barcode "+barcode);
 		// Random generated 6 digit
 		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
 		// Supplier id : 5 digit
-		String supplier = suppliermanipulate(preAdviceId);
+		String supplier = suppliermanipulate(skuid);
+		System.out.println("supplier "+supplier);
 		// Dept id : 3 digit
-		String dept = deptmanipulate(preAdviceId);
+		String dept = deptmanipulate(skuid);
+		System.out.println("dept "+dept);
 		// Sku quantity : 3 digit
 		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
 		// Advice - 6 digit
 		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
+		System.out.println("advice "+advice);
 		// checkbit - 2 digit
 		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
 		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		System.out.println("check"+palletID);
+		context.setPalletID(palletID);
+		System.out.println("check palletid "+palletID);
 	}
 	
-//	private String generatePalletID(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
-//		String palletID = null;
-//		// First 4 digits - Site id
-//		String siteid = PreAdviceHeaderDB.getSiteId(preAdviceId);
-//		// Hardcoded 3 digit
-//		String barcode = Utilities.getThreeDigitRandomNumber();
-//		// Random generated 6 digit
-//		String URN = Utilities.getSixDigitRandomNumber();
-//		// Supplier id : 5 digit
-//		String supplier = suppliermanipulate(preAdviceId);
-//		// Dept id : 3 digit
-//		String dept = deptmanipulate(preAdviceId);
-//		// Sku quantity : 3 digit
-//		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
-//		// Advice - 6 digit
-//		String advice = PreAdviceHeaderDB.getUserDefType1(preAdviceId);
-//		// checkbit - 2 digit
-//		String checkbit = "10";
-//		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-//		
-//		return palletID;
-//	}
-	
+
 	// Get supplierid - 4 digit and manipulated to get only integer
-		public String suppliermanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String supplier = preAdviceHeaderDB.getSupplierId(preAdviceId);
+		public String suppliermanipulate(String skuid) throws ClassNotFoundException, SQLException {
+			System.out.println("check"+skuid);
+//			context.getSkuId2();
+			String supplier = supplierSkuDB.getSupplierId(skuid);
 			String[] supplierSplit = supplier.split("M");
 			return supplierSplit[1];
 		}
 		// Get dept - 3 digit
-		public String deptmanipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String dept = PreAdviceLineDB.getUserDefType2(preAdviceId);
+		public String deptmanipulate(String skuid) throws ClassNotFoundException, SQLException {
+			String dept = SkuDB.getProductGroup(skuid);
 			System.out.println("Dept" + dept);
 			String[] deptSplit = dept.split("T");
 			return deptSplit[1];
+			
+			
 		}
-		public String skuQtyManipulate(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
-			String qtyDue = PreAdviceLineDB.getQtyDue(preAdviceId, context.getSkuId());
+		public String skuQtyManipulate(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
+			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
 				qtyDue = "00" + qtyDue;
@@ -266,39 +263,47 @@ public class JDAExitputtyfunctionsStepDef {
 			}
 			return qtyDue;
 		}
-		
-		private String generateBelCode(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+		@Given("^I generate belcode$")
+		private void I_generate_belcode(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
+			context.setSkuId2(skuid);
 			// Checkdigit : 2 any random number
 			String checkdigit = Utilities.getTwoDigitRandomNumber();
+			System.out.println("checkdigit "+checkdigit);
 			// Supplier code : 5 digit
-			String supplier = suppliermanipulate(preAdviceId);
+			String supplier = suppliermanipulate(skuid);
+			System.out.println("supplier "+supplier);
 			// UPC : 8 digit
-			String upc = PreAdviceLineDB.getUpc(context.getSkuId());
+			String upc = preAdviceLineDB.getUpc(skuid);
+			System.out.println("upc "+upc );
 			// Quantity : 3 digit
 			String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+			System.out.println("skuqtymanipulate "+skuqtymanipulate);
 			// Checkbit hardcoded : 2 digit
 			String checkbit = "10";
+			System.out.println("checkbit "+checkbit);
 			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
-			return belCode;
+			context.setBelCode(belCode);
+			System.out.println(belCode);;
 		}
 		
 	
 	
 	@Given("^I enter URN and Bel$")
 	public void I_enter_URN_and_Bel() throws Throwable {
-		
-		PurchaseOrderReceivingPage.enterPalletID(context.getUpiId());
+		GetTCData.getpoId();
+		String skuid = "000000000021071852";
+		i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		String palletID = context.getPalletID();
+		System.out.println("palletID "+palletID);
+		purchaseOrderReceivingPage.EnterPalletID(palletID);
 		puttyFunctionsPage.pressEnter();
-		
-		
-		
-		
-//		// To generate Pa"ListId= " +listId);
+		I_generate_belcode(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
-		
-		
-	
+		Thread.sleep(1000);
 	}
 	
 	}

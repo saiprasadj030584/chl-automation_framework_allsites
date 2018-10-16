@@ -50,12 +50,12 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	public String getProductGroup(String skuId) throws SQLException, ClassNotFoundException {
+	public static String getProductGroup(String skuid) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id  = '" + skuId + "'");
+		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id = '" + skuid + "'");
 		rs.next();
 		return rs.getString(1);
 	}

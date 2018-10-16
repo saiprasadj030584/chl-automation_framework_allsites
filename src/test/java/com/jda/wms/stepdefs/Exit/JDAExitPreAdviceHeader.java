@@ -123,23 +123,10 @@ public class JDAExitPreAdviceHeader{
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
-		System.out.println("status : "+orderstatus);
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
-		if(orderstatus.equals(status))
-		{
-			Thread.sleep(15000);
-			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
-			if(!orderstatus1.equals("orderstatus"))
-			{
-				System.out.println("status1"+orderstatus1);
-				//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
-			}
-		
-		}
-	
+		System.out.println("status : "+orderstatus);			
 	}
-	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for FSV Crossdock$")
-	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_FSV_Crossdock() throws Throwable{
+	@Given ("^I navigate to Move task mangement screen to verify the status in Ready to Pick$")
+	public void I_navigate_to_Move_task_mangement_screen_to_verify_the_status_in_Ready_to_Pick() throws Throwable{
 		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
 		Thread.sleep(3000);
 		jdaHomePage.navigateToMoveTaskListManagementPage();

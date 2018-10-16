@@ -82,17 +82,17 @@ public class PreAdviceHeaderDB {
 		return rs.getString(1);
 	}
 
-	public  String getSupplierId(String preAdviceId) throws SQLException, ClassNotFoundException {
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select supplier_id from pre_advice_header WHERE pre_advice_id = '" + preAdviceId + "'");
-		rs.next();
-		return rs.getString(1);
-	}
+//	public  String getSupplierId() throws SQLException, ClassNotFoundException {
+//		if (context.getConnection() == null) {
+//			database.connect();
+//		}
+//
+//		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt
+//				.executeQuery("select supplier_id from supplier_sku where sku_id = '000000000021071852'");
+//		rs.next();
+//		return rs.getString(1);
+//	}
 
 	public  String getSiteId(String preAdviceId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {

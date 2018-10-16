@@ -8,8 +8,8 @@ import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 
 public class SupplierSkuDB {
-	private final Context context;
-	private final Database database;
+	private static Context context;
+	private static Database database;
 
 	@Inject
 	public SupplierSkuDB(Context context, Database database) {
@@ -42,5 +42,17 @@ public class SupplierSkuDB {
 		} catch (Exception e) {
 			return e.getMessage();
 		}
+	}
+	public  String getSupplierId(String skuid) throws SQLException, ClassNotFoundException {
+		System.out.println(skuid);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select supplier_id from supplier_sku where sku_id='" + skuid + "'");
+		ResultSet rs = stmt
+				.executeQuery("select supplier_id from supplier_sku where sku_id='" + skuid + "'");
+		rs.next();
+		return rs.getString(1);
 	}
 }

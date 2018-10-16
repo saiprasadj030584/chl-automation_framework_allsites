@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Assert;
@@ -61,6 +62,11 @@ public class DataSetupRunner {
 		} while (mainTable || interfaceTable);
 		return tempValue;
 	}
+	public String Advice() throws ClassNotFoundException, SQLException, InterruptedException {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(900000) + 100000);
+	}
+	
 	
 	public HashMap<String, Boolean> validatePoPresenceinJdaTable(String tempValue)
 			throws ClassNotFoundException, SQLException, InterruptedException {
@@ -94,7 +100,8 @@ public class DataSetupRunner {
 
 	public void insertPreAdviceData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String poId = newPoId();
-		insertDataIntoDB.insertPreAdviceHeader(poId);
+		String Preadvice= Advice();
+		insertDataIntoDB.insertPreAdviceHeader(poId,Preadvice);
 		insertDataIntoDB.insertPreAdviceline(poId);
 		
 		Thread.sleep(7000);
@@ -114,28 +121,7 @@ public class DataSetupRunner {
 		getTCData.setPo(palletId);
 	}
 	
-	public void insertPreAdviceDataTrial() throws ClassNotFoundException, SQLException, InterruptedException {
-		String poId = newPoId();
-		insertDataIntoDB.insertPreAdviceHeader(poId);
-		insertDataIntoDB.insertPreAdviceLineTrial(poId, context.getProductCategory());
-		
-		Thread.sleep(3000);
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isPreAdviceRecordExists(poId));
-		getTCData.setPo(poId);
-	}
 	
-	
-	public void insert2PreAdviceData() throws ClassNotFoundException, SQLException, InterruptedException {
-		String poId = newPoId();
-		insertDataIntoDB.insertPreAdviceHeader(poId);
-//		insertDataIntoDB.insert2PreAdviceLine(poId, context.getProductCategory());
-		Thread.sleep(3000);
-		
-		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isPreAdviceRecordExists(poId));
-		getTCData.setPo(poId);
-	}
 
 	public void insertOrderData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
@@ -175,10 +161,10 @@ public class DataSetupRunner {
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
 			
 		//Bhuban
-		updateDataFromDB.updateMoveTaskStatusInMoveTask(stoId);
-		 //updateDataFromDB.updateMoveTaskStatusInOrderHeader(stoId);
-			
-			updateDataFromDB.updateAddressIntPalletType(context.getCustomer());
+//		updateDataFromDB.updateMoveTaskStatusInMoveTask(stoId);
+//		 //updateDataFromDB.updateMoveTaskStatusInOrderHeader(stoId);
+//			
+//			updateDataFromDB.updateAddressIntPalletType(context.getCustomer());
 			Thread.sleep(3000);	
 		
 		

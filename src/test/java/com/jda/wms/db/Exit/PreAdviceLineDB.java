@@ -117,25 +117,26 @@ public class PreAdviceLineDB {
 		return rs.getString(1);
 	}
 
-	public static String getQtyDue(String preAdviceID, String skuID) throws SQLException, ClassNotFoundException {
+	public  String getQtyDue(String preAdviceID,String skuid) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
-				+ "'   and sku_id = '" + skuID + "' ");
+				+ "'   and sku_id = '" + skuid + "' ");
 		rs.next();
 		return rs.getString(1);
 	} 
-	public static String getUpc(String skuID) throws SQLException, ClassNotFoundException {
+	public String getUpc(String skuid) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuID + "' ");
-		if (!rs.next()) {context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
+		ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuid + "' ");
+		if (!rs.next())
+		{context.setErrorMessage("Queried data from JDA DB not found");Assert.fail("Queried data from JDA DB not found");} else{System.out.println("Queried data from JDA DB found");}return rs.getString(1);
 	}
 	
 	

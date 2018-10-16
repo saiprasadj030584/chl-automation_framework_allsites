@@ -12,13 +12,15 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
 
-public class PurchaseOrderReceivingPage {
+public class PurchaseOrderReceivingPage<EnterPalletID> {
 	static Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private JdaHomePage imageCheckFunction;
+	
 	@Inject
 	public PurchaseOrderReceivingPage(JdaHomePage imageCheckFunction) {
 		this.imageCheckFunction = imageCheckFunction;
+		
 	}
 
 	public void selectUserDirectedMenu() throws FindFailed, InterruptedException {
@@ -113,8 +115,13 @@ public class PurchaseOrderReceivingPage {
 		screen.type(Key.TAB);
 		Thread.sleep(1000);
 	}
-	public static void enterPalletID(String urn) throws InterruptedException {
-		screen.type(urn);
+	public void EnterPalletID(String palletID) throws InterruptedException {
+		screen.type(palletID);
+		Thread.sleep(1000);
+
+	}
+	public void EnterBel(String belCode) throws InterruptedException {
+		screen.type(belCode);
 		Thread.sleep(1000);
 
 	}
