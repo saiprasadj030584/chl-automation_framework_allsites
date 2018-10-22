@@ -207,10 +207,12 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("preadv "+preAdviceId);
 		String palletID = null;
 		// First 4 digits - Site id
-		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
 		System.out.println("siteid "+siteid);
 		// Hardcoded 3 digit
-		String barcode = Utilities.getThreeDigitRandomNumber();
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "145";
 		System.out.println("barcode "+barcode);
 		// Random generated 6 digit
 		String URN = Utilities.getSixDigitRandomNumber();
@@ -230,7 +232,7 @@ public class JDAExitputtyfunctionsStepDef {
 		// checkbit - 2 digit
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
-		palletID = siteid + barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
 		context.setPalletID(palletID);
 		System.out.println("check palletid "+palletID);
 	}
