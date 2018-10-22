@@ -259,8 +259,10 @@ public class JDAExitputtyfunctionsStepDef {
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
-				qtyDue = "00" + qtyDue;
+				qtyDue = "000" + qtyDue;
 			} else if (sumLength == 2) {
+				qtyDue = "00" + qtyDue;
+			} else if (sumLength == 3) {
 				qtyDue = "0" + qtyDue;
 			}
 			return qtyDue;
@@ -278,11 +280,11 @@ public class JDAExitputtyfunctionsStepDef {
 			// UPC : 8 digit
 			String upc = preAdviceLineDB.getUpc(skuid);
 			System.out.println("upc "+upc );
-			// Quantity : 3 digit
+			// Quantity : 4 digit
 			String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
 			System.out.println("skuqtymanipulate "+skuqtymanipulate);
-			// Checkbit hardcoded : 2 digit
-			String checkbit = "10";
+			// Checkbit hardcoded : 1 digit
+			String checkbit = "1";
 			System.out.println("checkbit "+checkbit);
 			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
 			context.setBelCode(belCode);
@@ -306,6 +308,7 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(1000);
+		
 	}
 	
 	}
