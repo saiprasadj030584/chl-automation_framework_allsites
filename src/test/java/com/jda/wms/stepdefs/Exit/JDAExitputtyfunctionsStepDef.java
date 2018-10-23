@@ -259,6 +259,16 @@ public class JDAExitputtyfunctionsStepDef {
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
+				qtyDue = "00" + qtyDue;
+			} else if (sumLength == 2) {
+				qtyDue = "0" + qtyDue;
+			} 
+			return qtyDue;
+		}
+		public String skuQtyManipulate2(String preAdviceId,String skuid) throws ClassNotFoundException, SQLException {
+			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
+			int sumLength = qtyDue.length();
+			if (sumLength == 1) {
 				qtyDue = "000" + qtyDue;
 			} else if (sumLength == 2) {
 				qtyDue = "00" + qtyDue;
@@ -281,7 +291,7 @@ public class JDAExitputtyfunctionsStepDef {
 			String upc = preAdviceLineDB.getUpc(skuid);
 			System.out.println("upc "+upc );
 			// Quantity : 4 digit
-			String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+			String skuqtymanipulate = skuQtyManipulate2(preAdviceId, skuid);
 			System.out.println("skuqtymanipulate "+skuqtymanipulate);
 			// Checkbit hardcoded : 1 digit
 			String checkbit = "1";
@@ -308,6 +318,20 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(1000);
+		
+		
+	}
+	@Given("^I enter To Pallet$")
+	public void I_enter_To_Pallet() throws Throwable {
+		String ToPallet = null;
+		puttyFunctionsPage.nextScreen();
+		Thread.sleep(500);
+		puttyFunctionsPage.Tab();
+		Thread.sleep(500);
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		purchaseOrderReceivingPage.enterYes();
 		
 	}
 	

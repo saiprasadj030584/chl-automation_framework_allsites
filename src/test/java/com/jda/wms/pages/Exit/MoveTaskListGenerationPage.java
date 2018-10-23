@@ -147,6 +147,7 @@ public class MoveTaskListGenerationPage {
 		screen.type(orderID);
 		Thread.sleep(1000);
 	}
+	
 
 	public void getLatestTask() throws FindFailed, InterruptedException {
 

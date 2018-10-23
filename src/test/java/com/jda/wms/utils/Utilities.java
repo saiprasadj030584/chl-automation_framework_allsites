@@ -40,7 +40,10 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(900000) + 100000);
 	}
-
+	public static String getsevenDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(900000) + 1000000);
+	}
 	public static String getTwoDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(90) + 10);

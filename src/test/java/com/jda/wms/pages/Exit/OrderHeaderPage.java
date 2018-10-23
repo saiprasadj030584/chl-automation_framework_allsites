@@ -1,6 +1,6 @@
 package com.jda.wms.pages.Exit;
 
-/*import org.junit.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
-import com.jda.wms.pages.PageObject;
+import com.jda.wms.pages.PageObject.PageObject;
 
 public class OrderHeaderPage extends PageObject {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -25,19 +25,19 @@ public class OrderHeaderPage extends PageObject {
 		this.webDriver = webDriver;
 	}
 
-	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
-		screen.wait("images/DataMenu.png", timeoutInSec);
-		screen.click("images/DataMenu.png");
-		screen.wait("images/OrderSubmenu.png", timeoutInSec);
-		screen.click("images/OrderSubmenu.png");
-		screen.wait("images/OrderHeader.png", timeoutInSec);
-		screen.click("images/OrderHeader.png");
-		Thread.sleep(5000);
-
-		screen.wait("images/OrderHeaderQuery1.png", timeoutInSec);
-		screen.click("images/OrderHeaderQuery1.png");
-		Thread.sleep(2000);
-	}
+//	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
+//		screen.wait("images/DataMenu.png", timeoutInSec);
+//		screen.click("images/DataMenu.png");
+//		screen.wait("images/OrderSubmenu.png", timeoutInSec);
+//		screen.click("images/OrderSubmenu.png");
+//		screen.wait("images/OrderHeader.png", timeoutInSec);
+//		screen.click("images/OrderHeader.png");
+//		Thread.sleep(5000);
+//
+//		screen.wait("images/OrderHeaderQuery1.png", timeoutInSec);
+//		screen.click("images/OrderHeaderQuery1.png");
+//		Thread.sleep(2000);
+//	}
 
 	public void enterOrderNo(String OrderNo) throws FindFailed {
 		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
@@ -120,4 +120,4 @@ public class OrderHeaderPage extends PageObject {
 		logger.debug("Order status is: " + orderStatus);
 		return orderStatus;
 	}
-}*/
+}

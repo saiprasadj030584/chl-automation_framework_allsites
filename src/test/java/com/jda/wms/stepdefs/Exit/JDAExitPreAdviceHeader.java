@@ -24,6 +24,7 @@ import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
 import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.Exit.OrderHeaderPage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
 
@@ -66,9 +67,10 @@ public class JDAExitPreAdviceHeader{
 	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private String poId;
+	private OrderHeaderPage orderheaderpage;
 	
 	@Inject
-	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
+	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,OrderHeaderPage orderheaderpage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB,
 			AddressDB addressDB, Hooks hooks, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
@@ -110,6 +112,7 @@ public class JDAExitPreAdviceHeader{
 		this.inventoryDB=inventoryDB;
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
+		this.orderheaderpage=orderheaderpage;
 	}
 	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,
@@ -125,13 +128,19 @@ public class JDAExitPreAdviceHeader{
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
 		System.out.println("status : "+orderstatus);			
 	}
-	@Given ("^I navigate to Move task mangement screen to verify the status in Ready to Pick$")
-	public void I_navigate_to_Move_task_mangement_screen_to_verify_the_status_in_Ready_to_Pick() throws Throwable{
+	@Given ("^I navigate to Order header screen to verify the status in Ready to Load$")
+	public void I_navigate_to_Order_header_screen_to_verify_the_status_in_Ready_to_Load() throws Throwable{
 		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
 		Thread.sleep(3000);
-		jdaHomePage.navigateToMoveTaskListManagementPage();
+		String orderID = getTCData.getSto();
+		System.out.println("New Order ID : " + orderID);
+		Thread.sleep(10000);
+		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+		System.out.println("status : "+orderstatus);			
+		jdaHomePage.navigateToOrderheaderPage();
 		Thread.sleep(3000);
-		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickQueryButton();
+		orderheaderpage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
 	}

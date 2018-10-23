@@ -120,6 +120,12 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		Thread.sleep(1000);
 
 	}
+	public void EnterToPallet(String ToPallet) throws InterruptedException {
+		screen.type(ToPallet);
+		Thread.sleep(1000);
+		screen.type(Key.TAB);
+
+	}
 	public void EnterBel(String belCode) throws InterruptedException {
 		screen.type(belCode);
 		Thread.sleep(1000);
@@ -235,7 +241,7 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 	}
 
 	public void enterYes() throws InterruptedException {
-		screen.type("y");
+		screen.type("Y");
 		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 	}
