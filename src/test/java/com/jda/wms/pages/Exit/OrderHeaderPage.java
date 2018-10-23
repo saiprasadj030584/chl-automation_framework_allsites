@@ -2,6 +2,8 @@ package com.jda.wms.pages.Exit;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -11,19 +13,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.config.Configuration;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.PageObject.PageObject;
 
-public class OrderHeaderPage extends PageObject {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	Screen screen = new Screen();
-	int timeoutInSec = 20;
-	private WebDriver webDriver;
-
-	@Inject
-	public OrderHeaderPage(WebDriver webDriver) {
-		super(webDriver);
-		this.webDriver = webDriver;
-	}
+//public class OrderHeaderPage extends PageObject {
+//	private final Logger logger = LoggerFactory.getLogger(getClass());
+//	Screen screen = new Screen();
+//	int timeoutInSec = 20;
+//	private WebDriver webDriver;
+//
+//	@Inject
+//	public OrderHeaderPage(WebDriver webDriver) {
+//		super(webDriver);
+//		this.webDriver = webDriver;
+//	}
 
 //	public void navigateToOrderHeader() throws FindFailed, InterruptedException {
 //		screen.wait("images/DataMenu.png", timeoutInSec);
@@ -39,6 +43,23 @@ public class OrderHeaderPage extends PageObject {
 //		Thread.sleep(2000);
 //	}
 
+public class OrderHeaderPage {
+	WebElement webElement;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	public static RemoteWebDriver driver = null;
+	private Configuration configuration;
+	private Context context;
+	public static String statusRegion = System.getProperty("USE_DB");
+	//public static String region = System.getProperty("REGION");
+	 public static String region ="ST";
+	Screen screen = new Screen();
+	int timeoutInSec = 20;
+
+	@Inject
+	public OrderHeaderPage(Configuration configuration, Context context) {
+		this.configuration = configuration;
+		this.context = context;
+	}
 	public void enterOrderNo(String OrderNo) throws FindFailed {
 		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
 		screen.click("images/OrderHeaderNo.png");
