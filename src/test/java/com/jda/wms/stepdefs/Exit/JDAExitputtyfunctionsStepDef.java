@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
@@ -14,6 +16,7 @@ import com.jda.wms.db.Exit.PreAdviceHeaderDB;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
@@ -27,6 +30,7 @@ import cucumber.api.java.en.When;
 import edu.emory.mathcs.backport.java.util.Arrays;
 
 public class JDAExitputtyfunctionsStepDef {
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Configuration configuration;
 	private Context context;
@@ -34,6 +38,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private MoveTaskDB moveTaskDB;
+	private SkuDB skuDB;
 	public static String statusRegion = System.getProperty("USE_DB");
 	//public static String region = System.getProperty("REGION");
 	public static String region ="SIT";
@@ -43,11 +48,16 @@ public class JDAExitputtyfunctionsStepDef {
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private SupplierSkuDB supplierSkuDB;
 	private PreAdviceLineDB preAdviceLineDB;
+	private Hooks hooks;
 
 	
 
 	@Inject
-	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,PreAdviceHeaderDB preAdviceHeaderDB) {
+	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,
+			SkuDB skuDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
+			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
+			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
+			PreAdviceHeaderDB preAdviceHeaderDB,Hooks hooks) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -57,6 +67,8 @@ public class JDAExitputtyfunctionsStepDef {
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
 		this.supplierSkuDB= supplierSkuDB;
 		this.preAdviceLineDB = preAdviceLineDB;
+		this.skuDB=skuDB;
+		this.hooks=hooks;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -158,7 +170,7 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
-		String UPCValue=purchaseOrderReceivingPage.getUPC();//from screen
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		System.out.println("upc="+UPCValue);
 		String UPCDB=SkuDB.getUPCDB();
 		System.out.println("upc="+UPCDB);
@@ -303,8 +315,8 @@ public class JDAExitputtyfunctionsStepDef {
 		
 	
 	
-	@Given("^I enter URN and Bel$")
-	public void I_enter_URN_and_Bel() throws Throwable {
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
 		GetTCData.getpoId();
 		String skuid = "000000000021071852";
 		i_generate_pallet_id(GetTCData.getpoId(),skuid);
@@ -317,7 +329,30 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("BelCode "+belCode);
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
+		System.out.println("UPCValue= "+prefixlist);
+		String UPCDB=SkuDB.getUPCDB();//from DB
+		System.out.println("UPCDB= "+UPCDB);
+		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
+		Thread.sleep(1000);
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+		String preAdviceID=GetTCData.getpoId();
+		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+		System.out.println("QTYDB= "+QTYDB);
+		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+		logger.debug("Validated QTY value : " + DBlist);
+		Thread.sleep(1000);
+		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+		System.out.println("SupplierValue= "+SupplierValue);
+		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+		System.out.println("SupplierDB= "+SupplierDB);
+		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+		logger.debug("Validated Supplier Value: " + SupplierValue);
+		Thread.sleep(1000);
 		
 		
 	}
@@ -332,6 +367,8 @@ public class JDAExitputtyfunctionsStepDef {
 		ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		purchaseOrderReceivingPage.enterYes();
+		
+		hooks.logoutPutty();
 		
 	}
 	
