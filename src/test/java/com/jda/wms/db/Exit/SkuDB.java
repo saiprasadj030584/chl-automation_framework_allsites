@@ -88,6 +88,17 @@ public class SkuDB {
 		rs.next();
 		return (rs.getString(1));
 	}
+	public  String getQTYDB(String preAdviceID,String skuid) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select qty_due from pre_advice_line where pre_advice_id = '" + preAdviceID
+				+ "'   and sku_id = '" + skuid + "' ");
+		rs.next();
+		return rs.getString(1);
+	} 
 
 
 	public String getEachQuantity(String skuId) throws SQLException, ClassNotFoundException {

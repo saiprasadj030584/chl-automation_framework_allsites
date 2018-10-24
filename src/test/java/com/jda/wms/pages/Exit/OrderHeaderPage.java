@@ -61,11 +61,11 @@ public class OrderHeaderPage {
 		this.context = context;
 	}
 	public void enterOrderNo(String OrderNo) throws FindFailed {
-		screen.wait("images/OrderHeaderNo.png", timeoutInSec);
-		screen.click("images/OrderHeaderNo.png");
+		screen.wait("images/OrderNumber.png", timeoutInSec);
+		screen.click("images/OrderNumber.png");
 		screen.type(OrderNo);
-		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
-		screen.click("images/OrderHeaderExecute.png");
+//		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
+//		screen.click("images/OrderHeaderExecute.png");
 	}
 
 	public void navigateToOrderLineList() throws FindFailed, InterruptedException {

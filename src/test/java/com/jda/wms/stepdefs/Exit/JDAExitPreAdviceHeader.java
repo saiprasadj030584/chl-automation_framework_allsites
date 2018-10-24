@@ -17,6 +17,8 @@ import com.jda.wms.db.Exit.AddressDB;
 import com.jda.wms.db.Exit.InventoryDB;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
+import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
 import com.jda.wms.pages.Exit.JdaHomePage;
@@ -25,6 +27,8 @@ import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.Exit.OrderHeaderPage;
+import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
+import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
 
@@ -56,9 +60,6 @@ public class JDAExitPreAdviceHeader{
 	private UpdateDataFromDB updateDataFromDB;
 	private JDALoginStepDefs jdaLoginStepDefs;
 	private MoveTaskUpdateStepDefs moveTaskUpdateStepDefs;
-//	private PuttyFunctionsStepDefs  puttyFunctionsStepDefs;
-//	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
-//	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private MoveTaskDB  moveTaskDB;
 	private MoveTaskUpdatePage moveTaskUpdatePage;
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
@@ -68,9 +69,14 @@ public class JDAExitPreAdviceHeader{
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private String poId;
 	private OrderHeaderPage orderheaderpage;
-	
+	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
+	private SkuDB skuDB;
+	private SupplierSkuDB supplierSkuDB;
+	private PuttyFunctionsPage puttyFunctionsPage;
 	@Inject
-	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,OrderHeaderPage orderheaderpage,
+	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
+			SupplierSkuDB supplierSkuDB,PuttyFunctionsPage puttyFunctionsPage,
+			SkuDB skuDB,PurchaseOrderReceivingPage purchaseOrderReceivingPage,OrderHeaderPage orderheaderpage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB,
 			AddressDB addressDB, Hooks hooks, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
@@ -98,7 +104,6 @@ public class JDAExitPreAdviceHeader{
 		this.orderHeaderContext = orderHeaderContext;
 		this.orderLineMaintenanceStepDefs = orderLineMaintenanceStepDefs;
 		this.moveTaskStepDefs = moveTaskStepDefs;
-
 		this.orderPreparationStepDefs = orderPreparationStepDefs;
 		this.dataSetupRunner = dataSetupRunner;
 		this.getTCData = getTCData;
@@ -113,6 +118,8 @@ public class JDAExitPreAdviceHeader{
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		this.orderheaderpage=orderheaderpage;
+		this.skuDB=skuDB;
+		this.supplierSkuDB=supplierSkuDB;
 	}
 	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,
@@ -135,14 +142,14 @@ public class JDAExitPreAdviceHeader{
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
-		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
-		System.out.println("status : "+orderstatus);			
 		jdaHomePage.navigateToOrderheaderPage();
 		Thread.sleep(3000);
 		jdaFooter.clickQueryButton();
 		orderheaderpage.enterOrderNo(context.getOrderId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
+		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+		Assert.assertEquals("Order Status", "Ready to Load", orderstatus);
 	}
 	@And ("^Validation of List Id generated with prefix as FSVB$")
 	public void Validation_of_List_Id_generated_with_prefix_as_FSVB()throws Throwable{
@@ -156,6 +163,36 @@ public class JDAExitPreAdviceHeader{
 			logger.debug("List Id generated with prefix as FSVB is : " + actuallist);
 			System.out.println("List Id generated with prefix as FSVB is : " + actuallist);
 		}
+	
+	@And ("^Validation of UPC,Qty details and Supplier$")
+	public void Validation_of_UPC_Qty_details_and_Supplier() throws Throwable {
+		String preAdviceID=GetTCData.getpoId();
+		String skuid = "000000000021071852";
+		String UPCValue=purchaseOrderReceivingPage.getUPC();//from screen
+		System.out.println("UPCValue= "+UPCValue);
+		String UPCDB=SkuDB.getUPCDB();//from DB
+		System.out.println("UPCDB= "+UPCDB);
+		Assert.assertEquals("UPC validated", UPCDB, UPCValue);
+		logger.debug("Validated UPC value : " + UPCValue);
+		Thread.sleep(1000);
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+		System.out.println("QTYDB= "+QTYDB);
+		Assert.assertEquals("UPC validated", QTYDB, QTYValue);
+		logger.debug("Validated QTY value : " + QTYValue);
+		Thread.sleep(1000);
+		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+		System.out.println("SupplierValue= "+SupplierValue);
+		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+		System.out.println("SupplierDB= "+SupplierDB);
+		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+		logger.debug("Validated Supplier Value: " + SupplierValue);
+		Thread.sleep(1000);
+		
+		
+		
+	}
 	
 	
 	

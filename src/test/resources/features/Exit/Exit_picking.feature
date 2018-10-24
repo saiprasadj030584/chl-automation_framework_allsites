@@ -59,5 +59,7 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel
+    And Validation of UPC,Qty details and Supplier
     And I enter To Pallet
     And I navigate to Order header screen to verify the status in Ready to Load
+    

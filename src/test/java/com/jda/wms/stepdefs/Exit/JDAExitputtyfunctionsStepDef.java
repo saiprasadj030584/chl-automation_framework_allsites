@@ -317,7 +317,7 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("BelCode "+belCode);
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		
 	}
