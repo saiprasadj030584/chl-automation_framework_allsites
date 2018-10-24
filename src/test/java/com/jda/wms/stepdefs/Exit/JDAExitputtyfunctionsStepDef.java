@@ -174,9 +174,9 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("upc="+UPCValue);
 		String UPCDB=SkuDB.getUPCDB();
 		System.out.println("upc="+UPCDB);
-//		String actuallist = moveTaskDB.getListID(context.getOrderId());
 		String prefixlist=StringUtils.substring(UPCDB, 4, 0);
-//		Assert.assertEquals("UPC to be validated", 0, prefixlist);
+//		String actuallist = moveTaskDB.getListID(context.getOrderId());
+		//Assert.assertEquals("UPC to be validated", 0, prefixlist);
 //		logger.debug("List Id generated with prefix as MANB is : " + actuallist);
 //		if (UPCValue.equals(UPCDB)) {
 //			System.out.println("validated");}
