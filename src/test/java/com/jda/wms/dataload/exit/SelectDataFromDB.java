@@ -57,7 +57,7 @@ public class SelectDataFromDB {
 			}
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(
-					"SELECT PALLET_ID FROM UPI_HEADER WHERE PRE_ADVICE_ID = '" + palletID + "'");
+					"SELECT PALLET_ID FROM upi_receipt_header WHERE pallet_id = '" + palletID + "'");
 			rs.next();
 			if (rs.getString(1).equals(palletID)) {
 				isRecordExists = true;

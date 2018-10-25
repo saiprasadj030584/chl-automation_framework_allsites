@@ -27,8 +27,12 @@ Feature: Orders_Picking
   @SN4_Picking_ASN_Cross_Dock
   Scenario: SN3_Picking FSV Cross Dock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
-    And Navigate to Move Task management Screen to verify Order Allocated status for ASN Crossdock
-    And Validation of List Id generated with prefix as ASNB
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet
+    #And I navigate to Order header screen to verify the status in Ready to Load
 
   @SN05_Picking_in_Rdt_MANB
   Scenario: SN1_Picking Order Manual Franchise Boxed

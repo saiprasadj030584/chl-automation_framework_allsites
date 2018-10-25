@@ -111,14 +111,15 @@ public class DataSetupRunner {
 		getTCData.setpoId(poId);
 	}
 	public void insertUPIReceiptData() throws ClassNotFoundException, SQLException, InterruptedException {
-		String palletId = palletId();
-		insertDataIntoDB.insertUPIReceiptHeader(palletId);
-		insertDataIntoDB.insertUPIReceiptline(palletId);
-		
+		String poId = newPoId();
+		String Preadvice= Advice();
+		String palletID = context.getPalletID();
+		insertDataIntoDB.insertUPIReceiptHeader(poId,Preadvice);
+		insertDataIntoDB.insertUPIReceiptLine(poId);
 		Thread.sleep(3000);
 		Assert.assertTrue("Test Data not available - Issue in Data loading",
-				selectDataFromDB.isUpiRecordExists(palletId));
-		getTCData.setPo(palletId);
+				selectDataFromDB.isUpiRecordExists(palletID));
+		getTCData.setPo(palletID);
 	}
 	
 	

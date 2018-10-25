@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@SN2_Picking_Order_Manual_IvDT"
+				+ "@SN4_Picking_ASN_Cross_Dock"
 				+ ""
 				+ ""
 

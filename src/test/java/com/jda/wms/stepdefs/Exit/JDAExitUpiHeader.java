@@ -65,9 +65,10 @@ public class JDAExitUpiHeader{
 	private InventoryDB inventoryDB;
 	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
+	private JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef;
 	
 	@Inject
-	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
+	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
 			AddressMaintenancePage addressMaintenancePage, Verification verification, OrderHeaderDB orderHeaderDB,
 			AddressDB addressDB, Hooks hooks, InsertDataIntoDB insertDataIntoDB, DeleteDataFromDB deleteDataFromDB,
@@ -109,6 +110,7 @@ public class JDAExitUpiHeader{
 		this.inventoryDB=inventoryDB;
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
+		this.jDAExitputtyfunctionsStepDef=jDAExitputtyfunctionsStepDef;
 	}
 	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with(String status,
@@ -117,8 +119,13 @@ public class JDAExitUpiHeader{
 		context.setStoType(type);
 		context.setCustomer(customer);
 //		dataSetupRunner.insertPreAdviceData();
-		dataSetupRunner.insertUPIReceiptData();
+		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertOrderData2();
+		GetTCData.getpoId();
+		String skuid = "000000000021071852";
+		jDAExitputtyfunctionsStepDef.i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		String palletID = context.getPalletID();
+		dataSetupRunner.insertUPIReceiptData();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);

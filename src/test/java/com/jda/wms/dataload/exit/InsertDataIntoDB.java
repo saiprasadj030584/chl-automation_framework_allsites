@@ -44,25 +44,25 @@ public class InsertDataIntoDB {
 		ResultSet rs = stmt.executeQuery(query);
 		context.getConnection().commit();
 	}
-		public void insertUPIReceiptHeader(String palletId) throws SQLException, ClassNotFoundException {
-		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String key = getMaxKeyFromDB("interface_upi_receipt_header");
-		String query = "Insert into interface_upi_receipt_header (KEY,PALLET_ID,SITE_ID,DUE_DSTAMP,RECEIPT_ID,ASN_ID,CLIENT_ID,SUPPLIER_ID,PALLET_CONFIG,VOLUME,HEIGHT,DEPTH,WIDTH,WEIGHT,STATUS,CROSS_DOCK,TO_SITE_ID,SHIP_DOCK,CONSIGNMENT,CUSTOMER_ID,LOAD_SEQUENCE,DISALLOW_MERGE_RULES,NOTES,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,ROUTE_ID,CROSS_DOCK_TO_SITE,SUP_CONTACT,SUP_CONTACT_PHONE,SUP_CONTACT_MOBILE,SUP_CONTACT_FAX,SUP_CONTACT_EMAIL,SUP_NAME,SUP_ADDRESS1,SUP_ADDRESS2,SUP_TOWN,SUP_COUNTY,SUP_POSTCODE,SUP_COUNTRY,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SHIP_BY_DATE,DELIVER_BY_DATE,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
-						+ key +"','"
-				        +palletId+"','5542',to_timestamp('"
-						+queryInsertDate+" 00.00.00.000000000'),null,'0000790476','M+S','9577','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'1','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
-						+queryInsertDate+" 10.15.40.000000000'),null,null,null,null,null,null,850,'33826069072210777302501310103210',null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'Europe/Belfast','Europe/London',null,'INT','U','Error','IF1149',to_timestamp('"
-						+queryInsertDate+" 08.36.14.552349000'))";
-
-		System.out.println("Insert interface_upi_receipt_header");
-		System.out.println(query);
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		context.getConnection().commit();
-	}
+//		public void insertUPIReceiptHeader(String palletId) throws SQLException, ClassNotFoundException {
+//		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+//		String key = getMaxKeyFromDB("interface_upi_receipt_header");
+//		String query = "Insert into interface_upi_receipt_header (KEY,PALLET_ID,SITE_ID,DUE_DSTAMP,RECEIPT_ID,ASN_ID,CLIENT_ID,SUPPLIER_ID,PALLET_CONFIG,VOLUME,HEIGHT,DEPTH,WIDTH,WEIGHT,STATUS,CROSS_DOCK,TO_SITE_ID,SHIP_DOCK,CONSIGNMENT,CUSTOMER_ID,LOAD_SEQUENCE,DISALLOW_MERGE_RULES,NOTES,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,ROUTE_ID,CROSS_DOCK_TO_SITE,SUP_CONTACT,SUP_CONTACT_PHONE,SUP_CONTACT_MOBILE,SUP_CONTACT_FAX,SUP_CONTACT_EMAIL,SUP_NAME,SUP_ADDRESS1,SUP_ADDRESS2,SUP_TOWN,SUP_COUNTY,SUP_POSTCODE,SUP_COUNTRY,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SHIP_BY_DATE,DELIVER_BY_DATE,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
+//						+ key +"','"
+//				        +palletId+"','5542',to_timestamp('"
+//						+queryInsertDate+" 00.00.00.000000000'),null,'0000790476','M+S','9577','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'1','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
+//						+queryInsertDate+" 10.15.40.000000000'),null,null,null,null,null,null,850,'33826069072210777302501310103210',null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'Europe/Belfast','Europe/London',null,'INT','U','Error','IF1149',to_timestamp('"
+//						+queryInsertDate+" 08.36.14.552349000'))";
+//
+//		System.out.println("Insert interface_upi_receipt_header");
+//		System.out.println(query);
+//		if (context.getConnection() == null) {
+//			database.connect();
+//		}
+//		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt.executeQuery(query);
+//		context.getConnection().commit();
+//	}
 	
 	public void insertPreAdviceline(String poId) throws SQLException, ClassNotFoundException {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
@@ -80,24 +80,24 @@ public class InsertDataIntoDB {
 		ResultSet rs = stmt.executeQuery(query);
 		context.getConnection().commit();
 	}
-	public void insertUPIReceiptline(String palletId) throws SQLException, ClassNotFoundException {
-		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String key = getMaxKeyFromDB("interface_upi_receipt_line");
-		String query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP)values ('"
-		               + key +"','"
-				       +palletId+"',10,null,null,'"
-		               +palletId+"','M+S','M+S','000000000021071852',null,'EA',null,null,null,null,'M07972',null,null,null,null,60,null,null,'N','7666561625000010','4026726139','0007','04212287','0000790463',null,'ZIDC',null,'N','N','N','N',to_timestamp('"
-				       +queryInsertDate+" 10.31.04.000000000'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'INT','U','Error','IF0910',to_timestamp('"+queryInsertDate+" 07.47.31.220339000'))";
-
-		System.out.println("Insert upi_receipt_line");
-		System.out.println(query);
-		if (context.getConnection() == null) {
-			database.connect();
-		}
-		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		context.getConnection().commit();
-	}
+//	public void insertUPIReceiptline(String palletId) throws SQLException, ClassNotFoundException {
+//		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+//		String key = getMaxKeyFromDB("interface_upi_receipt_line");
+//		String query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP)values ('"
+//		               + key +"','"
+//				       +palletId+"',10,null,null,'"
+//		               +palletId+"','M+S','M+S','000000000021071852',null,'EA',null,null,null,null,'M07972',null,null,null,null,60,null,null,'N','7666561625000010','4026726139','0007','04212287','0000790463',null,'ZIDC',null,'N','N','N','N',to_timestamp('"
+//				       +queryInsertDate+" 10.31.04.000000000'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'INT','U','Error','IF0910',to_timestamp('"+queryInsertDate+" 07.47.31.220339000'))";
+//
+//		System.out.println("Insert upi_receipt_line");
+//		System.out.println(query);
+//		if (context.getConnection() == null) {
+//			database.connect();
+//		}
+//		Statement stmt = context.getConnection().createStatement();
+//		ResultSet rs = stmt.executeQuery(query);
+//		context.getConnection().commit();
+//	}
 		public void insertOrderHeader(String orderId, String stoType, String customer)
 			throws SQLException, ClassNotFoundException {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
@@ -243,8 +243,55 @@ public class InsertDataIntoDB {
 		Thread.sleep(4000);
 		
 		
+		
 //		21036245,21036245O01
 //		21036013,21036013O01
+	}
+	
+	public void insertUPIReceiptHeader(String orderId,String poId) throws SQLException, ClassNotFoundException, InterruptedException {
+
+		String key = Utilities.getFourDigitRandomNumber()+".0";
+		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+		String query = null;
+		String palletID = context.getPalletID();
+		query = "Insert into interface_upi_receipt_header (KEY,PALLET_ID,SITE_ID,DUE_DSTAMP,RECEIPT_ID,ASN_ID,CLIENT_ID,PALLET_CONFIG,VOLUME,HEIGHT,DEPTH,WIDTH,WEIGHT,STATUS,CROSS_DOCK,TO_SITE_ID,SHIP_DOCK,CONSIGNMENT,CUSTOMER_ID,LOAD_SEQUENCE,DISALLOW_MERGE_RULES,NOTES,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,ROUTE_ID,CROSS_DOCK_TO_SITE,SUP_CONTACT,SUP_CONTACT_PHONE,SUP_CONTACT_MOBILE,SUP_CONTACT_FAX,SUP_CONTACT_EMAIL,SUP_NAME,SUP_ADDRESS1,SUP_ADDRESS2,SUP_TOWN,SUP_COUNTY,SUP_POSTCODE,SUP_COUNTRY,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SHIP_BY_DATE,DELIVER_BY_DATE,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP)values ("
+                 + key +",'"
+                 +palletID+"','5542',to_timestamp('"
+                 +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,'462459357','M+S','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'1','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
+                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,850,'33826069072210777302501310103210',null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'Europe/Belfast','Europe/London',null,'M+S','A','Pending','',to_timestamp('"
+                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'))";
+		System.out.println("Insert UPI Receipt header");
+		System.out.println(query);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		context.getConnection().commit();
+		
+		Thread.sleep(4000);
+	}
+	public void insertUPIReceiptLine(String orderId) throws SQLException, ClassNotFoundException, InterruptedException {
+
+		String key = Utilities.getFourDigitRandomNumber()+".0";
+		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+		String query = null;
+		String palletID = context.getPalletID();
+		query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ("
+                + key +",'"
+                +palletID+"',10,null,null,'79931458874790008707830211002010','M+S','M+S','000000000021071852',null,'EA',null,null,null,null,'',null,null,null,null,20,null,null,'N','7319900742','10','7319900742','06769338','462459357',null,'06769338','7319900742','N','N','N','',to_timestamp('"
+                +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'M+S','A','Pending','',to_timestamp('"
+                +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'))";
+		System.out.println("Insert UPI Receipt Line");
+		System.out.println(query);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		context.getConnection().commit();
+		
+		Thread.sleep(4000);
 	}
 	public void insertOrderLineForConsolidation(String orderId) throws SQLException, ClassNotFoundException {
 		// String key = Utilities.getFourDigitRandomNumber()+".0";
