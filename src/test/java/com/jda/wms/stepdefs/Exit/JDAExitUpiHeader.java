@@ -26,6 +26,7 @@ import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
+import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -120,10 +121,12 @@ public class JDAExitUpiHeader{
 		context.setCustomer(customer);
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceData();
+		String SAPvalue=Utilities.getEightDigitRandomNumber();
+		context.setSAPvalue(SAPvalue);
 		dataSetupRunner.insertOrderData2();
 		GetTCData.getpoId();
 		String skuid = "000000000021071852";
-		jDAExitputtyfunctionsStepDef.i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		jDAExitputtyfunctionsStepDef.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		dataSetupRunner.insertUPIReceiptData();
 		String orderID = getTCData.getSto();

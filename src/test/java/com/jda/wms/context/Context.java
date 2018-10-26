@@ -125,6 +125,7 @@ public class Context {
 	private String generateBelCode;
 	private String skuid;
 	private String belCode;
+	private String SAPvalue;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -573,6 +574,13 @@ public class Context {
 
 	public void setCustomer(String customer) {
 		this.customer = customer;
+	}
+	public String getSAPvalue() {
+		return SAPvalue;
+	}
+
+	public void setSAPvalue(String SAPvalue) {
+		this.SAPvalue = SAPvalue;
 	}
 
 	public int getQtyReverse() {

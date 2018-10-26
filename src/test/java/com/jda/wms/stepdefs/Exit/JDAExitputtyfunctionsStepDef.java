@@ -248,7 +248,44 @@ public class JDAExitputtyfunctionsStepDef {
 		context.setPalletID(palletID);
 		System.out.println("check palletid "+palletID);
 	}
-	
+	@Given("^I generate pallet id$")
+	public void i_generate_pallet_id_for_UPI(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("skuid "+skuid);
+		context.setSkuId2(skuid);
+		System.out.println("preadv "+preAdviceId);
+		String palletID = null;
+		// First 4 digits - Site id
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
+		System.out.println("siteid "+siteid);
+		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "145";
+		System.out.println("barcode "+barcode);
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate(skuid);
+		System.out.println("supplier "+supplier);
+		// Dept id : 3 digit
+		String dept = deptmanipulate(skuid);
+		System.out.println("dept "+dept);
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
+		// Advice - 6 digit
+//		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
+//		System.out.println("advice "+advice);
+		String advice = Utilities.getSixDigitRandomNumber();
+		System.out.println("advice "+advice);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
+		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+		context.setPalletID(palletID);
+		System.out.println("check palletid "+palletID);
+	}
 
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate(String skuid) throws ClassNotFoundException, SQLException {

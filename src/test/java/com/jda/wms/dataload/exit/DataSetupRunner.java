@@ -155,8 +155,8 @@ public class DataSetupRunner {
 //		String poId = newPoId();
 //		String stoId = "8800004368";
 		System.out.println(stoId);
-		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insertOrderLine2(stoId,getTCData.getpoId());
+		insertDataIntoDB.insertOrderforUPI(stoId,context.getStoType(),context.getCustomer());
+		insertDataIntoDB.insertorderlineforUPI(stoId,getTCData.getpoId());
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
