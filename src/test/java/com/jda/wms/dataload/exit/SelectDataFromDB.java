@@ -49,7 +49,7 @@ public class SelectDataFromDB {
 		}
 		return isRecordExists;
 	}
-	public boolean isUpiRecordExists(String palletID) throws ClassNotFoundException {
+	public boolean isUpiRecordExists(String palletIDforUPI) throws ClassNotFoundException {
 		boolean isRecordExists = false;
 		try {
 			if (context.getConnection() == null) {
@@ -57,9 +57,9 @@ public class SelectDataFromDB {
 			}
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(
-					"SELECT PALLET_ID FROM upi_receipt_header WHERE pallet_id = '" + palletID + "'");
+					"SELECT PALLET_ID FROM upi_receipt_header WHERE pallet_id = '" + palletIDforUPI + "'");
 			rs.next();
-			if (rs.getString(1).equals(palletID)) {
+			if (rs.getString(1).equals(palletIDforUPI)) {
 				isRecordExists = true;
 			}
 		} catch (SQLException e) {
@@ -70,6 +70,7 @@ public class SelectDataFromDB {
 		}
 		return isRecordExists;
 	}
+	
 	public boolean isOrderRecordExists(String orderId) throws ClassNotFoundException, InterruptedException {
 		boolean isRecordExists = false;
 		ResultSet rs = null;

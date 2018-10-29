@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
+import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -212,12 +213,49 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(1000);
 		
 	}
-	@Given("^I generate pallet id$")
+	
+//	@Given("^I generate pallet id$")
+	public void i_generate_pallet_id_for_UPI(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("skuid "+skuid);
+		context.setSkuId2(skuid);
+		System.out.println("preadv "+preAdviceId);
+		String palletIDforUPI = null;
+		// First 4 digits - Site id
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
+		System.out.println("siteid "+siteid);
+		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "222";
+		System.out.println("barcode "+barcode);
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate(skuid);
+		System.out.println("supplier "+supplier);
+		// Dept id : 3 digit
+		String dept = deptmanipulate(skuid);
+		System.out.println("dept "+dept);
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
+		// Advice - 6 digit
+		String advice2 = Utilities.getSixDigitRandomNumber();
+		System.out.println("advice "+advice2);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
+		palletIDforUPI = siteid+ barcode + URN + supplier + '0' + dept + advice2 + skuqtymanipulate + checkbit;
+		context.setpalletIDforUPI(palletIDforUPI);
+		System.out.println("check palletid "+palletIDforUPI);
+	}
+//	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
 		System.out.println("skuid "+skuid);
 		context.setSkuId2(skuid);
 		System.out.println("preadv "+preAdviceId);
-		String palletID = null;
+		String palletID= null;
 		// First 4 digits - Site id
 //		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
 		String siteid ="7993";
@@ -245,45 +283,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
 		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setPalletID(palletID);
-		System.out.println("check palletid "+palletID);
-	}
-	@Given("^I generate pallet id$")
-	public void i_generate_pallet_id_for_UPI(String preAdviceId, String skuid) throws Throwable {
-		System.out.println("skuid "+skuid);
-		context.setSkuId2(skuid);
-		System.out.println("preadv "+preAdviceId);
-		String palletID = null;
-		// First 4 digits - Site id
-//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
-		String siteid ="7993";
-		System.out.println("siteid "+siteid);
-		// Hardcoded 3 digit
-//		String barcode = Utilities.getThreeDigitRandomNumber();
-		String barcode = "145";
-		System.out.println("barcode "+barcode);
-		// Random generated 6 digit
-		String URN = Utilities.getSixDigitRandomNumber();
-		System.out.println("URN "+URN );
-		// Supplier id : 5 digit
-		String supplier = suppliermanipulate(skuid);
-		System.out.println("supplier "+supplier);
-		// Dept id : 3 digit
-		String dept = deptmanipulate(skuid);
-		System.out.println("dept "+dept);
-		// Sku quantity : 3 digit
-		String skuqtymanipulate = skuQtyManipulate(preAdviceId, skuid);
-		System.out.println("skuqtymanipulate "+skuqtymanipulate);
-		// Advice - 6 digit
-//		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
-//		System.out.println("advice "+advice);
-		String advice = Utilities.getSixDigitRandomNumber();
-		System.out.println("advice "+advice);
-		// checkbit - 2 digit
-		String checkbit = "10";
-		System.out.println("checkbit "+checkbit);
-		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setPalletID(palletID);
+		context.setpalletIDforUPI(palletID);
 		System.out.println("check palletid "+palletID);
 	}
 
@@ -331,7 +331,8 @@ public class JDAExitputtyfunctionsStepDef {
 			String belCode = null;
 			context.setSkuId2(skuid);
 			// Checkdigit : 2 any random number
-			String checkdigit = Utilities.getTwoDigitRandomNumber();
+//			String checkdigit = Utilities.getTwoDigitRandomNumber();
+			String checkdigit = "02";
 			System.out.println("checkdigit "+checkdigit);
 			// Supplier code : 5 digit
 			String supplier = suppliermanipulate(skuid);
@@ -390,9 +391,57 @@ public class JDAExitputtyfunctionsStepDef {
 		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
 		logger.debug("Validated Supplier Value: " + SupplierValue);
 		Thread.sleep(1000);
-		
-		
-	}
+		}
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
+		GetTCData.getpoId();
+		String skuid = "000000000021071852";
+//		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		Assert.assertTrue("RCVBli screen is not displayed as expected",
+		storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+		Thread.sleep(300);
+		I_generate_belcode(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		Thread.sleep(300);
+		puttyFunctionsPage.singleTab();
+		String ToPallet = null;
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+//		Thread.sleep(1000);
+//		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+//		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
+//		System.out.println("UPCValue= "+prefixlist);
+//		String UPCDB=SkuDB.getUPCDB();//from DB
+//		System.out.println("UPCDB= "+UPCDB);
+//		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
+//		Thread.sleep(1000);
+//		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+//		System.out.println("QTYValue= "+QTYValue);
+//		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+//		String preAdviceID=GetTCData.getpoId();
+//		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+//		System.out.println("QTYDB= "+QTYDB);
+//		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+//		logger.debug("Validated QTY value : " + DBlist);
+//		Thread.sleep(1000);
+//		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+//		System.out.println("SupplierValue= "+SupplierValue);
+//		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+//		System.out.println("SupplierDB= "+SupplierDB);
+//		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+//		logger.debug("Validated Supplier Value: " + SupplierValue);
+//		Thread.sleep(1000);
+		}
 	@Given("^I enter To Pallet$")
 	public void I_enter_To_Pallet() throws Throwable {
 		String ToPallet = null;

@@ -51,6 +51,9 @@ public class PuttyFunctionsPage {
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 	}
+	public void singleTab() throws FindFailed, InterruptedException{
+		screen.type(Key.TAB);
+	}
 
 	public void enterJdaLogin(String username, String pwd) throws FindFailed, InterruptedException {
 		screen.wait("images/Putty/Username.png", timeoutInSec);

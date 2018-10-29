@@ -126,6 +126,7 @@ public class Context {
 	private String skuid;
 	private String belCode;
 	private String SAPvalue;
+	private String palletIDforUPI;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -167,6 +168,13 @@ public class Context {
 
 	public void setPalletID(String palletID) {
 		this.palletID = palletID;
+	}
+	public String getpalletIDforUPI() {
+		return palletIDforUPI;
+	}
+
+	public void setpalletIDforUPI(String palletIDforUPI) {
+		this.palletIDforUPI = palletIDforUPI;
 	}
 
 	public String getABV() {

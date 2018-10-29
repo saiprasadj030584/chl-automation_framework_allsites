@@ -127,17 +127,18 @@ public class JDAExitUpiHeader{
 		GetTCData.getpoId();
 		String skuid = "000000000021071852";
 		jDAExitputtyfunctionsStepDef.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
-		String palletID = context.getPalletID();
+		String palletIDforUPI = context.getpalletIDforUPI();
+		Thread.sleep(1000);
 		dataSetupRunner.insertUPIReceiptData();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
 		System.out.println("status : "+orderstatus);
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
-		if(orderstatus.equals(status))
-		{
-			Thread.sleep(15000);
+//		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+//		if(orderstatus.equals(status))
+//		{
+//			Thread.sleep(15000);
 			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
 			if(!orderstatus1.equals("orderstatus"))
 			{
@@ -146,7 +147,7 @@ public class JDAExitUpiHeader{
 			}
 		
 		}
-	}
+	
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for ASN Crossdock$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_ASN_Crossdock() throws Throwable{
 		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();

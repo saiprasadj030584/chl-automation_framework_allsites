@@ -53,6 +53,13 @@ public class StoreTrackingOrderPickingPage {
 		else
 			return false;
 	}
+	public boolean isRCVBLIMenuDisplayed() {
+		if (screen.exists("images/RCVBLI.png") != null)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean isBasicReceivingMenuDisplayed() {
 		if (screen.exists("images/Putty/Receiving/BasicReceiveMenu.png") != null)
 			return true;
