@@ -143,7 +143,7 @@ public class DataSetupRunner {
 //		String stoId = "8800004368";
 		System.out.println(stoId);
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insertOrderLine(stoId);
+		insertDataIntoDB.insertOrderLine3(stoId);
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
@@ -162,7 +162,7 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
-	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
+	public void insertOrderDataforUPI() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 //		getTCData.getpoId();
 //		context.getpoId();
@@ -171,6 +171,33 @@ public class DataSetupRunner {
 		System.out.println(stoId);
 		insertDataIntoDB.insertOrderforUPI(stoId,context.getStoType(),context.getCustomer());
 		insertDataIntoDB.insertorderlineforUPI(stoId,getTCData.getpoId());
+		Thread.sleep(10000);
+		selectDataFromDB.isOrderHeaderRecordExists(stoId);
+		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
+			
+		//Bhuban
+//		updateDataFromDB.updateMoveTaskStatusInMoveTask(stoId);
+//		 //updateDataFromDB.updateMoveTaskStatusInOrderHeader(stoId);
+//			
+//			updateDataFromDB.updateAddressIntPalletType(context.getCustomer());
+			Thread.sleep(3000);	
+		
+		
+		
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isOrderRecordExists(stoId));
+		getTCData.setSto(stoId);
+		System.out.println("Order Id from Interface table is:"+ stoId );
+	}
+	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
+		String stoId = newStoId();
+//		getTCData.getpoId();
+//		context.getpoId();
+//		String poId = newPoId();
+//		String stoId = "8800004368";
+		System.out.println(stoId);
+		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
+		insertDataIntoDB.insertOrderLine2(stoId,getTCData.getpoId());
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));

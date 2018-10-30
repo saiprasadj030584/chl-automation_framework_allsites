@@ -24,6 +24,7 @@ import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
 import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
+import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
 import com.jda.wms.utils.Utilities;
@@ -67,6 +68,7 @@ public class JDAExitUpiHeader{
 	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef;
+	private PuttyFunctionsPage puttyFunctionsPage;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef,
@@ -77,7 +79,7 @@ public class JDAExitUpiHeader{
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
-			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
+			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
 			InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage,MoveTaskManagementPage moveTaskManagementPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
@@ -112,6 +114,7 @@ public class JDAExitUpiHeader{
 		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		this.jDAExitputtyfunctionsStepDef=jDAExitputtyfunctionsStepDef;
+		this.puttyFunctionsPage=puttyFunctionsPage;
 	}
 	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with(String status,
@@ -123,10 +126,11 @@ public class JDAExitUpiHeader{
 		dataSetupRunner.insertPreAdviceDataforUPI();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
 		context.setSAPvalue(SAPvalue);
-		dataSetupRunner.insertOrderData2();
+		dataSetupRunner.insertOrderDataforUPI();
 		GetTCData.getpoId();
 		String skuid = "000000000021071852";
-		jDAExitputtyfunctionsStepDef.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		context.setSkuId2(skuid);
+		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		Thread.sleep(1000);
 		dataSetupRunner.insertUPIReceiptData();

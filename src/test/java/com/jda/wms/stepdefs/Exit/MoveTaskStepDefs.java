@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.JdaLoginPage;
 import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
+import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskQueryPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.PickFaceMaintenancePage;
@@ -36,6 +38,7 @@ import com.jda.wms.pages.Exit.Verification;
 import com.jda.wms.utils.Utilities;
 
 import cucumber.api.DataTable;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -78,6 +81,9 @@ public class MoveTaskStepDefs {
 //	private final PickFaceMaintenanceStepDefs pickFaceMaintenanceStepDefs;
 	private OrderHeaderMaintenanceStepDefs  orderHeaderMaintenanceStepDefs;
 	private final OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs;
+	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
+	private JDAFooter jdaFooter;
+	private MoveTaskManagementPage moveTaskManagementPage;
 	
 //	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
 //	private final PurchaseOrderReceivingStepDefs  purchaseOrderReceivingStepDefs;
@@ -100,8 +106,8 @@ public class MoveTaskStepDefs {
 			PickFaceTableDB pickFaceTableDB, PickFaceMaintenancePage pickFaceMaintenancPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage, JdaLoginPage jdaLoginPage,
 
-			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,
-			
+			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,JDAExitLoginStepDefs JDAExitLoginStepDefs,
+			JDAFooter jdaFooter,MoveTaskManagementPage moveTaskManagementPage,
 			
 			OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs,OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs) {
 	
@@ -131,22 +137,59 @@ public class MoveTaskStepDefs {
 		this.hooks = hooks;
 		this.inventoryDB = inventoryDB;
 		this.orderLineDB = orderLineDB;
-
-//		this.pickFaceMaintenanceStepDefs = pickFaceMaintenanceStepDefs;
 		this.orderHeaderMaintenanceStepDefs=orderHeaderMaintenanceStepDefs;
-		
 		this.orderLineMaintenanceStepDefs=orderLineMaintenanceStepDefs;
-		
-//		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
-//		this.puttyFunctionsStepDefs=puttyFunctionsStepDefs;
-		//this.storeTrackingOrderPickingStepDefs =storeTrackingOrderPickingStepDefs;
-			}
-
-
-	//	this.pickFaceMaintenanceStepDefs = pickFaceMaintenanceStepDefs;
-
-
+		this.JDAExitLoginStepDefs=JDAExitLoginStepDefs;
+		this.jdaFooter=jdaFooter;
+		this.moveTaskManagementPage=moveTaskManagementPage;
+		}
+	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status$")
+	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status() throws Throwable{
+		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		Thread.sleep(3000);
+		jdaHomePage.navigateToMoveTaskListManagementPage();
+		Thread.sleep(3000);
+		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+	}
+	@And ("^Validation of List Id generated with prefix as MANB$")
+	public void Validation_of_List_Id_generated_with_prefic_as_MANB()throws Throwable{
+			
+			moveTaskManagementPage.validateListID();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as MANB", "MANB", prefixlist);
+			logger.debug("List Id generated with prefix as MANB is : " + actuallist);
+			System.out.println("List Id generated with prefix as MANB is : " + actuallist);
+		}
+	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for IDT$")
+	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_IDT() throws Throwable{
+		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		Thread.sleep(3000);
+		jdaHomePage.navigateToMoveTaskListManagementPage();
+		Thread.sleep(3000);
+		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+	}
+	@And ("^Validation of List Id generated with prefix as IDT$")
+	public void Validation_of_List_Id_generated_with_prefic_as_IDT()throws Throwable{
+			
+			moveTaskManagementPage.validateListIDforIDT();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDTB", prefixlist);
+			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
+			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
+		}
 	
+	
+		
 
 	@Given("^the tagid, quantity to move details should be displayed for the sku \"([^\"]*)\" with \"([^\"]*)\" tasks$")
 	public void the_tagid_quantity_to_move_details_should_be_displayed_for_the_sku_with_tasks(String sku, String taskId)
