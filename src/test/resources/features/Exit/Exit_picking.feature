@@ -31,7 +31,7 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
-       #And I navigate to Order header screen to verify the status in Ready to Load
+    #And I navigate to Order header screen to verify the status in Ready to Load
 
   @SN05_Picking_in_Rdt_MANB
   Scenario: SN1_Picking Order Manual Franchise Boxed

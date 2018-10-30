@@ -210,7 +210,7 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectGS1_128ReceiveMenu();
 		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
 		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 	}
 	
@@ -283,7 +283,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
 		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setpalletIDforUPI(palletID);
+		context.setPalletID(palletID);
 		System.out.println("check palletid "+palletID);
 	}
 
@@ -326,8 +326,8 @@ public class JDAExitputtyfunctionsStepDef {
 			}
 			return qtyDue;
 		}
-		@Given("^I generate belcode$")
-		private void I_generate_belcode(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+//		@Given("^I generate belcode$")
+		private void I_generate_belcode_for_UPI(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
 			context.setSkuId2(skuid);
 			// Checkdigit : 2 any random number
@@ -350,21 +350,48 @@ public class JDAExitputtyfunctionsStepDef {
 			context.setBelCode(belCode);
 			System.out.println(belCode);;
 		}
+		private void I_generate_belcode(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+			String belCode = null;
+			context.setSkuId2(skuid);
+			// Checkdigit : 2 any random number
+			String checkdigit = Utilities.getTwoDigitRandomNumber();
+//			String checkdigit = "02";
+			System.out.println("checkdigit "+checkdigit);
+			// Supplier code : 5 digit
+			String supplier = suppliermanipulate(skuid);
+			System.out.println("supplier "+supplier);
+			// UPC : 8 digit
+			String upc = preAdviceLineDB.getUpc(skuid);
+			System.out.println("upc "+upc );
+			// Quantity : 4 digit
+			String skuqtymanipulate = skuQtyManipulate2(preAdviceId, skuid);
+			System.out.println("skuqtymanipulate "+skuqtymanipulate);
+			// Checkbit hardcoded : 1 digit
+			String checkbit = "1";
+			System.out.println("checkbit "+checkbit);
+			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
+			context.setBelCode(belCode);
+			System.out.println(belCode);;
+		}
 		
 	
 	
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
+		Thread.sleep(1000);
 		GetTCData.getpoId();
 		String skuid = "000000000021071852";
 		i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
+		Thread.sleep(2000);
 		purchaseOrderReceivingPage.EnterPalletID(palletID);
 		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
 		I_generate_belcode(GetTCData.getpoId(),skuid);
 		String belCode = context.getBelCode();
 		System.out.println("BelCode "+belCode);
+		Thread.sleep(2000);
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(1000);
@@ -405,7 +432,7 @@ public class JDAExitputtyfunctionsStepDef {
 		Assert.assertTrue("RCVBli screen is not displayed as expected",
 		storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
 		Thread.sleep(300);
-		I_generate_belcode(GetTCData.getpoId(),skuid);
+		I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
 		String belCode = context.getBelCode();
 		System.out.println("BelCode "+belCode);
 		purchaseOrderReceivingPage.EnterBel(belCode);

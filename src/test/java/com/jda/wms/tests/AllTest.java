@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@SN4_Picking_ASN_Cross_Dock"
+				+ "@SN07__Picking_FSV_Cross_Dock_and_Receiving_Autopicking"
 				+ ""
 				+ ""
 

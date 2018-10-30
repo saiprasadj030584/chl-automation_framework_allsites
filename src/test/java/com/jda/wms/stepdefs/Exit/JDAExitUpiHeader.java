@@ -120,7 +120,7 @@ public class JDAExitUpiHeader{
 		context.setStoType(type);
 		context.setCustomer(customer);
 //		dataSetupRunner.insertPreAdviceData();
-		dataSetupRunner.insertPreAdviceData();
+		dataSetupRunner.insertPreAdviceDataforUPI();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
 		context.setSAPvalue(SAPvalue);
 		dataSetupRunner.insertOrderData2();
