@@ -2,8 +2,10 @@ package com.jda.wms.stepdefs.Exit;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.Exit.JdaHomePage;
+import com.jda.wms.pages.Exit.OrderHeaderPage;
 import com.jda.wms.pages.Exit.PickFaceMaintenancePage;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -11,18 +13,35 @@ public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
 	private PickFaceMaintenancePage pickFaceMaintenancePage;
 	private JDAFooter jdaFooter;
+	private OrderHeaderPage orderheaderpage;
 	
 
 	@Inject
-	public JDAHomeStepDefs(JdaHomePage jdaHomePage,PickFaceMaintenancePage pickFaceMaintenancePage,JDAFooter jdaFooter) {
+	public JDAHomeStepDefs(JdaHomePage jdaHomePage,PickFaceMaintenancePage pickFaceMaintenancePage,
+			JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
 		this.jdaHomePage = jdaHomePage;
 		this.pickFaceMaintenancePage=pickFaceMaintenancePage;
 		this.jdaFooter=jdaFooter;
+		this.orderheaderpage=orderheaderpage;
 	}
 
 	@When("^I navigate to order header$")
 	public void i_navigate_to_order_header() throws Throwable {
 		jdaHomePage.navigateToOrderHeader();
+	}
+	@And("^I Go to Data-GENERAL-SETUP-SITE & Click$")
+	public void i_navigate_to_data_site_setup() throws Throwable {
+		jdaHomePage.navigateToLocation();
+	}
+	 
+	@And("^Quering it using SiteID and Executing$")
+	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
+		Thread.sleep(3000);
+		jdaFooter.clickQueryButton();
+		String Location="AA001";
+		orderheaderpage.enterLocation(Location);
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
 	}
 
 	@When("^I navigate to SKU maintenance page$")

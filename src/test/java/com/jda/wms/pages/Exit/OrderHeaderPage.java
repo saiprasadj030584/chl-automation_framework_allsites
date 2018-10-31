@@ -67,6 +67,11 @@ public class OrderHeaderPage {
 //		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
 //		screen.click("images/OrderHeaderExecute.png");
 	}
+	public void enterLocation(String Location) throws FindFailed {
+		screen.wait("images/OrderNumber.png", timeoutInSec);
+		screen.click("images/OrderNumber.png");
+		screen.type(Location);
+		}
 
 	public void navigateToOrderLineList() throws FindFailed, InterruptedException {
 		screen.wait("images/OrderHeaderLines.png", timeoutInSec);

@@ -17,6 +17,11 @@ public class JDALoginStepDefs {
 	public void i_have_logged_in_as_warehouse_user_in_JDA_Exit_application() throws Throwable {		
 		jdaLoginPage.login();
 }
+	@Given("^I Launch and login the JDA application as Exit DC User$")
+	public void i_launch_Jda_application() throws Throwable{
+		jdaLoginPage.login();
+		
+	}
  
  
 //	@Given("^Logging in as warehouse user in Exit application$")

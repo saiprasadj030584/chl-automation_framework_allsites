@@ -34,6 +34,15 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 
+	public void navigateToLocation() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Location");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 	public void navigateToTrailerShippingPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
