@@ -66,3 +66,5 @@ Feature: Orders_Picking
     And I enter URN and Bel and validation of UPC,QTY and Supplier
     And I enter To Pallet
     And I navigate to Order header screen to verify the status in Ready to Load
+    
+ 
