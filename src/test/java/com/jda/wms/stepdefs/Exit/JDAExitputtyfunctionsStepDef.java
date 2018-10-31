@@ -164,6 +164,52 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
+		String TagId="158888";
+//		context.setTag(TagId);
+		System.out.println("TagId="+TagId);
+		storeTrackingOrderPickingPage.enterTagId(TagId);
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+		System.out.println("upc="+UPCValue);
+		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
+//		String[] UPCSplit = UPCLast.split("****");
+		System.out.println("UPCLast="+UPCLast);
+		String UPCDB=SkuDB.getUPCDB();
+		System.out.println("upc="+UPCDB);
+//		String[] UPCDBLast = UPCLast.split("(?<!\\d)(?<!\\d)");
+////		return UPCDBLast[1];
+//		String  UPCDBLastFinal= UPCDBLast[1];
+//	//	String UPCDBLast=StringUtils.substring(UPCDB, 4, 0);
+//		System.out.println("UPCDBLastFinal="+UPCDBLastFinal);
+//		Assert.assertEquals("UPC validated", UPCDBLastFinal, UPCLast);
+//		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+//		System.out.println("QTYValue= "+QTYValue);
+//		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+//		String preAdviceID=GetTCData.getpoId();
+//		String skuid=context.getSkuId2();
+//		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+//		System.out.println("QTYDB= "+QTYDB);
+//		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+//		logger.debug("Validated QTY value : " + DBlist);
+		Thread.sleep(1000);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(500);
+	
+		
+	}
+	@And("^I enter ListId and TagId for IDT$")
+	public void I_enter_ListId_and_TagId_for_IDT() throws Throwable{
+		//String TagId=moveTaskDB.getTag(context.getOrderId());
+		String listId=moveTaskDB.getList(context.getOrderId());
+		storeTrackingOrderPickingPage.enterListID(listId);
+		System.out.println("ListId= " +listId);
+		puttyFunctionsPage.pressEnter();
 		String TagId="9999";
 //		context.setTag(TagId);
 		System.out.println("TagId="+TagId);
@@ -173,18 +219,17 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(500);
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		System.out.println("upc="+UPCValue);
+		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
+		System.out.println("UPCLast="+UPCLast);
 		String UPCDB=SkuDB.getUPCDB();
 		System.out.println("upc="+UPCDB);
-		String prefixlist=StringUtils.substring(UPCDB, 4, 0);
-
+		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
-	
-		
 	}
 	@Given("^I select Receiving menu$")
 	public void I_select_Receiving_menu() throws Throwable {

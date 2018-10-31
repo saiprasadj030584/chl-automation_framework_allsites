@@ -43,6 +43,7 @@ Feature: Orders_Picking
     And I select picking with container pick
     Then I should be directed to pick entry page
     And I enter ListId and TagId
+    And I navigate to Order header screen to verify the status in Ready to Load
 
   @TC06_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound
   Scenario: Validate Picking process for Manual IDT order(Transfer order)
@@ -53,7 +54,8 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select picking with container pick
     Then I should be directed to pick entry page
-    And I enter ListId and TagId
+    And I enter ListId and TagId for IDT
+    And I navigate to Order header screen to verify the status in Ready to Load
 
   @TC07_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order @Boxed–Outbound @Picking-Boxed–Outbound @Picking-Boxed–Outbound
   Scenario: Validate the auto picking process for the Cross dock FSV order
