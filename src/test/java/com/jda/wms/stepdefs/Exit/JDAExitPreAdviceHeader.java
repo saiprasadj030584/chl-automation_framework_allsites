@@ -65,7 +65,6 @@ public class JDAExitPreAdviceHeader{
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
 	private JdaHomePage jdaHomePage;
 	private InventoryDB inventoryDB;
-	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private String poId;
 	private OrderHeaderPage orderheaderpage;
@@ -86,7 +85,7 @@ public class JDAExitPreAdviceHeader{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage,MoveTaskManagementPage moveTaskManagementPage) {
+			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -115,7 +114,6 @@ public class JDAExitPreAdviceHeader{
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;
 		this.jdaHomePage=jdaHomePage;
 		this.inventoryDB=inventoryDB;
-		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		this.orderheaderpage=orderheaderpage;
 		this.skuDB=skuDB;
@@ -137,7 +135,7 @@ public class JDAExitPreAdviceHeader{
 	}
 	@Given ("^I navigate to Order header screen to verify the status in Ready to Load$")
 	public void I_navigate_to_Order_header_screen_to_verify_the_status_in_Ready_to_Load() throws Throwable{
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		Thread.sleep(3000);
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);

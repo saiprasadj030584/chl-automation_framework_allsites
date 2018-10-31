@@ -29,11 +29,10 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_order_header() throws Throwable {
 		jdaHomePage.navigateToOrderHeader();
 	}
-	@And("^I Go to Data-GENERAL-SETUP-SITE & Click$")
-	public void i_navigate_to_data_site_setup() throws Throwable {
-		jdaHomePage.navigateToLocation();
-	}
-	 
+	@And("^Go to Data-GENERAL-SETUP-SITE & Click$")
+	public void go_to_Data_GENERAL_SETUP_SITE_Click() throws Throwable {
+		 jdaHomePage.navigateToSite();                                                                
+	}                                               
 	@And("^Quering it using SiteID and Executing$")
 	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
 		Thread.sleep(3000);

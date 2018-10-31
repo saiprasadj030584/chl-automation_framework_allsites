@@ -81,7 +81,6 @@ public class MoveTaskStepDefs {
 //	private final PickFaceMaintenanceStepDefs pickFaceMaintenanceStepDefs;
 	private OrderHeaderMaintenanceStepDefs  orderHeaderMaintenanceStepDefs;
 	private final OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs;
-	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private JDAFooter jdaFooter;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	
@@ -106,7 +105,7 @@ public class MoveTaskStepDefs {
 			PickFaceTableDB pickFaceTableDB, PickFaceMaintenancePage pickFaceMaintenancPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage, JdaLoginPage jdaLoginPage,
 
-			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,JDAExitLoginStepDefs JDAExitLoginStepDefs,
+			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,
 			JDAFooter jdaFooter,MoveTaskManagementPage moveTaskManagementPage,
 			
 			OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs,OrderHeaderMaintenanceStepDefs orderHeaderMaintenanceStepDefs) {
@@ -139,13 +138,12 @@ public class MoveTaskStepDefs {
 		this.orderLineDB = orderLineDB;
 		this.orderHeaderMaintenanceStepDefs=orderHeaderMaintenanceStepDefs;
 		this.orderLineMaintenanceStepDefs=orderLineMaintenanceStepDefs;
-		this.JDAExitLoginStepDefs=JDAExitLoginStepDefs;
 		this.jdaFooter=jdaFooter;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		}
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status() throws Throwable{
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		Thread.sleep(3000);
 		jdaHomePage.navigateToMoveTaskListManagementPage();
 		Thread.sleep(3000);
@@ -167,7 +165,7 @@ public class MoveTaskStepDefs {
 		}
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for IDT$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_IDT() throws Throwable{
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		Thread.sleep(3000);
 		jdaHomePage.navigateToMoveTaskListManagementPage();
 		Thread.sleep(3000);

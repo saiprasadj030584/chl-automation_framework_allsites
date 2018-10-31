@@ -692,5 +692,16 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+	public void navigateToSite() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverGeneral();
+		hoverSetup();
+		Thread.sleep(100);
+		clickSite();
+		Thread.sleep(3000);
+	}
+	private void clickSite() throws FindFailed {
+		screen.wait("images/JDAHome/Site.png", timeoutInSec);
+		screen.click("images/JDAHome/Site.png");
+	}
 }

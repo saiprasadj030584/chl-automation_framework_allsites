@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
-import com.jda.wms.pages.Exit.JdaExitLoginPage;
+import com.jda.wms.pages.Exit.JdaLoginPage;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -36,7 +36,7 @@ public class Hooks_autoUI {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	// private final WebDriver webDriver;
 	private final Configuration configuration;
-	private final JdaExitLoginPage jdaLoginPage;
+	private final JdaLoginPage jdaLoginPage;
 	public static String PRQID = System.getProperty("ID");
 	public static String statusRegion = System.getProperty("USE_DB");
 	public static String region = System.getProperty("REGION");
@@ -47,7 +47,7 @@ public class Hooks_autoUI {
 	public static int fail = 0;
 
 	@Inject
-	public Hooks_autoUI(Context context, Configuration configuration, JdaExitLoginPage jdaLoginPage) {
+	public Hooks_autoUI(Context context, Configuration configuration, JdaLoginPage jdaLoginPage) {
 		// this.webDriver = webDriver;
 		this.context = context;
 		this.configuration = configuration;

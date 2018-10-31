@@ -63,7 +63,6 @@ public class JDAExitorderHeaderDB{
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
 	private JdaHomePage jdaHomePage;
 	private InventoryDB inventoryDB;
-	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	
 	@Inject
@@ -77,7 +76,7 @@ public class JDAExitorderHeaderDB{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage,MoveTaskManagementPage moveTaskManagementPage) {
+			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -107,7 +106,6 @@ public class JDAExitorderHeaderDB{
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;
 		this.jdaHomePage=jdaHomePage;
 		this.inventoryDB=inventoryDB;
-		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 	}
 	
@@ -122,7 +120,7 @@ public class JDAExitorderHeaderDB{
 		Thread.sleep(10000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
 		System.out.println("status : "+orderstatus);
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		if(orderstatus.equals(status))
 		{
 			Thread.sleep(15000);
@@ -149,7 +147,7 @@ public class JDAExitorderHeaderDB{
 		Thread.sleep(10000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
 		System.out.println("status : "+orderstatus);
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		if(orderstatus.equals(status))
 		{
 			Thread.sleep(15000);

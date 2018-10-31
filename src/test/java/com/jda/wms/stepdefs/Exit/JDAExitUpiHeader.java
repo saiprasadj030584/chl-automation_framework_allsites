@@ -65,7 +65,6 @@ public class JDAExitUpiHeader{
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
 	private JdaHomePage jdaHomePage;
 	private InventoryDB inventoryDB;
-	private JDAExitLoginStepDefs JDAExitLoginStepDefs;
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef;
 	private PuttyFunctionsPage puttyFunctionsPage;
@@ -81,7 +80,7 @@ public class JDAExitUpiHeader{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,JDAExitLoginStepDefs JdaExitLoginPage,MoveTaskManagementPage moveTaskManagementPage) {
+			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -111,7 +110,6 @@ public class JDAExitUpiHeader{
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;
 		this.jdaHomePage=jdaHomePage;
 		this.inventoryDB=inventoryDB;
-		this.JDAExitLoginStepDefs= JdaExitLoginPage;
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		this.jDAExitputtyfunctionsStepDef=jDAExitputtyfunctionsStepDef;
 		this.puttyFunctionsPage=puttyFunctionsPage;
@@ -154,7 +152,7 @@ public class JDAExitUpiHeader{
 	
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for ASN Crossdock$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_ASN_Crossdock() throws Throwable{
-		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		Thread.sleep(3000);
 		jdaHomePage.navigateToMoveTaskListManagementPage();
 		Thread.sleep(3000);
