@@ -37,20 +37,35 @@ Feature: Master_data_setup
     And Click on Query
     And click execute  
     
-   @SP01 @Master_DATA @TC05_Find_the_Address_load_in_Address_table
+   @SP01 @Master_DATA @TC05_Find_the_Site_ID_in_Address_table
+   Scenario Outline: Address_load_in_address_table
+   Given Login to JDA Dispatcher web screen
+    And Go to Data-GENERAL_SETUP_Address & Click
+    And Click on Query
+    And Specify the SITE ID in Addresstable "<SiteID>"
+    And click execute 
+    Examples: 
+      | SiteID |
+      |   5542 |
+    
+    @SP01 @Master_DATA @TC06_Find_the_Address_in_Address_table
    Scenario: Address_load_in_address_table
    Given Login to JDA Dispatcher web screen
     And Go to Data-GENERAL_SETUP_Address & Click
     And Click on Query
     And click execute 
     
-   @SP01 @Master_DATA @TC06_Find_the_SKU_LOAD
-   Scenario: SKU_Load
+   @SP01 @Master_DATA @TC07_Find_the_SKU_LOAD
+   Scenario Outline: SKU_Load
    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKU & Click
     And Click on Query
+    And Specify the SKU "<SKU>"
     And click execute  
-    
+    Then Verify whether the required fields been populated "<SKU>" in SKU table
+     Examples: 
+      | SKU |
+      | 000000000021071852 |
     
   
     

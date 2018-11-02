@@ -126,10 +126,7 @@ public class JdaHomePage {
 		screen.click("images/OrderHeader.PNG");
 	}
 
-	public void hoverSKU() throws FindFailed {
-		screen.wait("images/Menu/Data/dataSku.png", timeoutInSec);
-		screen.click("images/Menu/Data/dataSku.png");
-	}
+	
 
 	public void clickSupplierSKU() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/SupplierSKU.png", timeoutInSec);
@@ -178,6 +175,11 @@ public class JdaHomePage {
 	public void hoverGeneral() throws FindFailed {
 		screen.wait("images/JDAHome/general.png", timeoutInSec);
 		screen.click("images/JDAHome/general.png");
+		screen.mouseMove(70, 0);
+	}
+	public void hoverSKU() throws FindFailed {
+		screen.wait("images/JDAHome/SKU.png", timeoutInSec);
+		screen.click("images/JDAHome/SKU.png");
 		screen.mouseMove(70, 0);
 	}
 	public void hoverLocationG() throws FindFailed {
@@ -737,15 +739,27 @@ public class JdaHomePage {
 		hoverGeneral();
 		hoverSetup();
 		Thread.sleep(100);
-//		clickSite();
+		clickAddress2();
 //		Thread.sleep(3000);
+	}
+	public void navigateToSKU() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverSKU();
+//		hoverSetup();
+		Thread.sleep(100);
+		clickSKU();
+		Thread.sleep(3000);
 	}
 	private void clickSite() throws FindFailed {
 		screen.wait("images/JDAHome/Site.png", timeoutInSec);
 		screen.click("images/JDAHome/Site.png");
 	}
 	public void clickAddress2() throws FindFailed {
-		screen.wait("images/JDAHome/Address.png", timeoutInSec);
-		screen.click("images/JDAHome/Address.png");
+		screen.wait("images/JDAHome/AddressG.png", timeoutInSec);
+		screen.click("images/JDAHome/AddressG.png");
+	}
+	public void clickSKU() throws FindFailed {
+		screen.wait("images/JDAHome/SKUG.png", timeoutInSec);
+		screen.click("images/JDAHome/SKUG.png");
 	}
 }

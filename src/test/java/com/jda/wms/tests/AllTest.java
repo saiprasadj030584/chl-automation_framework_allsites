@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC04_Find_the_LocationZone_setup"
+				+ "@TC07_Find_the_SKU_LOAD"
 				+ ""
 				+ ""
 

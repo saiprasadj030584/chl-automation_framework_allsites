@@ -211,4 +211,22 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public String getCommodityCode(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("Select COMMODITY_CODE FROM SKU where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	public String getCompositionDesc(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("Select COMMODITY_CODE FROM SKU where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 }

@@ -45,11 +45,11 @@ public class JDAHomeStepDefs {
 	} 
 	@And("^Go to Data-GENERAL_SETUP_Address & Click$")
 	public void go_to_Data_GENERAL_SETUP_Address_Click() throws Throwable {
-		 jdaHomePage.clickAddress2();                                                                
+		 jdaHomePage.navigateToAddress();                                                                
 	} 
 	@And("^Go to Data-SKU-SKU & Click$")
 	public void go_to_Data_SKU_SKU_Click() throws Throwable {
-		 jdaHomePage.clickAddress2();                                                                
+		 jdaHomePage.navigateToSKU();                                                                
 	} 
 	
 	
