@@ -11,7 +11,7 @@ Scenario Outline: Site_Setup
 	And Click on Query
 	And Specify the SITE ID "<SiteID>"
 	And click execute
-  #Then Verify whether the required fields been populated
+  Then Verify whether the required fields been populated "<SiteID>"
 
 
  Examples: 

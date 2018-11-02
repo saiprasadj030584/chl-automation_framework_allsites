@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC06_Validate_Picking_process_for_Manual_IDT_order"
+				+ "@Find_the_Site_Siteup"
 				+ ""
 				+ ""
 

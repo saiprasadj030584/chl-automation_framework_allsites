@@ -93,6 +93,13 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+	public String get() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/Putty/UPC2.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.doubleClick(mStatus.getCenter().offset(70,0));		
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
 	public String getSupplier() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Supplier.png");
 		screen.click(mStatus.getCenter().offset(70,0));
