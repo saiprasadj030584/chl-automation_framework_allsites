@@ -180,10 +180,25 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/general.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoverLocationG() throws FindFailed {
+		screen.wait("images/Location/HooverLocation.png", timeoutInSec);
+		screen.click("images/Location/HooverLocation.png");
+		screen.mouseMove(70, 0);
+	}
 
 	public void hoverSetup() throws FindFailed {
 		screen.wait("images/JDAHome/Setup.png", timeoutInSec);
 		screen.click("images/JDAHome/Setup.png");
+		screen.mouseMove(70, 0);
+	}
+	public void hoverLocation() throws FindFailed {
+		screen.wait("images/Location/Location.png", timeoutInSec);
+		screen.click("images/Location/Location.png");
+		screen.mouseMove(70, 0);
+	}
+	public void hoverLocationZoneG() throws FindFailed {
+		screen.wait("images/Location/LocationZoneG.png", timeoutInSec);
+		screen.click("images/Location/LocationZoneG.png");
 		screen.mouseMove(70, 0);
 	}
 
@@ -700,8 +715,37 @@ public class JdaHomePage {
 		clickSite();
 		Thread.sleep(3000);
 	}
+	public void navigateTolocation() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverLocationG();
+		hoverLocation();
+		Thread.sleep(100);
+//		clickSite();
+//		Thread.sleep(3000);
+	}
+	
+	public void navigateTolocationZoneG() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverLocationG();
+		hoverLocationZoneG();
+		Thread.sleep(100);
+//		clickSite();
+//		Thread.sleep(3000);
+	}
+	public void navigateToAddress() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverGeneral();
+		hoverSetup();
+		Thread.sleep(100);
+//		clickSite();
+//		Thread.sleep(3000);
+	}
 	private void clickSite() throws FindFailed {
 		screen.wait("images/JDAHome/Site.png", timeoutInSec);
 		screen.click("images/JDAHome/Site.png");
+	}
+	public void clickAddress2() throws FindFailed {
+		screen.wait("images/JDAHome/Address.png", timeoutInSec);
+		screen.click("images/JDAHome/Address.png");
 	}
 }

@@ -32,7 +32,27 @@ public class JDAHomeStepDefs {
 	@And("^Go to Data-GENERAL-SETUP-SITE & Click$")
 	public void go_to_Data_GENERAL_SETUP_SITE_Click() throws Throwable {
 		 jdaHomePage.navigateToSite();                                                                
-	}                                               
+	} 
+	
+	@And("^Go to Data-LOCATION-Location & Click$")
+	public void go_to_Data_LOCATION_Location_Click() throws Throwable {
+		 jdaHomePage.navigateTolocation();                                                                
+	} 
+	
+	@And("^Go to Data-LOCATION-LocationZone & Click$")
+	public void go_to_Data_LOCATION_LocationZone_Click() throws Throwable {
+		 jdaHomePage.navigateTolocationZoneG();                                                                
+	} 
+	@And("^Go to Data-GENERAL_SETUP_Address & Click$")
+	public void go_to_Data_GENERAL_SETUP_Address_Click() throws Throwable {
+		 jdaHomePage.clickAddress2();                                                                
+	} 
+	@And("^Go to Data-SKU-SKU & Click$")
+	public void go_to_Data_SKU_SKU_Click() throws Throwable {
+		 jdaHomePage.clickAddress2();                                                                
+	} 
+	
+	
 	@And("^Quering it using SiteID and Executing$")
 	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
 		Thread.sleep(3000);

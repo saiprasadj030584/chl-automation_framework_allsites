@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@Find_the_Site_Siteup"
+				+ "@TC04_Find_the_LocationZone_setup"
 				+ ""
 				+ ""
 
