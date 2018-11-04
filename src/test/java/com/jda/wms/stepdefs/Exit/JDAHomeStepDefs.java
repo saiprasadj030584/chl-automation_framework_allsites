@@ -11,16 +11,13 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
-	private PickFaceMaintenancePage pickFaceMaintenancePage;
 	private JDAFooter jdaFooter;
 	private OrderHeaderPage orderheaderpage;
 	
 
 	@Inject
-	public JDAHomeStepDefs(JdaHomePage jdaHomePage,PickFaceMaintenancePage pickFaceMaintenancePage,
-			JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
+	public JDAHomeStepDefs(JdaHomePage jdaHomePage,JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
 		this.jdaHomePage = jdaHomePage;
-		this.pickFaceMaintenancePage=pickFaceMaintenancePage;
 		this.jdaFooter=jdaFooter;
 		this.orderheaderpage=orderheaderpage;
 	}
@@ -230,5 +227,13 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to move task query page$")
 	public void i_navigate_to_move_task_query_page() throws Throwable {
 		jdaHomePage.navigateToMoveTaskQueryPage();
+	}
+	@And("^Click on Query$")
+	public void click_on_Query() throws Throwable {
+		jdaFooter.clickQueryButton();
+	}
+	@And("^click execute$")
+	public void click_execute() throws Throwable {
+		jdaFooter.clickExecuteButton();
 	}
 }

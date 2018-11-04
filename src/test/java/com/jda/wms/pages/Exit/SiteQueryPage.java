@@ -24,14 +24,25 @@ public class SiteQueryPage {
 		
 	}
 
-
-	
-	public void enterSiteID(String siteID) throws FindFailed {
+	public void enterSiteID(String siteID) throws FindFailed, InterruptedException {
+		
+		Match mStatus = screen.find("images/SiteQuery/SiteId.png");
 		screen.wait("images/SiteQuery/SiteId.png", timeoutInSec);
 		screen.click("images/SiteQuery/SiteId.png");
+		mStatus.click();
 		screen.type(siteID);
+		Thread.sleep(2000);
+		
 	}
-	public String TimeZone() throws FindFailed, InterruptedException {
+	public String getSiteID() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/SiteQuery/SiteId4.png");
+		screen.click(mStatus.getCenter().offset(60,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+	public String getTimeZone() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/SiteQuery/TimeZone.png");
 		screen.click(mStatus.getCenter().offset(70,0));
 		screen.type("a", Key.CTRL);
@@ -69,7 +80,7 @@ public class SiteQueryPage {
 		}
 		public void TimeZone_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		
-			String Timezone = TimeZone();
+			String Timezone = getTimeZone();
 			System.out.println("Timezone "+Timezone);
 			String TimeZoneDB=siteDB.getTimeZoneDB(siteID);
 			System.out.println("TimeZoneDB "+TimeZoneDB);

@@ -15,7 +15,13 @@ public class AddressMaintenancePage {
 		screen.click("images/AddressMaintenance/AddressId.png");
 		screen.type(addressId);
 	}
-
+	public String getAddressID() throws FindFailed {
+		Match mDescription = screen.find("images/AddressMaintenance/AddressId.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 	public String getAddressType() throws FindFailed {
 		Match mDescription = screen.find("images/AddressMaintenance/Addresstype.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
