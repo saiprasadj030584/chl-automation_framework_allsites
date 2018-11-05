@@ -256,7 +256,7 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
-		String skuid = "000000000021071852";
+		String skuid=context.getSkuId();
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
@@ -298,7 +298,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = "000000000021071852";
+		String skuid = context.getSkuId();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
@@ -319,7 +319,9 @@ public class JDAExitputtyfunctionsStepDef {
 		ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		puttyFunctionsPage.pressEnter();
+		///@TODO: Add validations
 		hooks.logoutPutty();
+		
 //		Thread.sleep(1000);
 //		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 //		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
