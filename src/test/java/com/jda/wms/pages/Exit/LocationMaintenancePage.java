@@ -24,7 +24,14 @@ public class LocationMaintenancePage {
 		screen.click("/images/LocationMaintenance/Location.png");
 		screen.type(location);
 	} 
-	
+	public String getLocation() throws FindFailed, InterruptedException {
+		Match mLocationLockStatus = screen.find("/images/LocationMaintenance/Location.png");
+		screen.click(mLocationLockStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(1000);
+		return App.getClipboard();
+	} 
 	public void clickGeneralTab() throws FindFailed {
 		screen.wait("/images/LocationMaintenance/GeneralTab.png", timeoutInSec);
 		screen.click("/images/LocationMaintenance/GeneralTab.png");

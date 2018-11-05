@@ -220,6 +220,15 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public String getusergroup(String usergroup) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select group_id from user_group where group_id= '" + usergroup + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 	public String getCompositionDesc(String SKU) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();

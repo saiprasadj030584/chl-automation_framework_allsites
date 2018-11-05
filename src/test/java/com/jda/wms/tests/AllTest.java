@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC07_Find_the_SKU_LOAD"
+				+ "@TC08_Screen_USER_group_check"
 				+ ""
 				+ ""
 

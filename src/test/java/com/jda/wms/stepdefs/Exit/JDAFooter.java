@@ -24,7 +24,7 @@ public class JDAFooter {
 
 	public void clickQueryButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F2);
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 	}
 
 	public void clickAddButton() throws FindFailed, InterruptedException {

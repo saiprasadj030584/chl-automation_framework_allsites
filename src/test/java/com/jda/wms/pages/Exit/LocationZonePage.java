@@ -7,24 +7,26 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 
-public class LocationPage {
+public class LocationZonePage {
 	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public LocationPage() {
+	public LocationZonePage() {
 	}
 
 	public String getLocationZone() throws FindFailed, InterruptedException {
-		Match mFromLocation = screen.find("images/Location/LocationZone.png");
+		Match mFromLocation = screen.find("images/LocationZone/LocationZone.png");
 		screen.click(mFromLocation.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
 	
-	public void enterLocation(String location) {
-		screen.type(location);
+	public void enterLocationZone(String locationZone) throws FindFailed {
+		screen.wait("/images/LocationZone/LocationZone.png", timeoutInSec);
+		screen.click("/images/LocationZone/LocationZone.png");
+		screen.type(locationZone);
 	}
 }

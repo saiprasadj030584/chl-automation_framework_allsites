@@ -11,16 +11,13 @@ import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
 	private final JdaHomePage jdaHomePage;
-	private PickFaceMaintenancePage pickFaceMaintenancePage;
 	private JDAFooter jdaFooter;
 	private OrderHeaderPage orderheaderpage;
 	
 
 	@Inject
-	public JDAHomeStepDefs(JdaHomePage jdaHomePage,PickFaceMaintenancePage pickFaceMaintenancePage,
-			JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
+	public JDAHomeStepDefs(JdaHomePage jdaHomePage,JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
 		this.jdaHomePage = jdaHomePage;
-		this.pickFaceMaintenancePage=pickFaceMaintenancePage;
 		this.jdaFooter=jdaFooter;
 		this.orderheaderpage=orderheaderpage;
 	}
@@ -51,7 +48,18 @@ public class JDAHomeStepDefs {
 	public void go_to_Data_SKU_SKU_Click() throws Throwable {
 		 jdaHomePage.navigateToSKU();                                                                
 	} 
-	
+	@And("^Go to Admin-User-UserGroup & click$")
+	public void Go_to_Admin_User_UserGroup_click() throws Throwable {
+		 jdaHomePage.navigateToAdmin();                                                                
+	} 
+	@And("^Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click$")
+	public void Go_to_Admin_ACCESS_CNT_USER_GROUP_FUNCTION_ACCESS_Click() throws Throwable {
+		 jdaHomePage.navigateToAccesscontrol();                                                                
+	} 
+	@And("^Go to Admin>ACCESS CNT>Workstation access control & Click$")
+	public void Go_to_Admin_ACCESS_CNT_Workstation_access_control_Click() throws Throwable {
+		 jdaHomePage.navigateToWorkstation();                                                                
+	} 
 	
 	@And("^Quering it using SiteID and Executing$")
 	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
@@ -230,5 +238,13 @@ public class JDAHomeStepDefs {
 	@When("^I navigate to move task query page$")
 	public void i_navigate_to_move_task_query_page() throws Throwable {
 		jdaHomePage.navigateToMoveTaskQueryPage();
+	}
+	@And("^Click on Query$")
+	public void click_on_Query() throws Throwable {
+		jdaFooter.clickQueryButton();
+	}
+	@And("^click execute$")
+	public void click_execute() throws Throwable {
+		jdaFooter.clickExecuteButton();
 	}
 }
