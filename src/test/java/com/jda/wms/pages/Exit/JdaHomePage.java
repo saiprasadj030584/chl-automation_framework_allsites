@@ -787,6 +787,7 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/SKUG.png", timeoutInSec);
 		screen.click("images/JDAHome/SKUG.png");
 	}
+
 	public void clickUsergroup() throws FindFailed {
 		screen.wait("images/JDAHome/UserGroup.png", timeoutInSec);
 		screen.click("images/JDAHome/UserGroup.png");
@@ -819,5 +820,6 @@ public class JdaHomePage {
 		Thread.sleep(100);
 		clickWorkstation();
 		Thread.sleep(3000);
+
 	}
 }
