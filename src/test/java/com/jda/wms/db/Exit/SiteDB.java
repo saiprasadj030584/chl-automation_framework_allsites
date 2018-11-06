@@ -3,31 +3,22 @@ package com.jda.wms.db.Exit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-//import com.jda.wms.pages.Exit.SiteQueryPage;
-//import com.jda.wms.stepdefs.Exit.SiteQueryStepDefs;
 
 public class SiteDB {
-	private static Context context;
-	private static Database database;
-//	private SiteQueryPage siteQueryPage;
-//	private SiteQueryStepDefs siteQueryStepDefs;
+	private  Context context;
+	private  Database database;
 
 	@Inject
-	public SiteDB(Context context, Database database
-//			,SiteQueryPage siteQueryPage,SiteQueryStepDefs siteQueryStepDefs
-			) {
+	public SiteDB(Context context, Database database) {
 		this.context = context;
 		this.database = database;
-//		this.siteQueryPage=siteQueryPage;
-//		this.siteQueryStepDefs=siteQueryStepDefs;
-
 	}
-	
 
 
-public static String getTimeZoneDB(String siteID) throws SQLException, ClassNotFoundException {
+public String getTimeZoneDB(String siteID) throws SQLException, ClassNotFoundException {
 	if (context.getConnection() == null) {
 		database.connect();
 	}
@@ -36,7 +27,7 @@ public static String getTimeZoneDB(String siteID) throws SQLException, ClassNotF
 	rs.next();
 	return (rs.getString(1));
 }
-public static String getUDT3DB(String siteID) throws SQLException, ClassNotFoundException {
+public  String getUDT3DB(String siteID) throws SQLException, ClassNotFoundException {
 	if (context.getConnection() == null) {
 		database.connect();
 	}
@@ -45,7 +36,7 @@ public static String getUDT3DB(String siteID) throws SQLException, ClassNotFound
 	rs.next();
 	return (rs.getString(1));
 }
-public static String getUDT4DB(String siteID) throws SQLException, ClassNotFoundException {
+public  String getUDT4DB(String siteID) throws SQLException, ClassNotFoundException {
 	if (context.getConnection() == null) {
 		database.connect();
 	}
@@ -54,7 +45,7 @@ public static String getUDT4DB(String siteID) throws SQLException, ClassNotFound
 	rs.next();
 	return (rs.getString(1));
 }
-public static String getUDN1DB(String siteID) throws SQLException, ClassNotFoundException {
+public  String getUDN1DB(String siteID) throws SQLException, ClassNotFoundException {
 	if (context.getConnection() == null) {
 		database.connect();
 	}

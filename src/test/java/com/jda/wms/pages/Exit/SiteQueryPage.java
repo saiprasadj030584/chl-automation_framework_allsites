@@ -78,25 +78,25 @@ public class SiteQueryPage {
 			Thread.sleep(2000);
 			return App.getClipboard();
 		}
-		public void TimeZone_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	/*	public void TimeZone_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 		
 			String Timezone = getTimeZone();
 			System.out.println("Timezone "+Timezone);
 			String TimeZoneDB=SiteDB.getTimeZoneDB(siteID);
 			System.out.println("TimeZoneDB "+TimeZoneDB);
 			Assert.assertEquals("TimeZone Validated",Timezone,TimeZoneDB);
-		}
+		}*/
 		public void UDT3_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 			
 			UserDefined();
 			Thread.sleep(2000);
-			String UDT3 = getUDT3();
+			/*String UDT3 = getUDT3();
 			System.out.println("UDT3 "+UDT3);
 			String UDT3DB=SiteDB.getUDT3DB(siteID);
 			System.out.println("UDT3DB"+UDT3DB);
-			Assert.assertEquals("TimeZone Validated",UDT3,UDT3DB);
+			Assert.assertEquals("TimeZone Validated",UDT3,UDT3DB);*/
 		}
-      public void UDT4_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+   /*   public void UDT4_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 			
 //			UserDefined();
 			Thread.sleep(2000);
@@ -105,8 +105,8 @@ public class SiteQueryPage {
 			String UDT4DB=SiteDB.getUDT4DB(siteID);
 			System.out.println("UDT4DB "+UDT4DB);
 			Assert.assertEquals("TimeZone Validated",UDT4,UDT4DB);
-		}
-      public void UDN1_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+		}*/
+    /*  public void UDN1_Validation(String siteID) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 	
 //	UserDefined();
 	Thread.sleep(2000);
@@ -115,7 +115,7 @@ public class SiteQueryPage {
 	String UDN1DB=SiteDB.getUDN1DB(siteID);
 	System.out.println("UDN1DB "+UDN1DB);
 	Assert.assertEquals("TimeZone Validated",UDN1,UDN1DB);
-}
+}*/
 		
 		
 	}
