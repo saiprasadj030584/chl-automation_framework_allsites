@@ -49,12 +49,12 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	public static String getProductGroup(String skuid) throws SQLException, ClassNotFoundException {
+	public static String getProductGroup(String SKU) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id = '" + skuid + "'");
+		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id = '" + SKU + "'");
 		rs.next();
 		return rs.getString(1);
 	}
@@ -238,4 +238,23 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public String getpackedweight(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select packed_weight from sku where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	public String getStroke(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_type_1 from sku where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
 }

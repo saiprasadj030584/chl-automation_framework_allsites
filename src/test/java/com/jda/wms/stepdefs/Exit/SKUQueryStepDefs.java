@@ -35,6 +35,33 @@ public class SKUQueryStepDefs{
 		Assert.assertNotEquals("",sKUQueryPage.getStroke());
 		Assert.assertNotEquals("",sKUQueryPage.getPrimarySizeDesc());
 		Assert.assertNotEquals("",sKUQueryPage.getHandlingUnitInd());
+	}
+	@And("^verify the T-Dept \"([^\"]*)\"$")
+	public void verify_the_TDept(String SKU) throws Throwable {
+		String Tdept=sKUQueryPage.getProductGroup();
+		String TdeptDB=skuDB.getProductGroup(SKU);
+		Assert.assertEquals("TDept validated ",Tdept,TdeptDB);
 		
 	}
+	@And("^verify the Commoditycode \"([^\"]*)\"$")
+	public void verify_the_Commoditycode(String SKU) throws Throwable {
+		sKUQueryPage.CommodityCode_Validation(SKU);
+		
+	}
+	@And("^verify the Packedweight \"([^\"]*)\"$")
+	public void verify_the_Packedweight(String SKU) throws Throwable {
+		sKUQueryPage.packedweight_Validation(SKU);
+		
+	}
+	@And("^verify the Stroke \"([^\"]*)\"$")
+	public void verify_the_Stroke(String SKU) throws Throwable {
+		sKUQueryPage.Stroke_Validation(SKU);
+		
+	}
+	@And("^Validate the packedweight is in given range \"([^\"]*)\"$")
+	public void validation_of_packed_weight_range(String SKU) throws Throwable {
+		sKUQueryPage.validateweight(SKU);
+		
+	}
+	
 }
