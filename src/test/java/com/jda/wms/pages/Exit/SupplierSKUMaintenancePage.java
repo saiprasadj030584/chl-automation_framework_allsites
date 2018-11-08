@@ -1,5 +1,9 @@
 package com.jda.wms.pages.Exit;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import org.junit.Assert;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -63,4 +67,22 @@ public class SupplierSKUMaintenancePage {
 			return false;
 		}
 	}
+	public String getDeliveryLeadtime() throws FindFailed, InterruptedException {
+		
+		Match mStatus = screen.find("images/JDASupplierSKU/deliveryleadtime.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+
+	}
+	public void getFutureYear() throws FindFailed, InterruptedException {
+		String dlt=getDeliveryLeadtime();
+		System.out.println("Delivery lead time is:  " + dlt);
+		Calendar date = new GregorianCalendar(2012, 9, 5);
+		int year = date.get(Calendar.YEAR);
+		
+	}
+
 }

@@ -1,15 +1,5 @@
 package com.jda.wms.pages.Exit;
 
-import org.sikuli.script.FindFailed;
-
-import com.google.inject.Inject;
-import com.jda.wms.context.Context;
-import com.jda.wms.db.Exit.SiteDB;
-import com.jda.wms.db.Exit.SkuDB;
-import com.jda.wms.pages.Exit.JdaHomePage;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-
 import java.sql.SQLException;
 
 import org.junit.Assert;
@@ -18,7 +8,9 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
-import java.time.temporal.ValueRange;
+
+import com.google.inject.Inject;
+import com.jda.wms.db.Exit.SkuDB;
 
 
 
@@ -163,7 +155,8 @@ public boolean validateweight(String SKU) throws FindFailed, InterruptedExceptio
         return false;
 }
 }
-// public String getDeliveryLeadtime()	
+// public String getDeliveryLeadtime()
+
 		
 
 

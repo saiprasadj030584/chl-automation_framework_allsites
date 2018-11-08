@@ -63,10 +63,6 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.validateweight(SKU);
 		
 	}
-	@And("^Verify the Delivery lead time in future date$")
-	public void verify_the_delivery_lead_time_in_future_date() throws Throwable {
-//		sKUQueryPage.validateweight(SKU);
-		
-	}
+	
 	
 }
