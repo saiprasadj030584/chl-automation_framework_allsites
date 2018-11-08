@@ -143,7 +143,7 @@ Feature: Master_data_setup
       
       
    @SP01 @Pre-receiving @TC13_Verify_commodity_code_of_a_SKU  
-   Scenario Outline: to verify the commonidty code of a sku
+   Scenario Outline: To verify the commonidty code of a sku
    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -156,7 +156,7 @@ Feature: Master_data_setup
       | 000000000021071852 |
     
     @SP01 @Pre-receiving @TC14_Verify_Packed_weight_of_a_SKU  
-   Scenario Outline: to verify the packed weight of a sku
+   Scenario Outline: To verify the packed weight of a sku
    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -168,4 +168,21 @@ Feature: Master_data_setup
     Examples: 
       | SKU                |
       | 000000000021071852 |  
+   
+   @SP01 @Pre-receiving @TC15_Verify_the_supplier_declaration_certificate_expiry_date  
+   Scenario Outline: To verify the supplier declaration certificate expiry date
+   Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SupplierSKU & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    And verify the Packedweight "<SKU>"
+    And Validate the packedweight is in given range "<SKU>"
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |     
+      
+      
+      
     

@@ -786,6 +786,13 @@ public class JdaHomePage {
 		clickSKUMaintenance();
 		Thread.sleep(3000);
 	}
+	public void navigateToSupplierSKUHome() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverSKU();
+		Thread.sleep(100);
+		clickSupplierSKUHome();
+		Thread.sleep(3000);
+	}
 	private void clickSite() throws FindFailed {
 		screen.wait("images/JDAHome/Site.png", timeoutInSec);
 		screen.click("images/JDAHome/Site.png");
@@ -798,6 +805,11 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/SKUG.png", timeoutInSec);
 		screen.click("images/JDAHome/SKUG.png");
 	}
+	public void clickSupplierSKUHome() throws FindFailed {
+		screen.wait("images/JDAHome/SupplierSKU1.png", timeoutInSec);
+		screen.click("images/JDAHome/SupplierSKU1.png");
+	}
+
 
 	public void clickUsergroup() throws FindFailed {
 		screen.wait("images/JDAHome/UserGroup.png", timeoutInSec);

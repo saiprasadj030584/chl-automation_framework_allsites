@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC08_Screen_USER_group_check"
+				+ "@TC14_Verify_Packed_weight_of_a_SKU"
 				+ ""
 				+ ""
 
