@@ -746,9 +746,9 @@ public class JdaHomePage {
 		clickDataMenu();
 		hoverGeneral();
 		hoverSetup();
-		Thread.sleep(100);
+		Thread.sleep(2000);
 		clickSite();
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 	}
 	public void navigateTolocation() throws FindFailed, InterruptedException {
 		clickDataMenu();
