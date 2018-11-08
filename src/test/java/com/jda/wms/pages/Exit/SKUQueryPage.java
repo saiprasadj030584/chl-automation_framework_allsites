@@ -163,53 +163,8 @@ public boolean validateweight(String SKU) throws FindFailed, InterruptedExceptio
         return false;
 }
 }
+// public String getDeliveryLeadtime()	
 		
-		//i >= minValueInclusive && i <= maxValueInclusive
-
-//private static void validateweight(double from, double to) throws Exception {
-//    instanceCheck(to);
-//    instanceCheck(from);
-//
-//    if ((from == 0.00 && to == 999)
-//            || (isEmpty(from) && isEmpty(to))
-//            || (from == 0.00 && isEmpty(to))
-//            || (to == 999 && isEmpty(from))) {
-//        throw new Exception("Packed Weight is not in range");
-//    }
-//    if (!isEmpty(from)) {
-//    	validateweight(from);
-//    }
-//    if (!isEmpty(to)) {
-//    	validateweight(to);
-//    }
-//}
-//
-//private static void instanceCheck(Object range) throws Exception {
-//    if (range != getpackedweight(String SKU)
-//            && !(range instanceof Number)
-//            && !(range instanceof Number)) {
-//        throw new Exception("Packed Weight is not in range");
-//    }
-//}
-//
-//private static boolean isEmpty(Object range) throws FindFailed, InterruptedException {
-//
-//    return (range instanceof String)
-//            ? ((String) range).trim().isEmpty() : Boolean.FALSE;
-//
-//}
-//
-//private static void validateweight(Object weight) throws Exception {
-//    //Valid date
-//    if (weight instanceof String) {
-//        String input = (String) weight;
-//        //Empty check 
-//        if (!input.matches("Range should be from 0.01 to 999")) {
-//            throw new Exception("Not a valid date");
-//        }
-//    }
-
-
 
 
 

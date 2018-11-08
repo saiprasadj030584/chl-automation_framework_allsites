@@ -176,8 +176,8 @@ Feature: Master_data_setup
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
-    And verify the Packedweight "<SKU>"
-    And Validate the packedweight is in given range "<SKU>"
+    And Verify the Delivery lead time in future date
+    
 
     Examples: 
       | SKU                |

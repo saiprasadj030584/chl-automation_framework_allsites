@@ -10,7 +10,7 @@ Feature: Orders_Picking
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANB
 
-  @TC02_Validate_Pick_list_id_generated_for_an_order-Manual_IDT @Boxed–Outbound @Picking-Boxed–Outbound
+  @TC02_Validate_Pick_list_id_generated_for_an_order_Manual_IDT @Boxed–Outbound @Picking-Boxed–Outbound
   Scenario: Validate Pick list id generated for an order-Manual IDT
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
