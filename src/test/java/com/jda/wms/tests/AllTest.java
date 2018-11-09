@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC15_Verify_the_supplier_declaration_certificate_expiry_date"
+				+ "@TC17_Verify_SKU_Merge_rules"
 				+ ""
 				+ ""
 

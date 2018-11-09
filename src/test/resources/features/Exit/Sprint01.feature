@@ -28,7 +28,7 @@ Feature: Master_data_setup
       | SiteID |
       |   5542 |
 
- @Master_DATA @TC03_Find_the_Location_setup
+  @Master_DATA @TC03_Find_the_Location_setup
   Scenario Outline: Find the Location setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-Location & Click
@@ -127,8 +127,8 @@ Feature: Master_data_setup
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-   @Pre_receiving @TC12_Verify_stroke_details_Stroke_Category
+
+  @Pre_receiving @TC12_Verify_stroke_details_Stroke_Category
   Scenario Outline: To Verify stroke details -Stroke Category
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
@@ -139,12 +139,11 @@ Feature: Master_data_setup
 
     Examples: 
       | SKU                |
-      | 000000000021071852 |  
-      
-      
-   @Pre_receiving @TC13_Verify_commodity_code_of_a_SKU  
-   Scenario Outline: To verify the commonidty code of a sku
-   Given Login to JDA Dispatcher web screen
+      | 000000000021071852 |
+
+  @Pre_receiving @TC13_Verify_commodity_code_of_a_SKU
+  Scenario Outline: To verify the commonidty code of a sku
+    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
     And Specify the SKU "<SKU>"
@@ -154,10 +153,10 @@ Feature: Master_data_setup
     Examples: 
       | SKU                |
       | 000000000021071852 |
-    
-   @SP01 @Pre_receiving @TC14_Verify_Packed_weight_of_a_SKU  
-   Scenario Outline: To verify the packed weight of a sku
-   Given Login to JDA Dispatcher web screen
+
+  @SP01 @Pre_receiving @TC14_Verify_Packed_weight_of_a_SKU
+  Scenario Outline: To verify the packed weight of a sku
+    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
     And Specify the SKU "<SKU>"
@@ -167,22 +166,48 @@ Feature: Master_data_setup
 
     Examples: 
       | SKU                |
-      | 000000000021071852 |  
-   
-   @Pre_receiving @TC15_Verify_the_supplier_declaration_certificate_expiry_date  
-   Scenario Outline: To verify the supplier declaration certificate expiry date
-   Given Login to JDA Dispatcher web screen
+      | 000000000021071852 |
+
+  @Pre_receiving @TC15_Verify_the_supplier_declaration_certificate_expiry_date
+  Scenario Outline: To verify the supplier declaration certificate expiry date
+    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
     Then Verify the Delivery lead time in future date
-    
 
     Examples: 
       | SKU                |
-      | 000000000021071852 |     
-      
-      
-      
-    
+      | 000000000021071852 |
+
+  @Pre_receiving @TC16_Verify_the_supplier_record
+  Scenario Outline: To verify the supplier record
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SupplierSKU & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    Then Verify the Suppliersku record is available "<SKU>"
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Pre_receiving @TC17_Verify_SKU_Merge_rules
+  Scenario Outline: To verify the sku merge rules
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-Admin_Setup_Scheduler_Schedulerprograms & Click
+    And Click on Query
+    And Specify the Program name "<Program_name>"
+    And click execute
+    And Run the program
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    Then Verify the fields in SKU "<SKU>"
+
+    Examples: 
+      | SKU                |Program_name |
+      | 000000000021071852 |SKUVALIDATIONCHECKP |

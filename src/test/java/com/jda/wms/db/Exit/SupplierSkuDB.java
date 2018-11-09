@@ -29,7 +29,7 @@ public class SupplierSkuDB {
 		return rs.getString(1);
 	}
 
-	public String getSupplierSKU(String skuId, String supplierID) throws ClassNotFoundException {
+	public String getSupplierSKU1(String skuId, String supplierID) throws ClassNotFoundException {
 		try {
 			if (context.getConnection() == null) {
 				database.connect();
@@ -37,6 +37,19 @@ public class SupplierSkuDB {
 			Statement stmt = context.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuId
 					+ "' AND supplier_id ='" + supplierID + "'");
+			rs.next();
+			return rs.getString(1);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	public String getSupplierSKU(String skuId) throws ClassNotFoundException {
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuId + "'");
 			rs.next();
 			return rs.getString(1);
 		} catch (Exception e) {

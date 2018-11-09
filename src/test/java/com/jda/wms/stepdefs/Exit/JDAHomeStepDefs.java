@@ -56,6 +56,10 @@ public class JDAHomeStepDefs {
 	public void go_to_Data_SKU_SupplierSKU_Click() throws Throwable {
 		 jdaHomePage.navigateToSupplierSKUHome();                                                                
 	} 
+	@And("^Go to Data-Admin_Setup_Scheduler_Schedulerprograms & Click$")
+	public void go_to_Admin_Setup_Scheduler_Schedulerprograms_Click() throws Throwable {
+		 jdaHomePage.navigateToSchedulerprgm();                                                                
+	} 
 	@And("^Go to Admin-User-UserGroup & click$")
 	public void Go_to_Admin_User_UserGroup_click() throws Throwable {
 		 jdaHomePage.navigateToAdmin();                                                                

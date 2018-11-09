@@ -203,6 +203,11 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/User.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoversetup() throws FindFailed {
+		screen.wait("images/JDAHome/Setup.png", timeoutInSec);
+		screen.click("images/JDAHome/Setup.png");
+		screen.mouseMove(70, 0);
+	}
 
 	public void hoverAccesscontrol() throws FindFailed {
 		screen.wait("images/JDAHome/Accesscontrol.png", timeoutInSec);
@@ -815,6 +820,14 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/UserGroup.png", timeoutInSec);
 		screen.click("images/JDAHome/UserGroup.png");
 	}
+	public void clickscheduler() throws FindFailed {
+		screen.wait("images/JDAHome/scheduler.png", timeoutInSec);
+		screen.click("images/JDAHome/scheduler.png");
+	}
+	public void clickschedulerprgm() throws FindFailed {
+		screen.wait("images/JDAHome/schedulerprogram.png", timeoutInSec);
+		screen.click("images/JDAHome/schedulerprogram.png");
+	}
 	public void clickUsergroupFunctionaccess() throws FindFailed {
 		screen.wait("images/JDAHome/usergrpfctn.png", timeoutInSec);
 		screen.click("images/JDAHome/usergrpfctn.png");
@@ -829,6 +842,15 @@ public class JdaHomePage {
 		Thread.sleep(100);
 		clickUsergroup();
 		Thread.sleep(3000);
+	}
+	public void navigateToSchedulerprgm() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoversetup();
+		Thread.sleep(100);
+		clickscheduler();
+		Thread.sleep(100);
+		clickschedulerprgm();
+		Thread.sleep(100);
 	}
 	public void navigateToAccesscontrol() throws FindFailed, InterruptedException {
 		ClickAdminMenu();

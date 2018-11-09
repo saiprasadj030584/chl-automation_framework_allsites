@@ -25,6 +25,7 @@ public class SKUQueryStepDefs{
 	public void specify_the_SKU(String SKU) throws Throwable {
 		sKUQueryPage.enterSKU(SKU);
 	}
+	
 	@Then("^Verify whether the required fields been populated \"([^\"]*)\" in SKU table$")
 	public void validation_of_fields_in_SKU(String SKU) throws Throwable {
 		//sKUQueryPage.CommodityCode_Validation(SKU);

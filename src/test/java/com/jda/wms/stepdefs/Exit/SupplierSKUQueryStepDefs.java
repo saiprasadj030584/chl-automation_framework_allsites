@@ -9,17 +9,21 @@ import com.google.inject.Inject;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.pages.Exit.SupplierSKUMaintenancePage;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import com.jda.wms.pages.Exit.SKUQueryPage;
 
 public class SupplierSKUQueryStepDefs{
 	
 	private final SupplierSKUMaintenancePage supplierSKUMaintenancePage;
 	private final SkuDB skuDB;
+	private final SKUQueryPage sKUQueryPage;
 	
 	@Inject
-	public SupplierSKUQueryStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage,SkuDB skuDB){
+	public SupplierSKUQueryStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage,SkuDB skuDB,SKUQueryPage sKUQueryPage){
 		this.supplierSKUMaintenancePage=supplierSKUMaintenancePage;
 		this.skuDB=skuDB;
+		this.sKUQueryPage=sKUQueryPage;
 	}
 	
 	@Then("^Verify the Delivery lead time in future date$")
@@ -41,6 +45,11 @@ public class SupplierSKUQueryStepDefs{
 		int ftryr = Integer.parseInt(firsttwoLetterchar + lastwoLetterchar);
 		System.out.println("Future year is:  " + ftryr);
 		Assert.assertTrue(nyear < ftryr);
+	}
+	@And("^Verify the Suppliersku record is available \"([^\"]*)\"$")
+	public void verify_the_suppliersku_record(String SKU) throws Throwable{
+		sKUQueryPage.supplierid_Validation(SKU);
+		
 	}
 	
 }

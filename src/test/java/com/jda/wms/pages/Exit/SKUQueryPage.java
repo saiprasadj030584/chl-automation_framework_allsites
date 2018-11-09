@@ -11,18 +11,21 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
 
 
 
 
 public class SKUQueryPage {
 	private final SkuDB skuDB;
+	private final SupplierSkuDB supplierSkuDB;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	@Inject
-	public SKUQueryPage(SkuDB skuDB){
+	public SKUQueryPage(SkuDB skuDB,SupplierSkuDB supplierSkuDB){
 		
 		this.skuDB=skuDB;
+		this.supplierSkuDB=supplierSkuDB;
 	}
 	
 	public void enterSKU(String SKU) throws FindFailed {
@@ -154,6 +157,28 @@ public boolean validateweight(String SKU) throws FindFailed, InterruptedExceptio
     else
         return false;
 }
+
+public String getsuppliersku(String SKU) throws FindFailed, InterruptedException {
+	
+	screen.wait("images/SupplierSKU/suppliersku.png", timeoutInSec);
+	screen.click("images/SupplierSKU/suppliersku.png");
+	Match mStatus = screen.find("images/SupplierSKU/suppliersku.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+
+}
+public void supplierid_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	
+	String supplierid = getsuppliersku(SKU);
+	System.out.println("supplierid "+supplierid);
+	String supplierskuDB=supplierSkuDB.getSupplierSKU(SKU);
+	System.out.println("supplierskuDB "+supplierskuDB);
+	Assert.assertEquals("supplier validated ",supplierid,supplierskuDB);
+}
+
 }
 // public String getDeliveryLeadtime()
 
