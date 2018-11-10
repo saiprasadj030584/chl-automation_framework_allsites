@@ -178,7 +178,16 @@ public void supplierid_Validation(String SKU) throws FindFailed, InterruptedExce
 	System.out.println("supplierskuDB "+supplierskuDB);
 	Assert.assertEquals("supplier validated ",supplierid,supplierskuDB);
 }
-
+public void clickSupplierSkuFromSKU() throws FindFailed, InterruptedException {
+	
+	screen.wait("images/SKUMaintenanceTable/supplierskutab.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/supplierskutab.png");
+	
+	Thread.sleep(3000);
+	Match mLocation = screen.find("images/SKUMaintenanceTable/supplierskuvalue.png");
+	screen.doubleClick(mLocation.getCenter().below(15));
+	
+}
 }
 // public String getDeliveryLeadtime()
 

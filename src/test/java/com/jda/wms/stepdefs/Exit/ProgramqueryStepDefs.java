@@ -23,7 +23,7 @@ public class ProgramqueryStepDefs{
 	
 	@And("^Specify the Program name \"([^\"]*)\"$")
 	public void specify_the_programname(String name) throws Throwable {
-		programQueryPage.enterprogramname(name);
+		programQueryPage.enterProgramName(name);
 	}
 	@And("^Run the program$")
 	public void run_the_program() throws Throwable {
@@ -34,6 +34,8 @@ public class ProgramqueryStepDefs{
 		sKUQueryPage.Stroke_Validation(SKU);
 		sKUQueryPage.CommodityCode_Validation(SKU);
 		sKUQueryPage.validateweight(SKU);
+		sKUQueryPage.clickSupplierSkuFromSKU();
+		sKUQueryPage.supplierid_Validation(SKU);
 		
 	}
 	

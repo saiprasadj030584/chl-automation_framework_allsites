@@ -824,7 +824,12 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/scheduler.png", timeoutInSec);
 		screen.click("images/JDAHome/scheduler.png");
 	}
-	public void clickschedulerprgm() throws FindFailed {
+	public void hoverScheduler() throws FindFailed {
+		screen.wait("images/JDAHome/scheduler.png", timeoutInSec);
+		screen.click("images/JDAHome/scheduler.png");
+		screen.mouseMove(70, 0);
+	}
+	public void clickSchedulerPrgm() throws FindFailed {
 		screen.wait("images/JDAHome/schedulerprogram.png", timeoutInSec);
 		screen.click("images/JDAHome/schedulerprogram.png");
 	}
@@ -839,30 +844,40 @@ public class JdaHomePage {
 	public void navigateToAdmin() throws FindFailed, InterruptedException {
 		ClickAdminMenu();
 		hoverUser();
-		Thread.sleep(100);
+		Thread.sleep(1000);
 		clickUsergroup();
 		Thread.sleep(3000);
 	}
 	public void navigateToSchedulerprgm() throws FindFailed, InterruptedException {
-		ClickAdminMenu();
+		//commented in as Scheduler Program is not able to click
+		/*ClickAdminMenu();
 		hoversetup();
-		Thread.sleep(100);
+		Thread.sleep(3000);
+		hoverScheduler();
 		clickscheduler();
-		Thread.sleep(100);
-		clickschedulerprgm();
-		Thread.sleep(100);
+		Thread.sleep(3000);
+		clickSchedulerPrgm();
+		Thread.sleep(3000);*/
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Scheduler Program ");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
+	
 	public void navigateToAccesscontrol() throws FindFailed, InterruptedException {
 		ClickAdminMenu();
 		hoverAccesscontrol();
-		Thread.sleep(100);
+		Thread.sleep(1000);
 		clickUsergroup();
 		Thread.sleep(3000);
 	}
 	public void navigateToWorkstation() throws FindFailed, InterruptedException {
 		ClickAdminMenu();
 		hoverAccesscontrol();
-		Thread.sleep(100);
+		Thread.sleep(1000);
 		clickWorkstation();
 		Thread.sleep(3000);
 
