@@ -30,7 +30,7 @@ public class SendEmail {
 		String mailFrom = configuration.getStringProperty("db-mnsEmailFrom");
 		String password = configuration.getStringProperty("db-mnsEmailPassword");
 
-		String subject = "JDA Foods Automation Test Results(hlxd0dc006-jdafoods) : ";
+		String subject = "JDA WMS Automation Test Results(hlxc00dc060-EXIT) : ";
 		String body = ".\\results\\TEST_REPORT.html";
 
 		InputStream is = new FileInputStream(body);
