@@ -127,6 +127,7 @@ public class Context {
 	private String belCode;
 	private String SAPvalue;
 	private String palletIDforUPI;
+	private String POType;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -842,6 +843,13 @@ public class Context {
 
 	public void setStoType(String stoType) {
 		this.stoType = stoType;
+	}
+	public String getPOType() {
+		return POType;
+	}
+
+	public void setPOType(String POType) {
+		this.POType = POType;
 	}
 
 	public Map<String, Map<Integer, Map<String, String>>> getMultipleOrderListIDMap() {

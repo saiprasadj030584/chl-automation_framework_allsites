@@ -1,4 +1,6 @@
 package com.jda.wms.stepdefs.Exit;
+import java.sql.SQLException;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.slf4j.Logger;
@@ -189,6 +191,12 @@ public class JDAExitPreAdviceHeader{
 		logger.debug("Validated Supplier Value: " + SupplierValue);
 		Thread.sleep(1000);
 		
+	}
+	@Given("^Insert Pre-advice data with PO type \"([^\"]*)\"$")
+	public void insert_pre_advice(String POtype) throws ClassNotFoundException, SQLException, InterruptedException
+	{
+		context.setStoType(POtype);
+		dataSetupRunner.insertPreAdviceData1(POtype);
 		
 		
 	}

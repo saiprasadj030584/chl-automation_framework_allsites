@@ -123,6 +123,18 @@ public class DataSetupRunner {
 				selectDataFromDB.isPreAdviceRecordExists(poId));
 //		getTCData.setpoId(poId);
 	}
+	public void insertPreAdviceData1(String POtype) throws ClassNotFoundException, SQLException, InterruptedException {
+		String poId = newPoId();
+		getTCData.setpoId(poId);
+		String Preadvice= Advice();
+		insertDataIntoDB.insertPreAdviceHeader1(poId,Preadvice);
+		insertDataIntoDB.insertPreAdviceline1(poId,Preadvice);
+		Thread.sleep(7000);
+		System.out.println("pre advice Id = " + poId);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isPreAdviceRecordExists(poId));
+//		getTCData.setpoId(poId);
+	}
 	public void insertUPIReceiptData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String poId = GetTCData.getpoId();
 		String Preadvice= Advice();

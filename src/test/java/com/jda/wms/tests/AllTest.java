@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC19_Verify_country_of_origin_of_a_product"
+				+ "@TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order"
 				+ ""
 				+ ""
 
