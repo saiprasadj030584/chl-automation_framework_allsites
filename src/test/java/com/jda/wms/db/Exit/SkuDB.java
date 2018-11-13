@@ -256,5 +256,15 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	public String getCOO(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(" select CE_COO from sku where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
 	
 }

@@ -198,6 +198,11 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/SKU.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoverorder() throws FindFailed {
+		screen.wait("images/JDAHome/order.png", timeoutInSec);
+		screen.click("images/JDAHome/order.png");
+		screen.mouseMove(70, 0);
+	}
 	public void hoverUser() throws FindFailed {
 		screen.wait("images/JDAHome/User.png", timeoutInSec);
 		screen.click("images/JDAHome/User.png");
@@ -793,9 +798,16 @@ public class JdaHomePage {
 	}
 	public void navigateToSupplierSKUHome() throws FindFailed, InterruptedException {
 		clickDataMenu();
-		hoverSKU();
+		hoverorder();
 		Thread.sleep(100);
 		clickSupplierSKUHome();
+		Thread.sleep(3000);
+	}
+	public void navigateToorderlineHome() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverorder();
+		Thread.sleep(100);
+		clickorderlineHome();
 		Thread.sleep(3000);
 	}
 	private void clickSite() throws FindFailed {
@@ -813,6 +825,10 @@ public class JdaHomePage {
 	public void clickSupplierSKUHome() throws FindFailed {
 		screen.wait("images/JDAHome/SupplierSKU1.png", timeoutInSec);
 		screen.click("images/JDAHome/SupplierSKU1.png");
+	}
+	public void clickorderlineHome() throws FindFailed {
+		screen.wait("images/JDAHome/orderline.png", timeoutInSec);
+		screen.click("images/JDAHome/orderline.png");
 	}
 
 

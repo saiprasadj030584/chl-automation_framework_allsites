@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,9 @@ import com.jda.wms.pages.Exit.PackConfigMaintenancePage;
 import com.jda.wms.pages.Exit.Verification;
 import com.jda.wms.utils.Utilities;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderLineMaintenanceStepDefs {
@@ -46,6 +49,39 @@ public class OrderLineMaintenanceStepDefs {
 		this.skuDB = skuDB;
 		this.skuConfigDB = skuConfigDB;
 	}
+	@And("^Specify the SKU in orderline \"([^\"]*)\"$")
+	public void specify_the_SKU(String SKU) throws Throwable {
+		Thread.sleep(3000);
+		orderLineMaintenancePage.enterSKU(SKU);
+	}
+	@Then("^Verify the Wholesalerprice in orderline$")
+	public void validation_wholesalerprice_in_orderline() throws FindFailed, InterruptedException{
+		String ExtendedPrice = orderLineMaintenancePage.getExtndPrice();
+		System.out.println("ExtendedPrice "+ExtendedPrice);
+		Assert.assertNotEquals("",ExtendedPrice);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@When("^I select the SKU line$")
 	public void i_select_the_SKU_line() throws Throwable {

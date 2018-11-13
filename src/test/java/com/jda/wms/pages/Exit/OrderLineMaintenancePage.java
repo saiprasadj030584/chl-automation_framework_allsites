@@ -19,6 +19,20 @@ public class OrderLineMaintenancePage{
 	@Inject
 	public OrderLineMaintenancePage() {
 	}
+	
+public String getExtndPrice() throws FindFailed, InterruptedException {
+		
+	    clickmiscellaneous2();
+	    Thread.sleep(2000);
+		screen.click("images/OrderLineMaintenance/Extndprice.png");
+		Match mStatus = screen.find("images/OrderLineMaintenance/Extndprice.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	
+}
 
 	public void navigatedOrderLinePage() throws FindFailed, InterruptedException {
 		doubleClickOrderLineMaintenance();
@@ -47,6 +61,18 @@ public class OrderLineMaintenancePage{
 	private void clickUpdateButton() throws FindFailed {
 		screen.wait("images/OrderLineUpdate.png", timeoutInSec);
 		screen.click("images/OrderLineUpdate.png");
+	}
+	private void clickmiscellaneous2() throws FindFailed {
+		screen.wait("images/OrderLineMaintenance/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/OrderLineMaintenance/MiscellaneousTab.png");
+	}
+	public void enterSKU(String SKU) throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		screen.wait("images/OrderLineMaintenance/SKU.png", timeoutInSec);
+		Match mStatus=screen.find("images/OrderLineMaintenance/SKU.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		Thread.sleep(2000);
+		screen.type(SKU);
 	}
 
 	private void selectAllocateCheckbox() throws FindFailed {

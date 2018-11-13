@@ -197,7 +197,7 @@ Feature: Master_data_setup
   @Pre_receiving @TC17_Verify_SKU_Merge_rules
   Scenario Outline: To verify the sku merge rules
     Given Login to JDA Dispatcher web screen
-    And Go to Data-Admin_Setup_Scheduler_Schedulerprograms & Click
+    And Go to Admin_Setup_Scheduler_Schedulerprograms & Click
     And Click on Query
     And Specify the Program name "<Program_name>"
     And click execute
@@ -211,3 +211,39 @@ Feature: Master_data_setup
     Examples: 
       | SKU                |Program_name |
       | 000000000021071852 |SKUVALIDATIONCHECKP |
+      
+      
+   @Pre_receiving @TC18_Verify_wholesale_price 
+    Scenario Outline: To verify the wholesaler_price
+    Given Login to JDA Dispatcher web screen 
+    And Go to Data-order_orderline & Click
+    And Click on Query
+    And Specify the SKU in orderline "<SKU>"
+    And click execute
+    Then Verify the Wholesalerprice in orderline
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+      
+   @Pre_receiving @TC19_Verify_country_of_origin_of_a_product 
+    Scenario Outline: To verify the country of origin for a product
+    Given Login to JDA Dispatcher web screen  
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    And Verify the country of origin "<SKU>"
+       
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+     @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher 
+     Scenario: To verify the Direct PO loading in JDA dispatcher
+     
+     
+     
+     
+      

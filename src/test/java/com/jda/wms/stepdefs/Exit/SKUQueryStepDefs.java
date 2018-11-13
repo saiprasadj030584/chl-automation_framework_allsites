@@ -1,6 +1,9 @@
 package com.jda.wms.stepdefs.Exit;
 
+import java.sql.SQLException;
+
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -63,6 +66,11 @@ public class SKUQueryStepDefs{
 	public void validation_of_packed_weight_range(String SKU) throws Throwable {
 		sKUQueryPage.validateweight(SKU);
 		
+	}
+	@And("^Verify the country of origin \"([^\"]*)\"$")
+	public void validation_of_country_origin(String SKU) throws FindFailed, ClassNotFoundException, InterruptedException, SQLException
+	{
+		sKUQueryPage.COO_Validation(SKU);
 	}
 	
 	

@@ -56,7 +56,11 @@ public class JDAHomeStepDefs {
 	public void go_to_Data_SKU_SupplierSKU_Click() throws Throwable {
 		 jdaHomePage.navigateToSupplierSKUHome();                                                                
 	} 
-	@And("^Go to Data-Admin_Setup_Scheduler_Schedulerprograms & Click$")
+	@And("^Go to Data-order_orderline & Click$")
+	public void go_to_Data_order_orderline_Click() throws Throwable {
+		 jdaHomePage.navigateToorderlineHome();                                                                
+	} 
+	@And("^Go to Admin_Setup_Scheduler_Schedulerprograms & Click$")
 	public void go_to_Admin_Setup_Scheduler_Schedulerprograms_Click() throws Throwable {
 		 jdaHomePage.navigateToSchedulerprgm();                                                                
 	} 
@@ -254,6 +258,7 @@ public class JDAHomeStepDefs {
 	@And("^Click on Query$")
 	public void click_on_Query() throws Throwable {
 		jdaFooter.clickQueryButton();
+		
 	}
 	@And("^click execute$")
 	public void click_execute() throws Throwable {

@@ -28,7 +28,8 @@ public class SKUQueryPage {
 		this.supplierSkuDB=supplierSkuDB;
 	}
 	
-	public void enterSKU(String SKU) throws FindFailed {
+	public void enterSKU(String SKU) throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
 		screen.wait("images/SKUMaintenanceTable/SKUID.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/SKUID.png");
 		screen.type(SKU);
@@ -170,6 +171,20 @@ public String getsuppliersku(String SKU) throws FindFailed, InterruptedException
 	return App.getClipboard();
 
 }
+public String getcountryOrigin(String SKU) throws FindFailed, InterruptedException {
+	
+	screen.wait("images/SKUMaintenanceTable/CustomsAndExcise/custom.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/CustomsAndExcise/custom.png");
+	Thread.sleep(2000);
+	screen.click("images/SKUMaintenanceTable/CustomsAndExcise/COO.png");
+	Match mStatus = screen.find("images/SKUMaintenanceTable/CustomsAndExcise/COO.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+
+}
 public void supplierid_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 	
 	String supplierid = getsuppliersku(SKU);
@@ -177,6 +192,14 @@ public void supplierid_Validation(String SKU) throws FindFailed, InterruptedExce
 	String supplierskuDB=supplierSkuDB.getSupplierSKU(SKU);
 	System.out.println("supplierskuDB "+supplierskuDB);
 	Assert.assertEquals("supplier validated ",supplierid,supplierskuDB);
+}
+public void COO_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	
+	String CountryOrigin = getcountryOrigin(SKU);
+	System.out.println("CountryOrigin "+CountryOrigin);
+	String CountryOriginDB=skuDB.getCOO(SKU);
+	System.out.println("CountryOriginDB "+CountryOriginDB);
+	Assert.assertEquals("supplier validated ",CountryOrigin,CountryOriginDB);
 }
 public void clickSupplierSkuFromSKU() throws FindFailed, InterruptedException {
 	

@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC17_Verify_SKU_Merge_rules"
+				+ "@TC19_Verify_country_of_origin_of_a_product"
 				+ ""
 				+ ""
 
