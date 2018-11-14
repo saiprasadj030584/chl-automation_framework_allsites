@@ -256,7 +256,19 @@ Feature: Master_data_setup
      Then Verify Supplier is populated in the Pre-advice header table
      Then Verify quantity and advice number is loaded in Pre-Advice line table
      
-     
+     @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 
+    Scenario Outline: To verify the country of origin for a product
+    Given Login to JDA Dispatcher web screen  
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+   	When I go to user-defined tab
+   	Then I should be able to verify the description
+       
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
      
      
      

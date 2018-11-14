@@ -211,6 +211,26 @@ public void clickSupplierSkuFromSKU() throws FindFailed, InterruptedException {
 	screen.doubleClick(mLocation.getCenter().below(15));
 	
 }
+
+public void clickUserDefinedTab() throws FindFailed, InterruptedException {
+	screen.wait("images/SKUMaintenanceTable/UserDefined1.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/UserDefined1.png");
+	Thread.sleep(3000);
+	
+}
+
+public String getArticleDescription() throws FindFailed, InterruptedException { 
+	if(screen.find("images/SKUMaintenanceTable/UserDefined/ArticleDescription.png") != null){
+		screen.wait("images/SKUMaintenanceTable/UserDefined/ArticleDescription.png", timeoutInSec);
+		Match mdescription= screen.find("images/SKUMaintenanceTable/UserDefined/ArticleDescription.png");
+		screen.click(mdescription.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+	}
+	else{
+		System.out.println("Description not found");
+	}
+	return App.getClipboard();
+}
 }
 // public String getDeliveryLeadtime()
 
