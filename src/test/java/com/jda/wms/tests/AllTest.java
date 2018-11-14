@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher"
+				+ "@TC25_Verify_country_of_origin_of_a_product"
 				+ ""
 				+ ""
 

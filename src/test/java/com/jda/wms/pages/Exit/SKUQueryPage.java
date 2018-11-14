@@ -224,7 +224,10 @@ public String getArticleDescription() throws FindFailed, InterruptedException {
 		screen.wait("images/SKUMaintenanceTable/UserDefined/ArticleDescription.png", timeoutInSec);
 		Match mdescription= screen.find("images/SKUMaintenanceTable/UserDefined/ArticleDescription.png");
 		screen.click(mdescription.getCenter().offset(70, 0));
-		Thread.sleep(1000);
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		
 	}
 	else{
 		System.out.println("Description not found");

@@ -252,8 +252,10 @@ Feature: Master_data_setup
      Scenario: To verify the Direct PO loading in JDA dispatcher
      Given Insert Pre-advice data with PO type "DIRECT"
      And Login to JDA Dispatcher web screen 
-     Then Verify PreAdvice header and PreAdvice line loaded successfully
+     Then Verify PreAdvice header loaded successfully
      Then Verify Supplier is populated in the Pre-advice header table
+     Then Verify the Type  is populated as "PO"
+     Then Verify PreAdvice line loaded successfully
      Then Verify quantity and advice number is loaded in Pre-Advice line table
      
      @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 

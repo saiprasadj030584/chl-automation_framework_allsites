@@ -84,7 +84,7 @@ public class SKUQueryStepDefs{
 		
 		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription());
 		
-//		Assert.assertNotNull("Description not as expected", ArticleDescription);
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription());
 	}
 	
 	

@@ -61,10 +61,6 @@ public class JDAExitUpiHeader{
 	private GetTCData getTCData;
 	private UpdateDataFromDB updateDataFromDB;
 	private JDALoginStepDefs jdaLoginStepDefs;
-	private MoveTaskUpdateStepDefs moveTaskUpdateStepDefs;
-//	private PuttyFunctionsStepDefs  puttyFunctionsStepDefs;
-//	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
-//	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
 	private MoveTaskDB  moveTaskDB;
 	private MoveTaskUpdatePage moveTaskUpdatePage;
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
@@ -83,7 +79,7 @@ public class JDAExitUpiHeader{
 			SelectDataFromDB selectDataFromDB, OrderHeaderContext orderHeaderContext,
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
-			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
+			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
 			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage,JDAExitUPIheaderPage jDAExitUPIheaderPage) {
@@ -110,7 +106,6 @@ public class JDAExitUpiHeader{
 		this.getTCData = getTCData;
 		this.updateDataFromDB = updateDataFromDB;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
-		this.moveTaskUpdateStepDefs=moveTaskUpdateStepDefs;
 //		this.puttyFunctionsStepDefs =puttyFunctionsStepDefs;
 		this.moveTaskUpdatePage=moveTaskUpdatePage;
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;

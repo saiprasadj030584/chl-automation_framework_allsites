@@ -64,7 +64,6 @@ public class JDAExitPreAdviceHeader{
 	private GetTCData getTCData;
 	private UpdateDataFromDB updateDataFromDB;
 	private JDALoginStepDefs jdaLoginStepDefs;
-	private MoveTaskUpdateStepDefs moveTaskUpdateStepDefs;
 	private MoveTaskDB  moveTaskDB;
 	private MoveTaskUpdatePage moveTaskUpdatePage;
 	private MoveTaskListGenerationPage moveTaskListGenerationPage;
@@ -88,7 +87,7 @@ public class JDAExitPreAdviceHeader{
 			SelectDataFromDB selectDataFromDB, OrderHeaderContext orderHeaderContext,
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
-			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
+			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
 			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
@@ -114,7 +113,6 @@ public class JDAExitPreAdviceHeader{
 		this.getTCData = getTCData;
 		this.updateDataFromDB = updateDataFromDB;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
-		this.moveTaskUpdateStepDefs=moveTaskUpdateStepDefs;
 //		this.puttyFunctionsStepDefs =puttyFunctionsStepDefs;
 		this.moveTaskUpdatePage=moveTaskUpdatePage;
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;
@@ -134,39 +132,42 @@ public class JDAExitPreAdviceHeader{
 		  preAdviceHeaderPage.isTypeExist();
 		 		  
 	  }
-	@Then("^Verify PreAdvice header and PreAdvice line loaded successfully$")
-	public void verify_preadvice_header_and_preadvice_line_loaded_successfully() throws FindFailed, InterruptedException
+	@Then("^Verify PreAdvice header loaded successfully$")
+	public void verify_preadvice_header_loaded_successfully() throws FindFailed, InterruptedException
 	{
 		  jdaHomePage.navigateToPreAdviceHeaderPage(); 
 		  preAdviceHeaderPage.Enterpreadvice();
 		  preAdviceHeaderPage.getStatus();
+		  Thread.sleep(2000);
 //		  jdaHomePage.navigateToPreAdviceLinePage();
-		  preAdviceHeaderPage.validation_of_PreAdviceLine();  
+		 // preAdviceHeaderPage.validation_of_PreAdviceLine();  
 	}
 	@Then("^Verify Supplier is populated in the Pre-advice header table$")
 	public void verify_supplier_is_populated_in_the_pre_advice_table()throws FindFailed, InterruptedException
 	{
-		 jdaHomePage.clickPreadviceheader();
 		 preAdviceHeaderPage.validation_of_supplier();
-		 preAdviceHeaderPage.isTypeExist();
+		 Thread.sleep(3000);
+		
+	}
+	@Then("^Verify the Type  is populated as \"([^\"]*)\"$")
+	public void verify_the_Type_is_populated_as(String type) throws Throwable {
+		String oderType= preAdviceHeaderPage.getOrderType();
+		Assert.assertEquals(type, oderType);
+		 Thread.sleep(3000);  
+	}
+	@Then("^Verify PreAdvice line loaded successfully$")
+	public void verify_preadvice_line_loaded_successfully() throws FindFailed, InterruptedException
+	{
+		  preAdviceHeaderPage.clickPreadviceLine();
+		  preAdviceHeaderPage.validation_of_PreAdviceLine();  
 	}
 	@Then("^Verify quantity and advice number is loaded in Pre-Advice line table$")
 	public void verify_quantity_to_be_received_is_loaded() throws FindFailed, InterruptedException{
-		 jdaHomePage.clickPreadviceline();
 		 preAdviceHeaderPage.validation_of_quantity();
 		 preAdviceHeaderPage.validation_of_advice();
 		 
 		 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,

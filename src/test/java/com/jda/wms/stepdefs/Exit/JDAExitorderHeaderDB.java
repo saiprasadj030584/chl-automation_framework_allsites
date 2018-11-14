@@ -54,7 +54,6 @@ public class JDAExitorderHeaderDB{
 	private GetTCData getTCData;
 	private UpdateDataFromDB updateDataFromDB;
 	private JDALoginStepDefs jdaLoginStepDefs;
-	private MoveTaskUpdateStepDefs moveTaskUpdateStepDefs;
 //	private PuttyFunctionsStepDefs  puttyFunctionsStepDefs;
 //	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
 //	private PurchaseOrderReceivingStepDefs purchaseOrderReceivingStepDefs;
@@ -73,7 +72,7 @@ public class JDAExitorderHeaderDB{
 			SelectDataFromDB selectDataFromDB, OrderHeaderContext orderHeaderContext,
 			OrderLineMaintenanceStepDefs orderLineMaintenanceStepDefs,
 			OrderPreparationStepDefs orderPreparationStepDefs, DataSetupRunner dataSetupRunner, GetTCData getTCData,
-			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
+			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
 			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
@@ -100,7 +99,6 @@ public class JDAExitorderHeaderDB{
 		this.getTCData = getTCData;
 		this.updateDataFromDB = updateDataFromDB;
 		this.jdaLoginStepDefs = jdaLoginStepDefs;
-		this.moveTaskUpdateStepDefs=moveTaskUpdateStepDefs;
 //		this.puttyFunctionsStepDefs =puttyFunctionsStepDefs;
 		this.moveTaskUpdatePage=moveTaskUpdatePage;
 		this.moveTaskListGenerationPage=moveTaskListGenerationPage;

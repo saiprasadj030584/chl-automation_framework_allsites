@@ -61,16 +61,23 @@ public class PreAdviceHeaderPage{
 		return App.getClipboard();
 	}
 	public String getpreadviceline() throws FindFailed, InterruptedException{
-		screen.wait("images/PreAdviceHeader/lines.png", timeoutInSec);
-	    screen.click("images/PreAdviceHeader/lines.png");
-	    Thread.sleep(2000);
-		Match mDescription = screen.find("images/PreAdviceLine/PreAdviceId.png");
+		/*screen.wait("images/PreAdviceHeader/lines.png", timeoutInSec);
+	    screen.click("images/PreAdviceHeader/lines.png");*/
+	    Thread.sleep(3000);
+		Match mDescription = screen.find("images/PreAdviceLine/preadvid.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 		
 	}
+	public void clickPreadviceLine() throws FindFailed, InterruptedException{
+		screen.wait("images/PreAdviceHeader/lines.png", timeoutInSec);
+	    screen.click("images/PreAdviceHeader/lines.png");
+	    Thread.sleep(2000);
+		
+	}
+	
 	public String getsupplier() throws FindFailed, InterruptedException{
 		
 	    
@@ -104,18 +111,8 @@ public class PreAdviceHeaderPage{
     	String PreAdviceLine=getpreadviceline();
     	Assert.assertNotEquals("",PreAdviceLine);
     }
-	public String getType() throws FindFailed {
-		Match mDescription = screen.find("images/PreAdviceHeader/Status.png");
-		screen.click(mDescription.getCenter().offset(70, 0));
-		screen.type("a", Key.CTRL);
-		screen.type("c", Key.CTRL);
-		return App.getClipboard();
-	}
 	public String getAdviceNo() throws FindFailed, InterruptedException {
-		screen.wait("images/PreAdviceLine/UserDefined.png", timeoutInSec);
-		screen.click("images/PreAdviceLine/UserDefined.png");
-		Thread.sleep(2000);
-		Match mDescription = screen.find("images/PreAdviceLine/advice.png");
+		Match mDescription = screen.find("images/PreAdviceLine/preadvid.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -143,7 +140,7 @@ public class PreAdviceHeaderPage{
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-
+	
 	public boolean isTypeExist() throws FindFailed {
 		if (!screen.find("images/PreAdviceHeader/Type.png").equals(null)) {
 			return true;
