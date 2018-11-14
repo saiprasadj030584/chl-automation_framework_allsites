@@ -68,6 +68,10 @@ public class JDAHomeStepDefs {
 	public void Go_to_Admin_User_UserGroup_click() throws Throwable {
 		 jdaHomePage.navigateToAdmin();                                                                
 	} 
+	@And("^Go to Data-UPI-UPIheader& click$")
+	public void Go_to_Data_UPI_UPIheader_click() throws Throwable {
+		 jdaHomePage.navigateToUPIheader();                                                                
+	} 
 	@And("^Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click$")
 	public void Go_to_Admin_ACCESS_CNT_USER_GROUP_FUNCTION_ACCESS_Click() throws Throwable {
 		 jdaHomePage.navigateToAccesscontrol();                                                                
@@ -121,11 +125,7 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToPackConfigPage();
 	}
 
-	@Given("^I am on to pre-advice header maintenance page$")
-	public void i_am_on_to_pre_advice_header_maintenance_page() throws Throwable {
-		jdaHomePage.navigateToPreAdviceHeaderMaintenance();
-	}
-
+	
 	@Given("^I am on inventory query page$")
 	public void i_am_on_inventory_query_page() throws Throwable {
 		/*

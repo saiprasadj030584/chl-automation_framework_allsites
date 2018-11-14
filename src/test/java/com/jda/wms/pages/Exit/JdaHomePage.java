@@ -203,6 +203,11 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/order.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoverUPI() throws FindFailed {
+		screen.wait("images/JDAHome/UPI.png", timeoutInSec);
+		screen.click("images/JDAHome/UPI.png");
+		screen.mouseMove(70, 0);
+	}
 	public void hoverUser() throws FindFailed {
 		screen.wait("images/JDAHome/User.png", timeoutInSec);
 		screen.click("images/JDAHome/User.png");
@@ -435,11 +440,20 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
-
-	public void navigateToPreAdviceHeaderMaintenance() throws FindFailed, InterruptedException {
+    public void clickPreadviceheader()throws FindFailed, InterruptedException {
+    	screen.wait("images/PreAdviceLine/preadviceheader.png", timeoutInSec);
+		screen.click("images/PreAdviceLine/preadviceheader.png");
+		Thread.sleep(2000);
+    }
+    public void clickPreadviceline()throws FindFailed, InterruptedException {
+    	screen.wait("images/PreAdviceHeader/preadviceline.png", timeoutInSec);
+		screen.click("images/PreAdviceHeader/preadviceline.png");
+		Thread.sleep(2000);
+    }
+	public void navigateToPreAdviceLinePage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Pre-advice header maintenance/query screen");
+		screen.type("Pre-advice line maintenance/query screen");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
@@ -810,6 +824,13 @@ public class JdaHomePage {
 		clickorderlineHome();
 		Thread.sleep(3000);
 	}
+	public void navigateToUPIheader() throws FindFailed, InterruptedException {
+		clickDataMenu();
+		hoverUPI();
+		Thread.sleep(100);
+		clickUPIheader();
+		Thread.sleep(3000);
+	}
 	private void clickSite() throws FindFailed {
 		screen.wait("images/JDAHome/Site.png", timeoutInSec);
 		screen.click("images/JDAHome/Site.png");
@@ -829,6 +850,10 @@ public class JdaHomePage {
 	public void clickorderlineHome() throws FindFailed {
 		screen.wait("images/JDAHome/orderline.png", timeoutInSec);
 		screen.click("images/JDAHome/orderline.png");
+	}
+	public void clickUPIheader() throws FindFailed {
+		screen.wait("images/JDAHome/UPIReceiptheader.png", timeoutInSec);
+		screen.click("images/JDAHome/UPIReceiptheader.png");
 	}
 
 

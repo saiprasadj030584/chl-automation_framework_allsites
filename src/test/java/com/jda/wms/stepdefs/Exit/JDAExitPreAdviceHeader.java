@@ -3,6 +3,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,7 @@ import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
 import com.jda.wms.pages.Exit.OrderHeaderMaintenancePage;
 import com.jda.wms.pages.Exit.OrderHeaderPage;
+import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
@@ -36,6 +38,7 @@ import com.jda.wms.pages.Exit.Verification;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 
 
 public class JDAExitPreAdviceHeader{
@@ -74,8 +77,9 @@ public class JDAExitPreAdviceHeader{
 	private SkuDB skuDB;
 	private SupplierSkuDB supplierSkuDB;
 	private PuttyFunctionsPage puttyFunctionsPage;
+	private PreAdviceHeaderPage preAdviceHeaderPage;
 	@Inject
-	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,
+	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,
 			SupplierSkuDB supplierSkuDB,PuttyFunctionsPage puttyFunctionsPage,
 			SkuDB skuDB,PurchaseOrderReceivingPage purchaseOrderReceivingPage,OrderHeaderPage orderheaderpage,
 			JDAHomeStepDefs jdaHomeStepDefs, JDAFooter jdaFooter, Context context,
@@ -120,7 +124,50 @@ public class JDAExitPreAdviceHeader{
 		this.orderheaderpage=orderheaderpage;
 		this.skuDB=skuDB;
 		this.supplierSkuDB=supplierSkuDB;
+		this.preAdviceHeaderPage=preAdviceHeaderPage;
 	}
+	@Then("^Verify PO type in Pre Advice header screen$")
+	  public void verify_PO_type_in_pre_advice_header_screen() throws ClassNotFoundException, SQLException, InterruptedException, FindFailed
+	  {
+		  jdaHomePage.navigateToPreAdviceHeaderPage(); 
+		  preAdviceHeaderPage.Enterpreadvice();
+		  preAdviceHeaderPage.isTypeExist();
+		 		  
+	  }
+	@Then("^Verify PreAdvice header and PreAdvice line loaded successfully$")
+	public void verify_preadvice_header_and_preadvice_line_loaded_successfully() throws FindFailed, InterruptedException
+	{
+		  jdaHomePage.navigateToPreAdviceHeaderPage(); 
+		  preAdviceHeaderPage.Enterpreadvice();
+		  preAdviceHeaderPage.getStatus();
+//		  jdaHomePage.navigateToPreAdviceLinePage();
+		  preAdviceHeaderPage.validation_of_PreAdviceLine();  
+	}
+	@Then("^Verify Supplier is populated in the Pre-advice header table$")
+	public void verify_supplier_is_populated_in_the_pre_advice_table()throws FindFailed, InterruptedException
+	{
+		 jdaHomePage.clickPreadviceheader();
+		 preAdviceHeaderPage.validation_of_supplier();
+		 preAdviceHeaderPage.isTypeExist();
+	}
+	@Then("^Verify quantity and advice number is loaded in Pre-Advice line table$")
+	public void verify_quantity_to_be_received_is_loaded() throws FindFailed, InterruptedException{
+		 jdaHomePage.clickPreadviceline();
+		 preAdviceHeaderPage.validation_of_quantity();
+		 preAdviceHeaderPage.validation_of_advice();
+		 
+		 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,
 			String type, String customer) throws Throwable {
@@ -195,7 +242,7 @@ public class JDAExitPreAdviceHeader{
 	@Given("^Insert Pre-advice data with PO type \"([^\"]*)\"$")
 	public void insert_pre_advice(String POtype) throws ClassNotFoundException, SQLException, InterruptedException
 	{
-		context.setStoType(POtype);
+		context.setPOType(POtype);
 		dataSetupRunner.insertPreAdviceData1(POtype);
 		
 		

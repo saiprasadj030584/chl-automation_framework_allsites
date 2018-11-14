@@ -1,6 +1,9 @@
 package com.jda.wms.stepdefs.Exit;
+import java.sql.SQLException;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +22,7 @@ import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
+import com.jda.wms.pages.Exit.JDAExitUPIheaderPage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
 import com.jda.wms.pages.Exit.MoveTaskManagementPage;
@@ -31,6 +35,7 @@ import com.jda.wms.utils.Utilities;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 
 
 public class JDAExitUpiHeader{
@@ -68,6 +73,7 @@ public class JDAExitUpiHeader{
 	private MoveTaskManagementPage moveTaskManagementPage;
 	private JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef;
 	private PuttyFunctionsPage puttyFunctionsPage;
+	private JDAExitUPIheaderPage jDAExitUPIheaderPage;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef,
@@ -80,7 +86,7 @@ public class JDAExitUpiHeader{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,MoveTaskUpdateStepDefs moveTaskUpdateStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage) {
+			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage,JDAExitUPIheaderPage jDAExitUPIheaderPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -113,7 +119,38 @@ public class JDAExitUpiHeader{
 		this.moveTaskManagementPage=moveTaskManagementPage;
 		this.jDAExitputtyfunctionsStepDef=jDAExitputtyfunctionsStepDef;
 		this.puttyFunctionsPage=puttyFunctionsPage;
+		this.jDAExitUPIheaderPage=jDAExitUPIheaderPage;
 	}
+	  @And ("^Insert UPI data$")
+	  public void insert_UPI_data() throws Throwable
+	  {
+		String SAPvalue=Utilities.getEightDigitRandomNumber();
+		context.setSAPvalue(SAPvalue);
+		dataSetupRunner.insertOrderDataforUPI();
+		GetTCData.getpoId();
+		String skuid = "000000000021071852";
+		context.setSkuId2(skuid);
+		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		Thread.sleep(1000);
+		dataSetupRunner.insertUPIReceiptData();
+		String orderID = getTCData.getSto();
+		System.out.println("New Order ID : " + orderID);
+		Thread.sleep(10000);
+	  }
+	  
+	  @Then("^Verify data in UPI Receipt header screen$")
+	  public void verify_data_in_UPI_receipt_header_screen() throws ClassNotFoundException, SQLException, InterruptedException, FindFailed
+	  {
+		  jdaHomePage.navigateToUPIheader(); 
+		  jDAExitUPIheaderPage.EnterPalletID();
+		 		  
+	  }
+	  
+	  
+	  
+	  
+	  
 	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with(String status,
 			String type, String customer) throws Throwable {

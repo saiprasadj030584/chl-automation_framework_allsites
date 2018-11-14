@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC06_Validate_Picking_process_for_Manual_IDT_order"
+				+ "@TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher"
 				+ ""
 				+ ""
 

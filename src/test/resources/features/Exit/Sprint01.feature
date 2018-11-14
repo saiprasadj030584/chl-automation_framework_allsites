@@ -243,10 +243,24 @@ Feature: Master_data_setup
      @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher 
      Scenario: To verify the Direct PO loading in JDA dispatcher
      Given Insert Pre-advice data with PO type "DIRECT"
-     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+     And Insert UPI data
      And Login to JDA Dispatcher web screen 
      Then Verify data in UPI Receipt header screen
      Then Verify PO type in Pre Advice header screen 
+     
+     @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
+     Scenario: To verify the Direct PO loading in JDA dispatcher
+     Given Insert Pre-advice data with PO type "DIRECT"
+     And Login to JDA Dispatcher web screen 
+     Then Verify PreAdvice header and PreAdvice line loaded successfully
+     Then Verify Supplier is populated in the Pre-advice header table
+     Then Verify quantity and advice number is loaded in Pre-Advice line table
+     
+     
+     
+     
+     
+     
      
      
      
