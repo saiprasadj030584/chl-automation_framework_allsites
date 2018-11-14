@@ -178,22 +178,18 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("UPCLast="+UPCLast);
 		String UPCDB=SkuDB.getUPCDB();
 		System.out.println("upc="+UPCDB);
-//		String[] UPCDBLast = UPCLast.split("(?<!\\d)(?<!\\d)");
-////		return UPCDBLast[1];
+//		String[] UPCDBLast = UPCDB.split("(?<!\\d)(?<!\\d)");
+//		return UPCDBLast[1];
 //		String  UPCDBLastFinal= UPCDBLast[1];
-//	//	String UPCDBLast=StringUtils.substring(UPCDB, 4, 0);
-//		System.out.println("UPCDBLastFinal="+UPCDBLastFinal);
-//		Assert.assertEquals("UPC validated", UPCDBLastFinal, UPCLast);
-//		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
-//		System.out.println("QTYValue= "+QTYValue);
-//		String DBlist=StringUtils.substring(QTYValue, 0, 2);
-//		String preAdviceID=GetTCData.getpoId();
-//		String skuid=context.getSkuId2();
-//		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
-//		System.out.println("QTYDB= "+QTYDB);
-//		Assert.assertEquals("UPC validated", QTYDB, DBlist);
-//		logger.debug("Validated QTY value : " + DBlist);
-		Thread.sleep(1000);
+		String UPCDBLast=StringUtils.substring(UPCDB, 4, 8);
+		System.out.println("UPCDBLastFinal="+UPCDBLast);
+		Assert.assertEquals("UPC validated", UPCDBLast, UPCLast);
+			
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+		System.out.println("DBlist:" +DBlist);
+        Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
@@ -201,7 +197,7 @@ public class JDAExitputtyfunctionsStepDef {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
 	
-		
+	hooks.logoutPutty();	
 	}
 	@And("^I enter ListId and TagId for IDT$")
 	public void I_enter_ListId_and_TagId_for_IDT() throws Throwable{
@@ -230,6 +226,7 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(500);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(500);
+		hooks.logoutPutty();
 	}
 	@Given("^I select Receiving menu$")
 	public void I_select_Receiving_menu() throws Throwable {

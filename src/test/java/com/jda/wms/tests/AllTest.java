@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order"
+				+ "@TC06_Validate_Picking_process_for_Manual_IDT_order"
 				+ ""
 				+ ""
 
