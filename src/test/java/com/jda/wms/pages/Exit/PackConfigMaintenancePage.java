@@ -103,4 +103,14 @@ public class PackConfigMaintenancePage {
 		screen.click("/images/JDAPackConfig/General.png");
 		Thread.sleep(2000);
 	}
+	
+	public void clickQuery()throws FindFailed, InterruptedException {
+		screen.type(Key.F2);
+		Thread.sleep(1000);
+		
+	}
+	public void execute() throws FindFailed, InterruptedException {
+		screen.type(Key.F7);
+		Thread.sleep(1000);
+	}
 }

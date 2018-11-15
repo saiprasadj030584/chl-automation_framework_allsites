@@ -78,14 +78,25 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.clickUserDefinedTab();
 	}
 	
-	@Then("^I should be able to verify the description$")
-	public void i_should_be_able_verify_the_description() throws Throwable {
-		
-		
-		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription());
-		
-		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription());
+	@Then("^I should be able to verify the description-article$")
+	public void i_should_be_able_verify_the_description_article() throws Throwable {
+		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription()); //to equate the desired value		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription()); //to verify the feild is not null
 	}
 	
+	@Then("^I should be able to verify the description-composition$")
+	public void i_should_be_able_verify_the_description_composition() throws Throwable {
+		
+		//--for UDT-10 description-composition--//
+		Assert.assertNotEquals("",sKUQueryPage.getPrimarySizeDesc());		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getPrimarySizeDesc());
+	}
+	@Then("^I should be able to verify the Knit/Woven indicator$")
+	public void i_should_be_able_verify_the_knit_woven_indicator() throws Throwable {
+		
+		//--for UDT-11 Knit/Woven indicator--//
+		Assert.assertNotEquals("",sKUQueryPage.getHandlingUnitInd());		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getHandlingUnitInd());
+	}
 	
 }

@@ -258,26 +258,73 @@ Feature: Master_data_setup
      Then Verify PreAdvice line loaded successfully
      Then Verify quantity and advice number is loaded in Pre-Advice line table
      
-    @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 
-    Scenario Outline: To verify the country of origin for a product
+    @Pre_receiving @TC24_Verify_the_shipment_description
+    Scenario Outline: To Verify Shipment description
     Given Login to JDA Dispatcher web screen  
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
    	When I go to user-defined tab
-   	Then I should be able to verify the description
+   	Then I should be able to verify the description-article
        
      Examples: 
       | SKU                |
       | 000000000021071852 |
      
-     
-     
-     
-     
-     
-     
-     
-     
+     @Pre_receiving @TC25_Verify_the_composition_description
+    Scenario Outline: To Verify composition description
+    Given Login to JDA Dispatcher web screen  
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+   	When I go to user-defined tab
+   	Then I should be able to verify the description-composition
+       
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
       
+      @Pre_receiving @TC26_Verify_the_Knit_Woven_indicator
+    Scenario Outline: To Verify Knit/Woven indicator
+    Given Login to JDA Dispatcher web screen  
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+   	When I go to user-defined tab
+   	Then I should be able to verify the Knit/Woven indicator
+       
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+      
+      #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
+      #Scenario: To Verify Pre advice checks report
+      #Given Login to JDA Dispatcher web screen  
+      #And Go to Reports Selection and click
+                                                             
+     	
+     	
+     	@Pre_receiving @TC28_Verify_the_address_or_site_information
+      Scenario: To Verify the address or site information
+      Given Login to JDA Dispatcher web screen  
+      And I navigate to address maintenance page
+      When I query, execute and process further
+      Then Verify address and site details are loaded into address screen
+     
+     
+     	@Pre_receiving @TC28_Verify_the_address_or_site_information
+      Scenario: To Verify the address or site information
+      Given Login to JDA Dispatcher web screen  
+      And I am on pack config maintenance page
+      And Execute for verifying the fields
+      Then Verify tag volume and tracking levels is auto-populated
+      #Then Verify pack config is "<pack config>"
+     
+     #Examples: 
+      #| pack config	|
+      #| GENERIC			|
+      #

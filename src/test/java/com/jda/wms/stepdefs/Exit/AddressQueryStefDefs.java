@@ -12,6 +12,7 @@ import com.jda.wms.pages.Exit.SiteQueryPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
  
 public class AddressQueryStefDefs {
 	
@@ -32,4 +33,18 @@ public class AddressQueryStefDefs {
 		System.out.println("Address ID is : " + addressID);
 		Assert.assertEquals("Address ID is as expected: ", addressID,currentAddressid);
 	}
+	
+	@When("^I query, execute and process further$")
+	public void i_query_execute_and_process_further() throws  Throwable{
+		addressMaintenancePage.clickQuery();
+		addressMaintenancePage.execute();		
+	}
+	
+	@Then("^Verify address and site details are loaded into address screen$")
+	public void verify_address_and_site_details_are_loaded_into_address_screen() throws Throwable {
+		String currentAddressid = addressMaintenancePage.getAddressID();
+		System.out.println("Address ID is : " + currentAddressid);
+		Assert.assertTrue("record available", addressMaintenancePage.isRecordDisplayed());
+	}
+	
 }

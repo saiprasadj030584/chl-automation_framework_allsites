@@ -831,6 +831,33 @@ public class JdaHomePage {
 		clickUPIheader();
 		Thread.sleep(3000);
 	}
+	
+	public void navigateToReportSelectionMenu() throws FindFailed, InterruptedException {
+		clickReportsMenu();
+		hoverReportSelection();
+		Thread.sleep(100);
+		clickReportSelection();
+		Thread.sleep(3000);
+	}
+	public void clickReportSelection() throws FindFailed, InterruptedException {
+		screen.wait("images/Menu/menuReports.png", timeoutInSec);
+		screen.click("images/Menu/menuReports.png");
+		Thread.sleep(2000);
+	}
+
+
+	public void hoverReportSelection() throws FindFailed, InterruptedException {
+			screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
+			screen.click("images/JDAHome/ReportSelection.png");
+			screen.mouseMove(70, 0);
+		}
+
+	private void clickReportsMenu() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/ReportsMenu.png", timeoutInSec);
+		screen.click("images/JDAHome/ReportsMenu.png");
+	}
+
+
 	private void clickSite() throws FindFailed {
 		screen.wait("images/JDAHome/Site.png", timeoutInSec);
 		screen.click("images/JDAHome/Site.png");

@@ -80,6 +80,10 @@ public class JDAHomeStepDefs {
 	public void Go_to_Admin_ACCESS_CNT_Workstation_access_control_Click() throws Throwable {
 		 jdaHomePage.navigateToWorkstation();                                                                
 	} 
+	@And("^Go to Reports Selection and click$")
+	public void go_to_reports_Selection_and_Click() throws Throwable {
+		 jdaHomePage.navigateToReportSelectionMenu();                                                                
+	} 
 	
 	@And("^Quering it using SiteID and Executing$")
 	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
