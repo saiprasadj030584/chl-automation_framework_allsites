@@ -83,7 +83,16 @@ public class SKUQueryStepDefs{
 		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription()); //to equate the desired value		
 		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription()); //to verify the feild is not null
 	}
+	@Then("^Verify Description$")
+	public void verify_description() throws FindFailed, InterruptedException{
+        Assert.assertEquals("Description as expected ", sKUQueryPage.getDescription(), sKUQueryPage.getArticleDescription());
+		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getDescription());
+	}
+		
 	
+	
+
 	@Then("^I should be able to verify the description-composition$")
 	public void i_should_be_able_verify_the_description_composition() throws Throwable {
 		
@@ -97,12 +106,6 @@ public class SKUQueryStepDefs{
 		//--for UDT-11 Knit/Woven indicator--//
 		Assert.assertNotEquals("",sKUQueryPage.getHandlingUnitInd());		
 		Assert.assertNotNull("Description not as expected", sKUQueryPage.getHandlingUnitInd());
-	}
-	@Then("^Verify Description$")
-	public void verify_description() throws FindFailed, InterruptedException{
-        Assert.assertEquals("Description as expected ", sKUQueryPage.getDescription(), sKUQueryPage.getArticleDescription());
-		
-		Assert.assertNotNull("Description not as expected", sKUQueryPage.getDescription());
 	}
 	}
 	

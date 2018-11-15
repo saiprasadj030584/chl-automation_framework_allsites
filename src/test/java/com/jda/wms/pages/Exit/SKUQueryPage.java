@@ -235,6 +235,7 @@ public String getArticleDescription() throws FindFailed, InterruptedException {
 	return App.getClipboard();
 }
 
+
 public String getDescription() throws FindFailed, InterruptedException { 
 	if(screen.find("images/SKUMaintenanceTable/UserDefined/Description.png") != null){
 		screen.wait("images/SKUMaintenanceTable/UserDefined/Description.png", timeoutInSec);

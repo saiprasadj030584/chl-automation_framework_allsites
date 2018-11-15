@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC28_Verify_the_address_or_site_information"
+				+ "@TC23_Verify_URN_data_is_available_in_dispatcher"
 				+ ""
 				+ ""
 

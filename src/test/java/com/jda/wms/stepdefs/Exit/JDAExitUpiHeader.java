@@ -141,6 +141,18 @@ public class JDAExitUpiHeader{
 		  jDAExitUPIheaderPage.EnterPalletID();
 		 		  
 	  }
+	  @Then("^Verify ASN ID for the PalletID$")
+	  public void verify_ASN_ID_for_the_palletID() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
+	  {
+		  jDAExitUPIheaderPage.clickMiscellaneous();
+		  jDAExitUPIheaderPage.ASN_Validation();
+	  }
+	  @Then("^Verify pallet id$")
+	  public void verify_pallet_id() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
+	  {
+		  jDAExitUPIheaderPage.PalletID_validation();
+	  }
+	 
 	  
 	  
 	  
