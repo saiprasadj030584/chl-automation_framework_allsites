@@ -258,7 +258,7 @@ Feature: Master_data_setup
      Then Verify PreAdvice line loaded successfully
      Then Verify quantity and advice number is loaded in Pre-Advice line table
      
-     @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 
+    @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 
     Scenario Outline: To verify the country of origin for a product
     Given Login to JDA Dispatcher web screen  
     And Go to Data-SKU-SKUmaintenance & Click
