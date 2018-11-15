@@ -258,6 +258,23 @@ Feature: Master_data_setup
      Then Verify PreAdvice line loaded successfully
      Then Verify quantity and advice number is loaded in Pre-Advice line table
      
+     @Pre_receiving @TC22_Verify_the_ASN_Booking
+  Scenario: To verify ASN Booking
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+   #Then Verify Export criteria for ASN details
+   
+  @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
+  Scenario: To verify ASN data
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify pallet id
+     
     @Pre_receiving @TC24_Verify_the_shipment_description
     Scenario Outline: To Verify Shipment description
     Given Login to JDA Dispatcher web screen  

@@ -234,6 +234,22 @@ public String getArticleDescription() throws FindFailed, InterruptedException {
 	}
 	return App.getClipboard();
 }
+
+public String getDescription() throws FindFailed, InterruptedException { 
+	if(screen.find("images/SKUMaintenanceTable/UserDefined/Description.png") != null){
+		screen.wait("images/SKUMaintenanceTable/UserDefined/Description.png", timeoutInSec);
+		Match mdescription= screen.find("images/SKUMaintenanceTable/UserDefined/Description.png");
+		screen.click(mdescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		
+	}
+	else{
+		System.out.println("Description not found");
+	}
+	return App.getClipboard();
+}
 }
 // public String getDeliveryLeadtime()
 
