@@ -12,6 +12,7 @@ import com.jda.wms.pages.Exit.SKUQueryPage;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class SKUQueryStepDefs{
 	
@@ -71,6 +72,19 @@ public class SKUQueryStepDefs{
 	public void validation_of_country_origin(String SKU) throws FindFailed, ClassNotFoundException, InterruptedException, SQLException
 	{
 		sKUQueryPage.COO_Validation(SKU);
+	}
+	@When("^I go to user-defined tab$")
+	public void i_go_to_user_defined_tab() throws Throwable {
+		sKUQueryPage.clickUserDefinedTab();
+	}
+	
+	@Then("^I should be able to verify the description$")
+	public void i_should_be_able_verify_the_description() throws Throwable {
+		
+		
+		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription());
+		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription());
 	}
 	
 	
