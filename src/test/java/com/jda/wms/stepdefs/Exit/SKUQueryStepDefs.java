@@ -86,6 +86,12 @@ public class SKUQueryStepDefs{
 		
 		Assert.assertNotNull("Description not as expected", sKUQueryPage.getArticleDescription());
 	}
+	@Then("^Verify Description$")
+	public void verify_description() throws FindFailed, InterruptedException{
+        Assert.assertEquals("Description as expected ", sKUQueryPage.getDescription(), sKUQueryPage.getArticleDescription());
+		
+		Assert.assertNotNull("Description not as expected", sKUQueryPage.getDescription());
+	}
+		
+	}
 	
-	
-}

@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC25_Verify_country_of_origin_of_a_product"
+				+ "@TC23_Verify_URN_data_is_available_in_dispatcher"
 				+ ""
 				+ ""
 

@@ -209,75 +209,95 @@ Feature: Master_data_setup
     Then Verify the fields in SKU "<SKU>"
 
     Examples: 
-      | SKU                |Program_name |
-      | 000000000021071852 |SKUVALIDATIONCHECKP |
-      
-      
-   @Pre_receiving @TC18_Verify_wholesale_price 
-    Scenario Outline: To verify the wholesaler_price
-    Given Login to JDA Dispatcher web screen 
+      | SKU                | Program_name        |
+      | 000000000021071852 | SKUVALIDATIONCHECKP |
+
+  @Pre_receiving @TC18_Verify_wholesale_price
+  Scenario Outline: To verify the wholesaler_price
+    Given Login to JDA Dispatcher web screen
     And Go to Data-order_orderline & Click
     And Click on Query
     And Specify the SKU in orderline "<SKU>"
     And click execute
     Then Verify the Wholesalerprice in orderline
-    
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      
-   @Pre_receiving @TC19_Verify_country_of_origin_of_a_product 
-    Scenario Outline: To verify the country of origin for a product
-    Given Login to JDA Dispatcher web screen  
+
+  @Pre_receiving @TC19_Verify_country_of_origin_of_a_product
+  Scenario Outline: To verify the country of origin for a product
+    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
     And Verify the country of origin "<SKU>"
-       
-     Examples: 
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-     @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher 
-     Scenario: To verify the Direct PO loading in JDA dispatcher
-     Given Insert Pre-advice data with PO type "DIRECT"
-     And Insert UPI data
-     And Login to JDA Dispatcher web screen 
-     Then Verify data in UPI Receipt header screen
-     Then Verify PO type in Pre Advice header screen 
-     
-     @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
-     Scenario: To verify the Direct PO loading in JDA dispatcher
-     Given Insert Pre-advice data with PO type "DIRECT"
-     And Login to JDA Dispatcher web screen 
-     Then Verify PreAdvice header loaded successfully
-     Then Verify Supplier is populated in the Pre-advice header table
-     Then Verify the Type  is populated as "PO"
-     Then Verify PreAdvice line loaded successfully
-     Then Verify quantity and advice number is loaded in Pre-Advice line table
-     
-    @Pre_receiving @TC25_Verify_country_of_origin_of_a_product 
-    Scenario Outline: To verify the country of origin for a product
-    Given Login to JDA Dispatcher web screen  
+
+  @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher
+  Scenario: To verify the Direct PO loading in JDA dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify PO type in Pre Advice header screen
+
+  @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
+  Scenario: To verify the Direct PO loading in JDA dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "PO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify quantity and advice number is loaded in Pre-Advice line table
+
+  @Pre_receiving @TC22_Verify_the_ASN_Booking
+  Scenario: To verify ASN Booking
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+   #Then Verify Export criteria for ASN details
+   
+  @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
+  Scenario: To verify ASN data
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify pallet id
+
+  @Pre_receiving @TC24_Verify_Shipment_description
+  Scenario Outline: To verify the shipment description
+    Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
-   	When I go to user-defined tab
-   	Then I should be able to verify the description
-       
-     Examples: 
+    When I go to user-defined tab
+    And Verify Description
+    
+    
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-     
-     
-     
-     
-     
-     
-     
-     
-     
-      
+
+  @Pre_receiving @TC25_Verify_country_of_origin_of_a_product
+  Scenario Outline: To verify the country of origin for a product
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    When I go to user-defined tab
+    Then I should be able to verify the description
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
