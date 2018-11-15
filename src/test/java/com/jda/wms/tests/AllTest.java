@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC25_Verify_country_of_origin_of_a_product"
+				+ "@TC28_Verify_the_address_or_site_information"
 				+ ""
 				+ ""
 
