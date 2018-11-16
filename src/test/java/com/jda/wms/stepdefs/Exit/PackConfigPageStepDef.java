@@ -40,5 +40,11 @@ public class PackConfigPageStepDef {
 		String TrackingLevels=packConfigMaintenancePage.getTrackingLevel1();
 		Assert.assertEquals("TrackingLevels is auto-populated: ", TrackingLevels,TrackingLevels);
 	}
-//    @Then Verify pack config is "<pack config>"
+    @Then("^Verify pack config is \"([^\"]*)\"$")
+    public void verify_pack_config_is(String packConfig) throws  Throwable{
+    	packConfigMaintenancePage.clickGeneraltab();
+    	String PackConfig = packConfigMaintenancePage.getPackConfig();
+    	System.out.println("PackConfig is:"+PackConfig);
+    	Assert.assertEquals("packconfig not as expected", packConfig, PackConfig);
+    }
 }

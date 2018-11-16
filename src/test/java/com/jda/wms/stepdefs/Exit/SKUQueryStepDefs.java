@@ -78,6 +78,12 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.clickUserDefinedTab();
 	}
 	
+	@Then("^Verify stroke details Garment type for SKU \"([^\"]*)\"$")
+	public void verify_stroke_details_garment_type(String sku) throws Throwable {
+		System.out.println(sKUQueryPage.StrokeValidation(sku));
+		Assert.assertNotNull("Stroke is found null", sKUQueryPage.getStroke()); //to verify the feild is not null
+	}
+	
 	@Then("^I should be able to verify the description-article$")
 	public void i_should_be_able_verify_the_description_article() throws Throwable {
 		Assert.assertEquals("Description as expected ", sKUQueryPage.getArticleDescription(), sKUQueryPage.getArticleDescription()); //to equate the desired value		

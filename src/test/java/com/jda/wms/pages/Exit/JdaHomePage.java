@@ -840,11 +840,10 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 	public void clickReportSelection() throws FindFailed, InterruptedException {
-		screen.wait("images/Menu/menuReports.png", timeoutInSec);
-		screen.click("images/Menu/menuReports.png");
+		screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
+		screen.click("images/JDAHome/ReportSelection.png");
 		Thread.sleep(2000);
 	}
-
 
 	public void hoverReportSelection() throws FindFailed, InterruptedException {
 			screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
@@ -853,8 +852,8 @@ public class JdaHomePage {
 		}
 
 	private void clickReportsMenu() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/ReportsMenu.png", timeoutInSec);
-		screen.click("images/JDAHome/ReportsMenu.png");
+		screen.wait("images/Menu/menuReports.png", timeoutInSec);
+		screen.click("images/Menu/menuReports.png");
 	}
 
 

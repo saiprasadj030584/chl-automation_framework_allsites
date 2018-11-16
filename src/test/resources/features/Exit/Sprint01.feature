@@ -332,16 +332,47 @@ Feature: Master_data_setup
       When I query, execute and process further
       Then Verify address and site details are loaded into address screen
      
+     	@Pre_receiving @TC31_Verify_missing_URN_report
+     	Scenario Outline: To Verify Missing URN report
+     	Given Login to JDA Dispatcher web screen  
+      And Go to Reports Selection and click
+      Then Select Print to screen and proceed next
+      And Search for the M&S Identify URN
+			And Verify that the record is displayed
+			Then Proceed next and enter the "<SKU>"
+			Then Validate the confirmation page
+			And Proceed next to Output tab for the report
+			Then Validate the report selection page for completion
+			
+			Examples: 
+      | SKU                |
+      | 000000000021071852 |
      
-     	@Pre_receiving @TC28_Verify_the_address_or_site_information
-      Scenario: To Verify the address or site information
+     
+     	@Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
+      Scenario Outline: To Find a Pack Config
       Given Login to JDA Dispatcher web screen  
       And I am on pack config maintenance page
       And Execute for verifying the fields
       Then Verify tag volume and tracking levels is auto-populated
-      #Then Verify pack config is "<pack config>"
+      Then Verify pack config is "<pack config>"
      
-     #Examples: 
-      #| pack config	|
-      #| GENERIC			|
+     Examples: 
+      | pack config	|
+      | GENERIC			|
+      
+       @Pre_receiving @TC40_Verify_stroke_details_garment_type
+    Scenario Outline: To Verify stroke details -Garment type
+    Given Login to JDA Dispatcher web screen  
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+   	When I go to user-defined tab
+   	Then Verify stroke details Garment type for SKU "<SKU>"
+   	
+   	Examples: 
+      | SKU                |
+      | 000000000022479902   |
+     
       

@@ -96,6 +96,16 @@ public void Stroke_Validation(String SKU) throws FindFailed, InterruptedExceptio
 	Assert.assertEquals("Stroke Validated",Stroke,StrokeDB);
 }
 
+public String StrokeValidation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	
+	String Stroke = getStroke();
+	System.out.println("Stroke "+Stroke);
+	String StrokeDB=skuDB.getStroke(SKU);
+	System.out.println("StrokeDB "+StrokeDB);
+	Assert.assertEquals("Stroke Validated",Stroke,StrokeDB);
+	return StrokeDB;
+}
+
 public String getPrimarySizeDesc() throws FindFailed, InterruptedException {
 	
 	Match mStatus = screen.find("images/SKUMaintenanceTable/PriSizedesc.png");

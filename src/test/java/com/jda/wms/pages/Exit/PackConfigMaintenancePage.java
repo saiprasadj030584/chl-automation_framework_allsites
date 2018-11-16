@@ -113,4 +113,12 @@ public class PackConfigMaintenancePage {
 		screen.type(Key.F7);
 		Thread.sleep(1000);
 	}
+
+	public String getPackConfig() throws FindFailed {
+		Match mRatio = screen.find("/images/JDAPackConfig/PackConfig1.png");
+		screen.click(mRatio.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
 }
