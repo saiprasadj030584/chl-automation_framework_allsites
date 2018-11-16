@@ -184,6 +184,17 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
+	public void insertDelivery() throws ClassNotFoundException, SQLException, InterruptedException {
+		String ASN=context.getASN();
+		insertDataIntoDB.insertdeliverydata();
+		Thread.sleep(10000);
+		selectDataFromDB.isASNRecordExists(ASN);
+		System.out.println(selectDataFromDB.isASNRecordExists(ASN));
+		Thread.sleep(3000);	
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+		selectDataFromDB.isASNRecordExists(ASN));
+		System.out.println("ASN ID from Delivery table is :"+ ASN );
+	}
 	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 		System.out.println(stoId);

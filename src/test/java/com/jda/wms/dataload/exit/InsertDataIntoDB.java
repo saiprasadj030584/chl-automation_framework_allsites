@@ -155,6 +155,30 @@ public class InsertDataIntoDB {
 			ResultSet rs = stmt.executeQuery(query);
 			context.getConnection().commit();
 			}
+		public void insertdeliverydata() throws SQLException, ClassNotFoundException
+		{
+			String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+			String key = getMaxKeyFromDB("INTERFACE_DELIVERY");
+			String ASN = context.getASN();
+			String query =null;
+			{
+				query = "Insert into INTERFACE_DELIVERY(KEY,ASN_ID,SITE_ID,SUPPLIER_REFERENCE,STATUS,USER_ID,CLIENT_ID,SUPPLIER_ID,DUE_DSTAMP,CARRIER_ID,TRAILER_TYPE,SEAL_ID,TEMPERATURE,ADDRESS_ID,CONTACT,CONTACT_PHONE,CONTACT_MOBILE,CONTACT_FAX,CONTACT_EMAIL,NAME,ADDRESS1,ADDRESS2,TOWN,COUNTY,POSTCODE,COUNTRY,NOTES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,DISALLOW_MERGE_RULES,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
+                         + key +"','"
+                         + ASN +"','5542','1005001','Released','INTERFACE','M+S','4624',to_timestamp('"
+                         +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'ZIDC','46241005001','N','N','N','N',to_timestamp('"
+                         +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,null,null,null,'N','Europe/Belfast','Europe/London',null, 'M+S', 'A', 'Pending',null,to_timestamp('"
+                         +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'))";
+				}
+			System.out.println("Insert Delivery data");
+			System.out.println(query);
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			context.getConnection().commit();
+			}
+		
 
 	private String getMaxKeyFromDB(String tableName) throws ClassNotFoundException, SQLException {
 		if (context.getConnection() == null) {
@@ -275,13 +299,17 @@ public class InsertDataIntoDB {
 	public void insertUPIReceiptHeader(String poId,String Preadvice) throws SQLException, ClassNotFoundException, InterruptedException {
 
 		String key = Utilities.getFourDigitRandomNumber()+".0";
+//		String ASN = Utilities.getNineDigitRandomNumber();
+		String ASN="462459357";
+		context.setASN(ASN);
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
 		String query = null;
 		String palletIDforUPI = context.getpalletIDforUPI();
 		query = "Insert into interface_upi_receipt_header (KEY,PALLET_ID,SITE_ID,DUE_DSTAMP,RECEIPT_ID,ASN_ID,CLIENT_ID,PALLET_CONFIG,VOLUME,HEIGHT,DEPTH,WIDTH,WEIGHT,STATUS,CROSS_DOCK,TO_SITE_ID,SHIP_DOCK,CONSIGNMENT,CUSTOMER_ID,LOAD_SEQUENCE,DISALLOW_MERGE_RULES,NOTES,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,ROUTE_ID,CROSS_DOCK_TO_SITE,SUP_CONTACT,SUP_CONTACT_PHONE,SUP_CONTACT_MOBILE,SUP_CONTACT_FAX,SUP_CONTACT_EMAIL,SUP_NAME,SUP_ADDRESS1,SUP_ADDRESS2,SUP_TOWN,SUP_COUNTY,SUP_POSTCODE,SUP_COUNTRY,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SHIP_BY_DATE,DELIVER_BY_DATE,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP)values ("
                  + key +",'"
                  +palletIDforUPI+"','5542',to_timestamp('"
-                 +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,'462459357','M+S','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
+                 +queryInsertDate+" 00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,'"
+                 +ASN+"','M+S','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
                  +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,null,null,null,850,'"
                  +palletIDforUPI+"',null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'Europe/Belfast','Europe/London',null,'M+S','A','Pending','',to_timestamp('"
                  +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'))";
@@ -301,6 +329,7 @@ public class InsertDataIntoDB {
 		String key = Utilities.getFourDigitRandomNumber()+".0";
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
 		String query = null;
+		String ASN=context.getASN();
 		String palletIDforUPI = context.getpalletIDforUPI();
 		String SAPvalue=context.getSAPvalue();
 		query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ("
@@ -308,7 +337,8 @@ public class InsertDataIntoDB {
                 +palletIDforUPI+"',10,null,null,'"
                 +palletIDforUPI+"','M+S','M+S','000000000021071852',null,'EA','GBR',null,null,null,'',null,null,null,null,20,'"
                 +poId+"','10','N','"
-                +SAPvalue+"','10','7319900742','06769338','462459357',null,'ZIDC','"
+                +SAPvalue+"','10','7319900742','06769338','"
+                +ASN+"',null,'ZIDC','"
                 +poId+"','N','N','N','',to_timestamp('"
                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'M+S','A','Pending','',to_timestamp('"
                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'))";

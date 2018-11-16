@@ -208,6 +208,16 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/UPI.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoverDelivery() throws FindFailed {
+		screen.wait("images/JDAHome/Delivery.png", timeoutInSec);
+		screen.click("images/JDAHome/Delivery.png");
+		screen.mouseMove(70, 0);
+	}
+	public void clickDelivery() throws FindFailed {
+		screen.wait("images/JDAHome/Delivery2.png", timeoutInSec);
+		screen.click("images/JDAHome/Delivery2.png");
+		screen.mouseMove(70, 0);
+	}
 	public void hoverUser() throws FindFailed {
 		screen.wait("images/JDAHome/User.png", timeoutInSec);
 		screen.click("images/JDAHome/User.png");
@@ -830,6 +840,20 @@ public class JdaHomePage {
 		Thread.sleep(100);
 		clickUPIheader();
 		Thread.sleep(3000);
+	}
+	public void navigateToDelivery() throws FindFailed, InterruptedException {
+//		clickDataMenu();
+//		hoverDelivery();
+//		Thread.sleep(100);
+//		clickDelivery();
+//		Thread.sleep(3000);
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Delivery");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 	
 	public void navigateToReportSelectionMenu() throws FindFailed, InterruptedException {

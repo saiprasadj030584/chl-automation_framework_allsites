@@ -128,6 +128,37 @@ public class SelectDataFromDB {
 		}
 		return isRecordExists;
 	}
+	public boolean isASNRecordExists(String ASN) throws ClassNotFoundException, InterruptedException {
+		boolean isRecordExists = false;
+		ResultSet rs = null;
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+
+			int waitTime = 2;
+			do {
+				Statement stmt = context.getConnection().createStatement();
+				rs = stmt.executeQuery("SELECT asn_id FROM interface_delivery WHERE asn_id ='" + ASN + "'");
+				if (rs.next()) {
+					break;
+				}
+				Thread.sleep(2000);
+				waitTime = waitTime + 2;
+			} while (waitTime < 120);
+
+			String getASNID = rs.getString(1);
+			if (ASN.equals(getASNID)) {
+				isRecordExists = true;
+			}
+		} catch (SQLException e) {
+			if (e.getMessage().contains("Exhausted Resultset")) {
+				System.out.println("Validating ASN");
+				isRecordExists = false;
+			}
+		}
+		return isRecordExists;
+	}
 	
 		
 }

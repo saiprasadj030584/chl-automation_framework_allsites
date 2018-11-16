@@ -116,7 +116,7 @@ public class JDAExitUpiHeader{
 		this.puttyFunctionsPage=puttyFunctionsPage;
 		this.jDAExitUPIheaderPage=jDAExitUPIheaderPage;
 	}
-	  @And ("^Insert UPI data$")
+	  @And ("^Insert UPI data and Delivery data$")
 	  public void insert_UPI_data() throws Throwable
 	  {
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
@@ -132,6 +132,9 @@ public class JDAExitUpiHeader{
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
+		dataSetupRunner.insertDelivery();
+		String ASN=context.getASN();
+		System.out.println(ASN);
 	  }
 	  
 	  @Then("^Verify data in UPI Receipt header screen$")
@@ -141,6 +144,7 @@ public class JDAExitUpiHeader{
 		  jDAExitUPIheaderPage.EnterPalletID();
 		 		  
 	  }
+	 
 	  @Then("^Verify ASN ID for the PalletID$")
 	  public void verify_ASN_ID_for_the_palletID() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
 	  {
@@ -151,6 +155,11 @@ public class JDAExitUpiHeader{
 	  public void verify_pallet_id() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
 	  {
 		  jDAExitUPIheaderPage.PalletID_validation();
+	  }
+	  @Then("^Navigate to consignment details page$")
+	  public void navigate_to_consignemnt_details_page()
+	  {
+		  
 	  }
 	 
 	  
