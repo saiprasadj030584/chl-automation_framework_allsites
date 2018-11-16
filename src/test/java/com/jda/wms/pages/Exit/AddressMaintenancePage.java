@@ -123,4 +123,21 @@ public class AddressMaintenancePage {
 		return App.getClipboard();
 
 	}
+	public void clickQuery()throws FindFailed, InterruptedException {
+		screen.type(Key.F2);
+		Thread.sleep(1000);
+		
+	}
+	public void execute() throws FindFailed, InterruptedException {
+		screen.type(Key.F7);
+		Thread.sleep(1000);
+	}
+	public boolean isRecordDisplayed() throws FindFailed {
+		if (!screen.find("images/AddressMaintenance/Record.png").equals(null)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }
