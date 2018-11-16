@@ -12,6 +12,10 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(9000000) + 1000000000);
 	}
+	public static String getNineDigitRandomNumber() {
+		Random r = new Random(System.currentTimeMillis());
+		return String.valueOf(r.nextInt(90000000) + 100000000);
+	}
 
 	public static String getEightDigitRandomNumber() {
 		Random r = new Random(System.currentTimeMillis());

@@ -128,6 +128,7 @@ public class Context {
 	private String SAPvalue;
 	private String palletIDforUPI;
 	private String POType;
+	private String ASN;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -846,6 +847,12 @@ public class Context {
 	}
 	public String getPOType() {
 		return POType;
+	}
+	public void setASN(String ASN) {
+		this.ASN = ASN;
+	}
+	public String getASN() {
+		return ASN;
 	}
 
 	public void setPOType(String POType) {

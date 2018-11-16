@@ -101,7 +101,8 @@ public String getpalletid() throws FindFailed, InterruptedException{
 		return App.getClipboard();
 	}
 public void PalletID_validation() throws FindFailed, InterruptedException
-      { String pallet = getpalletid();
+      {
+	    String pallet = getpalletid();
         System.out.println(pallet);
         Assert.assertNotEquals("", pallet);
 
