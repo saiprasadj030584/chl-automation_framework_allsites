@@ -16,15 +16,16 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class ReportSelectionStepDefs {
+	private Context context;
 	private final ReportSelectionPage ReportSelectionPage;
 	private final JDAFooter JDAFooter;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	
 	@Inject
-	public ReportSelectionStepDefs(ReportSelectionPage ReportSelectionPage,JDAFooter JDAFooter)
+	public ReportSelectionStepDefs(Context context,ReportSelectionPage ReportSelectionPage,JDAFooter JDAFooter)
 	{
-		
+		this.context=context;
 		this.ReportSelectionPage = ReportSelectionPage;
 		this.JDAFooter=JDAFooter;
 	}
@@ -46,10 +47,17 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelected());
     }
     
-    @Then("^Proceed next and enter the \"([^\"]*)\"$")
-    public void proceed_next_and_enter_the(String Sku) throws Throwable {
-    	JDAFooter.clickNextButton();	
-    	ReportSelectionPage.enterSku(Sku);  	
+    @Then("^Proceed next and enter the required value$")
+    public void proceed_next_and_enter_the() throws Throwable {
+    	JDAFooter.clickNextButton();   	
+    	if(ReportSelectionPage.getLabel()!=ReportSelectionPage.getPallet()){
+    		ReportSelectionPage.enterSku("000000000022479902");  	
+    	}
+    	else{
+    	String Pallet=context.getpalletIDforUPI();  
+    	System.out.println("Pallet= "+Pallet);
+    	ReportSelectionPage.enterPallet(Pallet);  	
+    	}
     }
 	
     @Then("^Validate the confirmation page$")
@@ -64,11 +72,26 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.clickOutputTab();  	
     }
     
-    @And("^Validate the report selection page for completion$")
+    @And("^Validate the report selection page for Identify URN completion$")
     public void validate_the_report_selection_page_for_completion() throws Throwable {
     	Thread.sleep(20000);
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDone());
     	JDAFooter.clickDoneButton();	
-}
+    }
+    
+    @And("^Search for the M&S INT Reprint Label$")
+    public void search_for_the_Reprint_label() throws Throwable {
+    	ReportSelectionPage.enterInternationalReprint();
+    	JDAFooter.clickNextButton();	
+    }
+    
+    @And("^Validate the report selection page for URN international reprint completion$")
+    public void validate_the_report_selection_page_for_URN_international_report_completion() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S INT REPRINT report not found", ReportSelectionPage.isReportSelectionDone());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+  
 			
 }

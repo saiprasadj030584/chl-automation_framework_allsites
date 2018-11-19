@@ -860,14 +860,14 @@ public class JdaHomePage {
 		clickReportsMenu();
 		hoverReportSelection();
 		Thread.sleep(100);
-		clickReportSelection();
-		Thread.sleep(3000);
+//		clickReportSelection();
+//		Thread.sleep(3000);
 	}
-	public void clickReportSelection() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
-		screen.click("images/JDAHome/ReportSelection.png");
-		Thread.sleep(2000);
-	}
+//	public void clickReportSelection() throws FindFailed, InterruptedException {
+//		screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
+//		screen.click("images/JDAHome/ReportSelection.png");
+//		Thread.sleep(2000);
+//	}
 
 	public void hoverReportSelection() throws FindFailed, InterruptedException {
 			screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
