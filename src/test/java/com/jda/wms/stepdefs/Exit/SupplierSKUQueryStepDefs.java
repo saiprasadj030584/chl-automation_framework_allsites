@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.db.Exit.SkuDB;
@@ -51,5 +52,17 @@ public class SupplierSKUQueryStepDefs{
 		sKUQueryPage.supplierid_Validation(SKU);
 		
 	}
-	
+	@Then("^Query with Supplier_ID \"([^\"]*)\"$")
+	public void query_with_supplier_id(String SKU) throws FindFailed, ClassNotFoundException, InterruptedException
+	{
+		sKUQueryPage.enterSupplierSKU(SKU);
+		
+	}
+	@Then("^Verify factory code for a supplier$")
+	public void verify_factory_code_for_a_supplier() throws FindFailed, InterruptedException
+	{
+		sKUQueryPage.getfactoryCode();
+		sKUQueryPage.factorycode_validation();
+		
+	}
 }
