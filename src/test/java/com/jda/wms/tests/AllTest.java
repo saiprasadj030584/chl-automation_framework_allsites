@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC38_Verify_Pre_advice_check_merge_rule"
+				+ "@TC33_Verify_INT_URN_label_reprint"
 				+ ""
 				+ ""
 

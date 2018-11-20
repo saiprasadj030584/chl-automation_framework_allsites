@@ -50,25 +50,7 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_international_urn() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForInt());
     }
-    
-//    @Then("^Proceed next and enter the required value$")
-//    public void proceed_next_and_enter_the() throws Throwable {
-//    	JDAFooter.clickNextButton(); 
-//    	if(ReportSelectionPage.enterParameters().contains("")){
-//    	if(ReportSelectionPage.getPallet()!=null){
-//    		String Pallet=context.getpalletIDforUPI();  
-//        	System.out.println("Pallet= "+Pallet);
-//        	ReportSelectionPage.enterPallet(Pallet);  	
-//    	}
-//    	else{
-//    		System.out.println("Sku= "+"000000000022479902");
-//    		ReportSelectionPage.enterSku("000000000022479902");  	
-//    	}
-//    		
-//    	}
-//    	else
-//    		System.out.println("process stopped");   	
-//    }
+   
     @Then("^Proceed next and enter the required value of \"([^\"]*)\"$")
     public void proceed_next_and_enter_the_required_value_of(String Sku) throws Throwable {
     JDAFooter.clickNextButton(); 
