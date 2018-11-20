@@ -27,6 +27,17 @@ public class UPIReceiptHeaderDB {
 		return rs.getString(1);
 	}
 	
+	public String getLineID() throws SQLException, ClassNotFoundException {
+		String palletID = context.getpalletIDforUPI();
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select line_Id from upi_receipt_header where pallet_id = '" + palletID + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	
 
 
 

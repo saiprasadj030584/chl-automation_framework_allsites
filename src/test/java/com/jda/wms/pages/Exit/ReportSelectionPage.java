@@ -29,9 +29,8 @@ public class ReportSelectionPage {
 		 Thread.sleep(1000);		
 	}
 
-	public boolean isRecordDissplayedAndSelected() throws FindFailed, InterruptedException {
-		if(screen.find("images/ReportSelection/selectedReport.png")!=null)
-		{
+	public boolean isRecordDissplayedAndSelectedForMissingUrn() throws FindFailed, InterruptedException {
+		
 			if(screen.find("images/ReportSelection/selectedIdentifyReport.png")!=null)
 		{
 			Match mRecord=screen.find("images/ReportSelection/selectedIdentifyReport.png");
@@ -39,13 +38,18 @@ public class ReportSelectionPage {
 			Thread.sleep(1000);
 			return true;
 		}
-		else
+			else
+			return false;
+	}
+	public boolean isRecordDissplayedAndSelectedForInt() throws FindFailed, InterruptedException {
+		
+			if(screen.find("images/ReportSelection/SelectedIntReport.png")!=null)
 		{
 			Match mRecord=screen.find("images/ReportSelection/SelectedIntReport.png");
 			screen.click(mRecord.getCenter().offset(70, 0));
 			Thread.sleep(1000);
 			return true;
-		}}
+		}
 			else
 			return false;
 	}
@@ -56,8 +60,7 @@ public class ReportSelectionPage {
 	}
 
 	public boolean isProcessConfirmed() throws FindFailed, InterruptedException{
-		if(screen.find("images/ReportSelection/confirmationScreen.png")!=null)
-		{
+		
 			if(screen.find("images/ReportSelection/IdentifyUrnConfirmed.png")!=null){
 				
 			Match mScreen=screen.find("images/ReportSelection/IdentifyUrnConfirmed.png");
@@ -66,14 +69,21 @@ public class ReportSelectionPage {
 			return true;
 			}
 			 
-			else{
-				Match mScreen=screen.find("images/ReportSelection/InternationalUrnConfirmed.png");
-				screen.click(mScreen.getCenter().offset(70, 0));
-				Thread.sleep(1000);
-				return true;
+			
+		else
+		return false;
+	}
+
+	
+	public boolean isProcessConfirmedForIntUrn() throws FindFailed, InterruptedException{
+		
+			if(screen.find("images/ReportSelection/InternationalUrn.png")!=null){
 				
+			Match mScreen=screen.find("images/ReportSelection/InternationalUrn.png");
+			screen.click(mScreen.getCenter().offset(70, 0));
+			Thread.sleep(1000);
+			return true;
 			}
-		}
 		else
 		return false;
 	}
@@ -84,22 +94,27 @@ public class ReportSelectionPage {
 		screen.click("images/ReportSelection/output.png");	
 	}
 
-	public boolean isReportSelectionDone() throws FindFailed, InterruptedException{
-		if(screen.find("images/ReportSelection/FinishScreen.png")!=null){
+	public boolean isReportSelectionDoneMissingUrn() throws FindFailed, InterruptedException{
+		
 			if(screen.find("images/ReportSelection/IdentifyURN.png")!=null)
 		{
 			Match mFinishScreen=screen.find("images/ReportSelection/IdentifyURN.png");
 			screen.click(mFinishScreen.getCenter().offset(70, 0));
 			Thread.sleep(1000);
 			return true;
-		}
-			else{
+		}			
+		else
+		return false;
+	}
+	public boolean isReportSelectionDoneIntUrn() throws FindFailed, InterruptedException{
+		
+			
+			if(screen.find("images/ReportSelection/InternationalUrn.png")!=null){
 				Match mFinishScreen=screen.find("images/ReportSelection/InternationalUrn.png");
 				screen.click(mFinishScreen.getCenter().offset(70, 0));
 				Thread.sleep(1000);
 				return true;				
-			}
-			}
+			}			
 		else
 		return false;
 	}
@@ -110,21 +125,7 @@ public class ReportSelectionPage {
 		 Thread.sleep(1000);		
 	}
 
-	public Object getPallet() throws FindFailed, InterruptedException{
-		screen.find("images/ReportSelection/Pallet.png");
-		Thread.sleep(1000);
-		screen.click("images/ReportSelection/Pallet.png");			
-		return App.getClipboard();
-		
-	}
-
-	public Object getLabel()throws FindFailed, InterruptedException{
-		screen.find("images/ReportSelection/Pallet.png");
-		Thread.sleep(1000);
-		screen.click("images/ReportSelection/Pallet.png");			
-		return App.getClipboard();
-		
-	}
+	
 
 	public void enterPallet(String pallet) throws FindFailed, InterruptedException {
 		 screen.type(pallet);

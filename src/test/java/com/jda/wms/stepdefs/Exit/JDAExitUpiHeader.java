@@ -20,6 +20,7 @@ import com.jda.wms.db.Exit.AddressDB;
 import com.jda.wms.db.Exit.InventoryDB;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
+import com.jda.wms.db.Exit.UPIReceiptHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
 import com.jda.wms.pages.Exit.JDAExitUPIheaderPage;
@@ -143,6 +144,23 @@ public class JDAExitUpiHeader{
 		  jdaHomePage.navigateToUPIheader(); 
 		  jDAExitUPIheaderPage.EnterPalletID();
 		 		  
+	  }
+	  
+	  @Then("^Click on lines$")
+	  public void click_on_lines() throws InterruptedException, FindFailed
+	  {
+		  Thread.sleep(1000);
+		  jDAExitUPIheaderPage.clickLines();
+		 		  
+	  }
+	  
+	  @And("^URN lines are validated successfully$")
+	  public void urn_line_are_validated_succesfully() throws FindFailed, InterruptedException {
+		  String Lines=jDAExitUPIheaderPage.getLines();
+		  
+//		  Assert.assertEquals("Not as expected", Lines, UPIReceiptHeaderDB.getLineID());
+		  
+		  
 	  }
 	 
 	  @Then("^Verify ASN ID for the PalletID$")

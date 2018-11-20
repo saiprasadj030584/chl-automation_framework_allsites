@@ -343,16 +343,31 @@ Feature: Master_data_setup
     Then Verify Trailer content in Delivery screen
      
      	@Pre_receiving @TC31_Verify_missing_URN_report
-     	Scenario: To Verify Missing URN report
+     	Scenario Outline: To Verify Missing URN report
      	Given Login to JDA Dispatcher web screen  
       And Go to Reports Selection and click
       Then Select Print to screen and proceed next
       And Search for the M&S Identify URN
-			And Verify that the record is displayed
-			Then Proceed next and enter the required value
+			And Verify that the record is displayed for Missing Urn
+			Then Proceed next and enter the required value of "<SKU>"
 			Then Validate the confirmation page
 			And Proceed next to Output tab for the report
 			Then Validate the report selection page for Identify URN completion
+			
+			 Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+      @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
+  Scenario: To Verify  URN loaded into dispatcher
+
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Click on lines 
+    And URN lines are validated successfully
+			
 			
      
      	@Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
@@ -389,9 +404,9 @@ Feature: Master_data_setup
       And Go to Reports Selection and click
       Then Select Print to screen and proceed next
       And Search for the M&S INT Reprint Label 
-			And Verify that the record is displayed
-			Then Proceed next and enter the required value
-			Then Validate the confirmation page
+			And Verify that the record is displayed for International Urn
+			Then Proceed next and enter the required value of pallet
+			Then Validate the confirmation page for International Urn
 			And Proceed next to Output tab for the report
 			Then Validate the report selection page for URN international reprint completion
      
@@ -418,8 +433,8 @@ Feature: Master_data_setup
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for the M&S Identify URN
-    And Verify that the record is displayed
-    Then Proceed next and enter the "<SKU>"
+    And Verify that the record is displayed for Missing Urn
+    Then Proceed next and enter the required value of "<SKU>"
     Then Validate the confirmation page
     And Proceed next to Output tab for the report
     Then Validate the report selection page for completion
@@ -466,13 +481,13 @@ Feature: Master_data_setup
     When I query, execute and process further
     Then Verify address and site details are loaded into address screen
 
-  @Pre_receiving @TC28_Verify_the_address_or_site_information
-  Scenario: To Verify the address or site information
-    Given Login to JDA Dispatcher web screen
-    And I am on pack config maintenance page
-    And Execute for verifying the fields
-    Then Verify tag volume and tracking levels is auto-populated
-
+  #@Pre_receiving @TC28_Verify_the_address_or_site_information
+  #Scenario: To Verify the address or site information
+    #Given Login to JDA Dispatcher web screen
+    #And I am on pack config maintenance page
+    #And Execute for verifying the fields
+    #Then Verify tag volume and tracking levels is auto-populated
+#
   #Then Verify pack config is "<pack config>"
   #Examples:
   #| pack config	|
@@ -528,6 +543,7 @@ Feature: Master_data_setup
     #Examples: 
       #| Program_name        |
       #| SKUVALIDATIONCHECKP |
+      
     
    
     

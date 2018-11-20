@@ -42,34 +42,58 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     }
 			
-    @And("^Verify that the record is displayed$")
+    @And("^Verify that the record is displayed for Missing Urn$")
     public void verify_that_the_record_displayed() throws Throwable {
-    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelected());
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForMissingUrn());
+    }
+    @And("^Verify that the record is displayed for International Urn$")
+    public void verify_that_the_record_displayed_for_international_urn() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForInt());
     }
     
-    @Then("^Proceed next and enter the required value$")
-    public void proceed_next_and_enter_the() throws Throwable {
-    	JDAFooter.clickNextButton(); 
-    	if(ReportSelectionPage.enterParameters()!=null){
-    	if(ReportSelectionPage.getPallet()!=null){
-    		String Pallet=context.getpalletIDforUPI();  
-        	System.out.println("Pallet= "+Pallet);
-        	ReportSelectionPage.enterPallet(Pallet);  	
-    	}
-    	else{
-    		System.out.println("Sku= "+"000000000022479902");
-    		ReportSelectionPage.enterSku("000000000022479902");  	
-    	}
-    		
-    	}
-    	else
-    		System.out.println("process stopped");   	
+//    @Then("^Proceed next and enter the required value$")
+//    public void proceed_next_and_enter_the() throws Throwable {
+//    	JDAFooter.clickNextButton(); 
+//    	if(ReportSelectionPage.enterParameters().contains("")){
+//    	if(ReportSelectionPage.getPallet()!=null){
+//    		String Pallet=context.getpalletIDforUPI();  
+//        	System.out.println("Pallet= "+Pallet);
+//        	ReportSelectionPage.enterPallet(Pallet);  	
+//    	}
+//    	else{
+//    		System.out.println("Sku= "+"000000000022479902");
+//    		ReportSelectionPage.enterSku("000000000022479902");  	
+//    	}
+//    		
+//    	}
+//    	else
+//    		System.out.println("process stopped");   	
+//    }
+    @Then("^Proceed next and enter the required value of \"([^\"]*)\"$")
+    public void proceed_next_and_enter_the_required_value_of(String Sku) throws Throwable {
+    JDAFooter.clickNextButton(); 
+    ReportSelectionPage.enterSku(Sku);  
     }
+    
+    @Then("^Proceed next and enter the required value of pallet$")
+    public void proceed_next_and_enter_the_required_value_of_pallet() throws Throwable {
+    JDAFooter.clickNextButton(); 
+    String Pallet=context.getpalletIDforUPI();  
+    ReportSelectionPage.enterPallet(Pallet);  	
+    
+    }
+    
 	
     @Then("^Validate the confirmation page$")
     public void validate_the_confirmation_page() throws Throwable {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    }
+    
+    @Then("^Validate the confirmation page for International Urn$")
+    public void validate_the_confirmation_page_for_international_urn() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForIntUrn());
     }
     
     @Then("^Proceed next to Output tab for the report$")
@@ -81,7 +105,7 @@ public class ReportSelectionStepDefs {
     @And("^Validate the report selection page for Identify URN completion$")
     public void validate_the_report_selection_page_for_completion() throws Throwable {
     	Thread.sleep(20000);
-    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDone());
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
     	JDAFooter.clickDoneButton();	
     }
     
@@ -94,7 +118,7 @@ public class ReportSelectionStepDefs {
     @And("^Validate the report selection page for URN international reprint completion$")
     public void validate_the_report_selection_page_for_URN_international_report_completion() throws Throwable {
     	Thread.sleep(20000);
-    	Assert.assertTrue("M&S INT REPRINT report not found", ReportSelectionPage.isReportSelectionDone());
+    	Assert.assertTrue("M&S INT REPRINT report not found", ReportSelectionPage.isReportSelectionDoneIntUrn());
     	JDAFooter.clickDoneButton();	
     }
     

@@ -107,6 +107,25 @@ public void PalletID_validation() throws FindFailed, InterruptedException
         Assert.assertNotEquals("", pallet);
 
 	}
-	}
+
+public void clickLines() throws FindFailed, InterruptedException
+{
+	screen.wait("images/UpiReceiptHeader/Lines.png", timeoutInSec);
+	screen.click("images/UpiReceiptHeader/Lines.png");
+	Thread.sleep(2000);
+}
+
+public String getLines() throws FindFailed, InterruptedException{
+	
+	Match mTaskId = screen.find("images/UpiReceiptHeader/LineID.png");
+	screen.click(mTaskId.getCenter().offset(70, 0));
+	screen.doubleClick(mTaskId.getCenter().offset(70, 0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	return App.getClipboard();
+}
+}
+	
+
 
 
