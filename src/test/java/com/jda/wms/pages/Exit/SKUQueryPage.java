@@ -236,6 +236,14 @@ public void supplierid_Validation(String SKU) throws FindFailed, InterruptedExce
 	System.out.println("supplierskuDB "+supplierskuDB);
 	Assert.assertEquals("supplier validated ",supplierid,supplierskuDB);
 }
+public void supplierid_Validation_against_SKU(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
+	
+	String supplierSku_sku = getsuppliersku(SKU);
+	System.out.println("supplierSKU from SKU: "+supplierSku_sku);
+	String suppliersku_supplierSKU=supplierSkuDB.getSupplierSKU(SKU);
+	System.out.println("supplierSKU from SupplierSKU:  "+suppliersku_supplierSKU);
+	Assert.assertEquals("supplier validated ",supplierSku_sku,suppliersku_supplierSKU);
+}
 public void COO_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 	
 	String CountryOrigin = getcountryOrigin(SKU);

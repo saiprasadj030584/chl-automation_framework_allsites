@@ -821,11 +821,18 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 	public void navigateToSupplierSKUHome() throws FindFailed, InterruptedException {
-		clickDataMenu();
-		hoverorder();
-		Thread.sleep(100);
-		clickSupplierSKUHome();
-		Thread.sleep(3000);
+//		clickDataMenu();
+//		hoverorder();
+//		Thread.sleep(100);
+//		clickSupplierSKUHome();
+//		Thread.sleep(3000);
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("supplier sku");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
 	public void navigateToorderlineHome() throws FindFailed, InterruptedException {
 		clickDataMenu();

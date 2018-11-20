@@ -113,6 +113,12 @@ public class SKUQueryStepDefs{
 		Assert.assertNotEquals("",sKUQueryPage.getHandlingUnitInd());		
 		Assert.assertNotNull("Description not as expected", sKUQueryPage.getHandlingUnitInd());
 	}
+	@Then("^Verify Supplier SKU from SKU table against Supplier SKU table \"([^\"]*)\"$")
+	public void verify_supplier_SKU_from_SKU_table_against_supplier_sku_table(String SKU) throws FindFailed, ClassNotFoundException, InterruptedException, SQLException
+	{
+		sKUQueryPage.clickSupplierSkuFromSKU();
+		sKUQueryPage.supplierid_Validation(SKU);
+	}
 	}
 	
 
