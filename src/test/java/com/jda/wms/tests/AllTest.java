@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC33_Verify_INT_URN_label_reprint"
+				+ "@TC35_Verify_URN_loaded_into_Dispatcher"
 				+ ""
 				+ ""
 
