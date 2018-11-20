@@ -394,7 +394,6 @@ Feature: Master_data_setup
   #Scenario: To Verify Pre advice checks report
   #Given Login to JDA Dispatcher web screen
   #And Go to Reports Selection and click
-  
   @Pre_receiving @TC28_Verify_the_address_or_site_information
   Scenario: To Verify the address or site information
     Given Login to JDA Dispatcher web screen
@@ -467,7 +466,6 @@ Feature: Master_data_setup
   #Examples:
   #| pack config	|
   #| GENERIC			|
-  
   @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
   Scenario: To verify pallet consignment and trailer details in the system
     Given Insert Pre-advice data with PO type "DIRECT"
@@ -496,8 +494,8 @@ Feature: Master_data_setup
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
-  #Then Verify the status of ASN in Delivery screen
-  
+    Then Verify the status of ASN in Delivery screen
+  #Then Status should be completed
   
   @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
   Scenario: To verify the pre-advice merge rules
@@ -513,6 +511,24 @@ Feature: Master_data_setup
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
-    
-    
-  
+
+  @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
+  Scenario Outline: To verify the supplier mismatch against a product
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SupplierSKU & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    Then Verify the Suppliersku record is available "<SKU>"
+    And Go to Data-SKU-SKU & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    Then Verify Supplier SKU from SKU table against Supplier SKU table "<SKU>"  
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+     
+      

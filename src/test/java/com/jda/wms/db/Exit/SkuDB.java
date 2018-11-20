@@ -28,6 +28,18 @@ public class SkuDB {
 		allocationGroup = (rs.getString(1));
 		return allocationGroup;
 	}
+	public String getSupplierSKU(String skuId) throws ClassNotFoundException {
+		try {
+			if (context.getConnection() == null) {
+				database.connect();
+			}
+			Statement stmt = context.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery("select supplier_sku_id from supplier_sku where sku_id='" + skuId + "'");
+			rs.next();
+			return rs.getString(1);
+		} catch (Exception e) {
+			return e.getMessage();
+		}}
 
 	public String getDescription(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
