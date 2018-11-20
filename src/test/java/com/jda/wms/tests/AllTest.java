@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC22_Verify_the_ASN_Booking"
+				+ "@TC38_Verify_Pre_advice_check_merge_rule"
 				+ ""
 				+ ""
 
