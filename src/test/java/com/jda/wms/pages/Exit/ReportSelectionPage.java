@@ -130,6 +130,14 @@ public class ReportSelectionPage {
 		 screen.type(pallet);
 		 Thread.sleep(1000);		
 	}
+
+	public Object enterParameters() throws FindFailed, InterruptedException{
+		screen.find("images/ReportSelection/Parameters.png");
+		Thread.sleep(1000);
+		screen.click("images/ReportSelection/Parameters.png");			
+		return App.getClipboard();
+		
+	}
 	}
 	
 

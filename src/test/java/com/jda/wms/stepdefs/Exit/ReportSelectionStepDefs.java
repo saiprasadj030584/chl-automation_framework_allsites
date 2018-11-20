@@ -49,15 +49,21 @@ public class ReportSelectionStepDefs {
     
     @Then("^Proceed next and enter the required value$")
     public void proceed_next_and_enter_the() throws Throwable {
-    	JDAFooter.clickNextButton();   	
-    	if(ReportSelectionPage.getLabel()!=ReportSelectionPage.getPallet()){
-    		ReportSelectionPage.enterSku("000000000022479902");  	
+    	JDAFooter.clickNextButton(); 
+    	if(ReportSelectionPage.enterParameters()!=null){
+    	if(ReportSelectionPage.getPallet()!=null){
+    		String Pallet=context.getpalletIDforUPI();  
+        	System.out.println("Pallet= "+Pallet);
+        	ReportSelectionPage.enterPallet(Pallet);  	
     	}
     	else{
-    	String Pallet=context.getpalletIDforUPI();  
-    	System.out.println("Pallet= "+Pallet);
-    	ReportSelectionPage.enterPallet(Pallet);  	
+    		System.out.println("Sku= "+"000000000022479902");
+    		ReportSelectionPage.enterSku("000000000022479902");  	
     	}
+    		
+    	}
+    	else
+    		System.out.println("process stopped");   	
     }
 	
     @Then("^Validate the confirmation page$")
