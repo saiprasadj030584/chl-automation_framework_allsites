@@ -64,7 +64,7 @@ public class PreAdviceHeaderPage{
 		/*screen.wait("images/PreAdviceHeader/lines.png", timeoutInSec);
 	    screen.click("images/PreAdviceHeader/lines.png");*/
 	    Thread.sleep(3000);
-		Match mDescription = screen.find("images/PreAdviceLine/preadvid.png");
+		Match mDescription = screen.find("images/PreAdviceLine/PreAdviceId.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
