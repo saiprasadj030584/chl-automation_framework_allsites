@@ -49,4 +49,11 @@ public class DeliveryTableStepDefs{
 		  deliveryPage.ASN_Validation();
 		 
 	 }
+	 @Then("^Verify the status of ASN in Delivery screen$")
+	 public void verify_the_status_of_ASN_in_Delivery_screen() throws FindFailed, InterruptedException
+	 {
+		 jdaHomePage.navigateToDelivery();
+	     deliveryPage.EnterASNID();
+		 
+	 }
 }

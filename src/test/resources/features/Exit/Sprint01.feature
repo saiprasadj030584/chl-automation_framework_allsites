@@ -315,6 +315,7 @@ Feature: Master_data_setup
     Examples: 
       | SKU                |
       | 000000000021071852 |
+
       
       
       #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
@@ -397,5 +398,136 @@ Feature: Master_data_setup
       
   
   
+
+
+  #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
+  #Scenario: To Verify Pre advice checks report
+  #Given Login to JDA Dispatcher web screen
+  #And Go to Reports Selection and click
+  
+  @Pre_receiving @TC28_Verify_the_address_or_site_information
+  Scenario: To Verify the address or site information
+    Given Login to JDA Dispatcher web screen
+    And I navigate to address maintenance page
+    When I query, execute and process further
+    Then Verify address and site details are loaded into address screen
+
+  @Pre_receiving @TC31_Verify_missing_URN_report
+  Scenario Outline: To Verify Missing URN report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Identify URN
+    And Verify that the record is displayed
+    Then Proceed next and enter the "<SKU>"
+    Then Validate the confirmation page
+    And Proceed next to Output tab for the report
+    Then Validate the report selection page for completion
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
+  Scenario Outline: To Find a Pack Config
+    Given Login to JDA Dispatcher web screen
+    And I am on pack config maintenance page
+    And Execute for verifying the fields
+    Then Verify tag volume and tracking levels is auto-populated
+    Then Verify pack config is "<pack config>"
+
+    Examples: 
+      | pack config |
+      | GENERIC     |
+
+  @Pre_receiving @TC40_Verify_stroke_details_garment_type
+  Scenario Outline: To Verify stroke details -Garment type
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    When I go to user-defined tab
+    Then Verify stroke details Garment type for SKU "<SKU>"
+
+    Examples: 
+      | SKU                |
+      | 000000000022479902 |
+
+  #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
+  #Scenario: To Verify Pre advice checks report
+  #Given Login to JDA Dispatcher web screen
+  #And Go to Reports Selection and click
+  
+  @Pre_receiving @TC28_Verify_the_address_or_site_information
+  Scenario: To Verify the address or site information
+    Given Login to JDA Dispatcher web screen
+    And I navigate to address maintenance page
+    When I query, execute and process further
+    Then Verify address and site details are loaded into address screen
+
+  @Pre_receiving @TC28_Verify_the_address_or_site_information
+  Scenario: To Verify the address or site information
+    Given Login to JDA Dispatcher web screen
+    And I am on pack config maintenance page
+    And Execute for verifying the fields
+    Then Verify tag volume and tracking levels is auto-populated
+
+  #Then Verify pack config is "<pack config>"
+  #Examples:
+  #| pack config	|
+  #| GENERIC			|
+  @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
+  Scenario: To verify pallet consignment and trailer details in the system
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    Then Navigate to consignment details page
+    Then Verify Trailer content in Delivery screen
+
+  @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
+  Scenario Outline: To verify factory code for a supplier
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SupplierSKU & Click
+    And Click on Query
+    And Query with Supplier_ID "<SKU>"
+    And click execute
+    Then Verify factory code for a supplier
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+   @Pre_receiving @TC37_Verify_ASN_Closure
+   Scenario: To verify ASN closure
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
+    And Login to JDA Dispatcher web screen
+    #Then Verify the status of ASN in Delivery screen
+   
+   
+   @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
+   Scenario: To verify the pre-advice merge rules
+    #Given Login to JDA Dispatcher web screen
+    #And Go to Admin_Setup_Scheduler_Schedulerprograms & Click
+    #And Click on Query
+    #And Specify the Program name "<Program_name>"
+    #And click execute
+    #And Run the program
+    Given Insert Pre-advice data with PO type "DIRECT"
+    Then Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "PO"
+    Then Verify PreAdvice line loaded successfully
+
     
+    
+    
+    #Examples: 
+      #| Program_name        |
+      #| SKUVALIDATIONCHECKP |
+    
+   
     

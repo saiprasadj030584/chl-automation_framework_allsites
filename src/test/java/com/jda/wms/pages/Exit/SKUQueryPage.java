@@ -34,12 +34,34 @@ public class SKUQueryPage {
 		screen.click("images/SKUMaintenanceTable/SKUID.png");
 		screen.type(SKU);
 	}
+	public void enterSupplierSKU(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException {
+		Thread.sleep(2000);
+		screen.wait("images/JDASupplierSKU/SupplierSKU.png", timeoutInSec);
+		Match mStatus=screen.find("images/JDASupplierSKU/SupplierSKU.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		Thread.sleep(1000);
+		String supplier_ID=supplierSkuDB.getSupplierSKU(SKU);
+	    Thread.sleep(1000);
+		screen.type(supplier_ID);
+	}
 	public String getCommodityCode(String SKU) throws FindFailed, InterruptedException {
 		
 		screen.wait("images/SKUMaintenanceTable/settings3.png", timeoutInSec);
 		screen.click("images/SKUMaintenanceTable/settings3.png");
 		screen.click("images/SKUMaintenanceTable/CommodityCode.png");
 		Match mStatus = screen.find("images/SKUMaintenanceTable/CommodityCode.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	
+}
+public String getfactoryCode() throws FindFailed, InterruptedException {
+		
+		
+		screen.click("images/JDASupplierSKU/SupplierSKU.png");
+		Match mStatus = screen.find("images/JDASupplierSKU/SupplierSKU.png");
 		screen.click(mStatus.getCenter().offset(70,0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -60,6 +82,17 @@ public String getCommodityCodeDesc(String SKU) throws FindFailed, InterruptedExc
 		Thread.sleep(2000);
 		return App.getClipboard();
 }
+public void factorycode_validation() throws FindFailed, InterruptedException
+{
+	String factorycode = getfactoryCode();
+	if (factorycode.length()!=6){
+		System.out.println("Factory code is 6 digit : "+factorycode);
+	}
+	else
+	{
+		System.out.println("Factory code is not 6 digit :"+factorycode);
+	}
+	}
 public void CommodityCode_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {
 	
 	String CommodityCode = getCommodityCode(SKU);
