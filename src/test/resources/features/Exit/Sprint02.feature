@@ -1,5 +1,5 @@
-@Sprint01
-Feature: Master_data_setup
+@Sprint02
+Feature: Receiving
   As a Exit DC user should be able to login
    so that I validate the  master data setup
 

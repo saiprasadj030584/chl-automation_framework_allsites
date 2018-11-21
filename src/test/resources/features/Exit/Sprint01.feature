@@ -327,6 +327,9 @@ Feature: Master_data_setup
     And I navigate to address maintenance page
     When I query, execute and process further
     Then Verify address and site details are loaded into address screen
+    
+   #@Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
+   #Needs Receiving. Would be able to cover with compliance check cases in SPRINT02 
 
   @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
   Scenario: To verify pallet consignment and trailer details in the system
@@ -338,61 +341,25 @@ Feature: Master_data_setup
     Then Navigate to consignment details page
     Then Verify Trailer content in Delivery screen
 
-     
-     	@Pre_receiving @TC31_Verify_missing_URN_report
-     	Scenario Outline: To Verify Missing URN report
-     	Given Login to JDA Dispatcher web screen  
-      And Go to Reports Selection and click
-      Then Select Print to screen and proceed next
-      And Search for the M&S Identify URN
-			And Verify that the record is displayed for Missing Urn
-			Then Proceed next and enter the required value of "<SKU>"
-			Then Validate the confirmation page
-			And Proceed next to Output tab for the report
-			Then Validate the report selection page for Identify URN completion
-			
-			 Examples: 
-      | SKU                |
-      | 000000000021071852 |
-      
-      @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
-  Scenario: To Verify  URN loaded into dispatcher
-
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
-    And Login to JDA Dispatcher web screen
-    Then Verify data in UPI Receipt header screen
-    Then Click on lines 
-    And URN lines are validated successfully
-			
-			   
-  @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
-  Scenario Outline: To Find a Pack Config
+  @Pre_receiving @TC31_Verify_missing_URN_report
+  Scenario Outline: To Verify Missing URN report
     Given Login to JDA Dispatcher web screen
-    And I am on pack config maintenance page
-    And Execute for verifying the fields
-    Then Verify tag volume and tracking levels is auto-populated
-    Then Verify pack config is "<pack config>"
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Identify URN
+    And Verify that the record is displayed for Missing Urn
+    Then Proceed next and enter the required value of "<SKU>"
+    Then Validate the confirmation page
+    And Proceed next to Output tab for the report
+    Then Validate the report selection page for Identify URN completion
 
     Examples: 
-      | pack config |
-      | GENERIC     |
-
-  @Pre_receiving @TC40_Verify_stroke_details_garment_type
-  Scenario Outline: To Verify stroke details -Garment type
-    Given Login to JDA Dispatcher web screen
-    And Go to Data-SKU-SKUmaintenance & Click
-    And Click on Query
-    And Specify the SKU "<SKU>"
-    And click execute
-   	When I go to user-defined tab
-   	Then Verify stroke details Garment type for SKU "<SKU>"
-   	
-   	Examples: 
       | SKU                |
-      | 000000000022479902   |
-      
-
+      | 000000000021071852 |
+     
+     #@Pre_receiving @TC32_Verify_new_stock_check_screen
+     #Code change inthe Putty which needs clarification from Dev team
+   
   @Pre_receiving @TC33_Verify_INT_URN_label_reprint
   Scenario: To Verify International URN label reprint
     Given Insert Pre-advice data with PO type "DIRECT"
@@ -401,14 +368,25 @@ Feature: Master_data_setup
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for the M&S INT Reprint Label
-    And Verify that the record is displayed for International Urn 
+    And Verify that the record is displayed for International Urn
     Then Proceed next and enter the required value of pallet
     Then Validate the confirmation page
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
+    
+    #@Pre_receiving @TC34_Verify_Trusted_receiving_data
+    #Code change inthe Putty which needs clarification from Dev team
+    
 
-   
-  
+  @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
+  Scenario: To Verify  URN loaded into dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
+    And Login to JDA Dispatcher web screen
+    Then Verify data in UPI Receipt header screen
+    Then Click on lines
+    And URN lines are validated successfully
+
   @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
   Scenario Outline: To verify factory code for a supplier
     Given Login to JDA Dispatcher web screen
@@ -428,28 +406,42 @@ Feature: Master_data_setup
     And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify the status of ASN in Delivery screen
-  #Then Status should be completed
-  
+    #Then Status should be completed
+
   @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
   Scenario: To verify the pre-advice merge rules
-    #Given Login to JDA Dispatcher web screen
-    #And Go to Admin_Setup_Scheduler_Schedulerprograms & Click
-    #And Click on Query
-    #And Specify the Program name "<Program_name>"
-    #And click execute
-    #And Run the program
     Given Insert Pre-advice data with PO type "DIRECT"
     Then Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
-
   
-    
-    #Examples: 
-      #| Program_name        |
-      #| SKUVALIDATIONCHECKP |
+  @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
+  Scenario Outline: To Find a Pack Config
+    Given Login to JDA Dispatcher web screen
+    And I am on pack config maintenance page
+    And Execute for verifying the fields
+    Then Verify tag volume and tracking levels is auto-populated
+    Then Verify pack config is "<pack config>"
+
+    Examples: 
+      | pack config |
+      | GENERIC     |
+
+  @Pre_receiving @TC40_Verify_stroke_details_garment_type
+  Scenario Outline: To Verify stroke details -Garment type
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-SKU-SKUmaintenance & Click
+    And Click on Query
+    And Specify the SKU "<SKU>"
+    And click execute
+    When I go to user-defined tab
+    Then Verify stroke details Garment type for SKU "<SKU>"
+
+    Examples: 
+      | SKU                |
+      | 000000000022479902 |
 
   @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
   Scenario Outline: To verify the supplier mismatch against a product
@@ -463,12 +455,18 @@ Feature: Master_data_setup
     And Click on Query
     And Specify the SKU "<SKU>"
     And click execute
-    Then Verify Supplier SKU from SKU table against Supplier SKU table "<SKU>"  
+    Then Verify Supplier SKU from SKU table against Supplier SKU table "<SKU>"
 
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-     
-      
 
+      
+      #@Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
+      #Needs Receiving. Would be able to cover with compliance check cases in SPRINT02
+      
+      #@Pre_receiving @TC43_Verify_VAT_indicator_for_a-product
+      #Not applicable as Field is removed from the EXIT
+      
+      #@Pre_receiving @TC44_Verify_the_certificate_of_the_stock
+      #Not applicable as Field is removed from the EXIT
