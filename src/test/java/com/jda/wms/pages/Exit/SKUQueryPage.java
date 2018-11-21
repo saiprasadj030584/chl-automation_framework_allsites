@@ -60,8 +60,8 @@ public class SKUQueryPage {
 public String getfactoryCode() throws FindFailed, InterruptedException {
 		
 		
-		screen.click("images/JDASupplierSKU/SupplierSKU.png");
-		Match mStatus = screen.find("images/JDASupplierSKU/SupplierSKU.png");
+		screen.click("images/JDASupplierSKU/supplier2.png");
+		Match mStatus = screen.find("images/JDASupplierSKU/supplier2.png");
 		screen.click(mStatus.getCenter().offset(70,0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -86,11 +86,11 @@ public void factorycode_validation() throws FindFailed, InterruptedException
 {
 	String factorycode = getfactoryCode();
 	if (factorycode.length()!=6){
-		System.out.println("Factory code is 6 digit : "+factorycode);
+		System.out.println("Factory code is not 6 digit : "+factorycode);
 	}
 	else
 	{
-		System.out.println("Factory code is not 6 digit :"+factorycode);
+		System.out.println("Factory code is 6 digit :"+factorycode);
 	}
 	}
 public void CommodityCode_Validation(String SKU) throws FindFailed, InterruptedException, ClassNotFoundException, SQLException {

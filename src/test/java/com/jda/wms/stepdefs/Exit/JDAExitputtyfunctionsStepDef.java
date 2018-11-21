@@ -1,9 +1,11 @@
 package com.jda.wms.stepdefs.Exit;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
+import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -246,6 +248,12 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(2000);
 		
 	}
+	@And("^Verify scan URN screen displayed$")
+	public void verify_scan_URN_screen_displayed() throws FindFailed, InterruptedException, IOException
+	{
+		storeTrackingOrderPickingPage.clientID();
+		hooks.logoutPutty();
+	}
 	
 //	
 	
@@ -316,33 +324,8 @@ public class JDAExitputtyfunctionsStepDef {
 		ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		puttyFunctionsPage.pressEnter();
-		///@TODO: Add validations
 		hooks.logoutPutty();
-		
-//		Thread.sleep(1000);
-//		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
-//		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
-//		System.out.println("UPCValue= "+prefixlist);
-//		String UPCDB=SkuDB.getUPCDB();//from DB
-//		System.out.println("UPCDB= "+UPCDB);
-//		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
-//		Thread.sleep(1000);
-//		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
-//		System.out.println("QTYValue= "+QTYValue);
-//		String DBlist=StringUtils.substring(QTYValue, 0, 2);
-//		String preAdviceID=GetTCData.getpoId();
-//		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
-//		System.out.println("QTYDB= "+QTYDB);
-//		Assert.assertEquals("UPC validated", QTYDB, DBlist);
-//		logger.debug("Validated QTY value : " + DBlist);
-//		Thread.sleep(1000);
-//		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
-//		System.out.println("SupplierValue= "+SupplierValue);
-//		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
-//		System.out.println("SupplierDB= "+SupplierDB);
-//		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
-//		logger.debug("Validated Supplier Value: " + SupplierValue);
-//		Thread.sleep(1000);
+	
 		}
 	@Given("^I enter To Pallet$")
 	public void I_enter_To_Pallet() throws Throwable {
@@ -355,10 +338,40 @@ public class JDAExitputtyfunctionsStepDef {
 		ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		purchaseOrderReceivingPage.enterYes();
-		
 		hooks.logoutPutty();
 		
 	}
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date() throws Throwable {
+		GetTCData.getpoId();
+		String skuid = context.getSkuId();
+//		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		Assert.assertTrue("RCVBli screen is not displayed as expected",
+		storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+		Thread.sleep(300);
+		puttyFunctionsPage.I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		Thread.sleep(300);
+		puttyFunctionsPage.singleTab();
+		String ToPallet = null;
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.nextScreen();
+		String Expirydate= Utilities.getAddedSystemYear();
+		purchaseOrderReceivingPage.EnterToExpirydate(Expirydate);
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	
+		}
+	
 	
 	}
 	
