@@ -41,11 +41,7 @@ Feature: Receiving
     And check Qty received is updated in Inventory
     And Check Qty received is updated in Pre-advice line
     And Check the Orderline must be allocated
-  
-    
-    
-   
-    
+
     
     @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
@@ -55,3 +51,4 @@ Feature: Receiving
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
     And I navigate to Order header screen to verify the status in Ready to Load
+
