@@ -317,9 +317,7 @@ Feature: Master_data_setup
       | 000000000021071852 |
 
   #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
-  #Scenario: To Verify Pre advice checks report
-  #Given Login to JDA Dispatcher web screen
-  #And Go to Reports Selection and click
+  #the required report M&S- Pre Receive SKU master data check is not available anymore
   
   @Pre_receiving @TC28_Verify_the_address_or_site_information
   Scenario: To Verify the address or site information
@@ -374,8 +372,9 @@ Feature: Master_data_setup
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
     
-    #@Pre_receiving @TC34_Verify_Trusted_receiving_data
-    #Code change inthe Putty which needs clarification from Dev team
+    @Pre_receiving @TC34_Verify_Trusted_receiving_data
+    Scenario: To verify Trusted receiving data using MANDS SCHEMA
+    
     
 
   @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
