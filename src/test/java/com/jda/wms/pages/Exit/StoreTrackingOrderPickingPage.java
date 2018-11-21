@@ -73,6 +73,14 @@ public class StoreTrackingOrderPickingPage {
 		else
 			return false;
 	}
+	public void clientID() throws FindFailed{
+		if(screen.find("images/Putty/Receiving/RcvScnEANC.png").equals(null)){
+			System.out.println("Client ID Found");
+		}
+		else{
+			System.out.println("Client ID skipped as expected");
+		}
+	}
 
 	public void selectPickingInPickMenu() throws InterruptedException {
 		screen.type("1");

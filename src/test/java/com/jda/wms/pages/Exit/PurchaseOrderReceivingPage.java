@@ -147,6 +147,15 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(Key.TAB);
 
 	}
+	public void EnterToExpirydate(String Expirydate) throws InterruptedException {
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Expirydate);
+		Thread.sleep(1000);
+		screen.type(Key.TAB);
+
+	}
 	public void EnterBel(String belCode) throws InterruptedException {
 		screen.type(belCode);
 		Thread.sleep(1000);

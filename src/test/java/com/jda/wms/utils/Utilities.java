@@ -1,5 +1,8 @@
 package com.jda.wms.utils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 public class Utilities {
@@ -52,5 +55,11 @@ public class Utilities {
 		Random r = new Random(System.currentTimeMillis());
 		return String.valueOf(r.nextInt(90) + 10);
 	}
+	public static String getAddedSystemYear() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, 2);
+		return dateFormat.format(cal.getTime());
+	} 
 
 }
