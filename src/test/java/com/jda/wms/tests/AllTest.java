@@ -18,7 +18,7 @@ import cucumber.api.junit.Cucumber;
 				
 				+ ""
 				+ ""
-				+ "@TC35_Verify_URN_loaded_into_Dispatcher"
+				+ "@TC01_Batch_and_Expiry_Date_Check"
 				+ ""
 				+ ""
 
