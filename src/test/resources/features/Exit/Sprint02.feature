@@ -37,7 +37,7 @@ Feature: Receiving
     And Click on Query
     And Enter Container_ID
     And click execute
-    And Check the Inventory Transaction for Receipt, Allocate and Pick
+    And check the Inventory Transaction for Receipt, Allocate and Pick
     And check Qty received is updated in Inventory
     And Check Qty received is updated in Pre-advice line
     And Check the Orderline must be allocated

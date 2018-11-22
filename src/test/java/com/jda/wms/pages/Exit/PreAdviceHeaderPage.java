@@ -212,6 +212,13 @@ public class PreAdviceHeaderPage{
 		return App.getClipboard();
 	}
 	
+	public void quantity_validation() throws FindFailed
+	
+	{
+		String Quantity = getquantity();
+		Assert.assertNotEquals("",Quantity);
+	}
+	
 	
 	
 	
