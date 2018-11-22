@@ -262,9 +262,23 @@ public class LocationDB {
 		context.getConnection().commit();
 		return status;
 		}
+
+	public String getRedLocation() throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select location_id from location where work_zone='REDB'");
+		ResultSet rs = stmt
+				.executeQuery("select location_id from location where work_zone='REDB'");
+		context.getConnection().commit();
+		return rs.getString(1);
+	}
+	}
 	
 		 
-	}
+	
 	
 
 

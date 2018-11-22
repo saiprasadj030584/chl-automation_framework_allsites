@@ -61,8 +61,8 @@ public class OrderHeaderPage {
 		this.context = context;
 	}
 	public void enterOrderNo(String OrderNo) throws FindFailed {
-		screen.wait("images/OrderNumber.png", timeoutInSec);
-		screen.click("images/OrderNumber.png");
+		screen.wait("images/OrderHeaderMaintenance/Order.png", timeoutInSec);
+		screen.click("images/OrderHeaderMaintenance/Order.png");
 		screen.type(OrderNo);
 //		screen.wait("images/OrderHeaderExecute.png", timeoutInSec);
 //		screen.click("images/OrderHeaderExecute.png");

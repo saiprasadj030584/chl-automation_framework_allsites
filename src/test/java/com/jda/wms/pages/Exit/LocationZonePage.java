@@ -11,6 +11,7 @@ public class LocationZonePage {
 	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	
 
 	@Inject
 	public LocationZonePage() {
@@ -29,4 +30,10 @@ public class LocationZonePage {
 		screen.click("/images/LocationZone/LocationZone.png");
 		screen.type(locationZone);
 	}
+	public boolean isRedLockApplied(){
+		if ((screen.exists("images/Putty/Receiving/RedStockReceive.png") != null))
+			return true;
+		else
+			return false;
+	}	
 }

@@ -18,6 +18,7 @@ import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.PreAdviceHeaderDB;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.LocationDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
@@ -25,6 +26,7 @@ import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.LocationZonePage;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -42,6 +44,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private MoveTaskDB moveTaskDB;
 	private SkuDB skuDB;
+	private LocationDB LocationDB;
 	public static String statusRegion = System.getProperty("USE_DB");
 	//public static String region = System.getProperty("REGION");
 	public static String region ="SIT";
@@ -51,16 +54,17 @@ public class JDAExitputtyfunctionsStepDef {
 	private PreAdviceHeaderDB preAdviceHeaderDB;
 	private SupplierSkuDB supplierSkuDB;
 	private PreAdviceLineDB preAdviceLineDB;
+	private LocationZonePage LocationZonePage;
 	private Hooks hooks;
 
 	
 
 	@Inject
 	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,
-			SkuDB skuDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
+			SkuDB skuDB,LocationDB LocationDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
-			PreAdviceHeaderDB preAdviceHeaderDB,Hooks hooks) {
+			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -71,6 +75,8 @@ public class JDAExitputtyfunctionsStepDef {
 		this.supplierSkuDB= supplierSkuDB;
 		this.preAdviceLineDB = preAdviceLineDB;
 		this.skuDB=skuDB;
+		this.LocationDB=LocationDB;
+		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
@@ -325,6 +331,34 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
+		}
+	
+	@Given("^I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_Supplierand_location_for_ASN_for_red_stock() throws Throwable {
+		GetTCData.getpoId();
+		String skuid = context.getSkuId2();
+//		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		Assert.assertTrue("RCVBli screen is not displayed as expected",
+		storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+		Thread.sleep(300);
+		puttyFunctionsPage.I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		Thread.sleep(300);
+		puttyFunctionsPage.singleTab();
+		//--requirement as per red stock-- to pallet should be entered with red location--//
+//		String Location = LocationDB.getRedLocation();
+//		System.out.println("Red Location="+Location);
+		purchaseOrderReceivingPage.EnterToPallet("BA001");
+		puttyFunctionsPage.pressEnter();
+		validate_that_red_lock_code_applied_message();
+		hooks.logoutPutty();
 	
 		}
 	@Given("^I enter To Pallet$")
@@ -371,6 +405,10 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 	
 		}
+	@Then("Validate that Red Lock Code applied message$")
+	public void validate_that_red_lock_code_applied_message() throws Throwable {
+		Assert.assertTrue("Red LockCode not Apllied",LocationZonePage.isRedLockApplied());
+	}
 	
 	
 	}

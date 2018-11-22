@@ -111,6 +111,33 @@ public class InventoryTransactionPage{
     		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
     		Assert.assertEquals("Order Status", "Ready to Load", orderstatus);
        }
+	public void enterSku() throws InterruptedException, FindFailed{
+		screen.wait("images/InventoryTransactionQuery/General/SkuId.png", timeoutInSec);	
+		screen.click("images/InventoryTransactionQuery/General/SkuId.png");
+		String sku = context.getSkuId2();
+		screen.type(sku);
+		
+		
+	}
+	public void clickExecuteButton() throws FindFailed, InterruptedException {
+		screen.type(Key.F7);
+		Thread.sleep(3000);
+	}
+	public void click_on_Query() throws FindFailed, InterruptedException {
+		screen.type(Key.F2);
+		Thread.sleep(3000);
+	}
+	public String checkLockcode() throws FindFailed, InterruptedException {
+		
+		screen.wait("images/InventoryTransactionQuery/lockCode.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/lockCode.png");
+		Match mStatus = screen.find("images/InventoryTransactionQuery/lockCode.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
      
 		
 }

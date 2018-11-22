@@ -61,5 +61,18 @@ public class InventoryTransactionStepDefs{
 	{
 		inventoryTransactionPage.getstatus();
 	}
+	@And("^check the Inventory Transaction for Receipt, Allocate and Pick for the Red lock code$")
+	public void check_the_inventory_transaction_for_receipt_allocate_pick_for_red_lock_code() throws FindFailed, InterruptedException
+	{
+		jdaHomePage.navigateToInventory();
+		inventoryTransactionPage.click_on_Query();		
+		inventoryTransactionPage.enterSku();
+		inventoryTransactionPage.clickExecuteButton();
+		inventoryTransactionPage.Checktransaction();
+		String LC=inventoryTransactionPage.checkLockcode();
+		Assert.assertEquals("Lock code not as expected", "RED", LC);
+		
+		
+	}
 	
 }
