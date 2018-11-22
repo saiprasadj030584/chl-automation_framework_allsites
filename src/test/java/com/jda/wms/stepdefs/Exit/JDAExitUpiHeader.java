@@ -226,19 +226,20 @@ public class JDAExitUpiHeader{
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
+		String skuid = "000000000021071851";
+		context.setSkuId2(skuid);
 		
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPIForRedStock();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
 		context.setSAPvalue(SAPvalue);
-		dataSetupRunner.insertOrderDataforUPI();
+		dataSetupRunner.insertOrderDataforUPIForRedStock();
 		GetTCData.getpoId();
-		String skuid = "000000000021071851";
-		context.setSkuId(skuid);
-		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		
+		puttyFunctionsPage.i_generate_pallet_id_for_UPI_for_red_stock(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		Thread.sleep(1000);
-		dataSetupRunner.insertUPIReceiptData();
+		dataSetupRunner.insertUPIReceiptDataForRedStock();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);

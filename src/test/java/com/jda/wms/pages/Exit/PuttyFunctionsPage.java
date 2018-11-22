@@ -183,6 +183,43 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		context.setpalletIDforUPI(palletIDforUPI);
 		System.out.println("check palletid "+palletIDforUPI);
 	}
+	
+	public void i_generate_pallet_id_for_UPI_for_red_stock(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("skuid "+skuid);
+		
+		System.out.println("preadv "+preAdviceId);
+		String palletIDforUPI = null;
+		// First 4 digits - Site id
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
+		System.out.println("siteid "+siteid);
+		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "222";
+		System.out.println("barcode "+barcode);
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate();
+		System.out.println("supplier "+supplier);
+		// Dept id : 3 digit
+		String dept = deptmanipulate();
+		System.out.println("dept "+dept);
+//		String dept = "000";
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
+		// Advice - 6 digit
+		String advice2 = Utilities.getSixDigitRandomNumber();
+		System.out.println("advice "+advice2);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
+		palletIDforUPI = siteid+ barcode + URN + supplier + '0' + dept + advice2 + skuqtymanipulate + checkbit;
+		context.setpalletIDforUPI(palletIDforUPI);
+		System.out.println("check palletid "+palletIDforUPI);
+	}
 //	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
 		System.out.println("skuid "+skuid);
@@ -230,9 +267,27 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 			String[] supplierSplit = supplier.split("M");
 			return supplierSplit[1];
 		}
+//		public String suppliermanipulateForRedStock() throws ClassNotFoundException, SQLException {
+//			String skuid=context.getSkuId();
+//			System.out.println("skuid "+context.getSkuId());
+////			context.getSkuId2();
+////			context.getSkuId2();
+//			String supplier = supplierSkuDB.getSupplierId(skuid);
+//			String[] supplierSplit = supplier.split("M");
+//			return supplierSplit[1];
+//		}
 		// Get dept - 3 digit
 		public String deptmanipulate() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId2();
+			String dept = SkuDB.getProductGroup(skuid);
+			System.out.println("Dept" + dept);
+			String[] deptSplit = dept.split("T");
+			return deptSplit[1];
+			
+			
+		}
+		public String deptmanipulateForRedStock() throws ClassNotFoundException, SQLException {
+			String skuid=context.getSkuId();
 			String dept = SkuDB.getProductGroup(skuid);
 			System.out.println("Dept" + dept);
 			String[] deptSplit = dept.split("T");
@@ -252,8 +307,34 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 			} 
 			return qtyDue;
 		}
+		
+public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFoundException, SQLException {
+			
+			String skuid=context.getSkuId();
+			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
+			int sumLength = qtyDue.length();
+			if (sumLength == 1) {
+				qtyDue = "00" + qtyDue;
+			} else if (sumLength == 2) {
+				qtyDue = "0" + qtyDue;
+			} 
+			return qtyDue;
+		}
 		public String skuQtyManipulate2(String preAdviceId) throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId2();
+			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
+			int sumLength = qtyDue.length();
+			if (sumLength == 1) {
+				qtyDue = "000" + qtyDue;
+			} else if (sumLength == 2) {
+				qtyDue = "00" + qtyDue;
+			} else if (sumLength == 3) {
+				qtyDue = "0" + qtyDue;
+			}
+			return qtyDue;
+		}
+		public String skuQtyManipulate2ForRedStock(String preAdviceId) throws ClassNotFoundException, SQLException {
+			String skuid=context.getSkuId();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {

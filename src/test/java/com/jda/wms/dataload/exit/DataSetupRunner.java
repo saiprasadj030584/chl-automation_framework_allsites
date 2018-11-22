@@ -160,6 +160,18 @@ public class DataSetupRunner {
 				selectDataFromDB.isUpiRecordExists(palletIDforUPI));
 		getTCData.setPo(palletIDforUPI);
 	}
+	public void insertUPIReceiptDataForRedStock() throws ClassNotFoundException, SQLException, InterruptedException {
+		String poId = GetTCData.getpoId();
+		String Preadvice= Advice();
+		String palletIDforUPI = context.getpalletIDforUPI();
+		Thread.sleep(1000);
+		insertDataIntoDB.insertUPIReceiptHeader(poId,Preadvice);
+		insertDataIntoDB.insertUPIReceiptLineForRedStock(poId);
+		Thread.sleep(3000);
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isUpiRecordExists(palletIDforUPI));
+		getTCData.setPo(palletIDforUPI);
+	}
 	
 	
 
@@ -188,6 +200,21 @@ public class DataSetupRunner {
 		System.out.println(stoId);
 		insertDataIntoDB.insertOrderforUPI(stoId,context.getStoType(),context.getCustomer());
 		insertDataIntoDB.insertorderlineforUPI(stoId,getTCData.getpoId());
+		Thread.sleep(10000);
+		selectDataFromDB.isOrderHeaderRecordExists(stoId);
+		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
+		Thread.sleep(3000);	
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+		selectDataFromDB.isOrderRecordExists(stoId));
+		getTCData.setSto(stoId);
+		System.out.println("Order Id from Interface table is:"+ stoId );
+	}
+	
+	public void insertOrderDataforUPIForRedStock() throws ClassNotFoundException, SQLException, InterruptedException {
+		String stoId = newStoId();
+		System.out.println(stoId);
+		insertDataIntoDB.insertOrderforUPI(stoId,context.getStoType(),context.getCustomer());
+		insertDataIntoDB.insertorderlineforUPIForRedStock(stoId,getTCData.getpoId());
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));

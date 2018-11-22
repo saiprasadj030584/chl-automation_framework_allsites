@@ -303,7 +303,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId();
+		String skuid = context.getSkuId2();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
