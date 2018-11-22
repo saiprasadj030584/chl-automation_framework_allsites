@@ -85,6 +85,7 @@ public String getCommodityCodeDesc(String SKU) throws FindFailed, InterruptedExc
 public void factorycode_validation() throws FindFailed, InterruptedException
 {
 	String factorycode = getfactoryCode();
+	System.out.println(factorycode);
 	if (factorycode.length()!=6){
 		System.out.println("Factory code is not 6 digit : "+factorycode);
 	}

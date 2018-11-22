@@ -14,16 +14,22 @@ import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
 import com.jda.wms.dataload.exit.GetTCData;
 import com.jda.wms.pages.Exit.InventoryTransactionPage;
+import com.jda.wms.pages.Exit.JdaHomePage;
+import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 
 import cucumber.api.java.en.And;
 
 public class InventoryTransactionStepDefs{
 	private InventoryTransactionPage inventoryTransactionPage;
+	private JdaHomePage jdaHomePage;
+	private PreAdviceHeaderPage preAdviceHeaderPage;
 	
 	@Inject
-	public void InventoryTransactionStepDefs(InventoryTransactionPage inventoryTransactionPage){
+	public void InventoryTransactionStepDefs(InventoryTransactionPage inventoryTransactionPage,
+			JdaHomePage jdaHomePage,PreAdviceHeaderPage preAdviceHeaderPage){
 		this.inventoryTransactionPage=inventoryTransactionPage;
-		
+		this.jdaHomePage=jdaHomePage;
+		this.preAdviceHeaderPage=preAdviceHeaderPage;
 	}
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed
@@ -37,4 +43,23 @@ public class InventoryTransactionStepDefs{
 		inventoryTransactionPage.Checktransaction();
 		
 	}
+	@And("^check Qty received is updated in Inventory$")
+	public void check_qty_received_is_updated_in_inventory() throws FindFailed, InterruptedException
+	{
+		inventoryTransactionPage.CheckQtyreceived();
+	}
+	
+	@And("^Check Qty received is updated in Pre-advice line$")
+	public void Qty_received_is_updated_in_pre_advice_line() throws FindFailed, InterruptedException
+	{
+		jdaHomePage.navigateToPreAdviceLinePage(); 
+		  preAdviceHeaderPage.Enterpreadvice();
+		  preAdviceHeaderPage.quantity_validation();
+	}
+	@And("^Check the Orderline must be allocated$")
+	public void check_the_orderline_must_be_allocated() throws FindFailed, ClassNotFoundException, InterruptedException, SQLException
+	{
+		inventoryTransactionPage.getstatus();
+	}
+	
 }
