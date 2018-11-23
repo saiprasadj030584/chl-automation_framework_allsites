@@ -74,9 +74,13 @@ public class InventoryTransactionPage{
 		}}
 	
 		public void CheckQtyreceived() throws FindFailed, InterruptedException{
-			screen.wait("images/InventoryTransactionQuery/Pick/pick.png", timeoutInSec);
+			screen.wait("images/InventoryTransactionQuery/Pick/pick1.png", timeoutInSec);
+			screen.click("images/InventoryTransactionQuery/Pick/pick1.png");
 			Match mLocation = screen.find("images/InventoryTransactionQuery/Pick/pick.png");
 			screen.doubleClick(mLocation.getCenter().below(15));
+			Thread.sleep(2000);
+			screen.wait("images/InventoryTransactionQuery/Pick/General.png", timeoutInSec);
+			screen.click("images/InventoryTransactionQuery/Pick/General.png");
 			Thread.sleep(2000);
 			String OriginalQty = getoriginalqty();
 			System.out.println("Original Qty : "+OriginalQty);
