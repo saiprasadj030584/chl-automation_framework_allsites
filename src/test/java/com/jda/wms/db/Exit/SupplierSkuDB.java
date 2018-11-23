@@ -68,4 +68,17 @@ public class SupplierSkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
-}
+
+	public String getDeclarationValidity() throws SQLException, ClassNotFoundException {
+
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select supplier_id from supplier_sku where sku_id='000000000021071851'");
+		ResultSet rs = stmt
+				.executeQuery("select supplier_id from supplier_sku where sku_id='000000000021071851'");
+		rs.next();
+		return rs.getString(1);
+	}
+	}

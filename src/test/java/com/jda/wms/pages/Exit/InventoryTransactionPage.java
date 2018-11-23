@@ -61,6 +61,18 @@ public class InventoryTransactionPage{
 			System.out.println("Inventory for Receipt,Allocate, Pick found");
 		}}
 	
+	public void ChecktransactionForRedStock() throws FindFailed, InterruptedException{
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
+		screen.doubleClick(mLocation.getCenter().below(15));
+		Thread.sleep(2000);
+		if(screen.find("images/InventoryTransactionQuery/TransactioncodeforRedStock.png").equals(null)){
+			System.out.println("Inventory not found");
+		}
+		else{
+			System.out.println("Inventory for Receipt,InventoryLock and putaway");
+		}}
+	
 		public void CheckQtyreceived() throws FindFailed, InterruptedException{
 			screen.wait("images/InventoryTransactionQuery/Pick/pick.png", timeoutInSec);
 			Match mLocation = screen.find("images/InventoryTransactionQuery/Pick/pick.png");
@@ -112,8 +124,10 @@ public class InventoryTransactionPage{
     		Assert.assertEquals("Order Status", "Ready to Load", orderstatus);
        }
 	public void enterSku() throws InterruptedException, FindFailed{
-		screen.wait("images/InventoryTransactionQuery/General/SkuId.png", timeoutInSec);	
-		screen.click("images/InventoryTransactionQuery/General/SkuId.png");
+		screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
+		Match mSku=screen.find("images/InventoryTransactionQuery/SkuId.png");
+		screen.click(mSku.getCenter().offset(70,0));
+		Thread.sleep(1000);
 		String sku = context.getSkuId2();
 		screen.type(sku);
 		
@@ -137,6 +151,12 @@ public class InventoryTransactionPage{
 		screen.type("c", Key.CTRL);
 		Thread.sleep(2000);
 		return App.getClipboard();
+	}
+	public void clickMiscellaneousTab() throws FindFailed, InterruptedException {
+		
+		screen.wait("images/InventoryTransactionQuery/MiscTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscTab.png");
+		Thread.sleep(1000);
 	}
      
 		

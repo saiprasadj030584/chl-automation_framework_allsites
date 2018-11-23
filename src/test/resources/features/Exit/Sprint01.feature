@@ -368,7 +368,7 @@ Feature: Master_data_setup
     And Search for the M&S INT Reprint Label
     And Verify that the record is displayed for International Urn
     Then Proceed next and enter the required value of pallet
-    Then Validate the confirmation page
+    Then Validate the confirmation page for International Urn
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
     

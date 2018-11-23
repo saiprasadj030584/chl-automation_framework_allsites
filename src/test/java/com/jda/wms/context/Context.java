@@ -129,6 +129,7 @@ public class Context {
 	private String palletIDforUPI;
 	private String POType;
 	private String ASN;
+	public String getSkuId2;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
