@@ -82,6 +82,9 @@ public class InventoryTransactionPage{
 			screen.wait("images/InventoryTransactionQuery/Pick/General.png", timeoutInSec);
 			screen.click("images/InventoryTransactionQuery/Pick/General.png");
 			Thread.sleep(2000);
+			screen.wait("images/InventoryTransactionQuery/Pick/General.png", timeoutInSec);
+			screen.click("images/InventoryTransactionQuery/Pick/General.png");
+			Thread.sleep(2000);
 			String OriginalQty = getoriginalqty();
 			System.out.println("Original Qty : "+OriginalQty);
 			String UpdatedQty = getupdatedqty();
