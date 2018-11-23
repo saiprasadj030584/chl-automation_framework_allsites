@@ -89,7 +89,7 @@ public class PreAdviceHeaderPage{
 		
 	}
 	public String getquantity() throws FindFailed{
-		Match mDescription = screen.find("images/PreAdviceLine/Qtydue.png");
+		Match mDescription = screen.find("images/PreAdviceLine/QtyRcvd.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
