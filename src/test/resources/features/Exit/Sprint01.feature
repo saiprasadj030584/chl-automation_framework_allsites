@@ -326,8 +326,16 @@ Feature: Master_data_setup
     When I query, execute and process further
     Then Verify address and site details are loaded into address screen
     
-   #@Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
-   #Needs Receiving. Would be able to cover with compliance check cases in SPRINT02 
+   @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
+   Scenario: To verify the Red stock PO status
+   Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    Given Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify the status of the PO
 
   @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
   Scenario: To verify pallet consignment and trailer details in the system
@@ -372,8 +380,8 @@ Feature: Master_data_setup
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
     
-    @Pre_receiving @TC34_Verify_Trusted_receiving_data
-    Scenario: To verify Trusted receiving data using MANDS SCHEMA
+    #@Pre_receiving @TC34_Verify_Trusted_receiving_data
+    #Scenario: To verify Trusted receiving data using MANDS SCHEMA
     
     
 
@@ -461,8 +469,17 @@ Feature: Master_data_setup
       | 000000000021071852 |
 
       
-      #@Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
-      #Needs Receiving. Would be able to cover with compliance check cases in SPRINT02
+      @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
+      Scenario: To verify UPC held with RED stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    
+     
       
       #@Pre_receiving @TC43_Verify_VAT_indicator_for_a-product
       #Not applicable as Field is removed from the EXIT

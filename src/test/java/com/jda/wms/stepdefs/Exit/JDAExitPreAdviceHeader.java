@@ -141,9 +141,15 @@ public class JDAExitPreAdviceHeader{
 		  jdaHomePage.navigateToPreAdviceHeaderPage(); 
 		  preAdviceHeaderPage.Enterpreadvice();
 		  preAdviceHeaderPage.getStatus();
+		
 		  Thread.sleep(2000);
 //		  jdaHomePage.navigateToPreAdviceLinePage();
 		 // preAdviceHeaderPage.validation_of_PreAdviceLine();  
+	}
+	@Then("^Verify the status of the PO$")
+	public void verify_the_status_of_the_PO() throws FindFailed, InterruptedException
+	{
+		  preAdviceHeaderPage.validation_of_Status();
 	}
 	@Then("^Verify Supplier is populated in the Pre-advice header table$")
 	public void verify_supplier_is_populated_in_the_pre_advice_table()throws FindFailed, InterruptedException

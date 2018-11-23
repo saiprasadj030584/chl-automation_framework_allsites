@@ -17,6 +17,8 @@ Feature: Receiving
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
+    And check Qty received is updated in Inventory
+    And Check Qty received is updated in Pre-advice line
 
   @Receiving @TC02_Client_ID_Auto_populated
   Scenario: To verify GS128 - Screen - Default Client Auto populated
@@ -24,10 +26,10 @@ Feature: Receiving
     And I select user directed option in main menu
     And I select Receiving menu
     And Verify scan URN screen displayed
-    
-  @Receiving @TC03_Compliance_Check  
+
+  @Receiving @TC03_Compliance_Check
   Scenario: Compliance Check - Happy path - All the required fields are valid
-  Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -43,8 +45,7 @@ Feature: Receiving
     And Check Qty received is updated in Pre-advice line
     And Check the Orderline must be allocated
 
-    
-     @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
+  @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -53,9 +54,8 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-  	
-    
-     @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
+
+  @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
   Scenario: To validate Compliance Check - Stroke Category is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -64,9 +64,9 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-   Then stroke category is validated as NULL
-  
-   @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
+    Then stroke category is validated as NULL
+
+  @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -76,8 +76,8 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then commodity Code is validated as NULL
-    
-   @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
+
+  @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
   Scenario: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -86,9 +86,9 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
- 		Then check weight is validated as null
- 		
- @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
+    Then check weight is validated as null
+
+  @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
   Scenario: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -97,9 +97,9 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
- 		Then Supplier Declaration is validated to be null or in past
- 		
- @TC09_Validate_Compliance_supplier_record_does_not_exist
+    Then Supplier Declaration is validated to be null or in past
+
+  @TC09_Validate_Compliance_supplier_record_does_not_exist
   Scenario: To validate Compliance Check - Supplier Record does not exist
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -108,5 +108,4 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-   Then supplier record does not exist
-
+    Then supplier record does not exist

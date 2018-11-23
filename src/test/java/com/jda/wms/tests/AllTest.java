@@ -14,7 +14,7 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
-				+ "@TC03_Compliance_Check" 
+				+ "@TC29_Verify_the_RED_Stock_PO_status" 
 
 
 				+ ""

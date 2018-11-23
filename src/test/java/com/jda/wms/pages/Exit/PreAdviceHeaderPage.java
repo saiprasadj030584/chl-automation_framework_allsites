@@ -60,6 +60,12 @@ public class PreAdviceHeaderPage{
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	 public void validation_of_Status() throws FindFailed, InterruptedException
+	    {   
+	    	String Status=getStatus();
+	    	Assert.assertEquals("Status Validated Successfully","Completed",Status);
+	    }
+	
 	public String getpreadviceline() throws FindFailed, InterruptedException{
 		/*screen.wait("images/PreAdviceHeader/lines.png", timeoutInSec);
 	    screen.click("images/PreAdviceHeader/lines.png");*/
