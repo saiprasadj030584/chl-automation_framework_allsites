@@ -250,7 +250,7 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
-	public String getpackedweight(String SKU) throws SQLException, ClassNotFoundException {
+	public static String getpackedweight(String SKU) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -277,6 +277,17 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+
+	public static String getUserDefChck3(String sku)throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_chk_3 from sku where sku_id = '" + sku + "'");
+		rs.next();
+		return rs.getString(1);
+	}
+	}
 	
 	
-}

@@ -84,5 +84,17 @@ public class SupplierSKUMaintenancePage {
 		int year = date.get(Calendar.YEAR);
 		
 	}
+	public boolean isRecordExists() throws FindFailed, InterruptedException{
+		
+		
+		if(screen.find("images/SupplierSKU/NoRecords.png")!=null){
+			Match mFinishScreen=screen.find("images/SupplierSKU/NoRecords.png");
+			screen.click(mFinishScreen.getCenter().offset(70, 0));
+			Thread.sleep(1000);
+			return true;				
+		}			
+	else
+	return false;
+}
 
 }

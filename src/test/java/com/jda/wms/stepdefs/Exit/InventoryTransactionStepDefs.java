@@ -16,6 +16,10 @@ import com.jda.wms.dataload.exit.GetTCData;
 import com.jda.wms.pages.Exit.InventoryTransactionPage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
+import com.jda.wms.pages.Exit.SupplierSKUMaintenancePage;
+
+import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
 
 import cucumber.api.java.en.And;
 
@@ -23,13 +27,20 @@ public class InventoryTransactionStepDefs{
 	private InventoryTransactionPage inventoryTransactionPage;
 	private JdaHomePage jdaHomePage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
-	
+	private Context context;
+	private SkuDB skuDB;
+	private SupplierSkuDB supplierSkuDB;
+	private SupplierSKUMaintenancePage SupplierSKUMaintenancePage;
 	@Inject
-	public void InventoryTransactionStepDefs(InventoryTransactionPage inventoryTransactionPage,
-			JdaHomePage jdaHomePage,PreAdviceHeaderPage preAdviceHeaderPage){
+	public void InventoryTransactionStepDefs(SkuDB skuDB,InventoryTransactionPage inventoryTransactionPage,
+			JdaHomePage jdaHomePage,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
 		this.inventoryTransactionPage=inventoryTransactionPage;
 		this.jdaHomePage=jdaHomePage;
 		this.preAdviceHeaderPage=preAdviceHeaderPage;
+		this.context=context;
+		this.skuDB=skuDB;
+		this.supplierSkuDB=supplierSkuDB;
+		this.SupplierSKUMaintenancePage=SupplierSKUMaintenancePage;
 	}
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed
@@ -61,18 +72,53 @@ public class InventoryTransactionStepDefs{
 	{
 		inventoryTransactionPage.getstatus();
 	}
-	@And("^check the Inventory Transaction for Receipt, Allocate and Pick for the Red lock code$")
-	public void check_the_inventory_transaction_for_receipt_allocate_pick_for_red_lock_code() throws FindFailed, InterruptedException
+	@And("^check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code$")
+	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
 	{
+		String sku= context.getSkuId2();
+		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
+		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
 		jdaHomePage.navigateToInventory();
 		inventoryTransactionPage.click_on_Query();		
 		inventoryTransactionPage.enterSku();
 		inventoryTransactionPage.clickExecuteButton();
-		inventoryTransactionPage.Checktransaction();
+		Thread.sleep(2000);
 		String LC=inventoryTransactionPage.checkLockcode();
 		Assert.assertEquals("Lock code not as expected", "RED", LC);
+		Thread.sleep(2000);
+		inventoryTransactionPage.clickMiscellaneousTab();
+		inventoryTransactionPage.ChecktransactionForRedStock();
+			
+	}
+	
+	@And("^Supplier Declaration is validated to be null or in past$")
+	public void supplier_declarartion_is_validated_to_be_null_or_in_past() throws Throwable,FindFailed{
+		String supplierdeclaration= supplierSkuDB.getDeclarationValidity();
+		Assert.assertNotNull("SD not null", supplierdeclaration);
+	}
+	
+	@And("^commodity Code is validated as NULL$")
+	public void commodity_code_is_validated_as_null() throws Throwable,FindFailed{
 		
+		Assert.assertNull("commodity code is not null", "null");
+	}
+	
+	@And("^stroke category is validated as NULL$")
+	public void stroke_category_is_validated_as_null() throws Throwable,FindFailed{
+		
+		Assert.assertNull("stroke category is not null", "null");
+	}
+	
+	@And("^supplier record does not exist$")
+	public void supplier_recod_does_not_exist() throws Throwable,FindFailed{
+		jdaHomePage.navigateToSupplierSKUHome();
+		inventoryTransactionPage.click_on_Query();		
+		inventoryTransactionPage.enterSku();
+		inventoryTransactionPage.clickExecuteButton();
+		Assert.assertTrue("record exists", SupplierSKUMaintenancePage.isRecordExists());
 		
 	}
+	
+	
 	
 }

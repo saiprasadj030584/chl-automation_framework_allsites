@@ -13,16 +13,22 @@ import com.jda.wms.pages.Exit.SKUQueryPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import com.jda.wms.context.Context;
+
+
+
 
 public class SKUQueryStepDefs{
 	
 	private final SKUQueryPage sKUQueryPage;
 	private final SkuDB skuDB;
+	private Context context;
 	
 	@Inject
-	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB){
+	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context){
 		this.sKUQueryPage=sKUQueryPage;
 		this.skuDB=skuDB;
+		this.context=context;
 	}
 	
 	@And("^Specify the SKU \"([^\"]*)\"$")
@@ -118,6 +124,14 @@ public class SKUQueryStepDefs{
 	{
 		sKUQueryPage.clickSupplierSkuFromSKU();
 		sKUQueryPage.supplierid_Validation(SKU);
+	}
+	
+	@Then("^check weight is validated as null$")
+	public void check_weight_is_validated_as_null() throws Throwable{
+		String sku=context.getSkuId2();
+		String packedWeight = SkuDB.getpackedweight(sku);
+		System.out.println("packed weight"+packedWeight);
+		Assert.assertNull("Check Weight is not as expected", packedWeight);	
 	}
 	}
 	

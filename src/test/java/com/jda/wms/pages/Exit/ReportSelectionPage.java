@@ -77,9 +77,9 @@ public class ReportSelectionPage {
 	
 	public boolean isProcessConfirmedForIntUrn() throws FindFailed, InterruptedException{
 		
-			if(screen.find("images/ReportSelection/InternationalUrn.png")!=null){
+			if(screen.find("images/ReportSelection/InternationalURNConfirmed.png")!=null){
 				
-			Match mScreen=screen.find("images/ReportSelection/InternationalUrn.png");
+			Match mScreen=screen.find("images/ReportSelection/InternationalURNConfirmed.png");
 			screen.click(mScreen.getCenter().offset(70, 0));
 			Thread.sleep(1000);
 			return true;
@@ -109,8 +109,8 @@ public class ReportSelectionPage {
 	public boolean isReportSelectionDoneIntUrn() throws FindFailed, InterruptedException{
 		
 			
-			if(screen.find("images/ReportSelection/InternationalUrn.png")!=null){
-				Match mFinishScreen=screen.find("images/ReportSelection/InternationalUrn.png");
+			if(screen.find("images/ReportSelection/InternationalURN.png")!=null){
+				Match mFinishScreen=screen.find("images/ReportSelection/InternationalURN.png");
 				screen.click(mFinishScreen.getCenter().offset(70, 0));
 				Thread.sleep(1000);
 				return true;				
