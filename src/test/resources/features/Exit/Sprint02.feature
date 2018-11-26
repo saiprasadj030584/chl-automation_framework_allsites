@@ -114,3 +114,15 @@ Feature: Receiving
     @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
     Scenario: To validate direct receiving happy path non-trusted-non-prohibited inventory
     
+    
+    @Receiving @TC031_Location_verification
+  	Scenario Outline: Find the Location ZONE setup
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-LOCATION-LocationZone & Click
+    And Click on Query
+    And click execute
+    Then Verify the LocationZone "<LocationZone>" displayed
+
+    Examples: 
+      | LocationZone |
+      | BLACKB       |
