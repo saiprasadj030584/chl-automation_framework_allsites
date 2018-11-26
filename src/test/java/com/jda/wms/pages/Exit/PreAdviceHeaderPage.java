@@ -63,7 +63,8 @@ public class PreAdviceHeaderPage{
 	 public void validation_of_Status() throws FindFailed, InterruptedException
 	    {   
 	    	String Status=getStatus();
-	    	Assert.assertEquals("Status Validated Successfully","Completed",Status);
+	    	Assert.assertEquals("Status Validated Successfully","Complete",Status);
+	    	System.out.println("PO Status"+Status);
 	    }
 	
 	public String getpreadviceline() throws FindFailed, InterruptedException{

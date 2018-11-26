@@ -478,6 +478,9 @@ Feature: Master_data_setup
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    Then stroke category is validated as NULL
+    Then commodity Code is validated as NULL
+    Then Supplier Declaration is validated to be null or in past
     
      
       

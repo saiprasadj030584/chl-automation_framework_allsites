@@ -45,7 +45,7 @@ Feature: Receiving
     And Check Qty received is updated in Pre-advice line
     And Check the Orderline must be allocated
 
-  @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
+  @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -55,7 +55,7 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
 
-  @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
+  @Receiving @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
   Scenario: To validate Compliance Check - Stroke Category is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -66,7 +66,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
 
-  @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
+  @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -77,7 +77,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then commodity Code is validated as NULL
 
-  @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
+  @Receiving @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
   Scenario: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -88,7 +88,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then check weight is validated as null
 
-  @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
+  @Receiving @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
   Scenario: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -99,7 +99,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then Supplier Declaration is validated to be null or in past
 
-  @TC09_Validate_Compliance_supplier_record_does_not_exist
+  @Receiving @TC09_Validate_Compliance_supplier_record_does_not_exist
   Scenario: To validate Compliance Check - Supplier Record does not exist
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -109,3 +109,8 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then supplier record does not exist
+    
+    
+    @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
+    Scenario: To validate direct receiving happy path non-trusted-non-prohibited inventory
+    
