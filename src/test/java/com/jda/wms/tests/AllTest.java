@@ -14,22 +14,8 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
-				+ "@TC29_Verify_the_RED_Stock_PO_status" 
+				+ "@TC07_Validate_Compliance_check_check_weight_is_null_or_invalid" 
 
-
-				+ ""
-				+ ""
-
-				
-				
-				+ ""
-				
-				
-
-				+ ""
-
-				
-				+ ""
 
 			
 
