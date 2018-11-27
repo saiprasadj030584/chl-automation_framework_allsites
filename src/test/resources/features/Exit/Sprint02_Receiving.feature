@@ -126,3 +126,10 @@ Feature: Receiving
     Examples: 
       | LocationZone |
       | BLACKB       |
+      | REDB         |
+      
+     @Receiving @TC032_Verify_GS1_Receiving_screen
+     Scenario: To verify GS1 Receiving screen is displayed
+     Given I login as warehouse user in putty
+     Then I select user directed option in main menu
+     And I select Receiving menu
