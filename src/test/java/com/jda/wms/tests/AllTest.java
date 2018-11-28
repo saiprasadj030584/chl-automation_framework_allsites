@@ -14,19 +14,8 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
-
-
-
 				+ "@TC23_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process" 
 
-
-
-
-				 
-
-				 
-
-			
 
 
 
