@@ -159,6 +159,17 @@ public class InventoryTransactionPage{
 		Thread.sleep(2000);
 		return App.getClipboard();
 	}
+public String checkReasoncode() throws FindFailed, InterruptedException {
+		
+		screen.wait("images/InventoryTransactionQuery/ReasonCode.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/ReasonCode.png");
+		Match mStatus = screen.find("images/InventoryTransactionQuery/ReasonCode.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
 	public void clickMiscellaneousTab() throws FindFailed, InterruptedException {
 		
 		screen.wait("images/InventoryTransactionQuery/MiscTab.png", timeoutInSec);

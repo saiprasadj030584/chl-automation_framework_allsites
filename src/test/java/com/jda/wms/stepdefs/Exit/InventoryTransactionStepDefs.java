@@ -19,6 +19,7 @@ import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.SupplierSKUMaintenancePage;
 
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.MandsDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
 
 import cucumber.api.java.en.And;
@@ -31,8 +32,9 @@ public class InventoryTransactionStepDefs{
 	private SkuDB skuDB;
 	private SupplierSkuDB supplierSkuDB;
 	private SupplierSKUMaintenancePage SupplierSKUMaintenancePage;
+	private MandsDB mandsDB;
 	@Inject
-	public void InventoryTransactionStepDefs(SkuDB skuDB,InventoryTransactionPage inventoryTransactionPage,
+	public void InventoryTransactionStepDefs(SkuDB skuDB,MandsDB mandsDB,InventoryTransactionPage inventoryTransactionPage,
 			JdaHomePage jdaHomePage,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
 		this.inventoryTransactionPage=inventoryTransactionPage;
 		this.jdaHomePage=jdaHomePage;
@@ -41,6 +43,7 @@ public class InventoryTransactionStepDefs{
 		this.skuDB=skuDB;
 		this.supplierSkuDB=supplierSkuDB;
 		this.SupplierSKUMaintenancePage=SupplierSKUMaintenancePage;
+		this.mandsDB=mandsDB;
 	}
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed
@@ -80,13 +83,12 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
 		jdaHomePage.navigateToInventory();
 		inventoryTransactionPage.click_on_Query();		
-		inventoryTransactionPage.enterSku();
+		inventoryTransactionPage.EnterContanierID();
 		inventoryTransactionPage.clickExecuteButton();
 		Thread.sleep(2000);
-		String LC=inventoryTransactionPage.checkLockcode();
-		Assert.assertEquals("Lock code not as expected", "RED", LC);
+		String RC=inventoryTransactionPage.checkReasoncode();
+		Assert.assertEquals("Reason code not as expected", "RED", RC);
 		Thread.sleep(2000);
-		inventoryTransactionPage.clickMiscellaneousTab();
 		inventoryTransactionPage.ChecktransactionForRedStock();
 			
 	}
@@ -99,14 +101,16 @@ public class InventoryTransactionStepDefs{
 	
 	@And("^commodity Code is validated as NULL$")
 	public void commodity_code_is_validated_as_null() throws Throwable,FindFailed{
-		
-		Assert.assertNull("commodity code is not null", "null");
+		String Sku= context.getSkuId2();
+		String CommodityCode= mandsDB.getUserDefType9(Sku);
+		Assert.assertNotSame("commodity code is not null", CommodityCode,"null");
 	}
 	
 	@And("^stroke category is validated as NULL$")
 	public void stroke_category_is_validated_as_null() throws Throwable,FindFailed{
-		
-		Assert.assertNull("stroke category is not null", "null");
+		String Sku= context.getSkuId2();
+		String StrokeCategory= mandsDB.getUserDefType11(Sku);
+		Assert.assertNotSame("stroke category is not null", StrokeCategory,"null");
 	}
 	
 	@And("^supplier record does not exist$")

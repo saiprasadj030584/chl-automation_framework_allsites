@@ -65,7 +65,7 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
-
+				
   @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
@@ -114,3 +114,22 @@ Feature: Receiving
     @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
     Scenario: To validate direct receiving happy path non-trusted-non-prohibited inventory
     
+    
+    @Receiving @TC031_Location_verification
+  	Scenario Outline: Find the Location ZONE setup
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-LOCATION-LocationZone & Click
+    And Click on Query
+    And click execute
+    Then Verify the LocationZone "<LocationZone>" displayed
+
+    Examples: 
+      | LocationZone |
+      | BLACKB       |
+      | REDB         |
+      
+     @Receiving @TC032_Verify_GS1_Receiving_screen
+     Scenario: To verify GS1 Receiving screen is displayed
+     Given I login as warehouse user in putty
+     Then I select user directed option in main menu
+     And I select Receiving menu
