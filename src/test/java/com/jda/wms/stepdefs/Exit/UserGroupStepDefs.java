@@ -53,5 +53,9 @@ public class UserGroupStepDefs{
 	public void validation_of_webaccess()throws Throwable {
 		jdaHomePage.iswebAccessavail();
 	}
+	@And("^Verify whether the access is valid$")
+	public void verify_whether_the_access_is_valid()throws Throwable {
+		jdaHomePage.isUserAccessavaild();
+	}
 	
 }

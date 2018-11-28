@@ -1,6 +1,8 @@
 package com.jda.wms.stepdefs.Exit;
 
 import org.junit.Assert;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -25,6 +27,10 @@ public class LocationZoneStepDefs {
 		String currentLocationZone = locationZonePage.getLocationZone();
 		System.out.println("Location is : " + locationZone);
 		Assert.assertEquals("Location is as expected: ", locationZone,currentLocationZone);
+	}
+	@Given("^Enter the LocationZone \"([^\"]*)\"$")
+	public void Enter_the_LocationZone(String locationZone) throws Throwable {
+		locationZonePage.enterLocationZone(locationZone);
 	}
 	
 }
