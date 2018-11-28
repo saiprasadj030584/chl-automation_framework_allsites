@@ -116,6 +116,12 @@ public class JdaHomePage {
 		} else
 			return false;
 	}
+	public boolean isUserAccessavaild() throws FindFailed, InterruptedException {
+		if (screen.exists("images/JDAHome/UserGroupFunctionAccess.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 	public boolean iswebAccessavail() throws FindFailed, InterruptedException {
 		if (screen.exists("images/JDAHome/webaccess.png") != null) {
 			return true;
@@ -969,7 +975,7 @@ public class JdaHomePage {
 		ClickAdminMenu();
 		hoverAccesscontrol();
 		Thread.sleep(1000);
-		clickUsergroup();
+		clickUsergroupFunctionaccess();
 		Thread.sleep(3000);
 	}
 	public void navigateToWorkstation() throws FindFailed, InterruptedException {
