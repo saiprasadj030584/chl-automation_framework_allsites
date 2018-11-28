@@ -14,22 +14,11 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
+
 				+ "@TC01_Batch_and_Expiry_Date_Check" 
 
 
-				+ ""
-				+ ""
 
-				
-				
-				+ ""
-				
-				
-
-				+ ""
-
-				
-				+ ""
 
 			
 
