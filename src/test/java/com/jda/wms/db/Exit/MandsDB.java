@@ -44,7 +44,60 @@ public class MandsDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+
+	public String updateStroke(String sku) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sku);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_11=(null) where sku_id='" + sku + "'");
+		context.getConnection().commit();
 		
+		return null;
 	}
+
+
+	public String UpdateToOriginalStroke(String strokeCt, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sku);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_11='" + strokeCt + "' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+
+
+	public String updateCommodityCode(String sku)throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sku);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_9 =(null) where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+	public String UpdateToOriginalCommodity(String CommodityCd, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sku);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_11='" + CommodityCd + "' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+
+	}
+	
+		
+	
 
 

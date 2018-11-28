@@ -48,6 +48,7 @@ Feature: Receiving
   @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -58,6 +59,7 @@ Feature: Receiving
   @Receiving @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
   Scenario: To validate Compliance Check - Stroke Category is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then Alter the stroke category to make the stock as RED stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -69,6 +71,7 @@ Feature: Receiving
   @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then Alter the commodity Code to make the stock as RED stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -80,6 +83,7 @@ Feature: Receiving
   @Receiving @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
   Scenario: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -91,6 +95,7 @@ Feature: Receiving
   @Receiving @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
   Scenario: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then Alter the supplier declaration validity to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu

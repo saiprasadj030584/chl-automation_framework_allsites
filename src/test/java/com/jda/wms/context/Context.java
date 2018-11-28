@@ -130,6 +130,9 @@ public class Context {
 	private String POType;
 	private String ASN;
 	public String getSkuId2;
+	private String packWeight;
+	private String strokeCategory;
+	private String commodityCode;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1056,8 +1059,36 @@ public class Context {
 	public String getBelCode() {
 		return belCode;
 	}
+
+	public void setPackWeight(String packWeight)  {
+		this.packWeight = packWeight;
+	}
 	
-}
+	public String getPackWeight() {
+		return packWeight;
+	}
+
+	public void setStrokeCt(String strokeCategory) {
+		this.strokeCategory=strokeCategory;
+		
+	}
+	public String getStrokeCt() {
+		return strokeCategory;
+	}
+
+	public void setCommodityCd(String commodityCode) {
+		this.commodityCode=commodityCode;
+		
+	}
+	public String getCommodityCd() {
+		return commodityCode;
+	}
+
+
+	
+	}
+	
+
 
 
 

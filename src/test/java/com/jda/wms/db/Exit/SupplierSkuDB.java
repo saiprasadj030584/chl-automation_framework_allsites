@@ -81,4 +81,33 @@ public class SupplierSkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
+	
+	public String updatesupplierDeclaration(String sKU) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sKU);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update supplier_sku set supplier_id=(null) where sku_id='" + sKU + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+
+	
+
+	public String UpdateOriginal(String supplierdeclaration, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println(supplierdeclaration);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update sku set supplier_id='" + supplierdeclaration + "' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+
+	
 	}

@@ -284,10 +284,38 @@ public class SkuDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs1= stmt.executeQuery("update sku set user_def_chk_3='Y' where sku_id = '" + sku + "'");
+		context.getConnection().commit();
 		ResultSet rs = stmt.executeQuery("select user_def_chk_3 from sku where sku_id = '" + sku + "'");
 		rs.next();
 		return rs.getString(1);
 	}
+
+	public String updatePackedweight(String sKU) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sKU);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update sku set packed_weight=(null) where sku_id='" + sKU + "'");
+		context.getConnection().commit();
+		
+		return null;
 	}
+
 	
+
+	public String UpdateOriginal(String packweight, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println(packweight);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update sku set packed_weight='" + packweight + "' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+	}
+		
 	

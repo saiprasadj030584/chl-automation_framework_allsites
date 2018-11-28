@@ -8,6 +8,10 @@ import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
 import com.jda.wms.db.Exit.SkuDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
+import com.jda.wms.context.Context;
+
+
 import com.jda.wms.pages.Exit.SupplierSKUMaintenancePage;
 
 import cucumber.api.java.en.And;
@@ -18,13 +22,17 @@ public class SupplierSKUQueryStepDefs{
 	
 	private final SupplierSKUMaintenancePage supplierSKUMaintenancePage;
 	private final SkuDB skuDB;
+	private final SupplierSkuDB supplierSkuDB;
 	private final SKUQueryPage sKUQueryPage;
+	private final Context context;
 	
 	@Inject
-	public SupplierSKUQueryStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage,SkuDB skuDB,SKUQueryPage sKUQueryPage){
+	public SupplierSKUQueryStepDefs(SupplierSKUMaintenancePage supplierSKUMaintenancePage,Context context,SupplierSkuDB supplierSkuDB,SkuDB skuDB,SKUQueryPage sKUQueryPage){
 		this.supplierSKUMaintenancePage=supplierSKUMaintenancePage;
 		this.skuDB=skuDB;
+		this.supplierSkuDB=supplierSkuDB;
 		this.sKUQueryPage=sKUQueryPage;
+		this.context=context;
 	}
 	
 	@Then("^Verify the Delivery lead time in future date$")
@@ -64,5 +72,16 @@ public class SupplierSKUQueryStepDefs{
 		sKUQueryPage.getfactoryCode();
 		sKUQueryPage.factorycode_validation();
 		
+	}
+	@Then("^Alter the supplier declaration validity to make the stock as RED Stock$")
+	public void alter_the_supplier_declaration_validity_to_make_the_stock_as_red_stock() throws Throwable{
+		String SKU=context.getSkuId2();
+		String supplierDeclaration= supplierSkuDB.getDeclarationValidity();
+		
+		System.out.println("supplierdeclaration="+supplierDeclaration);
+		context.setSupplierID(supplierDeclaration);
+		
+		String UpdatesupplierDeclaration=supplierSkuDB.updatesupplierDeclaration(SKU);
+		System.out.println("UpdatesupplierDeclaration="+UpdatesupplierDeclaration);
 	}
 }
