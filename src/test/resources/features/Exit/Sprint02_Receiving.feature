@@ -113,6 +113,298 @@ Feature: Receiving
     
     @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
     Scenario: To validate direct receiving happy path non-trusted-non-prohibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    And check Qty received is updated in Inventory
+    And Check Qty received is updated in Pre-advice line
+    
+    @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    
+    @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    
+    @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
+    Scenario: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+   
+    
+    @Receiving @TC15_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
+    Scenario: To validate  Direct receiving – Happy path – Non Trusted – Boxed – NonProhibited inventory – Expiry capture
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC16_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
+    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory – Expiry capture
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC17_Direct_receiving_Happy_path_Non_Trusted_Hanging_NonProhibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Non Trusted – Hanging – NonProhibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Trusted – Hanging -  NonProhibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Non Trusted – Hanging – Prohibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    
+    @Receiving @TC21_FSV_Receiving_Happy_path_Boxed_Article
+    Scenario: To validate FSV Receiving - Happy path –  Boxed Article
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    @Receiving @TC22_FSV_Receiving_Over_receipt_Boxed_Article_Black_Stock_Process
+    Scenario: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for over receipt
+    And I enter To Pallet
+    And Validate OverReceipt Error
+    
+    @Receiving @TC23_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process
+    Scenario: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for over unknown stock
+    And I enter To Pallet
+    And Validate Unknown stock Error
+    
     
     
     @Receiving @TC031_Location_verification

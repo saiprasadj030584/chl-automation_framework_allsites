@@ -94,6 +94,18 @@ public class PuttyFunctionsPage {
 		else
 			return false;
 	}
+	public boolean Overreceipterror() {
+		if (screen.exists("images/Putty/Receiving/OverReceiptError1.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean UnknownStock() {
+		if (screen.exists("images/Putty/Receiving/OverReceiptError1.png") != null)
+			return true;
+		else
+			return false;
+	}
 
 	public void minimisePutty() throws FindFailed, InterruptedException {
 		screen.wait("images/Putty/PuttyMinimise.png", timeoutInSec);
@@ -333,6 +345,19 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			}
 			return qtyDue;
 		}
+		public String skuQtyManipulate2OverReceipt(String preAdviceId) throws ClassNotFoundException, SQLException {
+			String skuid=context.getSkuId2();
+			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
+			int sumLength = qtyDue.length();
+			if (sumLength == 1) {
+				qtyDue = qtyDue+"000"  ;
+			} else if (sumLength == 2) {
+				qtyDue = qtyDue + "00"  ;
+			} else if (sumLength == 3) {
+				qtyDue = qtyDue + "0"  ;
+			}
+			return qtyDue;
+		}
 		public String skuQtyManipulate2ForRedStock(String preAdviceId) throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
@@ -393,7 +418,53 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			context.setBelCode(belCode);
 			System.out.println(belCode);;
 		}
-		
+		public void I_generate_belcode_for_overreceipt(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+			String belCode = null;
+			context.setSkuId2(skuid);
+			// Checkdigit : 2 any random number
+			String checkdigit = Utilities.getTwoDigitRandomNumber();
+//			String checkdigit = "02";
+			System.out.println("checkdigit "+checkdigit);
+			// Supplier code : 5 digit
+			String supplier = suppliermanipulate();
+			System.out.println("supplier "+supplier);
+			// UPC : 8 digit
+			String upc = preAdviceLineDB.getUpc(skuid);
+			System.out.println("upc "+upc );
+			// Quantity : 4 digit
+			String skuqtymanipulate = skuQtyManipulate2OverReceipt(preAdviceId);
+			System.out.println("skuqtymanipulate "+skuqtymanipulate);
+			// Checkbit hardcoded : 1 digit
+			String checkbit = "1";
+			System.out.println("checkbit "+checkbit);
+			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
+			context.setBelCode(belCode);
+			System.out.println(belCode);;
+		}
+		public void I_generate_belcode_for_unknown_Stock(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+			String belCode = null;
+			context.setSkuId2(skuid);
+			// Checkdigit : 2 any random number
+			String checkdigit = Utilities.getTwoDigitRandomNumber();
+//			String checkdigit = "02";
+			System.out.println("checkdigit "+checkdigit);
+			// Supplier code : 5 digit
+			String supplier = suppliermanipulate();
+			System.out.println("supplier "+supplier);
+			// UPC : 8 digit
+			String upc="00000000";
+//			String upc = preAdviceLineDB.getUpc(skuid);
+			System.out.println("upc "+upc );
+			// Quantity : 4 digit
+			String skuqtymanipulate = skuQtyManipulate2OverReceipt(preAdviceId);
+			System.out.println("skuqtymanipulate "+skuqtymanipulate);
+			// Checkbit hardcoded : 1 digit
+			String checkbit = "1";
+			System.out.println("checkbit "+checkbit);
+			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
+			context.setBelCode(belCode);
+			System.out.println(belCode);;
+		}
 	
 
 }

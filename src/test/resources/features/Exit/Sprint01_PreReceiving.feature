@@ -469,8 +469,8 @@ Feature: Master_data_setup
       | 000000000021071852 |
 
       
-      @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
-      Scenario: To verify UPC held with RED stock
+    @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
+    Scenario: To verify UPC held with RED stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
