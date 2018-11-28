@@ -35,5 +35,6 @@ public class LocationZonePage {
 			return true;
 		else
 			return false;
-	}	
+	}
+	
 }
