@@ -65,7 +65,7 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
-
+				
   @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
@@ -126,6 +126,7 @@ Feature: Receiving
     Examples: 
       | LocationZone |
       | BLACKB       |
+      | REDB         |
       
      @Receiving @TC032_Verify_GS1_Receiving_screen
      Scenario: To verify GS1 Receiving screen is displayed

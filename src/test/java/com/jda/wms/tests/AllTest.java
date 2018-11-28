@@ -14,22 +14,11 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
 
-				+ "@TC29_Verify_the_RED_Stock_PO_status" 
+
+				+ "@TC01_Batch_and_Expiry_Date_Check" 
 
 
-				+ ""
-				+ ""
 
-				
-				
-				+ ""
-				
-				
-
-				+ ""
-
-				
-				+ ""
 
 			
 
