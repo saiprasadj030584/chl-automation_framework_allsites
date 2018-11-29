@@ -7,6 +7,7 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
+import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.pages.Exit.SKUQueryPage;
 
@@ -23,12 +24,13 @@ public class SKUQueryStepDefs{
 	private final SKUQueryPage sKUQueryPage;
 	private final SkuDB skuDB;
 	private Context context;
-	
+	private PreAdviceLineDB preAdviceLineDB;
 	@Inject
-	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context){
+	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context,PreAdviceLineDB preAdviceLineDB){
 		this.sKUQueryPage=sKUQueryPage;
 		this.skuDB=skuDB;
 		this.context=context;
+		this.preAdviceLineDB=preAdviceLineDB;
 	}
 	
 	@And("^Specify the SKU \"([^\"]*)\"$")
@@ -147,7 +149,27 @@ public class SKUQueryStepDefs{
 		String UpdatePackWeight=skuDB.updatePackedweight(SKU);
 		System.out.println("UpdatePackWeight"+UpdatePackWeight);
 	}
-	
+	@And("^Alter the Tdept as Null for Unknown Stock Error$")
+	public void alter_the_Tdept_as_null_for_unknown_stock_error() throws Throwable
+	{
+		String SKU=context.getSkuId();
+		String ProductGroup1=preAdviceLineDB.getUpc(SKU);
+		System.out.println("ProductGroup="+ProductGroup1);
+		context.setProductGroup1(ProductGroup1);
+	    String UpdateProductGroup1=skuDB.Updateproductgroup(ProductGroup1,SKU);
+	  		System.out.println("UpdateProductGroup1 "+UpdateProductGroup1);
+	}
+	@Then("^Product_group is validated as null$")
+	public void product_group_is_validated_as_null() throws Throwable{
+		String SKU=context.getSkuId();
+		String ProductGroup1=skuDB.getProductGroup(SKU);
+		System.out.println("ProductGroup="+ProductGroup1);
+		Assert.assertEquals("Product Group is not as expected", ProductGroup1);
+		String Productgroup1=context.getProductGroup1();
+		System.out.println(Productgroup1);
+		String Originalproductgroup=skuDB.UpdateproductgroupOriginal(Productgroup1,SKU);
+			
+	}
 	
 	}
 	

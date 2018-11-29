@@ -318,7 +318,7 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterPalletID(palletID);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(1000);
-		puttyFunctionsPage.I_generate_belcode_for_unknown_Stock(GetTCData.getpoId(),skuid);
+		puttyFunctionsPage.I_generate_belcode(GetTCData.getpoId(),skuid);
 		String belCode = context.getBelCode();
 		System.out.println("BelCode "+belCode);
 		Thread.sleep(2000);
@@ -393,6 +393,26 @@ public class JDAExitputtyfunctionsStepDef {
 		logger.debug("Validated Supplier Value: " + SupplierValue);
 		Thread.sleep(1000);
 		}
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_unknown() throws Throwable {
+		Thread.sleep(1000);
+		GetTCData.getpoId();
+		String skuid=context.getSkuId();
+		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		String palletID = context.getPalletID();
+		System.out.println("palletID "+palletID);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterPalletID(palletID);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		puttyFunctionsPage.I_generate_belcode_for_unknown(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+						}
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
 		GetTCData.getpoId();
@@ -501,13 +521,15 @@ public class JDAExitputtyfunctionsStepDef {
    public void validate_overreceipt_error()throws Throwable 
    {
 	   puttyFunctionsPage.Overreceipterror();
+	   puttyFunctionsPage.pressEnter();
 	   hooks.logoutPutty();
    }
 
    @And("^Validate Unknown stock Error$")
    public void validate_unknownStock_error()throws Throwable 
    {
-	   puttyFunctionsPage.Overreceipterror();
+	   puttyFunctionsPage.UnknownStock();
+	   puttyFunctionsPage.pressEnter();
 	   hooks.logoutPutty();
    }
 	
