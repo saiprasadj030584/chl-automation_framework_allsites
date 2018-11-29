@@ -302,6 +302,18 @@ public class DataSetupRunner {
 		presenceMap.put("interfaceTable", interfaceTable);
 		return presenceMap;
 	}
-	
+//	public void insertPreAdviceDataforUPITrial() throws ClassNotFoundException, SQLException, InterruptedException {
+//		String poId = newPoId();
+//		getTCData.setpoId(poId);
+//		String Preadvice= Advice();
+//		insertDataIntoDB.insertPreAdviceHeaderforUPI(poId,Preadvice);
+//		insertDataIntoDB.insertPreAdvicelineTrial(poId,Preadvice);
+//		Thread.sleep(7000);
+//		System.out.println("pre advice Id = " + poId);
+//		Assert.assertTrue("Test Data not available - Issue in Data loading",
+//				selectDataFromDB.isPreAdviceRecordExists(poId));
+//		getTCData.setpoId(poId);
+//	}
+//	
 	
 }

@@ -95,7 +95,34 @@ public class MandsDB {
 		return null;
 	}
 
+	public String getProductGroup(String customer)throws SQLException, ClassNotFoundException {
+		System.out.println(customer);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select product_group FROM mands.trusted_user_mode where customer_id='" + customer + "'");
+		ResultSet rs = stmt
+				.executeQuery("select product_group FROM mands.trusted_user_mode where customer_id='" + customer + "'");
+		rs.next();
+		return rs.getString(1);
 	}
+
+	public String getTrustedStock(String customer, String pdtGp)throws SQLException, ClassNotFoundException {
+		System.out.println(customer);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select trusted FROM mands.trusted_user_mode where customer_id='" + customer + "' and product_group='"+pdtGp+"'");
+		ResultSet rs = stmt
+				.executeQuery("select trusted FROM mands.trusted_user_mode where customer_id='" + customer + "' and product_group='"+pdtGp+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+	}
+
+	
 	
 		
 	
