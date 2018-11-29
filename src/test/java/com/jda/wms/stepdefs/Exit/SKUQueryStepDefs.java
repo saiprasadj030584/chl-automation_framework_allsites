@@ -131,8 +131,24 @@ public class SKUQueryStepDefs{
 		String sku=context.getSkuId2();
 		String packedWeight = SkuDB.getpackedweight(sku);
 		System.out.println("packed weight"+packedWeight);
-		Assert.assertNull("Check Weight is not as expected", packedWeight);	
+		Assert.assertNull("Check Weight is not as expected", packedWeight);
+		String Packweight= context.getPackWeight();
+		System.out.println(Packweight);
+		String OriginalPackWeight=skuDB.UpdateOriginal(Packweight,sku);
+			
 	}
+	@Then("^Alter the check weight to make the stock as RED Stock$")
+	public void alter_the_check_weight_to_make_the_stock_as_red_stock() throws Throwable{
+		String SKU=context.getSkuId2();
+		String PackWeight=skuDB.getpackedweight(SKU);
+		System.out.println("packweight="+PackWeight);
+		context.setPackWeight(PackWeight);
+		
+		String UpdatePackWeight=skuDB.updatePackedweight(SKU);
+		System.out.println("UpdatePackWeight"+UpdatePackWeight);
+	}
+	
+	
 	}
 	
 

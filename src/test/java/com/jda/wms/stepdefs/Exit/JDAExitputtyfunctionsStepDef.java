@@ -262,6 +262,93 @@ public class JDAExitputtyfunctionsStepDef {
 	}
 	
 //	
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for over receipt$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_over_receipt() throws Throwable {
+		Thread.sleep(1000);
+		GetTCData.getpoId();
+		String skuid=context.getSkuId();
+		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		String palletID = context.getPalletID();
+		System.out.println("palletID "+palletID);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterPalletID(palletID);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		puttyFunctionsPage.I_generate_belcode_for_overreceipt(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
+		System.out.println("UPCValue= "+prefixlist);
+		String UPCDB=SkuDB.getUPCDB();//from DB
+		System.out.println("UPCDB= "+UPCDB);
+		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
+		Thread.sleep(1000);
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+		String preAdviceID=GetTCData.getpoId();
+		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+		System.out.println("QTYDB= "+QTYDB);
+		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+		logger.debug("Validated QTY value : " + DBlist);
+		Thread.sleep(1000);
+		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+		System.out.println("SupplierValue= "+SupplierValue);
+		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+		System.out.println("SupplierDB= "+SupplierDB);
+		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+		logger.debug("Validated Supplier Value: " + SupplierValue);
+		Thread.sleep(1000);
+		}
+	
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for over unknown stock$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_over_unknown_stock() throws Throwable {
+		Thread.sleep(1000);
+		GetTCData.getpoId();
+		String skuid=context.getSkuId();
+		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
+		String palletID = context.getPalletID();
+		System.out.println("palletID "+palletID);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterPalletID(palletID);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		puttyFunctionsPage.I_generate_belcode_for_unknown_Stock(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
+		System.out.println("UPCValue= "+prefixlist);
+		String UPCDB=SkuDB.getUPCDB();//from DB
+		System.out.println("UPCDB= "+UPCDB);
+		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
+		Thread.sleep(1000);
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+		String preAdviceID=GetTCData.getpoId();
+		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+		System.out.println("QTYDB= "+QTYDB);
+		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+		logger.debug("Validated QTY value : " + DBlist);
+		Thread.sleep(1000);
+		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+		System.out.println("SupplierValue= "+SupplierValue);
+		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+		System.out.println("SupplierDB= "+SupplierDB);
+		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+		logger.debug("Validated Supplier Value: " + SupplierValue);
+		Thread.sleep(1000);
+		}
 	
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
@@ -410,6 +497,19 @@ public class JDAExitputtyfunctionsStepDef {
 		Assert.assertTrue("Red LockCode not Apllied",LocationZonePage.isRedLockApplied());
 	}
 	
+   @And("^Validate OverReceipt Error$")
+   public void validate_overreceipt_error()throws Throwable 
+   {
+	   puttyFunctionsPage.Overreceipterror();
+	   hooks.logoutPutty();
+   }
+
+   @And("^Validate Unknown stock Error$")
+   public void validate_unknownStock_error()throws Throwable 
+   {
+	   puttyFunctionsPage.Overreceipterror();
+	   hooks.logoutPutty();
+   }
 	
 	}
 	

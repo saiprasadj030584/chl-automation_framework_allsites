@@ -23,6 +23,7 @@ import com.jda.wms.db.Exit.MandsDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 
 public class InventoryTransactionStepDefs{
 	private InventoryTransactionPage inventoryTransactionPage;
@@ -90,27 +91,50 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("Reason code not as expected", "RED", RC);
 		Thread.sleep(2000);
 		inventoryTransactionPage.ChecktransactionForRedStock();
-			
+		
 	}
 	
 	@And("^Supplier Declaration is validated to be null or in past$")
 	public void supplier_declarartion_is_validated_to_be_null_or_in_past() throws Throwable,FindFailed{
+		String sku=context.getSkuId2();
 		String supplierdeclaration= supplierSkuDB.getDeclarationValidity();
 		Assert.assertNotNull("SD not null", supplierdeclaration);
+		String supplierID= context.getSupplierID();
+		System.out.println(supplierID);
+		String OriginalSupplierID=supplierSkuDB.UpdateOriginal(supplierID,sku);
+		
+	}
+	
+	@Then("^Alter the commodity Code to make the stock as RED stock$")
+	public void alter_the_commodity_code_to_make_the_stock_as_red_stock() throws Throwable,FindFailed{
+		String Sku= context.getSkuId2();
+		String CommodityCode= mandsDB.getUserDefType9(Sku);
+		context.setCommodityCd(CommodityCode);
+		String UpdateCommodityCode=mandsDB.updateCommodityCode(Sku);
 	}
 	
 	@And("^commodity Code is validated as NULL$")
 	public void commodity_code_is_validated_as_null() throws Throwable,FindFailed{
 		String Sku= context.getSkuId2();
 		String CommodityCode= mandsDB.getUserDefType9(Sku);
-		Assert.assertNotSame("commodity code is not null", CommodityCode,"null");
+		Assert.assertNull("commodity code is not null", CommodityCode);
+		String OriginalCommodity=mandsDB.UpdateToOriginalCommodity(context.getCommodityCd(),Sku);
 	}
 	
+	
+	@Then("^Alter the stroke category to make the stock as RED stock$")
+	public void alter_the_stroke_category_to_make_the_stock_as_red_stock() throws Throwable,FindFailed{
+		String Sku= context.getSkuId2();
+		String StrokeCategory= mandsDB.getUserDefType11(Sku);
+		context.setStrokeCt(StrokeCategory);
+		String UpdateStroke=mandsDB.updateStroke(Sku);
+	}
 	@And("^stroke category is validated as NULL$")
 	public void stroke_category_is_validated_as_null() throws Throwable,FindFailed{
 		String Sku= context.getSkuId2();
 		String StrokeCategory= mandsDB.getUserDefType11(Sku);
-		Assert.assertNotSame("stroke category is not null", StrokeCategory,"null");
+		Assert.assertNull("stroke category is not null", StrokeCategory);
+		String OriginalSroke=mandsDB.UpdateToOriginalStroke(context.getStrokeCt(),Sku);
 	}
 	
 	@And("^supplier record does not exist$")
