@@ -15,16 +15,7 @@ import cucumber.api.junit.Cucumber;
 
 
 
-
-				+ "@TC01_Batch_and_Expiry_Date_Check" 
-
-
-				 
-
-
-
-
-			
+				+ "@TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid" 
 
 
 })
