@@ -316,6 +316,16 @@ public class SkuDB {
 		
 		return null;
 	}
+
+	public String getPutawayGroup(String skuid) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select putaway_group from sku where sku_id='" + skuid + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 	}
 		
 	

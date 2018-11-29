@@ -17,9 +17,12 @@ import com.jda.wms.dataload.exit.InsertDataIntoDB;
 import com.jda.wms.dataload.exit.SelectDataFromDB;
 import com.jda.wms.dataload.exit.UpdateDataFromDB;
 import com.jda.wms.db.Exit.AddressDB;
+import com.jda.wms.db.Exit.AddressMaintenanceDB;
 import com.jda.wms.db.Exit.InventoryDB;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
+import com.jda.wms.db.Exit.SupplierSkuDB;
+import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.db.Exit.UPIReceiptHeaderDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
@@ -33,6 +36,7 @@ import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.SystemAllocationPage;
 import com.jda.wms.pages.Exit.Verification;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.db.Exit.MandsDB;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -71,6 +75,10 @@ public class JDAExitUpiHeader{
 	private JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef;
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private JDAExitUPIheaderPage jDAExitUPIheaderPage;
+	private AddressMaintenanceDB addressMaintenanceDB;
+	private SupplierSkuDB supplierSkuDB;
+	private MandsDB mandsDB;
+	private SkuDB skuDB;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,JDAExitputtyfunctionsStepDef jDAExitputtyfunctionsStepDef,
@@ -83,7 +91,7 @@ public class JDAExitUpiHeader{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,PuttyFunctionsPage puttyFunctionsPage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage,JDAExitUPIheaderPage jDAExitUPIheaderPage) {
+			InventoryDB inventoryDB,SupplierSkuDB supplierSkuDB,SkuDB skuDB,MandsDB mandsDB,AddressMaintenanceDB addressMaintenanceDB,MoveTaskManagementPage moveTaskManagementPage,JDAExitUPIheaderPage jDAExitUPIheaderPage) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -116,6 +124,10 @@ public class JDAExitUpiHeader{
 		this.jDAExitputtyfunctionsStepDef=jDAExitputtyfunctionsStepDef;
 		this.puttyFunctionsPage=puttyFunctionsPage;
 		this.jDAExitUPIheaderPage=jDAExitUPIheaderPage;
+		this.addressMaintenanceDB=addressMaintenanceDB;
+		this.supplierSkuDB=supplierSkuDB;
+		this.mandsDB=mandsDB;
+		this.skuDB=skuDB;
 	}
 	  @And ("^Insert UPI data and Delivery data$")
 	  public void insert_UPI_data() throws Throwable
@@ -220,6 +232,8 @@ public class JDAExitUpiHeader{
 			}
 		
 		}
+	
+	
 	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Red Stock$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_for_Red_Stock(String status,
 			String type, String customer) throws Throwable {
@@ -316,5 +330,110 @@ public class JDAExitUpiHeader{
 			}
 		
 		}
-	
+//	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for sku \"([^\"]*)\"$")
+//	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_trial(String type,
+//			String putawayGP, String customer, String skuid) throws Throwable {
+//		//trusted, boxed, non-prohibited
+//		System.out.println("data");
+//		context.setStoType(type);
+//		
+////		dataSetupRunner.insertPreAdviceData();
+//		String PdtGp= mandsDB.getProductGroup(skuid);
+//		
+//		String SupplierId=supplierSkuDB.getSupplierId(skuid);
+//		context.setSupplierID(SupplierId);
+//		
+//		String CountryOfOrigin=addressMaintenanceDB.getCountry(context.getSupplierID());
+//		context.setCountry(CountryOfOrigin);
+//		String Country= context.getCountry();
+//		
+//		 String PutawayGroup=skuDB.getPutawayGroup(skuid);
+//		if((type.equals("Trusted")))
+//		{	
+//			//trusted, boxed, pro/non-pro
+//			String AllowedStock=mandsDB.getTrustedStock(customer,PdtGp);
+//			if((AllowedStock.equals("Y")) &&  (PutawayGroup.equals("BLACKB"))){
+//				if(Country!="ISR")//non-prohibited BOXED
+//				{
+//					System.out.println("");
+//					}
+//				else//prohibited BOXED
+//				{
+//			}}
+//				else if((AllowedStock.equals("Y")) &&  (PutawayGroup.equals("BLACKH"))){
+//					if(Country!="ISR")//non-prohibited BOXED
+//					{
+//						}
+//					else//prohibited BOXED
+//					{
+//				}
+//			}}
+//		if
+//				else if((AllowedStock.equals("N")) &&  (PutawayGroup.equals("BLACKB"))){
+//					if(Country!="ISR")//non-prohibited BOXED
+//					{
+//						}
+//					else//prohibited BOXED
+//					{
+//				}}
+//					else if	((AllowedStock.equals("N")) &&  (PutawayGroup.equals("BLACKH"))){
+//						if(Country!="ISR")//non-prohibited BOXED
+//						{
+//							}
+//						else//prohibited BOXED
+//						{
+//					}
+//		}
+//					
+//		}
+//		
+//		System.out.println("CountryOfOrigin="+CountryOfOrigin);
+//		dataSetupRunner.insertPreAdviceDataforUPITrial();
+//		String SAPvalue=Utilities.getEightDigitRandomNumber();
+//		context.setSAPvalue(SAPvalue);
+//		dataSetupRunner.insertOrderDataforUPI();
+//		GetTCData.getpoId();
+////		String skuid = "000000000021071852";
+////		context.setSkuId2(skuid);
+//		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+//		String palletIDforUPI = context.getpalletIDforUPI();
+//		Thread.sleep(1000);
+//		dataSetupRunner.insertUPIReceiptData();
+//		String orderID = getTCData.getSto();
+//		System.out.println("New Order ID : " + orderID);
+//		Thread.sleep(10000);
+//		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+//		System.out.println("status : "+orderstatus);
+////		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+////		if(orderstatus.equals(status))
+////		{
+////			Thread.sleep(15000);
+//			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
+//			if(!orderstatus1.equals("orderstatus"))
+//			{
+//				System.out.println("status1"+orderstatus1);
+//				//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
+//			}
+//		
+//		}
+
+@Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\"$")
+public void checking_the_conditions_for_the_sku(String type, 
+		String putawayGroup, String customer, String skuid) throws Throwable {
+	String PdtGp= mandsDB.getProductGroup(skuid);
+	String AllowedStock=mandsDB.getTrustedStock(customer,PdtGp);
+	 String PutawayGroup=skuDB.getPutawayGroup(skuid);
+	if((AllowedStock.equals("Y"))){
+		if((PutawayGroup.equals("BLACKB"))){
+			if((customer.equals("5542"))){
+				System.out.println("conditions validated as expected");
+			}
+		}
+		else{
+			
+		}
 	}
+	
+		
+	}
+}
