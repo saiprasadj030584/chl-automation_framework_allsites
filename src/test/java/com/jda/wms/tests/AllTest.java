@@ -13,7 +13,12 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
-				+ "@TC26_FSV_Receiving_Over_receipt_Hanged_Article_Black_Stock_Process" 
+
+
+
+
+				+ "@TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs" 
+
 
 
 })
