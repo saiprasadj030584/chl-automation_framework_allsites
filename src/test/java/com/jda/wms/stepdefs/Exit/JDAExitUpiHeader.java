@@ -365,7 +365,7 @@ public class JDAExitUpiHeader{
 				
 				}
 		
-		}
+		
 //	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for sku \"([^\"]*)\"$")
 //	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_trial(String type,
 //			String putawayGP, String customer, String skuid) throws Throwable {
@@ -471,9 +471,9 @@ public void checking_the_conditions_for_the_sku(String type,
 	}
 	
 		
-<<<<<<< HEAD
+
 	
-=======
+
 	}
->>>>>>> refs/remotes/origin/Exit_TCs
+
 }

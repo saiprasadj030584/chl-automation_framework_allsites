@@ -328,7 +328,7 @@ public class SkuDB {
 		
 		return null;
 	}
-<<<<<<< HEAD
+
 	public String Updateproductgroup(String ProductGroup1, String sku) throws SQLException, ClassNotFoundException {
 		System.out.println(ProductGroup1);
 		if (context.getConnection() == null) {
@@ -350,7 +350,7 @@ public class SkuDB {
 		context.getConnection().commit();
 		
 		return null;
-=======
+	}
 
 	public String getPutawayGroup(String skuid) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
@@ -360,7 +360,7 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("select putaway_group from sku where sku_id='" + skuid + "'");
 		rs.next();
 		return rs.getString(1);
->>>>>>> refs/remotes/origin/Exit_TCs
+
 	}
 	}
 		
