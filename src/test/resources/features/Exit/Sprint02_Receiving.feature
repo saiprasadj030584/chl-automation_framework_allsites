@@ -413,7 +413,7 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
     And Validate Unknown stock Error
    
-    @Receiving @TC031_Location_verification
+    @Completed @Receiving @TC031_Location_verification
   	Scenario Outline: Find the Location ZONE setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-LocationZone & Click
@@ -427,13 +427,13 @@ Feature: Receiving
       | BLACKB       |
       | REDB         |
       
-     @Receiving @TC032_Verify_GS1_Receiving_screen
+     @Completed @Receiving @TC032_Verify_GS1_Receiving_screen
      Scenario: To verify GS1 Receiving screen is displayed
      Given I login as warehouse user in putty
      Then I select user directed option in main menu
      And I select Receiving menu
      
-    @Receiving @TC034_Batch_and_Expiry_Date_Check
+    @Completed @Receiving @TC034_Batch_and_Expiry_Date_Check
   	Scenario: To Validate capturing batch and expiry date during receiving
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     Then I login as warehouse user in putty
@@ -448,7 +448,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, Allocate and Pick
     And check Qty received is updated in Inventory
     
-    @USER_ACCESS @TC036_Screen_USER_group_check_required_by_Hemel
+    @Completed @USER_ACCESS @TC036_Screen_USER_group_check_required_by_Hemel
   	Scenario Outline: Check that the User Groups required by Hemel have been set up in the User Group table
     Given Login to JDA Dispatcher web screen
     And Go to Admin-User-UserGroup & click
@@ -466,13 +466,13 @@ Feature: Receiving
       | HEADOFFICE |
       | ZENSAR		 |
       
-    @USER_ACCESS @TC037_USER_GROUP_set_up_with_the_required_acceses
+    @Completed @USER_ACCESS @TC037_USER_GROUP_set_up_with_the_required_acceses
   	Scenario: Check that the User Groups have been set up with the required acceses for the Web Browser
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Verify whether the access is valid
     
-    @USER_ACCESS @TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs
+    @Completed @USER_ACCESS @TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs
   	Scenario: Check that the User Groups have been set up with the required acceses for the RDTs
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
