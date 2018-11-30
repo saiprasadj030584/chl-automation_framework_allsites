@@ -477,4 +477,9 @@ Feature: Receiving
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Verify whether the access is valid
     
-    
+    @USER_ACCESS @TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs
+  	Scenario: Check that the User Groups have been set up with the required acceses for the RDTs
+    Given Login to JDA Dispatcher web screen
+    And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
+    And Select a User Group from the Group dropdown box
+    And Verify whether the access is valid

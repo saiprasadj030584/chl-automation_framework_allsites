@@ -57,5 +57,9 @@ public class UserGroupStepDefs{
 	public void verify_whether_the_access_is_valid()throws Throwable {
 		jdaHomePage.isUserAccessavaild();
 	}
+	@And("^Select a User Group from the Group dropdown box$")
+	public void select_a_User_Group_from_the_Group_dropdown_box()throws Throwable {
+		jdaHomePage.selectUserGroup();
+	}
 	
 }
