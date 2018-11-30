@@ -211,7 +211,7 @@ Feature: Receiving
     
     @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
     Scenario: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+    Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -219,8 +219,6 @@ Feature: Receiving
     Then Verify PreAdvice line loaded successfully
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
-    #Then Ensure Trusted entry is disable
-    #Then Ensure Prohibition check
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -412,12 +410,9 @@ Feature: Receiving
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for over unknown stock
-    And I enter To Pallet
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
     And Validate Unknown stock Error
-    
-    
-    
+   
     @Receiving @TC031_Location_verification
   	Scenario Outline: Find the Location ZONE setup
     Given Login to JDA Dispatcher web screen

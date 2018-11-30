@@ -16,14 +16,9 @@ import cucumber.api.junit.Cucumber;
 
 
 
+
 				+ "@TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs" 
 
-
-
-
-
-
-				
 
 
 })
