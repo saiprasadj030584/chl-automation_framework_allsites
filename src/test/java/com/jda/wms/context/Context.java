@@ -1091,6 +1091,16 @@ public class Context {
 		return commodityCode;
 	}
 
+	public void setSKUHang(String sku) {
+		this.skuid=sku;
+		
+		// TODO Auto-generated method stub
+		
+	}
+	public String getSKUHang(){
+		return skuid;
+	}
+
 
 	
 	}

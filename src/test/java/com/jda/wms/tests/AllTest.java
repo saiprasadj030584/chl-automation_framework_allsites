@@ -13,23 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 
-
-
-
-				+ "@TC23_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process" 
-
-
-
-
-
-
-
-				+ "@TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid" 
-
-
-
-
-
+				+ "@TC26_FSV_Receiving_Over_receipt_Hanged_Article_Black_Stock_Process" 
 
 
 })

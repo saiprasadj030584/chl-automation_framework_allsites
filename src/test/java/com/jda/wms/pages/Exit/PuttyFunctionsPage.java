@@ -235,7 +235,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 //	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
 		System.out.println("skuid "+skuid);
-		context.setSkuId2(skuid);
+//		context.setSkuId2(skuid);
 		System.out.println("preadv "+preAdviceId);
 		String palletID= null;
 		// First 4 digits - Site id
