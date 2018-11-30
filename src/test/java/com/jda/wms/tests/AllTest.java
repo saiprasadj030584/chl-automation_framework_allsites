@@ -15,6 +15,7 @@ import cucumber.api.junit.Cucumber;
 
 
 
+<<<<<<< HEAD
 
 				+ "@TC23_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process" 
 
@@ -23,10 +24,24 @@ import cucumber.api.junit.Cucumber;
 
 
 
+=======
 				+ "@TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid" 
 
 
 
+
+
+
+>>>>>>> refs/remotes/origin/Exit_TCs
+				+ "@TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid" 
+
+<<<<<<< HEAD
+
+
+=======
+
+
+>>>>>>> refs/remotes/origin/Exit_TCs
 })
 public class AllTest {
 }

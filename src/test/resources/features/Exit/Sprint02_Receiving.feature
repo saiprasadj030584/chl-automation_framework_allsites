@@ -133,8 +133,11 @@ Feature: Receiving
     And Check Qty received is updated in Pre-advice line
     
     @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
-    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
+    Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
+   
+    Given Checking the conditions "Trusted", "BLACKB" and "5542" for the sku "<SKUID>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+   
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -155,7 +158,10 @@ Feature: Receiving
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
-    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
     @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"

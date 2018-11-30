@@ -471,5 +471,9 @@ public void checking_the_conditions_for_the_sku(String type,
 	}
 	
 		
+<<<<<<< HEAD
 	
+=======
+	}
+>>>>>>> refs/remotes/origin/Exit_TCs
 }
