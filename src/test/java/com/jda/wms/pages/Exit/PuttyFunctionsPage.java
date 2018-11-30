@@ -101,7 +101,7 @@ public class PuttyFunctionsPage {
 			return false;
 	}
 	public boolean UnknownStock() {
-		if (screen.exists("images/Putty/Receiving/OverReceiptError1.png") != null)
+		if (screen.exists("images/Putty/Receiving/UnknownstockError.png") != null)
 			return true;
 		else
 			return false;
@@ -253,6 +253,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		String supplier = suppliermanipulate();
 		System.out.println("supplier "+supplier);
 		// Dept id : 3 digit
+//		String dept = "000";
 		String dept = deptmanipulate();
 		System.out.println("dept "+dept);
 		// Sku quantity : 3 digit
@@ -268,7 +269,42 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		context.setPalletID(palletID);
 		System.out.println("check palletid "+palletID);
 	}
-
+	public void i_generate_pallet_id_forUnknown(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("skuid "+skuid);
+		context.setSkuId2(skuid);
+		System.out.println("preadv "+preAdviceId);
+		String palletID= null;
+		// First 4 digits - Site id
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
+		System.out.println("siteid "+siteid);
+		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "145";
+		System.out.println("barcode "+barcode);
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate();
+		System.out.println("supplier "+supplier);
+		// Dept id : 3 digit
+		String dept = "00";
+//		String dept = deptmanipulate();
+		System.out.println("dept "+dept);
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
+		// Advice - 6 digit
+		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
+		System.out.println("advice "+advice);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
+		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+		context.setPalletID(palletID);
+		System.out.println("check palletid "+palletID);
+	}
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId2();
@@ -293,11 +329,18 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 			String skuid=context.getSkuId2();
 			String dept = SkuDB.getProductGroup(skuid);
 			System.out.println("Dept" + dept);
-			String[] deptSplit = dept.split("T");
-			return deptSplit[1];
+				String[] deptSplit = dept.split("T");
+				return deptSplit[1];
+				
+					
+			}
+	
+			
+
+
 			
 			
-		}
+		
 		public String deptmanipulateForRedStock() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId();
 			String dept = SkuDB.getProductGroup(skuid);
@@ -406,6 +449,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			String supplier = suppliermanipulate();
 			System.out.println("supplier "+supplier);
 			// UPC : 8 digit
+//			String upc = "00000000";
 			String upc = preAdviceLineDB.getUpc(skuid);
 			System.out.println("upc "+upc );
 			// Quantity : 4 digit
@@ -441,7 +485,8 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			context.setBelCode(belCode);
 			System.out.println(belCode);;
 		}
-		public void I_generate_belcode_for_unknown_Stock(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
+		
+		public void I_generate_belcode_for_unknown(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
 			context.setSkuId2(skuid);
 			// Checkdigit : 2 any random number
@@ -452,11 +497,11 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			String supplier = suppliermanipulate();
 			System.out.println("supplier "+supplier);
 			// UPC : 8 digit
-			String upc="00000000";
+			String upc = "00000000";
 //			String upc = preAdviceLineDB.getUpc(skuid);
 			System.out.println("upc "+upc );
 			// Quantity : 4 digit
-			String skuqtymanipulate = skuQtyManipulate2OverReceipt(preAdviceId);
+			String skuqtymanipulate = skuQtyManipulate2(preAdviceId);
 			System.out.println("skuqtymanipulate "+skuqtymanipulate);
 			// Checkbit hardcoded : 1 digit
 			String checkbit = "1";
@@ -465,6 +510,5 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			context.setBelCode(belCode);
 			System.out.println(belCode);;
 		}
-	
 
 }

@@ -259,6 +259,7 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+	
 	public String getStroke(String SKU) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -303,6 +304,17 @@ public class SkuDB {
 		return null;
 	}
 
+	public String updateproductgroup(String sKU) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sKU);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update sku set product_group=(null) where sku_id='" + sKU + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
 	
 
 	public String UpdateOriginal(String packweight, String sku) throws SQLException, ClassNotFoundException {
@@ -317,6 +329,29 @@ public class SkuDB {
 		return null;
 	}
 
+	public String Updateproductgroup(String ProductGroup1, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println(ProductGroup1);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update supplier_sku set supplier_sku_id='null' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+	public String UpdateproductgroupOriginal(String ProductGroup1, String sku) throws SQLException, ClassNotFoundException {
+		System.out.println(ProductGroup1);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update supplier_sku set supplier_sku_id='" + ProductGroup1 + "' where sku_id='" + sku + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
+
 	public String getPutawayGroup(String skuid) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
@@ -325,6 +360,7 @@ public class SkuDB {
 		ResultSet rs = stmt.executeQuery("select putaway_group from sku where sku_id='" + skuid + "'");
 		rs.next();
 		return rs.getString(1);
+
 	}
 	}
 		

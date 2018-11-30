@@ -133,6 +133,7 @@ public class Context {
 	private String packWeight;
 	private String strokeCategory;
 	private String commodityCode;
+	private String ProductGroup1;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1067,7 +1068,13 @@ public class Context {
 	public String getPackWeight() {
 		return packWeight;
 	}
-
+	public void setProductGroup1(String ProductGroup1)  {
+		this.ProductGroup1 = ProductGroup1;
+	}
+	
+	public String getProductGroup1() {
+		return ProductGroup1;
+	}
 	public void setStrokeCt(String strokeCategory) {
 		this.strokeCategory=strokeCategory;
 		
