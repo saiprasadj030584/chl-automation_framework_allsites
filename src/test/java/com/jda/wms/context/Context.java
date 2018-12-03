@@ -1094,6 +1094,7 @@ public class Context {
 		return commodityCode;
 	}
 
+
 	public void setAllowedStock(String allowedStock) {
 		this.allowedStock=allowedStock;
 		
@@ -1109,8 +1110,6 @@ public class Context {
 	public String getSKUHang() {
 		return SKUHang;
 	}
-	
-
 
 	
 	}

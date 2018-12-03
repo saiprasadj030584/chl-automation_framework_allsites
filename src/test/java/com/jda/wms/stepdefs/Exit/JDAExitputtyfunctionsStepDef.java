@@ -354,8 +354,12 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
+
 		String skuid=context.getSkuId2();
 //		String skuid2=context.getSKUHang();
+
+		String skuid2=context.getSKUHang();
+
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
