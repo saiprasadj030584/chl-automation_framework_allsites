@@ -234,7 +234,7 @@ public class JDAExitUpiHeader{
 		}
 	
 	
-	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Red Stock$")
+	@Given ("^Data to be inserted in preadvice header,order header and UPIreceipt  with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Red Stock$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_for_Red_Stock(String status,
 			String type, String customer) throws Throwable {
 		System.out.println("data");

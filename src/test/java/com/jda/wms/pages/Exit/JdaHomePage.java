@@ -122,6 +122,15 @@ public class JdaHomePage {
 		} else
 			return false;
 	}
+	public void selectUserGroup() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/FunctionAccessGroupDropdown.png", timeoutInSec);
+		screen.click("images/JDAHome/FunctionAccessGroupDropdown.png");
+		Thread.sleep(2000);
+		 Match header = screen.find("images/JDAHome/UserGroupAdvuser.png");
+		   reg=header.below(150).left(5).right(1000);
+		   reg.hover(header);
+		   reg.click(header);
+	}
 	public boolean iswebAccessavail() throws FindFailed, InterruptedException {
 		if (screen.exists("images/JDAHome/webaccess.png") != null) {
 			return true;

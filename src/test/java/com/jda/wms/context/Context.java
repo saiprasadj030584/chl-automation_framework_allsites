@@ -1100,6 +1100,10 @@ public class Context {
 	public String getAllowedStock() {
 		return allowedStock;
 	}
+
+	public String getSKUHang(String SKUHang) {
+		return SKUHang;
+	}
 	
 
 

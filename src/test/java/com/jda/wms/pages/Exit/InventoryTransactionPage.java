@@ -49,6 +49,16 @@ public class InventoryTransactionPage{
 		
 		
 	}
+	public void EnterContanierIDFSV() throws FindFailed{
+		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/Container.png");
+		String palletID = context.getPalletID();
+		screen.type(palletID);
+		
+		
+	}
 	public void Checktransaction() throws FindFailed, InterruptedException{
 		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");

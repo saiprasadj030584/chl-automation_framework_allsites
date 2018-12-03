@@ -2,7 +2,21 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+<<<<<<< HEAD
+<<<<<<< HEAD
+			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
+=======
+=======
+<<<<<<< HEAD
+			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
 			<item value="D:\Autotest\Latest_code\jda-wms-test-framework"/>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/Exit_TCs
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
+>>>>>>> refs/remotes/origin/Exit_TCs
 			<item value="D:\Fathima_WS\JDA_UPDATED_FATHIMA"/>
 			<item value="C:\Users\saravanan.jeyabalan\workspace\JDA Auto\jda-wms-test-framework"/>
 			<item value="C:\Users\saravanan.jeyabalan\workspace\jda-wms-test-framework"/>
