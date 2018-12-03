@@ -29,7 +29,7 @@ public class InventoryTransactionPage{
 	static Screen screen = new Screen();
 	int timeoutInSec = 20;
 	@Inject
-	public void InventoryTransactionPage(Context context,GetTCData getTCData,JdaHomePage jdaHomePage,
+	public InventoryTransactionPage(Context context,GetTCData getTCData,JdaHomePage jdaHomePage,
 			JDAFooter jdaFooter,OrderHeaderDB orderHeaderDB,OrderHeaderPage orderheaderpage){
 		this.context=context;
 		this.getTCData=getTCData;
@@ -46,6 +46,16 @@ public class InventoryTransactionPage{
 		screen.click("images/InventoryTransactionQuery/Container.png");
 		String palletIDforUPI = context.getpalletIDforUPI();
 		screen.type(palletIDforUPI);
+		
+		
+	}
+	public void EnterContanierIDFSV() throws FindFailed{
+		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/Container.png");
+		String palletID = context.getPalletID();
+		screen.type(palletID);
 		
 		
 	}

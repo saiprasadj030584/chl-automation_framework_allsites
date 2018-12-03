@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 
 import cucumber.api.java.en.And;
 
+@SuppressWarnings("unused")
 public class JdaHomePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;

@@ -25,6 +25,7 @@ import com.jda.wms.db.Exit.SupplierSkuDB;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
+@SuppressWarnings("unused")
 public class InventoryTransactionStepDefs{
 	private InventoryTransactionPage inventoryTransactionPage;
 	private JdaHomePage jdaHomePage;
@@ -50,6 +51,12 @@ public class InventoryTransactionStepDefs{
 	public void enter_container_id() throws FindFailed
 	{
 		inventoryTransactionPage.EnterContanierID();
+		
+	}
+	@And("^Enter Container_ID for FSV$")
+	public void enter_container_id_for_FSV() throws FindFailed
+	{
+		inventoryTransactionPage.EnterContanierIDFSV();
 		
 	}
 	@And("^check the Inventory Transaction for Receipt, Allocate and Pick$")
