@@ -223,9 +223,19 @@
       <children xsi:type="menu:ToolBar" xmi:id="_KOX7AMBlEeepZNBtZAnB8g" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_DM6loPRfEeiaaPY75irVmg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_J5Fny8BlEeepZNBtZAnB8g"/>
 =======
+=======
+<<<<<<< HEAD
+        <children xsi:type="menu:HandledToolItem" xmi:id="_DM6loPRfEeiaaPY75irVmg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_J5Fny8BlEeepZNBtZAnB8g"/>
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
         <children xsi:type="menu:HandledToolItem" xmi:id="_rR5QoPOSEei3wb61QyfVYA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_J5Fny8BlEeepZNBtZAnB8g"/>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/Exit_TCs
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
 >>>>>>> refs/remotes/origin/Exit_TCs
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KOX7AcBlEeepZNBtZAnB8g" elementId="additions" toBeRendered="false">
@@ -254,9 +264,19 @@
       <children xsi:type="menu:ToolBar" xmi:id="_KOYiEMBlEeepZNBtZAnB8g" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_DM-3EPRfEeiaaPY75irVmg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_J5FAycBlEeepZNBtZAnB8g"/>
 =======
+=======
+<<<<<<< HEAD
+        <children xsi:type="menu:HandledToolItem" xmi:id="_DM-3EPRfEeiaaPY75irVmg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_J5FAycBlEeepZNBtZAnB8g"/>
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
         <children xsi:type="menu:HandledToolItem" xmi:id="_rR87APOSEei3wb61QyfVYA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_J5FAycBlEeepZNBtZAnB8g"/>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/Exit_TCs
+=======
+>>>>>>> refs/remotes/origin/Exit_TCs
 >>>>>>> refs/remotes/origin/Exit_TCs
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KOYiEcBlEeepZNBtZAnB8g" elementId="group.editor" toBeRendered="false">
