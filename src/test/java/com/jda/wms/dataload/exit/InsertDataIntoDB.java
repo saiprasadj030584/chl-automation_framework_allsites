@@ -14,7 +14,9 @@ import com.jda.wms.utils.Utilities;
 public class InsertDataIntoDB {
 	private Context context;
 	private Database database;
+	@SuppressWarnings("unused")
 	private PackConfigMaintenanceDB packConfigMaintenanceDB;
+	@SuppressWarnings("unused")
 	private GetTCData getTCData;
 	
 

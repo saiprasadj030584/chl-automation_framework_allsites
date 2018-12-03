@@ -132,11 +132,11 @@ Feature: Receiving
     And check Qty received is updated in Inventory
     And Check Qty received is updated in Pre-advice line
     
-   @Completed @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
+    @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
     Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
    
-    Given Checking the conditions "Trusted", "BLACKB" and "Non-prohibited" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    Given Checking the conditions "Trusted", "BLACKB" and "5542" for the sku "<SKUID>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
    
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -164,8 +164,7 @@ Feature: Receiving
       
     @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
-     Given Checking the conditions "Non-Trusted", "BLACKB" and "Prohibited" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -188,8 +187,7 @@ Feature: Receiving
     
     @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
-   	 Given Checking the conditions "Trusted", "BLACKB" and "4624" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -213,8 +211,7 @@ Feature: Receiving
     
     @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
     Scenario: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
-    Given Checking the conditions "Non-Trusted", "BLACKB" and "Non-Prohibited" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -237,8 +234,6 @@ Feature: Receiving
     
     @Receiving @TC15_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
     Scenario: To validate  Direct receiving – Happy path – Non Trusted – Boxed – NonProhibited inventory – Expiry capture
-        Given Checking the conditions "Non-Trusted", "BLACKB" and "5542" for the sku "<SKUID>"
-    
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -260,10 +255,9 @@ Feature: Receiving
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
-   @Completed @Receiving @TC16_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
-    Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory – Expiry capture
-    Given Checking the conditions "Trusted", "BLACKB" and "4624" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    @Receiving @TC16_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
+    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory – Expiry capture
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -277,15 +271,15 @@ Feature: Receiving
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    
-    
-     Examples: 
-      | SKUID             |
-      | 000000000021071852 |
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
     
     @Receiving @TC17_Direct_receiving_Happy_path_Non_Trusted_Hanging_NonProhibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Hanging – NonProhibited inventory
-    Given Checking the conditions "Non-Trusted", "BLACKH" and "5542" for the sku "<SKUID>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -307,10 +301,9 @@ Feature: Receiving
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
-    @Completed @Receiving @TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory
-    Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  NonProhibited inventory
-    Given Checking the conditions "Trusted", "BLACKH" and "4624" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+    @Receiving @TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory
+    Scenario: To validate Direct receiving – Happy path – Trusted – Hanging -  NonProhibited inventory
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -318,12 +311,12 @@ Feature: Receiving
     Then Verify PreAdvice line loaded successfully
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
-    
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang
-   
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
     And Login to JDA Dispatcher web screen
     And Go to Inventory Transaction & Click
     And Click on Query
@@ -331,14 +324,9 @@ Feature: Receiving
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
-    Examples:
-    |SKUID|
-   | 000000000021071851|
-    
     @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Hanging – Prohibited inventory
-    Given Checking the conditions "Non-Trusted", "BLACKH" and "4624" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -361,8 +349,7 @@ Feature: Receiving
     
     @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
-    Given Checking the conditions "Trusted", "BLACKH" and "4624" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -385,8 +372,8 @@ Feature: Receiving
     
     
     @Receiving @TC21_FSV_Receiving_Happy_path_Boxed_Article
-    Scenario: To validate FSV Receiving - Happy path –  Boxed Article
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    Scenario Outline: To validate FSV Receiving - Happy path –  Boxed Article
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -395,15 +382,19 @@ Feature: Receiving
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
     And I enter To Pallet
+    And Login to JDA Dispatcher web screen
     And Go to Inventory Transaction & Click
     And Click on Query
-    And Enter Container_ID
+    And Enter Container_ID for FSV
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
     
     @Receiving @TC22_FSV_Receiving_Over_receipt_Boxed_Article_Black_Stock_Process
-    Scenario: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -413,10 +404,13 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY and Supplier for over receipt
     And I enter To Pallet
     And Validate OverReceipt Error
-    
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+   
     @Receiving @TC23_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process
-    Scenario: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542"
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -425,8 +419,100 @@ Feature: Receiving
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
     And Validate Unknown stock Error
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+    
+    @Receiving @TC24_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
+    And Validate Unknown stock Error
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+    
+    @Receiving @TC25_FSV_Receiving_Happy_path_Hanging_Article
+    Scenario Outline: To validate FSV Receiving - Happy path –  Hanging Article
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID for FSV
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+    
+    
+   @Receiving @TC26_FSV_Receiving_Over_receipt_Hanged_Article_Black_Stock_Process
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for over receipt
+    And I enter To Pallet
+    And Validate OverReceipt Error
+     Examples: 
+      | SKU                |
+      | 000000000021071851 |
    
-    @Receiving @TC031_Location_verification
+    
+    @Receiving @TC27_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
+    And Validate Unknown stock Error
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+    
+    @Receiving @TC27_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process
+    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
+    And Validate Unknown stock Error
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+    
+    
+    
+   
+
+    @Completed @Receiving @TC031_Location_verification
+
   	Scenario Outline: Find the Location ZONE setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-LocationZone & Click
@@ -440,13 +526,13 @@ Feature: Receiving
       | BLACKB       |
       | REDB         |
       
-     @Receiving @TC032_Verify_GS1_Receiving_screen
+     @Completed @Receiving @TC032_Verify_GS1_Receiving_screen
      Scenario: To verify GS1 Receiving screen is displayed
      Given I login as warehouse user in putty
      Then I select user directed option in main menu
      And I select Receiving menu
      
-    @Receiving @TC034_Batch_and_Expiry_Date_Check
+    @Completed @Receiving @TC034_Batch_and_Expiry_Date_Check
   	Scenario: To Validate capturing batch and expiry date during receiving
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     Then I login as warehouse user in putty
@@ -461,7 +547,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, Allocate and Pick
     And check Qty received is updated in Inventory
     
-    @USER_ACCESS @TC036_Screen_USER_group_check_required_by_Hemel
+    @Completed @USER_ACCESS @TC036_Screen_USER_group_check_required_by_Hemel
   	Scenario Outline: Check that the User Groups required by Hemel have been set up in the User Group table
     Given Login to JDA Dispatcher web screen
     And Go to Admin-User-UserGroup & click
@@ -479,10 +565,15 @@ Feature: Receiving
       | HEADOFFICE |
       | ZENSAR		 |
       
-    @USER_ACCESS @TC037_USER_GROUP_set_up_with_the_required_acceses
+    @Completed @USER_ACCESS @TC037_USER_GROUP_set_up_with_the_required_acceses
   	Scenario: Check that the User Groups have been set up with the required acceses for the Web Browser
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Verify whether the access is valid
     
-    
+    @Completed @USER_ACCESS @TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs
+  	Scenario: Check that the User Groups have been set up with the required acceses for the RDTs
+    Given Login to JDA Dispatcher web screen
+    And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
+    And Select a User Group from the Group dropdown box
+    And Verify whether the access is valid

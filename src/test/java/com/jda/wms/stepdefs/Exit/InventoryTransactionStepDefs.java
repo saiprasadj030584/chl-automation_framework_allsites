@@ -25,6 +25,7 @@ import com.jda.wms.db.Exit.SupplierSkuDB;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
+@SuppressWarnings("unused")
 public class InventoryTransactionStepDefs{
 	private InventoryTransactionPage inventoryTransactionPage;
 	private JdaHomePage jdaHomePage;

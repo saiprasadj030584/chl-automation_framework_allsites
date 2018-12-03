@@ -29,7 +29,7 @@ public class InventoryTransactionPage{
 	static Screen screen = new Screen();
 	int timeoutInSec = 20;
 	@Inject
-	public void InventoryTransactionPage(Context context,GetTCData getTCData,JdaHomePage jdaHomePage,
+	public InventoryTransactionPage(Context context,GetTCData getTCData,JdaHomePage jdaHomePage,
 			JDAFooter jdaFooter,OrderHeaderDB orderHeaderDB,OrderHeaderPage orderheaderpage){
 		this.context=context;
 		this.getTCData=getTCData;

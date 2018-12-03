@@ -365,41 +365,115 @@ public class JDAExitUpiHeader{
 				
 				}
 		
-	
+		
+//	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for sku \"([^\"]*)\"$")
+//	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_trial(String type,
+//			String putawayGP, String customer, String skuid) throws Throwable {
+//		//trusted, boxed, non-prohibited
+//		System.out.println("data");
+//		context.setStoType(type);
+//		
+////		dataSetupRunner.insertPreAdviceData();
+//		String PdtGp= mandsDB.getProductGroup(skuid);
+//		
+//		String SupplierId=supplierSkuDB.getSupplierId(skuid);
+//		context.setSupplierID(SupplierId);
+//		
+//		String CountryOfOrigin=addressMaintenanceDB.getCountry(context.getSupplierID());
+//		context.setCountry(CountryOfOrigin);
+//		String Country= context.getCountry();
+//		
+//		 String PutawayGroup=skuDB.getPutawayGroup(skuid);
+//		if((type.equals("Trusted")))
+//		{	
+//			//trusted, boxed, pro/non-pro
+//			String AllowedStock=mandsDB.getTrustedStock(customer,PdtGp);
+//			if((AllowedStock.equals("Y")) &&  (PutawayGroup.equals("BLACKB"))){
+//				if(Country!="ISR")//non-prohibited BOXED
+//				{
+//					System.out.println("");
+//					}
+//				else//prohibited BOXED
+//				{
+//			}}
+//				else if((AllowedStock.equals("Y")) &&  (PutawayGroup.equals("BLACKH"))){
+//					if(Country!="ISR")//non-prohibited BOXED
+//					{
+//						}
+//					else//prohibited BOXED
+//					{
+//				}
+//			}}
+//		if
+//				else if((AllowedStock.equals("N")) &&  (PutawayGroup.equals("BLACKB"))){
+//					if(Country!="ISR")//non-prohibited BOXED
+//					{
+//						}
+//					else//prohibited BOXED
+//					{
+//				}}
+//					else if	((AllowedStock.equals("N")) &&  (PutawayGroup.equals("BLACKH"))){
+//						if(Country!="ISR")//non-prohibited BOXED
+//						{
+//							}
+//						else//prohibited BOXED
+//						{
+//					}
+//		}
+//					
+//		}
+//		
+//		System.out.println("CountryOfOrigin="+CountryOfOrigin);
+//		dataSetupRunner.insertPreAdviceDataforUPITrial();
+//		String SAPvalue=Utilities.getEightDigitRandomNumber();
+//		context.setSAPvalue(SAPvalue);
+//		dataSetupRunner.insertOrderDataforUPI();
+//		GetTCData.getpoId();
+////		String skuid = "000000000021071852";
+////		context.setSkuId2(skuid);
+//		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+//		String palletIDforUPI = context.getpalletIDforUPI();
+//		Thread.sleep(1000);
+//		dataSetupRunner.insertUPIReceiptData();
+//		String orderID = getTCData.getSto();
+//		System.out.println("New Order ID : " + orderID);
+//		Thread.sleep(10000);
+//		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+//		System.out.println("status : "+orderstatus);
+////		JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+////		if(orderstatus.equals(status))
+////		{
+////			Thread.sleep(15000);
+//			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
+//			if(!orderstatus1.equals("orderstatus"))
+//			{
+//				System.out.println("status1"+orderstatus1);
+//				//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
+//			}
+//		
+//		}
 
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\"$")
 public void checking_the_conditions_for_the_sku(String type, 
-		String putawayGroup, String prohibition, String skuid) throws Throwable {
-	String PdtGp= skuDB.getProductGroupNew(skuid);
-	String siteId="4624";
-	String AllowedStock=mandsDB.getTrustedStock(siteId,PdtGp);
-	System.out.println("AllowedStock="+AllowedStock);
-	context.setAllowedStock(AllowedStock);
-	String addressID=supplierSkuDB.getSupplierId(skuid);
-	String Country=addressMaintenanceDB.getCountry(addressID);
-	
+		String putawayGroup, String customer, String skuid) throws Throwable {
+	String PdtGp= mandsDB.getProductGroup(skuid);
+	String AllowedStock=mandsDB.getTrustedStock(customer,PdtGp);
 	 String PutawayGroup=skuDB.getPutawayGroup(skuid);
-	 System.out.println("PutawayGroup="+PutawayGroup);
-	 if((type.equals("Trusted")) && (AllowedStock.equals("Y"))){
-		 System.out.println("trusted");
-		if((putawayGroup.equals("BLACKB")) || (putawayGroup.equals("BLACKH"))){
-			System.out.println("inside");
-			if((prohibition.equals("Non-Prohibited"))){
+	if((AllowedStock.equals("Y"))){
+		if((PutawayGroup.equals("BLACKB"))){
+			if((customer.equals("5542"))){
 				System.out.println("conditions validated as expected");
 			}
-			
-			else if((siteId.equals("Prohibited"))){
-					String UpdateCountryForProhibition=addressMaintenanceDB.UpdateCountryForProhibition(addressID);
-					System.out.println(UpdateCountryForProhibition);///in the end change it to original
-					System.out.println("conditions validated as expected");
-			
-			}
 		}
-		else if((type.equals("Non-Trusted")) && (AllowedStock.equals("Y"))){
-			mandsDB.updateAllowedToNot(siteId,PdtGp);	///in the end change it to original		
+		else{
+			
 		}
 	}
 	
+		
 
-}}
+	
 
+	}
+
+}
