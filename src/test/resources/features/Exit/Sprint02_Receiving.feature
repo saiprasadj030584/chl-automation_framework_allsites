@@ -47,7 +47,7 @@ Feature: Receiving
 
   @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Given Data to be inserted in preadvice header order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
