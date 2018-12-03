@@ -307,7 +307,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	}
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate() throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId2();
+			String skuid=context.getSkuId();
 			System.out.println("skuid "+context.getSkuId2());
 //			context.getSkuId2();
 //			context.getSkuId2();
@@ -326,7 +326,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 //		}
 		// Get dept - 3 digit
 		public String deptmanipulate() throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId2();
+			String skuid=context.getSkuId();
 			String dept = SkuDB.getProductGroup(skuid);
 			System.out.println("Dept" + dept);
 				String[] deptSplit = dept.split("T");
@@ -352,7 +352,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		}
 		public String skuQtyManipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 			
-			String skuid=context.getSkuId2();
+			String skuid=context.getSkuId();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
@@ -376,7 +376,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			return qtyDue;
 		}
 		public String skuQtyManipulate2(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId2();
+			String skuid=context.getSkuId();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
@@ -488,7 +488,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 		
 		public void I_generate_belcode_for_unknown(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
-			context.setSkuId2(skuid);
+//			context.setSkuId2(skuid);
 			// Checkdigit : 2 any random number
 			String checkdigit = Utilities.getTwoDigitRandomNumber();
 //			String checkdigit = "02";

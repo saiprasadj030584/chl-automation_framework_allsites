@@ -556,7 +556,7 @@ Feature: Receiving
     And click execute
     Then Verify whether the User-group been populated "<UserGroup>" in the table
 
-    Examples: 
+    Examples: ssss
       | UserGroup  |
       | BASICUSER	 |
       | ADVUSER		 |
