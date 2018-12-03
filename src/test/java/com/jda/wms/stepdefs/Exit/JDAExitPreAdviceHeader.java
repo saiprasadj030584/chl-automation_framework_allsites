@@ -178,12 +178,13 @@ public class JDAExitPreAdviceHeader{
 		 
 	}
 	
-	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
+	@Given ("^Data to be inserted in preadvice header and order header with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for \"([^\"]*)\"$")
 	public void Data_to_be_inserted_in_preadvice_header_and_order_header_with(String status,
-			String type, String customer) throws Throwable {
+			String type, String customer, String sku) throws Throwable {
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
+		context.setSKUHang(sku);
 		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
