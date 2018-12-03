@@ -1,8 +1,8 @@
 @Exit_Picking @Boxed_Outbound @Picking_Boxed_Outbound
 Feature: Orders_Picking
   As a user in Exit DC
-  Order should be autoalocated
-  so that I can pick and dispatch
+  Order should be Auto Allocated
+  so that I can Pick and Dispatch
 
   @TC01_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Boxed 
   Scenario: Validate Pick list id generated for an order-Manual Franchise Boxed
@@ -67,4 +67,13 @@ Feature: Orders_Picking
     And I enter To Pallet
     And I navigate to Order header screen to verify the status in Ready to Load
     
- 
+ @TC08_Validate_Batch_and_expiry_capture_during_Manual_Franchise_Order_Picking 
+  Scenario: Validate Batch and expiry capture during Manual Franchise Order Picking
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANB
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter ListId and TagId

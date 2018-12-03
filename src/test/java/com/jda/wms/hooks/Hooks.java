@@ -161,6 +161,14 @@ public class Hooks {
 			// Thread.sleep(1000);
 		}
 	}
+	@After
+	public void logoutJDA() throws FindFailed, InterruptedException, IOException {
+		if (context.isJDALoginFlag() == true) {
+			while (screen.exists("/images/JDAHome/JdaHomeLogout.png") != null) {
+				screen.click("/images/JDAHome/JdaHomeLogout.png");
+			}
 	}
+	}
+}
 
 
