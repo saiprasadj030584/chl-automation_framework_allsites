@@ -47,7 +47,7 @@ Feature: Receiving
 
   @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
-    Given Data to be inserted in preadvice header order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -135,8 +135,8 @@ Feature: Receiving
     @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
     Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
    
-    Given Checking the conditions "Trusted", "BLACKB" and "5542" for the sku "<SKUID>"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+     Given Checking the conditions "Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
    
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -158,9 +158,9 @@ Feature: Receiving
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
+   Examples:
+    |SkuId|
+    |000000000021071852|
       
     @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
@@ -256,7 +256,9 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
     @Receiving @TC16_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
-    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory – Expiry capture
+    Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory – Expiry capture
+    
+    Given Checking the conditions "Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -271,12 +273,10 @@ Feature: Receiving
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
+    
+    Examples:
+    |SkuId|
+    |000000000021071852|
     
     @Receiving @TC17_Direct_receiving_Happy_path_Non_Trusted_Hanging_NonProhibited_inventory
     Scenario: To validate Direct receiving – Happy path – Non Trusted – Hanging – NonProhibited inventory
