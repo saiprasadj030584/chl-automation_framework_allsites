@@ -135,6 +135,8 @@ public class Context {
 	private String commodityCode;
 	private String ProductGroup1;
 	private String allowedStock;
+	private String SKUHang;
+	private String sKUHang;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1101,7 +1103,10 @@ public class Context {
 		return allowedStock;
 	}
 
-	public String getSKUHang(String SKUHang) {
+	public void setSKUHang(String SKUHang){
+	this.SKUHang=SKUHang;	
+	}
+	public String getSKUHang() {
 		return SKUHang;
 	}
 	
