@@ -16,7 +16,9 @@ import cucumber.api.junit.Cucumber;
 
 
 
-				+ "@TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory" 
+
+				+ "@TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs" 
+
 
 
 })

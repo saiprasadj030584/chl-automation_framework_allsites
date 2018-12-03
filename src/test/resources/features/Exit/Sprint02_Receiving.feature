@@ -145,6 +145,8 @@ Feature: Receiving
     Then Verify PreAdvice line loaded successfully
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -157,7 +159,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
     Examples: 
-      | SKUID             |
+      | SKU                |
       | 000000000021071852 |
       
     @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
