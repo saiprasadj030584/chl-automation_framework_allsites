@@ -124,4 +124,14 @@ public class AddressMaintenanceDB {
 		rs.next();
 		return rs.getString(1) != null;
 	}
-}
+
+	public String UpdateCountryForProhibition(String addressID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update address set country='ISR' from address where address_id='" + addressID + "'");
+		context.getConnection().commit();
+		return null;
+	
+}}

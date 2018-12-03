@@ -134,6 +134,7 @@ public class Context {
 	private String strokeCategory;
 	private String commodityCode;
 	private String ProductGroup1;
+	private String allowedStock;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1090,6 +1091,16 @@ public class Context {
 	public String getCommodityCd() {
 		return commodityCode;
 	}
+
+	public void setAllowedStock(String allowedStock) {
+		this.allowedStock=allowedStock;
+		
+	}
+	
+	public String getAllowedStock() {
+		return allowedStock;
+	}
+	
 
 
 	

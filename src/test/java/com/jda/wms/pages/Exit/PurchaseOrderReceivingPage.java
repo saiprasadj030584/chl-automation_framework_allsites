@@ -152,6 +152,7 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
 		screen.type(Expirydate);
+		
 		Thread.sleep(1000);
 		screen.type(Key.TAB);
 
@@ -333,6 +334,14 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 	
 		screen.type("N");
 		
+	}
+
+	public String getExpiryDate()  throws FindFailed {
+		Match mStatus = screen.find("images/Putty/Receiving/ExpDate1.png");
+		screen.doubleClick(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
 	}
 	
 	}

@@ -182,18 +182,15 @@ public class SkuDB {
 		return rs.getString(1);
 	}
 
-	// public String isSiteIdExist(String skuId) throws SQLException,
-	// ClassNotFoundException {
-	// if (context.getConnection() == null) {
-	// database.connect();
-	// }
-	// Statement stmt = context.getConnection().createStatement();
-	// ResultSet rs = stmt.executeQuery("select ce_vat_code from sku where
-	// sku_id = '" + skuId + "'");
-	// rs.next();
-	// return rs.getString(1);
-	// }
-
+	public String getProductGroupNew(String SKU) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select product_group from sku where sku_id = '" + SKU + "'");
+		rs.next();
+		return rs.getString(1);
+	}
 	public String ExpiryRequiredUncheckedValue(String skuId) throws SQLException, ClassNotFoundException {
 		if (context.getConnection() == null) {
 			database.connect();
