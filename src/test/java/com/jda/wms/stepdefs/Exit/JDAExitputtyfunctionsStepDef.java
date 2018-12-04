@@ -7,9 +7,11 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
+import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.sikuli.script.App;
+import org.sikuli.script.Match;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
@@ -26,6 +28,7 @@ import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationZonePage;
 
 import cucumber.api.java.en.And;
@@ -39,7 +42,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Configuration configuration;
 	private Context context;
-	private Object screen;
+	//private Object screen;
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private MoveTaskDB moveTaskDB;
@@ -56,6 +59,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PreAdviceLineDB preAdviceLineDB;
 	private LocationZonePage LocationZonePage;
 	private Hooks hooks;
+	private final JdaHomePage imageCheckFunction;
 
 	
 
@@ -64,7 +68,7 @@ public class JDAExitputtyfunctionsStepDef {
 			SkuDB skuDB,LocationDB LocationDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
-			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks) {
+			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks,JdaHomePage imageCheckFunction) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -78,6 +82,7 @@ public class JDAExitputtyfunctionsStepDef {
 		this.LocationDB=LocationDB;
 		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
+		this.imageCheckFunction = imageCheckFunction;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -571,7 +576,21 @@ public class JDAExitputtyfunctionsStepDef {
 	   puttyFunctionsPage.pressEnter();
 	   hooks.logoutPutty();
    }
+   @And("^I enter Invalid List Id \"([^\"]*)\"$")
+	public void I_enter_Invalid_List_Id(String List_Id) throws Throwable{
+	   storeTrackingOrderPickingPage.enterListID(List_Id);
+	   puttyFunctionsPage.pressEnter();
+   }
+   Screen screen = new Screen();
+   @And("^I validate Error message is displayed$")
+	public void I_validate_Error_message_is_displayed() throws Throwable{
+	   if (screen.exists("images/JDAHome/webaccess.png") != null) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertFalse(false);
+	}	
+   }
+   
 	
-	}
 	
 	

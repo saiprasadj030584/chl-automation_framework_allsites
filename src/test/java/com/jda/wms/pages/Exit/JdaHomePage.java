@@ -381,7 +381,7 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
-			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
+			} else if (screen.exists("images/JDAHome/Welcome.png") == null) {
 				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
 				screen.click("images/JDAHome/Welcome.png");
 				Thread.sleep(2000);
@@ -734,6 +734,16 @@ public class JdaHomePage {
 		screen.type("Order Management");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void navigateToOrderContainerPage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(3000);
+		screen.type("Order Container");
+		Thread.sleep(5000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
