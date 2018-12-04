@@ -425,15 +425,24 @@ Feature: Receiving
     
     @Receiving @TC24_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process
     Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    Given Data to be inserted twice in preadvice header and one in order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
-    Then Verify PreAdvice header loaded successfully
+    Then Verify PreAdvice header loaded successfully for Two PO
     Then Verify Supplier is populated in the Pre-advice header table
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
-    And Validate Unknown stock Error
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet for two urn
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for two URN
+    And I enter To Pallet
+    And Validate OverReceipt Error
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID for FSV
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
      Examples: 
       | SKU                |
       | 000000000021071852 |
@@ -477,7 +486,7 @@ Feature: Receiving
       | 000000000021071851 |
    
     
-    @Receiving @TC27_FSV_Receiving_Unknown_Stock_Boxed_Article_Black_Stock_Process
+    @Receiving @TC27_FSV_Receiving_Unknown_Stock_Hanged_Article_Black_Stock_Process
     Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -492,17 +501,26 @@ Feature: Receiving
       | SKU                |
       | 000000000021071851 |
     
-    @Receiving @TC27_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process
-    Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    @Receiving @TC27_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_hanged_Black_Stock_Process
+    Scenario Outline: To validate FSV Receiving Over_receipt_hanged_Article_Black_Stock_Process
+    Given Data to be inserted twice in preadvice header and one in order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
-    Then Verify PreAdvice header loaded successfully
+    Then Verify PreAdvice header loaded successfully for Two PO
     Then Verify Supplier is populated in the Pre-advice header table
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown
-    And Validate Unknown stock Error
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet for two urn
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for two URN
+    And I enter To Pallet
+    And Validate OverReceipt Error
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID for FSV
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
     Examples: 
       | SKU                |
       | 000000000021071851 |

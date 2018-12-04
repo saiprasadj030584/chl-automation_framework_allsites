@@ -33,4 +33,19 @@ public class GetTCData {
 	public String getSto() {
 		return context.getOrderId();
 	}
+
+	public void setpoId2(String poId) {
+		context.setpoId(poId);
+	}
+
+	public static String getpoId2() {
+		return context.getpoId();
+	}
+	public void setSto2(String stoId) {
+		context.setOrderId(stoId);
+	}
+
+	public String getSto2() {
+		return context.getOrderId();
+	}
 }

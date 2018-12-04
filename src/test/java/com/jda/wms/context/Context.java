@@ -179,6 +179,13 @@ public class Context {
 	public void setPalletID(String palletID) {
 		this.palletID = palletID;
 	}
+	public String getPalletID2() {
+		return palletID;
+	}
+
+	public void setPalletID2(String palletID) {
+		this.palletID = palletID;
+	}
 	public String getpalletIDforUPI() {
 		return palletIDforUPI;
 	}
@@ -1061,6 +1068,13 @@ public class Context {
 	}
 
 	public String getBelCode() {
+		return belCode;
+	}
+	public void setBelCode2(String belCode) {
+		this.belCode = belCode;
+	}
+
+	public String getBelCode2() {
 		return belCode;
 	}
 

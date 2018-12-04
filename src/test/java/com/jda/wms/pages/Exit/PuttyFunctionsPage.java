@@ -266,7 +266,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
 		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setPalletID(palletID);
+		context.setPalletID2(palletID);
 		System.out.println("check palletid "+palletID);
 	}
 	public void i_generate_pallet_id_forUnknown(String preAdviceId, String skuid) throws Throwable {
@@ -307,8 +307,8 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	}
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate() throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId();
-			System.out.println("skuid "+context.getSkuId2());
+			String skuid=context.getSKUHang();
+			System.out.println("skuid "+skuid);
 //			context.getSkuId2();
 //			context.getSkuId2();
 			String supplier = supplierSkuDB.getSupplierId(skuid);
@@ -326,7 +326,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 //		}
 		// Get dept - 3 digit
 		public String deptmanipulate() throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId();
+			String skuid=context.getSKUHang();
 			String dept = SkuDB.getProductGroup(skuid);
 			System.out.println("Dept" + dept);
 				String[] deptSplit = dept.split("T");
@@ -352,7 +352,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		}
 		public String skuQtyManipulate(String preAdviceId) throws ClassNotFoundException, SQLException {
 			
-			String skuid=context.getSkuId();
+			String skuid=context.getSKUHang();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
@@ -376,7 +376,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			return qtyDue;
 		}
 		public String skuQtyManipulate2(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId();
+			String skuid=context.getSKUHang();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
@@ -482,7 +482,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			String checkbit = "1";
 			System.out.println("checkbit "+checkbit);
 			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
-			context.setBelCode(belCode);
+			context.setBelCode2(belCode);
 			System.out.println(belCode);;
 		}
 		
