@@ -266,7 +266,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
 		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setPalletID(palletID);
+		context.setPalletID2(palletID);
 		System.out.println("check palletid "+palletID);
 	}
 	public void i_generate_pallet_id_forUnknown(String preAdviceId, String skuid) throws Throwable {
@@ -308,7 +308,11 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	// Get supplierid - 4 digit and manipulated to get only integer
 		public String suppliermanipulate() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSKUHang();
+
 			System.out.println("skuid "+context.getSKUHang());
+
+			System.out.println("skuid "+skuid);
+
 //			context.getSkuId2();
 //			context.getSkuId2();
 			String supplier = supplierSkuDB.getSupplierId(skuid);
@@ -482,7 +486,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			String checkbit = "1";
 			System.out.println("checkbit "+checkbit);
 			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
-			context.setBelCode(belCode);
+			context.setBelCode2(belCode);
 			System.out.println(belCode);;
 		}
 		
