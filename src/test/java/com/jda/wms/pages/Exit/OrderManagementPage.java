@@ -1,5 +1,6 @@
 package com.jda.wms.pages.Exit;
 
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -63,5 +64,17 @@ public class OrderManagementPage {
 		} else
 			return false;
 	}
-
+	public String getURN() throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/OrderManagement/Container.png");
+		screen.click(mStatus.getCenter().offset(60,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
+	}
+	public void typeOrderId(String orderId) throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		screen.type(orderId);
+		Thread.sleep(2000);
+	}
 }

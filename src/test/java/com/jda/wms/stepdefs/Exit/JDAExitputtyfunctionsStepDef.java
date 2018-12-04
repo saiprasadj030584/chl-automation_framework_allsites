@@ -28,6 +28,7 @@ import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationZonePage;
 
 import cucumber.api.java.en.And;
@@ -41,7 +42,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Configuration configuration;
 	private Context context;
-	private Object screen;
+	//private Object screen;
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private MoveTaskDB moveTaskDB;
@@ -58,6 +59,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PreAdviceLineDB preAdviceLineDB;
 	private LocationZonePage LocationZonePage;
 	private Hooks hooks;
+	private final JdaHomePage imageCheckFunction;
 
 	
 
@@ -66,7 +68,8 @@ public class JDAExitputtyfunctionsStepDef {
 			SkuDB skuDB,LocationDB LocationDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
-			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks) {
+			PreAdviceHeaderDB preAdviceHeaderDB,
+			JdaHomePage imageCheckFunction,LocationZonePage LocationZonePage,Hooks hooks) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -80,6 +83,7 @@ public class JDAExitputtyfunctionsStepDef {
 		this.LocationDB=LocationDB;
 		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
+		this.imageCheckFunction = imageCheckFunction;
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -627,8 +631,7 @@ public class JDAExitputtyfunctionsStepDef {
 		logger.debug("Validated Supplier Value: " + SupplierValue);
 		Thread.sleep(1000);
 
-		}
+		}}
 	
-	}
 	
 	
