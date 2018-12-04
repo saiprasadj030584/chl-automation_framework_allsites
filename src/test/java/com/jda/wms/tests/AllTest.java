@@ -17,8 +17,7 @@ import cucumber.api.junit.Cucumber;
 
 
 
-				+ "@TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory"
-				+ "" 
+				+ "@TC24_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process" 
 
 
 
