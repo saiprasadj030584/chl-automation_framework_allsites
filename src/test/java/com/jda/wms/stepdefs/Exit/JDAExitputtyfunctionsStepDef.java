@@ -70,8 +70,8 @@ public class JDAExitputtyfunctionsStepDef {
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
 			PreAdviceHeaderDB preAdviceHeaderDB,
 			JdaHomePage imageCheckFunction,LocationZonePage LocationZonePage,Hooks hooks) {
-			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks,JdaHomePage imageCheckFunction) {
-			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks,JdaHomePage imageCheckFunction) {
+			
+			{
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -85,7 +85,7 @@ public class JDAExitputtyfunctionsStepDef {
 		this.LocationDB=LocationDB;
 		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
-		this.imageCheckFunction = imageCheckFunction;
+		this.imageCheckFunction = imageCheckFunction;}
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
