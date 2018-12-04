@@ -10,7 +10,8 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.sikuli.script.App;
+import org.sikuli.script.Match;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
@@ -27,6 +28,7 @@ import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationZonePage;
 
 import cucumber.api.java.en.And;
@@ -40,7 +42,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Configuration configuration;
 	private Context context;
-	private Object screen;
+	//private Object screen;
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private MoveTaskDB moveTaskDB;
@@ -57,6 +59,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private PreAdviceLineDB preAdviceLineDB;
 	private LocationZonePage LocationZonePage;
 	private Hooks hooks;
+	private final JdaHomePage imageCheckFunction;
 
 	
 
@@ -65,7 +68,10 @@ public class JDAExitputtyfunctionsStepDef {
 			SkuDB skuDB,LocationDB LocationDB,PreAdviceLineDB preAdviceLineDB,SupplierSkuDB supplierSkuDB,
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
-			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks) {
+			PreAdviceHeaderDB preAdviceHeaderDB,
+			JdaHomePage imageCheckFunction,LocationZonePage LocationZonePage,Hooks hooks) {
+			
+			{
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
@@ -79,6 +85,7 @@ public class JDAExitputtyfunctionsStepDef {
 		this.LocationDB=LocationDB;
 		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
+		this.imageCheckFunction = imageCheckFunction;}
 	}
 	@Given("^I have logged in as warehouse user in putty$")
 	public void i_have_logged_in_as_warehouse_user_in_putty() throws Throwable {
@@ -355,12 +362,7 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
-
-		String skuid=context.getSkuId2();
-//		String skuid2=context.getSKUHang();
-
-		String skuid2=context.getSKUHang();
-
+        String skuid=context.getSKUHang();
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
@@ -403,7 +405,7 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_unknown() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
-		String skuid=context.getSkuId();
+		String skuid=context.getSKUHang();
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
@@ -486,6 +488,20 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
 		purchaseOrderReceivingPage.enterYes();
 		hooks.logoutPutty();
+		
+	}
+	@Given("^I enter To Pallet for two urn$")
+	public void I_enter_To_Pallet_for_two_urn() throws Throwable {
+		String ToPallet = null;
+		puttyFunctionsPage.nextScreen();
+		Thread.sleep(500);
+		puttyFunctionsPage.Tab();
+		Thread.sleep(500);
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		purchaseOrderReceivingPage.enterYes();
+		
 		
 	}
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date$")
@@ -572,7 +588,52 @@ public class JDAExitputtyfunctionsStepDef {
 	   puttyFunctionsPage.pressEnter();
 	   hooks.logoutPutty();
    }
+   
+   @Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for two URN$")
+	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_two_URN() throws Throwable {
+		Thread.sleep(10000);
+		
+		GetTCData.getpoId2();
+		String skuid=context.getSKUHang();
+		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId2(),skuid);
+		String palletID2 = context.getPalletID2();
+		System.out.println("palletID "+palletID2);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterPalletID(palletID2);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		puttyFunctionsPage.I_generate_belcode_for_overreceipt(GetTCData.getpoId2(),skuid);
+		String belCode2 = context.getBelCode2();
+		System.out.println("BelCode "+belCode2);
+		Thread.sleep(2000);
+		purchaseOrderReceivingPage.EnterBel(belCode2);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
+		System.out.println("UPCValue= "+prefixlist);
+		String UPCDB=SkuDB.getUPCDB();//from DB
+		System.out.println("UPCDB= "+UPCDB);
+		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
+		Thread.sleep(1000);
+		String QTYValue=purchaseOrderReceivingPage.getQTY();//from screen
+		System.out.println("QTYValue= "+QTYValue);
+		String DBlist=StringUtils.substring(QTYValue, 0, 2);
+		String preAdviceID=GetTCData.getpoId();
+		String QTYDB=skuDB.getQTYDB(preAdviceID,skuid);//from DB
+		System.out.println("QTYDB= "+QTYDB);
+		Assert.assertEquals("UPC validated", QTYDB, DBlist);
+		logger.debug("Validated QTY value : " + DBlist);
+		Thread.sleep(1000);
+		String SupplierValue=purchaseOrderReceivingPage.getSupplier();//from screen
+		System.out.println("SupplierValue= "+SupplierValue);
+		String SupplierDB = supplierSkuDB.getSupplierId(skuid);//from DB
+		System.out.println("SupplierDB= "+SupplierDB);
+		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
+		logger.debug("Validated Supplier Value: " + SupplierValue);
+		Thread.sleep(1000);
+
+		}}
 	
-	}
 	
 	

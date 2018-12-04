@@ -9,7 +9,9 @@ import com.jda.wms.pages.Exit.OrderManagementPage;
 import com.jda.wms.pages.Exit.OrderPreparationPage;
 import com.jda.wms.pages.Exit.WarningPopUpPage;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class OrderManagementStepDefs {
@@ -57,5 +59,23 @@ public class OrderManagementStepDefs {
 		warningPopUpPage.clickYes();
 		jdaFooter.clickDoneButton();
 	}
-
+	@And ("^Navigate to Order Container screen$")
+	public void Navigate_to_Order_Container_screen() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+	}
+	@And ("^Enter Order Id$")
+	public void Enter_Order_Id() throws Throwable {
+		orderManagementPage.typeOrderId(context.getOrderId());
+		Thread.sleep(2000);
+	}
+	@Then("^Validate the 32 digit URN is generated$")
+	public void Validate_the_32_digit_URN_is_generated() throws Throwable {
+		String Urn = orderManagementPage.getURN();
+		System.out.println("The URN :" +Urn);
+		if(Urn.length()==32){
+			Assert.assertTrue("The 32 digit URN is validated", true);
+		}else{
+			Assert.assertFalse("The 32 digit URN is validated", false);
+		}
+	}
 }

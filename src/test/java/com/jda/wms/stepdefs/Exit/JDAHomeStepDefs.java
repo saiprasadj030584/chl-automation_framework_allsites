@@ -265,11 +265,14 @@ public class JDAHomeStepDefs {
 	}
 	@And("^Click on Query$")
 	public void click_on_Query() throws Throwable {
+		Thread.sleep(2000);
 		jdaFooter.clickQueryButton();
-		
+		Thread.sleep(2000);
 	}
 	@And("^click execute$")
 	public void click_execute() throws Throwable {
+		Thread.sleep(2000);
 		jdaFooter.clickExecuteButton();
+		Thread.sleep(2000);
 	}
 }

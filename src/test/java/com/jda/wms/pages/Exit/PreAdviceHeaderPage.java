@@ -53,6 +53,18 @@ public class PreAdviceHeaderPage{
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(1000);
 	}
+	public void Enterpreadvice2() throws FindFailed, InterruptedException{
+		
+		jdaFooter.clickQueryButton();
+		Thread.sleep(1000);
+		Match mTaskId = screen.find("images/PreAdviceHeader/PreAdviceId.png");
+		screen.click(mTaskId.getCenter().offset(70, 0));
+		String Preadvice2=getTCData.getpoId2();
+		screen.type(Preadvice2);
+		Thread.sleep(1000);
+		jdaFooter.clickExecuteButton();
+		Thread.sleep(1000);
+	}
 	public String getStatus() throws FindFailed {
 		Match mDescription = screen.find("images/PreAdviceHeader/Status.png");
 		screen.click(mDescription.getCenter().offset(70, 0));

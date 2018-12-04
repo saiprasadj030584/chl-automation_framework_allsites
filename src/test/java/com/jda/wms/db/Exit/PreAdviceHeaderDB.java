@@ -33,15 +33,15 @@ public class PreAdviceHeaderDB {
 				"select status, due_dstamp, site_id, supplier_id, pre_advice_type,num_lines,name,address1, country  from pre_advice_header WHERE pre_advice_id = '"
 						+ preAdviceID + "'");
 		resultSet.next();
-		preAdviceHeaderMap.put("STATUS", resultSet.getString(1));
-		preAdviceHeaderMap.put("DUEDATE", resultSet.getString(2));
-		preAdviceHeaderMap.put("SITEID", resultSet.getString(3));
-		preAdviceHeaderMap.put("SUPPLIERID", resultSet.getString(4));
-		preAdviceHeaderMap.put("PREADVICETYPE", resultSet.getString(5));
+//		preAdviceHeaderMap.put("STATUS", resultSet.getString(1));
+//		preAdviceHeaderMap.put("DUEDATE", resultSet.getString(2));
+//		preAdviceHeaderMap.put("SITEID", resultSet.getString(3));
+//		preAdviceHeaderMap.put("SUPPLIERID", resultSet.getString(4));
+//		preAdviceHeaderMap.put("PREADVICETYPE", resultSet.getString(5));
 		preAdviceHeaderMap.put("NUMLINES", resultSet.getString(6));
-		preAdviceHeaderMap.put("NAME", resultSet.getString(7));
-		preAdviceHeaderMap.put("ADDRESS1", resultSet.getString(8));
-		preAdviceHeaderMap.put("COUNTRY", resultSet.getString(9));
+//		preAdviceHeaderMap.put("NAME", resultSet.getString(7));
+//		preAdviceHeaderMap.put("ADDRESS1", resultSet.getString(8));
+//		preAdviceHeaderMap.put("COUNTRY", resultSet.getString(9));
 
 		return preAdviceHeaderMap;
 	}
