@@ -17,7 +17,7 @@ import cucumber.api.junit.Cucumber;
 
 
 
-				+ "@TC038_USER_GROUP_set_up_with_the_required_acceses_for_the_RDTs" 
+				+ "@TC24_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_Boxed_Black_Stock_Process" 
 
 
 

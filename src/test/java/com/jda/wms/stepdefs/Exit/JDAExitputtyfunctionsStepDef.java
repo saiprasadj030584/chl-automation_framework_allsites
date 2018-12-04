@@ -70,6 +70,8 @@ public class JDAExitputtyfunctionsStepDef {
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
 			PreAdviceHeaderDB preAdviceHeaderDB,
 			JdaHomePage imageCheckFunction,LocationZonePage LocationZonePage,Hooks hooks) {
+			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks,JdaHomePage imageCheckFunction) {
+			PreAdviceHeaderDB preAdviceHeaderDB,LocationZonePage LocationZonePage,Hooks hooks,JdaHomePage imageCheckFunction) {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
 		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
