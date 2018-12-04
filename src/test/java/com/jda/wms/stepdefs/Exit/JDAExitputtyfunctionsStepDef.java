@@ -7,9 +7,11 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
+import org.sikuli.script.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.sikuli.script.App;
+import org.sikuli.script.Match;
 import com.google.inject.Inject;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
