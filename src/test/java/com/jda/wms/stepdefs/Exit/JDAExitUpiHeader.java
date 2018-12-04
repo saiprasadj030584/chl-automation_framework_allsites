@@ -203,14 +203,15 @@ public class JDAExitUpiHeader{
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
+		String skuid = context.getSKUHang();
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPI();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
 		context.setSAPvalue(SAPvalue);
 		dataSetupRunner.insertOrderDataforUPI();
 		GetTCData.getpoId();
-		String skuid = "000000000021071852";
-		context.setSkuId2(skuid);
+		
+		
 		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		Thread.sleep(1000);
@@ -240,8 +241,9 @@ public class JDAExitUpiHeader{
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
-		String skuid = "000000000021071851";
-		context.setSkuId2(skuid);
+		
+		String skuid=context.getSKUHang();
+		System.out.println("skuid="+skuid);
 		
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPIForRedStock();
@@ -368,18 +370,25 @@ public class JDAExitUpiHeader{
 
 
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\"$")
-public void checking_the_conditions_for_the_sku(String type, 
+public void checking_the_conditions_for_the_sku_and_customerID_site(String type, 
 		String putawayGroup, String customer, String skuid, String customerID) throws Throwable {
 	
 	String BoxedOrHanging= skuDB.getBoxedOrHanging(skuid);
-	String PdtGp= mandsDB.getProductGroup(skuid);
+	System.out.println("BoxedOrHanging="+BoxedOrHanging);
+	String PdtGp= skuDB.getProductGroup(skuid);
+	System.out.println("PdtGp="+PdtGp);
 	String AllowedStock=mandsDB.getTrustedStock(customerID,PdtGp);
+	System.out.println("AllowedStock="+AllowedStock);
 //	 String PutawayGroup=skuDB.getPutawayGroup(skuid);
 	String addressID=supplierSkuDB.getSupplierId(skuid);
+	System.out.println("addressID="+addressID);
 	String Country= addressMaintenanceDB.getCountry(addressID);
+	System.out.println("Country="+Country);
 	
+	context.setSKUHang(skuid);
 	
 	if((type.equals("Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("Y") && Country!=("ISR")){
+		System.out.println("inside");
 		System.out.println("Conditions satisfied");
 	}
 	
@@ -396,18 +405,58 @@ public void checking_the_conditions_for_the_sku(String type,
 	}
 	
 	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("N") && Country!=("ISR")){
+		System.out.println("inside");
 		System.out.println("Conditions satisfied");
 	}
 	
-	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("Y") && Country!=("ISR")){
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("N") && Country!=("ISR")){
 		System.out.println("Conditions satisfied");
 	}
 	
-	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("Y") && Country.equals("ISR")){
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("N") && Country.equals("ISR")){
 		System.out.println("Conditions satisfied");
 	}	
 
-	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("Y") && Country.equals("ISR")){
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("N") && Country.equals("ISR")){
+		System.out.println("Conditions satisfied");
+	}
+
+	}
+
+
+@Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\" and siteID \"([^\"]*)\"$")
+public void checking_the_conditions_for_the_sku_and_customerID_siteID(String type, 
+		String putawayGroup, String customer, String skuid, String customerID,String siteID) throws Throwable {
+	
+	String BoxedOrHanging= skuDB.getBoxedOrHanging(skuid);
+	System.out.println("BoxedOrHanging="+BoxedOrHanging);
+	String PdtGp= skuDB.getProductGroup(skuid);
+	System.out.println("PdtGp="+PdtGp);
+	String AllowedStock=mandsDB.getNotTrustedStock(customerID,PdtGp,siteID);
+	System.out.println("AllowedStock="+AllowedStock);
+//	 String PutawayGroup=skuDB.getPutawayGroup(skuid);
+	String addressID=supplierSkuDB.getSupplierId(skuid);
+	System.out.println("addressID="+addressID);
+	String Country= addressMaintenanceDB.getCountry(addressID);
+	System.out.println("Country="+Country);
+	
+	context.setSKUHang(skuid);
+	
+	
+	 if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("N") && Country!=("ISR")){
+		System.out.println("inside");
+		System.out.println("Conditions satisfied");
+	}
+	
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("N") && Country!=("ISR")){
+		System.out.println("Conditions satisfied");
+	}
+	
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("B") && AllowedStock.equals("N") && Country.equals("ISR")){
+		System.out.println("Conditions satisfied");
+	}	
+
+	else if ((type.equals("Non-Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("N") && Country.equals("ISR")){
 		System.out.println("Conditions satisfied");
 	}
 

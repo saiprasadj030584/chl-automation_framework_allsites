@@ -108,15 +108,28 @@ public class MandsDB {
 		return rs.getString(1);
 	}
 
-	public String getTrustedStock(String siteId, String pdtGp)throws SQLException, ClassNotFoundException {
-		System.out.println(siteId);
+	public String getTrustedStock(String customer_id, String pdtGp)throws SQLException, ClassNotFoundException {
+		System.out.println(customer_id);
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		System.out.println("select trusted FROM mands.trusted_user_mode where site_id='"+siteId+"' and product_group='"+pdtGp+"'");
+		System.out.println("select trusted FROM mands.trusted_user_mode where customer_id='"+customer_id+"' and product_group='"+pdtGp+"'");
 		ResultSet rs = stmt
-				.executeQuery("select trusted FROM mands.trusted_user_mode where site_id='"+siteId+"' and product_group='"+pdtGp+"'");
+				.executeQuery("select trusted FROM mands.trusted_user_mode where customer_id='"+customer_id+"' and product_group='"+pdtGp+"'");
+		rs.next();
+		return rs.getString(1);
+	}
+
+	public String getNotTrustedStock(String customer_id, String pdtGp, String siteId)throws SQLException, ClassNotFoundException {
+		System.out.println(customer_id);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select trusted FROM mands.trusted_user_mode where customer_id='"+customer_id+"' and product_group='"+pdtGp+"' and site_id='"+siteId+"'");
+		ResultSet rs = stmt
+				.executeQuery("select trusted FROM mands.trusted_user_mode where customer_id='"+customer_id+"' and product_group='"+pdtGp+"' and site_id='"+siteId+"'");
 		rs.next();
 		return rs.getString(1);
 	}

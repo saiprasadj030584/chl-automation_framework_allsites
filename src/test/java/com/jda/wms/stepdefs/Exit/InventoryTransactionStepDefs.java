@@ -17,7 +17,7 @@ import com.jda.wms.pages.Exit.InventoryTransactionPage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.SupplierSKUMaintenancePage;
-
+import com.jda.wms.stepdefs.Exit.InventoryTransactionStepDefs;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.db.Exit.MandsDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
@@ -35,9 +35,10 @@ public class InventoryTransactionStepDefs{
 	private SupplierSkuDB supplierSkuDB;
 	private SupplierSKUMaintenancePage SupplierSKUMaintenancePage;
 	private MandsDB mandsDB;
+	private InventoryTransactionStepDefs inventoryTransactionStepDefs;
 	@Inject
 	public void InventoryTransactionStepDefs(SkuDB skuDB,MandsDB mandsDB,InventoryTransactionPage inventoryTransactionPage,
-			JdaHomePage jdaHomePage,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
+			JdaHomePage jdaHomePage,InventoryTransactionStepDefs inventoryTransactionStepDefs,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
 		this.inventoryTransactionPage=inventoryTransactionPage;
 		this.jdaHomePage=jdaHomePage;
 		this.preAdviceHeaderPage=preAdviceHeaderPage;
@@ -46,6 +47,7 @@ public class InventoryTransactionStepDefs{
 		this.supplierSkuDB=supplierSkuDB;
 		this.SupplierSKUMaintenancePage=SupplierSKUMaintenancePage;
 		this.mandsDB=mandsDB;
+		this.inventoryTransactionStepDefs=inventoryTransactionStepDefs;
 	}
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed
@@ -84,7 +86,7 @@ public class InventoryTransactionStepDefs{
 		inventoryTransactionPage.getstatus();
 	}
 	@And("^check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code$")
-	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code() throws FindFailed, InterruptedException, ClassNotFoundException, SQLException
+	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code() throws Throwable
 	{
 		String sku= context.getSkuId2();
 		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
@@ -98,6 +100,7 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("Reason code not as expected", "RED", RC);
 		Thread.sleep(2000);
 		inventoryTransactionPage.ChecktransactionForRedStock();
+		inventoryTransactionStepDefs.commodity_code_is_validated_as_null();
 		
 	}
 	
@@ -114,7 +117,7 @@ public class InventoryTransactionStepDefs{
 	
 	@Then("^Alter the commodity Code to make the stock as RED stock$")
 	public void alter_the_commodity_code_to_make_the_stock_as_red_stock() throws Throwable,FindFailed{
-		String Sku= context.getSkuId2();
+		String Sku= context.getSKUHang();
 		String CommodityCode= mandsDB.getUserDefType9(Sku);
 		context.setCommodityCd(CommodityCode);
 		String UpdateCommodityCode=mandsDB.updateCommodityCode(Sku);
@@ -122,7 +125,7 @@ public class InventoryTransactionStepDefs{
 	
 	@And("^commodity Code is validated as NULL$")
 	public void commodity_code_is_validated_as_null() throws Throwable,FindFailed{
-		String Sku= context.getSkuId2();
+		String Sku= context.getSKUHang();
 		String CommodityCode= mandsDB.getUserDefType9(Sku);
 		Assert.assertNull("commodity code is not null", CommodityCode);
 		String OriginalCommodity=mandsDB.UpdateToOriginalCommodity(context.getCommodityCd(),Sku);

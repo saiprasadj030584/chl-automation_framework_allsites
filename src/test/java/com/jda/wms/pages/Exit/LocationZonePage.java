@@ -30,9 +30,13 @@ public class LocationZonePage {
 		screen.click("/images/LocationZone/LocationZone.png");
 		screen.type(locationZone);
 	}
-	public boolean isRedLockApplied(){
-		if ((screen.exists("images/Putty/Receiving/RedStockReceive.png") != null))
+	public boolean isRedLockApplied() throws FindFailed{
+		if ((screen.exists("images/Putty/Receiving/RedStockReceive.png") != null)){
+			Match mImageFrRedStock=screen.find("images/Putty/Receiving/RedStockReceive.png");
+			screen.click(mImageFrRedStock.getCenter().offset(70,0));
 			return true;
+		}
+			
 		else
 			return false;
 	}

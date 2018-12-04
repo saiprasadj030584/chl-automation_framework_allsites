@@ -448,7 +448,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_Supplier_and_location_for_ASN_for_red_stock() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId2();
+		String skuid = context.getSKUHang();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
@@ -490,7 +490,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId2();
+		String skuid = context.getSKUHang();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
@@ -513,9 +513,9 @@ public class JDAExitputtyfunctionsStepDef {
 		puttyFunctionsPage.nextScreen();
 		String Expirydate= Utilities.getAddedSystemYear();
 		purchaseOrderReceivingPage.EnterToExpirydate(Expirydate);
-		String ExpiryDate= purchaseOrderReceivingPage.getExpiryDate();
-		
-		Assert.assertNotNull("Expiry date not validated", ExpiryDate);
+//		String ExpiryDate= purchaseOrderReceivingPage.getExpiryDate();
+//		
+//		Assert.assertNotNull("Expiry date not validated", ExpiryDate);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
 	
