@@ -275,4 +275,13 @@ public class JDAHomeStepDefs {
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(2000);
 	}
+	@And("^Go to consignment maintainance$")
+	public void Go_to_consignment_maintainance() throws Throwable {
+		jdaHomePage.navigateToConsignmentMaintenance();
+	}
+	@And("^Go to consignment drop maintainance screen$")
+	public void Go_to_consignment_drop_maintainance_screen() throws Throwable {
+		jdaHomePage.navigateToConsignmentDropMaintenance();
+	}
+	
 }

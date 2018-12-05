@@ -98,3 +98,15 @@ Feature: Orders_Picking
     And Enter Order Id
     And click execute
     And Validate the 32 digit URN is generated
+    
+   @Picking @TC011_Create_a_consignment_or_Load_label
+   Scenario: Create a consignment or Load label
+    And Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    
+    @Picking @TC012_Create_Consignment_Drop
+   Scenario: Create a consignment or Load label
+    And Login to JDA Dispatcher web screen
+    And Go to consignment drop maintainance screen
+    
+    
