@@ -90,11 +90,14 @@ public class SkuDB {
 		rs.next();
 		return rs.getString(1);
 	}
+
 	public static  String getUPCDB(String SkuId) throws SQLException, ClassNotFoundException {
+
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+
 		ResultSet rs = stmt.executeQuery("select upc from sku where sku_id = '"+SkuId+"'");
 		rs.next();
 		return (rs.getString(1));

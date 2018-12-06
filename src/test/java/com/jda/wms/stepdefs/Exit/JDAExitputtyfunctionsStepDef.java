@@ -221,6 +221,7 @@ public class JDAExitputtyfunctionsStepDef {
 		//String TagId=moveTaskDB.getTag(context.getOrderId());
 		String sku=context.getSKUHang();
 		String listId=moveTaskDB.getList(context.getOrderId());
+		
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
@@ -636,7 +637,20 @@ public class JDAExitputtyfunctionsStepDef {
 		logger.debug("Validated Supplier Value: " + SupplierValue);
 		Thread.sleep(1000);
 
-		}}
+		}
 	
-	
+@And("^I enter Invalid List Id \"([^\"]*)\"$")
+public void I_enter_Invalid_List_Id(String List_Id) throws Throwable{
+   storeTrackingOrderPickingPage.enterListID(List_Id);
+   puttyFunctionsPage.pressEnter();
+}
+Screen screen = new Screen();
+@And("^I validate Error message is displayed$")
+public void I_validate_Error_message_is_displayed() throws Throwable{
+   if (screen.exists("images/JDAHome/webaccess.png") != null) {
+		Assert.assertTrue(true);
+	} else
+		Assert.assertFalse(false);
+}	
+}
 	

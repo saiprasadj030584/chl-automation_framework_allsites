@@ -385,7 +385,7 @@ Examples:
     And check the Inventory Transaction for Receipt, Allocate and Pick
      Examples: 
       | SKU                |
-      | 000000000021071852 |
+      | 000000000021071851 |
     
     @Receiving @TC22_FSV_Receiving_Over_receipt_Boxed_Article_Black_Stock_Process
     Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process

@@ -1128,12 +1128,15 @@ public class Context {
 		return SKUHang;
 	}
 
+
 	public void setupc(String upc) {
 		this.upc=upc;
 		// TODO Auto-generated method stub
 		
 	}
-	public String getupc(){
+
+	public String getupc() {
+
 		return upc;
 	}
 
