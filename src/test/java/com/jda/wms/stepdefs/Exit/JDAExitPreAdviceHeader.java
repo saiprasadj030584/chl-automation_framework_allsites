@@ -210,7 +210,7 @@ public class JDAExitPreAdviceHeader{
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(10000);
-		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+		String orderstatus=orderHeaderDB.getStatus(orderID);
 		System.out.println("status : "+orderstatus);			
 	}
 	
@@ -231,7 +231,7 @@ public class JDAExitPreAdviceHeader{
 		System.out.println("New Order ID : " + orderID2);
 		Thread.sleep(10000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
-		String orderstatus2=orderHeaderDB.getStatus(context.getOrderId());
+		String orderstatus2=orderHeaderDB.getStatus(context.getOrderId2());
 		System.out.println("status : "+orderstatus);
 		System.out.println("status : "+orderstatus2);
 	}

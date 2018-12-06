@@ -378,7 +378,7 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, Allocate and Pick
      Examples: 
       | SKU                |
-      | 000000000021071851 |
+      | 000000000021071852 |
     
     @Receiving @TC22_FSV_Receiving_Over_receipt_Boxed_Article_Black_Stock_Process
     Scenario Outline: To validate FSV Receiving Over_receipt_Boxed_Article_Black_Stock_Process
@@ -489,7 +489,7 @@ Feature: Receiving
       | SKU                |
       | 000000000021071851 |
     
-    @Receiving @TC27_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_hanged_Black_Stock_Process
+    @Receiving @TC28_FSV_Receiving_Over_receipt_PO_stock_in_more_than_one_URN_hanged_Black_Stock_Process
     Scenario Outline: To validate FSV Receiving Over_receipt_hanged_Article_Black_Stock_Process
     Given Data to be inserted twice in preadvice header and one in order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -513,7 +513,23 @@ Feature: Receiving
       | SKU                |
       | 000000000021071851 |
     
-    
+     @Receiving @TC29_FSV_Receiving_Happy_path_Prohibition_check
+    Scenario Outline: To validate FSV Receiving - Happy path –  prohibition check
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID for FSV
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
     
    
 

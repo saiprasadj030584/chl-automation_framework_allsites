@@ -140,6 +140,10 @@ public class Context {
 	private String PalletID2;
 	private String BelCode2;
 	private String upc;
+	private String poId2;
+	private String belCode2;
+	private String palletID2;
+	private String orderId2;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -183,11 +187,11 @@ public class Context {
 		this.palletID = palletID;
 	}
 	public String getPalletID2() {
-		return palletID;
+		return palletID2;
 	}
 
 	public void setPalletID2(String palletID) {
-		this.palletID = palletID;
+		this.palletID2 = palletID2;
 	}
 	public String getpalletIDforUPI() {
 		return palletIDforUPI;
@@ -626,6 +630,13 @@ public class Context {
 	public String getOrderId() {
 		return orderId;
 	}
+	public void setOrderId2(String orderId) {
+		this.orderId2= orderId;
+	}
+
+	public String getOrderId2() {
+		return orderId2;
+	}
 
 	public String getShipDock() {
 		return shipDock;
@@ -775,6 +786,13 @@ public class Context {
 
 	public void setpoId(String poId) {
 		this.poId = poId;
+	}
+	public String getpoId2() {
+		return poId2;
+	}
+
+	public void setpoId2(String poId2) {
+		this.poId2 = poId2;
 	}
 	public Map<Integer, Map<String, String>> getReplenishmentDetailsMap() {
 		return replenishmentDetailsMap;
@@ -1073,12 +1091,12 @@ public class Context {
 	public String getBelCode() {
 		return belCode;
 	}
-	public void setBelCode2(String belCode) {
-		this.belCode = belCode;
+	public void setBelCode2(String belCode2) {
+		this.belCode2 = belCode2;
 	}
 
 	public String getBelCode2() {
-		return belCode;
+		return belCode2;
 	}
 
 	public void setPackWeight(String packWeight)  {
@@ -1134,6 +1152,8 @@ public class Context {
 	public String getupc() {
 		return upc;
 	}
+
+	
 
 	
 	}

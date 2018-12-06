@@ -598,7 +598,7 @@ public class JDAExitputtyfunctionsStepDef {
 		
 		GetTCData.getpoId2();
 		String skuid=context.getSKUHang();
-		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId2(),skuid);
+		puttyFunctionsPage.i_generate_pallet_id_for_two(GetTCData.getpoId2(),skuid);
 		String palletID2 = context.getPalletID2();
 		System.out.println("palletID "+palletID2);
 		Thread.sleep(2000);
