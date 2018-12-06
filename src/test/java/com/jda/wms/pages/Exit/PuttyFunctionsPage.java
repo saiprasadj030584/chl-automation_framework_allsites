@@ -350,7 +350,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 
 			System.out.println("skuid "+context.getSKUHang());
 
-			System.out.println("skuid "+skuid);
+			
 
 
 			String supplier= supplierSkuDB.getSupplierId(skuid);

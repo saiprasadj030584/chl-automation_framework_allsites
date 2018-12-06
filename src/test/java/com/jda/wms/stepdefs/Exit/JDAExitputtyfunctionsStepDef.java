@@ -542,6 +542,8 @@ public class JDAExitputtyfunctionsStepDef {
 	
 		}
 	
+	
+	
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date_for_hang() throws Throwable {
 		GetTCData.getpoId();
