@@ -374,6 +374,42 @@ public class JDAExitUpiHeader{
 				}
 		
 
+			@Given ("^Data to be inserted in preadvice header,order header and UPI receipt without ASN \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for the Red Stock$")
+			public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_without_ASN_for_the_red_stock(String status,
+					String type, String customer) throws Throwable {
+				System.out.println("data");
+				context.setStoType(type);
+				context.setCustomer(customer);
+//				dataSetupRunner.insertPreAdviceData();
+				dataSetupRunner.insertPreAdviceDataforUPI();
+				String SAPvalue=Utilities.getEightDigitRandomNumber();
+				context.setSAPvalue(SAPvalue);
+				dataSetupRunner.insertOrderDataforUPI();
+				GetTCData.getpoId();
+				String skuid = "000000000021071852";
+				context.setSkuId2(skuid);
+				puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+				String palletIDforUPI = context.getpalletIDforUPI();
+				Thread.sleep(1000);
+				dataSetupRunner.insertUPIReceiptData();
+				String orderID = getTCData.getSto();
+				System.out.println("New Order ID : " + orderID);
+				Thread.sleep(10000);
+				String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+				System.out.println("status : "+orderstatus);
+//				JDAExitLoginStepDefs.Logging_in_as_warehouse_user_in_Exit_application();
+//				if(orderstatus.equals(status))
+//				{
+//					Thread.sleep(15000);
+					String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
+					if(!orderstatus1.equals("orderstatus"))
+					{
+						System.out.println("status1"+orderstatus1);
+						//systemAllocationStepDefs.i_system_allocate_the_order(); // should be confirmed as it was manual franchise to be manually allocated
+					}
+				
+				}
+		
 
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\"$")
 public void checking_the_conditions_for_the_sku_and_customerID_site(String type, 

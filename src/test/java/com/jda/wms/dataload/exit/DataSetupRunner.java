@@ -250,6 +250,7 @@ public class DataSetupRunner {
 	public void insertOrderData2() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 		System.out.println(stoId);
+		getTCData.setSto(stoId);
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
 		insertDataIntoDB.insertOrderLine2(stoId,getTCData.getpoId());
 		Thread.sleep(10000);
