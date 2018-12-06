@@ -33,8 +33,8 @@ Examples:
     And Verify scan URN screen displayed
 
   @Receiving @TC03_Compliance_Check
-  Scenario: Compliance Check - Happy path - All the required fields are valid
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+  Scenario Outline: Compliance Check - Happy path - All the required fields are valid
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -50,6 +50,10 @@ Examples:
     And Check Qty received is updated in Pre-advice line
     And Check the Orderline must be allocated
 
+Examples:
+    |SkuId|
+    |000000000021071852|
+    
   @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario: To validate Compliance Check - T-Dept is NULL or invalid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
@@ -126,6 +130,7 @@ Examples:
     
     Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+   Then Alter the commodity Code to make the stock as RED stock
    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
