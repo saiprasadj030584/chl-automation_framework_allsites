@@ -116,9 +116,18 @@ Feature: Orders_Picking
    @Picking @TC012_Create_Consignment_Drop
    Scenario: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
-    And Go to consignment drop maintainance screen
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
+    And Enter consignment name 
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
     And Enter consignment
     And Enter chamber and Address Id
     Then click execute

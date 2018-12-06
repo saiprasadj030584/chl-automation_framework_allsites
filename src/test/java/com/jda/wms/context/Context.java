@@ -140,7 +140,7 @@ public class Context {
 	private String PalletID2;
 	private String BelCode2;
 	private String upc;
-
+	private String consignmentName;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1138,6 +1138,14 @@ public class Context {
 	public String getupc() {
 
 		return upc;
+	}
+
+	public String getConsignmentName() {
+		return consignmentName;
+	}
+
+	public void setConsignmentName(String consignmentName) {
+		this.consignmentName = consignmentName;
 	}
 
 	
