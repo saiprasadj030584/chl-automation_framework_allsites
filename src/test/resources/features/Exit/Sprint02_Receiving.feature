@@ -142,7 +142,7 @@ Examples:
     Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
    
      Given Checking the conditions "Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "4611"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for "<SkuId>"
    
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -151,8 +151,7 @@ Examples:
     Then Verify PreAdvice line loaded successfully
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
-    #Then Ensure Trusted entry is disable
-    #Then Ensure Prohibition check
+    
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -168,11 +167,11 @@ Examples:
     |SkuId|
     |000000000021071852|
       
-    @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
+   @complete @Receiving @TC12_Direct_receiving_Happy_path_Non_Trusted_Boxed_Prohibited_inventory
     Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
     
     Given Checking the conditions "Non-Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the commodity Code to make the stock as RED stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -183,54 +182,42 @@ Examples:
     
     Examples:
     |SkuId|
-    |000000000021071852|
+    |000000000021071851|
  
     @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
-    Scenario: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
+    Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
      Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-    And Login to JDA Dispatcher web screen
-    Then Verify PreAdvice header loaded successfully
-    Then Verify Supplier is populated in the Pre-advice header table
-    Then Verify the Type  is populated as "STO"
-    Then Verify PreAdvice line loaded successfully
-    Then Verify data in UPI Receipt header screen
-    Then Verify ASN ID for the PalletID
-    #Then Ensure Trusted entry is disable
-    #Then Ensure Prohibition check
+    Then Alter the commodity Code to make the stock as RED stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date 
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    
+    
+     Examples:
+    |SkuId|
+    |000000000021071852|
     
     
     @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
-    Scenario: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
-    Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542"
-    And Login to JDA Dispatcher web screen
-    Then Verify PreAdvice header loaded successfully
-    Then Verify Supplier is populated in the Pre-advice header table
-    Then Verify the Type  is populated as "STO"
-    Then Verify PreAdvice line loaded successfully
-    Then Verify data in UPI Receipt header screen
-    Then Verify ASN ID for the PalletID
+    Scenario Outline: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
+     Given Checking the conditions "Non-Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542" for Red Stock
+      
+    Then Alter the commodity Code to make the stock as RED stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     
+    Examples:
+    |SkuId|
+    |000000000021071852|
    
     
     @Complete @Receiving @TC15_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
@@ -293,7 +280,7 @@ Examples:
     Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  NonProhibited inventory
     
     Given Checking the conditions "Trusted", "Hanging" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for "<SkuId>"
     
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
