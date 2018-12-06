@@ -203,6 +203,8 @@ public class JDAExitPreAdviceHeader{
 		context.setStoType(type);
 		context.setCustomer(customer);
 		context.setSKUHang(sku);
+		String UPC=SkuDB.getUPCDB(sku);
+		context.setupc(UPC);
 		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
@@ -274,11 +276,11 @@ public class JDAExitPreAdviceHeader{
 	@And ("^Validation of UPC,Qty details and Supplier$")
 	public void Validation_of_UPC_Qty_details_and_Supplier() throws Throwable {
 		String preAdviceID=GetTCData.getpoId();
-		String skuid = "000000000021071852";
+		String skuid = context.getSKUHang();
 		Thread.sleep(1000);
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		System.out.println("UPCValue= "+UPCValue);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, UPCValue);
 		logger.debug("Validated UPC value : " + UPCValue);

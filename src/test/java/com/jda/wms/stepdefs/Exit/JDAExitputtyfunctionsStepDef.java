@@ -193,7 +193,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
 //		String[] UPCSplit = UPCLast.split("****");
 		System.out.println("UPCLast="+UPCLast);
-		String UPCDB=SkuDB.getUPCDB();
+		String UPCDB=SkuDB.getUPCDB(sku);
 		System.out.println("upc="+UPCDB);
 //		String[] UPCDBLast = UPCDB.split("(?<!\\d)(?<!\\d)");
 //		return UPCDBLast[1];
@@ -235,7 +235,7 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("upc="+UPCValue);
 		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
 		System.out.println("UPCLast="+UPCLast);
-		String UPCDB=SkuDB.getUPCDB();
+		String UPCDB=SkuDB.getUPCDB(sku);
 		System.out.println("upc="+UPCDB);
 		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
@@ -294,7 +294,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 //		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -338,7 +338,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -382,7 +382,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -615,7 +615,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
