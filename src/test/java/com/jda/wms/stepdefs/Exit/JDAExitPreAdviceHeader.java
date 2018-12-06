@@ -277,6 +277,7 @@ public class JDAExitPreAdviceHeader{
 	public void Validation_of_UPC_Qty_details_and_Supplier() throws Throwable {
 		String preAdviceID=GetTCData.getpoId();
 		String skuid = context.getSKUHang();
+
 		Thread.sleep(1000);
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		System.out.println("UPCValue= "+UPCValue);

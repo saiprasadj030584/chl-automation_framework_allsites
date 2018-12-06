@@ -219,8 +219,9 @@ public class JDAExitputtyfunctionsStepDef {
 	@And("^I enter ListId and TagId for IDT$")
 	public void I_enter_ListId_and_TagId_for_IDT() throws Throwable{
 		//String TagId=moveTaskDB.getTag(context.getOrderId());
-		String listId=moveTaskDB.getList(context.getOrderId());
 		String sku=context.getSKUHang();
+		String listId=moveTaskDB.getList(context.getOrderId());
+		
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
 		puttyFunctionsPage.pressEnter();
@@ -320,7 +321,7 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_over_unknown_stock() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
-		String skuid=context.getSkuId();
+		String skuid=context.getSKUHang();
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
@@ -544,7 +545,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date_for_hang() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId2();
+		String skuid = context.getSKUHang();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);

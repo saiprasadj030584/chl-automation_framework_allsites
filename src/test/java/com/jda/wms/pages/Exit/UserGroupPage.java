@@ -1,5 +1,4 @@
 package com.jda.wms.pages.Exit;
-
 import org.sikuli.script.FindFailed;
 
 import com.google.inject.Inject;
