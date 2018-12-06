@@ -176,6 +176,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@And("^I enter ListId and TagId$")
 	public void I_enter_ListId_and_TagId() throws Throwable{
 		//String TagId=moveTaskDB.getTag(context.getOrderId());
+		String sku=context.getSKUHang();
 		String listId=moveTaskDB.getList(context.getOrderId());
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
@@ -192,7 +193,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
 //		String[] UPCSplit = UPCLast.split("****");
 		System.out.println("UPCLast="+UPCLast);
-		String UPCDB=SkuDB.getUPCDB();
+		String UPCDB=SkuDB.getUPCDB(sku);
 		System.out.println("upc="+UPCDB);
 //		String[] UPCDBLast = UPCDB.split("(?<!\\d)(?<!\\d)");
 //		return UPCDBLast[1];
@@ -218,6 +219,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@And("^I enter ListId and TagId for IDT$")
 	public void I_enter_ListId_and_TagId_for_IDT() throws Throwable{
 		//String TagId=moveTaskDB.getTag(context.getOrderId());
+		String sku=context.getSKUHang();
 		String listId=moveTaskDB.getList(context.getOrderId());
 		storeTrackingOrderPickingPage.enterListID(listId);
 		System.out.println("ListId= " +listId);
@@ -233,7 +235,7 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("upc="+UPCValue);
 		String UPCLast=StringUtils.substring(UPCValue, 0, 4);
 		System.out.println("UPCLast="+UPCLast);
-		String UPCDB=SkuDB.getUPCDB();
+		String UPCDB=SkuDB.getUPCDB(sku);
 		System.out.println("upc="+UPCDB);
 		Thread.sleep(1000);
 		puttyFunctionsPage.pressEnter();
@@ -292,7 +294,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 //		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -318,7 +320,7 @@ public class JDAExitputtyfunctionsStepDef {
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_over_unknown_stock() throws Throwable {
 		Thread.sleep(1000);
 		GetTCData.getpoId();
-		String skuid=context.getSkuId();
+		String skuid=context.getSKUHang();
 		puttyFunctionsPage.i_generate_pallet_id(GetTCData.getpoId(),skuid);
 		String palletID = context.getPalletID();
 		System.out.println("palletID "+palletID);
@@ -336,7 +338,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -380,7 +382,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);
@@ -542,7 +544,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date_for_hang() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId2();
+		String skuid = context.getSKUHang();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
@@ -613,7 +615,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
 		String prefixlist=StringUtils.substring(UPCValue, 0, 8);
 		System.out.println("UPCValue= "+prefixlist);
-		String UPCDB=SkuDB.getUPCDB();//from DB
+		String UPCDB=SkuDB.getUPCDB(skuid);//from DB
 		System.out.println("UPCDB= "+UPCDB);
 		Assert.assertEquals("UPC validated", UPCDB, prefixlist);
 		Thread.sleep(1000);

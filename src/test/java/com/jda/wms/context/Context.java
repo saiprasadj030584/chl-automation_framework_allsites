@@ -139,6 +139,7 @@ public class Context {
 	private String sKUHang;
 	private String PalletID2;
 	private String BelCode2;
+	private String upc;
 
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1125,6 +1126,15 @@ public class Context {
 	}
 	public String getSKUHang() {
 		return SKUHang;
+	}
+
+	public void setupc(String upc) {
+		this.upc=upc;
+		// TODO Auto-generated method stub
+		
+	}
+	public String getupc(){
+		return upc;
 	}
 
 	

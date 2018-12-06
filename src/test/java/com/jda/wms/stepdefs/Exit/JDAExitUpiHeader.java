@@ -197,13 +197,17 @@ public class JDAExitUpiHeader{
 	  
 	  
 	  
-	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\"$")
-	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with(String status,
-			String type, String customer) throws Throwable {
+	@Given ("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for \"([^\"]*)\"$")
+	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_for(String status,
+			String type, String customer, String skuid) throws Throwable {
 		System.out.println("data");
 		context.setStoType(type);
 		context.setCustomer(customer);
-		String skuid = context.getSKUHang();
+		
+		 context.setSKUHang(skuid);
+		String UPC = skuDB.getUPCDB1(skuid);
+		context.setupc(UPC);
+		System.out.println(UPC);
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPI();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();
@@ -244,6 +248,8 @@ public class JDAExitUpiHeader{
 		
 		String skuid=context.getSKUHang();
 		System.out.println("skuid="+skuid);
+		String UPC=skuDB.getUPCDB(skuid);
+		context.setupc(UPC);
 		
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPIForRedStock();
