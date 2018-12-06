@@ -5,8 +5,8 @@ Feature: Receiving
    with Pre-receiving
 
   @Receiving @TC01_Batch_and_Expiry_Date_Check
-  Scenario: To Check if the Batch and Expiry date are captured in EXIT dispatcher
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+  Scenario Outline: To Check if the Batch and Expiry date are captured in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -20,6 +20,11 @@ Feature: Receiving
     And check Qty received is updated in Inventory
     And Check Qty received is updated in Pre-advice line
 
+
+Examples:
+    |SkuId|
+    |000000000021071852|
+    
   @Receiving @TC02_Client_ID_Auto_populated
   Scenario: To verify GS128 - Screen - Default Client Auto populated
     Given I login as warehouse user in putty
@@ -286,8 +291,10 @@ Feature: Receiving
     
     @Receiving @TC18_Direct_receiving_Happy_path_Trusted_Hanging_NonProhibited_inventory
     Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  NonProhibited inventory
+    
     Given Checking the conditions "Trusted", "Hanging" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624"
+    
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table

@@ -352,21 +352,12 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 
 			System.out.println("skuid "+skuid);
 
-//			context.getSkuId2();
-//			context.getSkuId2();
-			String supplier = supplierSkuDB.getSupplierId(skuid);
+
+			String supplier= supplierSkuDB.getSupplierId(skuid);
 			String[] supplierSplit = supplier.split("M");
 			return supplierSplit[1];
 		}
-//		public String suppliermanipulateForRedStock() throws ClassNotFoundException, SQLException {
-//			String skuid=context.getSkuId();
-//			System.out.println("skuid "+context.getSkuId());
-////			context.getSkuId2();
-////			context.getSkuId2();
-//			String supplier = supplierSkuDB.getSupplierId(skuid);
-//			String[] supplierSplit = supplier.split("M");
-//			return supplierSplit[1];
-//		}
+
 		// Get dept - 3 digit
 		public String deptmanipulate() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSKUHang();
@@ -377,12 +368,6 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 				
 					
 			}
-	
-			
-
-
-			
-			
 		
 		public String deptmanipulateForRedStock() throws ClassNotFoundException, SQLException {
 			String skuid=context.getSkuId();
