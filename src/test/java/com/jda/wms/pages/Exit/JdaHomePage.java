@@ -1018,7 +1018,7 @@ public class JdaHomePage {
 	public void navigateToConsignmentMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Consignment Maintainance");
+		screen.type("Consignment Maintenance");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
@@ -1027,7 +1027,7 @@ public class JdaHomePage {
 	public void navigateToConsignmentDropMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
-		screen.type("Consignment drop Maintainance");
+		screen.type("Consignment drop Maintenance");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);

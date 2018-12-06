@@ -7,15 +7,19 @@ import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
-
+import com.jda.wms.context.Context;
+import com.jda.wms.utils.Utilities;
+import org.sikuli.script.Region;
 public class CEConsignmentMaintenancePage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
+	Region reg = new Region(0, 0, 4000, 1000);
 	private final JDAFooter jdaFooter;
-
+	private final Context context;
 	@Inject
-	public CEConsignmentMaintenancePage(JDAFooter jdaFooter) {
+	public CEConsignmentMaintenancePage(JDAFooter jdaFooter,Context context) {
 		this.jdaFooter = jdaFooter;
+		this.context = context;
 	}
 
 	public void selectReceiptType(String receiptType) throws FindFailed, InterruptedException {
@@ -95,4 +99,79 @@ public class CEConsignmentMaintenancePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	public void selectToggleMaintenanceMode() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.rightClick();
+		screen.wait("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png", timeoutInSec);
+		screen.click("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png");
+	}
+	
+	public void clickAdd() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentAddButton.png", timeoutInSec);
+		screen.click("images/CEConsignmentMaintenance/ConsignmentAddButton.png");
 }
+	public void enterConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		String Random = Utilities.getTwoDigitRandomNumber();
+		String consignmentName = "AUTO"+Random;
+		System.out.println("The consignment Name:"+consignmentName );
+		context.setConsignmentName(consignmentName);
+		screen.type(consignmentName);
+}
+	public void selectStatus() throws FindFailed, InterruptedException {
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentStatus.png", timeoutInSec);
+	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentStatus.png");
+		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(2000);
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentAllocatedStatus.png");
+		   reg=header.below(150).left(5).right(1000);
+		   reg.hover(header);
+		   reg.click(header);
+	}
+	public void selectTransportmode() throws FindFailed, InterruptedException {
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentTransMode.png", timeoutInSec);
+	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentTransMode.png");
+		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(2000);
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
+		   reg=header.below(150).left(5).right(1000);
+		   reg.hover(header);
+		   reg.click(header);
+	}
+	public void checkPackStatus() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentHazardousCheck.png", timeoutInSec);
+		screen.click("images/CEConsignmentMaintenance/ConsignmentHazardousCheck.png");
+		Thread.sleep(3000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentRepackCheck.png", timeoutInSec);
+		screen.click("images/CEConsignmentMaintenance/ConsignmentRepackCheck.png");
+		Thread.sleep(3000);
+}
+	
+	public void validateRecord() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.doubleClick();
+		Thread.sleep(3000);
+	}
+	
+	public void typeConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		String consignmentNameDrop = context.getConsignmentName();
+		System.out.println("The consignment Name:"+consignmentNameDrop);
+		screen.type(consignmentNameDrop);
+}
+	public void typeChamberAddressId() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropChamber.png", timeoutInSec);
+	    Match Chamber = screen.find("images/CEConsignmentMaintenance/ConsignmentDropChamber.png");
+		screen.click(Chamber.getCenter().offset(90, 0));
+		screen.type("1");
+		Thread.sleep(3000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropAddress.png", timeoutInSec);
+	    Match Address = screen.find("images/CEConsignmentMaintenance/ConsignmentDropAddress.png");
+		screen.click(Address.getCenter().offset(90, 0));
+		screen.type("0798");
+}
+}
+	

@@ -140,11 +140,12 @@ public class Context {
 	private String PalletID2;
 	private String BelCode2;
 	private String upc;
+
 	private String poId2;
 	private String belCode2;
 	private String palletID2;
 	private String orderId2;
-
+	private String consignmentName;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1146,11 +1147,24 @@ public class Context {
 		return SKUHang;
 	}
 
-	public void setupc(String UPC){
-	this.upc=upc;	
+
+	public void setupc(String upc) {
+		this.upc=upc;
+		// TODO Auto-generated method stub
+		
 	}
+
 	public String getupc() {
+
 		return upc;
+	}
+
+	public String getConsignmentName() {
+		return consignmentName;
+	}
+
+	public void setConsignmentName(String consignmentName) {
+		this.consignmentName = consignmentName;
 	}
 
 	

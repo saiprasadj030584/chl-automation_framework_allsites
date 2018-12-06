@@ -88,7 +88,7 @@ public class InventoryTransactionStepDefs{
 	@And("^check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code$")
 	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code() throws Throwable
 	{
-		String sku= context.getSkuId2();
+		String sku= context.getSKUHang();
 		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
 		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
 		jdaHomePage.navigateToInventory();
@@ -119,6 +119,7 @@ public class InventoryTransactionStepDefs{
 	public void alter_the_commodity_code_to_make_the_stock_as_red_stock() throws Throwable,FindFailed{
 		String Sku= context.getSKUHang();
 		String CommodityCode= mandsDB.getUserDefType9(Sku);
+		System.out.println("commo="+CommodityCode);
 		context.setCommodityCd(CommodityCode);
 		String UpdateCommodityCode=mandsDB.updateCommodityCode(Sku);
 	}
