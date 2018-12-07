@@ -146,6 +146,7 @@ public class Context {
 	private String palletID2;
 	private String orderId2;
 	private String consignmentName;
+	private String stoId2;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -631,13 +632,6 @@ public class Context {
 	public String getOrderId() {
 		return orderId;
 	}
-	public void setOrderId2(String orderId) {
-		this.orderId2= orderId;
-	}
-
-	public String getOrderId2() {
-		return orderId2;
-	}
 
 	public String getShipDock() {
 		return shipDock;
@@ -788,13 +782,7 @@ public class Context {
 	public void setpoId(String poId) {
 		this.poId = poId;
 	}
-	public String getpoId2() {
-		return poId2;
-	}
 
-	public void setpoId2(String poId2) {
-		this.poId2 = poId2;
-	}
 	public Map<Integer, Map<String, String>> getReplenishmentDetailsMap() {
 		return replenishmentDetailsMap;
 	}
@@ -1165,6 +1153,25 @@ public class Context {
 
 	public void setConsignmentName(String consignmentName) {
 		this.consignmentName = consignmentName;
+	}
+
+	public void setpoId2(String poId2) {
+		this.poId2 = poId2;
+	}
+
+	public String getpoId2() {
+	
+		return poId2;
+	}
+
+	public void setOrderId2(String stoId2) {
+		this.stoId2 = stoId2;
+		
+	}
+
+	public String getOrderId2() {
+		// TODO Auto-generated method stub
+		return stoId2;
 	}
 
 	
