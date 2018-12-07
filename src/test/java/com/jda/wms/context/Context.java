@@ -141,6 +141,8 @@ public class Context {
 	private String BelCode2;
 	private String upc;
 	private String consignmentName;
+	private String poId2;
+	private String stoId2;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1146,6 +1148,25 @@ public class Context {
 
 	public void setConsignmentName(String consignmentName) {
 		this.consignmentName = consignmentName;
+	}
+
+	public void setpoId2(String poId2) {
+		this.poId2 = poId2;
+	}
+
+	public String getpoId2() {
+	
+		return poId2;
+	}
+
+	public void setOrderId2(String stoId2) {
+		this.stoId2 = stoId2;
+		
+	}
+
+	public String getOrderId2() {
+		// TODO Auto-generated method stub
+		return stoId2;
 	}
 
 	

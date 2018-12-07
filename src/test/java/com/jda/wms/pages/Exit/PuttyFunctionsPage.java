@@ -16,6 +16,8 @@ import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.utils.Utilities;
 
+import cucumber.api.java.en.Given;
+
 public class PuttyFunctionsPage {
 
 	Screen screen = new Screen();
@@ -232,7 +234,44 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		context.setpalletIDforUPI(palletIDforUPI);
 		System.out.println("check palletid "+palletIDforUPI);
 	}
-//	@Given("^I generate pallet id$")
+	@Given("^I generate pallet id for two$")
+	public void i_generate_pallet_id_for_two(String preAdviceId, String skuid) throws Throwable {
+		System.out.println("skuid "+skuid);
+//		context.setSkuId2(skuid);
+		System.out.println("preadv "+preAdviceId);
+		String palletID2= null;
+		// First 4 digits - Site id
+//		String siteid = preAdviceHeaderDB.getSiteId(preAdviceId);
+		String siteid ="7993";
+		System.out.println("siteid "+siteid);
+		// Hardcoded 3 digit
+//		String barcode = Utilities.getThreeDigitRandomNumber();
+		String barcode = "145";
+		System.out.println("barcode "+barcode);
+		// Random generated 6 digit
+		String URN = Utilities.getSixDigitRandomNumber();
+		System.out.println("URN "+URN );
+		// Supplier id : 5 digit
+		String supplier = suppliermanipulate();
+		System.out.println("supplier "+supplier);
+		// Dept id : 3 digit
+//		String dept = "000";
+		String dept = deptmanipulate();
+		System.out.println("dept "+dept);
+		// Sku quantity : 3 digit
+		String skuqtymanipulate = skuQtyManipulate(preAdviceId);
+		System.out.println("skuqtymanipulate "+skuqtymanipulate);
+		// Advice - 6 digit
+		String advice = preAdviceHeaderDB.getUserDefType1(preAdviceId);
+		System.out.println("advice "+advice);
+		// checkbit - 2 digit
+		String checkbit = "10";
+		System.out.println("checkbit "+checkbit);
+		palletID2 = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
+		context.setPalletID2(palletID2);
+		System.out.println("check palletid "+palletID2);
+	}
+	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id(String preAdviceId, String skuid) throws Throwable {
 		System.out.println("skuid "+skuid);
 //		context.setSkuId2(skuid);
@@ -266,7 +305,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		String checkbit = "10";
 		System.out.println("checkbit "+checkbit);
 		palletID = siteid+ barcode + URN + supplier + '0' + dept + advice + skuqtymanipulate + checkbit;
-		context.setPalletID2(palletID);
+		context.setPalletID(palletID);
 		System.out.println("check palletid "+palletID);
 	}
 	public void i_generate_pallet_id_forUnknown(String preAdviceId, String skuid) throws Throwable {
@@ -310,9 +349,6 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 			String skuid=context.getSKUHang();
 
 			System.out.println("skuid "+context.getSKUHang());
-
-			System.out.println("skuid "+skuid);
-
 
 			String supplier= supplierSkuDB.getSupplierId(skuid);
 			String[] supplierSplit = supplier.split("M");
@@ -378,7 +414,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			return qtyDue;
 		}
 		public String skuQtyManipulate2OverReceipt(String preAdviceId) throws ClassNotFoundException, SQLException {
-			String skuid=context.getSkuId2();
+			String skuid=context.getSKUHang();
 			String qtyDue = preAdviceLineDB.getQtyDue(preAdviceId, skuid);
 			int sumLength = qtyDue.length();
 			if (sumLength == 1) {
@@ -452,8 +488,8 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			System.out.println(belCode);;
 		}
 		public void I_generate_belcode_for_overreceipt(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
-			String belCode = null;
-			context.setSkuId2(skuid);
+			String belCode2 = null;
+			
 			// Checkdigit : 2 any random number
 			String checkdigit = Utilities.getTwoDigitRandomNumber();
 //			String checkdigit = "02";
@@ -470,9 +506,9 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			// Checkbit hardcoded : 1 digit
 			String checkbit = "1";
 			System.out.println("checkbit "+checkbit);
-			belCode = checkdigit + supplier + upc + skuqtymanipulate + checkbit;
-			context.setBelCode2(belCode);
-			System.out.println(belCode);;
+			belCode2= checkdigit + supplier + upc + skuqtymanipulate + checkbit;
+			context.setBelCode2(belCode2);
+			System.out.println(belCode2);;
 		}
 		
 		public void I_generate_belcode_for_unknown(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
