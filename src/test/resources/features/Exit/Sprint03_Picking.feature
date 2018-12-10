@@ -45,7 +45,7 @@ Feature: Orders_Picking
      Examples: 
       | SKU                |
       | 000000000021071852 |
-	
+
   @TC05_Validate_Picking_process_for_Manual_Franchise_order 
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>" 
@@ -161,6 +161,9 @@ Feature: Orders_Picking
     And Enter chamber and Address Id
     Then click execute
     And validate the record is saved 
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
     
     @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
     Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
