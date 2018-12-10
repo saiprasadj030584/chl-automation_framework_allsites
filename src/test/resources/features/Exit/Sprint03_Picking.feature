@@ -179,6 +179,7 @@ Feature: Orders_Picking
 	Examples:
 	|List_Id|
 	|IDTB00001234|
+	
     @Picking @TC13_Validate_adding_URN_to_Pallet_id
     Scenario Outline: Validate adding URN to Pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"

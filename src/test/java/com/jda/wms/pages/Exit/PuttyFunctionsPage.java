@@ -34,8 +34,7 @@ public class PuttyFunctionsPage {
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
 		this.supplierSkuDB=supplierSkuDB;
 		this.preAdviceLineDB=preAdviceLineDB;
-		
-		
+			
 	}
 
 	public void invokePutty() throws IOException, InterruptedException {
