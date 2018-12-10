@@ -311,8 +311,16 @@ Feature: Receiving
   @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
     Given Checking the conditions "Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977"
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the check weight to make the stock as RED Stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    And Login to JDA Dispatcher web screen
+    Then Verify PreAdvice header loaded successfully
+    Then Verify Supplier is populated in the Pre-advice header table
+    Then Verify the Type  is populated as "STO"
+    Then Verify PreAdvice line loaded successfully
+    Then Verify data in UPI Receipt header screen
+    Then Verify ASN ID for the PalletID
+    #Then Ensure Trusted entry is disable
+    #Then Ensure Prohibition check
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -526,7 +534,6 @@ Feature: Receiving
     And Enter Container_ID for FSV
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
-
    Examples: 
       | SKU                |
       | 000000000021071851 |

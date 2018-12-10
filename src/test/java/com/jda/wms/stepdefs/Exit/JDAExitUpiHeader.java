@@ -444,7 +444,11 @@ public void checking_the_conditions_for_the_sku_and_customerID_site(String type,
 	else if ((type.equals("Trusted")) && BoxedOrHanging.equals("H") && AllowedStock.equals("Y") && Country.equals("ISR")){
 		System.out.println("Conditions satisfied");
 	}	
+
+
 	}
+
+
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\" and siteID \"([^\"]*)\"$")
 public void checking_the_conditions_for_the_sku_and_customerID_siteID(String type, 
 		String putawayGroup, String customer, String skuid, String customerID,String siteID) throws Throwable {
