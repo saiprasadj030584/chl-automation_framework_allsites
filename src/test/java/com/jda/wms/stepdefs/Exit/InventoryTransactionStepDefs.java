@@ -100,7 +100,7 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("Reason code not as expected", "RED", RC);
 		Thread.sleep(2000);
 		inventoryTransactionPage.ChecktransactionForRedStock();
-		inventoryTransactionStepDefs.commodity_code_is_validated_as_null();
+		
 		
 	}
 	
