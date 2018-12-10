@@ -130,7 +130,7 @@ public class SKUQueryStepDefs{
 	
 	@Then("^check weight is validated as null$")
 	public void check_weight_is_validated_as_null() throws Throwable{
-		String sku=context.getSkuId2();
+		String sku=context.getSKUHang();
 		String packedWeight = SkuDB.getpackedweight(sku);
 		System.out.println("packed weight"+packedWeight);
 		Assert.assertNull("Check Weight is not as expected", packedWeight);
@@ -141,7 +141,7 @@ public class SKUQueryStepDefs{
 	}
 	@Then("^Alter the check weight to make the stock as RED Stock$")
 	public void alter_the_check_weight_to_make_the_stock_as_red_stock() throws Throwable{
-		String SKU=context.getSkuId2();
+		String SKU=context.getSKUHang();
 		String PackWeight=skuDB.getpackedweight(SKU);
 		System.out.println("packweight="+PackWeight);
 		context.setPackWeight(PackWeight);

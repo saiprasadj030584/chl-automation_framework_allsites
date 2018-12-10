@@ -442,7 +442,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 //		@Given("^I generate belcode$")
 		public void I_generate_belcode_for_UPI(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
-			context.setSkuId2(skuid);
+			context.setSKUHang(skuid);
 			// Checkdigit : 2 any random number
 //			String checkdigit = Utilities.getTwoDigitRandomNumber();
 			String checkdigit = "02";
