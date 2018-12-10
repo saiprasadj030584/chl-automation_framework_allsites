@@ -21,6 +21,7 @@ import com.jda.wms.stepdefs.Exit.InventoryTransactionStepDefs;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.db.Exit.MandsDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
+import com.jda.wms.stepdefs.Exit.SKUQueryStepDefs;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -36,9 +37,10 @@ public class InventoryTransactionStepDefs{
 	private SupplierSKUMaintenancePage SupplierSKUMaintenancePage;
 	private MandsDB mandsDB;
 	private InventoryTransactionStepDefs inventoryTransactionStepDefs;
+	private SKUQueryStepDefs sKUQueryStepDefs;
 	@Inject
 	public void InventoryTransactionStepDefs(SkuDB skuDB,MandsDB mandsDB,InventoryTransactionPage inventoryTransactionPage,
-			JdaHomePage jdaHomePage,InventoryTransactionStepDefs inventoryTransactionStepDefs,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
+			JdaHomePage jdaHomePage,InventoryTransactionStepDefs inventoryTransactionStepDefs,SKUQueryStepDefs sKUQueryStepDefs,SupplierSKUMaintenancePage SupplierSKUMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,SupplierSkuDB supplierSkuDB,Context context){
 		this.inventoryTransactionPage=inventoryTransactionPage;
 		this.jdaHomePage=jdaHomePage;
 		this.preAdviceHeaderPage=preAdviceHeaderPage;
@@ -48,6 +50,7 @@ public class InventoryTransactionStepDefs{
 		this.SupplierSKUMaintenancePage=SupplierSKUMaintenancePage;
 		this.mandsDB=mandsDB;
 		this.inventoryTransactionStepDefs=inventoryTransactionStepDefs;
+		this.sKUQueryStepDefs=sKUQueryStepDefs;
 	}
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed
@@ -89,8 +92,7 @@ public class InventoryTransactionStepDefs{
 	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code() throws Throwable
 	{
 		String sku= context.getSKUHang();
-		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
-		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
+		
 		jdaHomePage.navigateToInventory();
 		inventoryTransactionPage.click_on_Query();		
 		inventoryTransactionPage.EnterContanierID();
@@ -100,8 +102,10 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("Reason code not as expected", "RED", RC);
 		Thread.sleep(2000);
 		inventoryTransactionPage.ChecktransactionForRedStock();
+		sKUQueryStepDefs.check_weight_is_validated_as_null();
 		
-		
+		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
+		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
 	}
 	
 	@And("^Supplier Declaration is validated to be null or in past$")

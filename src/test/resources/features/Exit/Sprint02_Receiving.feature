@@ -4,7 +4,7 @@ Feature: Receiving
    so that I validate the  master data setup
    with Pre-receiving
 
-  @Receiving @TC01_Batch_and_Expiry_Date_Check
+   @Completed @Receiving @TC01_Batch_and_Expiry_Date_Check
   Scenario Outline: To Check if the Batch and Expiry date are captured in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -24,14 +24,14 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
-  @Receiving @TC02_Client_ID_Auto_populated
+   @Completed @Receiving @TC02_Client_ID_Auto_populated
   Scenario: To verify GS128 - Screen - Default Client Auto populated
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And Verify scan URN screen displayed
 
-  @Receiving @TC03_Compliance_Check
+   @Completed @Receiving @TC03_Compliance_Check
   Scenario Outline: Compliance Check - Happy path - All the required fields are valid
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -53,8 +53,9 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
-  @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
-  Scenario: To validate Compliance Check - T-Dept is NULL or invalid
+  @Completed @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
+  Scenario Outline: To validate Compliance Check - T-Dept is NULL or invalid
+  	Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
@@ -64,8 +65,14 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
 
-  @Receiving @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
-  Scenario: To validate Compliance Check - Stroke Category is NULL or invalid
+
+ Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
+  @Completed  @Receiving @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
+  Scenario Outline: To validate Compliance Check - Stroke Category is NULL or invalid
+  Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the stroke category to make the stock as RED stock
     Then I login as warehouse user in putty
@@ -75,9 +82,15 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
+    
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
 
-  @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
-  Scenario: To validate Compliance Check - Commodity Code is NULL or invalid
+   @Completed @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
+  Scenario Outline: To validate Compliance Check - Commodity Code is NULL or invalid
+  Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the commodity Code to make the stock as RED stock
     Then I login as warehouse user in putty
@@ -88,8 +101,13 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then commodity Code is validated as NULL
 
-  @Receiving @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
-  Scenario: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
+Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
+   @Completed @Receiving @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
+  Scenario Outline: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
+    Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
@@ -99,9 +117,14 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then check weight is validated as null
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
 
-  @Receiving @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
-  Scenario: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
+   @Completed @Receiving @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
+  Scenario Outline: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
+   Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then Alter the supplier declaration validity to make the stock as RED Stock
     Then I login as warehouse user in putty
@@ -111,9 +134,14 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then Supplier Declaration is validated to be null or in past
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
 
-  @Receiving @TC09_Validate_Compliance_supplier_record_does_not_exist
-  Scenario: To validate Compliance Check - Supplier Record does not exist
+   @Completed @Receiving @TC09_Validate_Compliance_supplier_record_does_not_exist
+  Scenario Outline: To validate Compliance Check - Supplier Record does not exist
+    Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -123,11 +151,15 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then supplier record does not exist
 
+Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+      
   @Completed @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate direct receiving happy path non-trusted-non-prohibited inventory
     Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -139,7 +171,7 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
-  @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
+  @Completed @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
     Given Checking the conditions "Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for "<SkuId>"
@@ -176,13 +208,14 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-    Then check weight is validated as null
+    
     Examples: 
       | SkuId              |
       | 000000000021071852 |
 
-  @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
+  @in-Progress @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
+  Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
        Then Alter the check weight to make the stock as RED Stock
@@ -192,13 +225,13 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
- Then check weight is validated as null
+	Then Update country for non-prohibition
 
     Examples: 
       | SkuId              |
-      | 20026771001 |
+      | 000000000021071852 |
 
-  @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
+  @Complete @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
     Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542" for the Red Stock
@@ -209,10 +242,11 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date for hang
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-
+	
+	
     Examples: 
       | SkuId       |
-      | 20026771001 |
+      | 000000000021071852 |
 
   @Complete @Receiving @TC15_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
   Scenario Outline: To validate  Direct receiving – Happy path – Non Trusted – Boxed – NonProhibited inventory – Expiry capture
@@ -292,8 +326,9 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
-  @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
+  @in-Progress @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Hanging – Prohibited inventory
+    Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Non-Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
@@ -303,31 +338,25 @@ Feature: Receiving
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-
+	Then Update country for non-prohibition
+	
     Examples: 
       | SkuId              |
       | 000000000021071851 |
 
-  @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
+  @in-Progress @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
+     Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-    And Login to JDA Dispatcher web screen
-    Then Verify PreAdvice header loaded successfully
-    Then Verify Supplier is populated in the Pre-advice header table
-    Then Verify the Type  is populated as "STO"
-    Then Verify PreAdvice line loaded successfully
-    Then Verify data in UPI Receipt header screen
-    Then Verify ASN ID for the PalletID
-    #Then Ensure Trusted entry is disable
-    #Then Ensure Prohibition check
+     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-
+    Then Update country for non-prohibition
     Examples: 
       | SkuId              |
       | 000000000021071851 |
