@@ -107,11 +107,12 @@ public class JDAExitorderHeaderDB{
 		this.moveTaskManagementPage=moveTaskManagementPage;
 	}
 	
-	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\"$")
+	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\" for SKU \"([^\"]*)\"$")
 	public void Order_Status_should_be_Type_should_be_Customer_should_be(String status,
-			String type, String customer) throws Throwable {
+			String type,String SKU,String customer) throws Throwable {
 		context.setStoType(type);
 		context.setCustomer(customer);
+		context.setSKUHang(SKU);
 		dataSetupRunner.insertOrderData();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
@@ -134,7 +135,7 @@ public class JDAExitorderHeaderDB{
 	}
 	
 	
-	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\" for IDT$")
+	@Given ("^Order Status should be \"([^\"]*)\", Type should be \"([^\"]*)\", Customer should be \"([^\"]*)\" for IDT \"([^\"]*)\"$")
 	public void Order_Status_should_be_Type_should_be_Customer_should_be_for_IDT(String status,
 			String type, String customer) throws Throwable {
 		context.setStoType(type);
