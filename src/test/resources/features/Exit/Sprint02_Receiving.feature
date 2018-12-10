@@ -177,7 +177,6 @@ Feature: Receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then check weight is validated as null
-
     Examples: 
       | SkuId              |
       | 000000000021071852 |
