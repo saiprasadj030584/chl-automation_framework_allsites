@@ -169,39 +169,40 @@ Feature: Receiving
   Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Boxed – Prohibited inventory
     Given Checking the conditions "Non-Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-
+    Then check weight is validated as null
     Examples: 
       | SkuId              |
-      | 000000000021071851 |
+      | 000000000021071852 |
 
   @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
     Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+       Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+ Then check weight is validated as null
 
     Examples: 
       | SkuId              |
-      | 000000000021071852 |
+      | 20026771001 |
 
   @Receiving @TC14_Direct_receiving_without_ASN_information_Non_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate Direct receiving – without ASN information – Non Trusted – Boxed -  NonProhibited inventory
-    Given Checking the conditions "Non-Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
+    Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt without ASN "Released","NONRETAIL","5542" for the Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -210,14 +211,14 @@ Feature: Receiving
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
 
     Examples: 
-      | SkuId              |
-      | 000000000021071852 |
+      | SkuId       |
+      | 20026771001 |
 
   @Complete @Receiving @TC15_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory_Expiry_capture
   Scenario Outline: To validate  Direct receiving – Happy path – Non Trusted – Boxed – NonProhibited inventory – Expiry capture
     Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -240,8 +241,6 @@ Feature: Receiving
     Then Verify PreAdvice line loaded successfully
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
-    #Then Ensure Trusted entry is disable
-    #Then Ensure Prohibition check
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -255,7 +254,7 @@ Feature: Receiving
   Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Hanging – NonProhibited inventory
     Given Checking the conditions "Non-Trusted", "Hanging" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -295,9 +294,9 @@ Feature: Receiving
 
   @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Hanging – Prohibited inventory
-    Given Checking the conditions "Non-Trusted", "Hanging" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
+    Given Checking the conditions "Non-Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the commodity Code to make the stock as RED stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -310,7 +309,7 @@ Feature: Receiving
       | 000000000021071851 |
 
   @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
-  Scenario: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
+  Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
     Given Checking the conditions "Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     And Login to JDA Dispatcher web screen
@@ -325,13 +324,13 @@ Feature: Receiving
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
 
   @Receiving @TC21_FSV_Receiving_Happy_path_Boxed_Article
   Scenario Outline: To validate FSV Receiving - Happy path –  Boxed Article
@@ -535,7 +534,6 @@ Feature: Receiving
     And Enter Container_ID for FSV
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick
-    
    Examples: 
       | SKU                |
       | 000000000021071851 |
