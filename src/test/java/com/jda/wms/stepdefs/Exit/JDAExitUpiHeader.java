@@ -214,8 +214,6 @@ public class JDAExitUpiHeader{
 		context.setSAPvalue(SAPvalue);
 		dataSetupRunner.insertOrderDataforUPI();
 		GetTCData.getpoId();
-		
-		
 		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		Thread.sleep(1000);
@@ -503,5 +501,8 @@ public void checking_the_conditions_for_the_sku_and_customerID_siteID(String typ
 	}
 
 	}
-
+@Given("^I generate belcode$")
+public void I_generate_belcode_for_UPI(String preAdviceId, String skuid) throws Throwable { 
+	puttyFunctionsPage.I_generate_belcode_for_UPI( preAdviceId, skuid);
+}
 }

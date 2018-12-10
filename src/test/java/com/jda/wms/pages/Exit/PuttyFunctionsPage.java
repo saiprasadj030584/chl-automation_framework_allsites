@@ -439,7 +439,7 @@ public String skuQtyManipulateForRedStock(String preAdviceId) throws ClassNotFou
 			}
 			return qtyDue;
 		}
-//		@Given("^I generate belcode$")
+	//	@Given("^I generate belcode$")
 		public void I_generate_belcode_for_UPI(String preAdviceId, String skuid) throws ClassNotFoundException, SQLException {
 			String belCode = null;
 			context.setSkuId2(skuid);

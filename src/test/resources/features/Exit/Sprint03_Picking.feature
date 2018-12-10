@@ -25,14 +25,16 @@ Feature: Orders_Picking
     And I enter URN and Bel and validation of UPC,QTY and Supplier
 
   @TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order 
-  Scenario: Validate Pick list id generated for a cross dock ASN order
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
+  Scenario Outline: Validate Pick list id generated for a cross dock ASN order
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
     And I navigate to Order header screen to verify the status in Ready to Load
-
+	Examples: 
+      | SkuId              |
+      | 000000000021071852 |
   @TC05_Validate_Picking_process_for_Manual_Franchise_order 
   Scenario: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
@@ -133,4 +135,21 @@ Feature: Orders_Picking
     Then click execute
     And validate the record is saved 
     
+    @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
+    Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter Invalid List Id "<List_Id>"
+    And I validate Error message is displayed
+	Examples:
+	|List_Id|
+	|IDTB00001234|
+    @Picking @TC13_Validate_adding_URN_to_Pallet_id
+    Scenario Outline: Validate adding URN to Pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     
