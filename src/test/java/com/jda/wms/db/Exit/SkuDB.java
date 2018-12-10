@@ -97,6 +97,7 @@ public class SkuDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
+
 		ResultSet rs = stmt.executeQuery("select upc from sku where sku_id = '"+SkuId+"'");
 		rs.next();
 		return (rs.getString(1));
