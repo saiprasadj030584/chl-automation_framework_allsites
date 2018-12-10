@@ -465,7 +465,6 @@ public void checking_the_conditions_for_the_sku_and_customerID_site(String type,
 		System.out.println("Conditions satisfied");
 	}	
 
-
 	}
 
 

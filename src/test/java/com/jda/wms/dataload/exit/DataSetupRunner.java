@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
 import org.junit.Assert;
 
 import com.google.inject.Inject;
@@ -190,8 +189,9 @@ public class DataSetupRunner {
 	public void insertOrderData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 		System.out.println(stoId);
+		String sku=context.getSKUHang();
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insertOrderLine3(stoId);
+		insertDataIntoDB.insertOrderLine3(stoId,sku);
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));

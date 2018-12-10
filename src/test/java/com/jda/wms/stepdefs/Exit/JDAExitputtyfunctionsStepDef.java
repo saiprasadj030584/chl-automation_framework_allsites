@@ -427,7 +427,7 @@ public class JDAExitputtyfunctionsStepDef {
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
 		GetTCData.getpoId();
-		String skuid = context.getSkuId2();
+		String skuid = context.getSKUHang();
 //		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
@@ -654,5 +654,45 @@ public void I_validate_Error_message_is_displayed() throws Throwable{
 	} else
 		Assert.assertFalse(false);
 }	
-}
+
+@And("^I select picking$")
+public void i_select_picking() throws Throwable {
+	System.out.println("before enter");
+	storeTrackingOrderPickingPage.selectPickingMenu();
+	System.out.println("After enter");
+	Assert.assertTrue("Picking Menu not displayed as expected",
+			storeTrackingOrderPickingPage.isPickMenuDisplayed());
 	
+}
+
+
+@And("^I select sorting option$")
+public void i_select_sorting_option() throws Throwable {
+	storeTrackingOrderPickingPage.selectSortingInPickMenu();
+}
+@And("^I enter URN in Pallet id$")
+public void I_enter_URN_in_Pallet_id() throws Throwable {
+	GetTCData.getpoId();
+	String skuid = context.getSkuId2();
+//	i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+	String palletIDforUPI = context.getpalletIDforUPI();
+	System.out.println("palletID "+palletIDforUPI);
+	purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+	Thread.sleep(1000);
+}
+@And("^I enter to Pallet id$")
+public void I_enter_URN_to_Pallet_id() throws Throwable {
+	String ToPallet = null;
+	String palletdigit = Utilities.getsevenDigitRandomNumber();
+	ToPallet="P"+palletdigit;
+	Thread.sleep(2000);
+	purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+}
+@And("^verify pallet repack is validated successfully$")
+public void verify_pallet_repack_is_validated_successfully() throws Throwable {
+	storeTrackingOrderPickingPage.isRepackConfirm();
+}
+
+}

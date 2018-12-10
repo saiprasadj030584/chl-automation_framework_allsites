@@ -374,12 +374,14 @@ public class SkuDB {
 	}
 
 	public String getBoxedOrHanging(String skuid)throws SQLException, ClassNotFoundException {
+		System.out.println(skuid);
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id='" + skuid + "'");
 		rs.next();
+		System.out.println(rs);
 		return rs.getString(1);
 
 	}

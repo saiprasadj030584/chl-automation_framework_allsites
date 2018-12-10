@@ -524,7 +524,7 @@ Examples:
   @Receiving @TC29_FSV_Receiving_Happy_path_Prohibition_check
   Scenario Outline: To validate FSV Receiving - Happy path –  prohibition check
     Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SkuId>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
@@ -541,7 +541,7 @@ Examples:
     And check the Inventory Transaction for Receipt, Allocate and Pick
     
   Examples: 
-      | SKU                |
+      | SkuId	               |
       | 000000000021071852 |
 
 
