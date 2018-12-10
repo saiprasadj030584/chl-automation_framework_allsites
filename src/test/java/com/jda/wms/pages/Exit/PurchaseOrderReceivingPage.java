@@ -139,7 +139,7 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 	public void EnterPalletID(String palletID) throws InterruptedException {
 		screen.type(palletID);
 		Thread.sleep(1000);
-
+		screen.type(Key.TAB);
 	}
 	public void EnterToPallet(String ToPallet) throws InterruptedException {
 		screen.type(ToPallet);

@@ -88,7 +88,18 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-
+	public void selectSortingInPickMenu() throws InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public boolean isRepackConfirm() {
+		if (screen.exists("images/Putty/sortConfirm.png") != null)
+			return true;
+		else
+			return false;
+	}
 	public boolean isPickTaskMenuDisplayed() {
 		if (screen.exists("images/Putty/Picking/PickTaskMenu.png") != null)
 			return true;
