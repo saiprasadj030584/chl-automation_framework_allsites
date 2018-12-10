@@ -78,7 +78,7 @@ public class MandsDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_9 =(null) where sku_id='" + sku + "'");
+		ResultSet rs = stmt.executeQuery("update mands.extended_udf set user_def_type_9 =null where sku_id='" + sku + "'");
 		context.getConnection().commit();
 		
 		return null;
