@@ -5,36 +5,45 @@ Feature: Orders_Picking
   so that I can Pick and Dispatch
 
   @TC01_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Boxed 
-  Scenario: Validate Pick list id generated for an order-Manual Franchise Boxed
+  Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANB
 
   @TC02_Validate_Pick_list_id_generated_for_an_order_Manual_IDT  
-  Scenario: Validate Pick list id generated for an order-Manual IDT
+  Scenario Outline: Validate Pick list id generated for an order-Manual IDT
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
     And Validation of List Id generated with prefix as IDT
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order  
-  Scenario: Validate Pick list id generated for a FSV Cross dock order
+  Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order 
-  Scenario: Validate Pick list id generated for a cross dock ASN order
+  Scenario Outline: Validate Pick list id generated for a cross dock ASN order
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
     And I navigate to Order header screen to verify the status in Ready to Load
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @TC05_Validate_Picking_process_for_Manual_Franchise_order 
-  Scenario: Validate Picking process for Manual Franchise order
+  Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANB
@@ -44,9 +53,12 @@ Feature: Orders_Picking
     Then I should be directed to pick entry page
     And I enter ListId and TagId
     And I navigate to Order header screen to verify the status in Ready to Load
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @TC06_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound
-  Scenario: Validate Picking process for Manual IDT order(Transfer order)
+  Scenario Outline: Validate Picking process for Manual IDT order(Transfer order)
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
     And Validation of List Id generated with prefix as IDT
@@ -56,9 +68,12 @@ Feature: Orders_Picking
     Then I should be directed to pick entry page
     And I enter ListId and TagId for IDT
     And I navigate to Order header screen to verify the status in Ready to Load
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @TC07_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order 
-  Scenario: Validate the auto picking process for the Cross dock FSV order
+  Scenario Outline: Validate the auto picking process for the Cross dock FSV order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -83,7 +98,7 @@ Feature: Orders_Picking
 	|MANB00001234|    
 	
 	@Picking @TC010_Validate_32_digit_URN_generation_after_picking
-  Scenario: Validate 32 digit URN generation after picking
+  Scenario Outline: Validate 32 digit URN generation after picking
   	Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
     And Validation of List Id generated with prefix as IDT
@@ -98,9 +113,12 @@ Feature: Orders_Picking
     And Enter Order Id
     And click execute
     And Validate the 32 digit URN is generated
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
     
    @Picking @TC011_Create_a_consignment_or_Load_label
-   Scenario: Create a consignment or Load label
+   Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -112,9 +130,12 @@ Feature: Orders_Picking
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
     And validate the record is saved
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
    @Picking @TC012_Create_Consignment_Drop
-   Scenario: Create a consignment or Load label
+   Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -132,5 +153,8 @@ Feature: Orders_Picking
     And Enter chamber and Address Id
     Then click execute
     And validate the record is saved 
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
     
     
