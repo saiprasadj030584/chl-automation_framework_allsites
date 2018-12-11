@@ -255,6 +255,9 @@ public class JDAExitUpiHeader{
 		System.out.println("skuid="+skuid);
 		String UPC=skuDB.getUPCDB(skuid);
 		context.setupc(UPC);
+		String supplier= supplierSkuDB.getSupplierId(skuid);
+		System.out.println("supplier="+supplier);
+		context.setSupplierID(supplier);
 		
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPIForRedStock();
@@ -320,8 +323,15 @@ public class JDAExitUpiHeader{
 		context.setSAPvalue(SAPvalue);
 		dataSetupRunner.insertOrderDataforUPI();
 		GetTCData.getpoId();
-		String skuid = "000000000021071852";
-		context.setSkuId2(skuid);
+		
+		String skuid=context.getSKUHang();
+		System.out.println("skuid="+skuid);
+		String UPC=skuDB.getUPCDB(skuid);
+		context.setupc(UPC);
+		String supplier= supplierSkuDB.getSupplierId(skuid);
+		System.out.println("supplier="+supplier);
+		context.setSupplierID(supplier);
+		
 		puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		Thread.sleep(1000);
@@ -348,14 +358,22 @@ public class JDAExitUpiHeader{
 				System.out.println("data");
 				context.setStoType(type);
 				context.setCustomer(customer);
+				String skuid=context.getSKUHang();
+				System.out.println("skuid="+skuid);
 //				dataSetupRunner.insertPreAdviceData();
 				dataSetupRunner.insertPreAdviceDataforUPI();
 				String SAPvalue=Utilities.getEightDigitRandomNumber();
 				context.setSAPvalue(SAPvalue);
 				dataSetupRunner.insertOrderDataforUPI();
 				GetTCData.getpoId();
-				String skuid = "000000000021071852";
-				context.setSkuId2(skuid);
+				
+				
+				String UPC=skuDB.getUPCDB(skuid);
+				context.setupc(UPC);
+				String supplier= supplierSkuDB.getSupplierId(skuid);
+				System.out.println("supplier="+supplier);
+				context.setSupplierID(supplier);
+				
 				puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 				String palletIDforUPI = context.getpalletIDforUPI();
 				Thread.sleep(1000);
@@ -385,14 +403,21 @@ public class JDAExitUpiHeader{
 				System.out.println("data");
 				context.setStoType(type);
 				context.setCustomer(customer);
+				String skuid=context.getSKUHang();
+				System.out.println("skuid="+skuid);
 //				dataSetupRunner.insertPreAdviceData();
 				dataSetupRunner.insertPreAdviceDataforUPI();
 				String SAPvalue=Utilities.getEightDigitRandomNumber();
 				context.setSAPvalue(SAPvalue);
 				dataSetupRunner.insertOrderDataforUPI();
 				GetTCData.getpoId();
-				String skuid = "000000000021071852";
-				context.setSkuId2(skuid);
+				
+				String UPC=skuDB.getUPCDB(skuid);
+				context.setupc(UPC);
+				String supplier= supplierSkuDB.getSupplierId(skuid);
+				System.out.println("supplier="+supplier);
+				context.setSupplierID(supplier);
+				
 				puttyFunctionsPage.i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
 				String palletIDforUPI = context.getpalletIDforUPI();
 				Thread.sleep(1000);
