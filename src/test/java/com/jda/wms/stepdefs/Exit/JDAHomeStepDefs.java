@@ -76,6 +76,11 @@ public class JDAHomeStepDefs {
 	public void Go_to_Admin_ACCESS_CNT_USER_GROUP_FUNCTION_ACCESS_Click() throws Throwable {
 		 jdaHomePage.navigateToAccesscontrol();                                                                
 	} 
+	@And("^Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click$")
+	public void Go_to_Admin_ACCESS_CNT_Global_FUNCTION_ACCESS_Click() throws Throwable {
+		 jdaHomePage.navigateToGloabalAccesscontrol();                                                                
+	} 
+	
 	@And("^Go to Admin>ACCESS CNT>Workstation access control & Click$")
 	public void Go_to_Admin_ACCESS_CNT_Workstation_access_control_Click() throws Throwable {
 		 jdaHomePage.navigateToWorkstation();                                                                
@@ -282,5 +287,10 @@ public class JDAHomeStepDefs {
 	@And("^Go to consignment drop maintainance screen$")
 	public void Go_to_consignment_drop_maintainance_screen() throws Throwable {
 		jdaHomePage.navigateToConsignmentDropMaintenance();
+	}
+	@And("^Click search$")
+	public void click_search() throws Throwable {
+		jdaFooter.clickSearch();
+		Thread.sleep(2000);
 	}
 }

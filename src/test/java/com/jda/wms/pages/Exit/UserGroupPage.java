@@ -10,6 +10,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.sikuli.script.App;
@@ -28,6 +29,12 @@ public class UserGroupPage{
 		screen.click("images/JDAHome/Group.png");
 		screen.type(UserGroup);
 	}
+	public void entersortationgroup(String UserGroup) throws FindFailed {
+//		screen.wait("images/JDAHome/Group.png", timeoutInSec);
+//		screen.click("images/JDAHome/Group.png");
+		screen.type(UserGroup);
+	}
+	
 	
 public String getUserGroup(String UserGroup) throws FindFailed, InterruptedException {
 	

@@ -961,6 +961,10 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/usergrpfctn.png", timeoutInSec);
 		screen.click("images/JDAHome/usergrpfctn.png");
 	}
+	public void clickglobalFunctionaccess() throws FindFailed {
+		screen.wait("images/JDAHome/GlobalAccess.png", timeoutInSec);
+		screen.click("images/JDAHome/GlobalAccess.png");
+	}
 	private void clickLocation() throws FindFailed {
 		screen.wait("images/JDAHome/Location.png", timeoutInSec);
 		screen.click("images/JDAHome/Location.png");
@@ -996,6 +1000,13 @@ public class JdaHomePage {
 		hoverAccesscontrol();
 		Thread.sleep(1000);
 		clickUsergroupFunctionaccess();
+		Thread.sleep(3000);
+	}
+	public void navigateToGloabalAccesscontrol() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoverAccesscontrol();
+		Thread.sleep(1000);
+		clickglobalFunctionaccess();
 		Thread.sleep(3000);
 	}
 	public void navigateToWorkstation() throws FindFailed, InterruptedException {
