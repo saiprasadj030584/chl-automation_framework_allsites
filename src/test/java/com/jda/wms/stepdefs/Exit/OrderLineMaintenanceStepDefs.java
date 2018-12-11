@@ -63,9 +63,21 @@ public class OrderLineMaintenanceStepDefs {
 		
 	}
 	
-	
-	
-	
+	@And("^Specify the Order in orderline \"([^\"]*)\"$")
+	public void specify_the_Order(String order) throws Throwable {
+		Thread.sleep(3000);
+		orderLineMaintenancePage.enterOrderID(order);
+	}
+	@And("^Navigate to user Defined tab$")
+	public void Navigate_to_user_Defined_tab() throws Throwable {
+		orderLineMaintenancePage.clickUserDefinedTab();
+		
+	}
+	@And("^Verify the delivery type field is set \"([^\"]*)\"$")
+	public void Verify_the_delivery_type(String type) throws Throwable {
+		Thread.sleep(3000);
+		orderLineMaintenancePage.verifyDeliveryType(type);
+	}
 	
 	
 	

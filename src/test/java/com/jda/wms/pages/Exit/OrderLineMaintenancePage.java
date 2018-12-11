@@ -186,5 +186,13 @@ public String getExtndPrice() throws FindFailed, InterruptedException {
 	public void enterOrderID(String orderId) {
 		screen.type(orderId);
 	}
-
+	public void verifyDeliveryType(String type) throws FindFailed {
+		Match mDescription = screen.find("images/OrderLineMaintenance/UserDefined/DeliveryType.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		String actualType = App.getClipboard();
+		Assert.assertEquals("The Delivery type does not Match", type, actualType);
+	}
+	
 }

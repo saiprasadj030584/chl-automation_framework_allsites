@@ -179,10 +179,7 @@ Feature: Orders_Picking
 	|List_Id|SKU                |
 	|IDTB00001234| 000000000021071852 |
 	
-    @Picking @TC13_Validate_adding_URN_to_Pallet_id
-    Scenario Outline: Validate adding URN to Pallet id
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-  
+    
   @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
   	Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -199,3 +196,18 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |ToLocation|
       | 000000000021071852 |TURKEY|  
+     
+  @Ordering @TC035_Happy_Path_Validate_FSV_order
+  Scenario Outline: Happy_Path_Validate FSV order
+  Given Login to JDA Dispatcher web screen
+    And Go to Data-order_orderline & Click
+    And Click on Query
+    And Specify the Order in orderline "<order>"
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZF24"
+
+    Examples: 
+      | order 			|
+      | 6677249924  | 
+      
