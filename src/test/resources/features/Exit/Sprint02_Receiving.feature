@@ -615,10 +615,10 @@ Examples:
     And Go to Admin-User-UserGroup & click
     And Click on Query
     And Specify the UserGroup "<UserGroup>"
-    And click execute
-    Then Verify whether the User-group been populated "<UserGroup>" in the table
+    #And click execute
+    #Then Verify whether the User-group been populated "<UserGroup>" in the table
 
-    Examples: ssss
+    Examples: 
       | UserGroup  |
       | BASICUSER  |
       | ADVUSER    |

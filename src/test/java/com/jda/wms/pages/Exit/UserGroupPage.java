@@ -28,6 +28,11 @@ public class UserGroupPage{
 		screen.click("images/JDAHome/Group.png");
 		screen.type(UserGroup);
 	}
+	public void entersortationgroup(String UserGroup) throws FindFailed {
+//		screen.wait("images/JDAHome/Group.png", timeoutInSec);
+//		screen.click("images/JDAHome/Group.png");
+		screen.type(UserGroup);
+	}
 	
 public String getUserGroup(String UserGroup) throws FindFailed, InterruptedException {
 	
