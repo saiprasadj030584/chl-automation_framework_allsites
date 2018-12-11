@@ -167,7 +167,7 @@ Feature: Orders_Picking
     
     @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
     Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
-    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
     And Validation of List Id generated with prefix as IDT
     Then I login as warehouse user in putty
@@ -177,10 +177,27 @@ Feature: Orders_Picking
     And I enter Invalid List Id "<List_Id>"
     And I validate Error message is displayed
 	Examples:
-	|List_Id|
-	|IDTB00001234|
+	|List_Id| SkuId |
+	|IDTB00001234|000000000021071852|
 	
     @Picking @TC13_Validate_adding_URN_to_Pallet_id
     Scenario Outline: Validate adding URN to Pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    
+    @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
+  Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
+  	Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    And I should be directed to pick entry page
+    And I type ListId and TagId 
+    And I enter Invalid To Location "<ToLocation>"
+    And I validate incorrect location message is displayed
+    
+    Examples: 
+      | SKU                |ToLocation|
+      | 000000000021071852 |TURKEY|
     
