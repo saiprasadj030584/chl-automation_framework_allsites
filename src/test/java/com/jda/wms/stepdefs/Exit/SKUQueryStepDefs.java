@@ -139,6 +139,7 @@ public class SKUQueryStepDefs{
 		String OriginalPackWeight=skuDB.UpdateOriginal(Packweight,sku);
 			
 	}
+	
 	@Then("^Alter the check weight to make the stock as RED Stock$")
 	public void alter_the_check_weight_to_make_the_stock_as_red_stock() throws Throwable{
 		String SKU=context.getSKUHang();
@@ -147,7 +148,7 @@ public class SKUQueryStepDefs{
 		context.setPackWeight(PackWeight);
 		
 		String UpdatePackWeight=skuDB.updatePackedweight(SKU);
-		System.out.println("UpdatePackWeight"+UpdatePackWeight);
+		System.out.println("UpdatePackWeight="+UpdatePackWeight);
 	}
 	@And("^Alter the Tdept as Null for Unknown Stock Error$")
 	public void alter_the_Tdept_as_null_for_unknown_stock_error() throws Throwable

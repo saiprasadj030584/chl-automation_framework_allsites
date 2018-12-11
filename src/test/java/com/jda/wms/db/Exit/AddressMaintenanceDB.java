@@ -130,8 +130,22 @@ public class AddressMaintenanceDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update address set country='ISR' from address where address_id='" + addressID + "'");
+		System.out.println("update address set country='ISR' where address_id='" + addressID + "'");
+		ResultSet rs = stmt.executeQuery("update address set country='ISR' where address_id='" + addressID + "'");
 		context.getConnection().commit();
 		return null;
 	
-}}
+}
+
+
+	public String UpdateForNonProhibition(String country,String addressID) throws SQLException, ClassNotFoundException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("update address set country='"+country+"' where address_id='" + addressID + "'");
+		ResultSet rs = stmt.executeQuery("update address set country='"+country+"' where address_id='" + addressID + "'");
+		context.getConnection().commit();
+		return null;
+	
+	}}

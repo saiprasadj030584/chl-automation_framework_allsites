@@ -189,9 +189,9 @@ public class DataSetupRunner {
 	public void insertOrderData() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 		System.out.println(stoId);
-		
+		String sku=context.getSKUHang();
 		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
-		insertDataIntoDB.insertOrderLine3(stoId,context.getSKUHang());
+		insertDataIntoDB.insertOrderLine3(stoId,sku);
 		Thread.sleep(10000);
 		selectDataFromDB.isOrderHeaderRecordExists(stoId);
 		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));

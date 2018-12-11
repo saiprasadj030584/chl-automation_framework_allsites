@@ -238,6 +238,11 @@ public class JDAExitUpiHeader{
 		
 		}
 	
+	@Given("^The details for the sku \"([^\"]*)\"$")
+	public void the_details_for_the_sku(String skuid) throws Throwable{
+		context.setSKUHang(skuid);
+		System.out.println("skuid="+skuid);
+	}
 	
 	@Given("^Data to be inserted in preadvice header,order header and UPI receipt with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for Red Stock$")
 	public void Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_for_Red_Stock(String status,
@@ -411,6 +416,20 @@ public class JDAExitUpiHeader{
 				}
 		
 
+			@Given("^Checking the country of origination for sku \"([^\"]*)\"$")
+			public void checking_the_country_of_origination_for_sku(String skuid) throws Throwable {
+				String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(skuid));
+				context.setCountry(Country);
+				System.out.println("Country="+Country);
+				if(Country.equals("GBR")){
+					String UpdateForProhibition=addressMaintenanceDB.UpdateCountryForProhibition(supplierSkuDB.getSupplierId(skuid));					
+					System.out.println("Proceed with red stock receive="+UpdateForProhibition);
+				}
+				else
+				{
+					System.out.println("already in prohibition, proceed");
+				}
+			}
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\"$")
 public void checking_the_conditions_for_the_sku_and_customerID_site(String type, 
 		String putawayGroup, String customer, String skuid, String customerID) throws Throwable {
@@ -426,6 +445,7 @@ public void checking_the_conditions_for_the_sku_and_customerID_site(String type,
 	System.out.println("addressID="+addressID);
 	String Country= addressMaintenanceDB.getCountry(addressID);
 	System.out.println("Country="+Country);
+
 	
 	context.setSKUHang(skuid);
 	
@@ -485,5 +505,11 @@ public void checking_the_conditions_for_the_sku_and_customerID_siteID(String typ
 	}
 
 	}
+
+@Given("^Update country for non-prohibition$")
+public void update_country_for_non_prohibition() throws Throwable{
+	String UpdateForNonProhibition=addressMaintenanceDB.UpdateForNonProhibition(context.getCountry(),supplierSkuDB.getSupplierId(context.getSKUHang()));
+	System.out.println("updated to="+UpdateForNonProhibition);
+}
 
 }
