@@ -263,17 +263,4 @@ Feature: Orders_Picking
       | order 			|
       | 6677249924  | 
      
-  @Ordering @TC035_Happy_Path_Validate_FSV_order
-  Scenario Outline: Happy_Path_Validate FSV order
-  Given Login to JDA Dispatcher web screen
-    And Go to Data-order_orderline & Click
-    And Click on Query
-    And Specify the Order in orderline "<order>"
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZF24"
-
-    Examples: 
-      | order 			|
-      | 6677249924  | 
       
