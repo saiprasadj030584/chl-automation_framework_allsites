@@ -32,7 +32,7 @@ public class InsertDataIntoDB {
 		String UPC=context.getupc();
 		String query = "Insert into INTERFACE_PRE_ADVICE_HEADER (KEY,CLIENT_ID,PRE_ADVICE_ID,PRE_ADVICE_TYPE,SITE_ID,OWNER_ID,SUPPLIER_ID,STATUS,BOOKREF_ID,DUE_DSTAMP,CONTACT,CONTACT_PHONE,CONTACT_MOBILE,CONTACT_FAX,CONTACT_EMAIL,NAME,ADDRESS1,ADDRESS2,TOWN,COUNTY,POSTCODE,COUNTRY,RETURN_FLAG,SAMPLING_TYPE,RETURNED_ORDER_ID,EMAIL_CONFIRM,COLLECTION_REQD,CONSIGNMENT,LOAD_SEQUENCE,NOTES,DISALLOW_MERGE_RULES,OAP_RMA,DISALLOW_REPLENS,SUPPLIER_REFERENCE,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,CE_CONSIGNMENT_ID,MASTER_PRE_ADVICE,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
                         + key +"','M+S','"
-                        +poId+"','PO','5542','M+S','M00087','Released',null,to_timestamp('"
+                        +poId+"','PO','5542','M+S','"+context.getSupplierID()+"','Released',null,to_timestamp('"
                         +queryInsertDate+" 00.00.00.000000000'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,null,null,'"+Preadvice+"','T78',null,null,null,'H',null,null,null,'N','N','N',to_timestamp('"
                         +queryInsertDate+" 12.05.23.000000000'),null,null,null,null,null,null,5581,null,null,null,null,null,'N',null,null,null,null,null,'Europe/Belfast','Europe/London',null, 'M+S', 'A', 'Pending',null,to_timestamp('"+queryInsertDate+" 23.49.04.679759000'))";
 		System.out.println("Insert Pre Advice Header");
@@ -61,25 +61,7 @@ public class InsertDataIntoDB {
 		ResultSet rs = stmt.executeQuery(query);
 		context.getConnection().commit();
 	}
-//		public void insertUPIReceiptHeader(String palletId) throws SQLException, ClassNotFoundException {
-//		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
-//		String key = getMaxKeyFromDB("interface_upi_receipt_header");
-//		String query = "Insert into interface_upi_receipt_header (KEY,PALLET_ID,SITE_ID,DUE_DSTAMP,RECEIPT_ID,ASN_ID,CLIENT_ID,SUPPLIER_ID,PALLET_CONFIG,VOLUME,HEIGHT,DEPTH,WIDTH,WEIGHT,STATUS,CROSS_DOCK,TO_SITE_ID,SHIP_DOCK,CONSIGNMENT,CUSTOMER_ID,LOAD_SEQUENCE,DISALLOW_MERGE_RULES,NOTES,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,ROUTE_ID,CROSS_DOCK_TO_SITE,SUP_CONTACT,SUP_CONTACT_PHONE,SUP_CONTACT_MOBILE,SUP_CONTACT_FAX,SUP_CONTACT_EMAIL,SUP_NAME,SUP_ADDRESS1,SUP_ADDRESS2,SUP_TOWN,SUP_COUNTY,SUP_POSTCODE,SUP_COUNTRY,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SHIP_BY_DATE,DELIVER_BY_DATE,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
-//						+ key +"','"
-//				        +palletId+"','5542',to_timestamp('"
-//						+queryInsertDate+" 00.00.00.000000000'),null,'0000790476','M+S','9577','PALLET',9999,0,null,0,0,'Released','N',null,null,null,null,null,'N',null,null,null,null,null,'ROAD',null,'1','00000000001976602095',null,null,null,'000000000090200020','ZIDC','957700149818012018','N','Y','N','N',to_timestamp('"
-//						+queryInsertDate+" 10.15.40.000000000'),null,null,null,null,null,null,850,'33826069072210777302501310103210',null,null,'N',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'Europe/Belfast','Europe/London',null,'INT','U','Error','IF1149',to_timestamp('"
-//						+queryInsertDate+" 08.36.14.552349000'))";
-//
-//		System.out.println("Insert interface_upi_receipt_header");
-//		System.out.println(query);
-//		if (context.getConnection() == null) {
-//			database.connect();
-//		}
-//		Statement stmt = context.getConnection().createStatement();
-//		ResultSet rs = stmt.executeQuery(query);
-//		context.getConnection().commit();
-//	}
+
 	
 	public void insertPreAdviceline(String poId,String Preadvice) throws SQLException, ClassNotFoundException {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
@@ -234,10 +216,10 @@ public class InsertDataIntoDB {
 		String key = Utilities.getFourDigitRandomNumber()+".0";
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
 		String query = null;
-		context.setSkuId("000000000021071852");
+		
 		query = "INSERT INTO INTERFACE_ORDER_LINE (KEY,CLIENT_ID,ORDER_ID,LINE_ID,HOST_ORDER_ID,HOST_LINE_ID,SKU_ID,CUSTOMER_SKU_ID,CONFIG_ID,TRACKING_LEVEL,BATCH_ID,BATCH_MIXING,SHELF_LIFE_DAYS,SHELF_LIFE_PERCENT,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,QTY_ORDERED,ALLOCATE,BACK_ORDERED,KIT_SPLIT,DEALLOCATE,NOTES,PSFT_INT_LINE,PSFT_SCHD_LINE,PSFT_DMND_LINE,SAP_PICK_REQ,DISALLOW_MERGE_RULES,LINE_VALUE,RULE_ID,SOH_ID,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TASK_PER_EACH,USE_PICK_TO_GRID,IGNORE_WEIGHT_CAPTURE,STAGE_ROUTE_ID,MIN_QTY_ORDERED,MAX_QTY_ORDERED,EXPECTED_VOLUME,EXPECTED_WEIGHT,EXPECTED_VALUE,CUSTOMER_SKU_DESC1,CUSTOMER_SKU_DESC2,PURCHASE_ORDER,PRODUCT_PRICE,PRODUCT_CURRENCY,DOCUMENTATION_UNIT,EXTENDED_PRICE,TAX_1,TAX_2,DOCUMENTATION_TEXT_1,SERIAL_NUMBER,OWNER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_RECEIPT_TYPE,CE_COO,KIT_PLAN_ID,LOCATION_ID,UNALLOCATABLE,MIN_FULL_PALLET_PERC,MAX_FULL_PALLET_PERC,FULL_TRACKING_LEVEL_ONLY,SUBSTITUTE_GRADE,DISALLOW_SUBSTITUTION,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
 		         + key +"','M+S','" + orderId
-				 +"',10,null,null,'000000000021071852',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'',null,null,'0007','06769338','MANUAL',null,'IDT','ZNL1','MANUAL','N','N','N','N',to_timestamp('"
+				 +"',10,null,null,'"+context.getSKUHang()+"',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'',null,null,'0007','06769338','MANUAL',null,'IDT','ZNL1','MANUAL','N','N','N','N',to_timestamp('"
 				 + queryInsertDate 
 				 +" 02.44.07.000000000'),null,null,null,null,null,null,690,null,null,'N','N','N',null,null,null,null,null,null,null,null,null,null,null,null,2.56,null,null,null,null,'M+S',null,null,null,null,null,null,'N',null,null,'N',null,'N','Europe/Belfast','Europe/London',null,'M+S','A','Pending','',to_timestamp('"
 				 + queryInsertDate +" 10.29.36.292279000'))";
@@ -260,7 +242,7 @@ public class InsertDataIntoDB {
 	
 		query = "INSERT INTO INTERFACE_ORDER_LINE (KEY,CLIENT_ID,ORDER_ID,LINE_ID,HOST_ORDER_ID,HOST_LINE_ID,SKU_ID,CUSTOMER_SKU_ID,CONFIG_ID,TRACKING_LEVEL,BATCH_ID,BATCH_MIXING,SHELF_LIFE_DAYS,SHELF_LIFE_PERCENT,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,QTY_ORDERED,ALLOCATE,BACK_ORDERED,KIT_SPLIT,DEALLOCATE,NOTES,PSFT_INT_LINE,PSFT_SCHD_LINE,PSFT_DMND_LINE,SAP_PICK_REQ,DISALLOW_MERGE_RULES,LINE_VALUE,RULE_ID,SOH_ID,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TASK_PER_EACH,USE_PICK_TO_GRID,IGNORE_WEIGHT_CAPTURE,STAGE_ROUTE_ID,MIN_QTY_ORDERED,MAX_QTY_ORDERED,EXPECTED_VOLUME,EXPECTED_WEIGHT,EXPECTED_VALUE,CUSTOMER_SKU_DESC1,CUSTOMER_SKU_DESC2,PURCHASE_ORDER,PRODUCT_PRICE,PRODUCT_CURRENCY,DOCUMENTATION_UNIT,EXTENDED_PRICE,TAX_1,TAX_2,DOCUMENTATION_TEXT_1,SERIAL_NUMBER,OWNER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_RECEIPT_TYPE,CE_COO,KIT_PLAN_ID,LOCATION_ID,UNALLOCATABLE,MIN_FULL_PALLET_PERC,MAX_FULL_PALLET_PERC,FULL_TRACKING_LEVEL_ONLY,SUBSTITUTE_GRADE,DISALLOW_SUBSTITUTION,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
 		         + key +"','M+S','" + orderId
-				 +"',10,null,null,'"+Sku+"',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'',null,null,'0007','06769338','IntlFranchise',null,'Retail','ZNL1','MANUAL','N','N','N','N',to_timestamp('"
+				 +"',10,null,null,'"+Sku+"',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'',null,null,'0007','"+context.getupc()+"','IntlFranchise',null,'Retail','ZNL1','MANUAL','N','N','N','N',to_timestamp('"
 				 + queryInsertDate 
 				 +" 02.44.07.000000000'),null,null,null,null,null,null,690,null,null,'N','N','N',null,null,null,null,null,null,null,null,null,null,null,null,2.56,null,null,null,null,'M+S',null,null,null,null,null,null,'N',null,null,'N',null,'N','Europe/Belfast','Europe/London',null,'M+S','A','Pending','',to_timestamp('"
 				 + queryInsertDate +" 10.29.36.292279000'))";
@@ -328,7 +310,7 @@ public class InsertDataIntoDB {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
 		String query = null;
 		String sku=context.getSKUHang();
-//		context.setSkuId("000000000021071852");
+
         query = "INSERT INTO INTERFACE_ORDER_LINE (KEY,CLIENT_ID,ORDER_ID,LINE_ID,HOST_ORDER_ID,HOST_LINE_ID,SKU_ID,CUSTOMER_SKU_ID,CONFIG_ID,TRACKING_LEVEL,BATCH_ID,BATCH_MIXING,SHELF_LIFE_DAYS,SHELF_LIFE_PERCENT,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,QTY_ORDERED,ALLOCATE,BACK_ORDERED,KIT_SPLIT,DEALLOCATE,NOTES,PSFT_INT_LINE,PSFT_SCHD_LINE,PSFT_DMND_LINE,SAP_PICK_REQ,DISALLOW_MERGE_RULES,LINE_VALUE,RULE_ID,SOH_ID,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TASK_PER_EACH,USE_PICK_TO_GRID,IGNORE_WEIGHT_CAPTURE,STAGE_ROUTE_ID,MIN_QTY_ORDERED,MAX_QTY_ORDERED,EXPECTED_VOLUME,EXPECTED_WEIGHT,EXPECTED_VALUE,CUSTOMER_SKU_DESC1,CUSTOMER_SKU_DESC2,PURCHASE_ORDER,PRODUCT_PRICE,PRODUCT_CURRENCY,DOCUMENTATION_UNIT,EXTENDED_PRICE,TAX_1,TAX_2,DOCUMENTATION_TEXT_1,SERIAL_NUMBER,OWNER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_RECEIPT_TYPE,CE_COO,KIT_PLAN_ID,LOCATION_ID,UNALLOCATABLE,MIN_FULL_PALLET_PERC,MAX_FULL_PALLET_PERC,FULL_TRACKING_LEVEL_ONLY,SUBSTITUTE_GRADE,DISALLOW_SUBSTITUTION,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
 		         + key +"','M+S','" + orderId
 				 +"',10,null,null,'" + sku +"',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'FRANCHISE',null,'"+SAPvalue+"','0007','','IntlFranchise',null,'Retail','ZF24','"
@@ -384,12 +366,13 @@ public class InsertDataIntoDB {
 		String palletIDforUPI = context.getpalletIDforUPI();
 		String SAPvalue=context.getSAPvalue();
 		String sku=context.getSKUHang();
+		
 		query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ("
                 + key +",'"
                 +palletIDforUPI+"',10,null,null,'"
-                +palletIDforUPI+"','M+S','M+S','"+sku+"',null,'EA','GBR',null,null,null,'',null,null,null,null,20,'"
+                +palletIDforUPI+"','M+S','M+S','"+sku+"',null,'EA','"+context.getCountry()+"',null,null,null,'',null,null,null,null,20,'"
                 +poId+"','10','N','"
-                +SAPvalue+"','10','7319900742','06769338','"
+                +SAPvalue+"','10','7319900742','"+context.getupc()+"','"
                 +ASN+"',null,'ZIDC','"
                 +poId+"','N','N','N','',to_timestamp('"
                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'M+S','A','Pending','',to_timestamp('"
@@ -417,9 +400,9 @@ public class InsertDataIntoDB {
 		query = "Insert into interface_upi_receipt_line (KEY,PALLET_ID,LINE_ID,HOST_PALLET_ID,HOST_LINE_ID,TAG_ID,OWNER_ID,CLIENT_ID,SKU_ID,CONFIG_ID,TRACKING_LEVEL,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,SUPPLIER_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,RECEIPT_DSTAMP,QTY_DUE,PRE_ADVICE_ID,PRE_ADVICE_LINE_ID,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_CONSIGNMENT_ID,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,CE_UNDER_BOND,CE_LINK,CE_COO,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,CONTAINER_ID,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ("
                 + key +",'"
                 +palletIDforUPI+"',10,null,null,'"
-                +palletIDforUPI+"','M+S','M+S','"+SKU+"',null,'EA','GBR',null,null,null,'',null,null,null,null,20,'"
+                +palletIDforUPI+"','M+S','M+S','"+SKU+"',null,'EA','"+context.getCountry()+"',null,null,null,'',null,null,null,null,20,'"
                 +poId+"','10','N','"
-                +SAPvalue+"','10','7319900742','06769383','"
+                +SAPvalue+"','10','7319900742','"+context.getupc()+"','"
                 +ASN+"',null,'ZIDC','"
                 +poId+"','N','N','N','',to_timestamp('"
                 +queryInsertDate+"  00.00.00.000000000','DD-MON-RR HH24.MI.SSXFF'),null,null,null,1,null,null,716,'28209590001303','71974451022760797202701610103010',null,null,null,null,null,null,'N','N',null,null,null,null,'Europe/Belfast','London/Europe',null,'M+S','A','Pending','',to_timestamp('"
@@ -439,7 +422,7 @@ public class InsertDataIntoDB {
 		String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_HEADER");
 		String query = "Insert into INTERFACE_PRE_ADVICE_HEADER (KEY,CLIENT_ID,PRE_ADVICE_ID,PRE_ADVICE_TYPE,SITE_ID,OWNER_ID,SUPPLIER_ID,STATUS,BOOKREF_ID,DUE_DSTAMP,CONTACT,CONTACT_PHONE,CONTACT_MOBILE,CONTACT_FAX,CONTACT_EMAIL,NAME,ADDRESS1,ADDRESS2,TOWN,COUNTY,POSTCODE,COUNTRY,RETURN_FLAG,SAMPLING_TYPE,RETURNED_ORDER_ID,EMAIL_CONFIRM,COLLECTION_REQD,CONSIGNMENT,LOAD_SEQUENCE,NOTES,DISALLOW_MERGE_RULES,OAP_RMA,DISALLOW_REPLENS,SUPPLIER_REFERENCE,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,CE_CONSIGNMENT_ID,MASTER_PRE_ADVICE,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
                         + key +"','M+S','"
-                        +poId+"','PO','5542','M+S','M00087','Released',null,to_timestamp('"
+                        +poId+"','PO','5542','M+S','"+context.getSupplierID()+"','Released',null,to_timestamp('"
                         +queryInsertDate+" 00.00.00.000000000'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,null,null,'"+Preadvice+"','T78',null,null,null,'H',null,null,null,'N','N','N',to_timestamp('"
                         +queryInsertDate+" 12.05.23.000000000'),null,null,null,null,null,null,5581,null,null,null,null,null,'N',null,null,null,null,null,'Europe/Belfast','Europe/London',null, 'M+S', 'A', 'Pending',null,to_timestamp('"+queryInsertDate+" 23.49.04.679759000'))";
 		System.out.println("Insert Pre Advice Header");
@@ -456,7 +439,7 @@ public class InsertDataIntoDB {
 		String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_LINE");
 		String query ="Insert into INTERFACE_PRE_ADVICE_LINE (KEY,CLIENT_ID,PRE_ADVICE_ID,LINE_ID,HOST_PRE_ADVICE_ID,HOST_LINE_ID,SKU_ID,CONFIG_ID,BATCH_ID,EXPIRY_DSTAMP,MANUF_DSTAMP,PALLET_CONFIG,ORIGIN_ID,CONDITION_ID,TAG_ID,LOCK_CODE,SPEC_CODE,QTY_DUE,NOTES,SAP_PLANT,SAP_STORE_LOC,DISALLOW_MERGE_RULES,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TRACKING_LEVEL,QTY_DUE_TOLERANCE,CE_COO,OWNER_ID,CE_CONSIGNMENT_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_UNDER_BOND,CE_LINK,PRODUCT_PRICE,PRODUCT_CURRENCY,CE_INVOICE_NUMBER,SERIAL_VALID_MERGE,SAMPLING_TYPE,EXPECTED_GROSS_WEIGHT,EXPECTED_NET_WEIGHT,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
 			       + key +"','M+S','"
-			       +poId+"',10,null,null,'000000000021071852',null,null,null,null,null,null,null,null,null,null,20,null,null,null,'N','"+Preadvice+"','T78',null,'7993','06769338','SP13','0625A','B',null,null,null,null,to_timestamp('"+queryInsertDate+" 14.05.55.000000000'),null,null,null,null,null,2018,31,null,null,'EA',null,null,'M+S',null,null,null,null,null,null,null,null,'N',null,null,null,'Europe/London',null,null,'M+S', 'A','Pending',null,to_timestamp('"
+			       +poId+"',10,null,null,'"+context.getSKUHang()+"',null,null,null,null,null,null,null,null,null,null,20,null,null,null,'N','"+Preadvice+"','T78',null,'7993','"+context.getupc()+"','SP13','0625A','B',null,null,null,null,to_timestamp('"+queryInsertDate+" 14.05.55.000000000'),null,null,null,null,null,2018,31,null,null,'EA',null,null,'M+S',null,null,null,null,null,null,null,null,'N',null,null,null,'Europe/London',null,null,'M+S', 'A','Pending',null,to_timestamp('"
 			       +queryInsertDate+" 14.05.57.342179000'))";
 	System.out.println("Insert Pre Advice line");
 		System.out.println(query);
