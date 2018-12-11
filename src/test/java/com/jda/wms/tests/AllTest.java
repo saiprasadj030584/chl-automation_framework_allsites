@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-				+ "@TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory" 
+				+ "@TC19_Happy_path_validate_sortation_functional_access" 
 
 })
 public class AllTest {
