@@ -24,7 +24,7 @@ Feature: Orders_Picking
 
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order  
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
-    #Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>" 
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>" 
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -36,7 +36,7 @@ Feature: Orders_Picking
 
   @TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order 
   Scenario Outline: Validate Pick list id generated for a cross dock ASN order
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -78,9 +78,8 @@ Feature: Orders_Picking
 
   @TC07_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order 
   Scenario Outline: Validate the auto picking process for the Cross dock FSV order
-    #Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542"
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
+   Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+   Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
@@ -167,8 +166,8 @@ Feature: Orders_Picking
     
     @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
     Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
     And Validation of List Id generated with prefix as IDT
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -177,27 +176,10 @@ Feature: Orders_Picking
     And I enter Invalid List Id "<List_Id>"
     And I validate Error message is displayed
 	Examples:
-	|List_Id| SkuId |
-	|IDTB00001234|000000000021071852|
+	|List_Id|SKU                |
+	|IDTB00001234| 000000000021071852 |
 	
     @Picking @TC13_Validate_adding_URN_to_Pallet_id
     Scenario Outline: Validate adding URN to Pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    
-    @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
-  Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
-  	Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
-    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
-    And Validation of List Id generated with prefix as IDT
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select picking with container pick
-    And I should be directed to pick entry page
-    And I type ListId and TagId 
-    And I enter Invalid To Location "<ToLocation>"
-    And I validate incorrect location message is displayed
-    
-    Examples: 
-      | SKU                |ToLocation|
-      | 000000000021071852 |TURKEY|
     
