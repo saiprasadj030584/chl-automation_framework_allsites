@@ -694,5 +694,48 @@ public void I_enter_URN_to_Pallet_id() throws Throwable {
 public void verify_pallet_repack_is_validated_successfully() throws Throwable {
 	storeTrackingOrderPickingPage.isRepackConfirm();
 }
+@And("^I type ListId and TagId$")
+public void I_type_ListId_and_TagId() throws Throwable{
+	//String TagId=moveTaskDB.getTag(context.getOrderId());
+	String sku=context.getSKUHang();
+	String listId=moveTaskDB.getList(context.getOrderId());
+	
+	storeTrackingOrderPickingPage.enterListID(listId);
+	System.out.println("ListId= " +listId);
+	puttyFunctionsPage.pressEnter();
+	String TagId="9999";
+//	context.setTag(TagId);
+	System.out.println("TagId="+TagId);
+	storeTrackingOrderPickingPage.enterTagId(TagId);
+	Thread.sleep(500);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(500);
+	String UPCValue=purchaseOrderReceivingPage.getUPC2();//from screen
+	System.out.println("upc="+UPCValue);
+	String UPCLast=StringUtils.substring(UPCValue, 0, 4);
+	System.out.println("UPCLast="+UPCLast);
+	String UPCDB=SkuDB.getUPCDB(sku);
+	System.out.println("upc="+UPCDB);
+	Thread.sleep(1000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(500);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+}
+@And("^I enter Invalid To Location \"([^\"]*)\"$")
+public void I_enter_Invalid_To_Location(String ToLocation) throws Throwable{
+	storeTrackingOrderPickingPage.enterToLocation(ToLocation);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+}
 
+@And("^I validate incorrect location message is displayed$")
+public void I_validate_incorrect_location_message_is_displayed() throws Throwable{
+	Thread.sleep(5000);
+	storeTrackingOrderPickingPage.isInvalidLocationErrorDisplayed();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+}
 }

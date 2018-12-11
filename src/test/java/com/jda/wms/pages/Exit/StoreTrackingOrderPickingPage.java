@@ -297,7 +297,10 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(tagId);
 		Thread.sleep(2000);
 	}
-
+	public void enterToLocation(String ToLocation) throws InterruptedException {
+		screen.type(ToLocation);
+		Thread.sleep(2000);
+	}
 	public String getLocationInReplenishPick() throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/Putty/Picking/FromLocation.png");
 		screen.click(mStatus.getCenter().offset(40, 0));
@@ -348,6 +351,11 @@ public class StoreTrackingOrderPickingPage {
 		return App.getClipboard();
 	}
 	
-
+	public boolean isInvalidLocationErrorDisplayed() {
+		if ((screen.exists("images/Putty/Picking/InvalidLocation.png") != null))
+			return true;
+		else
+			return false;
+	}
 	}
 
