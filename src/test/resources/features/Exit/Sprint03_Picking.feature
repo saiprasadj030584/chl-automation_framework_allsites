@@ -248,24 +248,6 @@ Feature: Orders_Picking
   Scenario: Happy path sortation functional not found
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click  
-    And 
-=======
-      | SKU                |ToLocation|
-      | 000000000021071852 |TURKEY|  
-     
-  @Ordering @TC035_Happy_Path_Validate_FSV_order
-  Scenario Outline: Happy_Path_Validate FSV order
-  Given Login to JDA Dispatcher web screen
-    And Go to Data-order_orderline & Click
-    And Click on Query
-    And Specify the Order in orderline "<order>"
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZF24"
-
-    Examples: 
-      | order 			|
-      | 66772499
      
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
@@ -280,9 +262,6 @@ Feature: Orders_Picking
     Examples: 
       | order 			|
       | 6677249924  | 
-      24  | 
-      
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
      
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
