@@ -263,8 +263,7 @@ Feature: Orders_Picking
       | order 			|
       | 6677249924  | 
      
-      
-      
+
       
       
       

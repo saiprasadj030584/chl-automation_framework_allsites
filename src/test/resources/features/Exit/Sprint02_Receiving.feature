@@ -213,18 +213,18 @@ Examples:
       | SkuId              |
       | 000000000021071852 |
 
-  @in-Progress @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
+  @Complete @Receiving @TC13_Direct_receiving_Happy_path_Trusted_Boxed_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  Prohibited inventory
   Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-       Then Alter the check weight to make the stock as RED Stock
+   
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock 
     And I navigate to Order header screen to verify the status in Released
-    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code for prohibition
 	Then Update country for non-prohibition
 
     Examples: 
@@ -326,37 +326,36 @@ Examples:
       | SkuId              |
       | 000000000021071852 |
 
-  @in-Progress @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
+  @Complete @Receiving @TC19_Direct_receiving_Happy_path_Non_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Non Trusted – Hanging – Prohibited inventory
     Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Non-Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977" and siteID "4624"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock 
     And I navigate to Order header screen to verify the status in Released
-    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code for prohibition
 	Then Update country for non-prohibition
 	
     Examples: 
       | SkuId              |
       | 000000000021071851 |
 
-  @in-Progress @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
+  @Complete @Receiving @TC20_Direct_receiving_Happy_path_Trusted_Hanging_Prohibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Hanging -  Prohibited inventory
      Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Trusted", "Hanging" and "Prohibited" for the sku "<SkuId>" and customerID "7977"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
-     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
-    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code for prohibition
     Then Update country for non-prohibition
+    
     Examples: 
       | SkuId              |
       | 000000000021071851 |
@@ -545,8 +544,9 @@ Examples:
       | 000000000021071852 |
 
 
-   @Receiving @TC29_Prohibition_Check_FSV_CoO_and_Destination_not_allowed
+   @in-progress @Receiving @TC30_Prohibition_Check_FSV_CoO_and_Destination_not_allowed
    Scenario Outline: To validate prohibition check FSV and Coo Destination not allowed
+   	Given Checking the country of origination for sku "<SkuId>"
     Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -562,10 +562,11 @@ Examples:
     And Click on Query
     And Enter Container_ID for FSV
     And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+	Then Update country for non-prohibition
    Examples: 
       | SKU                |
-      | 000000000021071851 |
+      | 000000000021071852 |
 
 
 

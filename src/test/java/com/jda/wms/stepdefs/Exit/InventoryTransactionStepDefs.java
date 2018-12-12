@@ -108,6 +108,26 @@ public class InventoryTransactionStepDefs{
 		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
 	}
 	
+	@And("^check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code for prohibition$")
+	public void check_the_inventory_transaction_for_receipt_inventorylock_putaway_for_red_lock_code_for_prohibition() throws Throwable
+	{
+		String sku= context.getSKUHang();
+		
+		jdaHomePage.navigateToInventory();
+		inventoryTransactionPage.click_on_Query();		
+		inventoryTransactionPage.EnterContanierID();
+		inventoryTransactionPage.clickExecuteButton();
+		Thread.sleep(2000);
+		String RC=inventoryTransactionPage.checkReasoncode();
+		Assert.assertEquals("Reason code not as expected", "RED", RC);
+		Thread.sleep(2000);
+		inventoryTransactionPage.ChecktransactionForRedStock();
+
+		
+		String UserDEFChk3=SkuDB.getUserDefChck3(sku);
+		Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
+	}
+	
 	@And("^Supplier Declaration is validated to be null or in past$")
 	public void supplier_declarartion_is_validated_to_be_null_or_in_past() throws Throwable,FindFailed{
 		String sku=context.getSkuId2();

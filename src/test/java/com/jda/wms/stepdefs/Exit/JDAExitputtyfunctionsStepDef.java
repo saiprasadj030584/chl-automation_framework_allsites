@@ -474,6 +474,12 @@ public class JDAExitputtyfunctionsStepDef {
 //		String Location = LocationDB.getRedLocation();
 //		System.out.println("Red Location="+Location);
 		purchaseOrderReceivingPage.EnterToPallet("BA001");
+//		String ToPallet = null;
+//		String palletdigit = Utilities.getsevenDigitRandomNumber();
+//		ToPallet="P"+palletdigit;
+//		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+//		puttyFunctionsPage.nextScreen();
+		
 		puttyFunctionsPage.pressEnter();
 		validate_that_red_lock_code_applied_message();
 		hooks.logoutPutty();

@@ -147,6 +147,7 @@ public class Context {
 	private String orderId2;
 	private String consignmentName;
 	private String stoId2;
+	private String country2;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1174,6 +1175,13 @@ public class Context {
 		return stoId2;
 	}
 
+	public void setOriginialCountry(String country2) {
+		this.country2 = country2;
+	}
+
+	public String getOriginialCountry(){
+		return country2;
+	}
 	
 
 	
