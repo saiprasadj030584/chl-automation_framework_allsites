@@ -208,6 +208,8 @@ public class JDAExitUpiHeader{
 		String UPC = skuDB.getUPCDB1(skuid);
 		context.setupc(UPC);
 		System.out.println(UPC);
+		String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(skuid));
+		context.setCountry(Country);
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPI();
 		String SAPvalue=Utilities.getEightDigitRandomNumber();

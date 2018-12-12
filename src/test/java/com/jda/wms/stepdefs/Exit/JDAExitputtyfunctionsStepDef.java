@@ -499,6 +499,23 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 		
 	}
+	@Given("^I select sorting menu$")
+	public void I_select_sorting_menu() throws Throwable
+	{
+		i_have_logged_in_as_warehouse_user_in_putty();
+		purchaseOrderReceivingPage.selectUserDirectedMenu();
+		storeTrackingOrderPickingPage.selectPickingMenu();
+		storeTrackingOrderPickingPage.selectsortation();
+		
+	}
+	@Given("I enter URN")
+	public void I_enter_URN() throws Throwable
+	{
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+	}
 	@Given("^I enter To Pallet for two urn$")
 	public void I_enter_To_Pallet_for_two_urn() throws Throwable {
 		String ToPallet = null;

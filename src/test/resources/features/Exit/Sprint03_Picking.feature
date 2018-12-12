@@ -181,7 +181,10 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
-    And I navigate to Order header screen to verify the status in Ready to Load
+    And I select sorting menu
+    And I enter URN
+    #And I navigate to Order header screen to verify the status in Ready to Load
+    
     
 
     Examples: 
@@ -240,6 +243,7 @@ Feature: Orders_Picking
     And Specify the sortation group "<sortationgroup>"
     And Click search
     And Validate Blind receipt, pre-advice receipt, repack
+    
      Examples: 
       | sortationgroup  |
       | Sortation  |
