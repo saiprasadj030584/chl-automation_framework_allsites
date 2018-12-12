@@ -424,7 +424,7 @@ public class JDAExitputtyfunctionsStepDef {
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(1000);
 						}
-	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN$")
+	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving$")
 	public void I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
 		GetTCData.getpoId();
 		String skuid = context.getSKUHang();
