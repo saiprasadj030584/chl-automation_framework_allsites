@@ -27,7 +27,6 @@ Feature: Orders_Picking
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -43,7 +42,7 @@ Feature: Orders_Picking
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I navigate to Order header screen to verify the status in Ready to Load
 
     Examples: 
