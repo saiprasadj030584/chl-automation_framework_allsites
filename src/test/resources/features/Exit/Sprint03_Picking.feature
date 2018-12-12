@@ -174,14 +174,17 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
       
-     @Sorting @TC014_Validate_adding_URN_to_pallet_id
+     @Sorting @TC013_Validate_adding_URN_to_pallet_id
      Scenario Outline: Validate adding urn to pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
-    And I navigate to Order header screen to verify the status in Ready to Load
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN
+    #And I navigate to Order header screen to verify the status in Ready to Load
+    
     
 
     Examples: 
@@ -237,16 +240,16 @@ Feature: Orders_Picking
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click
     And Click on Query
-    And Specify the sortation group "<UserGroup>"
+    And Specify the sortation group "<sortationgroup>"
     And Click search
+    And Validate Blind receipt, pre-advice receipt, repack
+    
      Examples: 
-      | UserGroup  |
+      | sortationgroup  |
       | Sortation  |
       
-   @Sortation @TC20_Negative_path_validate_sortation_functional_not_found
-  Scenario: Happy path sortation functional not found
-    Given Login to JDA Dispatcher web screen
-    And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click  
+   #@Sortation @TC20_Negative_path_validate_sortation_functional_not_found
+  #Invalid in frontend application
      
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
