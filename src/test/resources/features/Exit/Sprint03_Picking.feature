@@ -27,7 +27,6 @@ Feature: Orders_Picking
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -238,20 +237,20 @@ Feature: Orders_Picking
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click
     And Click on Query
-    And Specify the sortation group "<UserGroup>"
+    And Specify the sortation group "<sortationgroup>"
     And Click search
+    And Validate Blind receipt, pre-advice receipt, repack
      Examples: 
-      | UserGroup  |
+      | sortationgroup  |
       | Sortation  |
       
-   @Sortation @TC20_Negative_path_validate_sortation_functional_not_found
-  Scenario: Happy path sortation functional not found
-    Given Login to JDA Dispatcher web screen
-    And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click  
+   #@Sortation @TC20_Negative_path_validate_sortation_functional_not_found
+  #Invalid in frontend application
      
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
-  Given Login to JDA Dispatcher web screen
+   Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+     Given Login to JDA Dispatcher web screen
     And Go to Data-order_orderline & Click
     And Click on Query
     And Specify the Order in orderline "<order>"

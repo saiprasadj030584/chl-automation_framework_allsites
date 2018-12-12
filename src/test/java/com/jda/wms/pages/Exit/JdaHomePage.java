@@ -117,6 +117,12 @@ public class JdaHomePage {
 		} else
 			return false;
 	}
+	public boolean issortationreceipt() throws FindFailed, InterruptedException {
+		if (screen.exists("images/Sortation/Checked_in.png") != null) {
+			return true;
+		} else
+			return false;
+	}
 	public boolean isUserAccessavaild() throws FindFailed, InterruptedException {
 		if (screen.exists("images/JDAHome/UserGroupFunctionAccess.png") != null) {
 			return true;

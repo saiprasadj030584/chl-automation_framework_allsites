@@ -77,6 +77,10 @@ public class UserGroupStepDefs{
 	public void validation_of_access()throws Throwable {
 		jdaHomePage.isUserAccessavail();
 	}
+	@And("^Validate Blind receipt, pre-advice receipt, repack$")
+	public void validate_blind_receipt()throws Throwable {
+		jdaHomePage.issortationreceipt();
+	}
 	@And("^Verify whether the webaccess$")
 	public void validation_of_webaccess()throws Throwable {
 		jdaHomePage.iswebAccessavail();
