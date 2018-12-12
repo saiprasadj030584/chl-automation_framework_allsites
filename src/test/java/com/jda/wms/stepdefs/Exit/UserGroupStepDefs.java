@@ -1,5 +1,7 @@
 package com.jda.wms.stepdefs.Exit;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
@@ -21,14 +23,16 @@ public class UserGroupStepDefs{
 	private final UserGroupPage userGroupPage;
 	private final SkuDB skuDB;
 	private final JdaHomePage jdaHomePage;
+	private final JDAFooter jdaFooter;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	
 	@Inject
-	public UserGroupStepDefs(UserGroupPage userGroupPage,SkuDB skuDB,JdaHomePage jdaHomePage){
+	public UserGroupStepDefs(UserGroupPage userGroupPage,SkuDB skuDB,JdaHomePage jdaHomePage,JDAFooter jdaFooter){
 		this.userGroupPage=userGroupPage;
 		this.skuDB=skuDB;
 		this.jdaHomePage=jdaHomePage;
+		this.jdaFooter=jdaFooter;
 		
 		
 	}
@@ -37,7 +41,30 @@ public class UserGroupStepDefs{
 	@And("^Specify the UserGroup \"([^\"]*)\"$")
 	public void UserGroup(String UserGroup) throws Throwable {
 		userGroupPage.enterUserGroup(UserGroup);
+//		jdaFooter.clickExecuteButton();
+//		
+//			
+//					//String[]UserGroup = new String[]{"ABC","DEF"};
+//					ArrayList UserGroup = new ArrayList();
+//					UserGroup.add("ABC");
+//					UserGroup.add("DEF");
+//				      //System.out.println("Initial size of al: " + al.size());
+//					int size= UserGroup.size();
+//					screen.wait("images/JDAHome/Group.png", timeoutInSec);
+//					screen.click("images/JDAHome/Group.png");
+//					for(int i=0;i<size;i++){
+//				 UserGroup.get(i);
+//					screen.type((String) UserGroup.get(i));
+//					}
+//				} 
+//
+//		
+//		}
 }
+	@And("^Specify the sortation group \"([^\"]*)\"$")
+	public void Sortationgroup(String UserGroup) throws Throwable {
+		userGroupPage.entersortationgroup(UserGroup);
+	}
 	@Then("^Verify whether the User-group been populated \"([^\"]*)\" in the table$")
 	public void validation_of_usergroup(String UserGroup) throws Throwable {
 		

@@ -258,6 +258,8 @@ public class JDAExitUpiHeader{
 		String supplier= supplierSkuDB.getSupplierId(skuid);
 		System.out.println("supplier="+supplier);
 		context.setSupplierID(supplier);
+		String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(skuid));
+		context.setCountry(Country);
 		
 //		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceDataforUPIForRedStock();
@@ -444,7 +446,7 @@ public class JDAExitUpiHeader{
 			@Given("^Checking the country of origination for sku \"([^\"]*)\"$")
 			public void checking_the_country_of_origination_for_sku(String skuid) throws Throwable {
 				String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(skuid));
-				context.setCountry(Country);
+				context.setOriginialCountry(Country);
 				System.out.println("Country="+Country);
 				if(Country.equals("GBR")){
 					String UpdateForProhibition=addressMaintenanceDB.UpdateCountryForProhibition(supplierSkuDB.getSupplierId(skuid));					
@@ -533,7 +535,7 @@ public void checking_the_conditions_for_the_sku_and_customerID_siteID(String typ
 
 @Given("^Update country for non-prohibition$")
 public void update_country_for_non_prohibition() throws Throwable{
-	String UpdateForNonProhibition=addressMaintenanceDB.UpdateForNonProhibition(context.getCountry(),supplierSkuDB.getSupplierId(context.getSKUHang()));
+	String UpdateForNonProhibition=addressMaintenanceDB.UpdateForNonProhibition(context.getOriginialCountry(),supplierSkuDB.getSupplierId(context.getSKUHang()));
 	System.out.println("updated to="+UpdateForNonProhibition);
 }
 
