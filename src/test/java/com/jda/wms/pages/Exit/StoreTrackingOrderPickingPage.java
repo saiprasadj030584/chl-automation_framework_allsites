@@ -33,6 +33,15 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectsortation() throws InterruptedException {
+		Thread.sleep(2000);
+		System.out.println("before enter 2");
+		screen.type("2");
+		System.out.println("after enter 2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 
 
 	public boolean isPickMenuDisplayed() {

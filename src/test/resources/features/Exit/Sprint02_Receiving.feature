@@ -544,10 +544,10 @@ Examples:
       | 000000000021071852 |
 
 
-   @in-progress @Receiving @TC30_Prohibition_Check_FSV_CoO_and_Destination_not_allowed
+  @Complete @Receiving @TC30_Prohibition_Check_FSV_CoO_and_Destination_not_allowed
    Scenario Outline: To validate prohibition check FSV and Coo Destination not allowed
-   	Given Checking the country of origination for sku "<SkuId>"
-    Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SkuId>" and customerID "4611"
+   	Given Checking the country of origination for sku "<SKU>"
+    Given Checking the conditions "Trusted", "Boxed" and "Prohibited" for the sku "<SKU>" and customerID "4611"
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
@@ -563,11 +563,11 @@ Examples:
     And Enter Container_ID for FSV
     And click execute
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-	Then Update country for non-prohibition
+		Then Update country for non-prohibition
+   
    Examples: 
-      | SKU                |
+      | SKU             |
       | 000000000021071852 |
-
 
 
 

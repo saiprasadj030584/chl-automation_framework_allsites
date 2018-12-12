@@ -42,7 +42,7 @@ Feature: Orders_Picking
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I navigate to Order header screen to verify the status in Ready to Load
 
     Examples: 
@@ -180,8 +180,11 @@ Feature: Orders_Picking
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN
-    And I navigate to Order header screen to verify the status in Ready to Load
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN
+    #And I navigate to Order header screen to verify the status in Ready to Load
+    
     
 
     Examples: 
@@ -240,6 +243,7 @@ Feature: Orders_Picking
     And Specify the sortation group "<sortationgroup>"
     And Click search
     And Validate Blind receipt, pre-advice receipt, repack
+    
      Examples: 
       | sortationgroup  |
       | Sortation  |
@@ -249,34 +253,61 @@ Feature: Orders_Picking
      
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
-   Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-     Given Login to JDA Dispatcher web screen
-    And Go to Data-order_orderline & Click
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
     And Click on Query
-    And Specify the Order in orderline "<order>"
+    And Specify the Order in orderline 
     And click execute
     And Navigate to user Defined tab
     Then Verify the delivery type field is set "ZF24"
 
     Examples: 
-      | order 			|
-      | 6677249924  | 
+      | SKU                |
+      | 000000000021071852 |
      
+  @Ordering @TC036_Happy_Path_Validate_Manual_order
+  Scenario Outline: Happy_Path_Validate_Manual_order
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
 
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
       
+     
+  @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
+  Scenario Outline: Happy_Path_Validate Cross dock order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZF24"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+  @Ordering @TC038_Happy_Path_Validate_Manual_STO
+  Scenario Outline: Happy_Path_Validate Manual STO
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |  

@@ -143,7 +143,7 @@ public class MoveTaskListGenerationPage {
 		screen.click("images/JDAFooter/next.png");
 		Thread.sleep(1000);
 		Match mTaskId = screen.find("images/MoveTaskManagement/TaskId.png");
-		screen.click(mTaskId.getCenter().offset(70, 0));
+		screen.click(mTaskId.getCenter().offset(80, 0));
 		screen.type(orderID);
 		Thread.sleep(1000);
 	}
