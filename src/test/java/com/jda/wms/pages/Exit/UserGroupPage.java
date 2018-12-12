@@ -46,5 +46,22 @@ public String getUserGroup(String UserGroup) throws FindFailed, InterruptedExcep
 		return App.getClipboard();
 	
 }
+public void validateUserGroup() throws FindFailed {
 	
+	ArrayList <String> UserGroup = new ArrayList<String>();
+	UserGroup.add("BASICUSER");
+	UserGroup.add("ADVUSER");
+	UserGroup.add("SUPERVISOR");
+	UserGroup.add("STOCKADV");
+	UserGroup.add("HEADOFFICE");
+	UserGroup.add("ZENSAR");
+	int size= UserGroup.size();
+	screen.wait("images/JDAHome/Group.png", timeoutInSec);
+	screen.click("images/JDAHome/Group.png");
+	for(int i=0;i<size;i++){
+
+ String element=UserGroup.get(i);
+	screen.type(element);
+	}
+}
 }

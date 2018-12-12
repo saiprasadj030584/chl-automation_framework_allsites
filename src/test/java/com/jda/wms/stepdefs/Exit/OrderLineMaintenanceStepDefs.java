@@ -63,10 +63,10 @@ public class OrderLineMaintenanceStepDefs {
 		
 	}
 	
-	@And("^Specify the Order in orderline \"([^\"]*)\"$")
-	public void specify_the_Order(String order) throws Throwable {
+	@And("^Specify the Order in orderline$")
+	public void specify_the_Order() throws Throwable {
 		Thread.sleep(3000);
-		orderLineMaintenancePage.enterOrderID(order);
+		orderLineMaintenancePage.enterOrderID(context.getOrderId());
 	}
 	@And("^Navigate to user Defined tab$")
 	public void Navigate_to_user_Defined_tab() throws Throwable {
