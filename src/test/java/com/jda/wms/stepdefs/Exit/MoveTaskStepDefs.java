@@ -160,6 +160,18 @@ public class MoveTaskStepDefs {
 			logger.debug("List Id generated with prefix as MANB is : " + actuallist);
 			System.out.println("List Id generated with prefix as MANB is : " + actuallist);
 		}
+	@And ("^Validation of List Id generated with prefix as MANH$")
+	public void Validation_of_List_Id_generated_with_prefic_as_MANH()throws Throwable{
+			
+			moveTaskManagementPage.validateListID();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as MANH", "MANH", prefixlist);
+			logger.debug("List Id generated with prefix as MANH is : " + actuallist);
+			System.out.println("List Id generated with prefix as MANH is : " + actuallist);
+		}
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status for IDT$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status_for_IDT() throws Throwable{
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
@@ -179,6 +191,19 @@ public class MoveTaskStepDefs {
 			String actuallist = moveTaskDB.getListID(context.getOrderId());
 			String prefixlist=StringUtils.substring(actuallist, 0, 4);
 			Assert.assertEquals("List Id generated with prefix as IDT", "IDTB", prefixlist);
+			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
+			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
+		}
+	
+	@And ("^Validation of List Id generated with prefix as IDT for hanging$")
+	public void Validation_of_List_Id_generated_with_prefic_as_IDT_for_hanging()throws Throwable{
+			
+			moveTaskManagementPage.validateListIDforIDT();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDTH", prefixlist);
 			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
 			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
 		}
