@@ -369,7 +369,7 @@ Feature: Orders_Picking
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
-    And Validation of List Id generated with prefix as MANB
+    And Validation of List Id generated with prefix as MANH
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
@@ -410,6 +410,44 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |  
+      
+      
+  @Picking @TC52_Negative_Path_Validate_scanning_incorrect_pallet_id_for_a_Manual_Order_for_hanging
+  Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order for hanging
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter Invalid List Id "<List_Id>"
+    And I validate Error message is displayed
+
+    Examples: 
+      | List_Id      | SKU                |
+      | MANB00001234 | 000000000021071851 |
+
+  @Picking @TC53_Validate_32_digit_URN_generation_after_picking_for_hanging
+  Scenario Outline: Validate 32 digit URN generation after picking for hanging
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    And I should be directed to pick entry page
+    And I enter ListId and TagId for IDT
+    And I navigate to Order header screen to verify the status in Ready to Load
+    And Navigate to Order Container screen
+    And Click on Query
+    And Enter Order Id
+    And click execute
+    And Validate the 32 digit URN is generated
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |    
       
       
 
