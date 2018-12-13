@@ -19,6 +19,7 @@ import com.jda.wms.dataload.exit.InsertDataIntoDB;
 import com.jda.wms.dataload.exit.SelectDataFromDB;
 import com.jda.wms.dataload.exit.UpdateDataFromDB;
 import com.jda.wms.db.Exit.AddressDB;
+import com.jda.wms.db.Exit.AddressMaintenanceDB;
 import com.jda.wms.db.Exit.InventoryDB;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
@@ -84,6 +85,7 @@ public class JDAExitPreAdviceHeader{
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private PreAdviceHeaderPage preAdviceHeaderPage;
 	private PreAdviceHeaderDB preAdviceHeaderDB;
+	private AddressMaintenanceDB addressMaintenanceDB;
 	
 	@Inject
 	public void OrderHeaderStepDefs(OrderHeaderMaintenancePage orderHeaderMaintenancePage,PreAdviceHeaderPage preAdviceHeaderPage,
@@ -98,7 +100,7 @@ public class JDAExitPreAdviceHeader{
 			UpdateDataFromDB updateDataFromDB, JDALoginStepDefs jdaLoginStepDefs,
 			MoveTaskDB  moveTaskDB,MoveTaskUpdatePage moveTaskUpdatePage,
 			MoveTaskListGenerationPage moveTaskListGenerationPage,JdaHomePage jdaHomePage,
-			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage,PreAdviceHeaderDB preAdviceHeaderDB) {
+			InventoryDB inventoryDB,MoveTaskManagementPage moveTaskManagementPage,AddressMaintenanceDB addressMaintenanceDB,PreAdviceHeaderDB preAdviceHeaderDB) {
 		this.orderHeaderMaintenancePage = orderHeaderMaintenancePage;
 		this.moveTaskDB=moveTaskDB;
 //		this.purchaseOrderReceivingStepDefs=purchaseOrderReceivingStepDefs;
@@ -132,6 +134,7 @@ public class JDAExitPreAdviceHeader{
 		this.supplierSkuDB=supplierSkuDB;
 		this.preAdviceHeaderPage=preAdviceHeaderPage;
 		this.preAdviceHeaderDB=preAdviceHeaderDB;
+		this.addressMaintenanceDB=addressMaintenanceDB;
 	}
 	@Then("^Verify PO type in Pre Advice header screen$")
 	  public void verify_PO_type_in_pre_advice_header_screen() throws ClassNotFoundException, SQLException, InterruptedException, FindFailed
@@ -205,6 +208,8 @@ public class JDAExitPreAdviceHeader{
 		context.setSKUHang(sku);
 		String UPC=SkuDB.getUPCDB(sku);
 		context.setupc(UPC);
+		String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(sku));
+		context.setCountry(Country);
 		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertOrderData2();
 		String orderID = getTCData.getSto();
@@ -221,6 +226,9 @@ public class JDAExitPreAdviceHeader{
 		context.setStoType(type);
 		context.setCustomer(customer);
 		context.setSKUHang(sku);
+	String Country= addressMaintenanceDB.getCountry(supplierSkuDB.getSupplierId(sku));
+		context.setCountry(Country);
+		
 		dataSetupRunner.insertPreAdviceData();
 		dataSetupRunner.insertPreAdviceData2();
 		dataSetupRunner.insertOrderData2();

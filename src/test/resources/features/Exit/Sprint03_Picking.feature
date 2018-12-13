@@ -280,6 +280,7 @@ Feature: Orders_Picking
      Examples: 
       | SKU                |
       | 000000000021071852 |
+
       
      
   @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
@@ -311,8 +312,25 @@ Feature: Orders_Picking
      Examples: 
       | SKU                |
       | 000000000021071852 |
+
       
+     
+  @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
+  Scenario Outline: Happy_Path_Validate Cross dock order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZF24"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
       
+
     @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -359,3 +377,19 @@ Feature: Orders_Picking
       | 000000000021071851 |    
       
       
+
+  @Ordering @TC038_Happy_Path_Validate_Manual_STO
+  Scenario Outline: Happy_Path_Validate Manual STO
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |  
+
