@@ -212,6 +212,16 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		else
 			return false;
 	}
+	public boolean isProhibition() throws FindFailed {
+		if (screen.exists("images/Putty/Receiving/FSVProhibition.png") != null){
+			Match mSupplier = screen.find("images/Putty/Receiving/FSVProhibition.png");
+			screen.click(mSupplier.getCenter().offset(50, 0));
+			return true;
+			
+		}
+			
+			return false;
+	}
 
 	public boolean isBasicReceiveMenuDisplayed() {
 		if (screen.exists("images/Putty/Receiving/BasicReceiveMenu.png") != null)

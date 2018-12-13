@@ -499,6 +499,26 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 		
 	}
+	
+	@Given("^Validate the message for prohibition$")
+	public void validate_the_message_for_prohibition() throws Throwable{
+		purchaseOrderReceivingPage.isProhibition();
+		hooks.logoutPutty();
+	}
+	
+	@Given("^I enter To Pallet for prohibited sku$")
+	public void I_enter_To_Pallet_for_prohibited_sku() throws Throwable {
+		String ToPallet = null;
+		puttyFunctionsPage.nextScreen();
+		Thread.sleep(500);
+		puttyFunctionsPage.Tab();
+		Thread.sleep(500);
+		
+		purchaseOrderReceivingPage.EnterToPallet("BA001");
+		purchaseOrderReceivingPage.enterYes();
+		
+		
+	}
 	@Given("^I select sorting menu$")
 	public void I_select_sorting_menu() throws Throwable
 	{
