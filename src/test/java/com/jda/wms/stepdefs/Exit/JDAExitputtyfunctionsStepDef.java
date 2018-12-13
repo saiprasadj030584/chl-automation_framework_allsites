@@ -508,6 +508,7 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectsortation();
 		
 	}
+
 	@Given("I enter URN for sortation in Direct Receiving")
 	public void I_enter_URN_for_sortation_in_Direct_receiving() throws Throwable
 	{

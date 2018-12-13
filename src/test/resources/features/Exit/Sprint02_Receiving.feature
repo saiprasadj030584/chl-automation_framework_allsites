@@ -558,10 +558,6 @@ Examples:
     And I enter URN and Bel and validation of UPC,QTY and Supplier
     And I enter To Pallet
     And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID for FSV
-    And click execute
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
 		Then Update country for non-prohibition
    
