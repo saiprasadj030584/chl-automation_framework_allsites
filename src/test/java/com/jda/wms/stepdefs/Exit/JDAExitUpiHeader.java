@@ -470,9 +470,15 @@ public void checking_the_conditions_for_the_sku_and_customerID_site(String type,
 	String AllowedStock=mandsDB.getTrustedStock(customerID,PdtGp);
 	System.out.println("AllowedStock="+AllowedStock);
 //	 String PutawayGroup=skuDB.getPutawayGroup(skuid);
-	String addressID=supplierSkuDB.getSupplierId(skuid);
+	/*String addressID=supplierSkuDB.getSupplierId(skuid);
 	System.out.println("addressID="+addressID);
 	String Country= addressMaintenanceDB.getCountry(addressID);
+	System.out.println("Country="+Country);*/
+	
+	String suppID=supplierSkuDB.getSupplierId(skuid);
+	context.setSupplierID(suppID);
+	System.out.println("SupplierID="+suppID);
+	String Country= addressMaintenanceDB.getCountry(suppID);
 	System.out.println("Country="+Country);
 
 	

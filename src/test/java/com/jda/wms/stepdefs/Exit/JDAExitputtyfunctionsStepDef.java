@@ -508,14 +508,15 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectsortation();
 		
 	}
-//	@Given("I enter URN")
-//	public void I_enter_URN() throws Throwable
-//	{
-//		String palletIDforUPI = context.getpalletIDforUPI();
-//		System.out.println("palletID "+palletIDforUPI);
-//		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
-//		puttyFunctionsPage.pressEnter();
-//	}
+
+	@Given("I enter URN for sortation in Direct Receiving")
+	public void I_enter_URN_for_sortation_in_Direct_receiving() throws Throwable
+	{
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+	}
 	@Given("^I enter To Pallet for two urn$")
 	public void I_enter_To_Pallet_for_two_urn() throws Throwable {
 		String ToPallet = null;

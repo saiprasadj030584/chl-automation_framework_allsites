@@ -225,7 +225,7 @@ Examples:
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock 
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code for prohibition
-	Then Update country for non-prohibition
+	  Then Update country for non-prohibition
 
     Examples: 
       | SkuId              |
