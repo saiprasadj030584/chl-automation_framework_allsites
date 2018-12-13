@@ -365,6 +365,53 @@ Feature: Orders_Picking
       | 000000000021071851 |    
       
       
+    @TC049_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
+  Scenario Outline: Validate Picking process for Manual Franchise order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANB
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter ListId and TagId
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+  @TC50_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound_for_hanging
+  Scenario Outline: Validate Picking process for Manual IDT order(Transfer order)
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter ListId and TagId for IDT
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+  @TC51_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order_hanging
+  Scenario Outline: Validate the auto picking process for the Cross dock FSV order
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+    And I enter To Pallet
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |  
+      
+      
 
   
 
