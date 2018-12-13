@@ -182,7 +182,7 @@ Feature: Orders_Picking
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I select sorting menu
-    And I enter URN
+    And I enter URN for sortation in Direct Receiving
     #And I navigate to Order header screen to verify the status in Ready to Load
     
     
@@ -315,20 +315,8 @@ Feature: Orders_Picking
 
       
      
-  @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
-  Scenario Outline: Happy_Path_Validate Cross dock order
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    And Login to JDA Dispatcher web screen
-    And I navigate to order header
-    And Click on Query
-    And Specify the Order in orderline
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZF24"
-
-     Examples: 
-      | SKU                |
-      | 000000000021071852 |
+  
+     
       
 
     @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
@@ -378,18 +366,5 @@ Feature: Orders_Picking
       
       
 
-  @Ordering @TC038_Happy_Path_Validate_Manual_STO
-  Scenario Outline: Happy_Path_Validate Manual STO
-    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
-    And Login to JDA Dispatcher web screen
-    And I navigate to order header
-    And Click on Query
-    And Specify the Order in orderline
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZNL1"
-
-     Examples: 
-      | SKU                |
-      | 000000000021071852 |  
+  
 
