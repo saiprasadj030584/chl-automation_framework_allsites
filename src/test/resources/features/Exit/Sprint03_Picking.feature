@@ -133,7 +133,7 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
   @Picking @TC011_Create_a_consignment_or_Load_label
-  Scenario: Create a consignment or Load label
+  Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -146,9 +146,12 @@ Feature: Orders_Picking
     And click execute
     And validate the record is saved
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @Picking @TC012_Create_Consignment_Drop
-  Scenario: Create a consignment or Load label
+  Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -167,6 +170,10 @@ Feature: Orders_Picking
     Then click execute
     And validate the record is saved
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
    @Sorting @TC013_Validate_adding_URN_to_pallet_id
    Scenario Outline: Validate adding urn to pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
