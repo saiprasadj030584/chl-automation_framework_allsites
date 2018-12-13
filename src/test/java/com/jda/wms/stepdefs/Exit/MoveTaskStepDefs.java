@@ -190,7 +190,7 @@ public class MoveTaskStepDefs {
 			//DB validation
 			String actuallist = moveTaskDB.getListID(context.getOrderId());
 			String prefixlist=StringUtils.substring(actuallist, 0, 4);
-			Assert.assertEquals("List Id generated with prefix as IDT", "IDTB", prefixlist);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDT", prefixlist);
 			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
 			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
 		}

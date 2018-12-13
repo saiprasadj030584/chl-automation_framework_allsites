@@ -2,10 +2,10 @@
 ##################
 default:
  browser-name: ie
- sit-username: 'AUTOREG'
+ sit-username: 'AUTOREG2'
  sit-password: '1234' 
 # 
- st-username: 'AUTOREG'
+ st-username: 'AUTOREG2'
  st-password: '1234' 
 
  #st-username: 'AUTOREG9'
@@ -16,14 +16,14 @@ default:
  
  st-Exit-url: 'http://hlxc00dc060.unix.marksandspencercate.com:8880/jdaextc1/UserLogin.html'
  st-putty-Exit-host: 'hlxc00dc061.unix.marksandspencercate.com'
- st-putty-Exit-port: '25310'
+ st-putty-Exit-port: '25311'
  st-db-host: 'jdbc:oracle:thin:@hlxc00dc062.unix.marksandspencercate.com:1521:JDAEXTC1'
  st-db-username: 'dcsdba'
  st-db-password: 'dcsabd'
  
  sit-Exit-url: 'http://hlxc00dc060.unix.marksandspencercate.com:8880/jdaextc1/UserLogin.html'
  sit-putty-Exit-host: 'hlxc00dc061.unix.marksandspencercate.com'
- sit-putty-Exit-port: '25310'
+ sit-putty-Exit-port: '25311'
  sit-db-host: 'jdbc:oracle:thin:@hlxc00dc062.unix.marksandspencercate.com:1521:JDAEXTC1'
  sit-db-username: 'dcsdba'
  sit-db-password: 'dcsabd'

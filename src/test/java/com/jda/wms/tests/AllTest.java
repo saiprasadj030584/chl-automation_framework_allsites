@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC30_Prohibition_Check_FSV_CoO_and_Destination_not_allowed" 
+			+ "@TC049_Validate_Picking_process_for_Manual_Franchise_order_for_hanging" 
 
 })
 public class AllTest {
