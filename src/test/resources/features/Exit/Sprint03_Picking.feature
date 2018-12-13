@@ -175,7 +175,7 @@ Feature: Orders_Picking
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I select sorting menu
-    And I enter URN
+    And I enter URN for sortation in Direct Receiving
     #And I navigate to Order header screen to verify the status in Ready to Load
     
     
