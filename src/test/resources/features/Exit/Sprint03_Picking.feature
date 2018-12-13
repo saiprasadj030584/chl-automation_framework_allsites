@@ -265,6 +265,53 @@ Feature: Orders_Picking
     Examples: 
       | order 			|
       | 6677249924  | 
+      
+      
+    @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
+  Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANB
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+  @TC46_Validate_Pick_list_id_generated_for_an_order_Manual_IDT_hanging
+  Scenario Outline: Validate Pick list id generated for an order-Manual IDT_hanging
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+  @TC47_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order_hanging
+  Scenario Outline: Validate Pick list id generated for a FSV Cross dock order_hanging
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+  @TC48_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order_hanging
+  Scenario Outline: Validate Pick list id generated for a cross dock ASN order_hanging
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+      
      
 
       
