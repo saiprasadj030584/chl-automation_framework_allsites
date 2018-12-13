@@ -59,5 +59,9 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Enter_chamber_and_Address_Id() throws Throwable {
 		consignmentMaintenancePage.typeChamberAddressId();
 	}
+	@And("^Select Consignment$")
+	public void Select_Consignment() throws Throwable {
+		consignmentMaintenancePage.selectConsignment();
+	}
 	
 }

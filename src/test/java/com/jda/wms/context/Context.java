@@ -66,6 +66,7 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
+	private String trailerNumber;
 	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
@@ -1182,8 +1183,14 @@ public class Context {
 	public String getOriginialCountry(){
 		return country2;
 	}
-	
 
+	public String getTrailerNumber() {
+		return trailerNumber;
+	}
+
+	public void setTrailerNumber(String trailerNumber) {
+		this.trailerNumber = trailerNumber;
+	}
 	
 	}
 	
