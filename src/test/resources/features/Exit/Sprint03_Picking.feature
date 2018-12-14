@@ -4,7 +4,7 @@ Feature: Orders_Picking
   Order should be Auto Allocated
   so that I can Pick and Dispatch
 
-  @TC01_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Boxed
+ @Complete @TC01_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Boxed
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
@@ -14,7 +14,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC02_Validate_Pick_list_id_generated_for_an_order_Manual_IDT
+  @Complete @TC02_Validate_Pick_list_id_generated_for_an_order_Manual_IDT
   Scenario Outline: Validate Pick list id generated for an order-Manual IDT
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -24,7 +24,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
+  @Complete @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     Then I login as warehouse user in putty
@@ -36,7 +36,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order
+ @Complete  @TC04_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order
   Scenario Outline: Validate Pick list id generated for a cross dock ASN order
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -49,7 +49,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC05_Validate_Picking_process_for_Manual_Franchise_order
+ @Complete  @TC05_Validate_Picking_process_for_Manual_Franchise_order
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
@@ -65,7 +65,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC06_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound
+  @Complete @TC06_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound
   Scenario Outline: Validate Picking process for Manual IDT order(Transfer order)
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -81,7 +81,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @TC07_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order
+  @Complete @TC07_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order
   Scenario Outline: Validate the auto picking process for the Cross dock FSV order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -95,7 +95,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @Picking @TC09_Negative_Path_Validate_scanning_incorrect_pallet_id_for_a_Manual_Order
+  @Complete @Picking @TC09_Negative_Path_Validate_scanning_incorrect_pallet_id_for_a_Manual_Order
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -111,7 +111,7 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | MANB00001234 | 000000000021071852 |
 
-  @Picking @TC010_Validate_32_digit_URN_generation_after_picking
+  @Complete @Picking @TC010_Validate_32_digit_URN_generation_after_picking
   Scenario Outline: Validate 32 digit URN generation after picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -132,7 +132,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @Picking @TC011_Create_a_consignment_or_Load_label
+ @Complete  @Picking @TC011_Create_a_consignment_or_Load_label
   Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
@@ -150,7 +150,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
 
-  @Picking @TC012_Create_Consignment_Drop
+ @Complete @Picking @TC012_Create_Consignment_Drop
   Scenario Outline: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
@@ -174,7 +174,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
       
-     @Sorting @TC013_Validate_adding_URN_to_pallet_id
+    @Complete @Sorting @TC013_Validate_adding_URN_to_pallet_id
      Scenario Outline: Validate adding urn to pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -192,7 +192,7 @@ Feature: Orders_Picking
       | 000000000021071852 |
      
 
-  @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
+ @Complete @Picking @TC16_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -207,11 +207,11 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | IDTB00001234 | 000000000021071852 |
 
-  @Picking @TC13_Validate_adding_URN_to_Pallet_id
-  Scenario Outline: Validate adding URN to Pallet id
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+  #@Picking @TC13_Validate_adding_URN_to_Pallet_id
+  #Scenario Outline: Validate adding URN to Pallet id
+    #Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
 
-  @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
+  @Complete @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -229,13 +229,13 @@ Feature: Orders_Picking
       | SKU                | ToLocation |
       | 000000000021071852 | TURKEY     |
 
-  @Sortation @TC18_Happy_path_sortation_group_validation
+  @Complete @Sortation @TC18_Happy_path_sortation_group_validation
   Scenario: Happy path sortation group validation
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click
     And Verify whether the access
     
-  @Sortation @TC19_Happy_path_validate_sortation_functional_access
+ @Complete @Sortation @TC19_Happy_path_validate_sortation_functional_access
   Scenario Outline: Happy path sortation group functional access
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Global FUNCTION ACCESS & Click
@@ -251,7 +251,7 @@ Feature: Orders_Picking
    #@Sortation @TC20_Negative_path_validate_sortation_functional_not_found
   #Invalid in frontend application
      
-  @Ordering @TC035_Happy_Path_Validate_FSV_order
+  @Complete @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -266,7 +266,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
      
-  @Ordering @TC036_Happy_Path_Validate_Manual_order
+ @Complete @Ordering @TC036_Happy_Path_Validate_Manual_order
   Scenario Outline: Happy_Path_Validate_Manual_order
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -283,7 +283,7 @@ Feature: Orders_Picking
 
       
      
-  @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
+  @Complete @Ordering @TC037_Happy_Path_Validate_Cross_dock_order
   Scenario Outline: Happy_Path_Validate Cross dock order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -298,7 +298,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
       
-  @Ordering @TC038_Happy_Path_Validate_Manual_STO
+  @Complete @Ordering @TC038_Happy_Path_Validate_Manual_STO
   Scenario Outline: Happy_Path_Validate Manual STO
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -319,7 +319,7 @@ Feature: Orders_Picking
      
       
 
-    @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
+    @Complete @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
@@ -329,7 +329,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @TC46_Validate_Pick_list_id_generated_for_an_order_Manual_IDT_hanging
+  @Complete @TC46_Validate_Pick_list_id_generated_for_an_order_Manual_IDT_hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual IDT_hanging
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -339,7 +339,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @TC47_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order_hanging
+  @Complete @TC47_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order_hanging
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order_hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     Then I login as warehouse user in putty
@@ -351,7 +351,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @TC48_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order_hanging
+  @Complete @TC48_Validate_Pick_list_id_generated_for_a_cross_dock_ASN_order_hanging
   Scenario Outline: Validate Pick list id generated for a cross dock ASN order_hanging
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -450,6 +450,29 @@ Feature: Orders_Picking
       | 000000000021071851 |    
       
       
+     @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
+     Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
+     Given The Sku "<SKU>" alter the T-Dept 
+     And Validate User defined check three as the sku moves to compliance
+     Then Update the Product category with a valid T-Dept
+     Then Navigate to Administration > Setup > Scheduler > Scheduler Job History  
+     And Search for the Job "SKUVALIDATIONCHECKJ"
+     Then Validate the status as "SUCCEEDED"
+     
+      Examples: 
+      | SKU                |
+      | 000000000021180074 |    
+     
+         
+    @complete @Report @TC091_RED_Report_creation  
+Scenario: To Verify RED Report creation
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Red Report
+    And Verify that the record is displayed for Red Report
+    Then Validate the confirmation page for Red Report
+    And Proceed next to Output tab for the report
+    Then Validate the report selection page for Red Report creation
 
-  
-
+    

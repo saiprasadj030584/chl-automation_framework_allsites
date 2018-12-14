@@ -303,7 +303,54 @@ public String getDescription() throws FindFailed, InterruptedException {
 	}
 	return App.getClipboard();
 }
+
+public void click_on_Query() throws FindFailed, InterruptedException {
+	screen.type(Key.F2);
+	Thread.sleep(3000);
 }
+public void enterSku(String sku) throws InterruptedException, FindFailed{
+	screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
+	Match mSku=screen.find("images/InventoryTransactionQuery/SkuId.png");
+	screen.click(mSku.getCenter().offset(70,0));
+	Thread.sleep(1000);
+	screen.type(sku);
+	
+	
+}
+public void clickExecuteButton() throws FindFailed, InterruptedException {
+	screen.type(Key.F7);
+	Thread.sleep(3000);
+}
+
+public void navigateTouserDefinedTab() throws FindFailed {
+	screen.wait("images/PickFaceMaintenance/UserDefinedTab.png", timeoutInSec);
+	screen.click("images/PickFaceMaintenance/UserDefinedTab.png");
+}
+
+public void isUserDefChk3() throws FindFailed {
+	screen.wait("images/SKUMaintenanceTable/UserDefined/UserDefChk3.png", timeoutInSec);
+	screen.click("images/PickFaceMaintenance/UserDefined/UserDefChk3.png");
+}
+
+public void Job(String job) throws FindFailed, InterruptedException {
+	screen.wait("images/SKUMaintenanceTable/job.png", timeoutInSec);
+	Match mSku=screen.find("images/SKUMaintenanceTable/job.png");
+	screen.click(mSku.getCenter().offset(70,0));
+	Thread.sleep(1000);
+	screen.type(job);
+}
+
+public Object status() throws FindFailed, InterruptedException {
+	screen.wait("images/SKUMaintenanceTable/status.png", timeoutInSec);
+	Match mSku=screen.find("images/SKUMaintenanceTable/status.png");
+	screen.click(mSku.getCenter().offset(70,0));
+	screen.doubleClick(mSku.getCenter().offset(70,0));
+	Thread.sleep(1000);
+	return mSku;
+}
+}
+
+
 // public String getDeliveryLeadtime()
 
 		

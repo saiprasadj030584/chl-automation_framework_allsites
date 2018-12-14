@@ -320,12 +320,23 @@ public class SkuDB {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("update sku set product_group=(null) where sku_id='" + sKU + "'");
+		ResultSet rs = stmt.executeQuery("update sku set product_group=null where sku_id='" + sKU + "'");
 		context.getConnection().commit();
 		
 		return null;
 	}
 	
+	public String UpdateTDeptForNonCompliance(String PdtGp,String sKU) throws SQLException, ClassNotFoundException {
+		System.out.println("sku="+sKU);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("update sku set product_group='"+PdtGp+"' where sku_id='" + sKU + "'");
+		context.getConnection().commit();
+		
+		return null;
+	}
 
 	public String UpdateOriginal(String packweight, String sku) throws SQLException, ClassNotFoundException {
 		System.out.println(packweight);
