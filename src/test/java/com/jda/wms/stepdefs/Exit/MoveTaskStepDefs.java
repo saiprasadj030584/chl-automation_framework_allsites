@@ -208,6 +208,19 @@ public class MoveTaskStepDefs {
 			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
 		}
 	
+	@And ("^Validation of List Id generated with prefix as IDT for hanging$")
+	public void Validation_of_List_Id_generated_with_prefic_as_IDT_for_hanging()throws Throwable{
+			
+			moveTaskManagementPage.validateListIDforIDT();
+			
+			//DB validation
+			String actuallist = moveTaskDB.getListID(context.getOrderId());
+			String prefixlist=StringUtils.substring(actuallist, 0, 4);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDTH", prefixlist);
+			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
+			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
+		}
+	
 	
 		
 	
