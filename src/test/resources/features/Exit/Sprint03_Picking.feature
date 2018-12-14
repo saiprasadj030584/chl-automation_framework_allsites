@@ -311,7 +311,6 @@ Feature: Orders_Picking
 
      Examples: 
       | SKU                |
-
       | 000000000021071852 |  
       
           
