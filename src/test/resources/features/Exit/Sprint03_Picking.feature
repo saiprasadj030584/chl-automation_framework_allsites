@@ -207,10 +207,7 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | IDTB00001234 | 000000000021071852 |
 
-  @Picking @TC13_Validate_adding_URN_to_Pallet_id
-  Scenario Outline: Validate adding URN to Pallet id
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-
+ 
   @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -448,6 +445,72 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |    
+      
+      
+      @Ordering @TC62_Happy_Path_Validate_FSV_order_hanging
+  Scenario Outline: Happy_Path_Validate FSV order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline 
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZF24"
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
+     
+  @Ordering @TC63_Happy_Path_Validate_Manual_order_hanging
+  Scenario Outline: Happy_Path_Validate_Manual_order
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071851 |
+
+      
+     
+  @Ordering @TC64_Happy_Path_Validate_Cross_dock_order_hanging
+  Scenario Outline: Happy_Path_Validate Cross dock order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZF24"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071851 |
+      
+  @Ordering @TC65_Happy_Path_Validate_Manual_STO_hanging
+  Scenario Outline: Happy_Path_Validate Manual STO
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+     Examples: 
+      | SKU                |
+      | 000000000021071851 |
+      
+      
+      
       
       
 
