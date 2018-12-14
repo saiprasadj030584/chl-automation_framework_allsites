@@ -66,6 +66,7 @@ public class Context {
 	private String shipDock;
 	private String newShipDock;
 	private String trailerNo;
+	private String trailerNumber;
 	private String dockSchedulerBookingID;
 	private String orderStatus;
 	private String consignment;
@@ -148,7 +149,6 @@ public class Context {
 	private String consignmentName;
 	private String stoId2;
 	private String country2;
-	private String trailerNumber;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1193,7 +1193,6 @@ public class Context {
 		return trailerNumber;
 	}
 	
-
 	
 	}
 	
