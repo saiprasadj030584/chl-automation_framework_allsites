@@ -53,6 +53,15 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	public void navigateToTrailerMainteinancePage() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Trailer maintenance");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+	}
 
 	public void navigateToSystemAllocationPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -1050,33 +1059,16 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	public void navigateToSchedulerHistory() throws FindFailed, InterruptedException {
-		ClickAdminMenu();
-		hoverAccesscontrol();
+	public void navigateToConsignmentTrailerLinking() throws FindFailed, InterruptedException {
+		clickSearchIcon();
 		Thread.sleep(1000);
-		clickSetup();
-		hoverAccesscontrol();
-		Thread.sleep(3000);
-		clickscheduler();
-		hoverAccesscontrol();
-		Thread.sleep(3000);
-		clickSchedulerJobHistory();
-		Thread.sleep(3000);
+		screen.type("Consignment Trailer Linking");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
 	}
-
-
-	private void clickSchedulerJobHistory() throws FindFailed {
-		screen.wait("images/JDAHome/schedulerJobHistory.png", timeoutInSec);
-		screen.click("images/JDAHome/schedulerJobHistory.png");
 	
-	}
-
-
-	private void clickSetup() throws FindFailed {
-		screen.wait("images/JDAHome/setup12.png", timeoutInSec);
-		screen.click("images/JDAHome/setup12.png");
-
-	}
 //	public void navigateToInventory() throws FindFailed, InterruptedException {
 //		clickSearchIcon();
 //		Thread.sleep(1000);

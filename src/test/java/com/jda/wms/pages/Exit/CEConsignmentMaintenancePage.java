@@ -113,7 +113,7 @@ public class CEConsignmentMaintenancePage {
 }
 	public void enterConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(3000);
-		String Random = Utilities.getTwoDigitRandomNumber();
+		String Random = Utilities.getThreeDigitRandomNumber();
 		String consignmentName = "AUTO"+Random;
 		System.out.println("The consignment Name:"+consignmentName );
 		context.setConsignmentName(consignmentName);
@@ -134,7 +134,7 @@ public class CEConsignmentMaintenancePage {
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentTransMode.png");
 		screen.click(status.getCenter().offset(90, 0));
 		Thread.sleep(2000);
-		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeRoad.png");
 		   reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
 		   reg.click(header);
@@ -173,5 +173,11 @@ public class CEConsignmentMaintenancePage {
 		screen.click(Address.getCenter().offset(90, 0));
 		screen.type("0798");
 }
+	public void selectConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
+		screen.click(status.getCenter().offset(90, 0));
+		typeConsignment();
 }
-	
+}

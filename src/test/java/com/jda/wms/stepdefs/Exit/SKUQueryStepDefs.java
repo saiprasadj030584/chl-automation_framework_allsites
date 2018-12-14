@@ -9,7 +9,6 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
-import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.SKUQueryPage;
 
 import cucumber.api.java.en.And;
@@ -26,14 +25,12 @@ public class SKUQueryStepDefs{
 	private final SkuDB skuDB;
 	private Context context;
 	private PreAdviceLineDB preAdviceLineDB;
-	private JdaHomePage jdaHomePage;
 	@Inject
-	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context,PreAdviceLineDB preAdviceLineDB,JdaHomePage jdaHomePage){
+	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context,PreAdviceLineDB preAdviceLineDB){
 		this.sKUQueryPage=sKUQueryPage;
 		this.skuDB=skuDB;
 		this.context=context;
 		this.preAdviceLineDB=preAdviceLineDB;
-		this.jdaHomePage=jdaHomePage;
 	}
 	
 	@And("^Specify the SKU \"([^\"]*)\"$")
@@ -153,61 +150,10 @@ public class SKUQueryStepDefs{
 		String UpdatePackWeight=skuDB.updatePackedweight(SKU);
 		System.out.println("UpdatePackWeight="+UpdatePackWeight);
 	}
-	
-	@And("^The Sku \"([^\"]*)\" alter the T-Dept$")
-	public void the_sku_alter_the_t_dept(String Sku) throws Throwable
-	{
-		context.setSKUHang(Sku);
-		String TDept=skuDB.getProductGroupNew(Sku);
-		System.out.println("TDept="+TDept);
-		context.setProductGroup(TDept);
-		String UpdateTDeptForCompliance= skuDB.updateproductgroup(Sku);
-	}
-	
-	 @And("^Validate User defined check three as the sku moves to compliance$")
-	 public void validate_user_defined_check_three_as_the_sku_moves_to_compliance() throws Throwable{
-		 jdaHomePage.navigateToSKU();
-		 sKUQueryPage.click_on_Query();	
-		 sKUQueryPage.enterSku(context.getSKUHang());
-		 sKUQueryPage.clickExecuteButton();
-		 sKUQueryPage.navigateTouserDefinedTab();
-		 sKUQueryPage.isUserDefChk3();
-			String UserDEFChk3=SkuDB.getUserDefChck3(context.getSKUHang());
-			System.out.println("UserDEFChk3="+UserDEFChk3);
-			Assert.assertEquals("User defined check 3 is not Y", "Y", UserDEFChk3);
-			Thread.sleep(5000);
-	 }
-	 
-	 @And("^Update the Product category with a valid T-Dept$")
-		public void update_the_product_category_with_a_valid_t_dept()  throws Throwable{
-		 
-		 String UpdateTDeptForCompliance= skuDB.UpdateTDeptForNonCompliance(context.getProductGroup(),context.getSKUHang());
-	 
-	 }
-	 @And("^Navigate to Administration > Setup > Scheduler > Scheduler Job History$")
-	 public void navigate_to_SchedulerJobHistory() throws FindFailed, InterruptedException{
-		 jdaHomePage.navigateToSchedulerHistory();
-	 }
-	 
-	 @And("^Search for the Job \"([^\"]*)\"$")
-	 public void search_for_the_job(String job) throws Throwable
-	 {
-		 sKUQueryPage.click_on_Query();
-		 sKUQueryPage.Job(job);
-		 sKUQueryPage.clickExecuteButton();
-		 Thread.sleep(2000);
-	 }
-	 
-	 @And("^Validate the status as \"([^\"]*)\"$")
-	 public void validate_the_status_as(String status) throws Throwable
-	 {
-		 Assert.assertEquals("Status Not as expected", sKUQueryPage.status(), status);		 
-		 Thread.sleep(2000);
-	 }
 	@And("^Alter the Tdept as Null for Unknown Stock Error$")
 	public void alter_the_Tdept_as_null_for_unknown_stock_error() throws Throwable
 	{
-		String SKU=context.getSKUHang();
+		String SKU=context.getSkuId();
 		String ProductGroup1=preAdviceLineDB.getUpc(SKU);
 		System.out.println("ProductGroup="+ProductGroup1);
 		context.setProductGroup1(ProductGroup1);
