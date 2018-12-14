@@ -508,8 +508,9 @@ public class JDAExitputtyfunctionsStepDef {
 		storeTrackingOrderPickingPage.selectsortation();
 		
 	}
-	@Given("I enter URN")
-	public void I_enter_URN() throws Throwable
+
+	@Given("I enter URN for sortation in Direct Receiving")
+	public void I_enter_URN_for_sortation_in_Direct_receiving() throws Throwable
 	{
 		String palletIDforUPI = context.getpalletIDforUPI();
 		System.out.println("palletID "+palletIDforUPI);
