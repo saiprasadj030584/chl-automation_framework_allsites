@@ -221,11 +221,6 @@ public class MoveTaskStepDefs {
 			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
 		}
 	
-	
-		
-	
-
-
 	@When("^I get the pallet ids from the move task$")
 	public void i_get_the_pallet_ids_from_the_move_task() throws Throwable {
 		ArrayList<String> palletIDList = new ArrayList<String>();

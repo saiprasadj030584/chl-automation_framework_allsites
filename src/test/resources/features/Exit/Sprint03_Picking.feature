@@ -311,7 +311,41 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
       
+  @Trailer @TC039_Validate_trailer_creation
+  Scenario: Validate trailer creation
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved 
      
+  @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
+  Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And validate error message is displayed 
+      | 000000000021071852 |
   
      
       
