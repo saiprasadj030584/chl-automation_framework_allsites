@@ -184,15 +184,15 @@ public class MoveTaskStepDefs {
 		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
-		jdaHomePage.navigateToOrderheaderPage();
-		Thread.sleep(3000);
-		jdaFooter.clickQueryButton();
-		orderheaderpage.enterOrderNo(context.getOrderId());
-		jdaFooter.clickNextButton();
-		Thread.sleep(2000);
-		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
-		Assert.assertEquals("Allocated", "Allocated", orderstatus);
-		
+//		jdaHomePage.navigateToOrderheaderPage();
+//		Thread.sleep(3000);
+//		jdaFooter.clickQueryButton();
+//		orderheaderpage.enterOrderNo(context.getOrderId());
+//		jdaFooter.clickNextButton();
+//		Thread.sleep(2000);
+//		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+//		Assert.assertEquals("Allocated", "Allocated", orderstatus);
+//		
 		
 	}
 	@And ("^Validation of List Id generated with prefix as IDT$")
