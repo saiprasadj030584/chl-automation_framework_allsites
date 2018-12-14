@@ -44,7 +44,7 @@ public class TrailerMaintenancePage {
 	}
 	public void validateErrorMsg() throws FindFailed, InterruptedException {
 		 Match header = screen.find("images/TrailerShipping/TrailerLinkError.png");
-		 while(header!=null){
+		 while(header==null){
 			 Assert.assertTrue("No Pallets foundh",true);
 		 }
 	}
@@ -67,4 +67,11 @@ public class TrailerMaintenancePage {
 		screen.click(status.getCenter().offset(90, 0));
 		screen.type(Trailer);
 	}
+	public void validateTrailerLinked() throws FindFailed, InterruptedException {
+	 Match header = screen.find("images/TrailerShipping/TrailerLink.png");
+	 while(header!=null){
+		 Assert.assertTrue("Trailer not linked",true);
+		 
+	 }
+}
 }

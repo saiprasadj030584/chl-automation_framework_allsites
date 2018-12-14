@@ -305,5 +305,6 @@ public class JDAHomeStepDefs {
 	public void click_next() throws Throwable {
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
+		jdaFooter.clickNextButton();
 	}
 }

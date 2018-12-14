@@ -45,5 +45,10 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.validateErrorMsg();
 	}
+	@And("^validate Consignment Trailer is linked$")
+	public void validate_Consignment_Trailer_is_linked() throws Throwable {
+	
+		trailerMaintenancePage.validateTrailerLinked();
+	}
 	
 }
