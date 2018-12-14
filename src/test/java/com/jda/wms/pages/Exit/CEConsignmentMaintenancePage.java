@@ -173,5 +173,11 @@ public class CEConsignmentMaintenancePage {
 		screen.click(Address.getCenter().offset(90, 0));
 		screen.type("0798");
 }
+	public void selectConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(3000);
+		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
+		screen.click(status.getCenter().offset(90, 0));
+		typeConsignment();
 }
-	
+}

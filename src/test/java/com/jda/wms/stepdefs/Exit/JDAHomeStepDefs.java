@@ -115,6 +115,10 @@ public class JDAHomeStepDefs {
 	public void i_navigate_to_Trailer_Shipping_page() throws Throwable {
 		jdaHomePage.navigateToTrailerShippingPage();
 	}
+	@When("^I navigate to Trailer mainteinance page$")
+	public void i_navigate_to_Trailer_mainteinance_page() throws Throwable {
+		jdaHomePage.navigateToTrailerMainteinancePage();
+	}
 
 	@Given("^I am on supplier SKU maintenance page$")
 	public void i_am_on_supplier_SKU_maintenance_page() throws Throwable {
@@ -291,6 +295,15 @@ public class JDAHomeStepDefs {
 	@And("^Click search$")
 	public void click_search() throws Throwable {
 		jdaFooter.clickSearch();
+		Thread.sleep(2000);
+	}
+	@And("^Go to Consignment Trailer Linking$")
+	public void Go_to_Consignment_Trailer_Linking() throws Throwable {
+		jdaHomePage.navigateToConsignmentTrailerLinking();
+	}
+	@And("^Click next$")
+	public void click_next() throws Throwable {
+		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
 	}
 }

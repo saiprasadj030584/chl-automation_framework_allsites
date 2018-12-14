@@ -174,8 +174,8 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
       
-     @Sorting @TC013_Validate_adding_URN_to_pallet_id
-     Scenario Outline: Validate adding urn to pallet id
+   @Sorting @TC013_Validate_adding_URN_to_pallet_id
+   Scenario Outline: Validate adding urn to pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -308,7 +308,44 @@ Feature: Orders_Picking
 
      Examples: 
       | SKU                |
-      | 000000000021071852 |
+      | 000000000021071852 |  
+      
+          
+  @Trailer @TC039_Validate_trailer_creation
+  Scenario: Validate trailer creation
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved 
+    
+  @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
+  Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And validate error message is displayed 
+    
 
       
   @Trailer @TC039_Validate_trailer_creation
@@ -349,6 +386,7 @@ Feature: Orders_Picking
   
      
       
+
 
     @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
