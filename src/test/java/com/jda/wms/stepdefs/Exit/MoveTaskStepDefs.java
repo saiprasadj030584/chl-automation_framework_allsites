@@ -32,6 +32,7 @@ import com.jda.wms.pages.Exit.MoveTaskListGenerationPage;
 import com.jda.wms.pages.Exit.MoveTaskManagementPage;
 import com.jda.wms.pages.Exit.MoveTaskQueryPage;
 import com.jda.wms.pages.Exit.MoveTaskUpdatePage;
+import com.jda.wms.pages.Exit.OrderHeaderPage;
 import com.jda.wms.pages.Exit.PickFaceMaintenancePage;
 import com.jda.wms.pages.Exit.StockCheckListGenerationPage;
 import com.jda.wms.pages.Exit.Verification;
@@ -81,6 +82,7 @@ public class MoveTaskStepDefs {
 	private final OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs;
 	private JDAFooter jdaFooter;
 	private MoveTaskManagementPage moveTaskManagementPage;
+	private OrderHeaderPage orderheaderpage;
 	
 //	private StoreTrackingOrderPickingStepDefs storeTrackingOrderPickingStepDefs;
 //	private final PurchaseOrderReceivingStepDefs  purchaseOrderReceivingStepDefs;
@@ -106,7 +108,7 @@ public class MoveTaskStepDefs {
 			MoveTaskUpdatePage moveTaskUpdatePage, JdaHomePage jdaHomePage, MoveTaskUpdateDB moveTaskUpdateDB,
 			JDAFooter jdaFooter,MoveTaskManagementPage moveTaskManagementPage,
 			
-			OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs) {
+			OrderLineMaintenanceStepDefs  orderLineMaintenanceStepDefs,OrderHeaderPage orderheaderpage) {
 	
 		this.moveTaskUpdateDB = moveTaskUpdateDB;
 		this.moveTaskUpdatePage = moveTaskUpdatePage;
@@ -137,6 +139,7 @@ public class MoveTaskStepDefs {
 		this.orderLineMaintenanceStepDefs=orderLineMaintenanceStepDefs;
 		this.jdaFooter=jdaFooter;
 		this.moveTaskManagementPage=moveTaskManagementPage;
+		this.orderheaderpage=orderheaderpage;
 		}
 	@Given ("^Navigate to Move Task management Screen to verify Order Allocated status$")
 	public void Navigate_to_Move_Task_management_Screen_to_verify_Order_Allocated_status() throws Throwable{
@@ -181,6 +184,16 @@ public class MoveTaskStepDefs {
 		moveTaskListGenerationPage.enterTaskIdInMoveTaskUpdate(context.getOrderId());
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
+		jdaHomePage.navigateToOrderheaderPage();
+		Thread.sleep(3000);
+		jdaFooter.clickQueryButton();
+		orderheaderpage.enterOrderNo(context.getOrderId());
+		jdaFooter.clickNextButton();
+		Thread.sleep(2000);
+		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
+		Assert.assertEquals("Allocated", "Allocated", orderstatus);
+		
+		
 	}
 	@And ("^Validation of List Id generated with prefix as IDT$")
 	public void Validation_of_List_Id_generated_with_prefic_as_IDT()throws Throwable{
@@ -190,7 +203,7 @@ public class MoveTaskStepDefs {
 			//DB validation
 			String actuallist = moveTaskDB.getListID(context.getOrderId());
 			String prefixlist=StringUtils.substring(actuallist, 0, 4);
-			Assert.assertEquals("List Id generated with prefix as IDT", "IDT", prefixlist);
+			Assert.assertEquals("List Id generated with prefix as IDT", "IDTB", prefixlist);
 			logger.debug("List Id generated with prefix as IDT is : " + actuallist);
 			System.out.println("List Id generated with prefix as IDT is : " + actuallist);
 		}
