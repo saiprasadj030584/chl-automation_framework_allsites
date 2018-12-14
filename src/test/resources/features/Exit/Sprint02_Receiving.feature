@@ -556,7 +556,8 @@ Examples:
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
-    And I enter To Pallet
+    And I enter To Pallet for prohibited sku
+    Then Validate the message for prohibition
     And Login to JDA Dispatcher web screen
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
 		Then Update country for non-prohibition

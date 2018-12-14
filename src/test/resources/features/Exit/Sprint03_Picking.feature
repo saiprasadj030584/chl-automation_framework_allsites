@@ -397,7 +397,7 @@ Feature: Orders_Picking
       | 000000000021071851 |    
       
       
-    @TC049_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
+   @complete @TC049_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
@@ -413,11 +413,11 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @TC50_Validate_Picking_process_for_Manual_IDT_order @Boxed–Outbound @Picking-Boxed–Outbound_for_hanging
+ @Complete @TC50_Validate_Picking_process_for_Manual_IDT_order @Hanging–Outbound @Picking-Hanging–Outbound_for_hanging
   Scenario Outline: Validate Picking process for Manual IDT order(Transfer order)
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
-    And Validation of List Id generated with prefix as IDT
+    And Validation of List Id generated with prefix as IDT for hanging
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
@@ -429,7 +429,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @TC51_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order_hanging
+  @complete @TC51_Validate_the_auto_picking_process_for_the_Cross_dock_FSV_order_hanging
   Scenario Outline: Validate the auto picking process for the Cross dock FSV order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -448,7 +448,7 @@ Feature: Orders_Picking
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order for hanging
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
-    And Validation of List Id generated with prefix as IDT
+    And Validation of List Id generated with prefix as IDT for hanging
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
@@ -464,7 +464,7 @@ Feature: Orders_Picking
   Scenario Outline: Validate 32 digit URN generation after picking for hanging
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
-    And Validation of List Id generated with prefix as IDT
+    And Validation of List Id generated with prefix as IDT for hanging
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select picking with container pick
