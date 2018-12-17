@@ -307,4 +307,9 @@ public class JDAHomeStepDefs {
 		Thread.sleep(1000);
 		jdaFooter.clickNextButton();
 	}
+	@And("^Go to Allocation algorithm Setup$")
+	public void Go_to_Allocation_algorithm_Setup() throws Throwable {
+		jdaHomePage.navigateToAllocationAlgorithm();
+	}
+	
 }

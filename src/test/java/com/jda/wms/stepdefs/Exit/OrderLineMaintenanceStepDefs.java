@@ -78,7 +78,11 @@ public class OrderLineMaintenanceStepDefs {
 		Thread.sleep(3000);
 		orderLineMaintenancePage.verifyDeliveryType(type);
 	}
-	
+	@And("^Verify the shipdock field is set$")
+	public void Verify_the_shipdock_field_is_set() throws Throwable {
+		Thread.sleep(3000);
+		orderLineMaintenancePage.verifyShipDock();
+	}
 	
 	
 	

@@ -194,5 +194,16 @@ public String getExtndPrice() throws FindFailed, InterruptedException {
 		String actualType = App.getClipboard();
 		Assert.assertEquals("The Delivery type does not Match", type, actualType);
 	}
+	public void verifyShipDock() throws FindFailed {
+		Match mDescription = screen.find("images/OrderHeaderMaintenance/Shipdock.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		String actualDock = App.getClipboard();
+		System.out.println("The Ship Dock is:"+actualDock);
+		if(!actualDock.isEmpty()){
+		Assert.assertTrue("Ship dock is validated", true);
+		}
+	}
 	
 }

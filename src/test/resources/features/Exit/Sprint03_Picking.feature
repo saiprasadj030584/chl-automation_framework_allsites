@@ -374,7 +374,30 @@ Feature: Orders_Picking
     And Click next
     And validate error message is displayed
      
+@Shipdock @TC042_Validate_shipdock_assignment
+  Scenario Outline: Validate_shipdock_assignment
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    Then Verify the shipdock field is set
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+   
+  @Ordering @TC044_Validate_Franchise_Allocation_creation
+  Scenario: Validate_Franchise_Allocation_creation  
+    Given Login to JDA Dispatcher web screen
+    And Go to Allocation algorithm Setup
+    And Click next 
+    And I select Allocation creation date by zone option
+    And I click on Add button
+    And type "INBOUND" in location zone
+    Then save the Allocation created
+    
   @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -598,3 +621,6 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+
+      
+  
