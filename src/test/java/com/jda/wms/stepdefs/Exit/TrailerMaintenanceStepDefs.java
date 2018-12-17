@@ -51,4 +51,9 @@ public class TrailerMaintenanceStepDefs {
 		trailerMaintenancePage.validateTrailerLinked();
 	}
 	
+	@And("^I click on trailer Add button")
+	public void And_I_click_on_trailer_Add_button() throws Throwable {
+	
+		trailerMaintenancePage.clickTrailerAdd();
+	}
 }

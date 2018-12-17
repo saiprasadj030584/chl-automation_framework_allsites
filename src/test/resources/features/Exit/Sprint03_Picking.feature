@@ -325,7 +325,6 @@ Feature: Orders_Picking
     And Select consignment Status
     And click execute
     And Select Mode of transport
-    And Select trailer type to reflect Hazardous and Repack status
     And click execute
     And validate the record is saved 
     And Go to consignment drop maintainance screen
@@ -346,7 +345,7 @@ Feature: Orders_Picking
     And Select Trailer
     And Select Consignment
     And Click next
-    And I click on Add button
+    And I click on trailer Add button
     And validate Consignment Trailer is linked
     
   @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
@@ -519,8 +518,6 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | IDTH00001234 | 000000000021071851 |
 
- 
- 
  
  
   @Picking @TC061_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
