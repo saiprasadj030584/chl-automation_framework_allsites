@@ -13,7 +13,7 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-
+      
   @TC02_Validate_Pick_list_id_generated_for_an_order_Manual_IDT
   Scenario Outline: Validate Pick list id generated for an order-Manual IDT
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
