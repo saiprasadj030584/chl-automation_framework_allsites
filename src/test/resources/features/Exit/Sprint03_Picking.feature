@@ -393,7 +393,7 @@ Feature: Orders_Picking
     Given Login to JDA Dispatcher web screen
     And Go to "<screen>" Function Access screen
 		And Type "<Search>" in search for text box
-		And validate the access iss Enabled
+		And validate the access is Enabled
 		
 		Examples:
 		|screen|Search|
