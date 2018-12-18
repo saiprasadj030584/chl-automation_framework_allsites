@@ -311,5 +311,17 @@ public class JDAHomeStepDefs {
 	public void Go_to_Allocation_algorithm_Setup() throws Throwable {
 		jdaHomePage.navigateToAllocationAlgorithm();
 	}
-	
+	@And("^Go to \"([^\"]*)\" Function Access screen$")
+	public void Go_to_Function_Access_screen(String screen) throws Throwable {
+		if(screen == "User Group Function Access"){
+			jdaHomePage.navigateToAccesscontrol();
+	}
+		else if(screen == "Site Global Function Access"){
+			jdaHomePage.navigateToSiteAccesscontrol();
+		}else
+		{
+			System.out.println("Invalid screen option");
+		}
+	}
+		
 }

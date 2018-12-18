@@ -374,7 +374,7 @@ Feature: Orders_Picking
     And Click next
     And validate error message is displayed
      
-@Shipdock @TC042_Validate_shipdock_assignment
+  @Shipdock @TC042_Validate_shipdock_assignment
   Scenario Outline: Validate_shipdock_assignment
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Login to JDA Dispatcher web screen
@@ -387,7 +387,24 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-   
+      
+   @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
+   Scenario Outline: Validate_Franchise_Allocation_creation   
+    Given Login to JDA Dispatcher web screen
+    And Go to "<screen>" Function Access screen
+		And Type "<Search>" in search for text box
+		And validate the access iss Enabled
+		
+		Examples:
+		|screen|Search|
+		|User Group Function Access|Allocation Algorithm - Allow Adding, Deleting and Modifying of Allocation Algorithms|
+		|Site Global Function Access|Allocation - User Defined Type 1 is Used for Allocation|
+		|Site Global Function Access|Allocation - User Defined Type 8 is Used for Allocation|
+		|Site Global Function Access|Allocation - User Defined Type 1 is Used for Allocation|
+		|Site Global Function Access|Back Ordering - At Receiving Time|
+		|Site Global Function Access|Back Ordering - At Receiving Time|
+		|Site Global Function Access|M&S -Comms- Automatically set Back Ordered flag on|   
+  
   @Ordering @TC044_Validate_Franchise_Allocation_creation
   Scenario: Validate_Franchise_Allocation_creation  
     Given Login to JDA Dispatcher web screen
