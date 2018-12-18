@@ -205,6 +205,7 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | IDTB00001234 | 000000000021071852 |
 
+
   @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -314,41 +315,39 @@ Feature: Orders_Picking
     And click execute
     And validate the record is saved
 
-  @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
-  Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
+  @Trailer @TC040_Validate_consignment_Trailer_linking
+  Scenario: Validate consignment Trailer linking
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
-    Then Enter consignment name
+    And Enter consignment name
     And Select consignment Status
     And click execute
     And Select Mode of transport
-    And Select trailer type to reflect Hazardous and Repack status
     And click execute
-    And I navigate to Trailer mainteinance page
+    And validate the record is saved 
+    And Go to consignment drop maintainance screen
     And Right click to Select Toggle Maintenance Mode
     And I click on Add button
-    And Enter Trailer number
-    And Select Trailer Type
-    And click execute
-    And Go to Consignment Trailer Linking
-    And Select Trailer
-    And Select Consignment
-    And Click next
-    And validate error message is displayed
-
-  @Trailer @TC039_Validate_trailer_creation
-  Scenario: Validate trailer creation
-    Given Login to JDA Dispatcher web screen
-    And I navigate to Trailer mainteinance page
-    And Right click to Select Toggle Maintenance Mode
-    When I click on Add button
-    Then Enter Trailer number
-    And Select Trailer Type
-    And click execute
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
     And validate the record is saved
-
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved 
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And I click on trailer Add button
+    And validate Consignment Trailer is linked
+    
   @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
   Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
     Given Login to JDA Dispatcher web screen
@@ -361,19 +360,44 @@ Feature: Orders_Picking
     And Select Mode of transport
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
+    And validate the record is saved 
     And I navigate to Trailer mainteinance page
     And Right click to Select Toggle Maintenance Mode
     And I click on Add button
     And Enter Trailer number
     And Select Trailer Type
     And click execute
+    And validate the record is saved 
     And Go to Consignment Trailer Linking
     And Select Trailer
     And Select Consignment
     And Click next
     And validate error message is displayed
-      | 000000000021071852 |
+     
+@Shipdock @TC042_Validate_shipdock_assignment
+  Scenario Outline: Validate_shipdock_assignment
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    Then Verify the shipdock field is set
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+   
+  @Ordering @TC044_Validate_Franchise_Allocation_creation
+  Scenario: Validate_Franchise_Allocation_creation  
+    Given Login to JDA Dispatcher web screen
+    And Go to Allocation algorithm Setup
+    And Click next 
+    And I select Allocation creation date by zone option
+    And I click on Add button
+    And type "INBOUND" in location zone
+    Then save the Allocation created
+    
   @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -500,7 +524,43 @@ Feature: Orders_Picking
 
     Examples: 
       | SKU                |
-      | 000000000021071851 |
+      | 000000000021071851 |    
+      
+  @Picking @TC60_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
+  Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT for hanging
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter Invalid List Id "<List_Id>"
+    And I validate Error message is displayed
+    Examples: 
+      | List_Id      | SKU                |
+      | IDTH00001234 | 000000000021071851 |
+
+ 
+ 
+  @Picking @TC061_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
+  Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status for IDT
+    And Validation of List Id generated with prefix as IDT for hanging
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    And I should be directed to pick entry page
+    And I type ListId and TagId
+    And I enter Invalid To Location "<ToLocation>"
+    And I validate incorrect location message is displayed
+
+    Examples: 
+
+      | SKU                | ToLocation |
+      | 000000000021071851 | ISRAIL     |
+    
 
   @Ordering @TC62_Happy_Path_Validate_FSV_order_hanging
   Scenario Outline: Happy_Path_Validate FSV order
@@ -561,3 +621,6 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+
+      
+  

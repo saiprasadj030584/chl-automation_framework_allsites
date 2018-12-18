@@ -41,10 +41,19 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterIdentifyUrn();
     	JDAFooter.clickNextButton();	
     }
+    @And("^Search for the M&S Red Report$")
+    public void search_for_the_MnS_Red_Report() throws Throwable {
+    	ReportSelectionPage.enterRedReport();
+    	JDAFooter.clickNextButton();	
+    }
 			
     @And("^Verify that the record is displayed for Missing Urn$")
     public void verify_that_the_record_displayed() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForMissingUrn());
+    }
+    @And("^Verify that the record is displayed for Red Report$")
+    public void verify_that_the_record_displayed_for_red_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedRedReport());
     }
     @And("^Verify that the record is displayed for International Urn$")
     public void verify_that_the_record_displayed_for_international_urn() throws Throwable {
@@ -71,7 +80,13 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
     }
-    
+ 
+    @Then("^Validate the confirmation page for Red Report$")
+    public void validate_the_confirmation_page_for_red_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForRedReport());
+    }
+ 
     @Then("^Validate the confirmation page for International Urn$")
     public void validate_the_confirmation_page_for_international_urn() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -81,13 +96,20 @@ public class ReportSelectionStepDefs {
     @Then("^Proceed next to Output tab for the report$")
     public void proceed_next_to_Output_tab_for_the_report() throws Throwable {
     	JDAFooter.clickDoneButton();	
-    	ReportSelectionPage.clickOutputTab();  	
+    	Thread.sleep(20000);
+    	
     }
     
     @And("^Validate the report selection page for Identify URN completion$")
     public void validate_the_report_selection_page_for_completion() throws Throwable {
     	Thread.sleep(20000);
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for Red Report creation$")
+    public void validate_the_report_selection_page_for_red_report_creation() throws Throwable {
+    	
+    	Assert.assertTrue("M&S Red Report not found", ReportSelectionPage.isReportSelectionDoneRedReport());
     	JDAFooter.clickDoneButton();	
     }
     

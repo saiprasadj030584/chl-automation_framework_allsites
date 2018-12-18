@@ -266,7 +266,7 @@ Feature: Master_data_setup
     Then Verify ASN ID for the PalletID
     Then Verify Export criteria for ASN details
 
-  @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
+  @Complete @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
   Scenario: To verify ASN data
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
@@ -274,7 +274,7 @@ Feature: Master_data_setup
     Then Verify data in UPI Receipt header screen
     Then Verify pallet id
 
-  @Pre_receiving @TC24_Verify_the_shipment_description
+  @Complete @Pre_receiving @TC24_Verify_the_shipment_description
   Scenario Outline: To Verify Shipment description
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
@@ -288,7 +288,7 @@ Feature: Master_data_setup
       | SKU                |
       | 000000000021071852 |
 
-  @Pre_receiving @TC25_Verify_the_composition_description
+  @Complete @Pre_receiving @TC25_Verify_the_composition_description
   Scenario Outline: To Verify composition description
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
@@ -302,7 +302,7 @@ Feature: Master_data_setup
       | SKU                |
       | 000000000021071852 |
 
-  @Pre_receiving @TC26_Verify_the_Knit_Woven_indicator
+  @Complete @Pre_receiving @TC26_Verify_the_Knit_Woven_indicator
   Scenario Outline: To Verify Knit/Woven indicator
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
@@ -319,14 +319,14 @@ Feature: Master_data_setup
   #@Pre_receiving @TC27_Verify_the_pre_advice_checks_report
   #the required report M&S- Pre Receive SKU master data check is not available anymore
   
-  @Pre_receiving @TC28_Verify_the_address_or_site_information
+  @Complete @Pre_receiving @TC28_Verify_the_address_or_site_information
   Scenario: To Verify the address or site information
     Given Login to JDA Dispatcher web screen
     And I navigate to address maintenance page
     When I query, execute and process further
     Then Verify address and site details are loaded into address screen
     
-   @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
+   @Complete @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
    Scenario: To verify the Red stock PO status
    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -337,7 +337,7 @@ Feature: Master_data_setup
     Then Verify PreAdvice header loaded successfully
     Then Verify the status of the PO
 
-  @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
+ @Complete @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
   Scenario: To verify pallet consignment and trailer details in the system
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
@@ -347,7 +347,7 @@ Feature: Master_data_setup
     Then Navigate to consignment details page
     Then Verify Trailer content in Delivery screen
 
-  @Pre_receiving @TC31_Verify_missing_URN_report
+ @Complete @Pre_receiving @TC31_Verify_missing_URN_report
   Scenario Outline: To Verify Missing URN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -366,7 +366,7 @@ Feature: Master_data_setup
      #@Pre_receiving @TC32_Verify_new_stock_check_screen
      #Code change inthe Putty which needs clarification from Dev team
    
-  @Pre_receiving @TC33_Verify_INT_URN_label_reprint
+  @Complete @Pre_receiving @TC33_Verify_INT_URN_label_reprint
   Scenario: To Verify International URN label reprint
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
@@ -385,7 +385,7 @@ Feature: Master_data_setup
     
     
 
-  @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
+  @Complete @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
   Scenario: To Verify  URN loaded into dispatcher
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
@@ -394,7 +394,7 @@ Feature: Master_data_setup
     Then Click on lines
     And URN lines are validated successfully
 
-  @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
+  @Complete @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
   Scenario Outline: To verify factory code for a supplier
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
@@ -407,7 +407,7 @@ Feature: Master_data_setup
       | SKU                |
       | 000000000021071852 |
 
-  @Pre_receiving @TC37_Verify_ASN_Closure
+  @Complete @Pre_receiving @TC37_Verify_ASN_Closure
   Scenario: To verify ASN closure
     Given Insert Pre-advice data with PO type "DIRECT"
     And Insert UPI data and Delivery data
@@ -415,7 +415,7 @@ Feature: Master_data_setup
     Then Verify the status of ASN in Delivery screen
     #Then Status should be completed
 
-  @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
+  @Complete @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
   Scenario: To verify the pre-advice merge rules
     Given Insert Pre-advice data with PO type "DIRECT"
     Then Login to JDA Dispatcher web screen
@@ -424,7 +424,7 @@ Feature: Master_data_setup
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
   
-  @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
+  @Complete @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
   Scenario Outline: To Find a Pack Config
     Given Login to JDA Dispatcher web screen
     And I am on pack config maintenance page
@@ -436,7 +436,7 @@ Feature: Master_data_setup
       | pack config |
       | GENERIC     |
 
-  @Pre_receiving @TC40_Verify_stroke_details_garment_type
+  @Complete @Pre_receiving @TC40_Verify_stroke_details_garment_type
   Scenario Outline: To Verify stroke details -Garment type
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
@@ -450,7 +450,7 @@ Feature: Master_data_setup
       | SKU                |
       | 000000000022479902 |
 
-  @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
+  @Complete @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
   Scenario Outline: To verify the supplier mismatch against a product
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
@@ -469,7 +469,7 @@ Feature: Master_data_setup
       | 000000000021071852 |
 
       
-    @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
+    @Complete @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
     Scenario: To verify UPC held with RED stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty

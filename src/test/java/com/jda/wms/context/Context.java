@@ -1184,13 +1184,15 @@ public class Context {
 		return country2;
 	}
 
-	public String getTrailerNumber() {
-		return trailerNumber;
+	public void setTrailerNumber(String trailerNumber) {
+		this.trailerNumber=trailerNumber;
 	}
 
-	public void setTrailerNumber(String trailerNumber) {
-		this.trailerNumber = trailerNumber;
+	public String getTrailerNumber() {
+		// TODO Auto-generated method stub
+		return trailerNumber;
 	}
+	
 	
 	}
 	

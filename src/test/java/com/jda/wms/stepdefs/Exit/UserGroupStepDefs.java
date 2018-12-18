@@ -93,5 +93,19 @@ public class UserGroupStepDefs{
 	public void select_a_User_Group_from_the_Group_dropdown_box()throws Throwable {
 		jdaHomePage.selectUserGroup();
 	}
+	@And("^I select Allocation creation date by zone option$")
+	public void I_select_Allocation_creation_date_by_zone_option()throws Throwable {
+		
+		jdaHomePage.selectAllocationOpt();
+	}
+	@And("^type \"([^\"]*)\" in location zone$")
+	public void LocationZone(String Zone) throws Throwable {
+		jdaHomePage.enterLocationZone(Zone);
+	}
+	@And("^save the Allocation created$")
+	public void save_the_Allocation_created()throws Throwable {
+		
+		jdaHomePage.saveAllocation();
+	}
 	
 }

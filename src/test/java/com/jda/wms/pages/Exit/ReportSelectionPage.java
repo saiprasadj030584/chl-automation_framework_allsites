@@ -28,6 +28,10 @@ public class ReportSelectionPage {
 		 screen.type("Identify Urn");
 		 Thread.sleep(1000);		
 	}
+	public void enterRedReport() throws FindFailed, InterruptedException {
+		 screen.type("M&S Red Report");
+		 Thread.sleep(1000);		
+	}
 
 	public boolean isRecordDissplayedAndSelectedForMissingUrn() throws FindFailed, InterruptedException {
 		
@@ -41,6 +45,18 @@ public class ReportSelectionPage {
 			else
 			return false;
 	}
+	public boolean isRecordDissplayedAndSelectedRedReport() throws FindFailed, InterruptedException {
+		
+		if(screen.find("images/ReportSelection/selectedRedReport.png")!=null)
+	{
+		Match mRecord=screen.find("images/ReportSelection/selectedRedReport.png");
+		screen.click(mRecord.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+	}
+		else
+		return false;
+}
 	public boolean isRecordDissplayedAndSelectedForInt() throws FindFailed, InterruptedException {
 		
 			if(screen.find("images/ReportSelection/SelectedIntReport.png")!=null)
@@ -73,6 +89,20 @@ public class ReportSelectionPage {
 		else
 		return false;
 	}
+	public boolean isProcessConfirmedForRedReport() throws FindFailed, InterruptedException{
+		
+		if(screen.find("images/ReportSelection/RedReportConfirmed.png")!=null){
+			
+		Match mScreen=screen.find("images/ReportSelection/RedReportConfirmed.png");
+		screen.click(mScreen.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+		}
+		 
+		
+	else
+	return false;
+}
 
 	
 	public boolean isProcessConfirmedForIntUrn() throws FindFailed, InterruptedException{
@@ -106,6 +136,29 @@ public class ReportSelectionPage {
 		else
 		return false;
 	}
+	public boolean isReportGeneration() throws FindFailed, InterruptedException{
+		
+		if(screen.find("images/ReportSelection/RedComplete.png")!=null)
+	{
+		Match mFinishScreen=screen.find("images/ReportSelection/RedComplete.png");
+		screen.click(mFinishScreen.getCenter().offset(70, 0));
+		return true;
+	}			
+	else
+	return false;
+}
+	public boolean isReportSelectionDoneRedReport() throws FindFailed, InterruptedException{
+		
+		if(screen.find("images/ReportSelection/RedReportGenerated.png")!=null)
+	{
+		Match mFinishScreen=screen.find("images/ReportSelection/RedReportGenerated.png");
+		screen.click(mFinishScreen.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+	}			
+	else
+	return false;
+}
 	public boolean isReportSelectionDoneIntUrn() throws FindFailed, InterruptedException{
 		
 			
