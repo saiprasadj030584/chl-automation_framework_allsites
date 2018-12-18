@@ -64,4 +64,20 @@ public void validateUserGroup() throws FindFailed {
 	screen.type(element);
 	}
 }
+public void enterSearchKey(String Search) throws FindFailed {
+	Match mStatus = screen.find("images/JDAHome/AccessSearch.png");
+	screen.click(mStatus.getCenter().offset(80,0));
+	screen.type(Search);
+	Match mStatus1 = screen.find("images/JDAHome/AccessSearchButton.png");
+	screen.click(mStatus.getCenter().offset(80,0));
+}
+public void accessEnabled() throws FindFailed {
+	Match mStatus = screen.find("images/JDAHome/checkboxchkd.png");
+	if(screen.find(mStatus)!=null){
+		Assert.assertTrue(true);
+	}else{
+		Assert.assertFalse(false);
+	}
+	
+}
 }

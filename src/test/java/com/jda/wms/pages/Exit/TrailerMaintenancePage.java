@@ -40,7 +40,7 @@ public class TrailerMaintenancePage {
 		System.out.println("Trailer Number"+trailerNumber);
 		screen.type(trailerNumber);
 		context.setTrailerNumber(trailerNumber);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 	}
 	public void validateErrorMsg() throws FindFailed, InterruptedException {
 		 Match header = screen.find("images/TrailerShipping/TrailerLinkError.png");
@@ -50,11 +50,10 @@ public class TrailerMaintenancePage {
 	}
 	
 	public void selectTrailerType() throws FindFailed, InterruptedException {
-		Thread.sleep(2000);
 		screen.wait("images/TrailerShipping/TrailerType.png", timeoutInSec);
 	    Match status = screen.find("images/TrailerShipping/TrailerType.png");
 		screen.click(status.getCenter().offset(90, 0));
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		 Match header = screen.find("images/TrailerShipping/TrailerTypeRoad.png");
 		   reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
@@ -62,16 +61,23 @@ public class TrailerMaintenancePage {
 	}
 	public void selectTrailer() throws FindFailed, InterruptedException {
 		String Trailer = context.getTrailerNumber();
-		screen.wait("images/TrailerShipping/Trailer1.png", timeoutInSec);
-	    Match status = screen.find("images/TrailerShipping/Trailer1.png");
-		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(1000);
 		screen.type(Trailer);
 	}
 	public void validateTrailerLinked() throws FindFailed, InterruptedException {
 	 Match header = screen.find("images/TrailerShipping/TrailerLink.png");
-	 while(header!=null){
-		 Assert.assertTrue("Trailer not linked",true);
+	if(header!=null){
+		 Assert.assertTrue("Trailer linked",true);
 		 
 	 }
+	else{
+		 Assert.assertFalse("Trailer not linked",false);
+		 
+	 }
+}
+	public void clickTrailerAdd() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/TrailerShipping/TrailerAddButton.png", timeoutInSec);
+		screen.click("images/TrailerShipping/TrailerAddButton.png");
 }
 }

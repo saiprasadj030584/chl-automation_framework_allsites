@@ -1000,6 +1000,10 @@ public class JdaHomePage {
 		screen.wait("images/JDAHome/usergrpfctn.png", timeoutInSec);
 		screen.click("images/JDAHome/usergrpfctn.png");
 	}
+	public void clickSitegroupFunctionaccess() throws FindFailed {
+		screen.wait("images/JDAHome/SiteFnAccess.png", timeoutInSec);
+		screen.click("images/JDAHome/SiteFnAccess.png");
+	}
 	public void clickglobalFunctionaccess() throws FindFailed {
 		screen.wait("images/JDAHome/GlobalAccess.png", timeoutInSec);
 		screen.click("images/JDAHome/GlobalAccess.png");
@@ -1039,6 +1043,13 @@ public class JdaHomePage {
 		hoverAccesscontrol();
 		Thread.sleep(1000);
 		clickUsergroupFunctionaccess();
+		Thread.sleep(3000);
+	}
+	public void navigateToSiteAccesscontrol() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoverAccesscontrol();
+		Thread.sleep(1000);
+		clickSitegroupFunctionaccess();
 		Thread.sleep(3000);
 	}
 	public void navigateToGloabalAccesscontrol() throws FindFailed, InterruptedException {
@@ -1092,6 +1103,30 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
+	public void navigateToAllocationAlgorithm() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Allocation Algorithm Setup");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	public void selectAllocationOpt() throws FindFailed, InterruptedException {
+		screen.wait("images/Alloaction/Allocation Algorithm.png", timeoutInSec);
+		screen.click("images/Alloaction/Allocation Algorithm.png");
+	}
+	public void enterLocationZone(String Zone) throws FindFailed {
+		screen.wait("images/Alloaction/Location Zone.png", timeoutInSec);
+		Match mStatus = screen.find("images/Alloaction/Location Zone.png");
+		screen.click(mStatus.getCenter().offset(80,0));
+		screen.type(Zone);
+	}
+	public void saveAllocation()throws FindFailed, InterruptedException {
+		screen.click("images/Alloaction/SaveButton.png");
+		Thread.sleep(1000);
+	}
+
 	
 //	public void navigateToInventory() throws FindFailed, InterruptedException {
 //		clickSearchIcon();
