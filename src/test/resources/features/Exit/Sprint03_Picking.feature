@@ -388,7 +388,6 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071852 |
    
-  
   @Ordering @TC044_Validate_Franchise_Allocation_creation
   Scenario: Validate_Franchise_Allocation_creation  
     Given Login to JDA Dispatcher web screen
