@@ -253,7 +253,7 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToSystemAllocationPage();
 		Thread.sleep(6000);
 	}
-	
+
 	@When("^I navigate to mannual clustering screen$")
 	public void i_navigate_to_mannual_clustering_screen() throws Throwable {
 		jdaHomePage.navigateToMannualClusteringPage();
@@ -306,5 +306,14 @@ public class JDAHomeStepDefs {
 		jdaFooter.clickNextButton();
 		Thread.sleep(2000);
 		jdaFooter.clickNextButton();
+	}
+	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Job History$")
+	public void navigate_to_administration_setup_scheduler_scheduler_job_history() throws Throwable {
+		jdaHomePage.navigateToSchedulerJobHistory();
+	}
+	
+	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Schedules$")
+	public void navigate_to_administration_setup_scheduler_scheduler_schedules() throws Throwable {
+		jdaHomePage.navigateToSchedulerSchedules();
 	}
 }

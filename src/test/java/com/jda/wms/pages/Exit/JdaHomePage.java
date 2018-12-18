@@ -903,19 +903,43 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
-	
+	 public void navigateToSchedulerJobHistory() throws FindFailed,InterruptedException{
+		 ClickAdminMenu();
+		 hoverSetup();
+		 Thread.sleep(1000);
+		 hoverScheduler();
+		 Thread.sleep(1000);
+		 hoverSchedulerJobHistory();
+	 }
+	 public void navigateToSchedulerSchedules() throws FindFailed,InterruptedException{
+		 ClickAdminMenu();
+		 hoverSetup();
+		 Thread.sleep(1000);
+		 hoverScheduler();
+		 Thread.sleep(1000);
+		 hoverSchedulerSchedules();
+	 }
+	 
+	private void hoverSchedulerSchedules() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/schedulerSchedules.png", timeoutInSec);
+		screen.click("images/JDAHome/schedulerSchedules.png");
+		screen.mouseMove(70, 0);
+	}
+
+
+	private void hoverSchedulerJobHistory() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/schedulerJobHistory.png", timeoutInSec);
+		screen.click("images/JDAHome/schedulerJobHistory.png");
+		screen.mouseMove(70, 0);
+	}
+
+
 	public void navigateToReportSelectionMenu() throws FindFailed, InterruptedException {
 		clickReportsMenu();
 		hoverReportSelection();
 		Thread.sleep(100);
-//		clickReportSelection();
-//		Thread.sleep(3000);
 	}
-//	public void clickReportSelection() throws FindFailed, InterruptedException {
-//		screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);
-//		screen.click("images/JDAHome/ReportSelection.png");
-//		Thread.sleep(2000);
-//	}
+
 
 	public void hoverReportSelection() throws FindFailed, InterruptedException {
 			screen.wait("images/JDAHome/ReportSelection.png", timeoutInSec);

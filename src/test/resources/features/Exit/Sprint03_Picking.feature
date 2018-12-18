@@ -601,3 +601,30 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+      
+        @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
+     Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
+     Given The Sku "<SKU>" alter the T-Dept 
+     And Validate User defined check three as the sku moves to compliance
+     Then Update the Product group with a valid T-Dept
+     Then Navigate to Administration > Setup > Scheduler > Scheduler Job History  
+     And Search for the Job "SKUVALIDATIONCHECKJ"
+     Then Validate the status as "SUCCEEDED"
+     Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
+     
+      Examples: 
+      | SKU                |
+      | 000000000021180074 |    
+     
+         
+    @complete @Report @TC091_RED_Report_creation  
+Scenario: To Verify RED Report creation
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Red Report
+    And Verify that the record is displayed for Red Report
+    Then Validate the confirmation page for Red Report
+    And Proceed next to Output tab for the report
+    Then Validate the report selection page for Red Report creation
+      
