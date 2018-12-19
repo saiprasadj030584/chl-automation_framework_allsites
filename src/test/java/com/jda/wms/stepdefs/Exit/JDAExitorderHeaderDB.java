@@ -17,6 +17,7 @@ import com.jda.wms.db.Exit.AddressDB;
 import com.jda.wms.db.Exit.InventoryDB;
 import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.OrderHeaderDB;
+import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.AddressMaintenancePage;
 import com.jda.wms.pages.Exit.JdaHomePage;
@@ -113,6 +114,8 @@ public class JDAExitorderHeaderDB{
 		context.setStoType(type);
 		context.setCustomer(customer);
 		context.setSKUHang(SKU);
+		String UPC=SkuDB.getUPCDB(SKU);
+		context.setupc(UPC);
 		dataSetupRunner.insertOrderData();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
@@ -141,16 +144,18 @@ public class JDAExitorderHeaderDB{
 		context.setStoType(type);
 		context.setCustomer(customer);
 		context.setSKUHang(sku);
+		String UPC=SkuDB.getUPCDB(sku);
+		context.setupc(UPC);
 		dataSetupRunner.insertOrderData();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 		String orderstatus=orderHeaderDB.getStatus(context.getOrderId());
 		System.out.println("status : "+orderstatus);
 		jdaLoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
 		if(orderstatus.equals(status))
 		{
-			Thread.sleep(15000);
+			Thread.sleep(1500);
 			String orderstatus1=orderHeaderDB.getStatus(context.getOrderId());
 			if(!orderstatus1.equals("orderstatus"))
 			{
