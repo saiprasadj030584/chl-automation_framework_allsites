@@ -172,6 +172,24 @@ public class SKUQueryStepDefs{
 			
 	}
 	
+	@Then("^The Sku \"([^\"]*)\" alter the T-Dept$")
+	public void the_sku_alter_the_t_dept(String sku) throws Throwable{
+		context.setSKUHang(sku);
+		String TDept=skuDB.getProductGroupNew(sku);
+		context.setProductGroup(TDept);
+		String UpdateTDeptForCompliance=skuDB.updateproductgroup(sku);
+	}
+	
+	@Then("^Validate User defined check three as the sku moves to compliance$")
+	public void and_validate_user_defined_check_three_as_the_moves_to_compliance() throws Throwable{
+		
+		String UserDef3= skuDB.getUserDefChck3new(context.getSKUHang());
+		Assert.assertEquals("user define 3 is not as expected", "Y", UserDef3);
+	}
+	@Then("^Update the Product group with a valid T-Dept$")
+	public void update_the_product_group_with_a_valid_t_dept() throws Throwable{
+		String UpdateTDeptForNonCompliance= skuDB.UpdateTDeptForNonCompliance(context.getProductGroup(), context.getSKUHang());
+	}
 	}
 	
 

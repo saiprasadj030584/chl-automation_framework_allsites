@@ -72,8 +72,12 @@ public void enterSearchKey(String Search) throws FindFailed {
 	screen.click(mStatus.getCenter().offset(80,0));
 }
 public void accessEnabled() throws FindFailed {
-	Match mStatus = screen.find("images/JDAHome/AccessSearch.png");
-	screen.click(mStatus.getCenter().offset(80,0));
+	Match mStatus = screen.find("images/JDAHome/checkboxchkd.png");
+	if(screen.find(mStatus)!=null){
+		Assert.assertTrue(true);
+	}else{
+		Assert.assertFalse(false);
+	}
 	
 }
 }
