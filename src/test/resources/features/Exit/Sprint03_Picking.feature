@@ -389,22 +389,14 @@ Feature: Orders_Picking
       | 000000000021071852 |
       
    @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
-   Scenario Outline: Validate_Franchise_Allocation_creation   
+   Scenario: Validate_Franchise_order_allocation   
     Given Login to JDA Dispatcher web screen
-    And Go to "<screen>" Function Access screen
-		And Type "<Search>" in search for text box
+    And Go to User Group Function Access 
+		And Type in Function Access search for text box
 		And validate the access is Enabled
+		And Go to Site Global Function Access 
+		And Type in and validate Function Access search for text box
 		
-		Examples:
-		|screen|Search|
-		|User Group Function Access|Allocation Algorithm - Allow Adding, Deleting and Modifying of Allocation Algorithms|
-		|Site Global Function Access|Allocation - User Defined Type 1 is Used for Allocation|
-		|Site Global Function Access|Allocation - User Defined Type 8 is Used for Allocation|
-		|Site Global Function Access|Allocation - User Defined Type 1 is Used for Allocation|
-		|Site Global Function Access|Back Ordering - At Receiving Time|
-		|Site Global Function Access|Back Ordering - At Receiving Time|
-		|Site Global Function Access|M&S -Comms- Automatically set Back Ordered flag on|   
-  
   @Ordering @TC044_Validate_Franchise_Allocation_creation
   Scenario: Validate_Franchise_Allocation_creation  
     Given Login to JDA Dispatcher web screen

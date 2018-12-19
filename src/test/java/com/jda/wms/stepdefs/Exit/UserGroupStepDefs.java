@@ -107,13 +107,17 @@ public class UserGroupStepDefs{
 		
 		jdaHomePage.saveAllocation();
 	}
-	@And("^Type \"([^\"]*)\" in search for text box$")
-	public void Type_in_Search(String Search) throws Throwable {
-		userGroupPage.enterSearchKey(Search);
+	@And("^Type in Function Access search for text box$")
+	public void Type_in_Search() throws Throwable {
+		userGroupPage.enterSearchKey();
 	}
 	@And("^validate the access is Enabled$")
 	public void Access_Enabled() throws Throwable {
 		userGroupPage.accessEnabled();
+	}
+	@And("^Type in and validate Function Access search for text box$")
+	public void Type_in_function_Access() throws Throwable {
+		userGroupPage.typeSearchKey();
 	}
 	
 }
