@@ -533,7 +533,7 @@ Feature: Orders_Picking
 
     Examples: 
       | SKU                |
-      | 000000000021071851 |    
+      | 000000000021071851 |
 
   @Picking @TC60_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order

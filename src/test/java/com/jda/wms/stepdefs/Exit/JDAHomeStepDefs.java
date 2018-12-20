@@ -253,7 +253,7 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToSystemAllocationPage();
 		Thread.sleep(6000);
 	}
-	
+
 	@When("^I navigate to mannual clustering screen$")
 	public void i_navigate_to_mannual_clustering_screen() throws Throwable {
 		jdaHomePage.navigateToMannualClusteringPage();
@@ -307,6 +307,7 @@ public class JDAHomeStepDefs {
 		Thread.sleep(1000);
 		jdaFooter.clickNextButton();
 	}
+
 	@And("^Go to Allocation algorithm Setup$")
 	public void Go_to_Allocation_algorithm_Setup() throws Throwable {
 		jdaHomePage.navigateToAllocationAlgorithm();
