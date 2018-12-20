@@ -1085,6 +1085,16 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
+	public void navigateToCloseConsignment() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Close Consignment");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
 	public void navigateToConsignmentDropMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);

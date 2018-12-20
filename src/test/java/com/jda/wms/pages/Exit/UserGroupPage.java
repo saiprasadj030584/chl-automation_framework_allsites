@@ -84,7 +84,7 @@ public void accessEnabled() throws FindFailed {
 		AccessGroup.add("Allocation - User Defined Type 1 is Used for Allocation");
 		AccessGroup.add("Allocation - User Defined Type 8 is Used for Allocation");
 		AccessGroup.add("Back Ordering - At Receiving Time");
-		AccessGroup.add("M&S -Comms- Automatically set Back Ordered flag on");
+		AccessGroup.add("M&S - Comms - Automatically Set Back Ordered flag on");
 		int size= AccessGroup.size();
 		
 		for(int i=0;i<size;i++){
@@ -98,7 +98,7 @@ public void accessEnabled() throws FindFailed {
 	Thread.sleep(2000);
 	screen.find("images/JDAHome/AccessSearch.png");
 	screen.type("a", Key.CTRL);
-	screen.type("x", Key.CTRL);
+	screen.type(Key.BACKSPACE);
 		}
 	}
 	

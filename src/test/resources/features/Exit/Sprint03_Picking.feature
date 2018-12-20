@@ -133,7 +133,7 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
   @Picking @TC011_Create_a_consignment_or_Load_label
-  Scenario Outline: Create a consignment or Load label
+  Scenario: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -146,12 +146,8 @@ Feature: Orders_Picking
     And click execute
     And validate the record is saved
 
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-
   @Picking @TC012_Create_Consignment_Drop
-  Scenario Outline: Create a consignment or Load label
+  Scenario: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -169,10 +165,6 @@ Feature: Orders_Picking
     And Enter chamber and Address Id
     Then click execute
     And validate the record is saved
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
 
   @Sorting @TC013_Validate_adding_URN_to_pallet_id
   Scenario Outline: Validate adding urn to pallet id
@@ -241,8 +233,69 @@ Feature: Orders_Picking
       | sortationgroup |
       | Sortation      |
 
-  #@Sortation @TC20_Negative_path_validate_sortation_functional_not_found
-  #Invalid in frontend application
+ @Sortation @TC28_Happy_Path_Validate_consignment_id_format
+  Scenario: Happy_Path_Validate consignment id format
+    Given Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And validate the consignment id is created
+   
+  @Sortation @TC29_Happy_Path_Validate_consignment_add
+  Scenario: Happy_Path_Validate consignment add
+    Given Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And validate the record is saved
+    
+  @Sortation @TC31_Negative_Path_Validate_consignment_rules
+  Scenario: Negative_Path_Validate_consignment_rules
+    Given Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And validate the record is saved
+    And I click on Add button
+    And Enter same consignment name
+    And Select consignment Status
+    And Select Mode of transport
+    And click execute
+    And validate Error message is displayed
+    
+  @Sortation @TC32_Happy_Path_Validate_Load_build_process
+    Scenario: Happy_Path_Validate_Load_build_process
+    Given Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to close consignment
+    And Enter same consignment name
+    And Click next
+    And Select consignment to close
+    And Click done
+    
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
@@ -388,9 +441,9 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
   @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
-  Scenario Outline: Validate_Franchise_Allocation_creation
-    	Given Login to JDA Dispatcher web screen
-    	And Go to User Group Function Access 
+  Scenario: Validate_Franchise_Allocation_creation
+    Given Login to JDA Dispatcher web screen
+    And Go to User Group Function Access 
 		And Type in Function Access search for text box
 		And validate the access is Enabled
 		And Go to Site Global Function Access 
