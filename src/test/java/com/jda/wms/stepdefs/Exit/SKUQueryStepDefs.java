@@ -10,12 +10,13 @@ import com.google.inject.Inject;
 import com.jda.wms.db.Exit.PreAdviceLineDB;
 import com.jda.wms.db.Exit.SkuDB;
 import com.jda.wms.pages.Exit.SKUQueryPage;
-
+import com.jda.wms.pages.Exit.JdaHomePage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import com.jda.wms.context.Context;
-
+import com.jda.wms.stepdefs.Exit.JDALoginStepDefs;
+import com.jda.wms.stepdefs.Exit.JDAHomeStepDefs;
 
 
 
@@ -25,12 +26,18 @@ public class SKUQueryStepDefs{
 	private final SkuDB skuDB;
 	private Context context;
 	private PreAdviceLineDB preAdviceLineDB;
+	private JDALoginStepDefs jDALoginStepDefs;
+	private JdaHomePage jdaHomePage;
+	private JDAHomeStepDefs jDAHomeStepDefs;
 	@Inject
-	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,SkuDB skuDB,Context context,PreAdviceLineDB preAdviceLineDB){
+	public SKUQueryStepDefs(SKUQueryPage sKUQueryPage,JdaHomePage jdaHomePage,SkuDB skuDB,JDAHomeStepDefs jDAHomeStepDefs,Context context,PreAdviceLineDB preAdviceLineDB,JDALoginStepDefs jDALoginStepDefs){
 		this.sKUQueryPage=sKUQueryPage;
 		this.skuDB=skuDB;
 		this.context=context;
 		this.preAdviceLineDB=preAdviceLineDB;
+		this.jDALoginStepDefs=jDALoginStepDefs;
+		this.jdaHomePage=jdaHomePage;
+		this.jDAHomeStepDefs=jDAHomeStepDefs;
 	}
 	
 	@And("^Specify the SKU \"([^\"]*)\"$")
@@ -172,12 +179,14 @@ public class SKUQueryStepDefs{
 			
 	}
 	
-	@Then("^The Sku \"([^\"]*)\" alter the T-Dept$")
-	public void the_sku_alter_the_t_dept(String sku) throws Throwable{
+	@Then("^The Sku \"([^\"]*)\" validate the t-dept to be null$")
+	public void the_sku_validate_the_t_dept_to_be_null(String sku) throws Throwable{
 		context.setSKUHang(sku);
 		String TDept=skuDB.getProductGroupNew(sku);
 		context.setProductGroup(TDept);
 		String UpdateTDeptForCompliance=skuDB.updateproductgroup(sku);
+		Assert.assertNull("T-Dept is not null", UpdateTDeptForCompliance);
+
 	}
 	
 	@Then("^Validate User defined check three as the sku moves to compliance$")
@@ -188,7 +197,13 @@ public class SKUQueryStepDefs{
 	}
 	@Then("^Update the Product group with a valid T-Dept$")
 	public void update_the_product_group_with_a_valid_t_dept() throws Throwable{
-		String UpdateTDeptForNonCompliance= skuDB.UpdateTDeptForNonCompliance(context.getProductGroup(), context.getSKUHang());
+		jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
+		jDAHomeStepDefs.go_to_Data_SKU_SKU_Click();
+		sKUQueryPage.click_on_Query();
+		sKUQueryPage.enterSKU(context.getSKUHang());
+		sKUQueryPage.clickExecuteButton();
+		sKUQueryPage.selectToggleMaintenanceMode();
+		
 	}
 	}
 	

@@ -681,16 +681,22 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
-  Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
-    Given The Sku "<SKU>" alter the T-Dept
-    And Validate User defined check three as the sku moves to compliance
-    Then Update the Product group with a valid T-Dept
-    Then Navigate to Administration > Setup > Scheduler > Scheduler Job History
-    And Search for the Job "SKUVALIDATIONCHECKJ"
-    Then Validate the status as "SUCCEEDED"
-    Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
-
+      
+        @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
+     Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
+     Given The Sku "<SKU>" validate the t-dept to be null 
+     And Validate User defined check three as the sku moves to compliance
+     Then Update the Product group with a valid T-Dept
+     #And Validate User defined check three as the sku moves to compliance
+     #Then Update the Product group with a valid T-Dept
+     Then Navigate to Administration > Setup > Scheduler > Scheduler Job History 
+     And Search for the Job "SKUVALIDATIONCHECKJ"
+     Then Validate the status as "SUCCEEDED"
+     Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
+      And Search for the Job "SKUVALIDATIONCHECKJ"
+     Then go to calender Preview
+     
+    
     Examples: 
       | SKU                |
       | 000000000021180074 |

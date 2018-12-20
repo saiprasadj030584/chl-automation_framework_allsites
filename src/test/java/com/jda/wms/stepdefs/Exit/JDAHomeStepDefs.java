@@ -293,7 +293,7 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToCloseConsignment();
 	}
 
-	
+
 	@And("^Go to consignment drop maintainance screen$")
 	public void Go_to_consignment_drop_maintainance_screen() throws Throwable {
 		jdaHomePage.navigateToConsignmentDropMaintenance();

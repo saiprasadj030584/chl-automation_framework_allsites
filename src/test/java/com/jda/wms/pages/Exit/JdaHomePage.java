@@ -1137,6 +1137,12 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 	}
 
+
+	public void go_to_Data_SKU_SKU_Click() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 //	public void navigateToInventory() throws FindFailed, InterruptedException {
 //		clickSearchIcon();

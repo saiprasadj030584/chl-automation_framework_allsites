@@ -348,6 +348,18 @@ public Object status() throws FindFailed, InterruptedException {
 	Thread.sleep(1000);
 	return mSku;
 }
+public void selectToggleMaintenanceMode() throws FindFailed,InterruptedException {
+	Thread.sleep(3000);
+	screen.rightClick();
+	screen.wait("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png", timeoutInSec);
+	screen.click("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png");
+}
+
+public void clickUpdate() throws FindFailed,InterruptedException {
+	Thread.sleep(1000);
+	screen.wait("images/CEConsignmentMaintenance/SkuUpdate.png", timeoutInSec);
+	screen.click("images/CEConsignmentMaintenance/SkuUpdate.png");
+}
 }
 
 
