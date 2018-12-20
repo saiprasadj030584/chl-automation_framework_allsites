@@ -145,7 +145,7 @@ Feature: Orders_Picking
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
     And validate the record is saved
-
+    
   @Picking @TC012_Create_Consignment_Drop
   Scenario: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
