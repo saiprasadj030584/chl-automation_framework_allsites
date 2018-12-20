@@ -328,6 +328,7 @@ public class SkuDB {
 	
 	public String UpdateTDeptForNonCompliance(String PdtGp,String sKU) throws SQLException, ClassNotFoundException {
 		System.out.println("sku="+sKU);
+		System.out.println("PdtGp="+PdtGp);
 		if (context.getConnection() == null) {
 			database.connect();
 		}
@@ -391,6 +392,19 @@ public class SkuDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select user_def_type_8 from sku where sku_id='" + skuid + "'");
+		rs.next();
+		System.out.println(rs);
+		return rs.getString(1);
+
+	}
+
+	public String getUserDefChck3new(String skuHang) throws SQLException, ClassNotFoundException {
+		System.out.println(skuHang);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery("select user_def_chk_3 from sku where sku_id='" + skuHang + "'");
 		rs.next();
 		System.out.println(rs);
 		return rs.getString(1);

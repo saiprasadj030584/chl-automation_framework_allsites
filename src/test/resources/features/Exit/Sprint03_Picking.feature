@@ -26,7 +26,7 @@ Feature: Orders_Picking
 
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
-     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -205,7 +205,6 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | IDTB00001234 | 000000000021071852 |
 
-
   @Picking @TC017_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -326,7 +325,7 @@ Feature: Orders_Picking
     And click execute
     And Select Mode of transport
     And click execute
-    And validate the record is saved 
+    And validate the record is saved
     And Go to consignment drop maintainance screen
     And Right click to Select Toggle Maintenance Mode
     And I click on Add button
@@ -340,14 +339,14 @@ Feature: Orders_Picking
     And Enter Trailer number
     And Select Trailer Type
     And click execute
-    And validate the record is saved 
+    And validate the record is saved
     And Go to Consignment Trailer Linking
     And Select Trailer
     And Select Consignment
     And Click next
     And I click on trailer Add button
     And validate Consignment Trailer is linked
-    
+
   @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
   Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
     Given Login to JDA Dispatcher web screen
@@ -360,20 +359,20 @@ Feature: Orders_Picking
     And Select Mode of transport
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
-    And validate the record is saved 
+    And validate the record is saved
     And I navigate to Trailer mainteinance page
     And Right click to Select Toggle Maintenance Mode
     And I click on Add button
     And Enter Trailer number
     And Select Trailer Type
     And click execute
-    And validate the record is saved 
+    And validate the record is saved
     And Go to Consignment Trailer Linking
     And Select Trailer
     And Select Consignment
     And Click next
     And validate error message is displayed
-     
+
   @Shipdock @TC042_Validate_shipdock_assignment
   Scenario Outline: Validate_shipdock_assignment
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -387,26 +386,27 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-   @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
-   Scenario: Validate_Franchise_order_allocation   
-    Given Login to JDA Dispatcher web screen
-    And Go to User Group Function Access 
+
+  @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
+  Scenario Outline: Validate_Franchise_Allocation_creation
+    	Given Login to JDA Dispatcher web screen
+    	And Go to User Group Function Access 
 		And Type in Function Access search for text box
 		And validate the access is Enabled
 		And Go to Site Global Function Access 
 		And Type in and validate Function Access search for text box
 		
+
   @Ordering @TC044_Validate_Franchise_Allocation_creation
-  Scenario: Validate_Franchise_Allocation_creation  
+  Scenario: Validate_Franchise_Allocation_creation
     Given Login to JDA Dispatcher web screen
     And Go to Allocation algorithm Setup
-    And Click next 
+    And Click next
     And I select Allocation creation date by zone option
     And I click on Add button
     And type "INBOUND" in location zone
     Then save the Allocation created
-    
+
   @TC45_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Hanging
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise hanging
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -546,12 +546,11 @@ Feature: Orders_Picking
     Then I should be directed to pick entry page
     And I enter Invalid List Id "<List_Id>"
     And I validate Error message is displayed
+
     Examples: 
       | List_Id      | SKU                |
       | IDTH00001234 | 000000000021071851 |
 
- 
- 
   @Picking @TC061_Negative_Path_Scan_incorrect_To_Location_during_Manual_order_Picking
   Scenario Outline: Negative_Path_Scan incorrect To Location during Manual order Picking
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
@@ -566,10 +565,8 @@ Feature: Orders_Picking
     And I validate incorrect location message is displayed
 
     Examples: 
-
       | SKU                | ToLocation |
       | 000000000021071851 | ISRAIL     |
-    
 
   @Ordering @TC62_Happy_Path_Validate_FSV_order_hanging
   Scenario Outline: Happy_Path_Validate FSV order
@@ -631,5 +628,27 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-      
-  
+  @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
+  Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
+    Given The Sku "<SKU>" alter the T-Dept
+    And Validate User defined check three as the sku moves to compliance
+    Then Update the Product group with a valid T-Dept
+    Then Navigate to Administration > Setup > Scheduler > Scheduler Job History
+    And Search for the Job "SKUVALIDATIONCHECKJ"
+    Then Validate the status as "SUCCEEDED"
+    Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
+
+    Examples: 
+      | SKU                |
+      | 000000000021180074 |
+
+  @complete @Report @TC091_RED_Report_creation
+  Scenario: To Verify RED Report creation
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Red Report
+    And Verify that the record is displayed for Red Report
+    Then Validate the confirmation page for Red Report
+    And Proceed next to Output tab for the report
+    Then Validate the report selection page for Red Report creation

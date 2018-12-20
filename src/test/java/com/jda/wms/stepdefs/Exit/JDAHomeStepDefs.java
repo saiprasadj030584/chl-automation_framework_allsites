@@ -308,6 +308,17 @@ public class JDAHomeStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
+
+	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Job History$")
+	public void navigate_to_administration_setup_scheduler_scheduler_job_history() throws Throwable {
+		jdaHomePage.navigateToSchedulerJobHistory();
+	}
+	
+	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Schedules$")
+	public void navigate_to_administration_setup_scheduler_scheduler_schedules() throws Throwable {
+		jdaHomePage.navigateToSchedulerSchedules();
+	}
+
 	@And("^Go to Allocation algorithm Setup$")
 	public void Go_to_Allocation_algorithm_Setup() throws Throwable {
 		jdaHomePage.navigateToAllocationAlgorithm();
@@ -321,6 +332,5 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToSiteAccesscontrol();
 }
 	
-	}
-		
-
+}
+	
