@@ -308,6 +308,7 @@ public class JDAHomeStepDefs {
 		jdaFooter.clickNextButton();
 	}
 
+
 	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Job History$")
 	public void navigate_to_administration_setup_scheduler_scheduler_job_history() throws Throwable {
 		jdaHomePage.navigateToSchedulerJobHistory();
@@ -322,18 +323,14 @@ public class JDAHomeStepDefs {
 	public void Go_to_Allocation_algorithm_Setup() throws Throwable {
 		jdaHomePage.navigateToAllocationAlgorithm();
 	}
-	@And("^Go to \"([^\"]*)\" Function Access screen$")
-	public void Go_to_Function_Access_screen(String screen) throws Throwable {
-		if(screen == "User Group Function Access"){
+	@And("^Go to User Group Function Access$")
+	public void Go_to_User_grp_Function_Access_screen() throws Throwable {
 			jdaHomePage.navigateToAccesscontrol();
 	}
-		else if(screen == "Site Global Function Access"){
-			jdaHomePage.navigateToSiteAccesscontrol();
-		}else
-		{
-			System.out.println("Invalid screen option");
-		}
-	}
-		
-
+	@And("^Go to Site Global Function Access$")
+	public void Go_to_Site_global_Function_Access_screen() throws Throwable {
+		jdaHomePage.navigateToSiteAccesscontrol();
 }
+	
+}
+	
