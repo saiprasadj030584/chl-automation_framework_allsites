@@ -1,5 +1,6 @@
 package com.jda.wms.pages.Exit;
 
+import org.junit.Assert;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -8,6 +9,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
+
 import com.jda.wms.utils.Utilities;
 import org.sikuli.script.Region;
 public class CEConsignmentMaintenancePage {
@@ -119,6 +121,22 @@ public class CEConsignmentMaintenancePage {
 		context.setConsignmentName(consignmentName);
 		screen.type(consignmentName);
 }
+	public void enterSameConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		String consignmentName1=context.getConsignmentName();
+		screen.type(consignmentName1);
+}
+	
+	public String verifyConsignment() throws FindFailed {
+		Match ConsignmentID = screen.find("images/CEConsignmentMaintenance/ConsignmentID.png");
+		screen.click(ConsignmentID.getCenter().offset(90, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+		
+	}
+
+	
 	public void selectStatus() throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentStatus.png", timeoutInSec);
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentStatus.png");
@@ -179,5 +197,27 @@ public class CEConsignmentMaintenancePage {
 	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
 		screen.click(status.getCenter().offset(90, 0));
 		typeConsignment();
+}
+	
+	public void consignmentError() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentError.png", timeoutInSec);
+	   screen.find("images/CEConsignmentMaintenance/ConsignmentError.png");
+		if (screen.exists("images/CEConsignmentMaintenance/ConsignmentError.png")!= null){
+			Assert.assertTrue(true);
+		}else{
+			Assert.assertTrue(false);
+		}
+}
+	public void closeConsignment() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/CEConsignmentMaintenance/SelectConsignment.png", timeoutInSec);
+		//Match status = screen.find("images/CEConsignmentMaintenance/SelectConsignment.png");
+		//screen.doubleClick("images/CEConsignmentMaintenance/SelectConsignment.png");
+	    //screen.doubleClick(status.belowAt().offset(150, 0));
+	    Match header = screen.find("images/CEConsignmentMaintenance/SelectConsignment.png");
+		   reg=header.below(350).left(50).right(1000);
+		   reg.hover(header);
+		   reg.doubleClick(header);
 }
 }

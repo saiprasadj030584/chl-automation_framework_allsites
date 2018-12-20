@@ -207,6 +207,27 @@ public class DataSetupRunner {
 		getTCData.setSto(stoId);
 		System.out.println("Order Id from Interface table is:"+ stoId );
 	}
+	public void insertOrderData4() throws ClassNotFoundException, SQLException, InterruptedException {
+		String stoId = newStoId();
+		System.out.println(stoId);
+		String sku=context.getSKUHang();
+		insertDataIntoDB.insertOrderHeader(stoId,context.getStoType(),context.getCustomer());
+		insertDataIntoDB.insertOrderLine4(stoId,sku);
+		Thread.sleep(10000);
+		selectDataFromDB.isOrderHeaderRecordExists(stoId);
+		System.out.println(selectDataFromDB.isOrderRecordExists(stoId));
+			
+		updateDataFromDB.updateMoveTaskStatusInMoveTask(stoId);
+		updateDataFromDB.updateAddressIntPalletType(context.getCustomer());
+			Thread.sleep(3000);	
+		
+		
+		
+		Assert.assertTrue("Test Data not available - Issue in Data loading",
+				selectDataFromDB.isOrderRecordExists(stoId));
+		getTCData.setSto(stoId);
+		System.out.println("Order Id from Interface table is:"+ stoId );
+	}
 	public void insertOrderDataforUPI() throws ClassNotFoundException, SQLException, InterruptedException {
 		String stoId = newStoId();
 		System.out.println(stoId);

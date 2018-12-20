@@ -146,7 +146,7 @@ public class JDAExitorderHeaderDB{
 		context.setSKUHang(sku);
 		String UPC=SkuDB.getUPCDB(sku);
 		context.setupc(UPC);
-		dataSetupRunner.insertOrderData();
+		dataSetupRunner.insertOrderData4();
 		String orderID = getTCData.getSto();
 		System.out.println("New Order ID : " + orderID);
 		Thread.sleep(3000);

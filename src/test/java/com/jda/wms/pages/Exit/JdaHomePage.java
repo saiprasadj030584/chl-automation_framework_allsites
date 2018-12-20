@@ -1085,6 +1085,16 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 	}
+	public void navigateToCloseConsignment() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Close Consignment");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(5000);
+	}
+	
 	public void navigateToConsignmentDropMaintenance() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
@@ -1125,6 +1135,12 @@ public class JdaHomePage {
 	public void saveAllocation()throws FindFailed, InterruptedException {
 		screen.click("images/Alloaction/SaveButton.png");
 		Thread.sleep(1000);
+	}
+
+
+	public void go_to_Data_SKU_SKU_Click() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

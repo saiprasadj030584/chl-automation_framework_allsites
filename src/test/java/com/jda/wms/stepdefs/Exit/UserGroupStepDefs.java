@@ -41,25 +41,7 @@ public class UserGroupStepDefs{
 	@And("^Specify the UserGroup \"([^\"]*)\"$")
 	public void UserGroup(String UserGroup) throws Throwable {
 		userGroupPage.enterUserGroup(UserGroup);
-//		jdaFooter.clickExecuteButton();
-//		
-//			
-//					//String[]UserGroup = new String[]{"ABC","DEF"};
-//					ArrayList UserGroup = new ArrayList();
-//					UserGroup.add("ABC");
-//					UserGroup.add("DEF");
-//				      //System.out.println("Initial size of al: " + al.size());
-//					int size= UserGroup.size();
-//					screen.wait("images/JDAHome/Group.png", timeoutInSec);
-//					screen.click("images/JDAHome/Group.png");
-//					for(int i=0;i<size;i++){
-//				 UserGroup.get(i);
-//					screen.type((String) UserGroup.get(i));
-//					}
-//				} 
-//
-//		
-//		}
+
 }
 	@And("^Specify the sortation group \"([^\"]*)\"$")
 	public void Sortationgroup(String UserGroup) throws Throwable {

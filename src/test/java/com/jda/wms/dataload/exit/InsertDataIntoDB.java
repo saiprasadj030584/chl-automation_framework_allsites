@@ -281,6 +281,30 @@ public class InsertDataIntoDB {
 		context.getConnection().commit();
 		Thread.sleep(4000);
 		}
+	public void insertOrderLine4(String orderId,String Sku) throws SQLException, ClassNotFoundException {
+
+		String key = Utilities.getFourDigitRandomNumber()+".0";
+		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
+		String query = null;
+//		String upc=context.getupc();
+	
+		query = "INSERT INTO INTERFACE_ORDER_LINE (KEY,CLIENT_ID,ORDER_ID,LINE_ID,HOST_ORDER_ID,HOST_LINE_ID,SKU_ID,CUSTOMER_SKU_ID,CONFIG_ID,TRACKING_LEVEL,BATCH_ID,BATCH_MIXING,SHELF_LIFE_DAYS,SHELF_LIFE_PERCENT,ORIGIN_ID,CONDITION_ID,LOCK_CODE,SPEC_CODE,QTY_ORDERED,ALLOCATE,BACK_ORDERED,KIT_SPLIT,DEALLOCATE,NOTES,PSFT_INT_LINE,PSFT_SCHD_LINE,PSFT_DMND_LINE,SAP_PICK_REQ,DISALLOW_MERGE_RULES,LINE_VALUE,RULE_ID,SOH_ID,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,TASK_PER_EACH,USE_PICK_TO_GRID,IGNORE_WEIGHT_CAPTURE,STAGE_ROUTE_ID,MIN_QTY_ORDERED,MAX_QTY_ORDERED,EXPECTED_VOLUME,EXPECTED_WEIGHT,EXPECTED_VALUE,CUSTOMER_SKU_DESC1,CUSTOMER_SKU_DESC2,PURCHASE_ORDER,PRODUCT_PRICE,PRODUCT_CURRENCY,DOCUMENTATION_UNIT,EXTENDED_PRICE,TAX_1,TAX_2,DOCUMENTATION_TEXT_1,SERIAL_NUMBER,OWNER_ID,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_RECEIPT_TYPE,CE_COO,KIT_PLAN_ID,LOCATION_ID,UNALLOCATABLE,MIN_FULL_PALLET_PERC,MAX_FULL_PALLET_PERC,FULL_TRACKING_LEVEL_ONLY,SUBSTITUTE_GRADE,DISALLOW_SUBSTITUTION,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ('"
+		         + key +"','M+S','" + orderId
+				 +"',10,null,null,'"+Sku+"',null,null,'EA',null,'Y',null,null,null,null,null,null,20,'Y','N','Y',null,null,null,null,null,null,'N',null,'',null,null,'0007','"+context.getupc()+"','IntlFranchise',null,'Retail','ZNL1','','N','N','N','N',to_timestamp('"
+				 + queryInsertDate 
+				 +" 02.44.07.000000000'),null,null,null,null,null,null,690,null,null,'N','N','N',null,null,null,null,null,null,null,null,null,null,null,null,2.56,null,null,null,null,'M+S',null,null,null,null,null,null,'N',null,null,'N',null,'N','Europe/Belfast','Europe/London',null,'M+S','A','Pending','',to_timestamp('"
+				 + queryInsertDate +" 10.29.36.292279000'))";
+					
+		System.out.println("Insert Order Line");
+		System.out.println(query);
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		context.getConnection().commit();
+	}
+	
 	public void insertorderlineforUPI(String orderId,String poId) throws SQLException, ClassNotFoundException, InterruptedException {
 		String SAPvalue=context.getSAPvalue();
 		String key = Utilities.getFourDigitRandomNumber()+".0";

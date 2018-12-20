@@ -35,6 +35,16 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Enter_consignment_name() throws Throwable {
 		consignmentMaintenancePage.enterConsignment();
 	}
+	
+	@Then("^Enter same consignment name$")
+	public void Enter_same_consignment_name() throws Throwable {
+		consignmentMaintenancePage.enterSameConsignment();
+	}
+	@Then("^validate the consignment id is created$")
+	public void validate_consignment_name() throws Throwable {
+		consignmentMaintenancePage.verifyConsignment();
+	}
+	
 	@And("^Select consignment Status$")
 	public void Select_consignment_Status() throws Throwable {
 		consignmentMaintenancePage.selectStatus();
@@ -63,5 +73,12 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Select_Consignment() throws Throwable {
 		consignmentMaintenancePage.selectConsignment();
 	}
-	
+	@And("^validate Error message is displayed$")
+	public void validate_Error_message_is_displayed() throws Throwable {
+		consignmentMaintenancePage.consignmentError();
+	}
+	@And("Select consignment to close$")
+	public void close_consignment() throws Throwable {
+		consignmentMaintenancePage.closeConsignment();
+	}
 }

@@ -288,6 +288,12 @@ public class JDAHomeStepDefs {
 	public void Go_to_consignment_maintainance() throws Throwable {
 		jdaHomePage.navigateToConsignmentMaintenance();
 	}
+	@And("^Go to close consignment$")
+	public void Go_to_close_consignment() throws Throwable {
+		jdaHomePage.navigateToCloseConsignment();
+	}
+
+
 	@And("^Go to consignment drop maintainance screen$")
 	public void Go_to_consignment_drop_maintainance_screen() throws Throwable {
 		jdaHomePage.navigateToConsignmentDropMaintenance();
@@ -307,8 +313,12 @@ public class JDAHomeStepDefs {
 		Thread.sleep(1000);
 		jdaFooter.clickNextButton();
 	}
-
-
+	
+	@And("^Click done$")
+	public void click_done() throws Throwable {
+		jdaFooter.clickDoneButton();
+		Thread.sleep(1000);
+	}
 	@Given("^Navigate to Administration > Setup > Scheduler > Scheduler Job History$")
 	public void navigate_to_administration_setup_scheduler_scheduler_job_history() throws Throwable {
 		jdaHomePage.navigateToSchedulerJobHistory();
