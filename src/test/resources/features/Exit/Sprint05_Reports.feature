@@ -118,7 +118,7 @@ Scenario: Validate M&S - Stock Status Report
     Then Validate the report selection page for Red Location completion
     
     @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
-    Validate the M&S - Black Stock Status Report
+    Scenario: Validate the M&S - Black Stock Status Report
      Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
