@@ -291,10 +291,35 @@ Feature: Orders_Picking
     And click execute
     And Select Mode of transport
     And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
     And Go to close consignment
     And Enter same consignment name
     And Click next
     And Select consignment to close
+    And Click done
+    
+    @Sortation @TC033_Happy_path_Validate_GREEN_stock_in_Load_build
+  Scenario: Happy_path_Validate GREEN stock in Load build
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S Load Label
+    And Click next
+    And Enter same consignment name
+    And Click next
     And Click done
     
   @Ordering @TC035_Happy_Path_Validate_FSV_order

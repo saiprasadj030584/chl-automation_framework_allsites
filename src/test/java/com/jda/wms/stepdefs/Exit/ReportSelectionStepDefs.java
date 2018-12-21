@@ -52,7 +52,12 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterRedReport();
     	JDAFooter.clickNextButton();	
     }
-			
+    @And("^Search for the M&S Load Label$")
+    public void search_for_the_MnS_Load_Label() throws Throwable {
+    	ReportSelectionPage.enterLoadLabel();
+    	JDAFooter.clickNextButton();	
+    }	
+    
     @And("^Verify that the record is displayed for Missing Urn$")
     public void verify_that_the_record_displayed() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForMissingUrn());

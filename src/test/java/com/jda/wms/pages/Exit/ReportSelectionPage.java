@@ -57,6 +57,11 @@ public class ReportSelectionPage {
 		 Thread.sleep(1000);		
 	}
 
+	public void enterLoadLabel() throws FindFailed, InterruptedException {
+		 screen.type("M&S - Load Label");
+		 Thread.sleep(1000);		
+	}
+	
 	public boolean isRecordDissplayedAndSelectedForMissingUrn() throws FindFailed, InterruptedException {
 		
 			if(screen.find("images/ReportSelection/selectedIdentifyReport.png")!=null)

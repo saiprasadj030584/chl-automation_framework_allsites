@@ -296,7 +296,9 @@ public class JDAHomeStepDefs {
 
 	@And("^Go to consignment drop maintainance screen$")
 	public void Go_to_consignment_drop_maintainance_screen() throws Throwable {
+		Thread.sleep(2000);
 		jdaHomePage.navigateToConsignmentDropMaintenance();
+		Thread.sleep(2000);
 	}
 	@And("^Click search$")
 	public void click_search() throws Throwable {
@@ -311,7 +313,7 @@ public class JDAHomeStepDefs {
 	public void click_next() throws Throwable {
 		jdaFooter.clickNextButton();
 		Thread.sleep(1000);
-		jdaFooter.clickNextButton();
+		//jdaFooter.clickNextButton();
 	}
 	
 	@And("^Click done$")

@@ -216,8 +216,10 @@ public class CEConsignmentMaintenancePage {
 		//screen.doubleClick("images/CEConsignmentMaintenance/SelectConsignment.png");
 	    //screen.doubleClick(status.belowAt().offset(150, 0));
 	    Match header = screen.find("images/CEConsignmentMaintenance/SelectConsignment.png");
-		   reg=header.below(350).left(50).right(1000);
+		   reg=header.below(1500).left(50).right(1000);
 		   reg.hover(header);
-		   reg.doubleClick(header);
+		   reg.click(header);
+		   screen.type(Key.F7);
+			Thread.sleep(3000);
 }
 }
