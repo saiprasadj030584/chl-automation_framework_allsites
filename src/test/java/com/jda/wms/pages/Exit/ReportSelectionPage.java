@@ -110,6 +110,20 @@ public class ReportSelectionPage {
 		else
 		return false;
 	}
+	public boolean isProcessConfirmedForIdentifyUrnReport() throws FindFailed, InterruptedException{
+		
+		if(screen.find("images/ReportSelection/IdentifyUrnReportConfirmed.png")!=null){
+			
+		Match mScreen=screen.find("images/ReportSelection/IdentifyUrnReportConfirmed.png");
+		screen.click(mScreen.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+		}
+		 
+		
+	else
+	return false;
+}
 	public boolean isProcessConfirmedForRedReport() throws FindFailed, InterruptedException{
 		
 		if(screen.find("images/ReportSelection/RedReportConfirmed.png")!=null){
