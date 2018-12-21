@@ -41,6 +41,12 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterIdentifyUrn();
     	JDAFooter.clickNextButton();	
     }
+    
+    @And("^Search for the M&S Identify URN Report$")
+    public void search_for_the_MnS_IDENTIFY_URN_Report() throws Throwable {
+    	ReportSelectionPage.enterIdentifyUrnReport();
+    	JDAFooter.clickNextButton();	
+    }
     @And("^Search for the M&S Red Report$")
     public void search_for_the_MnS_Red_Report() throws Throwable {
     	ReportSelectionPage.enterRedReport();

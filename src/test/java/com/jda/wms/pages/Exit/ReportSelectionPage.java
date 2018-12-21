@@ -28,6 +28,10 @@ public class ReportSelectionPage {
 		 screen.type("Identify Urn");
 		 Thread.sleep(1000);		
 	}
+	public void enterIdentifyUrnReport() throws FindFailed, InterruptedException {
+		 screen.type("M&S Identify Urn Report");
+		 Thread.sleep(1000);		
+	}
 	public void enterRedReport() throws FindFailed, InterruptedException {
 		 screen.type("M&S Red Report");
 		 Thread.sleep(1000);		
