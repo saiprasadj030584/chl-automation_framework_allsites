@@ -41,6 +41,7 @@ public class ReportSelectionPage {
 		 screen.type("M&S - Load Label");
 		 Thread.sleep(1000);		
 	}
+	
 	public boolean isRecordDissplayedAndSelectedForMissingUrn() throws FindFailed, InterruptedException {
 		
 			if(screen.find("images/ReportSelection/selectedIdentifyReport.png")!=null)
@@ -53,6 +54,18 @@ public class ReportSelectionPage {
 			else
 			return false;
 	}
+	public boolean isRecordDissplayedAndSelectedForUrnReport() throws FindFailed, InterruptedException {
+		
+		if(screen.find("images/ReportSelection/selectedIdentifyUrnReport.png")!=null)
+	{
+		Match mRecord=screen.find("images/ReportSelection/selectedIdentifyUrnReport.png");
+		screen.click(mRecord.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+	}
+		else
+		return false;
+}
 	public boolean isRecordDissplayedAndSelectedRedReport() throws FindFailed, InterruptedException {
 		
 		if(screen.find("images/ReportSelection/selectedRedReport.png")!=null)

@@ -57,6 +57,7 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterLoadLabel();
     	JDAFooter.clickNextButton();	
     }	
+    
     @And("^Verify that the record is displayed for Missing Urn$")
     public void verify_that_the_record_displayed() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForMissingUrn());
@@ -68,6 +69,10 @@ public class ReportSelectionStepDefs {
     @And("^Verify that the record is displayed for International Urn$")
     public void verify_that_the_record_displayed_for_international_urn() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForInt());
+    }
+    @And("^Verify that the record is displayed for Identify Urn Report$")
+    public void verify_that_the_record_displayed_for_identify_urn_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForUrnReport());
     }
    
     @Then("^Proceed next and enter the required value of \"([^\"]*)\"$")
@@ -89,6 +94,13 @@ public class ReportSelectionStepDefs {
     public void validate_the_confirmation_page() throws Throwable {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    }
+ 
+    @Then("^Validate the confirmation page for Identify Urn Report$")
+    public void validate_the_confirmation_page_for_identify_urn_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	Thread.sleep(10000);
     }
  
     @Then("^Validate the confirmation page for Red Report$")
@@ -135,7 +147,22 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S INT REPRINT report not found", ReportSelectionPage.isReportSelectionDoneIntUrn());
     	JDAFooter.clickDoneButton();	
     }
+    @And("^Search for the M&S - Non-Shipped greater than 4 weeks Report$")
+    public void search_for_the_MnS_non_shipped_greater_than_4_weeks_reports() throws Throwable {
+    	ReportSelectionPage.enterIdentifyUrnReport();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S -  Gains and Loss Report$")
+    public void search_for_the_MnS_gains_and_loss_reports() throws Throwable {
+    	ReportSelectionPage.enterIdentifyUrnReport();
+    	JDAFooter.clickNextButton();	
+    }
     
-  
+     
+    @And("^Search for the M&S - Allocation vs Receipts across last 3 weeks Report$")
+    public void search_for_the_MnS_allocation_vs_receipts_across_last_3_weeks_reports() throws Throwable {
+    	ReportSelectionPage.enterIdentifyUrnReport();
+    	JDAFooter.clickNextButton();	
+    }
 			
 }
