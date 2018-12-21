@@ -632,7 +632,7 @@ public void enterDate() {
 	
 }
 public void enterProhibition() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Stock Status Report");
+	 screen.type("M&S - Prohibition");
 	 Thread.sleep(1000);		
 }
 public boolean isRecordDissplayedAndSelectedForProhibition() throws FindFailed, InterruptedException {
