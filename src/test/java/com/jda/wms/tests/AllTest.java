@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC32_Happy_Path_Validate_Load_build_process" 
+			+ "@TC13_Validate_the_M_n_S_batch_id_and_BBE_report" 
 
 })
 public class AllTest {

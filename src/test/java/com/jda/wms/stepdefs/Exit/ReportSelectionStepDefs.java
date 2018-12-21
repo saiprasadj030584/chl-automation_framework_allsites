@@ -69,6 +69,23 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_identify_urn_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForUrnReport());
     }
+    @And("^Verify that the record is displayed for BatchId and  BBE Report$")
+    public void verify_that_the_record_displayed_for_BatchId_BBE_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforBatchIdReport());
+    }
+    
+    @And("^Verify that the record is displayed for Red Location Report$")
+    public void Verify_that_the_record_is_displayed_for_Red_Location_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforRedLocation());
+    }
+    @And("^Verify that the record is displayed for Black Stock Status Report$")
+    public void Verify_that_the_record_is_displayed_for_Black_Stock_Status_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforBlackStock());
+    }
+    @And("^Verify that the record is displayed for Trusted Report$")
+    public void verify_that_the_record_displayed_for_Trusted_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForTrustedReport());
+    }
    
     @Then("^Proceed next and enter the required value of \"([^\"]*)\"$")
     public void proceed_next_and_enter_the_required_value_of(String Sku) throws Throwable {
@@ -91,10 +108,32 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
     }
  
-    @Then("^Validate the confirmation page for Identify Urn Report$")
-    public void validate_the_confirmation_page_for_identify_urn_report() throws Throwable {
+    @Then("^Validate the confirmation page for Batch ID Report$")
+    public void validate_the_confirmation_page_for_Batch_ID_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforBatchID());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @Then("^Validate the confirmation page for RedLocation Report$")
+    public void Validate_the_confirmation_page_for_RedLocation_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforRedLocation());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @Then("^Validate the confirmation page for Black Stock Status Report$")
+    public void Validate_the_confirmation_page_for_Black_Stock_Status_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforBlackStock());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @Then("^Validate the confirmation page for Trusted Report$")
+    public void validate_the_confirmation_page_for_Trusted_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforTrustedReport());
+    	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
  
@@ -121,6 +160,31 @@ public class ReportSelectionStepDefs {
     public void validate_the_report_selection_page_for_completion() throws Throwable {
     	Thread.sleep(20000);
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for BatchId completion$")
+    public void validate_the_report_selection_page_for_BatchId_completion() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneBatchIdreport());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    @And("^Validate the report selection page for Trusted Report completion$")
+    public void validate_the_report_selection_page_for_Trusted() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionTrustedReport());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for Red Location completion$")
+    public void Validate_the_report_selection_page_for_Red_Location_completion() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionRedLocation());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for Black Stock Status completion$")
+    public void Validate_the_report_selection_page_for_Black_Stock_Status_completion() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionBlackStock());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Validate the report selection page for Red Report creation$")
@@ -159,5 +223,36 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterIdentifyUrnReport();
     	JDAFooter.clickNextButton();	
     }
-			
+    @And("^Search for the M&S - Stock Status Report$")
+    public void Search_for_the_MNS_Stock_Status_Report() throws Throwable {
+    	ReportSelectionPage.enterIdentifyUrnReport();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S - Trusted Report$")
+    public void Search_for_the_MNS_Trusted_report() throws Throwable {
+    	ReportSelectionPage.enterTrustedReport();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S - Batch ID & BBE Report$")
+    public void Search_for_the_MnS_Batch_ID_BBE_Report() throws Throwable {
+    	ReportSelectionPage.enterBatchID();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S - Outstanding Pallets to Load Report$")
+    public void Search_for_the_MnS_Outstanding_Pallets_to_Load_Report() throws Throwable {
+    	ReportSelectionPage.enterOutstanding();
+    	JDAFooter.clickNextButton();	
+    }
+    
+    @And("^Search for the M&S - Red Location Report$")
+    public void Search_for_the_MnS_Red_Location_Report() throws Throwable {
+    	ReportSelectionPage.enterRedLocation();
+    	JDAFooter.clickNextButton();	
+    }
+    
+    @And("^Search for the M&S - Black Stock Status Report$")
+    public void Search_for_the_MnS_Black_Stock_Status_Report() throws Throwable {
+    	ReportSelectionPage.enterBlackStock();
+    	JDAFooter.clickNextButton();	
+    }
 }
