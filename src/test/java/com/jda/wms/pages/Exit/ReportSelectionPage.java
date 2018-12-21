@@ -28,6 +28,10 @@ public class ReportSelectionPage {
 		 screen.type("Identify Urn");
 		 Thread.sleep(1000);		
 	}
+	public void enterIdentifyUrnReport() throws FindFailed, InterruptedException {
+		 screen.type("M&S Identify Urn Report");
+		 Thread.sleep(1000);		
+	}
 	public void enterRedReport() throws FindFailed, InterruptedException {
 		 screen.type("M&S Red Report");
 		 Thread.sleep(1000);		
@@ -45,6 +49,18 @@ public class ReportSelectionPage {
 			else
 			return false;
 	}
+	public boolean isRecordDissplayedAndSelectedForUrnReport() throws FindFailed, InterruptedException {
+		
+		if(screen.find("images/ReportSelection/selectedIdentifyUrnReport.png")!=null)
+	{
+		Match mRecord=screen.find("images/ReportSelection/selectedIdentifyUrnReport.png");
+		screen.click(mRecord.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+	}
+		else
+		return false;
+}
 	public boolean isRecordDissplayedAndSelectedRedReport() throws FindFailed, InterruptedException {
 		
 		if(screen.find("images/ReportSelection/selectedRedReport.png")!=null)
@@ -89,6 +105,20 @@ public class ReportSelectionPage {
 		else
 		return false;
 	}
+	public boolean isProcessConfirmedForIdentifyUrnReport() throws FindFailed, InterruptedException{
+		
+		if(screen.find("images/ReportSelection/IdentifyUrnReportConfirmed.png")!=null){
+			
+		Match mScreen=screen.find("images/ReportSelection/IdentifyUrnReportConfirmed.png");
+		screen.click(mScreen.getCenter().offset(70, 0));
+		Thread.sleep(1000);
+		return true;
+		}
+		 
+		
+	else
+	return false;
+}
 	public boolean isProcessConfirmedForRedReport() throws FindFailed, InterruptedException{
 		
 		if(screen.find("images/ReportSelection/RedReportConfirmed.png")!=null){
