@@ -15,7 +15,7 @@ Scenario: Validate the M&S - Identify URN Report
     Then Validate the report selection page for Identify URN completion
 
 
-@inProgres @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
+ @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
 Scenario: Validate the M&S - Non-Shipped greater than 4 weeks Report
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -24,9 +24,12 @@ Scenario: Validate the M&S - Non-Shipped greater than 4 weeks Report
     And Verify that the record is displayed for Identify Urn Report
     #Then Validate the confirmation page for Identify Urn Report
     Then Validate the report selection page for Identify URN completion
+    And Verify that the record is displayed M&S - Non-Shipped greater than 4 weeks Report
+    Then Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report
+    Then Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed
     
-        
-    @inProgres @Reports  @TC05_Validate_the_M_n_S_Gains_or_loss_report
+       
+    @completed @Reports  @TC05_Validate_the_M_n_S_Gains_or_loss_report
 Scenario: Validate the M&S - Gains and Loss Report 
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -35,8 +38,11 @@ Scenario: Validate the M&S - Gains and Loss Report
     And Verify that the record is displayed for Identify Urn Report
     #Then Validate the confirmation page for Identify Urn Report
     Then Validate the report selection page for Identify URN completion
+    And Verify that the record is displayed for M&S Gains Or Loss Report
+    Then Validate the confirmation page for Gains and Loss Report
+    Then Validate the report selection page for Gains and Loss Report completed
     
-    @inProgres @Reports  @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
+    @completed @Reports  @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
 Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -76,6 +82,42 @@ Scenario: Validate M&S - Stock Status Report
     #Then Validate the confirmation page for Identify Urn Report
     #Then Validate the report selection page for Identify URN completion
     #
+    And Verify that the record is displayed for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
+    
+   @completed @Reports  @TC08_Validate_the_M_n_S_stock_status_report
+Scenario: Validate M&S - Stock Status Report 
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Stock Status Report	
+    And Verify that the record is displayed for M&S - Stock Status Report
+    Then Validate the confirmation page for M&S - Stock Status Report
+    Then Validate the report selection page for M&S - Stock Status completed
+    
+   @completed @Reports  @TC09_Validate_the_M_n_S_weekly_receipts_and_despatches_report
+Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Weekly Receipts and Despatches by Customer Report
+    And Verify that the record is displayed for M&S - Weekly Receipts and Despatches by Customer Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Weekly Receipts and Despatches by Customer Report
+    Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
+    #
+    @completed @Reports  @TC11_Validate_the_M_n_S_prohibition_report
+    Scenario: Validate the M&S - Prohibition Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Prohibition Report
+    And Verify that the record is displayed for M&S - Prohibition Report
+    Then Validate the confirmation page for M&S - Prohibition Report
+    Then Validate the report selection page for M&S - Prohibition completed
+    
     @Reports  @TC12_Validate_the_M_n_S_trusted_report
     Scenario: Validate the M&S - Trusted Report
     Given Login to JDA Dispatcher web screen
