@@ -15,15 +15,20 @@ Scenario: Validate the M&S - Identify URN Report
     Then Validate the report selection page for Identify URN completion
 
 
- @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
-Scenario: Validate the M&S - Non-Shipped greater than 4 weeks Report
+ @completed @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
+Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for the M&S - Non-Shipped greater than 4 weeks Report
     And Verify that the record is displayed M&S - Non-Shipped greater than 4 weeks Report
+    Then Enter the status "<status>" as parameter
     Then Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report
     Then Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed
+    
+    Examples:
+    |status|
+    |GREEN|
     
         
     @completed @Reports  @TC05_Validate_the_M_n_S_Gains_or_loss_report
@@ -78,7 +83,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for M&S - Prohibition Report
     Then Validate the report selection page for M&S - Prohibition completed
     
-    @Reports  @TC12_Validate_the_M_n_S_trusted_report
+    @completed @Reports  @TC12_Validate_the_M_n_S_trusted_report
     Scenario: Validate the M&S - Trusted Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -88,7 +93,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for Trusted Report
     Then Validate the report selection page for Trusted Report completion
     
- 		@inProgres @Reports @TC13_Validate_the_M_n_S_batch_id_and_BBE_report
+ 		@completed @Reports @TC13_Validate_the_M_n_S_batch_id_and_BBE_report
     Scenario: Validate the M&S - Batch ID & BBE Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click

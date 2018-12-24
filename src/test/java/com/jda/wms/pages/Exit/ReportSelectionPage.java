@@ -38,11 +38,11 @@ public class ReportSelectionPage {
 		 Thread.sleep(1000);		
 	}
 	public void enterBatchID() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Batch ID & BBE Report");
+		 screen.type("M&S - Batch ID & BBE Report");
 		 Thread.sleep(1000);		
 	}
 	public void enterOutstanding() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Outstanding Pallets to Load Report");
+		 screen.type("M&S - Outstanding Pallets to Load Report");
 		 Thread.sleep(1000);		
 	}
 	public void enterRedLocation() throws FindFailed, InterruptedException {
@@ -472,6 +472,12 @@ public boolean isRecordDissplayedAndSelectedForNonShipped() throws FindFailed, I
 	else
 	return false;
 }
+public void enterStatus(String status) throws FindFailed, InterruptedException{
+	screen.type(status);
+	Thread.sleep(1000);
+}
+
+
 public boolean isProcessConfirmedForNonShipped() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/ConfirmedForNonShipped.png")!=null){
@@ -627,7 +633,7 @@ return false;
 }
 
 public void enterDate() {
-	screen.type("0");
+	screen.type("-30");
 	screen.type(Key.ENTER);
 	
 }

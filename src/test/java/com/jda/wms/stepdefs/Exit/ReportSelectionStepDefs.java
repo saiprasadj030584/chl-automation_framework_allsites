@@ -214,11 +214,6 @@ public class ReportSelectionStepDefs {
   
      
     
-    @And("^Search for the M&S - Stock Status Report$")
-    public void Search_for_the_MNS_Stock_Status_Report() throws Throwable {
-    	ReportSelectionPage.enterIdentifyUrnReport();
-    	JDAFooter.clickNextButton();	
-    }
     @And("^Search for the M&S - Trusted Report$")
     public void Search_for_the_MNS_Trusted_report() throws Throwable {
     	ReportSelectionPage.enterTrustedReport();
@@ -280,16 +275,22 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForNonShipped());
     	JDAFooter.clickNextButton();
     }
+    @Then("Enter the status \"([^\"]*)\" as parameter$")
+    public void enter_the_status_as_parameter(String status) throws Throwable{
+    	ReportSelectionPage.enterStatus(status);
+    	JDAFooter.clickNextButton();
+    	
+    }
     @Then("^Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report$")
     public void validate_the_confirmation_page_for_Non_shipped_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForNonShipped());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
     @And("^Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed$")
     public void validate_the_report_selection_page_for_non_shipped() throws Throwable {
-    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneNonShipped());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Search for the M&S - Allocation vs Receipts across last 3 weeks Report$")
@@ -307,7 +308,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForAllocationvsReceipts());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(10000);
+    	Thread.sleep(20000);
     }
     @And("^Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed$")
     public void validate_the_report_selection_page_for_allocation_vs_receipts_across_last_3_weeks_() throws Throwable {
@@ -329,7 +330,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForStockStatus());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(10000);
+    	Thread.sleep(20000);
     }
     @And("^Validate the report selection page for M&S - Stock Status completed$")
     public void validate_the_report_selection_page_for_stock_status_completed() throws Throwable {
