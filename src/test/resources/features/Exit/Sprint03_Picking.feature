@@ -23,7 +23,7 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-
+      
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"

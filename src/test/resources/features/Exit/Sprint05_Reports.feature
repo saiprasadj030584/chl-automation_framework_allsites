@@ -25,7 +25,7 @@ Scenario: Validate the M&S - Non-Shipped greater than 4 weeks Report
     Then Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report
     Then Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed
     
-        
+       
     @completed @Reports  @TC05_Validate_the_M_n_S_Gains_or_loss_report
 Scenario: Validate the M&S - Gains and Loss Report 
  Given Login to JDA Dispatcher web screen

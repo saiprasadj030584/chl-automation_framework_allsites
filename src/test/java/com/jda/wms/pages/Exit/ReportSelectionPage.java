@@ -13,7 +13,7 @@ public class ReportSelectionPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private JDAFooter JDAFooter;
-	
+
 	@Inject
 	public ReportSelectionPage(JDAFooter JDAFooter) {
 		this.JDAFooter=JDAFooter;
