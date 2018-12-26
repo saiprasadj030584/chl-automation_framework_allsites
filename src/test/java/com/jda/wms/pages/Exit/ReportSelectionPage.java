@@ -38,21 +38,14 @@ public class ReportSelectionPage {
 		 Thread.sleep(1000);		
 	}
 	public void enterBatchID() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Batch ID & BBE Report");
+		 screen.type("M&S - Batch ID & BBE Report");
 		 Thread.sleep(1000);		
 	}
 	public void enterOutstanding() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Outstanding Pallets to Load Report");
+		 screen.type("M&S - Outstanding Pallets to Load Report");
 		 Thread.sleep(1000);		
 	}
-	public void enterRedLocation() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Red Location Report");
-		 Thread.sleep(1000);		
-	}
-	public void enterBlackStock() throws FindFailed, InterruptedException {
-		 screen.type(" M&S - Black Stock Status Report");
-		 Thread.sleep(1000);		
-	}
+	
 	public void enterRedReport() throws FindFailed, InterruptedException {
 		 screen.type("M&S Red Report");
 		 Thread.sleep(1000);		
@@ -472,6 +465,12 @@ public boolean isRecordDissplayedAndSelectedForNonShipped() throws FindFailed, I
 	else
 	return false;
 }
+public void enterStatus(String status) throws FindFailed, InterruptedException{
+	screen.type(status);
+	Thread.sleep(1000);
+}
+
+
 public boolean isProcessConfirmedForNonShipped() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/ConfirmedForNonShipped.png")!=null){
@@ -627,7 +626,7 @@ return false;
 }
 
 public void enterDate() {
-	screen.type("0");
+	screen.type("-30");
 	screen.type(Key.ENTER);
 	
 }
@@ -666,6 +665,49 @@ public boolean isReportSelectionDoneProhibition() throws FindFailed, Interrupted
 	if(screen.find("images/ReportSelection/CompletedProhibition.png")!=null)
 {
 	Match mFinishScreen=screen.find("images/ReportSelection/CompletedProhibition.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;}
+
+
+public void enterSearch(String search) throws FindFailed, InterruptedException {
+	 screen.type(search);
+	 Thread.sleep(1000);		
+}
+public boolean isRecordDissplayedAndSelectedForOutstandingPallets() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForOutstandingPallets.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForOutstandingPallets.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedForOutstandingPallets() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForOutstandingPallets.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForOutstandingPallets.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isReportSelectionDoneOutstandingPallets() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedOutstandingPallets.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedOutstandingPallets.png");
 	screen.click(mFinishScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;
