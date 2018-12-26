@@ -106,9 +106,9 @@ public boolean isRecordDissplayedAndSelectedforoutstanding() throws FindFailed, 
 }
 public boolean isRecordDissplayedAndSelectedforRedLocation() throws FindFailed, InterruptedException {
 	
-	if(screen.find("images/ReportSelection/selectedBatchIdReport.png")!=null)
+	if(screen.find("images/ReportSelection/selectedRedlocation.png")!=null)
 {
-	Match mRecord=screen.find("images/ReportSelection/selectedBatchIdReport.png");
+	Match mRecord=screen.find("images/ReportSelection/selectedRedlocation.png");
 	screen.click(mRecord.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;

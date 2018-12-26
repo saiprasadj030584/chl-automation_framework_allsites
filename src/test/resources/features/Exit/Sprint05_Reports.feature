@@ -73,7 +73,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Enter the date for commencing week as parameter
     Then Validate the confirmation page for M&S - Weekly Receipts and Despatches by Customer Report
     Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
-    #
+    
     @completed @Reports  @TC11_Validate_the_M_n_S_prohibition_report
     Scenario: Validate the M&S - Prohibition Report
     Given Login to JDA Dispatcher web screen

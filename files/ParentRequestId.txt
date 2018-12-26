@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-13270
-=======
-13259
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework
+13280
