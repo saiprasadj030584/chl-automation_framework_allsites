@@ -92,7 +92,7 @@ Scenario: Validate M&S - Stock Status Report
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S - Stock Status Report	
+    And Search for the M&S - Stock Status Reports	
     And Verify that the record is displayed for M&S - Stock Status Report
     Then Validate the confirmation page for M&S - Stock Status Report
     Then Validate the report selection page for M&S - Stock Status completed
@@ -161,7 +161,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     
     @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
     Scenario: Validate the M&S - Black Stock Status Report
-     Given Login to JDA Dispatcher web screen
+    Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for the M&S - Black Stock Status Report
@@ -169,3 +169,9 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for Black Stock Status Report
     Then Validate the report selection page for Black Stock Status completion
     
+ 		@Reports @TC19_Validate_the_M_N_S_Operative_Performance_Report
+ 		Scenario: Validate_the_M&S_Operative_Performance_Report
+ 		Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Operative Performance Trusted Report"

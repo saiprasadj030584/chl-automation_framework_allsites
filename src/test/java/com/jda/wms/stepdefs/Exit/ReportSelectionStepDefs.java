@@ -264,8 +264,8 @@ public class ReportSelectionStepDefs {
     	ReportSelectionPage.enterAllocationvsReceipts();
     	JDAFooter.clickNextButton();	
     }
-    @And("^Search for the M&S - Stock Status Report$")
-    public void Search_for_the_MNS_Stock_Status_Report() throws Throwable {
+    @And("^Search for the M&S - Stock Status Reports$")
+    public void Search_for_the_MNS_Stock_Status_Report1() throws Throwable {
     	ReportSelectionPage.enterIdentifyUrnReport();
     	JDAFooter.clickNextButton();	
     }
@@ -314,7 +314,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();	
     }
     @And("^Search for the M&S - Stock Status Report$")
-    public void search_for_the_MnS_stock_status_reports() throws Throwable {
+    public void search_for_the_MnS_stock_status_reports2() throws Throwable {
     	ReportSelectionPage.enterStockStatus();
     	JDAFooter.clickNextButton();	
     }
@@ -386,7 +386,10 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
     	JDAFooter.clickDoneButton();	
     }
-   		
-   
     
+    @And("^Search for \"([^\"]*)\"$")
+    public void Search_for(String search) throws Throwable {
+    	ReportSelectionPage.enterSearch(search);
+    	JDAFooter.clickNextButton();	
+    }
 }

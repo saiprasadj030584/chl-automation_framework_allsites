@@ -674,6 +674,11 @@ else
 return false;
 }
 
+public void enterSearch(String search) throws FindFailed, InterruptedException {
+	 screen.type(search);
+	 Thread.sleep(1000);		
+}
+
 	}
 	
 	
