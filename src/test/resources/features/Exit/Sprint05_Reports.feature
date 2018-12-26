@@ -84,7 +84,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for M&S - Prohibition Report
     Then Validate the report selection page for M&S - Prohibition completed
     
-    @Reports  @TC12_Validate_the_M_n_S_trusted_report
+    @completed @Reports  @TC12_Validate_the_M_n_S_trusted_report
     Scenario: Validate the M&S - Trusted Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -104,7 +104,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for Batch ID Report
     Then Validate the report selection page for BatchId completion
     
-    @inProgres @Reports @TC14_Validate_the_M_n_S_Outstanding_Pallets_to_load_report
+    @completed @Reports @TC14_Validate_the_M_n_S_Outstanding_Pallets_to_load_report
     Scenario: Validate the M&S - Outstanding Pallets to Load Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -115,7 +115,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for M&S - Outstanding Pallets to Load Report
     Then Validate the report selection page for M&S - Outstanding Pallets to Load Report completed
     
-    @TC15_Validate_the_M_n_S_Red_Location_Report
+    @completed @TC15_Validate_the_M_n_S_Red_Location_Report
     Scenario: Validate the M&S - Red Location Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -125,7 +125,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for RedLocation Report
     Then Validate the report selection page for Red Location completion
     
-    @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
+    @completed @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
     Scenario: Validate the M&S - Black Stock Status Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -141,3 +141,19 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S - Operative Performance Trusted Report"
+    
+    
+     @completed @Reports  @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
+Scenario: Validate the M&S - Customs Valuation for Consignment Report
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
+    
+    #M&S - Pallet Built Report
+    #M&S - Weekly Summary Report
+    

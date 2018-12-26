@@ -398,4 +398,22 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();	
     }
    
+    @And("^Verify that the record is displayed for M&S - Customs Valuation for Consignment Report$")
+    public void verify_that_the_record_displayed_for_customs_valuation_for_consignment_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForCustomValuation());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for M&S - Customs Valuation for Consignment Report$")
+    public void validate_the_confirmation_page_for_customs_valuation_for_consignment_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForCustomValuation());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    }
+    @And("^Validate the report selection page for M&S - Customs Valuation for Consignment Report completed$")
+    public void validate_the_report_selection_page_for_customs_valuation_for_consignment_report_completed() throws Throwable {
+    	Assert.assertTrue("M&S - Outstanding Pallets to Load Report not found", ReportSelectionPage.isReportSelectionDoneCustomValuation());
+    	JDAFooter.clickDoneButton();	
+    }
+   
 }

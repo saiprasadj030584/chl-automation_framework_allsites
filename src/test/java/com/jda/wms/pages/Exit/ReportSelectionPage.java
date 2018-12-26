@@ -677,6 +677,45 @@ public void enterSearch(String search) throws FindFailed, InterruptedException {
 	 screen.type(search);
 	 Thread.sleep(1000);		
 }
+public boolean isRecordDissplayedAndSelectedForCustomValuation() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForCustomValuation.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForCustomValuation.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedForCustomValuation() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForCustomValuation.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForCustomValuation.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isReportSelectionDoneCustomValuation() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedCustomValuation.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedCustomValuation.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+
 public boolean isRecordDissplayedAndSelectedForOutstandingPallets() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForOutstandingPallets.png")!=null)
