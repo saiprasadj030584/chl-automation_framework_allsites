@@ -15,7 +15,8 @@ Scenario: Validate the M&S - Identify URN Report
     Then Validate the report selection page for Identify URN completion
 
 
- @completed @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
+
+ @Reports  @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
 Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
  Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -29,8 +30,7 @@ Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
     Examples:
     |status|
     |GREEN|
-    
-        
+   
     @completed @Reports  @TC05_Validate_the_M_n_S_Gains_or_loss_report
 Scenario: Validate the M&S - Gains and Loss Report 
  Given Login to JDA Dispatcher web screen
@@ -83,7 +83,39 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for M&S - Prohibition Report
     Then Validate the report selection page for M&S - Prohibition completed
     
-    @completed @Reports  @TC12_Validate_the_M_n_S_trusted_report
+       
+   @completed @Reports  @TC08_Validate_the_M_n_S_stock_status_report
+Scenario: Validate M&S - Stock Status Report 
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Stock Status Reports	
+    And Verify that the record is displayed for M&S - Stock Status Report
+    Then Validate the confirmation page for M&S - Stock Status Report
+    Then Validate the report selection page for M&S - Stock Status completed
+    
+   @completed @Reports  @TC09_Validate_the_M_n_S_weekly_receipts_and_despatches_report
+Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Weekly Receipts and Despatches by Customer Report
+    And Verify that the record is displayed for M&S - Weekly Receipts and Despatches by Customer Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Weekly Receipts and Despatches by Customer Report
+    Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
+    #
+    @completed @Reports  @TC11_Validate_the_M_n_S_prohibition_report
+    Scenario: Validate the M&S - Prohibition Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for the M&S - Prohibition Report
+    And Verify that the record is displayed for M&S - Prohibition Report
+    Then Validate the confirmation page for M&S - Prohibition Report
+    Then Validate the report selection page for M&S - Prohibition completed
+    
+    @Reports  @TC12_Validate_the_M_n_S_trusted_report
     Scenario: Validate the M&S - Trusted Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -126,7 +158,7 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     
     @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
     Scenario: Validate the M&S - Black Stock Status Report
-     Given Login to JDA Dispatcher web screen
+    Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for the M&S - Black Stock Status Report
@@ -134,3 +166,9 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Then Validate the confirmation page for Black Stock Status Report
     Then Validate the report selection page for Black Stock Status completion
     
+ 		@Reports @TC19_Validate_the_M_N_S_Operative_Performance_Report
+ 		Scenario: Validate_the_M&S_Operative_Performance_Report
+ 		Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Operative Performance Trusted Report"

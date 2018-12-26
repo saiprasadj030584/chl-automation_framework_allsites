@@ -167,6 +167,7 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
     	JDAFooter.clickDoneButton();	
     }
+    
     @And("^Validate the report selection page for BatchId completion$")
     public void validate_the_report_selection_page_for_BatchId_completion() throws Throwable {
     	Thread.sleep(20000);
@@ -212,35 +213,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();	
     }
   
-     
-    
-    @And("^Search for the M&S - Trusted Report$")
-    public void Search_for_the_MNS_Trusted_report() throws Throwable {
-    	ReportSelectionPage.enterTrustedReport();
-    	JDAFooter.clickNextButton();	
-    }
-    @And("^Search for the M&S - Batch ID & BBE Report$")
-    public void Search_for_the_MnS_Batch_ID_BBE_Report() throws Throwable {
-    	ReportSelectionPage.enterBatchID();
-    	JDAFooter.clickNextButton();	
-    }
-    @And("^Search for the M&S - Outstanding Pallets to Load Report$")
-    public void Search_for_the_MnS_Outstanding_Pallets_to_Load_Report() throws Throwable {
-    	ReportSelectionPage.enterOutstanding();
-    	JDAFooter.clickNextButton();	
-    }
-    
-    @And("^Search for the M&S - Red Location Report$")
-    public void Search_for_the_MnS_Red_Location_Report() throws Throwable {
-    	ReportSelectionPage.enterRedLocation();
-    	JDAFooter.clickNextButton();	
-    }
-    
-    @And("^Search for the M&S - Black Stock Status Report$")
-    public void Search_for_the_MnS_Black_Stock_Status_Report() throws Throwable {
-    	ReportSelectionPage.enterBlackStock();
-    	JDAFooter.clickNextButton();	
-    }
+
     @And("^Search for the M&S - Non-Shipped greater than 4 weeks Report$")
     public void search_for_the_MnS_non_shipped_greater_than_4_weeks_reports() throws Throwable {
     	ReportSelectionPage.enterNonShippedReport();
@@ -275,24 +248,54 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForNonShipped());
     	JDAFooter.clickNextButton();
     }
+    @Then("^Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report$")
+    public void validate_the_confirmation_page_for_Non_shipped_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed$")
+    public void validate_the_report_selection_page_for_non_shipped() throws Throwable {
+    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    
+    @And("^Search for the M&S - Trusted Report$")
+    public void Search_for_the_MNS_Trusted_report() throws Throwable {
+    	ReportSelectionPage.enterTrustedReport();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S - Batch ID & BBE Report$")
+    public void Search_for_the_MnS_Batch_ID_BBE_Report() throws Throwable {
+    	ReportSelectionPage.enterBatchID();
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Search for the M&S - Outstanding Pallets to Load Report$")
+    public void Search_for_the_MnS_Outstanding_Pallets_to_Load_Report() throws Throwable {
+    	ReportSelectionPage.enterOutstanding();
+    	JDAFooter.clickNextButton();	
+    }
+    
+    @And("^Search for the M&S - Red Location Report$")
+    public void Search_for_the_MnS_Red_Location_Report() throws Throwable {
+    	ReportSelectionPage.enterRedLocation();
+    	JDAFooter.clickNextButton();	
+    }
+    
+    @And("^Search for the M&S - Black Stock Status Report$")
+    public void Search_for_the_MnS_Black_Stock_Status_Report() throws Throwable {
+    	ReportSelectionPage.enterBlackStock();
+    	JDAFooter.clickNextButton();	
+    }
     @Then("Enter the status \"([^\"]*)\" as parameter$")
     public void enter_the_status_as_parameter(String status) throws Throwable{
     	ReportSelectionPage.enterStatus(status);
     	JDAFooter.clickNextButton();
     	
     }
-    @Then("^Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report$")
-    public void validate_the_confirmation_page_for_Non_shipped_report() throws Throwable {
-    	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForNonShipped());
-    	JDAFooter.clickDoneButton();
-    	Thread.sleep(10000);
-    }
-    @And("^Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed$")
-    public void validate_the_report_selection_page_for_non_shipped() throws Throwable {
-    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneNonShipped());
-    	JDAFooter.clickDoneButton();	
-    }
+
     @And("^Search for the M&S - Allocation vs Receipts across last 3 weeks Report$")
     public void search_for_the_MnS_allocation_vs_receipts_across_last_3_weeks_reports() throws Throwable {
     	ReportSelectionPage.enterAllocationvsReceipts();
@@ -315,11 +318,14 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneAllocationvsReceipts());
     	JDAFooter.clickDoneButton();	
     }
+   
+  
     @And("^Search for the M&S - Stock Status Report$")
     public void search_for_the_MnS_stock_status_reports() throws Throwable {
     	ReportSelectionPage.enterStockStatus();
     	JDAFooter.clickNextButton();	
     }
+    
     @And("^Verify that the record is displayed for M&S - Stock Status Report$")
     public void verify_that_the_record_displayed_for_stock_status_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForStockStatus());
@@ -330,7 +336,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForStockStatus());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(20000);
+    	Thread.sleep(10000);
     }
     @And("^Validate the report selection page for M&S - Stock Status completed$")
     public void validate_the_report_selection_page_for_stock_status_completed() throws Throwable {
@@ -388,6 +394,10 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
     	JDAFooter.clickDoneButton();	
     }
-   		
     
+    @And("^Search for \"([^\"]*)\"$")
+    public void Search_for(String search) throws Throwable {
+    	ReportSelectionPage.enterSearch(search);
+    	JDAFooter.clickNextButton();	
+    }
 }

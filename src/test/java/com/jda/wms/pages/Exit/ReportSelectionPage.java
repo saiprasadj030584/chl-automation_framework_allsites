@@ -13,7 +13,7 @@ public class ReportSelectionPage {
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	private JDAFooter JDAFooter;
-	
+
 	@Inject
 	public ReportSelectionPage(JDAFooter JDAFooter) {
 		this.JDAFooter=JDAFooter;
@@ -677,7 +677,12 @@ public boolean isReportSelectionDoneProhibition() throws FindFailed, Interrupted
 	return true;
 }			
 else
-return false;
+return false;}
+
+
+public void enterSearch(String search) throws FindFailed, InterruptedException {
+	 screen.type(search);
+	 Thread.sleep(1000);		
 }
 
 	}
