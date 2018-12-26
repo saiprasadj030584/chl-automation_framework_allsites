@@ -122,7 +122,9 @@ public class ReportSelectionStepDefs {
     }
     @Then("^Validate the confirmation page for RedLocation Report$")
     public void Validate_the_confirmation_page_for_RedLocation_Report() throws Throwable {
-    	JDAFooter.clickNextButton();	
+    	JDAFooter.clickNextButton();
+    	Thread.sleep(10000);
+    	JDAFooter.clickNextButton();
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforRedLocation());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
