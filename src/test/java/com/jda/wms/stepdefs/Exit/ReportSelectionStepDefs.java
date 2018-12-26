@@ -130,6 +130,8 @@ public class ReportSelectionStepDefs {
     @Then("^Validate the confirmation page for Black Stock Status Report$")
     public void Validate_the_confirmation_page_for_Black_Stock_Status_Report() throws Throwable {
     	JDAFooter.clickNextButton();	
+    	Thread.sleep(10000);
+    	JDAFooter.clickNextButton();
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforBlackStock());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
