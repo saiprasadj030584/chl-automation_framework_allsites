@@ -33,18 +33,7 @@ public class ReportSelectionPage {
 		 screen.type("M&S Identify Urn Report");
 		 Thread.sleep(1000);		
 	}
-	public void enterTrustedReport() throws FindFailed, InterruptedException {
-		 screen.type("M&S - Trusted Report");
-		 Thread.sleep(1000);		
-	}
-	public void enterBatchID() throws FindFailed, InterruptedException {
-		 screen.type("M&S - Batch ID & BBE Report");
-		 Thread.sleep(1000);		
-	}
-	public void enterOutstanding() throws FindFailed, InterruptedException {
-		 screen.type("M&S - Outstanding Pallets to Load Report");
-		 Thread.sleep(1000);		
-	}
+	
 	
 	public void enterRedReport() throws FindFailed, InterruptedException {
 		 screen.type("M&S Red Report");
@@ -431,10 +420,7 @@ public boolean isProcessConfirmedForGainOrLossReport() throws FindFailed, Interr
 else
 return false;
 }
-public void enterGainOrLoss() throws FindFailed, InterruptedException {
-	 screen.type("M&S -  Gains and Loss");
-	 Thread.sleep(1000);		
-}
+
 
 public boolean isReportSelectionCompletedGainOrLoss() throws FindFailed, InterruptedException{
 	
@@ -449,10 +435,7 @@ else
 return false;
 }
 
-public void enterNonShippedReport() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Non Shipped greater than 4weeks Report");
-	 Thread.sleep(1000);		
-}
+
 public boolean isRecordDissplayedAndSelectedForNonShipped() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForNonShipped.png")!=null)
@@ -498,10 +481,7 @@ else
 return false;
 }
 
-public void enterAllocationvsReceipts() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Allocation vs Receipts across last 3 weeks Report");
-	 Thread.sleep(1000);		
-}
+
 public boolean isRecordDissplayedAndSelectedForAllocationvsReceipts() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForAllocationvsReceipts.png")!=null)
@@ -540,10 +520,7 @@ public boolean isReportSelectionDoneAllocationvsReceipts() throws FindFailed, In
 else
 return false;
 }
-public void enterStockStatus() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Stock Status Report");
-	 Thread.sleep(1000);		
-}
+
 public boolean isRecordDissplayedAndSelectedForStockStatus() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForStockStatus.png")!=null)
@@ -582,10 +559,7 @@ public boolean isReportSelectionDoneStockStatus() throws FindFailed, Interrupted
 else
 return false;
 }
-public void enterWeeklyReceiptsDespatches() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Weekly Receipts and Despatches by Customer");
-	 Thread.sleep(1000);		
-}
+
 public boolean isRecordDissplayedAndSelectedForWeeklyReceiptsDespatches() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForWeeklyReceiptsDespatches.png")!=null)
@@ -630,10 +604,12 @@ public void enterDate() {
 	screen.type(Key.ENTER);
 	
 }
-public void enterProhibition() throws FindFailed, InterruptedException {
-	 screen.type("M&S - Prohibition");
-	 Thread.sleep(1000);		
+public void enterPresentDate() {
+	screen.type("0");
+	screen.type(Key.ENTER);
+	
 }
+
 public boolean isRecordDissplayedAndSelectedForProhibition() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/SelectedForProhibition.png")!=null)
@@ -755,8 +731,125 @@ else
 return false;
 }
 
+
+
+public boolean isRecordDissplayedAndSelectedForWeeklySummary() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForWeeklySummary.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForWeeklySummary.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedForWeeklySummary() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForWeeklySummary.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForWeeklySummary.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
 	}
+	 
 	
+else
+return false;
+}
+public boolean isReportSelectionDoneWeeklySummary() throws FindFailed, InterruptedException{
 	
+	if(screen.find("images/ReportSelection/CompletedWeeklySummary.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedWeeklySummary.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+
+public boolean isRecordDissplayedAndSelectedForPalletBuilt() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForPalletBuilt.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForPalletBuilt.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedForPalletBuilt() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForPalletBuilt.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForPalletBuilt.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isReportSelectionDonePalletBuilt() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedPalletBuilt.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedPalletBuilt.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+
+public boolean isRecordDissplayedAndSelectedForShortInvoice() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForShortInvoice.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForShortInvoice.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedForShortInvoice() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForShortInvoice.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForShortInvoice.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isReportSelectionDoneShortInvoice() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedShortInvoice.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedShortInvoice.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+
+	}
 
 
