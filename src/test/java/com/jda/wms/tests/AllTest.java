@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC15_Validate_the_M_n_S_Red_Location_Report" 
+			+ "@TC24_Validate_the_MNS_Unpicked_not_relocated_Report" 
 
 })
 public class AllTest {

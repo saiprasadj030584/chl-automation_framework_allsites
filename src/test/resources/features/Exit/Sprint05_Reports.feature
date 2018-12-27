@@ -202,3 +202,37 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     #M&S - Pallet Built Report
     #M&S - Weekly Summary Report
     
+    @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
+    Scenario Outline: Validate the M&S - URNs on Pallet Report
+    Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - 'URNs on Pallet Report"
+    And Verify that the record is displayed for M&S - URNs on Pallet Report
+    And Enter PalletId
+    Then Validate the confirmation page for M&S - URNs on Pallet Report
+    Then Validate the report selection page for M&S - URNs on Pallet Report
+    
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+      
+    @completed @Reports  @TC39_Validate_container_report
+Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and Customs Valuation for Consignment Report
+ Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Customs"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed 
+    
+    
