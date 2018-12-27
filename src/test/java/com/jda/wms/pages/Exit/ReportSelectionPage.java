@@ -117,6 +117,18 @@ public boolean isRecordDissplayedAndSelectedforBlackStock() throws FindFailed, I
 	else
 	return false;
 }
+public boolean isRecordDissplayedAndSelectedforURN() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/selectedURNReport.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/selectedURNReport.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
 public boolean isRecordDissplayedAndSelectedForTrustedReport() throws FindFailed, InterruptedException {
 		
 		if(screen.find("images/ReportSelection/selectedTrustedReport.png")!=null)
@@ -206,6 +218,20 @@ public boolean isProcessConfirmedforBlackStock() throws FindFailed, InterruptedE
 	if(screen.find("images/ReportSelection/BlackStockconfirmed.png")!=null){
 		
 	Match mScreen=screen.find("images/ReportSelection/BlackStockconfirmed.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isProcessConfirmedforURN() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/URNconfirmed.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/URNconfirmed.png");
 	screen.click(mScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;
@@ -325,6 +351,18 @@ public boolean isReportSelectionRedLocation() throws FindFailed, InterruptedExce
 	}			
 	else
 	return false;
+}
+public boolean isReportSelectionURNReport() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/URNReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/URNReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
 }
 public boolean isReportSelectionBlackStock() throws FindFailed, InterruptedException{
 	
@@ -665,6 +703,18 @@ public boolean isRecordDissplayedAndSelectedForCustomValuation() throws FindFail
 	else
 	return false;
 }
+public boolean isRecordDissplayedAndSelectedForCustomInspection() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForCustomInspection.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForCustomInspection.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
 public boolean isProcessConfirmedForCustomValuation() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/ConfirmedForCustomValuation.png")!=null){
@@ -679,11 +729,38 @@ public boolean isProcessConfirmedForCustomValuation() throws FindFailed, Interru
 else
 return false;
 }
+
+public boolean isProcessConfirmedForCustomInspection() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForCustominspection.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForCustominspection.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
 public boolean isReportSelectionDoneCustomValuation() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/CompletedCustomValuation.png")!=null)
 {
 	Match mFinishScreen=screen.find("images/ReportSelection/CompletedCustomValuation.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isReportSelectionDoneCustomInspection() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedCustomInspection.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedCustomInspection.png");
 	screen.click(mFinishScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;
@@ -723,6 +800,199 @@ public boolean isReportSelectionDoneOutstandingPallets() throws FindFailed, Inte
 	if(screen.find("images/ReportSelection/CompletedOutstandingPallets.png")!=null)
 {
 	Match mFinishScreen=screen.find("images/ReportSelection/CompletedOutstandingPallets.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isRecordDissplayedAndSelectedforOperativePerformance() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForOperativePerformance.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForOperativePerformance.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public void enterStartDate() throws FindFailed, InterruptedException {
+	screen.type("0"+Key.ENTER);
+	 Thread.sleep(1000);	
+}
+public void enterEndDate() throws FindFailed, InterruptedException {
+	screen.type(Key.TAB);
+	screen.type("0"+Key.ENTER);
+	 Thread.sleep(1000);	
+}
+public boolean isProcessConfirmedforOperativePerformance() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForOperativePerformance.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForOperativePerformance.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionOperativePerformance() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/OperativePerformanceReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/OperativePerformanceReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isRecordDissplayedAndSelectedforPickFlow() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/PickFlowReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/PickFlowReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public void enterCustomerId(String Id) throws FindFailed, InterruptedException {
+	 screen.type(Id);
+	 Thread.sleep(1000);		
+}
+public boolean isProcessConfirmedforPickFlow() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForPickFlow.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForPickFlow.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionPickFlow() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/PickFlowReport1.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/PickFlowReport1.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isRecordDissplayedAndSelectedforDamaged() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/DamagedReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/DamagedReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isProcessConfirmedforDamaged() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForDamaged.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForDamaged.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionDamaged() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ReportDamaged.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ReportDamaged.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isRecordDissplayedAndSelectedforPalletNotConsigned() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/PalletNotConsignedReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/PalletNotConsignedReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isProcessConfirmedforPalletNotConsigned() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForPalletNotConsigned.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForPalletNotConsigned.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionforPalletNotConsigned() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ReportPalletNotConsigned.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ReportPalletNotConsigned.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isRecordDissplayedAndSelected() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ReportUnpicked.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ReportUnpicked.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isProcessConfirmedforUnpicked() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForUnpicked.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForUnpicked.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionforUnpicked() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ReportForUnpicked.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ReportForUnpicked.png");
 	screen.click(mFinishScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;
