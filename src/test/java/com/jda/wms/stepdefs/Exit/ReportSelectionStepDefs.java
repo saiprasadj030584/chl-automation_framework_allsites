@@ -419,5 +419,109 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Outstanding Pallets to Load Report not found", ReportSelectionPage.isReportSelectionDoneCustomValuation());
     	JDAFooter.clickDoneButton();	
     }
-   
+    @And("^Verify that the record is displayed for Operative Performance Trusted Report$")
+    public void Verify_that_the_record_is_displayed_for_Operative_Performance_Trusted_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforOperativePerformance());
+    	JDAFooter.clickNextButton();
+    }
+    @And("^Enter start and end date$")
+    public void Enter_start_end_date() throws Throwable {
+    	ReportSelectionPage.enterStartDate();
+    	ReportSelectionPage.enterEndDate();
+    	JDAFooter.clickNextButton();	
+    }
+    @Then("^Validate the confirmation page for Operative Performance Trusted Report$")
+    public void validate_the_confirmation_page_for_Operative_Performance() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforOperativePerformance());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Operative Performance Trusted Report$")
+    public void Validate_the_report_selection_page_for_Operative_Performance() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionOperativePerformance());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Green Stock Available to Pick Flow$")
+    public void Verify_that_the_record_is_displayed_for_Green_Stock_Available_to_Pick_Flow() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforPickFlow());
+    	JDAFooter.clickNextButton();
+    }
+    @And("^Enter customer id \"([^\"]*)\"$")
+    public void EnterCustomerId(String Id) throws Throwable {
+    	ReportSelectionPage.enterCustomerId(Id);
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Green Stock Available to Pick Flow$")
+    public void validate_the_confirmation_page_for_Pick_Flow() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforPickFlow());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Green Stock Available to Pick Flow$")
+    public void Validate_the_report_selection_page_for_PickFlow() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionPickFlow());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Soiled and Damaged$")
+    public void Verify_that_the_record_is_displayed_for_Soiled_and_Damaged() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforDamaged());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Soiled and Damaged$")
+    public void validate_the_confirmation_page_for_Damaged() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforDamaged());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Soiled and Damaged$")
+    public void Validate_the_report_selection_page_for_Damaged() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDamaged());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    @And("^Verify that the record is displayed for Pallet not Consigned Report$")
+    public void Verify_that_the_record_is_displayed_for_Pallet_not_Consigned() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforPalletNotConsigned());
+    	JDAFooter.clickNextButton();
+    }
+    
+    @Then("^Validate the confirmation page for Pallet not Consigned Report$")
+    public void validate_the_confirmation_page_for_Pallet_not_Consigned() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforPalletNotConsigned());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Pallet not Consigned Report$")
+    public void Validate_the_report_selection_page_for_Pallet_not_Consigned() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionforPalletNotConsigned());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Unpicked Not Relocated Stock$")
+    public void Verify_that_the_record_is_displayed_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelected());
+    	JDAFooter.clickDoneButton();	
+    }
+    @Then("^Validate the confirmation page for Unpicked Not Relocated Stock$")
+    public void validate_the_confirmation_page_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforUnpicked());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Unpicked Not Relocated Stock$")
+    public void Validate_the_report_selection_page_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionforUnpicked());
+    	JDAFooter.clickDoneButton();	
+    }
+    
 }
