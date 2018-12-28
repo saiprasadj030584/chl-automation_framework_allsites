@@ -228,11 +228,14 @@ Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and 
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
-    Then Select Print to screen and proceed next
-    And Search for "M&S - Customs"
+     Then Select Print to screen and proceed next
+    And Clear the previous search
+    And Search for "Inspection"
     And Verify that the record is displayed for M&S - Customs Inspection Report
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed 
+    
+    
     
     

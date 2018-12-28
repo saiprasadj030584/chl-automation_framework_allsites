@@ -1,6 +1,7 @@
 package com.jda.wms.stepdefs.Exit;
 
 import org.junit.Assert;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -57,6 +58,12 @@ public class ReportSelectionStepDefs {
 	public void select_print_to_screen_and_proceed_next() throws Throwable {
 		ReportSelectionPage.selectPrintToScreen();
 		JDAFooter.clickNextButton();		
+	}
+	@Then("^Clear the previous search$")
+	public void Clear_the_previous_search() throws Throwable {
+	
+		screen.type("a", Key.CTRL);
+		screen.type(Key.BACKSPACE);
 	}
 	
     @And("^Search for the M&S Identify URN$")
