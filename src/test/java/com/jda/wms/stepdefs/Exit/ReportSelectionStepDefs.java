@@ -549,23 +549,46 @@ public class ReportSelectionStepDefs {
     }
     @And("^Verify that the record is displayed for M&S - Short Invoice for Container Report$")
     public void verify_that_the_record_displayed_for_short_invoice_for_container_report() throws Throwable {
-    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPalletBuilt());
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
     	JDAFooter.clickNextButton();
     }
     @Then("^Validate the confirmation page for M&S - Short Invoice for Container Report$")
     public void validate_the_confirmation_page_for_short_invoice_for_container_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForPalletBuilt());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForShortInvoice());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    }
+    @Then("^Validate the confirmation page for M&S - Empty Red Locations Report$")
+    public void Validate_the_confirmation_page_for_MnS_Empty_Red_Locations_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForRedLocation());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    } 
+    @Then("^Validate the confirmation page for M&S - Stock In RED Putaway Locations$")
+    public void Validate_the_confirmation_page_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForRedputaway());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
     }
     @And("^Validate the report selection page for M&S - Short Invoice for Container Report completed$")
     public void validate_the_report_selection_page_for_short_invoice_for__completed() throws Throwable {
-    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDonePalletBuilt());
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDoneShortInvoice());
     	JDAFooter.clickDoneButton();	
     }
-    
-
+   
+    @And("^Validate the report selection page for M&S - Empty Red Locations Report$")
+    public void  Validate_the_report_selection_page_for_MnS_Empty_Red_Locations_Report() throws Throwable {
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionRedlocation());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for M&S - Stock In RED Putaway Locations$")
+    public void  Validate_the_report_selection_page_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionRedputaway());
+    	JDAFooter.clickDoneButton();	
+    }
     @And("^Verify that the record is displayed for Operative Performance Trusted Report$")
     public void Verify_that_the_record_is_displayed_for_Operative_Performance_Trusted_Report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforOperativePerformance());
@@ -675,5 +698,32 @@ public class ReportSelectionStepDefs {
     public void validate_the_report_selection_page_for_Customs_Inspection_Report_completed() throws Throwable {
     	Assert.assertTrue("M&S - Outstanding Pallets to Load Report not found", ReportSelectionPage.isReportSelectionDoneCustomInspection());
     	JDAFooter.clickDoneButton();	
+    }
+    @And("^Search for the M&S - Empty Red Locations Report$")
+    public void search_for_the_MnS_Empty_Red_Locations_Report() throws Throwable {
+    	ReportSelectionPage.enterMnSEmptyLocationRedStockReport();
+    	JDAFooter.clickNextButton();
+    }
+    @And("^Verify that the record is displayed for M&S - Empty Red Locations Report$")
+    public void verify_that_the_record_displayed_for_MnS_Empty_Red_Locations_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForMnSEmptyRedLocationsReport());
+    }
+    @And("^Verify that the record is displayed for M&S - Stock In RED Putaway Locations$")
+    public void Verify_that_the_record_is_displayed_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPutaway());
+    }
+    
+    @Then("^Enter the red location as parameter$")
+    public void search_for_Red_Stock() throws Throwable {
+    	ReportSelectionPage.enterRedStockParameter();
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Enter the customer as parameter$")
+    public void search_for_customer() throws Throwable {
+    	ReportSelectionPage.enterCustomer();
+    	JDAFooter.clickNextButton();
+    }
+    public void verify_that_the_record_displayed_for_Red_Locations_Parameter() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForRedLocationsParameter());
     }
 }

@@ -86,7 +86,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S - Trusted Report
+    And Search for "M&S - Trusted Report"
     And Verify that the record is displayed for Trusted Report
     Then Validate the confirmation page for Trusted Report
     Then Validate the report selection page for Trusted Report completion
@@ -96,7 +96,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S - Batch ID & BBE Report
+    And Search for "M&S - Batch ID & BBE Report"
     And Verify that the record is displayed for BatchId and  BBE Report
     Then Validate the confirmation page for Batch ID Report
     Then Validate the report selection page for BatchId completion
@@ -196,9 +196,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
-  #M&S - Pallet Built Report
-  #M&S - Weekly Summary Report
-  @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
+    @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
     Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
@@ -264,4 +262,42 @@ Feature: Report Generation
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
+    
+    @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
+  Scenario: Validate the M&S - Empty Red Locations Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Empty Red Locations Report"
+    And Verify that the record is displayed for M&S - Empty Red Locations Report
+    Then Enter the red location as parameter
+    Then Validate the confirmation page for M&S - Empty Red Locations Report
+    Then Validate the report selection page for M&S - Empty Red Locations Report
+    
+    @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
+  Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Allocation vs Receipts across last 3 weeks Report"
+    And Verify that the record is displayed for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
+    
+    @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
+  Scenario: Validate the M&S - Stock in Putaway Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Stock In RED Putaway Locations"
+    And Verify that the record is displayed for M&S - Stock In RED Putaway Locations
+    Then Enter the customer as parameter
+    Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
+    Then Validate the report selection page for M&S - Stock In RED Putaway Locations
+    
+    
+    
+    
     
