@@ -141,11 +141,56 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S - Operative Performance Trusted Report"
+    And Verify that the record is displayed for Operative Performance Trusted Report
+    And Enter start and end date
+    And Validate the confirmation page for Operative Performance Trusted Report
+    Then Validate the report selection page for Operative Performance Trusted Report
     
+    @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
+    Scenario: Validate the M&S -Green Stock Available to Pick-FLOW Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Green Stock Available to Pick Flow"
+    And Verify that the record is displayed for Green Stock Available to Pick Flow
+    And Enter customer id "4624"
+    And Validate the confirmation page for Green Stock Available to Pick Flow
+    Then Validate the report selection page for Green Stock Available to Pick Flow
     
-     @completed @Reports  @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
-Scenario: Validate the M&S - Customs Valuation for Consignment Report
- Given Login to JDA Dispatcher web screen
+    @Reports @TC22_Validate_the_MNS_Soiled_Damaged_Report
+    Scenario: Validate the M&S - Soiled & Damaged Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Soiled and Damaged"
+    And Verify that the record is displayed for Soiled and Damaged
+    And Validate the confirmation page for Soiled and Damaged
+    Then Validate the report selection page for Soiled and Damaged
+    
+    @Reports @TC23_Validate_the_MNS_Pallet_not_Consigned_Report
+    Scenario: Validate the M&S - Pallet not Consigned Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Pallet not Consigned Report"
+    And Verify that the record is displayed for Pallet not Consigned Report
+    And Enter customer id "4624"
+    And Validate the confirmation page for Pallet not Consigned Report
+    Then Validate the report selection page for Pallet not Consigned Report
+    
+    @Reports @TC24_Validate_the_MNS_Unpicked_not_relocated_Report
+    Scenario: Validate the M&S - Unpicked, not relocated Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Unpicked Not Relocated Stock"
+    And Verify that the record is displayed for Unpicked Not Relocated Stock
+     And Validate the confirmation page for Unpicked Not Relocated Stock
+    Then Validate the report selection page for Unpicked Not Relocated Stock
+    
+    @completed @Reports  @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
+		Scenario: Validate the M&S - Customs Valuation for Consignment Report
+ 		Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S - Customs Valuation for Consignment Report"
