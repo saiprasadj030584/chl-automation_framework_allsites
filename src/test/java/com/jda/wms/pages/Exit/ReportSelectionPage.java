@@ -117,6 +117,7 @@ public boolean isRecordDissplayedAndSelectedforBlackStock() throws FindFailed, I
 	else
 	return false;
 }
+
 public boolean isRecordDissplayedAndSelectedforURN() throws FindFailed, InterruptedException {
 	
 	if(screen.find("images/ReportSelection/selectedURNReport.png")!=null)
@@ -352,6 +353,7 @@ public boolean isReportSelectionRedLocation() throws FindFailed, InterruptedExce
 	else
 	return false;
 }
+
 public boolean isReportSelectionURNReport() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/URNReport.png")!=null)

@@ -1,39 +1,69 @@
 package com.jda.wms.stepdefs.Exit;
 
 import org.junit.Assert;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
-import com.jda.wms.db.Exit.SiteDB;
-import com.jda.wms.pages.Exit.PackConfigMaintenancePage;
-import com.jda.wms.pages.Exit.SiteQueryPage;
-import com.jda.wms.pages.Exit.ReportSelectionPage;
+import com.jda.wms.dataload.exit.GetTCData;
+import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.JDAFooter;
+import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
+import com.jda.wms.pages.Exit.PuttyFunctionsPage;
+import com.jda.wms.pages.Exit.ReportSelectionPage;
+import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
+import com.jda.wms.stepdefs.Exit.JDAExitUpiHeader;
+import com.jda.wms.stepdefs.Exit.JDAExitputtyfunctionsStepDef;
+import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.JdaLoginPage;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class ReportSelectionStepDefs {
 	private Context context;
 	private final ReportSelectionPage ReportSelectionPage;
 	private final JDAFooter JDAFooter;
+	private final JDAExitUpiHeader jDAExitUpiHeader;
+	private final JDAExitputtyfunctionsStepDef JDAExitputtyfunctionsStepDef;
+	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
+	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
+	private PuttyFunctionsPage puttyFunctionsPage;
+	private Hooks hooks;
+	private final JdaLoginPage jdaLoginPage;
+	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 	
 	@Inject
-	public ReportSelectionStepDefs(Context context,ReportSelectionPage ReportSelectionPage,JDAFooter JDAFooter)
+	public ReportSelectionStepDefs(Context context,JDAExitputtyfunctionsStepDef JDAExitputtyfunctionsStepDef,
+			JDAExitUpiHeader jDAExitUpiHeader,PuttyFunctionsPage puttyFunctionsPage,
+			ReportSelectionPage ReportSelectionPage,Hooks hooks,JdaLoginPage jdaLoginPage,
+			PurchaseOrderReceivingPage purchaseOrderReceivingPage,JDAFooter JDAFooter,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage)
 	{
 		this.context=context;
 		this.ReportSelectionPage = ReportSelectionPage;
 		this.JDAFooter=JDAFooter;
+		this.jDAExitUpiHeader=jDAExitUpiHeader;
+		this.JDAExitputtyfunctionsStepDef=JDAExitputtyfunctionsStepDef;
+		this.purchaseOrderReceivingPage = purchaseOrderReceivingPage;
+		this.storeTrackingOrderPickingPage=storeTrackingOrderPickingPage;
+		this.puttyFunctionsPage = puttyFunctionsPage;
+		this.hooks=hooks;
+		this.jdaLoginPage = jdaLoginPage;
+		
 	}
 	
 	@Then("^Select Print to screen and proceed next$")
 	public void select_print_to_screen_and_proceed_next() throws Throwable {
 		ReportSelectionPage.selectPrintToScreen();
 		JDAFooter.clickNextButton();		
+	}
+	@Then("^Clear the previous search$")
+	public void Clear_the_previous_search() throws Throwable {
+	
+		screen.type("a", Key.CTRL);
+		screen.type(Key.BACKSPACE);
 	}
 	
     @And("^Search for the M&S Identify URN$")
@@ -91,11 +121,67 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_Trusted_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForTrustedReport());
     }
+    @And("^Verify that the record is displayed for M&S - URNs on Pallet Report$")
+    public void Verify_that_the_record_is_displayed_for_MnS_URNs_on_Pallet_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforURN());
+    }
+    @And("^Data to be inserted and received with PalletID with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for \"([^\"]*)\"$$")
+    public void Data_to_be_inserted_and_received_with_palletID(String status,
+			String type, String customer, String skuid) throws Throwable{
+    	jDAExitUpiHeader.Data_to_be_inserted_in_preadvice_header_order_header_and_UPI_Receipt_with_for(status,
+    	type,customer,skuid);
+    	JDAExitputtyfunctionsStepDef.i_have_logged_in_as_warehouse_user_in_putty();
+    	purchaseOrderReceivingPage.selectUserDirectedMenu();
+    	storeTrackingOrderPickingPage.selectReceivingMenu();
+    	System.out.println("After enter");
+		Assert.assertTrue("Receiving Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isReceivingMenuDisplayed());
+		storeTrackingOrderPickingPage.selectBasicReceivingMenu();
+		Assert.assertTrue("Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isBasicReceivingMenuDisplayed());
+		storeTrackingOrderPickingPage.selectGS1_128ReceiveMenu();
+		Assert.assertTrue("GS128Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isRcvScnEANCMenuDisplayed());
+		Thread.sleep(2000);
+		GetTCData.getpoId();
+//		String skuid = context.getSKUHang();
+//		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(1000);
+		Assert.assertTrue("RCVBli screen is not displayed as expected",
+		storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+		Thread.sleep(300);
+		puttyFunctionsPage.I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
+		String belCode = context.getBelCode();
+		System.out.println("BelCode "+belCode);
+		purchaseOrderReceivingPage.EnterBel(belCode);
+		Thread.sleep(300);
+		puttyFunctionsPage.singleTab();
+		String ToPallet = null;
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.nextScreen();
+		String Expirydate= Utilities.getAddedSystemYear();
+		purchaseOrderReceivingPage.EnterToExpirydate(Expirydate);
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+		jdaLoginPage.login();
+    }
    
     @Then("^Proceed next and enter the required value of \"([^\"]*)\"$")
     public void proceed_next_and_enter_the_required_value_of(String Sku) throws Throwable {
     JDAFooter.clickNextButton(); 
     ReportSelectionPage.enterSku(Sku);  
+    }
+    @And("^Enter PalletId$")
+    public void Enter_palletId() throws Throwable{
+    	JDAFooter.clickNextButton();
+    	String palletIDforUPI = context.getpalletIDforUPI();
+    	ReportSelectionPage.enterPallet(palletIDforUPI);
     }
     
     @Then("^Proceed next and enter the required value of pallet$")
@@ -135,6 +221,16 @@ public class ReportSelectionStepDefs {
     	Thread.sleep(10000);
     	JDAFooter.clickNextButton();
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforBlackStock());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+   
+    @Then("^Validate the confirmation page for M&S - URNs on Pallet Report$")
+    public void Validate_the_confirmation_page_for_MnS_URNs_on_Pallet_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Thread.sleep(10000);
+    	JDAFooter.clickNextButton();
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforURN());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
@@ -189,6 +285,12 @@ public class ReportSelectionStepDefs {
     public void Validate_the_report_selection_page_for_Red_Location_completion() throws Throwable {
     	Thread.sleep(20000);
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionRedLocation());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for M&S - URNs on Pallet Report$")
+    public void Validate_the_report_selection_page_for_MnS_URNs_on_Pallet_Report() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionURNReport());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Validate the report selection page for Black Stock Status completion$")
@@ -388,12 +490,28 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForCustomValuation());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
+    } 
+    @Then("^Validate the confirmation page for M&S - Customs Inspection Report$")
+    public void validate_the_confirmation_page_for_Customs_Inspection_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForCustomInspection());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    } 
+    @Then("^Verify that the record is displayed for M&S - Customs Inspection Report$")
+    public void validate_the_confirmation_page_for_customs_Inspection_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isRecordDissplayedAndSelectedForCustomInspection());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
     }
+    
     @And("^Validate the report selection page for M&S - Customs Valuation for Consignment Report completed$")
     public void validate_the_report_selection_page_for_customs_valuation_for_consignment_report_completed() throws Throwable {
     	Assert.assertTrue("M&S - Outstanding Pallets to Load Report not found", ReportSelectionPage.isReportSelectionDoneCustomValuation());
     	JDAFooter.clickDoneButton();	
     }
+
     @And("^Verify that the record is displayed for M&S - Weekly Summary Report$")
     public void verify_that_the_record_displayed_for_weekly_summary_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForWeeklySummary());
@@ -447,4 +565,115 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();	
     }
     
+
+    @And("^Verify that the record is displayed for Operative Performance Trusted Report$")
+    public void Verify_that_the_record_is_displayed_for_Operative_Performance_Trusted_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforOperativePerformance());
+    	JDAFooter.clickNextButton();
+    }
+    @And("^Enter start and end date$")
+    public void Enter_start_end_date() throws Throwable {
+    	ReportSelectionPage.enterStartDate();
+    	ReportSelectionPage.enterEndDate();
+    	JDAFooter.clickNextButton();	
+    }
+    @Then("^Validate the confirmation page for Operative Performance Trusted Report$")
+    public void validate_the_confirmation_page_for_Operative_Performance() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforOperativePerformance());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Operative Performance Trusted Report$")
+    public void Validate_the_report_selection_page_for_Operative_Performance() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionOperativePerformance());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Green Stock Available to Pick Flow$")
+    public void Verify_that_the_record_is_displayed_for_Green_Stock_Available_to_Pick_Flow() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforPickFlow());
+    	JDAFooter.clickNextButton();
+    }
+    @And("^Enter customer id \"([^\"]*)\"$")
+    public void EnterCustomerId(String Id) throws Throwable {
+    	ReportSelectionPage.enterCustomerId(Id);
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Green Stock Available to Pick Flow$")
+    public void validate_the_confirmation_page_for_Pick_Flow() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforPickFlow());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Green Stock Available to Pick Flow$")
+    public void Validate_the_report_selection_page_for_PickFlow() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionPickFlow());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Soiled and Damaged$")
+    public void Verify_that_the_record_is_displayed_for_Soiled_and_Damaged() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforDamaged());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Soiled and Damaged$")
+    public void validate_the_confirmation_page_for_Damaged() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforDamaged());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Soiled and Damaged$")
+    public void Validate_the_report_selection_page_for_Damaged() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDamaged());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    @And("^Verify that the record is displayed for Pallet not Consigned Report$")
+    public void Verify_that_the_record_is_displayed_for_Pallet_not_Consigned() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforPalletNotConsigned());
+    	JDAFooter.clickNextButton();
+    }
+    
+    @Then("^Validate the confirmation page for Pallet not Consigned Report$")
+    public void validate_the_confirmation_page_for_Pallet_not_Consigned() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforPalletNotConsigned());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Pallet not Consigned Report$")
+    public void Validate_the_report_selection_page_for_Pallet_not_Consigned() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionforPalletNotConsigned());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Unpicked Not Relocated Stock$")
+    public void Verify_that_the_record_is_displayed_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelected());
+    	JDAFooter.clickDoneButton();	
+    }
+    @Then("^Validate the confirmation page for Unpicked Not Relocated Stock$")
+    public void validate_the_confirmation_page_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforUnpicked());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for Unpicked Not Relocated Stock$")
+    public void Validate_the_report_selection_page_for_Unpicked_Not_Relocated_Stock() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionforUnpicked());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    @And("^Validate the report selection page for M&S - Customs Inspection Report completed$")
+    public void validate_the_report_selection_page_for_Customs_Inspection_Report_completed() throws Throwable {
+    	Assert.assertTrue("M&S - Outstanding Pallets to Load Report not found", ReportSelectionPage.isReportSelectionDoneCustomInspection());
+    	JDAFooter.clickDoneButton();	
+    }
 }
