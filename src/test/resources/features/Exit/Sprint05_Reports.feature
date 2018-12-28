@@ -13,7 +13,18 @@ Feature: Report Generation
     And Verify that the record is displayed for Identify Urn Report
     #Then Validate the confirmation page for Identify Urn Report
     Then Validate the report selection page for Identify URN completion
-
+    
+ 	@Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
+ 	 Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
+ 	 Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S DGN- Report"
+ 	  And Verify that the record is displayed for Dangerous Goods
+    And Enter customer id "TRA1234"
+    And Validate the confirmation page for Dangerous Goods
+    Then Validate the report selection page for Dangerous Goods
+    
   @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
   Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
     Given Login to JDA Dispatcher web screen
@@ -255,7 +266,7 @@ Feature: Report Generation
     Then Validate the report selection page for M&S - Pallet Built Report completed
     
     @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
-  Scenario: Validate the M&S - Short Invoice for Container Report
+  	Scenario: Validate the M&S - Short Invoice for Container Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -264,4 +275,26 @@ Feature: Report Generation
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
+		@Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
+  	Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Green Stock Available to Pick Flow"
+    And Verify that the record is displayed for Green Stock Available to Pick Flow
+    And Enter customer id "4624"
+    And Validate the confirmation page for Green Stock Available to Pick Flow
+    Then Validate the report selection page for Green Stock Available to Pick Flow
+    
+    @Reports @TC42_Validate_RED_to_GREEN_report
+  	Scenario: Validate RED to GREEN report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Green Stock Available to Pick Flow"
+    And Verify that the record is displayed for Green Stock Available to Pick Flow
+    And Enter customer id "4624"
+    And Validate the confirmation page for Green Stock Available to Pick Flow
+    Then Validate the report selection page for Green Stock Available to Pick Flow
     
