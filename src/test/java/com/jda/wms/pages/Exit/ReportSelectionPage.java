@@ -1150,6 +1150,7 @@ public boolean isReportSelectionDoneShortInvoice() throws FindFailed, Interrupte
 else
 return false;
 }
+
 public boolean isReportSelectionRedlocation() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/CompletedRedlocation.png")!=null)
@@ -1225,6 +1226,41 @@ screen.click(mRecord.getCenter().offset(70, 0));
 Thread.sleep(1000);
 return true;
 }
+return false;}
+
+public boolean isRecordDissplayedAndSelectedforDangerousGoods() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ReportDangerousGoods.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ReportDangerousGoods.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isProcessConfirmedforDangerousGoods() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForDangerousGoods.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForDangerousGoods.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionDangerousGoods() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/DangerousGoodsReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/DangerousGoodsReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
 else
 return false;
 }

@@ -620,7 +620,9 @@ public class ReportSelectionStepDefs {
     }
     @And("^Enter customer id \"([^\"]*)\"$")
     public void EnterCustomerId(String Id) throws Throwable {
+    	Thread.sleep(2000);
     	ReportSelectionPage.enterCustomerId(Id);
+    	Thread.sleep(1000);
     	JDAFooter.clickNextButton();
     }
     @Then("^Validate the confirmation page for Green Stock Available to Pick Flow$")
@@ -725,5 +727,23 @@ public class ReportSelectionStepDefs {
     }
     public void verify_that_the_record_displayed_for_Red_Locations_Parameter() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForRedLocationsParameter());
+    }
+    @And("^Verify that the record is displayed for Dangerous Goods$")
+    public void Verify_that_the_record_is_displayed_for_Dangerous_Goods() throws Throwable {
+    	Thread.sleep(1000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelectedforDangerousGoods());
+    	JDAFooter.clickNextButton();	
+    }
+    @Then("^Validate the confirmation page for Dangerous Goods$")
+    public void validate_the_confirmation_page_for_Dangerous_Goods() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforDangerousGoods());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(1000);
+    }
+    @And("^Validate the report selection page for Dangerous Goods$")
+    public void Validate_the_report_selection_page_for_Dangerous_Goods() throws Throwable {
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDangerousGoods());
+    	JDAFooter.clickDoneButton();	
     }
 }
