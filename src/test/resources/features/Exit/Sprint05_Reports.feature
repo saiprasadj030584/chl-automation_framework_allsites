@@ -231,3 +231,25 @@ Feature: Report Generation
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
+    
+    
+    @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
+  Scenario: Validate the M&S - Weekly Summary Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Weekly Summary Report"
+    And Verify that the record is displayed for M&S - Weekly Summary Report
+    And Enter the date for end of week as parameter
+    Then Validate the confirmation page for M&S - Weekly Summary Report
+    Then Validate the report selection page for M&S - Weekly Summary Report completed
+
+  @completed @Reports @TC28_Validate_the_M_n_S_pallet_build_report
+  Scenario: Validate the M&S - Pallet Build Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Pallet Built Report"
+    And Verify that the record is displayed for M&S - Pallet Built Report
+    Then Validate the confirmation page for M&S - Pallet Built Report
+    Then Validate the report selection page for M&S - Pallet Built Report completed
