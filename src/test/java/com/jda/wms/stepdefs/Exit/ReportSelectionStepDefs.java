@@ -431,19 +431,19 @@ public class ReportSelectionStepDefs {
     }
     @And("^Verify that the record is displayed for M&S - Short Invoice for Container Report$")
     public void verify_that_the_record_displayed_for_short_invoice_for_container_report() throws Throwable {
-    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPalletBuilt());
     	JDAFooter.clickNextButton();
     }
     @Then("^Validate the confirmation page for M&S - Short Invoice for Container Report$")
     public void validate_the_confirmation_page_for_short_invoice_for_container_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForShortInvoice());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForPalletBuilt());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
     }
     @And("^Validate the report selection page for M&S - Short Invoice for Container Report completed$")
-    public void validate_the_report_selection_page_for_short_invoice_for_report_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    public void validate_the_report_selection_page_for_short_invoice_for__completed() throws Throwable {
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDonePalletBuilt());
     	JDAFooter.clickDoneButton();	
     }
     
