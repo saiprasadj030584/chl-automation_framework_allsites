@@ -253,3 +253,15 @@ Feature: Report Generation
     And Verify that the record is displayed for M&S - Pallet Built Report
     Then Validate the confirmation page for M&S - Pallet Built Report
     Then Validate the report selection page for M&S - Pallet Built Report completed
+    
+    @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
+  Scenario: Validate the M&S - Short Invoice for Container Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Short Invoice for Container Report"
+    And Verify that the record is displayed for M&S - Short Invoice for Container Report
+    Then Enter Trailer number
+    Then Validate the confirmation page for M&S - Short Invoice for Container Report
+    Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
