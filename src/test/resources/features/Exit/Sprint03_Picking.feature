@@ -577,7 +577,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-  @Picking @TC52_Negative_Path_Validate_scanning_incorrect_pallet_id_for_a_Manual_Order_for_hanging
+  @Picking @TC53_Negative_Path_Validate_scanning_incorrect_pallet_id_for_a_Manual_Order_for_hanging
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order for hanging
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -593,7 +593,7 @@ Feature: Orders_Picking
       | List_Id      | SKU                |
       | MANB00001234 | 000000000021071851 |
 
-  @Picking @TC53_Validate_32_digit_URN_generation_after_picking_for_hanging
+  @Picking @TC54_Validate_32_digit_URN_generation_after_picking_for_hanging
   Scenario Outline: Validate 32 digit URN generation after picking for hanging
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status for IDT
@@ -613,6 +613,8 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+      
+      
 
   @Picking @TC60_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
