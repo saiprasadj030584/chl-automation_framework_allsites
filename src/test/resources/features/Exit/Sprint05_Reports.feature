@@ -44,7 +44,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S - Non-Shipped greater than 4weeks Report"
+    And Search for "M&S - Non Shipped greater than 4weeks Report"
     And Verify that the record is displayed M&S - Non-Shipped greater than 4 weeks Report
     Then Enter the status "<status>" as parameter
     Then Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report
