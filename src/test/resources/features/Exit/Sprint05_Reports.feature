@@ -1,4 +1,4 @@
-@Reports
+@Sprint05
 Feature: Report Generation
   As I search for different reports
   and put different parameters
