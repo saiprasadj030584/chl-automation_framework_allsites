@@ -1,9 +1,10 @@
-@Reports
+@Sprint05
 Feature: Report Generation
   As I search for different reports
   and put different parameters
   so that I view the reports
-
+  
+ 
   @completed @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
   Scenario: Validate the M&S - Identify URN Report
     Given Login to JDA Dispatcher web screen
@@ -64,6 +65,18 @@ Feature: Report Generation
     Then Validate the report selection page for Gains and Loss Report completed
 
   @completed @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
+  Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Allocation vs Receipts across last 3 weeks Report"
+    And Verify that the record is displayed for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
+
+
+ @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -155,19 +168,37 @@ Feature: Report Generation
     And Verify that the record is displayed for Black Stock Status Report
     Then Validate the confirmation page for Black Stock Status Report
     Then Validate the report selection page for Black Stock Status completion
-
-  @Reports @TC19_Validate_the_M_N_S_Operative_Performance_Report
-  Scenario: Validate_the_M&S_Operative_Performance_Report
+    
+   
+  @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
+  Scenario: Validate the M&S - Empty Red Locations Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S - Operative Performance Trusted Report"
-    And Verify that the record is displayed for Operative Performance Trusted Report
-    And Enter start and end date
-    And Validate the confirmation page for Operative Performance Trusted Report
-    Then Validate the report selection page for Operative Performance Trusted Report
+    And Search for "M&S - Empty Red Locations Report"
+    And Verify that the record is displayed for M&S - Empty Red Locations Report
+    Then Enter the red location as parameter
+    Then Validate the confirmation page for M&S - Empty Red Locations Report
+    Then Validate the report selection page for M&S - Empty Red Locations Report
+   
+   
+  @completed @Reports @TC18_Validate_the_M_N_S_URN_Audit_Trail_Report
+  Scenario Outline: Validate the M&S - URN Audit Trail Report
+Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - URN Audit Trail Report"
+    And Verify that the record is displayed for M&S - URN Audit Trail Report
+    And Enter URN as parameter
+    And Validate the confirmation page for M&S - URN Audit Trail Report
+    Then Validate the report selection page for M&S - URN Audit Trail completed
+    
+     Examples: 
+      | SkuId              |
+      | 000000000021071852 |
 
-  @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
+  @completed @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
   Scenario: Validate the M&S -Green Stock Available to Pick-FLOW Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -178,7 +209,7 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
-  @Reports @TC22_Validate_the_MNS_Soiled_Damaged_Report
+  @completed @Reports @TC22_Validate_the_MNS_Soiled_Damaged_Report
   Scenario: Validate the M&S - Soiled & Damaged Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -208,6 +239,18 @@ Feature: Report Generation
     And Verify that the record is displayed for Unpicked Not Relocated Stock
     And Validate the confirmation page for Unpicked Not Relocated Stock
     Then Validate the report selection page for Unpicked Not Relocated Stock
+    
+     @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
+  Scenario: Validate the M&S - Stock in Putaway Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Stock In RED Putaway Locations"
+    And Verify that the record is displayed for M&S - Stock In RED Putaway Locations
+    Then Enter the customer as parameter
+    Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
+    Then Validate the report selection page for M&S - Stock In RED Putaway Locations
+    
 
   @completed @Reports @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
   Scenario: Validate the M&S - Customs Valuation for Consignment Report
@@ -220,40 +263,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
-  @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
-  Scenario Outline: Validate the M&S - URNs on Pallet Report
-    Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "M&S - 'URNs on Pallet Report"
-    And Verify that the record is displayed for M&S - URNs on Pallet Report
-    And Enter PalletId
-    Then Validate the confirmation page for M&S - URNs on Pallet Report
-    Then Validate the report selection page for M&S - URNs on Pallet Report
-
-    Examples: 
-      | SkuId              |
-      | 000000000021071852 |
-
-  @completed @Reports @TC39_Validate_container_report
-  Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and Customs Valuation for Consignment Report
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "M&S - Customs Valuation for Consignment Report"
-    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
-    And Enter consignment name
-    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
-    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
-    Then Select Print to screen and proceed next
-    And Clear the previous search
-    And Search for "Inspection"
-    And Verify that the record is displayed for M&S - Customs Inspection Report
-    And Enter consignment name
-    Then Validate the confirmation page for M&S - Customs Inspection Report
-    Then Validate the report selection page for M&S - Customs Inspection Report completed
-
+ 
   @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
   Scenario: Validate the M&S - Weekly Summary Report
     Given Login to JDA Dispatcher web screen
@@ -285,41 +295,57 @@ Feature: Report Generation
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
-
-  @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
-  Scenario: Validate the M&S - Empty Red Locations Report
+    
+     @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
+  Scenario Outline: Validate the M&S - URNs on Pallet Report
+    Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S - Empty Red Locations Report"
-    And Verify that the record is displayed for M&S - Empty Red Locations Report
-    Then Enter the red location as parameter
-    Then Validate the confirmation page for M&S - Empty Red Locations Report
-    Then Validate the report selection page for M&S - Empty Red Locations Report
+    And Search for "M&S - 'URNs on Pallet Report"
+    And Verify that the record is displayed for M&S - URNs on Pallet Report
+    And Enter PalletId
+    Then Validate the confirmation page for M&S - URNs on Pallet Report
+    Then Validate the report selection page for M&S - URNs on Pallet Report
 
-  @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
-  Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+      
+      @completed @Reports @TC32_Validate_the_MnS_VAS_Report
+  Scenario: Validate the M&S VAS Report
+     Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
+      
+
+  @completed @Reports @TC39_Validate_container_report
+  Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and Customs Valuation for Consignment Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S - Allocation vs Receipts across last 3 weeks Report"
-    And Verify that the record is displayed for M&S - Allocation vs Receipts across last 3 weeks Report
-    Then Enter the date for commencing week as parameter
-    Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
-    Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
-
-  @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
-  Scenario: Validate the M&S - Stock in Putaway Report
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
     Then Select Print to screen and proceed next
-    And Search for "M&S - Stock In RED Putaway Locations"
-    And Verify that the record is displayed for M&S - Stock In RED Putaway Locations
-    Then Enter the customer as parameter
-    Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
-    Then Validate the report selection page for M&S - Stock In RED Putaway Locations
+    And Clear the previous search
+    And Search for "Inspection"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed
+    
 
-  @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
+ 
+ 
+  @completed @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
   Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -330,7 +356,7 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
-  @Reports @TC42_Validate_RED_to_GREEN_report
+ @completed @Reports @TC42_Validate_RED_to_GREEN_report
   Scenario: Validate RED to GREEN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -341,18 +367,8 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
     
-  @Reports @TC32_Validate_the_MnS_VAS_Report
-  Scenario: Validate the M&S VAS Report
-     Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "M&S - Customs Valuation for Consignment Report"
-    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
-    And Enter consignment name
-    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
-    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
-
- @Reports @TC44_Validate_the_Review_Red_Data_report
+  
+ @completed @Reports @TC44_Validate_the_Review_Red_Data_report
   Scenario: Validate the Review Red Data report
      Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -362,7 +378,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Red Stock Report
     Then Validate the report selection page for M&S - Red Stock Report completed
     
-   @Reports @TC46_Validate_consumables_daily_report 
+   @completed @Reports @TC46_Validate_consumables_daily_report 
   Scenario: Validate consumables daily report 
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
