@@ -1340,6 +1340,65 @@ public boolean isReportSelectionDangerousGoods() throws FindFailed, InterruptedE
 else
 return false;
 }
+
+public void enterUPC(String supplierSku) throws InterruptedException {
+	screen.type(supplierSku);
+	clickTab();
+}
+
+public void clickTab() throws InterruptedException {
+	screen.type(Key.TAB);
+	Thread.sleep(3000);
+	
+}
+
+public void enterSupplierId(String supplierId) throws InterruptedException {
+	screen.type(supplierId);
+	clickTab();
+}
+
+
+public void enterQuantity() throws InterruptedException {
+	screen.type("20");
+	clickTab();
+}
+public boolean isRecordDissplayedAndSelectedForIdentifyURN() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/selectedIdentifyUrnReport.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/selectedIdentifyUrnReport.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+
+public boolean isProcessConfirmedforIdentifyURN() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForIdentifyURN.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForIdentifyURN.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionIdentifyURN() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/completedIdentifyURNReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/completedIdentifyURNReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
 	}
 
 
