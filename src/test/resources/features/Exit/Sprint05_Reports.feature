@@ -59,7 +59,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S -  Gains and Loss Report"
+    And Search for "M&S - Gains and Loss Report"
     And Verify that the record is displayed for M&S Gains Or Loss Report
     Then Validate the confirmation page for Gains and Loss Report
     Then Validate the report selection page for Gains and Loss Report completed
