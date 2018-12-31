@@ -1,4 +1,4 @@
-@Sprint01
+@Sprint01_PreReceiving
 Feature: Master_data_setup
   As a Exit DC user should be able to login
    so that I validate the  master data setup

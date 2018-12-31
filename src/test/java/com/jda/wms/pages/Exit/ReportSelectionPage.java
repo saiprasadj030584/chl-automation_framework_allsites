@@ -1442,6 +1442,51 @@ public boolean isReportSelectionIdentifyURN() throws FindFailed, InterruptedExce
 else
 return false;
 }
+public boolean isRecordDissplayedAndSelectedForUrnAuditTrail() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/selectedUrnAuditTrail.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/selectedUrnAuditTrail.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+
+public void enterURN(String belCode) throws InterruptedException {
+	screen.type(belCode);
+	Thread.sleep(1000);
+
+	
+}
+public boolean isProcessConfirmedForUrnAuditTrail() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForUrnAuditTrail.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForUrnAuditTrail.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionDoneUrnAuditTrail() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/completedUrnAuditTrail.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/completedUrnAuditTrail.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+
+
 	}
 
 

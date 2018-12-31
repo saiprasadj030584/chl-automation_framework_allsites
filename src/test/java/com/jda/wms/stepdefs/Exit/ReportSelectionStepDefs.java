@@ -831,6 +831,35 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();	
     }
     
+    @And("^Verify that the record is displayed for M&S - URN Audit Trail Report$")
+    public void verify_that_the_record_displayed_for_MnS_urn_audit_trail_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForUrnAuditTrail());
+    	JDAFooter.clickNextButton();
+    }
     
+    @And("^Enter URN as parameter$")
+    public void enter_urn_as_parameter() throws Throwable {
+    	GetTCData.getpoId();
+		String skuid = context.getSKUHang();
+//		i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		Thread.sleep(300);
+		ReportSelectionPage.enterURN(palletIDforUPI);
+		JDAFooter.clickNextButton();
+    	
+    }
+    @Then("^Validate the confirmation page for M&S - URN Audit Trail Report$")
+    public void validate_the_confirmation_page_for_MnS_urn_audit_trail_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForUrnAuditTrail());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @And("^Validate the report selection page for M&S - URN Audit Trail completed$")
+    public void validate_the_report_selection_page_for_MnS_urn_audit_trail_completed() throws Throwable {
+    	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnAuditTrail());
+    	JDAFooter.clickDoneButton();	
+    }
 
 }
