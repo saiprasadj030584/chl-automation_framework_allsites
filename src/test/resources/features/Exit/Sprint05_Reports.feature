@@ -13,18 +13,18 @@ Feature: Report Generation
     And Verify that the record is displayed for Identify Urn Report
     #Then Validate the confirmation page for Identify Urn Report
     Then Validate the report selection page for Identify URN completion
-    
- 	@Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
- 	 Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
- 	 Given Login to JDA Dispatcher web screen
+
+  @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
+  Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
+    Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S DGN- Report"
- 	  And Verify that the record is displayed for Dangerous Goods
+    And Verify that the record is displayed for Dangerous Goods
     And Enter customer id "TRA1234"
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
-    
+
   @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
   Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
     Given Login to JDA Dispatcher web screen
@@ -97,7 +97,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S - Trusted Report
+    And Search for "M&S - Trusted Report"
     And Verify that the record is displayed for Trusted Report
     Then Validate the confirmation page for Trusted Report
     Then Validate the report selection page for Trusted Report completion
@@ -107,7 +107,7 @@ Feature: Report Generation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S - Batch ID & BBE Report
+    And Search for "M&S - Batch ID & BBE Report"
     And Verify that the record is displayed for BatchId and  BBE Report
     Then Validate the confirmation page for Batch ID Report
     Then Validate the report selection page for BatchId completion
@@ -207,8 +207,6 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
-  #M&S - Pallet Built Report
-  #M&S - Weekly Summary Report
   @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
     Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
@@ -242,9 +240,8 @@ Feature: Report Generation
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
-    
-    
-    @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
+
+  @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
   Scenario: Validate the M&S - Weekly Summary Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -264,9 +261,9 @@ Feature: Report Generation
     And Verify that the record is displayed for M&S - Pallet Built Report
     Then Validate the confirmation page for M&S - Pallet Built Report
     Then Validate the report selection page for M&S - Pallet Built Report completed
-    
-    @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
-  	Scenario: Validate the M&S - Short Invoice for Container Report
+
+  @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
+  Scenario: Validate the M&S - Short Invoice for Container Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -275,9 +272,53 @@ Feature: Report Generation
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
-    
-		@Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
-  	Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
+
+  @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
+  Scenario: Validate the M&S - Empty Red Locations Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Empty Red Locations Report"
+    And Verify that the record is displayed for M&S - Empty Red Locations Report
+    Then Enter the red location as parameter
+    Then Validate the confirmation page for M&S - Empty Red Locations Report
+    Then Validate the report selection page for M&S - Empty Red Locations Report
+
+  @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
+  Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Allocation vs Receipts across last 3 weeks Report"
+    And Verify that the record is displayed for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Enter the date for commencing week as parameter
+    Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
+    Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
+
+  @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
+  Scenario: Validate the M&S - Stock in Putaway Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Stock In RED Putaway Locations"
+    And Verify that the record is displayed for M&S - Stock In RED Putaway Locations
+    Then Enter the customer as parameter
+    Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
+    Then Validate the report selection page for M&S - Stock In RED Putaway Locations
+
+  @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
+  Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Green Stock Available to Pick Flow"
+    And Verify that the record is displayed for Green Stock Available to Pick Flow
+    And Enter customer id "4624"
+    And Validate the confirmation page for Green Stock Available to Pick Flow
+    Then Validate the report selection page for Green Stock Available to Pick Flow
+
+  @Reports @TC42_Validate_RED_to_GREEN_report
+  Scenario: Validate RED to GREEN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -287,14 +328,54 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
     
-    @Reports @TC42_Validate_RED_to_GREEN_report
-  	Scenario: Validate RED to GREEN report
+  @Reports @TC32_Validate_the_MnS_VAS_Report
+  Scenario: Validate the M&S VAS Report
+     Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
+
+ @Reports @TC44_Validate_the_Review_Red_Data_report
+  Scenario: Validate the Review Red Data report
+     Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Red Stock Report"
+    And Verify that the record is displayed for M&S - Red Stock Report
+    Then Validate the confirmation page for M&S - Red Stock Report
+    Then Validate the report selection page for M&S - Red Stock Report completed
+    
+   @Reports @TC46_Validate_consumables_daily_report 
+  Scenario: Validate consumables daily report 
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for "M&S - Green Stock Available to Pick Flow"
-    And Verify that the record is displayed for Green Stock Available to Pick Flow
-    And Enter customer id "4624"
-    And Validate the confirmation page for Green Stock Available to Pick Flow
-    Then Validate the report selection page for Green Stock Available to Pick Flow
+    And Search for "M&S - Customs Valuation for Consignment Report"
+    And Verify that the record is displayed for M&S - Customs Valuation for Consignment Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
+    Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
+    
+   
+    @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report 
+  Scenario: Validate the M&S - Shipment Manifest Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Shipment Manifest Report"
+    And Verify that the record is displayed for M&S - Shipment Manifest Report
+    Then Enter Trailer number
+    Then Validate the confirmation page for M&S - Shipment Manifest Report
+    Then Validate the report selection page for M&S - Shipment Manifest Report completed
+    
+    
+
+      
+    
+    
+    
     
