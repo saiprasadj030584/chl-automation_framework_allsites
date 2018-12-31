@@ -201,6 +201,38 @@ Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     
     #M&S - Pallet Built Report
     #M&S - Weekly Summary Report
+    @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
+  Scenario: Validate the M&S - Weekly Summary Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Weekly Summary Report"
+    And Verify that the record is displayed for M&S - Weekly Summary Report
+    And Enter the date for end of week as parameter
+    Then Validate the confirmation page for M&S - Weekly Summary Report
+    Then Validate the report selection page for M&S - Weekly Summary Report completed
+
+  @completed @Reports @TC28_Validate_the_M_n_S_pallet_build_report
+  Scenario: Validate the M&S - Pallet Build Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Pallet Built Report"
+    And Verify that the record is displayed for M&S - Pallet Built Report
+    Then Validate the confirmation page for M&S - Pallet Built Report
+    Then Validate the report selection page for M&S - Pallet Built Report completed
+
+  @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
+  Scenario: Validate the M&S - Short Invoice for Container Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Short Invoice for Container Report"
+    And Verify that the record is displayed for M&S - Short Invoice for Container Report
+    Then Enter Trailer number
+    Then Validate the confirmation page for M&S - Short Invoice for Container Report
+    Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
     
     @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
     Scenario Outline: Validate the M&S - URNs on Pallet Report

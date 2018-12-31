@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC39_Validate_container_report" 
+			+ "@TC29_Validate_the_M_n_S_short_invoice_for_container_report,@TC31_Validate_the_M_n_S_URNs_on_Pallet_Report" 
 
 })
 public class AllTest {
