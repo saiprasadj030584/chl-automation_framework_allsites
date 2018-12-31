@@ -4,26 +4,39 @@ Feature: Report Generation
   and put different parameters
   so that I view the reports
 
-  @inProgres @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
+  @completed @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
   Scenario: Validate the M&S - Identify URN Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for the M&S Identify URN Report
+    And Search for "M&S - Identify URN Report"
     And Verify that the record is displayed for Identify Urn Report
-    #Then Validate the confirmation page for Identify Urn Report
-    Then Validate the report selection page for Identify URN completion
+    Then Enter the required parameters UPC, supplier id and quantity 
+    Then Validate the confirmation page for M&S - Identify URN Report
+    Then Validate the report selection page for M&S - Identify URN completed
 
-  @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
+ @completed @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
   Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S DGN- Report"
     And Verify that the record is displayed for Dangerous Goods
-    And Enter customer id "TRA1234"
+    Then Enter Trailer number
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
+    
+    @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report 
+  Scenario: Validate the M&S - Shipment Manifest Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Shipment Manifest Report"
+    And Verify that the record is displayed for M&S - Shipment Manifest Report
+    Then Enter Trailer number
+    Then Validate the confirmation page for M&S - Shipment Manifest Report
+    Then Validate the report selection page for M&S - Shipment Manifest Report completed
+    
 
   @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
   Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
@@ -361,16 +374,6 @@ Feature: Report Generation
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
     
    
-    @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report 
-  Scenario: Validate the M&S - Shipment Manifest Report
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "M&S - Shipment Manifest Report"
-    And Verify that the record is displayed for M&S - Shipment Manifest Report
-    Then Enter Trailer number
-    Then Validate the confirmation page for M&S - Shipment Manifest Report
-    Then Validate the report selection page for M&S - Shipment Manifest Report completed
     
     
 

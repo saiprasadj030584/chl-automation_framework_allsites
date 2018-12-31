@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC25_Validate_the_MnS_Stock_in_Putaway_Report" 
+			+ "@TC01_Validate_the_M_n_S_Identify_URN_Report" 
 
 })
 public class AllTest {
