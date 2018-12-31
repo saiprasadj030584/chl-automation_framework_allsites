@@ -612,11 +612,37 @@ public boolean isRecordDissplayedAndSelectedForWeeklyReceiptsDespatches() throws
 	else
 	return false;
 }
+public boolean isRecordDissplayedAndSelectedForsortation() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForsortation.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForsortation.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
 public boolean isProcessConfirmedForWeeklyReceiptsDespatches() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/ConfirmedForWeeklyReceiptsDespatches.png")!=null){
 		
 	Match mScreen=screen.find("images/ReportSelection/ConfirmedForWeeklyReceiptsDespatches.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}
+	 
+	
+else
+return false;
+}
+public boolean isProcessConfirmedForsortation() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForsortation.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForsortation.png");
 	screen.click(mScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;
@@ -638,6 +664,18 @@ public boolean isReportSelectionDoneWeeklyReceiptsDespatches() throws FindFailed
 else
 return false;
 }
+public boolean isReportSelectionDoneSortation() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/CompletedSortation.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/CompletedSortation.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
 
 public void enterDate() {
 	screen.type("-30");
@@ -646,6 +684,11 @@ public void enterDate() {
 }
 public void enterPresentDate() {
 	screen.type("0");
+	screen.type(Key.ENTER);
+	
+}
+public void entersortation() {
+	screen.type("sort123");
 	screen.type(Key.ENTER);
 	
 }

@@ -95,6 +95,17 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Weekly Receipts and Despatches by Customer Report
     Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
 
+  @completed @Reports @TC10_Validate_the_MnS_Sortation_Report
+  Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for " M&S - Sortation Report"
+    And Verify that the record is displayed for  M&S - Sortation Report
+    Then Enter the sortation
+    Then Validate the confirmation page for M&S - Sortation Report
+    Then Validate the report selection page for  M&S - Sortation Report completed
+ 
   @completed @Reports @TC11_Validate_the_M_n_S_prohibition_report
   Scenario: Validate the M&S - Prohibition Report
     Given Login to JDA Dispatcher web screen
