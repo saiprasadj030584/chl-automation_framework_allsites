@@ -7,6 +7,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.dataload.exit.GetTCData;
+import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.JDAFooter;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
@@ -31,6 +32,7 @@ public class ReportSelectionStepDefs {
 	private PuttyFunctionsPage puttyFunctionsPage;
 	private Hooks hooks;
 	private final JdaLoginPage jdaLoginPage;
+	private SupplierSkuDB supplierSkuDB;
 	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -39,7 +41,8 @@ public class ReportSelectionStepDefs {
 	public ReportSelectionStepDefs(Context context,JDAExitputtyfunctionsStepDef JDAExitputtyfunctionsStepDef,
 			JDAExitUpiHeader jDAExitUpiHeader,PuttyFunctionsPage puttyFunctionsPage,
 			ReportSelectionPage ReportSelectionPage,Hooks hooks,JdaLoginPage jdaLoginPage,
-			PurchaseOrderReceivingPage purchaseOrderReceivingPage,JDAFooter JDAFooter,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage)
+			PurchaseOrderReceivingPage purchaseOrderReceivingPage,JDAFooter JDAFooter,
+			SupplierSkuDB supplierSkuDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage)
 	{
 		this.context=context;
 		this.ReportSelectionPage = ReportSelectionPage;
@@ -51,6 +54,7 @@ public class ReportSelectionStepDefs {
 		this.puttyFunctionsPage = puttyFunctionsPage;
 		this.hooks=hooks;
 		this.jdaLoginPage = jdaLoginPage;
+		this.supplierSkuDB=supplierSkuDB;
 		
 	}
 	
@@ -100,10 +104,7 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_international_urn() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForInt());
     }
-    @And("^Verify that the record is displayed for Identify Urn Report$")
-    public void verify_that_the_record_displayed_for_identify_urn_report() throws Throwable {
-    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForUrnReport());
-    }
+    
     @And("^Verify that the record is displayed for BatchId and  BBE Report$")
     public void verify_that_the_record_displayed_for_BatchId_BBE_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforBatchIdReport());
@@ -261,12 +262,7 @@ public class ReportSelectionStepDefs {
     	
     }
     
-    @And("^Validate the report selection page for Identify URN completion$")
-    public void validate_the_report_selection_page_for_completion() throws Throwable {
-    	Thread.sleep(20000);
-    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
-    	JDAFooter.clickDoneButton();	
-    }
+   
     
     @And("^Validate the report selection page for BatchId completion$")
     public void validate_the_report_selection_page_for_BatchId_completion() throws Throwable {
@@ -780,4 +776,36 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDangerousGoods());
     	JDAFooter.clickDoneButton();	
     }
+    @And("^Verify that the record is displayed for Identify Urn Report$")
+    public void verify_that_the_record_displayed_for_identify_urn_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForIdentifyURN());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Enter the required parameters UPC, supplier id and quantity$")
+    public void enter_the_required_parameters_upc_supplier_id_and_quantity() throws Throwable {
+    	String Sku="000000000021071851";
+    	context.setSKUHang(Sku);
+    	ReportSelectionPage.enterUPC(supplierSkuDB.getSupplierSKU(Sku));
+    	ReportSelectionPage.enterQuantity();
+
+    	ReportSelectionPage.enterSupplierId(supplierSkuDB.getSupplierId(Sku));
+    	JDAFooter.clickNextButton();
+    	
+    }
+    @Then("^Validate the confirmation page for M&S - Identify URN Report$")
+    public void validate_the_confirmation_page_for_identify_urn_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforIdentifyURN());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(1000);
+    }
+    @And("^Validate the report selection page for M&S - Identify URN completed$")
+    public void validate_the_report_selection_page_for_identify_urn_report_completed() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionIdentifyURN());
+    	JDAFooter.clickDoneButton();	
+    }
+    
+    
+
 }
