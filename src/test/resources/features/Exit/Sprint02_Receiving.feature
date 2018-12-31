@@ -1,4 +1,4 @@
-@Sprint02
+@Sprint02_Receiving
 Feature: Receiving
   As a Exit DC user should be able to login
    so that I validate the  master data setup
