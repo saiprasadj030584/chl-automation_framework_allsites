@@ -603,6 +603,14 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
     }
+    @Then("^Validate the confirmation page for Load Label$")
+    public void Validate_the_confirmation_page_for_Load_Label() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForLoadLabel());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(500);
+    }
+    
     @And("^Validate the report selection page for M&S - Short Invoice for Container Report completed$")
     public void validate_the_report_selection_page_for_short_invoice_for__completed() throws Throwable {
     	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDoneShortInvoice());
@@ -619,6 +627,12 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionRedputaway());
     	JDAFooter.clickDoneButton();	
     }
+    @And("^Validate the report selection page for Load Label$")
+    public void  Validate_the_report_selection_page_for_LoadLabel() throws Throwable {
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionLoadLabel());
+    	JDAFooter.clickDoneButton();	
+    }
+    
     @And("^Verify that the record is displayed for Operative Performance Trusted Report$")
     public void Verify_that_the_record_is_displayed_for_Operative_Performance_Trusted_Report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforOperativePerformance());
@@ -743,6 +757,11 @@ public class ReportSelectionStepDefs {
     @And("^Verify that the record is displayed for M&S - Stock In RED Putaway Locations$")
     public void Verify_that_the_record_is_displayed_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPutaway());
+    }
+    @And("^Verify that the record is displayed for Load Label$")
+    public void Verify_that_the_record_is_displayed_for_Load_Label() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForLoadLabel());
+    	JDAFooter.clickNextButton();
     }
     
     @Then("^Enter the red location as parameter$")
