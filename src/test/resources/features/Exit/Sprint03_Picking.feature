@@ -709,7 +709,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
-@inProgress @TC71_access_for_CIR_Report_generation
+@completed @TC71_access_for_CIR_Report_generation
  		Scenario: Access for CIR Report generation
  		Given Login to JDA Dispatcher web screen
 		And Go to User Group Function Access through Administration
@@ -720,6 +720,18 @@ Feature: Orders_Picking
 		And Access should be enabled for "OPERATIVE" Group
 
       
+    @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
+    Scenario: Load systemic reports revised on amended in Consignment
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for " M&S - Load Label"
+    And Verify that the record is displayed for Load Label
+    And Enter consignment name
+    Then Validate the confirmation page for Load Label
+    Then Validate the report selection page for Load Label
+    
+   
         @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
      Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
      Given The Sku "<SKU>" validate the t-dept to be null 
