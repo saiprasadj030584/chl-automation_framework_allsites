@@ -409,9 +409,23 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForWeeklyReceiptsDespatches());
     	JDAFooter.clickNextButton();
     }
+    @And("^Verify that the record is displayed for  M&S - Sortation Report$")
+    public void Verify_that_the_record_is_displayed_for_MnS_Sortation_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForsortation());
+    	JDAFooter.clickNextButton();
+    }
+    
+    
     @Then("Enter the date for commencing week as parameter$")
     public void enter_the_for_commencing_week_as_parameter() throws Throwable{
     	ReportSelectionPage.enterDate();
+    	JDAFooter.clickNextButton();
+    	
+    }
+    @Then("Enter the sortation$")
+    //entering dummy value as sortation not completed
+    public void enter_the_soration_as_parameter() throws Throwable{
+    	ReportSelectionPage.entersortation();
     	JDAFooter.clickNextButton();
     	
     }
@@ -428,12 +442,23 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
+    @Then("^Validate the confirmation page for M&S - Sortation Report$")
+    public void Validate_the_confirmation_page_for_MnS_Sortation_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForsortation());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
     @And("^Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed$")
     public void validate_the_report_selection_page_for_weekly_receipts_and_despatches_by_customer_completed() throws Throwable {
     	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneWeeklyReceiptsDespatches());
     	JDAFooter.clickDoneButton();	
     }
-   
+    @And("^Validate the report selection page for  M&S - Sortation Report completed$")
+    public void Validate_the_report_selection_page_for_MnS_Sortation_Report_completed() throws Throwable {
+    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneSortation());
+    	JDAFooter.clickDoneButton();	
+    }
     @And("^Verify that the record is displayed for M&S - Prohibition Report$")
     public void verify_that_the_record_displayed_for_MnS_prohibition_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForProhibition());
