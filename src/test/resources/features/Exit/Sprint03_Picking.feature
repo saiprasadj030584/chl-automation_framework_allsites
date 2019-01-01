@@ -709,6 +709,16 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
+@inProgress @TC71_access_for_CIR_Report_generation
+ 		Scenario: Access for CIR Report generation
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "Custom Inspection Report" report
+		And Validate that records should be loaded
+		And Access should be enabled for "ADMIN" Group
+		Then Search for other group "OPERATIVE"
+		And Access should be enabled for "OPERATIVE" Group
+
       
         @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
      Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
