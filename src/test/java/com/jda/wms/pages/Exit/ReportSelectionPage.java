@@ -692,6 +692,11 @@ public void entersortation() {
 	screen.type(Key.ENTER);
 	
 }
+public void entersortation() {
+	screen.type("sort123");
+	screen.type(Key.ENTER);
+	
+}
 
 public boolean isRecordDissplayedAndSelectedForProhibition() throws FindFailed, InterruptedException {
 	
