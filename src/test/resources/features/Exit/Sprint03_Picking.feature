@@ -723,10 +723,10 @@ Feature: Orders_Picking
  		Given Login to JDA Dispatcher web screen
 		And Go to User Group Function Access through Administration
 		Then Search for "Consignment" report
-		And Validate that records should be loaded
-		And Access should be enabled for "ADMIN" Group
-		Then Search for other group "PICK CLERK"
-		And Access should be enabled for "PICK CLERK" Group
+		And Validate that records should be loaded for consignment
+		And Access should be enabled for "ADMIN" Group for consignment
+		Then Search for other group "PICK CLERK" for consignment
+		And Access should be enabled for "PICK CLERK" Group for consignment
       
       
       @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
