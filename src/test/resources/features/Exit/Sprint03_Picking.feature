@@ -708,8 +708,31 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+      
+      @inprogress @TC69_access_for_Consignment_amendment_restriction
+ 		Scenario: Access for Consignment Amendment Restriction
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "Consignment" report
+		And Validate that records should be loaded
+		And Access should be enabled for "ADMIN" Group
+		Then Search for other group "PICK CLERK"
+		And Access should be enabled for "PICK CLERK" Group
+      
+      
+      @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
+  Scenario: Validate the Custom Inspection Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Custom Inspection Report"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed
+          
 
-@completed @TC71_access_for_CIR_Report_generation
+@completed  @TC71_access_for_CIR_Report_generation
  		Scenario: Access for CIR Report generation
  		Given Login to JDA Dispatcher web screen
 		And Go to User Group Function Access through Administration
