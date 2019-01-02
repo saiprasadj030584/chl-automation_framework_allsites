@@ -142,18 +142,36 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^I login as warehouse user in putty$")
 	public void i_login_as_warehouse_user_in_putty() throws Throwable {
 		i_have_logged_in_as_warehouse_user_in_putty();
+		Thread.sleep(1000);
 	}
 	@Then("^configure putty settings$")
 	public void configure_putty_settings() throws Throwable {
-		i_have_logged_in_as_warehouse_user_in_putty();
+		Thread.sleep(1000);
 		puttyFunctionsPage.configureSettings();
+	}
+	@Then("^Enter Consignment \"([^\"]*)\"$")
+	public void enterConsignment(String Consignment) throws Throwable {
+		puttyFunctionsPage.typeConsignment(Consignment);
 	}
 	
 	@Then("^I select Inventory transaction option$")
 	public void InventoryTransaction() throws Throwable {
-		i_have_logged_in_as_warehouse_user_in_putty();
 		puttyFunctionsPage.selectInventory();
 	}
+	
+	@Then("^Enter Pallet Id \"([^\"]*)\"$")
+	public void getPalletId(String Pallet) throws Throwable {
+
+		puttyFunctionsPage.enterPalletId(Pallet);
+	}
+	
+	
+	@Then("^Validate the pallet and consignment is linked$")
+	public void consignmentIsLinked() throws Throwable {
+		
+		puttyFunctionsPage.linkPalletId();
+	}
+	
 	@When("^I select user directed option in main menu$")
 	public void i_select_user_directed_option_in_main_menu() throws Throwable {
 		purchaseOrderReceivingPage.selectUserDirectedMenu();
