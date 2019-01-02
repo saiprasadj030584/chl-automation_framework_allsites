@@ -233,7 +233,16 @@ Feature: Orders_Picking
     Examples: 
       | sortationgroup |
       | Sortation      |
-
+      
+  @Sortation @TC26_Happy_path_Pallet_Consignment_Linking_process
+  Scenario Outline: Happy_path_Pallet Consignment Linking process
+    Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And configure putty settings
+    And I select Inventory transaction option 
+ 		Examples: 
+      | SKU                |
+      | 000000000021071852 |
  @Sortation @TC28_Happy_Path_Validate_consignment_id_format
   Scenario: Happy_Path_Validate consignment id format
     Given Login to JDA Dispatcher web screen

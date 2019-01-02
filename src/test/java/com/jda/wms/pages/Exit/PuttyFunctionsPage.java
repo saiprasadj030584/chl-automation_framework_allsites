@@ -161,6 +161,30 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		screen.type(Key.F11);
 
 	}
+	public void configureSettings()throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		Match mLocation = screen.find("images/Putty/PuttyIcon.png");
+		screen.click(mLocation.getCenter().offset(70, 0));
+		Thread.sleep(2000);
+		Match mLocation1 = screen.find("images/Putty/ChangeSettings.png");
+		screen.click(mLocation1.getCenter().offset(70, 0));
+		Thread.sleep(2000);
+		Match mLocation2 = screen.find("images/Putty/Keyboard.png");
+		screen.click(mLocation2.getCenter().offset(70, 0));
+		Thread.sleep(2000);
+		Match mLocation3 = screen.find("images/Putty/XtermR6.png");
+		screen.click(mLocation3.getCenter().offset(70, 0));
+		Thread.sleep(2000);
+		Match mLocation4 = screen.find("images/Putty/PuttyApply.png");
+		screen.click(mLocation4.getCenter().offset(70, 0));
+	}
+	public void selectInventory()throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		screen.type(Key.F3);
+		Thread.sleep(3000);
+		screen.type("7");
+		screen.type(Key.ENTER);
+	}
 //	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id_for_UPI(String preAdviceId, String skuid) throws Throwable {
 		System.out.println("skuid "+skuid);
