@@ -143,6 +143,17 @@ public class JDAExitputtyfunctionsStepDef {
 	public void i_login_as_warehouse_user_in_putty() throws Throwable {
 		i_have_logged_in_as_warehouse_user_in_putty();
 	}
+	@Then("^configure putty settings$")
+	public void configure_putty_settings() throws Throwable {
+		i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsPage.configureSettings();
+	}
+	
+	@Then("^I select Inventory transaction option$")
+	public void InventoryTransaction() throws Throwable {
+		i_have_logged_in_as_warehouse_user_in_putty();
+		puttyFunctionsPage.selectInventory();
+	}
 	@When("^I select user directed option in main menu$")
 	public void i_select_user_directed_option_in_main_menu() throws Throwable {
 		purchaseOrderReceivingPage.selectUserDirectedMenu();
