@@ -42,12 +42,9 @@ public class UserGroupFunctionAccessPage {
 	public boolean isReportAccessEnabled() throws FindFailed, InterruptedException {
 		
 		if(screen.find("images/UserGroupFunctionAccess/reportEnabled.png")!=null)
-	{
-		Match mRecord=screen.find("images/UserGroupFunctionAccess/reportEnabled.png");
-		
-		Thread.sleep(1000);
+	
 		return true;
-	}
+	
 		else
 		return false;
 	}

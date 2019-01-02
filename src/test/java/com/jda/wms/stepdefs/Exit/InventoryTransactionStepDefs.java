@@ -182,6 +182,20 @@ public class InventoryTransactionStepDefs{
 		
 	}
 	
+	@And("^Take a sku having stock in BLACK area$")
+	public void take_a_sku_having_stock_in_black_area() throws Throwable{
+		
+	}
+	
+	@And("^Verified in Inventory and ITL$")
+	public void verified_in_inventory_and_ITL() throws Throwable{
+		
+	}
+	@Then("^Stock is validated successfully$")
+	public void stock_validated() throws Throwable{
+		
+	}
+	
 	
 	
 }

@@ -718,7 +718,7 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
       
-      @inprogress @TC69_access_for_Consignment_amendment_restriction
+      @completed @TC69_access_for_Consignment_amendment_restriction
  		Scenario: Access for Consignment Amendment Restriction
  		Given Login to JDA Dispatcher web screen
 		And Go to User Group Function Access through Administration
@@ -726,7 +726,7 @@ Feature: Orders_Picking
 		And Validate that records should be loaded for consignment
 		And Access should be enabled for "ADMIN" Group for consignment
 		Then Search for other group "PICK CLERK" for consignment
-		And Access should be enabled for "PICK CLERK" Group for consignment
+		Then Access should be enabled for "PICK CLERK" Group for consignment
       
       
       @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
@@ -748,8 +748,8 @@ Feature: Orders_Picking
 		Then Search for "Custom Inspection Report" report
 		And Validate that records should be loaded
 		And Access should be enabled for "ADMIN" Group
-		Then Search for other group "OPERATIVE"
-		And Access should be enabled for "OPERATIVE" Group
+				Then Search for other group "OPERATIVE"
+	And Access should be enabled for "OPERATIVE" Group
 
       
     @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment

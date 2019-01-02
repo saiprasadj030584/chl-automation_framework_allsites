@@ -37,7 +37,7 @@ public class UserGroupFunctionAccessStepDefs{
 	@And("^Access should be enabled for \"([^\"]*)\" Group$")
 	public void access_should_be_enabled_for_group(String group) throws Throwable{
 		Assert.assertTrue("Report access not enabled", userGroupFunctionAccessPage.isReportAccessEnabled());
-		jdaFooter.clickCloseButton();
+		
 	}
 	
 	@Then("^Search for other group \"([^\"]*)\"$")
@@ -64,7 +64,7 @@ public class UserGroupFunctionAccessStepDefs{
 	@And("^Access should be enabled for \"([^\"]*)\" Group for consignment$")
 	public void access_should_be_enabled_for_group_for_consignment(String group) throws Throwable{
 		Assert.assertTrue("Report access not enabled", userGroupFunctionAccessPage.isReportAccessEnabledForConsignment());
-		jdaFooter.clickCloseButton();
+		
 	}
 	
 	
