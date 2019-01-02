@@ -164,20 +164,42 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	public void configureSettings()throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		Match mLocation = screen.find("images/Putty/PuttyIcon.png");
-		screen.click(mLocation.getCenter().offset(70, 0));
+		//screen.click(mLocation.getCenter().offset(70, 0));
+		screen.click(mLocation);
 		Thread.sleep(2000);
 		Match mLocation1 = screen.find("images/Putty/ChangeSettings.png");
-		screen.click(mLocation1.getCenter().offset(70, 0));
+		screen.click(mLocation1);
 		Thread.sleep(2000);
 		Match mLocation2 = screen.find("images/Putty/Keyboard.png");
-		screen.click(mLocation2.getCenter().offset(70, 0));
+		screen.click(mLocation2);
 		Thread.sleep(2000);
 		Match mLocation3 = screen.find("images/Putty/XtermR6.png");
-		screen.click(mLocation3.getCenter().offset(70, 0));
+		screen.click(mLocation3);
 		Thread.sleep(2000);
 		Match mLocation4 = screen.find("images/Putty/PuttyApply.png");
+		screen.click(mLocation4);
+	}
+	public void enterPalletId(String Pallet)throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		screen.type(Pallet);
+		Thread.sleep(2000);
+		
+	}
+	public void typeConsignment(String Consignment)throws FindFailed, InterruptedException{
+		Thread.sleep(2000);
+		screen.type(Key.TAB);
+		Thread.sleep(2000);
+		screen.type(Consignment);
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public void linkPalletId()throws FindFailed, InterruptedException {
+		Thread.sleep(2000);
+		Match mLocation4 = screen.find("images/Putty/Promptmsg.png");
 		screen.click(mLocation4.getCenter().offset(70, 0));
 	}
+	
 	public void selectInventory()throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		screen.type(Key.F3);
