@@ -94,6 +94,11 @@ public class JDAHomeStepDefs {
 		 jdaHomePage.navigateToReportSelectionMenu();                                                                
 	} 
 	
+	@And("^Go to User Reports and click$")
+	public void go_to_user_reports_and_Click() throws Throwable {
+		 jdaHomePage.navigateToUserReportsMenu();                                                                
+	} 
+	
 	@And("^Quering it using SiteID and Executing$")
 	public void Quering_it_using_SiteID_and_Executing() throws Throwable {
 		Thread.sleep(3000);
@@ -343,6 +348,10 @@ public class JDAHomeStepDefs {
 	public void Go_to_Site_global_Function_Access_screen() throws Throwable {
 		jdaHomePage.navigateToSiteAccesscontrol();
 }
+	@And("^Go to User Group Function Access through Administration$")
+	public void go_to_user_group_function_access_through_administration() throws Throwable{
+		jdaHomePage.navigateToUserGroupFuntionAccess();
+	}
 	
 }
 	

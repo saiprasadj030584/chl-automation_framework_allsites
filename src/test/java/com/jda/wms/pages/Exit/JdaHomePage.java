@@ -939,6 +939,19 @@ public class JdaHomePage {
 		hoverReportSelection();
 		Thread.sleep(100);
 	}
+	
+	public void navigateToUserReportsMenu() throws FindFailed, InterruptedException {
+		clickReportsMenu();
+		hoverUserReports();
+		Thread.sleep(100);
+	}
+
+
+	public void hoverUserReports() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/UserReports.png", timeoutInSec);
+		screen.click("images/JDAHome/UserReports.png");
+		screen.mouseMove(70, 0);
+	}
 
 
 	public void hoverReportSelection() throws FindFailed, InterruptedException {
@@ -1140,6 +1153,16 @@ public class JdaHomePage {
 
 	public void go_to_Data_SKU_SKU_Click() {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void navigateToUserGroupFuntionAccess() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoverAccesscontrol();
+		Thread.sleep(1000);
+		clickUsergroupFunctionaccess();
+		Thread.sleep(3000);
 		
 	}
 

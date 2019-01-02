@@ -718,6 +718,17 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
 
+@completed @TC71_access_for_CIR_Report_generation
+ 		Scenario: Access for CIR Report generation
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "Custom Inspection Report" report
+		And Validate that records should be loaded
+		And Access should be enabled for "ADMIN" Group
+		Then Search for other group "OPERATIVE"
+		And Access should be enabled for "OPERATIVE" Group
+
+      
     @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
     Scenario: Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen

@@ -638,7 +638,7 @@ public class ReportSelectionStepDefs {
     
     @And("^Validate the report selection page for M&S - Short Invoice for Container Report completed$")
     public void validate_the_report_selection_page_for_short_invoice_for__completed() throws Throwable {
-    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    	Assert.assertTrue("M&S - Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
     	JDAFooter.clickDoneButton();	
     }
    
@@ -880,5 +880,21 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnAuditTrail());
     	JDAFooter.clickDoneButton();	
     }
-
+    @And("^Verify that the record is displayed for Container Report or M&S - Short Invoice for Container Report$")
+    public void verify_that_the_record_displayed_for_container_report_short_invoice_for_container_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Container Report or M&S - Short Invoice for Container Report$")
+    public void validate_the_confirmation_page_for_container_report_short_invoice_for_container_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForShortInvoice());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    }
+    @And("^Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed$")
+    public void validate_the_report_selection_page_for_container_report_short_invoice_for__completed() throws Throwable {
+    	Assert.assertTrue("Container Report or Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    	JDAFooter.clickDoneButton();	
+    }
 }
