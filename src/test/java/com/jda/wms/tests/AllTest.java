@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC27_Negative_Path_Incorrect_pallet_consignment_linking" 
+			+ "@TC71_access_for_CIR_Report_generation" 
 
 })
 public class AllTest {
