@@ -62,7 +62,7 @@ Feature: Report Generation
     And Search for "M&S - Gains and Loss Report"
     And Verify that the record is displayed for M&S Gains Or Loss Report
     Then Validate the confirmation page for Gains and Loss Report
-    Then Validate the report selection page for Gains and Loss Report completed
+   	Then Validate the report selection page for Gains and Loss Report completed
 
   @completed @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
@@ -109,15 +109,15 @@ Feature: Report Generation
     Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
 
   @completed @Reports @TC10_Validate_the_MnS_Sortation_Report
-  Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
+  Scenario: Validate the M&S - Sortation Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
-    And Search for " M&S - Sortation Report"
+    And Search for "M&S - Sortation Report"
     And Verify that the record is displayed for  M&S - Sortation Report
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Sortation Report
-    Then Validate the report selection page for  M&S - Sortation Report completed
+    Then Validate the report selection page for M&S - Sortation Report completed
  
   @completed @Reports @TC11_Validate_the_M_n_S_prohibition_report
   Scenario: Validate the M&S - Prohibition Report
