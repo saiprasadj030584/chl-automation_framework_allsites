@@ -29,7 +29,18 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
-    
+	public void selectvehicleDirectedMenu() throws FindFailed, InterruptedException {
+		screen.type("7");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public void selectvehicleloadMenu() throws FindFailed, InterruptedException {
+		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 	
 	public void selectReceiveMenu() throws FindFailed, InterruptedException {
 		screen.type("1");

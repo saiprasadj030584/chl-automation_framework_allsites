@@ -911,12 +911,20 @@ public class ReportSelectionStepDefs {
     	Thread.sleep(1000);
     	JDAFooter.clickNextButton();
     }
+    @And("^I enter dock door \"([^\"]*)\"$")
+    public void Enterdoor(String Id) throws Throwable {
+    	Thread.sleep(2000);
+    	ReportSelectionPage.enterCustomerId(Id);
+    	Thread.sleep(1000);
+    	puttyFunctionsPage.pressEnter();
+    }
+   
     @Then("^Validate the confirmation page for Proforma Invoice$")
     public void validate_the_confirmation_page_for_ProformaInvoice() throws Throwable {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforProformaInvoice());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(1000);
+    	Thread.sleep(20000);
     }
     @And("^Validate the report selection page for Proforma Invoice$")
     public void Validate_the_report_selection_page_for_ProformaInvoice() throws Throwable {

@@ -1552,10 +1552,11 @@ else
 return false;
 }
 public boolean isReportSelectionProformaInvoice() throws FindFailed, InterruptedException{
-	
+	Thread.sleep(10000);
 	if(screen.find("images/ReportSelection/ProformaInvoiceReport.png")!=null)
 {
 	Match mFinishScreen=screen.find("images/ReportSelection/ProformaInvoiceReport.png");
+	
 	screen.click(mFinishScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;

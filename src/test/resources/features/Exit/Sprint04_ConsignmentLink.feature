@@ -15,6 +15,15 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for Container Report or M&S - Short Invoice for Container Report
     Then Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed
     
+    @ConsignmentLinking @TC34_Negative_Path_container_and_consignment
+    Scenario: Negative Path_container and consignment
+    Given I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select vehicle loading option in main menu
+    And I select vehicle load option
+    And I enter dock door "1015"
+    And validate the error message is displayed
+    
     @completed @ConsignmentLinking @TC35_Validate_Load_Hazardous_report
   Scenario: Validate Load Hazardous Report
     Given Login to JDA Dispatcher web screen
@@ -71,7 +80,7 @@ Feature: ConsignmentLinking
     And validate Consignment Trailer is linked
     
      @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
-  Scenario: Validate Load Hazardous Report
+  Scenario: Validate Proforma_Invoice_report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -80,6 +89,13 @@ Feature: ConsignmentLinking
     Then Enter order number "1015176558"
     And Validate the confirmation page for Proforma Invoice
     Then Validate the report selection page for Proforma Invoice
+    
+    @ConsignmentLinking @TC39_Check_that_the_User_Groups_have_been_set_up_with_the_required_access_for_the_RDTs
+    Scenario: Check that the User Groups have been set up with the required acceses for the RDTs
+    Given Login to JDA Dispatcher web screen
+    And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
+    And Select a User Group from the Group dropdown box
+    And Verify whether the access is valid
     
  		@completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
