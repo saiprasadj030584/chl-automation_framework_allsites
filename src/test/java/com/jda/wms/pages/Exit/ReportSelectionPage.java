@@ -1527,7 +1527,42 @@ else
 return false;
 }
 
-
+public boolean isRecordDissplayedAndSelectedforProformaInvoice() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/SelectedForProformaInvoice.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/SelectedForProformaInvoice.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isProcessConfirmedforProformaInvoice() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForProformaInvoice.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForProformaInvoice.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isReportSelectionProformaInvoice() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ProformaInvoiceReport.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/ProformaInvoiceReport.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
 	}
 
 
