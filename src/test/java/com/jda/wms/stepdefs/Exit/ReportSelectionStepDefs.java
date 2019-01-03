@@ -322,7 +322,7 @@ public class ReportSelectionStepDefs {
        public void verify_that_the_record_is_displayed_for_MnS_Gains_or_loss_report() throws Throwable {
        	
        	Assert.assertTrue("M&S Gains and Loss record not found", ReportSelectionPage.isRecordDissplayedAndSelectedForGainOrLossReport());
-       	JDAFooter.clickDoneButton();	
+       	JDAFooter.clickNextButton();
        	}
     
     @Then("^Validate the confirmation page for Gains and Loss Report$")
@@ -346,13 +346,13 @@ public class ReportSelectionStepDefs {
     @Then("^Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report$")
     public void validate_the_confirmation_page_for_Non_shipped_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForNonShipped());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
     @And("^Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed$")
     public void validate_the_report_selection_page_for_non_shipped() throws Throwable {
-    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneNonShipped());
     	JDAFooter.clickDoneButton();	
     }
      
@@ -451,12 +451,12 @@ public class ReportSelectionStepDefs {
     }
     @And("^Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed$")
     public void validate_the_report_selection_page_for_weekly_receipts_and_despatches_by_customer_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneWeeklyReceiptsDespatches());
+    	Assert.assertTrue("M&S - Weekly Receipts and Despatches by Customer report not found", ReportSelectionPage.isReportSelectionDoneWeeklyReceiptsDespatches());
     	JDAFooter.clickDoneButton();	
     }
-    @And("^Validate the report selection page for  M&S - Sortation Report completed$")
+    @And("^Validate the report selection page for M&S - Sortation Report completed$")
     public void Validate_the_report_selection_page_for_MnS_Sortation_Report_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneSortation());
+    	Assert.assertTrue("M&S - Sortation Report not found", ReportSelectionPage.isReportSelectionDoneSortation());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Verify that the record is displayed for M&S - Prohibition Report$")
@@ -473,7 +473,7 @@ public class ReportSelectionStepDefs {
     }
     @And("^Validate the report selection page for M&S - Prohibition completed$")
     public void validate_the_report_selection_page_for_MnS_prohibition_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
+    	Assert.assertTrue("M&S - Prohibition report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
     	JDAFooter.clickDoneButton();	
     }
     
@@ -911,20 +911,12 @@ public class ReportSelectionStepDefs {
     	Thread.sleep(1000);
     	JDAFooter.clickNextButton();
     }
-    @And("^I enter dock door \"([^\"]*)\"$")
-    public void Enterdoor(String Id) throws Throwable {
-    	Thread.sleep(2000);
-    	ReportSelectionPage.enterCustomerId(Id);
-    	Thread.sleep(1000);
-    	puttyFunctionsPage.pressEnter();
-    }
-   
     @Then("^Validate the confirmation page for Proforma Invoice$")
     public void validate_the_confirmation_page_for_ProformaInvoice() throws Throwable {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforProformaInvoice());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(20000);
+    	Thread.sleep(1000);
     }
     @And("^Validate the report selection page for Proforma Invoice$")
     public void Validate_the_report_selection_page_for_ProformaInvoice() throws Throwable {
