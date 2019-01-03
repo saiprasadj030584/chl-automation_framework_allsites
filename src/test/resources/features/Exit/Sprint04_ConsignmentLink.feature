@@ -26,7 +26,7 @@ Feature: ConsignmentLinking
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
     
-     @Trailer_Maintenance @TC36_Create_Trailer_id
+    @completed @Trailer_Maintenance @TC36_Create_Trailer_id
     Scenario: Create_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -37,7 +37,7 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
     
-    @Trailer_Maintenance @TC037_Validate_consignment_Trailer_linking
+   @completed @Trailer_Maintenance @TC037_Validate_consignment_Trailer_linking
   Scenario: Validate consignment Trailer linking
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
@@ -69,6 +69,17 @@ Feature: ConsignmentLinking
     And Click next
     And I click on trailer Add button
     And validate Consignment Trailer is linked
+    
+     @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
+  Scenario: Validate Load Hazardous Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "Proforma Invoice - by Order ID"
+    And Verify that the record is displayed for Proforma Invoice
+    Then Enter order number "1015176558"
+    And Validate the confirmation page for Proforma Invoice
+    Then Validate the report selection page for Proforma Invoice
     
  		@completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation

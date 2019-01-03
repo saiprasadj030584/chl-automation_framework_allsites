@@ -808,6 +808,7 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelectedforDangerousGoods());
     	JDAFooter.clickNextButton();	
     }
+    
     @Then("^Validate the confirmation page for Dangerous Goods$")
     public void validate_the_confirmation_page_for_Dangerous_Goods() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -895,6 +896,31 @@ public class ReportSelectionStepDefs {
     @And("^Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed$")
     public void validate_the_report_selection_page_for_container_report_short_invoice_for__completed() throws Throwable {
     	Assert.assertTrue("Container Report or Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Proforma Invoice$")
+    public void Verify_that_the_record_is_displayed_for_Proforma_Invoice() throws Throwable {
+    	Thread.sleep(1000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelectedforProformaInvoice());
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Enter order number \"([^\"]*)\"$")
+    public void EnterOrderId(String Id) throws Throwable {
+    	Thread.sleep(2000);
+    	ReportSelectionPage.enterCustomerId(Id);
+    	Thread.sleep(1000);
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Proforma Invoice$")
+    public void validate_the_confirmation_page_for_ProformaInvoice() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforProformaInvoice());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(1000);
+    }
+    @And("^Validate the report selection page for Proforma Invoice$")
+    public void Validate_the_report_selection_page_for_ProformaInvoice() throws Throwable {
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionProformaInvoice());
     	JDAFooter.clickDoneButton();	
     }
 }
