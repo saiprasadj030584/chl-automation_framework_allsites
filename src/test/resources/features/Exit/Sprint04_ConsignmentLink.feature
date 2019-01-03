@@ -91,5 +91,15 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for Red Report
     And Proceed next to Output tab for the report
     Then Validate the report selection page for Red Report creation
- 		
+    
+    @inprogress @ConsignmentLinking @TC61_Validate_black_stock_adjustment
+    Scenario: To Validate Black stock adjustment
+    Given Login to JDA Dispatcher web screen
+		And Take a sku having stock in BLACK area
+		Then Navigate to Stock Adjustment Screen
+		And Query with sku id and tag id in BLACK area
+		Then Decrease the stock form the sku - quantity in hand
+		When Verified in Inventory and ITL
+		Then Stock is validated successfully
+		 		
  		
