@@ -366,5 +366,11 @@ public class StoreTrackingOrderPickingPage {
 		else
 			return false;
 	}
+	public boolean isInvalidErrorDisplayed() {
+		if ((screen.exists("images/Putty/Picking/InvalidError.png") != null))
+			return true;
+		else
+			return false;
+	}
 	}
 

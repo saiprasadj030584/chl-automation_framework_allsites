@@ -923,4 +923,5 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionProformaInvoice());
     	JDAFooter.clickDoneButton();	
     }
+    
 }

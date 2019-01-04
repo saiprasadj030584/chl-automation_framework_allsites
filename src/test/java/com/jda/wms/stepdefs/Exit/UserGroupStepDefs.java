@@ -101,5 +101,9 @@ public class UserGroupStepDefs{
 	public void Type_in_function_Access() throws Throwable {
 		userGroupPage.typeSearchKey();
 	}
+	@And("^Search for Picking and Relocate access$")
+	public void search_function_Access() throws Throwable {
+		userGroupPage.accessSearchKey();
+	}
 	
 }
