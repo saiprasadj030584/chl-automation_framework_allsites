@@ -4,7 +4,9 @@ Feature: ConsignmentLinking
    so that I validate repacking
    with ConsignmentLinking
    
-   @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
+   
+   
+@ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
@@ -45,7 +47,37 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071851 |
-   
+      
+  @ConsignmentLinking  @TC04_Happy_Path_Validate_Manual_order
+  Scenario Outline: Happy_Path_Validate_Manual_order
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+  @ConsignmentLinking   @TC05_Validate_Pick_list_id_generated_for_an_order_Manual_STO
+  Scenario Outline: Validate Pick list id generated for an order-Manual_STO
+    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
+    And Login to JDA Dispatcher web screen
+    And I navigate to order header
+    And Click on Query
+    And Specify the Order in orderline
+    And click execute
+    And Navigate to user Defined tab
+    Then Verify the delivery type field is set "ZNL1"
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
 @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen
