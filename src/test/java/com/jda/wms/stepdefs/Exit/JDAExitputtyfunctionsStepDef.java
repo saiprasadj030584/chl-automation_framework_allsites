@@ -829,5 +829,12 @@ public void I_validate_incorrect_message_is_displayed() throws Throwable{
 	Thread.sleep(2000);
 	puttyFunctionsPage.pressEnter();
 }
-
+ 
+@And("^I enter dock door \"([^\"]*)\"$")
+public void EnterDockDoor(String Id) throws Throwable {
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(Id);
+	Thread.sleep(1000);
+	puttyFunctionsPage.pressEnter();
+}
 }

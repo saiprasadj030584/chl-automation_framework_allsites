@@ -101,6 +101,26 @@ public void accessEnabled() throws FindFailed {
 	screen.type(Key.BACKSPACE);
 		}
 	}
-	
+	public void accessSearchKey()throws FindFailed, InterruptedException {
+		ArrayList <String> AccessGroup = new ArrayList<String>();
+		AccessGroup.add("Picking");
+		AccessGroup.add("Relocate");
+		
+		int size= AccessGroup.size();
+		
+		for(int i=0;i<size;i++){
+			Match mStatus = screen.find("images/JDAHome/AccessSearch.png");
+			screen.click(mStatus.getCenter().offset(80,0));
+	 String element=AccessGroup.get(i);
+		screen.type(element);
+		screen.find("images/JDAHome/AccessSearchButton.png");
+		screen.click("images/JDAHome/AccessSearchButton.png");
+		accessEnabled();
+	Thread.sleep(2000);
+	screen.find("images/JDAHome/AccessSearch.png");
+	screen.type("a", Key.CTRL);
+	screen.type(Key.BACKSPACE);
+		}
+	}
 }
 
