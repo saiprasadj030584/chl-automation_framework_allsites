@@ -4,7 +4,47 @@ Feature: ConsignmentLinking
    so that I validate repacking
    with ConsignmentLinking
    
-   
+   @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
+  Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANB
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+@ConsignmentLinking  @TC02_Validate_Picking_process_for_Manual_Franchise_order
+  Scenario Outline: Validate Picking process for Manual Franchise order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANB
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter ListId and TagId
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+  
+ @ConsignmentLinking  @TC03_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
+  Scenario Outline: Validate Picking process for Manual Franchise order
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    And Navigate to Move Task management Screen to verify Order Allocated status
+    And Validation of List Id generated with prefix as MANH
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select picking with container pick
+    Then I should be directed to pick entry page
+    And I enter ListId and TagId
+    And I navigate to Order header screen to verify the status in Ready to Load
+
+    Examples: 
+      | SKU                |
+      | 000000000021071851 |
    
 @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
