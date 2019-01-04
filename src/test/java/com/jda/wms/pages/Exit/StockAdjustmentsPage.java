@@ -186,10 +186,44 @@ public class StockAdjustmentsPage {
 			return false;
 	}
 
-	public void clickOk() {
-		// TODO Auto-generated method stub
+	
+
+	public void enterSkuId(String skuId) throws InterruptedException, FindFailed{
+		screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
+		Match mSku=screen.find("images/InventoryTransactionQuery/SkuId.png");
+		screen.click(mSku.getCenter().offset(70,0));
+		Thread.sleep(1000);
+		screen.type(skuId);
+		
 		
 	}
 
+	public void clickNextButton() throws FindFailed, InterruptedException {
+		screen.type(Key.F7);
+		
+	}
+	public void adjustQtyOnHand(String decrementQty) throws FindFailed, InterruptedException {
 
-}
+		screen.wait("images/InventoryTransactionQuery/qtyOnHandSa.png", timeoutInSec);
+		Match mSku=screen.find("images/InventoryTransactionQuery/qtyOnHandSa.png");
+		screen.click(mSku.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type(Key.BACKSPACE);
+		Thread.sleep(1000);
+		screen.type(decrementQty);
+		System.out.println("Quantity" + decrementQty);
+		Thread.sleep(3000);
+		jdaFooter.clickNextButton();
+	}
+	public String getNewQtyOnHand() throws FindFailed {
+		Match mStatus = screen.find("images/InventoryTransactionQuery/qtyOnHandSa.png");
+		screen.click(mStatus.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+	}
+	
+	}
+
+
+

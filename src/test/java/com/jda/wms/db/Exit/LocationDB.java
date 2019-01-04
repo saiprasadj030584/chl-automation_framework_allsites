@@ -275,6 +275,21 @@ public class LocationDB {
 		context.getConnection().commit();
 		return rs.getString(1);
 	}
+
+	public String getWorkZone(String location) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+
+		Statement stmt = context.getConnection().createStatement();
+		System.out.println("select work_zone from location where location_id='" + location + "'");
+		ResultSet rs = stmt
+				.executeQuery("select work_zone from location where location_id='AA001'");
+		context.getConnection().commit();
+		rs.next();
+		return rs.getString(1);
+	}
+	
 	}
 	
 		 

@@ -92,14 +92,19 @@ Feature: ConsignmentLinking
     And Proceed next to Output tab for the report
     Then Validate the report selection page for Red Report creation
     
-    @inprogress @ConsignmentLinking @TC61_Validate_black_stock_adjustment
-    Scenario: To Validate Black stock adjustment
+    @completed @ConsignmentLinking @TC61_Validate_black_stock_adjustment
+    Scenario Outline: To Validate Black stock adjustment
+    Given The location "<Location>" verify the workzone as "BLACKB"
     Given Login to JDA Dispatcher web screen
-		And Take a sku having stock in BLACK area
+		And Take a sku having stock in "BLACKB"
 		Then Navigate to Stock Adjustment Screen
 		And Query with sku id and tag id in BLACK area
-		Then Decrease the stock form the sku - quantity in hand
+		Then Adjust the stock form the sku - quantity in hand
 		When Verified in Inventory and ITL
 		Then Stock is validated successfully
+#		
+	Examples:
+	|Location|
+	|AA001|
 		 		
  		
