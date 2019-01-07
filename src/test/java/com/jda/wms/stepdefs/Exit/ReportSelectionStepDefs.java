@@ -606,7 +606,14 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_short_invoice_for_container_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
     	JDAFooter.clickNextButton();
-    }
+    } 
+   
+    
+    @And("^ Verify that the record is displayed for M&S - Short Invoice for Container Report$")
+    public void  Verify_that_the_record_is_displayed_for_MnS_Short_Invoice_for_Container_Report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
+    	JDAFooter.clickNextButton();
+    } 
     @Then("^Validate the confirmation page for M&S - Short Invoice for Container Report$")
     public void validate_the_confirmation_page_for_short_invoice_for_container_report() throws Throwable {
     	JDAFooter.clickNextButton();	
