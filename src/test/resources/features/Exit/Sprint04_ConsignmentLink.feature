@@ -186,6 +186,21 @@ Feature: ConsignmentLinking
     And I click on trailer Add button
     And validate Consignment Trailer is linked
     
+    @completed @Putaway @TC11_Validate_black_stock_adjustment
+    Scenario Outline: To Validate Black stock adjustment
+    Given Login to JDA Dispatcher web screen
+		And Take a sku having stock in "BLACKB"
+		Then Navigate to Stock Adjustment Screen
+		And Query with sku id and tag id in BLACK area
+		Then Adjust the stock form the sku - quantity in hand
+		When Verified in Inventory and ITL
+		Then Stock is validated successfully
+	Examples:
+	|Location|
+	|AA001|
+	
+	
+    
      @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
     Given Login to JDA Dispatcher web screen
@@ -237,9 +252,11 @@ Feature: ConsignmentLinking
 		Then Adjust the stock form the sku - quantity in hand
 		When Verified in Inventory and ITL
 		Then Stock is validated successfully
-#		
 	Examples:
 	|Location|
 	|AA001|
+	
+	
+	
 		 		
  		
