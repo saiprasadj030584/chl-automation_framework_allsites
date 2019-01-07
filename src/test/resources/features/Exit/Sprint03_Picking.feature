@@ -233,7 +233,20 @@ Feature: Orders_Picking
     Examples: 
       | sortationgroup |
       | Sortation      |
-
+      
+  @Sortation @TC27_Negative_Path_Incorrect_pallet_consignment_linking
+  Scenario Outline: Negative_Path_Incorrect pallet consignment linking
+    Given I login as warehouse user in putty
+    And I select user directed option in main menu
+    And configure putty settings
+    And I select Inventory transaction option
+    And Enter Pallet Id "P1286952"
+    And Enter Consignment "CONS7993271218"
+    And Validate the pallet and consignment is linked
+ 		Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
  @Sortation @TC28_Happy_Path_Validate_consignment_id_format
   Scenario: Happy_Path_Validate consignment id format
     Given Login to JDA Dispatcher web screen
@@ -708,8 +721,53 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
+      
+      @completed @TC69_access_for_Consignment_amendment_restriction
+ 		Scenario: Access for Consignment Amendment Restriction
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "Consignment" report
+		And Validate that records should be loaded for consignment
+		And Access should be enabled for "ADMIN" Group for consignment
+		Then Search for other group "PICK CLERK" for consignment
+		Then Access should be enabled for "PICK CLERK" Group for consignment
+      
+      
+      @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
+  Scenario: Validate the Custom Inspection Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Custom Inspection Report"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed
+          
+
+@completed  @TC71_access_for_CIR_Report_generation
+ 		Scenario: Access for CIR Report generation
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "Custom Inspection Report" report
+		And Validate that records should be loaded
+		And Access should be enabled for "ADMIN" Group
+				Then Search for other group "OPERATIVE"
+	And Access should be enabled for "OPERATIVE" Group
 
       
+    @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
+    Scenario: Load systemic reports revised on amended in Consignment
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for " M&S - Load Label"
+    And Verify that the record is displayed for Load Label
+    And Enter consignment name
+    Then Validate the confirmation page for Load Label
+    Then Validate the report selection page for Load Label
+    
+   
         @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
      Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
      Given The Sku "<SKU>" validate the t-dept to be null 

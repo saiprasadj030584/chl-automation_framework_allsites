@@ -939,6 +939,19 @@ public class JdaHomePage {
 		hoverReportSelection();
 		Thread.sleep(100);
 	}
+	
+	public void navigateToUserReportsMenu() throws FindFailed, InterruptedException {
+		clickReportsMenu();
+		hoverUserReports();
+		Thread.sleep(100);
+	}
+
+
+	public void hoverUserReports() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/UserReports.png", timeoutInSec);
+		screen.click("images/JDAHome/UserReports.png");
+		screen.mouseMove(70, 0);
+	}
 
 
 	public void hoverReportSelection() throws FindFailed, InterruptedException {
@@ -1143,14 +1156,26 @@ public class JdaHomePage {
 		
 	}
 
+
+	public void navigateToUserGroupFuntionAccess() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoverAccesscontrol();
+		Thread.sleep(1000);
+		clickUsergroupFunctionaccess();
+		Thread.sleep(3000);
+		
+	}
+	public void navigateToInventoryQueryScreen() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Inventory query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+		
+	}
+
 	
-//	public void navigateToInventory() throws FindFailed, InterruptedException {
-//		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("Inventory transaction (ITL) query screen");
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(5000);
-//	}
+
 }

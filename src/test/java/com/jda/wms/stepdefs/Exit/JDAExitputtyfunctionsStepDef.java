@@ -142,11 +142,49 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^I login as warehouse user in putty$")
 	public void i_login_as_warehouse_user_in_putty() throws Throwable {
 		i_have_logged_in_as_warehouse_user_in_putty();
+		Thread.sleep(1000);
 	}
+	@Then("^configure putty settings$")
+	public void configure_putty_settings() throws Throwable {
+		Thread.sleep(1000);
+		puttyFunctionsPage.configureSettings();
+	}
+	@Then("^Enter Consignment \"([^\"]*)\"$")
+	public void enterConsignment(String Consignment) throws Throwable {
+		puttyFunctionsPage.typeConsignment(Consignment);
+	}
+	
+	@Then("^I select Inventory transaction option$")
+	public void InventoryTransaction() throws Throwable {
+		puttyFunctionsPage.selectInventory();
+	}
+	
+	@Then("^Enter Pallet Id \"([^\"]*)\"$")
+	public void getPalletId(String Pallet) throws Throwable {
+
+		puttyFunctionsPage.enterPalletId(Pallet);
+	}
+	
+	
+	@Then("^Validate the pallet and consignment is linked$")
+	public void consignmentIsLinked() throws Throwable {
+		
+		puttyFunctionsPage.linkPalletId();
+	}
+	
 	@When("^I select user directed option in main menu$")
 	public void i_select_user_directed_option_in_main_menu() throws Throwable {
 		purchaseOrderReceivingPage.selectUserDirectedMenu();
 	}
+	@When("^I select vehicle loading option in main menu$")
+	public void i_select_vehicle_directed_option_in_main_menu() throws Throwable {
+		purchaseOrderReceivingPage.selectvehicleDirectedMenu();
+	}
+	@When("^I select vehicle load option$")
+	public void i_select_vehicle_load() throws Throwable {
+		purchaseOrderReceivingPage.selectvehicleloadMenu();
+	}
+	
 	@Given("^I select picking with container pick$")
 	public void i_select_picking_with_container_pick() throws Throwable {
 //		storeTrackingOrderPickingPage.selectPickingMenu();
@@ -780,6 +818,23 @@ public void I_validate_incorrect_location_message_is_displayed() throws Throwabl
 	Thread.sleep(5000);
 	puttyFunctionsPage.pressEnter();
 	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+}
+@And("^validate the error message is displayed$")
+public void I_validate_incorrect_message_is_displayed() throws Throwable{
+	Thread.sleep(5000);
+	storeTrackingOrderPickingPage.isInvalidErrorDisplayed();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+}
+ 
+@And("^I enter dock door \"([^\"]*)\"$")
+public void EnterDockDoor(String Id) throws Throwable {
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(Id);
+	Thread.sleep(1000);
 	puttyFunctionsPage.pressEnter();
 }
 }
