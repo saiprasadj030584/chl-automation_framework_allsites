@@ -165,6 +165,11 @@ public class JDAExitputtyfunctionsStepDef {
 		puttyFunctionsPage.enterPalletId(Pallet);
 	}
 	
+	@Then("^Enter Pallet Id$")
+	public void getPalletId() throws Throwable {
+
+		puttyFunctionsPage.enterPalletId(context.getPalletId());
+	}
 	
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
@@ -481,10 +486,12 @@ public class JDAExitputtyfunctionsStepDef {
 		purchaseOrderReceivingPage.EnterBel(belCode);
 		Thread.sleep(300);
 		puttyFunctionsPage.singleTab();
-		String ToPallet = null;
+		//String ToPallet = null;
 		String palletdigit = Utilities.getsevenDigitRandomNumber();
-		ToPallet="P"+palletdigit;
+		String ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		System.out.println("ToPallet== "+ToPallet);
+		context.setPalletId(ToPallet);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
 		}
@@ -544,6 +551,10 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 	}
 	
+	@Then("^I Navigate Back$")
+	public void NavigateBack() throws Throwable {
+	puttyFunctionsPage.GoBack();
+	}
 	@Given("^I enter To Pallet for prohibited sku$")
 	public void I_enter_To_Pallet_for_prohibited_sku() throws Throwable {
 		String ToPallet = null;
