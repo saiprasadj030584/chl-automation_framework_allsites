@@ -1165,15 +1165,17 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 		
 	}
+	public void navigateToInventoryQueryScreen() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Inventory query screen");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+		
+	}
 
 	
-//	public void navigateToInventory() throws FindFailed, InterruptedException {
-//		clickSearchIcon();
-//		Thread.sleep(1000);
-//		screen.type("Inventory transaction (ITL) query screen");
-//		screen.type(Key.ENTER);
-//		Thread.sleep(1000);
-//		screen.type(Key.ENTER);
-//		Thread.sleep(5000);
-//	}
+
 }

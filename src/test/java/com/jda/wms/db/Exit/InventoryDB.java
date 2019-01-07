@@ -696,7 +696,20 @@ public class InventoryDB {
 				.executeQuery("update inventory set qty_on_hand='14700' where tag_id='"+tagId+"'");
 		context.getConnection().commit();
 	}
+
+	public void updateQtyOnHand(String skuId, String location, String tagId) throws ClassNotFoundException, SQLException {
+		if (context.getConnection() == null) {
+			database.connect();
+		}
+		String OrgQuantity=context.getQuantity();
+		Statement stmt = context.getConnection().createStatement();
+		ResultSet rs = stmt
+				.executeQuery("update inventory set qty_on_hand='"+OrgQuantity+"' where sku_id ='" + skuId
+				+ "' and location_id='" + location + "' and tag_id='" + tagId + "'");
+		context.getConnection().commit();
 	}
+	}
+	
 	
 
 

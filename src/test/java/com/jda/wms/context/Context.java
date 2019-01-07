@@ -149,6 +149,7 @@ public class Context {
 	private String consignmentName;
 	private String stoId2;
 	private String country2;
+	private String quantity;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1191,6 +1192,14 @@ public class Context {
 	public String getTrailerNumber() {
 		// TODO Auto-generated method stub
 		return trailerNumber;
+	}
+
+	
+
+	
+	public String getQuantity() {
+		return quantity;
+		
 	}
 
 	public String getPalletId() {
