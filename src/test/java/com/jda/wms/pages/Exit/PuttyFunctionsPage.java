@@ -155,6 +155,13 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		screen.type("PRINTER1");
 
 	}
+	public void GoBack()throws InterruptedException {
+	Thread.sleep(3000);
+	screen.type(Key.F12);
+	Thread.sleep(1000);
+	screen.type(Key.F12);
+	Thread.sleep(1000);
+}
 
 	public void enterF11() throws InterruptedException {
 

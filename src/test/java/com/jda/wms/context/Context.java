@@ -141,7 +141,7 @@ public class Context {
 	private String PalletID2;
 	private String BelCode2;
 	private String upc;
-
+	private String PalletId;
 	private String poId2;
 	private String belCode2;
 	private String palletID2;
@@ -1194,9 +1194,20 @@ public class Context {
 		return trailerNumber;
 	}
 
+	
+
+	
 	public String getQuantity() {
 		return quantity;
 		
+	}
+
+	public String getPalletId() {
+		return PalletId;
+	}
+
+	public void setPalletId(String palletId) {
+		PalletId = palletId;
 	}
 	
 	

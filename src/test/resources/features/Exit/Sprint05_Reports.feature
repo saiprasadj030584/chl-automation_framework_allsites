@@ -296,7 +296,7 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Validate the confirmation page for M&S - Pallet Built Report
     Then Validate the report selection page for M&S - Pallet Built Report completed
 
-  @completed @Reports @TC29_Validate_the_M_n_S_short_invoice_for_container_report
+  @completed @Reports @TC30_Validate_the_M_n_S_short_invoice_for_container_report
   Scenario: Validate the M&S - Short Invoice for Container Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -306,6 +306,18 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
+  @completed @Reports @TC29_Validate_the_MnS_Audit_Check_Report
+  Scenario: Validate_the_MnS_Audit_Check_Report
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for " M&S - Audit Check Report"
+    And Verify that the record is displayed for M&S - Short Invoice for Container Report
+    Then Enter the sortation
+    Then Validate the confirmation page for M&S - Short Invoice for Container Report
+    Then Validate the report selection page for  M&S - Short Invoice for Container Report completed
+   
     
      @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
@@ -408,4 +420,4 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     
     
     
-    
+   
