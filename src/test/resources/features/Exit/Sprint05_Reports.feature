@@ -62,7 +62,7 @@ Feature: Report Generation
     And Search for "M&S - Gains and Loss Report"
     And Verify that the record is displayed for M&S Gains Or Loss Report
     Then Validate the confirmation page for Gains and Loss Report
-    Then Validate the report selection page for Gains and Loss Report completed
+   	Then Validate the report selection page for Gains and Loss Report completed
 
   @completed @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report

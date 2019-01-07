@@ -322,7 +322,7 @@ public class ReportSelectionStepDefs {
        public void verify_that_the_record_is_displayed_for_MnS_Gains_or_loss_report() throws Throwable {
        	
        	Assert.assertTrue("M&S Gains and Loss record not found", ReportSelectionPage.isRecordDissplayedAndSelectedForGainOrLossReport());
-       	JDAFooter.clickDoneButton();	
+       	JDAFooter.clickNextButton();
        	}
     
     @Then("^Validate the confirmation page for Gains and Loss Report$")
@@ -346,13 +346,13 @@ public class ReportSelectionStepDefs {
     @Then("^Validate the confirmation page for M&S - Non-Shipped greater than 4 weeks Report$")
     public void validate_the_confirmation_page_for_Non_shipped_report() throws Throwable {
     	JDAFooter.clickNextButton();	
-    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmed());
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForNonShipped());
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
     @And("^Validate the report selection page for M&S - Non-Shipped greater than 4 weeks completed$")
     public void validate_the_report_selection_page_for_non_shipped() throws Throwable {
-    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	Assert.assertTrue("M&S Non-Shipped greater than 4 weeks Report not found", ReportSelectionPage.isReportSelectionDoneNonShipped());
     	JDAFooter.clickDoneButton();	
     }
      
@@ -451,12 +451,12 @@ public class ReportSelectionStepDefs {
     }
     @And("^Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed$")
     public void validate_the_report_selection_page_for_weekly_receipts_and_despatches_by_customer_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneWeeklyReceiptsDespatches());
+    	Assert.assertTrue("M&S - Weekly Receipts and Despatches by Customer report not found", ReportSelectionPage.isReportSelectionDoneWeeklyReceiptsDespatches());
     	JDAFooter.clickDoneButton();	
     }
-    @And("^Validate the report selection page for  M&S - Sortation Report completed$")
+    @And("^Validate the report selection page for M&S - Sortation Report completed$")
     public void Validate_the_report_selection_page_for_MnS_Sortation_Report_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneSortation());
+    	Assert.assertTrue("M&S - Sortation Report not found", ReportSelectionPage.isReportSelectionDoneSortation());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Verify that the record is displayed for M&S - Prohibition Report$")
@@ -473,7 +473,7 @@ public class ReportSelectionStepDefs {
     }
     @And("^Validate the report selection page for M&S - Prohibition completed$")
     public void validate_the_report_selection_page_for_MnS_prohibition_completed() throws Throwable {
-    	Assert.assertTrue("M&S - Allocation vs Receipts across last 3 week report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
+    	Assert.assertTrue("M&S - Prohibition report not found", ReportSelectionPage.isReportSelectionDoneProhibition());
     	JDAFooter.clickDoneButton();	
     }
     
@@ -606,14 +606,7 @@ public class ReportSelectionStepDefs {
     public void verify_that_the_record_displayed_for_short_invoice_for_container_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
     	JDAFooter.clickNextButton();
-    } 
-   
-    
-    @And("^ Verify that the record is displayed for M&S - Short Invoice for Container Report$")
-    public void  Verify_that_the_record_is_displayed_for_MnS_Short_Invoice_for_Container_Report() throws Throwable {
-    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
-    	JDAFooter.clickNextButton();
-    } 
+    }
     @Then("^Validate the confirmation page for M&S - Short Invoice for Container Report$")
     public void validate_the_confirmation_page_for_short_invoice_for_container_report() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -635,9 +628,17 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
     }
+    @Then("^Validate the confirmation page for Load Label$")
+    public void Validate_the_confirmation_page_for_Load_Label() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForLoadLabel());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(500);
+    }
+    
     @And("^Validate the report selection page for M&S - Short Invoice for Container Report completed$")
     public void validate_the_report_selection_page_for_short_invoice_for__completed() throws Throwable {
-    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    	Assert.assertTrue("M&S - Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
     	JDAFooter.clickDoneButton();	
     }
    
@@ -651,6 +652,12 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionRedputaway());
     	JDAFooter.clickDoneButton();	
     }
+    @And("^Validate the report selection page for Load Label$")
+    public void  Validate_the_report_selection_page_for_LoadLabel() throws Throwable {
+    	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionLoadLabel());
+    	JDAFooter.clickDoneButton();	
+    }
+    
     @And("^Verify that the record is displayed for Operative Performance Trusted Report$")
     public void Verify_that_the_record_is_displayed_for_Operative_Performance_Trusted_Report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedforOperativePerformance());
@@ -776,6 +783,11 @@ public class ReportSelectionStepDefs {
     public void Verify_that_the_record_is_displayed_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPutaway());
     }
+    @And("^Verify that the record is displayed for Load Label$")
+    public void Verify_that_the_record_is_displayed_for_Load_Label() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForLoadLabel());
+    	JDAFooter.clickNextButton();
+    }
     
     @Then("^Enter the red location as parameter$")
     public void search_for_Red_Stock() throws Throwable {
@@ -796,6 +808,7 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelectedforDangerousGoods());
     	JDAFooter.clickNextButton();	
     }
+    
     @Then("^Validate the confirmation page for Dangerous Goods$")
     public void validate_the_confirmation_page_for_Dangerous_Goods() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -868,5 +881,47 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnAuditTrail());
     	JDAFooter.clickDoneButton();	
     }
-
+    @And("^Verify that the record is displayed for Container Report or M&S - Short Invoice for Container Report$")
+    public void verify_that_the_record_displayed_for_container_report_short_invoice_for_container_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Container Report or M&S - Short Invoice for Container Report$")
+    public void validate_the_confirmation_page_for_container_report_short_invoice_for_container_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForShortInvoice());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    }
+    @And("^Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed$")
+    public void validate_the_report_selection_page_for_container_report_short_invoice_for__completed() throws Throwable {
+    	Assert.assertTrue("Container Report or Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Verify that the record is displayed for Proforma Invoice$")
+    public void Verify_that_the_record_is_displayed_for_Proforma_Invoice() throws Throwable {
+    	Thread.sleep(1000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isRecordDissplayedAndSelectedforProformaInvoice());
+    	JDAFooter.clickNextButton();	
+    }
+    @And("^Enter order number \"([^\"]*)\"$")
+    public void EnterOrderId(String Id) throws Throwable {
+    	Thread.sleep(2000);
+    	ReportSelectionPage.enterCustomerId(Id);
+    	Thread.sleep(1000);
+    	JDAFooter.clickNextButton();
+    }
+    @Then("^Validate the confirmation page for Proforma Invoice$")
+    public void validate_the_confirmation_page_for_ProformaInvoice() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedforProformaInvoice());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(1000);
+    }
+    @And("^Validate the report selection page for Proforma Invoice$")
+    public void Validate_the_report_selection_page_for_ProformaInvoice() throws Throwable {
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionProformaInvoice());
+    	JDAFooter.clickDoneButton();	
+    }
+    
 }
