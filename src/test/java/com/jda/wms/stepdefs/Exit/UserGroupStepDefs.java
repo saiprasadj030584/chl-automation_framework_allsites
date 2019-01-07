@@ -105,5 +105,8 @@ public class UserGroupStepDefs{
 	public void search_function_Access() throws Throwable {
 		userGroupPage.accessSearchKey();
 	}
-	
+	@And("^Type in Function Access search \"([^\"]*)\"$")
+	public void type_function_access() throws Throwable{
+		//userGroupPage.navigateToUserGroupFuntionAccess();
+	}
 }

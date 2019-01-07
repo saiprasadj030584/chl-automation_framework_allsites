@@ -241,13 +241,29 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+   	And Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And configure putty settings
     And I select Inventory transaction option
     And Enter Pallet Id
-    And Enter Consignment "CONS040119"
+    And Enter consignment 
     And Validate the pallet and consignment is linked
+    
     Examples: 
       | SKU                |
       | 000000000021071852 |

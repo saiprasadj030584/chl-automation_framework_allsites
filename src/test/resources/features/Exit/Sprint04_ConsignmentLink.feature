@@ -78,6 +78,39 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
       
+  @ConsignmentLinking @Reversion @TC024_User_Access_to_Reversion
+  Scenario: Validate_Franchise_Allocation_creation
+    Given Login to JDA Dispatcher web screen
+    And Go to User Group Function Access 
+		And Type in Function Access search "M&S – RDT - Enable Consignment Closure change for Consignment Management"
+		And validate the access is Enabled
+		And Go to Site Global Function Access 
+		And Type in Function Access search " M&S – RDT - Enable Consignment Closure change for Consignment Management"
+		And validate the access is Enabled
+        
+	@ConsignmentLinking @TC25_Validate_consignment_closure
+	Scenario: Validate consignment closure
+    Given Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
+    And Go to close consignment
+    And Enter same consignment name
+    And Click next
+    And Select consignment to close
+    And Click done
+      
 @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen
