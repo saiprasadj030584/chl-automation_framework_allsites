@@ -204,9 +204,11 @@ Feature: ConsignmentLinking
 		Then Adjust the stock form the sku - quantity in hand
 		When Verified in Inventory and ITL
 		Then Stock is validated successfully
-#		
 	Examples:
 	|Location|
 	|AA001|
+	
+	
+	
 		 		
  		
