@@ -77,84 +77,14 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
    
    
-@ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
-  Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    And Navigate to Move Task management Screen to verify Order Allocated status
-    And Validation of List Id generated with prefix as MANB
 
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
       
-@ConsignmentLinking  @TC02_Validate_Picking_process_for_Manual_Franchise_order
-  Scenario Outline: Validate Picking process for Manual Franchise order
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    And Navigate to Move Task management Screen to verify Order Allocated status
-    And Validation of List Id generated with prefix as MANB
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select picking with container pick
-    Then I should be directed to pick entry page
-    And I enter ListId and TagId
-    And I navigate to Order header screen to verify the status in Ready to Load
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-  
- @ConsignmentLinking  @TC03_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
-  Scenario Outline: Validate Picking process for Manual Franchise order
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    And Navigate to Move Task management Screen to verify Order Allocated status
-    And Validation of List Id generated with prefix as MANH
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select picking with container pick
-    Then I should be directed to pick entry page
-    And I enter ListId and TagId
-    And I navigate to Order header screen to verify the status in Ready to Load
-
-    Examples: 
-      | SKU                |
-      | 000000000021071851 |
-      
-  @ConsignmentLinking  @TC04_Happy_Path_Validate_Manual_order
-  Scenario Outline: Happy_Path_Validate_Manual_order
-    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
-    And Login to JDA Dispatcher web screen
-    And I navigate to order header
-    And Click on Query
-    And Specify the Order in orderline
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZNL1"
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-      
-  @ConsignmentLinking   @TC05_Validate_Pick_list_id_generated_for_an_order_Manual_STO
-  Scenario Outline: Validate Pick list id generated for an order-Manual_STO
-    Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
-    And Login to JDA Dispatcher web screen
-    And I navigate to order header
-    And Click on Query
-    And Specify the Order in orderline
-    And click execute
-    And Navigate to user Defined tab
-    Then Verify the delivery type field is set "ZNL1"
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-      
-      #@TC10_validate_the_putaway_group_for_black_zone
-     #Scenario: Validate Putaway group for Black zone
-     #Given Login to JDA Dispatcher web screen
-     #When I navigate to SKU maintenance page
-     #And Query
-     #And 
+      @inprogress @TC10_validate_the_putaway_group_for_black_zone
+     Scenario: Validate Putaway group for Black zone
+     Given Login to JDA Dispatcher web screen
+     When I navigate to SKU maintenance page
+     And Query for Putaway group "BLACKB"
+    
      
       
       

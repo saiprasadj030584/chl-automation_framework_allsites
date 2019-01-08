@@ -753,6 +753,15 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
       
+      @inProgress @TC066_prohibition_rules_new_rules_admin
+    Scenario: Prohibition Rules - Happy Path - Add new rules Access (Admin Group)
+
+    Given Login to JDA Dispatcher web screen
+    And Go to System Profile
+    Then Navigate to --ROOT- > USER > RECEIVING > INT
+    When Tried to Add New Rules for prohibition
+    Then New pohibition logic should be allowed to include
+    
       @completed @TC69_access_for_Consignment_amendment_restriction
  		Scenario: Access for Consignment Amendment Restriction
  		Given Login to JDA Dispatcher web screen
