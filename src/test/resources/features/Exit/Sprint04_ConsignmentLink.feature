@@ -78,6 +78,15 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
       
+      #@TC10_validate_the_putaway_group_for_black_zone
+     #Scenario: Validate Putaway group for Black zone
+     #Given Login to JDA Dispatcher web screen
+     #When I navigate to SKU maintenance page
+     #And Query
+     #And 
+     
+      
+      
 @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen

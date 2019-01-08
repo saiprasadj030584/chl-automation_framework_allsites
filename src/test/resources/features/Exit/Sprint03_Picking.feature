@@ -771,6 +771,7 @@ Feature: Orders_Picking
 				Then Search for other group "OPERATIVE"
 	And Access should be enabled for "OPERATIVE" Group
 
+
       
     @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
     Scenario: Load systemic reports revised on amended in Consignment
@@ -782,6 +783,17 @@ Feature: Orders_Picking
     And Enter consignment name
     Then Validate the confirmation page for Load Label
     Then Validate the report selection page for Load Label
+    
+    @completed @TC077_Set_up_prohibition_rules
+    Scenario: Set up Prohibition Rules
+    Given Login to JDA Dispatcher web screen
+    And Go to System Profile
+    Then Navigate to --ROOT- > USER > RECEIVING > INT
+    When Tried to Add New Rules for prohibition
+    Then New pohibition logic should be allowed to include
+    
+    
+    
     
    
         @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check

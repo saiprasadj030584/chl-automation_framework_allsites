@@ -66,6 +66,21 @@ public class UserGroupFunctionAccessStepDefs{
 		Assert.assertTrue("Report access not enabled", userGroupFunctionAccessPage.isReportAccessEnabledForConsignment());
 		
 	}
+	@And("^Navigate to --ROOT- > USER > RECEIVING > INT$")
+	public void navigate_to_root_user_recieving_int() throws Throwable{
+		
+		userGroupFunctionAccessPage.clickUser();
+		userGroupFunctionAccessPage.clickRecieving();
+		userGroupFunctionAccessPage.clickInt();
+	}
+	@And("^Tried to Add New Rules for prohibition$")
+	public void tried_to_add_new_rules_for_prohibition() throws Throwable{
+		userGroupFunctionAccessPage.AddNewRules();
+	}
+    @And("^New pohibition logic should be allowed to include$")
+    public void new_prohibiton_logic_should_be_allowed_to_include() throws Throwable{
+    Assert.assertTrue("Logic cannot be included", userGroupFunctionAccessPage.isLogicAllowed());	
+    }
 	
 	
 }

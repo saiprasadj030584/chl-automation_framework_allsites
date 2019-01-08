@@ -84,4 +84,47 @@ public void enterGroupPickClerk() throws FindFailed, InterruptedException {
 			else
 			return false;
 		}
-}
+		
+		public void clickUser() throws FindFailed, InterruptedException {
+			screen.find("images/SystemProfile/User.png");
+			screen.doubleClick("images/SystemProfile/User.png");
+				Thread.sleep(1000);
+		}
+		public void clickRecieving()  throws FindFailed, InterruptedException {
+			screen.find("images/SystemProfile/Receiving.png");
+			screen.doubleClick("images/SystemProfile/Receiving.png");
+				Thread.sleep(1000);
+		}
+		public void clickInt()  throws FindFailed, InterruptedException {
+			screen.find("images/SystemProfile/Int.png");
+			screen.doubleClick("images/SystemProfile/Int.png");
+				Thread.sleep(1000);
+		}
+		public void AddNewRules() throws FindFailed {
+			screen.wait("images/SystemProfile/IntForNewValues.png", timeoutInSec);
+			screen.click("images/SystemProfile/IntForNewValues.png");
+			Match mStatus = screen.find("images/SystemProfile/IntForNewValues.png");
+			screen.rightClick(mStatus.getCenter());
+			hoverNewrules();
+		}
+		public void hoverNewrules() throws FindFailed {
+		screen.wait("images/SystemProfile/NewRulesValue.png", timeoutInSec);
+		screen.click("images/SystemProfile/NewRulesValue.png");
+		screen.mouseMove(70, 0);
+	}
+		public boolean isLogicAllowed() throws FindFailed, InterruptedException {
+			
+			if(screen.find("images/SystemProfile/enter.png")!=null)
+		{
+			screen.wait("images/SystemProfile/enter.png");
+			screen.click("images/SystemProfile/enter.png");
+			Match mStatus = screen.find("images/SystemProfile/enter.png");
+			screen.click(mStatus.getCenter().offset(70, 0));
+			Thread.sleep(1000);
+			return true;
+		}
+			else
+			return false;
+		}
+			
+		}
