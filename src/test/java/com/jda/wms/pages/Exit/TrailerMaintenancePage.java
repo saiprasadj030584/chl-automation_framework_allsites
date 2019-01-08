@@ -42,6 +42,14 @@ public class TrailerMaintenancePage {
 		context.setTrailerNumber(trailerNumber);
 		Thread.sleep(1000);
 	}
+	public void enterSealId() throws FindFailed, InterruptedException {
+		String Random = Utilities.getFourDigitRandomNumber();
+		String trailerNumber = "SEAL"+Random;
+		//context.setTrailerNumber(trailerNumber);
+		System.out.println("Trailer Number"+trailerNumber);
+		screen.type(trailerNumber);
+		Thread.sleep(1000);
+	}
 	public void validateErrorMsg() throws FindFailed, InterruptedException {
 		 Match header = screen.find("images/TrailerShipping/TrailerLinkError.png");
 		 while(header==null){
@@ -79,5 +87,13 @@ public class TrailerMaintenancePage {
 		Thread.sleep(1000);
 		screen.wait("images/TrailerShipping/TrailerAddButton.png", timeoutInSec);
 		screen.click("images/TrailerShipping/TrailerAddButton.png");
+}
+	public void clickTrailerShip() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/TrailerShipping/TrailerShip.png", timeoutInSec);
+		Match status = screen.find("images/TrailerShipping/TrailerShip.png");
+		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(1000);
+		
 }
 }

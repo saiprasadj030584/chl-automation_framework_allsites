@@ -22,7 +22,12 @@ public class TrailerMaintenanceStepDefs {
 	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage) {
 		this.trailerMaintenancePage = trailerMaintenancePage;
 	}
-
+	
+	@And("^Enter seal ID$")
+	public void Enter_Seal_number() throws Throwable {
+	
+		trailerMaintenancePage.enterSealId();
+	}
 
 	@And("^Enter Trailer number$")
 	public void Enter_Trailer_number() throws Throwable {
@@ -56,4 +61,10 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.clickTrailerAdd();
 	}
+	@And("^click on Trailer")
+	public void I_click_on_trailer() throws Throwable {
+	
+		trailerMaintenancePage.clickTrailerAdd();
+	}
+	
 }

@@ -1495,6 +1495,30 @@ public boolean isRecordDissplayedAndSelectedForUrnAuditTrail() throws FindFailed
 	else
 	return false;
 }
+public boolean isRecordDissplayedAndSelectedForURNPallet() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/selectedurnpallet.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/selectedurnpallet.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public boolean isRecordDissplayedAndSelectedForStockcheck() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/ReportSelection/selectedstockcheck.png")!=null)
+{
+	Match mRecord=screen.find("images/ReportSelection/selectedstockcheck.png");
+	screen.click(mRecord.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
 
 public void enterURN(String belCode) throws InterruptedException {
 	screen.type(belCode);
@@ -1514,11 +1538,47 @@ public boolean isProcessConfirmedForUrnAuditTrail() throws FindFailed, Interrupt
 else
 return false;
 }
+public boolean isProcessConfirmedForurnpallet() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForUrnpallet.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForUrnpallet.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
+public boolean isProcessConfirmedForstockcheck() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/ConfirmedForstockcheck.png")!=null){
+		
+	Match mScreen=screen.find("images/ReportSelection/ConfirmedForstockcheck.png");
+	screen.click(mScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+	}	
+else
+return false;
+}
 public boolean isReportSelectionDoneUrnAuditTrail() throws FindFailed, InterruptedException{
 	
 	if(screen.find("images/ReportSelection/completedUrnAuditTrail.png")!=null)
 {
 	Match mFinishScreen=screen.find("images/ReportSelection/completedUrnAuditTrail.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
+public boolean isReportSelectionDoneUrnpallet() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/completedUrnpallet.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/completedUrnpallet.png");
 	screen.click(mFinishScreen.getCenter().offset(70, 0));
 	Thread.sleep(1000);
 	return true;

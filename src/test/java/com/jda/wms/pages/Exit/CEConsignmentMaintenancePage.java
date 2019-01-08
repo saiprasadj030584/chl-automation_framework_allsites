@@ -152,7 +152,7 @@ public class CEConsignmentMaintenancePage {
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentTransMode.png");
 		screen.click(status.getCenter().offset(90, 0));
 		Thread.sleep(1000);
-		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeRoad.png");
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
 		   reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
 		   reg.click(header);
@@ -189,7 +189,7 @@ public class CEConsignmentMaintenancePage {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropAddress.png", timeoutInSec);
 	    Match Address = screen.find("images/CEConsignmentMaintenance/ConsignmentDropAddress.png");
 		screen.click(Address.getCenter().offset(90, 0));
-		screen.type("0798");
+		screen.type("7993");
 }
 	public void selectConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);

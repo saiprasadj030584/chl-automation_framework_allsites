@@ -2,51 +2,15 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
-=======
-=======
-<<<<<<< HEAD
-			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
-=======
->>>>>>> refs/remotes/origin/Exit_TCs
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
-=======
-=======
-<<<<<<< HEAD
-			<item value="D:\Gomathi_workspace\jda-wms-test-framework"/>
-=======
->>>>>>> refs/remotes/origin/Exit_TCs
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
-			<item value="D:\Autotest\Latest_code\jda-wms-test-framework"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/Exit_TCs
-=======
->>>>>>> refs/remotes/origin/Exit_TCs
->>>>>>> refs/remotes/origin/Exit_TCs
-=======
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/Exit_TCs
-=======
->>>>>>> refs/remotes/origin/Exit_TCs
->>>>>>> refs/remotes/origin/Exit_TCs
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
-			<item value="D:\Fathima_WS\JDA_UPDATED_FATHIMA"/>
-			<item value="C:\Users\saravanan.jeyabalan\workspace\JDA Auto\jda-wms-test-framework"/>
-			<item value="C:\Users\saravanan.jeyabalan\workspace\jda-wms-test-framework"/>
+			<item value="D:\Priyanka_ws\jda-wms-test-framework"/>
 		</list>
 		<list key="projectNameTemplate">
-			<item value="[artifactId]-[version]"/>
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
 			<item value="[groupId].[artifactId]"/>
 			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
 		</list>
 	</section>
 </section>

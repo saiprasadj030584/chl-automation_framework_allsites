@@ -125,6 +125,10 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToTrailerMainteinancePage();
 	}
 
+	@When("^I navigate to Trailer shipping page$")
+	public void i_navigate_to_Trailer_shipping_page() throws Throwable {
+		jdaHomePage.navigateToTrailerShippingPage();
+	}
 	@Given("^I am on supplier SKU maintenance page$")
 	public void i_am_on_supplier_SKU_maintenance_page() throws Throwable {
 		jdaHomePage.clickDataMenu();
@@ -356,6 +360,7 @@ public class JDAHomeStepDefs {
 	public void go_to_system_profile() throws Throwable{
 		jdaHomePage.navigateToSystemProfile();
 	}
+	
 	
 }
 	

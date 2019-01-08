@@ -62,6 +62,7 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(3000);
 	}
+	
 
 	public void navigateToSystemAllocationPage() throws FindFailed, InterruptedException {
 		clickSearchIcon();
