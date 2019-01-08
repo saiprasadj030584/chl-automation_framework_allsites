@@ -106,7 +106,7 @@ public class UserGroupStepDefs{
 		userGroupPage.accessSearchKey();
 	}
 	@And("^Type in Function Access search \"([^\"]*)\"$")
-	public void type_function_access() throws Throwable{
-		//userGroupPage.navigateToUserGroupFuntionAccess();
+	public void type_function_access(String search) throws Throwable{
+		userGroupPage.SearchFuntionAccess(search);
 	}
 }

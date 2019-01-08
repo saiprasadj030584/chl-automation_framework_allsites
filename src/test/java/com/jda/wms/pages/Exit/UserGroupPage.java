@@ -122,5 +122,13 @@ public void accessEnabled() throws FindFailed {
 	screen.type(Key.BACKSPACE);
 		}
 	}
+	public void SearchFuntionAccess(String search) throws FindFailed, InterruptedException {
+		Match mStatus = screen.find("images/JDAHome/AccessSearch.png");
+		screen.click(mStatus.getCenter().offset(80,0));
+		screen.type(search);
+		Thread.sleep(2000);
+		screen.find("images/JDAHome/AccessSearchButton.png");
+		screen.click("images/JDAHome/AccessSearchButton.png");
+	}
 }
 

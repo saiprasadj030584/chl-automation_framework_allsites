@@ -82,10 +82,10 @@ Feature: ConsignmentLinking
   Scenario: Validate_Franchise_Allocation_creation
     Given Login to JDA Dispatcher web screen
     And Go to User Group Function Access 
-		And Type in Function Access search "M&S – RDT - Enable Consignment Closure change for Consignment Management"
+		And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
 		And validate the access is Enabled
 		And Go to Site Global Function Access 
-		And Type in Function Access search " M&S – RDT - Enable Consignment Closure change for Consignment Management"
+		And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
 		And validate the access is Enabled
         
 	@ConsignmentLinking @TC25_Validate_consignment_closure
