@@ -104,9 +104,9 @@ public class InventoryTransactionPage{
 		}
 		public String getoriginalqty() throws FindFailed, InterruptedException {
 			
-			screen.wait("images/InventoryTransactionQuery/OriginalQty.png", timeoutInSec);
-			screen.click("images/InventoryTransactionQuery/OriginalQty.png");
-			Match mStatus = screen.find("images/InventoryTransactionQuery/OriginalQty.png");
+			screen.wait("images/InventoryTransactionQuery/General/OriginalQty.png", timeoutInSec);
+			screen.click("images/InventoryTransactionQuery/General/OriginalQty.png");
+			Match mStatus = screen.find("images/InventoryTransactionQuery/General/OriginalQty.png");
 			screen.click(mStatus.getCenter().offset(70,0));
 			screen.type("a", Key.CTRL);
 			screen.type("c", Key.CTRL);

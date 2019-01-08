@@ -7,6 +7,7 @@ import org.sikuli.script.Screen;
 import com.google.inject.Inject;
 import com.jda.wms.context.Context;
 import com.jda.wms.dataload.exit.GetTCData;
+import com.jda.wms.db.Exit.MoveTaskDB;
 import com.jda.wms.db.Exit.SupplierSkuDB;
 import com.jda.wms.hooks.Hooks;
 import com.jda.wms.pages.Exit.JDAFooter;
@@ -33,6 +34,7 @@ public class ReportSelectionStepDefs {
 	private Hooks hooks;
 	private final JdaLoginPage jdaLoginPage;
 	private SupplierSkuDB supplierSkuDB;
+	private MoveTaskDB moveTaskDB;
 	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
@@ -40,7 +42,7 @@ public class ReportSelectionStepDefs {
 	@Inject
 	public ReportSelectionStepDefs(Context context,JDAExitputtyfunctionsStepDef JDAExitputtyfunctionsStepDef,
 			JDAExitUpiHeader jDAExitUpiHeader,PuttyFunctionsPage puttyFunctionsPage,
-			ReportSelectionPage ReportSelectionPage,Hooks hooks,JdaLoginPage jdaLoginPage,
+			ReportSelectionPage ReportSelectionPage,Hooks hooks,JdaLoginPage jdaLoginPage,MoveTaskDB moveTaskDB,
 			PurchaseOrderReceivingPage purchaseOrderReceivingPage,JDAFooter JDAFooter,
 			SupplierSkuDB supplierSkuDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage)
 	{
@@ -55,6 +57,7 @@ public class ReportSelectionStepDefs {
 		this.hooks=hooks;
 		this.jdaLoginPage = jdaLoginPage;
 		this.supplierSkuDB=supplierSkuDB;
+		this.moveTaskDB=moveTaskDB;
 		
 	}
 	
@@ -856,6 +859,17 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForUrnAuditTrail());
     	JDAFooter.clickNextButton();
     }
+    @And("^Verify that the record is displayed for M&S - URN pallet Report$")
+    public void verify_that_the_record_displayed_for_MnS_urn_pallet_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForURNPallet());
+    	JDAFooter.clickNextButton();
+    }
+    
+    @And("^Verify that the record is displayed for M&S - stock check tasks Report$")
+    public void verify_that_the_record_displayed_for_MnS_stock_check_tasks_report() throws Throwable {
+    	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForStockcheck());
+    	JDAFooter.clickNextButton();
+    }
     
     @And("^Enter URN as parameter$")
     public void enter_urn_as_parameter() throws Throwable {
@@ -869,6 +883,15 @@ public class ReportSelectionStepDefs {
 		JDAFooter.clickNextButton();
     	
     }
+    @And("^Enter list ID as parameter$")
+    public void enter_listID_as_parameter() throws Throwable {
+    	String sku=context.getSKUHang();
+		String listId=moveTaskDB.getList(context.getOrderId());
+		storeTrackingOrderPickingPage.enterListID(listId);
+		System.out.println("ListId= " +listId);
+		JDAFooter.clickNextButton();
+    	
+    }
     @Then("^Validate the confirmation page for M&S - URN Audit Trail Report$")
     public void validate_the_confirmation_page_for_MnS_urn_audit_trail_report() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -876,9 +899,29 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();
     	Thread.sleep(10000);
     }
+    @Then("^Validate the confirmation page for M&S - pallet Report$")
+    public void validate_the_confirmation_page_for_MnS_urn_pallet_report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForurnpallet());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    @Then("^Validate the confirmation page for M&S - stock check Report$")
+    public void Validate_the_confirmation_page_for_MnS_stock_check_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForstockcheck());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(10000);
+    }
+    
     @And("^Validate the report selection page for M&S - URN Audit Trail completed$")
     public void validate_the_report_selection_page_for_MnS_urn_audit_trail_completed() throws Throwable {
     	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnAuditTrail());
+    	JDAFooter.clickDoneButton();	
+    }
+    @And("^Validate the report selection page for M&S - URN pallet report completed$")
+    public void validate_the_report_selection_page_for_MnS_urn_pallet_completed() throws Throwable {
+    	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnpallet());
     	JDAFooter.clickDoneButton();	
     }
     @And("^Verify that the record is displayed for Container Report or M&S - Short Invoice for Container Report$")
