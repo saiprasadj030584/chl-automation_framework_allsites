@@ -1586,6 +1586,18 @@ public boolean isReportSelectionDoneUrnpallet() throws FindFailed, InterruptedEx
 else
 return false;
 }
+public boolean isReportSelectionDonestockcheck() throws FindFailed, InterruptedException{
+	
+	if(screen.find("images/ReportSelection/completedstockcheck.png")!=null)
+{
+	Match mFinishScreen=screen.find("images/ReportSelection/completedstockcheck.png");
+	screen.click(mFinishScreen.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}			
+else
+return false;
+}
 
 public boolean isRecordDissplayedAndSelectedforProformaInvoice() throws FindFailed, InterruptedException {
 	

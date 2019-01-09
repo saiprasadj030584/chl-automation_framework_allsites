@@ -924,6 +924,11 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDoneUrnpallet());
     	JDAFooter.clickDoneButton();	
     }
+    @And("^Validate the report selection page for M&S - stock check completed$")
+    public void validate_the_report_selection_page_for_MnS_stock_check_completed() throws Throwable {
+    	Assert.assertTrue("M&S - URN Audit Trail report not found", ReportSelectionPage.isReportSelectionDonestockcheck());
+    	JDAFooter.clickDoneButton();	
+    }
     @And("^Verify that the record is displayed for Container Report or M&S - Short Invoice for Container Report$")
     public void verify_that_the_record_displayed_for_container_report_short_invoice_for_container_report() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForShortInvoice());

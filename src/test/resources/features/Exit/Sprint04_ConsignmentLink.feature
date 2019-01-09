@@ -226,8 +226,7 @@ Feature: ConsignmentLinking
     And Verify that the record is displayed for M&S - URN pallet Report
     And Enter URN as parameter
     And Validate the confirmation page for M&S - pallet Report
-
-    #Then Validate the report selection page for M&S - URN pallet report completed
+   Then Validate the report selection page for M&S - URN pallet report completed
     Examples: 
       | SkuId              |
       | 000000000021071852 |
@@ -242,8 +241,7 @@ Feature: ConsignmentLinking
     And Verify that the record is displayed for M&S - stock check tasks Report
     And Enter list ID as parameter
     And Validate the confirmation page for M&S - stock check Report
-
-    #Then Validate the report selection page for M&S - URN pallet report completed
+    Then Validate the report selection page for M&S - stock check completed
     Examples: 
       | SKU             |
       | 000000000021071852 |
