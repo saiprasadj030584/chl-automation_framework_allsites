@@ -816,8 +816,7 @@ Feature: Orders_Picking
     When Tried to Add New Rules for prohibition
     Then New pohibition logic should be allowed to include
     
-    
-    
+   
     
    
         @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
