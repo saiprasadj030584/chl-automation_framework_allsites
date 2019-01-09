@@ -205,6 +205,10 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.selectToggleMaintenanceMode();
 		
 	}
+	@Then("^Query for Putaway group \"([^\"]*)\"$")
+	public void query_for_putaway_group(String PutawayGroup) throws Throwable{
+		sKUQueryPage.click_on_Query();
+	}
 	}
 	
 

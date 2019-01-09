@@ -360,6 +360,18 @@ public void clickUpdate() throws FindFailed,InterruptedException {
 	screen.wait("images/CEConsignmentMaintenance/SkuUpdate.png", timeoutInSec);
 	screen.click("images/CEConsignmentMaintenance/SkuUpdate.png");
 }
+
+public Object getWorkZone() throws FindFailed, InterruptedException {
+	
+	screen.wait("images/InventoryTransactionQuery/WorkZone.png", timeoutInSec);
+	screen.click("images/InventoryTransactionQuery/WorkZone.png");
+	Match mStatus = screen.find("images/InventoryTransactionQuery/WorkZone.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+}
 }
 
 

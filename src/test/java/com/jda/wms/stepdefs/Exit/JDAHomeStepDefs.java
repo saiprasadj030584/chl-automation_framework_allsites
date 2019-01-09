@@ -356,6 +356,11 @@ public class JDAHomeStepDefs {
 	public void go_to_user_group_function_access_through_administration() throws Throwable{
 		jdaHomePage.navigateToUserGroupFuntionAccess();
 	}
+	@And("^Go to System Profile")
+	public void go_to_system_profile() throws Throwable{
+		jdaHomePage.navigateToSystemProfile();
+	}
+	
 	
 	
 }

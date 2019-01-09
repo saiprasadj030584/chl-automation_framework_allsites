@@ -1176,7 +1176,21 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 		
 	}
+	public void navigateToSystemProfile() throws FindFailed,InterruptedException{
+		 ClickAdminMenu();
+		 hoverSetup();
+		 Thread.sleep(1000);
+		 hoverSystemProfile();
+		 Thread.sleep(1000);
+		 
+	}
 
+
+	public void hoverSystemProfile() throws FindFailed {
+		screen.wait("images/JDAHome/SystemProfile.png", timeoutInSec);
+		screen.click("images/JDAHome/SystemProfile.png");
+		screen.mouseMove(70, 0);
+	}
 	
 
 }
