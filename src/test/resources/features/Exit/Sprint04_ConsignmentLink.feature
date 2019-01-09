@@ -236,11 +236,55 @@ Feature: ConsignmentLinking
     And Select Consignment
     And Click next
     And I click on trailer Add button
-    And validate Consignment Trailer is linked
+    And validate Consignment Trailer is linked 
 
-  
+   
 
-  
+  @completed @Reports @TC14_Validate_URN's_in_pallet_report
+  Scenario Outline: Validate the M&S - URN in pallet report
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "pallet report"
+    And Verify that the record is displayed for M&S - URN pallet Report
+    And Enter URN as parameter
+    And Validate the confirmation page for M&S - pallet Report
+
+    #Then Validate the report selection page for M&S - URN pallet report completed
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
+  @completed @Reports @TC14_Validate_URN's_in_pallet_report
+  Scenario Outline: Validate the M&S - URN in pallet report
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "pallet report"
+    And Verify that the record is displayed for M&S - URN pallet Report
+    And Enter URN as parameter
+    And Validate the confirmation page for M&S - pallet Report
+   Then Validate the report selection page for M&S - URN pallet report completed
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
+  @completed @Reports @TC17_Validate_stock_check_report
+  Scenario Outline: Validate the M&S - stock check report
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "Stock check tasks - by list ID"
+    And Verify that the record is displayed for M&S - stock check tasks Report
+    And Enter list ID as parameter
+    And Validate the confirmation page for M&S - stock check Report
+    Then Validate the report selection page for M&S - stock check completed
+    Examples: 
+      | SKU             |
+      | 000000000021071852 |
 
   @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
