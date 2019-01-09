@@ -109,7 +109,77 @@ Feature: ConsignmentLinking
     And Click next
     And Select consignment to close
     And Click done
-
+    
+ @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
+ Scenario Outline: Validate_vehicle_loading_Single_pallet
+ 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+   	And Login to JDA Dispatcher web screen
+  	And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And configure putty settings
+    And I select Inventory transaction option
+    And Enter Pallet Id
+    And Enter consignment 
+    And Validate the pallet and consignment is linked
+    And Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And I click on trailer Add button
+    And validate Consignment Trailer is linked
+    And Login to JDA Dispatcher web screen
+    And Go to close consignment
+    And Enter same consignment name
+    And Click next
+    And Select consignment to close
+    And Click done
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select vehicle loading option in main menu
+    And select multi pallet load
+    And Enter Pallet Id
+    And Enter consignment
+    And Validate the pallet and consignment is loaded
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+ 
+ @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
+  Scenario: Negative Path_Enter incorrect pallet id
+ 		Given I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select vehicle loading option in main menu
+    And select multi pallet load
+    And I enter invalid pallet "1015"
+    And I enter consignment "CONS030119"
+    And validate the error message is displayed
+ 
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen

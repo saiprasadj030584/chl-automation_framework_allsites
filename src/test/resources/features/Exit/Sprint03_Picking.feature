@@ -457,6 +457,7 @@ Feature: Orders_Picking
     And Enter chamber and Address Id
     Then click execute
     And validate the record is saved
+    And Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
     And Right click to Select Toggle Maintenance Mode
     And I click on Add button

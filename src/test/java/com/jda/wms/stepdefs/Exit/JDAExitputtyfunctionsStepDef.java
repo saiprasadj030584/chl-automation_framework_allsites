@@ -169,12 +169,22 @@ public class JDAExitputtyfunctionsStepDef {
 	public void getPalletId() throws Throwable {
 
 		puttyFunctionsPage.enterPalletId(context.getPalletId());
+		puttyFunctionsPage.pressTab();
 	}
 	
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
-		
 		puttyFunctionsPage.linkPalletId();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	@Then("^Validate the pallet and consignment is loaded$")
+	public void consignmentIsLoaded() throws Throwable {
+		puttyFunctionsPage.linkPalletId();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
 	}
 	
 	@When("^I select user directed option in main menu$")
@@ -188,6 +198,10 @@ public class JDAExitputtyfunctionsStepDef {
 	@When("^I select vehicle load option$")
 	public void i_select_vehicle_load() throws Throwable {
 		purchaseOrderReceivingPage.selectvehicleloadMenu();
+	}
+	@When("^select multi pallet load$")
+	public void i_select_multiPallet_load() throws Throwable {
+		purchaseOrderReceivingPage.selectMultiPalletloadMenu();
 	}
 	
 	@Given("^I select picking with container pick$")
@@ -848,4 +862,19 @@ public void EnterDockDoor(String Id) throws Throwable {
 	Thread.sleep(1000);
 	puttyFunctionsPage.pressEnter();
 }
+@And("^I enter invalid pallet \"([^\"]*)\"$")
+public void EnterinvalidPallet(String Id) throws Throwable {
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(Id);
+	Thread.sleep(1000);
+	puttyFunctionsPage.pressTab();
+}
+@And("^I enter consignment \"([^\"]*)\"$")
+public void Enterconsignment(String Id) throws Throwable {
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(Id);
+	Thread.sleep(1000);
+	puttyFunctionsPage.pressTab();
+}
+
 }
