@@ -205,9 +205,18 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.selectToggleMaintenanceMode();
 		
 	}
-	@Then("^Query for Putaway group \"([^\"]*)\"$")
-	public void query_for_putaway_group(String PutawayGroup) throws Throwable{
+	@Then("^Query for checking Putaway group$")
+	public void query_for_checking_putaway_group() throws Throwable{
 		sKUQueryPage.click_on_Query();
+//		sKUQueryPage.enterPutaway(PutawayGroup);
+		sKUQueryPage.clickExecuteButton();
+	}
+	@Then("^Validate the putaway group is not null$")
+	public void validate_the_putaway_group_is_not_null() throws Throwable{
+		String SKu=sKUQueryPage.getSkuID();
+		System.out.println("sku="+SKu);
+		String PutawayGp=sKUQueryPage.getPutawayGroup();
+		Assert.assertNotNull("putaway group is not updated",sKUQueryPage.isPutawayGroupNull(PutawayGp) );
 	}
 	}
 	

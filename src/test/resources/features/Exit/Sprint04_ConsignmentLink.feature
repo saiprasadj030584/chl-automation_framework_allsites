@@ -76,11 +76,12 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
       
-      @inprogress @TC10_validate_the_putaway_group_for_black_zone
+      @completed @TC10_validate_the_putaway_group_for_black_zone
      Scenario: Validate Putaway group for Black zone
      Given Login to JDA Dispatcher web screen
      When I navigate to SKU maintenance page
-     And Query for Putaway group "BLACKB"
+     Then Query for checking Putaway group
+     Then Validate the putaway group is not null
       
       @completed @Putaway @TC11_Validate_black_stock_adjustment
   Scenario Outline: To Validate Black stock adjustment

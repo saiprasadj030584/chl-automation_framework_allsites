@@ -361,16 +361,46 @@ public void clickUpdate() throws FindFailed,InterruptedException {
 	screen.click("images/CEConsignmentMaintenance/SkuUpdate.png");
 }
 
-public Object getWorkZone() throws FindFailed, InterruptedException {
+public String getPutawayGroup() throws FindFailed, InterruptedException {
 	
-	screen.wait("images/InventoryTransactionQuery/WorkZone.png", timeoutInSec);
-	screen.click("images/InventoryTransactionQuery/WorkZone.png");
-	Match mStatus = screen.find("images/InventoryTransactionQuery/WorkZone.png");
+	screen.wait("images/SKUMaintenanceTable/PutawayGroup.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/PutawayGroup.png");
+	Match mStatus = screen.find("images/SKUMaintenanceTable/PutawayGroup.png");
 	screen.click(mStatus.getCenter().offset(70,0));
 	screen.type("a", Key.CTRL);
 	screen.type("c", Key.CTRL);
 	Thread.sleep(2000);
 	return App.getClipboard();
+}
+
+public void enterPutaway(String putawayGroup) throws FindFailed, InterruptedException {
+	
+	screen.wait("images/SKUMaintenanceTable/PutawayGroup.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/PutawayGroup.png");
+	Match mStatus = screen.find("images/SKUMaintenanceTable/PutawayGroup.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type(putawayGroup);
+}
+
+public String getSkuID() throws FindFailed, InterruptedException {
+	Thread.sleep(2000);
+	screen.wait("images/SKUMaintenanceTable/SKUID.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/SKUID.png");
+	Match mSku=screen.find("images/SKUMaintenanceTable/SKUID.png");
+	screen.click(mSku.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+}
+
+public Object isPutawayGroupNull(String putawayGp) throws FindFailed, InterruptedException {
+	
+	if(putawayGp.equals("BLACKB")||putawayGp.equals("BLACKH")){
+		return true;
+}
+	else
+	return false;
 }
 }
 
