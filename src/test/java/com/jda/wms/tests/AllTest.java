@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC10_validate_the_putaway_group_for_black_zone" 
+			+ "@TC01_Batch_and_Expiry_Date_Check" 
 
 })
 public class AllTest {

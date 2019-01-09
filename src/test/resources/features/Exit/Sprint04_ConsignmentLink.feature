@@ -3,7 +3,7 @@ Feature: ConsignmentLinking
   As a Exit DC user should be able to login
    so that I validate repacking
    with ConsignmentLinking
-   
+
   @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
