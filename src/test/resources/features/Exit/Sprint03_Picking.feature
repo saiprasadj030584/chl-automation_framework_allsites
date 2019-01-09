@@ -263,6 +263,7 @@ Feature: Orders_Picking
     And Enter Pallet Id
     And Enter consignment 
     And Validate the pallet and consignment is linked
+    
     Examples: 
       | SKU                |
       | 000000000021071852 |
