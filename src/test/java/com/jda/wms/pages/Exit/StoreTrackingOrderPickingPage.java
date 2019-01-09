@@ -75,6 +75,12 @@ public class StoreTrackingOrderPickingPage {
 		else
 			return false;
 	}
+	public boolean isUnpickDisplayed() {
+		if (screen.exists("images/Putty/Picking/UnpickMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
 	
 	public boolean isImageforPckQtyZerExists() {
 		if (screen.exists("images/Putty/Picking/PckQtyZer.png") != null)
@@ -124,6 +130,12 @@ public class StoreTrackingOrderPickingPage {
 	}
 	public void selectBasicReceivingMenu() throws InterruptedException {
 		screen.type("1");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public void selectUnpickMenu() throws InterruptedException {
+		screen.type("5");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);

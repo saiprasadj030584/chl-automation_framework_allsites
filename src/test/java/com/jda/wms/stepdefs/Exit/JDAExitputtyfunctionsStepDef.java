@@ -308,6 +308,30 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(2000);
 		
 	}
+	@Given("^I select Unpick/Unship$")
+	public void I_select_Unpick_Unship_menu() throws Throwable {
+//		storeTrackingOrderPickingPage.selectPickingMenu();
+		System.out.println("before enter");
+		storeTrackingOrderPickingPage.selectPickingMenu();
+//		storeTrackingOrderPickingPage.selectPickingMenuForFurtherProcess();
+		System.out.println("After enter");
+		Assert.assertTrue("Picking Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isPickMenuDisplayed());
+		storeTrackingOrderPickingPage.selectUnpickMenu();
+		Assert.assertTrue("Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isUnpickDisplayed());
+	    Thread.sleep(2000);
+			}
+	
+	@Given("^I enter container_id$")
+	public void I_enter_container_id_menu() throws Throwable {
+	String palletIDforUPI = context.getpalletIDforUPI();
+	purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(4000);
+	puttyFunctionsPage.pressEnter();
+	}
+	
 	@And("^Verify scan URN screen displayed$")
 	public void verify_scan_URN_screen_displayed() throws FindFailed, InterruptedException, IOException
 	{

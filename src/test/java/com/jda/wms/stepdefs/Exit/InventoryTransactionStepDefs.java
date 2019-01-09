@@ -87,6 +87,12 @@ public class InventoryTransactionStepDefs {
 		inventoryTransactionPage.Checktransaction();
 
 	}
+	
+	@And("^check the Inventory Transaction for Receipt, Allocate and Pick and UnPick$")
+	public void check_the_inventory_transaction_for_receipt_allocate_pick_and_unpick() throws FindFailed, InterruptedException {
+		inventoryTransactionPage.Checktransaction();
+
+	}
 
 	@And("^check Qty received is updated in Inventory$")
 	public void check_qty_received_is_updated_in_inventory() throws FindFailed, InterruptedException {
