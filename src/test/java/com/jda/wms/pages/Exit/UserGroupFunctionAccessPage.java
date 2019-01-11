@@ -1,6 +1,8 @@
 package com.jda.wms.pages.Exit;
 
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
 import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
@@ -126,5 +128,96 @@ public void enterGroupPickClerk() throws FindFailed, InterruptedException {
 			else
 			return false;
 		}
+		
+		public void enterProfile() throws FindFailed, InterruptedException {
+			
+			screen.type("PROHIBITION-FROM-ISR-TO-IND");
+			Thread.sleep(1000);
 			
 		}
+		public void click_on_Query() throws FindFailed, InterruptedException {
+			screen.type(Key.F2);
+			Thread.sleep(3000);
+		}
+		public void enterSupportId(String supportID) throws FindFailed, InterruptedException {
+			
+			screen.wait("images/UserGroupFunctionAccess/supportID.png", timeoutInSec);
+			screen.click("images/UserGroupFunctionAccess/supportID.png");
+			Match mStatus = screen.find("images/UserGroupFunctionAccess/supportID.png");
+			screen.click(mStatus.getCenter().offset(40,0));
+			screen.type(supportID);
+		}
+			
+		
+			
+public void clickExecuteButton() throws FindFailed, InterruptedException {
+	screen.wait("images/UserGroupFunctionAccess/Execute.png", timeoutInSec);
+	screen.click("images/UserGroupFunctionAccess/Execute.png");
+	
+	Thread.sleep(3000);
+}
+public String getUserGroup() throws FindFailed, InterruptedException {
+	
+	
+	screen.click("images/UserGroupFunctionAccess/UserGp.png");
+	Match mStatus = screen.find("images/UserGroupFunctionAccess/UserGp.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+
+}
+public boolean isNewRuleAdded() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/UserGroupFunctionAccess/enter.png")!=null)
+{
+	screen.wait("images/UserGroupFunctionAccess/prohibition.png");
+	screen.click("images/UserGroupFunctionAccess/prohibition.png");
+	Match mStatus = screen.find("images/UserGroupFunctionAccess/prohibition.png");
+	screen.click(mStatus.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+public void addDescription() throws FindFailed, InterruptedException {
+screen.type(Key.TAB);
+screen.type("PROHIBITION-FROM-ISR-TO-IND");
+Thread.sleep(1000);
+}
+public void deleteValue() throws FindFailed {
+	screen.wait("images/SystemProfile/ForDelete.png", timeoutInSec);
+	screen.click("images/SystemProfile/ForDelete.png");
+	Match mStatus = screen.find("images/SystemProfile/ForDelete.png");
+	screen.rightClick(mStatus.getCenter());
+	hoverdeleterules();
+	screen.click("images/SystemProfile/Yes.png");
+
+	
+}
+private void hoverdeleterules() throws FindFailed {
+	screen.wait("images/SystemProfile/deleteRulesValue.png", timeoutInSec);
+	screen.click("images/SystemProfile/deleteRulesValue.png");
+	screen.mouseMove(70, 0);
+	
+}
+public boolean isPageExist() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/SystemProfile/BasicUSer.png")!=null)
+{
+	screen.wait("images/SystemProfile/BasicUSer.png");
+	screen.click("images/SystemProfile/BasicUSer.png");
+	Match mStatus = screen.find("images/SystemProfile/BasicUSer.png");
+	screen.click(mStatus.getCenter().offset(70, 0));
+	Thread.sleep(1000);
+	return true;
+}
+	else
+	return false;
+}
+}
+
+
+

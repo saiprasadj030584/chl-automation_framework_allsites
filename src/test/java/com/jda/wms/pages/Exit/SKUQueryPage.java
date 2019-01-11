@@ -402,6 +402,20 @@ public Object isPutawayGroupNull(String putawayGp) throws FindFailed, Interrupte
 	else
 	return false;
 }
+
+public void clickDimensions() throws FindFailed {
+	screen.wait("images/SKUMaintenanceTable/dimensions.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/dimensions.png");
+}
+
+public void updateWeight(String Weight) throws FindFailed, InterruptedException {
+	
+	screen.wait("images/SKUMaintenanceTable/Weight.png", timeoutInSec);
+	screen.click("images/SKUMaintenanceTable/Weight.png");
+	Match mStatus = screen.find("images/SKUMaintenanceTable/Weight.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type(Weight);
+}
 }
 
 
