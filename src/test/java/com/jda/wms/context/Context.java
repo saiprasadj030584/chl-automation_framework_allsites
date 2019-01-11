@@ -151,6 +151,7 @@ public class Context {
 	private String country2;
 	private String quantity;
 	private String TagTrans;
+	private String supportID;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1215,6 +1216,15 @@ public class Context {
 
 	public void setPalletId(String palletId) {
 		PalletId = palletId;
+	}
+
+	public void setBasicUser(String supportID) {
+		// TODO Auto-generated method stub
+		this.supportID=supportID;
+		
+	}
+	public String getBasicUser(){
+		return supportID;
 	}
 	
 	

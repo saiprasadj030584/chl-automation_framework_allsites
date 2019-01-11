@@ -491,6 +491,10 @@ Feature: ConsignmentLinking
     Examples: 
       | Location |
       | AA001    |
+      
+      #@TC12
+     #Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
+      #
 
   @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
@@ -521,6 +525,20 @@ Feature: ConsignmentLinking
     And Search for Picking and Relocate access
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
+    
+     @completed @Reports @TC46_load_systematic_reports_revised_on_amended_in_consignment
+  Scenario: Load systemic reports revised on amended in Consignment
+
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Custom Inspection Report"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed
+          
+    
 
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
