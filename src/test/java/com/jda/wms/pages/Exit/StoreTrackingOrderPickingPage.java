@@ -17,6 +17,13 @@ public class StoreTrackingOrderPickingPage {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectRelocate() throws InterruptedException {
+		Thread.sleep(2000);
+		screen.type("4");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 	public void selectReceivingMenu() throws InterruptedException {
 		Thread.sleep(2000);
 		screen.type("1");
@@ -50,6 +57,12 @@ public class StoreTrackingOrderPickingPage {
 		else
 			return false;
 	}
+	public boolean isRelocateDisplayed() {
+		if (screen.exists("images/Putty/Relocation/RelMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
 	public boolean isReceivingMenuDisplayed() {
 		if (screen.exists("images/Putty/Receiving/ReceiveMenu.png") != null)
 			return true;
@@ -77,6 +90,12 @@ public class StoreTrackingOrderPickingPage {
 	}
 	public boolean isUnpickDisplayed() {
 		if (screen.exists("images/Putty/Picking/UnpickMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isRelocateExistDisplayed() {
+		if (screen.exists("images/Putty/Relocation/RelEnt1.png") != null)
 			return true;
 		else
 			return false;
@@ -136,6 +155,12 @@ public class StoreTrackingOrderPickingPage {
 	}
 	public void selectUnpickMenu() throws InterruptedException {
 		screen.type("5");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+	public void selectExistingMenu() throws InterruptedException {
+		screen.type("1");
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);

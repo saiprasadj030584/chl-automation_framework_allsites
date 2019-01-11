@@ -117,6 +117,18 @@ public class MoveTaskQueryPage {
 		screen.type(ListId);
 
 	}
+	public void entertask() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		Match mLocation = screen.find("images/MoveTaskUpdate/Task.png");
+		screen.click(mLocation.getCenter().offset(70, 0));
+		screen.type("RELOCATE");
+	}
+	public void entersku(String SKU) throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
+		Match mLocation = screen.find("images/MoveTaskUpdate/sku.png");
+		screen.click(mLocation.getCenter().offset(70, 0));
+		screen.type(SKU);
+	}
 	public void enterPallet(String taskId) throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		Match mLocation = screen.find("images/Putty/Picking/PalletId.png");

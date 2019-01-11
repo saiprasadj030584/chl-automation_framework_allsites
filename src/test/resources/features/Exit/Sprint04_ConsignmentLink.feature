@@ -75,15 +75,15 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      @completed @TC10_validate_the_putaway_group_for_black_zone
-     Scenario: Validate Putaway group for Black zone
-     Given Login to JDA Dispatcher web screen
-     When I navigate to SKU maintenance page
-     Then Query for checking Putaway group
-     Then Validate the putaway group is not null
-      
-      @completed @Putaway @TC11_Validate_black_stock_adjustment
+
+  @completed @TC10_validate_the_putaway_group_for_black_zone
+  Scenario: Validate Putaway group for Black zone
+    Given Login to JDA Dispatcher web screen
+    When I navigate to SKU maintenance page
+    Then Query for checking Putaway group
+    Then Validate the putaway group is not null
+
+  @completed @Putaway @TC11_Validate_black_stock_adjustment
   Scenario Outline: To Validate Black stock adjustment
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
@@ -107,13 +107,13 @@ Feature: ConsignmentLinking
     And Verify that the record is displayed for M&S - URN pallet Report
     And Enter URN as parameter
     And Validate the confirmation page for M&S - pallet Report
+    Then Validate the report selection page for M&S - URN pallet report completed
 
-    #Then Validate the report selection page for M&S - URN pallet report completed
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-      @completed @Reports @TC17_Validate_stock_check_report
+
+  @completed @Reports @TC17_Validate_stock_check_report
   Scenario Outline: Validate the M&S - stock check report
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     Given Login to JDA Dispatcher web screen
@@ -123,10 +123,10 @@ Feature: ConsignmentLinking
     And Verify that the record is displayed for M&S - stock check tasks Report
     And Enter list ID as parameter
     And Validate the confirmation page for M&S - stock check Report
+    Then Validate the report selection page for M&S - stock check completed
 
-    #Then Validate the report selection page for M&S - URN pallet report completed
     Examples: 
-      | SKU             |
+      | SKU                |
       | 000000000021071852 |
 
   @ConsignmentLinking @Reversion @TC024_User_Access_to_Reversion
@@ -161,16 +161,16 @@ Feature: ConsignmentLinking
     And Click next
     And Select consignment to close
     And Click done
-    
- @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
- Scenario Outline: Validate_vehicle_loading_Single_pallet
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+
+  @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
+  Scenario Outline: Validate_vehicle_loading_Single_pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-  	And Go to consignment maintainance
+    And Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
     Then Enter consignment name
@@ -189,7 +189,7 @@ Feature: ConsignmentLinking
     And configure putty settings
     And I select Inventory transaction option
     And Enter Pallet Id
-    And Enter consignment 
+    And Enter consignment
     And Validate the pallet and consignment is linked
     And Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -218,20 +218,21 @@ Feature: ConsignmentLinking
     And Enter Pallet Id
     And Enter consignment
     And Validate the pallet and consignment is loaded
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
- 
- @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
+
+  @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
   Scenario: Negative Path_Enter incorrect pallet id
- 		Given I login as warehouse user in putty
+    Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select vehicle loading option in main menu
     And select multi pallet load
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
- 
+
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen
@@ -305,41 +306,7 @@ Feature: ConsignmentLinking
     And Select Consignment
     And Click next
     And I click on trailer Add button
-    And validate Consignment Trailer is linked 
-
-   
-
-  @completed @Reports @TC14_Validate_URN's_in_pallet_report
-  Scenario Outline: Validate the M&S - URN in pallet report
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "pallet report"
-    And Verify that the record is displayed for M&S - URN pallet Report
-    And Enter URN as parameter
-    And Validate the confirmation page for M&S - pallet Report
-    Then Validate the report selection page for M&S - URN pallet report completed
-
-    Examples: 
-      | SkuId              |
-      | 000000000021071852 |
-
-  @completed @Reports @TC17_Validate_stock_check_report
-  Scenario Outline: Validate the M&S - stock check report
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
-    Given Login to JDA Dispatcher web screen
-    And Go to Reports Selection and click
-    Then Select Print to screen and proceed next
-    And Search for "Stock check tasks - by list ID"
-    And Verify that the record is displayed for M&S - stock check tasks Report
-    And Enter list ID as parameter
-    And Validate the confirmation page for M&S - stock check Report
-    Then Validate the report selection page for M&S - stock check completed
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
+    And validate Consignment Trailer is linked
 
   @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
@@ -598,22 +565,80 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Unpick/Unship
     And I enter container_id
+    And Login to JDA Dispatcher web screen
     And Go to Inventory Transaction & Click
     And Click on Query
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+    
 
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-
-   
-   
-
       
       
+@Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
+  Scenario Outline: To Validate unpicking and relocate order in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Unpick/Unship
+    And I enter container_id
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+    And I navigate to move task query page
+    And Query with TaskId as RELOCATE and "<SkuId>"
     
-     
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
       
+     
+     @In-Progress @Unpick @TC09_Validate_relocate_task_completion
+  Scenario Outline: To Validate unpicking and relocate task completion in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute and get TagID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Unpick/Unship
+    And I enter container_id
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Relocate and Existing relocate
+    And I enter UPC and TagId "<SkuId>"
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+    
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 | 
       

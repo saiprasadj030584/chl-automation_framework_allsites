@@ -1,6 +1,13 @@
 package com.jda.wms.stepdefs.Exit;
 
+import org.sikuli.script.App;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
+import org.sikuli.script.Screen;
+
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.OrderHeaderPage;
 import com.jda.wms.pages.Exit.PickFaceMaintenancePage;
@@ -10,16 +17,20 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 public class JDAHomeStepDefs {
+	Screen screen = new Screen();
 	private final JdaHomePage jdaHomePage;
 	private JDAFooter jdaFooter;
 	private OrderHeaderPage orderheaderpage;
+	private Context context;
 	
 
 	@Inject
-	public JDAHomeStepDefs(JdaHomePage jdaHomePage,JDAFooter jdaFooter,OrderHeaderPage orderheaderpage) {
+	public JDAHomeStepDefs(JdaHomePage jdaHomePage,JDAFooter jdaFooter,
+			Context context,OrderHeaderPage orderheaderpage) {
 		this.jdaHomePage = jdaHomePage;
 		this.jdaFooter=jdaFooter;
 		this.orderheaderpage=orderheaderpage;
+		this.context=context;
 	}
 
 	@When("^I navigate to order header$")
@@ -292,6 +303,22 @@ public class JDAHomeStepDefs {
 		Thread.sleep(2000);
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(2000);
+	}
+	@And("^click execute and get TagID$")
+	public void click_execute_and_TagID() throws Throwable {
+		Thread.sleep(2000);
+		jdaFooter.clickExecuteButton();
+		Thread.sleep(2000);
+		gettagid();
+		context.setTagTrans(gettagid());
+	}
+	public String gettagid() throws FindFailed{
+		Match mDescription = screen.find("images/InventoryTransactionQuery/General/Tag.png");
+		screen.click(mDescription.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		return App.getClipboard();
+		
 	}
 	@And("^Go to consignment maintainance$")
 	public void Go_to_consignment_maintainance() throws Throwable {

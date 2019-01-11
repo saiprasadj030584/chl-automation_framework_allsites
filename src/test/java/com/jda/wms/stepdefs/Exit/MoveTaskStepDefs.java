@@ -407,7 +407,14 @@ public class MoveTaskStepDefs {
 		moveTaskQueryPage.enterQuantity(FinalQuantity);
 		moveTaskQueryPage.PressEnter();
 	}
+	
+	@And("^Query with TaskId as RELOCATE and \"([^\"]*)\"$")
+	public void Query_with_TaskId_as_RELOCATE_and_SkuId(String SKU) throws FindFailed, InterruptedException {
+		moveTaskQueryPage.entertask();
+		moveTaskQueryPage.entersku(SKU);
+		jdaFooter.clickExecuteButton();
 
+	}
 
 
 
