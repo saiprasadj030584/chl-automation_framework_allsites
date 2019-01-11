@@ -491,11 +491,10 @@ Feature: ConsignmentLinking
     Examples: 
       | Location |
       | AA001    |
-      
-      #@TC12
-     #Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
-      #
 
+  #@TC12
+  #Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
+  #
   @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
     Given Login to JDA Dispatcher web screen
@@ -525,10 +524,9 @@ Feature: ConsignmentLinking
     And Search for Picking and Relocate access
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
-    
-     @completed @Reports @TC46_load_systematic_reports_revised_on_amended_in_consignment
-  Scenario: Load systemic reports revised on amended in Consignment
 
+  @completed @Reports @TC46_load_systematic_reports_revised_on_amended_in_consignment
+  Scenario: Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -537,8 +535,6 @@ Feature: ConsignmentLinking
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
-          
-    
 
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
@@ -589,14 +585,12 @@ Feature: ConsignmentLinking
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
-    
 
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-      
-@Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
+
+  @Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
   Scenario Outline: To Validate unpicking and relocate order in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -621,14 +615,12 @@ Feature: ConsignmentLinking
     And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
     And I navigate to move task query page
     And Query with TaskId as RELOCATE and "<SkuId>"
-    
 
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-     
-     @In-Progress @Unpick @TC09_Validate_relocate_task_completion
+
+  @In-Progress @Unpick @TC09_Validate_relocate_task_completion
   Scenario Outline: To Validate unpicking and relocate task completion in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -655,8 +647,7 @@ Feature: ConsignmentLinking
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
-    
+
     Examples: 
       | SkuId              |
-      | 000000000021071852 | 
-      
+      | 000000000021071852 |
