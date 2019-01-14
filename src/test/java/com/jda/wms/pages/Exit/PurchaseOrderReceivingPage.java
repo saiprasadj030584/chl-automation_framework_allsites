@@ -178,6 +178,7 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(Key.TAB);
 
 	}
+	
 	public void EnterToExpirydate(String Expirydate) throws InterruptedException {
 		screen.type(Key.TAB);
 		screen.type(Key.TAB);
@@ -232,6 +233,12 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 
 	public boolean isUserMenuDisplayed() {
 		if (screen.exists("images/Putty/UserMenu.png") != null)
+			return true;
+		else
+			return false;
+	}
+	public boolean isErrorMsgDisplayed() {
+		if (screen.exists("images/Putty/Picking/sortingError.png") != null)
 			return true;
 		else
 			return false;

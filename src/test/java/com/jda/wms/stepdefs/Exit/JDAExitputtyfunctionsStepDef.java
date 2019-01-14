@@ -649,6 +649,38 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("palletID "+palletIDforUPI);
 		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
 		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.singleTab();
+		Thread.sleep(500);
+		String ToPallet = null;
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	@Given("I enter URN for different destination for sortation in Direct Receiving")
+	public void I_enter_URN_for_sortation_in_Direct_receiving_for_different_destination() throws Throwable
+	{
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.singleTab();
+		Thread.sleep(500);
+		String ToPallet ="P1230071";
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	@Given("I Validate the Error message for different source and destination")
+	public void Validate_the_Error_message_for_different_source_and_destination() throws Throwable
+	{
+		
+		purchaseOrderReceivingPage.isErrorMsgDisplayed();
 	}
 	@Given("^I enter To Pallet for two urn$")
 	public void I_enter_To_Pallet_for_two_urn() throws Throwable {
