@@ -14,11 +14,11 @@ import cucumber.api.junit.Cucumber;
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 		
 			+ "@TC015_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet" 
+			+ "@TC29_Validate_confirm_shipment" 
 
 })
 public class AllTest {
 }
-
 
 
 

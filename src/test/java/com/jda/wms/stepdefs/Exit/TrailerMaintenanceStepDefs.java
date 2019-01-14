@@ -15,12 +15,16 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 public class TrailerMaintenanceStepDefs {
 	private final TrailerMaintenancePage trailerMaintenancePage;
+	private final JDAHomeStepDefs jdaHomeStepDefs;
+	private final ConsignmentMaintenanceStepDefs consignmentMaintSD;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage) {
+	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage,ConsignmentMaintenanceStepDefs consignmentMaintSD,JDAHomeStepDefs jdaHomeStepDefs) {
 		this.trailerMaintenancePage = trailerMaintenancePage;
+		this.jdaHomeStepDefs=jdaHomeStepDefs;
+		this.consignmentMaintSD=consignmentMaintSD;
 	}
 	
 	@And("^Enter seal ID$")
@@ -34,7 +38,12 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.enterTrailerNumber();
 	}
-
+	
+	@And("^select trailer text tab$")
+	public void Trailer_tab() throws Throwable {
+	
+		trailerMaintenancePage.enterTrailerTab();
+	}
 	@And("^Select Trailer Type$")
 	public void Select_Trailer_Type() throws Throwable {
 	
@@ -50,6 +59,12 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.validateErrorMsg();
 	}
+	@And("^validate the error popup is displayed$")
+	public void validate_error_popup_is_displayed() throws Throwable {
+	
+		trailerMaintenancePage.validateErrorpopup();
+	}
+	
 	@And("^validate Consignment Trailer is linked$")
 	public void validate_Consignment_Trailer_is_linked() throws Throwable {
 	
@@ -65,6 +80,30 @@ public class TrailerMaintenanceStepDefs {
 	public void I_click_on_trailer() throws Throwable {
 	
 		trailerMaintenancePage.clickTrailerAdd();
+	}
+	@And("^I create Trailer")
+	public void I_create_trailer() throws Throwable {
+		jdaHomeStepDefs.i_navigate_to_Trailer_mainteinance_page();
+		consignmentMaintSD.Right_click_to_Select_Toggle_Maintenance_Mode();
+		consignmentMaintSD.I_click_on_Add_button();
+		Enter_Trailer_number();
+		Select_Trailer_Type();
+		jdaHomeStepDefs.click_execute();
+		//trailerMaintenancePage.clickTrailerAdd();
+	}
+	@And("^I link consignment with trailer")
+	public void I_link_trailer() throws Throwable {
+		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
+		Select_Trailer();
+		consignmentMaintSD.Select_Consignment();
+		jdaHomeStepDefs.click_next();
+		jdaHomeStepDefs.click_next();
+		And_I_click_on_trailer_Add_button();
+		jdaHomeStepDefs.click_next();
+		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		jdaHomeStepDefs.click_done();
+		
+		//trailerMaintenancePage.clickTrailerAdd();
 	}
 	
 }

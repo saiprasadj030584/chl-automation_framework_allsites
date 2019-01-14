@@ -102,10 +102,13 @@ public class CEConsignmentMaintenancePage {
 		Thread.sleep(3000);
 	}
 	public void selectToggleMaintenanceMode() throws FindFailed,InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		screen.rightClick();
+		Thread.sleep(1000);
 		screen.wait("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png", timeoutInSec);
+		Thread.sleep(2000);
 		screen.click("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png");
+		Thread.sleep(1000);
 	}
 	
 	public void clickAdd() throws FindFailed,InterruptedException {
@@ -140,22 +143,28 @@ public class CEConsignmentMaintenancePage {
 	public void selectStatus() throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentStatus.png", timeoutInSec);
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentStatus.png");
-		screen.click(status.getCenter().offset(90, 0));
-		Thread.sleep(1000);
+	    Thread.sleep(3000);
+	    screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(3000);
 		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentAllocatedStatus.png");
-		   reg=header.below(150).left(5).right(1000);
+		 Thread.sleep(3000); 
+		 reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
 		   reg.click(header);
 	}
 	public void selectTransportmode() throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentTransMode.png", timeoutInSec);
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentTransMode.png");
-		screen.click(status.getCenter().offset(90, 0));
-		Thread.sleep(1000);
+	    Thread.sleep(3000);
+	    screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(3000);
 		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
 		   reg=header.below(150).left(5).right(1000);
+		   Thread.sleep(3000);
 		   reg.hover(header);
+		   Thread.sleep(3000);
 		   reg.click(header);
+		   Thread.sleep(3000);
 	}
 	public void checkPackStatus() throws FindFailed,InterruptedException {
 		Thread.sleep(3000);
@@ -174,22 +183,27 @@ public class CEConsignmentMaintenancePage {
 	}
 	
 	public void typeConsignment() throws FindFailed,InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		String consignmentNameDrop = context.getConsignmentName();
 		System.out.println("The consignment Name:"+consignmentNameDrop);
 		screen.type(consignmentNameDrop);
 }
 	public void typeChamberAddressId() throws FindFailed,InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropChamber.png", timeoutInSec);
 	    Match Chamber = screen.find("images/CEConsignmentMaintenance/ConsignmentDropChamber.png");
-		screen.click(Chamber.getCenter().offset(90, 0));
+	    Thread.sleep(2000);
+	    screen.click(Chamber.getCenter().offset(90, 0));
+		Thread.sleep(2000);
 		screen.type("1");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropAddress.png", timeoutInSec);
 	    Match Address = screen.find("images/CEConsignmentMaintenance/ConsignmentDropAddress.png");
-		screen.click(Address.getCenter().offset(90, 0));
+	    Thread.sleep(3000);
+	    screen.click(Address.getCenter().offset(90, 0));
+	    Thread.sleep(3000);
 		screen.type("7993");
+		Thread.sleep(3000);
 }
 	public void selectConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
@@ -221,5 +235,13 @@ public class CEConsignmentMaintenancePage {
 		   reg.click(header);
 		   screen.type(Key.F7);
 			Thread.sleep(3000);
+}
+	public void typeChamberDockId() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.type("1");
+		Thread.sleep(3000);
+		screen.type(Key.TAB);
+		screen.type("02784");
+		Thread.sleep(2000);
 }
 }
