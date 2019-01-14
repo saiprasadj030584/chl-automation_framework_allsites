@@ -27,6 +27,7 @@ import com.jda.wms.pages.Exit.PreAdviceHeaderPage;
 import com.jda.wms.pages.Exit.PurchaseOrderReceivingPage;
 import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
+import com.jda.wms.pages.Exit.TrailerMaintenancePage;
 import com.jda.wms.utils.Utilities;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationZonePage;
@@ -45,6 +46,7 @@ public class JDAExitputtyfunctionsStepDef {
 	//private Object screen;
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
+	private TrailerMaintenancePage trailerMaintenancePage;
 	private MoveTaskDB moveTaskDB;
 	private SkuDB skuDB;
 	private LocationDB LocationDB;
@@ -60,7 +62,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private LocationZonePage LocationZonePage;
 	private Hooks hooks;
 	private final JdaHomePage imageCheckFunction;
-
+	private final ConsignmentMaintenanceStepDefs consignmentMaintSD;
 	
 
 	@Inject
@@ -69,7 +71,7 @@ public class JDAExitputtyfunctionsStepDef {
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
 			PreAdviceHeaderDB preAdviceHeaderDB,
-			JdaHomePage imageCheckFunction,LocationZonePage LocationZonePage,Hooks hooks) {
+			JdaHomePage imageCheckFunction,ConsignmentMaintenanceStepDefs consignmentMaintSD, LocationZonePage LocationZonePage,Hooks hooks,TrailerMaintenancePage trailerMaintenancePage) {
 			
 			{
 		this.puttyFunctionsPage = puttyFunctionsPage;
@@ -85,6 +87,8 @@ public class JDAExitputtyfunctionsStepDef {
 		this.LocationDB=LocationDB;
 		this.LocationZonePage=LocationZonePage;
 		this.hooks=hooks;
+		this.trailerMaintenancePage=trailerMaintenancePage;
+		this.consignmentMaintSD=consignmentMaintSD;
 		this.imageCheckFunction = imageCheckFunction;}
 	}
 	@Given("^I have logged in as warehouse user in putty$")
@@ -167,13 +171,25 @@ public class JDAExitputtyfunctionsStepDef {
 	
 	@Then("^Enter Pallet Id$")
 	public void getPalletId() throws Throwable {
-
+		Thread.sleep(5000);
 		puttyFunctionsPage.enterPalletId(context.getPalletId());
 		puttyFunctionsPage.pressTab();
+	}
+	@Then("^Enter trailer$")
+	public void getTrailerId() throws Throwable {
+		puttyFunctionsPage.nextScreen();
+		Thread.sleep(5000);
+		trailerMaintenancePage.selectTrailer();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
 	}
 	
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
+		Thread.sleep(3000);
 		puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
@@ -649,6 +665,38 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("palletID "+palletIDforUPI);
 		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
 		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.singleTab();
+		Thread.sleep(500);
+		String ToPallet = null;
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	@Given("I enter URN for different destination for sortation in Direct Receiving")
+	public void I_enter_URN_for_sortation_in_Direct_receiving_for_different_destination() throws Throwable
+	{
+		String palletIDforUPI = context.getpalletIDforUPI();
+		System.out.println("palletID "+palletIDforUPI);
+		purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.singleTab();
+		Thread.sleep(500);
+		String ToPallet ="P1230071";
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		puttyFunctionsPage.pressEnter();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
+	}
+	@Given("I Validate the Error message for different source and destination")
+	public void Validate_the_Error_message_for_different_source_and_destination() throws Throwable
+	{
+		
+		purchaseOrderReceivingPage.isErrorMsgDisplayed();
 	}
 	@Given("^I enter To Pallet for two urn$")
 	public void I_enter_To_Pallet_for_two_urn() throws Throwable {
@@ -926,6 +974,30 @@ public void Enterconsignment(String Id) throws Throwable {
 	puttyFunctionsPage.enterPalletId(Id);
 	Thread.sleep(1000);
 	puttyFunctionsPage.pressTab();
+}
+
+@And("^I link the pallet and consignment$")
+public void LinkPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	consignmentIsLinked();
+	
+}
+@And("^I complete Vechile loading$")
+public void vehicleLoading() throws Throwable {
+	Thread.sleep(2000);
+	i_login_as_warehouse_user_in_putty();
+	i_select_user_directed_option_in_main_menu();
+	i_select_vehicle_directed_option_in_main_menu();
+	i_select_multiPallet_load();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	getTrailerId();
+	consignmentIsLoaded();
 }
 
 }

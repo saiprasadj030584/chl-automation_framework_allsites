@@ -14,14 +14,16 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 public class ConsignmentMaintenanceStepDefs {
 	private final CEConsignmentMaintenancePage consignmentMaintenancePage;
+	private final JDAHomeStepDefs jdaHomeStepDefs;
 	private JDAFooter jdaFooter;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public ConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage consignmentMaintenancePage,JDAFooter jdaFooter) {
+	public ConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage consignmentMaintenancePage,JDAHomeStepDefs jdaHomeStepDefs,JDAFooter jdaFooter) {
 		this.consignmentMaintenancePage = consignmentMaintenancePage;
 		this.jdaFooter=jdaFooter;
+		this.jdaHomeStepDefs = jdaHomeStepDefs;
 	}
 
 
@@ -29,6 +31,7 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Right_click_to_Select_Toggle_Maintenance_Mode() throws Throwable {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.selectToggleMaintenanceMode();
+		Thread.sleep(3000);
 	}
 	@When("^I click on Add button$")
 	public void I_click_on_Add_button() throws Throwable {
@@ -56,11 +59,13 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Select_consignment_Status() throws Throwable {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.selectStatus();
+		Thread.sleep(3000);
 	}
 	@And("^Select Mode of transport$")
 	public void Select_Mode_of_transport() throws Throwable {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.selectTransportmode();
+		Thread.sleep(3000);
 	}
 	@And("^Select trailer type to reflect Hazardous and Repack status$")
 	public void Select_trailer_type_to_reflect_Hazardous_and_Repack_status() throws Throwable {
@@ -75,12 +80,23 @@ public class ConsignmentMaintenanceStepDefs {
 	@And("^Enter consignment$")
 	public void Enter_consignment() throws Throwable {
 		consignmentMaintenancePage.typeConsignment();
+		Thread.sleep(3000);
+		
 	}
 	@And("^Enter chamber and Address Id$")
 	public void Enter_chamber_and_Address_Id() throws Throwable {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.typeChamberAddressId();
+		Thread.sleep(3000);
 	}
+	@And("^Enter dock door$")
+	public void Enter_chamber_and_dock_Id() throws Throwable {
+		Thread.sleep(3000);
+		consignmentMaintenancePage.typeChamberDockId();
+		Thread.sleep(3000);
+	}
+	
+	
 	@And("^Select Consignment$")
 	public void Select_Consignment() throws Throwable {
 		Thread.sleep(3000);
@@ -96,4 +112,39 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.closeConsignment();
 	}
+	@And("I create a consignment$")
+	public void create_consignment() throws Throwable {
+		Thread.sleep(3000);
+		jdaHomeStepDefs.Go_to_consignment_maintainance();
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		I_click_on_Add_button();
+		Enter_consignment_name();
+		Select_consignment_Status();
+		jdaFooter.clickExecuteButton();
+		Select_Mode_of_transport();
+		jdaFooter.clickExecuteButton();
+		///consignmentMaintenancePage.closeConsignment();
+	}
+	@And("drop the same consignment$")
+	public void drop_consignment() throws Throwable {
+		Thread.sleep(3000);
+		///consignmentMaintenancePage.closeConsignment();
+		jdaHomeStepDefs.Go_to_consignment_drop_maintainance_screen();
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		jdaFooter.clickAddButton();
+		Enter_consignment();
+		Enter_chamber_and_Address_Id();
+		jdaFooter.clickExecuteButton();
+		
+	}
+	@And("I close the consignment$")
+	public void closeConsignment() throws Throwable {
+		Thread.sleep(3000);
+		jdaHomeStepDefs.Go_to_close_consignment();
+		Enter_same_consignment_name();
+		jdaHomeStepDefs.click_next();
+		close_consignment();
+		jdaHomeStepDefs.click_done();
+	}
+	
 }

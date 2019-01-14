@@ -56,13 +56,25 @@ public class TrailerMaintenancePage {
 			 Assert.assertTrue("No Pallets foundh",true);
 		 }
 	}
+	public void validateErrorpopup() throws FindFailed, InterruptedException {
+		 Match header = screen.find("images/TrailerShipping/TrailerNotFoundError.png");
+		 while(header==null){
+			 Assert.assertTrue("No Pallets foundh",true);
+		 }
+	}
+	public void enterTrailerTab() throws FindFailed, InterruptedException {
+		screen.wait("images/TrailerShipping/TrailerTab.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/TrailerTab.png");
+		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(1000);
+	}
 	
 	public void selectTrailerType() throws FindFailed, InterruptedException {
 		screen.wait("images/TrailerShipping/TrailerType.png", timeoutInSec);
 	    Match status = screen.find("images/TrailerShipping/TrailerType.png");
 		screen.click(status.getCenter().offset(90, 0));
 		Thread.sleep(1000);
-		 Match header = screen.find("images/TrailerShipping/TrailerTypeRoad.png");
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
 		   reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
 		   reg.click(header);

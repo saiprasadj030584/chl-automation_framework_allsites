@@ -136,7 +136,7 @@ public class PuttyFunctionsPage {
 		Thread.sleep(5000);
 	}
 
-	public void nextScreen() throws InterruptedException {
+	public void nextScreen() throws FindFailed, InterruptedException {
 		screen.type("x", Key.CTRL);
 		screen.type(Key.NUM4);
 		Thread.sleep(2000);
@@ -172,19 +172,25 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		Match mLocation = screen.find("images/Putty/PuttyIcon.png");
 		//screen.click(mLocation.getCenter().offset(70, 0));
+		Thread.sleep(3000);
 		screen.click(mLocation);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		Match mLocation1 = screen.find("images/Putty/ChangeSettings.png");
+		Thread.sleep(3000);
 		screen.click(mLocation1);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		Match mLocation2 = screen.find("images/Putty/Keyboard.png");
+		Thread.sleep(3000);
 		screen.click(mLocation2);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		Match mLocation3 = screen.find("images/Putty/XtermR6.png");
+		Thread.sleep(3000);
 		screen.click(mLocation3);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		Match mLocation4 = screen.find("images/Putty/PuttyApply.png");
+		Thread.sleep(2000);
 		screen.click(mLocation4);
+		Thread.sleep(2000);
 	}
 	public void enterPalletId(String Pallet)throws FindFailed, InterruptedException {
 		Thread.sleep(2000);
@@ -214,6 +220,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		screen.type("7");
 		screen.type(Key.ENTER);
+		Thread.sleep(3000);
 	}
 //	@Given("^I generate pallet id$")
 	public void i_generate_pallet_id_for_UPI(String preAdviceId, String skuid) throws Throwable {
