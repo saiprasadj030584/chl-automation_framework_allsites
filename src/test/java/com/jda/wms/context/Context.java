@@ -150,6 +150,7 @@ public class Context {
 	private String stoId2;
 	private String country2;
 	private String quantity;
+	private String TagTrans;
 	private String supportID;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1138,6 +1139,12 @@ public class Context {
 	public String getSKUHang() {
 		return SKUHang;
 	}
+	public void setTagTrans(String TagTrans){
+		this.TagTrans=TagTrans;	
+		}
+		public String getTagTrans() {
+			return TagTrans;
+		}
 
 
 	public void setupc(String upc) {
