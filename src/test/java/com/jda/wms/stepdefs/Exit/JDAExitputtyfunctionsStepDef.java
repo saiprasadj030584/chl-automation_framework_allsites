@@ -338,6 +338,56 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(2000);
 		
 	}
+	@Given("^I select Unpick/Unship$")
+	public void I_select_Unpick_Unship_menu() throws Throwable {
+//		storeTrackingOrderPickingPage.selectPickingMenu();
+		System.out.println("before enter");
+		storeTrackingOrderPickingPage.selectPickingMenu();
+//		storeTrackingOrderPickingPage.selectPickingMenuForFurtherProcess();
+		System.out.println("After enter");
+		Assert.assertTrue("Picking Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isPickMenuDisplayed());
+		storeTrackingOrderPickingPage.selectUnpickMenu();
+		Assert.assertTrue("Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isUnpickDisplayed());
+	    Thread.sleep(2000);
+			}
+	
+	@Given("^I select Relocate and Existing relocate$")
+	public void I_select_Relocate_and_Existing_relocate() throws Throwable {
+//		storeTrackingOrderPickingPage.selectPickingMenu();
+		System.out.println("before enter");
+		storeTrackingOrderPickingPage.selectRelocate();
+//		storeTrackingOrderPickingPage.selectPickingMenuForFurtherProcess();
+		System.out.println("After enter");
+		Assert.assertTrue("Relocation Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isRelocateDisplayed());
+		storeTrackingOrderPickingPage.selectExistingMenu();
+		Assert.assertTrue("Receiving Task Menu not displayed as expected",
+		storeTrackingOrderPickingPage.isRelocateExistDisplayed());
+	    Thread.sleep(2000);
+			}
+	@Given("^I enter container_id$")
+	public void I_enter_container_id_menu() throws Throwable {
+	String palletIDforUPI = context.getpalletIDforUPI();
+	purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+	
+	hooks.logoutPutty();
+	}
+	@Given("^I enter UPC and TagId \"([^\"]*)\"$")
+	public void I_enter_UPC_and_TagId(String skuid ) throws Throwable {
+	String UPC = skuDB.getUPCDB1(skuid);
+	purchaseOrderReceivingPage.EnterUPC(UPC);
+	String TagTrans=context.getTagTrans();
+	purchaseOrderReceivingPage.Entertag(TagTrans);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+	hooks.logoutPutty();
+	}
 	@And("^Verify scan URN screen displayed$")
 	public void verify_scan_URN_screen_displayed() throws FindFailed, InterruptedException, IOException
 	{
@@ -664,6 +714,7 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 	
 		}
+	
 	
 	
 	
