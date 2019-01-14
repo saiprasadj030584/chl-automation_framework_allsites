@@ -1,6 +1,7 @@
 package com.jda.wms.pages.Exit;
 
 import org.apache.commons.lang.StringUtils;
+import org.junit.Assert;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -157,6 +158,19 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(palletID);
 		Thread.sleep(1000);
 		screen.type(Key.TAB);
+	}
+	
+	public void EnterUPC(String UPC) throws InterruptedException {
+		screen.type(Key.TAB);
+		screen.type(UPC);
+		Thread.sleep(1000);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+	}
+	public void Entertag(String tag) throws InterruptedException {
+	screen.type(tag);
+		Thread.sleep(1000);
+		
 	}
 	public void EnterToPallet(String ToPallet) throws InterruptedException {
 		screen.type(ToPallet);

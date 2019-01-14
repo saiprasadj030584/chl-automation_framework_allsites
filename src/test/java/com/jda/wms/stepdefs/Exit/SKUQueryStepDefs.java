@@ -146,7 +146,18 @@ public class SKUQueryStepDefs{
 		String OriginalPackWeight=skuDB.UpdateOriginal(Packweight,sku);
 			
 	}
-	
+	@Then("^check weight is validated as null as stock becomes red stock$")
+	public void check_weight_is_validated_as_null_as_stock_becomes_red_stock() throws Throwable{
+		String sku=context.getSKUHang();
+		String packedWeight = SkuDB.getpackedweight(sku);
+		System.out.println("packed weight"+packedWeight);
+		Assert.assertNull("Check Weight is not as expected", packedWeight);
+		
+	}
+	@Then("^The green stock SKU \"([^\"]*)\"$")
+	public void the_green_stock_sku(String Sku) throws Throwable{
+		context.setSKUHang(Sku);
+	}
 	@Then("^Alter the check weight to make the stock as RED Stock$")
 	public void alter_the_check_weight_to_make_the_stock_as_red_stock() throws Throwable{
 		String SKU=context.getSKUHang();
@@ -186,7 +197,7 @@ public class SKUQueryStepDefs{
 		context.setProductGroup(TDept);
 		String UpdateTDeptForCompliance=skuDB.updateproductgroup(sku);
 		Assert.assertNull("T-Dept is not null", UpdateTDeptForCompliance);
-
+		alter_the_check_weight_to_make_the_stock_as_red_stock();
 	}
 	
 	@Then("^Validate User defined check three as the sku moves to compliance$")
@@ -194,6 +205,12 @@ public class SKUQueryStepDefs{
 		
 		String UserDef3= skuDB.getUserDefChck3new(context.getSKUHang());
 		Assert.assertEquals("user define 3 is not as expected", "Y", UserDef3);
+	}
+	@Then("^Validate User defined check three as the red sku becomes green$")
+	public void and_validate_user_defined_check_three_as_the_red_sku_becomes_green() throws Throwable{
+		
+		String UserDef3= skuDB.getUserDefChck3new(context.getSKUHang());
+		Assert.assertEquals("user define 3 is not as expected", "N", UserDef3);
 	}
 	@Then("^Update the Product group with a valid T-Dept$")
 	public void update_the_product_group_with_a_valid_t_dept() throws Throwable{
@@ -205,9 +222,35 @@ public class SKUQueryStepDefs{
 		sKUQueryPage.selectToggleMaintenanceMode();
 		
 	}
-	@Then("^Query for Putaway group \"([^\"]*)\"$")
-	public void query_for_putaway_group(String PutawayGroup) throws Throwable{
+	@Then("^Update the Packed weight$")
+	public void update_the_packed_weight() throws Throwable{
+		jDALoginStepDefs.i_have_logged_in_as_warehouse_user_in_JDA_Exit_application();
+		jDAHomeStepDefs.go_to_Data_SKU_SKU_Click();
 		sKUQueryPage.click_on_Query();
+		sKUQueryPage.enterSKU(context.getSKUHang());
+		sKUQueryPage.clickExecuteButton();
+		sKUQueryPage.selectToggleMaintenanceMode();
+		sKUQueryPage.clickUpdate();
+		sKUQueryPage.clickDimensions();
+		sKUQueryPage.updateWeight(context.getPackWeight());
+		String Packweight= context.getPackWeight();
+		System.out.println(Packweight);
+		String OriginalPackWeight=skuDB.UpdateOriginal(Packweight,context.getSKUHang());
+			
+		
+	}
+	@Then("^Query for checking Putaway group$")
+	public void query_for_checking_putaway_group() throws Throwable{
+		sKUQueryPage.click_on_Query();
+//		sKUQueryPage.enterPutaway(PutawayGroup);
+		sKUQueryPage.clickExecuteButton();
+	}
+	@Then("^Validate the putaway group is not null$")
+	public void validate_the_putaway_group_is_not_null() throws Throwable{
+		String SKu=sKUQueryPage.getSkuID();
+		System.out.println("sku="+SKu);
+		String PutawayGp=sKUQueryPage.getPutawayGroup();
+		Assert.assertNotNull("putaway group is not updated",sKUQueryPage.isPutawayGroupNull(PutawayGp) );
 	}
 	}
 	

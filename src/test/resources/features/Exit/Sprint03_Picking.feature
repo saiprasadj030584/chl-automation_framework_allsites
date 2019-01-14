@@ -755,14 +755,51 @@ Feature: Orders_Picking
       | SKU                |
       | 000000000021071851 |
       
-      @inProgress @TC066_prohibition_rules_new_rules_admin
-    Scenario: Prohibition Rules - Happy Path - Add new rules Access (Admin Group)
+      @completed @TC066_prohibition_rules_new_rules_admin
+    Scenario Outline: Prohibition Rules - Happy Path - Add new rules Access (Admin Group)
 
     Given Login to JDA Dispatcher web screen
+    And Navigate to Admin-->user-->user
+    And Provide the Support Team user ID "<supportId>" and Click Execute
+    Then User group is validated as "ADMIN"
     And Go to System Profile
     Then Navigate to --ROOT- > USER > RECEIVING > INT
     When Tried to Add New Rules for prohibition
     Then New pohibition logic should be allowed to include
+    Then Enter the New Prohibition for Israel
+    Then The new rule should be included
+    
+    Examples:
+    |supportId|
+    |P9138780E |
+    
+     @completed @TC067_prohibition_rules_new_rules_basic_user
+    Scenario Outline: Prohibition Rules - Add new rules Access - BASICUSER group
+
+    Given Login to JDA Dispatcher web screen
+    And Navigate to Admin-->user-->user
+    And Provide the Support Team user ID "<supportId>" and Click Execute
+    Then User group is validated as "BASICUSER"
+    Given Login to JDA Dispatcher web screen as Basic User "<supportId>"
+    Then Validate the page for basic user
+    
+     Examples:
+    |supportId|
+    |P9142516E |
+    
+     @inprogress @TC068_red_stock_moved_to_green
+     Scenario Outline: RED Stock moved to GREEN post SKU compliance status changed
+     Given The green stock SKU "<SKU>"
+     Given Alter the check weight to make the stock as RED Stock 
+     And Validate User defined check three as the sku moves to compliance
+     Then check weight is validated as null as stock becomes red stock
+     Then Update the Packed weight
+     Then Validate User defined check three as the red sku becomes green
+     
+     Examples: 
+      | SKU                |
+      | 000000000022120199 |
+     
     
       @completed @TC69_access_for_Consignment_amendment_restriction
  		Scenario: Access for Consignment Amendment Restriction
@@ -826,8 +863,8 @@ Feature: Orders_Picking
      Given The Sku "<SKU>" validate the t-dept to be null 
      And Validate User defined check three as the sku moves to compliance
      Then Update the Product group with a valid T-Dept
-     #And Validate User defined check three as the sku moves to compliance
-     #Then Update the Product group with a valid T-Dept
+     And Validate User defined check three as the sku moves to compliance
+     Then Update the Product group with a valid T-Dept
      Then Navigate to Administration > Setup > Scheduler > Scheduler Job History 
      And Search for the Job "SKUVALIDATIONCHECKJ"
      Then Validate the status as "SUCCEEDED"

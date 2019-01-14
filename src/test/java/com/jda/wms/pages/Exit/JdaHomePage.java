@@ -255,6 +255,11 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/User.png");
 		screen.mouseMove(70, 0);
 	}
+	public void hoverUserGp() throws FindFailed {
+		screen.wait("images/JDAHome/UserQuery.png", timeoutInSec);
+		screen.click("images/JDAHome/UserQuery.png");
+		screen.mouseMove(70, 0);
+	}
 	public void hoversetup() throws FindFailed {
 		screen.wait("images/JDAHome/Setup.png", timeoutInSec);
 		screen.click("images/JDAHome/Setup.png");
@@ -1191,6 +1196,16 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/SystemProfile.png");
 		screen.mouseMove(70, 0);
 	}
+	
+	@And("^Navigate to Admin-->user-->user$")
+	public void navigateToUser() throws FindFailed, InterruptedException {
+		ClickAdminMenu();
+		hoverUser();
+		Thread.sleep(1000);
+		hoverUserGp();
+		Thread.sleep(1000);
+	}
+		
 	
 
 }

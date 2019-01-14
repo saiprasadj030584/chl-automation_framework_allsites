@@ -4,13 +4,14 @@ import com.google.inject.Inject;
 import com.jda.wms.pages.Exit.JdaLoginPage;
 
 import cucumber.api.java.en.Given;
-
+import com.jda.wms.context.Context;
 public class JDALoginStepDefs {
 	private final JdaLoginPage jdaLoginPage;
-
+    private Context context;
 	@Inject
-	public JDALoginStepDefs(JdaLoginPage jdaLoginPage) {
+	public JDALoginStepDefs(JdaLoginPage jdaLoginPage,Context context) {
 		this.jdaLoginPage = jdaLoginPage;
+		this.context=context;
 	}
 
 	@Given("^I have logged in as warehouse user in JDA Exit application$")	
@@ -20,5 +21,12 @@ public class JDALoginStepDefs {
 	@Given("^Login to JDA Dispatcher web screen$")
 	public void login_to_JDA_Dispatcher_web_screen() throws Throwable {
 		jdaLoginPage.login();
+	}
+	
+
+	@Given("^Login to JDA Dispatcher web screen as Basic User \"([^\"]*)\"$")
+	public void login_to_JDA_Dispatcher_web_screen_as_BAsic_user(String user) throws Throwable {
+		context.setBasicUser(user);
+		jdaLoginPage.loginAsBasicUser();
 	}
 }

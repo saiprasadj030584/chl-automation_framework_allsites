@@ -70,7 +70,17 @@ public class InventoryTransactionPage{
 		else{
 			System.out.println("Inventory for Receipt,Allocate, Pick found");
 		}}
-	
+	public void ChecktransactionforUnpick() throws FindFailed, InterruptedException{
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
+		screen.doubleClick(mLocation.getCenter().below(15));
+		Thread.sleep(2000);
+		if(screen.find("images/InventoryTransactionQuery/General/UnpickITL.png.png").equals(null)){
+			System.out.println("Inventory not found");
+		}
+		else{
+			System.out.println("Inventory for Receipt,Allocate, Pick found");
+		}}
 	public void ChecktransactionForRedStock() throws FindFailed, InterruptedException{
 		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");

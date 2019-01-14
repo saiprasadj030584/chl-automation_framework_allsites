@@ -73,6 +73,7 @@ public class InventoryTransactionStepDefs {
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed {
 		inventoryTransactionPage.EnterContanierID();
+		
 
 	}
 
@@ -85,6 +86,12 @@ public class InventoryTransactionStepDefs {
 	@And("^check the Inventory Transaction for Receipt, Allocate and Pick$")
 	public void check_the_inventory_transaction_for_receipt_allocate_pick() throws FindFailed, InterruptedException {
 		inventoryTransactionPage.Checktransaction();
+
+	}
+	
+	@And("^check the Inventory Transaction for Receipt, Allocate and Pick and UnPick$")
+	public void check_the_inventory_transaction_for_receipt_allocate_pick_and_unpick() throws FindFailed, InterruptedException {
+		inventoryTransactionPage.ChecktransactionforUnpick();
 
 	}
 
