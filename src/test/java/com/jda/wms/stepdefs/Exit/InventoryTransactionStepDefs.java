@@ -263,4 +263,11 @@ public class InventoryTransactionStepDefs {
 		inventoryDB.updateQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId());
 	}
 
+	@Then("^Get the tag ID$")
+	public void get_the_tag_id() throws Throwable{
+		inventoryTransactionPage.getTagId();
+		context.setTagId(inventoryTransactionPage.getTagId());
+		
+	}
+
 }

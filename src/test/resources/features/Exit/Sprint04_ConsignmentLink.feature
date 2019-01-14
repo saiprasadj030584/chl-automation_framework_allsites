@@ -364,7 +364,88 @@ Feature: ConsignmentLinking
       | Location |
       | AA001    |
 
+  @completed @ConsignmentLinking @TC63_Validate_stock_check_details_for_outbound
+  Scenario Outline: Validate stock check details for outbound
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    When I navigate to stock check list Generation page
+    And I select mode of list generation as 'Generate by inventory'
+    And I enter the sku as on inventory tab
+    And I proceed to next
+    Then the available list should be displayed
+    When I select the record from the available list
+    Then the record should be added in the selected list
+    When I proceed to next
+    Then I should see the confirmation for number of items checked
+    When I proceed to generate the stock check list
+    Then I should see the created list
+    When I navigate to stock check query page
+    And I search the list by tag id as and task date as current date
+    Then I should see the record with list ID
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @completed @ConsignmentLinking @TC65_validate_stock_take_checks
+  Scenario Outline: Validate stock take checks
+    #Given The Sku "<SKU>" is already picked
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    Then Get the tag ID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    When I navigate to stock check list Generation page
+    And I select mode of list generation as 'Generate by inventory'
+    And I enter the Tag ID as on inventory tab
+    And I proceed to next
+    Then the available list should be displayed
+    When I select the record from the available list
+    Then the record should be added in the selected list
+    When I proceed to next
+    Then I should see the confirmation for number of items checked
+    When I proceed to generate the stock check list
+    Then I should see the created list
+    When I navigate to stock check query page
+    And I search the list by tag id as and task date as current date
+    Then I should see the record with list ID
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+      @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
+      Scenario Outline: Auto complete Red URN putaway post receipt
+      Given The details for the sku "<SkuId>"
+       Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+     Then Alter the check weight to make the stock as RED Stock
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+      
 
   @Completed @Unpick @TC07_Validate_unpicking_the_order
   Scenario Outline: To Validate unpicking the order in EXIT dispatcher

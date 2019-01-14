@@ -12,8 +12,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC08_Validate_unpick_and_relocate_tasks" 
-			+ "@TC067_prohibition_rules_new_rules_basic_user" 
+			+ "@TC63_Validate_stock_check_details_for_outbound,@TC65_validate_stock_take_checks" 
+			+ "" 
 
 })
 public class AllTest {

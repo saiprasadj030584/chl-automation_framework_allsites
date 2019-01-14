@@ -46,7 +46,13 @@ public class StockCheckTaskQueryPage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 	}
-
+	public String getListIdnew() throws FindFailed, InterruptedException {
+			Match mKitId = screen.find("/images/StockCheckQuery/ListId.png");
+			screen.click(mKitId.getCenter().offset(70, 0));
+			screen.type("a", Key.CTRL);
+			screen.type("c", Key.CTRL);
+			return App.getClipboard();
+		}
 	public String getListId() throws FindFailed, InterruptedException {
 		if (screen.exists("/images/StockCheckQuery/ListId.png") != null) {
 			Match mKitId = screen.find("/images/StockCheckQuery/ListId.png");
