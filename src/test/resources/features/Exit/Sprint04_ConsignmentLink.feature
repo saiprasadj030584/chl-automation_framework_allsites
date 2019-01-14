@@ -204,7 +204,11 @@ Feature: ConsignmentLinking
     And Select Trailer
     And Select Consignment
     And Click next
+    And Click next
     And I click on trailer Add button
+    And Click next
+    And Enter dock door
+    And Click done
     And validate Consignment Trailer is linked
     And Login to JDA Dispatcher web screen
     And Go to close consignment
@@ -218,6 +222,7 @@ Feature: ConsignmentLinking
     And select multi pallet load
     And Enter Pallet Id
     And Enter consignment
+    And Enter trailer
     And Validate the pallet and consignment is loaded
     Examples: 
       | SKU                |
@@ -232,7 +237,43 @@ Feature: ConsignmentLinking
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
- 
+    
+ @ConsignmentLinking @TC29_Validate_confirm_shipment
+ Scenario Outline: Validate_confirm_shipment
+ 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+ 		Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And drop the same consignment
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	And Login to JDA Dispatcher web screen
+   	And I create Trailer
+   	And I link consignment with trailer
+   	And I close the consignment
+   	And I complete Vechile loading
+   	And Login to JDA Dispatcher web screen
+ 		And I navigate to Trailer Shipping page
+ 		And select trailer text tab
+    Then Enter Trailer number
+    And Click next 
+    #And Click done
+    Examples:
+      | SKU                |
+      | 000000000021071852 |
+      
+ @ConsignmentLinking @TC30_Negative_Path_Validate_trailer_shipping
+ Scenario: Negative_Path_Validate_trailer_shipping
+ 		Given Login to JDA Dispatcher web screen
+ 		And I navigate to Trailer Shipping page
+ 		And select trailer text tab
+    Then Enter Trailer number
+    And Click next
+    And validate the error popup is displayed
+    
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen
