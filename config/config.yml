@@ -11,9 +11,8 @@ default:
  #st-username: 'AUTOREG9'
  #st-password: '1234' 
 
-#sit-username1: 'P9142516E'
-#sit-password1: '1234' 
 # 
+ 
  
  st-Exit-url: 'http://hlxc00dc060.unix.marksandspencercate.com:8880/jdaextc1/UserLogin.html'
  st-putty-Exit-host: 'hlxc00dc061.unix.marksandspencercate.com'

@@ -88,7 +88,11 @@ public class InventoryTransactionStepDefs {
 		inventoryTransactionPage.Checktransaction();
 
 	}
-	
+	@And("^check the Inventory Transaction for Receipt, Allocate,Pick and Repack record$")
+	public void check_the_inventory_transaction_for_receipt_allocate_pick_Repack() throws FindFailed, InterruptedException {
+		inventoryTransactionPage.Checktransaction();
+
+	}
 	@And("^check the Inventory Transaction for Receipt, Allocate and Pick and UnPick$")
 	public void check_the_inventory_transaction_for_receipt_allocate_pick_and_unpick() throws FindFailed, InterruptedException {
 		inventoryTransactionPage.ChecktransactionforUnpick();

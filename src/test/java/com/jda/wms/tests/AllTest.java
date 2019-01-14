@@ -12,13 +12,13 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC63_Validate_stock_check_details_for_outbound,@TC65_validate_stock_take_checks" 
-			+ "" 
+		
+			+ "@TC015_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet" 
+			+ "@TC29_Validate_confirm_shipment" 
 
 })
 public class AllTest {
 }
-
 
 
 
