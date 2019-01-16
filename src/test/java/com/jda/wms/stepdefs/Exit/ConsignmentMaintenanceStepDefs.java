@@ -85,9 +85,9 @@ public class ConsignmentMaintenanceStepDefs {
 	}
 	@And("^Enter chamber and Address Id$")
 	public void Enter_chamber_and_Address_Id() throws Throwable {
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		consignmentMaintenancePage.typeChamberAddressId();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 	}
 	@And("^Enter dock door$")
 	public void Enter_chamber_and_dock_Id() throws Throwable {

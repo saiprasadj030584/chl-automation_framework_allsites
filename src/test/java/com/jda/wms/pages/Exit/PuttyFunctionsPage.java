@@ -209,7 +209,7 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	}
 	public void linkPalletId()throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		Match mLocation4 = screen.find("images/Putty/Promptmsg.png");
 		screen.click(mLocation4.getCenter().offset(70, 0));
 	}
