@@ -185,7 +185,7 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		Thread.sleep(5000);
-		puttyFunctionsPage.pressEnter();
+		//puttyFunctionsPage.pressEnter();
 	}
 	
 	@Then("^Validate the pallet and consignment is linked$")

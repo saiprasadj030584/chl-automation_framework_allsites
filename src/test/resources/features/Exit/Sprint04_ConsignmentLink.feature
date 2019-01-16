@@ -448,6 +448,17 @@ Feature: ConsignmentLinking
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
 
+ @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+  Scenario: Validate_Trailer_id
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
     Given Login to JDA Dispatcher web screen
@@ -505,6 +516,18 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
+      
+ @completed @Trailer_Maintenance @TC64_Validate_Trailer_id
+  Scenario: Validate_Trailer_id
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+ 
 
   @completed @ConsignmentLinking @TC65_validate_stock_take_checks
   Scenario Outline: Validate stock take checks

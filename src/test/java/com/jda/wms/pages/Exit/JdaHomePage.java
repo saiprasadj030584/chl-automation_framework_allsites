@@ -54,6 +54,8 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 	public void navigateToTrailerMainteinancePage() throws FindFailed, InterruptedException {
+		
+		Thread.sleep(2000);
 		clickSearchIcon();
 		Thread.sleep(1000);
 		screen.type("Trailer maintenance");
@@ -402,7 +404,7 @@ public class JdaHomePage {
 				Thread.sleep(2000);
 				screen.type("f", Key.CTRL);
 				Thread.sleep(2000);
-			} else if (screen.exists("images/JDAHome/Welcome.png") == null) {
+			} else if (screen.exists("images/JDAHome/Welcome.png") != null) {
 				screen.wait("images/JDAHome/Welcome.png", timeoutInSec);
 				screen.click("images/JDAHome/Welcome.png");
 				Thread.sleep(2000);

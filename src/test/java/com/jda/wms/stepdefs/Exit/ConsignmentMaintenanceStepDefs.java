@@ -41,7 +41,7 @@ public class ConsignmentMaintenanceStepDefs {
 	}
 	@Then("^Enter consignment name$")
 	public void Enter_consignment_name() throws Throwable {
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		consignmentMaintenancePage.enterConsignment();
 	}
 	

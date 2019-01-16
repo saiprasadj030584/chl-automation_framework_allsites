@@ -102,7 +102,7 @@ public class CEConsignmentMaintenancePage {
 		Thread.sleep(3000);
 	}
 	public void selectToggleMaintenanceMode() throws FindFailed,InterruptedException {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		screen.rightClick();
 		Thread.sleep(1000);
 		screen.wait("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png", timeoutInSec);
@@ -118,7 +118,7 @@ public class CEConsignmentMaintenancePage {
 }
 	public void enterConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
-		String Random = Utilities.getThreeDigitRandomNumber();
+		String Random = Utilities.getFiveDigitRandomNumber();
 		String consignmentName = "AUTO"+Random;
 		System.out.println("The consignment Name:"+consignmentName );
 		context.setConsignmentName(consignmentName);
@@ -160,11 +160,11 @@ public class CEConsignmentMaintenancePage {
 		//Thread.sleep(3000);
 		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
 		   reg=header.below(150).left(5).right(1000);
-		   Thread.sleep(3000);
+		   //Thread.sleep(3000);
 		   reg.hover(header);
 		   //Thread.sleep(3000);
 		   reg.click(header);
-		   Thread.sleep(3000);
+		  // Thread.sleep(3000);
 	}
 	public void checkPackStatus() throws FindFailed,InterruptedException {
 		Thread.sleep(3000);
