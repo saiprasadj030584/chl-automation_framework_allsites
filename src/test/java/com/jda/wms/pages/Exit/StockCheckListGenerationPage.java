@@ -207,6 +207,34 @@ public class StockCheckListGenerationPage {
 			screen.click(mDescription.getCenter().offset(70, 0));
 			screen.type("M+S");
 		}
+		public void clickNextButton() throws FindFailed, InterruptedException {
+			screen.type(Key.F7);
+			Thread.sleep(3000);
+		}
+		public void click_on_Query() throws FindFailed, InterruptedException {
+			screen.type(Key.F2);
+			Thread.sleep(4000);
+		}
+		public void clickExecuteButton() throws InterruptedException {
+			screen.type(Key.F7);
+			Thread.sleep(1000);
+		
 }
+
+		public void Tab() throws InterruptedException {
+			screen.type(Key.TAB);
+			Thread.sleep(1000);
+		
+		}
+
+		public void EnterSkuAfterpicking(String skuHang) throws FindFailed, InterruptedException {
+			
+			screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
+			screen.click("images/InventoryTransactionQuery/SkuId.png");
+			Match mStatus = screen.find("images/InventoryTransactionQuery/SkuId.png");
+			screen.click(mStatus.getCenter().offset(70,0));
+			screen.type(skuHang);
+		}
+		}
 
 

@@ -88,7 +88,11 @@ public class InventoryTransactionStepDefs {
 		inventoryTransactionPage.Checktransaction();
 
 	}
-	
+	@And("^check the Inventory Transaction for Receipt, Allocate,Pick and Repack record$")
+	public void check_the_inventory_transaction_for_receipt_allocate_pick_Repack() throws FindFailed, InterruptedException {
+		inventoryTransactionPage.Checktransaction();
+
+	}
 	@And("^check the Inventory Transaction for Receipt, Allocate and Pick and UnPick$")
 	public void check_the_inventory_transaction_for_receipt_allocate_pick_and_unpick() throws FindFailed, InterruptedException {
 		inventoryTransactionPage.ChecktransactionforUnpick();
@@ -261,6 +265,13 @@ public class InventoryTransactionStepDefs {
 		String UpdatedQuantity= inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId());
 		Assert.assertEquals("stock not as expected", context.getQtyOnHand(), UpdatedQuantity);
 		inventoryDB.updateQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId());
+	}
+
+	@Then("^Get the tag ID$")
+	public void get_the_tag_id() throws Throwable{
+		inventoryTransactionPage.getTagId();
+		context.setTagId(inventoryTransactionPage.getTagId());
+		
 	}
 
 }

@@ -389,6 +389,11 @@ public class JDAHomeStepDefs {
 	}
 	
 	
-	
+	@When("^I navigate to stock check list Generation page$")
+	public void i_navigate_to_stock_check_list_Generation_page() throws Throwable {
+		Thread.sleep(3000);
+		jdaHomePage.navigateToStockCheckListGeneration();
+		Thread.sleep(3000);
+	}
 }
 	
