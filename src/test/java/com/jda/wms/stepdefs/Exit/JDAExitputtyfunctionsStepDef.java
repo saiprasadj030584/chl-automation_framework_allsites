@@ -182,9 +182,10 @@ public class JDAExitputtyfunctionsStepDef {
 		trailerMaintenancePage.selectTrailer();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
-		puttyFunctionsPage.pressEnter();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
+		Thread.sleep(5000);
+		//puttyFunctionsPage.pressEnter();
 	}
 	
 	@Then("^Validate the pallet and consignment is linked$")
@@ -987,6 +988,19 @@ public void LinkPalletconsignment() throws Throwable {
 	consignmentIsLinked();
 	
 }
+
+@And("^I unlink consignment with trailer$")
+public void UnLinkPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	screen.type(Key.F4);
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	consignmentIsLinked();
+	
+}
 @And("^I complete Vechile loading$")
 public void vehicleLoading() throws Throwable {
 	Thread.sleep(2000);
@@ -998,6 +1012,41 @@ public void vehicleLoading() throws Throwable {
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
 	consignmentIsLoaded();
+}
+@And("^I repack the consignment$")
+public void rePackClosedConsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	storeTrackingOrderPickingPage.selectPickingMenu();
+	storeTrackingOrderPickingPage.selectsortation();
+	Thread.sleep(2000);
+	String URN = context.getpalletIDforUPI();
+	screen.type(URN);
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(context.getPalletId());
+	
+}
+@And("^validate the message is displayed$")
+public void rePackClosedConsignmentmsg() throws Throwable {
+	Thread.sleep(2000);
+	consignmentIsLoaded();
+}
+
+@And("^I revert stock from trailer$")
+public void revertvehicleLoading() throws Throwable {
+	Thread.sleep(2000);
+	i_login_as_warehouse_user_in_putty();
+	i_select_user_directed_option_in_main_menu();
+	i_select_vehicle_directed_option_in_main_menu();
+	purchaseOrderReceivingPage.selectvehicleUnloadMenu();
+	Thread.sleep(2000);
+	String URN = context.getpalletIDforUPI();
+	screen.type(URN);
+	Thread.sleep(2000);
+	trailerMaintenancePage.selectTrailer();
+	Thread.sleep(2000);
+	consignmentIsLoaded();
+	Thread.sleep(2000);
 }
 
 }

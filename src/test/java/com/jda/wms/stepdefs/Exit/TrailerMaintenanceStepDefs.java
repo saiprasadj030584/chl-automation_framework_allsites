@@ -6,6 +6,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.Exit.CEConsignmentMaintenancePage;
+import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationMaintenancePage;
 import com.jda.wms.pages.Exit.TrailerMaintenancePage;
 
@@ -16,15 +17,17 @@ import cucumber.api.java.en.When;
 public class TrailerMaintenanceStepDefs {
 	private final TrailerMaintenancePage trailerMaintenancePage;
 	private final JDAHomeStepDefs jdaHomeStepDefs;
+	private final JdaHomePage jdaHomePage;
 	private final ConsignmentMaintenanceStepDefs consignmentMaintSD;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage,ConsignmentMaintenanceStepDefs consignmentMaintSD,JDAHomeStepDefs jdaHomeStepDefs) {
+	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage,JdaHomePage jdaHomePage,ConsignmentMaintenanceStepDefs consignmentMaintSD,JDAHomeStepDefs jdaHomeStepDefs) {
 		this.trailerMaintenancePage = trailerMaintenancePage;
 		this.jdaHomeStepDefs=jdaHomeStepDefs;
 		this.consignmentMaintSD=consignmentMaintSD;
+		this.jdaHomePage = jdaHomePage;
 	}
 	
 	@And("^Enter seal ID$")
@@ -83,8 +86,11 @@ public class TrailerMaintenanceStepDefs {
 	}
 	@And("^I create Trailer")
 	public void I_create_trailer() throws Throwable {
-		jdaHomeStepDefs.i_navigate_to_Trailer_mainteinance_page();
+		Thread.sleep(3000);
+		jdaHomePage.navigateToTrailerMainteinancePage();
+		Thread.sleep(3000);
 		consignmentMaintSD.Right_click_to_Select_Toggle_Maintenance_Mode();
+		Thread.sleep(3000);
 		consignmentMaintSD.I_click_on_Add_button();
 		Enter_Trailer_number();
 		Select_Trailer_Type();

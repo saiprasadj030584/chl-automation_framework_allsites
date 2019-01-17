@@ -102,7 +102,7 @@ public class CEConsignmentMaintenancePage {
 		Thread.sleep(3000);
 	}
 	public void selectToggleMaintenanceMode() throws FindFailed,InterruptedException {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		screen.rightClick();
 		Thread.sleep(1000);
 		screen.wait("images/CEConsignmentMaintenance/ToggleMaintenanceMode.png", timeoutInSec);
@@ -118,7 +118,7 @@ public class CEConsignmentMaintenancePage {
 }
 	public void enterConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
-		String Random = Utilities.getThreeDigitRandomNumber();
+		String Random = Utilities.getFiveDigitRandomNumber();
 		String consignmentName = "AUTO"+Random;
 		System.out.println("The consignment Name:"+consignmentName );
 		context.setConsignmentName(consignmentName);
@@ -143,11 +143,11 @@ public class CEConsignmentMaintenancePage {
 	public void selectStatus() throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentStatus.png", timeoutInSec);
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentStatus.png");
-	    Thread.sleep(3000);
+	    //Thread.sleep(3000);
 	    screen.click(status.getCenter().offset(90, 0));
 		Thread.sleep(3000);
 		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentAllocatedStatus.png");
-		 Thread.sleep(3000); 
+		 //Thread.sleep(3000); 
 		 reg=header.below(150).left(5).right(1000);
 		   reg.hover(header);
 		   reg.click(header);
@@ -155,16 +155,16 @@ public class CEConsignmentMaintenancePage {
 	public void selectTransportmode() throws FindFailed, InterruptedException {
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentTransMode.png", timeoutInSec);
 	    Match status = screen.find("images/CEConsignmentMaintenance/ConsignmentTransMode.png");
-	    Thread.sleep(3000);
+	    //Thread.sleep(3000);
 	    screen.click(status.getCenter().offset(90, 0));
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeAir.png");
 		   reg=header.below(150).left(5).right(1000);
-		   Thread.sleep(3000);
+		   //Thread.sleep(3000);
 		   reg.hover(header);
-		   Thread.sleep(3000);
+		   //Thread.sleep(3000);
 		   reg.click(header);
-		   Thread.sleep(3000);
+		  // Thread.sleep(3000);
 	}
 	public void checkPackStatus() throws FindFailed,InterruptedException {
 		Thread.sleep(3000);
@@ -225,12 +225,12 @@ public class CEConsignmentMaintenancePage {
 }
 	public void closeConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
-		screen.wait("images/CEConsignmentMaintenance/SelectConsignment.png", timeoutInSec);
+		screen.wait("images/CEConsignmentMaintenance/SelectConsignment1.png", timeoutInSec);
 		//Match status = screen.find("images/CEConsignmentMaintenance/SelectConsignment.png");
 		//screen.doubleClick("images/CEConsignmentMaintenance/SelectConsignment.png");
 	    //screen.doubleClick(status.belowAt().offset(150, 0));
-	    Match header = screen.find("images/CEConsignmentMaintenance/SelectConsignment.png");
-		   reg=header.below(1500).left(50).right(1000);
+	    Match header = screen.find("images/CEConsignmentMaintenance/SelectConsignment1.png");
+		   reg=header.below(8000).left(5000).right(3000);
 		   reg.hover(header);
 		   reg.click(header);
 		   screen.type(Key.F7);

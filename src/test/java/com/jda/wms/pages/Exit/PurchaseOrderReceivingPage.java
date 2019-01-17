@@ -42,6 +42,12 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void selectvehicleUnloadMenu() throws FindFailed, InterruptedException {
+		screen.type("2");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
 	public void selectMultiPalletloadMenu() throws FindFailed, InterruptedException {
 		screen.type("6");
 		Thread.sleep(1000);

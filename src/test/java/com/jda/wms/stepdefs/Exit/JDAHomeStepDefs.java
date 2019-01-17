@@ -133,7 +133,9 @@ public class JDAHomeStepDefs {
 	}
 	@When("^I navigate to Trailer mainteinance page$")
 	public void i_navigate_to_Trailer_mainteinance_page() throws Throwable {
+		Thread.sleep(3000);
 		jdaHomePage.navigateToTrailerMainteinancePage();
+		Thread.sleep(3000);
 	}
 
 	@When("^I navigate to Trailer shipping page$")
