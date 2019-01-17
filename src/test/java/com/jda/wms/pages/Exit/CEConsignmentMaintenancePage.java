@@ -183,7 +183,6 @@ public class CEConsignmentMaintenancePage {
 	}
 	
 	public void typeConsignment() throws FindFailed,InterruptedException {
-		Thread.sleep(3000);
 		String consignmentNameDrop = context.getConsignmentName();
 		System.out.println("The consignment Name:"+consignmentNameDrop);
 		screen.type(consignmentNameDrop);
@@ -201,7 +200,6 @@ public class CEConsignmentMaintenancePage {
 	    Match Address = screen.find("images/CEConsignmentMaintenance/ConsignmentDropAddress.png");
 	    Thread.sleep(3000);
 	    screen.click(Address.getCenter().offset(90, 0));
-	    Thread.sleep(3000);
 		screen.type("7993");
 		Thread.sleep(3000);
 }
@@ -241,7 +239,8 @@ public class CEConsignmentMaintenancePage {
 		screen.type("1");
 		Thread.sleep(3000);
 		screen.type(Key.TAB);
-		screen.type("02784");
+		String DockId = context.getDockDoor();
+		screen.type(DockId);
 		Thread.sleep(2000);
 }
 }

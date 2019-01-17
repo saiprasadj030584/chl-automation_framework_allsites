@@ -20,7 +20,10 @@ public class JDALoginStepDefs {
 }
 	@Given("^Login to JDA Dispatcher web screen$")
 	public void login_to_JDA_Dispatcher_web_screen() throws Throwable {
+		Thread.sleep(5000);
 		jdaLoginPage.login();
+		
+		
 	}
 	
 

@@ -6,6 +6,7 @@ import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
 import com.jda.wms.pages.Exit.CEConsignmentMaintenancePage;
+import com.jda.wms.pages.Exit.JdaLoginPage;
 import com.jda.wms.pages.Exit.LocationMaintenancePage;
 
 import cucumber.api.java.en.And;
@@ -15,13 +16,15 @@ import cucumber.api.java.en.When;
 public class ConsignmentMaintenanceStepDefs {
 	private final CEConsignmentMaintenancePage consignmentMaintenancePage;
 	private final JDAHomeStepDefs jdaHomeStepDefs;
+	private final JdaLoginPage jdaLoginPage;
 	private JDAFooter jdaFooter;
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public ConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage consignmentMaintenancePage,JDAHomeStepDefs jdaHomeStepDefs,JDAFooter jdaFooter) {
+	public ConsignmentMaintenanceStepDefs(CEConsignmentMaintenancePage consignmentMaintenancePage,JdaLoginPage jdaLoginPage,JDAHomeStepDefs jdaHomeStepDefs,JDAFooter jdaFooter) {
 		this.consignmentMaintenancePage = consignmentMaintenancePage;
+		this.jdaLoginPage =jdaLoginPage;
 		this.jdaFooter=jdaFooter;
 		this.jdaHomeStepDefs = jdaHomeStepDefs;
 	}
@@ -29,9 +32,9 @@ public class ConsignmentMaintenanceStepDefs {
 
 	@And("^Right click to Select Toggle Maintenance Mode$")
 	public void Right_click_to_Select_Toggle_Maintenance_Mode() throws Throwable {
-		Thread.sleep(3000);
+		
 		consignmentMaintenancePage.selectToggleMaintenanceMode();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 	@When("^I click on Add button$")
 	public void I_click_on_Add_button() throws Throwable {
@@ -114,7 +117,7 @@ public class ConsignmentMaintenanceStepDefs {
 	}
 	@And("I create a consignment$")
 	public void create_consignment() throws Throwable {
-		Thread.sleep(3000);
+		
 		jdaHomeStepDefs.Go_to_consignment_maintainance();
 		Right_click_to_Select_Toggle_Maintenance_Mode();
 		I_click_on_Add_button();
@@ -135,7 +138,7 @@ public class ConsignmentMaintenanceStepDefs {
 		Enter_consignment();
 		Enter_chamber_and_Address_Id();
 		jdaFooter.clickExecuteButton();
-		
+		//jdaLoginPage.logOut();
 	}
 	@And("I close the consignment$")
 	public void closeConsignment() throws Throwable {

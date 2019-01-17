@@ -152,6 +152,7 @@ public class Context {
 	private String quantity;
 	private String TagTrans;
 	private String supportID;
+	private String DockDoor;
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1225,6 +1226,14 @@ public class Context {
 	}
 	public String getBasicUser(){
 		return supportID;
+	}
+
+	public String getDockDoor() {
+		return DockDoor;
+	}
+
+	public void setDockDoor(String dockDoor) {
+		DockDoor = dockDoor;
 	}
 	
 	
