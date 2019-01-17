@@ -134,7 +134,8 @@ public class StockAdjustmentsPage {
 		return App.getClipboard();
 	}
 	public String getQtyOnHand() throws FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/CreateModify/SAQtyOnHand.png");
+		screen.wait("images/InventoryTransactionQuery/qtyOnHandSa.png");
+		Match mStatus = screen.find("images/InventoryTransactionQuery/qtyOnHandSa.png");
 		screen.click(mStatus.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);
@@ -200,6 +201,7 @@ public class StockAdjustmentsPage {
 
 	public void clickNextButton() throws FindFailed, InterruptedException {
 		screen.type(Key.F7);
+		Thread.sleep(2000);
 		
 	}
 	public void adjustQtyOnHand(String decrementQty) throws FindFailed, InterruptedException {
@@ -222,8 +224,17 @@ public class StockAdjustmentsPage {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
+	public void EnterContanierID(String palletIDforUPI) throws FindFailed{
+		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/Container.png");
+		
+		screen.type(palletIDforUPI);
+		
+		
 	
-	}
+	}}
 
 
 

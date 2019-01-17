@@ -26,16 +26,12 @@ public class StockAdjustmentStepDefs {
 	@When("^Query with sku id and tag id in BLACK area$")
 	public void query_with_sku_id_and_tag_id_in_blak_area() throws Throwable {
 		
-		stockAdjustmentsPage.clickNextButton();
+		
 		
 		stockAdjustmentsPage.enterTagId(context.getTagId());
 		stockAdjustmentsPage.enterLocation(context.getLocation());
 		stockAdjustmentsPage.enterSkuId(context.getSkuId());
-		stockAdjustmentsPage.clickNextButton();
-		Thread.sleep(2000);
-		//stockAdjustmentsPage.clickLastRecords();
-		stockAdjustmentsPage.clickNextButton();
-		Thread.sleep(2000);
+		
 	}
 	
 	@Then("Adjust the stock form the sku - quantity in hand$")
@@ -54,6 +50,19 @@ public class StockAdjustmentStepDefs {
 //		stockAdjustmentsPage.isShortageImageExists();
 //		stockAdjustmentsPage.clickOk();
 		stockAdjustmentsPage.chooseReasonCode(reasonCode);
+	}
+
+	@Then("Decrease the quantity in hand")
+	public void decrease_the_quantity_in_hand() throws Throwable{
+	 System.out.println("Quan="+stockAdjustmentsPage.getQtyOnHand());
+	 context.setQuantity(stockAdjustmentsPage.getQtyOnHand());
+		int Quantity=Integer.parseInt(context.getQuantity());
+		int AdjustQuantity= Quantity - 2;
+		stockAdjustmentsPage.adjustQtyOnHand(Integer.toString(AdjustQuantity));
+		String quan=stockAdjustmentsPage.getNewQtyOnHand();
+		context.setQtyOnHand(Integer.parseInt(quan));
+		System.out.println("quantity="+quan);
+		i_choose_the_reason_code_as("3Damaged");
 	}
 	
 }

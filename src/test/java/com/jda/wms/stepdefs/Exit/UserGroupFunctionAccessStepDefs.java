@@ -63,10 +63,20 @@ public class UserGroupFunctionAccessStepDefs{
 		Assert.assertTrue("Record not displayed", userGroupFunctionAccessPage.isRecordDissplayedAndSelectedForConsignment());
 		Thread.sleep(1000);
 	}
+	@And("^Validate that records should be loaded for consignment closure$")
+	public void validate_that_records_should_be_loaded_for_consignment_closure() throws Throwable{
+		Assert.assertTrue("Record not displayed", userGroupFunctionAccessPage.isRecordDissplayedAndSelectedForConsignmentClosure());
+		Thread.sleep(1000);
+	}
 	
 	@And("^Access should be enabled for \"([^\"]*)\" Group for consignment$")
 	public void access_should_be_enabled_for_group_for_consignment(String group) throws Throwable{
 		Assert.assertTrue("Report access not enabled", userGroupFunctionAccessPage.isReportAccessEnabledForConsignment());
+		
+	}
+	@And("^Access should be enabled for \"([^\"]*)\" Group for consignment closure$")
+	public void access_should_be_enabled_for_group_for_consignment_closure(String group) throws Throwable{
+		Assert.assertTrue("Report access not enabled", userGroupFunctionAccessPage.isReportAccessEnabledForConsignmentClosure());
 		
 	}
 	@And("^Navigate to --ROOT- > USER > RECEIVING > INT$")
