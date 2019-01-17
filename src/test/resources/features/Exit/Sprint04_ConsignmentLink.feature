@@ -88,7 +88,11 @@ Feature: ConsignmentLinking
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
     Then Navigate to Stock Adjustment Screen
+         And Click next
+    
     And Query with sku id and tag id in BLACK area
+    And Click next
+    And Click next
     Then Adjust the stock form the sku - quantity in hand
     When Verified in Inventory and ITL
     Then Stock is validated successfully
@@ -96,6 +100,32 @@ Feature: ConsignmentLinking
     Examples: 
       | Location |
       | AA001    |
+      
+    @completed @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
+    Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
+    
+      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    Then Get the tag ID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then Navigate to Stock Adjustment Screen
+    And Click next
+     And Enter Container_ID for stock adjustment
+     And Click next
+      And Click next
+    Then Decrease the quantity in hand
+    
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
 
   @completed @Reports @TC14_Validate_URN's_in_pallet_report
   Scenario Outline: Validate the M&S - URN in pallet report
@@ -447,6 +477,26 @@ Feature: ConsignmentLinking
     And Search for Picking and Relocate access
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
+    
+     @completed @TC44_validate_load_closure_user_profile
+ 		Scenario: Validate Load closure user profile
+ 		Given Login to JDA Dispatcher web screen
+		And Go to User Group Function Access through Administration
+		Then Search for "consignment closure" report
+		And Validate that records should be loaded for consignment closure
+		And Access should be enabled for "ADMIN" Group for consignment closure
+	
+	
+	@completed @Reports @TC46_Load_systematic_reports_revised
+  Scenario: Load systemic reports revised on amended in Consignment
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Custom Inspection Report"
+    And Verify that the record is displayed for M&S - Customs Inspection Report
+    And Enter consignment name
+    Then Validate the confirmation page for M&S - Customs Inspection Report
+    Then Validate the report selection page for M&S - Customs Inspection Report completed
 
  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
@@ -561,6 +611,34 @@ Feature: ConsignmentLinking
 
     Examples: 
       | SKU                |
+      | 000000000021071852 |
+      
+      @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
+    Scenario Outline: Adjustment to URN in Pallet
+    
+      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    Then Get the tag ID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then Navigate to Stock Adjustment Screen
+    And Click next
+     And Enter Container_ID for stock adjustment
+     And Click next
+      And Click next
+    Then Decrease the quantity in hand
+     When Verified in Inventory and ITL
+    Then Stock is validated successfully
+    
+    Examples: 
+      | SkuId              |
       | 000000000021071852 |
       
       @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt

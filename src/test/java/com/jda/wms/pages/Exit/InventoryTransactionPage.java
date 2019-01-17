@@ -49,6 +49,18 @@ public class InventoryTransactionPage{
 		
 		
 	}
+	public void EnterContanierIDForStockAdjustment() throws FindFailed{
+		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
+		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		
+		Match mContainer=screen.find("images/InventoryTransactionQuery/Container.png");
+		screen.click(mContainer.getCenter().offset(70,0));
+		String palletIDforUPI = context.getpalletIDforUPI();
+		screen.type(palletIDforUPI);
+		
+		
+	}
 	public void EnterContanierIDFSV() throws FindFailed{
 		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");

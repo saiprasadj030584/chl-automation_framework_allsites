@@ -78,6 +78,18 @@ public void enterGroupPickClerk() throws FindFailed, InterruptedException {
 		else
 		return false;
 	}
+public boolean isRecordDissplayedAndSelectedForConsignmentClosure() throws FindFailed, InterruptedException {
+		
+		if(screen.find("images/UserGroupFunctionAccess/recordConsignmentClosure.png")!=null)
+	{
+		screen.find("images/UserGroupFunctionAccess/recordConsignmentClosure.png");
+	screen.click("images/UserGroupFunctionAccess/recordConsignmentClosure.png");
+		Thread.sleep(1000);
+		return true;
+	}
+		else
+		return false;
+	}
 		public boolean isReportAccessEnabledForConsignment() throws FindFailed, InterruptedException {
 			
 			if(screen.find("images/UserGroupFunctionAccess/reportEnabledConsignment.png")!=null)
@@ -214,6 +226,14 @@ public boolean isPageExist() throws FindFailed, InterruptedException {
 	Thread.sleep(1000);
 	return true;
 }
+	else
+	return false;
+}
+public boolean isReportAccessEnabledForConsignmentClosure() throws FindFailed, InterruptedException {
+	
+	if(screen.find("images/UserGroupFunctionAccess/reportEnabledConsignmentClosure.png")!=null)
+
+	return true;
 	else
 	return false;
 }

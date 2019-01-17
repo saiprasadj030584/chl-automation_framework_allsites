@@ -74,9 +74,13 @@ public class InventoryTransactionStepDefs {
 	public void enter_container_id() throws FindFailed {
 		inventoryTransactionPage.EnterContanierID();
 		
-
+	}
+	@And("^Enter Container_ID for stock adjustment$")
+	public void enter_container_id_forstock_adjustment() throws FindFailed {
+		inventoryTransactionPage.EnterContanierIDForStockAdjustment();
 	}
 
+	
 	@And("^Enter Container_ID for FSV$")
 	public void enter_container_id_for_FSV() throws FindFailed {
 		inventoryTransactionPage.EnterContanierIDFSV();

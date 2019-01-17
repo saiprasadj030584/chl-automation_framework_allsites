@@ -343,9 +343,9 @@ jdaFooter.pressTab();
 		jDAExitputtyfunctionsStepDef.I_enter_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN_with_batch_and_expiry_date();
 		jDALoginStepDefs.login_to_JDA_Dispatcher_web_screen();
 		jDAHomeStepDefs.Go_to_Inventory_Transaction_Click();
-		stockCheckListGenerationPage.click_on_Query();
+		jDAHomeStepDefs.click_on_Query();
 		inventoryTransactionStepDefs.enter_container_id();
-		stockCheckListGenerationPage.clickExecuteButton();
+		jDAHomeStepDefs.click_execute();
 		inventoryTransactionStepDefs.get_the_tag_id();
 		inventoryTransactionStepDefs.check_the_inventory_transaction_for_receipt_allocate_pick();
 	}
