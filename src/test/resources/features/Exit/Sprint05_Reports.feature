@@ -3,8 +3,7 @@ Feature: Report Generation
   As I search for different reports
   and put different parameters
   so that I view the reports
-  
- 
+
   @completed @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
   Scenario: Validate the M&S - Identify URN Report
     Given Login to JDA Dispatcher web screen
@@ -12,11 +11,11 @@ Feature: Report Generation
     Then Select Print to screen and proceed next
     And Search for "M&S - Identify URN Report"
     And Verify that the record is displayed for Identify Urn Report
-    Then Enter the required parameters UPC, supplier id and quantity 
+    Then Enter the required parameters UPC, supplier id and quantity
     Then Validate the confirmation page for M&S - Identify URN Report
     Then Validate the report selection page for M&S - Identify URN completed
 
- @completed @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
+  @completed @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
   Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -26,8 +25,8 @@ Feature: Report Generation
     Then Enter Trailer number
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
-    
-    @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report 
+
+  @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report
   Scenario: Validate the M&S - Shipment Manifest Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -37,7 +36,6 @@ Feature: Report Generation
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Shipment Manifest Report
     Then Validate the report selection page for M&S - Shipment Manifest Report completed
-    
 
   @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
   Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
@@ -62,7 +60,7 @@ Feature: Report Generation
     And Search for "M&S - Gains and Loss Report"
     And Verify that the record is displayed for M&S Gains Or Loss Report
     Then Validate the confirmation page for Gains and Loss Report
-   	Then Validate the report selection page for Gains and Loss Report completed
+    Then Validate the report selection page for Gains and Loss Report completed
 
   @completed @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
@@ -75,8 +73,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
     Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
 
-
- @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
+  @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -118,7 +115,7 @@ Feature: Report Generation
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Sortation Report
     Then Validate the report selection page for M&S - Sortation Report completed
- 
+
   @completed @Reports @TC11_Validate_the_M_n_S_prohibition_report
   Scenario: Validate the M&S - Prohibition Report
     Given Login to JDA Dispatcher web screen
@@ -179,8 +176,7 @@ Feature: Report Generation
     And Verify that the record is displayed for Black Stock Status Report
     Then Validate the confirmation page for Black Stock Status Report
     Then Validate the report selection page for Black Stock Status completion
-    
-   
+
   @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
   Scenario: Validate the M&S - Empty Red Locations Report
     Given Login to JDA Dispatcher web screen
@@ -191,11 +187,10 @@ Feature: Report Generation
     Then Enter the red location as parameter
     Then Validate the confirmation page for M&S - Empty Red Locations Report
     Then Validate the report selection page for M&S - Empty Red Locations Report
-   
-   
+
   @completed @Reports @TC18_Validate_the_M_N_S_URN_Audit_Trail_Report
   Scenario Outline: Validate the M&S - URN Audit Trail Report
-Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -204,8 +199,8 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Enter URN as parameter
     And Validate the confirmation page for M&S - URN Audit Trail Report
     Then Validate the report selection page for M&S - URN Audit Trail completed
-    
-     Examples: 
+
+    Examples: 
       | SkuId              |
       | 000000000021071852 |
 
@@ -250,8 +245,8 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Verify that the record is displayed for Unpicked Not Relocated Stock
     And Validate the confirmation page for Unpicked Not Relocated Stock
     Then Validate the report selection page for Unpicked Not Relocated Stock
-    
-     @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
+
+  @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
   Scenario: Validate the M&S - Stock in Putaway Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -261,7 +256,6 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Enter the customer as parameter
     Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
     Then Validate the report selection page for M&S - Stock In RED Putaway Locations
-    
 
   @completed @Reports @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
   Scenario: Validate the M&S - Customs Valuation for Consignment Report
@@ -274,7 +268,6 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
- 
   @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
   Scenario: Validate the M&S - Weekly Summary Report
     Given Login to JDA Dispatcher web screen
@@ -306,7 +299,7 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Enter Trailer number
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
-    
+
   @completed @Reports @TC29_Validate_the_MnS_Audit_Check_Report
   Scenario: Validate_the_MnS_Audit_Check_Report
     Given Login to JDA Dispatcher web screen
@@ -317,9 +310,8 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for  M&S - Short Invoice for Container Report completed
-   
-    
-     @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
+
+  @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
     Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
@@ -334,10 +326,10 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-      @completed @Reports @TC32_Validate_the_MnS_VAS_Report
+
+  @completed @Reports @TC32_Validate_the_MnS_VAS_Report
   Scenario: Validate the M&S VAS Report
-     Given Login to JDA Dispatcher web screen
+    Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S - Customs Valuation for Consignment Report"
@@ -345,7 +337,6 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
-      
 
   @completed @Reports @TC39_Validate_container_report
   Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and Customs Valuation for Consignment Report
@@ -364,10 +355,7 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
-    
 
- 
- 
   @completed @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
   Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
     Given Login to JDA Dispatcher web screen
@@ -379,7 +367,7 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
- @completed @Reports @TC42_Validate_RED_to_GREEN_report
+  @completed @Reports @TC42_Validate_RED_to_GREEN_report
   Scenario: Validate RED to GREEN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -389,20 +377,19 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Enter customer id "4624"
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
-    
-  
- @completed @Reports @TC44_Validate_the_Review_Red_Data_report
+
+  @completed @Reports @TC44_Validate_the_Review_Red_Data_report
   Scenario: Validate the Review Red Data report
-     Given Login to JDA Dispatcher web screen
+    Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for "M&S - Red Stock Report"
     And Verify that the record is displayed for M&S - Red Stock Report
     Then Validate the confirmation page for M&S - Red Stock Report
     Then Validate the report selection page for M&S - Red Stock Report completed
-    
-   @completed @Reports @TC46_Validate_consumables_daily_report 
-  Scenario: Validate consumables daily report 
+
+  @completed @Reports @TC46_Validate_consumables_daily_report
+  Scenario: Validate consumables daily report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -411,13 +398,3 @@ Given Data to be inserted in preadvice header,order header and UPI receipt with 
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
-    
-   
-    
-    
-
-      
-    
-    
-    
-   
