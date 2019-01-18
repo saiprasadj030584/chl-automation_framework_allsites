@@ -887,3 +887,56 @@ Feature: Orders_Picking
     Then Validate the confirmation page for Red Report
     And Proceed next to Output tab for the report
     Then Validate the report selection page for Red Report creation
+    
+    
+    
+    
+    @Sorting @TC057_Validate_adding_URN_to_pallet_id
+  Scenario Outline: Validate adding urn to pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+@Sorting @TC058_Negative_path_Adding_wrong_destination_URN_to_the_Pallet
+  Scenario Outline: Negative path_Adding wrong destination URN to the Pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for different destination for sortation in Direct Receiving
+    And I Validate the Error message for different source and destination
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+@Sorting @TC059_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
+  Scenario Outline: Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for different destination for sortation in Direct Receiving
+    And I Validate the Error message for different source and destination
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
