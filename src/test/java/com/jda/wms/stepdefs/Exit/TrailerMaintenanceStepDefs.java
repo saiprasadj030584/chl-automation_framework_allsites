@@ -2,6 +2,7 @@ package com.jda.wms.stepdefs.Exit;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -84,13 +85,31 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.clickTrailerAdd();
 	}
+	
+	@And("^I create DockDoor")
+	public void I_create_Dockdoor() throws Throwable {
+	
+		jdaHomePage.navigateToDockDoorScreen();
+		Thread.sleep(2000);
+		consignmentMaintSD.Right_click_to_Select_Toggle_Maintenance_Mode();
+		Thread.sleep(1000);
+		consignmentMaintSD.I_click_on_Add_button();
+		trailerMaintenancePage.enterDockNumber();
+		Thread.sleep(1000);
+		screen.type(Key.TAB);
+		Thread.sleep(1000);
+		screen.type("DONNSD");
+		Thread.sleep(1000);
+		jdaHomeStepDefs.click_execute();
+	}
 	@And("^I create Trailer")
 	public void I_create_trailer() throws Throwable {
-		Thread.sleep(3000);
+		
+		Thread.sleep(1000);
 		jdaHomePage.navigateToTrailerMainteinancePage();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		consignmentMaintSD.Right_click_to_Select_Toggle_Maintenance_Mode();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		consignmentMaintSD.I_click_on_Add_button();
 		Enter_Trailer_number();
 		Select_Trailer_Type();

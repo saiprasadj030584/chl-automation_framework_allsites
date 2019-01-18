@@ -55,9 +55,9 @@ public class JdaHomePage {
 	}
 	public void navigateToTrailerMainteinancePage() throws FindFailed, InterruptedException {
 		
-		Thread.sleep(2000);
-		clickSearchIcon();
 		Thread.sleep(1000);
+		clickSearchIcon();
+		Thread.sleep(2000);
 		screen.type("Trailer maintenance");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -1123,7 +1123,7 @@ public class JdaHomePage {
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 	}
 	public void navigateToConsignmentTrailerLinking() throws FindFailed, InterruptedException {
 		clickSearchIcon();
@@ -1208,6 +1208,15 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 	}
 		
-	
+	public void navigateToDockDoorScreen() throws FindFailed, InterruptedException {
+		clickSearchIcon();
+		Thread.sleep(1000);
+		screen.type("Dock Door Maintenance");
+		screen.type(Key.ENTER);
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(3000);
+		
+	}
 
 }

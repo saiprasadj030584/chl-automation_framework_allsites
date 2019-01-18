@@ -42,6 +42,15 @@ public class TrailerMaintenancePage {
 		context.setTrailerNumber(trailerNumber);
 		Thread.sleep(1000);
 	}
+	public void enterDockNumber() throws FindFailed, InterruptedException {
+		String Random = Utilities.getFiveDigitRandomNumber();
+		String dockNumber = "DOCK"+Random;
+		//context.setTrailerNumber(trailerNumber);
+		System.out.println("Dock Number"+dockNumber);
+		screen.type(dockNumber);
+		context.setDockDoor(dockNumber);
+		Thread.sleep(1000);
+	}
 	public void enterSealId() throws FindFailed, InterruptedException {
 		String Random = Utilities.getFourDigitRandomNumber();
 		String trailerNumber = "SEAL"+Random;

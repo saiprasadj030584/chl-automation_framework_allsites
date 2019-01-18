@@ -195,6 +195,7 @@ public class JDAExitputtyfunctionsStepDef {
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
+		Thread.sleep(5000);
 	}
 	@Then("^Validate the pallet and consignment is loaded$")
 	public void consignmentIsLoaded() throws Throwable {
@@ -986,6 +987,7 @@ public void LinkPalletconsignment() throws Throwable {
 	getPalletId();
 	consignmentMaintSD.Enter_consignment();
 	consignmentIsLinked();
+	Thread.sleep(5000);
 	
 }
 

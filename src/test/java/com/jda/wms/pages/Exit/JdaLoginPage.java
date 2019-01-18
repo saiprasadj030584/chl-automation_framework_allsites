@@ -359,4 +359,11 @@ public class JdaLoginPage {
 		}
 		Thread.sleep(1000);
 	}
-}
+	
+	public void logOut()throws FindFailed, InterruptedException {
+			
+			Thread.sleep(1000);
+			//setDriver();
+			driver.quit();;
+		}
+	}

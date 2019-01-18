@@ -162,23 +162,24 @@ Feature: ConsignmentLinking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
-    And I select Receiving menu
+   	And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I link consignment with trailer
-    And Login to JDA Dispatcher web screen
-    And I close the consignment
-    And I complete Vechile loading
-    And I revert stock from trailer
-
-    Examples: 
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And Login to JDA Dispatcher web screen
+   	And drop the same consignment
+   	And Login to JDA Dispatcher web screen
+   	And I create Trailer
+   	And I create DockDoor
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	And Login to JDA Dispatcher web screen
+   	And I link consignment with trailer
+   	And Login to JDA Dispatcher web screen
+   	And I close the consignment
+   	And I complete Vechile loading
+   	And I revert stock from trailer
+ Examples:
       | SKU                |
       | 000000000021071852 |
 
@@ -189,15 +190,16 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And I unlink consignment with trailer
 
-    Examples: 
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And Login to JDA Dispatcher web screen
+   	And drop the same consignment
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	Then I login as warehouse user in putty
+  	And I unlink consignment with trailer
+  	Examples:
       | SKU                |
       | 000000000021071852 |
 
@@ -208,20 +210,20 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I link consignment with trailer
-    Then I login as warehouse user in putty
-    And I repack the consignment
-    And validate the message is displayed
-
-    Examples: 
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And I create Trailer
+   	And I create DockDoor
+   	And Login to JDA Dispatcher web screen
+   	And drop the same consignment
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	And Login to JDA Dispatcher web screen
+   	And I link consignment with trailer
+   	Then I login as warehouse user in putty
+   	And I repack the consignment 
+   	And validate the message is displayed
+   Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -232,22 +234,23 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I link consignment with trailer
-    And Login to JDA Dispatcher web screen
-    And I close the consignment
-    Then I login as warehouse user in putty
-    And I repack the consignment
-    And validate the message is displayed
-
-    Examples: 
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And Login to JDA Dispatcher web screen
+   	And drop the same consignment
+   	And Login to JDA Dispatcher web screen
+   	And I create Trailer
+   	And I create DockDoor
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	And Login to JDA Dispatcher web screen
+   	And I link consignment with trailer
+   	And Login to JDA Dispatcher web screen
+   	And I close the consignment
+   	Then I login as warehouse user in putty
+   	And I repack the consignment 
+   	And validate the message is displayed
+   Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -369,22 +372,23 @@ Feature: ConsignmentLinking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
-    And I select Receiving menu
+   	And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I link consignment with trailer
-    And Login to JDA Dispatcher web screen
-    And I close the consignment
-    And I complete Vechile loading
-
-    Examples: 
+   	And Login to JDA Dispatcher web screen
+   	And I create a consignment
+   	And Login to JDA Dispatcher web screen
+   	And drop the same consignment
+   	And Login to JDA Dispatcher web screen
+   	And I create Trailer
+   	And I create DockDoor
+   	Then I login as warehouse user in putty
+   	And I link the pallet and consignment
+   	And Login to JDA Dispatcher web screen
+   	And I link consignment with trailer
+   	And Login to JDA Dispatcher web screen
+   	And I close the consignment
+   	And I complete Vechile loading
+ Examples:
       | SKU                |
       | 000000000021071852 |
 
