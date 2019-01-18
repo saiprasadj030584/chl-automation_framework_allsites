@@ -75,9 +75,8 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      
-     @Completed @Unpick @TC07_Validate_unpicking_the_order
+
+  @Completed @Unpick @TC07_Validate_unpicking_the_order
   Scenario Outline: To Validate unpicking the order in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -166,7 +165,6 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
 
   @completed @TC10_validate_the_putaway_group_for_black_zone
   Scenario: Validate Putaway group for Black zone
@@ -320,8 +318,8 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-    @ConsignmentLinking @Repacking @TC021_Validate_Reversion_relocate_storage_location
+
+  @ConsignmentLinking @Repacking @TC021_Validate_Reversion_relocate_storage_location
   Scenario Outline: Validate repack after consignment closure
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -353,13 +351,10 @@ Feature: ConsignmentLinking
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
-    
 
     Examples: 
       | SKU                |
       | 000000000021071852 |
-        
-      
 
   @ConsignmentLinking @Repacking @TC022_Validate_repack_after_consignment_closure
   Scenario Outline: Validate repack after consignment closure
@@ -797,5 +792,3 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-
-  
