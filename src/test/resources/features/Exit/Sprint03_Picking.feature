@@ -23,7 +23,7 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
+
   @TC03_Validate_Pick_list_id_generated_for_a_FSV_Cross_dock_order
   Scenario Outline: Validate Pick list id generated for a FSV Cross dock order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
@@ -146,7 +146,7 @@ Feature: Orders_Picking
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
     And validate the record is saved
-    
+
   @Picking @TC012_Create_Consignment_Drop
   Scenario: Create a consignment or Load label
     Given Login to JDA Dispatcher web screen
@@ -182,12 +182,12 @@ Feature: Orders_Picking
     And Enter Container_ID
     And click execute
     And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
-    
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
 
-@Sorting @TC014_Negative_path_Adding_wrong_destination_URN_to_the_Pallet
+  @Sorting @TC014_Negative_path_Adding_wrong_destination_URN_to_the_Pallet
   Scenario Outline: Negative path_Adding wrong destination URN to the Pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -197,12 +197,12 @@ Feature: Orders_Picking
     And I select sorting menu
     And I enter URN for different destination for sortation in Direct Receiving
     And I Validate the Error message for different source and destination
-    
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
 
-@Sorting @TC015_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
+  @Sorting @TC015_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
   Scenario Outline: Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -212,7 +212,7 @@ Feature: Orders_Picking
     And I select sorting menu
     And I enter URN for different destination for sortation in Direct Receiving
     And I Validate the Error message for different source and destination
-    
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
@@ -268,24 +268,25 @@ Feature: Orders_Picking
     Examples: 
       | sortationgroup |
       | Sortation      |
-      
+
   @Sortation @TC26_Happy_path_Pallet_Consignment_Linking_process
-   Scenario Outline: Happy_path_Pallet_Consignment_Linking_process
-   Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+  Scenario Outline: Happy_path_Pallet_Consignment_Linking_process
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
-   
+
   @Sortation @TC27_Negative_Path_Incorrect_pallet_consignment_linking
   Scenario Outline: Negative_Path_Incorrect pallet consignment linking
     Given I login as warehouse user in putty
@@ -295,12 +296,11 @@ Feature: Orders_Picking
     And Enter Pallet Id "P1286952"
     And Enter Consignment "CONS7993271218"
     And Validate the pallet and consignment is linked
- 		
-      
- @Sortation @TC28_Happy_Path_Validate_consignment_id_format
+
+  @Sortation @TC28_Happy_Path_Validate_consignment_id_format
   Scenario: Happy_Path_Validate consignment id format
     Given Login to JDA Dispatcher web screen
-  	And Go to consignment maintainance
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
     Then Enter consignment name
@@ -310,11 +310,11 @@ Feature: Orders_Picking
     And Select trailer type to reflect Hazardous and Repack status
     And click execute
     And validate the consignment id is created
-   
+
   @Sortation @TC29_Happy_Path_Validate_consignment_add
   Scenario: Happy_Path_Validate consignment add
     Given Login to JDA Dispatcher web screen
-  	And Go to consignment maintainance
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
     Then Enter consignment name
@@ -341,10 +341,11 @@ Feature: Orders_Picking
       | SkuId              |
       | 000000000021071852 |
     
+
   @Sortation @TC31_Negative_Path_Validate_consignment_rules
   Scenario: Negative_Path_Validate_consignment_rules
     Given Login to JDA Dispatcher web screen
-  	And Go to consignment maintainance
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
     Then Enter consignment name
@@ -359,11 +360,11 @@ Feature: Orders_Picking
     And Select Mode of transport
     And click execute
     And validate Error message is displayed
-    
+
   @Sortation @TC32_Happy_Path_Validate_Load_build_process
-    Scenario: Happy_Path_Validate_Load_build_process
+  Scenario: Happy_Path_Validate_Load_build_process
     Given Login to JDA Dispatcher web screen
-  	And Go to consignment maintainance
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
     Then Enter consignment name
@@ -382,8 +383,8 @@ Feature: Orders_Picking
     And Click next
     And Select consignment to close
     And Click done
-    
-    @Sortation @TC033_Happy_path_Validate_GREEN_stock_in_Load_build
+
+  @Sortation @TC033_Happy_path_Validate_GREEN_stock_in_Load_build
   Scenario: Happy_path_Validate GREEN stock in Load build
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
@@ -401,7 +402,7 @@ Feature: Orders_Picking
     And Enter same consignment name
     And Click next
     And Click done
-    
+
   @Ordering @TC035_Happy_Path_Validate_FSV_order
   Scenario Outline: Happy_Path_Validate FSV order
     Given Data to be inserted in preadvice header and order header with "Released","RETAIL","5542" for "<SKU>"
@@ -476,18 +477,18 @@ Feature: Orders_Picking
   @Trailer @TC040_Validate_consignment_Trailer_linking
   Scenario: Validate consignment Trailer linking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
 
   @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
   Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
@@ -532,12 +533,11 @@ Feature: Orders_Picking
   @Ordering @TC043_Validate_Franchise_order_allocation_configuration_Function_Access
   Scenario: Validate_Franchise_Allocation_creation
     Given Login to JDA Dispatcher web screen
-    And Go to User Group Function Access 
-		And Type in Function Access search for text box
-		And validate the access is Enabled
-		And Go to Site Global Function Access 
-		And Type in and validate Function Access search for text box
-		
+    And Go to User Group Function Access
+    And Type in Function Access search for text box
+    And validate the access is Enabled
+    And Go to Site Global Function Access
+    And Type in and validate Function Access search for text box
 
   @Ordering @TC044_Validate_Franchise_Allocation_creation
   Scenario: Validate_Franchise_Allocation_creation
@@ -676,8 +676,56 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
-      
-      
+
+  @Sorting @TC057_Validate_adding_URN_to_pallet_id
+  Scenario Outline: Validate adding urn to pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Sorting @TC058_Negative_path_Adding_wrong_destination_URN_to_the_Pallet
+  Scenario Outline: Negative path_Adding wrong destination URN to the Pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for different destination for sortation in Direct Receiving
+    And I Validate the Error message for different source and destination
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Sorting @TC059_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
+  Scenario Outline: Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for different destination for sortation in Direct Receiving
+    And I Validate the Error message for different source and destination
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @Picking @TC60_Negative_Path_Scan_incorrect_UPC_during_picking_Manual_Order
   Scenario Outline: Negative_Path_Validate scanning incorrect pallet id for a Manual Order
@@ -771,10 +819,9 @@ Feature: Orders_Picking
     Examples: 
       | SKU                |
       | 000000000021071851 |
-      
-      @completed @TC066_prohibition_rules_new_rules_admin
-    Scenario Outline: Prohibition Rules - Happy Path - Add new rules Access (Admin Group)
 
+  @completed @TC066_prohibition_rules_new_rules_admin
+  Scenario Outline: Prohibition Rules - Happy Path - Add new rules Access (Admin Group)
     Given Login to JDA Dispatcher web screen
     And Navigate to Admin-->user-->user
     And Provide the Support Team user ID "<supportId>" and Click Execute
@@ -785,51 +832,48 @@ Feature: Orders_Picking
     Then New pohibition logic should be allowed to include
     Then Enter the New Prohibition for Israel
     Then The new rule should be included
-    
-    Examples:
-    |supportId|
-    |P9138780E |
-    
-     @completed @TC067_prohibition_rules_new_rules_basic_user
-    Scenario Outline: Prohibition Rules - Add new rules Access - BASICUSER group
 
+    Examples: 
+      | supportId |
+      | P9138780E |
+
+  @completed @TC067_prohibition_rules_new_rules_basic_user
+  Scenario Outline: Prohibition Rules - Add new rules Access - BASICUSER group
     Given Login to JDA Dispatcher web screen
     And Navigate to Admin-->user-->user
     And Provide the Support Team user ID "<supportId>" and Click Execute
     Then User group is validated as "BASICUSER"
     Given Login to JDA Dispatcher web screen as Basic User "<supportId>"
     Then Validate the page for basic user
-    
-     Examples:
-    |supportId|
-    |P9142516E |
-    
-     @inprogress @TC068_red_stock_moved_to_green
-     Scenario Outline: RED Stock moved to GREEN post SKU compliance status changed
-     Given The green stock SKU "<SKU>"
-     Given Alter the check weight to make the stock as RED Stock 
-     And Validate User defined check three as the sku moves to compliance
-     Then check weight is validated as null as stock becomes red stock
-     Then Update the Packed weight
-     Then Validate User defined check three as the red sku becomes green
-     
-     Examples: 
+
+    Examples: 
+      | supportId |
+      | P9142516E |
+
+  @inprogress @TC068_red_stock_moved_to_green
+  Scenario Outline: RED Stock moved to GREEN post SKU compliance status changed
+    Given The green stock SKU "<SKU>"
+    Given Alter the check weight to make the stock as RED Stock
+    And Validate User defined check three as the sku moves to compliance
+    Then check weight is validated as null as stock becomes red stock
+    Then Update the Packed weight
+    Then Validate User defined check three as the red sku becomes green
+
+    Examples: 
       | SKU                |
       | 000000000022120199 |
-     
-    
-      @completed @TC69_access_for_Consignment_amendment_restriction
- 		Scenario: Access for Consignment Amendment Restriction
- 		Given Login to JDA Dispatcher web screen
-		And Go to User Group Function Access through Administration
-		Then Search for "Consignment" report
-		And Validate that records should be loaded for consignment
-		And Access should be enabled for "ADMIN" Group for consignment
-		Then Search for other group "PICK CLERK" for consignment
-		Then Access should be enabled for "PICK CLERK" Group for consignment
-      
-      
-      @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
+
+  @completed @TC69_access_for_Consignment_amendment_restriction
+  Scenario: Access for Consignment Amendment Restriction
+    Given Login to JDA Dispatcher web screen
+    And Go to User Group Function Access through Administration
+    Then Search for "Consignment" report
+    And Validate that records should be loaded for consignment
+    And Access should be enabled for "ADMIN" Group for consignment
+    Then Search for other group "PICK CLERK" for consignment
+    Then Access should be enabled for "PICK CLERK" Group for consignment
+
+  @completed @Reports @TC70_Validate_the_M_n_S_custom_inspection_report
   Scenario: Validate the Custom Inspection Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -839,22 +883,19 @@ Feature: Orders_Picking
     And Enter consignment name
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
-          
 
-@completed  @TC71_access_for_CIR_Report_generation
- 		Scenario: Access for CIR Report generation
- 		Given Login to JDA Dispatcher web screen
-		And Go to User Group Function Access through Administration
-		Then Search for "Custom Inspection Report" report
-		And Validate that records should be loaded
-		And Access should be enabled for "ADMIN" Group
-				Then Search for other group "OPERATIVE"
-	And Access should be enabled for "OPERATIVE" Group
+  @completed @TC71_access_for_CIR_Report_generation
+  Scenario: Access for CIR Report generation
+    Given Login to JDA Dispatcher web screen
+    And Go to User Group Function Access through Administration
+    Then Search for "Custom Inspection Report" report
+    And Validate that records should be loaded
+    And Access should be enabled for "ADMIN" Group
+    Then Search for other group "OPERATIVE"
+    And Access should be enabled for "OPERATIVE" Group
 
-
-      
-    @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
-    Scenario: Load systemic reports revised on amended in Consignment
+  @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
+  Scenario: Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -863,33 +904,29 @@ Feature: Orders_Picking
     And Enter consignment name
     Then Validate the confirmation page for Load Label
     Then Validate the report selection page for Load Label
-    
-    @completed @TC077_Set_up_prohibition_rules
-    Scenario: Set up Prohibition Rules
+
+  @completed @TC077_Set_up_prohibition_rules
+  Scenario: Set up Prohibition Rules
     Given Login to JDA Dispatcher web screen
     And Go to System Profile
     Then Navigate to --ROOT- > USER > RECEIVING > INT
     When Tried to Add New Rules for prohibition
     Then New pohibition logic should be allowed to include
-    
-   
-    
-   
-        @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
-     Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
-     Given The Sku "<SKU>" validate the t-dept to be null 
-     And Validate User defined check three as the sku moves to compliance
-     Then Update the Product group with a valid T-Dept
-     And Validate User defined check three as the sku moves to compliance
-     Then Update the Product group with a valid T-Dept
-     Then Navigate to Administration > Setup > Scheduler > Scheduler Job History 
-     And Search for the Job "SKUVALIDATIONCHECKJ"
-     Then Validate the status as "SUCCEEDED"
-     Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
-      And Search for the Job "SKUVALIDATIONCHECKJ"
-     Then go to calender Preview
-     
-    
+
+  @complete @TC090_To_verify_red_check_failure_SKU_compliant_flag_check
+  Scenario Outline: To Verify Red Check failure - SKU Compliant flag Check
+    Given The Sku "<SKU>" validate the t-dept to be null
+    And Validate User defined check three as the sku moves to compliance
+    Then Update the Product group with a valid T-Dept
+    And Validate User defined check three as the sku moves to compliance
+    Then Update the Product group with a valid T-Dept
+    Then Navigate to Administration > Setup > Scheduler > Scheduler Job History
+    And Search for the Job "SKUVALIDATIONCHECKJ"
+    Then Validate the status as "SUCCEEDED"
+    Then Navigate to Administration > Setup > Scheduler > Scheduler Schedules
+    And Search for the Job "SKUVALIDATIONCHECKJ"
+    Then go to calender Preview
+
     Examples: 
       | SKU                |
       | 000000000021180074 |
@@ -904,56 +941,3 @@ Feature: Orders_Picking
     Then Validate the confirmation page for Red Report
     And Proceed next to Output tab for the report
     Then Validate the report selection page for Red Report creation
-    
-    
-    
-    
-    @Sorting @TC057_Validate_adding_URN_to_pallet_id
-  Scenario Outline: Validate adding urn to pallet id
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And I select sorting menu
-    And I enter URN for sortation in Direct Receiving
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
-    
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-
-@Sorting @TC058_Negative_path_Adding_wrong_destination_URN_to_the_Pallet
-  Scenario Outline: Negative path_Adding wrong destination URN to the Pallet
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And I select sorting menu
-    And I enter URN for different destination for sortation in Direct Receiving
-    And I Validate the Error message for different source and destination
-    
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-
-@Sorting @TC059_Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
-  Scenario Outline: Negative_path_Adding_wrong_T_Dept_URN_to_the_Pallet
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And I select sorting menu
-    And I enter URN for different destination for sortation in Direct Receiving
-    And I Validate the Error message for different source and destination
-    
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |

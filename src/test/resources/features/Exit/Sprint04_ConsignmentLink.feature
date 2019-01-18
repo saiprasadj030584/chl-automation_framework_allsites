@@ -76,6 +76,96 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
+  @Completed @Unpick @TC07_Validate_unpicking_the_order
+  Scenario Outline: To Validate unpicking the order in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Unpick/Unship
+    And I enter container_id
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
+  @Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
+  Scenario Outline: To Validate unpicking and relocate order in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Unpick/Unship
+    And I enter container_id
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+    And I navigate to move task query page
+    And Query with TaskId as RELOCATE and "<SkuId>"
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
+  @In-Progress @Unpick @TC09_Validate_relocate_task_completion
+  Scenario Outline: To Validate unpicking and relocate task completion in EXIT dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute and get TagID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Unpick/Unship
+    And I enter container_id
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Relocate and Existing relocate
+    And I enter UPC and TagId "<SkuId>"
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
   @completed @TC10_validate_the_putaway_group_for_black_zone
   Scenario: Validate Putaway group for Black zone
     Given Login to JDA Dispatcher web screen
@@ -196,24 +286,25 @@ Feature: ConsignmentLinking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
-   	And I select Receiving menu
+    And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I create DockDoor
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	And I complete Vechile loading
-   	And I revert stock from trailer
- Examples:
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+    And I revert stock from trailer
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -221,19 +312,19 @@ Feature: ConsignmentLinking
   Scenario Outline: Reversion_of_stock_from_a_consignment_Wanted_stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
-    And I select user directed option in main menu
+	And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    Then I login as warehouse user in putty
+    And I unlink consignment with trailer
 
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	Then I login as warehouse user in putty
-  	And I unlink consignment with trailer
-  	Examples:
+    Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -244,20 +335,54 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And I create Trailer
-   	And I create DockDoor
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I link consignment with trailer
-   	Then I login as warehouse user in putty
-   	And I repack the consignment 
-   	And validate the message is displayed
-   Examples: 
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    Then I login as warehouse user in putty
+    And I unlink consignment with trailer
+
+   
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @ConsignmentLinking @Repacking @TC021_Validate_Reversion_relocate_storage_location
+  Scenario Outline: Validate repack after consignment closure
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And I create Trailer
+    And I create DockDoor
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -268,23 +393,24 @@ Feature: ConsignmentLinking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I create DockDoor
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	Then I login as warehouse user in putty
-   	And I repack the consignment 
-   	And validate the message is displayed
-   Examples: 
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
       
@@ -399,23 +525,24 @@ Feature: ConsignmentLinking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
-   	And I select Receiving menu
+    And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I create DockDoor
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	And I complete Vechile loading
- Examples:
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
 
@@ -532,6 +659,37 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
+<<<<<<< HEAD
+  @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
+  Scenario Outline: Negative_Path_Validate_adding_palle_to_closed_consignment
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+=======
+>>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
   @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
@@ -699,96 +857,6 @@ Feature: ConsignmentLinking
     And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
-
-    Examples: 
-      | SkuId              |
-      | 000000000021071852 |
-
-  @Completed @Unpick @TC07_Validate_unpicking_the_order
-  Scenario Outline: To Validate unpicking the order in EXIT dispatcher
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Unpick/Unship
-    And I enter container_id
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
-
-    Examples: 
-      | SkuId              |
-      | 000000000021071852 |
-
-  @Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
-  Scenario Outline: To Validate unpicking and relocate order in EXIT dispatcher
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Unpick/Unship
-    And I enter container_id
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
-    And I navigate to move task query page
-    And Query with TaskId as RELOCATE and "<SkuId>"
-
-    Examples: 
-      | SkuId              |
-      | 000000000021071852 |
-
-  @In-Progress @Unpick @TC09_Validate_relocate_task_completion
-  Scenario Outline: To Validate unpicking and relocate task completion in EXIT dispatcher
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute and get TagID
-    And check the Inventory Transaction for Receipt, Allocate and Pick
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Unpick/Unship
-    And I enter container_id
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Relocate and Existing relocate
-    And I enter UPC and TagId "<SkuId>"
-    And Login to JDA Dispatcher web screen
-    And Go to Inventory Transaction & Click
-    And Click on Query
-    And Enter Container_ID
-    And click execute
-    And check the Inventory Transaction for Receipt, Allocate and Pick and UnPick
 
     Examples: 
       | SkuId              |

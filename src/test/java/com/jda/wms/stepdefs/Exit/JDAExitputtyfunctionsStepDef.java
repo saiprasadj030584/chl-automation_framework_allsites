@@ -1042,12 +1042,17 @@ public void revertvehicleLoading() throws Throwable {
 	i_select_vehicle_directed_option_in_main_menu();
 	purchaseOrderReceivingPage.selectvehicleUnloadMenu();
 	Thread.sleep(2000);
-	String URN = context.getpalletIDforUPI();
-	screen.type(URN);
+	//String URN = context.getpalletIDforUPI();
+	//screen.type(URN);
+	getPalletId();
 	Thread.sleep(2000);
 	trailerMaintenancePage.selectTrailer();
 	Thread.sleep(2000);
-	consignmentIsLoaded();
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(4000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(2000);
+	hooks.logoutPutty();
 	Thread.sleep(2000);
 }
 
