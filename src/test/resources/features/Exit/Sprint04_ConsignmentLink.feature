@@ -124,6 +124,40 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+      
+       @completed @ConsignmentLinking @TC13_validate_stock_take_checks
+  Scenario Outline: Validate stock take checks
+   
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    Then Get the tag ID
+    And check the Inventory Transaction for Receipt, Allocate and Pick
+    When I navigate to stock check list Generation page
+    And I select mode of list generation as 'Generate by inventory'
+    And I enter the Tag ID as on inventory tab
+    And I proceed to next
+    Then the available list should be displayed
+    When I select the record from the available list
+    Then the record should be added in the selected list
+    When I proceed to next
+    Then I should see the confirmation for number of items checked
+    When I proceed to generate the stock check list
+    Then I should see the created list
+    When I navigate to stock check query page
+    And I search the list by tag id as and task date as current date
+    Then I should see the record with list ID
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @completed @Reports @TC14_Validate_URN's_in_pallet_report
   Scenario Outline: Validate the M&S - URN in pallet report
@@ -253,17 +287,8 @@ Feature: ConsignmentLinking
    Examples: 
       | SKU                |
       | 000000000021071852 |
-
-  @ConsignmentLinking @Reversion @TC024_User_Access_to_Reversion
-  Scenario: Validate_Franchise_Allocation_creation
-    Given Login to JDA Dispatcher web screen
-    And Go to User Group Function Access
-    And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
-    And validate the access is Enabled
-    And Go to Site Global Function Access
-    And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
-    And validate the access is Enabled
-
+      
+      
   @ConsignmentLinking @TC25_Validate_consignment_closure
   Scenario: Validate consignment closure
     Given Login to JDA Dispatcher web screen
@@ -318,6 +343,8 @@ Feature: ConsignmentLinking
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
+    
+    
 
   @ConsignmentLinking @TC29_Validate_confirm_shipment
   Scenario Outline: Validate_confirm_shipment
@@ -618,6 +645,21 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
+      
+     @inProgress @Repacking @TC66_Missing_URN_Repacking
+     Scenario Outline: Missing URN_Repacking
+      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
+     And Login to JDA Dispatcher web screen
+     And I Navigate to Order Container Maintenance page
+     Then Site finds the stock physically
+     Then I login as warehouse user in putty
+         And I select user directed option in main menu
+     
+      
 
   @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
   Scenario Outline: Adjustment to URN in Pallet

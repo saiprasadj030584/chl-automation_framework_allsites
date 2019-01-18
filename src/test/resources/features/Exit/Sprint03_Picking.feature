@@ -324,6 +324,23 @@ Feature: Orders_Picking
     And click execute
     And validate the record is saved
     
+    @completed @Reports @TC30_Happy_path_review_load_report_validation
+  Scenario Outline: Happy_Path_Review Load report validation
+
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "pallet report"
+    And Verify that the record is displayed for M&S - URN pallet Report
+    And Enter URN as parameter
+    And Validate the confirmation page for M&S - pallet Report
+    Then Validate the report selection page for M&S - URN pallet report completed
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+    
   @Sortation @TC31_Negative_Path_Validate_consignment_rules
   Scenario: Negative_Path_Validate_consignment_rules
     Given Login to JDA Dispatcher web screen

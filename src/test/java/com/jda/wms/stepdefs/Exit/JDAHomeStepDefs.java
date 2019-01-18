@@ -397,5 +397,9 @@ public class JDAHomeStepDefs {
 		jdaHomePage.navigateToStockCheckListGeneration();
 		Thread.sleep(3000);
 	}
+	@When("^I Navigate to Order Container Maintenance page$")
+	public void i_navigate_to_order_container_page() throws Throwable {
+		jdaHomePage.navigateToOrderContainerPage();
+	}
 }
 	
