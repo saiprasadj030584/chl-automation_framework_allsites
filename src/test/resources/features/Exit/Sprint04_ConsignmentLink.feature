@@ -3,7 +3,7 @@ Feature: ConsignmentLinking
   As a Exit DC user should be able to login
    so that I validate repacking
    with ConsignmentLinking
-   
+
   @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -88,8 +88,7 @@ Feature: ConsignmentLinking
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
     Then Navigate to Stock Adjustment Screen
-         And Click next
-    
+    And Click next
     And Query with sku id and tag id in BLACK area
     And Click next
     And Click next
@@ -100,11 +99,10 @@ Feature: ConsignmentLinking
     Examples: 
       | Location |
       | AA001    |
-      
-    @completed @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
-    Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
-    
-      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+
+  @completed @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
+  Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -118,11 +116,11 @@ Feature: ConsignmentLinking
     And check the Inventory Transaction for Receipt, Allocate and Pick
     Then Navigate to Stock Adjustment Screen
     And Click next
-     And Enter Container_ID for stock adjustment
-     And Click next
-      And Click next
+    And Enter Container_ID for stock adjustment
+    And Click next
+    And Click next
     Then Decrease the quantity in hand
-    
+
     Examples: 
       | SkuId              |
       | 000000000021071852 |
@@ -158,98 +156,101 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
+
   @ConsignmentLinking @Reversion @TC018_Reversion_of_stock_from_a_trailer_Wanted_stock
   Scenario Outline: Reversion of stock from a trailer_Wanted stock
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	And I complete Vechile loading
-   	And I revert stock from trailer
- Examples:
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+    And I revert stock from trailer
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      
+
   @ConsignmentLinking @Reversion @TC019_Reversion_of_stock_from_a_consignment_Wanted_stock
   Scenario Outline: Reversion_of_stock_from_a_consignment_Wanted_stock
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-  	And I unlink consignment with trailer
-  	Examples:
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And I unlink consignment with trailer
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-   @ConsignmentLinking @Repacking @TC020_Validate_repacking_the_pallet_Reversion
-	Scenario Outline: Validate repack after consignment closure
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+
+  @ConsignmentLinking @Repacking @TC020_Validate_repacking_the_pallet_Reversion
+  Scenario Outline: Validate repack after consignment closure
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	Then I login as warehouse user in putty
-   	And I repack the consignment 
-   	And validate the message is displayed
-   Examples: 
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      	   
-  	
+
   @ConsignmentLinking @Repacking @TC022_Validate_repack_after_consignment_closure
-	Scenario Outline: Validate repack after consignment closure
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+  Scenario Outline: Validate repack after consignment closure
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	Then I login as warehouse user in putty
-   	And I repack the consignment 
-   	And validate the message is displayed
-   Examples: 
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      	
+
   @ConsignmentLinking @Reversion @TC024_User_Access_to_Reversion
   Scenario: Validate_Franchise_Allocation_creation
     Given Login to JDA Dispatcher web screen
@@ -286,70 +287,72 @@ Feature: ConsignmentLinking
   @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
   Scenario Outline: Validate_vehicle_loading_Single_pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	And I close the consignment
-   	And I complete Vechile loading
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    And I close the consignment
+    And I complete Vechile loading
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
- 
- @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
+
+  @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
   Scenario: Negative Path_Enter incorrect pallet id
- 		Given I login as warehouse user in putty
+    Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select vehicle loading option in main menu
     And select multi pallet load
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
-    
- @ConsignmentLinking @TC29_Validate_confirm_shipment
- Scenario Outline: Validate_confirm_shipment
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+
+  @ConsignmentLinking @TC29_Validate_confirm_shipment
+  Scenario Outline: Validate_confirm_shipment
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	And I close the consignment
-   	And I complete Vechile loading
-   	And Login to JDA Dispatcher web screen
- 		And I navigate to Trailer Shipping page
- 		And select trailer text tab
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    And I close the consignment
+    And I complete Vechile loading
+    And Login to JDA Dispatcher web screen
+    And I navigate to Trailer Shipping page
+    And select trailer text tab
     Then Enter Trailer number
-    And Click next 
+    And Click next
+
     #And Click done
-    Examples:
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      
- @ConsignmentLinking @TC30_Negative_Path_Validate_trailer_shipping
- Scenario: Negative_Path_Validate_trailer_shipping
- 		Given Login to JDA Dispatcher web screen
- 		And I navigate to Trailer Shipping page
- 		And select trailer text tab
+
+  @ConsignmentLinking @TC30_Negative_Path_Validate_trailer_shipping
+  Scenario: Negative_Path_Validate_trailer_shipping
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer Shipping page
+    And select trailer text tab
     Then Enter Trailer number
     And Click next
     And validate the error popup is displayed
-    
+
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
     Given Login to JDA Dispatcher web screen
@@ -361,29 +364,30 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for Container Report or M&S - Short Invoice for Container Report
     Then Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed
 
- @ConsignmentLinking @TC33_Validate_pallet_count_or_container_confirmation_logic_for_a_consignment_id
- Scenario Outline: Validate pallet count or container confirmation logic for a consignment id
- 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
- 		Then I login as warehouse user in putty
+  @ConsignmentLinking @TC33_Validate_pallet_count_or_container_confirmation_logic_for_a_consignment_id
+  Scenario Outline: Validate pallet count or container confirmation logic for a consignment id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-   	And Login to JDA Dispatcher web screen
-   	And I create a consignment
-   	And Login to JDA Dispatcher web screen
-   	And drop the same consignment
-   	Then I login as warehouse user in putty
-   	And I link the pallet and consignment
-   	And Login to JDA Dispatcher web screen
-   	And I create Trailer
-   	And I link consignment with trailer
-   	And Login to JDA Dispatcher web screen
-   	And I close the consignment
-   	And I complete Vechile loading
- Examples:
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+
+    Examples: 
       | SKU                |
       | 000000000021071852 |
-      
+
   @ConsignmentLinking @TC34_Negative_Path_container_and_consignment
   Scenario: Negative Path_container and consignment
     Given I login as warehouse user in putty
@@ -477,17 +481,16 @@ Feature: ConsignmentLinking
     And Search for Picking and Relocate access
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
-    
-     @completed @TC44_validate_load_closure_user_profile
- 		Scenario: Validate Load closure user profile
- 		Given Login to JDA Dispatcher web screen
-		And Go to User Group Function Access through Administration
-		Then Search for "consignment closure" report
-		And Validate that records should be loaded for consignment closure
-		And Access should be enabled for "ADMIN" Group for consignment closure
-	
-	
-	@completed @Reports @TC46_Load_systematic_reports_revised
+
+  @completed @TC44_validate_load_closure_user_profile
+  Scenario: Validate Load closure user profile
+    Given Login to JDA Dispatcher web screen
+    And Go to User Group Function Access through Administration
+    Then Search for "consignment closure" report
+    And Validate that records should be loaded for consignment closure
+    And Access should be enabled for "ADMIN" Group for consignment closure
+
+  @completed @Reports @TC46_Load_systematic_reports_revised
   Scenario: Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -498,7 +501,7 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
- @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -566,8 +569,8 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
- @completed @Trailer_Maintenance @TC64_Validate_Trailer_id
+
+  @completed @Trailer_Maintenance @TC64_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -577,7 +580,6 @@ Feature: ConsignmentLinking
     And Select Trailer Type
     And click execute
     And validate the record is saved
- 
 
   @completed @ConsignmentLinking @TC65_validate_stock_take_checks
   Scenario Outline: Validate stock take checks
@@ -612,11 +614,10 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
-    Scenario Outline: Adjustment to URN in Pallet
-    
-      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+
+  @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
+  Scenario Outline: Adjustment to URN in Pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -630,22 +631,22 @@ Feature: ConsignmentLinking
     And check the Inventory Transaction for Receipt, Allocate and Pick
     Then Navigate to Stock Adjustment Screen
     And Click next
-     And Enter Container_ID for stock adjustment
-     And Click next
-      And Click next
+    And Enter Container_ID for stock adjustment
+    And Click next
+    And Click next
     Then Decrease the quantity in hand
-     When Verified in Inventory and ITL
+    When Verified in Inventory and ITL
     Then Stock is validated successfully
-    
+
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-      @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
-      Scenario Outline: Auto complete Red URN putaway post receipt
-      Given The details for the sku "<SkuId>"
-       Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
-     Then Alter the check weight to make the stock as RED Stock
+
+  @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
+  Scenario Outline: Auto complete Red URN putaway post receipt
+    Given The details for the sku "<SkuId>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
+    Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -656,7 +657,6 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
 
   @Completed @Unpick @TC07_Validate_unpicking_the_order
   Scenario Outline: To Validate unpicking the order in EXIT dispatcher
