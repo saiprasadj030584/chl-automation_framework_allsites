@@ -314,31 +314,6 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @ConsignmentLinking @Repacking @TC020_Validate_repacking_the_pallet_Reversion
-  Scenario Outline: Validate repack after consignment closure
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And I create Trailer
-    And I create DockDoor
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I link consignment with trailer
-    Then I login as warehouse user in putty
-    And I repack the consignment
-    And validate the message is displayed
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
-
   @ConsignmentLinking @Repacking @TC022_Validate_repack_after_consignment_closure
   Scenario Outline: Validate repack after consignment closure
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
