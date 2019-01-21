@@ -659,7 +659,6 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
-<<<<<<< HEAD
   @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
   Scenario Outline: Negative_Path_Validate_adding_palle_to_closed_consignment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
@@ -688,9 +687,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-=======
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
-  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+ @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
