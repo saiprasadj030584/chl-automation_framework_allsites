@@ -75,6 +75,11 @@ public class UserGroupStepDefs{
 	public void select_a_User_Group_from_the_Group_dropdown_box()throws Throwable {
 		jdaHomePage.selectUserGroup();
 	}
+	@And("^Select a RDT Group from the Group dropdown box$")
+	public void select_a_RDT_Group_from_the_Group_dropdown_box()throws Throwable {
+		userGroupPage.selectRDTGroup();
+	}
+	
 	@And("^I select Allocation creation date by zone option$")
 	public void I_select_Allocation_creation_date_by_zone_option()throws Throwable {
 		

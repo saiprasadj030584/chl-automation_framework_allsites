@@ -580,7 +580,21 @@ Feature: Receiving
     Given I login as warehouse user in putty
     Then I select user directed option in main menu
     And I select Receiving menu
+    
+@Completed @Receiving @TC033_Setup_storage_locations
+  Scenario Outline: Find the Location ZONE setup
+    Given Login to JDA Dispatcher web screen
+    And Go to Data-LOCATION-LocationZone & Click
+    And Click on Query
+    And Enter the LocationZone "<LocationZone>"
+    And click execute
+    Then Verify the LocationZone "<LocationZone>" displayed
 
+    Examples: 
+      | LocationZone |
+      | BLACKB       |
+      | REDB         |
+      
   @Completed @Receiving @TC034_Batch_and_Expiry_Date_Check
   Scenario Outline: To Validate capturing batch and expiry date during receiving
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"

@@ -17,13 +17,14 @@ import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
+import org.sikuli.script.Region;
 import org.sikuli.script.Screen;
 
 public class UserGroupPage{
 	
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
-	
+	Region reg = new Region(0, 0, 4000, 1000);
 	public void enterUserGroup(String UserGroup) throws FindFailed {
 		screen.wait("images/JDAHome/Group.png", timeoutInSec);
 		screen.click("images/JDAHome/Group.png");
@@ -129,6 +130,15 @@ public void accessEnabled() throws FindFailed {
 		Thread.sleep(2000);
 		screen.find("images/JDAHome/AccessSearchButton.png");
 		screen.click("images/JDAHome/AccessSearchButton.png");
+	}
+	public void selectRDTGroup() throws FindFailed, InterruptedException {
+		screen.wait("images/JDAHome/FunctionAccessGroupDropdown.png", timeoutInSec);
+		screen.click("images/JDAHome/FunctionAccessGroupDropdown.png");
+		Thread.sleep(2000);
+		 Match header = screen.find("images/JDAHome/UserRDT.png");
+		   reg=header.below(150).left(5).right(1000);
+		   reg.hover(header);
+		   reg.click(header);
 	}
 }
 

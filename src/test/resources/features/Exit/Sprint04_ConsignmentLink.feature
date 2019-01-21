@@ -214,10 +214,9 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-       @completed @ConsignmentLinking @TC13_validate_stock_take_checks
+
+  @completed @ConsignmentLinking @TC13_validate_stock_take_checks
   Scenario Outline: Validate stock take checks
-   
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -312,7 +311,7 @@ Feature: ConsignmentLinking
   Scenario Outline: Reversion_of_stock_from_a_consignment_Wanted_stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
-	And I select user directed option in main menu
+    And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And Login to JDA Dispatcher web screen
@@ -344,7 +343,6 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I unlink consignment with trailer
 
-   
     Examples: 
       | SKU                |
       | 000000000021071852 |
@@ -413,8 +411,15 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      
+
+  @ConsignmentLinking @TC24_User_Access_to_Reversion
+  Scenario: User Access to Reversion
+    Given Login to JDA Dispatcher web screen
+		And Go to Admin>ACCESS CNT>Workstation access control & Click
+		And Select a RDT Group from the Group dropdown box
+    And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
+    Then validate the access is Enabled
+    
   @ConsignmentLinking @TC25_Validate_consignment_closure
   Scenario: Validate consignment closure
     Given Login to JDA Dispatcher web screen
@@ -469,8 +474,6 @@ Feature: ConsignmentLinking
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
-    
-    
 
   @ConsignmentLinking @TC29_Validate_confirm_shipment
   Scenario Outline: Validate_confirm_shipment
@@ -659,7 +662,6 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
-<<<<<<< HEAD
   @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
   Scenario Outline: Negative_Path_Validate_adding_palle_to_closed_consignment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
@@ -688,8 +690,6 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-=======
->>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework.git
   @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
@@ -803,21 +803,19 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-     @inProgress @Repacking @TC66_Missing_URN_Repacking
-     Scenario Outline: Missing URN_Repacking
-      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+
+  @inProgress @Repacking @TC66_Missing_URN_Repacking
+  Scenario Outline: Missing URN_Repacking
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-     And Login to JDA Dispatcher web screen
-     And I Navigate to Order Container Maintenance page
-     Then Site finds the stock physically
-     Then I login as warehouse user in putty
-         And I select user directed option in main menu
-     
-      
+    And Login to JDA Dispatcher web screen
+    And I Navigate to Order Container Maintenance page
+    Then Site finds the stock physically
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
 
   @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
   Scenario Outline: Adjustment to URN in Pallet
