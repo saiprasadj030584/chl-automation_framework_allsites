@@ -2,10 +2,10 @@
 ##################
 default:
  browser-name: ie
- sit-username: 'AUTOREG1'
+ sit-username: 'AUTOREG2'
  sit-password: '1234' 
 # 
- st-username: 'AUTOREG1'
+ st-username: 'AUTOREG2'
  st-password: '1234' 
 
  #st-username: 'AUTOREG9'

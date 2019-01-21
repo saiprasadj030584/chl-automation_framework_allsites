@@ -13,7 +13,7 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-
+      
   @ConsignmentLinking @TC02_Validate_Picking_process_for_Manual_Franchise_order
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -690,7 +690,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+
+ @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
