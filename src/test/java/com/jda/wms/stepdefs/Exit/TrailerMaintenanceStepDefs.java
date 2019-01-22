@@ -6,6 +6,7 @@ import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
+import com.jda.wms.context.Context;
 import com.jda.wms.pages.Exit.CEConsignmentMaintenancePage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationMaintenancePage;
@@ -20,15 +21,19 @@ public class TrailerMaintenanceStepDefs {
 	private final JDAHomeStepDefs jdaHomeStepDefs;
 	private final JdaHomePage jdaHomePage;
 	private final ConsignmentMaintenanceStepDefs consignmentMaintSD;
+	private Context context;
+
 	Screen screen = new Screen();
 	int timeoutInSec = 20;
 
 	@Inject
-	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage,JdaHomePage jdaHomePage,ConsignmentMaintenanceStepDefs consignmentMaintSD,JDAHomeStepDefs jdaHomeStepDefs) {
+	public TrailerMaintenanceStepDefs(TrailerMaintenancePage trailerMaintenancePage,
+			Context context,JdaHomePage jdaHomePage,ConsignmentMaintenanceStepDefs consignmentMaintSD,JDAHomeStepDefs jdaHomeStepDefs) {
 		this.trailerMaintenancePage = trailerMaintenancePage;
 		this.jdaHomeStepDefs=jdaHomeStepDefs;
 		this.consignmentMaintSD=consignmentMaintSD;
 		this.jdaHomePage = jdaHomePage;
+		this.context=context;
 	}
 	
 	@And("^Enter seal ID$")
@@ -41,6 +46,11 @@ public class TrailerMaintenanceStepDefs {
 	public void Enter_Trailer_number() throws Throwable {
 	
 		trailerMaintenancePage.enterTrailerNumber();
+	}
+	@And("^Enter Trailer number for the consignment$")
+	public void enter_Trailer_number_for_the_consignment() throws Throwable {
+		
+		trailerMaintenancePage.enterTrailerNo(context.getTrailerNumber());
 	}
 	
 	@And("^select trailer text tab$")

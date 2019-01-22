@@ -302,6 +302,7 @@ Feature: Report Generation
 
   @completed @Reports @TC29_Validate_the_MnS_Audit_Check_Report
   Scenario: Validate_the_MnS_Audit_Check_Report
+  Given That I have stock check list id
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -309,8 +310,8 @@ Feature: Report Generation
     And Verify that the record is displayed for M&S - Short Invoice for Container Report
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
-    Then Validate the report selection page for  M&S - Short Invoice for Container Report completed
-
+    Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
   @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
     Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
