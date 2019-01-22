@@ -13,7 +13,7 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-
+      
   @ConsignmentLinking @TC02_Validate_Picking_process_for_Manual_Franchise_order
   Scenario Outline: Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -214,10 +214,9 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-      
-       @completed @ConsignmentLinking @TC13_validate_stock_take_checks
+
+  @completed @ConsignmentLinking @TC13_validate_stock_take_checks
   Scenario Outline: Validate stock take checks
-   
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -312,7 +311,7 @@ Feature: ConsignmentLinking
   Scenario Outline: Reversion_of_stock_from_a_consignment_Wanted_stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
-	And I select user directed option in main menu
+    And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And Login to JDA Dispatcher web screen
@@ -344,7 +343,6 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I unlink consignment with trailer
 
-   
     Examples: 
       | SKU                |
       | 000000000021071852 |
@@ -413,8 +411,7 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-      
+
   @ConsignmentLinking @TC25_Validate_consignment_closure
   Scenario: Validate consignment closure
     Given Login to JDA Dispatcher web screen
@@ -469,8 +466,6 @@ Feature: ConsignmentLinking
     And I enter invalid pallet "1015"
     And I enter consignment "CONS030119"
     And validate the error message is displayed
-    
-    
 
   @ConsignmentLinking @TC29_Validate_confirm_shipment
   Scenario Outline: Validate_confirm_shipment
@@ -687,7 +682,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -800,21 +795,23 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-      
-     @inProgress @Repacking @TC66_Missing_URN_Repacking
-     Scenario Outline: Missing URN_Repacking
-      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+
+  @inProgress @Repacking @TC66_Missing_URN_Repacking
+  Scenario Outline: Missing URN_Repacking
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
-     And Login to JDA Dispatcher web screen
-     And I Navigate to Order Container Maintenance page
-     Then Site finds the stock physically
-     Then I login as warehouse user in putty
-         And I select user directed option in main menu
-     
-      
+    And Login to JDA Dispatcher web screen
+    And I Navigate to Order Container Maintenance page
+    Then Site finds the stock physically
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
 
   @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
   Scenario Outline: Adjustment to URN in Pallet
