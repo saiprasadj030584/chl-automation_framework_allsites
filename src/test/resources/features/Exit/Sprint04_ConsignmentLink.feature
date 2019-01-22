@@ -412,6 +412,17 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
+<<<<<<< HEAD
+=======
+  @ConsignmentLinking @TC24_User_Access_to_Reversion
+  Scenario: User Access to Reversion
+    Given Login to JDA Dispatcher web screen
+		And Go to Admin>ACCESS CNT>Workstation access control & Click
+		And Select a RDT Group from the Group dropdown box
+    And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
+    Then validate the access is Enabled
+    
+>>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework
   @ConsignmentLinking @TC25_Validate_consignment_closure
   Scenario: Validate consignment closure
     Given Login to JDA Dispatcher web screen
@@ -682,7 +693,12 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
+<<<<<<< HEAD
   @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+=======
+
+ @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
+>>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
@@ -808,10 +824,13 @@ Feature: ConsignmentLinking
     Then Site finds the stock physically
     Then I login as warehouse user in putty
     And I select user directed option in main menu
+<<<<<<< HEAD
 
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+=======
+>>>>>>> branch 'Exit_TCs' of https://github.com/DigitalInnovation/jda-wms-test-framework
 
   @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
   Scenario Outline: Adjustment to URN in Pallet
