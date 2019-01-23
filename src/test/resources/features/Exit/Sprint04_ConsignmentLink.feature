@@ -642,7 +642,52 @@ Feature: ConsignmentLinking
     And Search for Picking and Relocate access
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
+    
+    @ConsignmentLinking @Repacking @TC041_Validate_repack_for_a_loaded_pallet
+  Scenario Outline: Validate repack for a loaded pallet
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    Then I login as warehouse user in putty
+    And I repack the consignment
+    And validate the message is displayed
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+ @ConsignmentLinking @Repacking @TC042_Validate_Pallet_merge_at_pallet_level
+  Scenario Outline: Validate Pallet merge at pallet level
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Then I login as warehouse user in putty
+    And I merge the pallet
+    And Validate Pallet merge at pallet level
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
   @completed @TC44_validate_load_closure_user_profile
   Scenario: Validate Load closure user profile
     Given Login to JDA Dispatcher web screen
@@ -651,6 +696,32 @@ Feature: ConsignmentLinking
     And Validate that records should be loaded for consignment closure
     And Access should be enabled for "ADMIN" Group for consignment closure
 
+@ConsignmentLinking @Reversion @TC045_Validate_consignment_closure_details
+  Scenario Outline:	Validate consignment closure details
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And I complete Vechile loading
+		And Login to JDA Dispatcher web screen
+    And I close the consignment
+    
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
+    
   @completed @Reports @TC46_Load_systematic_reports_revised
   Scenario: Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen
@@ -662,6 +733,36 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
+ @InProgress @ConsignmentLinking @TC47_Validate_consignment_amendment
+  Scenario Outline: Validate consignment amendment
+   Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+  	Then I login as warehouse user in putty
+    And I link the next pallet and consignment
+  	And I reclose the consignment from operation menu
+  Examples: 
+      | SKU                |
+      | 000000000021071852 |
+    
+  
   @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
   Scenario Outline: Negative_Path_Validate_adding_palle_to_closed_consignment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
