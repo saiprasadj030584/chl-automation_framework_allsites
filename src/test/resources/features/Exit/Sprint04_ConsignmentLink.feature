@@ -791,7 +791,69 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
+@ConsignmentLinking @Reversion @TC51_Identify_missing_pallet_id_remove_pallet_id
+  Scenario Outline: Identify missing pallet id remove pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+    And I revert stock from trailer
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
+      @ConsignmentLinking @Reversion @TC52_Validate_container_report
+  Scenario Outline: Validate container report
+
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "Container Report"
+    And Verify that the record is displayed for M&S - Short Invoice for Container Report
+    Then Enter Trailer number for the consignment
+    Then Validate the confirmation page for M&S - Short Invoice for Container Report
+    Then Validate the report selection page for M&S - Short Invoice for Container Report completed
+    
+    
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+      
  @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
@@ -918,6 +980,10 @@ Feature: ConsignmentLinking
     Then Site finds the stock physically
     Then I login as warehouse user in putty
     And I select user directed option in main menu
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
 
   @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
   Scenario Outline: Adjustment to URN in Pallet

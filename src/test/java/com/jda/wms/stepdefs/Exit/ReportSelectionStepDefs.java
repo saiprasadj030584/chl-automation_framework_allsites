@@ -971,5 +971,8 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionProformaInvoice());
     	JDAFooter.clickDoneButton();	
     }
-    
+    @And("^That I have stock check list id$")
+    public void given_that_i_have_stock_check_list_id() throws Throwable {
+    	
+    }
 }
