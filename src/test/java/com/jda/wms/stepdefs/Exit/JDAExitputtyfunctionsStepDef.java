@@ -1174,4 +1174,36 @@ public void reCloseMenu() throws Throwable {
 	Thread.sleep(2000);
 	hooks.logoutPutty();
 }
+
+@And("^I complete Vechile loading for first pallet$")
+public void vehicleLoadingfirstpallet() throws Throwable {
+	Thread.sleep(2000);
+	i_login_as_warehouse_user_in_putty();
+	i_select_user_directed_option_in_main_menu();
+	i_select_vehicle_directed_option_in_main_menu();
+	i_select_multiPallet_load();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	getTrailerId();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	//consignmentIsLoaded();
+}
+@And("^I complete vehicle loading for next pallet$")
+public void vehicleLoadingnextpallet() throws Throwable {
+	Thread.sleep(2000);
+	//i_login_as_warehouse_user_in_putty();
+	//i_select_user_directed_option_in_main_menu();
+	//i_select_vehicle_directed_option_in_main_menu();
+	//i_select_multiPallet_load();
+	getPalletId1();
+	//consignmentMaintSD.Enter_consignment();
+	//getTrailerId();
+	Thread.sleep(5000);
+	//puttyFunctionsPage.pressEnter();
+	consignmentIsLoaded();
+}
 }

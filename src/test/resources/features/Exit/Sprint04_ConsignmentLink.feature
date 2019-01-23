@@ -714,30 +714,27 @@ Feature: ConsignmentLinking
     And Access should be enabled for "ADMIN" Group for consignment closure
 
   @ConsignmentLinking @Reversion @TC045_Validate_consignment_closure_details
-  Scenario Outline: Validate consignment closure details
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I create DockDoor
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Login to JDA Dispatcher web screen
-    And I link consignment with trailer
-    And I complete Vechile loading
-    And Login to JDA Dispatcher web screen
-    And I close the consignment
-
-    Examples: 
-      | SKU                |
-      | 000000000021071852 |
+  Scenario: Validate consignment closure details
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
+    And Go to close consignment
+    And Enter same consignment name
+    And Click next
+    And Select consignment to close
+    And Click done
 
   @completed @Reports @TC46_Load_systematic_reports_revised
   Scenario: Load systemic reports revised on amended in Consignment
@@ -774,7 +771,6 @@ Feature: ConsignmentLinking
     And I close the consignment
     Then I login as warehouse user in putty
     And I link the next pallet and consignment
-    And I reclose the consignment from operation menu
 
     Examples: 
       | SKU                |
@@ -869,6 +865,36 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
+@InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
+  Scenario Outline: Vehicle multi pallet loading
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    Then I login as warehouse user in putty
+    And I link the next pallet and consignment
+    And Login to JDA Dispatcher web screen
+		And I close the consignment
+		And I complete Vechile loading for first pallet
+		And I complete vehicle loading for next pallet
+		
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
   @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
