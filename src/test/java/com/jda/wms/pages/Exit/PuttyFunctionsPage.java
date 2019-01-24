@@ -213,6 +213,12 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		Match mLocation4 = screen.find("images/Putty/Promptmsg.png");
 		screen.click(mLocation4.getCenter().offset(70, 0));
 	}
+	public void validateMergePalletId()throws FindFailed, InterruptedException {
+		
+		Thread.sleep(5000);
+		Match mLocation4 = screen.find("images/Putty/PalRpkFrmC.png");
+		screen.click(mLocation4.getCenter().offset(70, 0));
+	}
 	
 	public void selectInventory()throws FindFailed, InterruptedException {
 		Thread.sleep(3000);

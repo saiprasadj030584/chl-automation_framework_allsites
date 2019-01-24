@@ -153,6 +153,10 @@ public class Context {
 	private String TagTrans;
 	private String supportID;
 	private String DockDoor;
+	private String palletIDforUPI1;
+	private String BelCode1;
+	private String PalletId1;
+	
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
 	}
@@ -1234,6 +1238,30 @@ public class Context {
 
 	public void setDockDoor(String dockDoor) {
 		DockDoor = dockDoor;
+	}
+
+	public String getPalletIDforUPI1() {
+		return palletIDforUPI1;
+	}
+
+	public void setPalletIDforUPI1(String palletIDforUPI1) {
+		this.palletIDforUPI1 = palletIDforUPI1;
+	}
+
+	public String getBelCode1() {
+		return BelCode1;
+	}
+
+	public void setBelCode1(String belCode1) {
+		BelCode1 = belCode1;
+	}
+
+	public String getPalletId1() {
+		return PalletId1;
+	}
+
+	public void setPalletId1(String palletId1) {
+		PalletId1 = palletId1;
 	}
 	
 	

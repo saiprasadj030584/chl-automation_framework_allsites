@@ -264,7 +264,12 @@ public class ReportSelectionStepDefs {
     	Thread.sleep(20000);
     	
     }
-    
+    @And("^Validate the report selection page for Identify URN completion$")
+    public void validate_the_report_selection_page_for_completion() throws Throwable {
+    	Thread.sleep(20000);
+    	Assert.assertTrue("M&S Identify URNS report not found", ReportSelectionPage.isReportSelectionDoneMissingUrn());
+    	JDAFooter.clickDoneButton();	
+    }
    
     
     @And("^Validate the report selection page for BatchId completion$")

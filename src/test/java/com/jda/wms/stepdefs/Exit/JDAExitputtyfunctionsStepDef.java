@@ -44,6 +44,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private Configuration configuration;
 	private Context context;
 	//private Object screen;
+	private JDAExitUpiHeader jdaExitUpiHeader;
 	private PurchaseOrderReceivingPage purchaseOrderReceivingPage;
 	private StoreTrackingOrderPickingPage storeTrackingOrderPickingPage;
 	private TrailerMaintenancePage trailerMaintenancePage;
@@ -173,6 +174,12 @@ public class JDAExitputtyfunctionsStepDef {
 	public void getPalletId() throws Throwable {
 		Thread.sleep(5000);
 		puttyFunctionsPage.enterPalletId(context.getPalletId());
+		puttyFunctionsPage.pressTab();
+	}
+	@Then("^Enter next Pallet Id$")
+	public void getPalletId1() throws Throwable {
+		Thread.sleep(5000);
+		puttyFunctionsPage.enterPalletId(context.getPalletId1());
 		puttyFunctionsPage.pressTab();
 	}
 	@Then("^Enter trailer$")
@@ -990,6 +997,21 @@ public void LinkPalletconsignment() throws Throwable {
 	Thread.sleep(5000);
 	
 }
+@And("^I link the next pallet and consignment$")
+public void LinknextPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	getPalletId1();
+	consignmentMaintSD.Enter_consignment();
+	Thread.sleep(3000);
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	
+}
 
 @And("^I unlink consignment with trailer$")
 public void UnLinkPalletconsignment() throws Throwable {
@@ -1055,5 +1077,133 @@ public void revertvehicleLoading() throws Throwable {
 	hooks.logoutPutty();
 	Thread.sleep(2000);
 }
+@Given("^I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving$")
+public void I_enter_next_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(3000);
+	GetTCData.getpoId();
+	String skuid = context.getSKUHang();
+//	i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+	String palletIDforUPI1 = context.getpalletIDforUPI();
+	System.out.println("palletID "+palletIDforUPI1);
+	purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI1);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(1000);
+	Assert.assertTrue("RCVBli screen is not displayed as expected",
+	storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+	Thread.sleep(300);
+	puttyFunctionsPage.I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
+	String belCode1 = context.getBelCode();
+	System.out.println("BelCode1 "+belCode1);
+	purchaseOrderReceivingPage.EnterBel(belCode1);
+	Thread.sleep(300);
+	puttyFunctionsPage.singleTab();
+	//String ToPallet = null;
+	String palletdigit1 = Utilities.getsevenDigitRandomNumber();
+	String ToPallet1="P"+palletdigit1;
+	purchaseOrderReceivingPage.EnterToPallet(ToPallet1);
+	System.out.println("ToPallet1== "+ToPallet1);
+	context.setPalletId1(ToPallet1);
+	puttyFunctionsPage.pressEnter();
+	hooks.logoutPutty();
+	}
+@Given("^I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving$")
+public void I_enter_first_URN_and_Bel_and_validation_of_UPC_QTY_and_Supplier_for_ASN() throws Throwable {
+	GetTCData.getpoId();
+	String skuid = context.getSKUHang();
+//	i_generate_pallet_id_for_UPI(GetTCData.getpoId(),skuid);
+	String palletIDforUPI = context.getpalletIDforUPI();
+	System.out.println("palletID "+palletIDforUPI);
+	purchaseOrderReceivingPage.EnterPalletID(palletIDforUPI);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(1000);
+	Assert.assertTrue("RCVBli screen is not displayed as expected",
+	storeTrackingOrderPickingPage.isRCVBLIMenuDisplayed());
+	Thread.sleep(300);
+	puttyFunctionsPage.I_generate_belcode_for_UPI(GetTCData.getpoId(),skuid);
+	String belCode = context.getBelCode();
+	System.out.println("BelCode "+belCode);
+	purchaseOrderReceivingPage.EnterBel(belCode);
+	Thread.sleep(300);
+	puttyFunctionsPage.singleTab();
+	//String ToPallet = null;
+	String palletdigit = Utilities.getsevenDigitRandomNumber();
+	String ToPallet="P"+palletdigit;
+	purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+	System.out.println("ToPallet== "+ToPallet);
+	context.setPalletId(ToPallet);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(3000);
+	}
+@And("^I merge the pallet$")
+public void palletMerge() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	storeTrackingOrderPickingPage.selectPickingMenu();
+	storeTrackingOrderPickingPage.selectsortation();
+	Thread.sleep(2000);
+	String URN = context.getpalletIDforUPI();
+	screen.type(URN);
+	Thread.sleep(2000);
+	puttyFunctionsPage.enterPalletId(context.getPalletId1());
+	Thread.sleep(2000);
+	puttyFunctionsPage.pressEnter();
+}
 
+@And("^Validate Pallet merge at pallet level$")
+public void rePackConfirm() throws Throwable {
+	Thread.sleep(2000);
+	puttyFunctionsPage.validateMergePalletId();
+	Thread.sleep(4000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(4000);
+	hooks.logoutPutty();
+}
+
+@And("^I reclose the consignment from operation menu$")
+public void reCloseMenu() throws Throwable {
+	Thread.sleep(2000);
+	screen.type(Key.F4);
+	Thread.sleep(2000);
+	screen.type(Key.F4);
+	Thread.sleep(2000);
+	puttyFunctionsPage.singleTab();
+	consignmentMaintSD.Enter_consignment();
+	Thread.sleep(2000);
+	screen.type(Key.ENTER);
+	Thread.sleep(2000);
+	hooks.logoutPutty();
+}
+
+@And("^I complete Vechile loading for first pallet$")
+public void vehicleLoadingfirstpallet() throws Throwable {
+	Thread.sleep(2000);
+	i_login_as_warehouse_user_in_putty();
+	i_select_user_directed_option_in_main_menu();
+	i_select_vehicle_directed_option_in_main_menu();
+	i_select_multiPallet_load();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	getTrailerId();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	//consignmentIsLoaded();
+}
+@And("^I complete vehicle loading for next pallet$")
+public void vehicleLoadingnextpallet() throws Throwable {
+	Thread.sleep(2000);
+	//i_login_as_warehouse_user_in_putty();
+	//i_select_user_directed_option_in_main_menu();
+	//i_select_vehicle_directed_option_in_main_menu();
+	//i_select_multiPallet_load();
+	getPalletId1();
+	//consignmentMaintSD.Enter_consignment();
+	//getTrailerId();
+	Thread.sleep(5000);
+	//puttyFunctionsPage.pressEnter();
+	consignmentIsLoaded();
+}
 }
