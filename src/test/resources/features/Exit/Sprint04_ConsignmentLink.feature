@@ -909,9 +909,15 @@ Feature: ConsignmentLinking
     And validate the record is saved
     
     
-    #@TC58_support_desk_team_access_amend_or_delete_sortation_rules
-    #Scenario: Support desk Team access to create, amend or delete Sortation rules
-    #Given 
+    @TC58_support_desk_team_access_amend_or_delete_sortation_rules
+    Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
+    Given The sku "<SkuId>" details and corresponding product group
+    Given Access the table for trusted group given the customerID "7977"
+    
+     Examples: 
+      | SkuId                |
+      | 000000000021071852 |
+    
 
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
