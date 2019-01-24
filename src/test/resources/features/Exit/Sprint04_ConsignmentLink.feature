@@ -675,6 +675,8 @@ Feature: ConsignmentLinking
     And drop the same consignment
     And Login to JDA Dispatcher web screen
     And I create Trailer
+    
+    
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
@@ -763,6 +765,11 @@ Feature: ConsignmentLinking
     And Select Trailer Type
     And click execute
     And validate the record is saved
+    
+    
+    #@TC58_support_desk_team_access_amend_or_delete_sortation_rules
+    #Scenario: Support desk Team access to create, amend or delete Sortation rules
+    #Given 
 
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
