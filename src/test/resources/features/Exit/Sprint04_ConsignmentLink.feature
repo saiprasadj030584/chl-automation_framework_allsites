@@ -906,6 +906,15 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
 
+  @TC58_support_desk_team_access_amend_or_delete_sortation_rules
+  Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
+    Given The sku "<SkuId>" details and corresponding product group
+    Given Access the table for trusted group given the customerID "7977"
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071852 |
+
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
     Given Login to JDA Dispatcher web screen
@@ -1052,6 +1061,55 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+
+  @Sortation @TC068_Pick_Sort_to_an_Outbound_Pallet_from_Black_Stock
+  Scenario Outline: Validate adding urn to pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
+  Scenario Outline: To validate Compliance Check - Supplier Record does not exist
+    Given The details for the sku "<SkuId>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    Then supplier record does not exist
+    Then Validate User defined check three as the red sku becomes green
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
 
   @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
   Scenario Outline: Auto complete Red URN putaway post receipt
