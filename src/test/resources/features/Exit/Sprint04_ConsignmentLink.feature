@@ -864,8 +864,8 @@ Feature: ConsignmentLinking
     Examples: 
       | SKU                |
       | 000000000021071852 |
-
-  @completed @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
+      
+  @InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
   Scenario Outline: Vehicle multi pallet loading
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty

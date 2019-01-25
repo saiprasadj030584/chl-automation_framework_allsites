@@ -459,6 +459,23 @@ public class JDAExitUpiHeader{
 					System.out.println("already in prohibition, proceed");
 				}
 			}
+			@Given("^The sku \"([^\"]*)\" details and corresponding product group$")
+			public void the_sku_details_and_corresponding_product_group(String Sku) throws Throwable{
+				String PdtGp= skuDB.getProductGroup(Sku);   
+				System.out.println("PdtGp="+PdtGp);
+				context.setSKUHang(Sku);
+				context.setProductGroup(PdtGp);
+			}
+			
+			@Given("^Access the table for trusted group given the customerID \"([^\"]*)\"$")
+			public void access_the_table_for_trusted_group_given_the_customer_id(String customerID) throws Throwable{
+				String BoxedOrHanging= skuDB.getBoxedOrHanging(context.getSKUHang());
+				System.out.println("BoxedOrHanging="+BoxedOrHanging);
+				String AllowedStock=mandsDB.getTrustedStock(customerID,context.getProductGroup());
+				System.out.println("AllowedStock="+AllowedStock);
+			}
+			
+			
 @Given ("^Checking the conditions \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\" for the sku \"([^\"]*)\" and customerID \"([^\"]*)\"$")
 public void checking_the_conditions_for_the_sku_and_customerID_site(String type, 
 		String putawayGroup, String customer, String skuid, String customerID) throws Throwable {
