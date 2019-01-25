@@ -268,6 +268,8 @@ Feature: Orders_Picking
     Examples: 
       | sortationgroup |
       | Sortation      |
+      
+  
 
   @Sortation @TC26_Happy_path_Pallet_Consignment_Linking_process
   Scenario Outline: Happy_path_Pallet_Consignment_Linking_process

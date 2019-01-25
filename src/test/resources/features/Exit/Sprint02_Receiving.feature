@@ -39,7 +39,7 @@ Feature: Receiving
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN with Batch and Expiry date
     And Login to JDA Dispatcher web screen
-    #And I navigate to Order header screen to verify the status in Ready to Load
+    And I navigate to Order header screen to verify the status in Ready to Load
     And Go to Inventory Transaction & Click
     And Click on Query
     And Enter Container_ID
