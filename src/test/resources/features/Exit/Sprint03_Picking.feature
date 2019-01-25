@@ -895,6 +895,17 @@ Feature: Orders_Picking
     And Access should be enabled for "ADMIN" Group
     Then Search for other group "OPERATIVE"
     And Access should be enabled for "OPERATIVE" Group
+    
+    @completed @TC73_admin_team_access_to_create_amend_or_delete_sortation_rules
+    Scenario Outline: Admin Team access to create, amend or delete Sortation rules
+
+    Given The sku "<SkuId>" details and corresponding product group
+    Given Access the table for trusted group given the customerID "7977"
+    
+     Examples: 
+      | SkuId                |
+      | 000000000021071852 |
+    
 
   @Reports @TC074_Load_systemic_reports_revised_on_amended_in_Consignment
   Scenario: Load systemic reports revised on amended in Consignment
@@ -906,6 +917,17 @@ Feature: Orders_Picking
     And Enter consignment name
     Then Validate the confirmation page for Load Label
     Then Validate the report selection page for Load Label
+    
+    @completed @TC76_set_up_trusted_rules
+    Scenario Outline: Set up Trusted Rules
+
+    Given The sku "<SkuId>" details and corresponding product group
+    Given Access the table for trusted group given the customerID "7977"
+    
+     Examples: 
+      | SkuId                |
+      | 000000000021071852 |
+    
 
   @completed @TC077_Set_up_prohibition_rules
   Scenario: Set up Prohibition Rules

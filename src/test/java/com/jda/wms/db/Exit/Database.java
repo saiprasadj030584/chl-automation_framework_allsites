@@ -47,6 +47,8 @@ public class Database {
 	private Context context;
 	public static String statusRegion = System.getProperty("USE_DB");
 	public static String region = System.getProperty("REGION");
+	public static String statusMandsRegion = System.getProperty("USE_Mands_DB");
+
 	// public static String region ="ST";
 
 	@Inject
@@ -98,6 +100,15 @@ public class Database {
 					System.out.println("st-db-username"+configuration.getStringProperty("st-db-username"));
 					System.out.println("st-db-password"+configuration.getStringProperty("st-db-password"));
 					System.out.println("check");
+				}
+				else if (statusMandsRegion.equalsIgnoreCase("ST1")) {
+					System.out.println("ST1-inside1");
+					connection = DriverManager.getConnection(configuration.getStringProperty("st1-db-host"),							
+							configuration.getStringProperty("st1-db-username"),
+							configuration.getStringProperty("st1-db-password"));
+					System.out.println("st-db-username"+configuration.getStringProperty("st1-db-username"));
+					System.out.println("st-db-password"+configuration.getStringProperty("st1-db-password"));
+					System.out.println("check Mands");
 				}
 				
 			} else {
