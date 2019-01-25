@@ -1012,6 +1012,32 @@ public void LinknextPalletconsignment() throws Throwable {
 	Thread.sleep(5000);
 	
 }
+@And("^I link the first pallet and consignment$")
+public void LinkfirstPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	Thread.sleep(3000);
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	
+}
+@And("^I link the second pallet and consignment$")
+public void LinksecondPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	getPalletId1();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
+	Thread.sleep(5000);
+}
 
 @And("^I unlink consignment with trailer$")
 public void UnLinkPalletconsignment() throws Throwable {

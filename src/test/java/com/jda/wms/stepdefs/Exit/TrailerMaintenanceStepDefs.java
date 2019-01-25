@@ -63,6 +63,11 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.selectTrailerType();
 	}
+	@And("^Select Trailer Type as sea$")
+	public void Select_Trailer_Type_Sea() throws Throwable {
+	
+		trailerMaintenancePage.selectTrailerTypeSea();
+	}
 	@And("^Select Trailer$")
 	public void Select_Trailer() throws Throwable {
 	
