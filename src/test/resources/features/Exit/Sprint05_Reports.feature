@@ -1,10 +1,10 @@
-@Sprint05
+@Reports
 Feature: Report Generation
   As I search for different reports
   and put different parameters
   so that I view the reports
 
-  @completed @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
+  @completed @Sprint05 @Reports @TC01_Validate_the_M_n_S_Identify_URN_Report
   Scenario: Validate the M&S - Identify URN Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -15,7 +15,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Identify URN Report
     Then Validate the report selection page for M&S - Identify URN completed
 
-  @completed @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
+  @completed @Sprint05 @Reports @TC02_Validate_the_MNS_Dangerous_Goods_DGN_Report
   Scenario: Validate_the_MNS_Dangerous_Goods_DGN_Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -26,7 +26,7 @@ Feature: Report Generation
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
 
-  @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report
+  @completed @Sprint05 @Reports @TC03_Validate_the_MnS_Shipment_Manifest_Report
   Scenario: Validate the M&S - Shipment Manifest Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -37,7 +37,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Shipment Manifest Report
     Then Validate the report selection page for M&S - Shipment Manifest Report completed
 
-  @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
+  @completed @Sprint05 @Reports @TC04_Validate_the_M_n_S_NonShipped_greater_than_4_weeks_report
   Scenario Outline: Validate the M&S - Non-Shipped greater than 4 weeks Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -52,7 +52,7 @@ Feature: Report Generation
       | status |
       | GREEN  |
 
-  @completed @Reports @TC05_Validate_the_M_n_S_Gains_or_loss_report
+  @completed @Sprint05 @Reports @TC05_Validate_the_M_n_S_Gains_or_loss_report
   Scenario: Validate the M&S - Gains and Loss Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -62,7 +62,7 @@ Feature: Report Generation
     Then Validate the confirmation page for Gains and Loss Report
     Then Validate the report selection page for Gains and Loss Report completed
 
-  @completed @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
+  @completed @Sprint05 @Reports @TC06_Validate_the_M_n_S_allocation_vs_receipts_across_last_3_weeks_report
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -73,7 +73,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
     Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
 
-  @completed @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
+  @completed @Sprint05 @Reports @TC07_Validate_the_MnS_Stock_Allocation_Reportt
   Scenario: Validate the M&S - Allocation vs Receipts across last 3 weeks Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -84,7 +84,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Allocation vs Receipts across last 3 weeks Report
     Then Validate the report selection page for M&S - Allocation vs Receipts across last 3 weeks completed
 
-  @completed @Reports @TC08_Validate_the_M_n_S_stock_status_report
+  @completed @Sprint05 @Reports @TC08_Validate_the_M_n_S_stock_status_report
   Scenario: Validate M&S - Stock Status Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -94,7 +94,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Stock Status Report
     Then Validate the report selection page for M&S - Stock Status completed
 
-  @completed @Reports @TC09_Validate_the_M_n_S_weekly_receipts_and_despatches_report
+  @completed @Sprint05 @Reports @TC09_Validate_the_M_n_S_weekly_receipts_and_despatches_report
   Scenario: Validate the  M&S - Weekly Receipts and Despatches Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -105,7 +105,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Weekly Receipts and Despatches by Customer Report
     Then Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed
 
-  @completed @Reports @TC10_Validate_the_MnS_Sortation_Report
+  @completed @Sprint05 @Reports @TC10_Validate_the_MnS_Sortation_Report
   Scenario: Validate the M&S - Sortation Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -116,7 +116,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Sortation Report
     Then Validate the report selection page for M&S - Sortation Report completed
 
-  @completed @Reports @TC11_Validate_the_M_n_S_prohibition_report
+  @completed @Sprint05 @Reports @TC11_Validate_the_M_n_S_prohibition_report
   Scenario: Validate the M&S - Prohibition Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -126,7 +126,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Prohibition Report
     Then Validate the report selection page for M&S - Prohibition completed
 
-  @completed @Reports @TC12_Validate_the_M_n_S_trusted_report
+  @completed @Sprint05 @Reports @TC12_Validate_the_M_n_S_trusted_report
   Scenario: Validate the M&S - Trusted Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -136,7 +136,7 @@ Feature: Report Generation
     Then Validate the confirmation page for Trusted Report
     Then Validate the report selection page for Trusted Report completion
 
-  @completed @Reports @TC13_Validate_the_M_n_S_batch_id_and_BBE_report
+  @completed @Sprint05 @Reports @TC13_Validate_the_M_n_S_batch_id_and_BBE_report
   Scenario: Validate the M&S - Batch ID & BBE Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -146,7 +146,7 @@ Feature: Report Generation
     Then Validate the confirmation page for Batch ID Report
     Then Validate the report selection page for BatchId completion
 
-  @completed @Reports @TC14_Validate_the_M_n_S_Outstanding_Pallets_to_load_report
+  @completed @Sprint05 @Reports @TC14_Validate_the_M_n_S_Outstanding_Pallets_to_load_report
   Scenario: Validate the M&S - Outstanding Pallets to Load Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -157,7 +157,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Outstanding Pallets to Load Report
     Then Validate the report selection page for M&S - Outstanding Pallets to Load Report completed
 
-  @completed @TC15_Validate_the_M_n_S_Red_Location_Report
+  @completed @Sprint05 @TC15_Validate_the_M_n_S_Red_Location_Report
   Scenario: Validate the M&S - Red Location Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -167,7 +167,7 @@ Feature: Report Generation
     Then Validate the confirmation page for RedLocation Report
     Then Validate the report selection page for Red Location completion
 
-  @completed @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
+  @completed @Sprint05 @Reports @TC16_Validate_the_M_n_S_Black_Stock_Status_Report
   Scenario: Validate the M&S - Black Stock Status Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -177,7 +177,7 @@ Feature: Report Generation
     Then Validate the confirmation page for Black Stock Status Report
     Then Validate the report selection page for Black Stock Status completion
 
-  @completed @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
+  @completed @Sprint05 @Reports @TC17_Validate_the_MnS_Empty_Red_Locations_Report
   Scenario: Validate the M&S - Empty Red Locations Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -188,7 +188,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Empty Red Locations Report
     Then Validate the report selection page for M&S - Empty Red Locations Report
 
-  @completed @Reports @TC18_Validate_the_M_N_S_URN_Audit_Trail_Report
+  @completed @Sprint05 @Reports @TC18_Validate_the_M_N_S_URN_Audit_Trail_Report
   Scenario Outline: Validate the M&S - URN Audit Trail Report
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
@@ -204,7 +204,7 @@ Feature: Report Generation
       | SkuId              |
       | 000000000021071852 |
 
-  @completed @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
+  @completed @Sprint05 @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
   Scenario: Validate the M&S -Green Stock Available to Pick-FLOW Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -215,7 +215,7 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
-  @completed @Reports @TC22_Validate_the_MNS_Soiled_Damaged_Report
+  @completed @Sprint05 @Reports @TC22_Validate_the_MNS_Soiled_Damaged_Report
   Scenario: Validate the M&S - Soiled & Damaged Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -225,7 +225,7 @@ Feature: Report Generation
     And Validate the confirmation page for Soiled and Damaged
     Then Validate the report selection page for Soiled and Damaged
 
-  @Reports @TC23_Validate_the_MNS_Pallet_not_Consigned_Report
+  @completed @Sprint05 @Reports @TC23_Validate_the_MNS_Pallet_not_Consigned_Report
   Scenario: Validate the M&S - Pallet not Consigned Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -236,7 +236,7 @@ Feature: Report Generation
     And Validate the confirmation page for Pallet not Consigned Report
     Then Validate the report selection page for Pallet not Consigned Report
 
-  @Reports @TC24_Validate_the_MNS_Unpicked_not_relocated_Report
+  @completed @Sprint05 @Reports @TC24_Validate_the_MNS_Unpicked_not_relocated_Report
   Scenario: Validate the M&S - Unpicked, not relocated Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -246,7 +246,7 @@ Feature: Report Generation
     And Validate the confirmation page for Unpicked Not Relocated Stock
     Then Validate the report selection page for Unpicked Not Relocated Stock
 
-  @completed @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
+  @completed @Sprint05 @Reports @TC25_Validate_the_MnS_Stock_in_Putaway_Report
   Scenario: Validate the M&S - Stock in Putaway Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -257,7 +257,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Stock In RED Putaway Locations
     Then Validate the report selection page for M&S - Stock In RED Putaway Locations
 
-  @completed @Reports @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
+  @completed @Sprint05 @Reports @TC26_Validate_the_M_n_S_Customs_valuation_for_consignment_report
   Scenario: Validate the M&S - Customs Valuation for Consignment Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -268,7 +268,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
-  @completed @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
+  @completed @Sprint05 @Reports @TC27_Validate_the_M_n_S_weekly_summary_report
   Scenario: Validate the M&S - Weekly Summary Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -279,7 +279,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Weekly Summary Report
     Then Validate the report selection page for M&S - Weekly Summary Report completed
 
-  @completed @Reports @TC28_Validate_the_M_n_S_pallet_build_report
+  @completed @Sprint05 @Reports @TC28_Validate_the_M_n_S_pallet_build_report
   Scenario: Validate the M&S - Pallet Build Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -289,7 +289,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Pallet Built Report
     Then Validate the report selection page for M&S - Pallet Built Report completed
 
-  @completed @Reports @TC30_Validate_the_M_n_S_short_invoice_for_container_report
+  @completed @Sprint05 @Reports @TC30_Validate_the_M_n_S_short_invoice_for_container_report
   Scenario: Validate the M&S - Short Invoice for Container Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -300,9 +300,9 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
 
-  @completed @Reports @TC29_Validate_the_MnS_Audit_Check_Report
+  @completed @Sprint05 @Reports @TC29_Validate_the_MnS_Audit_Check_Report
   Scenario: Validate_the_MnS_Audit_Check_Report
-  Given That I have stock check list id
+    Given That I have stock check list id
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -311,8 +311,8 @@ Feature: Report Generation
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Short Invoice for Container Report
     Then Validate the report selection page for M&S - Short Invoice for Container Report completed
-    
-  @completed @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
+
+  @completed @Sprint05 @Reports @TC31_Validate_the_M_n_S_URNs_on_Pallet_Report
   Scenario Outline: Validate the M&S - URNs on Pallet Report
     Given Data to be inserted and received with PalletID with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
@@ -328,7 +328,7 @@ Feature: Report Generation
       | SkuId              |
       | 000000000021071852 |
 
-  @completed @Reports @TC32_Validate_the_MnS_VAS_Report
+  @completed @Sprint05 @Reports @TC32_Validate_the_MnS_VAS_Report
   Scenario: Validate the M&S VAS Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -339,7 +339,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Valuation for Consignment Report
     Then Validate the report selection page for M&S - Customs Valuation for Consignment Report completed
 
-  @completed @Reports @TC39_Validate_container_report
+  @completed @Sprint05 @Reports @TC39_Validate_container_report
   Scenario: Validate the M&S - M&S - Customs Valuation for Consignment Report and Customs Valuation for Consignment Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -357,7 +357,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
-  @completed @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
+  @completed @Sprint05 @Reports @TC41_Validate_the_MNS_Report_stock_moved_from_RED_to_GREEN_status
   Scenario: Validate the M&S -stock_moved_from_RED_to_GREEN_status
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -368,7 +368,7 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
-  @completed @Reports @TC42_Validate_RED_to_GREEN_report
+  @completed @Sprint05 @Reports @TC42_Validate_RED_to_GREEN_report
   Scenario: Validate RED to GREEN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -379,7 +379,7 @@ Feature: Report Generation
     And Validate the confirmation page for Green Stock Available to Pick Flow
     Then Validate the report selection page for Green Stock Available to Pick Flow
 
-  @completed @Reports @TC44_Validate_the_Review_Red_Data_report
+  @completed @Sprint05 @Reports @TC44_Validate_the_Review_Red_Data_report
   Scenario: Validate the Review Red Data report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -389,7 +389,7 @@ Feature: Report Generation
     Then Validate the confirmation page for M&S - Red Stock Report
     Then Validate the report selection page for M&S - Red Stock Report completed
 
-  @completed @Reports @TC46_Validate_consumables_daily_report
+  @completed @Sprint05 @Reports @TC46_Validate_consumables_daily_report
   Scenario: Validate consumables daily report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
