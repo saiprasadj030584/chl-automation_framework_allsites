@@ -1127,3 +1127,52 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+
+  @completed @ConsignmentLinking @TC71_Vehicle_multi_pallet_loading
+  Scenario Outline: Vehicle multi pallet loading
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the first pallet and consignment
+    And I link the second pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading for first pallet
+    And I complete vehicle loading for next pallet
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @completed @Trailer_Maintenance @TC73_Negative_path_Mode_of_transport_validation_for_a_trailer
+  Scenario: Negative path_Mode of transport validation for a trailer
+    Given Login to JDA Dispatcher web screen
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter Trailer number
+    And Select Trailer Type as sea
+    And click execute
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And I create DockDoor
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And validate the error popup is displayed
