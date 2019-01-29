@@ -1161,18 +1161,25 @@ Feature: ConsignmentLinking
   @completed @Trailer_Maintenance @TC73_Negative_path_Mode_of_transport_validation_for_a_trailer
   Scenario: Negative path_Mode of transport validation for a trailer
     Given Login to JDA Dispatcher web screen
-    And I navigate to Trailer mainteinance page
+    And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
     When I click on Add button
-    Then Enter Trailer number
-    And Select Trailer Type as sea
+    Then Enter consignment name
+    And Select consignment Status
     And click execute
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And Login to JDA Dispatcher web screen
-    And I create DockDoor
-    And Login to JDA Dispatcher web screen
-    And drop the same consignment
-    And Login to JDA Dispatcher web screen
-    And I link consignment with trailer
-    And validate the error popup is displayed
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And validate the record is saved
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And validate error message is displayed

@@ -1221,6 +1221,7 @@ public void vehicleLoadingfirstpallet() throws Throwable {
 @And("^I complete vehicle loading for next pallet$")
 public void vehicleLoadingnextpallet() throws Throwable {
 	Thread.sleep(2000);
+	Thread.sleep(5000);
 	//i_login_as_warehouse_user_in_putty();
 	//i_select_user_directed_option_in_main_menu();
 	//i_select_vehicle_directed_option_in_main_menu();
@@ -1230,6 +1231,10 @@ public void vehicleLoadingnextpallet() throws Throwable {
 	//getTrailerId();
 	Thread.sleep(5000);
 	//puttyFunctionsPage.pressEnter();
-	consignmentIsLoaded();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
 }
 }
