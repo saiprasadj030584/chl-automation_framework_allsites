@@ -146,7 +146,20 @@ public class TrailerMaintenanceStepDefs {
 		//trailerMaintenancePage.clickTrailerAdd();
 	}
 
-	
+	@And("^I link next consignment with trailer")
+	public void I_link_next_trailer() throws Throwable {
+		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
+		Select_Trailer();
+		consignmentMaintSD.Select_nextConsignment();
+		jdaHomeStepDefs.click_next();
+		jdaHomeStepDefs.click_next();
+		And_I_click_on_trailer_Add_button();
+		jdaHomeStepDefs.click_next();
+		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		jdaHomeStepDefs.click_done();
+		
+		//trailerMaintenancePage.clickTrailerAdd();
+	}
    	
 	
 }

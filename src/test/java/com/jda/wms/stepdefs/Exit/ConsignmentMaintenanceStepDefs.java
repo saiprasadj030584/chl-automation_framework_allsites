@@ -105,6 +105,10 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.selectConsignment();
 	}
+	public void Select_nextConsignment() throws Throwable {
+		Thread.sleep(3000);
+		consignmentMaintenancePage.selectConsignment1();
+	}
 	@And("^validate Error message is displayed$")
 	public void validate_Error_message_is_displayed() throws Throwable {
 		Thread.sleep(3000);
@@ -149,5 +153,56 @@ public class ConsignmentMaintenanceStepDefs {
 		close_consignment();
 		jdaHomeStepDefs.click_done();
 	}
+	@And("I close the next consignment$")
+	public void closeNextConsignment() throws Throwable {
+		Thread.sleep(3000);
+		jdaHomeStepDefs.Go_to_close_consignment();
+		consignmentMaintenancePage.typeConsignment1();
+		jdaHomeStepDefs.click_next();
+		close_consignment();
+		jdaHomeStepDefs.click_done();
+	}
+	@And("I prepare first consignment to load$")
+	public void firstConsignmentLoad() throws Throwable {
+		Thread.sleep(3000);
+		jdaLoginPage.login();
+		create_consignment();
+		jdaLoginPage.login();
+		drop_consignment();
+	}
 	
+		public void create_consignment1() throws Throwable {
+			
+			jdaHomeStepDefs.Go_to_consignment_maintainance();
+			Right_click_to_Select_Toggle_Maintenance_Mode();
+			I_click_on_Add_button();
+			consignmentMaintenancePage.enterConsignment1();
+			//Enter_consignment_name();
+			Select_consignment_Status();
+			jdaFooter.clickExecuteButton();
+			Select_Mode_of_transport();
+			jdaFooter.clickExecuteButton();
+			///consignmentMaintenancePage.closeConsignment();
+		}
+		public void drop_consignment1() throws Throwable {
+			Thread.sleep(3000);
+			///consignmentMaintenancePage.closeConsignment();
+			jdaHomeStepDefs.Go_to_consignment_drop_maintainance_screen();
+			Right_click_to_Select_Toggle_Maintenance_Mode();
+			jdaFooter.clickAddButton();
+			consignmentMaintenancePage.typeConsignment1();
+			//Enter_consignment();
+			Enter_chamber_and_Address_Id();
+			jdaFooter.clickExecuteButton();
+			//jdaLoginPage.logOut();
+		}
+		@And("I prepare second consignment to load$")
+		public void secondConsignmentLoad() throws Throwable {
+			Thread.sleep(3000);
+			jdaLoginPage.login();
+			create_consignment1();
+			jdaLoginPage.login();
+			drop_consignment1();
+		}
 }
+

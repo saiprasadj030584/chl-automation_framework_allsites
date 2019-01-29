@@ -906,7 +906,38 @@ Feature: ConsignmentLinking
     And Select Trailer Type
     And click execute
     And validate the record is saved
+    
+  @completed @Vehicle_Loading @TC57_Negative_path_Add_wrong_mode_of_transport_consignment_to_existing_trailer
+  Scenario Outline: Negative path_Add wrong mode of transport consignment to existing trailer
+		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I prepare first consignment to load
+    And I prepare second consignment to load
+    Then I login as warehouse user in putty
+    And I link the first pallet and consignment
+    And I link the second pallet and next consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And I link next consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I close the next consignment
+    And I complete Vechile loading for first pallet
+    And I complete Vechile loading for Second consignment
+   
 
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+		
   @TC58_support_desk_team_access_amend_or_delete_sortation_rules
   Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
     Given The sku "<SkuId>" details and corresponding product group
