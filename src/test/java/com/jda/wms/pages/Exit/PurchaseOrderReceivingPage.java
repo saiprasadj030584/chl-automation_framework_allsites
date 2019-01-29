@@ -165,6 +165,11 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		Thread.sleep(1000);
 		screen.type(Key.TAB);
 	}
+	public void EnterPalletIDForRepacking(String palletID) throws InterruptedException {
+		screen.type(palletID);
+		Thread.sleep(1000);
+		
+	}
 	
 	public void EnterUPC(String UPC) throws InterruptedException {
 		screen.type(Key.TAB);
@@ -397,6 +402,32 @@ public class PurchaseOrderReceivingPage<EnterPalletID> {
 		screen.type("c", Key.CTRL);
 		return App.getClipboard();
 	}
-	
+	public void selectSorting() throws FindFailed, InterruptedException {
+		screen.type("232");
+		Thread.sleep(1000);
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
 	}
+
+	public void clickEnter() throws InterruptedException {
+		screen.type(Key.ENTER);
+		Thread.sleep(2000);
+	}
+
+	public void Combine()throws InterruptedException {
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type("N");
+		Thread.sleep(2000);
+		screen.type(Key.ENTER);
+	}
+
+	public boolean isRepackdone() {
+		if (screen.exists("images/Putty/RepackEntryPage.png") != null)
+			return true;
+		else
+			return false;
+	}
+	}
+	
 

@@ -286,6 +286,17 @@ public void enterSku(String skuId)  throws InterruptedException, FindFailed{
 	
 	
 }
+public String getLocation() throws FindFailed, InterruptedException {
+	
+	screen.wait("images/InventoryTransactionQuery/Location.png", timeoutInSec);
+	screen.click("images/InventoryTransactionQuery/Location.png");
+	Match mStatus = screen.find("images/InventoryTransactionQuery/Location.png");
+	screen.click(mStatus.getCenter().offset(70,0));
+	screen.type("a", Key.CTRL);
+	screen.type("c", Key.CTRL);
+	Thread.sleep(2000);
+	return App.getClipboard();
+}
 
 }
 

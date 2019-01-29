@@ -68,11 +68,11 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterTagId(String tagId) throws InterruptedException, FindFailed {
-		screen.wait("images/StockAdjustment/Search/TagID.png", timeoutInSec);
-		screen.click("images/StockAdjustment/Search/TagID.png");
-		Thread.sleep(2000);
+//		screen.wait("images/StockAdjustment/Search/TagID.png", timeoutInSec);
+//		screen.click("images/StockAdjustment/Search/TagID.png");
 		screen.type(tagId);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
+		screen.type(Key.TAB);
 	}
 
 	public void enterCEDutyStamp() throws InterruptedException, FindFailed {
@@ -85,14 +85,14 @@ public class StockAdjustmentsPage {
 	}
 
 	public void enterLocation(String location) throws InterruptedException, FindFailed {
-		Match mStatus = screen.find("images/StockAdjustment/Search/location.png");
-		screen.click(mStatus.getCenter().offset(70, 0));
-		/*
-		 * screen.wait("images/StockAdjustment/Search/location.png",
-		 * timeoutInSec);
-		 * screen.click("images/StockAdjustment/Search/location.png");
-		 */
-		Thread.sleep(2000);
+//		Match mStatus = screen.find("images/StockAdjustment/Search/location.png");
+//		screen.click(mStatus.getCenter().offset(70, 0));
+//		/*
+//		 * screen.wait("images/StockAdjustment/Search/location.png",
+//		 * timeoutInSec);
+//		 * screen.click("images/StockAdjustment/Search/location.png");
+//		 */
+//		Thread.sleep(2000);
 		screen.type(location);
 		Thread.sleep(2000);
 	}
@@ -190,11 +190,12 @@ public class StockAdjustmentsPage {
 	
 
 	public void enterSkuId(String skuId) throws InterruptedException, FindFailed{
-		screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
-		Match mSku=screen.find("images/InventoryTransactionQuery/SkuId.png");
-		screen.click(mSku.getCenter().offset(70,0));
-		Thread.sleep(1000);
+//		screen.wait("images/InventoryTransactionQuery/SkuId.png", timeoutInSec);
+//		Match mSku=screen.find("images/InventoryTransactionQuery/SkuId.png");
+//		screen.click(mSku.getCenter().offset(70,0));
+//		Thread.sleep(1000);
 		screen.type(skuId);
+		screen.type(Key.TAB);
 		
 		
 	}
@@ -234,6 +235,12 @@ public class StockAdjustmentsPage {
 		
 		
 	
+	}
+
+	public void clickGeneral()throws FindFailed{
+		screen.wait("images/InventoryTransactionQuery/GeneralTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/GeneralTab.png");
+		
 	}}
 
 

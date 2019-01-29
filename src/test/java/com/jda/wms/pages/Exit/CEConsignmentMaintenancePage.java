@@ -124,6 +124,14 @@ public class CEConsignmentMaintenancePage {
 		context.setConsignmentName(consignmentName);
 		screen.type(consignmentName);
 }
+	public void enterConsignment2() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		String Random = Utilities.getFiveDigitRandomNumber();
+		String consignmentName2 = "AUTO"+Random;
+		System.out.println("The consignment Name2:"+consignmentName2 );
+		context.setConsignmentName2(consignmentName2);
+		screen.type(consignmentName2);
+}
 	public void enterSameConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
 		String consignmentName1=context.getConsignmentName();
@@ -184,6 +192,12 @@ public class CEConsignmentMaintenancePage {
 	
 	public void typeConsignment() throws FindFailed,InterruptedException {
 		String consignmentNameDrop = context.getConsignmentName();
+		System.out.println("The consignment Name:"+consignmentNameDrop);
+		screen.type(consignmentNameDrop);
+}
+	
+	public void typeConsignment2() throws FindFailed,InterruptedException {
+		String consignmentNameDrop = context.getConsignmentName2();
 		System.out.println("The consignment Name:"+consignmentNameDrop);
 		screen.type(consignmentNameDrop);
 }

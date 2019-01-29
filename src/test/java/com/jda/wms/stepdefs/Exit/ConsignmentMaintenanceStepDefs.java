@@ -47,6 +47,11 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(1000);
 		consignmentMaintenancePage.enterConsignment();
 	}
+	@Then("^Enter consignment name2$")
+	public void Enter_consignment_name2() throws Throwable {
+		Thread.sleep(1000);
+		consignmentMaintenancePage.enterConsignment2();
+	}
 	
 	@Then("^Enter same consignment name$")
 	public void Enter_same_consignment_name() throws Throwable {
@@ -83,6 +88,12 @@ public class ConsignmentMaintenanceStepDefs {
 	@And("^Enter consignment$")
 	public void Enter_consignment() throws Throwable {
 		consignmentMaintenancePage.typeConsignment();
+		Thread.sleep(3000);
+		
+	}
+	@And("^Enter consignment2$")
+	public void Enter_consignment2() throws Throwable {
+		consignmentMaintenancePage.typeConsignment2();
 		Thread.sleep(3000);
 		
 	}
@@ -128,6 +139,30 @@ public class ConsignmentMaintenanceStepDefs {
 		jdaFooter.clickExecuteButton();
 		///consignmentMaintenancePage.closeConsignment();
 	}
+	@And("I create Multi consignment$")
+	public void create_multi_consignment() throws Throwable {
+		
+		jdaHomeStepDefs.Go_to_consignment_maintainance();
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		I_click_on_Add_button();
+		Enter_consignment_name();
+		Select_consignment_Status();
+		jdaFooter.clickExecuteButton();
+		Select_Mode_of_transport();
+		jdaFooter.clickExecuteButton();
+		
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		I_click_on_Add_button();
+		Enter_consignment_name2();
+		Select_consignment_Status();
+		jdaFooter.clickExecuteButton();
+		Select_Mode_of_transport();
+		jdaFooter.clickExecuteButton();
+		///consignmentMaintenancePage.closeConsignment();
+	}
+	
+
+
 	@And("drop the same consignment$")
 	public void drop_consignment() throws Throwable {
 		Thread.sleep(3000);
@@ -136,6 +171,24 @@ public class ConsignmentMaintenanceStepDefs {
 		Right_click_to_Select_Toggle_Maintenance_Mode();
 		jdaFooter.clickAddButton();
 		Enter_consignment();
+		Enter_chamber_and_Address_Id();
+		jdaFooter.clickExecuteButton();
+		//jdaLoginPage.logOut();
+	}
+	@And("drop the multi consignment$")
+	public void drop_multi_consignment() throws Throwable {
+		Thread.sleep(3000);
+		///consignmentMaintenancePage.closeConsignment();
+		jdaHomeStepDefs.Go_to_consignment_drop_maintainance_screen();
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		jdaFooter.clickAddButton();
+		Enter_consignment();
+		Enter_chamber_and_Address_Id();
+		jdaFooter.clickExecuteButton();
+		
+		Right_click_to_Select_Toggle_Maintenance_Mode();
+		jdaFooter.clickAddButton();
+		Enter_consignment2();
 		Enter_chamber_and_Address_Id();
 		jdaFooter.clickExecuteButton();
 		//jdaLoginPage.logOut();

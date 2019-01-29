@@ -381,6 +381,8 @@ public class JdaHomePage {
 		Thread.sleep(1000);
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
+		screen.type(Key.F7);
+		Thread.sleep(1000);
 	}
 
 	public void clickWelcomeButton() throws FindFailed {

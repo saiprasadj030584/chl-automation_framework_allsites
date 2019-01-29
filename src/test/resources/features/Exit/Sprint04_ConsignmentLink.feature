@@ -174,11 +174,10 @@ Feature: ConsignmentLinking
     Then Validate the putaway group is not null
 
   @completed @Putaway @TC11_Validate_black_stock_adjustment
-  Scenario Outline: To Validate Black stock adjustment
+  Scenario: To Validate Black stock adjustment
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
     Then Navigate to Stock Adjustment Screen
-    And Click next
     And Query with sku id and tag id in BLACK area
     And Click next
     And Click next
@@ -186,10 +185,7 @@ Feature: ConsignmentLinking
     When Verified in Inventory and ITL
     Then Stock is validated successfully
 
-    Examples: 
-      | Location |
-      | AA001    |
-
+    
   @completed @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
   Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
@@ -511,6 +507,29 @@ Feature: ConsignmentLinking
     Then Enter Trailer number
     And Click next
     And validate the error popup is displayed
+    
+    @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
+  Scenario Outline: Validate vehicle loading with multiple consignments_single User
+
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create Multi consignment
+    And Login to JDA Dispatcher web screen
+    And drop the multi consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading
 
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report
@@ -1022,7 +1041,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @inProgress @Repacking @TC66_Missing_URN_Repacking
+  @completed @Repacking @TC66_Missing_URN_Repacking
   Scenario Outline: Missing URN_Repacking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
@@ -1033,7 +1052,12 @@ Feature: ConsignmentLinking
     And I Navigate to Order Container Maintenance page
     Then Site finds the stock physically
     Then I login as warehouse user in putty
-    And I select user directed option in main menu
+    And I select sorting
+    Then I enter URN and ToPallet
+    And Login to JDA Dispatcher web screen
+    And I Navigate to Order Container Maintenance page
+    Then Verify the container ID to be changed
+    
 
     Examples: 
       | SkuId              |

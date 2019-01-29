@@ -156,6 +156,7 @@ public class Context {
 	private String palletIDforUPI1;
 	private String BelCode1;
 	private String PalletId1;
+	private String consignmentName2;
 	
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -1263,6 +1264,15 @@ public class Context {
 	public void setPalletId1(String palletId1) {
 		PalletId1 = palletId1;
 	}
+
+	public String getConsignmentName2() {
+		return consignmentName2;
+	}
+
+	public void setConsignmentName2(String consignmentName2) {
+		this.consignmentName2 = consignmentName2;
+	}
+
 	
 	
 	}

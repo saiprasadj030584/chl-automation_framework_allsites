@@ -745,6 +745,7 @@ public class JDAExitputtyfunctionsStepDef {
 		String palletdigit = Utilities.getsevenDigitRandomNumber();
 		ToPallet="P"+palletdigit;
 		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		context.setPalletId1(ToPallet);
 		puttyFunctionsPage.nextScreen();
 		String Expirydate= Utilities.getAddedSystemYear();
 		purchaseOrderReceivingPage.EnterToExpirydate(Expirydate);
@@ -1205,5 +1206,9 @@ public void vehicleLoadingnextpallet() throws Throwable {
 	Thread.sleep(5000);
 	//puttyFunctionsPage.pressEnter();
 	consignmentIsLoaded();
+}
+@When("^I select sorting$")
+public void i_select_sorting() throws Throwable {
+	purchaseOrderReceivingPage.selectSorting();
 }
 }

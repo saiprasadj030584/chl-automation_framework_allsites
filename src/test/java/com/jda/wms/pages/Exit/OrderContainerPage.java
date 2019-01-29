@@ -1,6 +1,10 @@
 package com.jda.wms.pages.Exit;
 
 import org.junit.Assert;
+import org.sikuli.script.App;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Match;
 import org.sikuli.script.Screen;
 
 import com.google.inject.Inject;
@@ -38,6 +42,19 @@ public class OrderContainerPage {
 	public void enterContainerId(String containerId) throws InterruptedException {
 		screen.type(containerId);
 		Thread.sleep(1000);
+	}
+
+
+	public String getContainer() throws FindFailed, InterruptedException {
+		
+		screen.wait("images/OrderContainer/Container.png", timeoutInSec);
+		screen.click("images/OrderContainer/Container.png");
+		Match mStatus = screen.find("images/OrderContainer/Container.png");
+		screen.click(mStatus.getCenter().offset(70,0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		Thread.sleep(2000);
+		return App.getClipboard();
 	}
 	
 	

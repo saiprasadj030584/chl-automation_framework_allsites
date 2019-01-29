@@ -225,9 +225,8 @@ public class InventoryTransactionStepDefs {
 	public void take_a_sku_having_stock_in_(String workZone) throws Throwable {
 		jdaHomePage.navigateToInventoryQueryScreen();
 		inventoryTransactionPage.click_on_Query();
-
-		inventoryTransactionPage.enterLocation(context.getLocation());
-		inventoryTransactionPage.clickExecuteButton();
+		
+	inventoryTransactionPage.clickExecuteButton();
 		String SKUBlack = inventoryTransactionPage.getSku();
 		context.setSkuId(SKUBlack);
 		System.out.println("SKUBlack="+ SKUBlack);
@@ -236,6 +235,8 @@ public class InventoryTransactionStepDefs {
 		System.out.println("tagID=" + tagID);
 		context.setQuantity(inventoryTransactionPage.getQuantityOnHand());
 		System.out.println("Quantity in Hand="+inventoryTransactionPage.getQuantityOnHand());
+		inventoryTransactionPage.getLocation();
+		context.setlocationID(inventoryTransactionPage.getLocation());
 		Assert.assertEquals("Workzone not as expected", workZone, inventoryTransactionPage.getWorkZone());
 		
 		}
@@ -266,9 +267,9 @@ public class InventoryTransactionStepDefs {
 
 	@Then("^Stock is validated successfully$")
 	public void stock_validated() throws Throwable {
-		String UpdatedQuantity= inventoryDB.getQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId());
+		String UpdatedQuantity= inventoryDB.getQtyOnHand(context.getSkuId(), context.getlocationID(), context.getTagId());
 		Assert.assertEquals("stock not as expected", context.getQtyOnHand(), UpdatedQuantity);
-		inventoryDB.updateQtyOnHand(context.getSkuId(), context.getLocation(), context.getTagId());
+		inventoryDB.updateQtyOnHand(context.getSkuId(), context.getlocationID(), context.getTagId());
 	}
 
 	@Then("^Get the tag ID$")
