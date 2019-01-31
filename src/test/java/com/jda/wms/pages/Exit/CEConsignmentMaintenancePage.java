@@ -131,6 +131,15 @@ public class CEConsignmentMaintenancePage {
 		System.out.println("The consignment Name2:"+consignmentName2 );
 		context.setConsignmentName2(consignmentName2);
 		screen.type(consignmentName2);
+		
+	}
+	public void enterConsignment1() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		String Random = Utilities.getFiveDigitRandomNumber();
+		String consignmentName1 = "AUTO"+Random;
+		System.out.println("The consignment Name:"+consignmentName1 );
+		context.setConsignmentName(consignmentName1);
+		screen.type(consignmentName1);
 }
 	public void enterSameConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
@@ -203,7 +212,11 @@ public class CEConsignmentMaintenancePage {
 	public void typeConsignment2() throws FindFailed,InterruptedException {
 		String consignmentNameDrop = context.getConsignmentName2();
 		System.out.println("The consignment Name:"+consignmentNameDrop);
-		screen.type(consignmentNameDrop);
+		screen.type(consignmentNameDrop);}
+	public void typeConsignment1() throws FindFailed,InterruptedException {
+		String consignmentNameDrop1 = context.getConsignmentName();
+		System.out.println("The consignment Name:"+consignmentNameDrop1);
+		screen.type(consignmentNameDrop1);
 }
 	public void typeChamberAddressId() throws FindFailed,InterruptedException {
 		Thread.sleep(2000);
@@ -251,7 +264,20 @@ public class CEConsignmentMaintenancePage {
 		screen.click(status.getCenter().offset(90, 0));
 		typeConsignment2();
 }
-	
+	public void selectConsignment1() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
+		screen.click(status.getCenter().offset(90, 0));
+		typeConsignment1();
+}
+	public void selectConsignment1() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
+		screen.click(status.getCenter().offset(90, 0));
+		typeConsignment1();
+}
 	public void consignmentError() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentError.png", timeoutInSec);

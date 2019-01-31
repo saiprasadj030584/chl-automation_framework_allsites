@@ -29,6 +29,7 @@ import com.jda.wms.pages.Exit.PuttyFunctionsPage;
 import com.jda.wms.pages.Exit.StoreTrackingOrderPickingPage;
 import com.jda.wms.pages.Exit.TrailerMaintenancePage;
 import com.jda.wms.utils.Utilities;
+import com.jda.wms.pages.Exit.CEConsignmentMaintenancePage;
 import com.jda.wms.pages.Exit.JdaHomePage;
 import com.jda.wms.pages.Exit.LocationZonePage;
 
@@ -64,7 +65,7 @@ public class JDAExitputtyfunctionsStepDef {
 	private Hooks hooks;
 	private final JdaHomePage imageCheckFunction;
 	private final ConsignmentMaintenanceStepDefs consignmentMaintSD;
-	
+	private final CEConsignmentMaintenancePage consignmentMaintenancePage;
 
 	@Inject
 	public JDAExitputtyfunctionsStepDef(PurchaseOrderReceivingPage purchaseOrderReceivingPage,
@@ -72,7 +73,7 @@ public class JDAExitputtyfunctionsStepDef {
 			MoveTaskDB moveTaskDB,StoreTrackingOrderPickingPage storeTrackingOrderPickingPage,
 			PuttyFunctionsPage puttyFunctionsPage, Configuration configuration, Context context,
 			PreAdviceHeaderDB preAdviceHeaderDB,
-			JdaHomePage imageCheckFunction,ConsignmentMaintenanceStepDefs consignmentMaintSD, LocationZonePage LocationZonePage,Hooks hooks,TrailerMaintenancePage trailerMaintenancePage) {
+			JdaHomePage imageCheckFunction,ConsignmentMaintenanceStepDefs consignmentMaintSD, LocationZonePage LocationZonePage,Hooks hooks,CEConsignmentMaintenancePage consignmentMaintenancePage,TrailerMaintenancePage trailerMaintenancePage) {
 			
 			{
 		this.puttyFunctionsPage = puttyFunctionsPage;
@@ -90,6 +91,7 @@ public class JDAExitputtyfunctionsStepDef {
 		this.hooks=hooks;
 		this.trailerMaintenancePage=trailerMaintenancePage;
 		this.consignmentMaintSD=consignmentMaintSD;
+		this.consignmentMaintenancePage=consignmentMaintenancePage;
 		this.imageCheckFunction = imageCheckFunction;}
 	}
 	@Given("^I have logged in as warehouse user in putty$")
@@ -1060,10 +1062,37 @@ public void LinkfirstPalletconsignment() throws Throwable {
 	Thread.sleep(5000);
 	
 }
+//@And("^I link the second pallet and consignment$")
+//public void LinksecondPalletconsignment() throws Throwable {
+//	Thread.sleep(2000);
+//	getPalletId1();
+//	puttyFunctionsPage.linkPalletId();
+//	Thread.sleep(5000);
+//	puttyFunctionsPage.pressEnter();
+//	Thread.sleep(5000);
+//	hooks.logoutPutty();
+//	Thread.sleep(5000);
+//}
+//@And("^I link the first pallet and consignment$")
+//public void LinkfirstPalletconsignment() throws Throwable {
+//	Thread.sleep(2000);
+//	i_select_user_directed_option_in_main_menu();
+//	configure_putty_settings();
+//	InventoryTransaction();
+//	getPalletId();
+//	consignmentMaintSD.Enter_consignment();
+//	Thread.sleep(3000);
+//	puttyFunctionsPage.linkPalletId();
+//	Thread.sleep(5000);
+//	puttyFunctionsPage.pressEnter();
+//	Thread.sleep(5000);
+	
+//}
 @And("^I link the second pallet and consignment$")
 public void LinksecondPalletconsignment() throws Throwable {
 	Thread.sleep(2000);
 	getPalletId1();
+	
 	puttyFunctionsPage.linkPalletId();
 	Thread.sleep(5000);
 	puttyFunctionsPage.pressEnter();
@@ -1071,7 +1100,19 @@ public void LinksecondPalletconsignment() throws Throwable {
 	hooks.logoutPutty();
 	Thread.sleep(5000);
 }
-
+@And("^I link the second pallet and next consignment$")
+public void LinksecondPalletAndconsignment() throws Throwable {
+	Thread.sleep(2000);
+	getPalletId1();
+	consignmentMaintenancePage.typeConsignment1();
+	Thread.sleep(3000);
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
+	Thread.sleep(5000);
+}
 @And("^I unlink consignment with trailer$")
 public void UnLinkPalletconsignment() throws Throwable {
 	Thread.sleep(2000);
@@ -1272,9 +1313,11 @@ public void vehicleLoadingfirstpallet() throws Throwable {
 	puttyFunctionsPage.pressEnter();
 	//consignmentIsLoaded();
 }
+
 @And("^I complete vehicle loading for next pallet$")
 public void vehicleLoadingnextpallet() throws Throwable {
 	Thread.sleep(2000);
+	Thread.sleep(5000);
 	//i_login_as_warehouse_user_in_putty();
 	//i_select_user_directed_option_in_main_menu();
 	//i_select_vehicle_directed_option_in_main_menu();
@@ -1284,7 +1327,27 @@ public void vehicleLoadingnextpallet() throws Throwable {
 	//getTrailerId();
 	Thread.sleep(5000);
 	//puttyFunctionsPage.pressEnter();
-	consignmentIsLoaded();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
+}
+@And("^I complete Vechile loading for Second consignment$")
+public void vehicleLoadingSecondConsignment() throws Throwable {
+	Thread.sleep(2000);
+	
+	getPalletId1();
+	consignmentMaintenancePage.typeConsignment1();
+	getTrailerId();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
+	//consignmentIsLoaded();
 }
 @When("^I select sorting$")
 public void i_select_sorting() throws Throwable {

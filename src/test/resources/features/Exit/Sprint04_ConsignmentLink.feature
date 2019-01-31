@@ -811,8 +811,6 @@ Feature: ConsignmentLinking
     And drop the same consignment
     And Login to JDA Dispatcher web screen
     And I create Trailer
-    
-    
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
@@ -889,7 +887,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-@InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
+  @InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
   Scenario Outline: Vehicle multi pallet loading
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -912,13 +910,14 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I link the next pallet and consignment
     And Login to JDA Dispatcher web screen
-		And I close the consignment
-		And I complete Vechile loading for first pallet
-		And I complete vehicle loading for next pallet
-		
+    And I close the consignment
+    And I complete Vechile loading for first pallet
+    And I complete vehicle loading for next pallet
+
     Examples: 
       | SKU                |
       | 000000000021071852 |
+
   @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
   Scenario: Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
@@ -930,16 +929,45 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
     
-    
-    @TC58_support_desk_team_access_amend_or_delete_sortation_rules
-    Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
+  @completed @Vehicle_Loading @TC57_Negative_path_Add_wrong_mode_of_transport_consignment_to_existing_trailer
+  Scenario Outline: Negative path_Add wrong mode of transport consignment to existing trailer
+		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I prepare first consignment to load
+    And I prepare second consignment to load
+    Then I login as warehouse user in putty
+    And I link the first pallet and consignment
+    And I link the second pallet and next consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And I link next consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I close the next consignment
+    And I complete Vechile loading for first pallet
+    And I complete Vechile loading for Second consignment
+   
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+		
+  @TC58_support_desk_team_access_amend_or_delete_sortation_rules
+  Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
     Given The sku "<SkuId>" details and corresponding product group
     Given Access the table for trusted group given the customerID "7977"
-    
-     Examples: 
-      | SkuId                |
+
+    Examples: 
+      | SkuId              |
       | 000000000021071852 |
-    
 
   @completed @ConsignmentLinking @TC60_RED_Report_creation
   Scenario: To Verify RED Report creation
@@ -1093,6 +1121,55 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
+  @Sortation @TC068_Pick_Sort_to_an_Outbound_Pallet_from_Black_Stock
+  Scenario Outline: Validate adding urn to pallet id
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
+  Scenario Outline: To validate Compliance Check - Supplier Record does not exist
+    Given The details for the sku "<SkuId>"
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I navigate to Order header screen to verify the status in Released
+    And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
+    Then supplier record does not exist
+    Then Validate User defined check three as the red sku becomes green
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I select sorting menu
+    And I enter URN for sortation in Direct Receiving
+    And Login to JDA Dispatcher web screen
+    And Go to Inventory Transaction & Click
+    And Click on Query
+    And Enter Container_ID
+    And click execute
+    And check the Inventory Transaction for Receipt, Allocate,Pick and Repack record
+
+    Examples: 
+      | SkuId              |
+      | 000000000021071851 |
+
   @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
   Scenario Outline: Auto complete Red URN putaway post receipt
     Given The details for the sku "<SkuId>"
@@ -1108,3 +1185,59 @@ Feature: ConsignmentLinking
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+
+  @completed @ConsignmentLinking @TC71_Vehicle_multi_pallet_loading
+  Scenario Outline: Vehicle multi pallet loading
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter first URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    And I enter next URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And Login to JDA Dispatcher web screen
+    And drop the same consignment
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    Then I login as warehouse user in putty
+    And I link the first pallet and consignment
+    And I link the second pallet and consignment
+    And Login to JDA Dispatcher web screen
+    And I link consignment with trailer
+    And Login to JDA Dispatcher web screen
+    And I close the consignment
+    And I complete Vechile loading for first pallet
+    And I complete vehicle loading for next pallet
+
+    Examples: 
+      | SKU                |
+      | 000000000021071852 |
+
+  @completed @Trailer_Maintenance @TC73_Negative_path_Mode_of_transport_validation_for_a_trailer
+  Scenario: Negative path_Mode of transport validation for a trailer
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    Then Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And Select trailer type to reflect Hazardous and Repack status
+    And click execute
+    And validate the record is saved
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And validate error message is displayed
