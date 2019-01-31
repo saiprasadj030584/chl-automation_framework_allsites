@@ -529,7 +529,7 @@ Feature: ConsignmentLinking
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
     And I close the multi consignment
-    And I complete  multi Vechile loading
+    And I complete Vechile loading for multi consignment
      Examples: 
       | SKU                |
       | 000000000021071852 |
