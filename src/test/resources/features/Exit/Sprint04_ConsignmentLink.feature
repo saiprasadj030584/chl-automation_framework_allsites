@@ -524,12 +524,15 @@ Feature: ConsignmentLinking
     And I create Trailer
     And I create DockDoor
     Then I login as warehouse user in putty
-    And I link the pallet and consignment
+    And I link the pallet and multi consignment
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
-    And I close the consignment
-    And I complete Vechile loading
+    And I close the multi consignment
+    And I complete  multi Vechile loading
+     Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
   @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report

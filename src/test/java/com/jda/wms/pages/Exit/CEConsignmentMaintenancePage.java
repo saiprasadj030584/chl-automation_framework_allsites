@@ -137,7 +137,11 @@ public class CEConsignmentMaintenancePage {
 		String consignmentName1=context.getConsignmentName();
 		screen.type(consignmentName1);
 }
-	
+	public void enterSameConsignment2() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		String consignmentName1=context.getConsignmentName2();
+		screen.type(consignmentName1);
+}
 	public String verifyConsignment() throws FindFailed {
 		Match ConsignmentID = screen.find("images/CEConsignmentMaintenance/ConsignmentID.png");
 		screen.click(ConsignmentID.getCenter().offset(90, 0));
@@ -217,12 +221,35 @@ public class CEConsignmentMaintenancePage {
 		screen.type("7993");
 		Thread.sleep(3000);
 }
+	public void typeChamberAddressId2() throws FindFailed,InterruptedException {
+		Thread.sleep(2000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropChamber.png", timeoutInSec);
+	    Match Chamber = screen.find("images/CEConsignmentMaintenance/ConsignmentDropChamber.png");
+	    Thread.sleep(2000);
+	    screen.click(Chamber.getCenter().offset(90, 0));
+		Thread.sleep(2000);
+		screen.type("1");
+		Thread.sleep(2000);
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentDropAddress.png", timeoutInSec);
+	    Match Address = screen.find("images/CEConsignmentMaintenance/ConsignmentDropAddress.png");
+	    Thread.sleep(3000);
+	    screen.click(Address.getCenter().offset(90, 0));
+		screen.type("7993");
+		Thread.sleep(3000);
+}
 	public void selectConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
 		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
 	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
 		screen.click(status.getCenter().offset(90, 0));
 		typeConsignment();
+}
+	public void selectConsignment2() throws FindFailed,InterruptedException {
+		Thread.sleep(1000);
+		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
+		screen.click(status.getCenter().offset(90, 0));
+		typeConsignment2();
 }
 	
 	public void consignmentError() throws FindFailed,InterruptedException {

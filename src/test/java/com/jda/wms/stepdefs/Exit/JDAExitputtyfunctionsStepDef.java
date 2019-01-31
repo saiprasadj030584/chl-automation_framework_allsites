@@ -204,12 +204,29 @@ public class JDAExitputtyfunctionsStepDef {
 		hooks.logoutPutty();
 		Thread.sleep(5000);
 	}
+	@Then("^Validate the pallet and multi consignment is linked$")
+	public void multiconsignmentIsLinked() throws Throwable {
+		Thread.sleep(3000);
+		puttyFunctionsPage.linkPalletId();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
+		screen.type(Key.F12);
+		screen.type(Key.F12);
+		Thread.sleep(5000);
+	}
 	@Then("^Validate the pallet and consignment is loaded$")
 	public void consignmentIsLoaded() throws Throwable {
 		puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
+	}
+	@Then("^Validate the pallet and multi consignment is loaded$")
+	public void MulticonsignmentIsLoaded() throws Throwable {
+		puttyFunctionsPage.linkPalletId();
+		Thread.sleep(5000);
+		puttyFunctionsPage.pressEnter();
+		
 	}
 	
 	@When("^I select user directed option in main menu$")
@@ -998,6 +1015,21 @@ public void LinkPalletconsignment() throws Throwable {
 	Thread.sleep(5000);
 	
 }
+@And("^I link the pallet and multi consignment$")
+public void LinkPallet_and_multi_consignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	multiconsignmentIsLinked();
+	
+	consignmentMaintSD.Enter_consignment2();
+	consignmentIsLinked();
+	Thread.sleep(5000);
+	
+}
 @And("^I link the next pallet and consignment$")
 public void LinknextPalletconsignment() throws Throwable {
 	Thread.sleep(2000);
@@ -1012,6 +1044,32 @@ public void LinknextPalletconsignment() throws Throwable {
 	puttyFunctionsPage.pressEnter();
 	Thread.sleep(5000);
 	
+}
+@And("^I link the first pallet and consignment$")
+public void LinkfirstPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	i_select_user_directed_option_in_main_menu();
+	configure_putty_settings();
+	InventoryTransaction();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	Thread.sleep(3000);
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	
+}
+@And("^I link the second pallet and consignment$")
+public void LinksecondPalletconsignment() throws Throwable {
+	Thread.sleep(2000);
+	getPalletId1();
+	puttyFunctionsPage.linkPalletId();
+	Thread.sleep(5000);
+	puttyFunctionsPage.pressEnter();
+	Thread.sleep(5000);
+	hooks.logoutPutty();
+	Thread.sleep(5000);
 }
 
 @And("^I unlink consignment with trailer$")
@@ -1037,6 +1095,27 @@ public void vehicleLoading() throws Throwable {
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
 	consignmentIsLoaded();
+}
+
+@And("^I complete Vechile loading for multi consignment$")
+public void vehicleLoading_for_multi_consignment() throws Throwable {
+	Thread.sleep(2000);
+	i_login_as_warehouse_user_in_putty();
+	i_select_user_directed_option_in_main_menu();
+	i_select_vehicle_directed_option_in_main_menu();
+	i_select_multiPallet_load();
+	getPalletId();
+	consignmentMaintSD.Enter_consignment();
+	getTrailerId();
+	MulticonsignmentIsLoaded();
+	screen.type(Key.F12);
+	screen.type(Key.F12);
+	screen.type(Key.F12);
+	consignmentMaintSD.Enter_consignment2();
+	getTrailerId();
+	consignmentIsLoaded();
+
+	
 }
 @And("^I repack the consignment$")
 public void rePackClosedConsignment() throws Throwable {

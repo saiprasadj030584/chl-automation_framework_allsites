@@ -63,6 +63,11 @@ public class TrailerMaintenanceStepDefs {
 	
 		trailerMaintenancePage.selectTrailerType();
 	}
+	@And("^Select Trailer Type as sea$")
+	public void Select_Trailer_Type_Sea() throws Throwable {
+	
+		trailerMaintenancePage.selectTrailerTypeSea();
+	}
 	@And("^Select Trailer$")
 	public void Select_Trailer() throws Throwable {
 	
@@ -131,6 +136,15 @@ public class TrailerMaintenanceStepDefs {
 		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
 		Select_Trailer();
 		consignmentMaintSD.Select_Consignment();
+		jdaHomeStepDefs.click_next();
+		jdaHomeStepDefs.click_next();
+		And_I_click_on_trailer_Add_button();
+		jdaHomeStepDefs.click_next();
+		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		jdaHomeStepDefs.click_done();
+		
+		Select_Trailer();
+		consignmentMaintSD.Select_Consignment2();
 		jdaHomeStepDefs.click_next();
 		jdaHomeStepDefs.click_next();
 		And_I_click_on_trailer_Add_button();

@@ -58,6 +58,11 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(1000);
 		consignmentMaintenancePage.enterSameConsignment();
 	}
+	@Then("^Enter same consignment name2$")
+	public void Enter_same_consignment_name2() throws Throwable {
+		Thread.sleep(1000);
+		consignmentMaintenancePage.enterSameConsignment2();
+	}
 	@Then("^validate the consignment id is created$")
 	public void validate_consignment_name() throws Throwable {
 		consignmentMaintenancePage.verifyConsignment();
@@ -103,6 +108,12 @@ public class ConsignmentMaintenanceStepDefs {
 		consignmentMaintenancePage.typeChamberAddressId();
 		//Thread.sleep(3000);
 	}
+	@And("^Enter chamber and Address Id12$")
+	public void Enter_chamber_and_Address_Id2() throws Throwable {
+		//Thread.sleep(3000);
+		consignmentMaintenancePage.typeChamberAddressId2();
+		//Thread.sleep(3000);
+	}
 	@And("^Enter dock door$")
 	public void Enter_chamber_and_dock_Id() throws Throwable {
 		Thread.sleep(3000);
@@ -115,6 +126,12 @@ public class ConsignmentMaintenanceStepDefs {
 	public void Select_Consignment() throws Throwable {
 		Thread.sleep(3000);
 		consignmentMaintenancePage.selectConsignment();
+	}
+	
+	@And("^Select Consignment2$")
+	public void Select_Consignment2() throws Throwable {
+		Thread.sleep(3000);
+		consignmentMaintenancePage.selectConsignment2();
 	}
 	@And("^validate Error message is displayed$")
 	public void validate_Error_message_is_displayed() throws Throwable {
@@ -189,7 +206,7 @@ public class ConsignmentMaintenanceStepDefs {
 		Right_click_to_Select_Toggle_Maintenance_Mode();
 		jdaFooter.clickAddButton();
 		Enter_consignment2();
-		Enter_chamber_and_Address_Id();
+		Enter_chamber_and_Address_Id2();
 		jdaFooter.clickExecuteButton();
 		//jdaLoginPage.logOut();
 	}
@@ -198,6 +215,21 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(3000);
 		jdaHomeStepDefs.Go_to_close_consignment();
 		Enter_same_consignment_name();
+		jdaHomeStepDefs.click_next();
+		close_consignment();
+		jdaHomeStepDefs.click_done();
+	}
+	
+	@And("I close the multi consignment$")
+	public void closeMultiConsignment() throws Throwable {
+		Thread.sleep(3000);
+		jdaHomeStepDefs.Go_to_close_consignment();
+		Enter_same_consignment_name();
+		jdaHomeStepDefs.click_next();
+		close_consignment();
+		jdaHomeStepDefs.click_done();
+		
+		Enter_same_consignment_name2();
 		jdaHomeStepDefs.click_next();
 		close_consignment();
 		jdaHomeStepDefs.click_done();

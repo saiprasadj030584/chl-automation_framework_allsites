@@ -88,6 +88,17 @@ public class TrailerMaintenancePage {
 		   reg.hover(header);
 		   reg.click(header);
 	}
+	public void selectTrailerTypeSea() throws FindFailed, InterruptedException {
+		screen.wait("images/TrailerShipping/TrailerType.png", timeoutInSec);
+	    Match status = screen.find("images/TrailerShipping/TrailerType.png");
+		screen.click(status.getCenter().offset(90, 0));
+		Thread.sleep(1000);
+		 Match header = screen.find("images/CEConsignmentMaintenance/ConsignmentTransModeSea.png");
+		   reg=header.below(150).left(5).right(1000);
+		   reg.hover(header);
+		   reg.click(header);
+	}
+	
 	public void selectTrailer() throws FindFailed, InterruptedException {
 		String Trailer = context.getTrailerNumber();
 		Thread.sleep(1000);
