@@ -271,13 +271,7 @@ public class CEConsignmentMaintenancePage {
 		screen.click(status.getCenter().offset(90, 0));
 		typeConsignment1();
 }
-	public void selectConsignment1() throws FindFailed,InterruptedException {
-		Thread.sleep(1000);
-		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
-	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
-		screen.click(status.getCenter().offset(90, 0));
-		typeConsignment1();
-}
+	
 	public void consignmentError() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
 		screen.wait("images/CEConsignmentMaintenance/ConsignmentError.png", timeoutInSec);
