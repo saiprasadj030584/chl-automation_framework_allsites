@@ -405,12 +405,10 @@ Feature: Master_data_setup
 
 @Completed @Sprint01 @Pre_receiving @TC37_Verify_ASN_Closure
   Scenario: To verify ASN closure
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
-    And Login to JDA Dispatcher web screen
+    Given Login to JDA Dispatcher web screen
     Then Verify the status of ASN in Delivery screen
-
-  #Then Status should be completed
+  	Then verify Status as completed
+  
   @Completed @Sprint01 @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
   Scenario: To verify the pre-advice merge rules
     Given Insert Pre-advice data with PO type "DIRECT"

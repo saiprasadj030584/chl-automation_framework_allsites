@@ -57,4 +57,13 @@ public class DeliveryTableStepDefs{
 	     deliveryPage.EnterASNID();
 		 
 	 }
+	 
+	 @Then("^verify Status as completed$")
+	 public void  verify_Status_as_completed() throws FindFailed, InterruptedException
+	 {
+		 
+	     deliveryPage.verifyStatus();
+		 
+	 }
+	
 }
