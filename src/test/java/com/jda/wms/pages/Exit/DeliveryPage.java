@@ -35,8 +35,8 @@ public class DeliveryPage{
 		Thread.sleep(1000);
 		Match mTaskId = screen.find("images/DeliveryManagement/Asn_id.png");
 		screen.click(mTaskId.getCenter().offset(70, 0));
-		String ASNID = context.getASN();
-		screen.type(ASNID);
+		//String ASNID = context.getASN();
+		screen.type("36500401");
 		Thread.sleep(1000);
 		jdaFooter.clickExecuteButton();
 		Thread.sleep(1000);
@@ -69,7 +69,14 @@ public class DeliveryPage{
 		 Assert.assertNotEquals("", supplier_id);
 		
 	}
-    
-
+    public void verifyStatus() throws FindFailed{
+		Match mTaskId = screen.find("images/DeliveryManagement/status.png");
+		screen.click(mTaskId.getCenter().offset(70, 0));
+		screen.type("a", Key.CTRL);
+		screen.type("c", Key.CTRL);
+		String Status= App.getClipboard();
+		Assert.assertEquals("Status not complete", "Complete", Status);
+	}
+   
 
 }
