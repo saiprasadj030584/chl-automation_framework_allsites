@@ -53,12 +53,15 @@ public class InsertDataIntoDB {
                         +queryInsertDate+" 00.00.00.000000000'),null,null,null,null,null,null,null,null,null,null,null,null,'N',null,null,'N','N',null,null,null,'N',null,'N',null,null,null,null,null,null,null,'"+Preadvice+"','T78',null,null,'DIRECT','B',null,null,null,'N','N','N',to_timestamp('"
                         +queryInsertDate+" 12.05.23.000000000'),null,null,null,null,null,null,5581,null,null,null,null,null,'N',null,null,null,null,null,'Europe/Belfast','Europe/London',null, 'M+S', 'A', 'Pending',null,to_timestamp('"+queryInsertDate+" 23.49.04.679759000'))";
 		System.out.println("Insert Pre Advice Header");
+		//String query = "select * from interface_pre_advice_header";
 		System.out.println(query);
 		if (context.getConnection() == null) {
 			database.connect();
 		}
 		Statement stmt = context.getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		System.out.println("statement");
+		stmt.executeQuery(query);
+		System.out.println("srrrrrrrrrrrrrrrrrrrrt");
 		context.getConnection().commit();
 	}
 
