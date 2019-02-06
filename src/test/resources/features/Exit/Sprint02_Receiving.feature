@@ -3,6 +3,21 @@ Feature: Receiving
   As a Exit DC user should be able to login
    so that I validate the  master data setup
    with Pre-receiving
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#TestCases included in @Sprint02
+
+#TC01_Batch_and_Expiry_Date_Check
+#TC02_Client_ID_Auto_populated
+#TC03_Compliance_Check
+#TC04_Validate_Compliance_check_tDept_is_null_or_invalid
+#TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
+#TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
+#TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
+#TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
+#TC09_Validate_Compliance_supplier_record_does_not_exist
+#TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
+#
+
 
   @Completed @Sprint02 @Receiving @TC01_Batch_and_Expiry_Date_Check
   Scenario Outline: To Check if the Batch and Expiry date are captured in EXIT dispatcher
@@ -24,12 +39,16 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @Completed @Sprint02 @Receiving @TC02_Client_ID_Auto_populated
   Scenario: To verify GS128 - Screen - Default Client Auto populated
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
     And Verify scan URN screen displayed
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   @Completed @Sprint02 @Receiving @TC03_Compliance_Check
   Scenario Outline: Compliance Check - Happy path - All the required fields are valid
@@ -53,6 +72,8 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071852 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @Completed @Sprint02 @Receiving @TC04_Validate_Compliance_check_tDept_is_null_or_invalid
   Scenario Outline: To validate Compliance Check - T-Dept is NULL or invalid
     Given The details for the sku "<SkuId>"
@@ -68,6 +89,8 @@ Feature: Receiving
     Examples: 
       | SkuId              |
       | 000000000021071851 |
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   @Completed @Sprint02 @Receiving @TC05_Validate_Compliance_check_Stroke_category_is_null_or_invalid
   Scenario Outline: To validate Compliance Check - Stroke Category is NULL or invalid
@@ -86,6 +109,8 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071851 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 @Completed @Sprint02 @Receiving @TC06_Validate_Compliance_check_commodity_code_is_null_or_invalid
   Scenario Outline: To validate Compliance Check - Commodity Code is NULL or invalid
     Given The details for the sku "<SkuId>"
@@ -102,6 +127,8 @@ Feature: Receiving
     Examples: 
       | SkuId              |
       | 000000000021071851 |
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   @Completed @Sprint02 @Receiving @TC07_Validate_Compliance_check_check_weight_is_null_or_invalid
   Scenario Outline: To validate Compliance Check - Weight is NULL or less than 0.00 and = 999
@@ -120,6 +147,8 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071851 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @Completed @Sprint02 @Receiving @TC08_Validate_Compliance_supplier_declaration_validity_is_null_or_in_the_past
   Scenario Outline: To validate Compliance Check - Supplier Declaration Validity is NULL or in the past
     Given The details for the sku "<SkuId>"
@@ -137,6 +166,8 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071851 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @Completed @Sprint02 @Receiving @TC09_Validate_Compliance_supplier_record_does_not_exist
   Scenario Outline: To validate Compliance Check - Supplier Record does not exist
     Given The details for the sku "<SkuId>"
@@ -153,6 +184,8 @@ Feature: Receiving
       | SkuId              |
       | 000000000021071851 |
 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @Completed @Sprint02 @Receiving @TC10_Direct_receiving_Happy_path_Non_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate direct receiving happy path non-trusted-non-prohibited inventory
     Given Checking the conditions "Non-Trusted", "Boxed" and "Non-Prohibited" for the sku "<SkuId>" and customerID "7977"
@@ -168,6 +201,8 @@ Feature: Receiving
     Examples: 
       | SkuId              |
       | 000000000021071852 |
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   @Completed @Sprint02 @Receiving @TC11_Direct_receiving_Happy_path_Trusted_Boxed_NonProhibited_inventory
   Scenario Outline: To validate Direct receiving – Happy path – Trusted – Boxed -  NonProhibited inventory
