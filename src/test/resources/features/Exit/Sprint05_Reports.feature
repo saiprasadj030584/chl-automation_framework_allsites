@@ -203,7 +203,19 @@ Feature: Report Generation
     Examples: 
       | SkuId              |
       | 000000000021071852 |
-
+      
+@completed @Sprint05 @Reports @TC19_Validate_the_MNS_Operative_Performance_Report
+  Scenario Outline: Validate the M&S - Operative Performance Report
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
+    Given Login to JDA Dispatcher web screen
+    And Go to Reports Selection and click
+    Then Select Print to screen and proceed next
+    And Search for "M&S - Operative Performance Trusted Report"
+    And Verify that the record is displayed for Operative Performance Trusted Report
+    And Enter start and end date
+    And Validate the confirmation page for Operative Performance Trusted Report
+    And Validate the report selection page for Operative Performance Trusted Report
+    
   @completed @Sprint05 @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
   Scenario: Validate the M&S -Green Stock Available to Pick-FLOW Report
     Given Login to JDA Dispatcher web screen
