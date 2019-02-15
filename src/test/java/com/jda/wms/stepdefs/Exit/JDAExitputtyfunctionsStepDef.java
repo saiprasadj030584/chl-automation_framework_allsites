@@ -553,6 +553,18 @@ public class JDAExitputtyfunctionsStepDef {
 		System.out.println("SupplierDB= "+SupplierDB);
 		Assert.assertEquals("UPC validated", SupplierDB, SupplierValue);
 		logger.debug("Validated Supplier Value: " + SupplierValue);
+		purchaseOrderReceivingPage.proceedToNextScreen();
+		for(int i=0;i<=4;i++){
+			purchaseOrderReceivingPage.pressTab();
+		}
+		String palletdigit = Utilities.getsevenDigitRandomNumber();
+		String ToPallet="P"+palletdigit;
+		purchaseOrderReceivingPage.EnterToPallet(ToPallet);
+		System.out.println("ToPallet== "+ToPallet);
+		context.setPalletId(ToPallet);
+		purchaseOrderReceivingPage.enterYes();
+		puttyFunctionsPage.pressEnter();
+		hooks.logoutPutty();
 		Thread.sleep(1000);
 		}
 	@Given("^I enter URN and Bel and validation of UPC,QTY and Supplier for Unknown$")
