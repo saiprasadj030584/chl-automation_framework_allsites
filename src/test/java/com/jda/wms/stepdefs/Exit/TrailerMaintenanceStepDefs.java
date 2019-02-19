@@ -103,7 +103,7 @@ public class TrailerMaintenanceStepDefs {
 	
 	@And("^I create DockDoor")
 	public void I_create_Dockdoor() throws Throwable {
-	
+		Thread.sleep(2000);
 		jdaHomePage.navigateToDockDoorScreen();
 		Thread.sleep(2000);
 		consignmentMaintSD.Right_click_to_Select_Toggle_Maintenance_Mode();
@@ -133,7 +133,8 @@ public class TrailerMaintenanceStepDefs {
 	}
 	@And("^I link consignment with trailer")
 	public void I_link_trailer() throws Throwable {
-		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
+		Thread.sleep(2000);
+		jdaHomePage.navigateToConsignmentTrailerLinking();
 		Select_Trailer();
 		consignmentMaintSD.Select_Consignment();
 		jdaHomeStepDefs.click_next();

@@ -1129,7 +1129,7 @@ public class JdaHomePage {
 	}
 	public void navigateToConsignmentTrailerLinking() throws FindFailed, InterruptedException {
 		clickSearchIcon();
-		Thread.sleep(1000);
+		Thread.sleep(20000);
 		screen.type("Consignment Trailer Linking");
 		screen.type(Key.ENTER);
 		Thread.sleep(1000);
@@ -1221,4 +1221,17 @@ public class JdaHomePage {
 		
 	}
 
-}
+	public void selectScreen(String Screen)throws FindFailed, InterruptedException {
+		switch(Screen){
+		case "Dock Door Maintenance":
+			clickSearchIcon();
+			screen.type(Screen);
+			screen.type(Key.ENTER);
+			Thread.sleep(1000);
+			screen.type(Key.ENTER);
+			Thread.sleep(3000);
+		break;
+		}
+		}
+		
+	}

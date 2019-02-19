@@ -46,7 +46,9 @@ public class InsertDataIntoDB {
 	}
 	public void insertPreAdviceHeaderforUPI(String poId, String Preadvice) throws SQLException, ClassNotFoundException {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_HEADER");
+		String key = Utilities.getThreeDigitRandomNumber(); 
+		context.setKey(key);
+		//String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_HEADER");
 		String query = "Insert into INTERFACE_PRE_ADVICE_HEADER (KEY,CLIENT_ID,PRE_ADVICE_ID,PRE_ADVICE_TYPE,SITE_ID,OWNER_ID,SUPPLIER_ID,STATUS,BOOKREF_ID,DUE_DSTAMP,CONTACT,CONTACT_PHONE,CONTACT_MOBILE,CONTACT_FAX,CONTACT_EMAIL,NAME,ADDRESS1,ADDRESS2,TOWN,COUNTY,POSTCODE,COUNTRY,RETURN_FLAG,SAMPLING_TYPE,RETURNED_ORDER_ID,EMAIL_CONFIRM,COLLECTION_REQD,CONSIGNMENT,LOAD_SEQUENCE,NOTES,DISALLOW_MERGE_RULES,OAP_RMA,DISALLOW_REPLENS,SUPPLIER_REFERENCE,CARRIER_NAME,CARRIER_REFERENCE,TOD,TOD_PLACE,MODE_OF_TRANSPORT,VAT_NUMBER,USER_DEF_TYPE_1,USER_DEF_TYPE_2,USER_DEF_TYPE_3,USER_DEF_TYPE_4,USER_DEF_TYPE_5,USER_DEF_TYPE_6,USER_DEF_TYPE_7,USER_DEF_TYPE_8,USER_DEF_CHK_1,USER_DEF_CHK_2,USER_DEF_CHK_3,USER_DEF_CHK_4,USER_DEF_DATE_1,USER_DEF_DATE_2,USER_DEF_DATE_3,USER_DEF_DATE_4,USER_DEF_NUM_1,USER_DEF_NUM_2,USER_DEF_NUM_3,USER_DEF_NUM_4,USER_DEF_NOTE_1,USER_DEF_NOTE_2,YARD_CONTAINER_TYPE,YARD_CONTAINER_ID,CE_CONSIGNMENT_ID,MASTER_PRE_ADVICE,COLLECTIVE_MODE,COLLECTIVE_SEQUENCE,CE_INVOICE_NUMBER,STATUS_REASON_CODE,PRIORITY,SESSION_TIME_ZONE_NAME,TIME_ZONE_NAME,NLS_CALENDAR,CLIENT_GROUP,MERGE_ACTION,MERGE_STATUS,MERGE_ERROR,MERGE_DSTAMP) values ("
                         + key +",'M+S','"
                         +poId+"','STO','5542','M+S','4624','Released',null,to_timestamp('"
@@ -68,7 +70,9 @@ public class InsertDataIntoDB {
 	
 	public void insertPreAdviceline(String poId,String Preadvice) throws SQLException, ClassNotFoundException {
 		String queryInsertDate = DateUtils.getCurrentSystemDateInDBFormat();
-		String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_LINE");
+		String key = context.getKey();
+		//context.setKey(key);
+		//String key = getMaxKeyFromDB("INTERFACE_PRE_ADVICE_LINE");
 		String SKUID=context.getSKUHang();
 		String UPC=context.getupc();
 		String country=context.getCountry();
@@ -204,6 +208,7 @@ public class InsertDataIntoDB {
 			System.out.println("Data not found");
 //			String key = String.valueOf(Integer.parseInt(rs.getString(1) + 1));
 			String key = Utilities.getThreeDigitRandomNumber(); 
+			context.setKey(key);
 			return key;
 
 		} else {
