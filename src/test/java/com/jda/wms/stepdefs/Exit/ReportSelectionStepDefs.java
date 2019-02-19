@@ -455,7 +455,7 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickNextButton();	
     	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForsortation());
     	JDAFooter.clickDoneButton();
-    	Thread.sleep(10000);
+    	Thread.sleep(30000);
     }
     @And("^Validate the report selection page for M&S - Weekly Receipts and Despatches by Customer completed$")
     public void validate_the_report_selection_page_for_weekly_receipts_and_despatches_by_customer_completed() throws Throwable {

@@ -71,6 +71,7 @@ public class AddressMaintenanceDB {
 		}
 		Statement stmt = context.getConnection().createStatement();
 		ResultSet rs = stmt.executeQuery("select country from address where address_id='" + addressID + "'");
+		System.out.println("select country from address where address_id='" + addressID + "'");
 		rs.next();
 		return rs.getString(1);
 	}

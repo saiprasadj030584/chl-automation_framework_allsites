@@ -35,6 +35,7 @@ Feature: Master_data_setup
     Examples: 
       | SiteID |
       |   5542 |
+ 
 #-----------------------------------------------------------------------------------------------
   @Completed @Sprint01 @Master_DATA @TC02_Ensure_the_USER_id_tagged_to_right_SITE
   Scenario Outline: Ensure the USER id tagged to right SITE
