@@ -216,6 +216,7 @@ Feature: Report Generation
     And Validate the confirmation page for Operative Performance Trusted Report
     And Validate the report selection page for Operative Performance Trusted Report
     
+    
   @completed @Sprint05 @Reports @TC20_Validate_the_MNS_Green_Stock_Available_to_Pick_Flow_Report
   Scenario: Validate the M&S -Green Stock Available to Pick-FLOW Report
     Given Login to JDA Dispatcher web screen

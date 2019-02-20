@@ -43,7 +43,10 @@ public class TrailerMaintenanceStepDefs {
 	}
 
 	@And("^Enter Trailer number$")
-	public void Enter_Trailer_number() throws Throwable {
+	public void Enter_Trailer_number() throws Throwable {  
+//		screen.type(Key.TAB);
+//		
+//		screen.type(Key.TAB);
 	
 		trailerMaintenancePage.enterTrailerNumber();
 	}
