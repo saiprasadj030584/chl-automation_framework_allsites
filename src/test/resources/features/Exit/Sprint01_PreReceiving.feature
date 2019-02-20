@@ -52,17 +52,14 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------
 
   @Completed @Sprint01 @Master_DATA @TC03_Find_the_Location_setup
-  Scenario Outline: Find the Location setup
+  Scenario: Find the Location setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-Location & Click
     And Click on Query
     And click execute
-    Then Verify the Locations "<Location>" displayed
+    Then Verify the Locations displayed
 
-    Examples: 
-      | Location |
-      | 4624ROAD |
-
+    
 #-----------------------------------------------------------------------------------------------
 
   @Completed @Sprint01 @Master_DATA @TC04_Find_the_LocationZone_setup

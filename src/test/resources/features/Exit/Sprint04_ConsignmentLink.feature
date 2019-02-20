@@ -3,7 +3,27 @@ Feature: ConsignmentLinking
   As a Exit DC user should be able to login
    so that I validate repacking
    with ConsignmentLinking
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#TestCases included in @Sprint04
+	#TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed			
+  #TC02_Validate_Picking_process_for_Manual_Franchise_order
+  #TC03_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
+  #TC04_Happy_Path_Validate_Manual_order
+  #TC05_Validate_Pick_list_id_generated_for_an_order_Manual_STO
+  #TC07_Validate_unpicking_the_order
+  #TC08_Validate_unpick_and_relocate_tasks
+  #TC09_Validate_relocate_task_completion
+  #TC10_validate_the_putaway_group_for_black_zone
+  #TC11_Validate_black_stock_adjustment
+  #TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
+  #TC13_validate_stock_take_checks
+  #TC14_Validate_URN's_in_pallet_report
+  #TC17_Validate_stock_check_report
+  #TC018_Reversion_of_stock_from_a_trailer_Wanted_stock
+  #TC019_Reversion_of_stock_from_a_consignment_Wanted_stock
+  #TC020_Validate_repacking_the_pallet_Reversion
+  
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   @Sprint04 @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
   Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
@@ -485,6 +505,7 @@ Feature: ConsignmentLinking
     And I link the pallet and consignment
     And Login to JDA Dispatcher web screen
     And I create Trailer
+     And I create DockDoor
     And I link consignment with trailer
     And I close the consignment
     And I complete Vechile loading
@@ -493,8 +514,7 @@ Feature: ConsignmentLinking
     And select trailer text tab
     Then Enter Trailer number
     And Click next
-
-    #And Click done
+    And Click done
     Examples: 
       | SKU                |
       | 000000000021071852 |

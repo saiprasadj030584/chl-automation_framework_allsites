@@ -22,11 +22,11 @@ public class LocationMaintenanceStepDefs {
 	}
 
 
-	@Given("^Verify the Locations \"([^\"]*)\" displayed$")
-	public void verify_the_Locations_displayed(String location) throws Throwable {
+	@Given("^Verify the Locations displayed$")
+	public void verify_the_Locations_displayed() throws Throwable {
 		String currentLocation = locationMaintenancePage.getLocation();
-		System.out.println("Location is : " + location);
-		Assert.assertEquals("Location is as expected: ", location,currentLocation);
+		//System.out.println("Location is : " + location);
+		Assert.assertNotNull("Location is as not expected", currentLocation);
 	}
 	
 }
