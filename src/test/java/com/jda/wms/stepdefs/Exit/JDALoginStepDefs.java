@@ -3,6 +3,7 @@ package com.jda.wms.stepdefs.Exit;
 import com.google.inject.Inject;
 import com.jda.wms.pages.Exit.JdaLoginPage;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import com.jda.wms.context.Context;
 public class JDALoginStepDefs {
@@ -25,7 +26,11 @@ public class JDALoginStepDefs {
 		
 		
 	}
-	
+	@And("^Refresh application$")
+	public void refresh_to_JDA_Dispatcher_web_screen() throws Throwable {
+		Thread.sleep(1000);
+		jdaLoginPage.refreshPage();
+	}
 
 	@Given("^Login to JDA Dispatcher web screen as Basic User \"([^\"]*)\"$")
 	public void login_to_JDA_Dispatcher_web_screen_as_BAsic_user(String user) throws Throwable {

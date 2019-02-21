@@ -1288,3 +1288,6 @@ Feature: ConsignmentLinking
     And Select Consignment
     And Click next
     And validate error message is displayed
+    
+    
+    
