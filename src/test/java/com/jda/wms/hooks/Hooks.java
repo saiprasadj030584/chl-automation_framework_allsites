@@ -3,6 +3,8 @@ package com.jda.wms.hooks;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
@@ -21,7 +23,7 @@ import cucumber.api.java.en.When;
 
 public class Hooks {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	// private final WebDriver webDriver;
+	 private final RemoteWebDriver webDriver;
 	Screen screen = new Screen();
 	private Context context;
 	String envVar = System.getProperty("user.dir");
@@ -29,8 +31,8 @@ public class Hooks {
 	private Database database;
 
 	@Inject
-	public Hooks(Context context, Database database) {
-		// this.webDriver = webDriver;
+	public Hooks(Context context, Database database,RemoteWebDriver webDriver) {
+	 this.webDriver = webDriver;
 		this.context = context;
 		this.database = database;
 	}
@@ -110,6 +112,10 @@ public class Hooks {
 		}
 	}
 
+	
+
+
+
 	/*
 	 * @After public void clickSignoutButton() throws FindFailed {
 	 * screen.wait("/images/JDAHeader/HeaderIcons.png", 20);
@@ -160,8 +166,10 @@ public class Hooks {
 			// screen.click("images/Putty/PuttyCloseOK.png", 25);
 			// Thread.sleep(1000);
 		}
-	}
 	
+	}
+
+
 }
 
 
