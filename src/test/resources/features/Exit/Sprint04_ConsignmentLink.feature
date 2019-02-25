@@ -312,6 +312,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -378,6 +379,7 @@ Feature: ConsignmentLinking
     And drop the same consignment
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     Then I login as warehouse user in putty
@@ -389,6 +391,7 @@ Feature: ConsignmentLinking
     And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I select sorting menu
     And I enter URN for sortation in Direct Receiving
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And Go to Inventory Transaction & Click
     And Click on Query
@@ -416,6 +419,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -471,8 +475,10 @@ Feature: ConsignmentLinking
     And drop the same consignment
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
+   	And I create DockDoor
     And I link consignment with trailer
     And I close the consignment
     And I complete Vechile loading
@@ -503,12 +509,14 @@ Feature: ConsignmentLinking
     And drop the same consignment
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
      And I create DockDoor
     And I link consignment with trailer
     And I close the consignment
     And I complete Vechile loading
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I navigate to Trailer Shipping page
     And select trailer text tab
@@ -545,6 +553,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and multi consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -581,6 +590,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -701,6 +711,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -807,6 +818,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -834,6 +846,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -862,6 +875,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -889,11 +903,13 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
     And I close the consignment
     And I complete Vechile loading
+    And Refresh application
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -925,10 +941,12 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     Then I login as warehouse user in putty
     And I link the next pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I close the consignment
     And I complete Vechile loading for first pallet
@@ -966,6 +984,7 @@ Feature: ConsignmentLinking
     And I create DockDoor
     Then I login as warehouse user in putty
     And I link the pallet and multi consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -996,6 +1015,7 @@ Feature: ConsignmentLinking
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And I link next consignment with trailer
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I close the consignment
     And I close the next consignment
@@ -1252,6 +1272,7 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I link the first pallet and consignment
     And I link the second pallet and consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
     And Login to JDA Dispatcher web screen
@@ -1288,3 +1309,6 @@ Feature: ConsignmentLinking
     And Select Consignment
     And Click next
     And validate error message is displayed
+    
+    
+    

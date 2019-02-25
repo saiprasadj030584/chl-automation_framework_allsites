@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
@@ -360,10 +361,52 @@ public class JdaLoginPage {
 		Thread.sleep(1000);
 	}
 	
-	public void logOut()throws FindFailed, InterruptedException {
+	public void refreshPage()throws FindFailed, InterruptedException {
 			
-			Thread.sleep(1000);
-			//setDriver();
-			driver.quit();;
+			Thread.sleep(3000);
+			//driver.navigate().refresh();
+			try {
+				Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
+				Runtime.getRuntime().exec("taskkill /f /im iexplore.exe");
+				} catch (IOException e) {
+				e.printStackTrace();
+				}
+			
+			// taskkill /f /fi "pid gt 0" /im IEDriverServer.exe
+		
+			//App.close(Constants.USER_DIR + "/bin/iedriver/x86/IEDriverServer.exe");
+			Thread.sleep(6000);
+			if((screen.exists("/images/JDAHome/Welcomed.png") == null) ){
+				/*try {
+					Process p = Runtime.getRuntime()
+							.exec("cmd /c C:/Automation_supporting_files/LnkFiles/Iexplorekill.lnk");
+					p.waitFor(30, TimeUnit.SECONDS);
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}*/
+System.out.println(" --------insid driver setting------e");
+				setDriver();
+				driver.manage().window().maximize();
+				Thread.sleep(2000);
+			if (statusRegion == null) {
+				statusRegion = "N";
+			} else {
+				System.out.println("LOGIN PAGE Status region---> " + statusRegion);
+			}
+if (statusRegion.equalsIgnoreCase("N")) {
+				if (region.equals("SIT")) {
+					System.out.println("We are using SIT Env -->" + configuration.getStringProperty("sit-Exit-url"));
+					driver.navigate().to(configuration.getStringProperty("sit-Exit-url"));
+				} else if (region.equals("ST")) {
+					System.out.println("We are using ST Env -->" + configuration.getStringProperty("sit-Exit-url"));
+					driver.navigate().to(configuration.getStringProperty("sit-Exit-url"));
+				}
+			} else {
+				System.out.println("Get environment Details from NPS DB  " + "Foods URL:-" + context.getURL());
+				driver.navigate().to(context.getURL());
+			}
+				Thread.sleep(2000);
+			}
 		}
 	}
