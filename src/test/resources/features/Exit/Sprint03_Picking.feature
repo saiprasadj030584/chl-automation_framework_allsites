@@ -287,13 +287,13 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
   @completed @Sprint03 @Sortation @TC27_Negative_Path_Incorrect_pallet_consignment_linking
-  Scenario Outline: Negative_Path_Incorrect pallet consignment linking
+  Scenario: Negative_Path_Incorrect pallet consignment linking
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And configure putty settings
     And I select Inventory transaction option
     And Enter Pallet Id "P1286952"
-    And Enter Consignment "CONS7993271218"
+    And Enter Consignment "7993271218"
     And Validate the pallet and consignment is linked
 
   @completed @Sprint03 @Sortation @TC28_Happy_Path_Validate_consignment_id_format
