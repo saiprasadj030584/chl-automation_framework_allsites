@@ -488,7 +488,7 @@ Feature: Orders_Picking
     And validate the record is saved
 
   @completed @Sprint03 @Trailer @TC040_Validate_consignment_Trailer_linking
-  Scenario: Validate consignment Trailer linking
+  Scenario Outline: Validate consignment Trailer linking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -502,7 +502,9 @@ Feature: Orders_Picking
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I link consignment with trailer
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
   @completed @Sprint03 @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
   Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
     Given Login to JDA Dispatcher web screen
