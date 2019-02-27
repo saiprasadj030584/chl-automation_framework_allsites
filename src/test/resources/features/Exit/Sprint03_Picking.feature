@@ -294,7 +294,7 @@ Feature: Orders_Picking
     And I select Inventory transaction option
     And Enter Pallet Id "P1286952"
     And Enter Consignment "7993271218"
-    And Validate the pallet and consignment is linked
+    And Validate the error is displayed
 
   @completed @Sprint03 @Sortation @TC28_Happy_Path_Validate_consignment_id_format
   Scenario: Happy_Path_Validate consignment id format

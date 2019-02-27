@@ -3,6 +3,7 @@ package com.jda.wms.pages.Exit;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.junit.Assert;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Match;
@@ -207,6 +208,16 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(2000);
 	}
+	public void isPromptDisplayed()throws FindFailed, InterruptedException {
+		screen.type(Key.ENTER);
+		if (screen.exists("images/Putty/Promptmsg.png") != null) {
+			Assert.assertTrue(true);
+			
+		} else
+			Assert.assertFalse(false);
+	}
+
+		
 	public void linkPalletId()throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);

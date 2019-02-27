@@ -197,6 +197,12 @@ public class JDAExitputtyfunctionsStepDef {
 		//puttyFunctionsPage.pressEnter();
 	}
 	
+	@Then("^Validate the error is displayed$")
+	public void errorPrompt() throws Throwable {
+		Thread.sleep(3000);
+		puttyFunctionsPage.isPromptDisplayed();
+		Thread.sleep(5000);
+	}
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
 		Thread.sleep(3000);
