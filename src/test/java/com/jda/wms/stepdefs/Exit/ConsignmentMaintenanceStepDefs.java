@@ -41,6 +41,8 @@ public class ConsignmentMaintenanceStepDefs {
 		Thread.sleep(3000);
 		//consignmentMaintenancePage.clickAdd();
 		jdaFooter.clickAddButton();
+		Thread.sleep(4000);
+	System.out.println("Add clicked");
 	}
 	@Then("^Enter consignment name$")
 	public void Enter_consignment_name() throws Throwable {

@@ -1159,8 +1159,18 @@ public class JdaHomePage {
 		screen.click("images/Alloaction/SaveButton.png");
 		Thread.sleep(1000);
 	}
-
-
+	
+	public void clickAddGroup() throws FindFailed , InterruptedException{
+		screen.wait("images/CEConsignmentMaintenance/ConsignmentAddButton.png", timeoutInSec);
+		Match mStatus = screen.find("images/CEConsignmentMaintenance/ConsignmentAddButton.png");
+		Thread.sleep(4000);
+		screen.hover(mStatus);
+		Thread.sleep(4000);
+		//screen.click(mStatus.getCenter().offset(80,0));
+		screen.click(mStatus);
+		Thread.sleep(2000);
+		
+	}
 	public void go_to_Data_SKU_SKU_Click() {
 		// TODO Auto-generated method stub
 		

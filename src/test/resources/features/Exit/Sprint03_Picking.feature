@@ -501,6 +501,7 @@ Feature: Orders_Picking
     And I link the pallet and consignment
     And Login to JDA Dispatcher web screen
     And I create Trailer
+    And I create DockDoor
     And I link consignment with trailer
 Examples: 
       | SKU                |
@@ -528,6 +529,7 @@ Examples:
     And Go to Consignment Trailer Linking
     And Select Trailer
     And Select Consignment
+    And Click next
     And Click next
     And validate error message is displayed
 
@@ -560,7 +562,7 @@ Examples:
     And Go to Allocation algorithm Setup
     And Click next
     And I select Allocation creation date by zone option
-    And I click on Add button
+    And click add
     And type "INBOUND" in location zone
     Then save the Allocation created
 
