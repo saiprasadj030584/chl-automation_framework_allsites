@@ -82,17 +82,24 @@ public class UserGroupStepDefs{
 	
 	@And("^I select Allocation creation date by zone option$")
 	public void I_select_Allocation_creation_date_by_zone_option()throws Throwable {
-		
+		Thread.sleep(4000);
 		jdaHomePage.selectAllocationOpt();
+		Thread.sleep(4000);
 	}
 	@And("^type \"([^\"]*)\" in location zone$")
 	public void LocationZone(String Zone) throws Throwable {
+		Thread.sleep(4000);
 		jdaHomePage.enterLocationZone(Zone);
 	}
 	@And("^save the Allocation created$")
 	public void save_the_Allocation_created()throws Throwable {
-		
+		Thread.sleep(4000);
 		jdaHomePage.saveAllocation();
+	}
+	@And("^click add$")
+	public void clickAdd()throws Throwable {
+		Thread.sleep(4000);
+		jdaHomePage.clickAddGroup();
 	}
 	@And("^Type in Function Access search for text box$")
 	public void Type_in_Search() throws Throwable {

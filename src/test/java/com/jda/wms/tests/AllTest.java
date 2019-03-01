@@ -12,8 +12,11 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
-			+ "@TC03_Compliance_Check"
+			+ "@TC044_Validate_Franchise_Allocation_creation"
 			+ ""
+			+ "@TC46_Validate_Pick_list_id_generated_for_an_order_Manual_IDT_hanging"
+			+ ""	
+		     + ""
 			+ "" 
 
 })

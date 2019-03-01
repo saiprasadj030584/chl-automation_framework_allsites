@@ -252,10 +252,14 @@ public class CEConsignmentMaintenancePage {
 }
 	public void selectConsignment() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
-		screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
+		/*screen.wait("images/TrailerShipping/Coinsignment.png", timeoutInSec);
 	    Match status = screen.find("images/TrailerShipping/Coinsignment.png");
-		screen.click(status.getCenter().offset(90, 0));
+	    Thread.sleep(5000);
+		screen.click(status.getCenter().offset(90, 0));*/
+		screen.type(Key.TAB);
+		Thread.sleep(5000);
 		typeConsignment();
+		Thread.sleep(3000);
 }
 	public void selectConsignment2() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
