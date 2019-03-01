@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC091_RED_Report_creation"
+			+ "@TC17_Validate_the_MnS_Empty_Red_Locations_Report"
 			+ ""	
 		     + ""
 			+ "" 

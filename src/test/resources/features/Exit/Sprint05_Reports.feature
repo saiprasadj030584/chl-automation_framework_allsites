@@ -153,7 +153,7 @@ Feature: Report Generation
     Then Select Print to screen and proceed next
     And Search for "M&S - Outstanding Pallets to Load Report"
     And Verify that the record is displayed for M&S - Outstanding Pallets to Load Report
-    Then Enter Trailer number
+    Then Enter Trailer number for report
     Then Validate the confirmation page for M&S - Outstanding Pallets to Load Report
     Then Validate the report selection page for M&S - Outstanding Pallets to Load Report completed
 
@@ -205,7 +205,7 @@ Feature: Report Generation
       | 000000000021071852 |
       
 @completed @Sprint05 @Reports @TC19_Validate_the_MNS_Operative_Performance_Report
-  Scenario Outline: Validate the M&S - Operative Performance Report
+  Scenario: Validate the M&S - Operative Performance Report
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
