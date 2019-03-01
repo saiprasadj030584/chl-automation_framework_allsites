@@ -120,7 +120,7 @@ public class UserGroupFunctionAccessStepDefs{
     @Then("^The new rule should be included$")
     public void the_new_rule_should_be_included() throws Throwable{
         Assert.assertTrue("check ", userGroupFunctionAccessPage.isNewRuleAdded());	
-        userGroupFunctionAccessPage.deleteValue();
+        //userGroupFunctionAccessPage.deleteValue();
     }
     
     @Then("^Validate the page for basic user$")

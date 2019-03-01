@@ -252,15 +252,19 @@ public class JdaHomePage {
 		screen.click("images/JDAHome/Delivery2.png");
 		screen.mouseMove(70, 0);
 	}
-	public void hoverUser() throws FindFailed {
+	public void hoverUser() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/User.png", timeoutInSec);
+		Thread.sleep(4000);
 		screen.click("images/JDAHome/User.png");
-		screen.mouseMove(70, 0);
+		Thread.sleep(2000);
+		//screen.mouseMove(70, 0);
 	}
-	public void hoverUserGp() throws FindFailed {
+	public void hoverUserGp() throws FindFailed, InterruptedException  {
 		screen.wait("images/JDAHome/UserQuery.png", timeoutInSec);
+		Thread.sleep(4000);
 		screen.click("images/JDAHome/UserQuery.png");
-		screen.mouseMove(70, 0);
+		Thread.sleep(2000);
+		//screen.mouseMove(70, 0);
 	}
 	public void hoversetup() throws FindFailed {
 		screen.wait("images/JDAHome/Setup.png", timeoutInSec);

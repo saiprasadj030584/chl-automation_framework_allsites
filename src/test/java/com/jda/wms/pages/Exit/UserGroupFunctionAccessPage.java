@@ -182,7 +182,7 @@ public String getUserGroup() throws FindFailed, InterruptedException {
 }
 public boolean isNewRuleAdded() throws FindFailed, InterruptedException {
 	
-	if(screen.find("images/UserGroupFunctionAccess/enter.png")!=null)
+	if(screen.find("images/UserGroupFunctionAccess/prohibition.png")!=null)
 {
 	screen.wait("images/UserGroupFunctionAccess/prohibition.png");
 	screen.click("images/UserGroupFunctionAccess/prohibition.png");
