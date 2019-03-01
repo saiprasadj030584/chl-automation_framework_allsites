@@ -89,7 +89,6 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
-    And I enter To Pallet
     And I navigate to Order header screen to verify the status in Ready to Load
 
     Examples: 
@@ -288,14 +287,14 @@ Feature: Orders_Picking
       | 000000000021071852 |
 
   @completed @Sprint03 @Sortation @TC27_Negative_Path_Incorrect_pallet_consignment_linking
-  Scenario Outline: Negative_Path_Incorrect pallet consignment linking
+  Scenario: Negative_Path_Incorrect pallet consignment linking
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And configure putty settings
     And I select Inventory transaction option
     And Enter Pallet Id "P1286952"
-    And Enter Consignment "CONS7993271218"
-    And Validate the pallet and consignment is linked
+    And Enter Consignment "7993271218"
+    And Validate the error is displayed
 
   @completed @Sprint03 @Sortation @TC28_Happy_Path_Validate_consignment_id_format
   Scenario: Happy_Path_Validate consignment id format
@@ -489,7 +488,7 @@ Feature: Orders_Picking
     And validate the record is saved
 
   @completed @Sprint03 @Trailer @TC040_Validate_consignment_Trailer_linking
-  Scenario: Validate consignment Trailer linking
+  Scenario Outline: Validate consignment Trailer linking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -502,8 +501,11 @@ Feature: Orders_Picking
     And I link the pallet and consignment
     And Login to JDA Dispatcher web screen
     And I create Trailer
+    And I create DockDoor
     And I link consignment with trailer
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
   @completed @Sprint03 @Trailer @TC041_Negative_path_Incorrect_Pallet_for_consignment_trailer_linking
   Scenario: Negative_path_Incorrect Pallet for consignment trailer linking
     Given Login to JDA Dispatcher web screen
@@ -527,6 +529,7 @@ Feature: Orders_Picking
     And Go to Consignment Trailer Linking
     And Select Trailer
     And Select Consignment
+    And Click next
     And Click next
     And validate error message is displayed
 
@@ -559,7 +562,7 @@ Feature: Orders_Picking
     And Go to Allocation algorithm Setup
     And Click next
     And I select Allocation creation date by zone option
-    And I click on Add button
+    And click add
     And type "INBOUND" in location zone
     Then save the Allocation created
 
@@ -647,7 +650,6 @@ Feature: Orders_Picking
     And I select user directed option in main menu
     And I select Receiving menu
     And I enter URN and Bel and validation of UPC,QTY and Supplier
-    And I enter To Pallet
     And I navigate to Order header screen to verify the status in Ready to Load
 
     Examples: 

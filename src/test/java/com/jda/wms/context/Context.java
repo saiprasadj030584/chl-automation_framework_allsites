@@ -1273,6 +1273,11 @@ public class Context {
 		this.consignmentName2 = consignmentName2;
 	}
 
+	public void setKey(String key) {
+		// TODO Auto-generated method stub
+		this.Key = key;
+	}
+
 	
 	
 	}
