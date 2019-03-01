@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC17_Validate_the_MnS_Empty_Red_Locations_Report"
+			+ "@TC25_Validate_the_MnS_Stock_in_Putaway_Report"
 			+ ""	
 		     + ""
 			+ "" 

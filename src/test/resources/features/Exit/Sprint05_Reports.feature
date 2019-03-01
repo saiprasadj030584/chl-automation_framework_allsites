@@ -206,7 +206,6 @@ Feature: Report Generation
       
 @completed @Sprint05 @Reports @TC19_Validate_the_MNS_Operative_Performance_Report
   Scenario: Validate the M&S - Operative Performance Report
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
