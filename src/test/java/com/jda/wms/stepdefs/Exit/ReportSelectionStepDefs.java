@@ -622,6 +622,14 @@ public class ReportSelectionStepDefs {
     	JDAFooter.clickDoneButton();
     	Thread.sleep(20000);
     }
+    @Then("^Validate the confirmation page for M&S - Audit Check Report$")
+    public void Validate_the_confirmation_page_for_Audit_Check_Report() throws Throwable {
+    	JDAFooter.clickNextButton();	
+    	Assert.assertTrue("Process not confirmed", ReportSelectionPage.isProcessConfirmedForAuditCheck());
+    	JDAFooter.clickDoneButton();
+    	Thread.sleep(20000);
+    }
+    
     @Then("^Validate the confirmation page for M&S - Empty Red Locations Report$")
     public void Validate_the_confirmation_page_for_MnS_Empty_Red_Locations_Report() throws Throwable {
     	JDAFooter.clickNextButton();	
@@ -649,7 +657,12 @@ public class ReportSelectionStepDefs {
     	Assert.assertTrue("M&S - Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneShortInvoice());
     	JDAFooter.clickDoneButton();	
     }
-   
+    @And("^Validate the report selection page for M&S - Audit Check Report completed$")
+    public void validate_the_report_selection_page_for_Audit_Check__completed() throws Throwable {
+    	Assert.assertTrue("M&S - Short invoice for container Report not completed", ReportSelectionPage.isReportSelectionDoneAuditCheck());
+    	JDAFooter.clickDoneButton();	
+    }
+    
     @And("^Validate the report selection page for M&S - Empty Red Locations Report$")
     public void  Validate_the_report_selection_page_for_MnS_Empty_Red_Locations_Report() throws Throwable {
     	Assert.assertTrue("M&S - Pallet Built Report", ReportSelectionPage.isReportSelectionRedlocation());
@@ -790,6 +803,7 @@ public class ReportSelectionStepDefs {
     @And("^Verify that the record is displayed for M&S - Stock In RED Putaway Locations$")
     public void Verify_that_the_record_is_displayed_for_MnS_Stock_In_RED_Putaway_Locations() throws Throwable {
     	Assert.assertTrue("Record not displayed", ReportSelectionPage.isRecordDissplayedAndSelectedForPutaway());
+    	JDAFooter.clickNextButton();
     }
     @And("^Verify that the record is displayed for Load Label$")
     public void Verify_that_the_record_is_displayed_for_Load_Label() throws Throwable {
