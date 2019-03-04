@@ -318,7 +318,7 @@ Feature: Report Generation
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
     And Search for " M&S - Audit Check Report"
-    And Verify that the record is displayed for M&S - Short Invoice for Container Report
+    And Verify that the record is displayed for M&S - Audit Check Report
     Then Enter the sortation
     Then Validate the confirmation page for M&S - Audit Check Report 
     Then Validate the report selection page for M&S - Audit Check Report completed
