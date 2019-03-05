@@ -109,13 +109,14 @@ public class InventoryTransactionPage{
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
-		if(screen.find("images/InventoryTransactionQuery/TransactioncodeforRedStock.png").equals(null)){
+	}
+		/*if(screen.find("images/InventoryTransactionQuery/TransactioncodeforRedStock.png").equals(null)){
 			System.out.println("Inventory not found");
 		}
 		else{
 			System.out.println("Inventory for Receipt,InventoryLock and putaway");
 		}}
-	
+	*/
 		public void CheckQtyreceived() throws FindFailed, InterruptedException{
 			screen.wait("images/InventoryTransactionQuery/Pick/pick1.png", timeoutInSec);
 			screen.click("images/InventoryTransactionQuery/Pick/pick1.png");
