@@ -345,7 +345,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
  @Sprint04 @ConsignmentLinking @Repacking @TC020_Validate_repacking_the_pallet_Reversion
-  Scenario Outline: Validate repack after consignment closure
+  Scenario Outline: Validate_repacking_the_pallet_Reversion
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -365,7 +365,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
  @Sprint04 @ConsignmentLinking @Repacking @TC021_Validate_Reversion_relocate_storage_location
-  Scenario Outline: Validate repack after consignment closure
+  Scenario Outline: Validate_Reversion_relocate_storage_location
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
