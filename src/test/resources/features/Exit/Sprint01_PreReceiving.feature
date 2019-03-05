@@ -293,47 +293,52 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher
-  Scenario: To verify the Direct PO loading in JDA dispatcher
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify ASN in Delivery screen
     Then Verify data in UPI Receipt header screen
     Then Verify PO type in Pre Advice header screen
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
-  Scenario: To verify the Direct PO loading in JDA dispatcher
-    Given Insert Pre-advice data with PO type "DIRECT"
+  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
     Then Verify quantity and advice number is loaded in Pre-Advice line table
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC22_Verify_the_ASN_Booking
-  Scenario: To verify ASN Booking
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify ASN Booking
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
     Then Verify Export criteria for ASN details
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Complete @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
-  Scenario: To verify ASN data
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify ASN data
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify pallet id
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Complete @Pre_receiving @TC24_Verify_the_shipment_description

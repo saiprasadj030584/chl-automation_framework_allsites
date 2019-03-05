@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC02_Ensure_the_USER_id_tagged_to_right_SITE"
+			+ "@TC23_Verify_URN_data_is_available_in_dispatcher"
 			+ ""	
 		     + ""
 			+ "" 
