@@ -122,9 +122,7 @@ public class JDAHomeStepDefs {
 
 	@When("^I navigate to SKU maintenance page$")
 	public void i_navigate_to_SKU_maintenance_page() throws Throwable {
-		jdaHomePage.clickDataMenu();
-		jdaHomePage.hoverSKU();
-		jdaHomePage.clickSKUSubmenu();
+		jdaHomePage.navigateToSKUMaintanence();
 	}
 	
 	@When("^I navigate to Trailer Shipping page$")

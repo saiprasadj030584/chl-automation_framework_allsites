@@ -98,7 +98,7 @@ public class InventoryTransactionPage{
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
-		if(screen.find("images/InventoryTransactionQuery/General/UnpickITL.png.png").equals(null)){
+		if(screen.find("images/InventoryTransactionQuery/General/UnpickITL.png").equals(null)){
 			System.out.println("Inventory not found");
 		}
 		else{

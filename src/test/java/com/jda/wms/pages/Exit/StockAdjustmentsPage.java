@@ -54,8 +54,13 @@ public class StockAdjustmentsPage {
 
 	public void chooseReasonCode(String reasonCode) throws FindFailed, InterruptedException {
 		screen.wait("images/StockAdjustment/Finish/ReasonCode.png", timeoutInSec);
-		screen.click("images/StockAdjustment/Finish/ReasonCode.png");
-		screen.type(reasonCode);
+		//screen.click("images/StockAdjustment/Finish/ReasonCode.png");
+		//screen.wait("images/InventoryTransactionQuery/qtyOnHandSa.png", timeoutInSec);
+		Match field=screen.find("images/StockAdjustment/Finish/ReasonCode.png");
+		screen.click(field.getCenter().offset(70,0));
+		Thread.sleep(4000);
+		screen.wait("images/StockAdjustment/Finish/ReasonCodeBlack.png", timeoutInSec);
+		screen.click("images/StockAdjustment/Finish/ReasonCodeBlack.png");
 		Thread.sleep(2000);
 		jdaFooter.clickDoneButton();
 	}

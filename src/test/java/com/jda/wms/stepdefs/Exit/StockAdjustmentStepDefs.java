@@ -46,9 +46,9 @@ public class StockAdjustmentStepDefs {
 		int Quan=Integer.parseInt(Quantity);
 		int AdjustQuantity= Quan - 10;
 		stockAdjustmentsPage.adjustQtyOnHand(Integer.toString(AdjustQuantity));
-		String quan=stockAdjustmentsPage.getNewQtyOnHand();
+		/*String quan=stockAdjustmentsPage.getNewQtyOnHand();
 		context.setQtyOnHand(Integer.parseInt(quan));
-		System.out.println("quantity="+quan);
+		System.out.println("quantity="+quan);*/
 		i_choose_the_reason_code_as("Black stock");
 	}
 	@Given("^I choose the reason code as \"([^\"]*)\"$")
