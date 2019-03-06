@@ -264,7 +264,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @completed @Reports @TC14_Validate_URN's_in_pallet_report
+ @Sprint04 @completed @Reports @TC14_Validate_URN_in_pallet_report
   Scenario Outline: Validate the M&S - URN in pallet report
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
