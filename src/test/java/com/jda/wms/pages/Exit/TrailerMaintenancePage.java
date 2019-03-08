@@ -117,7 +117,11 @@ public class TrailerMaintenancePage {
 }
 	public void clickTrailerAdd() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
-		jdaFooter.clickAddButton();
+		screen.wait("images/TrailerShipping/TrailerAddButton.png", timeoutInSec);
+		Match status = screen.find("images/TrailerShipping/TrailerAddButton.png");
+		screen.click(status.getCenter());
+		Thread.sleep(1000);
+		//screen.click("images/TrailerShipping/TrailerAddButton.png");
 	}
 		/*screen.wait("images/TrailerShipping/TrailerAddButton.png", timeoutInSec);
 		screen.click("images/TrailerShipping/TrailerAddButton.png");
