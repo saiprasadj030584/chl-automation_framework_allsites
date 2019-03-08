@@ -39,11 +39,18 @@ public class InventoryTransactionPage{
 		this.orderheaderpage=orderheaderpage;
 		
 	}
-	public void EnterContanierID() throws FindFailed{
+	public void EnterContanierID() throws FindFailed, InterruptedException{
 		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
-		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/Container.png");
+		Thread.sleep(4000);
+		//Match field=screen.find("images/InventoryTransactionQuery/Container.png");
+		Match field=screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		Thread.sleep(4000);
+		screen.click(field.getCenter().offset(70,0));
+		//screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		
+		//screen.click("images/InventoryTransactionQuery/Container.png");
+		Thread.sleep(4000);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		screen.type(palletIDforUPI);
 		
@@ -72,8 +79,8 @@ public class InventoryTransactionPage{
 		
 	}
 	public void Checktransaction() throws FindFailed, InterruptedException{
-		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
-		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
+		screen.wait("images/InventoryTransactionQuery/Container1.png", timeoutInSec);
+		Match mLocation = screen.find("images/InventoryTransactionQuery/Container1.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
 		if(screen.find("images/InventoryTransactionQuery/Transactioncode.png").equals(null)){

@@ -62,12 +62,13 @@ public class StockAdjustmentStepDefs {
 	public void decrease_the_quantity_in_hand() throws Throwable{
 	 System.out.println("Quan="+stockAdjustmentsPage.getQtyOnHand());
 	 context.setQuantity(stockAdjustmentsPage.getQtyOnHand());
-		int Quantity=Integer.parseInt(context.getQuantity());
-		int AdjustQuantity= Quantity - 2;
+		//int Quantity=Integer.parseInt(context.getQuantity());
+		String Quantity=(context.getQuantity());
+		int AdjustQuantity= 15;
 		stockAdjustmentsPage.adjustQtyOnHand(Integer.toString(AdjustQuantity));
-		String quan=stockAdjustmentsPage.getNewQtyOnHand();
-		context.setQtyOnHand(Integer.parseInt(quan));
-		System.out.println("quantity="+quan);
+		//String quan=stockAdjustmentsPage.getNewQtyOnHand();
+		//context.setQtyOnHand(Integer.parseInt(quan));
+		//System.out.println("quantity="+quan);
 		i_choose_the_reason_code_as("3Damaged");
 	}
 	
