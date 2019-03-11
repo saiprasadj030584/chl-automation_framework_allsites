@@ -547,7 +547,7 @@ Feature: ConsignmentLinking
     And I link the pallet and multi consignment
     And Refresh application
     And Login to JDA Dispatcher web screen
-    And I link consignment with trailer
+    And I link multiconsignment with trailer
     And Login to JDA Dispatcher web screen
     And I close the multi consignment
     And I complete Vechile loading for multi consignment
@@ -1200,7 +1200,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-   @Sprint04 @completed @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
+   @completed @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
   Scenario Outline: To validate Compliance Check - Supplier Record does not exist
     Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
@@ -1229,7 +1229,7 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071851 |
 
-   @Sprint04 @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
+  @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
   Scenario Outline: Auto complete Red URN putaway post receipt
     Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock

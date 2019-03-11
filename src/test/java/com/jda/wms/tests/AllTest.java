@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC29_Validate_confirm_shipment"
+			+ "@TC31_Validate_vehicle_loading_with_multi_consignments_single_user"
 			+ ""	
 		     + ""
 			+ "" 

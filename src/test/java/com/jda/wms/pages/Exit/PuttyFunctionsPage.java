@@ -221,10 +221,10 @@ public void enterPrinter1()throws FindFailed, InterruptedException {
 	public void linkPalletId()throws FindFailed, InterruptedException {
 		screen.type(Key.ENTER);
 		Thread.sleep(5000);
-		Match mLocation4 = screen.find("images/Putty/Promptmsg.png");
+		/*Match mLocation4 = screen.find("images/Putty/Promptmsg.png");
 		Thread.sleep(5000);
 		screen.click(mLocation4.getCenter().offset(70, 0));
-		Thread.sleep(5000);
+		Thread.sleep(5000);*/
 	}
 	public void validateMergePalletId()throws FindFailed, InterruptedException {
 		

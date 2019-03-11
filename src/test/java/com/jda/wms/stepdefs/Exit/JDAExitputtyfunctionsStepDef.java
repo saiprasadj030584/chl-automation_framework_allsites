@@ -206,7 +206,8 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
 		Thread.sleep(3000);
-		puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
+		//puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
@@ -215,7 +216,8 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^Validate the pallet and multi consignment is linked$")
 	public void multiconsignmentIsLinked() throws Throwable {
 		Thread.sleep(3000);
-		puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
+		//puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		screen.type(Key.F12);
@@ -224,14 +226,16 @@ public class JDAExitputtyfunctionsStepDef {
 	}
 	@Then("^Validate the pallet and consignment is loaded$")
 	public void consignmentIsLoaded() throws Throwable {
-		puttyFunctionsPage.linkPalletId();
+		//puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
 	}
 	@Then("^Validate the pallet and multi consignment is loaded$")
 	public void MulticonsignmentIsLoaded() throws Throwable {
-		puttyFunctionsPage.linkPalletId();
+		//puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		
