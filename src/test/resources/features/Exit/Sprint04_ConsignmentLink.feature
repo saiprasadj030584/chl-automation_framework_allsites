@@ -528,7 +528,7 @@ Feature: ConsignmentLinking
     And Click next
     And validate the error popup is displayed
     
-  @Sprint04  @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
+   @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
   Scenario Outline: Validate vehicle loading with multiple consignments_single User
 
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
