@@ -510,17 +510,11 @@ Feature: ConsignmentLinking
     And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
-     And I create DockDoor
+    And I create DockDoor
     And I link consignment with trailer
     And I close the consignment
     And I complete Vechile loading
-    And Refresh application
-    And Login to JDA Dispatcher web screen
-    And I navigate to Trailer Shipping page
-    And select trailer text tab
-    Then Enter Trailer number
-    And Click next
-    And Click done
+    And I complete shipment
     Examples: 
       | SKU                |
       | 000000000021071852 |

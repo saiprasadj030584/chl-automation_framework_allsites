@@ -1153,9 +1153,19 @@ public void vehicleLoading() throws Throwable {
 	getPalletId();
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
-	consignmentIsLoaded();
+	screen.type(Key.ENTER);
+	//consignmentIsLoaded();
 }
+@And("^I complete shipment$")
+public void shipment() throws Throwable {
+	Thread.sleep(2000);
+	screen.type(Key.F10);
+	Thread.sleep(2000);
+	screen.type("y");
+	Thread.sleep(2000);
 
+screen.type(Key.ENTER);
+}
 @And("^I complete Vechile loading for multi consignment$")
 public void vehicleLoading_for_multi_consignment() throws Throwable {
 	Thread.sleep(2000);

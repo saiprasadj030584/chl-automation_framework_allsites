@@ -143,13 +143,19 @@ public class TrailerMaintenanceStepDefs {
 		jdaHomePage.navigateToConsignmentTrailerLinking();
 		Select_Trailer();
 		consignmentMaintSD.Select_Consignment();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		And_I_click_on_trailer_Add_button();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_done();
-		
+		Thread.sleep(2000);
 		/*Select_Trailer();
 		consignmentMaintSD.Select_Consignment2();
 		jdaHomeStepDefs.click_next();
