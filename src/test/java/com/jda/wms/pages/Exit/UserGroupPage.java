@@ -132,8 +132,10 @@ public void accessEnabled() throws FindFailed {
 		screen.click("images/JDAHome/AccessSearchButton.png");
 	}
 	public void selectRDTGroup() throws FindFailed, InterruptedException {
-		screen.wait("images/JDAHome/FunctionAccessGroupDropdown.png", timeoutInSec);
-		screen.click("images/JDAHome/FunctionAccessGroupDropdown.png");
+		screen.wait("images/JDAHome/FunctionAccessGroupDropdown1.png", timeoutInSec);
+		Match mStatus = screen.find("images/JDAHome/FunctionAccessGroupDropdown1.png");
+		screen.click(mStatus.getCenter().offset(80,0));
+		//screen.click("images/JDAHome/FunctionAccessGroupDropdown.png");
 		Thread.sleep(2000);
 		 Match header = screen.find("images/JDAHome/UserRDT.png");
 		   reg=header.below(150).left(5).right(1000);

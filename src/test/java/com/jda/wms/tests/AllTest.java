@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC018_Reversion_of_stock_from_a_trailer_Wanted_stock"
+			+ "@TC24_User_Access_to_Reversion"
 			+ ""	
 		     + ""
 			+ "" 
