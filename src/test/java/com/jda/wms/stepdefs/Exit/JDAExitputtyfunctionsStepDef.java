@@ -1112,6 +1112,7 @@ public void LinkfirstPalletconsignment() throws Throwable {
 //}
 @And("^I link the second pallet and consignment$")
 public void LinksecondPalletconsignment() throws Throwable {
+	//puttyFunctionsPage.pressEnter();
 	Thread.sleep(2000);
 	getPalletId1();
 	

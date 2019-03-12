@@ -1001,6 +1001,7 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I link the first pallet and consignment
     And I link the second pallet and next consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I create DockDoor
@@ -1258,6 +1259,7 @@ Feature: ConsignmentLinking
     And I create a consignment
     And Login to JDA Dispatcher web screen
     And drop the same consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I create DockDoor

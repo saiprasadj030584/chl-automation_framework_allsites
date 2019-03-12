@@ -72,7 +72,7 @@ public class InventoryTransactionStepDefs {
 
 	@And("^Enter Container_ID$")
 	public void enter_container_id() throws FindFailed, InterruptedException {
-		inventoryTransactionPage.EnterContanierID();
+		inventoryTransactionPage.EnterContanierID1();
 		
 	}
 	@And("^Enter Container_ID for stock adjustment$")
