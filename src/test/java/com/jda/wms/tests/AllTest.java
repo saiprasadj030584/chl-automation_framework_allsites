@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC71_Vehicle_multi_pallet_loading"
+			+ "@TC56_validate_multi_consignment_to_trailer"
 			+ ""
 			+ ""	
 		     + ""
