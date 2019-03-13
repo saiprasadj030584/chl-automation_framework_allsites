@@ -384,10 +384,6 @@ Feature: ConsignmentLinking
     Then I login as warehouse user in putty
     And I repack the consignment
     And validate the message is displayed
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I select sorting menu
     And I enter URN for sortation in Direct Receiving
     And Refresh application
