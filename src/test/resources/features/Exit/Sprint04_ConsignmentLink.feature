@@ -623,37 +623,23 @@ Feature: ConsignmentLinking
 
  @run @Sprint04 @completed @Trailer_Maintenance @TC037_Validate_consignment_Trailer_linking
   Scenario: Validate consignment Trailer linking
-    Given Login to JDA Dispatcher web screen
-    And Go to consignment maintainance
-    And Right click to Select Toggle Maintenance Mode
-    When I click on Add button
-    And Enter consignment name
-    And Select consignment Status
-    And click execute
-    And Select Mode of transport
-    And click execute
-    And validate the record is saved
-    And Go to consignment drop maintainance screen
-    And Right click to Select Toggle Maintenance Mode
-    And I click on Add button
-    And Enter consignment
-    And Enter chamber and Address Id
-    Then click execute
-    And validate the record is saved
-    And I navigate to Trailer mainteinance page
-    And Right click to Select Toggle Maintenance Mode
-    And I click on Add button
-    And Enter Trailer number
-    And Select Trailer Type
-    And click execute
-    And validate the record is saved
-    And Go to Consignment Trailer Linking
-    And Select Trailer
-    And Select Consignment
-    And Click next
-    And I click on trailer Add button
-    And validate Consignment Trailer is linked
-
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+    Then I login as warehouse user in putty
+    And I select user directed option in main menu
+    And I select Receiving menu
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And Login to JDA Dispatcher web screen
+    And I create a consignment
+    And drop the same consignment
+    Then I login as warehouse user in putty
+    And I link the pallet and consignment
+    And Refresh application
+    And Login to JDA Dispatcher web screen
+    And I create Trailer
+    And I create DockDoor
+    And I link consignment with trailer
+		And validate Consignment Trailer is linked 
+		
  @run @Sprint04 @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
   Scenario: Validate Proforma_Invoice_report
     Given Login to JDA Dispatcher web screen
