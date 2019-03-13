@@ -383,6 +383,7 @@ Feature: ConsignmentLinking
     And I link consignment with trailer
     Then I login as warehouse user in putty
     And I repack the consignment
+    And validate the message is displayed
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
