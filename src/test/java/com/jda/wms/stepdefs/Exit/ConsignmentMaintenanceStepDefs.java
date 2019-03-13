@@ -208,7 +208,7 @@ public class ConsignmentMaintenanceStepDefs {
 		Enter_consignment();
 		Enter_chamber_and_Address_Id();
 		jdaFooter.clickExecuteButton();
-		
+		Thread.sleep(3000);
 		//Right_click_to_Select_Toggle_Maintenance_Mode();
 		jdaFooter.clickAddButton();
 		Enter_consignment2();
@@ -251,7 +251,7 @@ public class ConsignmentMaintenanceStepDefs {
 		jdaHomeStepDefs.click_next();
 		close_consignment();
 		jdaHomeStepDefs.click_done();
-		
+		Thread.sleep(3000);
 		Enter_same_consignment_name2();
 		jdaHomeStepDefs.click_next();
 		close_consignment();

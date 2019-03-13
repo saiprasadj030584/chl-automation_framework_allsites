@@ -220,8 +220,8 @@ public class JDAExitputtyfunctionsStepDef {
 		//puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
-		screen.type(Key.F12);
-		screen.type(Key.F12);
+		//screen.type(Key.F12);
+		//screen.type(Key.F12);
 		Thread.sleep(5000);
 	}
 	@Then("^Validate the pallet and consignment is loaded$")
@@ -1048,7 +1048,9 @@ public void LinkPallet_and_multi_consignment() throws Throwable {
 	getPalletId();
 	consignmentMaintSD.Enter_consignment();
 	multiconsignmentIsLinked();
-	
+	Thread.sleep(4000);
+	screen.type(Key.TAB);
+	Thread.sleep(4000);
 	consignmentMaintSD.Enter_consignment2();
 	consignmentIsLinked();
 	Thread.sleep(5000);
@@ -1182,9 +1184,10 @@ public void vehicleLoading_for_multi_consignment() throws Throwable {
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
 	MulticonsignmentIsLoaded();
-	screen.type(Key.F12);
-	screen.type(Key.F12);
-	screen.type(Key.F12);
+	getPalletId();
+	screen.type(Key.TAB);
+	/*screen.type(Key.F12);
+	screen.type(Key.F12);*/
 	consignmentMaintSD.Enter_consignment2();
 	getTrailerId();
 	consignmentIsLoaded();

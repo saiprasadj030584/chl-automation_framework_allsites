@@ -971,6 +971,7 @@ Feature: ConsignmentLinking
     And I create Multi consignment
     And Login to JDA Dispatcher web screen
     And drop the multi consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I create DockDoor
@@ -978,7 +979,7 @@ Feature: ConsignmentLinking
     And I link the pallet and multi consignment
     And Refresh application
     And Login to JDA Dispatcher web screen
-    And I link consignment with trailer
+    And I link multiconsignment with trailer
     And Login to JDA Dispatcher web screen
     And I close the multi consignment
     And I complete Vechile loading for multi consignment
