@@ -1161,7 +1161,7 @@ public void vehicleLoading() throws Throwable {
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
 	screen.type(Key.ENTER);
-	//consignmentIsLoaded();
+	consignmentIsLoaded();
 }
 @And("^I complete shipment$")
 public void shipment() throws Throwable {
