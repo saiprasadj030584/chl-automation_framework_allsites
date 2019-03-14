@@ -125,11 +125,15 @@ public void accessEnabled() throws FindFailed {
 	}
 	public void SearchFuntionAccess(String search) throws FindFailed, InterruptedException {
 		Match mStatus = screen.find("images/JDAHome/AccessSearch.png");
+		Thread.sleep(2000);
 		screen.click(mStatus.getCenter().offset(80,0));
+		Thread.sleep(2000);
 		screen.type(search);
 		Thread.sleep(2000);
 		screen.find("images/JDAHome/AccessSearchButton.png");
+		Thread.sleep(2000);
 		screen.click("images/JDAHome/AccessSearchButton.png");
+		Thread.sleep(2000);
 	}
 	public void selectRDTGroup() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/FunctionAccessGroupDropdown1.png", timeoutInSec);

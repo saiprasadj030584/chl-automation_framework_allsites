@@ -120,6 +120,7 @@ public class JdaHomePage {
 	}
 	public void ClickAdminMenu() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/Admin.png", timeoutInSec);
+		Thread.sleep(3000);
 		screen.click("images/JDAHome/Admin.png");
 		Thread.sleep(2000);
 	}
@@ -272,8 +273,10 @@ public class JdaHomePage {
 		screen.mouseMove(70, 0);
 	}
 
-	public void hoverAccesscontrol() throws FindFailed {
+	public void hoverAccesscontrol() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
 		screen.wait("images/JDAHome/Accesscontrol.png", timeoutInSec);
+		Thread.sleep(3000);
 		screen.click("images/JDAHome/Accesscontrol.png");
 		//screen.mouseMove(70, 0);
 	}
@@ -1087,8 +1090,11 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 	}
 	public void navigateToWorkstation() throws FindFailed, InterruptedException {
+		Thread.sleep(3000);
 		ClickAdminMenu();
+		Thread.sleep(3000);
 		hoverAccesscontrol();
+		Thread.sleep(3000);
 		Thread.sleep(1000);
 		clickWorkstation();
 		Thread.sleep(3000);
