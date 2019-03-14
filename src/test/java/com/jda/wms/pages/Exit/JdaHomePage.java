@@ -275,12 +275,12 @@ public class JdaHomePage {
 	public void hoverAccesscontrol() throws FindFailed {
 		screen.wait("images/JDAHome/Accesscontrol.png", timeoutInSec);
 		screen.click("images/JDAHome/Accesscontrol.png");
-		screen.mouseMove(70, 0);
+		//screen.mouseMove(70, 0);
 	}
 	public void clickWorkstation() throws FindFailed {
 		screen.wait("images/JDAHome/wrkstnacess.png", timeoutInSec);
 		screen.click("images/JDAHome/wrkstnacess.png");
-		screen.mouseMove(70, 0);
+		//screen.mouseMove(70, 0);
 	}
 		
 	public void hoverLocationG() throws FindFailed {

@@ -134,6 +134,7 @@ public void accessEnabled() throws FindFailed {
 	public void selectRDTGroup() throws FindFailed, InterruptedException {
 		screen.wait("images/JDAHome/FunctionAccessGroupDropdown1.png", timeoutInSec);
 		Match mStatus = screen.find("images/JDAHome/FunctionAccessGroupDropdown1.png");
+		Thread.sleep(2000);
 		screen.click(mStatus.getCenter().offset(80,0));
 		//screen.click("images/JDAHome/FunctionAccessGroupDropdown.png");
 		Thread.sleep(2000);
