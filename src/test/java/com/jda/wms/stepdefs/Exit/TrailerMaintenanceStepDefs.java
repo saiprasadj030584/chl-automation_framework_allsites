@@ -143,13 +143,19 @@ public class TrailerMaintenanceStepDefs {
 		jdaHomePage.navigateToConsignmentTrailerLinking();
 		Select_Trailer();
 		consignmentMaintSD.Select_Consignment();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		And_I_click_on_trailer_Add_button();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
 		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		Thread.sleep(2000);
 		jdaHomeStepDefs.click_done();
-		
+		Thread.sleep(2000);
 		/*Select_Trailer();
 		consignmentMaintSD.Select_Consignment2();
 		jdaHomeStepDefs.click_next();
@@ -161,7 +167,7 @@ public class TrailerMaintenanceStepDefs {
 		
 		//trailerMaintenancePage.clickTrailerAdd();
 	}
-
+	
 	@And("^I link next consignment with trailer")
 	public void I_link_next_trailer() throws Throwable {
 		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
@@ -177,5 +183,41 @@ public class TrailerMaintenanceStepDefs {
 		//trailerMaintenancePage.clickTrailerAdd();
 	}
    	
-	
+	@And("^I link multiconsignment with trailer")
+	public void I_link_trailer1() throws Throwable {
+		Thread.sleep(2000);
+		jdaHomePage.navigateToConsignmentTrailerLinking();
+		Select_Trailer();
+		consignmentMaintSD.Select_Consignment();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		And_I_click_on_trailer_Add_button();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_done();
+		Thread.sleep(2000);
+		Select_Trailer();
+		Thread.sleep(2000);
+		consignmentMaintSD.Select_Consignment2();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		And_I_click_on_trailer_Add_button();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_next();
+		Thread.sleep(2000);
+		//consignmentMaintSD.Enter_chamber_and_dock_Id();
+		Thread.sleep(2000);
+		jdaHomeStepDefs.click_done();
+		Thread.sleep(2000);
+		//trailerMaintenancePage.clickTrailerAdd();
+	}
 }

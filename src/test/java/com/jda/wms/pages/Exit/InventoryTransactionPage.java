@@ -39,11 +39,35 @@ public class InventoryTransactionPage{
 		this.orderheaderpage=orderheaderpage;
 		
 	}
-	public void EnterContanierID() throws FindFailed{
+	public void EnterContanierID() throws FindFailed, InterruptedException{
 		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
 		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
-		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
-		screen.click("images/InventoryTransactionQuery/Container.png");
+		Thread.sleep(4000);
+		//Match field=screen.find("images/InventoryTransactionQuery/Container.png");
+		Match field=screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		Thread.sleep(4000);
+		screen.click(field.getCenter().offset(70,0));
+		//screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		
+		//screen.click("images/InventoryTransactionQuery/Container.png");
+		Thread.sleep(4000);
+		String palletIDforUPI = context.getpalletIDforUPI();
+		screen.type(palletIDforUPI);
+		
+		
+	}
+	public void EnterContanierID1() throws FindFailed, InterruptedException{
+		screen.wait("images/InventoryTransactionQuery/MiscellaneousTab.png", timeoutInSec);
+		screen.click("images/InventoryTransactionQuery/MiscellaneousTab.png");
+		Thread.sleep(4000);
+		//Match field=screen.find("images/InventoryTransactionQuery/Container.png");
+		/*Match field=screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		Thread.sleep(4000);
+		screen.click(field.getCenter().offset(70,0));
+		//screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
+		
+		//screen.click("images/InventoryTransactionQuery/Container.png");*/		
+		Thread.sleep(4000);
 		String palletIDforUPI = context.getpalletIDforUPI();
 		screen.type(palletIDforUPI);
 		
@@ -72,8 +96,8 @@ public class InventoryTransactionPage{
 		
 	}
 	public void Checktransaction() throws FindFailed, InterruptedException{
-		screen.wait("images/InventoryTransactionQuery/Container.png", timeoutInSec);
-		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
+		screen.wait("images/InventoryTransactionQuery/Container1.png", timeoutInSec);
+		Match mLocation = screen.find("images/InventoryTransactionQuery/Container1.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
 		if(screen.find("images/InventoryTransactionQuery/Transactioncode.png").equals(null)){
@@ -98,7 +122,7 @@ public class InventoryTransactionPage{
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
-		if(screen.find("images/InventoryTransactionQuery/General/UnpickITL.png.png").equals(null)){
+		if(screen.find("images/InventoryTransactionQuery/General/UnpickITL.png").equals(null)){
 			System.out.println("Inventory not found");
 		}
 		else{
@@ -109,13 +133,14 @@ public class InventoryTransactionPage{
 		Match mLocation = screen.find("images/InventoryTransactionQuery/Container.png");
 		screen.doubleClick(mLocation.getCenter().below(15));
 		Thread.sleep(2000);
-		if(screen.find("images/InventoryTransactionQuery/TransactioncodeforRedStock.png").equals(null)){
+	}
+		/*if(screen.find("images/InventoryTransactionQuery/TransactioncodeforRedStock.png").equals(null)){
 			System.out.println("Inventory not found");
 		}
 		else{
 			System.out.println("Inventory for Receipt,InventoryLock and putaway");
 		}}
-	
+	*/
 		public void CheckQtyreceived() throws FindFailed, InterruptedException{
 			screen.wait("images/InventoryTransactionQuery/Pick/pick1.png", timeoutInSec);
 			screen.click("images/InventoryTransactionQuery/Pick/pick1.png");

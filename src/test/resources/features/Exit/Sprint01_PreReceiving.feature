@@ -293,47 +293,52 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher
-  Scenario: To verify the Direct PO loading in JDA dispatcher
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify ASN in Delivery screen
     Then Verify data in UPI Receipt header screen
     Then Verify PO type in Pre Advice header screen
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
-  Scenario: To verify the Direct PO loading in JDA dispatcher
-    Given Insert Pre-advice data with PO type "DIRECT"
+  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
     Then Verify quantity and advice number is loaded in Pre-Advice line table
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC22_Verify_the_ASN_Booking
-  Scenario: To verify ASN Booking
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify ASN Booking
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
     Then Verify Export criteria for ASN details
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Complete @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
-  Scenario: To verify ASN data
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify ASN data
+    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify pallet id
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Complete @Pre_receiving @TC24_Verify_the_shipment_description
@@ -398,28 +403,32 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
-  Scenario: To verify the Red stock PO status
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+  Scenario Outline: To verify the Red stock PO status
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     Given Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify the status of the PO
+ Examples: 
+      | SKU                |
+      | 000000000021071852 |
 
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
-  Scenario: To verify pallet consignment and trailer details in the system
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To verify pallet consignment and trailer details in the system
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
     Then Navigate to consignment details page
     Then Verify Trailer content in Delivery screen
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC31_Verify_missing_URN_report
@@ -445,9 +454,8 @@ Feature: Master_data_setup
 ##-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC33_Verify_INT_URN_label_reprint
-  Scenario: To Verify International URN label reprint
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To Verify International URN label reprint
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -457,7 +465,9 @@ Feature: Master_data_setup
     Then Validate the confirmation page for International Urn
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   #@Pre_receiving @TC34_Verify_Trusted_receiving_data
@@ -465,14 +475,15 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
-  Scenario: To Verify  URN loaded into dispatcher
-    Given Insert Pre-advice data with PO type "DIRECT"
-    And Insert UPI data and Delivery data
+  Scenario Outline: To Verify  URN loaded into dispatcher
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Click on lines
     And URN lines are validated successfully
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
@@ -499,14 +510,16 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
  
   @Completed @Sprint01 @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
-  Scenario: To verify the pre-advice merge rules
-    Given Insert Pre-advice data with PO type "DIRECT"
+  Scenario Outline: To verify the pre-advice merge rules
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
-
+Examples: 
+      | SKU                |
+      | 000000000021071852 |
 #-----------------------------------------------------------------------------------------------   
 
   @Completed @Sprint01 @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
@@ -560,18 +573,20 @@ Feature: Master_data_setup
 #-----------------------------------------------------------------------------------------------   
 
  @Completed @Sprint01 @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
-  Scenario: To verify UPC held with RED stock
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
+  Scenario Outline: To verify UPC held with RED stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
+    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
     Then commodity Code is validated as NULL
     Then Supplier Declaration is validated to be null or in past
-
+Examples: 
+      | SKU                |
+      | 000000000000000000 |
 #-----------------------------------------------------------------------------------------------   
     
       #@Pre_receiving @TC44_Verify_the_certificate_of_the_stock

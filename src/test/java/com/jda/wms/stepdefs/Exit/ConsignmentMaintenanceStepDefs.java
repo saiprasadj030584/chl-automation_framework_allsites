@@ -174,7 +174,7 @@ public class ConsignmentMaintenanceStepDefs {
 		Select_Mode_of_transport();
 		jdaFooter.clickExecuteButton();
 		
-		Right_click_to_Select_Toggle_Maintenance_Mode();
+		//Right_click_to_Select_Toggle_Maintenance_Mode();
 		I_click_on_Add_button();
 		Enter_consignment_name2();
 		Select_consignment_Status();
@@ -208,8 +208,8 @@ public class ConsignmentMaintenanceStepDefs {
 		Enter_consignment();
 		Enter_chamber_and_Address_Id();
 		jdaFooter.clickExecuteButton();
-		
-		Right_click_to_Select_Toggle_Maintenance_Mode();
+		Thread.sleep(3000);
+		//Right_click_to_Select_Toggle_Maintenance_Mode();
 		jdaFooter.clickAddButton();
 		Enter_consignment2();
 		Enter_chamber_and_Address_Id2();
@@ -251,7 +251,7 @@ public class ConsignmentMaintenanceStepDefs {
 		jdaHomeStepDefs.click_next();
 		close_consignment();
 		jdaHomeStepDefs.click_done();
-		
+		Thread.sleep(3000);
 		Enter_same_consignment_name2();
 		jdaHomeStepDefs.click_next();
 		close_consignment();

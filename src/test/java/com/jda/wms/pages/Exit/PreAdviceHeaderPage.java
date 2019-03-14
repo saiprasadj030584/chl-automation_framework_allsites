@@ -131,7 +131,7 @@ public class PreAdviceHeaderPage{
     	Assert.assertNotEquals("",PreAdviceLine);
     }
 	public String getAdviceNo() throws FindFailed, InterruptedException {
-		Match mDescription = screen.find("images/PreAdviceLine/preadvid.png");
+		Match mDescription = screen.find("images/PreAdviceLine/preAdviceId.png");
 		screen.click(mDescription.getCenter().offset(70, 0));
 		screen.type("a", Key.CTRL);
 		screen.type("c", Key.CTRL);

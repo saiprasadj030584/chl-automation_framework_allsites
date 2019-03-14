@@ -206,7 +206,8 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^Validate the pallet and consignment is linked$")
 	public void consignmentIsLinked() throws Throwable {
 		Thread.sleep(3000);
-		puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
+		//puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
@@ -215,23 +216,26 @@ public class JDAExitputtyfunctionsStepDef {
 	@Then("^Validate the pallet and multi consignment is linked$")
 	public void multiconsignmentIsLinked() throws Throwable {
 		Thread.sleep(3000);
-		puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
+		//puttyFunctionsPage.linkPalletId();
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
-		screen.type(Key.F12);
-		screen.type(Key.F12);
+		//screen.type(Key.F12);
+		//screen.type(Key.F12);
 		Thread.sleep(5000);
 	}
 	@Then("^Validate the pallet and consignment is loaded$")
 	public void consignmentIsLoaded() throws Throwable {
-		puttyFunctionsPage.linkPalletId();
+		//puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		hooks.logoutPutty();
 	}
 	@Then("^Validate the pallet and multi consignment is loaded$")
 	public void MulticonsignmentIsLoaded() throws Throwable {
-		puttyFunctionsPage.linkPalletId();
+		//puttyFunctionsPage.linkPalletId();
+		screen.type(Key.ENTER);
 		Thread.sleep(5000);
 		puttyFunctionsPage.pressEnter();
 		
@@ -1044,7 +1048,9 @@ public void LinkPallet_and_multi_consignment() throws Throwable {
 	getPalletId();
 	consignmentMaintSD.Enter_consignment();
 	multiconsignmentIsLinked();
-	
+	Thread.sleep(4000);
+	screen.type(Key.TAB);
+	Thread.sleep(4000);
 	consignmentMaintSD.Enter_consignment2();
 	consignmentIsLinked();
 	Thread.sleep(5000);
@@ -1108,6 +1114,7 @@ public void LinkfirstPalletconsignment() throws Throwable {
 //}
 @And("^I link the second pallet and consignment$")
 public void LinksecondPalletconsignment() throws Throwable {
+	//puttyFunctionsPage.pressEnter();
 	Thread.sleep(2000);
 	getPalletId1();
 	
@@ -1153,9 +1160,19 @@ public void vehicleLoading() throws Throwable {
 	getPalletId();
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
+	screen.type(Key.ENTER);
 	consignmentIsLoaded();
 }
+@And("^I complete shipment$")
+public void shipment() throws Throwable {
+	Thread.sleep(2000);
+	screen.type(Key.F10);
+	Thread.sleep(2000);
+	screen.type("y");
+	Thread.sleep(2000);
 
+screen.type(Key.ENTER);
+}
 @And("^I complete Vechile loading for multi consignment$")
 public void vehicleLoading_for_multi_consignment() throws Throwable {
 	Thread.sleep(2000);
@@ -1167,9 +1184,10 @@ public void vehicleLoading_for_multi_consignment() throws Throwable {
 	consignmentMaintSD.Enter_consignment();
 	getTrailerId();
 	MulticonsignmentIsLoaded();
-	screen.type(Key.F12);
-	screen.type(Key.F12);
-	screen.type(Key.F12);
+	getPalletId();
+	screen.type(Key.TAB);
+	/*screen.type(Key.F12);
+	screen.type(Key.F12);*/
 	consignmentMaintSD.Enter_consignment2();
 	getTrailerId();
 	consignmentIsLoaded();
