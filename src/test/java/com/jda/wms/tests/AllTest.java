@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC46_Load_systematic_reports_revised"
+			+ "@TC67_Adjustment_to_URN_in_pallet"
 			+ ""
 			+ ""	
 		     + ""

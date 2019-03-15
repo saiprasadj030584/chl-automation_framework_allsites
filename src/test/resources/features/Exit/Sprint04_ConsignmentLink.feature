@@ -915,17 +915,16 @@ Feature: ConsignmentLinking
     And I create a consignment
     And Login to JDA Dispatcher web screen
     And drop the same consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I create DockDoor
     Then I login as warehouse user in putty
-    And I link the pallet and consignment
+    And I link the first pallet and consignment
+    And I link the second pallet and consignment
     And Refresh application
     And Login to JDA Dispatcher web screen
     And I link consignment with trailer
-    Then I login as warehouse user in putty
-    And I link the next pallet and consignment
-    And Refresh application
     And Login to JDA Dispatcher web screen
     And I close the consignment
     And I complete Vechile loading for first pallet
