@@ -526,7 +526,7 @@ Feature: ConsignmentLinking
    @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
   Scenario Outline: Validate vehicle loading with multiple consignments_single User
 
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+      Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
@@ -535,6 +535,7 @@ Feature: ConsignmentLinking
     And I create Multi consignment
     And Login to JDA Dispatcher web screen
     And drop the multi consignment
+    And Refresh application
     And Login to JDA Dispatcher web screen
     And I create Trailer
     And I create DockDoor
@@ -546,9 +547,11 @@ Feature: ConsignmentLinking
     And Login to JDA Dispatcher web screen
     And I close the multi consignment
     And I complete Vechile loading for multi consignment
+    
      Examples: 
       | SKU                |
       | 000000000021071852 |
+    
 
   @Sprint04 @completed @ConsignmentLinking @TC32_Validate_the_container_report
   Scenario: Validate the Container Report

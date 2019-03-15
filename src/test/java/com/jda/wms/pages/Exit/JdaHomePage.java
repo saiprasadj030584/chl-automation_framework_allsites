@@ -1089,7 +1089,7 @@ public class JdaHomePage {
 		clickglobalFunctionaccess();
 		Thread.sleep(3000);
 	}
-	public void navigateToWorkstation() throws FindFailed, InterruptedException {
+	public void navigateToWorkstation1() throws FindFailed, InterruptedException {
 		Thread.sleep(3000);
 		ClickAdminMenu();
 		Thread.sleep(3000);
@@ -1100,6 +1100,15 @@ public class JdaHomePage {
 		Thread.sleep(3000);
 
 	}
+	public void navigateToWorkstation() throws FindFailed, InterruptedException {
+	clickSearchIcon();
+	Thread.sleep(1000);
+	screen.type("workstation group function");
+	screen.type(Key.ENTER);
+	Thread.sleep(1000);
+	screen.type(Key.ENTER);
+	Thread.sleep(5000);
+}
 	public void navigateToInventory() throws FindFailed, InterruptedException {
 		clickSearchIcon();
 		Thread.sleep(1000);
