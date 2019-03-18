@@ -171,7 +171,9 @@ public class TrailerMaintenanceStepDefs {
 	@And("^I link next consignment with trailer")
 	public void I_link_next_trailer() throws Throwable {
 		jdaHomeStepDefs.Go_to_Consignment_Trailer_Linking();
+		Thread.sleep(2000);
 		Select_Trailer();
+		Thread.sleep(2000);
 		consignmentMaintSD.Select_nextConsignment();
 		jdaHomeStepDefs.click_next();
 		jdaHomeStepDefs.click_next();
