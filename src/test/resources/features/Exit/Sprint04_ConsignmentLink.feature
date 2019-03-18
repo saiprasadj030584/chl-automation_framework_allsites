@@ -1286,6 +1286,7 @@ Feature: ConsignmentLinking
     And Select Trailer
     And Select Consignment
     And Click next
+    And Click next
     And validate error message is displayed
     
     

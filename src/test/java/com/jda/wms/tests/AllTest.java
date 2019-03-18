@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC65_validate_stock_take_checks"
+			+ "@TC73_Negative_path_Mode_of_transport_validation_for_a_trailer"
 			+ ""
 			+ ""	
 		     + ""
