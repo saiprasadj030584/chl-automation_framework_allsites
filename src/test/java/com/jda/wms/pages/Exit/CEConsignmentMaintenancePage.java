@@ -279,8 +279,6 @@ public class CEConsignmentMaintenancePage {
 		screen.click(status.getCenter().offset(90, 0));*/
 		screen.type(Key.TAB);
 		Thread.sleep(5000);
-		typeConsignment();
-		Thread.sleep(3000);
 		typeConsignment1();
 }
 	
