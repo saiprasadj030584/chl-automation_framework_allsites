@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, features = "src/test/resources/features", glue = { "com.jda.wms" }, plugin = {
 		"pretty", "json:target/cucumber-reports/cucumber.json" }, tags = { ""
 			+ ""
-			+ "@TC11_Validate_black_stock_adjustment"
+			+ "@TC65_validate_stock_take_checks"
 			+ ""
 			+ ""	
 		     + ""

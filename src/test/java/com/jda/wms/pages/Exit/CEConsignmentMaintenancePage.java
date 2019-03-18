@@ -148,8 +148,12 @@ public class CEConsignmentMaintenancePage {
 }
 	public void enterSameConsignment2() throws FindFailed,InterruptedException {
 		Thread.sleep(1000);
+		screen.type("a", Key.CTRL);
+		Thread.sleep(1000);
 		String consignmentName1=context.getConsignmentName2();
+		Thread.sleep(1000);
 		screen.type(consignmentName1);
+		Thread.sleep(1000);
 }
 	public String verifyConsignment() throws FindFailed {
 		Match ConsignmentID = screen.find("images/CEConsignmentMaintenance/ConsignmentID.png");
