@@ -998,7 +998,6 @@ Feature: ConsignmentLinking
     And Refresh application
     And Login to JDA Dispatcher web screen
     And I close the consignment
-    And I close the next consignment
     And I complete Vechile loading for first pallet
     And I complete Vechile loading for Second consignment
    

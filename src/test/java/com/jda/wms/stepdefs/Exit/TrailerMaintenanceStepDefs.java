@@ -184,7 +184,7 @@ public class TrailerMaintenanceStepDefs {
 		Thread.sleep(2000);
 		jdaHomeStepDefs.click_next();
 		Thread.sleep(2000);
-		consignmentMaintSD.Enter_chamber_and_dock_Id();
+		//consignmentMaintSD.Enter_chamber_and_dock_Id();
 		Thread.sleep(2000);
 		jdaHomeStepDefs.click_done();
 		Thread.sleep(2000);
