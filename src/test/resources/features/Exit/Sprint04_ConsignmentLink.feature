@@ -1152,7 +1152,6 @@ Feature: ConsignmentLinking
     Then Get the tag ID
     And check the Inventory Transaction for Receipt, Allocate and Pick
     Then Navigate to Stock Adjustment Screen
-    And Click next
     And Enter Container_ID for stock adjustment
     And Click next
     And Click next
