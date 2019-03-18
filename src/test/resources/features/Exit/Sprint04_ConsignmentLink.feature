@@ -1157,7 +1157,6 @@ Feature: ConsignmentLinking
     And Click next
     Then Decrease the quantity in hand
     When Verified in Inventory and ITL
-    Then Stock is validated successfully
 
     Examples: 
       | SkuId              |
