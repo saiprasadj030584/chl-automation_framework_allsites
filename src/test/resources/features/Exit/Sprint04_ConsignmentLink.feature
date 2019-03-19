@@ -19,13 +19,13 @@ Feature: ConsignmentLinking
   #TC13_validate_stock_take_checks
   #TC14_Validate_URN's_in_pallet_report
   #TC17_Validate_stock_check_report
-  #TC018_Reversion_of_stock_from_a_trailer_Wanted_stock
-  #TC019_Reversion_of_stock_from_a_consignment_Wanted_stock
-  #TC020_Validate_repacking_the_pallet_Reversion
+  #TC18_Reversion_of_stock_from_a_trailer_Wanted_stock
+  #TC19_Reversion_of_stock_from_a_consignment_Wanted_stock
+  #TC20_Validate_repacking_the_pallet_Reversion
   
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  @Sprint04 @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order-Manual_Franchise_Boxed
-  Scenario Outline: Validate Pick list id generated for an order-Manual Franchise Boxed
+  @Sprint04 @ConsignmentLinking @TC01_Validate_Pick_list_id_generated_for_an_order_Manual_Franchise_Boxed
+  Scenario Outline: SN01_Validate Pick list id generated for an order-Manual Franchise Boxed
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANB
@@ -35,7 +35,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
  @Sprint04 @ConsignmentLinking @TC02_Validate_Picking_process_for_Manual_Franchise_order
-  Scenario Outline: Validate Picking process for Manual Franchise order
+  Scenario Outline: SN02_Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANB
@@ -51,7 +51,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
   @Sprint04 @ConsignmentLinking @TC03_Validate_Picking_process_for_Manual_Franchise_order_for_hanging
-  Scenario Outline: Validate Picking process for Manual Franchise order
+  Scenario Outline: SN03_Validate Picking process for Manual Franchise order
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     And Navigate to Move Task management Screen to verify Order Allocated status
     And Validation of List Id generated with prefix as MANH
@@ -67,7 +67,7 @@ Feature: ConsignmentLinking
       | 000000000021071851 |
 
   @Sprint04 @ConsignmentLinking @TC04_Happy_Path_Validate_Manual_order
-  Scenario Outline: Happy_Path_Validate_Manual_order
+  Scenario Outline: SN04_Happy_Path_Validate_Manual_order
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Login to JDA Dispatcher web screen
     And I navigate to order header
@@ -82,7 +82,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
    @Sprint04 @ConsignmentLinking @TC05_Validate_Pick_list_id_generated_for_an_order_Manual_STO
-  Scenario Outline: Validate Pick list id generated for an order-Manual_STO
+  Scenario Outline: SN05_Validate Pick list id generated for an order-Manual_STO
     Given Order Status should be "Released", Type should be "NONRETAIL", Customer should be "5542" for IDT "<SKU>"
     And Login to JDA Dispatcher web screen
     And I navigate to order header
@@ -96,8 +96,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @Sprint04 @Completed @Unpick @TC07_Validate_unpicking_the_order
-  Scenario Outline: To Validate unpicking the order in EXIT dispatcher
+  @Sprint04 @Unpick @TC07_Validate_unpicking_the_order
+  Scenario Outline: SN07_To Validate unpicking the order in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -124,8 +124,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
- @Sprint04 @Completed @Unpick @TC08_Validate_unpick_and_relocate_tasks
-  Scenario Outline: To Validate unpicking and relocate order in EXIT dispatcher
+ @Sprint04 @Unpick @TC08_Validate_unpick_and_relocate_tasks
+  Scenario Outline: SN08_To Validate unpicking and relocate order in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -154,8 +154,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
-  @Sprint04 @In-Progress @Unpick @TC09_Validate_relocate_task_completion
-  Scenario Outline: To Validate unpicking and relocate task completion in EXIT dispatcher
+  @Sprint04 @Unpick @TC09_Validate_relocate_task_completion
+  Scenario Outline: SN09_To Validate unpicking and relocate task completion in EXIT dispatcher
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -186,15 +186,15 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
- @Sprint04 @completed @TC10_validate_the_putaway_group_for_black_zone
-  Scenario: Validate Putaway group for Black zone
+ @Sprint04 @Putaway @TC10_validate_the_putaway_group_for_black_zone
+  Scenario: SN10_Validate Putaway group for Black zone
     Given Login to JDA Dispatcher web screen
     When I navigate to SKU maintenance page
     Then Query for checking Putaway group
     Then Validate the putaway group is not null
 
-@Sprint04 @completed @Putaway @TC11_Validate_black_stock_adjustment
-  Scenario: To Validate Black stock adjustment
+@Sprint04 @Putaway @TC11_Validate_black_stock_adjustment
+  Scenario: SN11_To Validate Black stock adjustment
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
     Then Navigate to Stock Adjustment Screen
@@ -206,8 +206,8 @@ Feature: ConsignmentLinking
     Then Stock is validated successfully
 
     
- @Sprint04 @completed @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
-  Scenario Outline: Negative Path Stock associated URN must allow only negative adjustment
+ @Sprint04 @Putaway @TC12_negative_path_stock_associated_urn_must_allow_neagtive_adjustment
+  Scenario Outline: SN12_Negative Path Stock associated URN must allow only negative adjustment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -230,8 +230,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
- @Sprint04 @completed @ConsignmentLinking @TC13_validate_stock_take_checks
-  Scenario Outline: Validate stock take checks
+ @Sprint04 @ConsignmentLinking @TC13_validate_stock_take_checks
+  Scenario Outline: SN13_Validate stock take checks
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -263,8 +263,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @completed @Reports @TC14_Validate_URN_in_pallet_report
-  Scenario Outline: Validate the M&S - URN in pallet report
+ @Sprint04 @Reports @TC14_Validate_URN's_in_pallet_report
+  Scenario Outline: SN14_Validate the M&S - URN in pallet report
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -279,8 +279,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
- @Sprint04 @completed @Reports @TC17_Validate_stock_check_report
-  Scenario Outline: Validate the M&S - stock check report
+ @Sprint04 @Reports @TC17_Validate_stock_check_report
+  Scenario Outline: SN17_Validate the M&S - stock check report
     Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
@@ -295,8 +295,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @ConsignmentLinking @Reversion @TC018_Reversion_of_stock_from_a_trailer_Wanted_stock
-  Scenario Outline: Reversion of stock from a trailer_Wanted stock
+ @Sprint04 @ConsignmentLinking @Reversion @TC18_Reversion_of_stock_from_a_trailer_Wanted_stock
+  Scenario Outline: SN18_Reversion of stock from a trailer_Wanted stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -323,8 +323,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @ConsignmentLinking @Reversion @TC019_Reversion_of_stock_from_a_consignment_Wanted_stock
-  Scenario Outline: Reversion_of_stock_from_a_consignment_Wanted_stock
+ @Sprint04 @ConsignmentLinking @Reversion @TC19_Reversion_of_stock_from_a_consignment_Wanted_stock
+  Scenario Outline: SN19_Reversion_of_stock_from_a_consignment_Wanted_stock
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -343,8 +343,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @ConsignmentLinking @Repacking @TC020_Validate_repacking_the_pallet_Reversion
-  Scenario Outline: Validate_repacking_the_pallet_Reversion
+ @Sprint04 @ConsignmentLinking @Repacking @TC20_Validate_repacking_the_pallet_Reversion
+  Scenario Outline: SN20_Validate repack after consignment closure
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -363,8 +363,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @ConsignmentLinking @Repacking @TC021_Validate_Reversion_relocate_storage_location
-  Scenario Outline: Validate_Reversion_relocate_storage_location
+ @Sprint04 @ConsignmentLinking @Repacking @TC21_Validate_Reversion_relocate_storage_location
+  Scenario Outline: SN21_Validate repack after consignment closure
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -396,8 +396,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @Sprint04 @ConsignmentLinking @Repacking @TC022_Validate_repack_after_consignment_closure
-  Scenario Outline: Validate repack after consignment closure
+ @Sprint04 @ConsignmentLinking @Repacking @TC22_Validate_repack_after_consignment_closure
+  Scenario Outline: SN22_Validate repack after consignment closure
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -425,16 +425,16 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @run @Sprint04 @ConsignmentLinking @TC24_User_Access_to_Reversion
-  Scenario: User Access to Reversion
+ @Sprint04 @USER_ACCESS @TC24_User_Access_to_Reversion
+  Scenario: SN24_User Access to Reversion
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Workstation access control & Click
     And Select a RDT Group from the Group dropdown box
     And Type in Function Access search "Enable Consignment Closure change for Consignment Management"
     Then validate the access is Enabled
 
-  @Sprint04 @ConsignmentLinking @TC25_Validate_consignment_closure
-  Scenario: Validate consignment closure
+ @Sprint04 @ConsignmentLinking @TC25_Validate_consignment_closure
+  Scenario: SN25_Validate consignment closure
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -456,8 +456,8 @@ Feature: ConsignmentLinking
     And Select consignment to close
     And Click done
 
-@Sprint04 @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
-  Scenario Outline: Validate_vehicle_loading_Single_pallet
+ @Sprint04 @ConsignmentLinking @TC26_Validate_vehicle_loading_Single_pallet
+  Scenario Outline: SN26_Validate vehicle loading Single pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -481,7 +481,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
  @Sprint04 @ConsignmentLinking @TC27_Negative_Path_Enter_incorrect_pallet_id
-  Scenario: Negative Path_Enter incorrect pallet id
+  Scenario: SN27_Negative Path_Enter incorrect pallet id
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select vehicle loading option in main menu
@@ -490,8 +490,8 @@ Feature: ConsignmentLinking
     And I enter consignment "CONS030119"
     And validate the error message is displayed
 
-  @Sprint04 @ConsignmentLinking @TC29_Validate_confirm_shipment
-  Scenario Outline: Validate_confirm_shipment
+ @Sprint04 @ConsignmentLinking @TC29_Validate_confirm_shipment
+  Scenario Outline: SN29_Validate_confirm_shipment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -515,7 +515,7 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
 
  @Sprint04 @ConsignmentLinking @TC30_Negative_Path_Validate_trailer_shipping
-  Scenario: Negative_Path_Validate_trailer_shipping
+  Scenario: SN30_Negative_Path_Validate_trailer_shipping
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer Shipping page
     And select trailer text tab
@@ -523,9 +523,8 @@ Feature: ConsignmentLinking
     And Click next
     And validate the error popup is displayed
     
-  @run @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
-  Scenario Outline: Validate vehicle loading with multiple consignments_single User
-
+  @Sprint04  @ConsignmentLinking @Reversion @TC31_Validate_vehicle_loading_with_multi_consignments_single_user
+  Scenario Outline: SN31_Validate vehicle loading with multiple consignments_single User
       Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -553,8 +552,8 @@ Feature: ConsignmentLinking
       | 000000000021071852 |
     
 
-  @Sprint04 @completed @ConsignmentLinking @TC32_Validate_the_container_report
-  Scenario: Validate the Container Report
+ @Sprint04 @ConsignmentLinking @TC32_Validate_the_container_report
+  Scenario: SN32_Validate the Container Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -565,7 +564,7 @@ Feature: ConsignmentLinking
     Then Validate the report selection page for Container Report or M&S - Short Invoice for Container Report completed
 
  @Sprint04 @ConsignmentLinking @TC33_Validate_pallet_count_or_container_confirmation_logic_for_a_consignment_id
-  Scenario Outline: Validate pallet count or container confirmation logic for a consignment id
+  Scenario Outline: SN33_Validate pallet count or container confirmation logic for a consignment id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -591,8 +590,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @Sprint04 @ConsignmentLinking @TC34_Negative_Path_container_and_consignment
-  Scenario: Negative Path_container and consignment
+ @Sprint04 @ConsignmentLinking @TC34_Negative_Path_container_and_consignment
+  Scenario: SN34_Negative Path_container and consignment
     Given I login as warehouse user in putty
     And I select user directed option in main menu
     And I select vehicle loading option in main menu
@@ -600,8 +599,8 @@ Feature: ConsignmentLinking
     And I enter dock door "1015"
     And validate the error message is displayed
 
-  @Sprint04 @completed @ConsignmentLinking @TC35_Validate_Load_Hazardous_report
-  Scenario: Validate Load Hazardous Report
+ @Sprint04 @ConsignmentLinking @TC35_Validate_Load_Hazardous_report
+  Scenario: SN35_Validate Load Hazardous Report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -611,8 +610,8 @@ Feature: ConsignmentLinking
     And Validate the confirmation page for Dangerous Goods
     Then Validate the report selection page for Dangerous Goods
 
-  @Sprint04 @completed @Trailer_Maintenance @TC36_Create_Trailer_id
-  Scenario: Create_Trailer_id
+ @Sprint04 @Trailer_Maintenance @TC36_Create_Trailer_id
+  Scenario: SN36_Create_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
     And Right click to Select Toggle Maintenance Mode
@@ -622,30 +621,41 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
 
- @Sprint04 @completed @Trailer_Maintenance @TC037_Validate_consignment_Trailer_linking
-  Scenario Outline: Validate consignment Trailer linking
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
-    Then I login as warehouse user in putty
-    And I select user directed option in main menu
-    And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
-    And Login to JDA Dispatcher web screen
-    And I create a consignment
-    And drop the same consignment
-    Then I login as warehouse user in putty
-    And I link the pallet and consignment
-    And Refresh application
-    And Login to JDA Dispatcher web screen
-    And I create Trailer
-    And I create DockDoor
-    And I link consignment with trailer
-		And validate Consignment Trailer is linked
-		 Examples: 
-      | SKU                |
-      | 000000000021071852 | 
-		
-  @Sprint04 @completed @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
-  Scenario: Validate Proforma_Invoice_report
+ @Sprint04 @Trailer_Maintenance @TC37_Validate_consignment_Trailer_linking
+  Scenario: SN37_Validate consignment Trailer linking
+    Given Login to JDA Dispatcher web screen
+    And Go to consignment maintainance
+    And Right click to Select Toggle Maintenance Mode
+    When I click on Add button
+    And Enter consignment name
+    And Select consignment Status
+    And click execute
+    And Select Mode of transport
+    And click execute
+    And validate the record is saved
+    And Go to consignment drop maintainance screen
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter consignment
+    And Enter chamber and Address Id
+    Then click execute
+    And validate the record is saved
+    And I navigate to Trailer mainteinance page
+    And Right click to Select Toggle Maintenance Mode
+    And I click on Add button
+    And Enter Trailer number
+    And Select Trailer Type
+    And click execute
+    And validate the record is saved
+    And Go to Consignment Trailer Linking
+    And Select Trailer
+    And Select Consignment
+    And Click next
+    And I click on trailer Add button
+    And validate Consignment Trailer is linked
+
+ @Sprint04 @ConsignmentLinking @TC38_Validate_Proforma_Invoice_report
+  Scenario: SN38_Validate Proforma_Invoice_report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -655,15 +665,15 @@ Feature: ConsignmentLinking
     And Validate the confirmation page for Proforma Invoice
     Then Validate the report selection page for Proforma Invoice
 
- @Sprint04 @ConsignmentLinking @TC39_Check_that_the_User_Groups_have_been_set_up_with_the_required_access_for_the_RDTs
-  Scenario: Check that the User Groups have been set up with the required acceses for the RDTs
+ @Sprint04 @USER_ACCESS @TC39_Check_that_the_User_Groups_have_been_set_up_with_the_required_access_for_the_RDTs
+  Scenario: SN39_Check that the User Groups have been set up with the required acceses for the RDTs
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Select a User Group from the Group dropdown box
     And Verify whether the access is valid
 
-  @Sprint04 @ConsignmentLinking @TC40_Validate_site_related_Function_Access_are_enabled
-  Scenario: Validate_site_related_Function_Access_are_enabled
+ @Sprint04 @USER_ACCESS @TC40_Validate_site_related_Function_Access_are_enabled
+  Scenario: SN40_Validate site related Function Access are enabled
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Search for Picking and Relocate access
@@ -674,8 +684,8 @@ Feature: ConsignmentLinking
     And Go to Site Global Function Access
     And Search for Picking and Relocate access
 
-  @Sprint04 @ConsignmentLinking @Repacking @TC041_Validate_repack_for_a_loaded_pallet
-  Scenario Outline: Validate repack for a loaded pallet
+ @Sprint04 @Repacking @TC41_Validate_repack_for_a_loaded_pallet
+  Scenario Outline: SN41_Validate repack for a loaded pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -703,8 +713,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
- @Sprint04 @ConsignmentLinking @Repacking @TC042_Validate_Pallet_merge_at_pallet_level
-  Scenario Outline: Validate Pallet merge at pallet level
+ @Sprint04 @Repacking @TC42_Validate_Pallet_merge_at_pallet_level
+  Scenario Outline: SN42_Validate Pallet merge at pallet level
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -720,8 +730,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @Sprint04 @ConsignmentLinking @Repacking @TC043_Validate_Pallet_merge_at_URN_level
-  Scenario Outline: Validate Pallet merge at URN level
+ @Sprint04 @Repacking @TC43_Validate_Pallet_merge_at_URN_level
+  Scenario Outline: SN43_Validate Pallet merge at URN level
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -737,16 +747,16 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-@Sprint04 @completed @TC44_validate_load_closure_user_profile
-  Scenario: Validate Load closure user profile
+ @Sprint04 @USER_ACCESS @TC44_validate_load_closure_user_profile
+  Scenario: SN44_Validate Load closure user profile
     Given Login to JDA Dispatcher web screen
     And Go to User Group Function Access through Administration
     Then Search for "consignment closure" report
     And Validate that records should be loaded for consignment closure
     And Access should be enabled for "ADMIN" Group for consignment closure
 
- @Sprint04 @ConsignmentLinking @Reversion @TC045_Validate_consignment_closure_details
-  Scenario: Validate consignment closure details
+@Sprint04 @Reversion @TC45_Validate_consignment_closure_details
+  Scenario: SN45_Validate consignment closure details
     Given Login to JDA Dispatcher web screen
     And Go to consignment maintainance
     And Right click to Select Toggle Maintenance Mode
@@ -768,8 +778,8 @@ Feature: ConsignmentLinking
     And Select consignment to close
     And Click done
 
- @run @Sprint04 @completed @Reports @TC46_Load_systematic_reports_revised
-  Scenario: Load systemic reports revised on amended in Consignment
+ @Sprint04 @Reports @TC46_Load_systematic_reports_revised
+  Scenario: SN46_Load systemic reports revised on amended in Consignment
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -779,8 +789,8 @@ Feature: ConsignmentLinking
     Then Validate the confirmation page for M&S - Customs Inspection Report
     Then Validate the report selection page for M&S - Customs Inspection Report completed
 
- @run @Sprint04 @InProgress @ConsignmentLinking @TC47_Validate_consignment_amendment
-  Scenario Outline: Validate consignment amendment
+ @Sprint04 @ConsignmentLinking @TC47_Validate_consignment_amendment
+  Scenario Outline: SN47_Validate consignment amendment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -809,8 +819,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @run @Sprint04 @completed @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
-  Scenario Outline: Negative_Path_Validate_adding_palle_to_closed_consignment
+  @Sprint04 @ConsignmentLinking @TC48_Negative_Path_Validate_adding_palle_to_closed_consignment
+  Scenario Outline: SN48_Negative_Path_Validate_adding_palle_to_closed_consignment
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -838,8 +848,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-   @Sprint04 @completed @ConsignmentLinking @Reversion @TC51_Identify_missing_pallet_id_remove_pallet_id
-  Scenario Outline: Identify missing pallet id remove pallet id
+ @Sprint04 @Reversion @TC51_Identify_missing_pallet_id_remove_pallet_id
+  Scenario Outline: SN51_Identify missing pallet id remove pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -866,7 +876,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-   @Sprint04 @completed @ConsignmentLinking @Reversion @TC52_Validate_container_report
+  @Sprint04 @Reversion @TC52_Validate_container_report
   Scenario Outline: Validate container report
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -902,7 +912,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-   @run @InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
+
+  @InProgress @ConsignmentLinking @TC53_Vehicle_multi_pallet_loading
   Scenario Outline: Vehicle multi pallet loading
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -934,8 +945,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-  @Sprint04 @completed @Trailer_Maintenance @TC54_Validate_Trailer_id
-  Scenario: Validate_Trailer_id
+   @Sprint04 @Trailer_Maintenance @TC54_Validate_Trailer_id
+  Scenario: SN54_Validate_Trailer_id
     Given Login to JDA Dispatcher web screen
     And I navigate to Trailer mainteinance page
     And Right click to Select Toggle Maintenance Mode
@@ -945,8 +956,8 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
     
-   @run @Sprint04 @completed @ConsignmentLinking @Reversion @TC56_validate_multi_consignment_to_trailer
-  Scenario Outline: Validate multi consignments to trailer
+    @Sprint04 @Reversion @TC56_validate_multi_consignment_to_trailer
+  Scenario Outline: SN56_Validate multi consignments to trailer
 
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -974,7 +985,7 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
     
-   @run @Sprint04 @completed @Vehicle_Loading @TC57_Negative_path_Add_wrong_mode_of_transport_consignment_to_existing_trailer
+   @Sprint04 @Vehicle_Loading @TC57_Negative_path_Add_wrong_mode_of_transport_consignment_to_existing_trailer
   Scenario Outline: Negative path_Add wrong mode of transport consignment to existing trailer
 		Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
@@ -1006,8 +1017,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 		
-    @Sprint04 @completed @TC58_support_desk_team_access_amend_or_delete_sortation_rules
-  Scenario Outline: Support desk Team access to create, amend or delete Sortation rules
+   @Sprint04 @USER_ACCESS @TC58_support_desk_team_access_amend_or_delete_sortation_rules
+  Scenario Outline: SN58_Support desk Team access to create, amend or delete Sortation rules
     Given The sku "<SkuId>" details and corresponding product group
     Given Access the table for trusted group given the customerID "7977"
 
@@ -1015,8 +1026,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
-   @Sprint04 @completed @ConsignmentLinking @TC60_RED_Report_creation
-  Scenario: To Verify RED Report creation
+   @Sprint04 @ConsignmentLinking @TC60_RED_Report_creation
+  Scenario: SN60_To Verify RED Report creation
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -1026,8 +1037,8 @@ Feature: ConsignmentLinking
     And Proceed next to Output tab for the report
     Then Validate the report selection page for Red Report creation
 
-   @run @Sprint04 @completed @ConsignmentLinking @TC61_Validate_black_stock_adjustment
-  Scenario: To Validate Black stock adjustment
+   @Sprint04 @ConsignmentLinking @TC61_Validate_black_stock_adjustment
+  Scenario Outline: SN61_To Validate Black stock adjustment
     Given Login to JDA Dispatcher web screen
     And Take a sku having stock in "BLACKB"
     Then Navigate to Stock Adjustment Screen
@@ -1038,9 +1049,12 @@ Feature: ConsignmentLinking
     When Verified in Inventory and ITL
     Then Stock is validated successfully
 
-    
-    @Sprint04 @completed @ConsignmentLinking @TC63_Validate_stock_check_details_for_outbound
-  Scenario Outline: Validate stock check details for outbound
+    Examples: 
+      | Location |
+      | AA001    |
+
+   @Sprint04 @ConsignmentLinking @TC63_Validate_stock_check_details_for_outbound
+  Scenario Outline: SN63_Validate stock check details for outbound
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -1082,8 +1096,8 @@ Feature: ConsignmentLinking
     And click execute
     And validate the record is saved
 
-   @run @Sprint04 @completed @ConsignmentLinking @TC65_validate_stock_take_checks
-  Scenario Outline: Validate stock take checks
+   @Sprint04 @ConsignmentLinking @TC65_validate_stock_take_checks
+  Scenario Outline: SN65_Validate stock take checks
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -1115,8 +1129,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-    @Sprint04 @completed @Repacking @TC66_Missing_URN_Repacking
-  Scenario Outline: Missing URN_Repacking
+   @Sprint04 @Repacking @TC66_Missing_URN_Repacking
+  Scenario Outline: SN66_Missing URN_Repacking
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -1137,8 +1151,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
-   @run @Sprint04 @completed @Putaway @TC67_Adjustment_to_URN_in_pallet
-  Scenario Outline: Adjustment to URN in Pallet
+   @Sprint04 @Putaway @TC67_Adjustment_to_URN_in_pallet
+  Scenario Outline: SN67_Adjustment to URN in Pallet
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SkuId>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -1162,8 +1176,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
-  @run  @Sprint04 @completed @Sortation @TC068_Pick_Sort_to_an_Outbound_Pallet_from_Black_Stock
-  Scenario Outline: Validate adding urn to pallet id
+   @Sprint04 @Sortation @TC68_Pick_Sort_to_an_Outbound_Pallet_from_Black_Stock
+  Scenario Outline: SN68_Validate adding urn to pallet id
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu
@@ -1182,8 +1196,8 @@ Feature: ConsignmentLinking
       | SKU                |
       | 000000000021071852 |
 
-   @completed @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
-  Scenario Outline: To validate Compliance Check - Supplier Record does not exist
+   @Sprint04 @Sortation @TC69_Pick_Sort_to_an_Outbound_Pallet_from_Red_Stock_to_Green
+  Scenario Outline: SN69_To validate Compliance Check - Supplier Record does not exist
     Given The details for the sku "<SkuId>"
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
@@ -1211,9 +1225,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071851 |
 
-  @completed @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
-  Scenario Outline: Auto complete Red URN putaway post receipt
-    Given The details for the sku "<SkuId>"
+   @Sprint04 @ConsignmentLinking @TC70_auto_complete_red_urn_putaway_post_receipt
+  Scenario Outline: SN70_Auto complete Red URN putaway post receipt
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","4624" for Red Stock
     Then Alter the check weight to make the stock as RED Stock
     Then I login as warehouse user in putty
@@ -1227,8 +1240,8 @@ Feature: ConsignmentLinking
       | SkuId              |
       | 000000000021071852 |
 
-   @run @Sprint04 @completed @ConsignmentLinking @TC71_Vehicle_multi_pallet_loading
-  Scenario Outline: Vehicle multi pallet loading
+   @Sprint04 @ConsignmentLinking @TC71_Vehicle_multi_pallet_loading
+  Scenario Outline: SN71_Vehicle multi pallet loading
     Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
     Then I login as warehouse user in putty
     And I select user directed option in main menu

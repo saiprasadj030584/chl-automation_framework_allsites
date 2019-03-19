@@ -1,30 +1,30 @@
-@PreReceiving
+
 Feature: Master_data_setup
   As a Exit DC user should be able to login
    so that I validate the  master data setup
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #TestCases included in @Sprint01
   
-   #TC01_Find_the_Site_Setup																			#TC17_Verify_SKU_Merge_rules																						#TC36_Verify_factory_code_for_a_supplier								
-   #TC02_Ensure_the_USER_id_tagged_to_right_SITE									#TC18_Verify_wholesale_price																						#TC37_Verify_ASN_Closure
-   #TC03_Find_the_Location_setup																	#TC19_Verify_country_of_origin_of_a_product															#TC38_Verify_Pre_advice_check_merge_rule
-   #TC04_Find_the_LocationZone_setup															#TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher												#TC39_Verify_the_packConfig_for_the_sku
-   #TC05_Find_the_Site_ID_in_Address_table												#TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher														#TC40_Verify_stroke_details_garment_type
-   #TC06_Find_the_Address_in_Address_table												#TC22_Verify_the_ASN_Booking																						#TC41_Verify_the_supplier_mismatch_against_a_product
-   #TC07_Find_the_SKU_LOAD																				#TC23_Verify_URN_data_is_available_in_dispatcher												#TC42_Verify_UPC_held_with_RED_stock
-   #TC08_Screen_USER_group_check																	#TC24_Verify_the_shipment_description
+   #TC01_Find_the_Site_Setup																			 #TC17_Verify_SKU_Merge_rules																						#TC36_Verify_factory_code_for_a_supplier								
+   #TC02_Ensure_the_USER_id_tagged_to_right_SITE									 #TC18_Verify_wholesale_price																						#TC37_Verify_ASN_Closure
+   #TC03_Find_the_Location_setup																	 #TC19_Verify_country_of_origin_of_a_product															#TC38_Verify_Pre_advice_check_merge_rule
+   #TC04_Find_the_LocationZone_setup															 #TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher												#TC39_Verify_the_packConfig_for_the_sku
+   #TC05_Find_the_Site_ID_in_Address_table												 #TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher														#TC40_Verify_stroke_details_garment_type
+   #TC06_Find_the_Address_in_Address_table												 #TC22_Verify_the_ASN_Booking																						#TC41_Verify_the_supplier_mismatch_against_a_product
+   #TC07_Find_the_SKU_LOAD																				 #TC23_Verify_URN_data_is_available_in_dispatcher												#TC42_Verify_UPC_held_with_RED_stock
+   #TC08_Screen_USER_group_check																	 #TC24_Verify_the_shipment_description
    #TC09_USER_GROUP_FA_test                                       #TC25_Verify_the_composition_description
-   #TC10_WORKSTATION_FA_TEST																			#TC26_Verify_the_Knit_Woven_indicator
-   #TC11_Verify_T_Dept_of_SKU																			#TC28_Verify_the_address_or_site_information
-   #TC12_Verify_stroke_details_Stroke_Category										#TC29_Verify_the_RED_Stock_PO_status
-   #TC13_Verify_commodity_code_of_a_SKU														#TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
-   #TC14_Verify_Packed_weight_of_a_SKU														#TC31_Verify_missing_URN_report
-   #TC15_Verify_the_supplier_declaration_certificate_expiry_date	#TC33_Verify_INT_URN_label_reprint
-   #TC16_Verify_the_supplier_record																#TC35_Verify_URN_loaded_into_Dispatcher
+   #TC10_WORKSTATION_FA_TEST																			 #TC26_Verify_the_Knit_Woven_indicator
+   #TC11_Verify_T_Dept_of_SKU																		 #TC28_Verify_the_address_or_site_information
+   #TC12_Verify_stroke_details_Stroke_Category										 #TC29_Verify_the_RED_Stock_PO_status
+   #TC13_Verify_commodity_code_of_a_SKU													 #TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
+   #TC14_Verify_Packed_weight_of_a_SKU														 #TC31_Verify_missing_URN_report
+   #TC15_Verify_the_supplier_declaration_certificate_expiry_date	 #TC33_Verify_INT_URN_label_reprint
+   #TC16_Verify_the_supplier_record															 #TC35_Verify_URN_loaded_into_Dispatcher
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  @Completed @Sprint01 @Master_DATA @TC01_Find_the_Site_Setup
-  Scenario Outline: Find the site setup
+   @Sprint01 @Master_DATA @TC01_Find_the_Site_Setup
+  Scenario Outline: SN01_Find the site setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-GENERAL-SETUP-SITE & Click
     And Click on Query
@@ -37,8 +37,8 @@ Feature: Master_data_setup
       |   5542 |
  
 #-----------------------------------------------------------------------------------------------
-  @Completed @Sprint01 @Master_DATA @TC02_Ensure_the_USER_id_tagged_to_right_SITE
-  Scenario Outline: Ensure the USER id tagged to right SITE
+   @Sprint01 @Master_DATA @TC02_Ensure_the_USER_id_tagged_to_right_SITE
+  Scenario Outline: SN02_Ensure the USER id tagged to right SITE
     Given Login to JDA Dispatcher web screen
     And Go to Data-GENERAL-SETUP-SITE & Click
     And Click on Query
@@ -51,8 +51,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @Master_DATA @TC03_Find_the_Location_setup
-  Scenario: Find the Location setup
+   @Sprint01 @Master_DATA @TC03_Find_the_Location_setup
+  Scenario: SN03_Find the Location setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-Location & Click
     And Click on Query
@@ -62,8 +62,8 @@ Feature: Master_data_setup
     
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @Master_DATA @TC04_Find_the_LocationZone_setup
-  Scenario Outline: Find the Location ZONE setup
+   @Sprint01 @Master_DATA @TC04_Find_the_LocationZone_setup
+  Scenario Outline: SN04_Find the Location ZONE setup
     Given Login to JDA Dispatcher web screen
     And Go to Data-LOCATION-LocationZone & Click
     And Click on Query
@@ -76,8 +76,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @Master_DATA @TC05_Find_the_Site_ID_in_Address_table
-  Scenario Outline: Find the site load in Address table
+   @Sprint01 @Master_DATA @TC05_Find_the_Site_ID_in_Address_table
+  Scenario Outline: SN05_Find the site load in Address table
     Given Login to JDA Dispatcher web screen
     And Go to Data-GENERAL_SETUP_Address & Click
     And Click on Query
@@ -91,8 +91,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @Master_DATA @TC06_Find_the_Address_in_Address_table
-  Scenario Outline: Find the Address load in Address table
+   @Sprint01 @Master_DATA @TC06_Find_the_Address_in_Address_table
+  Scenario Outline: SN06_Find the Address load in Address table
     Given Login to JDA Dispatcher web screen
     And Go to Data-GENERAL_SETUP_Address & Click
     And Click on Query
@@ -105,8 +105,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @Master_DATA @TC07_Find_the_SKU_LOAD
-  Scenario Outline: Find the SKU LOAD
+   @Sprint01 @Master_DATA @TC07_Find_the_SKU_LOAD
+  Scenario Outline: SN07_Find the SKU LOAD
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKU & Click
     And Click on Query
@@ -120,8 +120,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
       
-  @Completed @Sprint01 @USER_ACCESS @TC08_Screen_USER_group_check
-  Scenario Outline: Screen user group check
+   @Sprint01 @USER_ACCESS @TC08_Screen_USER_group_check
+  Scenario Outline: SN08_Screen user group check
     Given Login to JDA Dispatcher web screen
     And Go to Admin-User-UserGroup & click
     And Click on Query
@@ -135,24 +135,24 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------
 
-  @Completed @Sprint01 @USER_ACCESS @TC09_USER_GROUP_FA_test
-  Scenario: User group FA test
+   @Sprint01 @USER_ACCESS @TC09_USER_GROUP_FA_test
+  Scenario: SN09_User group FA test
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>USER GROUP FUNCTION ACCESS & Click
     And Verify whether the access
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @USER_ACCESS @TC10_WORKSTATION_FA_TEST
-  Scenario: WORKSTATION_FA_TEST
+   @Sprint01 @USER_ACCESS @TC10_WORKSTATION_FA_TEST
+  Scenario: SN10_WORKSTATION_FA_TEST
     Given Login to JDA Dispatcher web screen
     And Go to Admin>ACCESS CNT>Workstation access control & Click
     And Verify whether the webaccess
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC11_Verify_T_Dept_of_SKU
-  Scenario Outline: To Verify T-Dept of SKU
+  @Sprint01 @Pre_receiving @TC11_Verify_T_Dept_of_SKU
+  Scenario Outline: SN11_To Verify T-Dept of SKU
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -166,8 +166,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC12_Verify_stroke_details_Stroke_Category
-  Scenario Outline: To Verify stroke details -Stroke Category
+   @Sprint01 @Pre_receiving @TC12_Verify_stroke_details_Stroke_Category
+  Scenario Outline: SN12_To Verify stroke details -Stroke Category
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -181,8 +181,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC13_Verify_commodity_code_of_a_SKU
-  Scenario Outline: To verify the commonidty code of a sku
+   @Sprint01 @Pre_receiving @TC13_Verify_commodity_code_of_a_SKU
+  Scenario Outline: SN13_To verify the commonidty code of a sku
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -196,8 +196,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @SP01 @Pre_receiving @TC14_Verify_Packed_weight_of_a_SKU
-  Scenario Outline: To verify the packed weight of a sku
+   @Sprint01 @SP01 @Pre_receiving @TC14_Verify_Packed_weight_of_a_SKU
+  Scenario Outline: SN14_To verify the packed weight of a sku
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -212,8 +212,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC15_Verify_the_supplier_declaration_certificate_expiry_date
-  Scenario Outline: To verify the supplier declaration certificate expiry date
+   @Sprint01 @Pre_receiving @TC15_Verify_the_supplier_declaration_certificate_expiry_date
+  Scenario Outline: SN15_To verify the supplier declaration certificate expiry date
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
     And Click on Query
@@ -227,8 +227,8 @@ Feature: Master_data_setup
       
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC16_Verify_the_supplier_record
-  Scenario Outline: To verify the supplier record
+   @Sprint01 @Pre_receiving @TC16_Verify_the_supplier_record
+  Scenario Outline: SN16_To verify the supplier record
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
     And Click on Query
@@ -242,8 +242,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC17_Verify_SKU_Merge_rules
-  Scenario Outline: To verify the sku merge rules
+   @Sprint01 @Pre_receiving @TC17_Verify_SKU_Merge_rules
+  Scenario Outline: SN17_To verify the sku merge rules
     Given Login to JDA Dispatcher web screen
     And Go to Admin_Setup_Scheduler_Schedulerprograms & Click
     And Click on Query
@@ -262,8 +262,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC18_Verify_wholesale_price
-  Scenario Outline: To verify the wholesaler_price
+   @Sprint01 @Pre_receiving @TC18_Verify_wholesale_price
+  Scenario Outline: SN18_To verify the wholesaler_price
     Given Login to JDA Dispatcher web screen
     And Go to Data-order_orderline & Click
     And Click on Query
@@ -277,8 +277,8 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC19_Verify_country_of_origin_of_a_product
-  Scenario Outline: To verify the country of origin for a product
+   @Sprint01 @Pre_receiving @TC19_Verify_country_of_origin_of_a_product
+  Scenario Outline: SN19_To verify the country of origin for a product
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -292,57 +292,52 @@ Feature: Master_data_setup
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher
-  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+   @Sprint01 @Pre_receiving @TC20_Verify_Direct_PO_loading_in_JDA_Dispatcher
+  Scenario: SN20_To verify the Direct PO loading in JDA dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify ASN in Delivery screen
     Then Verify data in UPI Receipt header screen
     Then Verify PO type in Pre Advice header screen
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
-  Scenario Outline: To verify the Direct PO loading in JDA dispatcher
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+   @Sprint01 @Pre_receiving @TC21_Verify_FSV_PO_loading_in_JDA_Dispatcher
+  Scenario: SN21_To verify the Direct PO loading in JDA dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
     And Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
     Then Verify quantity and advice number is loaded in Pre-Advice line table
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC22_Verify_the_ASN_Booking
-  Scenario Outline: To verify ASN Booking
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+   @Sprint01 @Pre_receiving @TC22_Verify_the_ASN_Booking
+  Scenario: SN22_To verify ASN Booking
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
     Then Verify Export criteria for ASN details
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Complete @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
-  Scenario Outline: To verify ASN data
-    Given Order Status should be "Released", Type should be "RETAIL", Customer should be "5542" for SKU "<SKU>"
+   @Sprint01 @Complete @Pre_receiving @TC23_Verify_URN_data_is_available_in_dispatcher
+  Scenario: SN23_To verify URN data is available in dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify pallet id
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Complete @Pre_receiving @TC24_Verify_the_shipment_description
-  Scenario Outline: To Verify Shipment description
+   @Sprint01 @Pre_receiving @TC24_Verify_the_shipment_description
+  Scenario Outline: SN24_To Verify Shipment description
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -357,8 +352,8 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Complete @Pre_receiving @TC25_Verify_the_composition_description
-  Scenario Outline: To Verify composition description
+   @Sprint01 @Complete @Pre_receiving @TC25_Verify_the_composition_description
+  Scenario Outline: SN25_To Verify composition description
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -373,8 +368,8 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC26_Verify_the_Knit_Woven_indicator
-  Scenario Outline: To Verify Knit/Woven indicator
+   @Sprint01 @Pre_receiving @TC26_Verify_the_Knit_Woven_indicator
+  Scenario Outline: SN26_To Verify Knit/Woven indicator
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -393,8 +388,8 @@ Examples:
   #the required report M&S- Pre Receive SKU master data check is not available anymore
 #-----------------------------------------------------------------------------------------------   
   
-  @Completed @Sprint01 @Pre_receiving @TC28_Verify_the_address_or_site_information
-  Scenario: To Verify the address or site information
+   @Sprint01 @Pre_receiving @TC28_Verify_the_address_or_site_information
+  Scenario: SN28_To Verify the address or site information
     Given Login to JDA Dispatcher web screen
     And I navigate to address maintenance page
     When I query, execute and process further
@@ -402,37 +397,33 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
-  Scenario Outline: To verify the Red stock PO status
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+   @Sprint01 @Pre_receiving @TC29_Verify_the_RED_Stock_PO_status
+  Scenario: SN29_To verify the Red stock PO status
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     Given Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify the status of the PO
- Examples: 
-      | SKU                |
-      | 000000000021071852 |
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
-  Scenario Outline: To verify pallet consignment and trailer details in the system
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+   @Sprint01 @Pre_receiving @TC30_Verify_Pallet_Consignment_and_Trailer_details_in_the_system
+  Scenario: SN30_To verify pallet consignment and trailer details in the system
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Verify ASN ID for the PalletID
     Then Navigate to consignment details page
     Then Verify Trailer content in Delivery screen
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC31_Verify_missing_URN_report
-  Scenario Outline: To Verify Missing URN report
+   @Sprint01 @Pre_receiving @TC31_Verify_missing_URN_report
+  Scenario Outline: SN31_To Verify Missing URN report
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -453,9 +444,10 @@ Examples:
   #Code change inthe Putty which needs clarification from Dev team
 ##-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC33_Verify_INT_URN_label_reprint
-  Scenario Outline: To Verify International URN label reprint
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+   @Sprint01 @Pre_receiving @TC33_Verify_INT_URN_label_reprint
+  Scenario: SN33_To Verify International URN label reprint
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     Given Login to JDA Dispatcher web screen
     And Go to Reports Selection and click
     Then Select Print to screen and proceed next
@@ -465,29 +457,26 @@ Examples:
     Then Validate the confirmation page for International Urn
     And Proceed next to Output tab for the report
     Then Validate the report selection page for URN international reprint completion
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
   #@Pre_receiving @TC34_Verify_Trusted_receiving_data
   #Scenario: To verify Trusted receiving data using MANDS SCHEMA
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
-  Scenario Outline: To Verify  URN loaded into dispatcher
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+   @Sprint01 @Pre_receiving @TC35_Verify_URN_loaded_into_Dispatcher
+  Scenario: SN35_To Verify  URN loaded into dispatcher
+    Given Insert Pre-advice data with PO type "DIRECT"
+    And Insert UPI data and Delivery data
     And Login to JDA Dispatcher web screen
     Then Verify data in UPI Receipt header screen
     Then Click on lines
     And URN lines are validated successfully
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
-  Scenario Outline: To verify factory code for a supplier
+   @Sprint01 @Pre_receiving @TC36_Verify_factory_code_for_a_supplier
+  Scenario Outline: SN36_To verify factory code for a supplier
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
     And Click on Query
@@ -501,29 +490,27 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-@Completed @Sprint01 @Pre_receiving @TC37_Verify_ASN_Closure
-  Scenario: To verify ASN closure
+ @Sprint01 @Pre_receiving @TC37_Verify_ASN_Closure
+  Scenario: SN37_To verify ASN closure
     Given Login to JDA Dispatcher web screen
     Then Verify the status of ASN in Delivery screen
   	Then verify Status as completed
 
 #-----------------------------------------------------------------------------------------------   
  
-  @Completed @Sprint01 @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
-  Scenario Outline: To verify the pre-advice merge rules
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+   @Sprint01 @Pre_receiving @TC38_Verify_Pre_advice_check_merge_rule
+  Scenario: SN38_To verify the pre-advice merge rules
+    Given Insert Pre-advice data with PO type "DIRECT"
     Then Login to JDA Dispatcher web screen
     Then Verify PreAdvice header loaded successfully
     Then Verify Supplier is populated in the Pre-advice header table
     Then Verify the Type  is populated as "PO"
     Then Verify PreAdvice line loaded successfully
-Examples: 
-      | SKU                |
-      | 000000000021071852 |
+
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
-  Scenario Outline: To Find a Pack Config
+   @Sprint01 @Pre_receiving @TC39_Verify_the_packConfig_for_the_sku
+  Scenario Outline: SN39_To Find a Pack Config
     Given Login to JDA Dispatcher web screen
     And I am on pack config maintenance page
     And Execute for verifying the fields
@@ -536,8 +523,8 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC40_Verify_stroke_details_garment_type
-  Scenario Outline: To Verify stroke details -Garment type
+   @Sprint01 @Pre_receiving @TC40_Verify_stroke_details_garment_type
+  Scenario Outline: SN40_To Verify stroke details -Garment type
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SKUmaintenance & Click
     And Click on Query
@@ -552,8 +539,8 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
-  @Completed @Sprint01 @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
-  Scenario Outline: To verify the supplier mismatch against a product
+   @Sprint01 @Pre_receiving @TC41_Verify_the_supplier_mismatch_against_a_product
+  Scenario Outline: SN41_To verify the supplier mismatch against a product
     Given Login to JDA Dispatcher web screen
     And Go to Data-SKU-SupplierSKU & Click
     And Click on Query
@@ -572,21 +559,19 @@ Examples:
 
 #-----------------------------------------------------------------------------------------------   
 
- @Completed @Sprint01 @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
-  Scenario Outline: To verify UPC held with RED stock
-    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for "<SKU>"
+  @Sprint01 @Pre_receiving @TC42_Verify_UPC_held_with_RED_stock
+  Scenario: SN43_To verify UPC held with RED stock
+    Given Data to be inserted in preadvice header,order header and UPI receipt with "Released","NONRETAIL","5542" for Red Stock
     Then I login as warehouse user in putty
     And I select user directed option in main menu
     And I select Receiving menu
-    And I enter URN and Bel and validation of UPC,QTY and Supplier for ASN Direct receiving
+    And I enter URN and Bel and validation of UPC,QTY,Supplier and location for ASN for red stock
     And I navigate to Order header screen to verify the status in Released
     And check the Inventory Transaction for Receipt, InventoryLock and putaway for the Red lock code
     Then stroke category is validated as NULL
     Then commodity Code is validated as NULL
     Then Supplier Declaration is validated to be null or in past
-Examples: 
-      | SKU                |
-      | 000000000000000000 |
+
 #-----------------------------------------------------------------------------------------------   
     
       #@Pre_receiving @TC44_Verify_the_certificate_of_the_stock
