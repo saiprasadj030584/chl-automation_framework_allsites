@@ -5,19 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.jda.wms.pages.Exit.RDTTask;
+import org.sikuli.script.Match;
+
+import com.jda.wms.UI.pages.RDTTask;
+
+import cucumber.api.Scenario;
 
 public class Context {
 	private static String upiId = null;
 	private RDTTask currentTask;
+	private int DataSize;
+	private String BarCode;
 	private String preAdviceId;
 	private String skuId;
+	private String skuId1;
 	private String productGroup;
 	private String cewarehousetype;
 	private String allocationGroup;
 	private String ean;
 	private String newAbv;
 	private String tagId;
+	private String tagId1;
 	private String status;
 	private int qtyOnHandBfrAdjustment;
 	private int caseRatio;
@@ -42,10 +50,12 @@ public class Context {
 	private int qtyReceivedPerTag;
 	private String ceWarehouseTax;
 	private String consignmentID;
+	private String consignmentID1;
 	private String productCategory;
 	private String lockCode;
 	private String vintage;
 	private String abv;
+	private Scenario scenario;
 	private int qtyReceivedFromPutty;
 	private String locationLockStatus;
 	private String locationID;
@@ -56,7 +66,10 @@ public class Context {
 	private String faceType;
 	private String siteId;
 	private ArrayList<String> failureList;
-	private String orderId;
+	private ArrayList<String> orderIdlist;
+	private ArrayList<String> orderIdlist1;
+	private ArrayList<String> QtyList;
+	private String orderId1;
 	private String customer = null;
 	private String listId;
 	private String toPallet;
@@ -65,6 +78,7 @@ public class Context {
 	private int qtyToMove;
 	private String shipDock;
 	private String newShipDock;
+	private String trailerID;
 	private String trailerNo;
 	private String trailerNumber;
 	private String dockSchedulerBookingID;
@@ -76,8 +90,11 @@ public class Context {
 	private static Connection connection = null;
 	private String abvPercentage;
 	private ArrayList<String> palletIDList;
+	private ArrayList<String> BelList;
+	private ArrayList<String> preAdviceList;
 	private Integer recordCountByTaskID;
 	private String palletID;
+	private String palletID1;
 	private int moveTaskRecordCount;
 	private int qtyOrdered;
 	private Map<Integer, Map<String, String>> listIDMap;
@@ -118,7 +135,7 @@ public class Context {
 	private static String dBPassword;
 	private String pickFaceTime;
 	private String Key;
-	
+
 	private String qtyToMove2;
 	private String tag;
 	private String receiptId;
@@ -130,6 +147,7 @@ public class Context {
 	private String palletIDforUPI;
 	private String POType;
 	private String ASN;
+	private String ASN1;
 	public String getSkuId2;
 	private String packWeight;
 	private String strokeCategory;
@@ -141,6 +159,7 @@ public class Context {
 	private String PalletID2;
 	private String BelCode2;
 	private String upc;
+	private String upc1;
 	private String PalletId;
 	private String poId2;
 	private String belCode2;
@@ -157,6 +176,72 @@ public class Context {
 	private String BelCode1;
 	private String PalletId1;
 	private String consignmentName2;
+	private String MasterURN;
+	private String MasterURN1;
+	private int position;
+	private Match mSlot;
+	private ArrayList<String> palletPut;
+	private String orderId;
+	private ArrayList<String> OrderIDList;
+	private ArrayList<String> MasterurnList;
+	private ArrayList<String> PalletList;
+	private ArrayList<String> ASNList;
+	private ArrayList<String> skuIDList;
+	private ArrayList<String> skuListForInventory;
+	private ArrayList<String> UPCList;
+	private String PreadviceId1;
+	private String trailerNos;
+	private String randomPal;
+	private int tagId2;
+	private String RMS_putaway_location;
+	private String putaway_location;
+	private String rackLocation;
+	private ArrayList<String> LocList;
+	private ArrayList<String> supList;
+	private ArrayList<String> CustmList;
+	private String qtyOrdered1;
+	private String qtyDue;
+	private String tote_container;
+	private String cage_container;
+	private ArrayList<String> skuIDListDirect;
+	private ArrayList<String> skuIDList_Second_Direct;
+
+	private ArrayList<String> skuIDListIN;
+	private ArrayList<String> skuIDListNonRetail;
+	private ArrayList<String> OrderIDList_Direct;
+	private ArrayList<String> OrderIDList_Second_Direct;
+	private ArrayList<String> OrderIDList_IN;
+	private ArrayList<String> OrderIDList_NonRetail;
+	private ArrayList<String> QtyList_Direct;
+	private ArrayList<String> QtyList_Second_Direct;
+
+	private ArrayList<String> QtyList_IN;
+	private ArrayList<String> QtyList_NonRetail;
+	private ArrayList<String> qtyListForInventory;
+	private List<String> ContainerList;
+	private ArrayList<String> ListId;
+	private String NDCname;
+
+	private ArrayList<String> SourceIdList;
+	private ArrayList<String> HubList;
+	private ArrayList<String> CustomerList;
+	private ArrayList<String> upcList;
+	private ArrayList<String> LineIdList;
+	private ArrayList<String> SupplierList;
+	private ArrayList<String> QtydueList;
+	private ArrayList<String> OdnList;
+	private ArrayList<String> UrnAdviceList;
+	private ArrayList<String> StoList;
+	private ArrayList<String> AsnIdList;
+	private ArrayList<String> MasterUrnList;
+
+	private String qnty;
+	private String upcnotinurn;
+	private String store;
+
+	private String inputupc;
+	private String qty;
+	private String choice;
 	
 	public void setParentRequestId(String parentRequestId) {
 		this.parentRequestId = parentRequestId;
@@ -173,7 +258,6 @@ public class Context {
 	public void setSQLDBConnection(Connection connectionSQLDB) {
 		this.connectionSQLDB = connectionSQLDB;
 	}
-	
 
 	public void setChildStartTime(String childStartTime) {
 
@@ -199,6 +283,7 @@ public class Context {
 	public void setPalletID(String palletID) {
 		this.palletID = palletID;
 	}
+
 	public String getPalletID2() {
 		return palletID2;
 	}
@@ -206,6 +291,7 @@ public class Context {
 	public void setPalletID2(String palletID) {
 		this.palletID2 = palletID2;
 	}
+
 	public String getpalletIDforUPI() {
 		return palletIDforUPI;
 	}
@@ -261,6 +347,7 @@ public class Context {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
+
 	public String getSkuId2() {
 		return skuid;
 	}
@@ -268,6 +355,7 @@ public class Context {
 	public void setSkuId2(String skuid) {
 		this.skuid = skuid;
 	}
+
 	public String getUpiId() {
 		return upiId;
 	}
@@ -516,6 +604,14 @@ public class Context {
 		this.consignmentID = consignmentID;
 	}
 
+	public String getConsignmentID_2() {
+		return consignmentID;
+	}
+
+	public void setConsignmentID_2(String consignmentID2) {
+		this.consignmentID = consignmentID;
+	}
+
 	public String getProductCategory() {
 		return productCategory;
 	}
@@ -620,6 +716,7 @@ public class Context {
 	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
+
 	public String getSAPvalue() {
 		return SAPvalue;
 	}
@@ -699,7 +796,7 @@ public class Context {
 	public void setQtyToMove(int qtyToMove) {
 		this.qtyToMove = qtyToMove;
 	}
-	
+
 	public String getQtyToMovepck() {
 		return qtyToMovePck;
 	}
@@ -712,6 +809,18 @@ public class Context {
 		this.trailerNo = trailerNo;
 	}
 
+	public String getTrailerNo() {
+		return trailerNo;
+	}
+
+	public void setTrailerNo_2(String trailerNos) {
+		this.trailerNos = trailerNos;
+	}
+
+	public String getTrailerNo_2() {
+		return trailerNos;
+	}
+
 	public ArrayList<String> getFailureList() {
 		return failureList;
 	}
@@ -720,16 +829,20 @@ public class Context {
 		this.failureList = failureList;
 	}
 
+	public ArrayList<String> getListId() {
+		return ListId;
+	}
+
+	public void setListId(ArrayList<String> ListId) {
+		this.ListId = ListId;
+	}
+
 	public void setPutawayLocationMap(Map<String, String> pickFaceMap) {
 		this.pickFaceMap = pickFaceMap;
 	}
 
 	public Map<String, String> getPutawayLocationMap() {
 		return pickFaceMap;
-	}
-
-	public String getTrailerNo() {
-		return trailerNo;
 	}
 
 	public void setBookingID(String bookingID) {
@@ -760,8 +873,12 @@ public class Context {
 		return qtyOrdered;
 	}
 
-	public void setQtyOrdered(int qtyOrdered) {
-		this.qtyOrdered = qtyOrdered;
+	public void setQtyOredered1(String qtyOrdered1) {
+		this.qtyOrdered1 = qtyOrdered1;
+	}
+
+	public String getQtyOredered1() {
+		return qtyOrdered1;
 	}
 
 	public Map<Integer, Map<String, String>> getListIDMap() {
@@ -779,6 +896,7 @@ public class Context {
 	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
+
 	public String getTask() {
 		return task;
 	}
@@ -786,6 +904,7 @@ public class Context {
 	public void setTask(String task) {
 		this.task = task;
 	}
+
 	public String getpoId() {
 		return poId;
 	}
@@ -881,12 +1000,15 @@ public class Context {
 	public void setStoType(String stoType) {
 		this.stoType = stoType;
 	}
+
 	public String getPOType() {
 		return POType;
 	}
+
 	public void setASN(String ASN) {
 		this.ASN = ASN;
 	}
+
 	public String getASN() {
 		return ASN;
 	}
@@ -1017,6 +1139,7 @@ public class Context {
 		this.workZone = workZone;
 
 	}
+
 	public String getworkZone() {
 		return workZone = workZone;
 	}
@@ -1031,59 +1154,61 @@ public class Context {
 	}
 
 	public void setLocationList(String thisLocation) {
-		this.LocationList=thisLocation;
-		
+		this.LocationList = thisLocation;
+
 	}
 
 	public String getLocationList() {
-		return LocationList=LocationList;
+		return LocationList = LocationList;
 	}
 
 	public void setQuantity(String quantity) {
-		this.Quantity=quantity;
-		
+		this.quantity = quantity;
+
 	}
 
 	public void setRecordForPallet(String record) {
-		this.RecordForPallet=record;
-		
+		this.RecordForPallet = record;
+
 	}
 
 	public String getRecordForPallet(String record) {
-		return RecordForPallet=record;
+		return RecordForPallet = record;
 	}
 
 	public String getTime() {
-		
-		return pickFaceTime=pickFaceTime ;
+
+		return pickFaceTime = pickFaceTime;
 	}
+
 	public void setTime() {
-		this.pickFaceTime=pickFaceTime;
-		
+		this.pickFaceTime = pickFaceTime;
+
 	}
+
 	public void setTime(String pickFaceTime) {
 		this.pickFaceTime = pickFaceTime;
 	}
 
 	public void setQtyToMove(String qtyToMove2) {
 		this.qtyToMove2 = qtyToMove2;
-		
+
 	}
 
 	public String getKey() {
 		return Key;
 	}
 
-
 	public void setlockStatus(String status) {
 		this.status = status;
-		
+
 	}
 
 	public String getlockStatus() {
-		
+
 		return status;
 	}
+
 	public void setBelCode(String belCode) {
 		this.belCode = belCode;
 	}
@@ -1091,6 +1216,7 @@ public class Context {
 	public String getBelCode() {
 		return belCode;
 	}
+
 	public void setBelCode2(String belCode2) {
 		this.belCode2 = belCode2;
 	}
@@ -1099,64 +1225,69 @@ public class Context {
 		return belCode2;
 	}
 
-	public void setPackWeight(String packWeight)  {
+	public void setPackWeight(String packWeight) {
 		this.packWeight = packWeight;
 	}
-	
+
 	public String getPackWeight() {
 		return packWeight;
 	}
-	public void setProductGroup1(String ProductGroup1)  {
+
+	public void setProductGroup1(String ProductGroup1) {
 		this.ProductGroup1 = ProductGroup1;
 	}
-	
+
 	public String getProductGroup1() {
 		return ProductGroup1;
 	}
+
 	public void setStrokeCt(String strokeCategory) {
-		this.strokeCategory=strokeCategory;
-		
+		this.strokeCategory = strokeCategory;
+
 	}
+
 	public String getStrokeCt() {
 		return strokeCategory;
 	}
 
 	public void setCommodityCd(String commodityCode) {
-		this.commodityCode=commodityCode;
-		
+		this.commodityCode = commodityCode;
+
 	}
+
 	public String getCommodityCd() {
 		return commodityCode;
 	}
 
-
 	public void setAllowedStock(String allowedStock) {
-		this.allowedStock=allowedStock;
-		
+		this.allowedStock = allowedStock;
+
 	}
-	
+
 	public String getAllowedStock() {
 		return allowedStock;
 	}
 
-	public void setSKUHang(String SKUHang){
-	this.SKUHang=SKUHang;	
+	public void setSKUHang(String SKUHang) {
+		this.SKUHang = SKUHang;
 	}
+
 	public String getSKUHang() {
 		return SKUHang;
 	}
-	public void setTagTrans(String TagTrans){
-		this.TagTrans=TagTrans;	
-		}
-		public String getTagTrans() {
-			return TagTrans;
-		}
 
+	public void setTagTrans(String TagTrans) {
+		this.TagTrans = TagTrans;
+	}
+
+	public String getTagTrans() {
+		return TagTrans;
+	}
 
 	public void setupc(String upc) {
-		this.upc=upc;
+		this.upc = upc;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public String getupc() {
@@ -1177,13 +1308,13 @@ public class Context {
 	}
 
 	public String getpoId2() {
-	
+
 		return poId2;
 	}
 
 	public void setOrderId2(String stoId2) {
 		this.stoId2 = stoId2;
-		
+
 	}
 
 	public String getOrderId2() {
@@ -1195,12 +1326,12 @@ public class Context {
 		this.country2 = country2;
 	}
 
-	public String getOriginialCountry(){
+	public String getOriginialCountry() {
 		return country2;
 	}
 
 	public void setTrailerNumber(String trailerNumber) {
-		this.trailerNumber=trailerNumber;
+		this.trailerNumber = trailerNumber;
 	}
 
 	public String getTrailerNumber() {
@@ -1208,12 +1339,9 @@ public class Context {
 		return trailerNumber;
 	}
 
-	
-
-	
 	public String getQuantity() {
 		return quantity;
-		
+
 	}
 
 	public String getPalletId() {
@@ -1226,10 +1354,11 @@ public class Context {
 
 	public void setBasicUser(String supportID) {
 		// TODO Auto-generated method stub
-		this.supportID=supportID;
-		
+		this.supportID = supportID;
+
 	}
-	public String getBasicUser(){
+
+	public String getBasicUser() {
 		return supportID;
 	}
 
@@ -1278,11 +1407,605 @@ public class Context {
 		this.Key = key;
 	}
 
-	
-	
+	public void setMasterURN(String MASTER_URN) {
+		this.MasterURN = MASTER_URN;
+	}
+
+	public String getMasterURN() {
+		return MasterURN;
+	}
+
+	public String getOrderId1() {
+		return orderId1;
+	}
+
+	public void setOrderId1(String orderId1) {
+		this.orderId1 = orderId1;
+	}
+
+	public String getMasterURN1() {
+		return MasterURN1;
+	}
+
+	public void setMasterURN1(String masterURN1) {
+		MasterURN1 = masterURN1;
+	}
+
+	public String getPalletID1() {
+		return palletID1;
+	}
+
+	public void setPalletID1(String palletID1) {
+		this.palletID1 = palletID1;
+	}
+
+	public String getASN1() {
+		return ASN1;
+	}
+
+	public void setASN1(String aSN1) {
+		ASN1 = aSN1;
+	}
+
+	public String getSkuId1() {
+		return skuId1;
+	}
+
+	public void setSkuId1(String skuId1) {
+		this.skuId1 = skuId1;
+	}
+
+	public String getUpc1() {
+		return upc1;
+	}
+
+	public void setUpc1(String upc1) {
+		this.upc1 = upc1;
+	}
+
+	public String getConsignmentID1() {
+		return consignmentID1;
+	}
+
+	public void setConsignmentID1(String consignmentID1) {
+		this.consignmentID1 = consignmentID1;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public void setPosition(Match mSlot) {
+		this.mSlot = mSlot;
+
+	}
+
+	public ArrayList<String> getBelList() {
+		return BelList;
+	}
+
+	public void setBelList(ArrayList<String> belList) {
+		BelList = belList;
+	}
+
+	public ArrayList<String> getPreAdviceList() {
+		return preAdviceList;
+	}
+
+	public void setPreAdviceList(ArrayList<String> preAdviceList) {
+		this.preAdviceList = preAdviceList;
+	}
+
+	public ArrayList<String> getPalletForPutaway() {
+		return palletPut;
+	}
+
+	public void setPalletForPutaway(ArrayList<String> palletPut) {
+		this.palletPut = palletPut;
+	}
+
+	public ArrayList<String> getOrderIdlist1() {
+		return orderIdlist1;
+	}
+
+	public void setOrderIdlist1(ArrayList<String> orderIdlist1) {
+		this.orderIdlist1 = orderIdlist1;
+	}
+
+	public ArrayList<String> getMasterurnList() {
+		return MasterurnList;
+	}
+
+	public void setMasterurnList(ArrayList<String> masterurnList) {
+		MasterurnList = masterurnList;
+	}
+
+	public ArrayList<String> getPalletList() {
+		return PalletList;
+	}
+
+	public void setPalletList(ArrayList<String> palletList) {
+		PalletList = palletList;
+	}
+
+	public ArrayList<String> getSkuIDList() {
+		return skuIDList;
+	}
+
+	/*** methods for sku Data upload ***/
+	public void setSkuDataSize(int recCount) {
+		this.DataSize = recCount;
+	}
+
+	public int getSkuDataSize() {
+		return DataSize;
+	}
+
+	public void setSkuIDList(ArrayList<String> sku_id_list) {
+		this.skuIDList = sku_id_list;
+	}
+
+	public ArrayList<String> getSkuIDList(ArrayList<String> sku_id_list) {
+		return skuIDList;
+	}
+
+	public void setSourceIDList(ArrayList<String> sourceIdList) {
+		this.SourceIdList = sourceIdList;
+	}
+
+	public ArrayList<String> getSourceIDList() {
+		return SourceIdList;
+	}
+
+	public void sethubList(ArrayList<String> hubIdList) {
+		this.HubList = hubIdList;
+	}
+
+	public ArrayList<String> getHubList() {
+		return HubList;
+	}
+
+	public void setCustomerList(ArrayList<String> customerList) {
+		this.CustomerList = customerList;
+	}
+
+	public ArrayList<String> getCustomerList() {
+		return CustomerList;
+	}
+
+	public void setUpcList(ArrayList<String> upcList) {
+		this.upcList = upcList;
+	}
+
+	public ArrayList<String> getUpcList() {
+		return upcList;
+	}
+
+	public void setSupplierList(ArrayList<String> supplierList) {
+		this.SupplierList = supplierList;
+	}
+
+	public ArrayList<String> getSupplierList() {
+		return SupplierList;
+	}
+
+	public void setLineIdList(ArrayList<String> lineIdList) {
+		this.LineIdList = lineIdList;
+	}
+
+	public ArrayList<String> getLineIdList() {
+		return LineIdList;
+	}
+
+	public void setQtyDue(ArrayList<String> qtyDueList) {
+		this.QtydueList = qtyDueList;
+	}
+
+	public ArrayList<String> getQtyDue() {
+		return QtydueList;
+	}
+
+	public void setOdnList(ArrayList<String> odnList) {
+		this.OdnList = odnList;
+	}
+
+	public ArrayList<String> getOdnList() {
+		return OdnList;
+	}
+
+	public void seturnAdviceList(ArrayList<String> urnAdviceList) {
+		this.UrnAdviceList = urnAdviceList;
+	}
+
+	public ArrayList<String> getUrnAdviceList() {
+		return UrnAdviceList;
+	}
+
+	public void setStoList(ArrayList<String> stoList) {
+		this.StoList = stoList;
+	}
+
+	public ArrayList<String> getStoList() {
+		return StoList;
+	}
+
+	public void setAsnIdList(ArrayList<String> asnList) {
+		this.AsnIdList = asnList;
+	}
+
+	public ArrayList<String> getAsnIdList() {
+		return AsnIdList;
+	}
+
+	public void setmasterUrnList(ArrayList<String> masterUrnList) {
+		this.MasterUrnList = masterUrnList;
+	}
+
+	public ArrayList<String> getMasterUrnList() {
+		return MasterUrnList;
+	}
+
+	public ArrayList<String> getSkuIDListDirect() {
+		return skuIDListDirect;
+	}
+
+	public void setSkuIDListDirect(ArrayList<String> skuIDListDirect) {
+		this.skuIDListDirect = skuIDListDirect;
+	}
+
+	public ArrayList<String> getSkuIDListIN() {
+		return skuIDListIN;
+	}
+
+	public void setSkuIDListIN(ArrayList<String> skuIDListIN) {
+		this.skuIDListIN = skuIDListIN;
+	}
+
+	public ArrayList<String> getSkuIDListNonRetail() {
+		return skuIDListNonRetail;
+	}
+
+	public void setSkuIDListNonRetail(ArrayList<String> skuIDListNonRetail) {
+		this.skuIDListNonRetail = skuIDListNonRetail;
+	}
+
+	public ArrayList<String> getUPCList() {
+		return UPCList;
+	}
+
+	public void setUPCList(ArrayList<String> uPCList) {
+		UPCList = uPCList;
+	}
+
+	public ArrayList<String> getASNList() {
+		return ASNList;
+	}
+
+	public void setASNList(ArrayList<String> aSNList) {
+		ASNList = aSNList;
+	}
+
+	public ArrayList<String> getOrderIDList() {
+		return OrderIDList;
+	}
+
+	public void setOrderIDList(ArrayList<String> orderIDList) {
+		this.OrderIDList = orderIDList;
+	}
+
+	public ArrayList<String> getOrderIDList_Direct() {
+		return OrderIDList_Direct;
+	}
+
+	public void setOrderIDList_Direct(ArrayList<String> orderIDList_Direct) {
+		this.OrderIDList_Direct = orderIDList_Direct;
+	}
+
+	public ArrayList<String> getOrderIDList_NonRetail() {
+		return OrderIDList_NonRetail;
+	}
+
+	public void setOrderIDList_NonRetail(ArrayList<String> orderIDList_NonRetail) {
+		this.OrderIDList_NonRetail = orderIDList_NonRetail;
+	}
+
+	public ArrayList<String> getOrderIDList_IN() {
+		return OrderIDList_IN;
+	}
+
+	public void setOrderIDList_IN(ArrayList<String> orderIDList_IN) {
+		this.OrderIDList_IN = orderIDList_IN;
+	}
+
+	public String getPreadviceId1() {
+		return PreadviceId1;
+	}
+
+	public void setPreadviceId1(String preadviceId1) {
+		PreadviceId1 = preadviceId1;
+	}
+
+	public void setOrderId_2(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getOrderId_2() {
+		return orderId;
+	}
+
+	public void setTagId1(String tagId1) {
+		this.tagId1 = tagId1;
+
+	}
+
+	public String getTagId1() {
+		return tagId1;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
+
+	}
+
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setRandomPalletId(String randomPal) {
+		this.randomPal = randomPal;
+
+	}
+
+	public String getRandomPalletId() {
+		return randomPal;
+	}
+
+	public void setTagId2(int tagId2) {
+		this.tagId2 = tagId2;
+
+	}
+
+	public int getTagId2() {
+		return tagId2;
+	}
+
+	public String getBarCode() {
+		return BarCode;
+	}
+
+	public void setBarCode(String barCode) {
+		BarCode = barCode;
+	}
+
+	public String getRMS_putaway_location() {
+		return RMS_putaway_location;
+	}
+
+	public void setRMS_putaway_location(String RMS_putaway_location) {
+		this.RMS_putaway_location = RMS_putaway_location;
+	}
+
+	public String getPutaway_location() {
+		return putaway_location;
+	}
+
+	public void setPutaway_location(String putaway_location) {
+		this.putaway_location = putaway_location;
+	}
+
+	public ArrayList<String> getQtyList() {
+		return QtyList;
+	}
+
+	public void setQtyList(ArrayList<String> qtyList) {
+		QtyList = qtyList;
+	}
+
+	public ArrayList<String> getQtyList_Direct() {
+		return QtyList_Direct;
+	}
+
+	public void setQtyList_Direct(ArrayList<String> qtyList_Direct) {
+		this.QtyList_Direct = qtyList_Direct;
+	}
+
+	public ArrayList<String> getQtyList_IN() {
+		return QtyList_IN;
+	}
+
+	public void setQtyList_IN(ArrayList<String> qtyList_IN) {
+		this.QtyList_IN = qtyList_IN;
+	}
+
+	public ArrayList<String> getQtyList_NonRetail() {
+		return QtyList_NonRetail;
+	}
+
+	public void setQtyList_NonRetail(ArrayList<String> qtyList_NonRetail) {
+		this.QtyList_NonRetail = qtyList_NonRetail;
+	}
+
+	public ArrayList<String> getLocList() {
+		return LocList;
+	}
+
+	public void setLocList(ArrayList<String> locList) {
+		LocList = locList;
+	}
+
+	public ArrayList<String> getSupList() {
+		return supList;
+	}
+
+	public void setSupList(ArrayList<String> supList) {
+		this.supList = supList;
+	}
+
+	public void setQtyOredered(String qtyOrdered1) {
+		this.qtyOrdered1 = qtyOrdered1;
+	}
+
+	public String getQtyOredered() {
+		return qtyOrdered1;
+	}
+
+	public String getqtyDue() {
+		return qtyDue;
+	}
+
+	public String setQtyDue(String QTY_DUE) {
+		return qtyDue;
+	}
+
+	public ArrayList<String> getCustmList() {
+		return CustmList;
+	}
+
+	public void setCustmList(ArrayList<String> custmList) {
+		CustmList = custmList;
+	}
+
+	public String getTote_container() {
+		return tote_container;
+	}
+
+	public void setTote_container(String tote_container) {
+		this.tote_container = tote_container;
+	}
+
+	public String getCage_container() {
+		return cage_container;
+	}
+
+	public void setCage_container(String cage_container) {
+		this.cage_container = cage_container;
+	}
+
+	public List<String> getContainerList() {
+		return ContainerList;
+	}
+
+	public void setContainerList(List<String> uniquecontainerList) {
+		this.ContainerList = uniquecontainerList;
+	}
+
+	public void setContainerList1(List<String> uniquecontainerList) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public ArrayList<String> getSkuIDList_Second_Direct() {
+		return skuIDList_Second_Direct;
+	}
+
+	public void setSkuIDList_Second_Direct(ArrayList<String> skuIDList_Second_Direct) {
+		this.skuIDList_Second_Direct = skuIDList_Second_Direct;
+	}
+
+	public ArrayList<String> getOrderIDList_Second_Direct() {
+		return OrderIDList_Second_Direct;
+	}
+
+	public void setOrderIDList_Second_Direct(ArrayList<String> orderIDList_Second_Direct) {
+		OrderIDList_Second_Direct = orderIDList_Second_Direct;
+	}
+
+	public ArrayList<String> getQtyList_Second_Direct() {
+		return QtyList_Second_Direct;
+	}
+
+	public void setQtyList_Second_Direct(ArrayList<String> qtyList_Second_Direct) {
+		QtyList_Second_Direct = qtyList_Second_Direct;
+	}
+
+	public ArrayList<String> getSkuListForInventory() {
+		return skuListForInventory;
+	}
+
+	public void setSkuListForInventory(ArrayList<String> skuListForInventory) {
+		this.skuListForInventory = skuListForInventory;
+	}
+
+	public void setQtyListForInventory(ArrayList<String> qtyListForInventory) {
+		this.qtyListForInventory = qtyListForInventory;
+
+	}
+
+	public ArrayList<String> getQtyListForInventory() {
+		return qtyListForInventory;
+	}
+
+	public void setNDC(String NDCname) {
+		this.NDCname = NDCname;
+		// TODO Auto-generated method stub
+
+	}
+
+	public String getNDC(String NDCname) {
+		return NDCname;
+		// TODO Auto-generated method stub
+
+	}
+
+	public String getTrailerID() {
+		return trailerID;
+	}
+
+	public void setTrailerID(String trailerID) {
+		this.trailerID = trailerID;
+	}
+
+	public void setqnty(String qnty) {
+		this.qnty = qnty;
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setupcnotinurn(String upcnotinurn) {
+		this.upcnotinurn = upcnotinurn;
+	}
+
+	public void setstore(String store) {
+		this.store = store;
+	}
+
+	public String getupcnotinurn() {
+		return upcnotinurn;
+	}
+
+	public String getqnty() {
+
+		return qnty;
+	}
+
+	public String getstore() {
+		return store;
+	}
+
+	public void setOption(String choice) {
+		this.choice = choice;
+	}
+
+	public String getOption() {
+		return choice;
+	}
+	public void setInputupc(String inputupc) {
+		this.inputupc = inputupc;
+	}
+
+	public String getInputupc() {
+		return inputupc;
+	}
+	public void setQty(String qty) {
+		this.qty = qty;
+	}
+
+	public String getQty() {
+		return qty;
 	}
 	
-
-
-
-
+}

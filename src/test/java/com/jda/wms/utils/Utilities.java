@@ -62,4 +62,15 @@ public class Utilities {
 		return dateFormat.format(cal.getTime());
 	} 
 
+	public static String getFourteenDigitRandomNumber() {
+        return (getFiveDigitRandomNumber()+getNineDigitRandomNumber());
+    }
+	public static String getFourteenDigit_975Number() {
+        return (getTwoDigitRandomNumber()+getNineDigitRandomNumber()+975);
+    }
+	
+	public static String getP_EightNumber() {
+		return ("P"+getsevenDigitRandomNumber());
+	}
+
 }

@@ -1,0 +1,22 @@
+INDEX VERSION 1.127+D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\.metadata\.plugins\org.eclipse.jdt.core
+4106296157.index
+889473178.index
+374837552.index
+2879950868.index
+892728555.index
+2061365059.index
+2367169097.index
+1122953504.index
+2078442828.index
+2853342300.index
+3419502086.index
+483618811.index
+2125967891.index
+3854390766.index
+4110170706.index
+1549818140.index
+731991106.index
+2781439342.index
+253098088.index
+3382830921.index
+2676193225.index

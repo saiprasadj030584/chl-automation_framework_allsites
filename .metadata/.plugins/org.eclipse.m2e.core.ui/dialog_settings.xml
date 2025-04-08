@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\Sai Prasad\jda-wms-test-framework_NDC"/>
+			<item value="D:\Sai Prasad"/>
 			<item value="D:\Priyanka_ws\jda-wms-test-framework"/>
 		</list>
 		<list key="projectNameTemplate">

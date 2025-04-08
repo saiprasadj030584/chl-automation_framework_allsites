@@ -23,9 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.jda.wms.UI.pages.JdaLoginPage;
 import com.jda.wms.config.Configuration;
 import com.jda.wms.context.Context;
-import com.jda.wms.pages.Exit.JdaLoginPage;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;

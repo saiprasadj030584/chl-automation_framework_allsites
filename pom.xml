@@ -1,3 +1,4 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -6,6 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
+		<slf4j-api-systemPath>${basedir}/lib/slf4j-api-1.7.5.jar</slf4j-api-systemPath>
+		<slf4j-api-systemPath>${basedir}/lib/slf4j-api-1.7.5.jar</slf4j-api-systemPath>
 		<cucumber.version>1.2.4</cucumber.version>
 		<java.version>8</java.version>
 		<failsafe.fork.count>2.0C</failsafe.fork.count>
@@ -163,15 +166,15 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/slf4j-api-1.7.5.jar</systemPath>
+			<scope>syste${slf4j-api-systemPath}<systemPath>${slf4j-api-systemPath}</systemPath>
+			
 		</dependency>
 		<dependency>
 			<groupId>com.ibm</groupId>
 			<artifactId>com.ibm.mq</artifactId>
 			<version>5.3.07</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/com.ibm.mq.jar</systemPath>
+			<systemPath>${pom.basedir}/lib/com.ibm.mq.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.connector</groupId>
@@ -187,6 +190,7 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/com.ibm.mqjms.jar</systemPath>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail</artifactId>
@@ -194,6 +198,8 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/mail-1.4.7.jar</systemPath>
 		</dependency>
+
+
 		<dependency>
 			<groupId>guava</groupId>
 			<artifactId>javax.mail</artifactId>
@@ -220,14 +226,14 @@
 			<artifactId>com.jcraft.jsch.Session</artifactId>
 			<version>0.1.42</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/jsch-0.1.42.jar</systemPath>
+			<systemPath>${pom.basedir}/lib/jsch-0.1.42.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.db2jcc</groupId>
 			<artifactId>com.db2jcc</artifactId>
 			<version>0.1.2</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/db2jcc.jar</systemPath>
+			<systemPath>${pom.basedir}/lib/db2jcc.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.ojdbc6</groupId>
@@ -236,15 +242,15 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/ojdbc6-11.2.0.3.jar</systemPath>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.sqljdbc42</groupId>
 			<artifactId>com.sqljdbc42</artifactId>
 			<version>42.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/sqljdbc4.jar</systemPath>
+			<systemPath>${pom.basedir}/lib/sqljdbc4.jar</systemPath>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>jcifs</groupId>
 			<artifactId>com.jcifs.smb</artifactId>
@@ -342,6 +348,12 @@
 			<version>11.2.0</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/ojdbc6.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.3</version>
 		</dependency>
 
 	</dependencies>
