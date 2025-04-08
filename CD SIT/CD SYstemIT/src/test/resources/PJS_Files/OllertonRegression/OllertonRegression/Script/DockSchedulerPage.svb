@@ -1,0 +1,120 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Public BookingId
+
+Function DockSchedule
+
+  Call CommonFunctions.FormName("Dock Scheduler screen")
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+  Call Footer.Keys("[F7]")
+  Set BookType = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+  Call BookType.Keys("Delivery")
+  set ASNTxtbox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane.Panel.Panel.DeliverySearchPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call ASNTxtbox.Keys(ASNID)
+  'Call ASNTxtbox.Keys("561000312823012018")
+  Call ImageRepository.DockSchedule.Dock_Search.Click
+  Delay(1000)
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane2.Panel.DCSTableScrollPane.Viewport.DCSTable.Click
+  Call ImageRepository.DockSchedule.Add.Click
+  Call Footer.Keys("[F7]")
+  set HorizontalBar = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane4.Panel.Panel.DCSTableScrollPane.ScrollPane_ScrollBar
+  Max = HorizontalBar.wMax -2635
+  HorizontalBar.wPosition = Max
+'  for i=0 to 8
+'  Call ImageRepository.DockSchedule.RightScroll.Click
+'  Next 
+  Delay(2000)
+  Call ImageRepository.DockSchedule.GIB.Click
+  Call Footer.Keys("[F7]")
+  Set statustype = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+  Call statustype.Keys("In Progress")
+  Set Cartoon = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call Cartoon.Keys("1")
+  Set singles = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  Call singles.Keys("1")
+  Call ImageRepository.DockSchedule.okButton.Click
+  x = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.FinishTextArea.getText
+  temp=split(x,":")
+  BookingId=trim(temp(1))
+  Log.Message(BookingId)
+  Call Footer.Keys("[F12]")
+  Call Footer.Keys("[Esc]")
+  
+End Function
+
+
+Function DockScheduleH
+
+  Call CommonFunctions.FormName("Dock Scheduler screen")
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+  Call Footer.Keys("[F7]")
+  Set BookType = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+  Call BookType.Keys("Delivery")
+  set ASNTxtbox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane.Panel.Panel.DeliverySearchPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call ASNTxtbox.Keys(ASNID)
+  'Call ASNTxtbox.Keys("30120307000000000203")
+  Call ImageRepository.DockSchedule.Dock_Search.Click
+  Delay(1000)
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.BuildModifyPanel.DCSTabbedPane2.Panel.DCSTableScrollPane.Viewport.DCSTable.Click
+  Call ImageRepository.DockSchedule.Add.Click
+  Call Footer.Keys("[F7]")
+  set HorizontalBar = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane4.Panel.Panel.DCSTableScrollPane.ScrollPane_ScrollBar
+  Max = HorizontalBar.wMax -1805
+  HorizontalBar.wPosition = Max
+  Delay(2000)
+  Call ImageRepository.DockSchedule.GIH.Click
+  Call Footer.Keys("[F7]")
+  Set statustype = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+  Call statustype.Keys("In Progress")
+  Set Cartoon = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call Cartoon.Keys("1")
+  Set singles = Aliases.java.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  Call singles.Keys("1")
+  Call ImageRepository.DockSchedule.okButton.Click
+  x = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.FinishTextArea.getText
+  temp=split(x,":")
+  BookingId=trim(temp(1))
+  Log.Message(BookingId)
+  Call Footer.Keys("[F12]")
+  Call Footer.Keys("[Esc]")
+  
+End Function

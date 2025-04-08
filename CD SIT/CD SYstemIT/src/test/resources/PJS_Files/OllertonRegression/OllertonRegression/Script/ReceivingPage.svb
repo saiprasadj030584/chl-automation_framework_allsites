@@ -1,0 +1,456 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Function BlindReceiving
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(2000)
+      call PuttyObject.Keys("2111[Enter]") 
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          Delay(2000)
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("POSTAL[Tab]")
+          Delay(500)
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("[Tab][Tab]")
+          Delay(500)
+          call PuttyObject.Keys(Palet10)
+          Delay(500)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY")
+          Delay(1000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(2000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         Delay(2000)
+         call PuttyObject.Keys("[F10]")
+         Delay(2000)
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+      End If 
+ 
+End Function
+
+
+Function STHReceive
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[Right]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          Call PuttyObject.Keys("[BS]")
+          Delay(200)
+          call PuttyObject.Keys("STEAM")
+          call PuttyObject.Keys("[Tab]")
+          Delay(200)
+          call PuttyObject.Keys(PaletH)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+ 
+End Function
+
+
+Function IMPHReceive
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys("IMPERFECT")
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys(PaletH)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+ 
+End Function
+
+
+Function PHReceive
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]")
+      Call CommonFunctions.GetRDTContent()
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          Delay(2000)
+          call PuttyObject.Keys("CLOLRP01")
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("POSTAL")
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys(SupplierSKUVal)
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys(PaletH)
+          Delay(2000)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY")
+          Delay(500)
+          call PuttyObject.Keys("[Enter]")
+          Delay(2000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(2000)
+         call PuttyObject.Keys("[Enter]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+      End If 
+End Function
+
+
+Function IMPBReceive
+  set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys("IMPERFECT")
+          Delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          call PuttyObject.Keys(Palet10)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+End Function
+
+Function PBSetPartReceive
+  set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal)
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(500)
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys(Palet10)
+          Delay(1000)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("4")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY")
+          delay(1000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(2000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+End Function
+
+Function IMPBSetPartReceive
+  set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys("PERFECT")
+          Delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          call PuttyObject.Keys(Palet10)
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("4")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY")
+          delay(1000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(2000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+End Function
+
+Function PalletBuildingCD
+    
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2124[Enter]")
+      Delay(2000)
+      'call PuttyObject.Keys("MWB8084833")
+      call PuttyObject.Keys(PaletCD)
+      Delay(1000)
+      call PuttyObject.Keys("[Tab]")
+      Delay(1000)
+      call PuttyObject.Keys("[Tab]")
+      Delay(1000)
+      call PuttyObject.Keys("GIB02")
+      Delay(1000)
+      call PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call CommonFunctions.GetRDTContent()
+      Delay(2000)
+      If strcomp(RDTContent,"BarCdScan",vbtextcompare) Then
+        call PuttyObject.Keys(UPIPallet)
+        'call PuttyObject.Keys("59240000000000000000003110302150")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(10000)
+      End If
+      call PuttyObject.Keys("[F10]")
+      Delay(1000)
+      call PuttyObject.Keys("[F10]")
+      
+End Function

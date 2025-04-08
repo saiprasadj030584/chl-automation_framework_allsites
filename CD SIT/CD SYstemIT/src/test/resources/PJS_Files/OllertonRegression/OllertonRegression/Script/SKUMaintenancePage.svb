@@ -1,0 +1,142 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Public SkuPackVol,SupplierSKUVal
+
+'SKU = "20005851003"
+
+
+
+Function SKUUpdate()
+  
+  Call CommonFunctions.FormName("SKU Maintenance")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set SKUTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call SKUTextBox.Keys(SKU)
+  Call Footer.Keys("[F7]") 
+  call ImageRepository.WMSCATEA.SKUDimension.Click
+  Call Footer.Keys("[F4]")
+  set EachHeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call EachHeight.keys("^a[BS]0.05")
+  set EachWidth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  call EachWidth.keys("^a[BS]0.05")
+  set EachDepth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+  call EachDepth.keys("^a[BS]0.05")
+  set EachWeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+  call EachWeight.keys("^a[BS]0.05")
+  set PackedHeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call PackedHeight.Keys("^a[BS]0.05")
+  set PackedWidth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  call PackedWidth.Keys("^a[BS]0.05")
+  set PackedDepth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+  call PackedDepth.Keys("^a[BS]0.05")
+  set PackedWeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+  call PackedWeight.Keys("^a[BS]0.05")
+  set EcomPack = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSSQLCombo.Panel.Panel.ComboBox
+  call EcomPack.Keys("BOX")
+  Call Footer.Keys("[F7]")
+  set SKUSave = Aliases.java.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton
+  call SKUSave.Click
+  set SkuPackVol = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  Call Footer.Keys("[Esc]")
+  
+ 
+End Function 
+
+Function SKUUpdateH
+
+  Call CommonFunctions.FormName("SKU Maintenance")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set SKUTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call SKUTextBox.Keys(SKU)
+  Call Footer.Keys("[F7]") 
+  call ImageRepository.WMSCATEA.SKUDimension.Click
+ 
+  
+  Call Footer.Keys("[F4]")
+  set EachHeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call EachHeight.keys("^a[BS]0.05")
+  set EachWidth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  call EachWidth.keys("^a[BS]0.05")
+  set EachDepth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+  call EachDepth.keys("^a[BS]0.05")
+  set EachWeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+  call EachWeight.keys("^a[BS]0.05")
+  set PackedHeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call PackedHeight.Keys("^a[BS]0.05")
+  set PackedWidth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  call PackedWidth.Keys("^a[BS]0.05")
+  set PackedDepth = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+  call PackedDepth.Keys("^a[BS]0.05")
+  set PackedWeight = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+  call PackedWeight.Keys("^a[BS]0.05")
+  set EcomPack = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel2.DCSSQLCombo.Panel.Panel.ComboBox
+  call EcomPack.Keys("BAG")
+  Call Footer.Keys("[F7]")
+  set SKUSave = Aliases.java.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton
+  call SKUSave.Click
+  set SkuPackVol = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  Call Footer.Keys("[Esc]")
+  
+ 
+End Function 
+
+Function SupplierSKU
+  Call CommonFunctions.FormName("Supplier SKU")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  call Footer.Keys("[F2]")
+  Sys.Desktop.Keys(SKU)
+  call Footer.Keys("[F7]")
+  delay(500)
+  set SupplierSKUVal = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.DCSTabbedPane.Panel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+  set Supplier = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.DCSTabbedPane.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  if Supplier = "" then
+      call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.DCSTabbedPane.Panel.DCSDataField.Panel.Panel2.Label.ClickR
+      delay(1000)
+      call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.Panel.PopupMenu.DCSMenuItem.Click
+      call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.DCSTabbedPane.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys("M00354")
+      call Footer.Keys("[F7]")
+          if Aliases.java.MessageBox.Exists Then
+              call Aliases.java.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+          end if
+  end if
+  call Footer.Keys("[Esc]")
+End Function

@@ -1,0 +1,216 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal_URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+
+
+Public Locationfooter
+Function WMSLocation
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+Call searchbox.Keys("Location")
+Call searchbutton.Click
+ImageRepository.WMS.Location.Click
+Call Runbutton.Click
+Delay(1000)
+Set Locationfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call Locationfooter.keys ("[F2]")
+Delay(4000)
+''MsgBox Finallocation
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys(Finallocation)
+  Delay(1000)
+  Call Locationfooter.keys ("[F7]")
+    Delay(1000)
+    Dim LocVolume
+    LocVolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  Dim LocCurrentVolume
+  LocCurrentVolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField5.Panel.Panel.DCSDataField_DCSTextField.getText
+Dim LocAllocVol
+LocAllocVol=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField6.Panel.Panel.DCSDataField_DCSTextField.getText
+Delay(1000)
+Call Locationfooter.keys ("[Esc]")
+End Function
+
+Function shelfvolume
+'#Pass Shelf volume
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("0.0294")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(CheckString)
+Set Locationfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call Locationfooter.keys ("[F7]")
+Delay(1000)
+If ImageRepository.WMS.Resultmsg.Exists Then
+Log.Message"Identified location is shelf box location"
+End if
+End Function
+
+Function Pigeonvolume
+'#Pass Pigeon volume
+'CheckString="MCD02A03"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys("0.0693")
+Delay(1000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(CheckString)
+Delay(1000)
+Set Locationfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call Locationfooter.keys ("[F7]")
+Delay(1000)
+If ImageRepository.WMS.Resultmsg.Exists Then
+Log.Message"Identified location is Pigeon box location"
+Else
+Log.Message"Identified location is not Pigeon box location"
+End if
+End Function
+
+Public ITLfooter
+Function ITL   
+  
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+'Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Call searchicon.Click
+Call searchbox.Click
+Call searchbox.Keys("itl")
+Call searchbutton.Click
+Call ImageRepository.WMS.ITL.Click
+Call Runbutton.Click
+Delay(3000)
+Set ITLfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInvTransaction.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Call ITLfooter.Keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInvTransaction.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(Tagid)
+Delay(1000)
+Call ITLfooter.Keys("[F7]")
+Delay(1000)
+Call ImageRepository.WMS.ITL_Doubleclick.DblClick
+Delay(2000)
+End Function
+
+Public UPIFooter
+Function URRN    
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.Click
+Call searchbox.Click
+Call searchbox.Keys("upi")
+Call searchbutton.Click
+Call ImageRepository.WMS.UPI.Click
+Call Runbutton.Click
+Delay(3000)
+Set UPIFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call UPIFooter.Keys("[F2]")
+End Function
+
+Public Trailerno,ASNID,URRNNo
+Function UPIHeader
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Set UPIFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+'#Search icon
+Call searchicon.click
+'#Search  upi table
+Call searchbox.Click
+Call searchbox.Keys("UPI Header")
+Call searchbutton.Click
+Delay(1000)
+
+Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton.Click
+Call Runbutton.Click
+Delay(3000)
+Call UPIFooter.Keys("[F2]")
+Delay(3000)
+End Function
+
+Function ASN_Validation
+'URRNNo="59240000000000000000000000000876"
+'Trailerno="9005"
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(URRNNo)
+Delay(1000)
+Set UPIFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call UPIFooter.Keys("[F7]")
+Delay(1000)
+Call ImageRepository.Donington.UPIMiscellaneous.Click
+Delay(1000)      
+ASNID=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+'#ASNID validation
+'If ASNID=Trailerno &"OLLBOX" Then
+'Log.message "ASNID generated as Trailer number followed by consignment:" &ASNID
+'Else
+'Log.Error "ASNID not generated as Trailer number followed by consignment:" &ASNID
+'End If
+Delay(1000)
+Call UPIFooter.Keys("[Esc]")
+End Function
+  
+Public URRNPallet
+
+Function URRNDuplication(URRNNo)
+'Function URRNDuplication
+
+'URRNNo="46240000000000000000000000003247"
+'MsgBox URRNNo
+Set UPIFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call UPIFooter.Keys("[F7]")
+Delay(3000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.ClickR
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.Panel.PopupMenu.DCSMenuItem.Click
+Delay(500)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys ("^a[BS]" & URRNNo)
+'MsgBox URRNNo
+Call UPIFooter.Keys("[F7]")
+Delay(1000)
+If Aliases.java2.MessageBox2.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists Then
+Log.Error "Record already exists"
+End If
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+Delay(500)
+Aliases.java2.MessageBox3.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+Delay(1000)
+URRNPallet=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+'MsgBox URRNPallet
+Call UPIFooter.Keys("[F11]")
+Delay(1000)
+'Update click
+Dim UPIreceiptfooter                    
+Set UPIreceiptfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Delay(500)
+Call UPIreceiptfooter.Keys("[F4]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys("^a[BS]" &sku_id)
+Delay(1000)
+Call ImageRepository.WMS.UPIReceipt_Misc.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys("^a[BS]"&"RL")
+Delay(1000)
+Call ImageRepository.WMS.UPIReceipt_Userdefine.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane3.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" &supsku)
+Call UPIreceiptfooter.Keys("[F7]")
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+Delay(1000)
+Call UPIreceiptfooter.Keys("[Esc]")
+Delay(1000)
+Call UPIFooter.Keys ("[Esc]")
+End Function
+
+
+
+

@@ -1,0 +1,25 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Otherfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function Putawaylocationseq
+  
+Call Commonfunction.WMSlogin
+'Call ReadingDatalocation
+End Function
+
+
+
+Function sam
+
+  dim CheckString
+  CheckString ="MAA01A04"
+
+ Call DBconnection
+
+End Function
+
+
+
+

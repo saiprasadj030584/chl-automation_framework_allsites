@@ -1,0 +1,68 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+Function LocationVolume
+  
+  Call CommonFunctions.FormName("Location Maintenance")
+  set footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call footer.Keys("[F2]")
+  set LocationTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call LocationTextBox.Keys(CheckString)
+  Call footer.Keys("[F7]")
+  set volume = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  Log.Message(volume)
+
+End Function
+
+Function LocationCheck
+  Call CommonFunctions.FormName("Location Maintenance")
+  set footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call footer.Keys("[F2]")
+  set LocationTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call LocationTextBox.Keys(Elocation&"*")
+  Call footer.Keys("[F7]")
+  set status = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  If status="Inlock" Then
+      Log.Message("Location got Inlocked")
+    Else
+      Log.Message("Loction Not Locked")
+  End If
+  call ImageRepository.Location.Location_Doubleclick.DblClick
+  Delay(3000)
+  Call footer.Keys("[Esc]")
+End Function

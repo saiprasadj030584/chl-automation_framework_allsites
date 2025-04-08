@@ -1,0 +1,133 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT OLL_230
+'USEUNIT OLL_231
+'USEUNIT SKU_Datasetup
+
+
+
+public CheckString,temp,temp1,LocationPutty
+Public Puttyfun,Container
+Function Perfectreceiving
+
+Call puttylogin
+Aliases.putty.wndPuTTY.Activate
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(6000)
+Call Random10
+Container=("3"& Pallet)
+Log.message (Container)
+  Call Puttyfun.keys("2111")
+  Delay(2000)
+  Call Puttyfun.keys("[Enter]")
+
+   Delay(2000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+  
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  
+  Call Puttyfun.Keys(supsku)
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(2000)
+  Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+  
+  '#2nd screen
+  
+ 
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+  If ImageRepository.Puttyscreen.Receiptmsg.Exists then
+    Log.Message("Receiving completed")
+Else
+  Log.Error("Receiving failed")
+  End If
+   Delay(2000)
+ Call Puttyfun.Keys ("[Enter]")
+ Delay(2000)
+ 
+ End Function
+ 
+'#1st Putaway
+Function Putaway
+Set Puttyfun= Aliases.putty.wndPuTTY
+Call Puttyfun.Keys ("[F10]")
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(1000)
+Call Puttyfun.Keys (Tagid)
+Delay(1000)
+Call Puttyfun.Keys("[Tab]")
+
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("01")
+Call Puttyfun.Keys("[Enter]")
+
+'#2nd putaway
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+
+ Delay(2000)
+Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+
+ Delay(2000)
+Call Puttyfun.Keys (Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+
+
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+    CheckString=LocationPutty
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Delay(2000)
+    Puttyfun.Keys("[Enter]")
+    End If
+    Delay(2000)
+
+
+End Function

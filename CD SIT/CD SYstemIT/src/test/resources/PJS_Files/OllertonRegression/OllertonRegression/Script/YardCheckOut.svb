@@ -1,0 +1,58 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardDockClearance
+
+Function checkout
+  
+    Call CommonFunctions.FormName("Yard Check-Out")
+    set tractor = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckOut.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel2.DCSDataField_DCSTextField
+    Call tractor.Keys(TractorName)
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckOut.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F12]")
+    Delay(500)
+    Call Footer.Keys("[Esc]")
+
+End Function

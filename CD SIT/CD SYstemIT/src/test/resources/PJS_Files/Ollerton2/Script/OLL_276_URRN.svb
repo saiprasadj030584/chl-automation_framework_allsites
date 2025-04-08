@@ -1,0 +1,21 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+Function URRN
+'Call WMSlogin
+Call Readdetails_URRN
+'  Call puttylogin  
+Delay(1000)
+  Call Perfectreceiving_URRN
+  Call Inventory
+  Delay(100000)
+  Call DBconnection_Msgid
+End Function
+

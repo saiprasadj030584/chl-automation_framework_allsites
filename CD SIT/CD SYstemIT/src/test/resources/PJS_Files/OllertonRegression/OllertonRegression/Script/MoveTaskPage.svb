@@ -1,0 +1,80 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+public ListTextBox
+Function MoveTask
+
+'  Order = "OL-0005555"
+  
+    Call CommonFunctions.FormName("Move Task")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+    Call Footer.Keys("[F2]")
+    set TaskTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    'Call TaskTextBox.Keys("OLP100000065")
+    Call TaskTextBox.Keys(Order)
+    Call Footer.Keys("[F7]")
+'    set ListTextBox =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    Do Until ListTextBox <> ""
+    set ListTextBox =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    If (ListTextBox <> "")Then
+    
+          Log.Message("List ID Generated")
+          Exit do
+    End If
+      Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel2.Label.ClickR
+      Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.Panel.PopupMenu.Menu.Click
+      Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.PopupFactory_MediumWeightPopup_MediumWeightComponent.RootPane.null_layeredPane.null_contentPane.PopupMenu.DCSMenuItem.Click
+      delay(20000)
+    Loop
+    Delay(1000)
+    Call Footer.Keys("[Esc]")
+    Delay(1000)
+    
+End Function
+
+Function MoveTaskRefresh
+    Call CommonFunctions.FormName("Move Task")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+    Call Footer.Keys("[F2]")
+    set TaskTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    'Call TaskTextBox.Keys("OLP100000080")
+    Call TaskTextBox.Keys(Order)
+    Call Footer.Keys("[F7]")
+    set ListTextBox =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSMoveTask.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.TabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    Call PickingPage.PickB()
+End Function

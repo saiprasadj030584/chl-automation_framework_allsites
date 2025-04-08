@@ -1,0 +1,263 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Public TagID, PickInvent, PalletHS
+
+Function RValidation
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(Palet10)
+  Call Footer.Keys("[F7]")
+  'set PalletID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  set LockCode = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  set TagID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+  call ImageRepository.Inventory.InventoryUD.Click
+  set UDT = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane3.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSSQLCombo.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  If (LockCode = "RL") Then
+      
+      if (UDT = "PERFECT-B") Then
+            log.message("Received a Perfect Condtion Boxed SKU!")
+      ElseIf (UDT = "PERFECT-H") Then
+            log.message("Received a Perfect Condtion Hanging SKU!")
+      ElseIf (UDT = "STEAM") Then
+            log.message("Received a Steam Condtion Hanging SKU!")
+      Else
+            log.message("Issue in Inventory")
+      End If
+      
+      ElseIf(LockCode = "DMGD") Then
+            log.message("Received a Damaged SKU")
+      
+      ElseIf(LockCode = "IMPSET") Then
+            if (UDT = "IMPERFECT") Then
+              log.message("Received a  Damaged SKU with less Part Set")
+            End If
+  
+  
+  End If        
+  Call Footer.Keys("[Esc]")
+End Function
+
+Function PValidation
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(Palet10)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  Delay(2000)
+  set Location =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+  
+  If(Location = CheckString) Then
+        Log.Message("Putaway completed to correct location")
+        Call Footer.Keys("[Esc]")
+    Else
+        Log.Error("Putaway done in wrong zone")
+  End If 
+End Function
+
+Function InventValidation
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(Palet10)
+  Call Footer.Keys("[F7]")
+  Set PickInvent = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  Log.Message("Inlocked location Pallet ID:"&PickInvent)
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  Delay(3000)
+  Call Footer.Keys("[Esc]")
+  set PuttyObject = Aliases.putty.wndPuTTY
+  Delay(2000)
+  call PuttyObject.Keys("[F10]")
+End Function
+
+
+Function RValidationH
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(PaletH)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  set LockCode = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  set TagID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+  call ImageRepository.Inventory.InventoryUD.Click
+  set UDT = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane3.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSSQLCombo.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  If (LockCode = "RL") Then
+      
+      If (UDT = "PERFECT-H") Then
+            log.message("Received a Perfect Condtion Hanging SKU!")
+      ElseIf (UDT = "STEAM") Then
+            log.message("Received a Steam Condtion Hanging SKU!")
+      Else
+            log.message("Issue in Inventory")
+  End If
+      
+  ElseIf(LockCode = "DMGD") Then
+            log.message("Received a Damaged SKU")
+      
+  ElseIf(LockCode = "IMPSET") Then
+      if (UDT = "IMPERFECT") Then
+              log.message("Received a  Damaged SKU with less Part Set")
+      End If
+  End If        
+  Call Footer.Keys("[Esc]")
+End Function
+
+
+Function PValidationH
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(PaletH)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  Delay(2000)
+  set Location =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+  
+  If(Location = CheckString) Then
+        Log.Message("Putaway completed to correct location")
+        Call Footer.Keys("[Esc]")
+    Else
+        Log.Error("Putaway done in wrong zone")
+  End If 
+End Function
+
+Function PickHIValid
+  
+  Delay(1000)
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set Tag = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+  Call Tag.Keys(TagID)
+  Call Footer.Keys("[F7]")
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField3.Panel.Panel2.Label.ClickR
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.Panel.PopupMenu.Menu.Click
+  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.PopupFactory_MediumWeightPopup_MediumWeightComponent.RootPane.null_layeredPane.null_contentPane.PopupMenu.DCSMenuItem.Click
+  Delay(1000)
+  set Location =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+  If(Location = "CLOLHGDESP") Then
+        Log.Message("Picking Completed")
+    Else
+        Log.Error("Picking Issue")
+  End If
+  call ImageRepository.Inventory.InvMisc.Click
+  set PalletHS = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  log.Message(PalletHS)
+  Delay(2000)
+  Call Footer.Keys("[Esc]")
+  
+End Function
+
+Function VehHIValid
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(PalletHS)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  Delay(2000)
+  set FromSiteID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  Set ToSiteID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox2.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  If (FromSiteID = "5924" and ToSiteID = "4624") Then
+      Log.Message("SKU Transfered to Castle Donington")
+  Else
+      Log.Message("Issue in Transfer")
+  End If
+  Call Footer.Keys("[Esc]")
+End Function
+
+
+Function VehBIValid
+  Call CommonFunctions.FormName("inventory query")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  call ImageRepository.Inventory.InventoryMisc.Click
+  set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  call Pallet.Keys(Palet32)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.Inventory.InventoryGeneral.Click
+  Delay(2000)
+  set FromSiteID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  Set ToSiteID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox2.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  If (FromSiteID = "5924" and ToSiteID = "4624") Then
+      Log.Message("SKU Transfered to Castle Donington")
+  Else
+      Log.Message("Issue in Transfer")
+  End If
+  Call Footer.Keys("[Esc]")
+End Function
+
+Function CDInvent
+  
+    Call CommonFunctions.FormName("inventory query")
+    call ImageRepository.Inventory.InventoryMisc.Click
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+    Call Footer.Keys("[F2]")
+    set PalletCD = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    'call PalletCD.Keys("MWB2247888")
+    call PalletCD.Keys(PaletCD)
+    Call Footer.Keys("[F7]")
+    call ImageRepository.Inventory.InventoryGeneral.Click
+    Delay(2000)
+    set locate = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+    if (locate = "GIB02") Then
+      Log.Message("Receiving completed in correct location")
+    Else
+      Log.Message("Wrong location")
+    End If
+    Call Footer.Keys("[Esc]")
+    
+End Function

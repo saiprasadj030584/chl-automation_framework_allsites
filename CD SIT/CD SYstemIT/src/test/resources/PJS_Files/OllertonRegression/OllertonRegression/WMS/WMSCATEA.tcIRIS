@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{FCEB9FB3-0F16-4B25-AA65-E8C84D56431B}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="WMSCATEA" />
+	<testData />
+	<data>
+		<item caption="ConnectionCateA" moniker="{8B3F4ABE-74B6-49DA-B32B-FD618E13C0DF}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\ConnectionCateA.png" initialHash="34437652" selectionLeft="612" selectionTop="271" selectionWidth="192" selectionHeight="38" initialLeft="612" initialTop="271" initialWidth="192" initialHeight="38" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="AdvEcomPackCloseButton" moniker="{1DF7FA1E-45E4-4D25-A512-CA221520036E}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\AdvEcomPackCloseButton.png" initialHash="3D1BE4BF" selectionLeft="276" selectionTop="644" selectionWidth="95" selectionHeight="27" initialLeft="276" initialTop="644" initialWidth="95" initialHeight="27" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="SKUDimension" moniker="{2DCA626B-60A1-4F6B-84C0-F6533B4EB65C}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\SKUDimension.png" initialHash="CE508095" selectionLeft="273" selectionTop="245" selectionWidth="73" selectionHeight="13" initialLeft="273" initialTop="245" initialWidth="73" initialHeight="13" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="PuttyHeaderRC" moniker="{41FDAE77-4823-4B73-9544-5974CA97B547}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\PuttyHeaderRC.png" initialHash="C8CAAF55" selectionLeft="250" selectionTop="33" selectionWidth="82" selectionHeight="20" initialLeft="250" initialTop="33" initialWidth="82" initialHeight="20" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Keyboard" moniker="{D865D8AF-A66F-4D0D-937A-B56512CDB2F2}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Keyboard.png" initialHash="07F7EE01" selectionLeft="505" selectionTop="262" selectionWidth="54" selectionHeight="16" initialLeft="505" initialTop="262" initialWidth="54" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Logout" moniker="{DAD4DB55-F949-4479-A404-4D79F7175CDD}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Logout.png" initialHash="17E64EDB" selectionLeft="750" selectionTop="67" selectionWidth="31" selectionHeight="29" initialLeft="750" initialTop="67" initialWidth="31" initialHeight="29" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UPI_Header_Misc" moniker="{5DC7C37C-A00A-40C4-85CC-6191C7A76488}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UPI_Header_Misc.png" initialHash="4C3F3270" selectionLeft="70" selectionTop="302" selectionWidth="85" selectionHeight="14" initialLeft="70" initialTop="302" initialWidth="85" initialHeight="14" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UD" moniker="{8B159F6B-1430-4E61-96F3-115485BF7F36}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UD.png" initialHash="CE2A4D93" selectionLeft="68" selectionTop="301" selectionWidth="79" selectionHeight="13" initialLeft="68" initialTop="301" initialWidth="79" initialHeight="13" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="SKUDMN" moniker="{F88BA8A2-C831-49EE-8C3A-9CCA14C38BA7}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\SKUDMN.png" initialHash="ED495C4D" selectionLeft="274" selectionTop="241" selectionWidth="68" selectionHeight="17" initialLeft="274" initialTop="241" initialWidth="68" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

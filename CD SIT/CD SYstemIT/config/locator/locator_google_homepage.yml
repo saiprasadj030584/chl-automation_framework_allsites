@@ -1,0 +1,28 @@
+#locators using id
+############################################################
+id:
+
+  google-front.search-field: 'lst-ib'
+  tata-click-input-key: 'js-site-search-input'
+  local-click-name: 'lnkWork'
+
+
+#locators using name
+############################################################
+name:
+ 
+  google-front.search-field-enter: 'btnK'
+
+ #locators using css
+############################################################
+css:
+
+  google-front.search-field-enter.clas: '.gsfi'
+
+
+#locators using xpath
+############################################################
+xpath:
+
+ #Login page
+  google.login_page.password-element: /html/body/div/div[3]/form/div[2]/div[2]/div[1]/div[1]/div[2]/div/div/div[3]/div/input[3]

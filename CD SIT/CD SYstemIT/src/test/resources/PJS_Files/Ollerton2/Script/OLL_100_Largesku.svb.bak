@@ -1,0 +1,50 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal___URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+'
+'Function Largsku 
+'' Call WMSlogin
+'call skusetup
+'Call PassingMulSku
+'Call Perfectreceiving
+'Call Perfectstgputaway
+'Call Perfectfinalputaway  
+'End Function
+
+Function Largsku 
+'Call WMSlogin
+Call Largesku
+      Delay(1000)
+      Call Puttylogin
+     Call Perfectreceiving     
+Call Perfectstgputaway_OVR
+Call Perfectfinalputaway_OVR   
+End Function
+
+
+'*sub function*
+Function Largesku
+    Filepath="C:\DD\Automation\Testdata\Oversize"  
+       Call ReadFile(Filepath,"SKUID","Oversize")
+     ReferenceNumber=ExpectedValue  
+'     ShowMessage ReferenceNumber
+End Function

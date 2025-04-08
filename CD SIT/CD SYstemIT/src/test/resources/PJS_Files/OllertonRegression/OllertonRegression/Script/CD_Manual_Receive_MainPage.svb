@@ -1,0 +1,59 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Function Man_Receive
+  
+    'Call CommonFunctions.LaunchWMSCD()
+    Call UPIHeaderValidation.UPIHead("B")
+    Call DockSchedulerPage.DockSchedule()
+    call YardCheckIn.YardIn()
+    Call CommonFunctions.LaunchPuttyCD()
+    Call DockConfirmPage.DockBook()
+    Call PalletGeneration.RandomCD()
+    Call ReceivingPage.PalletBuildingCD()
+    Call UPIHeaderValidation.UPIHeadStatus()
+    Call UPIHeaderValidation.UPIReceipt()
+    Call InventoryValidationPage.CDInvent()
+    Call YardDockClearance.YardClear()
+    Call YardDockClearance.TaskUpdate()
+    Call YardCheckOut.checkout()
+    Call CommonFunctions.LogoutPuttyCD()
+    Call CommonFunctions.LogoutWMSCD()
+
+End Function

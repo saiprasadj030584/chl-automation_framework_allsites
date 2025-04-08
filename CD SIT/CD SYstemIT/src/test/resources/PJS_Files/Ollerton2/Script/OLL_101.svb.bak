@@ -1,0 +1,20 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Otherfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function Putawaysequence
+'Call Commonfunction.WMSlogin
+Call ReadingData
+'#Oracle connection
+Call puttylogin
+Delay (2000)
+Aliases.putty.wndPuTTY.Activate
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(6000)
+Puttyfun.Keys("281")
+Delay(2000)
+Puttyfun.Keys(CheckString1)
+Puttyfun.Keys ("[Enter]")
+End Function
+

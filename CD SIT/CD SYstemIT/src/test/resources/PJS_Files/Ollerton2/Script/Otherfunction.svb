@@ -1,0 +1,61 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Public Locationfooter
+
+Function Location
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+Call searchbox.Keys("Location")
+Call searchbutton.Click
+ImageRepository.WMS.Location.Click
+Call Runbutton.Click
+Delay(1000)
+Set Locationfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call Locationfooter.keys ("[F2]")
+Delay(2000)
+End Function
+
+Function shelfvolume
+'#Pass Shelf volume
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("0.0693")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(CheckString)
+Call inventoryfooter.keys ("[F7]")
+Delay(1000)
+If ImageRepository.WMS.Resultmsg.Exists Then
+Log.Message"Identified location is shelf box location"
+End if
+
+End Function
+
+Function Pigeonvolume
+'#Pass Pigeon volume
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("0.0234")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(CheckString)
+Call inventoryfooter.keys ("[F7]")
+Delay(1000)
+If ImageRepository.WMS.Resultmsg.Exists Then
+Log.Message"Identified location is shelf box location"
+End if
+End Function
+
+Function Putawaysequence
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.Keys "Unlocked"
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys "CLIPPEROL"
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys "CLOLPICK"
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.Keys "STANDARD"
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys "0.0234"
+'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField5.Panel.Panel.DCSDataField_DCSTextField.Keys "0"
+'Set Locationfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSLocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+'Call Locationfooter.keys ("[F7]")
+'  Delay (2000)
+'  ImageRepository.WMS.doubleclick.DblClick
+'  Delay(2000)
+  ImageRepository.WMS.putseq.Click
+  Delay(1000)
+  
+End Function

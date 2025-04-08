@@ -1,0 +1,15 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT WMS
+Function MessageID
+'Call WMSlogin
+  Call skusetup
+  Call puttylogin
+  Call Perfectreceiving
+  Call Inventory
+  Call Perfectreceiving
+  Call Inventory
+  Call DBconnection_ITL
+End Function

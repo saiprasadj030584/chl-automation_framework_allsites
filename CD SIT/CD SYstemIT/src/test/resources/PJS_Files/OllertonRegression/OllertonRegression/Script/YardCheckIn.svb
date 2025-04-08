@@ -1,0 +1,132 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Public TransportID, TractorName
+
+TractorName = "280519"
+
+Function YardIn
+  
+    Call CommonFunctions.FormName("Yard Check-in")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    set TractorNam = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call TractorNam.keys(TractorName)
+    set Driver = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call Driver.keys("Aravind")
+'    set carrier = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+'    Call carrier.Keys("^a[BS]" & "ROYALMAIL")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSCheckBox.Panel.Panel.Label.Click
+    'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.setText BookingId
+    set BKId = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+    'Call BKId.Keys("I2881")
+    Call BKId.Keys(BookingId)
+    call Footer.Keys("[F7]")
+    set trailer= Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    call trailer.Keys(TrailerID)
+    Delay(1000)
+    'call trailer.Keys("1236")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys "[Tab]"
+'    Sys.Desktop.Keys("20")
+'        Sys.Desktop.Keys("[Tab]") 
+'        Delay(1000)
+'         Sys.Desktop.Keys("[Tab]") 
+'         Sys.Desktop.Keys("12345")
+'         Delay(1000)
+'          Sys.Desktop.Keys("[Tab]")
+'          Delay(1000)
+'        Sys.Desktop.Keys("[Tab]")
+'        Delay(1000)
+'        Sys.Desktop.Keys("UNLOADED")
+'        Delay(1000)
+    Call Footer.Keys("[F7]")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.FinishPanel.DCSGridFlowPanel.DCSCheckBox.Panel.Panel.Label.Click
+    Call Footer.Keys("[F12]")
+    set TransportID = Aliases.java.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    set Toloc = Aliases.java.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Toloc.Keys("^a[BS]"&"GIB02")
+    Call ImageRepository.DockSchedule.YCI_Ok.Click
+    call Footer.Keys("[Esc]")
+
+End Function
+
+
+
+Function HYardIn
+  
+    Call CommonFunctions.FormName("Yard Check-in")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    set TractorNam = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call TractorNam.keys(TractorName)
+    set Driver = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call Driver.keys("Aravind")
+'    set carrier = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+'    Call carrier.Keys("^a[BS]" & "ROYALMAIL")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSCheckBox.Panel.Panel.Label.Click
+    'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.setText BookingId
+    set BKId = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+    'Call BKId.Keys("I2881")
+    Call BKId.Keys(BookingId)
+    call Footer.Keys("[F7]")
+    set trailer= Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    call trailer.Keys(TrailerID)
+    Delay(1000)
+    'call trailer.Keys("1236")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys "[Tab]"
+'    Sys.Desktop.Keys("20")
+'        Sys.Desktop.Keys("[Tab]") 
+'        Delay(1000)
+'         Sys.Desktop.Keys("[Tab]") 
+'         Sys.Desktop.Keys("12345")
+'         Delay(1000)
+'          Sys.Desktop.Keys("[Tab]")
+'          Delay(1000)
+'        Sys.Desktop.Keys("[Tab]")
+'        Delay(1000)
+'        Sys.Desktop.Keys("UNLOADED")
+'        Delay(1000)
+    Call Footer.Keys("[F7]")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.FinishPanel.DCSGridFlowPanel.DCSCheckBox.Panel.Panel.Label.Click
+    Call Footer.Keys("[F12]")
+    set TransportID = Aliases.java.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    set Toloc = Aliases.java.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Toloc.Keys("^a[BS]"&"GIH02")
+    Call ImageRepository.DockSchedule.YCI_Ok.Click
+    call Footer.Keys("[Esc]")
+
+End Function

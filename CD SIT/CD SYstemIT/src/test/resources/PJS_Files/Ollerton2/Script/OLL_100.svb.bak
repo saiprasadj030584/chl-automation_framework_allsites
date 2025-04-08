@@ -1,0 +1,14 @@
+﻿
+Function Largsku
+ 
+' Call WMSlogin
+call skusetup
+  Call PassingMulSku
+  Call Perfectreceiving
+  Call Perfectstgputaway
+  Call Perfectfinalputaway
+  
+
+  
+End Function
+

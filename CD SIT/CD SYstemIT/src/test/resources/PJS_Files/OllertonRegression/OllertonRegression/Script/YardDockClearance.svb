@@ -1,0 +1,103 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+
+
+Function YardClear
+  
+    Call CommonFunctions.FormName("Yard Dock Clearance")
+    set DD = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call DD.Keys("GIB02")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    set Gateout = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.FinishPanel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Gateout.Keys("GATEOUT")
+    'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.FinishPanel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.Panel.DCSGridFlowPanel2.DCSRadioButton.Panel.Panel.Label.Click 
+    Call Footer.Keys("[F12]") 
+    Call Footer.Keys("[Esc]")
+    
+End Function
+
+
+Function HYardClear
+  
+    Call CommonFunctions.FormName("Yard Dock Clearance")
+    set DD = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call DD.Keys("GIH02")
+    Delay(1000)
+    set tran =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call tran.Keys(TransportID)
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    set Gateout = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.FinishPanel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Gateout.Keys("GATEOUT")
+    'Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.FinishPanel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.Panel.DCSGridFlowPanel2.DCSRadioButton.Panel.Panel.Label.Click 
+    Call Footer.Keys("[F12]") 
+    Call Footer.Keys("[Esc]")
+    
+End Function
+
+
+Function TaskUpdate
+  
+    Call CommonFunctions.FormName("Yard Task Update")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardTaskUpdate.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar
+    set transID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardTaskUpdate.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.WizardTabbedPane.StartPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call transID.Keys(TransportID)
+    'Call transID.Keys("4403")
+    Call Footer.Keys("[F7]")
+    call ImageRepository.DockSchedule.YTComplete.Click
+    Call Footer.Keys("[F7]")
+    Call Footer.Keys("[F12]")
+    Call Footer.Keys("[Esc]")
+    
+End Function

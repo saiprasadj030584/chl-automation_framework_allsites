@@ -1,0 +1,21 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT OLL_100
+'USEUNIT OLL_101
+'USEUNIT OLL_223
+'USEUNIT OLL_227
+'USEUNIT OLL_230
+'USEUNIT OLL_231
+'USEUNIT Otherfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function Notfitshelf
+  
+  Call skusetup
+  Call PassingMulSku
+  Call Perfectreceiving
+  Call Perfectstgputaway
+  Call Perfectfinalputaway
+ 
+
+End Function

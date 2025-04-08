@@ -1,0 +1,215 @@
+﻿' Function ScrollBar
+'		DO Until ImageRepository.Donington.GIB.exists 
+'    ImageRepository.Donington.scrollbar.Click
+'    for i=0 to 8
+'      Next
+'		LOOP
+'   Call ImageRepository.Donington.GIB01.Click   
+'End Function       
+Function sequence1
+  Filepath="C:\DD\Automation\Testdata1"  
+       Call Readdataputawayseq(Filepath,"SKUID","Putawaysequence")
+     ReferenceNumber=ExpectedValue     
+End Function
+
+
+Function Readfile1(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+if(row_cnt=Empty )Then Exit For
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+If value=" " Then Exit For
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+ Next 
+Call datasetup1(list(0),list(1),list(2),list(3),list(4)) 
+Next
+End Function
+Function datasetup1(ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU
+Call Suppliersku
+Call Packconfiguration
+Call Inventory
+'Call puttylogin
+Call Perfectreceiving
+Call Stgputawayseqlocation
+'Call Puttylogout
+End Function
+
+
+Function SS
+Dim x
+    x=1
+    LocationExist="xyz"
+    CheckString="xyz"
+    Location="xy"
+
+    If Location=Empty And LocationExist=CheckString  Then
+    Location=LocationExist
+     Log.message("Location is exists:"&Location)
+   IndexValueData=x
+    Log.message "Index value is:" & IndexValueData    
+    y=IndexValueData+1   
+    Dim Location1
+    ElseIf Location1=Empty AND LocationExist=CheckString  Then
+      Location1=LocationExist
+      Log.message("Location is exists:"&Location1)
+        IndexValueData=x
+        if y=x then 
+        Log.message "Showing correct sequence value"
+        End If 
+'      Exit Do
+'    Else
+'    Log.Message ("Location does not exist for the value : "&CheckString) 
+    end if 
+     x=x+1
+'      Log.Message "x is" & x     
+'     recordSetOBJ.MoveNext     
+      
+   
+    End Function
+    
+    Function s
+If ImageRepository.Puttyscreen.Diffupcmsg.Exists Then
+    Log.Message("UPC's are not the same")
+End If
+    
+    End Function
+    
+    Function Imperfectputaway1
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000) 
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(1000)
+Call Puttyfun.Keys (Tagid)
+Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,10)   
+    Delay(2000)
+    Log.Message"Final Location is:"& CheckString
+    Puttyfun.Keys(CheckString)
+    Delay(2000)
+    If ImageRepository.Puttyscreen.Largelocation.Exists Then
+    Log.message "Putaway completed in OVR location"
+    End If
+    Delay(2000)
+    End If  
+    Call Puttyfun.Keys("[Enter]")
+    Delay (1000)
+Puttyfun.Keys ("[F10]")
+End Function
+
+'DB location
+
+'    Do Until MessageIds <> NULL
+'     Tagid1="73251"
+'    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'" 
+'    Do Until NOT recordSetOBJ.EOF
+'    Tagid1="72251"
+'    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'"
+'       MessageIds=recordSetOBJ.fields("V_Message_ID")
+'       
+'        Do While NOT recordSetOBJ.EOF
+'    MessageIds=recordSetOBJ.fields("V_Message_ID")
+'    MsgBox MessageIds
+'    recordSetOBJ.MoveNext
+'    Loop
+'    Loop
+'    MessageIds=recordSetOBJ.fields("V_Message_ID")
+'MsgBox MessageIds
+'Loop
+
+
+Function DBconnection_Msgid1
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset")  
+    
+Tagid1="72400"
+Delay (2000)
+MessageIds=""
+Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'" 
+recordSetOBJ.Open Query,connectionOBJ
+
+Do until MessageIds<>""
+    Delay(3000)
+    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'" 
+'    recordSetOBJ.Open Query,connectionOBJ
+    Set msglist= CreateObject("System.Collections.ArrayList")
+    MessageIds=recordSetOBJ.fields("V_Message_ID")
+    
+if MessageIds<>"" then 
+    Exit do 
+End if 
+Loop
+    
+If not recordSetOBJ.EOF Then
+
+Do until not  recordSetOBJ.EOF 
+'Delay(1000)
+'If NOT recordSetOBJ.EOF Then
+'Exit Do
+'End If
+'Loop
+Delay(1000)
+set recordSetOBJ = CreateObject("ADODB.recordset")  
+Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'" 
+    recordSetOBJ.Open Query,connectionOBJ
+    Set msglist= CreateObject("System.Collections.ArrayList")
+
+Loop 
+   
+If NOT recordSetOBJ.EOF Then
+'Exit Do
+
+    End if 
+Do While NOT recordSetOBJ.EOF
+MessageIds=recordSetOBJ.fields("V_Message_ID")
+     msglist.add(MessageIds)
+    MsgBox MessageIds
+recordSetOBJ.MoveNext
+Loop
+End if 
+                   End Function
+    
+  

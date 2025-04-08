@@ -1,0 +1,791 @@
+id:
+  home-page.add.button: Awp0ShowCreateObject
+  plm-userNameid: i0116
+  plm-articleNo: LCSSKU_att5
+  plm-action: prodseasonActions
+  plm-seasons: splId
+  plm-source: sourcingConfigId
+  plm-colorwaydd: contextSKUId
+  plm-plannedvaterate: att15
+  plm-plannedsellingprice: num23Input
+  
+name:
+
+  
+css:
+  login-page.Password.textBox: input[type='password']
+  login-page.signIn.button: button[ng-click='login()']
+  
+xpath: 
+  plm-page-checkbox: //*[@id="terms"]/div/div/input
+  plm-page-nextbutton: //*[@id='idSIButton9']
+  plmLogin-pageuserIDtextBox: //*[@id='i0116']
+  plm-sitetab: //*[@id='siteNavLink']/a
+  plm-chkbox-page: //input[@name='box']
+  plm-library-Navigation: //img[@id='librariesContentIcon']
+  plm-search-button: //*[@id='null']//a[@href='javascript:search()']
+  plm-side-sesaon-list:  //*[@id='seasonSelectList']
+  plm-library-colorway: //a[@href='javascript:findSKU()' and text()='Colorway']
+  plm-menu-details: //div[@id='allSpace']//a[@class='subtabTxtNsel' and text()='Details']
+  plm-colorway-flexible-attributes: //*[@id='num7Display']/a
+  plm-side-season :  //*[@id='seasonsContentIcon']
+  plm-colorway-flexible-attributes1: //div[@id='num7Display']//input[@id='quickSearchInput']
+  plm-save: //div[@id='contentDiv']//a[@class='button' and text()='Save']
+  plm-linesheet: //*[@id="seasonDevelopmentContent"]//a[@href='javascript:viewSelectedLineSheet()']
+  plm-login-page: //a[@href='javascript:toggleExpandableDiv('seasonsContent', 'seasonsContentIcon');']
+  plm-linesheet1: //*[@id="seasonDevelopmentContent"]//a[@href='javascript:viewSelectedLineSheet()']
+  plm-actions-line: //*[@id='contentDiv']//select[@name='linePlanActions']
+  plm-style-name: //input[@id='LCSPRODUCT_att1']
+  plm-option-button: //div[@id='contentDiv']//a[@class='button' and text()='Options']
+  plm-filter-button: //div[@id='contentDiv']//a[@class='button' and text()='Filters']
+  plm-run-button: //div[@id='contentDiv']//a[@class='button' and text()='Run']
+  plm-level: //select[@id='linePlanLevel']
+  plm-placeholder: //select[@id='placeholderMode']
+  plm-products-check: //*[@id='placeHoldersBox']
+  plm-include-check: //*[@id='linePlanOptionsDiv']//input[@name='linePlanSourcingBox']
+  plm-savechanges-button: //*[@id='saveLinePlanButton']
+  
+  
+  
+
+#My season -- //*[@id="siteNavigator"]/div[3]/div[2]/div[1]/table/tbody/tr/td/a
+#
+#My season select -- //select [@id='seasonSelectList'] 
+#
+#//*[@id='otherTileText']
+#
+#buyingT47@mnscorpcate.net -- //*[@id='i0116'] 
+#
+#Next Button -- //*[@id='idSIButton9']
+#
+#password -- //*[@id='ctl00_ContentPlaceHolder1_PasswordTextBox']
+#
+#//*[@id='ctl00_ContentPlaceHolder1_UsernameTextBox'] 
+#
+#//*[@id='ctl00_ContentPlaceHolder1_SubmitButton'] 
+
+
+  home-page.inbox.button: //div[text()='Inbox']
+  home_page_inbox_team_tab: //div[@class='aw-layout-subLocation']//a[text()='Team']
+  
+  home-page.homefolder.button: //div[text()='Home Folder']
+  home_page_teamcenter_home: //div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalLeft']//button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0GoHome' and @title='Home']
+  home-page.home.button: //div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalLeft']//button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0GoHome' and @title="Home"]
+  home_page_tradeitem_object_filter: //div[@class='aw-layout-panelSectionContent']//input[@placeholder='Filter']
+  home-page.tradeitem.link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Trade Item']
+  home-page.tradeitem.id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'TI-')]
+  home-page.tradeitem.revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home-page.tradeitem.title: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trade Item')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home-page.tradeitem.changereason: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Reason for Change')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page.tradeitem.changereasonsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Reason for Change')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'][text()='NSV']
+  home-page.tradeitem.classification: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'New Product Classification')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page.tradeitem.classificationsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'New Product Classification')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home-page.tradeitem.project: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Project')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page.tradeitem.projectsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Project')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_add_button: //button[contains(text(),'Add')]
+  home_page_tradeitem_title_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trade Item')]]//span[text()='Property is required']
+  home_page_tradeitem_changereason_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Reason for Change')]]//span[text()='Property is required']
+  home_page_tradeitem_classsification_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'New Product Classification')]]//span[text()='Property is required']
+  home_page_tradeitem_project_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Project')]]//span[text()='Property is required']
+  home_page_tradeitem_added_msg: //div[@class='noty_message']/span[@class='noty_text']
+  //home_page_tradeitem_open: //li[//label[text()='"+trade_item+"']]//a[@class='aw-commands-cellCommandCommon aw-commands-cellCommandTopRight visible']//*[@id='Layer_1']
+  home_page_tradeitem_selling_channel: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Selling Channel')]
+  home_page_tradeitem_comments_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Comments')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_tradeitem_page_title: //div[@class='aw-layout-panelSectionTitle']//div[text()='General Summary']
+  home_page_tradeitem_act_launch_date: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Act Launch Date')]
+  home_page_tradeitem_act_launch_date_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Act Launch Date')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_tradeitem_effective_to: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Effective To')]
+  home_page_tradeitem_effective_to_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Effective To')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_tradeitem_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_tradeitem_edit_hidden: //button[@class='aw-commands-commandIconButton hidden aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_tradeitem_changedesc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Change Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_tradeitem_projedit: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Project')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_projeditsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Project')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_countriessold: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries Sold')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_countriessoldsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries Sold')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_sellingchannel_field: //div[contains(text(),'Selling Channel') and @class='aw-widgets-propertyLabelTop']
+  home_page_tradeitem_sellingchannel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_sellingchannelsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_sellingchannelsel2: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[2]
+  home_page_tradeitem_sellingchannelsel3: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[3]
+  home_page_tradeitem_sellingchannelsel4: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[4]
+  home_page_tradeitem_sellingchannelsel5: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[5]
+  home_page_tradeitem_EAN: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'EAN')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_TS: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trading Supplier')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_TSsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trading Supplier')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_effectivetodate: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Effective To')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_tradeitem_effectivetotime: //div[2]/div[2]/div/aw-property-val/div/div/aw-property-date-time-val/div/div/div[2]/aw-property-time-val/div/aw-property-error/div/input
+  home_page_tradeitem_availability: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Availability')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_availabilitysel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Availability')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_tradeitem_priority: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Priority:')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_tradeitem_comment: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Comments')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_tradeitem_save: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_tradeitem_search_type: //div[@class='aw-search-searchBoxViewContainer']//div[@class='aw-search-searchPreFilterTextPanel']//a[@class='aw-base-small link-style-3'][contains(text(),'Type')]
+  home_page_tradeitem_search_type_selection: //div[@class='aw-widgets-cellListWidgetContainer']//li[@class='aw-widgets-cellListItem aw-widgets-cellTop'][text()='Any']
+  home_page_tradeitem_search: //div[@class='aw-search-searchBoxViewContainer']//div[@class='aw-search-simpleSearch']//input[@class='aw-search-searchBox' and @type='text']
+  home_page_tradeitem_search_button: //div[@class='aw-search-searchBoxViewContainer']//div[@class='aw-search-simpleSearch']//button[@class='aw-search-searchButton' and @type='button']
+  home_page_tradeitem_open: //a[@class='aw-commands-cellCommandCommon aw-commands-cellCommandTopRight visible' and @title='Open']//*[@id='Layer_1']
+  home_page_tradeitem_release_status: .//*[@id='main-view']/aw-page/div/div[2]/aw-header/aw-gwt-presenter/div/div[4]/div[3]/div[2]
+  home_page_advanced_search_link: //div[@class='aw-search-searchBoxViewContainer']//div[@class='aw-search-advancedSearchLink']//a[text()='Advanced Search']
+  home_page_advanced_search_string: //input[@ng-required="prop.isRequired" and @ng-trim='true']
+  //home_page_advanced_search_string_available: //input[@ng-required="prop.isRequired" and @ng-trim='true']
+  home_page_advanced_quicksearch: //div[@class='aw-search-quickSearch']//button[@title='Search'and @class='aw-search-quickSearchButton']
+  home_page_advanced_search_result_open: //a[@class='aw-commands-cellCommandCommon aw-commands-cellCommandTopRight visible']//*[@id='Layer_1']
+  home_page_object_second_revision: //div[@class='aw-layout-flexRowContainer aw-layout-locationTitlePanel']//span
+  home_page_advanced_search_object_view_button: //div[@class='aw-xrt-objectSetChangeDisplayButtonPanel']
+  home_page_advanced_search_object_view_mouseover: (//ul[@class='aw-widgets-cellListWidget']//li)[1]
+  home_page_advanced_search_object_view_selection: //ul[@class='aw-widgets-cellListWidget']//li//div[text()='Table']
+  home_page_advanced_search_object_type_sel_dropdown: //input[@class='aw-jswidgets-choice gwt-ListBox ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-valid-required']
+  home_page_advanced_search_object_type_itemid_sel: //div[@class='aw-widgets-cellListCellText aw-base-small ng-binding' and @title='Item ID']
+  home_page_object_revise_link: //div[@class='aw-commands-wrapper']//button[@id='Awp0ShowSaveAs' and @title='Save As or Revise']
+  home_page_object_revise_button: //button[contains(text(),'Revise')]
+  home_page_tradeitem_availabilty_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Availability')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_tradeitem_title_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Trade Item Title')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_tradeitem_actlaunchdate: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Act Launch Date')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_tradeitem_priority_field: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Priority')]
+  home_page_tradeitem_urgent_field: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Urgent')]
+  home_page_tradeitem_packageartwork_link: //li[@class='aw-jswidget-tab']//a[contains(text(),'Pkg Artwork')]
+  home_page_trade_item_pack_copy_report: //div[@class='aw-layout-panelSection' and .//div[text()='Pack Copy Report']]//div[contains(text(),'PC-')]
+  home_page_trade_item_pack_copy_cut: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Cut' and @title='Cut']
+  home_page_trade_item_pack_copy_addlink: //div[@class='aw-layout-panelSection' and .//div[text()='Pack Copy Report']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_trade_item_new_link: //a[text()='New'][@class='aw-base-tabTitle']
+  home_page_trade_item_button: //button[contains(text(),'Create')]
+  home_page_trade_item_promotions_link: //li[@class='aw-jswidget-tab']/a[text()='Promotions']
+  home_page_trade_item_promo_logos_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Promo-Marketing Logo']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_trade_item_no_result_found: //div[@class='aw-layout-workarea']//div[@class='aw-search-advancedSearchTitle aw-layout-workareaTitleOrderFirst' and contains(@title,'No results found')]
+
+  home_page_trade_item_selling_channel_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Selling Channel')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+
+  home_page_tradeitem_countriessoldsel_algeria: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries Sold')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'][text()='Algeria']
+  home_page_tradeitem_countriessoldsel_afghanistan: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries Sold')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'][text()='Afghanistan']
+  home_page_pd_countries-sold_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Countries Sold')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+
+
+  home_page_trade_item_follower_subscribe: .//div[@class="aw-layout-panelSectionTitle"]//div[@class="aw-follow-addButton"]
+  home_page_trade_item_follower_search: .//input[@class="aw-subscription-userSearchBox"]
+  home_page_trade_item_follower_add: .//button[text()='Add']
+  
+  home_page_trade_item_available_revisions_link: //li[@class='aw-jswidget-tab']/a[text()='Available Revisions']
+  home_page_trade_item_avail_rev_all_version: //div[@class='aw-widgets-cellListCellProperties' and .//label[contains(text(),'Revision:')]]
+  home_page_trade_item_avail_rev_orig_version: //div[@class='aw-widgets-cellListCellProperties' and .//label[contains(text(),'Revision:')]]//label[@class='aw-widgets-propertyValue aw-base-small'][text()=001]
+
+  
+  home_page_upc_link: //li[@class='aw-jswidget-tab']/a[text()='UPC']
+  home_page_upc_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='UPC']
+  home_page_upc_add: //button[@title='Add to']//*[@id='Layer_1']
+  home_page_upc_upc: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='UPC'][text()='UPC']
+  home_page_upc_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'UP-')]
+  home_page_upc_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_upc_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'UPC Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_upc_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_upc_articlecategory: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_upc_articlecategorysel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_upc_articletype: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_upc_articletypesel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_upc_merchcat: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Merchandise Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_upc_merchcatsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Merchandise Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_upc_sellingsupGrp: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Super Group')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_upc_sellingsupGrpsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Super Group')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_upc_packedto: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packed To')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_upc_packedtosel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packed To')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_upc_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_upc_release_status: //div[//div[contains(text(),'Release Status')]]//a[text()='UPC Requested']
+  home_page_upc_selling_category_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Selling Category')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_upc_merchandise_category_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Merchandise Category')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_upc_article_category_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Category')]]//span[text()='Property is required']
+  home_page_upc_via_trade_search_link: //div[@class='aw-layout-panelHeader']//a[text()='Search']
+  home_page_upc_via_trade_search_box: //div[@class='aw-layout-panelBody aw-base-scrollPanel']//input[@type='text']
+  home_page_upc_via_trade_search_button: //div[@class='aw-search-widget']//button[@title='Search'and @type='button']
+  home_page_upc_via_trade_item_search_list: //div[@class='aw-widgets-cellListCellTitleBlock']//h3[text()='UPC AutoTesting']
+  home_page_upc_article_type_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Article Type')]]//span[text()='Property is required']
+  home_page_upc_packed_to_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packed To')]]//span[text()='Property is required']
+  home_page_upc_selling_super_group_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Super Group')]]//span[text()='Property is required']
+  home_page_upc_merchandise_category_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Merchandise Category')]]//span[text()='Property is required']
+  home_page_upc_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'UPC Name')]]//span[text()='Property is required']
+  home_page_till_receipt_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Till Receipt Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_clipboard_item: //div[@class='aw-layout-panelSection' and .//div[text()='Clipboard']]//li
+  
+  home_page_sp_link: //li[@class='aw-jswidget-tab']//a[text()='Sellable Products']
+  home_page_sp_add: //button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_sp: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Sellable Product'][text()='Sellable Product']
+  home_page_sp_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'SP-')]
+  home_page_sp_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_sp_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_title: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Product Title on Pack')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_subtititle: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Sub Title On Pack')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_qc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Classification')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_qcsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Classification')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_countriesofsale: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_countriesofsalesel: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[1]
+  home_page_sp_countriesofsalesel2: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[2]
+  home_page_sp_countriesofsalesel3: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[3]
+  home_page_sp_sl: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Sellable Languages')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_slsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Sellable Languages')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_bc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Buying Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_bcsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Buying Category')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_save: //button[contains(text(),'Add')]
+  home_page_sp_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_sp_attached: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'SP-')]
+  home_page_sp_spitem: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_sp_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_sp_title_link: //div[@class='aw-layout-panelSectionTitle']//div[text()='General Summary']
+  home_page_sp_mm: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Marketing Messages')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_os: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Online Statements')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_ossel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Online Statements')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_mb: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'M&S Buyer')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_mbsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'M&S Buyer')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_ai: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Additional information')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_comment: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Comments')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_cos: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_cossel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Countries of Sale')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_sc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_scsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Selling Channel')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_saveedit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_sp_previous_location: //div[@class='aw-layout-headerLeft']//div[@class='aw-layout-flexRowContainer aw-layout-locationTitlePanel']//button[@type='button' and @title='Previous Location']
+  home_page_sp_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Sellable Product']
+  home_page_sp_buying_category_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Buying Category')]]//a[@class='aw-widgets-propertyValueLink ng-binding']
+  
+  home_page_sp_photograph_link: //li[@class='aw-jswidget-tab']/a[text()='Photograph']
+  home_page_sp_country_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Countries of Sale')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_country_details_link: //div[@class='aw-layout-panelSectionTitle']//div[text()='Country Details']
+  home_page_sp_product_title_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Product Title on Pack')]]//span[text()='Property is required']
+  home_page_sp_sub_title_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Sub Title On Pack')]]//span[text()='Property is required']
+  home_page_sp_quality_classification_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Classification')]]//span[text()='Property is required']
+  home_page_sp_desc_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_product_title_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Product Title on Pack')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_sub_title_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Sub Title On Pack')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_design_link: //li[@class='aw-jswidget-tab']/a[text()='Design']
+  home_page_sp_photograph_hint_link: //div[@class='aw-jswidgets-htmlPanel ng-scope']//font[@color='black']
+  home_page_sp_master_design_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Master Design']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_master_design_link: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Master Design'][text()='Master Design']
+  home_page_sp_master_design_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'MD-')]
+  home_page_sp_matser_design_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_master_design_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_photograph_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Photograph']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_photograph: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Photograph'][text()='Photograph']
+  home_page_sp_photograph_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PG-')]
+  home_page_sp_photograph_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_photograph_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sp_photograph_expiry_date: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_sp_photograph_expiry_time: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='HH:MM:SS']
+  home_page_sp_photograph_position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_sp_photograph_position_sel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_sp_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Sellable Products']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_attachments_add_link: //button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_documents_link: //li[@class='aw-jswidget-tab']//a[text()='Documents']
+  home_page_sp_qc_link: //div[@class='aw-layout-panelSection' and .//div[text()='Quality Contract']]//div[contains(text(),'QC-')]
+  home_page_sp_qc_open_link: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']
+  home_page_sp_design_logos_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Design Logos']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_sp_design_logo_link: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Design Logo'][text()='Design Logo']
+  home_page_sp_palette_link: //a[text()='Palette'][@class='aw-base-tabTitle']
+  home_page_sp_genartwork_link: //li[@class='aw-jswidget-tab']//a[contains(text(),'Gen Artwork')]
+  
+  home_page_sp_marketing_msg_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Marketing Messages')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_online_stmts_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Online Statements')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_comments_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Comments')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_sp_cut: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Cut' and @title='Cut']
+  home_page_sp_revision_hint: .//div[@class='aw-layout-infoPanelContainer']//font
+  
+  home_page_cd_link: //li[@class='aw-jswidget-tab']//a[text()='Commercial Details']
+  home_page_cd_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Commercial Details']
+  home_page_cd_add: //button[@title='Add to']//*[@id='Layer_1']
+  home_page_cd_cd: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Commercial Details'][text()='Commercial Details']
+  home_page_cd_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'CD-')]
+  home_page_cd_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_cd_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_cd_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_cd_isp: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Indicative Selling Price')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_save: //button[contains(text(),'Add')]
+  home_page_cd_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_cd_isp_field_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexRow']//div[contains(text(),'Indicative Selling Price')]
+  home_page_cd_isp_selected_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Indicative Selling Price')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_cd_cditem: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_cd_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_cd_title_link: //div[//@class='aw-layout-panelSectionTitle']//div[text()='Preview']
+  home_page_cd_ivat: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Indicative VAT')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_ev: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Estimated Volume')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_nos: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Number Of Stores')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_ups: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Units Per Store')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_cphtu: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CPHTU target')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_gsm: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Gross Selling Margin')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cd_saveedit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_cd_previous_location: //div[@class='aw-layout-headerLeft']//div[@class='aw-layout-flexRowContainer aw-layout-locationTitlePanel']//button[@type='button' and @title='Previous Location']
+  home_page_cd_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_cd_indicative_selling_price_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Indicative Selling Price')]]//span[text()='Property is required']
+  home_page_cd_estimated_volume_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Estimated Volume')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_cd_estimated_volume_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Estimated Volume')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_cd_gross_selling_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Gross Selling Margin (%) target')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  
+  home_page_pp_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Packed Product']
+  home_page_pp_link: //li[@class='aw-jswidget-tab']//a[text()='Packed Product']
+  home_page_pp_add: //div[@class='aw-layout-workarea']//button[@title='Add to']//*[@id='Layer_1']
+  home_page_pp_pp: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='Packed Product'][text()='Packed Product']
+  home_page_pp_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PP-')]
+  home_page_pp_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_pp_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pp_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_pp_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Product Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pp_desc_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Product Description')]]//span[text()='Property is required']
+  home_page_pp_desc_edit: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Product Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pp_prod_desc: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Product Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_pp_get_eff_date_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Effective Date')]]//span[@class="aw-jswidgets-text ng-isolate-scope"]
+  home_page_pp_effective_date: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Effective Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY - Required']
+  home_page_pp_effective_date_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Effective Date')]]//span[text()='Property is required']
+  home_page_pp_effective_time: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Effective Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='HH:MM:SS - Required']
+  home_page_pp_effective_time_selection: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Effective Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[./@class='aw-widgets-cellListCellText aw-base-small ng-binding' and text()='00:30']
+  home_page_pp_save: //button[contains(text(),'Add')]
+  home_page_pp_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_pp_pl_link: //li[@class='aw-jswidget-tab']//a[text()='Product Logo']
+  home_page_pp_doc_link: //li[@class='aw-jswidget-tab']//a[text()='Documents']
+  home_page_pp_ppitem: //div[@class='aw-widgets-cellTop']//div[contains(text(), '"+pp_item+"')]
+  home_page_pp_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_pp_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_pp_save_edits: .//div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalRight']//button[@title='Save Edits']
+  home_page_pp_commodity_code: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Commodity Code')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pp_commodity_code_selection: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Commodity Code')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pp_master_sap_factory: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Master SAP Factory')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pp_master_sap_factory_selection: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Master SAP Factory')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pp_master_sap_edit_click: //div[@class="aw-widgets-propertyContainer aw-layout-flexColumn" and .//div[contains(text(),'Master SAP Factory')]]//aw-property-error
+  home_page_pp_master_sap_value_select: //div[@class="aw-widgets-propertyContainer aw-layout-flexColumn" and .//div[contains(text(),'Master SAP Factory')]]//li[2]
+  home_page_pp_master_sap_after_edit_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Master SAP Factory')]]//a
+  home_page_pp_saveedit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_pp_previous_location: //div[@class='aw-layout-headerLeft']//div[@class='aw-layout-flexRowContainer aw-layout-locationTitlePanel']//button[@type='button' and @title='Previous Location']
+  home_page_pp_click_other_document: .//ul[@class='aw-widgets-cellListWidget']//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@class='aw-tcWidgets-modelTypeCell']//div[@title='Other Documentation']
+  home_page_pp_document_type: .//*[@id='main-view']//li[@class='aw-jswidgets-nestingListItem ng-scope']//div[@title='Product Submission Form']
+  home_page_pg_document_type: .//*[@id='main-view']//li[@class='aw-jswidgets-nestingListItem ng-scope']//div[@title='Photography Schedule']
+  //home_page_pp_document_type: .//*[@id='main-view']//li[@class='aw-jswidgets-nestingListItem ng-scope']//div[@title='Amendment request - Finance Phase']
+  home_page_pp_document_add: //button[contains(text(),'Add')]
+  //home_page_pp_doc_page_select_other_doc: .//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Other Documentation']
+  home_page_pp_doc_page_select_other_doc: //div[@class='aw-layout-panelSection'][//div[text()='Other Documentation']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Other Documentation']
+  home_page_pp_doc_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'OD-')]
+  home_page_pp_doc_type_input: .//*[@id='main-view']//div[@class='aw-widgets-innerWidget']//div[@class='aw-layout-flexRowContainer aw-widget-iconParent ng-scope']//input[@class='aw-jswidgets-choice gwt-ListBox ng-isolate-scope ng-dirty ng-valid-parse ng-empty ng-invalid ng-invalid-required ng-touched']
+  home_page_pp_doc_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Document Type')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pp_helpful_hints: .//div[@class="aw-xrt-columnContentPanel aw-xrt-twoColumn"]//div[contains(text(),"Helpful")]
+  //home_page_pp_project_check: .//div[@class="aw-xrt-columnContentPanel aw-xrt-twoColumn"][. //div[contains(text(),"Project")]]//li//a
+  home_page_pp_project_check: .//div[@class="aw-widgets-propertyContainer aw-layout-flexRow"][. //div[contains(text(),"Project")]]//li//a
+  home_page_pp_master_sap_factory_finlay_selection: (//div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Master SAP Factory')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'])[10]
+  home_page_pp_new_link: //a[text()='New'][@class='aw-base-tabTitle']
+  home_page_pp_create_button: //button[contains(text(),'Create')]
+  
+  home_page_properties_link: //li[@class='aw-jswidget-tab']//a[text()='Properties']
+  home_page_properties_submit_to_workflow_link: //div[@class='aw-commands-wrapper']//button[@id='Awp0NewWorkflowProcess' and @title='Submit to Workflow']
+  home_page_properties_submit_to_workflow_value: //div[./@class='aw-layout-flexRowContainer aw-widget-iconParent ng-scope']//input[@ng-click='toggleDropdown()']
+  home_page_properties_submit_to_workflow_selection: //li[not(contains(text(),'No Matches') and @class='aw-jswidgets-nestingListItem ng-scope')]//div[text()='Request UPC' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_properties_submit_to_workflow_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer']//textarea
+  home_page_properties_submit_to_workflow_submit: //button[@action='submit']
+  home_page_properties_submit_to_workflow_notification: //li[@class='lightTheme noty_container_type_error']
+  home_page_properties_submit_to_workflow_message: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_properties_submit_to_workflow_obsolete: //li[not(contains(text(),'No Matches') and @class='aw-jswidgets-nestingListItem ng-scope')]//div[text()='Set to Obsolete' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_properties_assign_projects_link: //div[@class='aw-commands-wrapper']//button[@id='Awp0AssignProjects' and @title='Assign Projects']
+  home_page_properties_available_project: (//div[@class='aw-layout-panelSection' and .//div[text()='Available']]//li//div[@class='aw-widgets-cellListCellTitleBlock']//h3)[1]
+  home_page_properties_add_project_plus_button: (//div[@class='aw-layout-panelSection' and .//div[text()='Available']]//li//div[@class='aw-widgets-cellListCellCommands aw-widgets-cellInteraction'])[1]//a[@title='Add Project']
+  home_page_properties_assign_project_button: //button[text()='Assign' and @class='aw-base-blk-button']
+
+  home_page_properties_reassign_task_link: //div[@class='aw-commands-wrapper']//button[@id='Awp0ReassignTask' and @title='Reassign Task']
+  home_page_properties_rt_comments_box: //div[@class='aw-layout-panelFooter' and .//div[contains(text(),'Comments')]]//textarea
+  home_page_properties_rt_reassign_button: //button[contains(text(),'Reassign')]
+  home_page_properties_rt_assignee_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Assignee:')]]//a[@class='aw-widgets-propertyValueLink ng-binding']
+  
+  home_page_properties_perform_task_link: //div[@class='aw-commands-wrapper']//button[@id='Awp0PerformTask' and @title='Perform Task']
+  home_page_properties_pt_name_field: //div[@class='aw-layout-panelMain']//div[contains(text(),'Name')][@class='aw-widgets-propertyLabelTop']
+  home_page_properties_pt_product_developer_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'M&S / Product Developer')]]//button[@title='Add']
+  home_page_properties_pt_product_technologists_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'M&S / Packaging Technologist')]]//button[@title='Add']
+  home_page_properties_gsp_studio_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'Kestrel.Service Providers / GSP Studio')]]//button[@title='Add']
+  home_page_properties_supplier_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'Users')]]//button[@title='Add']
+  home_page_properties_pt_filter_box: //input[@class='aw-workflow-searchBox' and @placeholder='Filter']
+  home_page_properties_pt_buyer_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'M&S / Buyer')]]//button[@title='Add']
+  home_page_properties_pt_technologist_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'M&S / Technologist')]]//button[@title='Add']
+  home_page_properties_pt_lsp_add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'Ashbury.Service Providers / LSP ')]]//button[@title='Add']
+  home_page_properties_pt_comments_box: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Comments')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_properties_pt_complete_button: //button[contains(text(),'Complete')]
+  home_page_properties_pt_comments_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Comments')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_properties_pt_task_state_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Task State')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_properties_pt_user_specific_comments_box: //div[@class='aw-inbox-myDecisionPerformTask aw-layout-panelContent' and .//div[contains(text(),'Comments')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_properties_pt_approve_button: //button[contains(text(),'Approve')]
+  home_page_properties_pt_reject_button: //button[contains(text(),'Reject')]
+  home_page_properties_pt_user_specific_comments_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Comment')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_properties_pt_user_specific_decision_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Decision:')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_properties_gspbm_gsp__add_plus_button: //div[@class='aw-layout-panelSectionTitle'][.//div[contains(text(),'Kestrel.Service Provider')]]//button[@title='Add']
+  home_page_properties_pt_resubmitforreview_button: //button[contains(text(),'Resubmit for Review')]
+   
+  home_page_ml_logo_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Promo-Marketing Logo']
+  home_page_ml_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'ML-')]
+  home_page_ml_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'00')]
+  home_page_ml_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_ml_name_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Name')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_ml_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_ml_cfpp_chapter: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_ml_cfpp_chaptersel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_ml_cfpp_chapter_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]//span[text()='Property is required']
+  home_page_ml_position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_ml_positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_ml_add_button: //button[contains(text(),'Add')]
+  home_page_ml_saveedit_button: //div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalRight']//button[@title='Save Edits']
+  home_page_ml_attached: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'ML-')]
+  
+  home_page_dl_logo_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Design Logo']
+  home_page_dl_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'DL-')]
+  home_page_dl_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'00')]
+  home_page_dl_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_dl_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_dl_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_dl_cfpp_chapter: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_dl_cfpp_chaptersel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_dl_position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_dl_positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_dl_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_dl_copy: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Copy' and @title='Copy']
+  home_page_dl_worklfow: //li[@class='aw-jswidget-tab']/a[text()='Workflow']
+  //home_page_dl_worklfow_Amend: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'Amend')]
+  home_page_dl_worklfow_Amend: //div[@class='aw-widgets-cellTop']//div[@class='aw-widgets-dataGridCommandCellText data-cellwidth']
+  home_page_dl_worklfow_Amend_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_dl_worklfow_Amend_status: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Task State')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_dl_attached: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'DL-')]
+  home_page_dl_dlitem: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  
+  home_page_pl_logo_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Product Logo']
+  home_page_pl_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PL-')]
+  home_page_pl_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'00')]
+  home_page_pl_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pl_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pl_cfpp_chapter: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pl_cfpp_chaptersel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'CFPP Chapter')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pl_position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pl_positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pl_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_pl_copy: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Copy' and @title='Copy']
+  
+  home_page_release_status_blank: //div[@class='aw-layout-headerProperties']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow aw-layout-headerProperty'][.//div[contains(text(),'Release Status')]]//div[@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_hm_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Hospitality Menu']
+  home_page_hm_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'HM-')]
+  home_page_hm_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'00')]
+  home_page_hm_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_hm_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_hm_documents: //li[@class='aw-jswidget-tab']/a[text()='Documents']
+  home_page_hm_documents_add_link: //button[@title='Add to'][@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0ShowAddObject']
+  home_page_hm_name_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Name')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_hm_description_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_hm_type_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Type')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  
+  
+  home_page_qc_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Quality Contract']
+  home_page_qc_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'QC-')]
+  home_page_qc_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'00')]
+  home_page_qc_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_qc_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_qc_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_qc_added_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_qc_photograph_link: //li[@class='aw-jswidget-tab']//a[text()='QC Photograph']
+  home_page_qc_photograph_add_link: //button[@title='Add to']//*[@id='Layer_1']
+  home_page_qc_photograph_text: //div[@class='aw-layout-panelSection']//div[@class='aw-tcWidgets-modelTypeCellTitle' and  @title='QC Photograph'][text()='QC Photograph']
+  home_page_qc_photograph_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_qc_photograph_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_qc_photograph_qualityclassfiication: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Classfiication')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_qc_photograph_qualityclassfiicationsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Classfiication')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_qc_photograph_quality_notes: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Notes')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_qc_photograph_msg: //div[@class='noty_message']//span[@class='noty_text']
+  home_page_qc_photograph_attach: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'QP-')]
+  home_page_qc_attachments_link: //li[@class='aw-jswidget-tab']//a[text()='Attachments']
+  home_page_qc_attachments_upload_file: //input[@class='gwt-FileUpload']
+  home_page_qc_attachments_added_with_object: //div[@class='aw-widgets-cellTop']//div[@class='aw-widgets-dataGridCommandCellText data-cellwidth']
+  
+  home_page_application_logoff: //a[@class='aw-base-small link-style-3 aw-state-userName']
+  home_page_click_sign_out: //ul[@class='aw-widgets-cellListWidget']//li[text()='Sign Out']
+  home_page_click_project: //div[@class="aw-widgets-contextSubTitle"]//a[@class="aw-base-small link-style-3 aw-state-userProject"]
+  home_page_nda_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='NDA']
+  home_page_nda_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'ID')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_nda_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_nda_type_click: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'NDA')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_nda_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'NDA')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_nda_type_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'NDA Type')]]//span[text()='Property is required']
+  home_page_nda_attachment: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'NDA')]
+  home_page_nda_attachment_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Download File']//*[@id='Layer_1']
+  home_page_nda_attachment_cut: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Cut' and @title='Cut']
+  
+  
+  home_page_qc_quality_classification_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Quality Class')]]//span[text()='Property is required']
+  home_page_factory_country_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Country')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_factory_true_button: .//div[@class="aw-jswidgets-radioButtonItem"][span[contains(text(),'True')]]//label
+  home_page_factory_true_text_click: .//div[@class="aw-jswidgets-radioButtonItem"][span[contains(text(),'True')]]
+  home_page_factory_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Factory']
+  home_page_factory_trading_supplier_id_check: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Trading Supplier ID')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_factory_trading_supplier: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trading Supplier')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_factory_trading_supplier_live: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Is Trading Supplier Live')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+
+  home_page_trading_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Trading Supplier']
+  home_page_trading_live_status_validation: .//div[@class="aw-widgets-innerWidget"]//span[@class="ng-scope aw-widgets-propertyError"]//span[contains(text(),'Required')]
+  home_page_trading_country_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Country')]]//span[text()='Property is required']
+  home_page_trading_factory_link: //li[@class='aw-jswidget-tab']//a[text()='Factories']
+  home_page_trading_supplier_dd_click: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Trading Supplier')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_trading_supplier_link: //li[@class='aw-jswidget-tab']//a[text()='Trading Suppliers']
+  home_page_corp_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Corporate Supplier']
+  home_page_corporate_supplier_dd_click: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Corporate Supplier')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_corporate_supplier_dd_sel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Corporate Supplier')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'][1]
+
+  home_page_aw_db_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Design Brand']
+  home_page_aw_db_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_db_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_db_paste: //div[@class='aw-xrt-objectSetCommandPanel'] //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0Paste' and @title='Paste']
+  home_page_aw_db_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'DB-')]
+  home_page_aw_md_link: //li[@class='aw-jswidget-tab']//a[text()='Master Design']
+  home_page_aw_ds_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Design Brief Document']
+  home_page_aw_ds_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_ds_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_ds_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'DS-')]
+ 
+  home_page_aw_db_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  
+  home_page_aw_ag_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Artwork Guideline']
+  home_page_aw_barcode_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'2D Barcode')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home-page.artworkguideline.id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'AG-')]
+  home_page_aw_ag_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_ag_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_aw_ag_range_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Range')]]//span[text()='Property is required']
+  home_page_aw_ag_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_ag_range: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Range')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  
+  home_page_pg_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Photograph']
+  home_page_Photograph_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PG-')]
+  home_page_pg_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_pg_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home-page_pg_position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page_pg_positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding'][not(text()='Front of Pack') and not(text()='Top of Pack') and not(text()='Side of Pack')]
+  home_page_pg_expiry_date: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_pg_expiry_time: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='HH:MM:SS']
+  home_page_pg_revision: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_pg_attachments_link: //li[@class='aw-jswidget-tab']//a[text()='Attachments']
+  home_page_pg_attachments_upload_file: //input[@class='gwt-FileUpload']
+  home_page_pg_attachments_link: //li[@class='aw-jswidget-tab']//a[text()='Attachments']
+  home_page_pg_attachment_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pg_start_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_pg_position_edit: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_pg_positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[not(text()='Front of Pack') and not(text()='Top of Pack')][@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pg_positionsel_frontonpack: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[text()='Front of Pack']
+  home_page_pg_position_existing_value: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]//div[@class='ng-binding']
+  home_page_pg_position_remove_icon: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]//button[@title='Remove']
+  home_page_pg_save: //div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalRight']//button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_pg_getpositiontext: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Position')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_pg_positionsel_topofpack: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[text()='Top of Pack']
+  home_page_pg_positionsel_sideofpack: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[text()='Side of Pack']
+  home_page_pg_positionsel_backofpack: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[text()='Back of Pack']
+  home_page_pg_positionsel_MasterBackground: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li//div[text()='Master Background']
+  home_page_pg_attachment: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'PDF')]
+  home_page_pg_attachment_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Download File']//*[@id='Layer_1']
+  
+  home_page_il_ag_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Illustration']
+  home-page.illustration.id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'IL-')]
+  home_page_il_ag_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home-page.il.position: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page.il.positionsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Position')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_aw_il_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_aw_il_expiry_date_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//span[text()='Property is required']
+  home_page_aw_il_name_of_illustrator_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name of Illustrator')]]//span[text()='Property is required']
+
+  home_page_mb_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Mood Board']
+  home_page.moodboard_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'MB-')]
+  home_page_mb_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_mb_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  
+  home_page_od_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Other Documentation']
+  home-page_otherdocumentation_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'OD-')]
+  home_page_od_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_od_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_od_doc_type_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Document Type')]]//span[text()='Property is required']
+  home_page_od_attachments_link: //li[@class='aw-jswidget-tab']//a[text()='Attachments']
+  home_page_od_attachment: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'Document')]
+  home_page_od_attachment_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Download File']//*[@id='Layer_1']
+  home_page_project_od_open: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Other Documentation']
+  home_page_od_pre_prod_document_type: .//*[@id='main-view']//li[@class='aw-jswidgets-nestingListItem ng-scope']//div[@title='Print Pre Production Minutes']
+  
+  home_page_pir_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='PIR Document']
+  home-page_pirdocument_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PI-')]
+  home_page_pir_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pir_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  
+  home_page_sd_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Strategy Document']
+  home_page_design_cascade_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Design Cascade'] 
+  home-page_sddocument_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'SD-')]
+  home_page_sd_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_sd_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  
+  home_page_qc_photo_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='QC Photograph']
+
+  home_page_aw_db_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required'] 
+  home_page_aw_gp_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Generic Photograph']
+  home_page_aw_gp_expiry_date: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY - Required']
+  home_page_aw_gp_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_gp_reference: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Reference')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_gp_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_aw_gp_expiry_date_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Expiry Date')]]//span[text()='Property is required']
+  home_page_aw_gp_reference_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Reference')]]//span[text()='Property is required']
+  home_page_aw_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'AW-')]
+  home_page_gen_aw_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'GA-')]
+  home_page_aw_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_aw_upc:  //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'UPC')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_version_number: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Version Number')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_version_numbersel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Version Number')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_aw_packaging_format: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Format')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_packaging_formatsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Format')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_aw_language_variant: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Language Variant')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_language_variantsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Language Variant')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_aw_promo_variant: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Promo Variant')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_promo_variantsel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Promo Variant')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_aw_ftp_date:  //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'FTP Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_aw_ftp_time: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'FTP Date')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='HH:MM:SS']
+  home_page_gen_aw_ftp_date:  //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'FTP')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='DD-MMM-YYYY']
+  home_page_gen_aw_ftp_time: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'FTP')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input[@placeholder='HH:MM:SS']
+  home_page_aw_pcr:  //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Printers Cutter Reference')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_aw_revision_type: //div[@class='aw-search-searchBoxViewContainer']//div[@class='aw-search-searchPreFilterTextPanel']//a[@class='aw-base-small link-style-3' and @title='Artwork Revision'] 
+  home_page_aw_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Artwork']
+  home_page_gen_aw_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Generic Artwork']
+  home_page_aw_revision_link: //div[@class='aw-widgets-cellListWidgetContainer']//li[@class='aw-widgets-cellListItem aw-widgets-cellTop'][text()='Artwork Revision']
+  home_page_aw_mouse_hover: //div[@class='aw-widgets-cellListWidgetContainer']//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']
+  home_page_aw_gen_pack_art_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Generic Packaging Artwork']
+  home_page_aw_pack_art_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Packaging Artwork']
+  
+  home_page_cutter_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'ID')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_printer: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Printer Cutter Reference')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cutter_substrate: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Substrate')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_substrate_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Substrate')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_Shape: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Shape')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cutter_Shape_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Shape')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_Packaging_Format: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Format')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_Packaging_Format_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Format')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_Packaging_Type: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_Packaging_Type_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_glued_click: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Glued')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_glued_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Glued')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_2D_click: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'2D')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cutter_2D_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'2D')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[2]
+  home_page_cutter_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Cutter Guide']
+  home_page_cutter_search_filter_button: //div[@class='aw-layout-navigationCommandbar']//button[@title='Search Filters']
+  home_page_cutter_guide_save_search_link: .//button[@id='Awp0SaveSearch']
+  home_page_cutter_guide_saved_name: .//aw-property-text-box-val[@class='ng-isolate-scope']//div[@class='aw-widgets-innerWidget']//input
+  home_page_cutter_guide_click_saved_link: .//a[contains(text(),'Saved')]
+  home_page_cutter_guide_dimension_after_edit_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Height')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  //home_page_cutter_guide_verifiy_saved_name: .//h3[contains(text(),'Test')]
+  home_page_cutter_guide_delete_saved_search: .//li[@__idx='0']//a[@title='Delete']
+  home_page_cutter_guide_delete_button_popup: .//button[contains(text(),'Delete')]
+  home_page_cutter_guide_overwrite_button_popup: .//button[contains(text(),'Overwrite')]
+  home_page_cutter_guide_click_save_button: .//button[@action='save']
+  home_page_cutter_guide_click_open_copy_button: .//div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalRight']//button[@title='Open']
+  home_page_cutter_guide_click_copy_link: .//li[contains(text(),'Copy Link')]
+  home_page_cutter_guide_height: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Height')]]//div[./@class='aw-widgets-innerWidget']//input
+  home_page_cutter_guide_width: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Width')]]//div[./@class='aw-widgets-innerWidget']//input
+  home_page_cutter_guide_diameter: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Diameter')]]//div[./@class='aw-widgets-innerWidget']//input
+  home_page_cutter_guide_length1: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Length 1')]]//div[./@class='aw-widgets-innerWidget']//input
+  home_page_cutter_guide_length2: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Length 2')]]//div[./@class='aw-widgets-innerWidget']//input
+  home_page_update_cutter: //button[contains(text(),'Update Cutter')]
+
+  home_page_hbe_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Home Economy Brief']
+  home_page_hbe_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_heb_click: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'HB-')]
+  home_page_heb_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'ID')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_heb_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_heb_desc: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea 
+  home_page_heb_start_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home_page_heb_name_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Name')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_heb_description_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  
+  
+  home_page_cs_Additional_contacts_link: //li[@class='aw-jswidget-tab']//a[text()='Additional Contacts']
+  home_page_Additonal_contacts_Add_button: //button[@type='button' and @class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-layout-right aw-jswidgets-addButton']
+  home_page_Additonal_contacts_name_link: (//div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//div[@class='aw-widgets-cellTop aw-jswidgets-uiNonEditCell aw-jswidgets-editableGridCell'])[1]  
+  home_page_Additonal_contacts_role_link: (//div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//div[@class='aw-widgets-cellTop aw-jswidgets-uiNonEditCell aw-jswidgets-editableGridCell'])[2]
+  home_page_Additonal_contacts_Telephone_link: (//div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//div[@class='aw-widgets-cellTop aw-jswidgets-uiNonEditCell aw-jswidgets-editableGridCell'])[2]
+  home_page_Additonal_contacts_email_link: (//div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//div[@class='aw-widgets-cellTop aw-jswidgets-uiNonEditCell aw-jswidgets-editableGridCell'])[2]
+  home_page_Additonal_contacts_email: //div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//textarea
+  home_page_Additonal_contacts_role: //div[@ng-repeat='(colRenderIndex, col) in colContainer.renderedColumns track by col.uid']//input
+  
+  
+  home_page_cc_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'ID')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cc_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='M&S Corporate Contact Details']
+  home_page_cc_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_cc_corporate_address: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Corporate Address')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_cc_customer_service_phone_number: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Customer Service Phone Number')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home_page_cc_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_cc_corporate_address_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Corporate Address')]]//span[text()='Property is required']
+  home_page_cc_customer_service_phone_number_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Customer Service Phone Number')]]//span[text()='Property is required']
+  
+  
+  home_page_pd_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Promotion Details']
+  home_page_pd_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pd_corporate_address_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_pd_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pd_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'PD')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_pd_start_edit: //button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0StartEdit' and @title='Start Edit']
+  home-page_pd_promotion_type: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Promotion Type')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//input
+  home-page_pd_promotion_typesel: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Promotion Type')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//li[not(contains(text(),'No Matches'))]//div[text()!='' and ./@class='aw-widgets-cellListCellText aw-base-small ng-binding']
+  home_page_pd_launched_on_promotion_radio_true: .//div[@class="aw-jswidgets-radioButtonItem"][span[contains(text(),'True')]]//label
+  home_page_pd_save: //div[@class='aw-commands-commandBarPanel aw-commands-commandBarHorizontalRight']//button[@class='aw-commands-commandIconButton aw-commands-commandWrapperHorizontal aw-commandId-Awp0SaveEdits' and @title='Save Edits']
+  home_page_pd_launchedonpromotion_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Launched On Promotion')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_pd_promotiontype_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Promotion Type')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_pd_revise: //div[@class='aw-commands-wrapper']//button[@id='Awp0ShowSaveAs' and @title='Save As or Revise']
+  home_page_pd_revise_button: //button[contains(text(),'Revise')]
+  home_page_pd_version_via_home: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'0')]
+  home_page_pd_revised_version_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Revision')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pd_name_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Name')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_pd_description_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+
+  home_page_ti_pd_link: //li[@class='aw-jswidget-tab']/a[text()='Promotions']
+  home_page_ti_pd_add_link: //div[@class='aw-layout-panelSection' and .//div[text()='Promotion Details']]//button[@title='Add to']//*[@id='Layer_1']
+  home_page_pd_attached: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'PD-')]
+  home_page_pd_pditem: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  
+  home_page_pk_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Generic Packaging Artwork']
+  home_page_pk_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PK-')]
+  home_page_pk_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]/div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_pk_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_page_pack_artwork_link: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Packaging Artwork']  
+  home_page_pack_artwork_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'PA-')]
+  home_page_pack_artwork_attach_link: //li[@class='aw-jswidget-tab']//a[text()='Artwork']
+  home_page_pack_gen_artwork_attach_link: //li[@class='aw-jswidget-tab']//a[text()='Generic Artwork']
+  
+  home_page_hamper_event_type: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Event Type')]]//div[@class='aw-widgets-propertyLabelTopValueContainer']//input
+  home_page_hamper_event_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Event Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer']//div[contains(text(),'Assign Status')]
+  home_page_hamper_event_type_select_modify: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Event Type')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer']//div[contains(text(),'Modify')]
+  home_page_hamper_release_status: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Release Status')]]//div[@class='aw-widgets-propertyLabelTopValueContainer']//input
+  home_page_hamper_release_status_type_select: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Release Status')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer']//div[contains(text(),'Approved')]
+  home_page_hamper_follow_button: .//button[contains(text(),'Follow')]
+  home_page_hamper_subscribe_button:  .//button[@id='Sub0Subscribe']
+  
+  home_page_cg_id: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'ID')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']
+  home_page_cg_link_via_home: //div[@class='aw-layout-panelSection' and .//div[text()='Other']]//li[@class='aw-widgets-cellListItem aw-widgets-cellTop']//div[@title='Corporate Guideline']
+  home_page_cg_name: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_cg_description: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_subscription_icon: .//div[contains(text(),'Subscription')]
+  home_page_cg_workflow: //li[@class='aw-jswidget-tab']/a[text()='Workflow']
+  home_page_cg_workflow_open: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'Select Team')]
+  home_page_cg_worklfow_Tech_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_cg_worklfow_Tech_status: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Task State')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_cg_attachment: //div[@class='aw-widgets-cellTop']//div[contains(text(), 'PDF')]
+  home_page_cg_attachment_open: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Download File']//*[@id='Layer_1']
+  home_page_cg_name_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Name')]]//span[text()='Property is required']
+  home_pag_cg_printer_ref_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Printer Cutter Reference')]]//span[text()='Property is required']
+  home_pag_cg_substrate_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Substrate')]]//span[text()='Property is required']
+  home_pag_cg_shape_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Shape')]]//span[text()='Property is required']
+  home_pag_cg_packaging_format_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Format')]]//span[text()='Property is required']
+  home_pag_cg_packaging_type_validation: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Packaging Type')]]//span[text()='Property is required']
+  
+  
+  home_page_corp_vendor_additional_comments_text_area: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Additional Comments')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  home_page_corp_vendor_additional_comments_value: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Additional Comments')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+
+  home_page_ti_project_check: .//div[@class="aw-widgets-propertyContainer aw-layout-flexRow"][. //div[contains(text(),"Projects:")]]//li//a
+  
+  home_page_corp_vendor_desc: //div[@class='aw-layout-panelSection']//div[@class='aw-widgets-propertyContainer aw-layout-flexRow'][.//div[contains(text(),'Description')]]//span[@class='aw-jswidgets-text ng-isolate-scope']
+  home_page_corp_vendor_desc_edit: //div[@class='aw-widgets-propertyContainer aw-layout-flexColumn' and .//div[contains(text(),'Description')]]//div[./@class='aw-widgets-propertyLabelTopValueContainer aw-jswidgets-uicell']//textarea
+  
+  home_page_design_cascade_id: //span[@class='aw-jswidgets-text ng-isolate-scope'][starts-with(text(),'DC-')]
+
+  home_page_common_popup_window_palette_link: //a[text()='Palette'][@class='aw-base-tabTitle']
+  home_page_common_popup_window_search_link: //a[text()='Search'][@class='aw-base-tabTitle']
+  home_page_common_popup_window_search_box: .//div[@class='aw-search-widget']//input[@class="aw-search-searchBox"]
+  home_page_common_popup_window_add_button: .//button[contains(text(),'Add')]
+  home_page_common_object_title_name: .//div[@class='aw-layout-flexRowContainer aw-layout-locationTitlePanel']//span
+  home_page_common_object_open_inside_where_used: //a[@class='aw-widgets-dataGridOpenImage visible' and @title='Open']//*[@id='Layer_1']
+  home_page_common_object_where_used_link: //li[@class='aw-jswidget-tab']//a[text()='Where Used']
+  home_page_common_object_pp_link: //li[@class='aw-jswidget-tab']//a[text()='Packed Product']
+  hoem_page_common_arrow_link: .//div[@ng-show='showArrow']//aw-property-image
+  

@@ -1,0 +1,97 @@
+﻿Public recordSetOBJ,IndexValueData,Location
+
+Function DBconnection 
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset") 
+End Function
+
+   Function DBconnection_Location
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset") 
+'    CheckString="MAY01B02"
+'MsgBox CheckString
+    Log.Message "Putaway location is:" & CheckString
+Dim Locationsubstring
+Locationsubstring=Left(CheckString,5)
+'MsgBox Locationsubstring
+'Query="Select LOCATION_Id from LOCATION where VOLUME=0.0234 order by PUT_SEQUENCE Asc"
+    Query= "select LOCATION_ID from LOCATION where LOCATION_ID like '"&Locationsubstring&"%' and VOLUME=0.0234 and LOCK_STATUS='UnLocked'order by PUT_SEQUENCE Asc"
+' Query= "select * from (select location_id from (select LOCATION_ID from LOCATION where VOLUME=0.0693 and CURRENT_VOLUME=0 order by PUT_SEQUENCE Asc)A where ROWNUM <=2)"
+    recordSetOBJ.Open Query,connectionOBJ
+'Arraylistlist=Array()
+Do until recordSetOBJ.EOF
+   If recordSetOBJ.EOF <> True Then
+    LocationExist=recordSetOBJ.fields("LOCATION_ID")
+    If LocationExist=CheckString Then
+    Location=LocationExist
+     Log.message("Location is exists:"&Location)
+'          x=1
+   IndexValueData=x
+    Log.message "Index value is:" & x  
+      Exit Do
+    Else
+    Log.Message ("Location does not exist for the value : "&CheckString) 
+    end if 
+     x=x+1
+'      Log.Message "x is" & x     
+     recordSetOBJ.MoveNext     
+      End If 
+      Loop 
+    End Function
+
+Function DBconnection_ITL
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset")     
+    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='Tag1d1' AND 'Tagid2'"
+    recordSetOBJ.Open Query,connectionOBJ
+    MessageID=recordSetOBJ(1).value
+    recordSetOBJ.close    
+    End Function
+
+    Function DBconnection_Putawayseq
+    Call DBconnection
+      Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='Tag1d1' AND 'Tagid2'"
+    recordSetOBJ.Open Query,connectionOBJ
+    MessageID=recordSetOBJ(1).value
+    recordSetOBJ.close    
+    End Function
+  

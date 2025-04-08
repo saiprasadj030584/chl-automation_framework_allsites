@@ -1,0 +1,2 @@
+Route,Order Number,Creation Date,Released,Despatch Time,Customer Promise Date,Effective Despatch Time,Short Shipment Time,Finished Time,Processing State,Order Type,Order Subtype,Number Of Order Lines,LPST,Fast Track,Must Go,Late Despatch,Packing Type,Offline Area,Processing Hint Time,Processing Hint,Original Despatch Time
+"ROYALMAIL180718","78871156","2018-07-18 11:59:16","--","2018-07-18 16:30:00","2018-07-09 00:00:00","2018-07-18 14:29:59","--","--","Received","Demandware","INTERNATIONAL","1","--","No","Yes","No","Manual Bag","--","--","--","2018-07-18 16:30:00"

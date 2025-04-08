@@ -1,0 +1,29 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT DB_functionlities
+'USEUNIT Puttyfunctionalities
+'USEUNIT URRN_Postal
+'USEUNIT WMS_Donington
+'USEUNIT WMS_Ollerton
+Function Donington
+  Call WMSDoningtonlogin
+ Call UPIHeader
+ Call ASNValidation
+ 
+ End Function
+ 
+ Function ScrollBar
+		DO Until ImageRepository.Donington.GIB.exists 
+    ImageRepository.Donington.scrollbar.Click
+    for i=0 to 8
+      Next
+		LOOP
+   Call ImageRepository.Donington.GIB01.Click   
+End Function       
+
+
+Function Scrollbar1
+set HorizontalBar =Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.Panel.DCSTableScrollPane.ScrollPane_ScrollBar
+  Max = HorizontalBar.wMax -2635
+  HorizontalBar.wPosition = Max 
+  Call ImageRepository.Donington.GIB01.Click 
+  End Function

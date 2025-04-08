@@ -1,0 +1,133 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+'Public TrailerName
+'TrailerName = "065225"
+
+Function HVehicle
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("271")
+      Delay(1000)
+      call PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call CommonFunctions.GetRDTContent()
+      Delay(1000)
+      If strcomp(RDTContent,"LodEnt",vbtextcompare) Then
+          Delay(1000)
+          call PuttyObject.Keys(PalletHS)
+          Delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys(TrailerName)
+          Delay(1000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(5000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(5000)
+          log.Message("Vehicle Loading Completed")
+          Delay(1000)
+          call PuttyObject.Keys("[F10]")
+          Delay(1000)
+          call PuttyObject.Keys("[F10]")
+          Delay(1000)
+      End If
+      
+End Function
+
+
+Function BVehicle
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("271")
+      Delay(1000)
+      call PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call CommonFunctions.GetRDTContent()
+      Delay(1000)
+      If strcomp(RDTContent,"LodEnt",vbtextcompare) Then
+          Delay(1000)
+          call PuttyObject.Keys(Palet32)
+          Delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys(TrailerName)
+          Delay(1000)
+          call PuttyObject.Keys("[Enter]")
+          Delay(3500)
+          call PuttyObject.Keys("[Enter]")
+          Delay(3500)
+          log.Message("Vehicle Loading Completed")
+          Delay(1000)
+          call PuttyObject.Keys("[F10]")
+          Delay(1000)
+          call PuttyObject.Keys("[F10]")
+          Delay(1000)
+      End If
+      
+End Function
+
+Function TrailerM
+  Call CommonFunctions.FormName("Trailer Maintenance")
+  set footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+               
+  Call footer.Keys("[F3]") 
+   max=99999
+    min=10001
+    Randomize
+    TrailerName = Int((max-min+1)*Rnd+min)
+  ShowMessage TrailerName
+  Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys(TrailerName)
+  'Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.Keys("20")
+  Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys("ROYALMAIL")
+  Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys("12345")
+  
+  If ImageRepository.WMSCATEA.UD.Exists Then 
+  Call ImageRepository.WMSCATEA.UD.Click
+  End if  
+  
+  Call Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSTrailer.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys("LOADED")
+  Call footer.Keys("[F7]")
+  Delay(2000)
+  Sys.Desktop.Keys ("[Enter]")
+  
+End Function

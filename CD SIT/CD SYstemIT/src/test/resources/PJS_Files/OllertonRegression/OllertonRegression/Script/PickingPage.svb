@@ -1,0 +1,329 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Function PickB
+
+     set PuttyObject = Aliases.putty.wndPuTTY
+     Delay(1000)
+     call PuttyObject.Keys("[F10]")
+     Delay(500)
+     call PuttyObject.Keys("2")
+     Delay(1000)
+     call PuttyObject.Keys("[Enter]")
+     Delay(1000)
+     call PuttyObject.Keys("3")
+     Delay(1000)
+     call PuttyObject.Keys("[Enter]")
+     Delay(1000)
+     call PuttyObject.Keys("1")
+     Delay(1000)
+     call PuttyObject.Keys("[Enter]")
+     Delay(1000)
+     call PuttyObject.Keys("3")
+     Delay(1000)
+     call PuttyObject.Keys("[Enter]")
+     Delay(1000)
+     Call CommonFunctions.GetRDTContent()
+     Delay(1000)
+     If strcomp(RDTContent,"PckEnt",vbtextcompare) Then
+        Delay(1000)
+        'call PuttyObject.Keys("O1S15056558")
+        call PuttyObject.Keys(ListTextBox)
+        Delay(1000)
+        call PuttyObject.Keys("[Tab]")
+        Delay(1000)
+        call PuttyObject.Keys("[Tab]")
+        Delay(1000)
+        'call PuttyObject.Keys("OLP100000129")
+        call PuttyObject.Keys(Order)
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]") 
+        Delay(3000)
+     End If
+        
+     Call CommonFunctions.GetRDTContent()
+     If Instr(RDTContent,"No valid pick tasks") Then
+        Call MoveTaskPage.MoveTaskRefresh()
+     End If 
+       
+     If strcomp(RDTContent,"PalID",vbtextcompare) Then
+        call PuttyObject.Keys("OLBX07")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+     End if  
+     Delay(3000)
+     
+'     Function Old
+'     
+'     Call CommonFunctions.GetRDTContent()
+'     RDTContent=right(RDTContent,100)
+'     Delay(2000)        
+'     temp=split(RDTContent,"UPC :")
+'     temp1=split(temp(1),chr(10))
+'     UPCPutty=trim(replace(temp1(0)," │",""))
+'     UPCString=Trim(Mid(UPCPutty,1,8))
+'     Delay(2000)
+'     If strcomp(RDTContent,"TUCSKUCon",vbtextcompare) Then
+'     'If InStr(1,RDTContent,"TUCSKUCon",vbtextcompare)>0 Then
+'     'If InStr(1,RDTContent,"TUCSKUCon",vbtextcompare) Then
+'     'Do Until UPCString = SupplierSKUVal
+'     'Call CommonFunctions.GetRDTContent()
+''    RDTContent=right(RDTContent,100)
+''    Delay(2000)        
+''    temp=split(RDTContent,"UPC :")
+''    temp1=split(temp(1),chr(10))
+''    UPCPutty=trim(replace(temp1(0)," │",""))
+''    UPCString=Trim(Mid(UPCPutty,1,7))
+'                Delay(500)
+'                if strcomp(UPCString,SupplierSKUVal,vbtextcompare) then
+'                    Delay(2000)
+'                    log.Message("***"&Trim(UPCString)&"***")
+'                    PuttyObject.Keys(UPCString)
+'                    Delay(2000)
+'                    'Call GetRDTContent()
+'                    'Delay(2000)
+'                    PuttyObject.Keys("[Enter]")
+'     'exit Do
+'                      Else
+'                          call PuttyObject.Keys("[F8]")
+'                          Delay(3000)
+'                          call PuttyObject.Keys("OLBX07")
+'                          Delay(2000)
+'                          PuttyObject.Keys("[Enter]")
+'                          Delay(2000)
+'                End If
+''              Loop
+'     End If
+'     
+'     End Function
+     
+    Call GetRDTContent()
+    If strcomp(RDTContent,"TUCSKUCon",vbtextcompare) Then
+        RDTContent=right(RDTContent,100)
+        temp=split(RDTContent,"UPC :")
+        temp1=split(temp(1),chr(10))
+        UPCPutty=trim(replace(temp1(0)," │",""))
+        Delay(500)
+        if strcomp(UPCPutty,SupplierSKUVal,vbtextcompare) then
+            PuttyObject.Keys(UPCPutty)
+            Delay(2000)
+        '    Putty.Keys("[Enter]")
+        End If
+    End If
+    Delay(3000)
+     Call GetRDTContent()
+        If InStr(1,RDTContent,"ChkFrm",vbtextcompare)>0 Then
+          RDTContent=right(RDTContent,150)
+          temp=split(RDTContent,"From: ")
+          temp1=split(temp(1),chr(10))
+          PickBCS=trim(replace(temp1(0)," │",""))
+          CheckString=Mid(PickBCS,1,8)
+          Delay(2000)
+          PuttyObject.Keys(CheckString)
+          Delay(2000)
+          PuttyObject.Keys("[Enter]")
+          Delay(1000)
+      End If
+      Delay(2000)
+      PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call GetRDTContent()
+      Delay(2000)
+      If InStr(1,RDTContent,"PckConCnf",vbtextcompare)>0 Then
+          PuttyObject.Keys(Palet32)
+          Delay(2000)
+          PuttyObject.Keys("[Enter]")
+      End If
+      Delay(3500)
+      PuttyObject.Keys("[Enter]")
+      Delay(3500)
+'      Call GetRDTContent()
+'      Delay(3000)
+      PuttyObject.Keys("CLOLBOXOUT")
+      Delay(2000)
+      PuttyObject.Keys("[Enter]")
+'      If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+'          Delay(2000)
+'          RDTContent=right(RDTContent,150)
+'          Delay(2000)
+'          temp=split(RDTContent,"To  : ")
+'          temp1=split(temp(1),chr(10))
+'          PickBTCS=trim(replace(temp1(0)," │",""))
+'          CheckString=Mid(PickBTCS,1,10)
+'          Delay(2000)
+'          PuttyObject.Keys(CheckString)
+'          Delay(2000)
+'          PuttyObject.Keys("[Enter]")
+'          Delay(2000)
+'      End If
+      Delay(2000)
+      PuttyObject.Keys("[Enter]")
+      Delay(2000)
+      PuttyObject.Keys("3[Enter]")
+      Delay(6000)
+      PuttyObject.Keys("[Enter]")
+      Delay(2000)
+      PuttyObject.Keys("3[Enter]")
+      Delay(2000)
+      PuttyObject.Keys("[F10]")
+      Delay(1000)
+      PuttyObject.Keys("[F10]")
+      Delay(1000)
+      PuttyObject.Keys("[F10]")
+      Delay(1000)
+      PuttyObject.Keys("[F10]")
+      Delay(1000)
+      
+End Function
+
+Function PickH
+     'Call LaunchPutty
+     set PuttyObject = Aliases.putty.wndPuTTY
+     Delay(1000)
+     call PuttyObject.Keys("[F10]")
+     Delay(500)
+     call PuttyObject.Keys("2313[Enter]")
+     Delay(1000)
+     Call CommonFunctions.GetRDTContent()
+     Delay(1000)
+     RDTContent=right(RDTContent,100)
+     Delay(1000)
+     If strcomp(RDTContent,"PckEnt",vbtextcompare) Then
+        Delay(2000)
+        call PuttyObject.Keys("[Tab]")
+        Delay(1000)
+        call PuttyObject.Keys(PaletH)
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]") 
+        Delay(1000)
+     End If 
+     Delay(2000)
+     Call CommonFunctions.GetRDTContent()
+     Delay(1000)
+     RDTContent=right(RDTContent,100)
+     Delay(1000)
+     If strcomp(RDTContent,"PalID",vbtextcompare) Then
+        call PuttyObject.Keys(PaletH32)
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+     End If
+     Delay(1000)
+     call PuttyObject.Keys("[F10]")
+     Delay(2000)
+     call PuttyObject.Keys("[F10]")
+     Delay(2000)
+     call PuttyObject.Keys("[F10]")
+     Delay(2000)
+'        call PuttyObject.Keys("[Enter]")
+'        Delay(1000)
+''        call PuttyObject.Keys("[Enter]")
+''        Delay(1000)
+'     end if
+'     Delay(3000)
+'     Call CommonFunctions.GetRDTContent()
+'     Delay(1000)
+'     RDTContent=right(RDTContent,100)
+'     Delay(1000)
+'     'If Instr(RDTContent,"CntID",vbtextcompare) Then
+'     If strcomp(RDTContent,"Scan pick trolley",vbtextcompare)>1 Then
+'        call PuttyObject.Keys(PaletH32)
+'        Delay(1000)
+'        call PuttyObject.Keys("[Enter]")
+'        Delay(1000)
+'     End if           
+'     Delay(3000)
+'     Call CommonFunctions.GetRDTContent()
+'     Delay(2000)
+'     RDTContent=right(RDTContent,100)
+'     Delay(1000)
+'     If strcomp(RDTContent,"TUCSKUCon",vbtextcompare)>1 Then
+''     'If InStr(1,RDTContent,"TUCSKUCon",vbtextcompare)>0 Then
+''     'If InStr(1,RDTContent,"TUCSKUCon",vbtextcompare) Then
+'                'Call CommonFunctions.GetRDTContent()
+'                'RDTContent=right(RDTContent,100)
+'                'Delay(4000)
+'                temp=split(RDTContent,"UPC :")
+'                temp1=split(temp(1),chr(10))
+'                UPCPutty=trim(replace(temp1(0)," │",""))
+'                UPCString=Mid(UPCPutty,1,8)
+'                Delay(500)
+'                if (UPCString = SupplierSKUVal) Then
+'                    Delay(4000)
+'                    PuttyObject.Keys(UPCString)
+'                    Delay(2000)
+'                    PuttyObject.Keys("[Enter]")
+'                    Delay(1000)
+'                End If
+'     End If
+'     Delay(3000)
+'     Call GetRDTContent()
+'     RDTContent=right(RDTContent,150)
+'     Delay(1000)
+'     If strcomp(RDTContent,"ChkFrm",vbtextcompare)>1 Then
+'          RDTContent=right(RDTContent,150)
+'          temp=split(RDTContent,"From:")
+'          temp1=split(temp(1),chr(10))
+'          PickHCS=trim(replace(temp1(0)," │",""))
+'          CheckString=Mid(PickHCS,1,10)
+'          Delay(2000)
+'          PuttyObject.Keys(CheckString)
+'          Delay(2000)
+'          PuttyObject.Keys("[Enter]")
+'          Delay(1000)
+'      End If
+'      Delay(2000)
+'      PuttyObject.Keys("[Enter]")
+'      Delay(3000)
+'      Call GetRDTContent()
+'      Delay(1000)
+'      RDTContent=right(RDTContent,100)
+'      Delay(1000)
+'      If InStr(1,RDTContent,"PckConCnf",vbtextcompare)>0 Then
+'          PuttyObject.Keys(PaletH32)
+'          Delay(2000)
+'          PuttyObject.Keys("[Enter]")
+'      End If
+'      Delay(3000)
+'      PuttyObject.Keys("[Enter]")
+'      Delay(1500)
+End Function

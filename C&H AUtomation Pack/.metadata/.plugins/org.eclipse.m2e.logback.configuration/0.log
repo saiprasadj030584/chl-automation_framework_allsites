@@ -1,0 +1,777 @@
+2021-01-21 07:11:46,702 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-01-21 07:11:57,087 [Worker-6] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/azure/azure-storage-blob/12.0.0/azure-storage-blob-12.0.0.pom
+2021-01-21 07:37:57,930 [Worker-12] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-01-21 07:39:35,771 [Worker-11] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-01-21 07:39:46,368 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.5/maven-clean-plugin-2.5.jar
+2021-01-21 07:39:56,379 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/mojo/properties-maven-plugin/1.0.0/properties-maven-plugin-1.0.0.jar
+2021-01-21 07:40:06,411 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.jar
+2021-01-21 07:40:16,465 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.5.1/maven-compiler-plugin-3.5.1.jar
+2021-01-21 07:40:26,490 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.19.1/maven-surefire-plugin-2.19.1.jar
+2021-01-21 07:40:36,501 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/2.4/maven-jar-plugin-2.4.jar
+2021-01-21 07:40:46,536 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-failsafe-plugin/2.19.1/maven-failsafe-plugin-2.19.1.jar
+2021-01-21 07:40:56,555 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/masterthought/maven-cucumber-reporting/3.2.0/maven-cucumber-reporting-3.2.0.jar
+2021-01-21 07:41:06,565 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/2.4/maven-install-plugin-2.4.jar
+2021-01-21 07:41:16,599 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/2.7/maven-deploy-plugin-2.7.jar
+2021-01-21 07:41:26,609 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.3/maven-site-plugin-3.3.jar
+2021-01-21 07:41:37,264 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.5.1/maven-compiler-plugin-3.5.1.pom
+2021-01-21 07:41:37,277 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-01-21 07:41:47,352 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/info/cukes/cucumber-java/1.2.4/cucumber-java-1.2.4.pom
+2021-01-21 07:41:57,358 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/info/cukes/cucumber-junit/1.2.4/cucumber-junit-1.2.4.pom
+2021-01-21 07:42:07,365 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.pom
+2021-01-21 07:42:17,394 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/info/cukes/cucumber-guice/1.2.4/cucumber-guice-1.2.4.pom
+2021-01-21 07:42:27,401 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/sf/opencsv/opencsv/2.3/opencsv-2.3.pom
+2021-01-21 07:42:37,408 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/masterthought/maven-cucumber-reporting/3.2.0/maven-cucumber-reporting-3.2.0.pom
+2021-01-21 07:42:47,437 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-java/3.0.1/selenium-java-3.0.1.pom
+2021-01-21 07:42:57,444 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/google/inject/guice/4.1.0/guice-4.1.0.pom
+2021-01-21 07:43:07,451 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12.pom
+2021-01-21 07:43:17,481 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/yaml/snakeyaml/1.17/snakeyaml-1.17.pom
+2021-01-21 07:43:27,488 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.7/log4j-api-2.7.pom
+2021-01-21 07:43:37,495 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-core/2.7/log4j-core-2.7.pom
+2021-01-21 07:43:47,528 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sikulix/sikulixapi/1.1.0/sikulixapi-1.1.0.pom
+2021-01-21 07:43:57,542 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/azure/azure-storage-blob/12.0.0/azure-storage-blob-12.0.0.pom
+2021-01-21 07:44:08,051 [Worker-11] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.pom
+2021-01-21 07:44:08,054 [Worker-11] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 272 sec
+2021-01-21 07:47:16,796 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-01-21 07:47:30,096 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-21 07:47:30,102 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-21 07:47:30,108 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-21 07:47:30,109 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-21 07:47:30,130 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:26:29,641 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:26:29,647 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:26:29,650 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:26:29,651 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:26:29,668 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:27:12,473 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:27:12,474 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:27:12,476 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:27:12,477 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:27:12,478 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-01-22 05:27:58,787 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:27:58,789 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:27:58,791 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:27:58,800 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:27:58,803 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 05:30:10,501 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:30:10,505 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:30:10,507 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:30:10,509 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:30:10,514 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:30:20,329 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:30:20,331 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:30:20,334 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:30:20,335 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:30:20,339 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:31:06,081 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:31:06,082 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:31:06,085 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:31:06,086 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:31:06,089 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:31:35,078 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:31:35,079 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:31:35,081 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:31:35,082 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:31:35,084 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:32:28,399 [Worker-141] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:32:28,400 [Worker-141] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:32:28,405 [Worker-141] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:32:28,406 [Worker-141] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:32:28,411 [Worker-141] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:33:10,458 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:33:10,510 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:33:10,512 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:33:10,512 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:33:10,515 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 05:33:16,564 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:33:16,565 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:33:16,567 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:33:16,568 [Worker-135] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:33:16,586 [Worker-135] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 05:45:45,063 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:45:45,065 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 05:45:45,068 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 05:45:45,069 [Worker-140] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 05:45:45,070 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 06:37:51,686 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:37:51,687 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:37:51,690 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:37:51,691 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:37:51,694 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:37:55,027 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:37:55,028 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:37:55,029 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:37:55,030 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:37:55,031 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 06:38:04,902 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:38:04,903 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:38:04,909 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:38:04,910 [Worker-144] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:38:04,912 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:42:38,244 [Worker-147] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:42:38,245 [Worker-147] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:42:38,247 [Worker-147] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:42:38,248 [Worker-147] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:42:38,250 [Worker-147] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:44:22,354 [Worker-150] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:44:22,356 [Worker-150] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:44:22,359 [Worker-150] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:44:22,360 [Worker-150] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:44:22,362 [Worker-150] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 06:44:31,872 [Worker-149] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:44:31,873 [Worker-149] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:44:31,876 [Worker-149] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:44:31,877 [Worker-149] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:44:31,880 [Worker-149] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:45:06,863 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:45:06,864 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:45:06,866 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:45:06,867 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:45:06,873 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:46:23,489 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:46:23,490 [Worker-152] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:46:23,494 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:46:23,495 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:46:23,497 [Worker-152] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:54:04,179 [Worker-153] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:54:04,181 [Worker-153] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:54:04,185 [Worker-153] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:54:04,190 [Worker-153] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:54:04,206 [Worker-153] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:54:38,629 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:54:38,630 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:54:38,632 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:54:38,635 [Worker-136] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:54:38,637 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 06:55:04,570 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:55:04,571 [Worker-152] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 06:55:04,575 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 06:55:04,577 [Worker-152] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 06:55:04,616 [Worker-152] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 07:08:08,499 [Worker-156] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 07:08:08,500 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 07:08:08,504 [Worker-156] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 07:08:08,505 [Worker-156] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 07:08:08,506 [Worker-156] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 07:23:15,498 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 07:23:15,500 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 07:23:15,502 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 07:23:15,502 [Worker-142] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 07:23:15,505 [Worker-142] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-01-22 12:12:34,489 [Worker-191] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 12:12:34,491 [Worker-191] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 12:12:34,495 [Worker-191] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 12:12:34,496 [Worker-191] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 12:12:34,498 [Worker-191] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-01-22 12:17:16,330 [Worker-179] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 12:17:16,333 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-01-22 12:17:16,335 [Worker-179] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-01-22 12:17:16,336 [Worker-179] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-01-22 12:17:16,337 [Worker-179] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-07 07:19:55,224 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-04-07 07:19:59,500 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:19:59,502 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 07:20:00,221 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 07:20:00,221 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-04-07 07:20:00,223 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:20:00,231 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-04-07 07:20:07,790 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:20:07,791 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 07:20:07,793 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 07:20:07,793 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:20:07,800 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 9 resources
+2021-04-07 07:31:39,204 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:31:39,205 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 07:31:39,207 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 07:31:39,208 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 07:31:39,213 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-07 08:46:48,307 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:46:48,323 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 08:46:48,328 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 08:46:48,358 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:46:48,378 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-07 08:46:59,360 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:46:59,360 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 08:46:59,362 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 08:46:59,363 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:46:59,365 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-07 08:47:34,797 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:47:34,798 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 08:47:34,800 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 08:47:34,800 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 08:47:34,801 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-07 14:14:01,358 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 14:14:01,361 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-07 14:14:01,363 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-07 14:14:01,363 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-07 14:14:01,370 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 09:31:50,248 [Worker-177] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:31:50,251 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 09:31:50,253 [Worker-177] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 09:31:50,254 [Worker-177] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:31:50,266 [Worker-177] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 09:32:44,535 [Worker-185] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:32:44,536 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 09:32:44,537 [Worker-185] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 09:32:44,538 [Worker-185] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:32:44,540 [Worker-185] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 09:33:50,180 [Worker-183] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:33:50,181 [Worker-183] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 09:33:50,183 [Worker-183] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 09:33:50,184 [Worker-183] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 09:33:50,185 [Worker-183] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-08 13:14:58,073 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:14:58,076 [Worker-208] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:14:58,078 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:14:58,078 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:14:58,083 [Worker-208] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:15:04,998 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:15:04,999 [Worker-208] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:15:05,011 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:15:05,013 [Worker-208] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:15:05,017 [Worker-208] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:26:40,328 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:26:40,329 [Worker-212] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:26:40,331 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:26:40,331 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:26:40,335 [Worker-212] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:26:44,556 [Worker-202] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:26:44,557 [Worker-202] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:26:44,560 [Worker-202] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:26:44,561 [Worker-202] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:26:44,563 [Worker-202] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:27:20,233 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:27:20,234 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:27:20,236 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:27:20,236 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:27:20,238 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:27:27,113 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:27:27,114 [Worker-212] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:27:27,116 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:27:27,116 [Worker-212] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:27:27,118 [Worker-212] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-08 13:32:24,562 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:32:24,563 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:32:24,565 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:32:24,566 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:32:24,567 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-08 13:45:36,835 [Worker-216] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:45:36,837 [Worker-216] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:45:36,843 [Worker-216] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:45:36,844 [Worker-216] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:45:36,849 [Worker-216] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-08 13:45:40,828 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:45:40,830 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:45:40,834 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:45:40,835 [Worker-205] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:45:40,837 [Worker-205] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-08 13:51:28,034 [Worker-219] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:51:28,035 [Worker-219] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-08 13:51:28,037 [Worker-219] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-08 13:51:28,037 [Worker-219] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-08 13:51:28,038 [Worker-219] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-09 07:50:08,186 [Worker-366] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 07:50:08,190 [Worker-366] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 07:50:08,193 [Worker-366] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 07:50:08,195 [Worker-366] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 07:50:08,203 [Worker-366] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:06:11,996 [Worker-359] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:06:12,000 [Worker-359] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:06:12,002 [Worker-359] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:06:12,003 [Worker-359] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:06:12,007 [Worker-359] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:13:20,979 [Worker-376] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:13:20,991 [Worker-376] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:13:21,005 [Worker-376] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:13:21,006 [Worker-376] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:13:21,019 [Worker-376] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:14:16,171 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:14:16,172 [Worker-372] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:14:16,174 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:14:16,176 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:14:16,178 [Worker-372] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:14:52,771 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:14:52,772 [Worker-372] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:14:52,775 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:14:52,776 [Worker-372] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:14:52,778 [Worker-372] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:15:35,731 [Worker-369] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:15:35,731 [Worker-369] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:15:35,733 [Worker-369] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:15:35,734 [Worker-369] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:15:35,736 [Worker-369] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:35:18,156 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:35:18,158 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:35:18,161 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:35:18,162 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:35:18,169 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 08:35:42,017 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:35:42,019 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 08:35:42,021 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 08:35:42,021 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 08:35:42,022 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-09 09:07:47,127 [Worker-380] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:07:47,139 [Worker-380] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 09:07:47,145 [Worker-380] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 09:07:47,146 [Worker-380] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:07:47,175 [Worker-380] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 09:08:40,064 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:40,065 [Worker-386] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 09:08:40,066 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 09:08:40,067 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:40,071 [Worker-386] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 09:08:46,896 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:46,897 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 09:08:46,900 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 09:08:46,901 [Worker-377] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:46,902 [Worker-377] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-04-09 09:08:49,659 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:49,660 [Worker-386] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-04-09 09:08:49,662 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-04-09 09:08:49,663 [Worker-386] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-04-09 09:08:49,665 [Worker-386] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-09 11:23:47,721 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-12-09 11:23:52,242 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-09 11:23:52,245 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-09 11:23:52,247 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-09 11:23:52,248 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-09 11:23:52,261 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-09 11:23:56,363 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-12-09 11:24:01,683 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-09 11:24:01,685 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-09 11:24:01,690 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-09 11:24:01,691 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-09 11:24:01,694 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-10 04:59:14,630 [Worker-245] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 04:59:14,633 [Worker-245] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 04:59:14,635 [Worker-245] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 04:59:14,636 [Worker-245] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 04:59:14,640 [Worker-245] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-10 04:59:43,277 [Worker-247] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 04:59:43,279 [Worker-247] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 04:59:43,280 [Worker-247] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 04:59:43,281 [Worker-247] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 04:59:43,282 [Worker-247] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-10 05:27:32,265 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 05:27:32,271 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 05:27:32,273 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 05:27:32,274 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 05:27:32,284 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 05:29:12,485 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 05:29:12,485 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 05:29:12,487 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 05:29:12,487 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 05:29:12,489 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-10 06:16:21,980 [Worker-16] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-12-10 06:16:24,881 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-12-10 06:16:25,684 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.0 is missing, no dependency information available
+2021-12-10 06:16:25,687 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.0 is missing, no dependency information available
+2021-12-10 06:16:29,107 [Worker-16] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /jda-wms-automation-framework-for-test/src/main/java
+2021-12-10 06:16:29,111 [Worker-16] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /jda-wms-automation-framework-for-test/src/test/java
+2021-12-10 06:16:29,112 [Worker-16] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /jda-wms-automation-framework-for-test/src/test/resources
+2021-12-10 06:16:29,950 [Worker-16] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 7 sec
+2021-12-10 06:16:31,053 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:16:31,055 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:16:31,058 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:16:31,059 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:16:31,071 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:24:16,570 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:24:16,576 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:24:16,579 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:24:16,579 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:24:16,588 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:41:02,324 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:02,330 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:41:02,332 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:41:02,333 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:02,340 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:41:04,852 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-12-10 06:41:06,109 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:06,111 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:41:06,114 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:41:06,114 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:06,117 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-10 06:41:10,457 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:10,458 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:41:10,460 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:41:10,460 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:41:10,465 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:50:04,002 [Worker-1] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-12-10 06:50:04,908 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2021-12-10 06:50:06,186 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /jda-wms-automation-framework-for-test/src/main/java
+2021-12-10 06:50:06,191 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /jda-wms-automation-framework-for-test/src/test/java
+2021-12-10 06:50:06,192 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /jda-wms-automation-framework-for-test/src/test/resources
+2021-12-10 06:50:06,732 [Worker-1] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2021-12-10 06:50:09,422 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:50:09,423 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:50:09,426 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:50:09,427 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:50:09,429 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:50:11,451 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:50:11,452 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:50:11,453 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:50:11,454 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:50:11,458 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 06:54:21,938 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:54:21,939 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 06:54:21,940 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 06:54:21,941 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 06:54:21,943 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 07:11:26,185 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:11:26,186 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:11:26,188 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:11:26,189 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:11:26,193 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-10 07:11:31,787 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:11:31,788 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:11:31,789 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:11:31,790 [Worker-25] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:11:31,792 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 07:15:38,280 [Worker-27] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:15:38,281 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:15:38,284 [Worker-27] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:15:38,284 [Worker-27] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:15:38,287 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 07:15:44,031 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:15:44,032 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:15:44,034 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:15:44,035 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:15:44,036 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-10 07:26:08,735 [Worker-31] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:26:08,735 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:26:08,737 [Worker-31] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:26:08,738 [Worker-31] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:26:08,739 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-10 07:27:50,850 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:27:50,851 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:27:50,853 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:27:50,853 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:27:50,856 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 07:29:42,003 [Worker-34] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:29:42,004 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:29:42,007 [Worker-34] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:29:42,008 [Worker-34] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:29:42,011 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-10 07:50:38,461 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:50:38,462 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-10 07:50:38,464 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-10 07:50:38,464 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-10 07:50:38,465 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-13 06:27:21,236 [Worker-768] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-13 06:27:21,239 [Worker-768] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-13 06:27:21,241 [Worker-768] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-13 06:27:21,242 [Worker-768] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-13 06:27:21,243 [Worker-768] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 04:47:21,683 [Worker-979] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:47:21,686 [Worker-979] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 04:47:21,688 [Worker-979] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 04:47:21,689 [Worker-979] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:47:21,695 [Worker-979] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 04:47:23,540 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:47:23,541 [Worker-992] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 04:47:23,542 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 04:47:23,543 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:47:23,544 [Worker-992] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-14 04:48:49,303 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:48:49,304 [Worker-992] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 04:48:49,306 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 04:48:49,306 [Worker-992] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:48:49,307 [Worker-992] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 04:54:57,242 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:54:57,244 [Worker-995] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 04:54:57,246 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 04:54:57,247 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:54:57,247 [Worker-995] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 04:54:58,310 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:54:58,310 [Worker-995] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 04:54:58,312 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 04:54:58,312 [Worker-995] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 04:54:58,313 [Worker-995] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:12:19,438 [Worker-1012] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:19,440 [Worker-1012] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:12:19,441 [Worker-1012] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:12:19,442 [Worker-1012] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:19,443 [Worker-1012] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:12:20,513 [Worker-997] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:20,514 [Worker-997] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:12:20,515 [Worker-997] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:12:20,515 [Worker-997] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:20,516 [Worker-997] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:12:29,229 [Worker-1011] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:29,229 [Worker-1011] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:12:29,231 [Worker-1011] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:12:29,232 [Worker-1011] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:12:29,233 [Worker-1011] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:30:41,469 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:30:41,470 [Worker-1017] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:30:41,472 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:30:41,473 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:30:41,476 [Worker-1017] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 06:30:42,664 [Worker-1020] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:30:42,665 [Worker-1020] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:30:42,666 [Worker-1020] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:30:42,667 [Worker-1020] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:30:42,668 [Worker-1020] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:31:08,050 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:31:08,051 [Worker-1017] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:31:08,053 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:31:08,053 [Worker-1017] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:31:08,055 [Worker-1017] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 06:49:45,765 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:45,766 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:49:45,768 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:49:45,768 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:45,769 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:49:46,795 [Worker-1014] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:46,796 [Worker-1014] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:49:46,797 [Worker-1014] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:49:46,798 [Worker-1014] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:46,798 [Worker-1014] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:49:57,733 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:57,733 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:49:57,736 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:49:57,737 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:49:57,738 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-14 06:50:02,484 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:50:02,485 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:50:02,486 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:50:02,487 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:50:02,490 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 06:50:14,002 [Worker-1033] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:50:14,003 [Worker-1033] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:50:14,005 [Worker-1033] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:50:14,005 [Worker-1033] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:50:14,006 [Worker-1033] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-14 06:51:09,412 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:51:09,412 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:51:09,414 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:51:09,414 [Worker-1018] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:51:09,415 [Worker-1018] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-14 06:51:10,459 [Worker-1029] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:51:10,460 [Worker-1029] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-14 06:51:10,462 [Worker-1029] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-14 06:51:10,462 [Worker-1029] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-14 06:51:10,463 [Worker-1029] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 05:04:55,716 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:04:55,723 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:04:55,725 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:04:55,726 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:04:55,735 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-20 05:04:57,345 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:04:57,346 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:04:57,348 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:04:57,349 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:04:57,354 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 05:05:00,910 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:05:00,910 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:05:00,911 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:05:00,912 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:05:00,914 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-20 05:11:30,954 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:11:30,955 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:11:30,957 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:11:30,958 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:11:30,959 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 05:19:26,727 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:19:26,728 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:19:26,729 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:19:26,730 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:19:26,731 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-20 05:21:27,104 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:21:27,105 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:21:27,107 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:21:27,107 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:21:27,114 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-20 05:24:02,917 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:24:02,918 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:24:02,921 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:24:02,922 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:24:02,923 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 05:32:39,982 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:32:39,983 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:32:39,985 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:32:39,985 [Worker-19] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:32:39,986 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 05:36:03,306 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:36:03,307 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:36:03,308 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:36:03,309 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:36:03,310 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-20 05:58:56,857 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:58:56,858 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:58:56,860 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:58:56,861 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:58:56,862 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-20 05:59:27,384 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:59:27,384 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 05:59:27,386 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 05:59:27,386 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 05:59:27,388 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-20 06:17:25,904 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:17:25,906 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 06:17:25,908 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 06:17:25,909 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:17:25,911 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-20 06:52:28,593 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:52:28,595 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 06:52:28,597 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 06:52:28,597 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:52:28,599 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-20 06:53:12,856 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:53:12,857 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 06:53:12,858 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 06:53:12,859 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:53:12,859 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-20 06:55:04,317 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:55:04,318 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 06:55:04,320 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 06:55:04,320 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:55:04,323 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-20 06:59:02,579 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:59:02,580 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-20 06:59:02,582 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-20 06:59:02,583 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-20 06:59:02,584 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-24 04:53:44,826 [Worker-1066] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 04:53:44,828 [Worker-1066] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 04:53:44,830 [Worker-1066] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 04:53:44,830 [Worker-1066] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 04:53:44,832 [Worker-1066] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-12-24 04:54:03,578 [Worker-1067] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 04:54:03,578 [Worker-1067] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 04:54:03,581 [Worker-1067] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 04:54:03,581 [Worker-1067] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 04:54:03,586 [Worker-1067] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-24 05:24:42,009 [Worker-1069] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:24:42,009 [Worker-1069] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 05:24:42,011 [Worker-1069] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 05:24:42,012 [Worker-1069] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:24:42,013 [Worker-1069] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-12-24 05:26:06,563 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:26:06,564 [Worker-1071] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 05:26:06,565 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 05:26:06,566 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:26:06,567 [Worker-1071] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-24 05:31:01,015 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:31:01,016 [Worker-1071] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 05:31:01,018 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 05:31:01,018 [Worker-1071] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:31:01,020 [Worker-1071] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2021-12-24 05:56:11,103 [Worker-1084] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:56:11,104 [Worker-1084] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2021-12-24 05:56:11,105 [Worker-1084] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2021-12-24 05:56:11,107 [Worker-1084] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-12-24 05:56:11,109 [Worker-1084] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2022-01-10 05:13:37,511 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-01-10 05:13:41,463 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-01-10 05:13:41,465 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-01-10 05:13:41,468 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-01-10 05:13:41,468 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-01-10 05:13:41,475 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2022-03-14 10:32:33,889 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-14 10:32:33,900 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-03-14 10:32:33,923 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-03-14 10:32:33,924 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-14 10:32:33,933 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2022-03-14 10:32:36,115 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-14 10:32:36,119 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-03-14 10:32:36,121 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-03-14 10:32:36,122 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-14 10:32:36,128 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-20 06:30:32,720 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-20 06:30:37,664 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-20 06:30:40,088 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:40,089 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-20 06:30:40,092 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-20 06:30:40,092 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:40,099 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 10 resources
+2022-12-20 06:30:43,054 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-20 06:30:43,547 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:43,552 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-20 06:30:43,559 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-20 06:30:43,560 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:43,568 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-20 06:30:46,418 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:46,419 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-20 06:30:46,434 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-20 06:30:46,436 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:30:46,437 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-20 06:47:08,897 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:47:08,900 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-20 06:47:08,902 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-20 06:47:08,902 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-20 06:47:08,909 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-12-22 06:44:34,976 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-22 06:44:34,976 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-22 06:44:38,483 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:38,484 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:44:38,489 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:44:38,490 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:38,497 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-22 06:44:40,828 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-22 06:44:43,537 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:43,539 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:44:43,543 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:44:43,544 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:43,546 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-22 06:44:56,127 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:56,128 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:44:56,129 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:44:56,130 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:44:56,133 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-12-22 06:46:41,341 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:46:41,342 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:46:41,344 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:46:41,344 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:46:41,345 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-12-22 06:49:38,572 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:49:38,573 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:49:38,574 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:49:38,576 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:49:38,582 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-22 06:53:48,728 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:53:48,729 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:53:48,730 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:53:48,731 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:53:48,733 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-22 06:53:58,675 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:53:58,676 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:53:58,678 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:53:58,678 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:53:58,680 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-22 06:55:00,095 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:55:00,096 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:55:00,098 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:55:00,099 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:55:00,099 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-22 06:57:58,329 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:57:58,330 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-22 06:57:58,332 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-22 06:57:58,333 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-22 06:57:58,333 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-28 07:49:49,793 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-28 07:49:52,748 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:49:52,750 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-28 07:49:53,283 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.jda.wms:jda-wms-test-framework:0.0.1-SNAPSHOT @ D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\pom.xml.
+2022-12-28 07:49:53,286 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-28 07:49:53,287 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:49:53,294 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-28 07:49:56,373 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:49:56,375 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-28 07:49:56,376 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-28 07:49:56,377 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:49:56,379 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-12-28 07:51:17,903 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:51:17,904 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-28 07:51:17,905 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-28 07:51:17,906 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:51:17,909 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources
+2022-12-28 07:56:19,331 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:56:19,332 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-28 07:56:19,334 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-28 07:56:19,335 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:56:19,337 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-12-28 07:56:35,608 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:56:35,609 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\C&H AUtomation Pack\jda-wms-automation-framework-for-test\src\main\resources
+2022-12-28 07:56:35,611 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2022-12-28 07:56:35,612 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-12-28 07:56:35,613 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 12 resources

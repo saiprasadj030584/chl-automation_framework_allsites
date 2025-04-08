@@ -1,0 +1,66 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function OLL_146_Putawaylocationseq 
+Call Commonfunction.WMSlogin
+Call ReadingDatalocation
+End Function
+
+
+
+Function ReadingDatalocation
+ Filepath="C:\Dhivya\Locationsequence"    
+'Filepath="C:\DD\Automation\Locationsequence"
+Call Readdata(Filepath,"SKUID","Sequence")
+ReferenceNumber=ExpectedValue         
+End Function
+
+Function Readdata(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+'ShowMessage value
+If value = " " Then
+Exit For
+End If
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'if no_of_id(j)=" " then 
+'Exit for 
+'End if 
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+Next
+Call Exceldatasetup (list(0),list(1),list(2),list(3),list(4))
+Next
+End Function
+
+
+
+Function Exceldatasetup (ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU
+Call Suppliersku
+Call Packconfiguration
+Call Perfectreceiving
+Call Perfectstgputaway
+Call Perfectfinalputaway
+Call Puttylogout
+Call DBconnection_Location
+End Function
+
+
+
+
+   
+

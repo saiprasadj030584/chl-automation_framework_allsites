@@ -1,0 +1,101 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_100
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223
+'USEUNIT OLL_230
+'USEUNIT OLL_231
+'USEUNIT OLL_275_2Postal
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal___URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+
+Function Differentshoe
+  Call skusetup
+  Call PassingMulSku
+ Call puttylogin
+Set Puttyfun= Aliases.putty.wndPuTTY
+ Delay(4000)
+ Call Random10
+Container=("3"& Pallet)
+Log.message ("Container no is:" & Container)
+ Delay(4000)
+  Call Puttyfun.keys("2111")
+  Delay (3000)
+  Call Puttyfun.keys("[Enter]")
+
+   Delay(2000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+  
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+   Call Puttyfun.Keys(supsku & "02")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  
+  Delay(1000)
+  Call Puttyfun.Keys("IMPERFECT")
+  Delay(2000)
+   Call Puttyfun.Keys("[Tab]")
+ Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+  
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+ If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect"
+      ElseIf ImageRepository.Puttyscreen.Singleshoemsg.Exists then
+    Log.Message("Single UPC is scanned")  
+ Else 
+    Log.error "Receiving failed"
+ 
+ End If
+   Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+  If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect sku"
+ End If
+   Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+   Call Puttyfun.Keys ("[F10]")
+Delay(2000)
+ Call Inventory
+ Call Imperfectputaway
+ Call Puttylogout
+   Aliases.iexplore.wndIEFrame.Activate
+  ImageRepository.WMS.Wmsclose.Click
+
+End Function
+  

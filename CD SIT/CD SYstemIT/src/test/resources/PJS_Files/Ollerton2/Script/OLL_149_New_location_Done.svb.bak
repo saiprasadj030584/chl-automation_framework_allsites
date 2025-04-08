@@ -1,0 +1,39 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+
+
+
+
+
+Function Newlocation
+'Call WMSlogin
+Call skusetup
+'Call puttylogin
+Call Perfectreceiving
+Call Perfectstgputaway
+Call Fetchfinalloc
+Call WMSLocation1
+Call FinalputawayNewLocation
+Do Until CSng(LocVolume) >(CSng(LocCurrentVolume)+CSng(LocAllocVol))
+MsgBox LocVolume
+Delay(1000)
+Call Perfectreceiving
+Call Perfectstgputaway
+Call Fetchfinalloc
+Call WMSLocation1
+Call FinalputawayNewLocation
+If Finalnewloc=Finallocation Then
+Log.Message "New Location is showing as " &Finalnewloc
+Exit Do
+End If
+Loop 
+End Function
+
+
+
+

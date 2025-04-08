@@ -1,0 +1,76 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Function Test
+    
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call CommonFunctions.ReadExcelData(Filepath,"SKU","Box_Data")
+    SKU=ExpectedValue
+    Call CommonFunctions.ReadExcelData(Filepath,"Order","Box_Data")
+    Order=ExpectedValue
+    Delay(2000)
+    
+    call CommonFunctions.LaunchWMSCATEA()
+    call SKUMaintenancePage.SKUUpdate()
+    call SKUMaintenancePage.SupplierSKU()
+    call PackConfigMaintenancePage.PackConfigCreation()
+    Call PalletGeneration.Random10()
+    call CommonFunctions.LaunchPutty()
+    call ReceivingPage.BlindReceiving()
+    call InventoryValidationPage.RValidation()
+    call PutawayPage.StagePutaway()
+    call PutawayPage.FinalPutaway()
+    call InventoryValidationPage.InventValidation()
+    Call PalletGeneration.Random10()
+    call ReceivingPage.BlindReceiving()
+    call InventoryValidationPage.RValidation()
+    call PutawayPage.StagePutaway()
+    Call PutawayPage.LocationFullPutaway()
+    Call LocationPage.LocationCheck()
+    Call CommonFunctions.DBconnection()
+    call InventoryValidationPage.PValidation()
+    call DemandAllocationPage.DAT25()
+    Call MoveTaskPage.MoveTask()
+    Call PickingPage.PickB()
+    Call LocationPage.LocationCheck()
+    Call CommonFunctions.PuttyLogout()
+    Call CommonFunctions.LogoutWMS()
+    
+End Function

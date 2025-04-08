@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{E7C36009-4A66-4899-99AE-DEFC5C22C057}" version="1140" key="{16EE3D1D-C614-449D-9C45-BBC1ADAC6497}" type="Image Repository" typeId="{E7C36009-4A66-4899-99AE-DEFC5C22C057}">
+	<config nodeName="WMS" />
+	<testData />
+	<data />
+	<children>
+		<child key="{FCEB9FB3-0F16-4B25-AA65-E8C84D56431B}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="WMSCATEA.tcIRIS" />
+		</child>
+		<child key="{0790B939-38D0-4E3D-8804-F65038CAE6E9}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="Inventory.tcIRIS" />
+		</child>
+		<child key="{FFA1387B-397C-4DD4-99F9-0D2E547E2F7B}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="DA.tcIRIS" />
+		</child>
+		<child key="{36E53F57-0C6F-4283-AE6E-E0AA0530255C}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="Location.tcIRIS" />
+		</child>
+		<child key="{AC8F2D4F-73CD-4DC4-AF0C-10A50FCAF76E}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="WCS.tcIRIS" />
+		</child>
+		<child key="{89220A37-F43A-4CEC-AA2D-360683831527}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="DockSchedule.tcIRIS" />
+		</child>
+	</children>
+	<folders />
+</Root>

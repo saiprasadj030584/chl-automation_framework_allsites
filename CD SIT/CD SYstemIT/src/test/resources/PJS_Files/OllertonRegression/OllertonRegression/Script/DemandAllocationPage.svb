@@ -1,0 +1,173 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+'public Order
+
+'Order = "H250720191"
+
+Function BAllocate
+    
+    Call CommonFunctions.FormName("Demand Allocation")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    set OrderTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call OrderTextBox.Keys(Order)
+    Set ShipDockTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call ShipDockTextBox.Keys("CLOLSHIPB")
+    'set ConsignmentTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+    'call ConsignmentTextBox.Keys("OLLBOX")
+    set CustomerTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+    Call CustomerTextBox.Keys("4624")
+    Set ToSiteTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+    call ToSiteTextBox.Keys("4624")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField5.Panel.Panel.LookupPanel.Click
+    set TypeSearchBox =  Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    call TypeSearchBox.Keys("TRANSFER")
+    set Footer2 = Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel2
+    Call Footer2.Keys("[F7]")
+    call ImageRepository.DA.OKButton.Click
+    Call Footer.Keys("[F7]")
+    Delay(2000)
+    set Lockcode = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Lockcode.Keys("RL")
+    set PalletInput = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call PalletInput.Keys(Palet10)
+    call ImageRepository.DA.SearchButton.Click
+    Delay(1000)
+    call ImageRepository.DA.QtyRequired.Click
+    Delay(500)
+    set QtyReq = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.CellDataField.Panel.Panel.DCSDataField_DCSTextField
+    call QtyReq.Keys("^a[BS]1")
+    Delay(1000)
+    Call ImageRepository.DA.SaveButton.Click
+    Delay(1000)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F12]")
+    Delay(500)
+    Call Footer.Keys("[Esc]")
+End Function
+
+
+Function DAT25
+    Call CommonFunctions.FormName("Demand Allocation")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    set OrderTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call OrderTextBox.Keys(Order)
+    Set ShipDockTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call ShipDockTextBox.Keys("CLOLSHIPB")
+'    set ConsignmentTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField
+'    call ConsignmentTextBox.Keys("OLLBOX")
+    set CustomerTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+    Call CustomerTextBox.Keys("4624")
+    Set ToSiteTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+    call ToSiteTextBox.Keys("4624")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField5.Panel.Panel.LookupPanel.Click
+    set TypeSearchBox =  Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    call TypeSearchBox.Keys("TRANSFER")
+    set Footer2 = Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel2
+    Call Footer2.Keys("[F7]")
+    call ImageRepository.DA.OKButton.Click
+    Call Footer.Keys("[F7]")
+    Delay(2000)
+    set Lockcode = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Lockcode.Keys("RL")
+    set PalletInput = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call PalletInput.Keys(PickInvent)
+    call ImageRepository.DA.SearchButton.Click
+    Delay(1000)
+    call ImageRepository.DA.QtyRequired.Click
+    Delay(500)
+    set QtyReq = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.CellDataField.Panel.Panel.DCSDataField_DCSTextField
+    call QtyReq.Keys("^a[BS]1")
+    Delay(1000)
+    Call ImageRepository.DA.SaveButton.Click
+    Delay(1000)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F12]")
+    Delay(500)
+    Call Footer.Keys("[Esc]")
+End Function
+
+
+Function HAllocate
+    
+    Call CommonFunctions.FormName("Demand Allocation")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.StartPanel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+    Call Footer.Keys("[F7]")
+    set OrderTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call OrderTextBox.Keys(Order)
+    Set ShipDockTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call ShipDockTextBox.Keys("CLOLSHIPH")
+    set CustomerTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField
+    Call CustomerTextBox.Keys("4624")
+    Set ToSiteTextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox
+    call ToSiteTextBox.Keys("4624")
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.HeaderPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField5.Panel.Panel.LookupPanel.Click
+    set TypeSearchBox =  Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    call TypeSearchBox.Keys("TRANSFER")
+    set Footer2 = Aliases.java.LookupBox.RootPane.null_layeredPane.null_contentPane.Panel.Panel2
+    Call Footer2.Keys("[F7]")
+    call ImageRepository.DA.OKButton.Click
+    Call Footer.Keys("[F7]")
+    Delay(2000)
+    set Lockcode = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Lockcode.Keys("RL")
+    set PalletInput = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField
+    Call PalletInput.Keys(PaletH)
+    call ImageRepository.DA.SearchButton.Click
+    Delay(1000)
+    call ImageRepository.DA.QtyRequired.Click
+    Delay(500)
+    set QtyReq = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDemandAllocation.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.LinesPanel.InvSelectLinesPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.CellDataField.Panel.Panel.DCSDataField_DCSTextField
+    call QtyReq.Keys("^a[BS]1")
+    Delay(1000)
+    Call ImageRepository.DA.SaveButton.Click
+    Delay(1000)
+    Call Footer.Keys("[F7]")
+    Delay(500)
+    Call Footer.Keys("[F12]")
+    Delay(500)
+    Call Footer.Keys("[Esc]")
+End Function

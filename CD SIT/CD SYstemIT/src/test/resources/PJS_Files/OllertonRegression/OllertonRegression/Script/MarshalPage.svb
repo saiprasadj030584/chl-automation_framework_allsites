@@ -1,0 +1,80 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+
+Function Marshaling
+
+     set PuttyObject = Aliases.putty.wndPuTTY
+     Delay(1000)
+     call PuttyObject.Keys("[F10]")
+     Delay(1000)
+     call PuttyObject.Keys("2[Enter]")
+     Delay(1000)
+     call PuttyObject.Keys("6[Enter]")
+     Delay(1000)
+     Call CommonFunctions.GetRDTContent()
+     Delay(1000)
+     If strcomp(RDTContent,"MarEnt",vbtextcompare) Then
+        PuttyObject.Keys(Palet32)
+        Delay(1000)
+        PuttyObject.Keys("[Enter]")
+        Delay(2000)
+        PuttyObject.Keys("[Enter]")
+        Delay(2000)
+        PuttyObject.Keys("[Enter]")
+        Delay(2000)
+     End If  
+     Call CommonFunctions.GetRDTContent()
+     Delay(2000)
+     If strcomp(RDTContent,"ChkTo",vbtextcompare) Then
+        RDTContent=right(RDTContent,100)
+        temp=split(RDTContent,"To  : ")
+        temp1=split(temp(1),chr(10))
+        PickBTCS=trim(replace(temp1(0)," │",""))
+        CheckString=Mid(PickBTCS,1,10)
+        Delay(2000)
+        PuttyObject.Keys(CheckString)
+        Delay(2000)
+        PuttyObject.Keys("[Enter]")
+        Delay(1000)
+        Log.Message("Marshalling Completed")
+        PuttyObject.Keys("[F10]")
+      End If
+     
+End Function

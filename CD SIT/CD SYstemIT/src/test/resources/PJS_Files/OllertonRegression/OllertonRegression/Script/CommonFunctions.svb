@@ -1,0 +1,445 @@
+﻿'USEUNIT Auto_Boxed_WCS
+'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT WCS_Emulation_Page
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+public DockDoor ,Barcode
+
+Public RDTContent,recordSetOBJ, DistributionOrderNumber
+
+
+Function LaunchWMSCATEA 
+Dim Counter 
+Counter = 0 
+Call TestedApps.CATEA.Run 
+
+  Delay(2000)
+  Do until Username =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exists
+  Delay(2000)
+  If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exists Then  
+          Set Username = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+          Call Username.Keys("Automation")
+          Sys.Desktop.Keys("[Tab]")
+          Sys.Desktop.Keys("1234[Enter]")
+          Exit Do
+  Else 
+     Log.Error("Login Page not found")
+  End If 
+  counter = counter + 1   
+  Loop 
+  Delay(2000) 
+  If Aliases.java.MessageBox.Exists Then 
+      Sys.Desktop.Keys("[Enter]")
+  End If
+  
+  If ImageRepository.WMSCATEA.AdvEcomPackCloseButton.Exists Then  
+    Call ImageRepository.WMSCATEA.AdvEcomPackCloseButton.Click
+  End If 
+
+End Function 
+
+
+Function FormName(Byval Name)
+      set SearchButton = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+      Call SearchButton.Click
+      Sys.Desktop.Keys(Name)
+      Sys.Desktop.Keys("[Enter]")
+      Sys.Desktop.Keys("[Enter]")
+End Function
+
+
+Function LaunchPutty
+      Call TestedApps.putty.Run
+      set Telnet=Aliases.putty.wndPuTTYConfigBox.radioTelnet
+      call Telnet.Click
+      set HostName = Aliases.putty.wndPuTTYConfigBox.Edit
+      call HostName.Keys("huxc0562.unix.marksandspencercate.com")
+      set Port = Aliases.putty.wndPuTTYConfigBox.editPort
+      call Port.Keys("^a[BS]26518")
+      set Open = Aliases.putty.wndPuTTYConfigBox.btnOpen
+      call Open.Click
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(2000)
+      call PuttyObject.Keys("AutoP[Tab]")
+      delay(1000)
+      call PuttyObject.Keys("1234[Enter]")
+      ImageRepository.WMSCATEA.PuttyHeaderRC.ClickR
+      Aliases.putty.wndPuTTY.SystemMenu.Click "Change Settings..."
+      ImageRepository.WMSCATEA.Keyboard.Click
+      Aliases.putty.wndPuTTYConfigBox2.radioXtermR6.Click
+      Aliases.putty.wndPuTTYConfigBox2.btnApply.Click
+End Function
+
+
+Function GetRDTContent()
+
+      ImageRepository.WMSCATEA.PuttyHeaderRC.ClickR
+      Aliases.putty.wndPuTTY.SystemMenu.Click "Copy All to Clipboard"
+      Set objHTML = CreateObject("htmlfile")
+      RDTContent = objHTML.ParentWindow.ClipboardData.GetData("text")
+      RDTContent = right(RDTContent,500)
+
+End Function 
+
+Function LogoutWMS
+  Aliases.iexplore.wndIEFrame.Activate
+  call ImageRepository.WMSCATEA.Logout.Click
+End Function
+
+
+Function PuttyLogout
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("[F10]")
+      Delay(1000)
+      call PuttyObject.Keys("3")
+      call PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call PuttyObject.Close
+      set closeputty = Aliases.putty.dlgPuTTYExitConfirmation.btnOK
+      Call closeputty.Click
+End Function 
+
+
+Function DBconnection
+    Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"
+    Dim ConnectnString
+	  ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset")
+    Query =  "select location_id from location where location_id like '%"&Elocation&"%'and lock_status not in (select lock_status from location where location_id='"&Elocation&"')"
+    'Query =  "select location_id from location where location_id like '%MBZ17G03%'and lock_status not in (select lock_status from location where location_id='MBZ17G03')"
+    recordSetOBJ.Open Query,connectionOBJ
+    If recordSetOBJ.EOF = True Then
+    log.Message("Location is as expected")
+    else 
+    statusDB = recordSetOBJ.fields("location_id")
+'    if (statusDB = "") Then
+'        log.Message("Location is as expected")
+'    Else
+        log.Message("Location not locked as per requirement for the location id : "&statusDB)
+    End If
+
+End Function
+
+Function LaunchWCSCateA
+
+
+   Set shell = CreateObject("WScript.Shell")
+   'Call TestedApps.WCS_CATE_A.Run
+      shell.CurrentDirectory = "C:\Program Files\AntMAS-CATE-A"
+      shell.Run "startupClientCATE-A.bat"
+Delay(3000)  
+     
+Do Until   Aliases.javaw.Shell6.Composite.Composite.Composite.Composite.Composite.Composite.UserName.Exists
+   
+Delay(5000)  
+      
+Loop
+Aliases.javaw.Shell6.Composite.Composite.Composite.Composite.Composite.Composite.UserName.Click
+Aliases.javaw.Shell6.Composite.Composite.Composite.Composite.Composite.Composite.UserName.Keys("^a[BS]" & "poset")
+Aliases.javaw.Shell6.Composite.Composite.Composite.Composite.Composite.Composite.Password.Keys("123456[Enter]")
+
+
+
+Do until Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite2.PictureButton.Exists
+Delay(2000) 
+Loop
+End Function
+
+Function CSVtoXLSConversion(CSVfilePath,XLSfilePath)
+
+Dim myXL
+Set myXL=CreateObject ("Excel.Application")
+myXL.WorkBooks.Open CSVfilePath
+myXL.DisplayAlerts=False 'To keep Excel hidden
+myXL.ActiveWorkbook.SaveAs XLSfilePath, -4143 'IDK what the "-4143" does
+myXL.DisplayAlerts=True
+myXL.ActiveWorkbook.Close False
+myXL.Quit
+Set myXL = Nothing
+
+End Function
+
+
+Function ReadExcelData(Filepath,Header,SheetName)
+
+    Dim objexcel, objWorkbook, objDriverSheet, columncount, rowcount,fieldvalue 
+    set objexcel = Createobject("Excel.Application")
+    Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+    Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+    columncount = objDriverSheet.usedrange.columns.count
+    rowcount = objDriverSheet.usedrange.rows.count
+    dim colNum:colNum=0
+    for i = 1 to columncount
+      columnname = cstr(objDriversheet.cells(1,i).value)
+      If StrComp(columnname,Header,vbbtextcompare)=0 Then
+        colNum=i
+        for j = 1 to rowcount
+        fieldvalue = cstr(objdriversheet.cells(j+1,i).value)
+        Log.Message("fieldvalue "&fieldvalue)
+        Exit For
+        next
+      End If
+    Next
+    ExpectedValue=fieldvalue
+    
+End Function
+
+
+Function GetDistributionOrderNumber()
+      
+      Delay(2500)
+      Aliases.javaw.Shell.Activate
+      DockDoor="GIH02"
+      Delay(2000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton2.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.SWTObject("Composite", "").SWTObject("Composite", "", 2).SWTObject("PictureButton", "", 8).Click
+     
+     set searchCancel=Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 5)
+     if searchCancel.isEnabled then 
+     searchCancel.Click
+     end if
+     
+     
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 3).Click
+'     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+'     ImageRepository.WCS.DON.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.CCombo.Button.Click
+     ImageRepository.WCS.Dock.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.Composite.Composite.Composite.ValidationComposite.Text.Keys DockDoor
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite3.Composite.CCombo.Button.Click
+     ImageRepository.WCS.DistOrdNum.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite3.Composite.Composite.Composite.Button.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite2.Button.Click
+     
+     Delay (20000)   
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 11).Click
+     Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Button.Click
+     
+     
+     datetimeval=replace(replace(replace(Now(),"/",""),":","")," ","_")
+     Delay(2000)
+     filename="C:\WCSFiles\"&"DOrder_"&datetimeval
+     Aliases.javaw.dlgSaveAs.DUIViewWndClassName.Explorer_Pane.FloatNotifySink.ComboBox.Edit.SetText filename
+     Aliases.javaw.dlgSaveAs.btnSave.Click
+        
+     XLSFilepath=filename&"XLS.xls"
+     call CSVtoXLSConversion(filename&".csv",XLSfilePath)
+     call ReadExcelData(XLSfilePath,"Ending time","DOrder_"&datetimeval)
+     If(Instr(1,ExpectedValue,"--",vbtextcompare)>0) Then
+     Log.Message("Valid Distribution Order Found")
+     call ReadExcelData(XLSfilePath,"Distribution order number","DOrder_"&datetimeval)
+     DistributionOrderNumber=ExpectedValue
+     End If
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 1).Click
+     
+End Function
+
+Function LaunchWMSCD 
+Dim Counter 
+Counter = 0 
+Call TestedApps.CATEA.Run 
+
+  Delay(2000)
+  Do until Username =  Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exists
+  Delay(2000)
+  If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exists Then  
+          Set Username = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+          Call Username.Keys("Automation2")
+          Sys.Desktop.Keys("[Tab]")
+          Sys.Desktop.Keys("1234[Enter]")
+          Exit Do
+  Else 
+     Log.Error("Login Page not found")
+  End If 
+  counter = counter + 1   
+  Loop 
+  Delay(2000) 
+  If Aliases.java.MessageBox.Exists Then 
+      Sys.Desktop.Keys("[Enter]")
+  End If
+  
+  If ImageRepository.WMSCATEA.AdvEcomPackCloseButton.Exists Then  
+    Call ImageRepository.WMSCATEA.AdvEcomPackCloseButton.Click
+  End If 
+
+End Function 
+
+
+Function LaunchPuttyCD
+      Call TestedApps.putty.Run
+      set Telnet=Aliases.putty.wndPuTTYConfigBox.radioTelnet
+      call Telnet.Click
+      set HostName = Aliases.putty.wndPuTTYConfigBox.Edit
+      call HostName.Keys("huxc0562.unix.marksandspencercate.com")
+      set Port = Aliases.putty.wndPuTTYConfigBox.editPort
+      call Port.Keys("^a[BS]20303")
+      set Open = Aliases.putty.wndPuTTYConfigBox.btnOpen
+      call Open.Click
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(2000)
+      call PuttyObject.Keys("AutoPCD[Tab]")
+      delay(1000)
+      call PuttyObject.Keys("1234[Enter]")
+      ImageRepository.WMSCATEA.PuttyHeaderRC.ClickR
+      Aliases.putty.wndPuTTY.SystemMenu.Click "Change Settings..."
+      ImageRepository.WMSCATEA.Keyboard.Click
+      Aliases.putty.wndPuTTYConfigBox2.radioXtermR6.Click
+      Aliases.putty.wndPuTTYConfigBox2.btnApply.Click
+End Function
+
+Function LogoutPuttyCD
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("[F10]")
+      Delay(1000)
+      call PuttyObject.Keys("3")
+      call PuttyObject.Keys("[Enter]")
+      Delay(3000)
+      Call PuttyObject.Close
+      set closeputty = Aliases.putty.dlgPuTTYExitConfirmation.btnOK
+      Call closeputty.Click
+      
+End Function
+
+Function LogoutWMSCD
+  
+  Call ImageRepository.DockSchedule.Logout.Click
+  
+End Function
+
+Function Emulation_Hanging()
+
+      Filepath="C:\Aravind\Input\Auto_Box"
+      Call ReadExcelData(Filepath,"Barcode","Han_Data")
+      Barcode=ExpectedValue
+     Delay(2000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton5.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 5).Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 2).Click
+     
+     set searchCancel=Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 5)
+     if searchCancel.isEnabled then 
+     searchCancel.Click
+     end if
+  
+     Delay(5000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 3).Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+     ImageRepository.WCS.barcode.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.ValidationComposite.Text.Keys Barcode 
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite2.Button.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 3).SWTObject("ActionBarItemViewPart$2", "", 3).Click
+  
+     if Val_Location="HBH" then
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "90"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "2"
+     end if 
+     
+     if Val_Location="DBH" then 
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "20"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "2"
+     
+     End if 
+     if Val_Location="MWH" then 
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys "30"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys "4"
+     End if 
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text3.Keys "^a[BS]"
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text3.Keys DistributionOrderNumber
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite2.Button.Click
+     delay(10000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 2).Click
+     delay(10000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 1).Click                                                                                   
+    
+End Function
+
+Function Emulation_Boxed()
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call CommonFunctions.ReadExcelData(Filepath,"Barcode","Box_Data")
+    Barcode=ExpectedValue
+    
+    Delay(10000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton5.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 5).Click
+'     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 2).Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 1).Click
+     
+     set searchCancel=Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 5)
+     if searchCancel.isEnabled then 
+     searchCancel.Click
+     end if
+  
+     Delay(10000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 3).Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+     ImageRepository.WCS.barcode.Click
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.ValidationComposite.Text.Keys Barcode 
+     Aliases.javaw.Shell2.Composite.Composite.Composite.Composite2.Button.Click
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 3).SWTObject("ActionBarItemViewPart$2", "", 3).Click
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+     Aliases.javaw.Shell4.Composite.Composite.Composite.Composite2.Button.Click
+     delay(10000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 2).Click
+     delay(20000)
+     Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 1).Click
+     
+  End Function

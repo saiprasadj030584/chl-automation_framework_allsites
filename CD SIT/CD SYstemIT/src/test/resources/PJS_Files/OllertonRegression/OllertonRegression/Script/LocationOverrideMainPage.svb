@@ -1,0 +1,63 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+
+Function Override
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call CommonFunctions.ReadExcelData(Filepath,"SKU","Box_Data")
+    SKU=ExpectedValue
+    
+    'call CommonFunctions.LaunchWMSCATEA()
+    'call SKUMaintenancePage.SKUUpdate()
+    call SKUMaintenancePage.SupplierSKU()
+    'call PackConfigMaintenancePage.PackConfigCreation()
+    Call PalletGeneration.Random10()
+    'call CommonFunctions.LaunchPutty()
+    call ReceivingPage.BlindReceiving()
+    call InventoryValidationPage.RValidation()
+    call PutawayPage.StagePutaway()
+    Call PutawayPage.LFOverride()
+    Call LocationPage.LocationCheck()
+    Call CommonFunctions.DBconnection()
+    call InventoryValidationPage.PValidation()
+    call CommonFunctions.PuttyLogout()
+    Call CommonFunctions.LogoutWMS()
+    
+End Function

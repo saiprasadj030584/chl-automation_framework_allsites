@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{E7C36009-4A66-4899-99AE-DEFC5C22C057}" version="1140" key="{21B96D91-D567-47B4-8D14-20FA6FEE6318}" type="Image Repository" typeId="{E7C36009-4A66-4899-99AE-DEFC5C22C057}">
+	<config nodeName="ImageRepository" />
+	<testData />
+	<data />
+	<children>
+		<child key="{5A4464D2-5AB4-427F-894E-FA54E368E285}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="Puttyscreen.tcIRIS" />
+		</child>
+		<child key="{684F0A2C-1AE4-4733-AC91-5290159D7B49}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="WMS.tcIRIS" />
+		</child>
+		<child key="{996789E1-FFAD-46B7-A1D7-EBCED0410AA6}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="Donington.tcIRIS" />
+		</child>
+		<child key="{419CB102-3932-4B59-B3A5-7153F4E6C9F5}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+			<data path="WCS.tcIRIS" />
+		</child>
+	</children>
+	<folders />
+</Root>

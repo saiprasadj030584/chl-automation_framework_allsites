@@ -1,0 +1,14 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function Notfitpigeon
+  
+  Call skusetup
+  Call PassingMulSku
+  Call Perfectreceiving
+  Call Perfectstgputaway
+  Call Perfectfinalputaway
+  Call Inventory
+
+End Function

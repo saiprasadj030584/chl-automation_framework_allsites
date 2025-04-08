@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{89220A37-F43A-4CEC-AA2D-360683831527}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="DockSchedule" />
+	<testData />
+	<data>
+		<item caption="Dock_Search" moniker="{BBB2C587-EF71-435F-AFC8-4CC2AAF5560C}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Dock_Search.png" initialHash="CB31E2DD" selectionLeft="426" selectionTop="593" selectionWidth="60" selectionHeight="20" initialLeft="426" initialTop="593" initialWidth="60" initialHeight="20" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Add" moniker="{9BDC00D2-B8B2-4595-9BFE-FDBD1515210F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Add.png" initialHash="032EFA08" selectionLeft="839" selectionTop="232" selectionWidth="47" selectionHeight="19" initialLeft="839" initialTop="232" initialWidth="47" initialHeight="19" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="D115" moniker="{0961804B-B0D2-432C-92A7-98AE86070603}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\D115.png" initialHash="C36E43F9" selectionLeft="882" selectionTop="220" selectionWidth="81" selectionHeight="28" initialLeft="882" initialTop="220" initialWidth="81" initialHeight="28" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="okButton" moniker="{6C7DBCB4-3EC5-4672-937D-4F551FE292C5}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\okButton_1.png" initialHash="7679DDB9" selectionLeft="619" selectionTop="511" selectionWidth="43" selectionHeight="21" initialLeft="619" initialTop="511" initialWidth="43" initialHeight="21" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="GIB" moniker="{D319BC81-05D0-4BAD-871E-884CA66200E3}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\GIB.png" initialHash="DF7159AC" selectionLeft="458" selectionTop="220" selectionWidth="60" selectionHeight="29" initialLeft="458" initialTop="220" initialWidth="60" initialHeight="29" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="YCI_Ok" moniker="{61F0A707-F2FD-40A6-90C9-1DF28C970D1A}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\YCI_Ok.png" initialHash="BAD21B4E" selectionLeft="658" selectionTop="602" selectionWidth="45" selectionHeight="20" initialLeft="658" initialTop="602" initialWidth="45" initialHeight="20" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="RightScroll" moniker="{F74C8120-D3E8-4CA7-A9AF-F982346F499D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\RightScroll.png" initialHash="1723121D" selectionLeft="1221" selectionTop="527" selectionWidth="102" selectionHeight="18" initialLeft="1221" initialTop="527" initialWidth="102" initialHeight="18" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="YTComplete" moniker="{57AB5219-9549-4F10-A3BF-6707D20819B8}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\YTComplete.png" initialHash="98266016" selectionLeft="688" selectionTop="598" selectionWidth="67" selectionHeight="16" initialLeft="688" initialTop="598" initialWidth="67" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Logout" moniker="{3571A9E3-BC06-4142-9244-B9DCC23CBBC0}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Logout_1.png" initialHash="C018CC1B" selectionLeft="752" selectionTop="66" selectionWidth="26" selectionHeight="26" initialLeft="752" initialTop="66" initialWidth="26" initialHeight="26" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="GIH" moniker="{CA3AD740-1105-4A97-9D50-1C713AE7155A}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\GIH.png" initialHash="1C146425" selectionLeft="735" selectionTop="221" selectionWidth="70" selectionHeight="27" initialLeft="735" initialTop="221" initialWidth="70" initialHeight="27" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

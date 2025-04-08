@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{FFA1387B-397C-4DD4-99F9-0D2E547E2F7B}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="DA" />
+	<testData />
+	<data>
+		<item caption="OKButton" moniker="{168AC22D-D35F-4CB2-942F-9E70AD993F3F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\OKButton.png" initialHash="9159940A" selectionLeft="546" selectionTop="562" selectionWidth="38" selectionHeight="16" initialLeft="546" initialTop="562" initialWidth="38" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="QtyRequired" moniker="{AE372DB6-98C1-467A-91C8-77A4FEC73988}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\QtyRequired.png" initialHash="607849E1" selectionLeft="28" selectionTop="254" selectionWidth="88" selectionHeight="28" initialLeft="28" initialTop="254" initialWidth="88" initialHeight="28" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="SaveButton" moniker="{7B907AF1-2684-4D70-AB75-EBA5E0F40CAC}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\SaveButton.png" initialHash="0D0CA3CD" selectionLeft="691" selectionTop="590" selectionWidth="60" selectionHeight="29" initialLeft="691" initialTop="590" initialWidth="60" initialHeight="29" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="SearchButton" moniker="{237A460C-B21C-407B-9595-0D1A190B6BBA}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\SearchButton_1.png" initialHash="8710A6A9" selectionLeft="623" selectionTop="598" selectionWidth="48" selectionHeight="14" initialLeft="623" initialTop="598" initialWidth="48" initialHeight="14" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

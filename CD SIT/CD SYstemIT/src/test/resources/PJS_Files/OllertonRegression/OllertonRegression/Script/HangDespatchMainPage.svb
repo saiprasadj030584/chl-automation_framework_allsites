@@ -1,0 +1,73 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+Public SKU, Order, TrailerName
+
+Function HangDespatch
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call CommonFunctions.ReadExcelData(Filepath,"SKU","Han_Data")
+    SKU=ExpectedValue
+    Call CommonFunctions.ReadExcelData(Filepath,"Order","Han_Data")
+    Order=ExpectedValue
+    Call CommonFunctions.ReadExcelData(Filepath,"TrailerName","Han_Data")
+    TrailerName=ExpectedValue
+    Delay(2000)
+    
+    call CommonFunctions.LaunchWMSCATEA()
+    call SKUMaintenancePage.SKUUpdateH()
+    call SKUMaintenancePage.SupplierSKU()
+    call PackConfigMaintenancePage.PackConfigCreation()
+    call CommonFunctions.LaunchPutty()
+    Call PalletGeneration.RandomH()
+    Call ReceivingPage.PHReceive()
+    call InventoryValidationPage.RValidationH()
+    call PutawayPage.HangSPutaway()
+    Call PutawayPage.HangFPutaway()
+    call InventoryValidationPage.PValidationH() 
+    Call DemandAllocationPage.HAllocate()
+    Call PickingPage.PickH()
+    Call InventoryValidationPage.PickHIValid()
+    Call VehicleLoadingPage.HVehicle()
+    call TrailerShippingPage.TrailerShipping()
+    Call InventoryValidationPage.VehHIValid()
+    Call CommonFunctions.PuttyLogout()
+    Call CommonFunctions.LogoutWMS()
+    
+End Function

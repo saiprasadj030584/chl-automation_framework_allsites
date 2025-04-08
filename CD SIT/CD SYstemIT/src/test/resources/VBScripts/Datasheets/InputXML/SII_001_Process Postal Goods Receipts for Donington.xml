@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Datasheet xmlns:y="http://www.test.com/engine/3">
+	<Inputdata>
+		<Sno>1</Sno>
+		<ScenarioID>Postal Receipts_Donington</ScenarioID>
+		<TCID>TC001</TCID>
+		<TCDescription>Postal Goods Receipt for Donington</TCDescription>
+		<ScenarioDescription>SII_001_Process Postal Goods Receipts for Donington</ScenarioDescription>
+		<Execution>Yes</Execution>
+		<ExpectedResult></ExpectedResult>
+		<ActualResult></ActualResult>
+		<Status></Status>
+		<ResultPath>D:\SAPISWARYA\Results\Iswarya\Design\06-08-2019\Postal Receipts_Donington_06082019_121618</ResultPath>
+		<Environment>CATEA</Environment>
+		<AuthorizationGroup>T01</AuthorizationGroup>
+		<Site>4624</Site>
+		<ReceivingSite></ReceivingSite>
+		<Idoc_102>1972004170</Idoc_102>
+		<Article>22245870001|</Article>
+		<UPCnum>21406157|</UPCnum>
+		<Quantity>1|</Quantity>
+		<Aggregation>Y</Aggregation>
+		<Artcount>1</Artcount>
+		<Vendornum>M02999</Vendornum>
+		<StorageLocation>0001</StorageLocation>
+		<Date1>05.08.2019</Date1>
+		<I0185_timestamp1></I0185_timestamp1>
+		<I0185_timestamp2></I0185_timestamp2>
+		<STOnum></STOnum>
+		<idocnum_ANR></idocnum_ANR>
+		<idocnum_ZT02></idocnum_ZT02>
+		<SOnum></SOnum>
+		<STO_ODN></STO_ODN>
+		<SO_ODN></SO_ODN>
+		<SenderNo></SenderNo>
+		<I0807_WHSCON></I0807_WHSCON>
+		<IBDnum></IBDnum>
+		<Shpmntnum></Shpmntnum>
+		<ExtShpnum></ExtShpnum>
+		<Huident></Huident>
+		<I0808_MegId></I0808_MegId>
+		<I0808_MegId1></I0808_MegId1>
+		<I0808_StartTime></I0808_StartTime>
+		<Billingdoc></Billingdoc>
+		<SO_splitODN></SO_splitODN>
+		<Start_807_2></Start_807_2>
+		<End_807_2></End_807_2>
+		<I177_Idoc></I177_Idoc>
+		<I075_Idoc></I075_Idoc>
+		<I1003_Idoc></I1003_Idoc>
+		<I0177_Idoc1></I0177_Idoc1>
+		<GroupKey></GroupKey>
+	</Inputdata>
+</Datasheet>

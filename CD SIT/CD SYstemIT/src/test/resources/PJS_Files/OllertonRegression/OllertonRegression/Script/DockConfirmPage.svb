@@ -1,0 +1,131 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+
+Function DockBook
+  
+    set PuttyObject = Aliases.putty.wndPuTTY
+    Delay(2000)
+    call PuttyObject.Keys("278[Enter]")
+    Delay(1000)
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"DockConfirm",vbtextcompare) Then
+        call PuttyObject.Keys("GIB02")
+        Delay(500)
+        call PuttyObject.Keys("[Tab]")
+        call PuttyObject.Keys(TrailerID)
+        Delay(500)
+        call PuttyObject.Keys("[Enter]")
+    Else
+        Log.Message("Wrong window")
+    End If
+    Delay(2000)
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"WarReq",vbtextcompare) Then
+        Delay(500)
+        call PuttyObject.Keys("Y")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+    end If
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"WarReq",vbtextcompare) Then
+        Delay(500)
+        call PuttyObject.Keys("Y")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+    end If
+    Delay(1000)
+    call PuttyObject.Keys("[Enter]")
+    Delay(1000)
+    call PuttyObject.Keys("[F10]")
+
+End Function
+
+
+
+
+Function HDockBook
+  
+    set PuttyObject = Aliases.putty.wndPuTTY
+    Delay(2000)
+    call PuttyObject.Keys("278[Enter]")
+    Delay(1000)
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"DockConfirm",vbtextcompare) Then
+        call PuttyObject.Keys("GIH02")
+        Delay(500)
+        call PuttyObject.Keys("[Tab]")
+        call PuttyObject.Keys(TrailerID)
+        'call PuttyObject.Keys("0440")
+        Delay(500)
+        call PuttyObject.Keys("[Enter]")
+    Else
+        Log.Message("Wrong window")
+    End If
+    Delay(2000)
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"WarReq",vbtextcompare) Then
+        Delay(500)
+        call PuttyObject.Keys("Y")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+    end If
+    Call CommonFunctions.GetRDTContent()
+    Delay(2000)
+    If strcomp(RDTContent,"WarReq",vbtextcompare) Then
+        Delay(500)
+        call PuttyObject.Keys("Y")
+        Delay(1000)
+        call PuttyObject.Keys("[Enter]")
+        Delay(1000)
+    end If
+    Delay(1000)
+    call PuttyObject.Keys("[Enter]")
+    Delay(1000)
+    call PuttyObject.Keys("[F10]")
+
+End Function

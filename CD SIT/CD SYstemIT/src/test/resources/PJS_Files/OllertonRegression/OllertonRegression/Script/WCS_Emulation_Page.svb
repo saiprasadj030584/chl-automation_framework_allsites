@@ -1,0 +1,136 @@
+﻿'USEUNIT Auto_Boxed_WCS
+'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance 
+
+public  TBarcodeVal, AddBar
+
+Function Emulate_Boxed
+
+    Aliases.javaw.Shell.Activate
+    Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton5.Click
+    Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 5).Click
+    Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 1).Click
+    Call ImageRepository.WCS.Add.Click
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call ReadExcelData(Filepath,"Barcode","Box_Data")
+    TBarcodeVal = ExpectedValue
+    Call CommonFunctions.ReadExcelData(Filepath,"Add Barcode","Box_Data")
+    AddBar = ExpectedValue
+    Call Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys(TBarcodeVal)
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("GIB001SP01")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Text.Click
+    Call ImageRepository.WCS.Tote.Click
+    Delay(500)
+    Sys.Desktop.Keys("[Tab]")
+    Call Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text3.Keys(AddBar)
+    Delay(500)
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("500")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("500")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("500")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("500")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("0")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("0")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Sys.Desktop.Keys("0")
+    Sys.Desktop.Keys("[Tab]")
+    Delay(500)
+    Call Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+    Aliases.javaw.Shell5.Composite.Composite.Composite.Composite2.Button.Click
+    Delay(3000)
+    Call Aliases.javaw.SWTObject("Shell", "ant - Emulation Boxed : Start > MFS > MFS Emulation > Emulation Boxed").SWTObject("Composite", "").SWTObject("Composite", "", 2).SWTObject("SashForm", "", 2).SWTObject("Composite", "", 1).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 1).Click
+    Delay(2000)
+    
+End Function
+
+
+Function Emulate_Hang
+
+      Delay(1050)
+      Aliases.javaw.Shell.Activate
+      Delay(1000)
+      Call ImageRepository.WCS.MFS.Click
+      Delay(1000)
+      Call ImageRepository.WCS.MFS_Emulation.Click
+      Delay(1000)
+      Call ImageRepository.WCS.Emulation_Hanging.Click
+      Delay(1000)
+      'Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton5.Click
+      'Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 5).Click
+      'Aliases.javaw.Shell.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.SWTObject("PictureButton", "", 2).Click
+      Call ImageRepository.WCS.Add.Click
+      Filepath="C:\Aravind\Input\Auto_Box"
+      Call ReadExcelData(Filepath,"Barcode","Han_Data")
+      TBarcodeVal = ExpectedValue
+      Call ReadExcelData(Filepath,"Add Barcode","Han_Data")
+      ScandatT = ExpectedValue
+      Delay(1000)
+      Call Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text.Keys(TBarcodeVal)
+      Set Mpos = Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text2
+      Call Mpos.Keys("200001")
+      Set ItemCount = Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text3
+      Call ItemCount.Keys("1")
+      Set Filling = Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text4
+      Call Filling.Keys("90")
+      Set HeightClass = Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text5
+      Call HeightClass.Keys("4")
+      Call Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Text6.Keys(ScandatT)
+      Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+      Aliases.javaw.Shell5.Composite.Composite.Composite.Composite2.Button.Click
+      Delay(2000)
+      
+      Call Aliases.javaw.SWTObject("Shell", "ant - Emulation Boxed : Start > MFS > MFS Emulation > Emulation Boxed").SWTObject("Composite", "").SWTObject("Composite", "", 2).SWTObject("SashForm", "", 2).SWTObject("Composite", "", 1).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 1).Click
+End Function

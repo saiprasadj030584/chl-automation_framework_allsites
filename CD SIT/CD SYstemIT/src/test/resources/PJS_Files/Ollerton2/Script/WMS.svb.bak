@@ -1,0 +1,58 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT OLL_100
+'USEUNIT OLL_101_Putawayseq
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_New_location
+'USEUNIT OLL_223
+'USEUNIT OLL_227
+'USEUNIT OLL_230
+'USEUNIT OLL_231
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+Public ITLfooter
+Function ITL   
+  
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+'Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Call searchicon.Click
+Call searchbox.Click
+Call searchbox.Keys("itl")
+Call searchbutton.Click
+Call ImageRepository.WMS.ITL.Click
+Call Runbutton.Click
+Delay(3000)
+Set ITLfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInvTransaction.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Call ITLfooter.Keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInvTransaction.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(Tagid)
+Delay(1000)
+Call ITLfooter.Keys("[F7]")
+Delay(1000)
+Call ImageRepository.WMS.ITL_Doubleclick.DblClick
+Delay(2000)
+End Function
+
+Public UPIFooter
+Function URRN    
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.Click
+Call searchbox.Click
+Call searchbox.Keys("upi")
+Call searchbutton.Click
+Call ImageRepository.WMS.UPI.Click
+Call Runbutton.Click
+Delay(3000)
+Set UPIFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call UPIFooter.Keys("[F2]")
+End Function

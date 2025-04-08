@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{996789E1-FFAD-46B7-A1D7-EBCED0410AA6}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="Donington" />
+	<testData />
+	<data>
+		<item caption="ok" moniker="{928DB156-2A47-49C9-B2B8-E2B0AD442E45}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\ok_1.png" initialHash="82EA19E2" selectionLeft="618" selectionTop="512" selectionWidth="43" selectionHeight="19" initialLeft="618" initialTop="512" initialWidth="43" initialHeight="19" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Dockscheduler" moniker="{15E0F926-4A98-44FA-8CB8-DA76FA29B1B4}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Dockscheduler_1.png" initialHash="C5A80DE0" selectionLeft="368" selectionTop="315" selectionWidth="347" selectionHeight="17" initialLeft="368" initialTop="315" initialWidth="347" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UPIMiscellaneous" moniker="{A5EE9077-283E-4665-9409-00251FD3E80B}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UPIMiscellaneous_1.png" initialHash="9F406E0B" selectionLeft="68" selectionTop="310" selectionWidth="86" selectionHeight="17" initialLeft="68" initialTop="310" initialWidth="86" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="GIB" moniker="{7FCCBE5A-EE6D-4BE1-A93B-4B6C09B930CE}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\GIB_1.png" initialHash="48A15712" selectionLeft="479" selectionTop="213" selectionWidth="66" selectionHeight="31" initialLeft="479" initialTop="213" initialWidth="66" initialHeight="31" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="GIB01" moniker="{8327833D-1EFE-47AB-B99F-657A66B34789}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\GIB01_3.png" initialHash="06AF02B7" selectionLeft="802" selectionTop="213" selectionWidth="72" selectionHeight="30" initialLeft="802" initialTop="213" initialWidth="72" initialHeight="30" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

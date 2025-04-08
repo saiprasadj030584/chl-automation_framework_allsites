@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{5A4464D2-5AB4-427F-894E-FA54E368E285}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="Puttyscreen" />
+	<testData />
+	<data>
+		<item caption="keyboard" moniker="{887EA532-8E02-49B5-8FA1-071F15D702A2}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\keyboard_2.png" initialHash="89CEBBAB" selectionLeft="499" selectionTop="209" selectionWidth="61" selectionHeight="16" initialLeft="499" initialTop="209" initialWidth="61" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Containererror" moniker="{353EC22E-ADA3-41DF-9BCA-1B2402D45EB5}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Containererror.png" initialHash="4D91E2B6" selectionLeft="93" selectionTop="80" selectionWidth="219" selectionHeight="72" initialLeft="93" initialTop="80" initialWidth="219" initialHeight="72" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Receiptmsg" moniker="{C17DB1FD-7FC2-480F-A2B2-410602947FCA}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\irisFA02387DC6D89.png" initialHash="97277E30" selectionLeft="33" selectionTop="183" selectionWidth="165" selectionHeight="26" initialLeft="33" initialTop="183" initialWidth="165" initialHeight="26" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Imperfectmsg" moniker="{B3B0DE1B-E920-4518-A217-F27F03F01D6B}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Imperfectmsg.png" initialHash="32A63576" selectionLeft="76" selectionTop="98" selectionWidth="192" selectionHeight="82" initialLeft="76" initialTop="98" initialWidth="192" initialHeight="82" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Diffupcmsg" moniker="{3813B858-EED6-4BC7-A96C-57AC53DC5375}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Diffupcmsg_1.png" initialHash="55DC25F1" selectionLeft="109" selectionTop="131" selectionWidth="215" selectionHeight="66" initialLeft="109" initialTop="131" initialWidth="215" initialHeight="66" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Puttyclose" moniker="{A6F22B5D-EA73-420A-97C7-2704BB5AD9C0}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Puttyclose.png" initialHash="FADD3C9D" selectionLeft="1331" selectionTop="2" selectionWidth="31" selectionHeight="16" initialLeft="1331" initialTop="2" initialWidth="31" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Puttyexit" moniker="{235AAAB1-5C48-486C-B856-EC41F629699E}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Puttyexit.png" initialHash="416293DB" selectionLeft="656" selectionTop="377" selectionWidth="91" selectionHeight="26" initialLeft="656" initialTop="377" initialWidth="91" initialHeight="26" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Oversizemsg" moniker="{F107027F-A2D1-4ED5-95DF-4C96C7B44F38}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Oversizemsg.png" initialHash="770C2BDF" selectionLeft="131" selectionTop="155" selectionWidth="181" selectionHeight="51" initialLeft="131" initialTop="155" initialWidth="181" initialHeight="51" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Emptytolocationerror" moniker="{309AD469-DC97-4D00-BD7B-6683F28B5B01}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Emptytolocation.png" initialHash="77B0F27C" selectionLeft="108" selectionTop="132" selectionWidth="200" selectionHeight="135" initialLeft="108" initialTop="132" initialWidth="200" initialHeight="135" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Largelocation" moniker="{4EFE3E6D-0CDE-4D8C-A662-AE1C002A0B47}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Largelocation.png" initialHash="7D6719A2" selectionLeft="243" selectionTop="325" selectionWidth="73" selectionHeight="19" initialLeft="243" initialTop="325" initialWidth="73" initialHeight="19" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Tolocationempty" moniker="{2438F54C-CD5B-4732-A337-81A302784C23}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Tolocationempty.png" initialHash="8AA4A339" selectionLeft="83" selectionTop="236" selectionWidth="140" selectionHeight="16" initialLeft="83" initialTop="236" initialWidth="140" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="stgdestovr" moniker="{0F29083A-B665-479A-A692-90E9BED00603}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\stgdestovr.png" initialHash="204A766C" selectionLeft="33" selectionTop="138" selectionWidth="74" selectionHeight="12" initialLeft="33" initialTop="138" initialWidth="74" initialHeight="12" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Loginsuccess" moniker="{FA310F8B-3DF2-4F39-9B20-C56DB58DE221}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Loginsuccess.png" initialHash="3F1710F0" selectionLeft="108" selectionTop="155" selectionWidth="212" selectionHeight="76" initialLeft="108" initialTop="155" initialWidth="212" initialHeight="76" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Loginscreen" moniker="{5321ED10-A246-4030-A3A1-B7250AC93E33}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Loginscreen1.png" initialHash="D4637245" selectionLeft="185" selectionTop="207" selectionWidth="194" selectionHeight="130" initialLeft="185" initialTop="207" initialWidth="194" initialHeight="130" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_puttyscreen" moniker="{4B8FF7DD-D6ED-441C-92BE-E39E91ADDE42}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\iris18F4928660EE4.png" initialHash="F6A5CAF0" selectionLeft="85" selectionTop="140" selectionWidth="181" selectionHeight="67" initialLeft="85" initialTop="140" initialWidth="181" initialHeight="67" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_Loginsuccess" moniker="{E7877CF3-D6B5-4139-9D88-A145DDF36583}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Donington_Loginsuccess.png" initialHash="0818259A" selectionLeft="1" selectionTop="49" selectionWidth="191" selectionHeight="130" initialLeft="1" initialTop="49" initialWidth="191" initialHeight="130" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_trailerunload" moniker="{80C7C2B7-0076-4834-AC6E-F506792150BC}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Donington_trailerunload.png" initialHash="1DEEDF6F" selectionLeft="0" selectionTop="367" selectionWidth="205" selectionHeight="79" initialLeft="0" initialTop="367" initialWidth="205" initialHeight="79" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_docktrailererror" moniker="{1C834DD2-4D82-4202-B18B-248E54EE2C5F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Donington_docktrailererror.png" initialHash="EF23D7DA" selectionLeft="0" selectionTop="467" selectionWidth="158" selectionHeight="42" initialLeft="0" initialTop="467" initialWidth="158" initialHeight="42" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_Trailerconfirmation" moniker="{DC8F751E-405A-41D8-9D8E-6BB9EB282E15}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Trailerconfirmation.png" initialHash="FE50BDD3" selectionLeft="0" selectionTop="626" selectionWidth="189" selectionHeight="83" initialLeft="0" initialTop="626" initialWidth="189" initialHeight="83" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Donington_Dockfinalmsg" moniker="{D2EAA43B-DBAA-486B-9628-2DF95FA92AE1}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Donington_Dockfinalmsg.png" initialHash="1CD6FD9C" selectionLeft="1" selectionTop="498" selectionWidth="182" selectionHeight="51" initialLeft="1" initialTop="498" initialWidth="182" initialHeight="51" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="RDTerror" moniker="{E871A040-980B-4C6D-9137-6E09455B04EE}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\RDTerror.png" initialHash="EE1855AA" selectionLeft="134" selectionTop="379" selectionWidth="188" selectionHeight="55" initialLeft="134" initialTop="379" initialWidth="188" initialHeight="55" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Singleshoe_msg" moniker="{33490930-DFEA-47E8-8D6F-796171B21B63}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Singleshoe_msg.png" initialHash="803E1190" selectionLeft="109" selectionTop="132" selectionWidth="166" selectionHeight="143" initialLeft="109" initialTop="132" initialWidth="166" initialHeight="143" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="PuttyHeader" moniker="{C2C381E6-5F88-42B6-91CD-79FFF4455029}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\PuttyHeader_1.png" initialHash="541FA97E" selectionLeft="76" selectionTop="3" selectionWidth="228" selectionHeight="17" initialLeft="76" initialTop="3" initialWidth="228" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Putty_Maximize" moniker="{93130914-41DD-460F-B436-AA85C908CCEB}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Putty_Maximize.png" initialHash="CDC74C04" selectionLeft="653" selectionTop="62" selectionWidth="27" selectionHeight="13" initialLeft="653" initialTop="62" initialWidth="27" initialHeight="13" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

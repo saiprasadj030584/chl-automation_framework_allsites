@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{684F0A2C-1AE4-4733-AC91-5290159D7B49}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="WMS" />
+	<testData />
+	<data>
+		<item caption="Inventory" moniker="{8E990140-585E-42E3-8F38-365630BC4CF0}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Inventory.png" initialHash="58FC6DDA" selectionLeft="367" selectionTop="356" selectionWidth="454" selectionHeight="23" initialLeft="367" initialTop="356" initialWidth="454" initialHeight="23" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Skudimension" moniker="{3B1A7343-E08D-4787-9580-DB8553859E21}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\irisFA05096597E26.png" initialHash="D7B77834" selectionLeft="274" selectionTop="252" selectionWidth="71" selectionHeight="15" initialLeft="274" initialTop="252" initialWidth="71" initialHeight="15" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Suppliersku" moniker="{99679BB2-09A4-431E-84AC-86BF8203DFDC}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\irisFA050ACF9B4E0.png" initialHash="E7D91E1E" selectionLeft="368" selectionTop="214" selectionWidth="498" selectionHeight="29" initialLeft="368" initialTop="214" initialWidth="498" initialHeight="29" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Packconfig" moniker="{23071BD7-BC67-4A4C-96AB-5CE426354031}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\irisFA050CD12D9A5.png" initialHash="616291CA" selectionLeft="367" selectionTop="219" selectionWidth="444" selectionHeight="25" initialLeft="367" initialTop="219" initialWidth="444" initialHeight="25" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Inventorymisc" moniker="{99A4FBA2-450F-4BDA-8A60-F992694F071F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Inventorymisc.png" initialHash="691FC38A" selectionLeft="64" selectionTop="238" selectionWidth="94" selectionHeight="22" initialLeft="64" initialTop="238" initialWidth="94" initialHeight="22" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Inventorygeneral" moniker="{9093003C-D60C-4F60-A9FD-040A6EB56716}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Inventorygeneral_1.png" initialHash="50D10F14" selectionLeft="11" selectionTop="240" selectionWidth="50" selectionHeight="16" initialLeft="11" initialTop="240" initialWidth="50" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Wmsclose" moniker="{1AC96997-B3C2-4652-A463-040C40488F79}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Wmsclose.png" initialHash="F1F48809" selectionLeft="1332" selectionTop="3" selectionWidth="29" selectionHeight="17" initialLeft="1332" initialTop="3" initialWidth="29" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Largesku1" moniker="{94CE500F-B3BA-494D-9588-851D1A6D9403}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Largesku1.png" initialHash="5212F68E" selectionLeft="922" selectionTop="363" selectionWidth="12" selectionHeight="13" initialLeft="922" initialTop="363" initialWidth="12" initialHeight="13" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Packconfwarning" moniker="{CEA6BD92-78C6-4EF9-969A-859718C11FF3}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Packconfwarning.png" initialHash="3F80FF3D" selectionLeft="507" selectionTop="284" selectionWidth="352" selectionHeight="200" initialLeft="507" initialTop="284" initialWidth="352" initialHeight="200" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Location" moniker="{6C09FDAC-90C6-4BAA-8D5A-FE61AE4FCB93}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Location.png" initialHash="4EC36E53" selectionLeft="366" selectionTop="386" selectionWidth="465" selectionHeight="23" initialLeft="366" initialTop="386" initialWidth="465" initialHeight="23" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Resultmsg" moniker="{BA9F167F-09F3-4D71-8FD8-4A284E2C9E37}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Resultmsg.png" initialHash="C99E316A" selectionLeft="4" selectionTop="526" selectionWidth="104" selectionHeight="30" initialLeft="4" initialTop="526" initialWidth="104" initialHeight="30" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Inventoryuserdef" moniker="{241B3DB6-B52F-46DE-B465-F9F9B89EAFD7}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Inventoryuserdef_1.png" initialHash="A5AD0EED" selectionLeft="269" selectionTop="239" selectionWidth="79" selectionHeight="18" initialLeft="269" initialTop="239" initialWidth="79" initialHeight="18" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="doubleclick" moniker="{386F4802-949D-45C7-AC49-3F16EEBD91C6}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\doubleclick.png" initialHash="F6D118C0" selectionLeft="172" selectionTop="232" selectionWidth="252" selectionHeight="36" initialLeft="172" initialTop="232" initialWidth="252" initialHeight="36" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="putseq" moniker="{61536DA5-0194-4726-B28C-1E0AE6331148}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\putseq.png" initialHash="319BDC92" selectionLeft="14" selectionTop="177" selectionWidth="88" selectionHeight="19" initialLeft="14" initialTop="177" initialWidth="88" initialHeight="19" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="SKU" moniker="{9082BB53-8CE0-4CAA-BDAA-54DCD940969F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\SKU_1.png" initialHash="56414413" selectionLeft="367" selectionTop="294" selectionWidth="430" selectionHeight="18" initialLeft="367" initialTop="294" initialWidth="430" initialHeight="18" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="ITL" moniker="{C4F5F7C7-3F56-454C-B5A6-EC7B44AE1D5D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\ITL.png" initialHash="BAF87CCD" selectionLeft="368" selectionTop="304" selectionWidth="544" selectionHeight="17" initialLeft="368" initialTop="304" initialWidth="544" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="ITL_Doubleclick" moniker="{B0AFAE7D-B2A6-4254-9041-77F6A2600B49}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\ITL_Doubleclick.png" initialHash="8F5FB2D8" selectionLeft="523" selectionTop="198" selectionWidth="80" selectionHeight="33" initialLeft="523" initialTop="198" initialWidth="80" initialHeight="33" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UPI" moniker="{7577A52E-F678-4744-B4AF-AB2979919087}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UPI.png" initialHash="33561E05" selectionLeft="366" selectionTop="293" selectionWidth="579" selectionHeight="21" initialLeft="366" initialTop="293" initialWidth="579" initialHeight="21" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Userdefined_UPILINES" moniker="{F60590BB-BE46-487B-8A92-57A6B1FFE629}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Userdefined_UPILINES.png" initialHash="626A96F3" selectionLeft="153" selectionTop="280" selectionWidth="97" selectionHeight="33" initialLeft="153" initialTop="280" initialWidth="97" initialHeight="33" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UPIReceipt_Misc" moniker="{88C612C7-8E97-427F-A653-54EB81A602D3}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UPIReceipt_Misc.png" initialHash="F06B8CA3" selectionLeft="68" selectionTop="275" selectionWidth="87" selectionHeight="17" initialLeft="68" initialTop="275" initialWidth="87" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="UPIReceipt_Userdefine" moniker="{9163BA16-DD58-4CAF-A458-A885718F2C7B}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\UPIReceipt_Userdefine.png" initialHash="77EADF2F" selectionLeft="162" selectionTop="275" selectionWidth="75" selectionHeight="17" initialLeft="162" initialTop="275" initialWidth="75" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

@@ -1,0 +1,214 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal_URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+'USEUNIT WCS
+
+
+
+
+Public Bookingid
+Function Dockscheduler
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+'#Search  Dock scheduler table
+Call searchbox.Click
+Call searchbox.Keys("Dock Scheduler")
+Call searchbutton.Click
+Delay(1000)
+Call ImageRepository.Donington.Dockscheduler.Click
+Call Runbutton.Click
+Delay(3000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane2.Panel.DCSGridFlowPanel.DCSRadioButton.Panel.Panel.Label.Click
+Dim Dockfooter 
+Set Dockfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+Call Dockfooter.keys("[F7]")
+Delay(2000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.BuildModifyPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.Keys("Delivery")
+'ASNID="0440OLLBOX"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.BuildModifyPanel.DCSTabbedPane.Panel.Panel.DeliverySearchPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(ASNID)
+Delay(1000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.BuildModifyPanel.DCSTabbedPane.Panel.Panel2.DCSButton.Click
+ Delay(2000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.BuildModifyPanel.DCSTabbedPane2.Panel.DCSGridFlowPanel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(ASNID)
+Delay(1000)
+ Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane3.Panel.BuildModifyPanel.DCSTabbedPane2.Panel.DCSGridFlowPanel.Panel.Panel.DCSButton.Click
+Call Dockfooter.keys("[F7]")
+Call DockScrollbar
+Delay(1000)
+Call Dockfooter.keys("[F7]")
+Delay(1000)
+Aliases.java2.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.keys("In Progress")
+Delay(2000)
+Aliases.java2.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys("1")
+Delay(2000)
+Aliases.java2.PopupScreen.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys("1")
+Delay(1000)
+Call ImageRepository.Donington.ok.Click
+Delay(1000)
+Dim x
+x=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane4.Panel.FinishTextArea.getText  
+temp=split(x,":")
+Bookingid=trim(temp(1))
+Log.Message "Bookingid is" & Bookingid
+Delay(1000)
+Call Dockfooter.keys("[F12]")
+Delay(1000)
+Call Dockfooter.keys("[Esc]")
+End Function
+
+Function DockScrollbar
+Dim HorizontalBar
+set HorizontalBar =Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSDockScheduler.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.Panel.DCSTableScrollPane.ScrollPane_ScrollBar
+ Max = HorizontalBar.wMax -2635
+  HorizontalBar.wPosition = Max 
+  Call ImageRepository.Donington.GIB01.Click
+  End Function
+  
+Function Yardcheckin
+  Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+'#Search  yardcheckin table
+Call searchbox.Click
+Call searchbox.Keys("yard check-in")
+Call searchbutton.Click
+Call Runbutton.Click
+Delay(3000)
+'#tractor name
+
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(Tractor)
+Delay(1000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.keys(Driver)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSCheckBox.Panel.CheckBox.Click
+
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.keys("ROYALMAIL")
+Dim Yardfooter
+   Set Yardfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.WizardButtonBar
+'Trailerno="0440"
+'Bookingid="I2912"
+Delay(2000)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane.TractorPanel.DCSGridFlowPanel.DCSTabbedPane.Panel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.keys(Bookingid)
+Delay(1000)
+
+If Aliases.java2.MessageBox2.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists Then
+Log.message "Booking reference is wrong"
+End if
+Delay(1000)
+Call Yardfooter.keys("[F7]")
+Delay(1000)
+if Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Exists Then
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+End If
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(Trailerno)
+Delay(1000)
+Dim Yardtable
+Set Yardtable=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable
+Call Yardtable.Keys("[Tab]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSComboBox.Panel.Panel.ComboBox.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSComboBox.Panel.Panel.ComboBox.keys("20ft container")
+Call Yardtable.Keys("[Tab]")
+Call Yardtable.Keys("[Tab]")
+Call Yardtable.Keys("[Tab]")
+Call Yardtable.Keys("[Tab]")
+Delay(500)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane2.TrailerPanel.DCSGridFlowPanel.DCSTableScrollPane.Viewport.DCSTable.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys("UNLOADED")
+Call Yardfooter.keys("[F7]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckIn.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.WizardTabbedPane3.FinishPanel.DCSGridFlowPanel.DCSCheckBox.Panel.CheckBox.Click
+Call Yardfooter.keys("[F12]")
+Aliases.java2.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys("^a[BS]" &"GIB01")
+Aliases.java2.PopupScreen2.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton.Click
+Call Yardfooter.keys("[Esc]")
+End Function
+
+
+
+Function YardCheckout
+    Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+'#Search  yardcheck-out table
+Call searchbox.Click
+Call searchbox.Keys("yard check-Out")
+Call searchbutton.Click
+Call Runbutton.Click
+Delay(3000)
+   Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckOut.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys(tractor)
+       Dim YardFooter
+       set YardFooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardCheckOut.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar
+        Call YardFooter.Keys("[F7]")
+    Delay(500)
+    Call YardFooter.Keys("[F7]")
+    Delay(500)
+    Call YardFooter.Keys("[F7]")
+    Delay(500)
+    Call YardFooter.Keys("[F7]")
+    Delay(500)
+    Call YardFooter.Keys("[F12]")
+    Delay(500)
+    Call YardFooter.Keys("[Esc]")
+End Function
+
+
+
+Function YardClearance
+'Trailerno="9005"
+     Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+'#Search  yarddock clearnance
+Call searchbox.Click
+Call searchbox.Keys("Yard Dock Clearance")
+Call searchbutton.Click
+Call Runbutton.Click
+Delay(1000)
+    
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(Dockdoor)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.WizardTabbedPane.StartPanel.Panel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.keys(Trailerno)
+     Dim YaedclearFooter 
+    set YardclearFooter = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar
+    Call YardclearFooter.Keys("[F7]")
+    Delay(500)
+    Call YardclearFooter.Keys("[F7]")
+    Delay(500)
+    Call YardclearFooter.Keys("[F7]")
+    Delay(500)
+    Call YardclearFooter.Keys("[F7]")
+    Delay(500)
+    Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSYardDockClearance.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.WizardTabbedPane2.FinishPanel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys("GATEOUT")
+
+     
+    Call YardclearFooter.Keys("[F12]") 
+    Call YardclearFooter.Keys("[Esc]")
+    
+End Function
+
+
+
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="SKU_Datasetup" key="{EEBE183C-A235-43BD-9EBC-EDDDB336D904}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SKU_Datasetup.svb" />
+		</child>
+		<child name="Commonfunctions" key="{48769F0A-A694-4B26-A132-A91F2EDA5DBD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Commonfunctions.svb" />
+		</child>
+		<child name="Mainfunction" key="{154AACD5-3752-4D28-AE55-13DA262202D4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Mainfunction.svb" />
+		</child>
+		<child name="Puttyfunctionalities" key="{EB1AC252-5EB2-4E0B-B511-71BDF487F5B8}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Puttyfunctionalities.svb" />
+		</child>
+		<child name="OLL_230_ImperfectReceiving" key="{5EA44552-4564-4529-9758-6C0BCCD3FACD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_230_ImperfectReceiving.svb" />
+		</child>
+		<child name="OLL_223_Leftshoereceiving" key="{F7E0C3A9-1A85-45CD-A179-197E72C0F6AC}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_223_Leftshoereceiving.svb" />
+		</child>
+		<child name="OLL_227_RightShoeReceiving" key="{75E4D649-1975-40A3-9011-67AF239D22A4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_227_RightShoeReceiving.svb" />
+		</child>
+		<child name="OLL_147_Notfitpigeon_" key="{2D1F1A8C-F63F-4070-84C6-2D6945B6F865}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_147_Notfitpigeon_.svb" />
+		</child>
+		<child name="OLL_148_Notfitshelf" key="{57D07EEA-2FBD-4930-803A-58E745BA4207}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_148_Notfitshelf.svb" />
+		</child>
+		<child name="Otherfunctions" key="{1DD45445-0165-4A91-8C1D-6C556C9F6242}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Otherfunctions.svb" />
+		</child>
+		<child name="Test" key="{FE8FFEEF-36C1-463D-8FEE-3397D077549F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Test.svb" />
+		</child>
+		<child name="OLL_275_Postal_Alone" key="{A4DE9FB8-BE43-4444-8479-2FEE1140C928}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_275_Postal_Alone.svb" />
+		</child>
+		<child name="DB_functionlities" key="{7955BEF5-4A5B-480B-BC16-FC405AEB16A6}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DB_functionlities.svb" />
+		</child>
+		<child name="OLL_101_Putsequence" key="{25CCF179-CECC-479B-9FCB-C300475C34C0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_101_Putsequence.svb" />
+		</child>
+		<child name="OLL_146_Locationsequence" key="{2B707D8C-0E08-4FE6-B131-CFA6EDE9A9F3}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_146_Locationsequence.svb" />
+		</child>
+		<child name="OLL_149_NewLocation" key="{E0F37F05-43B7-4FED-90B0-C260403332A5}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_149_NewLocation.svb" />
+		</child>
+		<child name="OLL_277_Postal_URRN" key="{9F0200CA-8DE1-445F-9203-C3FFD0D71708}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_277_Postal_URRN.svb" />
+		</child>
+		<child name="OLL_288_Box_Pallet_transfer" key="{B07B0536-1491-4835-8A62-D97765D94F78}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_288_Box_Pallet_transfer.svb" />
+		</child>
+		<child name="Olletron" key="{4DC81460-689F-4625-AAF0-47D0CC1C4B96}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Olletron.svb" />
+		</child>
+		<child name="Donington" key="{E6927EF6-4CBC-4FF6-8217-1E7D282974F4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Donington.svb" />
+		</child>
+		<child name="WCS" key="{A882BD4A-2DBE-42D4-A8B0-C73E4B63090A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="WCS.svb" />
+		</child>
+		<child name="OLL_100_Largesku" key="{B573C80A-76E4-4918-B079-BED142B8A172}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_100_Largesku.svb" />
+		</child>
+		<child name="OLL_276_URRN" key="{F908DC2C-60CD-4EB4-8FE1-F5BA6535140F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_276_URRN.svb" />
+		</child>
+		<child name="OLL_231_Imperfect_Failed" key="{23161C78-74BA-4083-AC2B-79476E2CFAE4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="OLL_231_Imperfect_Failed.svb" />
+		</child>
+	</children>
+	<folders />
+</Root>

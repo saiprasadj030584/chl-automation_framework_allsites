@@ -1,0 +1,223 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal_URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+
+
+  
+
+
+
+   
+    
+    
+       Function DBconnection_Location
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset") 
+'    CheckString="MCD10A01"
+'    Location1="MCD09J03"
+'MsgBox CheckString
+    Log.Message "Putaway location is:" & CheckString
+Dim Locationsubstring
+Locationsubstring=Left(CheckString,5)
+'MsgBox Locationsubstring
+
+    Query= "select LOCATION_ID from LOCATION where LOCATION_ID like '"&Locationsubstring&"%' and  Height=0.2 and Depth=0.39 and width=0.3 and weight=5 and VOLUME=0.0234 and LOCK_STATUS='UnLocked'order by PUT_SEQUENCE Asc"
+' Query= "select * from (select location_id from (select LOCATION_ID from LOCATION where VOLUME=0.0693 and CURRENT_VOLUME=0 order by PUT_SEQUENCE Asc)A where ROWNUM <=2)"
+    recordSetOBJ.Open Query,connectionOBJ
+    Dim x
+    x=1
+Do until recordSetOBJ.EOF
+   If recordSetOBJ.EOF <> True Then
+       LocationExist=recordSetOBJ.fields("LOCATION_ID")    
+   Dim Location1     
+    If Location1= Empty AND LocationExist=CheckString  Then
+  Location1=CheckString
+'    MsgBox Location1
+     Log.message("Location is exists:"&Location1)
+   IndexValueData=x
+    Log.message "Index value is:" & IndexValueData 
+
+    Dim Location2
+    ElseIf Location2= Empty AND LocationExist=CheckString  Then
+
+Location2 =CheckString
+    
+'       MsgBox Location2
+      Log.message("Location is exists:"&Location2)
+        IndexValueData1=x
+        if y=IndexValueData1 then 
+        Log.message "Showing correct sequence value"
+        Else 
+        Log.Error "Its not showing correct sequece"
+        End If 
+      Exit Do
+    end if 
+     x=x+1
+     recordSetOBJ.MoveNext     
+      End If 
+      Loop 
+    End Function
+
+Function DBconnection_ITL
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset")     
+    Tagid1="68691"
+    Tagid2="68692"
+Delay(2000)
+
+    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID in('"&Tagid1&"','"&Tagid2&"')" 
+    recordSetOBJ.Open Query,connectionOBJ
+    Set msglist= CreateObject("System.Collections.ArrayList")
+   Do While Not recordSetOBJ.EOF 
+MessageIds=recordSetOBJ.fields("V_Message_ID")
+   msglist.add(MessageIds)
+   Log.message MessageIds
+'     MsgBox LocationIds
+   recordSetOBJ.MoveNext
+       Loop       
+     MsgId1= msglist.Item(0)
+      Log.message "MessgaeId1:" &MsgId1
+      MsgId2= msglist.Item(1)
+         Log.message "MessgaeId2 is:" &MsgId2
+    recordSetOBJ.close 
+    End Function
+    
+    Function DBconnection_Msgid
+'    Delay(300000)
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset")  
+'Tagid1="72251"
+'MsgBox Tagid1
+Delay (2000)
+    Query= "Select V_Message_ID from INVENTORY_TRANSACTION where TAG_ID='"&Tagid1&"'" 
+    recordSetOBJ.Open Query,connectionOBJ
+    Set msglist= CreateObject("System.Collections.ArrayList")
+          Do While NOT recordSetOBJ.EOF 
+    MessageIds=recordSetOBJ.fields("V_Message_ID")
+     msglist.add(MessageIds)
+'    MsgBox MessageIds
+recordSetOBJ.MoveNext
+Loop    
+     
+     MsgId1= msglist.Item(0)  
+   MsgId2=msglist.Item(1)
+      Log.message "Messageid1 is:" &MsgId1 
+      Log.message "Messageid2 is:" &MsgId2                     
+    End Function
+    
+  
+   Public Loc1,Loc2,Loc3,Loc4,Tag1,Tag2,Tag3,Tag4
+Function DBconnection_Putawaysequence
+        Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset") 
+
+'Finallocation1="MCD08J03"
+'Finallocation2="MCD09A01"
+'Finallocation3="MCD09A03"
+'Finallocation4="MCD09B01"
+
+Query="Select mt.tag_id,loc.location_id from move_task mt Inner Join Location Loc On mt.To_Loc_id=loc.location_id where loc.location_id in ('"&Finallocation1&"','"&Finallocation2&"','"&Finallocation3&"','"&Finallocation4&"') Order by loc.Put_Sequence ASC"
+'Query= "Select PUT_SEQUENCE,LOCATION_ID from location where LOCATION_ID in ('"&Finallocation1&"','"&Finallocation2&"','"&Finallocation3&"','"&Finallocation4&"')  ORDER BY PUT_SEQUENCE ASC"
+    recordSetOBJ.Open Query,connectionOBJ 
+   Set Loclist= CreateObject("System.Collections.ArrayList")
+   Set Taglist=CreateObject("System.Collections.ArrayList")
+   Do While Not recordSetOBJ.EOF 
+LocationIds=recordSetOBJ.fields("LOCATION_ID")
+Tagids=recordSetOBJ.fields("TAG_ID")
+   Loclist.add(LocationIds)
+   Taglist.add(Tagids)
+'   Log.message LocationIds
+'   MsgBox LocationIds
+   recordSetOBJ.MoveNext
+       Loop
+       '*Fetching Location's from db 
+      Loc1= Loclist.Item(0)
+      Log.message "First Location is" &Loc1
+      Loc2= Loclist.Item(1)
+      Log.message "Second Location is" &Loc2
+      Loc3= Loclist.Item(2)
+      Log.message "Third Location is" &Loc3
+      Loc4= Loclist.Item(3)
+      Log.message "Fourth Location is" &Loc4
+     
+      '*Fetching tagid's from db 
+      Tag1=Taglist.Item(0)      
+       Log.message "1st Tagid is:" &Tag1
+       Tag2=Taglist.Item(1)
+       Log.message "2nd Tagid is:" &Tag2
+       Tag3=Taglist.Item(2)
+       Log.message "3rd Tagid is:" &Tag3
+       Tag4=Taglist.Item(3)
+       Log.message "4th Tagid is:" &Tag4
+    recordSetOBJ.close  
+End Function

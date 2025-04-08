@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{5238AF17-5FE2-48FF-8BCC-9803A975A4F4}" version="12.0">
+	<children>
+		<child name="DBTables" key="{8EEB346A-6631-4C19-9A84-CD02FA8EAD1B}" type="DB tables" typeId="{C3BE8E0F-FB1F-487B-9AE3-BCFEB91CBEFF}" pluginName="Stores">
+			<data path="DBTables\DBTables.tcDB" />
+		</child>
+	</children>
+	<folders />
+</Root>

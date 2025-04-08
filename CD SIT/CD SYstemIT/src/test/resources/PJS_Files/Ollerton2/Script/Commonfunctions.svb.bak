@@ -1,0 +1,137 @@
+﻿'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal___URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+'USEUNIT WCS
+
+
+
+
+Public RDTContent,ExpectedValue,LocationExist
+Public Pallet
+
+Function WMSlogin
+
+    Call TestedApps.WMS_Login.Run
+'    Do Until Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.WMS_Username.Exists 
+   Do Until Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Exists 
+      
+      If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Exists Then
+      
+      Exit Do   
+   End If       
+       Loop 
+Delay(100)
+
+'#Username
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys "P9150308O"
+'#Password
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys "1234"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.Panel.DCSButton.Click
+Delay(8000)
+'#msg box alert
+if Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists then 
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+End if
+Delay(2000)
+'#Close the Advanced ecom pack 
+If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSvAdvEComPacking.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar.DCSButton.Exists Then
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSvAdvEComPacking.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar.DCSButton.Click
+End If
+'#msg box alert
+if Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists then 
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+End if
+Delay(2000)
+End Function
+
+Function Donington_WMSlogin
+TestedApps.WMS_Login.Run
+
+Delay(1000)
+Do Until Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exists
+Loop
+If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Exixts Then
+
+'#Username
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys "P9150308"
+'#Password
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys "1234"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.Panel.DCSButton.Click
+Delay(8000)
+End IF 
+
+'#msg box alert
+if Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists then 
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+End if
+Delay(2000)
+'#Close the Advanced ecom pack 
+If Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSvAdvEComPacking.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar.DCSButton.Exists Then
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.WZSvAdvEComPacking.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.WizardButtonBar.DCSButton.Click
+End If
+'#msg box alert
+if Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Exists then 
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton.Click
+End if
+Delay(2000)
+End Function
+
+Function GetRDTContent() 
+Delay(1000)   
+    ImageRepository.Puttyscreen.PuttyHeader.Click
+     Aliases.putty.wndPuTTY.SystemMenu.Click "Copy All to Clipboard"
+     Delay(500)
+    Set objHTML = CreateObject("htmlfile")
+    RDTContent = objHTML.ParentWindow.ClipboardData.GetData("text")
+    RDTContent = right(RDTContent,500)   
+End Function
+
+Function Random10
+    max=999999999
+    min=111111111
+    Randomize
+    Pallet = Int((max-min+1)*Rnd+min)
+End Function 
+
+
+
+Function CSVtoXLSConversion(CSVfilePath,XLSFilePath)
+Dim myXL
+Set myXL=CreateObject ("Excel.Application")
+myXL.WorkBooks.Open CSVfilePath
+
+myXL.DisplayAlerts=False 'To keep Excel hidden
+myXL.ActiveWorkbook.SaveAs XLSfilePath, -4143 'IDK what the "-4143" does
+myXL.DisplayAlerts=True
+myXL.ActiveWorkbook.Close False
+myXL.Quit
+Set myXL = Nothing
+
+End Function
+
+Function KillWCSApplication
+      Set shell = CreateObject("WScript.Shell")
+      shell.CurrentDirectory = "C:\Users\P9150308\Desktop"
+      shell.Run "KillCateA.bat"
+End Function 
+
+
+

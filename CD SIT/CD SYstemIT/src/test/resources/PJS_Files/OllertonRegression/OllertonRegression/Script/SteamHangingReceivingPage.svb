@@ -1,0 +1,50 @@
+﻿Function BlindReceiving
+
+      set PuttyObject = Aliases.putty.wndPuTTY
+      Delay(1000)
+      call PuttyObject.Keys("2111[Enter]") 
+      ImageRepository.WMSCATEA.PuttyHeaderRC.ClickR
+      Aliases.putty.wndPuTTY.SystemMenu.Click "Change Settings..."
+      ImageRepository.WMSCATEA.Keyboard.Click
+      Aliases.putty.wndPuTTYConfigBox2.radioXtermR6.Click
+      Aliases.putty.wndPuTTYConfigBox2.btnApply.Click
+      Call CommonFunctions.GetRDTContent()
+      
+      If strcomp(RDTContent,"1/2",vbtextcompare) Then
+          call PuttyObject.Keys("CLOLRP01[Tab]")
+          call PuttyObject.Keys("POSTAL[Tab]")
+          call PuttyObject.Keys(SupplierSKUVal&"[Tab]")
+          call PuttyObject.Keys("[Tab]")
+          Delay(1000)
+          call PuttyObject.Keys("STEAM")
+          call PuttyObject.Keys("ZOL0000001")
+          call PuttyObject.Keys("[F4]")
+          delay(2000)
+      End If
+  
+      Call GetRDTContent()
+      
+      If strcomp(RDTContent,"2/2",vbtextcompare) Then
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("[Tab]")
+          delay(1000)
+          call PuttyObject.Keys("P1125-5924-DUMMY[Enter]")
+          Delay(1000)
+      End If      
+      
+      If strcomp(RDTContent,"Receipt",vbtextcompare) Then
+         Delay(1000)
+         call PuttyObject.Keys("[Enter]")
+         call PuttyObject.Keys("[F10]")
+         Delay(1000)
+         call PuttyObject.Keys("[F10]")
+      End If 
+ 
+End Function

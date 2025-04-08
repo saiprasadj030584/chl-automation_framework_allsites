@@ -1,0 +1,50 @@
+﻿Function FinalputawayNewLocation
+ Delay(3000)
+ Set Puttyfun= Aliases.putty.wndPuTTY
+ Aliases.putty.wndPuTTY.Activate
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys (Tagid)
+ Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+    CheckString=mid(LocationPutty,1,8)
+'    CheckString="MAA01A01"
+    Dim x
+    x=2
+    if(x=0) Then
+    Dim Location1
+    Location1=CheckString
+    Log.Message ("Final location1 is:" & CheckString)
+   x=x+1
+    ElseIf(x=1) Then 
+    Dim Location2
+    Location2=CheckString
+    x=x+1
+    Log.Message ("Final location2 is:" & CheckString)
+    Else
+       Location3=CheckString
+    x=x+2  
+    Log.Message ("Final location3 is:" & CheckString)
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Log.Message ("Final location is" & CheckString)
+ Delay(2000)
+
+  End If   
+  End If
+    Delay(2000)
+    Call Puttylogout
+
+End Function

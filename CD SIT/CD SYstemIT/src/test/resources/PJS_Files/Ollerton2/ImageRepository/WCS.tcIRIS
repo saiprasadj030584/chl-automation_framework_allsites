@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{419CB102-3932-4B59-B3A5-7153F4E6C9F5}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="WCS" />
+	<testData />
+	<data>
+		<item caption="MFS_Emulation" moniker="{BC94EF22-4A79-4BD2-9A62-FD92A484DB5B}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\MFS_Emulation.png" initialHash="3252BE36" selectionLeft="6" selectionTop="348" selectionWidth="175" selectionHeight="25" initialLeft="6" initialTop="348" initialWidth="175" initialHeight="25" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="EmulationBox" moniker="{3110FF1D-47F4-4EDD-B580-5011A4231BAD}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\EmulationBox.png" initialHash="10D360B3" selectionLeft="20" selectionTop="220" selectionWidth="138" selectionHeight="25" initialLeft="20" initialTop="220" initialWidth="138" initialHeight="25" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Addicon" moniker="{046BEEEA-6742-4848-8B2B-32A2A49AB6A6}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Addicon.png" initialHash="13446A17" selectionLeft="248" selectionTop="75" selectionWidth="29" selectionHeight="43" initialLeft="248" initialTop="75" initialWidth="29" initialHeight="43" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Editicon" moniker="{4FDB9DF4-5B80-41CB-AF86-6BCCA5C3F473}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Item1.png" initialHash="380673AD" selectionLeft="289" selectionTop="74" selectionWidth="39" selectionHeight="48" initialLeft="289" initialTop="74" initialWidth="39" initialHeight="48" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="DWH" moniker="{D120F10F-3E8C-46BA-A123-57BF1945B65F}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\DWH.png" initialHash="64E3D85F" selectionLeft="2" selectionTop="315" selectionWidth="119" selectionHeight="24" initialLeft="2" initialTop="315" initialWidth="119" initialHeight="24" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="WCS" moniker="{59E08A9E-BDD9-4746-B614-28638051EA47}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\WCS.png" initialHash="A84ED5F6" selectionLeft="6" selectionTop="251" selectionWidth="68" selectionHeight="26" initialLeft="6" initialTop="251" initialWidth="68" initialHeight="26" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Journal" moniker="{F521964D-AFD2-40E9-BB89-069D527CE76D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Journal.png" initialHash="DF7A2163" selectionLeft="3" selectionTop="218" selectionWidth="135" selectionHeight="27" initialLeft="3" initialTop="218" initialWidth="135" initialHeight="27" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Loadunit" moniker="{EAE3C80E-7FF3-4277-A78A-8268A3A499C4}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Loadunit.png" initialHash="30D78B59" selectionLeft="25" selectionTop="221" selectionWidth="88" selectionHeight="22" initialLeft="25" initialTop="221" initialWidth="88" initialHeight="22" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Barcode" moniker="{D703002B-D795-4E73-856D-9C328E702165}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Barcode_1.png" initialHash="E6069A2C" selectionLeft="325" selectionTop="276" selectionWidth="48" selectionHeight="15" initialLeft="325" initialTop="276" initialWidth="48" initialHeight="15" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Location" moniker="{E9815662-75C6-4EB6-9DAD-E5BC3B696B78}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Location_1.png" initialHash="8CCB5438" selectionLeft="325" selectionTop="291" selectionWidth="54" selectionHeight="15" initialLeft="325" initialTop="291" initialWidth="54" initialHeight="15" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="RPBlocation" moniker="{DB7E4F5B-8156-41FD-B3CF-00BA06954A21}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\RPBlocation.png" initialHash="CBED0472" selectionLeft="614" selectionTop="187" selectionWidth="30" selectionHeight="36" initialLeft="614" initialTop="187" initialWidth="30" initialHeight="36" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Targetlocation" moniker="{4AA72D11-9B2F-4FFD-8D00-31B881255E1E}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Targetlocation.png" initialHash="FAF51FB2" selectionLeft="1219" selectionTop="185" selectionWidth="26" selectionHeight="39" initialLeft="1219" initialTop="185" initialWidth="26" initialHeight="39" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Tote" moniker="{F902023B-1D5E-4336-9328-CD1194BBE001}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Tote_1.png" initialHash="3570F9ED" selectionLeft="620" selectionTop="215" selectionWidth="33" selectionHeight="11" initialLeft="620" initialTop="215" initialWidth="33" initialHeight="11" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Flagenabled" moniker="{0599156E-619B-44D8-9724-34F965FDFD57}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Flagenabled.png" initialHash="96200F1A" selectionLeft="1278" selectionTop="186" selectionWidth="63" selectionHeight="40" initialLeft="1278" initialTop="186" initialWidth="63" initialHeight="40" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Scrollclick" moniker="{63DBDDD3-F7FE-44DD-8DEE-E16BDFFAAF75}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Scrollclick.png" initialHash="BC658C1A" selectionLeft="1303" selectionTop="466" selectionWidth="17" selectionHeight="10" initialLeft="1303" initialTop="466" initialWidth="17" initialHeight="10" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Closeicon" moniker="{5912415D-906F-4F94-B4E7-758B0FC524F9}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Closeicon.png" initialHash="26043E86" selectionLeft="1279" selectionTop="31" selectionWidth="31" selectionHeight="17" initialLeft="1279" initialTop="31" initialWidth="31" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Name" moniker="{54E3C3C1-B851-4E8A-B776-D548811BB1C7}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Name_1.png" initialHash="7B9EF7E5" selectionLeft="283" selectionTop="166" selectionWidth="34" selectionHeight="14" initialLeft="283" initialTop="166" initialWidth="34" initialHeight="14" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

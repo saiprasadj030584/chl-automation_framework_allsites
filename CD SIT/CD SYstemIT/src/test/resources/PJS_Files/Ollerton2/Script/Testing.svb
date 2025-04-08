@@ -1,0 +1,56 @@
+﻿'USEUNIT Otherfunction
+'USEUNIT Puttyfunctionalities
+ 
+    '# sample
+   
+   Function DBconnection
+    strExplocation="MAA01A01"
+'    strExpSecondlocation="MAA01A04"
+'     strExpFirstlocation=CheckString
+    
+    Dim SERVICE_NAME   
+    SERVICE_NAME = "WMCDSIT"
+    Dim HOST 
+    HOST = "hlxc00dc074.unix.marksandspencercate.com"
+    Dim UserName  
+    UserName = "dcsrpt"
+    Dim Password 
+    Password = "Catea123"   
+    Dim ConnectnString  
+  	ConnectnString = "Driver={Microsoft ODBC for Oracle};Provider=msdaora;Data Source=(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=WMCDSIT))(ADDRESS=(PROTOCOL=TCP)(HOST=hlxc00dc074.unix.marksandspencercate.com)(PORT=1521)));User Id=dcsrpt;Password=Catea123;"
+	  Set connectionOBJ = CreateObject("ADODB.Connection") 
+    connectionOBJ.ConnectionString = ConnectnString
+    connectionOBJ.Open ConnectnString
+    connectionOBJ.CommandTimeout=500
+    set recordSetOBJ = CreateObject("ADODB.recordset") 
+  Query= "select location_id from (select LOCATION_ID from LOCATION where VOLUME=0.0693 and CURRENT_VOLUME=0 order by PUT_SEQUENCE Asc)A where ROWNUM <=2"
+' Query= "select * from (select location_id from (select LOCATION_ID from LOCATION where VOLUME=0.0693 and CURRENT_VOLUME=0 order by PUT_SEQUENCE Asc)A where ROWNUM <=2) where LOCATION_ID=Test"
+    recordSetOBJ.Open Query,connectionOBJ
+ If recordSetOBJ.EOF =FALSE Then
+ Dim strActionFirstLocation
+           strActionFirstLocation=recordSetOBJ.fields("LOCATION_ID").value
+'           Log.Message "First putaway sequence is:"& strActionFirstLocation
+           If strExplocation=strActionFirstLocation Then
+'           If UCase(Trim(strExpFirstLocation))=UCase(Trim(strActionFirstLocation)) Then
+           MsgBox "First row matched"
+           Log.Message "First putaway sequence is:"& strActionFirstLocation
+           recordSetOBJ.Movenext
+Else
+            MsgBox "Second row matched"
+           End If
+        
+                 
+         Else
+         Msgbox"No rows matched"  
+'  
+'  if LocationExist<>"" then 
+''    Log.Message ("Location exists for the value : "&CheckString)
+''        else 
+''    Log.Message ("Location does not exist for the value : "&CheckString)
+''    end if 
+    End if  
+    recordSetOBJ.Close
+      connectionOBJ.Close
+      Set recordSetOBJ=Nothing
+      Set connectionOBJ=Nothing
+    End Function

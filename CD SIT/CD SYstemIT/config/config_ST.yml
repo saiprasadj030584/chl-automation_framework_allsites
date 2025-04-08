@@ -1,0 +1,95 @@
+########################################################################
+# Default settings
+########################################################################
+default:
+ browser-name: ie
+ username: 'buyingT47@mnscorpcate.net'
+ password: 'ThM6VhU4'
+ domain: 'mnsukcate'
+ businessUserName: 'buyingT47@mnscorpcate.net'
+
+ auto-title: 'PLM Automation test results'
+ rpwms-url: 'http://huxc0561.unix.marksandspencercate.com:8880/hlxc00dc075.unix.marksandspencercate.com_wmcdsit/UserLogin.html'
+ tbl-parentcluster: '1'
+ tbl-parentprojectcode: '1'
+ tbl-parentprojectname: '3'
+ tbl-parentautomationsuitname: '3'
+ tbl-parentregion: 'SIT'
+ tbl-testingPhase: '15'
+ sqlDB-host: 'jdbc:sqlserver://MSHSRMNSUKC0117'
+ sqlDB-databaseName: 'NPS_DEV'
+ sqlDB-username: 'NPS_TEST' 
+ sqlDB-password: 'Webservice2017'
+ db-mnsEmailHost: '10.128.3.46'
+ db-mnsEmailPort: '25'
+ db-mnsEmailFrom: 'mnsuk\\y0137206'
+ db-mnsEmailPassword: 'R*C2duBX'
+ alm-domain: 'C&H'
+ alm-executed: '19'
+ alm-projectName: 'PLM Automation'
+ test-caseExecutedManual: '0'
+ test-newlyDevelopedCase: '0'
+ tbl-RequestBy: 'Santhaseelan Shanmugam'
+ tbl-RequestedEmail: 'Santhaseelan.Shanmugam@mnscorpcate.net'
+ emailList: ''
+ cucumber-path: 'Cucumber-Reports'
+ cucumber-zip-path: 'files'
+ puttyUserName: 'p9147280'
+ puttyPassword: 'Secret39'
+ puttySudo: 'sudo su -rpwms'
+ telnetHost: 'huxc0562.unix.marksandspencercate.com'
+
+ 
+ #AutomationDBDetails
+
+ server: mshsrmnsukc0117
+ dataBase: NPS_DEV
+ dbusername: NPS_TEST
+ dbpassword: Webservice2017
+ 
+ 
+ #CXM Application Details
+ cxm-url-st: 'http://mshsrmnsukc0273/cxm_web'
+ cxm-username-st: 'P3007907'
+ cxm-password-st: 'london@99'
+ cxm-db-server-st: 'MSHSRMNSUKC0272'
+ cxm-controlm-server-st: 'MSHSRMNSUKC1703'
+ cxm-DB-host-st: 'jdbc:sqlserver://MSHSRMNSUKC0272'
+ cxm-DB-databaseName-st: 'CXM'
+ cxm-DB-username-st: 'kiruthika.srinivasan' 
+ cxm-DB-password-st: 'India08!'
+
+
+########################################################################  
+# Browser settings
+########################################################################
+chrome: &chrome
+ browser-name: chrome
+ 
+ie: &ie
+ browser-name: ie
+ 
+firefox: &firefox
+ browser-name: firefox
+  
+########################################################################
+# Test Envoronment settings
+########################################################################
+st: &st
+ browser-name: ie
+ auth-username: 'siteadmin'
+ auth-password: 'ASDF!@#$asdf1234'
+ 
+ 
+ 
+ 
+########################################################################  
+# Profile settings
+########################################################################
+dev-st-chrome:
+ <<: *st
+ <<: *chrome  
+ 
+dev-st-ie:
+ <<: *st
+ <<: *ie 

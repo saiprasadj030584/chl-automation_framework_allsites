@@ -1,0 +1,248 @@
+﻿
+Function WCSLogin_CATEA()
+  Set shell = CreateObject("WScript.Shell")
+      shell.CurrentDirectory = "C:\Program Files\AntMAS-CATE-A"
+      shell.Run "startupClientCATE-A.bat"
+Delay(3000)       
+Do Until   Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists
+  Delay(5000)        
+Loop
+Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.keys("^a[BS]" & "poset")
+Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text2.keys("123456")
+Aliases.javaw.Shell.Composite.Composite.Composite.Composite2.Button.Click
+Do until Aliases.javaw.Shell2.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton.Exists
+Delay(2000) 
+Loop
+End Function
+
+
+Function Workstation_A_Login
+  Set shell = CreateObject("WScript.Shell")
+      shell.CurrentDirectory = "C:\Program Files\AntMAS-CATE-A"
+      shell.Run "startupWorkstationCATE-A.bat"
+      Do until  Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists
+      Loop
+ Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.keys("^a[BS]" & "poset")
+Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text2.keys("123456")
+Aliases.javaw.Shell.Composite.Composite.Composite.Composite2.Button.Click
+    End Function 
+    
+    
+    Public Barcode  
+    Function Emulationbox
+'       Barcode="3101155181"        
+'URRNNo="59240000000000000000000155446529"
+      Aliases.javaw.Shell2.Composite.Composite.SashForm.Composite.Composite.Composite.Composite2.PictureButton.Click
+     Call ImageRepository.WCS.MFS_Emulation.Click     
+      Delay(500)
+      Call ImageRepository.WCS.EmulationBox.Click
+       Delay(500)
+       End Function
+       
+           Function Emulationbox_Addnewbarcode
+      Call ImageRepository.WCS.Addicon.click      
+      Delay(500)
+      '#Add barcode
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text.keys(Barcode)
+      Delay(500)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text2.keys("GIB001SP01")
+      Delay(500)
+        Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+        Call ImageRepository.WCS.Tote.Click
+      Delay(500)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text3.keys(URRNNo)
+      Delay(500)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text11.keys("600")
+           Delay(500)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text4.keys("323")
+      Delay(300)
+    Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text5.keys("398")
+      Delay(300)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text6.keys("1000")
+      Delay(300)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text7.keys("0")
+      Delay(300)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text8.keys("0")
+      Delay(300)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text9.keys("0")
+      Delay(500)
+    Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+      Delay(300)
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite.Composite.Composite.Text10.keys("SIT_Manual Repacking")      
+      Aliases.javaw.Shell3.Composite.Composite.Composite.Composite2.Button.Click
+      Delay(1000)    
+           End Function
+    '#Search new barcode
+    
+    Function Barcode_Search
+'    Barcode="3101155181"  
+      Aliases.javaw.Shell10.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.Composite.Composite.PictureButton.Click
+      Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+      Call ImageRepository.WCS.Barcode.Click
+          Delay(1000)           
+   Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.ValidationComposite.Text.keys(Barcode)
+     Delay(500)
+     Aliases.javaw.Shell5.Composite.Composite.Composite.Composite2.Button.click
+     Delay(1000)
+      End Function
+      
+        '#Edit barcode details
+      Function Editbarcode_Emulationbox      
+      Call ImageRepository.WCS.Editicon.Click
+      Delay(500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text2.Keys("^a[BS]")
+      Delay(500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+      Delay(500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite2.Button.Click      
+      Delay(1000)
+'*Refresh the page
+Delay(10000)
+      Aliases.javaw.Shell2.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 2).Click
+     End Function
+    
+     Function Editlocation_Manualreceiving
+       Call ImageRepository.WCS.Editicon.Click
+      Delay(500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Text.keys("^a[BS]" & RQC011SP01)
+      Delay(500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite.Composite.Composite.Button.Click
+      Delay (500)
+      Aliases.javaw.Shell4.Composite.Composite.Composite.Composite2.Button.Click
+     End Function
+    
+    Function Loadunit    
+'    Barcode="3101155181"  
+    Aliases.javaw.Shell2.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton.Click
+    Call ImageRepository.WCS.DWH.Click
+    Call ImageRepository.WCS.WCS.Click
+    Call ImageRepository.WCS.Journal.Click
+    Call ImageRepository.WCS.Loadunit.Click
+    Delay(1000)
+    Aliases.javaw.Shell2.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 3).Click
+    Delay(500)
+Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite.CCombo.Button.Click
+Call ImageRepository.WCS.Barcode.Click
+    Delay(1000)           
+   Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Composite.ValidationComposite.Text.keys(Barcode)
+      Delay(1000) 
+   Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.CCombo.Button.Click
+    Call ImageRepository.WCS.Location.Click
+        Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.Composite.Composite.Composite.ValidationComposite.Text.Keys("RPB*")
+    Aliases.javaw.Shell5.Composite.Composite.Composite.Composite2.Button.Click    
+    Do until  ImageRepository.WCS.RPBlocation.Exists or ImageRepository.WCS.Targetlocation.Exists   
+ if ImageRepository.WCS.RPBlocation.Exists or ImageRepository.WCS.Targetlocation.Exists then
+ End If
+ Exit Do
+     Loop
+'    *take location
+Aliases.javaw.Shell2.Composite.Composite.SashForm.SWTObject("Composite", "", 2).SWTObject("Composite", "", 5).SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "").SWTObject("Composite", "", 1).SWTObject("PictureButton", "", 11).Click
+      Delay(500)
+       Aliases.javaw.Shell8.Composite.Composite.Composite.Composite.Button.Click 
+       '       '*Save and read loaction values
+       datetimeval=replace(replace(replace(Now(),"/",""),":","")," ","_")
+'       MsgBox datetimeval
+       Delay(2000)
+       Filepath="C:\DD\Automation\Testdata\"&"GetTLocation_"&datetimeval
+        Aliases.javaw.dlgSaveAs.DUIViewWndClassName.Explorer_Pane.FloatNotifySink.ComboBox.Edit.SetText Filepath
+       Aliases.javaw.dlgSaveAs.btnSave.Click         
+       call ReadExcelData(FilePath,"Target Location","GetTLocation_"&datetimeval)
+      
+'       ShowMessage ExpectedValue
+Aliases.javaw.Shell2.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton.Click
+ End Function
+        
+Public TargetLocation        
+ Function ReadExcelData(Filepath,Header,SheetName)
+Dim objexcel, objWorkbook, objDriverSheet, columncount, rowcount,fieldvalue 
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+columncount = objDriverSheet.usedrange.columns.count
+Log.Message("columncount "&columncount)
+rowcount = objDriverSheet.usedrange.rows.count
+dim colNum:colNum=0
+for i = 1 to columncount
+columnname = cstr(objDriversheet.cells(1,i).value)
+If StrComp(columnname,Header,vbbtextcompare)=0 Then
+colNum=i
+for j = 1 to rowcount
+fieldvalue = cstr(objdriversheet.cells(j+1,i).value)
+Log.Message("fieldvalue "&fieldvalue)
+Exit For
+next
+End If
+Next
+ExpectedValue=fieldvalue
+'ShowMessage ExpectedValue
+   TaLocation=ExpectedValue       
+       temp=split(TaLocation,"_")       
+        TargetLocation=trim(temp(0))
+        Log.message TargetLocation
+End Function
+
+
+      
+
+
+        
+        Function Assignworkplace 
+'        TargetLocation="RPBN03"
+        If Aliases.javaw.Shell7.Composite.Composite.Composite.Composite.Composite.Composite.Composite3.Composite.Composite.CustomLabel.Exists Then
+        
+        Aliases.javaw.Shell7.Composite.Composite.Composite.Composite2.Button3.Click
+
+        End If
+'        Aliases.javaw.Shell6.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton.Click
+                  
+Aliases.javaw.Shell2.Composite.Composite.SashForm.Composite.Composite.Composite.Composite2.Workplaces.Click
+    Aliases.javaw.Shell6.Composite.Composite.SashForm.Composite2.Composite.Composite.Composite.Composite.Composite.PictureButton.Click
+    Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite3.CCombo.Button.Click
+    Call ImageRepository.WCS.Name.Click
+    Delay(500)
+    Aliases.javaw.Shell5.Composite.Composite.Composite.Composite.Composite.Composite.Composite3.Composite.Composite.Composite.ValidationComposite.Text.keys(TargetLocation)
+   Aliases.javaw.Shell5.Composite.Composite.Composite.Composite2.Button.Click
+   '*Assign workstation to computer
+   Aliases.javaw.Shell6.Composite.Composite.SashForm.Composite2.Composite2.ActionBarItemViewPart_2.Click
+   End Function
+   
+   Function Repacking
+'   Barcode="3105170181"
+     Aliases.javaw.Shell6.Composite.Composite.SashForm.Composite.Composite.Composite.Composite.PictureButton2.Click
+     Aliases.javaw.Shell7.Composite.Composite.Composite.Composite.Composite.Composite.Composite.Text.keys(Barcode)
+     Delay(500)
+     Aliases.javaw.Shell7.Composite.Composite.Composite.Composite2.Button.Click
+     Do until Aliases.javaw.Shell7.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.Text.Exists
+     Loop
+     Aliases.javaw.Shell7.Composite.Composite.Composite.Composite.Composite.Composite.Composite2.Text.keys(URRNNo)
+     Aliases.javaw.Shell7.Composite.Composite.Composite.Composite2.Button.Click
+       End Function
+       
+       Function Workstation_A_Logout
+         Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.PictureButton.Click
+         Delay(500)
+         Aliases.javaw.Shell9.Composite.Composite.Composite.Composite.Button.Click
+         Do until Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists
+         Loop
+         If Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists Then
+         Aliases.javaw.Shell.Composite.Composite.Composite.Composite2.Button2.Click
+         End If
+       
+       End Function
+       
+       Function WCSLogout_CATEA
+         Aliases.javaw.Shell2.Composite.Composite.Composite.Composite.PictureButton2.Click
+         Do until Aliases.javaw.Shell9.Composite.Composite.Composite.Composite.Button.Exists
+         Loop
+         If Aliases.javaw.Shell9.Composite.Composite.Composite.Composite.Button.Exists Then
+         Aliases.javaw.Shell9.Composite.Composite.Composite.Composite.Button.Click
+         End If
+      Do until  Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists 
+      Loop
+      
+      If Aliases.javaw.Shell.Composite.Composite.Composite.Composite.Composite.Composite.Text.Exists Then
+      Aliases.javaw.Shell.Composite.Composite.Composite.Composite2.Button2.Click
+      End If
+       End Function
+       
+       

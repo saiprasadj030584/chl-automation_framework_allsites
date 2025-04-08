@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{36E53F57-0C6F-4283-AE6E-E0AA0530255C}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="Location" />
+	<testData />
+	<data>
+		<item caption="Location_Doubleclick" moniker="{F1840FFB-C84A-433D-BF78-1969DAFA3951}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Location_Doubleclick.png" initialHash="582FDB4C" selectionLeft="522" selectionTop="292" selectionWidth="99" selectionHeight="62" initialLeft="522" initialTop="292" initialWidth="99" initialHeight="62" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

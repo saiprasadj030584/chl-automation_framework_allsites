@@ -1,0 +1,23 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Putty_login
+'USEUNIT SKU_Datasetup
+Function WMSlogin
+
+'TestedApps.WMS_Login.Run
+
+'Delay(5000)
+''#Username
+'Aliases.iexplore2.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+Aliases.iexplore2.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys "P9150308O"
+
+'#Password
+Aliases.iexplore2.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.keys "1234"
+
+
+Aliases.iexplore2.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.UserLogin.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSJPanelBG.DCSGridFlowPanel.Panel.DCSButton.Click
+Delay(8000)
+Call skusetup
+
+End Function
+
+

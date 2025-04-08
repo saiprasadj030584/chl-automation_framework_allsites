@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children>
+		<child name="InventoryValidationPage" key="{CDF272B6-6AD0-46FF-B838-5A202082D800}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="InventoryValidationPage.svb" />
+		</child>
+		<child name="CommonFunctions" key="{CB6F900D-346A-4E0F-9F54-8A592C81BF56}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="CommonFunctions.svb" />
+		</child>
+		<child name="PackConfigMaintenancePage" key="{0067DF02-4F49-4B9E-B0FF-AF95B59BEF3D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PackConfigMaintenancePage.svb" />
+		</child>
+		<child name="SKUMaintenancePage" key="{22DB88C3-A435-4EC6-8CE2-BBFD2240025D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SKUMaintenancePage.svb" />
+		</child>
+		<child name="ReceivingPage" key="{FD71FFB2-EFD1-4E29-981E-290ABB5A11A1}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="ReceivingPage.svb" />
+		</child>
+		<child name="PerfectBoxMainPage" key="{462490C1-CAAC-4C9F-9C5F-89516ACFEB30}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PerfectBoxMainPage.svb" />
+		</child>
+		<child name="PutawayPage" key="{E2334272-019A-4965-801C-10D15BBBEC2A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PutawayPage.svb" />
+		</child>
+		<child name="IMPerfectBoxMainPage" key="{DA06FD1A-9550-496B-8D75-F421CCE43045}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="IMPerfectBoxMainPage.svb" />
+		</child>
+		<child name="SteamHangMainPage" key="{994F8FD6-F687-45F2-AC2E-58EA28E81AD1}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SteamHangMainPage.svb" />
+		</child>
+		<child name="IMPerfectHangingMainPage" key="{F17E228B-2312-4FD2-B210-D814AF9221A0}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="IMPerfectHangingMainPage.svb" />
+		</child>
+		<child name="PerfectHangMainPage" key="{CE49BBAA-51DD-410A-8ACF-721F1051897F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PerfectHangMainPage.svb" />
+		</child>
+		<child name="DemandAllocationPage" key="{6CBCD75A-5AAD-45F3-AE6A-C43D2D363825}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DemandAllocationPage.svb" />
+		</child>
+		<child name="Test19" key="{7166D22A-84C3-460A-88DF-E6DF90AF160C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Test19.svb" />
+		</child>
+		<child name="PalletGeneration" key="{88DAE234-357C-432B-ACB4-58EA30B35584}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PalletGeneration.svb" />
+		</child>
+		<child name="LocationPage" key="{C85326C2-48BC-4E26-B4B7-7AF9C099C60F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LocationPage.svb" />
+		</child>
+		<child name="MoveTaskPage" key="{F0933ACC-E5DE-470D-8DE2-7802040C42DE}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="MoveTaskPage.svb" />
+		</child>
+		<child name="PickingPage" key="{4474ADC4-18B5-44F7-8BE4-1EF4B6831A9C}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PickingPage.svb" />
+		</child>
+		<child name="MarshalPage" key="{F0C31A52-55D5-4A20-863E-24D7CFD73CD9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="MarshalPage.svb" />
+		</child>
+		<child name="LocationFullExceptionMainPage" key="{93C82605-56C6-4E81-88E4-8BDD10892AA7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LocationFullExceptionMainPage.svb" />
+		</child>
+		<child name="BoxDespatchMainPage" key="{462783F0-CCA8-44FF-89BE-5022A526E2D7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="BoxDespatchMainPage.svb" />
+		</child>
+		<child name="UnexpectedInventoryExceptionMainPage" key="{09246416-1028-4E51-AAC0-C2600EEB15D9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="UnexpectedInventoryExceptionMainPage.svb" />
+		</child>
+		<child name="LocationUnsuitableExceptionMainPage" key="{2385D518-CDD1-49B3-997E-29BDD73CC264}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LocationUnsuitableExceptionMainPage.svb" />
+		</child>
+		<child name="IMPerfectBoxSetPartMainPage" key="{A36F5506-87B5-4B0D-870B-CA193EE6F3F9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="IMPerfectBoxSetPartMainPage.svb" />
+		</child>
+		<child name="LocationDamagedExceptionMainPage" key="{1A130B66-2240-4B25-A41A-9F0F6A6FEE58}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LocationDamagedExceptionMainPage.svb" />
+		</child>
+		<child name="Test25" key="{D9D5B93F-1381-4E88-9D5B-DC8757FD0C13}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Test25.svb" />
+		</child>
+		<child name="StockCheckPage" key="{B1DD5C6C-F0D6-43B5-A3E1-0678DE2391E7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="StockCheckPage.svb" />
+		</child>
+		<child name="HangDespatchMainPage" key="{571579DB-E5CA-410C-BC2E-B58F7E6CBF3D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="HangDespatchMainPage.svb" />
+		</child>
+		<child name="VehicleLoadingPage" key="{077268BF-9FB8-4837-9671-99FA7EFB7BBB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="VehicleLoadingPage.svb" />
+		</child>
+		<child name="TrailerShippingPage" key="{DD876E37-9590-4EB6-AA4C-846D8C4FDF78}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TrailerShippingPage.svb" />
+		</child>
+		<child name="Auto_Hanging_WCS" key="{E950DF85-6E5B-4D21-8EC0-C0FD41FCF334}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Auto_Hanging_WCS.svb" />
+		</child>
+		<child name="UPIHeaderValidation" key="{8FF50FF9-0C71-4E8E-8F85-41436FD06F20}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="UPIHeaderValidation.svb" />
+		</child>
+		<child name="DockSchedulerPage" key="{04F6BA79-F37A-4D12-BA91-EAD21866EB4D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DockSchedulerPage.svb" />
+		</child>
+		<child name="LocationOverrideMainPage" key="{18B3682C-D2EF-4F27-8450-A550DE3E9084}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="LocationOverrideMainPage.svb" />
+		</child>
+		<child name="RMSReceivingException" key="{BE72A08B-15B0-4169-9B8C-E255B14A981F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="RMSReceivingException.svb" />
+		</child>
+		<child name="CD_Manual_Receive_MainPage" key="{2630F11B-593D-4157-9692-98752ABD2028}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="CD_Manual_Receive_MainPage.svb" />
+		</child>
+		<child name="YardCheckIn" key="{3BD6896D-4CDB-447B-9CA5-1EE46AE25AAE}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="YardCheckIn.svb" />
+		</child>
+		<child name="YardDockClearance" key="{04AD94A3-942E-4042-9F74-EA1EEAD78B50}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="YardDockClearance.svb" />
+		</child>
+		<child name="YardCheckOut" key="{A5630649-7BC6-47DD-83A2-D259A47F954D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="YardCheckOut.svb" />
+		</child>
+		<child name="DockConfirmPage" key="{85035B7A-E087-472F-BB13-2B887965A1E3}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="DockConfirmPage.svb" />
+		</child>
+		<child name="Auto_Boxed_WCS" key="{8A01C837-01E2-4D47-9914-300A6D75F58D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Auto_Boxed_WCS.svb" />
+		</child>
+		<child name="WCS_Emulation_Page" key="{149F4F68-19B6-4CA7-B2BE-77C933AAC27F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="WCS_Emulation_Page.svb" />
+		</child>
+		<child name="PostalUPC_Receiving_MainPage" key="{B1475F98-0D38-4D74-A70F-6DA6D487CE7A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PostalUPC_Receiving_MainPage.svb" />
+		</child>
+		<child name="PostalUPC_HanReceive_MainPage" key="{24D5D08F-D828-42BC-A3C3-D2CC0541F883}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PostalUPC_HanReceive_MainPage.svb" />
+		</child>
+		<child name="PartSetMainPage" key="{C4692972-2954-44B3-A54C-869293CCC7DB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="PartSetMainPage.svb" />
+		</child>
+	</children>
+	<folders />
+</Root>

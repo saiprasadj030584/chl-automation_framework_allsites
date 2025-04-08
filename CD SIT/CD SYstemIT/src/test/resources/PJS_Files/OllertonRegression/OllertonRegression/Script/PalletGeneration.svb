@@ -1,0 +1,83 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+Public Palet10, Palet32, PaletH, PaletH32, PaletCD
+
+Function Random10
+
+    max=3999999999
+    min=3000000000
+    Randomize
+    Palet10 = Int((max-min+1)*Rnd+min)
+    Palet32 = "5924000000000000000000"&Palet10
+    Log.Message(Palet10)
+    Log.Message(Palet32)
+    
+End Function
+
+
+Function RandomH
+
+    maxH = 9999999
+    minH = 0000000
+    Randomize
+    Delay(2000)
+    Palet7 = Int((maxH-minH+1)*Rnd+minH)
+    Delay(3000)
+    PaletH = "ZOL"&Palet7
+    Delay(2000)
+    PaletH32 = "5924000000000000000000000"&Palet7
+    Delay(2000)
+    Log.Message(PaletH)
+    Log.Message(PaletH32)
+
+End Function
+
+
+Function RandomCD
+
+    maxH = 9999999
+    minH = 0000000
+    Randomize
+    Palet7 = Int((maxH-minH+1)*Rnd+minH)
+    Delay(1000)
+    PaletCD = "MWB"&Palet7
+    Delay(1000)
+    Log.Message(PaletCD)
+
+End Function

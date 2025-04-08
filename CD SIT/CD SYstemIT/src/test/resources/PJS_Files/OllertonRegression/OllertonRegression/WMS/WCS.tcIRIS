@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{AC8F2D4F-73CD-4DC4-AF0C-10A50FCAF76E}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="WCS" />
+	<testData />
+	<data>
+		<item caption="DON" moniker="{871BFF4D-973F-432F-B8A8-246B62B6B260}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\DON.png" initialHash="4F88D3E4" selectionLeft="472" selectionTop="399" selectionWidth="139" selectionHeight="16" initialLeft="472" initialTop="399" initialWidth="139" initialHeight="16" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Dock" moniker="{6FAA3959-3919-4AD5-8C15-2FAE1010D823}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Dock.png" initialHash="E601EE5D" selectionLeft="473" selectionTop="475" selectionWidth="35" selectionHeight="12" initialLeft="473" initialTop="475" initialWidth="35" initialHeight="12" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="DistOrdNum" moniker="{BE9D1A8B-19FB-43ED-8F6C-F0E58866A8C7}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\DistOrdNum.png" initialHash="9CEE212F" selectionLeft="640" selectionTop="392" selectionWidth="136" selectionHeight="14" initialLeft="640" initialTop="392" initialWidth="136" initialHeight="14" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="barcode" moniker="{8FFE89C1-8B0E-4865-8758-7FBF55688A8D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\barcode.png" initialHash="9F5A2A6D" selectionLeft="329" selectionTop="315" selectionWidth="47" selectionHeight="14" initialLeft="329" initialTop="315" initialWidth="47" initialHeight="14" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Add" moniker="{FEED8482-272E-4838-8655-25C7E647183A}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Add_1.png" initialHash="52CE5B8B" selectionLeft="250" selectionTop="57" selectionWidth="25" selectionHeight="19" initialLeft="250" initialTop="57" initialWidth="25" initialHeight="19" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Tote" moniker="{6954BF9B-0A30-4B0E-A574-271CCD4BEDA9}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Tote.png" initialHash="1C13284E" selectionLeft="626" selectionTop="411" selectionWidth="26" selectionHeight="12" initialLeft="626" initialTop="411" initialWidth="26" initialHeight="12" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="MFS_Emulation" moniker="{99A8253E-6604-4233-AD80-3537F5DC7C0D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\MFS_Emulation.png" initialHash="2DB5450B" selectionLeft="5" selectionTop="349" selectionWidth="114" selectionHeight="22" initialLeft="5" initialTop="349" initialWidth="114" initialHeight="22" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="Emulation_Hanging" moniker="{B0263B22-CA80-4EA4-83AE-7068AF8D708B}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\Emulation_Hanging.png" initialHash="F75BFC2D" selectionLeft="7" selectionTop="254" selectionWidth="131" selectionHeight="21" initialLeft="7" initialTop="254" initialWidth="131" initialHeight="21" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="MFS" moniker="{C5B654FD-7890-4144-93E5-6C33D2BA3DC2}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\MFS.png" initialHash="4F275D52" selectionLeft="7" selectionTop="289" selectionWidth="62" selectionHeight="17" initialLeft="7" initialTop="289" initialWidth="62" initialHeight="17" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

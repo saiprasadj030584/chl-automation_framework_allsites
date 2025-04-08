@@ -1,0 +1,48 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal___URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+
+
+Function LeftShoe
+Call WMSlogin
+ Filepath="C:\DD\Automation\Testdata\Shoe"  
+       Call ReadFile(Filepath,"SKUID","Shoe")
+     ReferenceNumber=ExpectedValue  
+      Delay(1000)
+ Call puttylogin
+ Call LeftShoeReceiving
+ Call Inventory
+ Call Imperfectputaway
+' Call Puttylogout
+'   Aliases.iexplore.wndIEFrame.Activate
+'  ImageRepository.WMS.Wmsclose.Click
+
+End Function
+
+'Function Readdetails_Shoe
+' Filepath="C:\DD\Automation\Testdata\URRN"  
+''Filepath="C:\DD\Automation\Datasetup2"
+'Call Readdatapostal(Filepath,"SKUID","URRN")
+'ReferenceNumber=ExpectedValue 
+''ShowMessage  ReferenceNumber       
+'End Function
+

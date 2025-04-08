@@ -1,0 +1,207 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function OLL_101_Putawaysequence
+'Call Commonfunction.WMSlogin
+'Call puttylogin
+Call Putsequence
+Call Putseq_Anytask
+Call Puttylogout
+
+End Function
+
+Function Putsequence 
+  Filepath="C:\DD\Automation\Datasetup1"  
+'   Filepath="C:\Dhivya\Locationseq"
+'   Filepath="C:\DD\Automation\Locationseq"     
+     Call Readdataputawayseq(Filepath,"SKUID","Putawaysequence")
+     ReferenceNumber=ExpectedValue     
+End Function
+
+
+Function Readdataputawayseq(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+if(row_cnt=Empty )Then Exit For
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+If value=" " Then Exit For
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+ Next 
+Call datasetupputseq(list(0),list(1),list(2),list(3),list(4)) 
+Next
+End Function
+Function datasetupputseq (ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU
+Call Suppliersku
+Call Packconfiguration
+Call Perfectreceiving
+Call Stgputawayseqlocation
+End Function
+
+Public Toloc1,Toloc2,Toloc3,Toloc4
+Function Putseq_Anytask
+
+  Set Puttyfun= Aliases.putty.wndPuTTY
+  Delay(2000)
+  Call Puttyfun.Keys("281")
+   Delay(2000)
+   Puttyfun.Keys ("[Enter]")
+     Delay(2000)
+'     CheckString1="MBZMCB08"
+Puttyfun.Keys(CheckString1)
+Puttyfun.Keys ("[Enter]")
+Delay(3000)  
+'1st Putaway
+
+Puttyfun.Keys(Tagid1)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc1
+    End If
+    Call DBconnection_Putawaysequence
+'    MsgBox Toloc1
+'    MsgBox Loc1
+    If Toloc1=Loc1 Then
+    Log.Message "Showing 1st putaway sequence location:" & Toloc1
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(3000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '2nd putaway
+    Delay(2000)
+    Puttyfun.Keys ("[F8]")
+    Delay(3000)
+    '3rd putaway
+    Puttyfun.Keys(Tagid3)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc3=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc3
+    End If
+   
+    If Toloc3=Loc3 Then
+    Log.Message "Showing 3rd putaway sequence location:" & Toloc3
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '4th putaway
+    Delay(3000)
+    Puttyfun.Keys(Tagid4)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc4=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc4
+    End If
+        If Toloc4=Loc4 Then
+    Log.Message "Showing 4th putaway sequence location:" & Toloc4
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '2nd putaway
+    Delay(2000)
+    Puttyfun.Keys(Tagid2)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc2=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc2
+    End If
+        If Toloc2=Loc2 Then
+    Log.Message "Showing 2nd putaway sequence location:" & Toloc2
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")   
+'     Puttyfun.Keys("[F10]")
+     Delay(1000)
+
+End Function
+

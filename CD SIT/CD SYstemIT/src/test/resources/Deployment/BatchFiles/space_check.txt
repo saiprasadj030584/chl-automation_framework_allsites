@@ -1,0 +1,1 @@
+echo "df -gt . ;sleep 25; /bin/bash" | sudo su - rpwms

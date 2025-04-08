@@ -1,0 +1,59 @@
+﻿'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT UPIHeaderValidation
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+
+Function AutoHang
+    
+    'Call CommonFunctions.LaunchWMSCD
+    Call UPIHeaderValidation.UPIHead("H")
+    Call DockSchedulerPage.DockScheduleH()
+    Call YardCheckIn.HYardIn()
+    Call CommonFunctions.LaunchPuttyCD()
+    Call DockConfirmPage.HDockBook()
+    call GetDistributionOrderNumber()
+    call Emulation_Hanging()
+    Call UPIHeaderValidation.UPIHeadStatusWCS()
+    Call UPIHeaderValidation.UPIReceipt()
+    Call YardDockClearance.HYardClear()
+    Call YardDockClearance.TaskUpdate()
+    Call YardCheckOut.checkout()
+    Call CommonFunctions.LogoutPuttyCD()
+    Call CommonFunctions.LogoutWMSCD()
+    
+End Function

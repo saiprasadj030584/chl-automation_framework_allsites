@@ -1,0 +1,85 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal___URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT Test
+
+'*Main Function
+Function OLL_146_Putawaylocationseq 
+'Call Commonfunction.WMSlogin
+'Call Puttylogin
+Call ReadDatalocation
+'Call Puttylogout
+End Function
+
+
+'*Sub function
+Function ReadDatalocation
+Filepath="C:\DD\Automation\Testdata\LocationSequence"  
+       Call ReadExcel_Location(Filepath,"SKUID","LocationSequence")
+     ReferenceNumber=ExpectedValue           
+End Function
+
+Function ReadExcel_Location(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+'ShowMessage value
+If value = " " Then
+Exit For
+End If
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'if no_of_id(j)=" " then 
+'Exit for 
+'End if 
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+Next
+Call Datasetup_Location (list(0),list(1),list(2),list(3),list(4))
+Next
+End Function
+
+
+
+Function Datasetup_Location (ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+Call Suppliersku
+'Call Packconfiguration
+Call Perfectreceiving
+Call Perfectstgputaway
+Call Perfectfinalputaway
+'Call Puttylogout
+Call DBconnection_Location
+End Function
+
+
+
+
+   
+

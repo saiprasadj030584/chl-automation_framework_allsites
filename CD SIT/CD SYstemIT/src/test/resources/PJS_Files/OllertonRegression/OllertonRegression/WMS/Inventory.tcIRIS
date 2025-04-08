@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{302E54A8-7D5B-4593-9563-357C2734256B}" version="1140" key="{0790B939-38D0-4E3D-8804-F65038CAE6E9}" type="Image Set" typeId="{302E54A8-7D5B-4593-9563-357C2734256B}">
+	<config nodeName="Inventory" />
+	<testData />
+	<data>
+		<item caption="InventoryMisc" moniker="{7CE82AB5-AA0C-45D7-B922-9059016BBB85}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\iris40438A7CCAD04.png" initialHash="4CC8D4EE" selectionLeft="66" selectionTop="238" selectionWidth="90" selectionHeight="21" initialLeft="66" initialTop="238" initialWidth="90" initialHeight="21" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="InventoryGeneral" moniker="{E420F233-E326-4E2D-812D-51DFFEE149B6}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\iris40438A9AC1F2A.png" initialHash="52104230" selectionLeft="11" selectionTop="241" selectionWidth="48" selectionHeight="15" initialLeft="11" initialTop="241" initialWidth="48" initialHeight="15" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="InventoryUD" moniker="{0A78E684-C23C-4FAC-994B-BA1891F70110}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\InventoryUD_1.png" initialHash="61805D7A" selectionLeft="269" selectionTop="238" selectionWidth="82" selectionHeight="20" initialLeft="269" initialTop="238" initialWidth="82" initialHeight="20" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+		<item caption="InvMisc" moniker="{532E40E2-8B2A-4CED-B6DC-3A16BD52D40D}" isComposite="False" simpleMode="True" currentImageIndex="0">
+			<image imageFileName="Data\InvMisc.png" initialHash="85E9FA00" selectionLeft="68" selectionTop="242" selectionWidth="83" selectionHeight="13" initialLeft="68" initialTop="242" initialWidth="83" initialHeight="13" pixelTolerance="0" colorTolerance="0" deviceName="" />
+		</item>
+	</data>
+</Root>

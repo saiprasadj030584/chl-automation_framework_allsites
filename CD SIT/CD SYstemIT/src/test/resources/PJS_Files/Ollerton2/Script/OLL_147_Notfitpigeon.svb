@@ -1,0 +1,17 @@
+﻿'USEUNIT Commonfunction
+'USEUNIT Mainfunction
+'USEUNIT OLL_148_Not_fit_in_shelf
+'USEUNIT Otherfunction
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+Function Notfitpigeon
+  
+  Call skusetup
+  Call PassingMulSku
+  Call Perfectreceiving
+  Call Perfectstgputaway
+  Call Perfectfinalputaway
+  Call Location
+  Call shelfvolume
+
+End Function

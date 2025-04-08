@@ -1,0 +1,1004 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal_URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT SKU_Datasetup
+
+
+
+public CheckString,temp,temp1,LocationPutty,CheckString1,LocationPutty1,CheckString2,LocationPutty2,Finallocation
+Public Puttyfun,Container
+
+Function Puttylogin
+Call TestedApps.putty.Run
+Aliases.putty.wndPuTTYConfigBox.Edit.Keys "huxc0562.unix.marksandspencercate.com"
+Delay(1000)
+Aliases.putty.wndPuTTYConfigBox.radioTelnet.Click
+Aliases.putty.wndPuTTYConfigBox.editPort.keys "^a[BS]26529"
+'Aliases.putty.wndPuTTYConfigBox.editPort.keys "^a[BS]20223"  
+Delay(1000)
+ImageRepository.Puttyscreen.keyboard.Click
+Delay(1000)
+Aliases.putty.wndPuTTYConfigBox.radioXtermR6.Click
+Delay(1000)
+Aliases.putty.wndPuTTYConfigBox.btnOpen.Click
+Delay(1000)
+If ImageRepository.Puttyscreen.Loginscreen.Exists Then
+Log.message "Putty Login page opened successfully"
+Else
+Log.error "Putty Login page is not opened Properly"
+End If
+Call ImageRepository.Puttyscreen.Putty_Maximize.Click
+Delay(2000)
+Aliases.putty.wndPuTTY.Keys "DHIVYA[Tab]"
+Aliases.putty.wndPuTTY.Keys "1234[Enter]"
+If ImageRepository.Puttyscreen.Loginsuccess.Exists Then
+Log.message "Successfully login to putty"
+Else
+Log.Error"Putty login is failed"
+End If
+End Function
+
+
+Function Perfectreceiving
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(6000)
+Call Random10
+Container=("3"& Pallet)
+Log.message ("Container is:" & Container) 
+   Delay(3000)
+    Call Puttyfun.keys("2111")
+  Delay(2000)
+  Call Puttyfun.keys("[Enter]")
+    Delay(5000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(2000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")  
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)  
+  Call Puttyfun.Keys(supsku)
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(2000)
+  Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+  
+  '#2nd screen 
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+  If ImageRepository.Puttyscreen.Receiptmsg.Exists then
+    Log.Message("Receiving completed")
+    Delay(1000)
+ElseIf ImageRepository.Puttyscreen.Oversizemsg.Exists Then
+    Log.Message("Receiving completed-Oversize")
+    Delay(1000)
+ElseIf ImageRepository.Puttyscreen.RDTerror.Exists Then
+Log.Error ("Getting RDT error")
+'Else
+'  Log.Error("Receiving failed")
+  End If
+   Delay(2000)
+ Call Puttyfun.Keys ("[Enter]")
+ Delay(2000) 
+ Call Puttyfun.Keys ("[F10]")
+ End Function
+ 
+Function Perfectreceiving_URRN
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(6000)
+Call Random10
+Container=("3"& Pallet)
+Log.message (Container) 
+   Delay(5000)
+    Call Puttyfun.keys("2111")
+  Delay(2000)
+  Call Puttyfun.keys("[Enter]")
+    Delay(3000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(2000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys(URRNPallet) 
+  Delay((1000)) 
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)  
+  Call Puttyfun.Keys(supsku)
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(2000)
+  Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+  
+  '#2nd screen 
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+ Delay(3000)
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+  If ImageRepository.Puttyscreen.Receiptmsg.Exists then
+    Log.Message("Receiving completed")
+ElseIf ImageRepository.Puttyscreen.Oversizemsg.Exists Then
+    Log.Message("Receiving completed-Oversize")
+Else
+  Log.Error("Receiving failed")
+  End If
+   Delay(2000)
+ Call Puttyfun.Keys ("[Enter]")
+ Delay(2000) 
+ Call Puttyfun.Keys ("[F10]")
+ End Function
+
+Function stgputawayexception
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Inventory
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(3000)
+Call Puttyfun.Keys (Tagid)
+Delay(1000)
+If ImageRepository.Puttyscreen.Tolocationempty.Exists Then
+Log.Error"To location is empty"
+End If
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("01")
+Delay (1000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty2=trim(replace(temp1(0)," │",""))
+    CheckString2=LocationPutty2
+'    CheckString1=MAAMAC01
+    If CheckString2 =CheckString1 Then
+    Log.message"To location is: " & CheckString2    
+    Else
+    Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+    Call Puttyfun.Keys("^a[BS]")
+     Call Puttyfun.Keys("^a[BS]")
+     Call Puttyfun.Keys("^a[BS]")
+     Call Puttyfun.Keys("^a[BS]")
+     Call Puttyfun.Keys("^a[BS]")
+     Call Puttyfun.Keys("^a[BS]")     
+     Call Puttyfun.Keys("^a[BS]")
+     Delay (1000)
+     Call Puttyfun.Keys(CheckString1)
+   End If
+    End If
+If ImageRepository.Puttyscreen.stgdestovr.Exists Then
+Log.Message "Destination location starts with OVR"
+End If
+Call Puttyfun.Keys("[Enter]")
+End Function
+
+ Function Perfectstgputaway_OVR
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Inventory
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(4000)
+Call Puttyfun.Keys (Tagid)
+Delay(2000)
+If ImageRepository.Puttyscreen.Tolocationempty.Exists Then
+Log.Error"To location is empty"
+End If
+Call Puttyfun.Keys("[Tab]")
+
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("01")
+Delay (1000)
+Call Puttyfun.Keys("[Enter]")
+Delay (1000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    CheckString1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & CheckString1
+    End If
+    Delay (1000)
+If ImageRepository.Puttyscreen.stgdestovr.Exists Then
+Log.Message "Destination location starts with OVR"
+End If
+Call Puttyfun.Keys(CheckString1)
+
+Call Puttyfun.Keys("[Enter]")
+End Function
+
+Function Perfectfinalputaway_OVR
+Set Puttyfun= Aliases.putty.wndPuTTY
+'Container="3838836828"
+'Tagid="71990"
+ Delay(3000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys (Tagid)
+ Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+    CheckString=mid(LocationPutty,1,8)
+    Dim OVRLocation
+   OVRLocation =Left(CheckString,3)
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Delay(2000)
+    
+'    MsgBox CheckString
+    Log.Message("Final location starts with OVRLocation:" & CheckString)
+    Else
+    Log.Error "Final Location is not oversize location" & CheckString
+      
+    End If
+    
+    Delay(2000) 
+    Puttyfun.Keys("[Enter]")  
+    Delay(2000)
+    Call Puttyfun.Keys("[Enter]")
+    Delay(1000) 
+    Call Puttyfun.Keys("[F10]")
+End Function
+
+
+'#1st Putaway  Used OLL-100,146,147,148,149
+Function Perfectstgputaway
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Inventory
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(4000)
+Call Puttyfun.Keys (Tagid)
+Delay(2000)
+If ImageRepository.Puttyscreen.Tolocationempty.Exists Then
+Log.Error"To location is empty"
+End If
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("04")
+Delay (1000)
+Call GetRDTContent()
+Delay(500)
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    CheckString1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & CheckString1
+    End If
+If ImageRepository.Puttyscreen.stgdestovr.Exists Then
+Log.Message "Destination location starts with OVR"
+End If
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Finallocation=mid(LocationPutty1,1,8)
+'    Log.message "Final location is:" & Finallocation
+    End If
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+End Function
+
+'#2nd putaway used 146
+Function Perfectfinalputaway
+Set Puttyfun= Aliases.putty.wndPuTTY
+ Delay(3000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys (Tagid)
+ Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+    CheckString=mid(LocationPutty,1,8)
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+'    MsgBox CheckString
+    Log.Message ("Final location is" & CheckString)
+    Delay(2000)
+    Puttyfun.Keys("[Enter]")
+    End If
+  
+       Delay(2000)   
+    Call Puttyfun.Keys("[F10]")
+End Function
+
+Function Imperfectputaway
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000) 
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(1000)
+Call Puttyfun.Keys (Tagid)
+Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,10)   
+    Delay(2000)
+    Log.Message"Final Location is:"& CheckString
+    Puttyfun.Keys(CheckString)
+    Delay(2000)
+    If ImageRepository.Puttyscreen.Largelocation.Exists Then
+    Log.message "Putaway completed in OVR location"
+    End If
+    Delay(2000)
+    End If  
+    Call Puttyfun.Keys("[Enter]")
+    Delay (1000)
+Puttyfun.Keys ("[F10]")
+End Function
+
+Function Puttylogout
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Puttyfun.Keys("3")
+Delay(2000)
+Puttyfun.Keys("[Enter]")
+Delay(1000)
+ImageRepository.Puttyscreen.Puttyclose.Click
+Delay (1000)
+ImageRepository.Puttyscreen.Puttyexit.Click       
+End Function
+
+'*Not used
+
+Function Stgputawaynewlocation
+Set Puttyfun= Aliases.putty.wndPuTTY
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Inventory
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Tab]")
+Delay(3000)
+Call Puttyfun.Keys (Tagid)
+Delay(1000)
+If ImageRepository.Puttyscreen.Tolocationempty.Exists Then
+Log.Error"To location is empty"
+End If
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("03")
+Delay (1000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    CheckString1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & CheckString1
+    End If
+If ImageRepository.Puttyscreen.stgdestovr.Exists Then
+Log.Message "Destination location starts with OVR"
+End If
+Call Puttyfun.Keys("[Enter]")
+End Function
+
+
+'*OLL-149
+Public tempLoc,temp10
+Function Fetchfinalloc
+Delay(2000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Delay(3000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp10=split(RDTContent,"To  :")
+    tempLoc=split(temp10(1),chr(10))
+    FLocation=trim(replace(tempLoc(0)," │",""))
+    Finallocation=mid(FLocation,1,8)
+    Delay(1000)
+End If
+Call Puttyfun.Keys("[F10]")
+Delay(1000)
+End Function
+
+'*Used OLL-149
+Public Finalloc,Finalnewloc
+Function FinalputawayNewLocation
+ Delay(3000)
+ Set Puttyfun= Aliases.putty.wndPuTTY
+ Aliases.putty.wndPuTTY.Activate
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(2000)
+ Call Puttyfun.Keys(Tagid)
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys (Tagid)
+ Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+Call Puttyfun.Keys("[Enter]")
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")    
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+    CheckString=mid(LocationPutty,1,8)   
+  Delay(2000)
+    Puttyfun.Keys(CheckString)     
+    If Finalloc=Empty Or Finalloc=CheckString Then
+     Finalloc=CheckString
+    Log.Message "Final location is " & Finalloc
+    Elseif Finalloc <> CheckString Then
+    Finalnewloc=CheckString    
+    Log.Message "Final New location is " & Finalnewloc
+    End If    
+  End If
+    Delay(2000)
+Puttyfun.Keys("[Enter]")
+Delay(2000)
+Delay (1000)
+Puttyfun.Keys ("[F10]")
+Delay(2000)
+End Function
+
+
+'Used-101
+Public Finallocation1,Finallocation2,Finallocation3,Finallocation4,FLocation
+Function Stgputawayseqlocation
+Set Puttyfun= Aliases.putty.wndPuTTY
+Aliases.putty.wndPuTTY.Activate
+Delay(2000)
+Call Puttyfun.Keys("221")
+ Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Inventory
+ Delay(2000)
+Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(4000)
+Call Puttyfun.Keys (Tagid)
+Delay(3000)
+If ImageRepository.Puttyscreen.Tolocationempty.Exists Then
+Log.Error"To location is empty"
+End If
+Call Puttyfun.Keys("[Tab]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("[Right]")
+Call Puttyfun.Keys("40")
+Delay (1000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    CheckString1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & CheckString1
+'    MsgBox CheckString1
+    End If
+If ImageRepository.Puttyscreen.stgdestovr.Exists Then
+Log.Message "Destination location starts with OVR"
+End If
+Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys("[Enter]")
+Delay(1000)
+Call Puttyfun.Keys(Container)
+Delay(1000)
+Call Puttyfun.Keys("[Tab]")
+ Delay(1000)
+ Call Puttyfun.Keys(Tagid)
+Call Puttyfun.Keys("[Enter]")
+Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+Delay(3000)
+Call GetRDTContent()
+Delay(500)
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    FLocation=trim(replace(temp1(0)," │",""))
+    Finallocation=mid(FLocation,1,8)
+    Delay(1000)
+    If Finallocation1=Empty or Finallocation=Finallocation1 then
+    Finallocation1=Finallocation
+    Log.message "Final location1 is:" & Finallocation1
+'    MsgBox Finallocation1
+   ElseIf Finallocation2=Empty or Finallocation=Finallocation2 then
+    Finallocation2=Finallocation
+    Log.message "Final location2 is:" & Finallocation2
+'    MsgBox Finallocation2
+    ElseIf Finallocation3=Empty or Finallocation=Finallocation3 then
+     Finallocation3=Finallocation
+    Log.message "Final location3 is:" & Finallocation3   
+    ElseIf Finallocation4=Empty or Finallocation=Finallocation4 then
+     Finallocation4=Finallocation
+    Log.message "Final location4 is:" & Finallocation4    
+    End If
+    End If
+    Delay(2000)
+Call Puttyfun.Keys("[F10]")
+ Delay(2000)
+Call Puttyfun.Keys("[F10]")
+End Function
+
+'*----Donington functionalities----*
+
+Function Donington_puttylogin
+Call TestedApps.putty.Run
+Aliases.putty.wndPuTTYConfigBox.Edit.Keys "huxc0562.unix.marksandspencercate.com"
+Delay(1000)
+Aliases.putty.wndPuTTYConfigBox.radioTelnet.Click
+Aliases.putty.wndPuTTYConfigBox.editPort.keys "^a[BS]20223"
+
+Delay(3000)
+ImageRepository.Puttyscreen.keyboard.Click
+Delay(1000)
+Aliases.putty.wndPuTTYConfigBox.radioXtermR6.Click
+Delay(3000)
+Aliases.putty.wndPuTTYConfigBox.btnOpen.Click
+Delay(10000)
+If ImageRepository.Puttyscreen.Donington_puttyscreen.Exists Then
+Log.message "Putty Login page opened successfully"
+Else
+Log.error "Putty Login page is not opened Properly"
+End If
+Aliases.putty.wndPuTTY.Keys "DHIVYA1[Tab]"
+Aliases.putty.wndPuTTY.Keys "1234[Enter]"
+If ImageRepository.Puttyscreen.Donington_Loginsuccess.Exists Then
+Log.message "Successfully login to Donington screen"
+Else
+Log.Error"Login is failed"
+End If
+End Function
+Function Dockdoorconfirmation
+Set Puttyfun= Aliases.putty.wndPuTTY
+Aliases.putty.wndPuTTY.Activate
+Delay(1000)
+Call Puttyfun.Keys("278")
+Call Puttyfun.Keys("[Enter]")
+ Delay(2000)
+ Call Puttyfun.Keys("GIB01")
+ Delay(1000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys(Trailerno)
+   Delay(1000)
+   Call Puttyfun.Keys("[Enter]")
+     Delay(1000)
+     if ImageRepository.Puttyscreen.Donington_trailerunload.Exists Then
+    
+     Call Puttyfun.Keys("Y")
+       Call Puttyfun.Keys("[Enter]")
+     Elseif ImageRepository.Puttyscreen.Donington_docktrailererror.Exists Then
+     Log.error("No valid trailer booked")
+     Else 
+     Log.Error "Dock door confirmation failed"
+     End If
+     Delay(1000)
+   If  ImageRepository.Puttyscreen.Donington_Trailerconfirmation.Exists Then
+     Call Puttyfun.Keys("Y")
+       Call Puttyfun.Keys("[Enter]")
+     End if     
+         Delay(1000)
+         if ImageRepository.Puttyscreen.Donington_Dockfinalmsg.Exists then
+         Log.Message "Dock door trailer correct"
+         End If 
+          Call Puttyfun.Keys("[Enter]")
+     End Function
+     
+Function LeftShoeReceiving
+Set Puttyfun= Aliases.putty.wndPuTTY
+ Delay(3000)
+ Call Random10
+Container=("3"& Pallet)
+Log.message ("Container no is:" & Container)
+  Call Puttyfun.keys("2111")
+  Delay (1000)
+  Call Puttyfun.keys("[Enter]")
+   Delay(3000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+  Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+   Call Puttyfun.Keys(supsku& "01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Tab]")  
+  Delay(1000)
+  Call Puttyfun.Keys("IMPERFECT")
+  Delay(2000)
+   Call Puttyfun.Keys("[Tab]")
+ Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")  
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+   If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect"
+      ElseIf ImageRepository.Puttyscreen.Singleshoe_msg.Exists Then
+    Log.Message("Single UPC is scanned")  
+ Else 
+    Log.error "Receiving failed" 
+ End If
+   Delay(1000)  
+  Call Puttyfun.Keys("[Enter]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+  If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect sku"
+ End If
+ Delay(1000)
+   Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+   Call Puttyfun.Keys ("[F10]")
+Delay(2000)
+End Function
+
+
+Function RightShoeReceiving
+Set Puttyfun= Aliases.putty.wndPuTTY
+ Delay(4000)
+ Call Random10
+Container=("3"& Pallet)
+Log.message ("Container no is:" & Container)
+ Delay(4000)
+  Call Puttyfun.keys("2111")
+  Delay (3000)
+  Call Puttyfun.keys("[Enter]")
+   Delay(2000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+   Call Puttyfun.Keys(supsku & "02")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+    Delay(1000)
+  Call Puttyfun.Keys("IMPERFECT")
+  Delay(2000)
+   Call Puttyfun.Keys("[Tab]")
+ Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+    Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+ If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect"
+      ElseIf ImageRepository.Puttyscreen.Singleshoe_msg.Exists then
+    Log.Message("Single UPC is scanned")  
+ Else 
+    Log.error "Receiving failed"
+ 
+ End If
+   Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+  Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+  If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect sku"
+ End If
+   Call Puttyfun.Keys("[Enter]")
+   Delay(1000)
+   Call Puttyfun.Keys ("[F10]")
+   End Function
+   
+    Function ShoeReceiving_Imperfect
+  Set Puttyfun= Aliases.putty.wndPuTTY
+  Delay(4000)
+ Call Random10
+Container=("3"& Pallet)
+Log.message ("Container no is:" & Container)
+
+ Delay(3000)
+  Call Puttyfun.keys("2111")
+  Delay (1000)
+  Call Puttyfun.keys("[Enter]")
+   Delay(2000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+  
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+   Call Puttyfun.Keys(supsku & "01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys(02367132&"02")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("IMPERFECT")
+  Delay(2000)
+   Call Puttyfun.Keys("[Tab]")
+Delay(2000)
+  Call Puttyfun.Keys(Container)
+  Delay(2000)
+  Call Puttyfun.Keys("[F4]")
+    Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(2000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(2000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(2000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+ If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect"
+ 
+ ElseIf ImageRepository.Puttyscreen.Receiptmsg.Exists then
+    Log.Message("Receiving completed")
+      
+ ElseIf ImageRepository.Puttyscreen.Diffupcmsg.Exists Then
+    Log.Message("UPC's are not the same")  
+  Else 
+    Log.error "Receiving failed"
+  End If
+   Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+  Delay(1000)
+  Call Puttyfun.Keys("[F10]")
+  End Function
+  
+  Function ImperfectShoeReceiving_Failed
+  Set Puttyfun= Aliases.putty.wndPuTTY
+ Delay(3000)
+ Call Random10
+Container=("3"& Pallet)
+Log.message ("Container no is:" & Container)
+ Delay(4000)
+  Call Puttyfun.keys("2111")
+  Delay (1000)
+  Call Puttyfun.keys("[Enter]")
+   Delay(2000)
+  Call Puttyfun.Keys("CLOLRP01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("POSTAL")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+   Call Puttyfun.Keys(supsku & "01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys(02367132 &"01")
+   Delay(1000)
+  Call Puttyfun.Keys("[Tab]")
+  Delay(1000)
+  Call Puttyfun.Keys("IMPERFECT")
+  Delay(2000)
+   Call Puttyfun.Keys("[Tab]")
+  Call Puttyfun.Keys(Container)
+  Delay(1000)
+  Call Puttyfun.Keys("[F4]")
+    Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+ Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+Call Puttyfun.Keys("[Tab]")
+    Call Puttyfun.Keys("[Tab]")
+  Delay(3000)
+   Call Puttyfun.Keys("P1125-5924-DUMMY")
+    Delay(3000)
+  Call Puttyfun.Keys("[Enter]")
+   Delay(2000)
+ If ImageRepository.Puttyscreen.Imperfectmsg.Exists Then
+ Log.Message "Receiving as imperfect"
+   ElseIf ImageRepository.Puttyscreen.Diffupcmsg.Exists Then
+    Log.Message("UPC's are not the same")  
+  Else 
+    Log.error "Receiving failed"
+  End If
+   Delay(1000)
+  Call Puttyfun.Keys("[Enter]")
+  Delay(1000)
+  Call Puttyfun.Keys("[F10]")
+  End Function
+  

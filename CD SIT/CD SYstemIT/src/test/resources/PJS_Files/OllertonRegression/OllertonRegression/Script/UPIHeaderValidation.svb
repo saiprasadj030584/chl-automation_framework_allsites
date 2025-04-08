@@ -1,0 +1,130 @@
+﻿'USEUNIT Auto_Hanging_WCS
+'USEUNIT BoxDespatchMainPage
+'USEUNIT CD_Manual_Receive_MainPage
+'USEUNIT CommonFunctions
+'USEUNIT DemandAllocationPage
+'USEUNIT DockConfirmPage
+'USEUNIT DockSchedulerPage
+'USEUNIT HangDespatchMainPage
+'USEUNIT IMPerfectBoxMainPage
+'USEUNIT IMPerfectBoxSetPartMainPage
+'USEUNIT IMPerfectHangingMainPage
+'USEUNIT InventoryValidationPage
+'USEUNIT LocationDamagedExceptionMainPage
+'USEUNIT LocationFullExceptionMainPage
+'USEUNIT LocationOverrideMainPage
+'USEUNIT LocationPage
+'USEUNIT LocationUnsuitableExceptionMainPage
+'USEUNIT MarshalPage
+'USEUNIT MoveTaskPage
+'USEUNIT PackConfigMaintenancePage
+'USEUNIT PalletGeneration
+'USEUNIT PerfectBoxMainPage
+'USEUNIT PerfectHangMainPage
+'USEUNIT PickingPage
+'USEUNIT PutawayPage
+'USEUNIT ReceivingPage
+'USEUNIT RMSReceivingException
+'USEUNIT SKUMaintenancePage
+'USEUNIT SteamHangMainPage
+'USEUNIT StockCheckPage
+'USEUNIT Test19
+'USEUNIT Test25
+'USEUNIT TrailerShippingPage
+'USEUNIT UnexpectedInventoryExceptionMainPage
+'USEUNIT VehicleLoadingPage
+'USEUNIT YardCheckIn
+'USEUNIT YardCheckOut
+'USEUNIT YardDockClearance
+
+public ASNID, TrailerID, UPIPallet,ExpectedValue
+
+
+Function UPIHead(ByVal Value)
+
+If Value = "B" Then
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call ReadExcelData(Filepath,"Pallet","Box_Data")
+    UPIPallet = ExpectedValue
+    
+Else 
+
+    Filepath="C:\Aravind\Input\Auto_Box"
+    Call ReadExcelData(Filepath,"Pallet","Han_Data")
+    UPIPallet = ExpectedValue
+    
+End If 
+   
+  Call CommonFunctions.FormName("UPI Header")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set UPITextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call UPITextBox.Keys(UPIPallet)
+  Call Footer.Keys("[F7]")
+  call ImageRepository.WMSCATEA.UPI_Header_Misc.Click
+  set ASNID = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+  if ASNID="" then
+      Log.Error("ASN ID is not Generated")
+    Else
+      Log.Message("ASN ID is Generated")
+  End If
+  TrailerID = Mid(ASNID,1,6)
+  log.Message(TrailerID)
+  Call Footer.Keys("[Esc]")
+End Function
+
+Function UPIHeadStatus
+
+  Call CommonFunctions.FormName("UPI Header")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set UPITextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call UPITextBox.Keys(UPIPallet)
+  Call Footer.Keys("[F7]")
+  set status = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  if status = "Complete" then
+      Log.Message("UPI Header status is Completed")
+  Else
+      log.Message("UPI Header status is still in "&status)
+  End If
+  Call Footer.Keys("[Esc]")
+  
+End Function
+
+Function UPIHeadStatusWCS
+
+  Call CommonFunctions.FormName("UPI Header")
+  set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+  Call Footer.Keys("[F2]")
+  set UPITextBox = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+  Call UPITextBox.Keys(UPIPallet)
+  Call Footer.Keys("[F7]")
+  set status = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPIHeader.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSComboBox.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+  if status = "In Progress" then
+      Log.Message("SKU is received")
+  Else
+      log.Message("UPI Header status is still in "&status)
+  End If
+  Call Footer.Keys("[Esc]")
+  
+End Function
+
+Function UPIReceipt
+  
+    Call CommonFunctions.FormName("UPI Receipt line")
+    set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+    call Footer.Keys("[F2]")
+    set Pallet = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+    Call Pallet.Keys(UPIPallet)
+    call Footer.Keys("[F7]")
+    set QTYReceived = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+    set QTYDue = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSUPILine.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+    If QTYDue = QTYReceived then
+        Log.Message("Recipt completed")
+    Else
+        Log.Message("Error in receiving")
+    End If
+    call Footer.Keys("[Esc]")
+    
+End Function 

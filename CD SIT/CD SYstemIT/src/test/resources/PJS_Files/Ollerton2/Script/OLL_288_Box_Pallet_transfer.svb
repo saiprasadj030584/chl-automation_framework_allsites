@@ -1,0 +1,70 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT SKU_Datasetup
+'USEUNIT WCS
+
+
+ 
+ Function OLL_288_PalletTransfer_BOX_WCS
+  Call Donington_WMSlogin
+  Filepath="C:\DD\Automation\Testdata1"  
+       Call ReadBoxdata(Filepath,"SKUID","Putawaysequence")
+     ReferenceNumber=ExpectedValue     
+End Function
+
+
+Function ReadBoxdata(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+if(row_cnt=Empty )Then Exit For
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+If value=" " Then Exit For
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+ Next 
+Call Manual_receiving_Box(list(0),list(1),list(2),list(3),list(4),list(5)) 
+Next
+End Function
+Function Manual_receiving_Box(ByVal URRNNo,ByVal Trailerno,ByVal Tractor,ByVal Drivername,ByVal Dockdoor,ByVal Barcode) 
+ Call UPIHeader
+ Call ASN_Validation
+ Call Dockscheduler
+ Call Yardcheckin
+ Call Donington_puttylogin
+ Call Dockdoorconfirmation 
+ Call WCSLogin_CATEA
+ Call Emulationbox
+ Call Emulationbox_Addnewbarcode
+ Call Barcode_Search
+ Call Editbarcode_Emulationbox
+ Call Loadunit
+ Call WCSLogout_CATEA
+ Call Workstation_A_Login
+ Call Assignworkplace
+ Call Workstation_A_Logout
+ Call WCSLogin_CATEA
+ Call Emulationbox
+ Call Barcode_Search
+ Call Editlocation_Manualreceiving
+ Call Repacking 
+ Call YardCheckout
+ Call YardClearance
+End Function
+ 
+
+

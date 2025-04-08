@@ -1,0 +1,596 @@
+﻿'USEUNIT Commonfunctions
+'USEUNIT DB_functionlities
+'USEUNIT Donington
+'USEUNIT Mainfunction
+'USEUNIT OLL_101_Putsequence
+'USEUNIT OLL_146_Locationsequence
+'USEUNIT OLL_147_Notfitpigeon_
+'USEUNIT OLL_148_Notfitshelf
+'USEUNIT OLL_149_NewLocation
+'USEUNIT OLL_223_Leftshoereceiving
+'USEUNIT OLL_227_RightShoeReceiving
+'USEUNIT OLL_230_ImperfectReceiving
+'USEUNIT OLL_231_Imperfect_Failed
+'USEUNIT OLL_275_Postal_Alone
+'USEUNIT OLL_277_Postal_URRN
+'USEUNIT OLL_288_Box_Pallet_transfer
+'USEUNIT Olletron
+'USEUNIT Otherfunctions
+'USEUNIT Puttyfunctionalities
+'USEUNIT Test
+
+
+
+ 
+Public Footer,supskufooter,packconfooter
+Public searchicon,searchbox,searchbutton,Runbutton
+Public supsku,Tagid,Tagvolume,Lockcode,UDT6,inventoryfooter,Largesku
+
+Function skusetup
+Set packconfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Set supskufooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+'#Search icon
+Call searchicon.click
+'#Search  SKU table
+Call searchbox.Click
+Call searchbox.Keys("SKU")
+Call searchbutton.Click
+Delay(1000)
+ImageRepository.WMS.Sku.Click
+Call Runbutton.Click
+Delay(3000)
+'#Validate dimention
+'#Dimentions update
+'#Click on query button
+Call Footer.Keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys "20025618001"
+Call Footer.Keys("[F7]")
+Delay(1000)
+Call Footer.Keys("[F4]")
+ImageRepository.WMS.Skudimension.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys "^a[BS]0.15"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys "^a[BS]0.19"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys "^a[BS]0.25"
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.Keys "^a[BS]0.09"
+Dim height
+height=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & height)
+Dim width
+width=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & width)
+Dim depth
+depth=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & depth)
+Dim weight
+weight=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & weight)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSSQLCombo.Panel.Panel.ComboBox.Keys "BOX"
+Call footer.keys("[F7]")
+'#save modification alert
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+Dim skuid
+skuid=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU3.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+Dim packvolume
+Set packvolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU3.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+'#Large sku validation
+If ImageRepository.WMS.Largesku1.Exists Then
+Log.message "It's a Large sku"
+End If
+'#Close sku window
+Call Footer.keys("[Esc]")
+'#Supplier sku
+Call searchicon.click
+Call searchbox.Keys("Supplier Sku")
+Call searchbutton.Click
+ImageRepository.WMS.Suppliersku.Click
+Call Runbutton.Click
+Call supskuFooter.keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(skuid)
+Call supskufooter.keys ("[F7]")
+supsku=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+Log.Message "Supplier sku is" & supsku
+Call supskufooter.keys ("[Esc]")
+'#packconfig updation
+Call searchicon.click
+Call searchbox.Keys("Pack config")
+Call searchbutton.Click
+ImageRepository.WMS.Packconfig.Click
+Call Runbutton.Click
+Call packconfooter.keys ("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(skuid & "WEA")
+Call packconfooter.keys ("[F7]")
+Set Tagvolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+Log.Message("Tag volume is:" & Tagvolume)
+If Not Tagvolume=packvolume Then
+Call packconfooter.keys ("[F4]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys ("^a[BS]" & packvolume)
+End If
+Call packconfooter.keys("[F7]")
+If Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Exists Then
+ Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+End If
+If Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Exists Then
+'If Packconfwarning.Exists Then
+Log.Error "Cannot change tag volume while inventory exists"
+End If
+Call packconfooter.keys ("[Esc]")
+End Function
+
+
+Public sku_id,packvolume
+Function SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+
+set Footer = Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Delay(1000)
+Call searchicon.click
+'#Search  SKU table
+Call searchbox.Click
+Call searchbox.Keys("SKU")
+Call searchbutton.Click
+Delay(1000)
+ImageRepository.WMS.Sku.Click
+Call Runbutton.Click
+Delay(3000)
+Call Footer.Keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys SKUID
+Call Footer.Keys("[F7]")
+Delay(1000)
+Call Footer.Keys("[F4]")
+ImageRepository.WMS.Skudimension.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & BPMHeight)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & BPMWidth)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & BPMDepth)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & BPMWeight)
+Dim height
+height=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & height)
+Dim width
+width=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & width)
+Dim depth
+depth=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField3.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & depth)
+Dim weight
+weight=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel3.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.getText
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField4.Panel.Panel.DCSDataField_DCSTextField.Keys ("^a[BS]" & weight)
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU2.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSSQLCombo.Panel.Panel.ComboBox.Keys "BOX"
+Call footer.keys ("[F7]")
+'#save modification alert
+Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+Delay(500)
+sku_id=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU3.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+'MsgBox sku_id
+
+Set packvolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSKU3.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+'#Large sku validation
+If ImageRepository.WMS.Largesku1.Exists Then
+Log.message "It's a Large sku"
+End If
+'#Close sku window
+Call Footer.keys("[Esc]")
+End Function
+
+
+'#Supplier sku
+Function Suppliersku
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Set supskufooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Call searchicon.click
+Call searchbox.Keys("Supplier Sku")
+Call searchbutton.Click
+ImageRepository.WMS.Suppliersku.Click
+Call Runbutton.Click
+Call supskuFooter.keys("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(sku_id)
+'Msgbox sku_id
+Call supskufooter.keys ("[F7]")
+supsku=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSSupplierSKU.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.DCSTabbedPane.Panel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+Log.Message "Supplier sku is" & supsku
+Call supskufooter.keys ("[Esc]")
+End Function
+
+
+Function Packconfiguration
+'#packconfig updation
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Set packconfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.Panel.Panel
+Call searchicon.click
+Call searchbox.Keys("Pack config")
+Call searchbutton.Click
+ImageRepository.WMS.Packconfig.Click
+Call Runbutton.Click
+Call packconfooter.keys ("[F2]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys(sku_id & "WEA")
+Call packconfooter.keys ("[F7]")
+Delay(500)
+Tagvolume=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+Log.Message("Tag volume is:" &Tagvolume)
+If Not Tagvolume=packvolume Then
+Call packconfooter.keys ("[F4]")
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSPackConfiguration.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.keys ("^a[BS]" & packvolume)
+End If
+Call packconfooter.keys("[F7]")
+If Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Exists Then
+ Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Click
+End If
+If Aliases.java2.MessageBox.RootPane.null_layeredPane.null_contentPane.Panel.DCSButton2.Exists Then
+'If Packconfwarning.Exists Then
+Log.Error "Cannot change tag volume while inventory exists"
+End If
+Call packconfooter.keys ("[Esc]")
+End Function
+
+'#Inventory
+Public Tagid1,Tagid2,Tagid3,Tagid4
+Function Inventory
+Set searchicon=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MainMenu.RootPane.null_layeredPane.null_contentPane.Panel.Panel.LogoButton
+Set searchbox=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel.Panel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField
+set searchbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton
+Set Runbutton=Aliases.java2.MSRFindScreenPopup.RootPane.null_layeredPane.null_contentPane.Panel2.Panel.DCSButton2
+Call searchicon.click
+Call searchbox.Keys("inventory")
+Call searchbutton.Click
+ImageRepository.WMS.Inventory.Click
+Call Runbutton.Click
+Delay(1000)
+Set inventoryfooter=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel.Panel.Panel
+Call inventoryfooter.keys ("[F2]")
+Delay(2000)
+ImageRepository.WMS.Inventorymisc.Click
+Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.Keys(Container)
+Call inventoryfooter.keys ("[F7]")
+Delay(1000)
+ImageRepository.WMS.Inventorygeneral.Click
+Tagid=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField.Panel.Panel.DCSDataField_DCSTextField.getText
+If Tagid1=Empty Or Tagid=Tagid1 Then
+Tagid1=Tagid
+Log.Message"Tagid1 is" & Tagid1
+Elseif Tagid2=Empty OR Tagid=Tagid2 Then
+Tagid2=Tagid
+Log.Message"Tagid2 is" & Tagid2
+Elseif Tagid3=Empty OR Tagid=Tagid3 Then
+Tagid3=Tagid
+Log.Message"Tagid3 is" & Tagid3
+ElseIf Tagid4=Empty OR Tagid=Tagid4 Then
+Tagid4=Tagid
+Log.Message"Tagid4 is" & Tagid4
+End If
+Set Lockcode=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane2.DCSGridFlowPanel.DCSDataField2.Panel.Panel.DCSDataField_DCSTextField.getText
+If Lockcode="SINGLESHOE" Then
+Log.Message ("Lockcode is:" & Lockcode)
+End If
+ImageRepository.WMS.Inventoryuserdef.Click
+Set UDT6=Aliases.iexplore.wndIEFrame.FrameTab.TabWindowClass.ShellDocObjectView.InternetExplorerServer.JavaPluginControlWindow.PluginEmbeddedFrame.MultipleScreenRunner.MQSInventory.RootPane.null_layeredPane.null_contentPane.Panel.Panel2.DefaultLayoutPanel.DCSGridFlowPanel.DCSTabbedPane3.DCSGridFlowPanel.DCSTabbedPane.DCSGridFlowPanel.DCSSQLCombo.Panel.Panel.ComboBox.DCSDataField_DCSTextField.getText
+IF UDT6="IMPERFECT" then 
+Log.Message ("Return condition UDT6 is:" & UDT6)
+End If
+Delay (1000)
+Call inventoryfooter.keys ("[Esc]")
+End Function
+
+
+
+
+
+Function Readfile(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+if(row_cnt=Empty )Then Exit For
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+If value=" " Then Exit For
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+ Next 
+Call datasetup(list(0),list(1),list(2),list(3),list(4)) 
+Next
+End Function
+Function datasetup(ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+Call Suppliersku
+'Call Packconfiguration
+
+End Function
+
+Function Readdetails_URRN
+Filepath="C:\DD\Automation\Testdata\URRN_2"   
+
+Call ReaddataURRN(Filepath,"SKUID","URRN")
+ReferenceNumber=ExpectedValue 
+'ShowMessage  ReferenceNumber       
+End Function
+
+Function ReaddataURRN(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+'ShowMessage value
+If value = " " Then
+Exit For
+End If
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'if no_of_id(j)=" " then 
+'Exit for 
+'End if 
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+Next
+Call ExceldatasetupURRN(list(0),list(1),list(2),list(3),list(4),list(5))
+Next
+End Function
+
+Function ExceldatasetupURRN(ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight,ByVal URRNNo) 
+
+Call SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+Call Suppliersku
+'Call Packconfiguration
+Call UPIHeader
+Call URRNDuplication(URRNNo)
+
+End Function
+
+Function Readdetails_Postal
+Filepath="C:\DD\Automation\Testdata\URRN"  
+Call Readdatapostal(Filepath,"SKUID","URRN")
+ReferenceNumber=ExpectedValue 
+'ShowMessage  ReferenceNumber       
+End Function
+
+Function Readdatapostal(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+'ShowMessage value
+If value = " " Then
+Exit For
+End If
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+Next
+Call Exceldatasetuppostal(list(0),list(1),list(2),list(3),list(4))
+Next
+End Function
+
+Function Exceldatasetuppostal (ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+Call Suppliersku
+'Call Packconfiguration
+End Function
+
+
+Function Putsequence 
+ Filepath="C:\DD\Automation\Testdata\Putawaysequence_1"  
+       Call ReadExcel_putawayseq(Filepath,"SKUID","Putawaysequence")
+     ReferenceNumber=ExpectedValue   
+End Function
+
+
+Function ReadExcel_putawayseq(Filepath,Header,SheetName)
+set objexcel = Createobject("Excel.Application")
+Set objWorkbook = objExcel.WorkBooks.Open(Filepath)
+Set objDriverSheet = objWorkbook.Worksheets(SheetName)
+row_cnt = objDriverSheet.UsedRange.Rows.Count
+'MsgBox "number of rows is --> " & row_cnt
+col_cnt = objDriverSheet.UsedRange.Columns.Count
+'MsgBox "number of columns is --> " & col_cnt
+For i = 1 To row_cnt-1
+if(row_cnt=Empty )Then Exit For
+Set list = CreateObject("System.Collections.ArrayList")
+for r=1 To  col_cnt
+value = objExcel.Cells(i+1,r).Value
+If value=" " Then Exit For
+no_of_id = Split(value,";")
+for j = 0 to UBound(no_of_id)
+'MsgBox no_of_id(j)
+list.add(no_of_id(j))
+Next  
+ Next 
+Call Datasetup_Putseq(list(0),list(1),list(2),list(3),list(4)) 
+Next
+End Function
+Function Datasetup_Putseq(ByVal SKUID,ByVal BPMHeight,ByVal BPMWidth,ByVal BPMDepth,ByVal BPMWeight) 
+Call SKU(SKUID,BPMHeight,BPMWidth,BPMDepth,BPMWeight)
+Call Suppliersku
+Call Packconfiguration
+Call Perfectreceiving
+Call Stgputawayseqlocation
+End Function
+
+Public Toloc1,Toloc2,Toloc3,Toloc4
+Function Putseq_Anytask
+'CheckString1="MCDMCF35"
+Call DBconnection_Putawaysequence
+  Set Puttyfun= Aliases.putty.wndPuTTY
+  Delay(2000)
+  Call Puttyfun.Keys("281")
+   Delay(2000)
+   Puttyfun.Keys ("[Enter]")
+     Delay(2000)
+Puttyfun.Keys(CheckString1)
+Puttyfun.Keys ("[Enter]")
+Delay(3000)  
+'#1st Putaway
+'MsgBox Tag1
+Puttyfun.Keys(Tag1)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc1=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc1
+    End If
+    If Toloc1=Loc1 Then
+    Log.Message "Showing 1st putaway sequence location:" & Toloc1
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(3000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '2nd putaway
+    Delay(2000)
+    Puttyfun.Keys ("[F8]")
+    Delay(3000)
+    '3rd putaway
+    Puttyfun.Keys(Tag3)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc3=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc3
+    End If   
+    If Toloc3=Loc3 Then
+    Log.Message "Showing 3rd putaway sequence location:" & Toloc3
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '4th putaway
+    Delay(3000)
+    Puttyfun.Keys(Tag4)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc4=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc4
+    End If
+        If Toloc4=Loc4 Then
+    Log.Message "Showing 4th putaway sequence location:" & Toloc4
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]")
+    '2nd putaway
+    Delay(2000)
+    Puttyfun.Keys(Tag2)
+Delay(2000)
+Call GetRDTContent()
+ If InStr(1,RDTContent,"To",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty1=trim(replace(temp1(0)," │",""))
+    Toloc2=mid(LocationPutty1,1,8)
+    Log.message "To location is:" & Toloc2
+    End If
+        If Toloc2=Loc2 Then
+    Log.Message "Showing 2nd putaway sequence location:" & Toloc2
+    Else
+    Log.error "Putaway sequence does not match"
+    End If
+    Delay(1000)
+    Puttyfun.Keys ("[Enter]")
+    Delay(2000)
+    Call GetRDTContent()
+    If InStr(1,RDTContent,"ChkTo",vbtextcompare)>0 Then
+    RDTContent=right(RDTContent,150)
+    temp=split(RDTContent,"To  :")
+    temp1=split(temp(1),chr(10))
+    LocationPutty=trim(replace(temp1(0)," │",""))
+     CheckString=mid(LocationPutty,1,8)   
+     End If
+    Delay(2000)
+    Puttyfun.Keys(CheckString)
+    Puttyfun.Keys ("[Enter]") 
+    Delay(1000)  
+     Puttyfun.Keys("[F10]")
+     Delay(1000)
+End Function
+
+
+
+
